@@ -32,10 +32,11 @@ def is_valid_curie(curie: str) -> bool:
     """Check if a CURIE is standardized and valid.
 
     :param curie: A compact URI of the form ``<prefix>:<local unique identifier>``.
-    :return:
-        If the CURIE is standardized in both syntax and semantics. This means that it uses the Bioregistry
-        canonical prefix, does not have a redundant prefix, and if available, matches the Bioregistry's
-        regular expression pattern for identifiers.
+
+    :returns: If the CURIE is standardized in both syntax and semantics. This means that
+        it uses the Bioregistry canonical prefix, does not have a redundant prefix, and
+        if available, matches the Bioregistry's regular expression pattern for
+        identifiers.
 
     Standard CURIE
 
@@ -78,8 +79,9 @@ def is_standardizable_curie(curie: str) -> bool:
     """Check if a CURIE is validatable, but not necessarily standardized.
 
     :param curie: A compact URI
-    :return: If the CURIE can be standardized (e.g., prefix normalize and identifier normalized)
-        then validated.
+
+    :returns: If the CURIE can be standardized (e.g., prefix normalize and identifier
+        normalized) then validated.
 
     Standard CURIE
 
@@ -123,12 +125,16 @@ def is_valid_identifier(prefix: str, identifier: str) -> bool:
 
     :param prefix: The prefix from a compact URI
     :param identifier: The local unique identifer from a compact URI
-    :return:
-        If the CURIE is standardized in both syntax and semantics. This means that it uses the Bioregistry
-        canonical prefix, does not have a redundant prefix, and if available, matches the Bioregistry's
-        regular expression pattern for identifiers.
 
-    .. seealso:: The :func:`is_standardizable_identifier` performs normalization before checking validity
+    :returns: If the CURIE is standardized in both syntax and semantics. This means that
+        it uses the Bioregistry canonical prefix, does not have a redundant prefix, and
+        if available, matches the Bioregistry's regular expression pattern for
+        identifiers.
+
+    .. seealso::
+
+        The :func:`is_standardizable_identifier` performs normalization before checking
+        validity
 
     Standard CURIE
 
@@ -480,7 +486,8 @@ def get_iri(
     :param prefix_map: A custom prefix map to go with the ``custom`` key in the priority list
     :param use_bioregistry_io: Should the bioregistry resolution IRI be used? Defaults to true.
     :param provider: The provider code to use for a custom provider
-    :return: The best possible IRI that can be generated based on the priority list.
+
+    :returns: The best possible IRI that can be generated based on the priority list.
 
     A pre-parse CURIE can be given as the first two arguments
 
