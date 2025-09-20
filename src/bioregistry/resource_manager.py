@@ -148,10 +148,14 @@ class Manager:
         """Instantiate a registry manager.
 
         :param registry: A custom registry. If none given, defaults to the Bioregistry.
-        :param metaregistry: A custom metaregistry. If none, defaults to the Bioregistry's metaregistry.
-        :param collections: A custom collections dictionary. If none, defaults to the Bioregistry's collections.
-        :param contexts: A custom contexts dictionary. If none, defaults to the Bioregistry's contexts.
-        :param mismatches: A custom mismatches dictionary. If none, defaults to the Bioregistry's mismatches.
+        :param metaregistry: A custom metaregistry. If none, defaults to the
+            Bioregistry's metaregistry.
+        :param collections: A custom collections dictionary. If none, defaults to the
+            Bioregistry's collections.
+        :param contexts: A custom contexts dictionary. If none, defaults to the
+            Bioregistry's contexts.
+        :param mismatches: A custom mismatches dictionary. If none, defaults to the
+            Bioregistry's mismatches.
         :param base_url: The base URL.
         """
         self.base_url = (base_url or BIOREGISTRY_REMOTE_URL).rstrip()
@@ -312,17 +316,18 @@ class Manager:
     ) -> str | None:
         """Get the normalized prefix, or return None if not registered.
 
-        :param prefix: The prefix to normalize, which could come from Bioregistry,
-            OBO Foundry, OLS, or any of the curated synonyms in the Bioregistry
+        :param prefix: The prefix to normalize, which could come from Bioregistry, OBO
+            Foundry, OLS, or any of the curated synonyms in the Bioregistry
         :param strict: If true and the prefix could not be looked up, raises an error
-        :param use_preferred:
-            If set to true, uses the "preferred prefix", if available, instead
-            of the canonicalized Bioregistry prefix.
-        :returns: The canonical Bioregistry prefix, it could be looked up. This
-            will usually take precedence: MIRIAM, OBO Foundry / OLS, Custom except
-            in a few cases, such as NCBITaxon.
+        :param use_preferred: If set to true, uses the "preferred prefix", if available,
+            instead of the canonicalized Bioregistry prefix.
 
-        :raises PrefixStandardizationError: If strict is set to true and the prefix could not be standardized
+        :returns: The canonical Bioregistry prefix, it could be looked up. This will
+            usually take precedence: MIRIAM, OBO Foundry / OLS, Custom except in a few
+            cases, such as NCBITaxon.
+
+        :raises PrefixStandardizationError: If strict is set to true and the prefix
+            could not be standardized
         """
         norm_prefix = self.synonyms.get(prefix)
         if norm_prefix is None:
