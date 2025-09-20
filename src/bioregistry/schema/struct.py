@@ -1613,7 +1613,8 @@ class Resource(BaseModel):
     def get_mastodon(self) -> str | None:
         """Get the Mastodon handle for the resource.
 
-        :return: The Mastodon handle. Note that this does **not** include a leading ``@``
+        :returns: The Mastodon handle. Note that this does **not** include a leading
+            ``@``
 
         >>> from bioregistry import get_resource
         >>> get_resource("go").get_mastodon()
