@@ -223,10 +223,11 @@ def validate_curies(
     return cast("pd.Series[str]", results)
 
 
-def summarize_curie_validation(df: pd.DataFrame, idx: pd.Series[str]) -> None:
+def summarize_curie_validation(df: pd.DataFrame, idx: pd.Series[str], column: int | str) -> None:
     """Provide a summary of CURIE validation."""
+    column = _norm_column(df, column)
     count = (~idx).sum()
-    unique = sorted(df[~idx][0].unique())
+    unique = sorted(df[~idx][column].unique())
     print(  # noqa:T201
         f"{count:,} of {len(df.index):,} ({count / len(df.index):.0%})",
         "rows with the following CURIEs need to be fixed:",
