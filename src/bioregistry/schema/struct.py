@@ -2087,8 +2087,9 @@ class Resource(BaseModel):
         """Get a well-formed URI prefix, if available.
 
         :param priority: The prioirty order for :func:`get_format`.
-        :return: The URI prefix. Similar to what's returned by :func:`get_uri_format`, but
-            it MUST have only one ``$1`` and end with ``$1`` to use the function.
+
+        :returns: The URI prefix. Similar to what's returned by :func:`get_uri_format`,
+            but it MUST have only one ``$1`` and end with ``$1`` to use the function.
 
         >>> import bioregistry
         >>> bioregistry.get_uri_prefix("chebi")
@@ -2121,11 +2122,10 @@ class Resource(BaseModel):
     def get_uri_prefixes(self, *, enforce_w3c: bool = False) -> set[str]:
         """Get the set of all URI prefixes.
 
-        :param enforce_w3c:
-            When generating URI prefixes from prefix synonyms,
-            should synonyms that aren't W3C-compliant be filtered out?
-        :returns:
-            A set of URI prefixes.
+        :param enforce_w3c: When generating URI prefixes from prefix synonyms, should
+            synonyms that aren't W3C-compliant be filtered out?
+
+        :returns: A set of URI prefixes.
         """
         uri_prefixes = (
             self._clip_uri_format(uri_format)
