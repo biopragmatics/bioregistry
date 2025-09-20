@@ -3,12 +3,12 @@
 import json
 from collections.abc import Mapping, Sequence
 from pathlib import Path
-from typing import Any
+from typing import Any, ClassVar
 
 from pystow.utils import download
 
 from bioregistry.constants import RAW_DIRECTORY, URI_FORMAT_KEY
-from bioregistry.external.alignment_utils import Aligner
+from bioregistry.external.alignment_utils import Aligner, load_processed
 
 __all__ = [
     "BioContextAligner",
@@ -22,18 +22,20 @@ URL = "https://raw.githubusercontent.com/prefixcommons/biocontext/master/registr
 SKIP_PARTS = {"identifiers.org", "purl.obolibrary.org"}
 
 
-def get_biocontext(force_download: bool = False) -> Mapping[str, Mapping[str, Any]]:
+def get_biocontext(*, force_download: bool = False) -> dict[str, dict[str, Any]]:
     """Get the BioContext context map.
 
-    :param force_download: If true, forces download. If false and the file
-        is already cached, reuses it.
+    :param force_download: If true, forces download. If false and the file is already
+        cached, reuses it.
+
     :returns: The biocontext data dictionary
 
-    .. seealso:: https://github.com/prefixcommons/biocontext
+    .. seealso::
+
+        https://github.com/prefixcommons/biocontext
     """
     if PROCESSED_PATH.exists() and not force_download:
-        with PROCESSED_PATH.open() as file:
-            return json.load(file)
+        return load_processed(PROCESSED_PATH)
     download(url=URL, path=RAW_PATH, force=force_download)
     with RAW_PATH.open() as file:
         data = json.load(file)
@@ -51,7 +53,7 @@ class BioContextAligner(Aligner):
 
     key = "biocontext"
     getter = get_biocontext
-    curation_header = [URI_FORMAT_KEY]
+    curation_header: ClassVar[Sequence[str]] = [URI_FORMAT_KEY]
 
     def get_skip(self) -> Mapping[str, str]:
         """Get entries for BioContext that should be skipped."""

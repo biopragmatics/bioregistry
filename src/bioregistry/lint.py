@@ -3,23 +3,22 @@
 import click
 
 from bioregistry.constants import CURATED_PAPERS_PATH
-from bioregistry.schema import Publication
 from bioregistry.schema_utils import (
     read_collections,
     read_contexts,
+    read_mappings,
     read_metaregistry,
-    read_mismatches,
     read_registry,
     write_collections,
     write_contexts,
+    write_mappings,
     write_metaregistry,
-    write_mismatches,
     write_registry,
 )
 
-
-def _publication_sort_key(p: Publication) -> tuple[int, str, str]:
-    return -(p.year or 0), (p.title or "").casefold(), p.get_url()
+__all__ = [
+    "lint",
+]
 
 
 @click.command()
@@ -29,8 +28,8 @@ def lint() -> None:
     # these resources, such as the align() pipeline, they don't get overwritten.
     for read_resource_func in (
         read_registry,
+        read_mappings,
         read_metaregistry,
-        read_mismatches,
         read_collections,
         read_contexts,
     ):
@@ -47,11 +46,11 @@ def lint() -> None:
             resource.keywords = sorted({k.lower() for k in resource.keywords})
 
         if resource.publications:
-            resource.publications = sorted(resource.publications, key=_publication_sort_key)
+            resource.publications = sorted(resource.publications)
 
         for provider in resource.providers or []:
             if provider.publications:
-                provider.publications = sorted(provider.publications, key=_publication_sort_key)
+                provider.publications = sorted(provider.publications)
 
     write_registry(registry)
     collections = read_collections()
@@ -60,7 +59,7 @@ def lint() -> None:
     write_collections(collections)
     write_metaregistry(read_metaregistry())
     write_contexts(read_contexts())
-    write_mismatches(read_mismatches())
+    write_mappings(read_mappings())
 
     df = pd.read_csv(CURATED_PAPERS_PATH, sep="\t")
     df["pr_added"] = df["pr_added"].map(lambda x: str(int(x)) if pd.notna(x) else None)

@@ -1,8 +1,10 @@
 """A script to check which providers in entries in the Bioregistry actually can be accessed."""
 
+from __future__ import annotations
+
 import datetime
 from operator import attrgetter
-from typing import NamedTuple, Optional
+from typing import NamedTuple
 
 import click
 import requests
@@ -29,10 +31,10 @@ class ProviderStatus(BaseModel):
     prefix: str = Field(...)
     example: str = Field(...)
     url: str = Field(...)
-    status_code: Optional[int] = Field(None)
+    status_code: int | None = Field(None)
     failed: bool = Field(...)
-    exception: Optional[str] = Field(None)
-    context: Optional[str] = Field(None)
+    exception: str | None = Field(None)
+    context: str | None = Field(None)
 
 
 class Summary(BaseModel):
@@ -82,7 +84,7 @@ class Run(BaseModel):
     date: str = Field(default_factory=lambda: datetime.datetime.now().strftime("%Y-%m-%d"))
     results: list[ProviderStatus]
     summary: Summary
-    delta: Optional[Delta] = Field(
+    delta: Delta | None = Field(
         None, description="Information about the changes since the last run"
     )
 
@@ -125,7 +127,7 @@ def main() -> None:
         queue.append(QueueTuple(resource.prefix, example, url))
 
     with logging_redirect_tqdm():
-        results = thread_map(_process, queue, desc="Checking providers", unit="prefix")
+        results = thread_map(_process, queue, desc="Checking providers", unit="prefix")  # type:ignore[no-untyped-call]
 
     total = len(results)
     total_failed = sum(result.failed for result in results)
@@ -198,9 +200,9 @@ def _calculate_delta(current: list[ProviderStatus], previous: list[ProviderStatu
 def _process(element: QueueTuple) -> ProviderStatus:
     prefix, example, url = element
 
-    status_code: Optional[int]
-    exception: Optional[str]
-    context: Optional[str]
+    status_code: int | None
+    exception: str | None
+    context: str | None
 
     try:
         res = requests.head(url, timeout=10, allow_redirects=True)

@@ -1,21 +1,28 @@
 """Constants and utilities for registries."""
 
+from __future__ import annotations
+
+import enum
 import os
 import pathlib
 import re
-from typing import Union
+from typing import TypeAlias
 
 import pystow
+from curies import ReferenceTuple
 
 __all__ = [
     "BIOREGISTRY_MODULE",
     "BIOREGISTRY_PATH",
     "COLLECTIONS_PATH",
+    "CURATED_MAPPINGS_PATH",
     "DATA_DIRECTORY",
     "HERE",
     "METAREGISTRY_PATH",
-    "MISMATCH_PATH",
     "RAW_DIRECTORY",
+    "FailureReturnType",
+    "MaybeCURIE",
+    "get_failure_return_type",
 ]
 
 PATTERN_KEY = "pattern"
@@ -27,7 +34,7 @@ EXTERNAL = DATA_DIRECTORY / "external"
 BIOREGISTRY_PATH = DATA_DIRECTORY / "bioregistry.json"
 METAREGISTRY_PATH = DATA_DIRECTORY / "metaregistry.json"
 COLLECTIONS_PATH = DATA_DIRECTORY / "collections.json"
-MISMATCH_PATH = DATA_DIRECTORY / "mismatch.json"
+CURATED_MAPPINGS_PATH = DATA_DIRECTORY / "curated_mappings.sssom.tsv"
 CONTEXTS_PATH = DATA_DIRECTORY / "contexts.json"
 CURATED_PAPERS_PATH = DATA_DIRECTORY / "curated_papers.tsv"
 
@@ -128,6 +135,13 @@ MIRIAM_BLACKLIST = {
     "neurolex",
     # Miriam needs to be extended
     "ccds",
+    # Miriam completely misses the actual usage
+    "agricola",
+    # Miriam pattern/example combo is broken
+    # See https://github.com/biopragmatics/bioregistry/issues/1588
+    "hogenom",
+    # Miriam pattern/example combo is broken
+    "homd.seq",
 }
 IDENTIFIERS_ORG_URL_PREFIX = "https://identifiers.org/"
 
@@ -154,7 +168,9 @@ EXTRAS = f"%20Community%20Health%20Score&link={CH_BASE}"
 EMAIL_RE_STR = r"^(\w|\.|\_|\-)+[@](\w|\_|\-|\.)+[.]\w{2,7}$"
 EMAIL_RE = re.compile(EMAIL_RE_STR)
 
-MaybeCURIE = Union[tuple[str, str], tuple[None, None]]
+NonePair: TypeAlias = tuple[None, None]
+
+MaybeCURIE = ReferenceTuple | NonePair | None
 
 DISALLOWED_EMAIL_PARTS = {
     "contact@",
@@ -163,3 +179,21 @@ DISALLOWED_EMAIL_PARTS = {
     "discuss@",
     "support@",
 }
+
+
+class FailureReturnType(enum.Enum):
+    """A flag for what to return when handling reference tuples."""
+
+    #: return a single None
+    single = enum.auto()
+    #: return a pair of None's
+    pair = enum.auto()
+
+
+def get_failure_return_type(frt: FailureReturnType) -> None | NonePair:
+    """Get the right failure return type."""
+    if frt == FailureReturnType.single:
+        return None
+    elif frt == FailureReturnType.pair:
+        return None, None
+    raise TypeError

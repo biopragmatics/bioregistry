@@ -1,27 +1,27 @@
 """App builder interface."""
 
+from __future__ import annotations
+
 import json
 from collections.abc import Mapping
 from pathlib import Path
 from textwrap import dedent
-from typing import TYPE_CHECKING, Any, Optional, Union
+from typing import Any, Literal, overload
 
+import pystow
 from a2wsgi import WSGIMiddleware
 from curies.mapping_service import MappingServiceGraph, MappingServiceSPARQLProcessor
 from fastapi import APIRouter, FastAPI
 from flask import Flask
 from flask_bootstrap import Bootstrap4
 from markdown import markdown
-from rdflib_endpoint import SparqlRouter
+from rdflib_endpoint.sparql_router import SparqlRouter
 
-from bioregistry import curie_to_str, resource_manager, version
+from bioregistry import Manager, curie_to_str, resource_manager, version
 
 from .api import api_router
-from .constants import BIOSCHEMAS
+from .constants import BIOSCHEMAS, KEY_A, KEY_B, KEY_C, KEY_D, KEY_E
 from .ui import ui_blueprint
-
-if TYPE_CHECKING:
-    import bioregistry
 
 __all__ = [
     "get_app",
@@ -40,7 +40,8 @@ FOOTER_DEFAULT = dedent(
     at Northeastern University.<br/>
     Funded by Chan Zuckerberg Initiative (CZI) Award
     <a href="https://gyorilab.github.io/#czi-bioregistry">2023-329850</a>.<br/>
-    Point of contact: <a href="https://github.com/cthoyt">@cthoyt</a>.
+    Point of contact: <a href="https://github.com/cthoyt">@cthoyt</a> and
+    <a rel="me" href="https://fosstodon.org/@bioregistry" title="bioregistry">@bioregistry@fosstodon.org</a>
     (<a href="https://github.com/biopragmatics/bioregistry">Source code</a>)
 """
 )
@@ -104,19 +105,49 @@ RESOURCES_SUBHEADER_DEFAULT = dedent(
 )
 
 
+# docstr-coverage:excused `overload`
+@overload
 def get_app(
-    manager: Optional["bioregistry.Manager"] = None,
-    config: Union[None, str, Path, Mapping[str, Any]] = None,
+    manager: Manager | None = ...,
+    config: None | str | Path | Mapping[str, Any] = ...,
+    *,
+    first_party: bool = ...,
+    return_flask: Literal[True] = True,
+    analytics: bool = ...,
+) -> tuple[FastAPI, Flask]: ...
+
+
+# docstr-coverage:excused `overload`
+@overload
+def get_app(
+    manager: Manager | None = ...,
+    config: None | str | Path | Mapping[str, Any] = ...,
+    *,
+    first_party: bool = ...,
+    return_flask: Literal[False] = False,
+    analytics: bool = ...,
+) -> FastAPI: ...
+
+
+def get_app(
+    manager: Manager | None = None,
+    config: None | str | Path | Mapping[str, Any] = None,
+    *,
     first_party: bool = True,
     return_flask: bool = False,
-):
+    analytics: bool = False,
+) -> FastAPI | tuple[FastAPI, Flask]:
     """Prepare the WSGI application.
 
     :param manager: A pre-configured manager. If none given, uses the default manager.
-    :param config: Additional configuration to be passed to the flask application. See below.
+    :param config: Additional configuration to be passed to the flask application. See
+        below.
     :param first_party: Set to true if deploying the "canonical" bioregistry instance
     :param return_flask: Set to true to get internal flask app
+    :param analytics: Should analytics be enabled?
+
     :returns: An instantiated WSGI application
+
     :raises ValueError: if there's an issue with the configuration's integrity
     """
     app = Flask(__name__)
@@ -124,7 +155,7 @@ def get_app(
     if manager is None:
         manager = resource_manager.manager
 
-    if isinstance(config, (str, Path)):
+    if isinstance(config, str | Path):
         with open(config) as file:
             conf = json.load(file)
     elif config is None:
@@ -183,10 +214,22 @@ def get_app(
             "url": conf["METAREGISTRY_LICENSE_URL"],
         },
     )
-    fast_api.manager = manager
+    fast_api.manager = manager  # type:ignore
     fast_api.include_router(api_router)
     fast_api.include_router(_get_sparql_router(app))
-    fast_api.mount("/", WSGIMiddleware(app))
+    fast_api.mount("/", WSGIMiddleware(app))  # type:ignore
+
+    # yes, this isn't very secure. just for testing now.
+    key = "-".join([KEY_A, KEY_B, KEY_C, KEY_D, KEY_E])
+    analytics_api_key = conf.get("ANALYTICS_API_KEY") or pystow.get_config(
+        "bioregistry",
+        "analytics_api_key",
+        passthrough=key,
+    )
+    if analytics_api_key and analytics:
+        from api_analytics.fastapi import Analytics
+
+        fast_api.add_middleware(Analytics, api_key=analytics_api_key)  # Add middleware
 
     # Make manager available in all jinja templates
     app.jinja_env.globals.update(
@@ -211,10 +254,10 @@ SELECT ?s ?o WHERE {
 """.rstrip()
 
 
-def _get_sparql_router(app) -> APIRouter:
+def _get_sparql_router(app: Flask) -> APIRouter:
     sparql_graph = MappingServiceGraph(converter=app.manager.converter)
     sparql_processor = MappingServiceSPARQLProcessor(graph=sparql_graph)
-    sparql_router = SparqlRouter(
+    sparql_router: APIRouter = SparqlRouter(
         path="/sparql",
         title=f"{app.config['METAREGISTRY_TITLE']} SPARQL Service",
         description="An identifier mapping service",
@@ -227,7 +270,7 @@ def _get_sparql_router(app) -> APIRouter:
     return sparql_router
 
 
-def _get_tags_metadata(conf, manager):
+def _get_tags_metadata(conf: dict[str, str], manager: Manager) -> list[dict[str, Any]]:
     tags_metadata = [
         {
             "name": "resource",

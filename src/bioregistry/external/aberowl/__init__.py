@@ -1,14 +1,15 @@
 """Download the AberOWL registry."""
 
 import json
+from collections.abc import Sequence
 from pathlib import Path
-from typing import Any
+from typing import Any, ClassVar
 
 import yaml
 from pystow.utils import download
 
 from bioregistry.constants import RAW_DIRECTORY
-from bioregistry.external.alignment_utils import Aligner
+from bioregistry.external.alignment_utils import Aligner, load_processed
 
 __all__ = [
     "AberOWLAligner",
@@ -24,15 +25,14 @@ ABEROWL_URL = "http://aber-owl.net/api/ontology/?drf_fromat=json&format=json"
 def get_aberowl(force_download: bool = False) -> dict[str, dict[str, Any]]:
     """Get the AberOWL registry."""
     if PROCESSED_PATH.exists() and not force_download:
-        with PROCESSED_PATH.open() as file:
-            return json.load(file)
+        return load_processed(PROCESSED_PATH)
 
     download(url=ABEROWL_URL, path=RAW_PATH, force=True)
     with RAW_PATH.open() as file:
         entries = yaml.full_load(file)
     rv = {entry["acronym"]: _process(entry) for entry in entries}
     with PROCESSED_PATH.open("w") as file:
-        json.dump(rv, file, indent=2, sort_keys=True)
+        json.dump(rv, file, indent=2, sort_keys=True, ensure_ascii=False)
     return rv
 
 
@@ -71,7 +71,7 @@ class AberOWLAligner(Aligner):
 
     key = "aberowl"
     getter = get_aberowl
-    curation_header = ["name", "homepage", "description"]
+    curation_header: ClassVar[Sequence[str]] = ["name", "homepage", "description"]
 
 
 if __name__ == "__main__":

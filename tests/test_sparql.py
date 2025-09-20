@@ -2,7 +2,6 @@
 
 import csv
 import unittest
-from typing import Set, Tuple
 from xml import etree
 
 import requests
@@ -15,8 +14,8 @@ LOCAL_BLAZEGRAPH = "http://localhost:8889/blazegraph/namespace/kb/sparql"
 LOCAL_VIRTUOSO = "http://localhost:8890/sparql"
 
 
-def _handle_res_xml(res: requests.Response) -> Set[Tuple[str, str]]:
-    root = etree.ElementTree.fromstring(res.text)  # noqa:S314
+def _handle_res_xml(res: requests.Response) -> set[tuple[str, str]]:
+    root = etree.ElementTree.fromstring(res.text)
     results = root.find("{http://www.w3.org/2005/sparql-results#}results")
     rv = set()
     for result in results:
@@ -28,14 +27,14 @@ def _handle_res_xml(res: requests.Response) -> Set[Tuple[str, str]]:
     return rv
 
 
-def _handle_res_json(res: requests.Response) -> Set[Tuple[str, str]]:
+def _handle_res_json(res: requests.Response) -> set[tuple[str, str]]:
     res_json = res.json()
     return {
         (record["s"]["value"], record["o"]["value"]) for record in res_json["results"]["bindings"]
     }
 
 
-def _handle_res_csv(res: requests.Response) -> Set[Tuple[str, str]]:
+def _handle_res_csv(res: requests.Response) -> set[tuple[str, str]]:
     reader = csv.DictReader(res.text.splitlines())
     return {(record["s"], record["o"]) for record in reader}
 
@@ -47,10 +46,11 @@ HANDLERS = {
 }
 
 
-def get(endpoint: str, sparql: str, accept) -> Set[Tuple[str, str]]:
+def get(endpoint: str, sparql: str, accept) -> set[tuple[str, str]]:
     """Get a response from a given SPARQL query."""
     res = requests.get(
         endpoint,
+        timeout=15,
         params={"query": sparql},
         headers={"accept": accept},
     )
@@ -62,7 +62,7 @@ def sparql_service_available(endpoint: str) -> bool:
     """Test if a SPARQL service is running."""
     try:
         records = get(endpoint, PING_SPARQL, "application/json")
-    except requests.exceptions.ConnectionError:
+    except (requests.exceptions.ConnectionError, requests.exceptions.JSONDecodeError):
         return False
     return list(records) == [("hello", "there")]
 
@@ -108,7 +108,11 @@ class TestSPARQL(unittest.TestCase):
     def test_federate_blazegraph(self):
         """Test federating on a Blazegraph triplestore.
 
-        To run blazegraph locally: docker compose up
+        To run blazegraph locally with ``docker compose up`` or:
+
+        1. Get:
+           https://github.com/blazegraph/database/releases/download/BLAZEGRAPH_2_1_6_RC/blazegraph.jar
+        2. Run: java -jar blazegraph.jar
         """
         for mimetype in HANDLERS:
             with self.subTest(mimetype=mimetype):

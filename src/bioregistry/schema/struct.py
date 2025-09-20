@@ -9,24 +9,27 @@ import pathlib
 import re
 import textwrap
 import typing
-from collections.abc import Iterable, Mapping, Sequence
+from collections.abc import Callable, Iterable, Mapping, Sequence
 from dataclasses import dataclass
 from functools import lru_cache
 from operator import attrgetter
 from typing import (
     TYPE_CHECKING,
     Any,
-    Callable,
     ClassVar,
     Generic,
-    Optional,
+    Literal,
+    TypeAlias,
     TypeVar,
     cast,
     overload,
 )
 
+import click
+from curies.w3c import NCNAME_RE
 from pydantic import BaseModel, EmailStr, Field, PrivateAttr
 from pydantic.json_schema import models_json_schema
+from typing_extensions import Self
 
 from bioregistry import constants as brc
 from bioregistry.constants import (
@@ -39,11 +42,6 @@ from bioregistry.constants import (
 )
 from bioregistry.license_standardizer import standardize_license
 from bioregistry.utils import curie_to_str, deduplicate, removeprefix, removesuffix
-
-try:
-    from typing import Literal
-except ImportError:
-    from typing_extensions import Literal  # type:ignore
 
 if TYPE_CHECKING:
     import rdflib
@@ -58,6 +56,7 @@ __all__ = [
     "Publication",
     "Registry",
     "Resource",
+    "ResourceStatus",
     "get_json_schema",
 ]
 
@@ -82,6 +81,45 @@ URI_IRI_INFO = (
 )
 
 X = TypeVar("X")
+
+#: A controlled vocabulary of domains.
+Domain: TypeAlias = Literal[
+    "chemical",
+    "tissue",
+    "reaction",
+    "gene",
+    "cell and cell line",
+    "cellular component",
+    "model",
+    "organization",
+    "clinical trial",
+    "pathway",
+    "protein family",
+    "gene family",
+    "disease",
+    "vaccine",
+    "multiple",
+    "variant",
+    "publication",
+    "protein complex",
+    "mirna",
+    "taxonomy",
+    "project",
+    "grant",
+    "classification",
+    "protein",
+    "study",
+    "relationship",
+    "relationship type",
+    "antibody",
+    "schema",
+    "license",
+    "semantic web",
+    "geography",
+    "ptm",
+    "bibliometrics",
+    "genetic code",
+]
 
 
 def _uri_sort(uri: str) -> tuple[str, str]:
@@ -212,16 +250,16 @@ class Attributable(BaseModel):
         :param graph: An RDF graph
         :returns: The RDF node representing this author using an ORCiD URI.
         """
-        from rdflib import BNode, Literal
+        from rdflib import BNode, Literal, Node
         from rdflib.namespace import FOAF, RDFS
 
         if not self.orcid:
-            node = BNode()
+            node: Node = BNode()
         else:
             from .constants import orcid
 
             node = orcid.term(self.orcid)
-        graph.add((node, RDFS["label"], Literal(self.name)))
+        graph.add((node, RDFS.label, Literal(self.name)))
         if self.email:
             graph.add((node, FOAF.mbox, Literal(self.email)))
         return node
@@ -239,34 +277,17 @@ class Author(Attributable):
         **{PATTERN_KEY: ORCID_PATTERN},  # type:ignore
     )
 
-
-class Provider(BaseModel):
-    """A provider."""
-
-    code: str = Field(..., description="A locally unique code within the prefix for the provider")
-    name: str = Field(..., description="Name of the provider")
-    description: str = Field(..., description="Description of the provider")
-    homepage: str = Field(..., description="Homepage of the provider")
-    uri_format: str = Field(
-        ...,
-        title="URI Format",
-        description=f"The URI format string, which must have at least one ``$1`` in it. {URI_IRI_INFO}",
-    )
-    first_party: bool | None = Field(
-        None, description="Annotates whether a provider is from the first-party organization"
-    )
-    publications: list[Publication] | None = Field(
-        default=None,
-        description="A list of publications about the provider. See the `indra` provider for `hgnc` for an example.",
-    )
-
-    def resolve(self, identifier: str) -> str:
-        """Resolve the identifier into a URI.
-
-        :param identifier: The identifier in the semantic space
-        :return: The URI for the identifier
-        """
-        return self.uri_format.replace("$1", identifier)
+    @classmethod
+    def get_charlie(cls) -> Self:
+        """Get an author object representing Charlie."""
+        return cls.model_validate(
+            {
+                "email": "cthoyt@gmail.com",
+                "github": "cthoyt",
+                "name": "Charles Tapley Hoyt",
+                "orcid": "0000-0003-4423-4370",
+            }
+        )
 
 
 class Publication(BaseModel):
@@ -308,6 +329,77 @@ class Publication(BaseModel):
             or (self.doi is not None and self.doi == other.doi)
             or (self.pmc is not None and self.pmc == other.pmc)
         )
+
+    def _sort_key(self) -> tuple[int, str, str]:
+        return -(self.year or 0), (self.title or "").casefold(), self.get_url()
+
+    def __lt__(self, other: Publication) -> bool:
+        if not isinstance(other, Publication):
+            raise TypeError
+        return self._sort_key() < other._sort_key()
+
+
+#: The status of a resource.
+ResourceStatus: TypeAlias = Literal[
+    "available", "moved", "gone", "hijacked", "degraded", "misconfigured"
+]
+ResourceStatusAvailable: ResourceStatus = "available"
+
+
+class StatusCheck(BaseModel):
+    """A status check."""
+
+    value: ResourceStatus
+    date: str = Field(pattern="^\\d{4}-\\d{2}-\\d{2}$")
+    contributor: str = Field(..., pattern=ORCID_PATTERN)
+    notes: str | None = None
+
+
+class Provider(BaseModel):
+    """A provider."""
+
+    code: str = Field(..., description="A locally unique code within the prefix for the provider")
+    name: str = Field(..., description="Name of the provider")
+    description: str = Field(..., description="Description of the provider")
+    homepage: str = Field(..., description="Homepage of the provider")
+    uri_format: str = Field(
+        ...,
+        title="URI Format",
+        description=f"The URI format string, which must have at least one ``$1`` in it. {URI_IRI_INFO}",
+    )
+    first_party: bool | None = Field(
+        None, description="Annotates whether a provider is from the first-party organization"
+    )
+    publications: list[Publication] | None = Field(
+        default=None,
+        description="A list of publications about the provider. See the `indra` provider for `hgnc` for an example.",
+    )
+    example: str | None = Field(
+        default=None,
+        description="An example local identifier, specific to the provider. Providing this value is "
+        "only necessary if the example associated with the prefix for which this is a provider "
+        "is not resolvable by the provider. The example identifier should exclude any redundant "
+        "usage of the prefix. For example, a GO identifier should only "
+        "look like ``1234567`` and not like ``GO:1234567``",
+    )
+    status: StatusCheck | None = Field(
+        None,
+        description="Tracks the status of the provider. If this isn't set, assume that the provider is still active. See discussion in in https://github.com/biopragmatics/bioregistry/issues/1387.",
+    )
+
+    def resolve(self, identifier: str) -> str:
+        """Resolve the identifier into a URI.
+
+        :param identifier: The identifier in the semantic space
+        :return: The URI for the identifier
+        """
+        return self.uri_format.replace("$1", identifier)
+
+    def is_known_inactive(self) -> bool:
+        """Check if the resource is known to be inactive."""
+        if self.status is None:
+            return False
+        return self.status.value != ResourceStatusAvailable
 
 
 class Resource(BaseModel):
@@ -362,8 +454,8 @@ class Resource(BaseModel):
     )
     contact_group_email: EmailStr | None = Field(
         default=None,
-        description="A group contact email for the project. It's required to have a primary contact "
-        "to have this field.",
+        description="A group contact email (e.g., a mailing list, a shared address) for the project. "
+        "It's required to have a primary contact to have this field.",
     )
     contact_page: str | None = Field(
         default=None,
@@ -510,6 +602,11 @@ class Resource(BaseModel):
     keywords: list[str] | None = Field(
         default=None, description="A list of keywords for the resource"
     )
+    domain: Domain | None = Field(
+        default=None,
+        examples=cast(list[str], typing.get_args(Domain)),
+        description="A high-level semantic type of the entities in the semantic space.",
+    )
     references: list[str] | None = Field(
         default=None,
         description="A list of URLs to also see, such as publications describing the resource",
@@ -629,6 +726,8 @@ class Resource(BaseModel):
     prefixcommons: Mapping[str, Any] | None = None
     #: External data from Wikidata Properties
     wikidata: Mapping[str, Any] | None = None
+    #: External data from Wikidata Entity
+    wikidata_entity: Mapping[str, Any] | None = None
     #: External data from the Gene Ontology's custom registry
     go: Mapping[str, Any] | None = None
     #: External data from the Open Biomedical Ontologies (OBO) Foundry catalog
@@ -845,7 +944,8 @@ class Resource(BaseModel):
             return None
         return fmt.replace("$1", identifier)
 
-    def __setitem__(self, key: str, value: Any) -> None:  # noqa:D105
+    def __setitem__(self, key: str, value: Any) -> None:
+        """Set an attribute on the resource."""
         setattr(self, key, value)
 
     def get_banana(self) -> str | None:
@@ -915,7 +1015,7 @@ class Resource(BaseModel):
         if self.uri_format is not None:
             return self.uri_format
         for metaprefix, key in URI_FORMAT_PATHS:
-            rv = cast(Optional[str], self.get_external(metaprefix).get(key))
+            rv = cast(str | None, self.get_external(metaprefix).get(key))
             if rv is not None and _allowed_uri_format(rv):
                 return rv
         return None
@@ -960,7 +1060,19 @@ class Resource(BaseModel):
             return None
         # if explicitly annotated, use it. Otherwise, the capitalized version
         # of the OBO Foundry ID is the preferred prefix (e.g., for GO)
-        return self.obofoundry.get("preferredPrefix", self.obofoundry["prefix"].upper())
+        return cast(
+            str, self.obofoundry.get("preferredPrefix") or self.obofoundry["prefix"].upper()
+        )
+
+    def get_wikidata_entity(self) -> str | None:
+        """Get the wikidata database mapping."""
+        if self.mappings and "wikidata.entity" in self.mappings:
+            return self.mappings["wikidata.entity"]
+        if self.wikidata and "database" in self.wikidata:
+            return cast(str, self.wikidata["database"])
+        if self.bartoc and "wikidata_database" in self.bartoc:
+            return cast(str, self.bartoc["wikidata_database"])
+        return None
 
     def get_mappings(self) -> dict[str, str]:
         """Get the mappings to external registries, if available."""
@@ -1182,6 +1294,13 @@ class Resource(BaseModel):
             metaprefixes,
         )
 
+    def get_domain(self) -> str | None:
+        """Get the domain."""
+        if self.domain:
+            return self.domain
+        # TODO map in OBO Foundry domain
+        return None
+
     def get_keywords(self) -> list[str]:
         """Get keywords."""
         keywords = []
@@ -1202,7 +1321,13 @@ class Resource(BaseModel):
             keywords.append("ontology")
         if self.lov:
             keywords.extend(self.lov.get("keywords", []))
-        return sorted({keyword.lower().replace("’", "'") for keyword in keywords if keyword})
+        return sorted(
+            {
+                keyword.lower().replace("’", "'")  # noqa:RUF001
+                for keyword in keywords
+                if keyword
+            }
+        )
 
     def get_repository(self) -> str | None:
         """Return the repository, if available."""
@@ -1330,7 +1455,15 @@ class Resource(BaseModel):
                 return cast(str, rv)
         return None
 
-    def get_example(self) -> str | None:
+    # docstr-coverage:excused `overload`
+    @overload
+    def get_example(self, *, strict: Literal[False] = False) -> str | None: ...
+
+    # docstr-coverage:excused `overload`
+    @overload
+    def get_example(self, *, strict: Literal[True] = True) -> str: ...
+
+    def get_example(self, *, strict: bool = False) -> str | None:
         """Get an example identifier, if it's available."""
         example = self.example
         if example is not None:
@@ -1345,6 +1478,8 @@ class Resource(BaseModel):
         wikidata_examples = self.get_external("wikidata").get("example", [])
         if wikidata_examples:
             return cast(str, wikidata_examples[0])
+        if strict:
+            raise ValueError
         return None
 
     def get_examples(self) -> list[str]:
@@ -1353,8 +1488,17 @@ class Resource(BaseModel):
         example = self.get_example()
         if example:
             rv.append(example)
-        rv.extend(self.example_extras or [])
+        rv.extend(self.get_example_extras())
         return rv
+
+    def get_example_extras(self) -> list[str]:
+        """Aggregate manually curated examples with provider-specific examples."""
+        rv = set(self.example_extras or [])
+        if self.providers:
+            for provider in self.providers:
+                if provider.example:
+                    rv.add(provider.example)
+        return sorted(rv)
 
     def get_example_curie(self, use_preferred: bool = False) -> str | None:
         """Get an example CURIE, if an example identifier is available.
@@ -1453,6 +1597,7 @@ class Resource(BaseModel):
                 publications.append(Publication.model_validate(publication))
         for provider in self.providers or []:
             publications.extend(provider.publications or [])
+        # can look through agroportal, ecoportal, and bioportal for publications too
         return deduplicate_publications(publications)
 
     def get_mastodon(self) -> str | None:
@@ -1501,6 +1646,12 @@ class Resource(BaseModel):
             return cast(str, self.obofoundry["logo"])
         if self.fairsharing and "logo" in self.fairsharing:
             return cast(str, self.fairsharing["logo"])
+        return None
+
+    def get_mailing_list(self) -> str | None:
+        """Get the group email."""
+        if self.contact_group_email:
+            return str(self.contact_group_email)
         return None
 
     def get_obofoundry_prefix(self) -> str | None:
@@ -1942,19 +2093,38 @@ class Resource(BaseModel):
             return None
         return uri_format[: -len("$1")]
 
-    def get_uri_prefixes(self) -> set[str]:
-        """Get the set of all URI prefixes."""
-        uri_prefixes = (self._clip_uri_format(uri_format) for uri_format in self.get_uri_formats())
+    def get_uri_prefixes(self, *, enforce_w3c: bool = False) -> set[str]:
+        """Get the set of all URI prefixes.
+
+        :param enforce_w3c:
+            When generating URI prefixes from prefix synonyms,
+            should synonyms that aren't W3C-compliant be filtered out?
+        :returns:
+            A set of URI prefixes.
+        """
+        uri_prefixes = (
+            self._clip_uri_format(uri_format)
+            for uri_format in self.get_uri_formats(enforce_w3c=enforce_w3c)
+        )
         return {uri_prefix for uri_prefix in uri_prefixes if uri_prefix is not None}
 
-    def get_uri_formats(self) -> set[str]:
-        """Get the set of all URI format strings."""
+    def get_uri_formats(self, *, enforce_w3c: bool = False) -> set[str]:
+        """Get the set of all URI format strings.
+
+        :param enforce_w3c:
+            When generating URI prefixes from prefix synonyms,
+            should synonyms that aren't W3C-compliant be filtered out?
+        :returns:
+            A set of URI format strings, containing ``$1`` where a local
+            unique identifier should be formatted in.
+        """
         uri_formats = itt.chain.from_iterable(
-            _yield_protocol_variations(uri_format) for uri_format in self._iter_uri_formats()
+            _yield_protocol_variations(uri_format)
+            for uri_format in self._iter_uri_formats(enforce_w3c=enforce_w3c)
         )
         return set(uri_formats)
 
-    def _iter_uri_formats(self) -> Iterable[str]:
+    def _iter_uri_formats(self, *, enforce_w3c: bool = False) -> Iterable[str]:
         if self.uri_format:
             yield self.uri_format
         yield f"https://bioregistry.io/{self.prefix}:$1"
@@ -1962,7 +2132,8 @@ class Resource(BaseModel):
         if preferred_prefix:
             yield f"https://bioregistry.io/{preferred_prefix}:$1"
         for synonym in self.get_synonyms():
-            yield f"https://bioregistry.io/{synonym}:$1"
+            if not enforce_w3c or NCNAME_RE.fullmatch(synonym):
+                yield f"https://bioregistry.io/{synonym}:$1"
         # TODO consider adding bananas
         for provider in self.get_extra_providers():
             yield provider.uri_format
@@ -1981,7 +2152,7 @@ class Resource(BaseModel):
         if rdf_uri_format:
             yield rdf_uri_format
 
-    def get_extra_providers(self) -> list[Provider]:
+    def get_extra_providers(self, *, filter_known_inactive: bool = False) -> list[Provider]:
         """Get a list of all extra providers."""
         rv = []
         providers = self.providers or []
@@ -2009,7 +2180,10 @@ class Resource(BaseModel):
                     "set of heterogeneously formatted sources obtained from multiple data providers.",
                 )
             )
-        return sorted(rv, key=attrgetter("code"))
+        rv = sorted(rv, key=attrgetter("code"))
+        if filter_known_inactive:
+            rv = [v for v in rv if not v.is_known_inactive()]
+        return rv
 
     def get_curie(self, identifier: str, use_preferred: bool = False) -> str:
         """Get a CURIE for a local unique identifier in this resource's semantic space.
@@ -2252,6 +2426,7 @@ class Resource(BaseModel):
                 self.get_download_obo(),
                 self.get_download_owl(),
                 self.get_download_obograph(),
+                self.get_download_rdf(),
             )
         )
 
@@ -2295,7 +2470,7 @@ class Resource(BaseModel):
         import markupsafe
         from markdown import markdown
 
-        rv = cast(str, removesuffix(removeprefix(markdown(rv), "<p>"), "</p>"))
+        rv = removesuffix(removeprefix(markdown(rv), "<p>"), "</p>")
         return markupsafe.Markup(rv)
 
     def get_bioschemas_jsonld(self) -> dict[str, Any]:
@@ -2808,7 +2983,7 @@ class Collection(BaseModel):
     context: str | None = Field(default=None, description="The JSON-LD context's name")
     references: list[str] | None = Field(default=None, description="URL references")
 
-    def add_triples(self, graph: rdflib.Graph) -> rdflib.Graph:
+    def add_triples(self, graph: rdflib.Graph) -> None:
         """Add triples to an RDF graph for this collection.
 
         :param graph: An RDF graph
@@ -2835,8 +3010,6 @@ class Collection(BaseModel):
         for resource in self.resources:
             graph.add((node, DCTERMS.hasPart, bioregistry_resource[resource]))
 
-        return node
-
     def as_context_jsonld_str(self) -> str:
         """Get the JSON-LD context as a string from a given collection."""
         return json.dumps(self.as_context_jsonld())
@@ -2860,11 +3033,13 @@ class Collection(BaseModel):
 
 
 class Context(BaseModel):
-    """A prescriptive context contains configuration for generating fit-for-purpose
+    """A prescriptive context.
+
+    A prescriptive context contains configuration for generating fit-for-purpose
     prefix maps to serve various communities based on the standard Bioregistry
     prefix map, custom prefix remapping rules, custom URI prefix remapping rules,
     custom prefix maps, and other community-specific logic.
-    """  # noqa: D205,D400
+    """
 
     name: str = Field(
         ...,
@@ -2922,6 +3097,7 @@ class Context(BaseModel):
         ...,
         description="This is a list of canonical Bioregistry prefixes that should not be included in the context.",
     )
+    enforce_w3c: bool = Field(False, description="Should w3c prefix synonyms be enforced?")
 
 
 def _clean_pattern(rv: str) -> str:
@@ -2993,7 +3169,7 @@ def _get(resource: Resource, key: str) -> Any:
         x = getattr(x1, k2, None) if x1 is not None else None
     else:
         x = None
-    if isinstance(x, (list, set)):
+    if isinstance(x, list | set):
         return "|".join(sorted(x))
     return x or ""
 
@@ -3008,11 +3184,12 @@ def deduplicate_publications(publications: Iterable[Publication]) -> list[Public
     return [Publication(**record) for record in records_deduplicated]
 
 
-def main() -> None:
+@click.command()
+def generate_schema() -> None:
     """Dump the JSON schemata."""
     with SCHEMA_PATH.open("w") as file:
         json.dump(get_json_schema(), indent=2, fp=file)
 
 
 if __name__ == "__main__":
-    main()
+    generate_schema()

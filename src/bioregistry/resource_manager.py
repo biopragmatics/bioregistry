@@ -5,22 +5,22 @@ from __future__ import annotations
 import logging
 import typing
 from collections import Counter, defaultdict
-from collections.abc import Iterable, Mapping, Sequence
+from collections.abc import Callable, Iterable, Mapping, Sequence
 from dataclasses import dataclass
 from functools import cache
 from pathlib import Path
 from typing import (
     Any,
-    Callable,
     Generic,
     Literal,
     TypeVar,
-    Union,
     cast,
     overload,
 )
 
 import curies
+from curies import ReferenceTuple
+from curies.api import NoCURIEDelimiterError, PrefixStandardizationError
 from pydantic import BaseModel
 
 from .constants import (
@@ -34,7 +34,10 @@ from .constants import (
     LINK_PRIORITY,
     METAREGISTRY_PATH,
     SHIELDS_BASE,
+    FailureReturnType,
     MaybeCURIE,
+    NonePair,
+    get_failure_return_type,
 )
 from .license_standardizer import standardize_license
 from .schema import (
@@ -54,16 +57,17 @@ from .schema_utils import (
     read_mismatches,
     write_registry,
 )
-from .utils import NormDict, _norm, curie_to_str
+from .utils import NormDict, _norm, get_ec_url
 
 __all__ = [
     "Manager",
+    "MetaresourceAnnotatedValue",
     "manager",
 ]
 
 logger = logging.getLogger(__name__)
 
-X = TypeVar("X", bound=Union[int, str])
+X = TypeVar("X", bound=int | str)
 
 
 @dataclass
@@ -111,13 +115,6 @@ def _synonym_to_canonical(registry: Mapping[str, Resource]) -> NormDict:
     return norm_synonym_to_key
 
 
-def _safe_curie_to_str(prefix: str | None, identifier: str | None) -> str | None:
-    """Combine a prefix and identifier into a CURIE string, if available."""
-    if prefix is None or identifier is None:
-        return None
-    return curie_to_str(prefix, identifier)
-
-
 class MappingsDiff(BaseModel):
     """A difference between two mappings sets."""
 
@@ -135,7 +132,9 @@ class Manager:
     metaregistry: dict[str, Registry]
     collections: dict[str, Collection]
     contexts: dict[str, Context]
-    mismatches: Mapping[str, Mapping[str, str]]
+    mismatches: Mapping[str, Mapping[str, set[str]]]
+
+    _converter: curies.Converter | None
 
     def __init__(
         self,
@@ -143,7 +142,7 @@ class Manager:
         metaregistry: None | str | Path | Mapping[str, Registry] = None,
         collections: None | str | Path | Mapping[str, Collection] = None,
         contexts: None | str | Path | Mapping[str, Context] = None,
-        mismatches: Mapping[str, Mapping[str, str]] | None = None,
+        mismatches: Mapping[str, Mapping[str, set[str]]] | None = None,
         base_url: str | None = None,
     ):
         """Instantiate a registry manager.
@@ -159,7 +158,7 @@ class Manager:
 
         if registry is None:
             self.registry = dict(_registry_from_path(BIOREGISTRY_PATH))
-        elif isinstance(registry, (str, Path)):
+        elif isinstance(registry, str | Path):
             self.registry = dict(_registry_from_path(registry))
         else:
             self.registry = dict(registry)
@@ -167,21 +166,21 @@ class Manager:
 
         if metaregistry is None:
             self.metaregistry = dict(_read_metaregistry(METAREGISTRY_PATH))
-        elif isinstance(metaregistry, (str, Path)):
+        elif isinstance(metaregistry, str | Path):
             self.metaregistry = dict(_read_metaregistry(metaregistry))
         else:
             self.metaregistry = dict(metaregistry)
 
         if collections is None:
             self.collections = dict(_collections_from_path(COLLECTIONS_PATH))
-        elif isinstance(collections, (str, Path)):
+        elif isinstance(collections, str | Path):
             self.collections = dict(_collections_from_path(collections))
         else:
             self.collections = dict(collections)
 
         if contexts is None:
             self.contexts = dict(_contexts_from_path(CONTEXTS_PATH))
-        elif isinstance(contexts, (str, Path)):
+        elif isinstance(contexts, str | Path):
             self.contexts = dict(_contexts_from_path(contexts))
         else:
             self.contexts = dict(contexts)
@@ -210,6 +209,14 @@ class Manager:
 
         self._converter = None
 
+    def add_resource(self, resource: Resource) -> None:
+        """Add a custom resource to the manager."""
+        self.synonyms[resource.prefix] = resource.prefix
+        self.registry[resource.prefix] = resource
+        if self._converter is not None and (uri_prefix := resource.get_uri_prefix()):
+            self._converter.add_prefix(resource.prefix, uri_prefix)
+            # TODO what about synonyms
+
     @property
     def converter(self) -> curies.Converter:
         """Get the default converter."""
@@ -225,10 +232,22 @@ class Manager:
         """Get the metaregistry entry for the given prefix."""
         return self.metaregistry.get(metaprefix)
 
-    def get_registry_name(self, metaprefix: str) -> str | None:
+    # docstr-coverage:excused `overload`
+    @overload
+    def get_registry_name(self, metaprefix: str, *, strict: Literal[True] = True) -> str: ...
+
+    # docstr-coverage:excused `overload`
+    @overload
+    def get_registry_name(
+        self, metaprefix: str, *, strict: Literal[False] = False
+    ) -> str | None: ...
+
+    def get_registry_name(self, metaprefix: str, *, strict: bool = False) -> str | None:
         """Get the registry name."""
         registry = self.get_registry(metaprefix)
         if registry is None:
+            if strict:
+                raise ValueError(f"could not look up metaregistry: {metaprefix}")
             return None
         return registry.name
 
@@ -239,10 +258,22 @@ class Manager:
             return None
         return registry.get_short_name()
 
-    def get_registry_homepage(self, metaprefix: str) -> str | None:
+    # docstr-coverage:excused `overload`
+    @overload
+    def get_registry_homepage(self, metaprefix: str, *, strict: Literal[True] = True) -> str: ...
+
+    # docstr-coverage:excused `overload`
+    @overload
+    def get_registry_homepage(
+        self, metaprefix: str, *, strict: Literal[False] = False
+    ) -> str | None: ...
+
+    def get_registry_homepage(self, metaprefix: str, *, strict: bool = False) -> str | None:
         """Get the registry homepage."""
         registry = self.get_registry(metaprefix)
         if registry is None:
+            if strict:
+                raise ValueError
             return None
         return registry.homepage
 
@@ -264,90 +295,149 @@ class Manager:
         """Get a collection's name."""
         return self.collections[identifier].name
 
-    def normalize_prefix(self, prefix: str, *, use_preferred: bool = False) -> str | None:
+    # docstr-coverage:excused `overload`
+    @overload
+    def normalize_prefix(
+        self, prefix: str, *, use_preferred: bool = False, strict: Literal[True] = True
+    ) -> str: ...
+
+    # docstr-coverage:excused `overload`
+    @overload
+    def normalize_prefix(
+        self, prefix: str, *, use_preferred: bool = False, strict: Literal[False] = False
+    ) -> str | None: ...
+
+    def normalize_prefix(
+        self, prefix: str, *, use_preferred: bool = False, strict: bool = False
+    ) -> str | None:
         """Get the normalized prefix, or return None if not registered.
 
         :param prefix: The prefix to normalize, which could come from Bioregistry,
             OBO Foundry, OLS, or any of the curated synonyms in the Bioregistry
+        :param strict: If true and the prefix could not be looked up, raises an error
         :param use_preferred:
             If set to true, uses the "preferred prefix", if available, instead
             of the canonicalized Bioregistry prefix.
         :returns: The canonical Bioregistry prefix, it could be looked up. This
             will usually take precedence: MIRIAM, OBO Foundry / OLS, Custom except
             in a few cases, such as NCBITaxon.
+
+        :raises PrefixStandardizationError: If strict is set to true and the prefix could not be standardized
         """
         norm_prefix = self.synonyms.get(prefix)
         if norm_prefix is None:
+            if strict:
+                raise PrefixStandardizationError(prefix)
             return None
         if use_preferred:
             norm_prefix = self.registry[norm_prefix].get_preferred_prefix() or norm_prefix
         return norm_prefix
 
-    def get_resource(self, prefix: str) -> Resource | None:
+    # docstr-coverage:excused `overload`
+    @overload
+    def get_resource(self, prefix: str, *, strict: Literal[True] = True) -> Resource: ...
+
+    # docstr-coverage:excused `overload`
+    @overload
+    def get_resource(self, prefix: str, *, strict: Literal[False] = False) -> Resource | None: ...
+
+    def get_resource(self, prefix: str, *, strict: bool = False) -> Resource | None:
         """Get the Bioregistry entry for the given prefix.
 
         :param prefix: The prefix to look up, which is normalized with :func:`normalize_prefix`
             before lookup in the Bioregistry
+        :param strict: If true, requires the prefix to be valid or raise an exveption
         :returns: The Bioregistry entry dictionary, which includes several keys cross-referencing
             other registries when available.
         """
         norm_prefix = self.normalize_prefix(prefix)
         if norm_prefix is None:
             return None
-        return self.registry.get(norm_prefix)
+        rv = self.registry.get(norm_prefix)
+        if rv is None and strict:
+            raise ValueError
+        return rv
 
-    def parse_uri(self, uri: str, *, use_preferred: bool = False) -> MaybeCURIE:
+    # docstr-coverage:excused `overload`
+    @overload
+    def parse_uri(
+        self,
+        uri: str,
+        *,
+        use_preferred: bool = ...,
+        on_failure_return_type: Literal[FailureReturnType.single],
+    ) -> ReferenceTuple | None: ...
+
+    # docstr-coverage:excused `overload`
+    @overload
+    def parse_uri(
+        self,
+        uri: str,
+        *,
+        use_preferred: bool = ...,
+        on_failure_return_type: Literal[FailureReturnType.pair] = FailureReturnType.pair,
+    ) -> ReferenceTuple | NonePair: ...
+
+    def parse_uri(
+        self,
+        uri: str,
+        *,
+        use_preferred: bool = False,
+        on_failure_return_type: FailureReturnType = FailureReturnType.pair,
+    ) -> ReferenceTuple | None | NonePair:
         """Parse a compact identifier from a URI.
 
         :param uri: A valid URI
         :param use_preferred:
             If set to true, uses the "preferred prefix", if available, instead
             of the canonicalized Bioregistry prefix.
+        :param on_failure_return_type: whether to return a single None or a pair of None's
+
         :return: A pair of prefix/identifier, if can be parsed
 
         IRI from an OBO PURL:
 
         >>> from bioregistry import manager
         >>> manager.parse_uri("http://purl.obolibrary.org/obo/DRON_00023232")
-        ('dron', '00023232')
+        ReferenceTuple('dron', '00023232')
 
         IRI from the OLS:
 
         >>> manager.parse_uri(
         ...     "https://www.ebi.ac.uk/ols/ontologies/ecao/terms?iri=http://purl.obolibrary.org/obo/ECAO_0107180"
         ... )  # noqa:E501
-        ('ecao', '0107180')
+        ReferenceTuple('ecao', '0107180')
 
         IRI from native provider
 
         >>> manager.parse_uri("https://www.alzforum.org/mutations/1234")
-        ('alzforum.mutation', '1234')
+        ReferenceTuple('alzforum.mutation', '1234')
 
         Dog food:
 
         >>> manager.parse_uri("https://bioregistry.io/DRON:00023232")
-        ('dron', '00023232')
+        ReferenceTuple('dron', '00023232')
 
         IRIs from Identifiers.org (https and http, colon and slash):
 
         >>> manager.parse_uri("https://identifiers.org/aop.relationships:5")
-        ('aop.relationships', '5')
+        ReferenceTuple('aop.relationships', '5')
         >>> manager.parse_uri("http://identifiers.org/aop.relationships:5")
-        ('aop.relationships', '5')
+        ReferenceTuple('aop.relationships', '5')
         >>> manager.parse_uri("https://identifiers.org/aop.relationships/5")
-        ('aop.relationships', '5')
+        ReferenceTuple('aop.relationships', '5')
         >>> manager.parse_uri("http://identifiers.org/aop.relationships/5")
-        ('aop.relationships', '5')
+        ReferenceTuple('aop.relationships', '5')
 
         IRI from N2T
         >>> manager.parse_uri("https://n2t.net/aop.relationships:5")
-        ('aop.relationships', '5')
+        ReferenceTuple('aop.relationships', '5')
 
         Handle either HTTP or HTTPS:
         >>> manager.parse_uri("http://braininfo.rprc.washington.edu/centraldirectory.aspx?ID=268")
-        ('neuronames', '268')
+        ReferenceTuple('neuronames', '268')
         >>> manager.parse_uri("https://braininfo.rprc.washington.edu/centraldirectory.aspx?ID=268")
-        ('neuronames', '268')
+        ReferenceTuple('neuronames', '268')
 
         If you provide your own prefix map, you should pre-process the prefix map with:
 
@@ -360,16 +450,35 @@ class Manager:
         Corner cases:
 
         >>> manager.parse_uri("https://omim.org/MIM:PS214100")
-        ('omim.ps', '214100')
+        ReferenceTuple('omim.ps', '214100')
         """
-        prefix, identifier = self.converter.parse_uri(uri)
-        if prefix is None or identifier is None:
-            return None, None
-        if use_preferred:
-            prefix = self.get_preferred_prefix(prefix) or prefix
-        return prefix, identifier
+        reference = self.converter.parse_uri(uri, return_none=True)
+        if reference is not None:
+            return self.make_preferred(reference, use_preferred=use_preferred)
+        return get_failure_return_type(on_failure_return_type)
 
-    def compress(self, uri: str, *, use_preferred: bool = False) -> str | None:
+    def make_preferred(self, t: ReferenceTuple, use_preferred: bool = False) -> ReferenceTuple:
+        """Replace a reference tuple's prefix with a preferred one."""
+        if not use_preferred:
+            return t
+        prefix = self.get_preferred_prefix(t.prefix) or t.prefix
+        return ReferenceTuple(prefix, t.identifier)
+
+    # docstr-coverage:excused `overload`
+    @overload
+    def compress(
+        self, uri: str, *, use_preferred: bool = ..., strict: Literal[True] = True
+    ) -> str: ...
+
+    # docstr-coverage:excused `overload`
+    @overload
+    def compress(
+        self, uri: str, *, use_preferred: bool = ..., strict: Literal[False] = False
+    ) -> str | None: ...
+
+    def compress(
+        self, uri: str, *, use_preferred: bool = False, strict: bool = False
+    ) -> str | None:
         """Parse a compact uniform resource identifier (CURIE) from a URI.
 
         :param uri: A valid URI
@@ -420,23 +529,158 @@ class Manager:
         >>> manager.compress("http://purl.obolibrary.org/obo/DRON_00023232", use_preferred=True)
         'DRON:00023232'
         """
-        prefix, identifier = self.parse_uri(uri, use_preferred=use_preferred)
-        return _safe_curie_to_str(prefix, identifier)
+        reference = self.parse_uri(
+            uri, use_preferred=use_preferred, on_failure_return_type=FailureReturnType.single
+        )
+        if reference is None:
+            return None
+        return reference.curie
 
-    def parse_curie(self, curie: str, *, sep: str = ":", use_preferred: bool = False) -> MaybeCURIE:
+    # docstr-coverage:excused `overload`
+    @overload
+    def parse_curie(
+        self,
+        curie: str,
+        *,
+        sep: str = ...,
+        use_preferred: bool = ...,
+        on_failure_return_type: FailureReturnType = ...,
+        strict: Literal[True] = True,
+    ) -> ReferenceTuple: ...
+
+    # docstr-coverage:excused `overload`
+    @overload
+    def parse_curie(
+        self,
+        curie: str,
+        *,
+        sep: str = ...,
+        use_preferred: bool = ...,
+        on_failure_return_type: Literal[FailureReturnType.single] = FailureReturnType.single,
+        strict: Literal[False] = False,
+    ) -> ReferenceTuple | None: ...
+
+    # docstr-coverage:excused `overload`
+    @overload
+    def parse_curie(
+        self,
+        curie: str,
+        *,
+        sep: str = ...,
+        use_preferred: bool = ...,
+        on_failure_return_type: Literal[FailureReturnType.pair] = FailureReturnType.pair,
+        strict: Literal[False] = False,
+    ) -> ReferenceTuple | NonePair: ...
+
+    def parse_curie(
+        self,
+        curie: str,
+        *,
+        sep: str = ":",
+        use_preferred: bool = False,
+        on_failure_return_type: FailureReturnType = FailureReturnType.pair,
+        strict: bool = False,
+    ) -> MaybeCURIE:
         """Parse a CURIE and normalize its prefix and identifier."""
-        try:
-            prefix, identifier = curie.split(sep, 1)
-        except ValueError:
-            return None, None
-        return self.normalize_parsed_curie(prefix, identifier, use_preferred=use_preferred)
+        prefix, _delimiter, identifier = curie.partition(sep)
+        if not _delimiter:
+            if strict:
+                raise NoCURIEDelimiterError(curie)
+            return get_failure_return_type(on_failure_return_type)
+
+        return self.normalize_parsed_curie(  # type:ignore
+            prefix,
+            identifier,
+            use_preferred=use_preferred,
+            on_failure_return_type=FailureReturnType.single,
+            strict=strict,
+        )
+
+    # docstr-coverage:excused `overload`
+    @overload
+    def normalize_curie(
+        self,
+        curie: str,
+        *,
+        sep: str = ...,
+        use_preferred: bool = ...,
+        strict: Literal[True] = True,
+    ) -> str: ...
+
+    # docstr-coverage:excused `overload`
+    @overload
+    def normalize_curie(
+        self,
+        curie: str,
+        *,
+        sep: str = ...,
+        use_preferred: bool = ...,
+        strict: Literal[False] = False,
+    ) -> str | None: ...
 
     def normalize_curie(
-        self, curie: str, *, sep: str = ":", use_preferred: bool = False
+        self,
+        curie: str,
+        *,
+        sep: str = ":",
+        use_preferred: bool = False,
+        strict: bool = False,
     ) -> str | None:
         """Normalize the prefix and identifier in the CURIE."""
-        prefix, identifier = self.parse_curie(curie, sep=sep, use_preferred=use_preferred)
-        return _safe_curie_to_str(prefix, identifier)
+        if strict:
+            return self.parse_curie(
+                curie,
+                sep=sep,
+                use_preferred=use_preferred,
+                on_failure_return_type=FailureReturnType.single,
+                strict=True,
+            ).curie
+        reference = self.parse_curie(
+            curie,
+            sep=sep,
+            use_preferred=use_preferred,
+            on_failure_return_type=FailureReturnType.single,
+            strict=strict,
+        )
+        if reference is not None:
+            return reference.curie
+        return None
+
+    # docstr-coverage:excused `overload`
+    @overload
+    def normalize_parsed_curie(
+        self,
+        prefix: str,
+        identifier: str,
+        *,
+        use_preferred: bool = ...,
+        on_failure_return_type: FailureReturnType = ...,
+        strict: Literal[True] = True,
+    ) -> ReferenceTuple: ...
+
+    # docstr-coverage:excused `overload`
+    @overload
+    def normalize_parsed_curie(
+        self,
+        prefix: str,
+        identifier: str,
+        *,
+        use_preferred: bool = ...,
+        on_failure_return_type: Literal[FailureReturnType.single],
+        strict: Literal[False] = False,
+    ) -> ReferenceTuple | None: ...
+
+    # docstr-coverage:excused `overload`
+    @overload
+    def normalize_parsed_curie(
+        self,
+        prefix: str,
+        identifier: str,
+        *,
+        use_preferred: bool = ...,
+        on_failure_return_type: Literal[FailureReturnType.pair],
+        strict: Literal[False] = False,
+    ) -> ReferenceTuple | NonePair: ...
 
     def normalize_parsed_curie(
         self,
@@ -444,6 +688,8 @@ class Manager:
         identifier: str,
         *,
         use_preferred: bool = False,
+        on_failure_return_type: FailureReturnType = FailureReturnType.pair,
+        strict: bool = False,
     ) -> MaybeCURIE:
         """Normalize a prefix/identifier pair.
 
@@ -452,17 +698,23 @@ class Manager:
         :param use_preferred:
             If set to true, uses the "preferred prefix", if available, instead
             of the canonicalized Bioregistry prefix.
+        :param on_failure_return_type: whether to return a single None or a pair of None's
+        :param strict: If true, raises an error if the prefix can't be standardized
         :return: A normalized prefix/identifier pair, conforming to Bioregistry standards. This means no redundant
             prefixes or bananas, all lowercase.
+
+        :raises PrefixStandardizationError: If strict is set to true and the prefix could not be standardized
         """
-        norm_prefix = self.normalize_prefix(prefix)
+        norm_prefix = self.normalize_prefix(prefix, strict=False)
         if not norm_prefix:
-            return None, None
+            if strict:
+                raise PrefixStandardizationError(prefix)
+            return get_failure_return_type(on_failure_return_type)
         resource = self.registry[norm_prefix]
         norm_identifier = resource.standardize_identifier(identifier)
         if use_preferred:
             norm_prefix = resource.get_preferred_prefix() or norm_prefix
-        return norm_prefix, norm_identifier
+        return ReferenceTuple(norm_prefix, norm_identifier)
 
     @cache  # noqa:B019
     def get_registry_map(self, metaprefix: str) -> dict[str, str]:
@@ -564,20 +816,36 @@ class Manager:
 
     # docstr-coverage:excused `overload`
     @overload
-    def get_name(self, prefix: str, *, provenance: Literal[False] = False) -> str | None: ...
+    def get_name(
+        self, prefix: str, *, provenance: Literal[False] = False, strict: Literal[True] = True
+    ) -> str: ...
 
     # docstr-coverage:excused `overload`
     @overload
     def get_name(
-        self, prefix: str, *, provenance: Literal[True] = True
+        self, prefix: str, *, provenance: Literal[True] = True, strict: Literal[True] = True
+    ) -> MetaresourceAnnotatedValue[str]: ...
+
+    # docstr-coverage:excused `overload`
+    @overload
+    def get_name(
+        self, prefix: str, *, provenance: Literal[False] = False, strict: Literal[False] = False
+    ) -> str | None: ...
+
+    # docstr-coverage:excused `overload`
+    @overload
+    def get_name(
+        self, prefix: str, *, provenance: Literal[True] = True, strict: Literal[False] = False
     ) -> MetaresourceAnnotatedValue[str] | None: ...
 
     def get_name(
-        self, prefix: str, *, provenance: bool = False
+        self, prefix: str, *, provenance: bool = False, strict: bool = False
     ) -> str | MetaresourceAnnotatedValue[str] | None:
         """Get the name for the given prefix, if it's available."""
         entry = self.get_resource(prefix)
         if entry is None:
+            if strict:
+                raise ValueError
             return None
         if provenance:
             _tmp = entry.get_name(provenance=True)
@@ -608,16 +876,26 @@ class Manager:
         return entry.get_namespace_in_lui(provenance=False)
 
     def get_description(self, prefix: str, *, use_markdown: bool = False) -> str | None:
-        """Get the description for the given prefix, it it's available."""
+        """Get the description for the given prefix, if it's available."""
         entry = self.get_resource(prefix)
         if entry is None:
             return None
         return entry.get_description(use_markdown=use_markdown)
 
-    def get_homepage(self, prefix: str) -> str | None:
-        """Get the description for the given prefix, it it's available."""
+    # docstr-coverage:excused `overload`
+    @overload
+    def get_homepage(self, prefix: str, *, strict: Literal[True] = True) -> str: ...
+
+    # docstr-coverage:excused `overload`
+    @overload
+    def get_homepage(self, prefix: str, *, strict: Literal[False] = False) -> str | None: ...
+
+    def get_homepage(self, prefix: str, *, strict: bool = False) -> str | None:
+        """Get the description for the given prefix, if it's available."""
         entry = self.get_resource(prefix)
         if entry is None:
+            if strict:
+                raise ValueError
             return None
         return entry.get_homepage()
 
@@ -627,6 +905,20 @@ class Manager:
         if entry is None:
             return None
         return entry.get_preferred_prefix()
+
+    def get_logo(self, prefix: str) -> str | None:
+        """Get the logo for the resource, if it's available."""
+        entry = self.get_resource(prefix)
+        if entry is None:
+            return None
+        return entry.get_logo()
+
+    def get_mailing_list(self, prefix: str) -> str | None:
+        """Get the mailing list for the resource, if it's available."""
+        entry = self.get_resource(prefix)
+        if entry is None:
+            return None
+        return entry.get_mailing_list()
 
     def get_pattern(self, prefix: str) -> str | None:
         """Get the pattern for the given prefix, if it's available."""
@@ -648,6 +940,18 @@ class Manager:
         if entry is None:
             return None
         return entry.get_keywords()
+
+    def get_keyword_to_resources(self) -> dict[str, list[Resource]]:
+        """Get a dictionary from keywords to resources."""
+        keyword_to_resource = defaultdict(list)
+        for resource in manager.registry.values():
+            for keyword in resource.get_keywords():
+                keyword_to_resource[keyword].append(resource)
+        return dict(keyword_to_resource)
+
+    def get_resources_with_keyword(self, keyword: str) -> list[Resource]:
+        """Get resources with the given keyword."""
+        return self.get_keyword_to_resources().get(keyword, [])
 
     def get_example(self, prefix: str) -> str | None:
         """Get an example identifier, if it's available."""
@@ -726,6 +1030,7 @@ class Manager:
         remapping: Mapping[str, str] | None = None,
         rewiring: Mapping[str, str] | None = None,
         blacklist: typing.Collection[str] | None = None,
+        enforce_w3c: bool = False,
     ) -> curies.Converter:
         """Get a converter from this manager.
 
@@ -745,6 +1050,7 @@ class Manager:
         :param rewiring: A mapping from bioregistry prefixes to new URI prefixes.
         :param blacklist:
             A collection of prefixes to skip
+        :param enforce_w3c: Should non-W3C-compliant prefix synoynms be removed?
 
         :returns: A list of records for :class:`curies.Converter`
         """
@@ -764,6 +1070,7 @@ class Manager:
             blacklist=blacklist,
             remapping=remapping,
             rewiring=rewiring,
+            enforce_w3c=enforce_w3c,
         )
         return converter
 
@@ -899,7 +1206,7 @@ class Manager:
             download_rdf=resource.get_download_rdf(),
             # Registry properties
             example=resource.get_example(),
-            example_extras=resource.example_extras,
+            example_extras=resource.get_example_extras(),
             example_decoys=resource.example_decoys,
             uri_format=resource.get_uri_format(),
             rdf_uri_format=resource.get_rdf_uri_format(),
@@ -932,6 +1239,7 @@ class Manager:
             deprecated=resource.is_deprecated(),
             no_own_terms=resource.no_own_terms,
             proprietary=resource.proprietary,
+            # TODO automate checking that all fields have a function?
         )
 
     def get_license_conflicts(self) -> list[tuple[str, str | None, str | None, str | None]]:
@@ -955,7 +1263,7 @@ class Manager:
         return conflicts
 
     def get_appears_in(self, prefix: str) -> list[str] | None:
-        """Return a list of resources that this resources (has been annotated to) depends on.
+        """Return a list of resources that this resource (has been annotated to) depends on.
 
         This is complementary to :func:`get_depends_on`.
 
@@ -973,7 +1281,7 @@ class Manager:
         return sorted(set(rv))
 
     def get_depends_on(self, prefix: str) -> list[str] | None:
-        """Return a list of resources that this resources (has been annotated to) depends on.
+        """Return a list of resources that this resource (has been annotated to) depends on.
 
         This is complementary to :func:`get_appears_in`.
 
@@ -1106,10 +1414,12 @@ class Manager:
         :param identifier: The identifier in the CURIE
         :return: A link to the Bioregistry resolver
         """
-        curie = _safe_curie_to_str(*self.normalize_parsed_curie(prefix, identifier))
-        if curie is None:
+        reference = self.normalize_parsed_curie(
+            prefix, identifier, on_failure_return_type=FailureReturnType.single
+        )
+        if reference is None:
             return None
-        return f"{self.base_url}/{curie}"
+        return f"{self.base_url}/{reference.curie}"
 
     def get_default_iri(self, prefix: str, identifier: str) -> str | None:
         """Get the default URL for the given CURIE.
@@ -1295,7 +1605,9 @@ class Manager:
             "rrid": self.get_rrid_iri,
         }
 
-    def get_providers_list(self, prefix: str, identifier: str) -> Sequence[tuple[str, str]]:
+    def get_providers_list(
+        self, prefix: str, identifier: str, *, filter_known_inactive: bool = False
+    ) -> Sequence[tuple[str, str]]:
         """Get all providers for the CURIE."""
         rv = []
         for metaprefix, get_url in self.get_provider_functions().items():
@@ -1306,7 +1618,7 @@ class Manager:
         resource = self.get_resource(prefix)
         if resource is None:
             raise KeyError(f"Could not look up a resource by prefix: {prefix}")
-        for provider in resource.get_extra_providers():
+        for provider in resource.get_extra_providers(filter_known_inactive=filter_known_inactive):
             rv.append((provider.code, provider.resolve(identifier)))
 
         if not rv:
@@ -1430,19 +1742,24 @@ class Manager:
         'https://www.ebi.ac.uk/chebi/displayImage.do?defaultImage=true&imageIndex=0&chebiId=24867'
         """
         if identifier is None:
-            _prefix, _identifier = self.parse_curie(prefix)
-            if _prefix is None or _identifier is None:
+            reference = self.parse_curie(prefix, on_failure_return_type=FailureReturnType.single)
+            if reference is None:
                 return None
         else:
-            _prefix, _identifier = prefix, identifier
+            reference = ReferenceTuple(prefix, identifier)
 
-        providers = self.get_providers(_prefix, _identifier)
+        providers = self.get_providers(reference.prefix, reference.identifier)
         if provider is not None:
             if provider not in providers:
                 return None
             return providers[provider]
-        if prefix_map and _prefix in prefix_map:
-            providers["custom"] = f"{prefix_map[_prefix]}{_identifier}"
+
+        # TODO decide how this works with custom provider
+        if reference.prefix in CUSTOM_RESOLVERS:
+            return CUSTOM_RESOLVERS[reference.prefix](reference.identifier)
+
+        if prefix_map and reference.prefix in prefix_map:
+            providers["custom"] = f"{prefix_map[reference.prefix]}{reference.identifier}"
         for key in priority or LINK_PRIORITY:
             if not use_bioregistry_io and key == "bioregistry":
                 continue
@@ -1667,6 +1984,7 @@ class Manager:
             rewiring=context.custom_prefix_map,
             blacklist=context.blacklist,
             include_prefixes=include_prefixes,
+            enforce_w3c=context.enforce_w3c,
         )
 
     def get_context_artifacts(
@@ -1779,6 +2097,8 @@ def _read_contributors(
                 rv[maintainer.orcid] = maintainer
     return rv
 
+
+CUSTOM_RESOLVERS: dict[str, Callable[[str], str | None]] = {"ec": get_ec_url}
 
 #: The default manager for the Bioregistry
 manager = Manager()
