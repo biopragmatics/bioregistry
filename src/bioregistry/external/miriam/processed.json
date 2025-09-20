@@ -2789,6 +2789,18 @@
     "sampleId": "0004859",
     "uri_format": "http://purl.bioontology.org/ontology/EFO/efo:EFO_$1"
   },
+  "ega": {
+    "deprecated": false,
+    "description": "The European Genome-phenome Archive (EGA) is a global network for permanent archiving and sharing of personally identifiable genetic, phenotypic, and clinical data generated for the purposes of biomedical research projects or in the context of research-focused healthcare systems. Jointly managed by the European Bioinformatics Institute (EMBL-EBI) in Cambridge (UK) and the Centre for Genomic Regulation (CRG) in Barcelona.",
+    "homepage": "https://ega-archive.org/",
+    "id": "00001202",
+    "name": "European Genome-phenome Archive",
+    "namespaceEmbeddedInLui": false,
+    "pattern": "^EGA[SCPNRXZDBF][0-9]{11}$",
+    "prefix": "ega",
+    "sampleId": "EGAD00001008392",
+    "uri_format": "https://ega-archive.org/identifiers/$1"
+  },
   "ega.dataset": {
     "deprecated": false,
     "description": "The EGA is a service for permanent archiving and sharing of all types of personally identifiable genetic and phenotypic data resulting from biomedical research projects. The EGA contains exclusive data collected from individuals whose consent agreements authorize data release only for specific research use or to bona fide researchers. Strict protocols govern how information is managed, stored and distributed by the EGA project. This collection references 'Datasets'.",
@@ -5828,7 +5840,7 @@
     "id": "00000380",
     "name": "MetaboLights",
     "namespaceEmbeddedInLui": false,
-    "pattern": "^MTBLS\\d+$",
+    "pattern": "^MTBL[CS]\\d+$",
     "prefix": "metabolights",
     "providers": [
       {
@@ -6447,7 +6459,7 @@
     "id": "00000768",
     "name": "MolMeDB",
     "namespaceEmbeddedInLui": false,
-    "pattern": "^[m,M]{2}[0-9]{5}[0-9]*$",
+    "pattern": "^[Mm]{2}[0-9]{5,}(\\.[0-9]+)?$",
     "prefix": "molmedb",
     "sampleId": "MM00040",
     "uri_format": "https://molmedb.upol.cz/mol/$1"
@@ -10128,7 +10140,7 @@
     "id": "00000005",
     "name": "UniProt Knowledgebase",
     "namespaceEmbeddedInLui": false,
-    "pattern": "^([A-N,R-Z][0-9]([A-Z][A-Z, 0-9][A-Z, 0-9][0-9]){1,2})|([O,P,Q][0-9][A-Z, 0-9][A-Z, 0-9][A-Z, 0-9][0-9])(\\.\\d+)?$",
+    "pattern": "^([A-N,R-Z][0-9]([A-Z][A-Z, 0-9][A-Z, 0-9][0-9]){1,2})|([O,P,Q][0-9][A-Z, 0-9][A-Z, 0-9][A-Z, 0-9][0-9])(\\.\\d+)?(-\\d+)?(#PRO_\\d+)?$",
     "prefix": "uniprot",
     "providers": [
       {

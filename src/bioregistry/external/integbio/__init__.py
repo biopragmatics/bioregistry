@@ -144,9 +144,9 @@ def get_integbio(*, force_download: bool = False) -> dict[str, dict[str, Any]]:
 
     del df["references"]
     # TODO ground database maintenance with ROR?
-    rv = {}
+    rv: dict[str, dict[str, Any]] = {}
     for _, row in df.iterrows():
-        rv[row["prefix"].lower()] = {k: v for k, v in row.items() if isinstance(v, (str, list))}
+        rv[row["prefix"].lower()] = {k: v for k, v in row.items() if isinstance(v, str | list)}  # type:ignore
     PROCESSED_PATH.write_text(json.dumps(rv, indent=True, ensure_ascii=False, sort_keys=True))
     return rv
 

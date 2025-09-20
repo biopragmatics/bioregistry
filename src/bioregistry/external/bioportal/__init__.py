@@ -8,7 +8,7 @@ import json
 import math
 from dataclasses import dataclass, field
 from pathlib import Path
-from typing import Any, Optional
+from typing import Any
 
 import pystow
 import requests
@@ -38,7 +38,7 @@ class OntoPortalClient:
 
     metaprefix: str
     base_url: str
-    api_key: Optional[str] = None
+    api_key: str | None = None
     raw_path: Path = field(init=False)
     processed_path: Path = field(init=False)
     max_workers: int = 2

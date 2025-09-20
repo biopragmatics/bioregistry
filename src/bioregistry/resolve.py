@@ -55,6 +55,7 @@ __all__ = [
     # Registry-level functions
     "get_registry_map",
     "get_repository",
+    "get_repository_to_prefix",
     "get_resource",
     "get_synonyms",
     "get_version",
@@ -934,3 +935,14 @@ def get_logo(prefix: str) -> str | None:
 def get_mailing_list(prefix: str) -> str | None:
     """Get the mailing list for the resource, if it's available."""
     return manager.get_mailing_list(prefix)
+
+
+def get_repository_to_prefix() -> dict[str, str]:
+    """Get a mapping from GitHub repository to Bioregistry prefix."""
+    rv = {}
+    for resource in manager.registry.values():
+        repository = resource.get_repository()
+        if not repository or not repository.startswith("https://github.com/"):
+            continue
+        rv[repository.removeprefix("https://github.com/").casefold()] = resource.prefix
+    return rv

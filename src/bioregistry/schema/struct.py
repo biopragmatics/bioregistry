@@ -9,17 +9,17 @@ import pathlib
 import re
 import textwrap
 import typing
-from collections.abc import Iterable, Mapping, Sequence
+from collections.abc import Callable, Iterable, Mapping, Sequence
 from dataclasses import dataclass
 from functools import lru_cache
 from operator import attrgetter
 from typing import (
     TYPE_CHECKING,
     Any,
-    Callable,
     ClassVar,
     Generic,
-    Optional,
+    Literal,
+    TypeAlias,
     TypeVar,
     cast,
     overload,
@@ -29,7 +29,7 @@ import click
 from curies.w3c import NCNAME_RE
 from pydantic import BaseModel, EmailStr, Field, PrivateAttr
 from pydantic.json_schema import models_json_schema
-from typing_extensions import TypeAlias
+from typing_extensions import Self
 
 from bioregistry import constants as brc
 from bioregistry.constants import (
@@ -42,11 +42,6 @@ from bioregistry.constants import (
 )
 from bioregistry.license_standardizer import standardize_license
 from bioregistry.utils import curie_to_str, deduplicate, removeprefix, removesuffix
-
-try:
-    from typing import Literal
-except ImportError:
-    from typing_extensions import Literal  # type:ignore
 
 if TYPE_CHECKING:
     import rdflib
@@ -86,6 +81,45 @@ URI_IRI_INFO = (
 )
 
 X = TypeVar("X")
+
+#: A controlled vocabulary of domains.
+Domain: TypeAlias = Literal[
+    "chemical",
+    "tissue",
+    "reaction",
+    "gene",
+    "cell and cell line",
+    "cellular component",
+    "model",
+    "organization",
+    "clinical trial",
+    "pathway",
+    "protein family",
+    "gene family",
+    "disease",
+    "vaccine",
+    "multiple",
+    "variant",
+    "publication",
+    "protein complex",
+    "mirna",
+    "taxonomy",
+    "project",
+    "grant",
+    "classification",
+    "protein",
+    "study",
+    "relationship",
+    "relationship type",
+    "antibody",
+    "schema",
+    "license",
+    "semantic web",
+    "geography",
+    "ptm",
+    "bibliometrics",
+    "genetic code",
+]
 
 
 def _uri_sort(uri: str) -> tuple[str, str]:
@@ -216,16 +250,16 @@ class Attributable(BaseModel):
         :param graph: An RDF graph
         :returns: The RDF node representing this author using an ORCiD URI.
         """
-        from rdflib import BNode, Literal
+        from rdflib import BNode, Literal, Node
         from rdflib.namespace import FOAF, RDFS
 
         if not self.orcid:
-            node = BNode()
+            node: Node = BNode()
         else:
             from .constants import orcid
 
             node = orcid.term(self.orcid)
-        graph.add((node, RDFS["label"], Literal(self.name)))
+        graph.add((node, RDFS.label, Literal(self.name)))
         if self.email:
             graph.add((node, FOAF.mbox, Literal(self.email)))
         return node
@@ -242,6 +276,18 @@ class Author(Attributable):
         description=ORCID_DESCRIPTION,
         **{PATTERN_KEY: ORCID_PATTERN},  # type:ignore
     )
+
+    @classmethod
+    def get_charlie(cls) -> Self:
+        """Get an author object representing Charlie."""
+        return cls.model_validate(
+            {
+                "email": "cthoyt@gmail.com",
+                "github": "cthoyt",
+                "name": "Charles Tapley Hoyt",
+                "orcid": "0000-0003-4423-4370",
+            }
+        )
 
 
 class Publication(BaseModel):
@@ -283,6 +329,14 @@ class Publication(BaseModel):
             or (self.doi is not None and self.doi == other.doi)
             or (self.pmc is not None and self.pmc == other.pmc)
         )
+
+    def _sort_key(self) -> tuple[int, str, str]:
+        return -(self.year or 0), (self.title or "").casefold(), self.get_url()
+
+    def __lt__(self, other: Publication) -> bool:
+        if not isinstance(other, Publication):
+            raise TypeError
+        return self._sort_key() < other._sort_key()
 
 
 #: The status of a resource.
@@ -547,6 +601,11 @@ class Resource(BaseModel):
     )
     keywords: list[str] | None = Field(
         default=None, description="A list of keywords for the resource"
+    )
+    domain: Domain | None = Field(
+        default=None,
+        examples=cast(list[str], typing.get_args(Domain)),
+        description="A high-level semantic type of the entities in the semantic space.",
     )
     references: list[str] | None = Field(
         default=None,
@@ -956,7 +1015,7 @@ class Resource(BaseModel):
         if self.uri_format is not None:
             return self.uri_format
         for metaprefix, key in URI_FORMAT_PATHS:
-            rv = cast(Optional[str], self.get_external(metaprefix).get(key))
+            rv = cast(str | None, self.get_external(metaprefix).get(key))
             if rv is not None and _allowed_uri_format(rv):
                 return rv
         return None
@@ -1001,7 +1060,9 @@ class Resource(BaseModel):
             return None
         # if explicitly annotated, use it. Otherwise, the capitalized version
         # of the OBO Foundry ID is the preferred prefix (e.g., for GO)
-        return self.obofoundry.get("preferredPrefix", self.obofoundry["prefix"].upper())
+        return cast(
+            str, self.obofoundry.get("preferredPrefix") or self.obofoundry["prefix"].upper()
+        )
 
     def get_wikidata_entity(self) -> str | None:
         """Get the wikidata database mapping."""
@@ -1232,6 +1293,13 @@ class Resource(BaseModel):
             "homepage",
             metaprefixes,
         )
+
+    def get_domain(self) -> str | None:
+        """Get the domain."""
+        if self.domain:
+            return self.domain
+        # TODO map in OBO Foundry domain
+        return None
 
     def get_keywords(self) -> list[str]:
         """Get keywords."""
@@ -2915,7 +2983,7 @@ class Collection(BaseModel):
     context: str | None = Field(default=None, description="The JSON-LD context's name")
     references: list[str] | None = Field(default=None, description="URL references")
 
-    def add_triples(self, graph: rdflib.Graph) -> rdflib.Graph:
+    def add_triples(self, graph: rdflib.Graph) -> None:
         """Add triples to an RDF graph for this collection.
 
         :param graph: An RDF graph
@@ -2941,8 +3009,6 @@ class Collection(BaseModel):
 
         for resource in self.resources:
             graph.add((node, DCTERMS.hasPart, bioregistry_resource[resource]))
-
-        return node
 
     def as_context_jsonld_str(self) -> str:
         """Get the JSON-LD context as a string from a given collection."""
@@ -3103,7 +3169,7 @@ def _get(resource: Resource, key: str) -> Any:
         x = getattr(x1, k2, None) if x1 is not None else None
     else:
         x = None
-    if isinstance(x, (list, set)):
+    if isinstance(x, list | set):
         return "|".join(sorted(x))
     return x or ""
 

@@ -651,7 +651,7 @@
     "preferred_prefix": "addicto",
     "repository": "https://github.com/addicto-org/addiction-ontology",
     "uri_format": "http://addictovocab.org/ADDICTO_$1",
-    "version": "2025-03-17"
+    "version": "2025-09-08"
   },
   "adms": {
     "contact": {
@@ -721,6 +721,15 @@
     "name": "Alzheimer's Disease Ontology",
     "pattern": "^\\d{7}$",
     "preferred_prefix": "ADO",
+    "providers": [
+      {
+        "code": "legacy",
+        "description": "Legacy URI used before switching to OBO PURLs",
+        "homepage": "http://scai.fraunhofer.de",
+        "name": "Legacy",
+        "uri_format": "http://scai.fraunhofer.de/AlzheimerOntology#$1"
+      }
+    ],
     "publications": [
       {
         "doi": "10.1016/j.jalz.2013.02.009",
@@ -1101,6 +1110,9 @@
     ],
     "description": "AGRICOLA (AGRICultural OnLine Access) serves as the catalog and index to the collections of the National Agricultural Library, as well as a primary public source for world-wide access to agricultural information. The database covers materials in all formats and periods, including printed works from as far back as the 15th century.",
     "example": "IND608186955",
+    "example_extras": [
+      "GUA85008832"
+    ],
     "homepage": "http://agricola.nal.usda.gov/",
     "mappings": {
       "biocontext": "AGRICOLA",
@@ -1110,7 +1122,7 @@
       "wikidata.entity": "Q4651693"
     },
     "name": "Agricultural Online Access",
-    "pattern": "^IND\\d+$",
+    "pattern": "^(IND|GUA)\\d+$",
     "preferred_prefix": "agricola",
     "providers": [
       {
@@ -1250,8 +1262,8 @@
   "agrovoc": {
     "banana": "c_",
     "contact": {
-      "email": "agrovoc@fao.org",
-      "name": "AGROVOC Team"
+      "email": "alex.skrenchuk@stanford.edu",
+      "name": "Alex Skrenchuk"
     },
     "contributor": {
       "email": "cthoyt@gmail.com",
@@ -1270,11 +1282,14 @@
       "fisheries science",
       "food",
       "forest management",
-      "nutritional science"
+      "nutritional science",
+      "ontology"
     ],
     "mappings": {
+      "aberowl": "AGROVOC",
       "agroportal": "AGROVOC",
       "bartoc": "305",
+      "bioportal": "AGROVOC",
       "ecoportal": "AGROVOC",
       "fairsharing": "FAIRsharing.anpj91",
       "wikidata": "P8061",
@@ -1971,7 +1986,7 @@
         "orcid": "0000-0002-1216-4761"
       }
     ],
-    "description": " The Australian New Zealand Clinical Trials Registry (ANZCTR) is an online register of clinical trials being undertaken in Australia, New Zealand and elsewhere. The ANZCTR includes trials from the full spectrum of therapeutic areas of pharmaceuticals, surgical procedures, preventive measures, lifestyle, devices, treatment and rehabilitation strategies and complementary therapies.\n\nIn 2007 the ANZCTR was one of the first three trial registries to be recognised by the World Health Organization International Clinical Trials Registry Platform (WHO ICTRP) as a Primary Registry. WHO recognises registries as Primary Registries if they fulfil certain criteria with respect to data content, quality and validity, accessibility, unique identification, technical capacity and administration. The ANZCTR contributes data to the WHO ICTRP, which was developed in 2007. Trials from all ICTRP Primary Registries can be searched at: www.who.int/trialsearch. (from website)",
+    "description": "The Australian New Zealand Clinical Trials Registry (ANZCTR) is an online register of clinical trials being undertaken in Australia, New Zealand and elsewhere. The ANZCTR includes trials from the full spectrum of therapeutic areas of pharmaceuticals, surgical procedures, preventive measures, lifestyle, devices, treatment and rehabilitation strategies and complementary therapies.\n\nIn 2007 the ANZCTR was one of the first three trial registries to be recognised by the World Health Organization International Clinical Trials Registry Platform (WHO ICTRP) as a Primary Registry. WHO recognises registries as Primary Registries if they fulfil certain criteria with respect to data content, quality and validity, accessibility, unique identification, technical capacity and administration. The ANZCTR contributes data to the WHO ICTRP, which was developed in 2007. Trials from all ICTRP Primary Registries can be searched at: www.who.int/trialsearch. (from website)",
     "example": "ACTRN12623000498695",
     "homepage": "https://anzctr.org.au",
     "mappings": {
@@ -1982,10 +1997,10 @@
     "preferred_prefix": "anzctr",
     "providers": [
       {
-        "code": "",
-        "description": "",
-        "homepage": "",
-        "name": "",
+        "code": "redirect",
+        "description": "Australian New Zealand Clinical Trials Registry (redirect)",
+        "homepage": "https://anzctr.org.au",
+        "name": "Australian New Zealand Clinical Trials Registry (redirect)",
         "uri_format": "https://anzctr.org.au/ACTRN$1.aspx"
       }
     ],
@@ -2033,6 +2048,7 @@
       "n2t": "aop.events"
     },
     "name": "AOPWiki (Key Event)",
+    "part_of": "aop",
     "pattern": "^\\d+$",
     "preferred_prefix": "aop.events",
     "uri_format": "https://aopwiki.org/events/$1"
@@ -2047,6 +2063,7 @@
       "n2t": "aop.relationships"
     },
     "name": "AOPWiki (Key Event Relationship)",
+    "part_of": "aop",
     "pattern": "^\\d+$",
     "preferred_prefix": "aop.relationships",
     "uri_format": "https://aopwiki.org/relationships/$1"
@@ -2061,6 +2078,7 @@
       "n2t": "aop.stressor"
     },
     "name": "AOPWiki (Stressor)",
+    "part_of": "aop",
     "pattern": "^\\d+$",
     "preferred_prefix": "aop.stressor",
     "uri_format": "https://aopwiki.org/stressors/$1"
@@ -2742,6 +2760,7 @@
       "n2t": "arrayexpress.platform"
     },
     "name": "ArrayExpress Platform",
+    "part_of": "arrayexpress",
     "pattern": "^[AEP]-\\w{4}-\\d+$",
     "preferred_prefix": "arrayexpress.platform",
     "uri_format": "https://www.ebi.ac.uk/arrayexpress/arrays/$1"
@@ -3128,7 +3147,7 @@
     "example": "0002",
     "github_request_issue": 1214,
     "homepage": "https://cbcb.cdutcm.edu.cn/AGD/",
-    "name": "Asteraceae Genome Database",
+    "name": "Asteraceae Genome Database - Genome",
     "pattern": "^\\d{4}$",
     "preferred_prefix": "asteraceaegd.genome",
     "publications": [
@@ -3164,7 +3183,7 @@
     "example": "0016",
     "github_request_issue": 1214,
     "homepage": "https://cbcb.cdutcm.edu.cn/AGD/",
-    "name": "Asteraceae Genome Database",
+    "name": "Asteraceae Genome Database - Plant",
     "pattern": "^\\d{4}$",
     "preferred_prefix": "asteraceaegd.plant",
     "publications": [
@@ -3228,6 +3247,13 @@
         "homepage": "https://bio2rdf.org",
         "name": "Bio2RDF",
         "uri_format": "http://bio2rdf.org/atc:$1"
+      },
+      {
+        "code": "bioportal.purl",
+        "description": "BioPortal assigned additional PURLs for ATC codes",
+        "homepage": "http://purl.bioontology.org/ontology/ATC",
+        "name": "BioPortal",
+        "uri_format": "http://purl.bioontology.org/ontology/ATC/$1"
       }
     ],
     "publications": [
@@ -3608,7 +3634,7 @@
   },
   "bao": {
     "contact": {
-      "email": "c.chung@miami.edu",
+      "email": "bao@miamiedu.onmicrosoft.com",
       "name": "Caty Chung"
     },
     "description": "The BioAssay Ontology (BAO) describes chemical biology screening assays and their results including high-throughput screening (HTS) data for the purpose of categorizing assays and data analysis.",
@@ -4182,6 +4208,10 @@
     "preferred_prefix": "bel"
   },
   "bervo": {
+    "contact": {
+      "email": "jhc@lbl.gov",
+      "name": "Harry Caufield"
+    },
     "contributor": {
       "email": "cthoyt@gmail.com",
       "github": "cthoyt",
@@ -4197,6 +4227,10 @@
     "keywords": [
       "ontology"
     ],
+    "mappings": {
+      "aberowl": "BERVO",
+      "bioportal": "BERVO"
+    },
     "name": "Biological and Environmental Research Variable Ontology",
     "pattern": "^\\d{7}$",
     "preferred_prefix": "BERVO",
@@ -4434,11 +4468,13 @@
       "orcid": "0000-0003-4423-4370"
     },
     "description": "The Bibliographic Ontology Specification provides main concepts and properties for describing citations and bibliographic references (i.e. quotes, books, articles, etc) on the Semantic Web.",
+    "download_owl": "https://www.dublincore.org/specifications/bibo/bibo/bibo.rdf.xml",
     "example": "authorList",
-    "homepage": "https://bibliontology.com/",
+    "homepage": "http://purl.org/ontology/bibo/",
     "keywords": [
       "bibliometrics",
-      "catalogs"
+      "catalogs",
+      "ontology"
     ],
     "mappings": {
       "lov": "bibo",
@@ -4446,6 +4482,7 @@
     },
     "name": "The Bibliographic Ontology",
     "preferred_prefix": "bibo",
+    "repository": "https://github.com/dcmi/bibo",
     "uri_format": "http://purl.org/ontology/bibo/$1"
   },
   "bido": {
@@ -4487,7 +4524,7 @@
       "subcellular compartment"
     ],
     "license": "http://bigg.ucsd.edu/license#license",
-    "logo": "http://bigg.ucsd.edu/static/assets/bigg-github.png",
+    "logo": "https://lh3.googleusercontent.com/proxy/vQjhtm8lVovH27pBaBSbAx_50uQbOvjubQM4s-R3-6JLiEzlozInmDfqGpp7OwbbkwxbTwfqie4g1GSGOG-vryt20uzT",
     "mappings": {
       "biocontext": "BIGG.COMPARTMENT",
       "miriam": "bigg.compartment",
@@ -4513,7 +4550,7 @@
       "small molecule"
     ],
     "license": "http://bigg.ucsd.edu/license#license",
-    "logo": "http://bigg.ucsd.edu/static/assets/bigg-github.png",
+    "logo": "https://lh3.googleusercontent.com/proxy/vQjhtm8lVovH27pBaBSbAx_50uQbOvjubQM4s-R3-6JLiEzlozInmDfqGpp7OwbbkwxbTwfqie4g1GSGOG-vryt20uzT",
     "mappings": {
       "biocontext": "BIGG.METABOLITE",
       "miriam": "bigg.metabolite",
@@ -4533,7 +4570,7 @@
       "pathway"
     ],
     "license": "http://bigg.ucsd.edu/license#license",
-    "logo": "http://bigg.ucsd.edu/static/assets/bigg-github.png",
+    "logo": "https://lh3.googleusercontent.com/proxy/vQjhtm8lVovH27pBaBSbAx_50uQbOvjubQM4s-R3-6JLiEzlozInmDfqGpp7OwbbkwxbTwfqie4g1GSGOG-vryt20uzT",
     "mappings": {
       "biocontext": "BIGG.MODEL",
       "miriam": "bigg.model",
@@ -4552,7 +4589,7 @@
       "reaction"
     ],
     "license": "http://bigg.ucsd.edu/license#license",
-    "logo": "http://bigg.ucsd.edu/static/assets/bigg-github.png",
+    "logo": "https://lh3.googleusercontent.com/proxy/vQjhtm8lVovH27pBaBSbAx_50uQbOvjubQM4s-R3-6JLiEzlozInmDfqGpp7OwbbkwxbTwfqie4g1GSGOG-vryt20uzT",
     "mappings": {
       "biocontext": "BIGG.REACTION",
       "miriam": "bigg.reaction",
@@ -5173,6 +5210,78 @@
     },
     "uri_format": "http://www.bmrb.wisc.edu/data_library/generate_summary.php?bmrbId=$1"
   },
+  "biomarkerkb.biomarker": {
+    "contact": {
+      "email": "mazumder@gwu.edu",
+      "name": "Raja Mazumder",
+      "orcid": "0000-0001-8823-9945"
+    },
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "contributor_extras": [
+      {
+        "email": "jeetvora@email.gwu.edu",
+        "github": "jeet-vora",
+        "name": "Jeet Kiran Vora",
+        "orcid": "0000-0002-5317-1458"
+      }
+    ],
+    "description": "A disease/condition-specific instantiation of a canonical biomarker",
+    "example": "AN6278-5",
+    "example_extras": [
+      "AO2172-10"
+    ],
+    "github_request_issue": 1526,
+    "homepage": "https://biomarkerkb.org",
+    "keywords": [
+      "biomarker"
+    ],
+    "name": "Biomarker Knowledgebase - Biomarker",
+    "part_of": "biomarkerkb",
+    "pattern": "^A(N|O)\\d+-\\d+$",
+    "preferred_prefix": "biomarkerkb.biomarker",
+    "uri_format": "https://biomarkerkb.org/biomarker/$1"
+  },
+  "biomarkerkb.canonical": {
+    "contact": {
+      "email": "mazumder@gwu.edu",
+      "name": "Raja Mazumder",
+      "orcid": "0000-0001-8823-9945"
+    },
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "contributor_extras": [
+      {
+        "email": "jeetvora@email.gwu.edu",
+        "github": "jeet-vora",
+        "name": "Jeet Kiran Vora",
+        "orcid": "0000-0002-5317-1458"
+      }
+    ],
+    "description": "A canonical biomarker, which describes the composition of a measurement on a change to an entity. For example, the increase in IL6 level",
+    "example": "AN6278",
+    "example_extras": [
+      "AO1391"
+    ],
+    "github_request_issue": 1526,
+    "homepage": "https://biomarkerkb.org",
+    "keywords": [
+      "biomarker"
+    ],
+    "name": "Biomarker Knowledgebase - Canonical Biomarker",
+    "part_of": "biomarkerkb",
+    "pattern": "^A(N|O)\\d+$",
+    "preferred_prefix": "biomarkerkb.canonical",
+    "uri_format": "https://biomarkerkb.org/canonical/$1"
+  },
   "biominder": {
     "description": "Database of the dielectric properties of biological tissues.",
     "example": "aef4c195-9cf9-46db-a12a-7cfd1ff3eec3",
@@ -5597,6 +5706,7 @@
       "registry"
     ],
     "name": "Bioregistry Collections",
+    "part_of": "bioregistry",
     "pattern": "^\\d{7}$",
     "preferred_prefix": "bioregistry.collection",
     "uri_format": "https://bioregistry.io/collection/$1"
@@ -5624,6 +5734,7 @@
       "registry"
     ],
     "name": "Bioregistry Metaregistry",
+    "part_of": "bioregistry",
     "preferred_prefix": "bioregistry.registry",
     "uri_format": "https://bioregistry.io/metaregistry/$1"
   },
@@ -5647,6 +5758,7 @@
       "registry"
     ],
     "name": "Bioregistry Schema",
+    "part_of": "bioregistry",
     "pattern": "^\\d{7}$",
     "preferred_prefix": "bioregistry.schema",
     "uri_format": "https://bioregistry.io/schema/#$1"
@@ -6041,6 +6153,15 @@
     "name": "Biomedical Informatics Research Network Lexicon",
     "pattern": "^\\d+$",
     "preferred_prefix": "birnlex",
+    "providers": [
+      {
+        "code": "bioportal.purl",
+        "description": "Pseudo-BioPortal PURL assigned to BirnLex",
+        "homepage": "http://bioontology.org/projects/ontologies/birnlex",
+        "name": "BioPortal",
+        "uri_format": "http://bioontology.org/projects/ontologies/birnlex#$1"
+      }
+    ],
     "uri_format": "http://uri.neuinfo.org/nif/nifstd/birnlex_$1"
   },
   "biro": {
@@ -6274,9 +6395,33 @@
       "spectrometry"
     ],
     "name": "NMR Restraints Grid",
+    "part_of": "bmrb",
     "pattern": "^\\d+$",
     "preferred_prefix": "bmrb.restraint",
     "uri_format": "https://restraintsgrid.bmrb.io/NRG/MRGridServlet?block_text_type=2-parsed&db_username=wattos1&file_detail=2-parsed&format=n%2Fa&program=STAR&request_type=block&subtype=full&type=entry&mrblock_id=$1"
+  },
+  "bodc.unit": {
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "terms approved for use by BODC to describe the measurement units for data held in its repositories.",
+    "example": "UMKS",
+    "github_request_issue": 1643,
+    "homepage": "https://vocab.nerc.ac.uk/collection/P06/current/",
+    "keywords": [
+      "unit",
+      "units"
+    ],
+    "license": "CC-BY-4.0",
+    "name": "British Oceanographic Data Centre data storage units",
+    "preferred_prefix": "bodc.unit",
+    "synonyms": [
+      "nvs.P06"
+    ],
+    "uri_format": "http://vocab.nerc.ac.uk/collection/P06/current/$1"
   },
   "bold.taxonomy": {
     "contact": {
@@ -6321,26 +6466,6 @@
     ],
     "uri_format": "http://www.boldsystems.org/index.php/Taxbrowser_Taxonpage?taxid=$1"
   },
-  "bootstrep": {
-    "contact": {
-      "email": "vlee@ebi.ac.uk",
-      "name": "Vivian Lee"
-    },
-    "deprecated": true,
-    "homepage": "http://www.ebi.ac.uk/Rebholz-srv/GRO/GRO.html",
-    "keywords": [
-      "obo",
-      "ontology"
-    ],
-    "mappings": {
-      "biocontext": "BOOTSTREP",
-      "obofoundry": "bootstrep"
-    },
-    "name": "Gene Regulation Ontology",
-    "preferred_prefix": "BOOTSTREP",
-    "rdf_uri_format": "http://purl.obolibrary.org/obo/BOOTSTREP_$1",
-    "uri_format": "http://purl.obolibrary.org/obo/BOOTSTREP_$1"
-  },
   "bpdb": {
     "contributor": {
       "email": "cthoyt@gmail.com",
@@ -6348,7 +6473,7 @@
       "name": "Charles Tapley Hoyt",
       "orcid": "0000-0003-4423-4370"
     },
-    "description": "Database of biopesticides maintained by the University of Hertfordshire ",
+    "description": "Database of biopesticides maintained by the University of Hertfordshire",
     "example": "2404",
     "homepage": "https://sitem.herts.ac.uk/aeru/bpdb/index.htm",
     "keywords": [
@@ -6495,6 +6620,7 @@
       "structrual bioinformatics"
     ],
     "name": "BRENDA Ligand",
+    "part_of": "brenda",
     "pattern": "^\\d+$",
     "preferred_prefix": "brenda.ligand",
     "uri_format": "https://www.brenda-enzymes.de/ligand.php?brenda_ligand_id=$1"
@@ -6515,6 +6641,7 @@
       "structrual bioinformatics"
     ],
     "name": "BRENDA Ligand Group",
+    "part_of": "brenda",
     "pattern": "^\\d+$",
     "preferred_prefix": "brenda.ligandgroup",
     "uri_format": "https://www.brenda-enzymes.de/ligand.php?brenda_group_id=$1"
@@ -7130,6 +7257,7 @@
       "name": "Melissa Haendel",
       "orcid": "0000-0001-9114-8737"
     },
+    "deprecated": true,
     "description": "The Common Anatomy Reference Ontology (CARO) is being developed to facilitate interoperability between existing anatomy ontologies for different species, and will provide a template for building new anatomy ontologies.",
     "download_json": "http://purl.obolibrary.org/obo/caro.json",
     "download_obo": "http://purl.obolibrary.org/obo/caro.obo",
@@ -7407,6 +7535,7 @@
       "n2t": "cath.domain"
     },
     "name": "CATH domain",
+    "part_of": "cath",
     "pattern": "^\\w+$",
     "preferred_prefix": "cath.domain",
     "uri_format": "http://www.cathdb.info/domain/$1"
@@ -7588,7 +7717,7 @@
       "name": "Charles Tapley Hoyt",
       "orcid": "0000-0003-4423-4370"
     },
-    "description": " The Creative Commons Rights Expression Language (ccREL) lets you describe copyright licenses in RDF. For more information on describing licenses in RDF and attaching those descriptions to digital works, see [ccREL](https://wiki.creativecommons.org/CC_REL) in the [Creative Commons wiki](https://wiki.creativecommons.org/).",
+    "description": "The Creative Commons Rights Expression Language (ccREL) lets you describe copyright licenses in RDF. For more information on describing licenses in RDF and attaching those descriptions to digital works, see [ccREL](https://wiki.creativecommons.org/CC_REL) in the [Creative Commons wiki](https://wiki.creativecommons.org/).",
     "download_rdf": "https://creativecommons.org/schema.rdf",
     "example": "Work",
     "homepage": "https://creativecommons.org/ns",
@@ -7606,6 +7735,27 @@
     "preferred_prefix": "cc",
     "twitter": "cc_opensource",
     "uri_format": "https://creativecommons.org/ns#$1"
+  },
+  "cc.legacy": {
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "deprecated": true,
+    "description": "A precursor that was later replaced with the Creative Commons Rights Expression Language (ccREL)",
+    "download_rdf": "https://web.resource.org/cc/schema.rdf",
+    "example": "License",
+    "github_request_issue": 1639,
+    "homepage": "https://web.resource.org/cc/",
+    "keywords": [
+      "license",
+      "schema"
+    ],
+    "name": "Creative Commons Schema",
+    "preferred_prefix": "cc.legacy",
+    "uri_format": "http://web.resource.org/cc/$1"
   },
   "ccdc": {
     "description": "The Cambridge Crystallographic Data Centre (CCDC) develops and maintains the Cambridge Stuctural Database, the world's most comprehensive archive of small-molecule crystal structure data. A CCDC Number is a unique identifier assigned to a dataset deposited with the CCDC.",
@@ -7816,6 +7966,38 @@
     "name": "National Experimental Cell Resource Sharing Platform",
     "preferred_prefix": "ccrid",
     "uri_format": "http://www.cellresource.cn/cellsearch.aspx?sc=1&where=$1"
+  },
+  "ccso": {
+    "contact": {
+      "email": "merocknyxta@gmail.com",
+      "github": "vkreations",
+      "name": "Evangelos Katis"
+    },
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "CCSO is an educational ontology acting as a data model for concepts and entities within an academic setting, enabling also the annotation of potentially available resources. The ontology aims to conceptualize educational entities within Curriculum and Syllabus with appropriate coverage and quality, in order to support rich services on top for improving curriculum management and automatically enabling syllabus semantic processes. (from homepage)",
+    "download_owl": "https://vkreations.github.io/CCSO/CCSO_071owl.owl",
+    "example": "AcademicStaff",
+    "homepage": "https://vkreations.github.io/CCSO/",
+    "keywords": [
+      "curricula",
+      "curriculum",
+      "education",
+      "oer",
+      "oers",
+      "ontology",
+      "open educational resources"
+    ],
+    "license": "GPL-3.0",
+    "name": "Curriculum Course Syllabus Ontology",
+    "preferred_prefix": "ccso",
+    "rdf_uri_format": "https://w3id.org/ccso/ccso#$1",
+    "repository": "https://github.com/Vkreations/CCSO",
+    "uri_format": "https://w3id.org/ccso/ccso#$1"
   },
   "cdao": {
     "contact": {
@@ -8237,6 +8419,7 @@
       "registry"
     ],
     "name": "Cellosaurus Registry",
+    "part_of": "cellosaurus",
     "preferred_prefix": "cellosaurus.resource",
     "uri_format": "https://bioregistry.io/metaregistry/cellosaurus/$1"
   },
@@ -8784,6 +8967,182 @@
     },
     "uri_format": "http://chembank.broadinstitute.org/chemistry/viewMolecule.htm?cbid=$1"
   },
+  "chembiosys.assay": {
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "A assay in the ChemBioSys data platform",
+    "example": "31",
+    "homepage": "https://data.chembiosys.de/assays",
+    "name": "ChemBioSys Assay",
+    "part_of": "chembiosys",
+    "pattern": "^\\d+$",
+    "preferred_prefix": "chembiosys.assay",
+    "uri_format": "https://data.chembiosys.de/assays/$1"
+  },
+  "chembiosys.data": {
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "A dataset in the ChemBioSys data platform",
+    "example": "103",
+    "homepage": "https://data.chembiosys.de/data_files",
+    "name": "ChemBioSys Dataset",
+    "part_of": "chembiosys",
+    "pattern": "^\\d+$",
+    "preferred_prefix": "chembiosys.data",
+    "uri_format": "https://data.chembiosys.de/data_files/$1"
+  },
+  "chembiosys.institution": {
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "An institution in the ChemBioSys data platform",
+    "example": "13",
+    "homepage": "https://data.chembiosys.de/institutions",
+    "name": "ChemBioSys Institution",
+    "part_of": "chembiosys",
+    "pattern": "^\\d+$",
+    "preferred_prefix": "chembiosys.institution",
+    "uri_format": "https://data.chembiosys.de/institutions/$1"
+  },
+  "chembiosys.investigation": {
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "An investigation in the ChemBioSys data platform",
+    "example": "27",
+    "homepage": "https://data.chembiosys.de/investigations",
+    "name": "ChemBioSys Investigation",
+    "part_of": "chembiosys",
+    "pattern": "^\\d+$",
+    "preferred_prefix": "chembiosys.investigation",
+    "uri_format": "https://data.chembiosys.de/investigations/$1"
+  },
+  "chembiosys.model": {
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "A model in the ChemBioSys data platform",
+    "example": "11",
+    "homepage": "https://data.chembiosys.de/models",
+    "name": "ChemBioSys Model",
+    "part_of": "chembiosys",
+    "pattern": "^\\d+$",
+    "preferred_prefix": "chembiosys.model",
+    "uri_format": "https://data.chembiosys.de/models/$1"
+  },
+  "chembiosys.organism": {
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "An organism in the ChemBioSys data platform",
+    "example": "604090889",
+    "homepage": "https://data.chembiosys.de/",
+    "name": "ChemBioSys Organism",
+    "part_of": "chembiosys",
+    "pattern": "^\\d+$",
+    "preferred_prefix": "chembiosys.organism",
+    "uri_format": "https://data.chembiosys.de/organisms/$1"
+  },
+  "chembiosys.project": {
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "A project in the ChemBioSys data platform",
+    "example": "15",
+    "homepage": "https://data.chembiosys.de/projects",
+    "name": "ChemBioSys Project",
+    "part_of": "chembiosys",
+    "pattern": "^\\d+$",
+    "preferred_prefix": "chembiosys.project",
+    "uri_format": "https://data.chembiosys.de/projects/$1"
+  },
+  "chembiosys.publication": {
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "A publication in the ChemBioSys data platform",
+    "example": "157",
+    "homepage": "https://data.chembiosys.de/publications",
+    "name": "ChemBioSys Publication",
+    "part_of": "chembiosys",
+    "pattern": "^\\d+$",
+    "preferred_prefix": "chembiosys.publication",
+    "uri_format": "https://data.chembiosys.de/publications/$1"
+  },
+  "chembiosys.strain": {
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "A strain in the ChemBioSys data platform",
+    "example": "33",
+    "homepage": "https://data.chembiosys.de/strains",
+    "name": "ChemBioSys Strain",
+    "part_of": "chembiosys",
+    "pattern": "^\\d+$",
+    "preferred_prefix": "chembiosys.strain",
+    "uri_format": "https://data.chembiosys.de/strains/$1"
+  },
+  "chembiosys.study": {
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "A study in the ChemBioSys data platform",
+    "example": "20",
+    "homepage": "https://data.chembiosys.de/studies",
+    "name": "ChemBioSys Study",
+    "part_of": "chembiosys",
+    "pattern": "^\\d+$",
+    "preferred_prefix": "chembiosys.study",
+    "uri_format": "https://data.chembiosys.de/studies/$1"
+  },
+  "chembiosys.tag": {
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "A tag in the ChemBioSys data platform",
+    "example": "59",
+    "homepage": "https://data.chembiosys.de/tags",
+    "name": "ChemBioSys Tag",
+    "part_of": "chembiosys",
+    "pattern": "^\\d+$",
+    "preferred_prefix": "chembiosys.tag",
+    "uri_format": "https://data.chembiosys.de/tags/$1"
+  },
   "chembl": {
     "contact": {
       "email": "dmendez@ebi.ac.uk",
@@ -8924,7 +9283,7 @@
       "togoid": "ChemblCompound",
       "wikidata": "P592"
     },
-    "name": "ChEMBL",
+    "name": "ChEMBL Compound",
     "part_of": "chembl",
     "pattern": "^CHEMBL\\d+$",
     "preferred_prefix": "chembl.compound",
@@ -8932,20 +9291,29 @@
     "uri_format": "https://www.ebi.ac.uk/chembl/compound/inspect/$1"
   },
   "chembl.mechanism": {
+    "contact": {
+      "email": "dmendez@ebi.ac.uk",
+      "github": "nclopezo",
+      "name": "David Mendez Lopez",
+      "orcid": "0000-0002-0294-5484"
+    },
     "contributor": {
       "email": "cthoyt@gmail.com",
       "github": "cthoyt",
       "name": "Charles Tapley Hoyt",
       "orcid": "0000-0003-4423-4370"
     },
-    "description": "Qualifiers for measurementsn, such as `allosteric modulator` from the ACTION_TYPE table",
+    "description": "This controlled vocabulary contains terms to describe the mechanism of action for a chemical-target interaction. The terms can be retrieved from ACTION_TYPE table in ChEMBL's SQL dump and are used to annotate the DRUG_MECHANISM table. Because these aren't really identifiers, they are transformed by lowercasing and replacing spaces with dashes to form 'identifiers'. The pattern in the Bioregistry record contains an enumeration of the 33 allowed values as of ChEMBL v35.",
     "example": "activator",
     "example_extras": [
-      "allosteric-antagonist"
+      "cross-linking-agent",
+      "negative-allosteric-modulator"
     ],
     "homepage": "https://www.ebi.ac.uk/chembl",
+    "license": "CC-BY-SA-3.0",
     "name": "ChEMBL mechanism",
-    "pattern": "^[\\w-]+$",
+    "part_of": "chembl",
+    "pattern": "^activator|agonist|allosteric-antagonist|antagonist|antisense-inhibitor|binding-agent|blocker|chelating-agent|cross-linking-agent|degrader|disrupting-agent|exogenous-gene|exogenous-protein|hydrolytic-enzyme|inhibitor|inverse-agonist|methylating-agent|modulator|negative-allosteric-modulator|negative-modulator|opener|other|oxidative-enzyme|partial-agonist|positive-allosteric-modulator|positive-modulator|proteolytic-enzyme|reducing-agent|releasing-agent|rnai-inhibitor|sequestering-agent|stabiliser|substrate|vaccine-antigen$",
     "preferred_prefix": "chembl.mechanism"
   },
   "chembl.target": {
@@ -10255,6 +10623,37 @@
     "uri_format": "http://purl.obolibrary.org/obo/CLAO_$1",
     "version": "2021-09-27"
   },
+  "clarin.clavas": {
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "Representation of languages",
+    "example": "CDB-00133756-001",
+    "homepage": "https://vocabularies.clarin.eu/clavas/ISO639-3/en/",
+    "keywords": [
+      "language"
+    ],
+    "name": "CLAVAS: ISO 639-3 Language Codes",
+    "preferred_prefix": "clarin.clavas",
+    "uri_format": "http://cdb.iso.org/lg/$1"
+  },
+  "clarin.concept": {
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "Concepts for encoding bibliometric information",
+    "example": "CCR_C-3784_55fa12c9-35ad-7b55-b7a5-f9926c801952",
+    "homepage": "https://vocabularies.clarin.eu/clavas/ccr/en/",
+    "name": "CLARIN Concept Registry",
+    "preferred_prefix": "clarin.concept",
+    "uri_format": "http://hdl.handle.net/11459/$1"
+  },
   "classyfire": {
     "banana": "C",
     "comment": "There's a mismatch between the MIRIAM URI format string, which has a C prefix in front of class identifiers and the ontology which does not use them.",
@@ -10498,6 +10897,7 @@
       "n2t": "clinvar.submission"
     },
     "name": "ClinVar Submission",
+    "part_of": "clinvar",
     "pattern": "^SCV\\d+(\\.\\d+)?$",
     "preferred_prefix": "clinvar.submission",
     "uri_format": "http://www.ncbi.nlm.nih.gov/clinvar?term=$1"
@@ -10510,6 +10910,7 @@
       "miriam": "clinvar.submitter"
     },
     "name": "ClinVar Submitter",
+    "part_of": "clinvar",
     "pattern": "^\\d+$",
     "preferred_prefix": "clinvar.submitter",
     "uri_format": "https://www.ncbi.nlm.nih.gov/clinvar/submitters/$1"
@@ -10799,7 +11200,7 @@
     "repository": "https://github.com/rat-genome-database/CMO-Clinical-Measurement-Ontology",
     "twitter": "ratgenome",
     "uri_format": "http://purl.obolibrary.org/obo/CMO_$1",
-    "version": "2.251"
+    "version": "2.252"
   },
   "cmpo": {
     "contact": {
@@ -12141,6 +12542,131 @@
     "preferred_prefix": "cohd",
     "repository": "https://github.com/MIT-LCP/mimic-omop"
   },
+  "cohesindb.binding": {
+    "contact": {
+      "email": "rnakato@iqb.u-tokyo.ac.jp",
+      "name": "Ryuichiro Nakato",
+      "orcid": "0000-0003-3019-5817"
+    },
+    "contributor": {
+      "email": "maaya.m466@gmail.com",
+      "github": "maayamanoj466",
+      "name": "Maaya Manoj",
+      "orcid": "0009-0000-6974-6386"
+    },
+    "description": "Contains identifiers of cohesin binding sites in human cells from CohesinDB. CohesinDB includes 2043 epigenomics, transcriptomics and 3D genomics datasets from 530 studies involving 176 cell types. Each cohesin object is annotated with locus, cell type, classification, function, 3D genomics and cis-regulatory information.",
+    "example": "CDBP00415501",
+    "github_request_issue": 1646,
+    "homepage": "https://cohesindb.iqb.u-tokyo.ac.jp",
+    "keywords": [
+      "binding site",
+      "cohesin",
+      "protein"
+    ],
+    "name": "CohesinDB - cohesin site",
+    "part_of": "cohesindb",
+    "pattern": "^CDBP00\\d{6}$",
+    "preferred_prefix": "cohesindb.binding",
+    "publications": [
+      {
+        "doi": "10.1093/nar/gkac795",
+        "pmc": "PMC9825609",
+        "pubmed": "36162821",
+        "title": "CohesinDB: a comprehensive database for decoding cohesin-related epigenomes, 3D genomes and transcriptomes in human cells",
+        "year": 2023
+      }
+    ],
+    "reviewer": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "uri_format": "https://cohesindb.iqb.u-tokyo.ac.jp/browsepeak/eachpeak/$1"
+  },
+  "cohesindb.gene": {
+    "contact": {
+      "email": "rnakato@iqb.u-tokyo.ac.jp",
+      "name": "Ryuichiro Nakato",
+      "orcid": "0000-0003-3019-5817"
+    },
+    "contributor": {
+      "email": "maaya.m466@gmail.com",
+      "github": "maayamanoj466",
+      "name": "Maaya Manoj",
+      "orcid": "0009-0000-6974-6386"
+    },
+    "description": "Contains identifiers for genes that are part of cohesin regulated CRMs (cis-regulatory modules) from CohesinDB. CohesinDB includes 2043 epigenomics, transcriptomics and 3D genomics datasets from 530 studies involving 176 cell types. Each identifier represents a single cohesin-related CRM. Each cohesin object is annotated with locus, cell type, classification, function, 3D genomics and cis-regulatory information.",
+    "example": "CDBG00009781",
+    "github_request_issue": 1646,
+    "homepage": "https://cohesindb.iqb.u-tokyo.ac.jp",
+    "keywords": [
+      "gene"
+    ],
+    "name": "CohesinDB gene",
+    "part_of": "cohesindb",
+    "pattern": "^CDBG000\\d{5}$",
+    "preferred_prefix": "cohesindb.gene",
+    "publications": [
+      {
+        "doi": "10.1093/nar/gkac795",
+        "pmc": "PMC9825609",
+        "pubmed": "36162821",
+        "title": "CohesinDB: a comprehensive database for decoding cohesin-related epigenomes, 3D genomes and transcriptomes in human cells",
+        "year": 2023
+      }
+    ],
+    "reviewer": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "uri_format": "https://cohesindb.iqb.u-tokyo.ac.jp/browsegene/eachgene/$1"
+  },
+  "cohesindb.loops": {
+    "contact": {
+      "email": "rnakato@iqb.u-tokyo.ac.jp",
+      "name": "Ryuichiro Nakato",
+      "orcid": "0000-0003-3019-5817"
+    },
+    "contributor": {
+      "email": "maaya.m466@gmail.com",
+      "github": "maayamanoj466",
+      "name": "Maaya Manoj",
+      "orcid": "0009-0000-6974-6386"
+    },
+    "description": "Contains identifiers of cohesin-related chromatin loops from CohesinDB. CohesinDB includes 2043 epigenomics, transcriptomics and 3D genomics datasets from 530 studies involving 176 cell types. Each identifier represents a single cohesin-related chromatin loop. Each cohesin object is annotated with locus, cell type, classification, function, 3D genomics and cis-regulatory information.",
+    "example": "CDBL00540805",
+    "github_request_issue": 1646,
+    "homepage": "https://cohesindb.iqb.u-tokyo.ac.jp",
+    "keywords": [
+      "chromatin loop",
+      "cohesin",
+      "interaction",
+      "protein"
+    ],
+    "name": "CohesinDB - cohesin-related chromatin loop",
+    "part_of": "cohesindb",
+    "pattern": "^CDBL00\\d{6}$",
+    "preferred_prefix": "cohesindb.loops",
+    "publications": [
+      {
+        "doi": "10.1093/nar/gkac795",
+        "pmc": "PMC9825609",
+        "pubmed": "36162821",
+        "title": "CohesinDB: a comprehensive database for decoding cohesin-related epigenomes, 3D genomes and transcriptomes in human cells",
+        "year": 2023
+      }
+    ],
+    "reviewer": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "uri_format": "https://cohesindb.iqb.u-tokyo.ac.jp/browseloop/eachloop/$1"
+  },
   "coi": {
     "contact": {
       "email": "coi@bot.uc.pt",
@@ -12213,6 +12739,7 @@
       "wikidata": "P3088"
     },
     "name": "Catalogue of Life in Taiwan",
+    "part_of": "col",
     "pattern": "^[1-9]\\d{5}$",
     "preferred_prefix": "col.taiwan",
     "reviewer": {
@@ -12631,6 +13158,48 @@
     "preferred_prefix": "conso",
     "uri_format": "https://pharmacome.github.io/conso/$1"
   },
+  "coral.como": {
+    "contact": {
+      "email": "jmchandonia@lbl.gov",
+      "github": "jmchandonia@lbl.gov",
+      "name": "John-Marc Chandonia",
+      "orcid": "0000-0002-5153-9079"
+    },
+    "contributor": {
+      "email": "jmchandonia@lbl.gov",
+      "github": "jmchandonia",
+      "name": "John-Marc Chandonia",
+      "orcid": "0000-0002-5153-9079"
+    },
+    "description": "The Context and Measurement Ontology (COMO) contains ontological terms to describe the context for various types of experimental data and measurements.  It is useful in its current state for several different environmental microbiology projects. This ontology is used in multiple CORAL (Contextual Ontology-based Repository Analysis Library) deployments.",
+    "download_obo": "https://raw.githubusercontent.com/jmchandonia/CORAL/refs/heads/main/example/pedometer/ontologies/context_measurement_ontology.obo",
+    "example": "0000001",
+    "github_request_issue": 1360,
+    "homepage": "https://github.com/jmchandonia/CORAL",
+    "keywords": [
+      "ontology"
+    ],
+    "license": "AGPL-3.0-only",
+    "name": "Contextual Ontology-based Repository Analysis Library - Context and Measurement Ontology",
+    "pattern": "^\\d+$",
+    "preferred_prefix": "coral.como",
+    "publications": [
+      {
+        "doi": "10.1093/gigascience/giac089",
+        "pmc": "PMC9575582",
+        "pubmed": "36251274",
+        "title": "CORAL: A framework for rigorous self-validated data modeling and integrative, reproducible data analysis",
+        "year": 2022
+      }
+    ],
+    "repository": "https://github.com/jmchandonia/CORAL",
+    "reviewer": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    }
+  },
   "cordis.article": {
     "contributor": {
       "email": "cthoyt@gmail.com",
@@ -12838,6 +13407,7 @@
       "cellosaurus": "Cosmic-CLP"
     },
     "name": "COSMIC Cell Lines",
+    "part_of": "cosmic",
     "pattern": "^\\d+$",
     "preferred_prefix": "cosmic.cell",
     "uri_format": "https://cancer.sanger.ac.uk/cell_lines/sample/overview?id=$1"
@@ -13037,7 +13607,7 @@
     "example": "TAB-884",
     "github_request_issue": 1257,
     "homepage": "https://www.creativebiolabs.net",
-    "name": "Creative Biolabs",
+    "name": "Creative Biolabs antibody",
     "pattern": "^[a-zA-Z]+-[a-zA-Z0-9()]+(-[a-zA-Z0-9]*)?$",
     "preferred_prefix": "creativebiolabs.antibody",
     "reviewer": {
@@ -13058,7 +13628,7 @@
     "example": "VS-0724-CJ1",
     "github_request_issue": 1257,
     "homepage": "https://www.creativebiolabs.net",
-    "name": "Creative Biolabs",
+    "name": "Creative Biolabs protein",
     "pattern": "^[a-zA-Z]+-[a-zA-Z0-9()]+(-[a-zA-Z0-9]*)?$",
     "preferred_prefix": "creativebiolabs.protein",
     "reviewer": {
@@ -13084,7 +13654,9 @@
     "example": "software",
     "homepage": "https://credit.niso.org/",
     "keywords": [
+      "attribution",
       "classification",
+      "contributor roles",
       "data quality",
       "omics",
       "resource metadata",
@@ -13193,6 +13765,8 @@
     "example": "0000038",
     "homepage": "https://github.com/data2health/contributor-role-ontology",
     "keywords": [
+      "attribution",
+      "contributor roles",
       "obo",
       "ontology"
     ],
@@ -13489,6 +14063,7 @@
       "prefixcommons": "cst"
     },
     "name": "Cell Signaling Technology Antibody",
+    "part_of": "cst",
     "pattern": "^\\d+$",
     "preferred_prefix": "cst.ab",
     "providers": [
@@ -13840,6 +14415,7 @@
     "keywords": [
       "vaccine"
     ],
+    "logo": "https://www2.cdc.gov/TemplatePackage/4.0/assets/imgs/logo/logo-notext.svg",
     "mappings": {
       "hl7": "2.16.840.1.113883.6.59"
     },
@@ -14083,6 +14659,7 @@
       "n2t": "dashr.expression"
     },
     "name": "DASHR expression",
+    "part_of": "dashr",
     "pattern": "^(hsa-(let|mir)-\\w+(-\\w+)?)|(piR-\\d+)|(chr\\w+.tRNA\\d+-\\w+)|(chr\\w+.tRNA\\d+-\\w+-tRF\\d)|((SNORD|SNORA|ACA|HBII|HBI|U)(-)?\\w+)|(HY\\d\\+(-L\\d+)?)|((LSU|SSU|5S)(-rRNA_Hsa)?(-L\\d+)?)$",
     "preferred_prefix": "dashr.expression",
     "uri_format": "https://dashr1.lisanwanglab.org/entry/hsa-mir-200a#$1#exprPerTissueTable"
@@ -14447,8 +15024,11 @@
     "mappings": {
       "re3data": "r3d100011713"
     },
-    "name": "DBPedia",
+    "name": "DBPedia Resource",
     "preferred_prefix": "dbpedia",
+    "synonyms": [
+      "dbr"
+    ],
     "uri_format": "http://dbpedia.org/resource/$1"
   },
   "dbpedia.property": {
@@ -14677,6 +15257,32 @@
     "rdf_uri_format": "http://purl.obolibrary.org/obo/DC_CL_$1",
     "uri_format": "http://purl.obolibrary.org/obo/DC_CL_$1"
   },
+  "dcam": {
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "A metadata model for Dublin Core metadata",
+    "example": "domainIncludes",
+    "github_request_issue": 1677,
+    "homepage": "https://www.dublincore.org/specifications/dublin-core/abstract-model/2007-06-04/",
+    "keywords": [
+      "metadata model",
+      "schema",
+      "semantic web"
+    ],
+    "logo": "https://www.dublincore.org/images/dcmi_logo_v802.svg",
+    "mappings": {
+      "zazuko": "dcam"
+    },
+    "name": "Dublin Core Metadata Initiative Abstract Model",
+    "part_of": "dc",
+    "preferred_prefix": "dcam",
+    "rdf_uri_format": "http://purl.org/dc/dcam/$1",
+    "uri_format": "http://purl.org/dc/dcam/$1"
+  },
   "dcat": {
     "contact": {
       "email": "kdurante@stanford.edu",
@@ -14772,6 +15378,7 @@
       "biocontext": "dctypes"
     },
     "name": "Dublin Core Types",
+    "part_of": "dc",
     "preferred_prefix": "dctypes",
     "uri_format": "http://purl.org/dc/dcmitype/$1"
   },
@@ -16281,13 +16888,13 @@
   "discoverx": {
     "description": "Cell line collections (Providers)",
     "example": "95-0166C6",
-    "homepage": "https://www.discoverx.com/product_types/cell-lines-primary-cells",
+    "homepage": "https://emea.discoverx.com/product_types/cell-lines-primary-cells",
     "mappings": {
       "cellosaurus": "DiscoverX"
     },
     "name": "DiscoverX cell line products",
     "preferred_prefix": "discoverx",
-    "uri_format": "https://www.discoverx.com/catalogmanagement/catalog/?searchText=$1"
+    "uri_format": "https://emea.discoverx.com/catalog/$1"
   },
   "disdriv": {
     "contact": {
@@ -16550,6 +17157,42 @@
     "repository": "https://github.com/ewilderj/doap",
     "uri_format": "http://usefulinc.com/ns/doap#$1"
   },
+  "docid": {
+    "contact": {
+      "github": "Africa-PID-Alliance",
+      "name": "Joy Owango",
+      "orcid": "0000-0002-3910-2691"
+    },
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "Assigns persistent identifiers to multidisciplinary research outputs with focus on research originating in Africa, such as in cultural heritage and indigenous knowledge.",
+    "example": "20.500.14351/5a7cdd09d9b65bc39697",
+    "github_request_issue": 1692,
+    "homepage": "https://docid.africapidalliance.org/",
+    "keywords": [
+      "bibliometrics",
+      "cultural heritage",
+      "digital humanities",
+      "publishing"
+    ],
+    "name": "Digical Object Container Identifier",
+    "owners": [
+      {
+        "name": "University of Nairobi",
+        "partnered": false,
+        "ror": "02y9nww90"
+      }
+    ],
+    "preferred_prefix": "docid",
+    "synonyms": [
+      "DOCiD"
+    ],
+    "uri_format": "https://docid.africapidalliance.org/docid/$1"
+  },
   "dockerhub.repo": {
     "contributor": {
       "email": "cthoyt@gmail.com",
@@ -16806,10 +17449,17 @@
       },
       {
         "code": "purl",
-        "description": "Legacy PURLs found in OAE",
+        "description": "Legacy PURLs for DOID, including the redundant DOID_",
         "homepage": "http://purl.org/obo/owl/",
         "name": "Legacy PURL",
         "uri_format": "http://purl.org/obo/owl/DOID#DOID_$1"
+      },
+      {
+        "code": "purl2",
+        "description": "Legacy PURLs for DOID, not including the redundant DOID_",
+        "homepage": "http://purl.org/obo/owl/",
+        "name": "Legacy PURL",
+        "uri_format": "http://purl.org/obo/owl/DOID#$1"
       }
     ],
     "publications": [
@@ -16925,7 +17575,7 @@
     ],
     "twitter": "diseaseontology",
     "uri_format": "http://purl.obolibrary.org/obo/DOID_$1",
-    "version": "2025-08-01"
+    "version": "2025-08-29"
   },
   "dolce": {
     "comment": "This resource doesn't exist anymore",
@@ -17202,7 +17852,7 @@
     "rdf_uri_format": "http://purl.obolibrary.org/obo/FBcv_$1",
     "repository": "https://github.com/FlyBase/drosophila-phenotype-ontology",
     "uri_format": "http://purl.obolibrary.org/obo/FBcv_$1",
-    "version": "2025-05-30"
+    "version": "2025-08-07"
   },
   "dpv": {
     "contact": {
@@ -17401,15 +18051,30 @@
       "name": "Charles Tapley Hoyt",
       "orcid": "0000-0003-4423-4370"
     },
-    "description": " A project supporting the DRAO application ontology, a hierarchy of specific research domains and descriptors which imports subsets of terms from over 40 publicly-available terminologies. (from repository)",
+    "description": "A project supporting the DRAO application ontology, a hierarchy of specific research domains and descriptors which imports subsets of terms from over 40 publicly-available terminologies. (from repository)",
     "download_obo": "https://github.com/FAIRsharing/domain-ontology/raw/refs/heads/master/DRAO.obo",
     "download_owl": "https://github.com/FAIRsharing/domain-ontology/raw/refs/heads/master/DRAO.owl",
     "example": "0000001",
     "homepage": "http://www.fairsharing.org",
     "keywords": [
-      "ontology"
+      "agriculture",
+      "biomedical science",
+      "classification",
+      "computer science",
+      "earth science",
+      "environmental science",
+      "fair",
+      "humanities",
+      "life science",
+      "metadata standardization",
+      "natural science",
+      "ontology",
+      "resource metadata"
     ],
     "license": "CC-BY-4.0",
+    "mappings": {
+      "fairsharing": "FAIRsharing.FSIfv8"
+    },
     "name": "Domain Resource Application Ontology",
     "part_of": "fairsharing",
     "pattern": "^\\d{7}$",
@@ -17589,7 +18254,7 @@
       "life science",
       "protein"
     ],
-    "logo": "https://media.licdn.com/dms/image/v2/D560BAQEHxaWkN14HEg/company-logo_200_200/company-logo_200_200/0/1666912850052/drugbank_logo?e=1753315200&v=beta&t=JkBvFRshu_gAXQ0DH4MqQilbyGDZ7CMR_f4673dzVwQ",
+    "logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fd/Drugbank_logo.svg/1280px-Drugbank_logo.svg.png",
     "mappings": {
       "bartoc": "18377",
       "biocontext": "DrugBank",
@@ -17716,6 +18381,7 @@
     "homepage": "https://go.drugbank.com",
     "logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fd/Drugbank_logo.svg/1280px-Drugbank_logo.svg.png",
     "name": "DrugBank Condition",
+    "part_of": "drugbank",
     "pattern": "^DBCOND\\d+$",
     "preferred_prefix": "drugbank.condition",
     "uri_format": "https://go.drugbank.com/indications/$1"
@@ -17732,6 +18398,7 @@
     "homepage": "https://go.drugbank.com",
     "logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fd/Drugbank_logo.svg/1280px-Drugbank_logo.svg.png",
     "name": "DrugBank Metabolite",
+    "part_of": "drugbank",
     "pattern": "^DBMET\\d+$",
     "preferred_prefix": "drugbank.metabolite",
     "uri_format": "https://go.drugbank.com/metabolites/$1"
@@ -17748,6 +18415,7 @@
     "homepage": "https://go.drugbank.com",
     "logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fd/Drugbank_logo.svg/1280px-Drugbank_logo.svg.png",
     "name": "DrugBank Reaction",
+    "part_of": "drugbank",
     "pattern": "^\\d+$",
     "preferred_prefix": "drugbank.reaction",
     "uri_format": "https://go.drugbank.com/reactions/$1"
@@ -18117,7 +18785,7 @@
       "name": "Charles Tapley Hoyt",
       "orcid": "0000-0003-4423-4370"
     },
-    "description": " EARL is a vocabulary, the terms of which are defined across a set of specifications and technical notes, and that is used to describe test results. The primary motivation for developing this vocabulary is to facilitate the exchange of test results between Web accessibility evaluation tools in a vendor-neutral and platform-independent format. It also provides reusable terms for generic quality assurance and validation purposes. [from homepage]",
+    "description": "EARL is a vocabulary, the terms of which are defined across a set of specifications and technical notes, and that is used to describe test results. The primary motivation for developing this vocabulary is to facilitate the exchange of test results between Web accessibility evaluation tools in a vendor-neutral and platform-independent format. It also provides reusable terms for generic quality assurance and validation purposes. [from homepage]",
     "example": "Assertion",
     "homepage": "https://www.w3.org/TR/EARL10/",
     "keywords": [
@@ -19492,7 +20160,7 @@
     ],
     "repository": "https://github.com/EBISPOT/efo",
     "uri_format": "http://www.ebi.ac.uk/efo/EFO_$1",
-    "version": "3.80.0"
+    "version": "3.81.0"
   },
   "ega.dataset": {
     "contact": {
@@ -19763,6 +20431,26 @@
     ],
     "uri_format": "http://purl.obolibrary.org/obo/EHDAA2_$1",
     "version": "2013-07-04"
+  },
+  "ejprd": {
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "This ontology is designed to support data search, retrieval and information identification in the EJP-RD catalogs which covers the registries and biobanks for rare diseases. (from repository)",
+    "download_owl": "https://github.com/EBISPOT/EJP-Ontology/raw/refs/heads/master/ejp-rd.owl",
+    "example": "alternative_term",
+    "homepage": "https://github.com/EBISPOT/EJP-Ontology",
+    "keywords": [
+      "ontology"
+    ],
+    "logo": "https://github.com/EBISPOT/EJP-Ontology/raw/master/docs/ejp.jpg",
+    "name": "European Joint Programme for Rare Disease Ontology",
+    "preferred_prefix": "ejprd",
+    "repository": "https://github.com/EBISPOT/EJP-Ontology",
+    "uri_format": "http://purl.org/ejp-rd/vocabulary/$1"
   },
   "elm": {
     "contact": {
@@ -20086,7 +20774,7 @@
       "orcid": "0000-0003-4423-4370"
     },
     "description": "The EMI ontology is used to structure spectrum annotation provenance by reusing the PROV-O ontology (a W3C recommendation) and sample and observation data by applying the SOSA ontology. EMI reuses the SOSA ontology as a data schema for struturing the Sample and Observation data. SOSA (Sensor, Observation, Sample, and Actuator) is a subset of SSN (Semantic Sensor Network Ontology) that is a W3C recommendation. [from homepage]",
-    "download_owl": "https://purl.org/emi/version/0.3",
+    "download_owl": "https://w3id.org/emi/version/1.0",
     "download_rdf": "https://github.com/digital-botanical-gardens-initiative/earth_metabolome_ontology/blob/main/emi.ttl",
     "example": "ChemicalStructure",
     "github_request_issue": 1516,
@@ -20103,7 +20791,7 @@
     "rdf_uri_format": " https://purl.org/emi#$1",
     "repository": "https://github.com/digital-botanical-gardens-initiative/earth_metabolome_ontology",
     "uri_format": "https://www.dbgi.org/earth_metabolome_ontology/#$1",
-    "version": "0.3"
+    "version": "1.0"
   },
   "emmo": {
     "banana": "EMMO",
@@ -20163,6 +20851,7 @@
     ],
     "homepage": "https://www.iucr.org/resources/cif",
     "name": "Crystallographic Information Framework",
+    "part_of": "emmo",
     "preferred_prefix": "emmo.cif",
     "repository": "https://github.com/emmo-repo/CIF-ontology",
     "uri_format": "http://emmo.info/emmo/cif-core#$1"
@@ -20231,6 +20920,28 @@
       }
     ],
     "uri_format": "https://www.ebi.ac.uk/pdbe/emdb/empiar/entry/$1"
+  },
+  "empty": {
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "The Experimental Measurements, Purposes, and Treatments ontologY (EMPTY) is a structured vocabulary designed to capture and standardize the scientific reasoning behind experimental measurements. It addresses a critical gap in existing metadata standards, which primarily focus on technical specifications rather than scientific intent. The ontology provides a common language to express why a measurement was taken and the conceptual conditions under which it should be interpreted. By focusing on experimental purposes and treatments, EMPTY is designed to significantly improve the findability, interoperability, and reusability of scientific data. This enables researchers to discover relevant datasets for meta-analyses and cross-disciplinary research based on shared scientific goals. (from https://github.com/OBOFoundry/OBOFoundry.github.io/issues/2753)",
+    "download_json": "https://github.com/Waltham-Data-Science/empty-ontology/raw/refs/heads/main/empty.json",
+    "download_obo": "https://github.com/Waltham-Data-Science/empty-ontology/raw/refs/heads/main/empty.obo",
+    "download_owl": "https://github.com/Waltham-Data-Science/empty-ontology/raw/refs/heads/main/empty.owl",
+    "example": "00000085",
+    "homepage": "https://github.com/Waltham-Data-Science/empty-ontology",
+    "keywords": [
+      "ontology"
+    ],
+    "name": "Experimental Measurements Purposes and Treatments ontologY",
+    "pattern": "^\\d+$",
+    "preferred_prefix": "empty",
+    "repository": "https://github.com/Waltham-Data-Science/empty-ontology",
+    "uri_format": "http://purl.obolibrary.org/obo/EMPTY_$1"
   },
   "emsl.project": {
     "contact": {
@@ -20506,6 +21217,129 @@
       }
     ],
     "uri_format": "https://www.encodeproject.org/$1"
+  },
+  "endlessforms.collection": {
+    "contact": {
+      "email": "mclarkson@uky.edu",
+      "name": "Melissa D Clarkson",
+      "orcid": "0000-0001-9979-176X"
+    },
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "Collections of images, based on topics, such as the human skull collection",
+    "example": "2",
+    "homepage": "https://images.endlessforms.info/",
+    "name": "EndlessForms Studio Image Collections",
+    "part_of": "endlessforms",
+    "pattern": "^\\d+$",
+    "preferred_prefix": "endlessforms.collection",
+    "uri_format": "https://images.endlessforms.info/collection/$1"
+  },
+  "endlessforms.element": {
+    "contact": {
+      "email": "mclarkson@uky.edu",
+      "name": "Melissa D Clarkson",
+      "orcid": "0000-0001-9979-176X"
+    },
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "A reusable element of a vector graphic for an anatomical entity useful for biological and biomedical informatics applications.",
+    "example": "HUMAN0000174",
+    "homepage": "https://graphics.endlessforms.info",
+    "name": "EndlessForms Studio Element",
+    "part_of": "endlessforms",
+    "preferred_prefix": "endlessforms.element",
+    "uri_format": "https://graphics.endlessforms.info/element?id=$1"
+  },
+  "endlessforms.graphic": {
+    "contact": {
+      "email": "mclarkson@uky.edu",
+      "name": "Melissa D Clarkson",
+      "orcid": "0000-0001-9979-176X"
+    },
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "A vector graphic for an anatomical entity useful for biological and biomedical informatics applications.",
+    "example": "HUMAN0000789",
+    "homepage": "https://endlessforms.info",
+    "name": "EndlessForms Studio Graphic",
+    "part_of": "endlessforms",
+    "preferred_prefix": "endlessforms.graphic",
+    "uri_format": "https://endlessforms.info/graphics/$1"
+  },
+  "endlessforms.image": {
+    "contact": {
+      "email": "mclarkson@uky.edu",
+      "name": "Melissa D Clarkson",
+      "orcid": "0000-0001-9979-176X"
+    },
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "Images used as reference",
+    "example": "3",
+    "homepage": "https://images.endlessforms.info/",
+    "license": "CC-BY-NC-4.0",
+    "name": "EndlessForms Studio Image",
+    "part_of": "endlessforms",
+    "pattern": "^\\d+$",
+    "preferred_prefix": "endlessforms.image",
+    "uri_format": "https://images.endlessforms.info/image/$1"
+  },
+  "endlessforms.library": {
+    "contact": {
+      "email": "mclarkson@uky.edu",
+      "name": "Melissa D Clarkson",
+      "orcid": "0000-0001-9979-176X"
+    },
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "A collection of graphics that relate to a theme",
+    "example": "HUMAN0000001",
+    "homepage": "https://graphics.endlessforms.info",
+    "name": "EndlessForms Studio Library",
+    "part_of": "endlessforms",
+    "preferred_prefix": "endlessforms.library",
+    "uri_format": "https://graphics.endlessforms.info/library?id=$1"
+  },
+  "endlessforms.unit": {
+    "contact": {
+      "email": "mclarkson@uky.edu",
+      "name": "Melissa D Clarkson",
+      "orcid": "0000-0001-9979-176X"
+    },
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "A unit of a vector graphic for an anatomical entity useful for biological and biomedical informatics applications.",
+    "example": "HUMAN0000304",
+    "homepage": "https://graphics.endlessforms.info",
+    "name": "EndlessForms Studio Unit",
+    "part_of": "endlessforms",
+    "preferred_prefix": "endlessforms.unit",
+    "uri_format": "https://graphics.endlessforms.info/unit?id=$1"
   },
   "enm": {
     "contact": {
@@ -21147,6 +21981,7 @@
       "uniprot": "DB-0149"
     },
     "name": "Ensembl Metazoa, the Ensembl database for accessing genome-scale data from non-vertebrate metazoa.",
+    "part_of": "ensembl",
     "pattern": "^\\w+(\\.)?\\d+$",
     "preferred_prefix": "ensembl.metazoa",
     "providers": [
@@ -21191,6 +22026,7 @@
       "prefixcommons": "ensembl.plant"
     },
     "name": "Ensembl Plants",
+    "part_of": "ensembl",
     "pattern": "^\\w+(\\.\\d+)?(\\.\\d+)?$",
     "preferred_prefix": "ensembl.plant",
     "providers": [
@@ -21218,6 +22054,7 @@
       "prefixcommons": "ensembl.protist"
     },
     "name": "Ensembl Protists",
+    "part_of": "ensembl",
     "pattern": "^\\w+$",
     "preferred_prefix": "ensembl.protist",
     "providers": [
@@ -21351,6 +22188,7 @@
     "mappings": {
       "aberowl": "ENVO",
       "agroportal": "ENVO",
+      "bartoc": "562",
       "biocontext": "ENVO",
       "bioportal": "ENVO",
       "fairsharing": "FAIRsharing.azqskx",
@@ -21399,7 +22237,7 @@
     "repository": "https://github.com/EnvironmentOntology/envo",
     "twitter": "envoTweets",
     "uri_format": "http://purl.obolibrary.org/obo/ENVO_$1",
-    "version": "2025-02-05"
+    "version": "2025-08-19"
   },
   "enzo": {
     "contributor": {
@@ -21764,6 +22602,15 @@
     "name": "Epilepsy Ontology",
     "pattern": "^\\d{7}$",
     "preferred_prefix": "EPIO",
+    "providers": [
+      {
+        "code": "legacy",
+        "description": "Legacy internal URL before switching to OBO PURL",
+        "homepage": "https://bio.scai.fraunhofer.de/ontolog",
+        "name": "Legacy",
+        "uri_format": "https://bio.scai.fraunhofer.de/ontology/epilepsy#$1"
+      }
+    ],
     "rdf_uri_format": "http://purl.obolibrary.org/obo/EPIO_$1",
     "repository": "https://github.com/SCAI-BIO/EpilepsyOntology",
     "uri_format": "http://purl.obolibrary.org/obo/EPIO_$1"
@@ -22081,6 +22928,20 @@
     "preferred_prefix": "estdab",
     "uri_format": "https://www.ebi.ac.uk/cgi-bin/ipd/estdab/print_cell.cgi?ESTDAB-$1"
   },
+  "eu.publication": {
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "Datasets published by the Publications Office of the European Union",
+    "example": "euvoc",
+    "homepage": "https://op.europa.eu",
+    "name": "European Union Publications Office dataset",
+    "preferred_prefix": "eu.publication",
+    "uri_format": "http://publications.europa.eu/resource/dataset/$1"
+  },
   "eu89h": {
     "description": "The JRC Data Catalogue gives access to the multidisciplinary data produced and maintained by the Joint Research Centre, the European Commission's in-house science service providing independent scientific advice and support to policies of the European Union.",
     "example": "jrc-eurl-ecvam-chemagora",
@@ -22276,6 +23137,44 @@
     ],
     "uri_format": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/how-to-participate/org-details/$1"
   },
+  "euroscivoc": {
+    "contact": {
+      "email": "OP-EU-VOCABULARIES@publications.europa.eu",
+      "name": "Publications Office of the European Union"
+    },
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "European Science Vocabulary (EuroSciVoc) is the taxonomy of fields of science based on OECD's 2015 Frascati Manual taxonomy. It was extended with fields of science categories extracted from CORDIS content through a semi-automatic process developed with Natural Language Processing (NLP) techniques. (from homepage)",
+    "download_rdf": "https://op.europa.eu/o/opportal-service/euvoc-download-handler?cellarURI=http%3A%2F%2Fpublications.europa.eu%2Fresource%2Fdistribution%2Feuroscivoc%2F20250625-0%2Fttl%2Fskos_xl%2FEuroSciVoc.ttl&fileName=EuroSciVoc.ttl",
+    "example": "ceaf4ca0-9b09-4313-85a5-2edf1762e443",
+    "homepage": "https://op.europa.eu/en/web/eu-vocabularies/dataset/-/resource?uri=http://publications.europa.eu/resource/dataset/euroscivoc",
+    "mappings": {
+      "bartoc": "20394",
+      "ecoportal": "EUROSCIVOC"
+    },
+    "name": "European Science Vocabulary",
+    "preferred_prefix": "euroscivoc",
+    "rdf_uri_format": "http://data.europa.eu/8mn/euroscivoc/$1",
+    "uri_format": "http://data.europa.eu/8mn/euroscivoc/$1"
+  },
+  "euroscivoc.schema": {
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "The Euvoc ontology, published by the Publications Office of the European Union, supports the development of authority tables (Name Authority Lists or NALs), Eurovoc and EU corporate datasets. It contains a set of classes and properties enabling all the information to be expressed in multilingual format. It helps define relationships between terms and concepts across multiple domains, supporting interoperability and standardization across European Union documentation and databases. It also defines a set a commonly use properties (i.e: start date, end dates, status), and supports the reusability on common data (currencies, languages, countries).\n\nThe Euvoc ontology is maintained by the Publications Office of the European Union and disseminated on the EU Vocabularies website.",
+    "download_rdf": "https://op.europa.eu/o/opportal-service/euvoc-download-handler?cellarURI=http%3A%2F%2Fpublications.europa.eu%2Fresource%2Fdistribution%2Feuvoc%2F20241211-0%2Fttl%2Fowl%2Feuvoc.ttl&fileName=euvoc.ttl",
+    "example": "isTextual",
+    "homepage": "https://op.europa.eu/en/web/eu-vocabularies/dataset/-/resource?uri=http://publications.europa.eu/resource/dataset/euvoc",
+    "name": "European Science Vocabulary Ontology",
+    "preferred_prefix": "euroscivoc.schema"
+  },
   "ev": {
     "appears_in": [
       "cl"
@@ -22442,6 +23341,7 @@
     ],
     "license": "CC-BY-4.0",
     "mappings": {
+      "aberowl": "EXMO",
       "bioportal": "EXMO",
       "obofoundry": "exmo",
       "ontobee": "EXMO"
@@ -22513,7 +23413,7 @@
       "ExO"
     ],
     "uri_format": "http://purl.obolibrary.org/obo/ExO_$1",
-    "version": "2022-06-29"
+    "version": "2025-08-29"
   },
   "fabio": {
     "contact": {
@@ -22734,7 +23634,7 @@
       "fairsharing": "FAIRsharing.haxp7g",
       "lov": "faldo"
     },
-    "name": "Feature Annotation Location Description Ontology ",
+    "name": "Feature Annotation Location Description Ontology",
     "preferred_prefix": "faldo",
     "publications": [
       {
@@ -22843,6 +23743,7 @@
     "github_request_issue": 872,
     "homepage": "https://www.fao.org/fishery/en/collection/asfis/en",
     "name": "Aquatic Sciences and Fisheries Information System",
+    "part_of": "fao",
     "pattern": "^\\d+$",
     "preferred_prefix": "fao.asfis",
     "reviewer": {
@@ -22994,7 +23895,7 @@
       "FBbt_root"
     ],
     "uri_format": "http://purl.obolibrary.org/obo/FBbt_$1",
-    "version": "2025-05-29"
+    "version": "2025-08-07"
   },
   "fbcv": {
     "appears_in": [
@@ -23061,7 +23962,7 @@
       "FBcv"
     ],
     "uri_format": "http://purl.obolibrary.org/obo/FBcv_$1",
-    "version": "2025-05-30"
+    "version": "2025-08-07"
   },
   "fbdv": {
     "contact": {
@@ -24681,7 +25582,7 @@
         "description": "Access funder data through a DOI for crossref funders.",
         "homepage": "https://doi.org",
         "name": "DOI",
-        "uri_format": "https://dx.doi.org/10.13039/501100000995"
+        "uri_format": "https://dx.doi.org/10.13039/$1"
       }
     ],
     "synonyms": [
@@ -24799,7 +25700,7 @@
       "name": "Charles Tapley Hoyt",
       "orcid": "0000-0003-4423-4370"
     },
-    "description": "A hierarchical classification of congenital heart disease ",
+    "description": "A hierarchical classification of congenital heart disease",
     "example": "4447",
     "homepage": "https://www.elsevier.com/books/nadas-pediatric-cardiology/9781416023906",
     "name": "Fyler",
@@ -24861,7 +25762,7 @@
     "rdf_uri_format": "http://purl.obolibrary.org/obo/FYPO_$1",
     "repository": "https://github.com/pombase/fypo",
     "uri_format": "http://purl.obolibrary.org/obo/FYPO_$1",
-    "version": "2025-07-04"
+    "version": "2025-08-13"
   },
   "ga4ghdos": {
     "description": "Assists in resolving data across cloud resources.",
@@ -24921,6 +25822,43 @@
       }
     ],
     "uri_format": "http://www.gabipd.org/database/cgi-bin/GreenCards.pl.cgi?BioObjectId=$1&Mode=ShowBioObject"
+  },
+  "gaidet": {
+    "contact": {
+      "email": "serhii.nazarovets@gmail.com",
+      "github": "panbibliotekar",
+      "name": "Serhii Nazarovets",
+      "orcid": "0000-0002-5067-4498"
+    },
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "The Generative Artificial Intelligence Delegation Taxonomy (GAIDeT) assigns identifiers to contributor roles as an extension to the Contributor Roles Taxonomy (CRediT) to support promoting transparency and accountability in academic publishing when AI contribtors are involved in research. It is operationalized in the [GAIDeT Declaration Generator](https://panbibliotekar.github.io/gaidet-declaration/), an interactive tool for researchers to disclose the delegation of tasks to generative AI (GAI) tools in accordance with the GAIDeT taxonomy.",
+    "download_owl": "https://w3id.org/gaidet/gaidet.owl",
+    "example": "0000001",
+    "homepage": "https://github.com/panbibliotekar/gaidet-declaration",
+    "keywords": [
+      "attribution",
+      "contributor roles",
+      "delegation",
+      "ontology"
+    ],
+    "name": "Generative Artificial Intelligence Delegation Taxonomy",
+    "pattern": "^\\d{7}$",
+    "preferred_prefix": "gaidet",
+    "publications": [
+      {
+        "doi": "10.1080/08989621.2025.2544331",
+        "title": "A taxonomy for humans to delegate tasks to generative artificial intelligence in scientific research and publishing",
+        "year": 2025
+      }
+    ],
+    "rdf_uri_format": "https://w3id.org/gaidet/$1",
+    "repository": "https://github.com/panbibliotekar/gaidet-declaration",
+    "uri_format": "https://w3id.org/gaidet/$1"
   },
   "gainesville.core": {
     "contributor": {
@@ -25193,6 +26131,30 @@
     "preferred_prefix": "gdc",
     "uri_format": "https://portal.gdc.cancer.gov/cases/$1"
   },
+  "gdo": {
+    "contact": {
+      "email": "mclarkson@uky.edu",
+      "name": "Melissa D Clarkson",
+      "orcid": "0000-0001-9979-176X"
+    },
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "The Graphic Descriptor Ontology (GDO) is intended for use in describing graphics that represent the form of objects. It uses the language of visual communication, illustration, and technical drawing. The GDO is rooted in the Basic Formal Ontology (BFO) and uses several classes from the Information Entity Ontology of the Common Core Ontologies as a mid-level ontology. [from https://gdo.endlessforms.info/about]",
+    "download_owl": "https://github.com/endlessforms-info/GDO-GDOA/raw/refs/heads/main/gdoa.owl",
+    "example": "0000016",
+    "homepage": "https://gdo.endlessforms.info",
+    "keywords": [
+      "ontology"
+    ],
+    "name": "Graphic Descriptor Ontology",
+    "preferred_prefix": "gdo",
+    "repository": "https://github.com/endlessforms-info/GDO-GDOA",
+    "uri_format": "https://gdo.endlessforms.info/view/classes?uuid=GDO_$1"
+  },
   "gdsc": {
     "description": "The Genomics of Drug Sensitivity in Cancer (GDSC) database is designed to facilitate an increased understanding of the molecular features that influence drug response in cancer cells and which will enable the design of improved cancer therapies.",
     "example": "1242",
@@ -25278,7 +26240,7 @@
     "uri_format": "http://purl.obolibrary.org/obo/GECKO_$1",
     "version": "2021-01-18"
   },
-  "gemet": {
+  "gemet.concept": {
     "contact": {
       "email": "helpdesk@eionet.europa.eu",
       "name": "Eionet Helpdesk"
@@ -25297,15 +26259,17 @@
       "ecology",
       "environmental science"
     ],
+    "license": "CC-BY-4.0",
     "mappings": {
       "agroportal": "GEMET",
       "bartoc": "16",
       "fairsharing": "FAIRsharing.9091d9",
       "wikidata.entity": "Q1485161"
     },
-    "name": "General Multilingual Environmental Thesaurus",
+    "name": "General Multilingual Environmental Thesaurus Concept",
+    "part_of": "gemet",
     "pattern": "^\\d+$",
-    "preferred_prefix": "gemet",
+    "preferred_prefix": "gemet.concept",
     "providers": [
       {
         "code": "gemet.multilingual",
@@ -25315,7 +26279,61 @@
         "uri_format": "http://www.eionet.europa.eu/gemet/concept/$1"
       }
     ],
+    "rdf_uri_format": " http://www.eionet.europa.eu/gemet/concept/$1",
     "uri_format": "https://www.eionet.europa.eu/gemet/en/concept/$1"
+  },
+  "gemet.group": {
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "Groups listed in GEMET",
+    "example": "893",
+    "homepage": "https://www.eionet.europa.eu/gemet/en/groups/",
+    "license": "CC-BY-4.0",
+    "name": "General Multilingual Environmental Thesaurus Group",
+    "part_of": "gemet",
+    "pattern": "^\\d+$",
+    "preferred_prefix": "gemet.group",
+    "rdf_uri_format": "http://www.eionet.europa.eu/gemet/group/$1",
+    "uri_format": "https://www.eionet.europa.eu/gemet/en/group/$1"
+  },
+  "gemet.relation": {
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "Relations in GEMET",
+    "example": "6237",
+    "homepage": "https://www.eionet.europa.eu/gemet/en",
+    "license": "CC-BY-4.0",
+    "name": "General Multilingual Environmental Thesaurus Relation",
+    "part_of": "gemet",
+    "pattern": "^\\d+$",
+    "preferred_prefix": "gemet.relation",
+    "uri_format": "https://www.eionet.europa.eu/gemet/en/relations/$1"
+  },
+  "gemet.theme": {
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "Themes listed in GEMET",
+    "example": "4",
+    "homepage": "https://www.eionet.europa.eu/gemet/en/themes",
+    "license": "CC-BY-4.0",
+    "name": "General Multilingual Environmental Thesaurus Theme",
+    "part_of": "gemet",
+    "pattern": "^\\d+$",
+    "preferred_prefix": "gemet.theme",
+    "rdf_uri_format": "http://www.eionet.europa.eu/gemet/theme/$1",
+    "uri_format": "https://www.eionet.europa.eu/gemet/en/theme/$1"
   },
   "genatlas": {
     "description": "GenAtlas is a database containing information on human genes, markers and phenotypes.",
@@ -25692,6 +26710,7 @@
       "prefixcommons": "geneannot"
     },
     "name": "GeneAnnot: Microarray Gene Annotation",
+    "part_of": "genecards",
     "preferred_prefix": "genecards.geneannot",
     "providers": [
       {
@@ -25714,6 +26733,7 @@
       "prefixcommons": "geneloc"
     },
     "name": "Gene Location",
+    "part_of": "genecards",
     "preferred_prefix": "genecards.geneloc",
     "providers": [
       {
@@ -25743,6 +26763,7 @@
       "prefixcommons": "genenote"
     },
     "name": "Gene Normal Tissue Expression",
+    "part_of": "genecards",
     "preferred_prefix": "genecards.genenote",
     "providers": [
       {
@@ -26261,6 +27282,7 @@
     "license": "CC-BY-4.0",
     "logo": "https://www.geonames.org/img/globe.gif",
     "name": "GeoNames Feature Code",
+    "part_of": "geonames",
     "preferred_prefix": "geonames.feature",
     "uri_format": "https://www.geonames.org/recent-changes/featurecode/$1/"
   },
@@ -26347,6 +27369,15 @@
     },
     "name": "General Formal Ontology",
     "preferred_prefix": "gfo",
+    "providers": [
+      {
+        "code": "alt1",
+        "description": "Alternate identifier using gfo-basic.owl instead of gfo.owl",
+        "homepage": "http://www.onto-med.de/ontologies",
+        "name": "Alternate 1",
+        "uri_format": "http://www.onto-med.de/ontologies/gfo-basic.owl#$1"
+      }
+    ],
     "uri_format": "http://www.onto-med.de/ontologies/gfo.owl#$1"
   },
   "ghr": {
@@ -26453,6 +27484,7 @@
       "version control"
     ],
     "name": "GitHub Issue",
+    "part_of": "github",
     "preferred_prefix": "github.issue",
     "uri_format": "https://bioregistry.io/resolve/github/issue/$1"
   },
@@ -26473,6 +27505,7 @@
       "version control"
     ],
     "name": "GitHub Pull Request",
+    "part_of": "github",
     "preferred_prefix": "github.pull",
     "uri_format": "https://bioregistry.io/resolve/github/pull/$1"
   },
@@ -26535,7 +27568,7 @@
       "name": "Charles Tapley Hoyt",
       "orcid": "0000-0003-4423-4370"
     },
-    "description": " Comprehensive reference information for the world's languages, especially the lesser known languages. [from homepage]",
+    "description": "Comprehensive reference information for the world's languages, especially the lesser known languages. [from homepage]",
     "example": "nort3314",
     "github_request_issue": 1310,
     "homepage": "https://glottolog.org",
@@ -26847,6 +27880,7 @@
       "n2t": "gmd.analyte"
     },
     "name": "Golm Metabolome Database Analyte",
+    "part_of": "gmd",
     "pattern": "^([0-9a-fA-F]){8}(-([0-9a-fA-F]){4}){3}-([0-9a-fA-F]){12}$",
     "preferred_prefix": "gmd.analyte",
     "uri_format": "http://gmd.mpimp-golm.mpg.de/Analytes/$1"
@@ -26861,6 +27895,7 @@
       "n2t": "gmd.gcms"
     },
     "name": "Golm Metabolome Database GC-MS spectra",
+    "part_of": "gmd",
     "pattern": "^([0-9a-fA-F]){8}(-([0-9a-fA-F]){4}){3}-([0-9a-fA-F]){12}$",
     "preferred_prefix": "gmd.gcms",
     "uri_format": "http://gmd.mpimp-golm.mpg.de/Spectrums/$1"
@@ -26875,6 +27910,7 @@
       "n2t": "gmd.profile"
     },
     "name": "Golm Metabolome Database Profile",
+    "part_of": "gmd",
     "pattern": "^([0-9a-fA-F]){8}(-([0-9a-fA-F]){4}){3}-([0-9a-fA-F]){12}$",
     "preferred_prefix": "gmd.profile",
     "uri_format": "http://gmd.mpimp-golm.mpg.de/profile/default.aspx?XemlId=$1"
@@ -26889,6 +27925,7 @@
       "n2t": "gmd.ref"
     },
     "name": "Golm Metabolome Database Reference Substance",
+    "part_of": "gmd",
     "pattern": "^([0-9a-fA-F]){8}(-([0-9a-fA-F]){4}){3}-([0-9a-fA-F]){12}$",
     "preferred_prefix": "gmd.ref",
     "uri_format": "http://gmd.mpimp-golm.mpg.de/ReferenceSubstances/$1"
@@ -26903,15 +27940,16 @@
     "description": "The Gmelin database is a large database of organometallic and inorganic compounds updated quarterly. It is based on the German publication Gmelins Handbuch der anorganischen Chemie which was originally published by Leopold Gmelin in 1817; the last print edition, the 8th, appeared in the 1990s.",
     "example": "1466",
     "example_extras": [
-      "606"
+      "606",
+      "80"
     ],
     "homepage": "https://link.springer.com/bookseries/562",
     "mappings": {
       "edam": "1004",
       "wikidata": "P1578"
     },
-    "name": "Gmelins Handbuch der anorganischen Chemie",
-    "pattern": "^[1-9][0-9]{2,6}$",
+    "name": "Gmelin's Handbook of Inorganic Chemistry",
+    "pattern": "^[1-9][0-9]{1,6}$",
     "preferred_prefix": "gmelin",
     "proprietary": true,
     "references": [
@@ -27676,6 +28714,7 @@
       "n2t": "gold.genome"
     },
     "name": "GOLD genome",
+    "part_of": "gold",
     "pattern": "^(Gi|Gc)\\d+$",
     "preferred_prefix": "gold.genome",
     "uri_format": "http://www.genomesonline.org/cgi-bin/GOLD/GOLDCards.cgi?goldstamp=$1"
@@ -27696,23 +28735,39 @@
     "uri_format": "http://genomesonline.org/cgi-bin/GOLD/bin/GOLDCards.cgi?goldstamp=$1"
   },
   "goldbook": {
+    "contact": {
+      "email": "schalk@unf.edu",
+      "github": "stuchalk",
+      "name": "Stuart Chalk",
+      "orcid": "0000-0002-0703-7776"
+    },
     "contributor": {
       "email": "cthoyt@gmail.com",
       "github": "cthoyt",
       "name": "Charles Tapley Hoyt",
       "orcid": "0000-0003-4423-4370"
     },
-    "description": "The Compendium is popularly referred to as the \"Gold Book\", in recognition of the contribution of the late Victor Gold, who initiated work on the first edition. It is one of the series of IUPAC \"Colour Books\" on chemical nomenclature, terminology, symbols and units (see the list of source documents), and collects together terminology definitions from IUPAC recommendations already published in Pure and Applied Chemistry and in the other Colour Books.\n\nTerminology definitions published by IUPAC are drafted by international committees of experts in the appropriate chemistry sub-disciplines, and ratified by IUPAC's Interdivisional Committee on Terminology, Nomenclature and Symbols (ICTNS). In this edition of the Compendium these IUPAC-approved definitions are supplemented with some definitions from ISO and from the International Vocabulary of Basic and General Terms in Metrology; both these sources are recognised by IUPAC as authoritative. The result is a collection of nearly 7000 terms, with authoritative definitions, spanning the whole range of chemistry.",
+    "description": "The Compendium is popularly referred to as the \"Gold Book\", in recognition of the contribution of the late Victor Gold, who initiated work on the first edition. It is one of the series of IUPAC \"Colour Books\" on chemical nomenclature, terminology, symbols and units (see the list of source documents), and collects together terminology definitions from IUPAC recommendations already published in Pure and Applied Chemistry and in the other Colour Books.\n\nTerminology definitions published by IUPAC are drafted by international committees of experts in the appropriate chemistry sub-disciplines, and ratified by IUPAC's Interdivisional Committee on Terminology, Nomenclature and Symbols (ICTNS). In this edition of the Compendium these IUPAC-approved definitions are supplemented with some definitions from ISO and from the International Vocabulary of Basic and General Terms in Metrology; both these sources are recognised by IUPAC as authoritative. The result is a collection of nearly 7000 terms, with authoritative definitions, spanning the whole range of chemistry.\n\nThe API can be accessed [here](https://goldbook.iupac.org/pages/api)",
     "example": "G02681",
+    "example_extras": [
+      "08306",
+      "11214",
+      "A00494",
+      "AT07327",
+      "B00737",
+      "BT07002",
+      "C00778",
+      "CT07136"
+    ],
     "homepage": "https://goldbook.iupac.org",
-    "license": "CC BY 4.0-NC-ND",
+    "license": "CC BY 4.0-SA",
     "mappings": {
       "bartoc": "1884",
       "wikidata": "P4732",
       "wikidata.entity": "Q902163"
     },
     "name": "IUPAC Gold Book Compendium of Chemical Terminology",
-    "pattern": "^[A-Z]{1,2}\\d{5}$",
+    "pattern": "^(\\wT?)?\\d{5}$",
     "preferred_prefix": "goldbook",
     "providers": [
       {
@@ -27724,6 +28779,10 @@
       }
     ],
     "rdf_uri_format": "http://dx.doi.org/10.1351/goldbook.$1",
+    "references": [
+      "https://goldbook.iupac.org/pages/api",
+      "https://github.com/biopragmatics/bioregistry/pull/1689"
+    ],
     "uri_format": "https://goldbook.iupac.org/terms/view/$1"
   },
   "google.book": {
@@ -28034,7 +29093,7 @@
     "description": "A database for Triticeae and Avena references.",
     "example": "WGS-95-1333",
     "homepage": "http://wheat.pw.usda.gov",
-    "name": "GrainGenes",
+    "name": "GrainGenes reference",
     "preferred_prefix": "graingenes.reference",
     "uri_format": "https://wheat.pw.usda.gov/cgi-bin/GG3/report.cgi?class=reference&name=$1"
   },
@@ -28048,7 +29107,7 @@
     "description": "A database for Triticeae and Avena gene symbols.",
     "example": "1-FEH+w3",
     "homepage": "http://wheat.pw.usda.gov",
-    "name": "GrainGenes",
+    "name": "GrainGenes symbol",
     "preferred_prefix": "graingenes.symbol",
     "uri_format": "http://wheat.pw.usda.gov/report?class=gene;name=$1"
   },
@@ -28203,6 +29262,24 @@
     "preferred_prefix": "grassbase",
     "uri_format": "https://www.kew.org/data/grasses-db/www/$1"
   },
+  "grddl": {
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "GRDDL is a mechanism for Gleaning Resource Descriptions from Dialects of Languages. It is a technique for obtaining RDF data from XML documents and in particular XHTML pages. Authors may explicitly associate documents with transformation algorithms, typically represented in XSLT, using a link element in the head of the document. Alternatively, the information needed to obtain the transformation may be held in an associated metadata profile document or namespace document. Clients reading the document can follow links across the Web using techniques described in the GRDDL specification to discover the appropriate transformations. This document uses a number of examples from the GRDDL Use Cases document to illustrate, in detail, the techniques GRDDL provides for associating documents with appropriate instructions for extracting any embedded data. (from homepage)",
+    "example": "transformation",
+    "homepage": "https://www.w3.org/TR/grddl-primer/",
+    "mappings": {
+      "zazuko": "grddl"
+    },
+    "name": "Gleaning Resource Descriptions from Dialects of Languages",
+    "preferred_prefix": "grddl",
+    "rdf_uri_format": "http://www.w3.org/2003/g/data-view#$1",
+    "uri_format": "http://www.w3.org/2003/g/data-view#$1"
+  },
   "greengenes": {
     "contact": {
       "email": "GLAndersen@lbl.gov",
@@ -28318,6 +29395,7 @@
       "wikidata.entity": "Q19576476"
     },
     "name": "GRIN URL",
+    "part_of": "grin",
     "pattern": "^\\d+$",
     "preferred_prefix": "grin.taxonomy",
     "uri_format": "https://npgsweb.ars-grin.gov/gringlobal/taxon/taxonomydetail?id=$1"
@@ -28331,15 +29409,23 @@
     "description": "The Gene Regulation Ontology (GRO) is a conceptual model for the domain of gene regulation. It covers processes that are linked to the regulation of gene expression as well as physical entities that are involved in these processes (such as genes and transcription factors) in terms of ontology classes and semantic relations between classes.",
     "download_owl": "http://aber-owl.net/media/ontologies/GRO/5/gro.owl",
     "example": "Lipid",
+    "homepage": "http://www.ebi.ac.uk/Rebholz-srv/GRO/GRO.html",
     "keywords": [
+      "obo",
       "ontology"
     ],
     "mappings": {
       "aberowl": "GRO",
-      "bioportal": "GRO"
+      "biocontext": "BOOTSTREP",
+      "bioportal": "GRO",
+      "obofoundry": "bootstrep"
     },
     "name": "Gene Regulation Ontology",
-    "preferred_prefix": "gro",
+    "preferred_prefix": "BOOTSTREP",
+    "rdf_uri_format": "http://purl.obolibrary.org/obo/BOOTSTREP_$1",
+    "synonyms": [
+      "bootstrep"
+    ],
     "uri_format": "http://www.bootstrep.eu/ontology/GRO#$1"
   },
   "grsdb": {
@@ -29511,6 +30597,7 @@
       "n2t": "hgnc.genefamily"
     },
     "name": "HGNC gene family",
+    "part_of": "hgnc",
     "pattern": "^\\d+$",
     "preferred_prefix": "hgnc.genefamily",
     "synonyms": [
@@ -29535,6 +30622,7 @@
       "miriam": "hgnc.genegroup"
     },
     "name": "HGNC Gene Group",
+    "part_of": "hgnc",
     "pattern": "^\\d+$",
     "preferred_prefix": "hgnc.genegroup",
     "uri_format": "https://www.genenames.org/data/genegroup/#!/group/$1"
@@ -29553,6 +30641,7 @@
       "wikidata": "P353"
     },
     "name": "HGNC gene symbol",
+    "part_of": "hgnc",
     "pattern": "^[A-Za-z-0-9_]+(\\@)?$",
     "preferred_prefix": "hgnc.symbol",
     "providers": [
@@ -29809,7 +30898,7 @@
     "description": "A registry of code systems (each are small vocabularies themselves) used by HL7 international, related to FHIR.",
     "example": "0778",
     "homepage": "https://terminology.hl7.org/codesystems-v2.html",
-    "name": "HL7 V2 Code Systems",
+    "name": "HL7 V2 Code System",
     "pattern": "^\\d+$",
     "preferred_prefix": "hl7.v2codesystem",
     "uri_format": "http://terminology.hl7.org/CodeSystem/v2-$1"
@@ -29824,7 +30913,7 @@
     "description": "A registry of code systems (each are small vocabularies themselves) used by HL7 international, related to FHIR.",
     "example": "AcknowledgementCondition",
     "homepage": "https://terminology.hl7.org/codesystems-v2.html",
-    "name": "HL7 V2 Code Systems",
+    "name": "HL7 V3 Code System",
     "pattern": "^\\w+$",
     "preferred_prefix": "hl7.v3codesystem",
     "uri_format": "https://terminology.hl7.org/CodeSystem-v3-$1"
@@ -30648,7 +31737,7 @@
     ],
     "twitter": "hp_ontology",
     "uri_format": "http://purl.obolibrary.org/obo/HP_$1",
-    "version": "2025-05-06"
+    "version": "2025-09-01"
   },
   "hpa": {
     "contact": {
@@ -31387,12 +32476,35 @@
     },
     "description": "The official list of MIME types, now renamed to media types",
     "example": "application/cdmi-queue",
+    "example_extras": [
+      "application",
+      "application/3gpp-ims+xml",
+      "audio",
+      "audio/1d-interleaved-parityfec",
+      "font",
+      "font/woff",
+      "haptics",
+      "haptics/hmpg",
+      "image",
+      "image/heif-sequence",
+      "message",
+      "message/disposition-notification",
+      "model",
+      "model/3mf",
+      "multipart",
+      "multipart/parallel",
+      "text",
+      "text/directory",
+      "video",
+      "video/vnd.blockfact.factv"
+    ],
     "homepage": "https://www.iana.org/assignments/media-types/media-types.xhtml",
     "keywords": [
       "data classification"
     ],
     "logo": "https://www.iana.org/_img/2022/iana-logo-header.svg",
     "name": "Media Types",
+    "pattern": "^(application|audio|font|haptics|image|message|model|multipart|text|video)(/.*)?$",
     "preferred_prefix": "iana.mediatype",
     "uri_format": "https://www.iana.org/assignments/media-types/$1"
   },
@@ -31617,6 +32729,9 @@
         "uri_format": "https://icdcodelookup.com/icd-10/codes/$1"
       }
     ],
+    "references": [
+      "https://www.who.int/about/policies/publishing/copyright"
+    ],
     "synonyms": [
       "ICD",
       "ICD-10",
@@ -31666,6 +32781,7 @@
       "morbidity",
       "ontology"
     ],
+    "license": "CC BY-ND 3.0 IGO",
     "mappings": {
       "aberowl": "ICD10CM",
       "bioportal": "ICD10CM",
@@ -31696,6 +32812,9 @@
         },
         "uri_format": "https://icd.codes/icd10cm/$1"
       }
+    ],
+    "references": [
+      "https://www.who.int/about/policies/publishing/copyright"
     ],
     "synonyms": [
       "ICD10CM"
@@ -31856,6 +32975,7 @@
       "V15.01"
     ],
     "homepage": "https://www.cdc.gov/nchs/icd/icd9.htm",
+    "license": "CC BY-ND 3.0 IGO",
     "mappings": {
       "bartoc": "447",
       "biolink": "ICD9",
@@ -31866,6 +32986,9 @@
     "name": "International Classification of Diseases, 9th Revision",
     "pattern": "^((\\d\\d\\d|V\\d\\d|E[8-9]\\d\\d)(\\.\\d{1,2})?)|(\\d{1,3}-\\d{1,3})$",
     "preferred_prefix": "icd9",
+    "references": [
+      "https://www.who.int/about/policies/publishing/copyright"
+    ],
     "synonyms": [
       "ICD9",
       "ICD9_2005",
@@ -31898,6 +33021,7 @@
       "ontology",
       "preclinical studies"
     ],
+    "license": "CC BY-ND 3.0 IGO",
     "mappings": {
       "aberowl": "ICD9CM",
       "bioportal": "ICD9CM",
@@ -31909,6 +33033,9 @@
     "name": "International Classification of Diseases, 9th Revision, Clinical Modification",
     "pattern": "^([\\dA-Z]\\d{2}(\\.\\d{1,3}|))|(\\d{2}(\\.\\d{1,2}|))$",
     "preferred_prefix": "icd9cm",
+    "references": [
+      "https://www.who.int/about/policies/publishing/copyright"
+    ],
     "synonyms": [
       "IC9CM",
       "ICD9CM",
@@ -31956,6 +33083,7 @@
     "description": "The International Classification of Diseases for Oncology (ICD-O) is a domain-specific extension of the International Statistical Classification of Diseases and Related Health Problems for tumor diseases",
     "example": "9861/3",
     "homepage": "https://www.who.int/classifications/icd/adaptations/oncology/en/",
+    "license": "CC BY-ND 3.0 IGO",
     "mappings": {
       "bartoc": "445",
       "hl7": "2.16.840.1.113883.6.43",
@@ -31974,6 +33102,9 @@
         "name": "Bio2RDF",
         "uri_format": "http://bio2rdf.org/icdo:$1"
       }
+    ],
+    "references": [
+      "https://www.who.int/about/policies/publishing/copyright"
     ],
     "synonyms": [
       "ICD-O",
@@ -32203,7 +33334,7 @@
       "name": "Charles Tapley Hoyt",
       "orcid": "0000-0003-4423-4370"
     },
-    "description": "The Ion Channel Electrophysiology Ontology supports the capture of voltage-gated ion channel electrophysiological data from the literature in a structured manner and thus enables other applications such as querying and reasoning tools. ",
+    "description": "The Ion Channel Electrophysiology Ontology supports the capture of voltage-gated ion channel electrophysiological data from the literature in a structured manner and thus enables other applications such as querying and reasoning tools.",
     "download_obo": "https://download.nextprot.org/pub/current_release/controlled_vocabularies/icepo.obo",
     "example": "0000002",
     "homepage": "https://download.nextprot.org/pub/current_release/controlled_vocabularies/",
@@ -32347,13 +33478,19 @@
     },
     "description": "A classification system for the subject matter of works of art, originating from work from Henri van de Waal in the 1940.",
     "example": "3",
+    "example_extras": [
+      "11HH(ELISABETH)35",
+      "49E3932",
+      "98C",
+      "98C(...)(%2B1)",
+      "98C(ZENOBIA%20SEPTIMIA)2"
+    ],
     "homepage": "https://iconclass.org",
     "mappings": {
       "bartoc": "459",
       "wikidata.entity": "Q1502787"
     },
     "name": "Iconclass Classification",
-    "pattern": "^\\d+$",
     "preferred_prefix": "iconclass",
     "uri_format": "https://iconclass.org/$1"
   },
@@ -32429,8 +33566,7 @@
     "name": "International Committee on Taxonomy of Viruses Ontology",
     "preferred_prefix": "ictv",
     "repository": "https://github.com/EVORA-project/ictv-ontology",
-    "uri_format": "http://ictv.global/id/MSL40/$1",
-    "version": "1"
+    "uri_format": "http://ictv.global/id/MSL40/$1"
   },
   "ideal": {
     "contact": {
@@ -32778,6 +33914,7 @@
         "year": 2024
       }
     ],
+    "repository": "https://github.com/BioComputingUP/idpo",
     "uri_format": "https://www.disprot.org/idpo/IDPO:$1"
   },
   "idr": {
@@ -34428,6 +35565,7 @@
       "n2t": "insdc.cds"
     },
     "name": "INSDC CDS",
+    "part_of": "insdc",
     "pattern": "^([A-Z]\\d{5}|[A-Z]{2}\\d{6}|[A-Z]{4}\\d{8}|[A-J][A-Z]{2}\\d{5})(\\.\\d+)?$",
     "preferred_prefix": "insdc.cds",
     "providers": [
@@ -34459,6 +35597,7 @@
       "n2t": "insdc.gca"
     },
     "name": "Genome assembly database - INSDC accessions",
+    "part_of": "insdc",
     "pattern": "^GCA_[0-9]{9}(\\.[0-9]+)?$",
     "preferred_prefix": "insdc.gca",
     "providers": [
@@ -34481,6 +35620,7 @@
       "miriam": "refseq.gcf"
     },
     "name": "Genome assembly database - RefSeq accessions",
+    "part_of": "insdc",
     "pattern": "^GCF_[0-9]{9}(\\.[0-9]+)?$",
     "preferred_prefix": "insdc.gcf",
     "synonyms": [
@@ -34535,6 +35675,7 @@
       "re3data": "r3d100010775"
     },
     "name": "Sequence Read Archive",
+    "part_of": "insdc",
     "pattern": "^[SED]R[APRSXZ]\\d+$",
     "preferred_prefix": "insdc.sra",
     "providers": [
@@ -34578,6 +35719,21 @@
     ],
     "uri_format": "https://www.ncbi.nlm.nih.gov/sra/$1"
   },
+  "inspire.theme": {
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "The INSPIRE theme register contains all spatial data themes, as defined in the Annexes of the INSPIRE Directive ( Directive 2007/2/EC of the European Parliament and of the Council of 14 March 2007 establishing an Infrastructure for Spatial Information in the European Community (INSPIRE)). The descriptions of the themes are based on version 3.0 of the \"Definition of Annex Themes and Scope (D 2.3)\" by the data specifications drafting team and subsequent updates by the INSPIRE Thematic Working Groups (TWGs). (from homepage)",
+    "download_rdf": "http://inspire.ec.europa.eu/theme/theme.en.rdf",
+    "example": "mr",
+    "homepage": "https://inspire.ec.europa.eu/theme",
+    "name": "INSPIRE theme register",
+    "preferred_prefix": "inspire.theme",
+    "uri_format": "https://inspire.ec.europa.eu/theme/$1"
+  },
   "intact": {
     "contact": {
       "email": "kalpanap@ebi.ac.uk",
@@ -34616,7 +35772,7 @@
       "togoid": "Intact",
       "uniprot": "DB-0051"
     },
-    "name": "IntAct protein interaction database",
+    "name": "IntAct protein interaction",
     "owners": [
       {
         "name": "European Bioinformatics Institute",
@@ -34691,6 +35847,7 @@
       "n2t": "intact.molecule"
     },
     "name": "IntAct Molecule",
+    "part_of": "intact",
     "pattern": "^EBI\\-[0-9]+$",
     "preferred_prefix": "intact.molecule",
     "publications": [
@@ -35454,10 +36611,10 @@
       "name": "Charles Tapley Hoyt",
       "orcid": "0000-0003-4423-4370"
     },
-    "description": "The ISRCTN registry is a primary clinical trial registry recognised by WHO and ICMJE that accepts all clinical research studies (whether proposed, ongoing or completed), providing content validation and curation and the unique identification number necessary for publication. All study records in the database are freely accessible and searchable. (from homepage)",
+    "description": "The International Clinical Trials Registry Platform, originally called International Standard Randomised Controlled Trial Number (ISRCTN) registry, is a primary clinical study registry recognised by the World Health Organisation (WHO) and the International Committee of Medical Journal Editors (ICMJE) that accepts all clinical research studies (whether proposed, ongoing or completed), providing content validation and curation and the unique identification number necessary for publication. All study records in the database are freely accessible and searchable. (from homepage)",
     "example": "ISRCTN10175490",
-    "homepage": "https://www.isrctn.com/",
-    "name": "International Traditional Medicine Clinical Trial Registry",
+    "homepage": "https://www.isrctn.com",
+    "name": "International Clinical Trials Registry Platform",
     "pattern": "^ISRCTN\\d+$",
     "preferred_prefix": "isrctn",
     "providers": [
@@ -35467,6 +36624,13 @@
         "homepage": "https://doi.org/10.1186",
         "name": "DOI",
         "uri_format": "https://doi.org/10.1186/$1"
+      },
+      {
+        "code": "who",
+        "description": "WHO Clinical Trials Search",
+        "homepage": "https://trialsearch.who.int",
+        "name": "WHO Clinical Trials Search",
+        "uri_format": "https://trialsearch.who.int/Trial2.aspx?TrialID=$1"
       }
     ],
     "uri_format": "https://www.isrctn.com/$1"
@@ -35989,10 +37153,10 @@
     "preferred_prefix": "jrct",
     "providers": [
       {
-        "code": "",
-        "description": "",
-        "homepage": "",
-        "name": "",
+        "code": "detail",
+        "description": "Japan Registry of Clinical Trials (Details)",
+        "homepage": "https://jrct.niph.go.jp",
+        "name": "Japan Registry of Clinical Trials (Details)",
         "uri_format": "https://jrct.niph.go.jp/latest-detail/$1"
       }
     ],
@@ -36266,7 +37430,7 @@
       "name": "Charles Tapley Hoyt",
       "orcid": "0000-0003-4423-4370"
     },
-    "description": " KEGG DGROUP contains structurally and functionally related groups of D number entries in KEGG DRUG. There are five types of drug groups.\n\n    Chemical - grouped as identical chemical structures with minor variations of salts, hydration states, etc.\n    Structure - grouped as similar chemical structures having the same skeleton, etc.\n    Target - grouped by drug targets\n    Class - drug classes often representing similar mechanisms of action\n    Metabolism - grouped by substrates, inhibitors and inducers of drug metabolizing enzymes and transporters\n\nChemical groups are often used for identifying essentially the same active ingredients of drugs in different countries.",
+    "description": "KEGG DGROUP contains structurally and functionally related groups of D number entries in KEGG DRUG. There are five types of drug groups.\n\n    Chemical - grouped as identical chemical structures with minor variations of salts, hydration states, etc.\n    Structure - grouped as similar chemical structures having the same skeleton, etc.\n    Target - grouped by drug targets\n    Class - drug classes often representing similar mechanisms of action\n    Metabolism - grouped by substrates, inhibitors and inducers of drug metabolizing enzymes and transporters\n\nChemical groups are often used for identifying essentially the same active ingredients of drugs in different countries.",
     "example": "DG00301",
     "homepage": "http://www.genome.jp/kegg/reaction/",
     "logo": "https://www.genome.jp/Fig/kegg128.gif",
@@ -36423,7 +37587,7 @@
       "prefixcommons": "kegg.gene",
       "wikidata": "P665"
     },
-    "name": "KEGG Genes",
+    "name": "KEGG gene",
     "part_of": "kegg",
     "pattern": "^\\w+:[\\w\\d\\.-]*$",
     "preferred_prefix": "kegg.genes",
@@ -36469,7 +37633,7 @@
       "prefixcommons": "kegg.genome",
       "wikidata": "P665"
     },
-    "name": "KEGG Genome",
+    "name": "KEGG genome",
     "part_of": "kegg",
     "pattern": "^(T0\\d+|\\w{3,5})$",
     "preferred_prefix": "kegg.genome",
@@ -36667,7 +37831,7 @@
       "prefixcommons": "kegg.pathway",
       "wikidata": "P665"
     },
-    "name": "KEGG Pathways Database",
+    "name": "KEGG pathway",
     "part_of": "kegg",
     "pattern": "^\\w{2,4}\\d{5}$",
     "preferred_prefix": "kegg.pathway",
@@ -36897,6 +38061,26 @@
     "repository": "https://github.com/dini-ag-kim/license",
     "uri_format": "https://w3id.org/kim/license/$1"
   },
+  "kim.lp": {
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "This ontology is a formal representation that captures the fundamental concepts and their relationships to one another in the field of curriculum design and implementation of the German school system.",
+    "download_owl": "https://github.com/dini-ag-kim/school-curriculum-pg/raw/refs/heads/main/lp.owl",
+    "example": "0000141",
+    "homepage": "https://github.com/dini-ag-kim/school-curriculum-pg",
+    "keywords": [
+      "ontology"
+    ],
+    "name": "Lehrplan Ontology",
+    "pattern": "^\\d{7}$",
+    "preferred_prefix": "kim.lp",
+    "repository": "https://github.com/dini-ag-kim/school-curriculum-pg",
+    "uri_format": "https://w3id.org/lehrplan/ontology/LP_$1"
+  },
   "kim.schularten": {
     "contributor": {
       "email": "cthoyt@gmail.com",
@@ -36993,7 +38177,7 @@
     },
     "name": "KYinno cell lines",
     "preferred_prefix": "kyinno",
-    "uri_format": "https://innopedia.kyinno.com/DataBase/CellLine.aspx?file=$1.pdf"
+    "uri_format": "https://www.kyinno.com/?s=$1"
   },
   "labo": {
     "contact": {
@@ -37839,6 +39023,31 @@
       }
     ]
   },
+  "loc.resourcetype": {
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "contributor_extras": [
+      {
+        "github": "petrasteiner",
+        "name": "Petra C. Steiner",
+        "orcid": "0000-0001-8997-2620"
+      }
+    ],
+    "description": "A controlled vocabulary of media resources, such as audio, cartographic, manuscript, multimedia, etc.",
+    "download_rdf": "http://id.loc.gov/vocabulary/resourceTypes.skos.rdf",
+    "example": "dig",
+    "homepage": "https://id.loc.gov/vocabulary/resourceTypes.html",
+    "keywords": [
+      "data classification"
+    ],
+    "name": "Library of Congress Resource Types Scheme",
+    "preferred_prefix": "loc.resourcetype",
+    "uri_format": "http://id.loc.gov/vocabulary/resourceTypes/$1"
+  },
   "loggerhead": {
     "contact": {
       "email": "peteremidford@yahoo.com",
@@ -38074,6 +39283,7 @@
       "ontology",
       "phenotype"
     ],
+    "license": "CC-BY-4.0",
     "mappings": {
       "aberowl": "LPT",
       "agroportal": "LPT",
@@ -38128,6 +39338,29 @@
       }
     ],
     "uri_format": "http://ftp.ebi.ac.uk/pub/databases/lrgex/$1.xml"
+  },
+  "lrmi": {
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "The Learning Resource Metadata Innovation (LRMI) specification is a collection of classes and properties for markup and description of educational resources. The specification builds on the extensive vocabulary provided by Schema.org and other standards. LRMI terms not included in schema.org may nevertheless be used to augment and enrich Schema.org markup. (from homepage)",
+    "download_rdf": "https://www.dublincore.org/specifications/lrmi/lrmi_terms/2022-06-14/lrmi-terms.ttl",
+    "example": "AlignmentObject",
+    "github_request_issue": 1677,
+    "homepage": "https://www.dublincore.org/specifications/lrmi/lrmi_terms/2022-06-14/",
+    "keywords": [
+      "education",
+      "educational resource",
+      "open educational resources"
+    ],
+    "license": "CC-BY-4.0",
+    "name": "Learning Resource Metadata Innovation Terms",
+    "preferred_prefix": "lrmi",
+    "rdf_uri_format": "http://purl.org/dcx/lrmi-terms/$1",
+    "uri_format": "http://purl.org/dcx/lrmi-terms/$1"
   },
   "lspci": {
     "contributor": {
@@ -38877,6 +40110,7 @@
       "n2t": "matrixdb.association"
     },
     "name": "MatrixDB Association",
+    "part_of": "matrixdb",
     "pattern": "^([A-N,R-Z][0-9][A-Z][A-Z, 0-9][A-Z, 0-9][0-9])_.*|([O,P,Q][0-9][A-Z, 0-9][A-Z, 0-9][A-Z, 0-9][0-9]_.*)|(GAG_.*)|(MULT_.*)|(PFRAG_.*)|(LIP_.*)|(CAT_.*)$",
     "preferred_prefix": "matrixdb.association",
     "uri_format": "https://matrixdb.univ-lyon1.fr/association/$1"
@@ -39040,6 +40274,7 @@
     "deprecated": true,
     "description": "Ontologies provide a common platform of controlled vocabulary for researchers who need to share information across a particular domain, inclusive of machine-interpretable definitions of basic concepts in the domain and relations among them. The need for ontologies that provide a systematic arrangement of available data and allow cross talk across various related domains is gaining momentum. In this backdrop, we have developed a comprehensive ontology on primary and established cell lines-both normal and pathologic. It covers around 400 cell lines. This ontology has been built to include the major domains in the field of biology like anatomy, bio-molecules, chemicals and drugs, pathological conditions and genetic variations around the cell lines. An extensive network of relations has been built across these concepts to enable different combinations of queries. The ontology covers all cell lines from major sources like ATCC, DSMZ, ECACC, ICLC etc. and is built in OWL format.",
     "example": "ThoracicArtery",
+    "homepage": "http://www.molecularconnections.com",
     "keywords": [
       "ontology"
     ],
@@ -39805,6 +41040,7 @@
       "n2t": "mesh.2012"
     },
     "name": "MeSH 2012",
+    "part_of": "mesh",
     "pattern": "^[A-Za-z0-9]+$",
     "preferred_prefix": "mesh.2012",
     "provides": "mesh",
@@ -39820,6 +41056,7 @@
       "n2t": "mesh.2013"
     },
     "name": "MeSH 2013",
+    "part_of": "mesh",
     "pattern": "^[A-Za-z0-9]+$",
     "preferred_prefix": "mesh.2013",
     "provides": "mesh",
@@ -39858,7 +41095,7 @@
       "wikidata": "P3890"
     },
     "name": "MetaboLights Compound",
-    "pattern": "^MTBLS\\d+$",
+    "pattern": "^MTBL[CS]\\d+$",
     "preferred_prefix": "metabolights",
     "providers": [
       {
@@ -41145,6 +42382,7 @@
       "miriam": "minid.test"
     },
     "name": "MINID Test",
+    "part_of": "minid",
     "pattern": "^[A-Za-z0-9]+$",
     "preferred_prefix": "minid.test",
     "uri_format": "https://hdl.handle.net/hdl:20.500.12633/$1"
@@ -41397,6 +42635,7 @@
       "wikidata.entity": "Q6826947"
     },
     "name": "miRBase Families",
+    "part_of": "mirbase",
     "preferred_prefix": "mirbase.family",
     "synonyms": [
       "MIRBASE_FAMILY"
@@ -41421,6 +42660,7 @@
       "wikidata": "P2871"
     },
     "name": "miRBase mature miRNA",
+    "part_of": "mirbase",
     "pattern": "^MIMAT\\d{7}$",
     "preferred_prefix": "mirbase.mature",
     "providers": [
@@ -41902,6 +43142,35 @@
     },
     "uri_format": "https://mite.bioinformatics.nl/repository/$1"
   },
+  "mito": {
+    "contact": {
+      "github": "matteo-guenci",
+      "name": "Matteo Guenci",
+      "orcid": "0009-0006-3139-1667"
+    },
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "An ontology with predicates to formalization of the concept of mentions. The mentions may be either explicit (e.g. as when well stated into an article \"Dr. Johnson's groundbreaking research on climate change\") or implicit (e.g. such as discussing \"seminal studies in the field\"). MiTO contains the object property mito:mentions and its inverse mito:isMentionedBy.",
+    "example": "MentionType",
+    "github_request_issue": 1663,
+    "homepage": "http://purl.org/spar/mito",
+    "keywords": [
+      "mentions",
+      "natural language processing",
+      "ner",
+      "nlp",
+      "ontology",
+      "text mining"
+    ],
+    "name": "Mention Typing Ontology",
+    "preferred_prefix": "mito",
+    "repository": "https://github.com/SPAROntologies/mito",
+    "uri_format": "http://purl.org/spar/mito/$1"
+  },
   "mixs": {
     "comment": "Some things to be decided before granting - [ ] should the prefix be mixs, gsc.mixs, MIxS, MIXS, ...? - [ ] MIxS terms are most commonly identified by a short computable stable label, e.g ph_regm. The GSC CIG team are creating numeric identifiers, e.g. MIXS:0001056 - Should we support both schemes? - If we do, should these be different prefixes? I would strongly recommend this. E.g. mixs.term:ph_regm, mixs:0001056. We can then have different regex patterns for both Additional notes: - The http://gensc.org/ns/mixs/ will likely changes to a w3id.org URI that will also serve as a semweb identifier - It currently redirects to the tdwg wiki but this is I assume temporary",
     "contact": {
@@ -42119,7 +43388,7 @@
     "repository": "https://github.com/rat-genome-database/MMO-Measurement-Method-Ontology",
     "twitter": "ratgenome",
     "uri_format": "http://purl.obolibrary.org/obo/MMO_$1",
-    "version": "2.158"
+    "version": "2.160"
   },
   "mmp.cat": {
     "description": "MarCat is a gene (protein) catalogue of uncultivable and cultivable marine genes and proteins derived from metagenomics samples.",
@@ -42409,6 +43678,27 @@
     ],
     "uri_format": "https://mobidb.org/$1"
   },
+  "mobio": {
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "The Mobilome Ontology describes bacterial mobile genetic elements, their mechanisms, and associated epidemiology.",
+    "download_obo": "https://github.com/arpcard/mobio/raw/refs/heads/master/mobio.obo",
+    "download_owl": "https://github.com/arpcard/mobio/raw/refs/heads/master/mobio.owl",
+    "example": "0000001",
+    "homepage": "https://github.com/arpcard/mobio",
+    "keywords": [
+      "ontology"
+    ],
+    "name": "Mobilome Ontology",
+    "pattern": "^\\d+$",
+    "preferred_prefix": "mobio",
+    "repository": "https://github.com/arpcard/mobio",
+    "uri_format": "http://purl.obolibrary.org/obo/MOBIO_$1"
+  },
   "mod": {
     "banana": "MOD",
     "contact": {
@@ -42563,6 +43853,7 @@
       "miriam": "modeldb.concept"
     },
     "name": "ModelDB concept",
+    "part_of": "modeldb",
     "pattern": "^\\d+$",
     "preferred_prefix": "modeldb.concept",
     "uri_format": "https://senselab.med.yale.edu/ModelDB/ModelList?id=$1"
@@ -42605,6 +43896,7 @@
     "example": "1868",
     "homepage": "https://winter.group.shef.ac.uk/molbase/",
     "name": "MolBase",
+    "part_of": "molbase",
     "pattern": "^\\d+$",
     "preferred_prefix": "molbase.sheffield"
   },
@@ -42747,7 +44039,7 @@
       "miriam": "molmedb"
     },
     "name": "MolMeDB",
-    "pattern": "^[m,M]{2}[0-9]{5}[0-9]*$",
+    "pattern": "^[Mm]{2}[0-9]{5,}(\\.[0-9]+)?$",
     "preferred_prefix": "molmedb",
     "repository": "https://github.com/MolMeDB/MolMeDB",
     "uri_format": "https://molmedb.upol.cz/mol/$1"
@@ -42852,7 +44144,7 @@
     "repository": "https://github.com/monarch-initiative/mondo",
     "twitter": "MonarchInit",
     "uri_format": "http://purl.obolibrary.org/obo/MONDO_$1",
-    "version": "2025-08-05"
+    "version": "2025-09-02"
   },
   "mondo.issue": {
     "contributor": {
@@ -43063,7 +44355,7 @@
     "rdf_uri_format": "http://purl.obolibrary.org/obo/MP_$1",
     "repository": "https://github.com/mgijax/mammalian-phenotype-ontology",
     "uri_format": "http://purl.obolibrary.org/obo/MP_$1",
-    "version": "2025-07-29"
+    "version": "2025-08-27"
   },
   "mpath": {
     "contact": {
@@ -43307,7 +44599,7 @@
     "rdf_uri_format": "http://purl.obolibrary.org/obo/MS_$1",
     "repository": "https://github.com/HUPO-PSI/psi-ms-CV",
     "uri_format": "http://purl.obolibrary.org/obo/MS_$1",
-    "version": "4.1.195"
+    "version": "4.1.199"
   },
   "msigdb": {
     "contributor": {
@@ -43576,6 +44868,35 @@
       }
     ],
     "uri_format": "http://www.metabolomicsworkbench.org/data/DRCCMetadata.php?Mode=Study&StudyID=$1"
+  },
+  "mwo": {
+    "contact": {
+      "email": "ho_beygi@yahoo.com",
+      "name": "Hossein Beygi Nasrabadi"
+    },
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "NFDI-MatWerk aims to establish a digital infrastructure for Materials Science and Engineering (MSE), fostering improved data sharing and collaboration. This repository provides comprehensive documentation for NFDI MatWerk Ontology (MWO) v3.0.0, a foundational framework designed to structure research data and enhance interoperability within the MSE community. To ensure compliance with top-level ontology standards, MWO v3.0.0 is aligned with the Basic Formal Ontology (BFO) and incorporates the modular approach of the NFDIcore mid-level ontology, enriching metadata through standardized classes and properties. The mwo addresses key aspects of MSE research data, including the NFDI-MatWerk community structure, covering task areas, infrastructure use cases, projects, researchers, and organizations. It also describes essential NFDI resources, such as software, workflows, ontologies, publications, datasets, metadata schemas, instruments, facilities, and educational materials. Additionally, mwo represents NFDI-MatWerk services, academic events, courses, and international collaborations. As the foundation for the MSE Knowledge Graph, mwo facilitates efficient data integration and retrieval, promoting collaboration and knowledge representation across MSE domains. This digital transformation enhances data discoverability, reusability, and accelerates scientific exchange, innovation, and discoveries by optimizing research data management and accessibility. (from repository)",
+    "download_owl": "https://github.com/ISE-FIZKarlsruhe/mwo/raw/refs/heads/main/mwo.owl",
+    "example": "0001109",
+    "homepage": "https://github.com/ISE-FIZKarlsruhe/mwo",
+    "keywords": [
+      "ontology"
+    ],
+    "license": "CC0-1.0",
+    "mappings": {
+      "aberowl": "MWO",
+      "bioportal": "MWO"
+    },
+    "name": "NFDI MatWerk Ontology",
+    "pattern": "^\\d{7}$",
+    "preferred_prefix": "mwo",
+    "repository": "https://github.com/ISE-FIZKarlsruhe/mwo",
+    "uri_format": "http://purls.helmholtz-metadaten.de/mwo/mwo_$1"
   },
   "myco": {
     "contributor": {
@@ -44553,6 +45874,7 @@
       "genome"
     ],
     "license": "public domain",
+    "logo": "https://www.ncbi.nlm.nih.gov/corehtml/logo256.gif",
     "name": "NCBI Genetic Code",
     "pattern": "^\\d+$",
     "preferred_prefix": "ncbi.gc",
@@ -44607,7 +45929,7 @@
       "name": "Charles Tapley Hoyt",
       "orcid": "0000-0003-4423-4370"
     },
-    "description": "The NCBI Bookshelf provides free online access to books and documents in life science and healthcare. Search, read, and discover. ",
+    "description": "The NCBI Bookshelf provides free online access to books and documents in life science and healthcare. Search, read, and discover.",
     "example": "NBK331",
     "homepage": "https://www.ncbi.nlm.nih.gov/books",
     "name": "NCBI Bookshelf",
@@ -44651,6 +45973,7 @@
       "genome",
       "genomics"
     ],
+    "logo": "https://www.ncbi.nlm.nih.gov/corehtml/logo256.gif",
     "mappings": {
       "biocontext": "NCBIGene",
       "biolink": "NCBIGene",
@@ -44818,6 +46141,7 @@
     "keywords": [
       "protein"
     ],
+    "logo": "https://www.ncbi.nlm.nih.gov/corehtml/logo256.gif",
     "mappings": {
       "biocontext": "NCBIProtein",
       "go": "NCBI_NP",
@@ -45166,7 +46490,7 @@
       "ncithesaurus"
     ],
     "uri_format": "http://purl.obolibrary.org/obo/NCIT_$1",
-    "version": "2024-05-07"
+    "version": "2025-08-06"
   },
   "ncro": {
     "contact": {
@@ -45484,6 +46808,54 @@
     ],
     "uri_format": "http://purl.bioontology.org/NEMO/ontology/NEMO.owl#NEMO_$1"
   },
+  "nepomuk.nao": {
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "The annotation ontology provides vocabulary that enables users to attach custom descriptions, identifiers, tags and ratings to resources on their desktop. Via other properties, the user is also able to make generic relationships between related resources explicit. Some relationships between resources are too general to be included at the domain ontology level. Instead, these properties are also defined in the annotation ontology. Given the high-level status of this ontology, these propreties can be used to link any related resources on the user's desktop, as well as provide custom human-readable textual annotations. (from homepage)",
+    "example": "created",
+    "homepage": "http://www.semanticdesktop.org/ontologies/nao",
+    "license": "https://www.semanticdesktop.org/ontologies/2007/11/01/pimo/LICENSE.txt",
+    "name": "NEPOMUK Annotation Ontology Specification",
+    "preferred_prefix": "nepomuk.nao",
+    "rdf_uri_format": "http://www.semanticdesktop.org/ontologies/2007/08/15/nao#$1",
+    "uri_format": "http://www.semanticdesktop.org/ontologies/2007/08/15/nao#$1"
+  },
+  "nepomuk.nco": {
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "NEPOMUK Contact Ontology describes contact information, common in many places on the desktop. It evolved from the VCARD specification (RFC 2426) and has been inspired by the Vcard Ontology by Renato Ianella. The scope of NCO is much broader though. This document gives an overview of the classes, properties and intended use cases of the NCO ontology. (from homepage)",
+    "example": "fullname",
+    "homepage": "http://www.semanticdesktop.org/ontologies/2007/03/22/nco",
+    "license": "https://www.semanticdesktop.org/ontologies/2007/11/01/pimo/LICENSE.txt",
+    "name": "NEPOMUK Contact Ontology",
+    "preferred_prefix": "nepomuk.nco",
+    "rdf_uri_format": "http://www.semanticdesktop.org/ontologies/2007/03/22/nco#$1",
+    "uri_format": "http://www.semanticdesktop.org/ontologies/2007/03/22/nco#$1"
+  },
+  "nepomuk.pimo": {
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "The PIMO Ontology can be used to express Personal Information Models of individuals. It is based on RDF and NRL, the NEPOMUK Representational Language and other Semantic Web ontologies. This document describes the principle elements of the language and how to use them. (from homepage)",
+    "example": "Note",
+    "homepage": "http://www.semanticdesktop.org/ontologies/pimo",
+    "license": "https://www.semanticdesktop.org/ontologies/2007/11/01/pimo/LICENSE.txt",
+    "name": "Personal Information Model",
+    "preferred_prefix": "nepomuk.pimo",
+    "rdf_uri_format": "http://www.semanticdesktop.org/ontologies/2007/11/01/pimo#$1",
+    "uri_format": "http://www.semanticdesktop.org/ontologies/2007/11/01/pimo#$1"
+  },
   "neurolex": {
     "contact": {
       "email": "tgbugs@gmail.com",
@@ -45800,6 +47172,7 @@
     "example": "01406",
     "homepage": "https://www.nextprot.org/",
     "name": "neXtProt family",
+    "part_of": "nextprot",
     "pattern": "^\\d+$",
     "preferred_prefix": "nextprot.family",
     "synonyms": [
@@ -45836,6 +47209,33 @@
     "preferred_prefix": "nfdi.core",
     "repository": "https://github.com/ISE-FIZKarlsruhe/nfdicore",
     "uri_format": "https://nfdi.fiz-karlsruhe.de/ontology/NFDI_$1"
+  },
+  "nfdi.kgi": {
+    "contact": {
+      "email": "lozana.rossenova@tib.eu",
+      "github": "lozanaross",
+      "name": "Lozana Rossenova",
+      "orcid": "0000-0002-5190-1867"
+    },
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "Assigns identifiers to knowledge graphs (KGs) that are used and/or maintained within any NFDI consortium.",
+    "example": "KGR1",
+    "github_request_issue": 1665,
+    "homepage": "https://kgi.services.base4nfdi.de",
+    "keywords": [
+      "knowledge graph"
+    ],
+    "license": "CC-BY-SA-4.0",
+    "name": "NFDI Knowledge Graph Registry",
+    "pattern": "^KGR\\d+$",
+    "preferred_prefix": "nfdi.kgi",
+    "repository": "https://github.com/KGI4NFDI/kgi4nfdi_registry_data",
+    "uri_format": "http://kgi.services.base4nfdi.de/entity/$1"
   },
   "nfdi4chem.ontocape": {
     "comment": "This ontology ecosystem is near unusable",
@@ -46263,6 +47663,7 @@
       "wikidata": "P1645"
     },
     "name": "NIST/CODATA ID",
+    "part_of": "nist",
     "preferred_prefix": "nist.codata",
     "uri_format": "http://physics.nist.gov/cgi-bin/cuu/Value?$1"
   },
@@ -47058,6 +48459,7 @@
       "wikidata.entity": "Q125807660"
     },
     "name": "CAMEO Chemicals ID",
+    "part_of": "noaa",
     "pattern": "^\\d*$",
     "preferred_prefix": "noaa.cameo",
     "uri_format": "https://cameochemicals.noaa.gov/chemical/$1"
@@ -47265,7 +48667,7 @@
       "name": "Charles Tapley Hoyt",
       "orcid": "0000-0003-4423-4370"
     },
-    "description": "Database for integrating species source of natural products & connecting natural products to biological targets via  experimental-derived quantitative activity data.\n",
+    "description": "Database for integrating species source of natural products & connecting natural products to biological targets via  experimental-derived quantitative activity data.",
     "example": "NPC139585",
     "homepage": "http://bidd.group/NPASS/",
     "keywords": [
@@ -47571,6 +48973,20 @@
     "preferred_prefix": "nucleotide",
     "uri_format": "https://www.ncbi.nlm.nih.gov/nuccore/$1"
   },
+  "nvs": {
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "SKOS concept collections held in the NERC Vocabulary Server. A concept collection is useful where a group of concepts shares something in common, and it is convenient to group them under a common label. In the NVS, concept collections are synonymous with controlled vocabularies or code lists. Each collection is associated with its governance body. An external website link is displayed when applicable.",
+    "example": "P06",
+    "homepage": "https://vocab.nerc.ac.uk/collection/",
+    "name": "NERC Vocabulary Server",
+    "preferred_prefix": "nvs",
+    "uri_format": "https://vocab.nerc.ac.uk/collection/$1"
+  },
   "nxr": {
     "description": "National stock center for X. laevis and X. tropicalis and training center for advanced technologies (e.g. husbandry, cell biology, imaging, genetics, transgenesis, genomics). [from RRID]",
     "example": "0024",
@@ -47801,7 +49217,7 @@
     "rdf_uri_format": "http://purl.obolibrary.org/obo/OBA_$1",
     "repository": "https://github.com/obophenotype/bio-attribute-ontology",
     "uri_format": "http://purl.obolibrary.org/obo/OBA_$1",
-    "version": "2025-03-28"
+    "version": "2025-08-20"
   },
   "oban": {
     "contributor": {
@@ -48165,6 +49581,26 @@
     },
     "uri_format": "http://ecoinformatics.org/oboe/oboe.1.2/oboe-core.owl#$1"
   },
+  "oboe.standard": {
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "Units in OBOE",
+    "example": "Acre",
+    "github_request_issue": 1643,
+    "homepage": "https://github.com/NCEAS/oboe",
+    "keywords": [
+      "ontology",
+      "unit",
+      "units"
+    ],
+    "name": "OBOE Standard",
+    "preferred_prefix": "oboe.standard",
+    "uri_format": "http://ecoinformatics.org/oboe/oboe.1.2/oboe-standards.owl$1"
+  },
   "oboinowl": {
     "contact": {
       "email": "cjmungall@lbl.gov",
@@ -48508,6 +49944,35 @@
     "rdf_uri_format": "http://w3id.org/openeduhub/vocabs/educationalLevel/$1",
     "repository": "https://github.com/openeduhub/oeh-metadata-vocabs",
     "uri_format": "http://w3id.org/openeduhub/vocabs/educationalLevel/$1"
+  },
+  "oerschema": {
+    "contact": {
+      "github": "michael-collins",
+      "name": "Michael Collins"
+    },
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "A RDF vocabulary for OER content on the web.",
+    "example": "InstructionalPattern",
+    "github_request_issue": 1661,
+    "homepage": "https://oerschema.org",
+    "keywords": [
+      "curricula",
+      "curriculum",
+      "education",
+      "oer",
+      "oers",
+      "open educational resources"
+    ],
+    "license": "MIT",
+    "name": "OER Schema",
+    "preferred_prefix": "oerschema",
+    "repository": "https://github.com/open-curriculum/oerschema",
+    "uri_format": "https://oerschema.org/$1"
   },
   "og": {
     "contributor": {
@@ -48991,7 +50456,9 @@
     "example": "Dimension",
     "homepage": "https://github.com/HajoRijgersberg/OM",
     "keywords": [
-      "ontology"
+      "ontology",
+      "unit",
+      "units"
     ],
     "mappings": {
       "aberowl": "OM",
@@ -49139,6 +50606,7 @@
       "integbio": "nbdc00153"
     },
     "name": "OMIA variants",
+    "part_of": "omia",
     "pattern": "^\\d+$",
     "preferred_prefix": "omia.variant",
     "publications": [
@@ -49916,6 +51384,59 @@
     "uri_format": "http://purl.obolibrary.org/obo/ONTOAVIDA_$1",
     "version": "2022-03-15"
   },
+  "ontodm": {
+    "appears_in": [
+      "efo"
+    ],
+    "contact": {
+      "email": "pance.panov@ijs.si",
+      "name": "Pance Panov"
+    },
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "OntoDM-core defines the most essential data mining entities in a three-layered ontological structure comprising of a specification, an implementation and an application layer. It provides a representational framework for the description of mining structured data, and in addition provides taxonomies of datasets, data mining tasks, generalizations, data mining algorithms and constraints, based on the type of data. OntoDM-core is designed to support a wide range of applications/use cases, such as semantic annotation of data mining algorithms, datasets and results; annotation of QSAR studies in the context of drug discovery investigations; and disambiguation of terms in text mining. (from abstract)",
+    "download_owl": "https://raw.githubusercontent.com/panovp/ontodm-core/master/OntoDM.owl",
+    "example": "000072",
+    "homepage": "http://www.ontodm.com/",
+    "keywords": [
+      "ontology"
+    ],
+    "mappings": {
+      "bioportal": "ONTODM-CORE"
+    },
+    "name": "Ontology of Core Data Mining Entities",
+    "pattern": "^\\d+$",
+    "preferred_prefix": "ontodm",
+    "providers": [
+      {
+        "code": "legacy",
+        "description": "legacy URIs",
+        "homepage": "http://kt.ijs.si/panovp",
+        "name": "Legacy URIs",
+        "uri_format": "http://kt.ijs.si/panovp/OntoDM#OntoDM_$1"
+      },
+      {
+        "code": "legacy2",
+        "description": "legacy URIs",
+        "homepage": "http://kt.ijs.si/panovp",
+        "name": "Legacy URIs",
+        "uri_format": "http://kt.ijs.si/panovp/OntoDM#OntoDM-KDD_$1"
+      }
+    ],
+    "publications": [
+      {
+        "doi": "10.1007/s10618-014-0363-0",
+        "title": "Ontology of core data mining entities",
+        "year": 2014
+      }
+    ],
+    "repository": "https://github.com/panovp/ontodm-core",
+    "uri_format": "http://www.ontodm.com/OntoDM-core/OntoDM_$1"
+  },
   "ontoneo": {
     "contact": {
       "email": "fernanda.farinelli@gmail.com",
@@ -50020,7 +51541,7 @@
     "rdf_uri_format": "http://purl.obolibrary.org/obo/OOSTT_$1",
     "repository": "https://github.com/OOSTT/OOSTT",
     "uri_format": "http://purl.obolibrary.org/obo/OOSTT_$1",
-    "version": "2025-07-31"
+    "version": "2025-08-28"
   },
   "opb": {
     "banana": "OPB",
@@ -50488,12 +52009,21 @@
     "uri_format": "http://purl.obolibrary.org/obo/ORNASEQ_$1",
     "version": "2019-07-08"
   },
-  "orphanet": {
+  "orpha": {
     "contact": {
-      "email": "bliemsl@xs4all.nl",
-      "name": "Spencer L. Liem",
-      "orcid": "0000-0002-1575-9365"
+      "email": "marc.hanauer@inserm.fr",
+      "github": "Orphanet",
+      "name": "Marc Hanauer",
+      "orcid": "0000-0002-6758-2506"
     },
+    "contributor_extras": [
+      {
+        "email": "nicolas.matentzoglu@gmail.com",
+        "github": "matentzn",
+        "name": "Nicolas Matentzoglu",
+        "orcid": "0000-0002-7356-1779"
+      }
+    ],
     "description": "Orphanet is a reference portal for information on rare diseases and orphan drugs. It’s aim is to help improve the diagnosis, care and treatment of patients with rare diseases.",
     "download_owl": "http://www.orphadata.org/data/ORDO/ordo_orphanet.owl",
     "example": "85163",
@@ -50522,7 +52052,7 @@
     },
     "name": "Orphanet",
     "pattern": "^C?\\d+$",
-    "preferred_prefix": "orphanet",
+    "preferred_prefix": "ORPHA",
     "providers": [
       {
         "code": "",
@@ -50547,8 +52077,8 @@
       }
     ],
     "synonyms": [
-      "ORPHA",
-      "Orphanet"
+      "Orphanet",
+      "orphanet"
     ],
     "twitter": "orphanet",
     "uri_format": "http://www.orpha.net/ORDO/Orphanet_$1"
@@ -50557,9 +52087,10 @@
     "banana": "Orphanet",
     "banana_peel": "_",
     "contact": {
-      "email": "ordo.orphanet@inserm.fr",
-      "name": "Ana Rath",
-      "orcid": "0000-0003-4308-6337"
+      "email": "marc.hanauer@inserm.fr",
+      "github": "Orphanet",
+      "name": "Marc Hanauer",
+      "orcid": "0000-0002-6758-2506"
     },
     "description": "The Orphanet Rare Disease ontology (ORDO) is a structured vocabulary for rare diseases, capturing relationships between diseases, genes and other relevant features which will form a useful resource for the computational analysis of rare diseases.\nIt integrates a nosology (classification of rare diseases), relationships (gene-disease relations, epiemological data) and connections with other terminologies (MeSH, UMLS, MedDRA), databases (OMIM, UniProtKB, HGNC, ensembl, Reactome, IUPHAR, Geantlas) and classifications (ICD10).",
     "download_owl": "http://www.orphadata.org/data/ORDO/ordo_orphanet.owl",
@@ -50567,7 +52098,7 @@
     "example_extras": [
       "478"
     ],
-    "has_canonical": "orphanet",
+    "has_canonical": "orpha",
     "homepage": "https://www.orpha.net",
     "keywords": [
       "biomedical science",
@@ -51012,7 +52543,7 @@
       "name": "Charles Tapley Hoyt",
       "orcid": "0000-0003-4423-4370"
     },
-    "description": "Overview of the Web Ontology Language (OWL) which provides an introduction to OWL by informally describing the features of each of the sublanguages. ",
+    "description": "Overview of the Web Ontology Language (OWL) which provides an introduction to OWL by informally describing the features of each of the sublanguages.",
     "download_owl": "https://triplydb.com/w3c/owl/download.trig.gz",
     "example": "Ontology",
     "homepage": "https://www.w3.org/TR/owl-features/",
@@ -52337,6 +53868,7 @@
       "wikidata": "P3636"
     },
     "name": "PDB ligand",
+    "part_of": "pdb",
     "pattern": "^[A-Za-z0-9]+$",
     "preferred_prefix": "pdb.ligand",
     "providers": [
@@ -52818,6 +54350,7 @@
       "n2t": "peptideatlas.dataset"
     },
     "name": "PeptideAtlas Dataset",
+    "part_of": "peptideatlas",
     "pattern": "^PASS\\d{5}$",
     "preferred_prefix": "peptideatlas.dataset",
     "uri_format": "http://www.peptideatlas.org/PASS/$1"
@@ -52943,7 +54476,7 @@
       "uniprot": "DB-0073",
       "wikidata": "P3519"
     },
-    "name": "Pfam",
+    "name": "Pfam protein family",
     "pattern": "^PF\\d{5}$",
     "preferred_prefix": "pfam",
     "providers": [
@@ -53101,7 +54634,8 @@
     "mappings": {
       "edam": "2758"
     },
-    "name": "Pfam Clans",
+    "name": "Pfam protein clan",
+    "part_of": "pfam",
     "pattern": "^CL\\d+$",
     "preferred_prefix": "pfam.clan",
     "providers": [
@@ -53532,7 +55066,7 @@
       "prefixcommons": "pharmgkb.pathways",
       "wikidata": "P7001"
     },
-    "name": "PharmGKB",
+    "name": "PharmGKB pathway",
     "pattern": "^PA\\d+$",
     "preferred_prefix": "pharmgkb.pathways",
     "providers": [
@@ -54878,6 +56412,7 @@
       "miriam": "pmr.workspace"
     },
     "name": "Physiome Model Repository workspace",
+    "part_of": "pmr",
     "pattern": "^[a-zA-Z0-9_\\-]+(/.*?)?$",
     "preferred_prefix": "pmr.workspace",
     "uri_format": "https://models.physiomeproject.org/workspace/$1"
@@ -55282,7 +56817,7 @@
       "name": "Charles Tapley Hoyt",
       "orcid": "0000-0003-4423-4370"
     },
-    "description": "PPDB is a comprehensive source of data on pesticide chemical, physical and biological properties. ",
+    "description": "PPDB is a comprehensive source of data on pesticide chemical, physical and biological properties.",
     "example": "1484",
     "homepage": "https://sitem.herts.ac.uk/aeru/ppdb/",
     "keywords": [
@@ -55573,6 +57108,27 @@
     "preferred_prefix": "prefixcommons",
     "uri_format": "https://bioregistry.io/metaregistry/prefixcommons/$1"
   },
+  "premis": {
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "Ontology for PREMIS 3, the international standard for metadata to support the preservation of digital objects and ensure their long-term usability.",
+    "example": "Agent",
+    "homepage": "https://id.loc.gov/ontologies/premis-3-0-0.html",
+    "keywords": [
+      "catalogs"
+    ],
+    "mappings": {
+      "lov": "premis"
+    },
+    "name": "PREMIS 3 Ontology",
+    "preferred_prefix": "premis",
+    "rdf_uri_format": "http://www.loc.gov/premis/rdf/v3/$1",
+    "uri_format": "http://www.loc.gov/premis/rdf/v3/$1"
+  },
   "pride": {
     "contact": {
       "email": "yperez@ebi.ac.uk",
@@ -55700,6 +57256,7 @@
       "n2t": "pride.project"
     },
     "name": "PRIDE Project",
+    "part_of": "pride",
     "pattern": "^P(X|R|A)D\\d{6}$",
     "preferred_prefix": "pride.project",
     "providers": [
@@ -56705,7 +58262,7 @@
       "togoid": "PubchemCompound",
       "wikidata": "P662"
     },
-    "name": "PubChem CID",
+    "name": "PubChem compound",
     "part_of": "pubchem",
     "pattern": "^\\d+$",
     "preferred_prefix": "pubchem.compound",
@@ -57263,6 +58820,10 @@
     "uri_format": "https://w3id.org/qualo/id/$1"
   },
   "qudt": {
+    "contact": {
+      "email": "noreply@bioontology.org",
+      "name": "Unknown"
+    },
     "contributor": {
       "email": "cthoyt@gmail.com",
       "github": "cthoyt",
@@ -57279,7 +58840,8 @@
       "experimental measurement",
       "methods",
       "ontology",
-      "unit"
+      "unit",
+      "units"
     ],
     "mappings": {
       "aberowl": "QUDT",
@@ -57393,6 +58955,7 @@
       "resource metadata",
       "subject agnostic"
     ],
+    "logo": "https://api.fairsharing.org/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBZ0VIIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--c5438876bbbcd4c68044b1e22d159b57bc79513f/RAID%20Logo.png?disposition=inline",
     "mappings": {
       "fairsharing": "FAIRsharing.dc702a",
       "miriam": "raid"
@@ -57461,7 +59024,8 @@
       "ncbi": "RATMAP",
       "prefixcommons": "ratmap"
     },
-    "name": "Rat Genome Database",
+    "name": "Rat Genome Database RatMap",
+    "part_of": "rgd",
     "preferred_prefix": "ratmap",
     "providers": [
       {
@@ -57564,7 +59128,7 @@
     "rdf_uri_format": "http://purl.obolibrary.org/obo/RBO_$1",
     "repository": "https://github.com/Radiobiology-Informatics-Consortium/RBO",
     "uri_format": "http://purl.obolibrary.org/obo/RBO_$1",
-    "version": "2025-07-21"
+    "version": "2025-08-27"
   },
   "rcb": {
     "contact": {
@@ -58216,6 +59780,15 @@
     "name": "Peruvian Clinical Trial Registry",
     "pattern": "^\\d+-\\d+(-[A-Z])?$",
     "preferred_prefix": "repec",
+    "providers": [
+      {
+        "code": "who",
+        "description": "WHO Clinical Trials Search",
+        "homepage": "https://trialsearch.who.int",
+        "name": "WHO Clinical Trials Search",
+        "uri_format": "https://trialsearch.who.int/Trial2.aspx?TrialID=PER-$1"
+      }
+    ],
     "uri_format": "https://www.ins.gob.pe/ensayosclinicos/rpec/recuperarECPBNuevo.asp?val=&NroPag=1&flg=0&ver=EN&numEC=$1"
   },
   "reproduceme": {
@@ -58498,57 +60071,6 @@
     "preferred_prefix": "rfc",
     "uri_format": "https://tools.ietf.org/rfc/rfc$1"
   },
-  "rgap": {
-    "comment": "This resource has been updated as of 19 November, 2024",
-    "contact": {
-      "email": "Robin.Buell@uga.edu",
-      "name": "C. Robin Buell",
-      "orcid": "0000-0002-6727-4677"
-    },
-    "description": "This website provides genome sequence from the Nipponbare subspecies of rice and annotation of the 12 rice chromosomes. These data are available through search pages and the Genome Browser that provides an integrated display of annotation data.",
-    "example": "LOC_Os02g13300",
-    "homepage": "https://rice.uga.edu",
-    "keywords": [
-      "dna",
-      "genome"
-    ],
-    "mappings": {
-      "prefixcommons": "rgap"
-    },
-    "name": "Rice Genome Annotation Project",
-    "preferred_prefix": "rgap",
-    "providers": [
-      {
-        "code": "bio2rdf",
-        "description": "Bio2RDF is an open-source project that uses Semantic Web technologies to build and provide the largest network of Linked Data for the Life Sciences. Bio2RDF defines a set of simple conventions to create RDF(S) compatible Linked Data from a diverse set of heterogeneously formatted sources obtained from multiple data providers.",
-        "homepage": "https://bio2rdf.org",
-        "name": "Bio2RDF",
-        "uri_format": "http://bio2rdf.org/rgap:$1"
-      }
-    ],
-    "publications": [
-      {
-        "doi": "10.1093/nar/gkae1061",
-        "pubmed": "39558187",
-        "title": "The rice genome annotation project: an updated database for mining the rice genome",
-        "year": 2024
-      },
-      {
-        "doi": "10.1093/nar/gkl976",
-        "pmc": "PMC1751532",
-        "pubmed": "17145706",
-        "title": "The TIGR Rice Genome Annotation Resource: improvements and new features",
-        "year": 2006
-      }
-    ],
-    "reviewer": {
-      "email": "cthoyt@gmail.com",
-      "github": "cthoyt",
-      "name": "Charles Tapley Hoyt",
-      "orcid": "0000-0003-4423-4370"
-    },
-    "uri_format": "https://rice.uga.edu/cgi-bin/ORF_infopage.cgi?orf=$1"
-  },
   "rgd": {
     "contact": {
       "email": "jrsmith@mcw.edu",
@@ -58809,6 +60331,7 @@
       "n2t": "rgd.qtl"
     },
     "name": "Rat Genome Database qTL",
+    "part_of": "rgd",
     "pattern": "^\\d+$",
     "preferred_prefix": "rgd.qtl",
     "twitter": "ratgenome",
@@ -58824,6 +60347,7 @@
       "n2t": "rgd.strain"
     },
     "name": "Rat Genome Database strain",
+    "part_of": "rgd",
     "pattern": "^\\d+$",
     "preferred_prefix": "rgd.strain",
     "twitter": "ratgenome",
@@ -58860,7 +60384,7 @@
       "togoid": "Rhea",
       "wikidata.entity": "Q24265951"
     },
-    "name": "Rhea, the Annotated Reactions Database",
+    "name": "Rhea reaction",
     "pattern": "^\\d{5}$",
     "preferred_prefix": "rhea",
     "providers": [
@@ -58994,17 +60518,54 @@
     "uri_format": "http://pathway.gramene.org/RICE/NEW-IMAGE?type=PATHWAY&object=$1"
   },
   "ricegap": {
+    "contact": {
+      "email": "Robin.Buell@uga.edu",
+      "name": "C. Robin Buell",
+      "orcid": "0000-0002-6727-4677"
+    },
     "description": "The objective of this project is to provide high quality annotation for the rice genome Oryza sativa spp japonica cv Nipponbare. All genes are annotated with functional annotation including expression data, gene ontologies, and tagged lines.",
     "example": "LOC_Os02g13300",
-    "homepage": "http://rice.plantbiology.msu.edu/annotation_pseudo_current.shtml",
+    "homepage": "https://rice.uga.edu",
+    "keywords": [
+      "dna",
+      "genome"
+    ],
     "mappings": {
       "biocontext": "RICEGAP",
       "miriam": "ricegap",
-      "n2t": "ricegap"
+      "n2t": "ricegap",
+      "prefixcommons": "rgap"
     },
     "name": "Rice Genome Annotation Project",
     "pattern": "^LOC\\_Os\\d{1,2}g\\d{5}$",
     "preferred_prefix": "ricegap",
+    "providers": [
+      {
+        "code": "bio2rdf",
+        "description": "Bio2RDF is an open-source project that uses Semantic Web technologies to build and provide the largest network of Linked Data for the Life Sciences. Bio2RDF defines a set of simple conventions to create RDF(S) compatible Linked Data from a diverse set of heterogeneously formatted sources obtained from multiple data providers.",
+        "homepage": "https://bio2rdf.org",
+        "name": "Bio2RDF",
+        "uri_format": "http://bio2rdf.org/rgap:$1"
+      }
+    ],
+    "publications": [
+      {
+        "doi": "10.1093/nar/gkae1061",
+        "pubmed": "39558187",
+        "title": "The rice genome annotation project: an updated database for mining the rice genome",
+        "year": 2024
+      },
+      {
+        "doi": "10.1093/nar/gkl976",
+        "pmc": "PMC1751532",
+        "pubmed": "17145706",
+        "title": "The TIGR Rice Genome Annotation Resource: improvements and new features",
+        "year": 2006
+      }
+    ],
+    "synonyms": [
+      "rgap"
+    ],
     "uri_format": "http://rice.plantbiology.msu.edu/cgi-bin/ORF_infopage.cgi?&orf=$1"
   },
   "ricenetdb.compound": {
@@ -59870,7 +61431,7 @@
     "repository": "https://github.com/rat-genome-database/RS-Rat-Strain-Ontology",
     "twitter": "ratgenome",
     "uri_format": "http://purl.obolibrary.org/obo/RS_$1",
-    "version": "6.255"
+    "version": "6.258"
   },
   "rtecs": {
     "contact": {
@@ -60885,6 +62446,7 @@
       "edam": "1041"
     },
     "name": "SCOP(e) concise classification string",
+    "part_of": "scop",
     "preferred_prefix": "scop.sccs",
     "references": [
       "https://scop.berkeley.edu/help/#stableidentifiers"
@@ -60904,7 +62466,7 @@
       "name": "Charles Tapley Hoyt",
       "orcid": "0000-0003-4423-4370"
     },
-    "description": " A 7-character sid consists of \"d\" followed by the 4-character PDB ID of the file of origin, the PDB chain ID ('_' if none, '.' if multiple as is the case in genetic domains), and a single character (usually an integer) if needed to specify the domain uniquely ('_' if not). Sids are currently all lower case, even when the chain letter is upper case. Example sids include d4akea1, d9hvpa_, and d1cph.1.",
+    "description": "A 7-character sid consists of \"d\" followed by the 4-character PDB ID of the file of origin, the PDB chain ID ('_' if none, '.' if multiple as is the case in genetic domains), and a single character (usually an integer) if needed to specify the domain uniquely ('_' if not). Sids are currently all lower case, even when the chain letter is upper case. Example sids include d4akea1, d9hvpa_, and d1cph.1.",
     "example": "d4akea1",
     "example_extras": [
       "d1cph.1",
@@ -60915,6 +62477,7 @@
       "edam": "1039"
     },
     "name": "Structural Classification of Protein - Stable Domain Identifier",
+    "part_of": "scop",
     "preferred_prefix": "scop.sid",
     "references": [
       "https://scop.berkeley.edu/help/#stableidentifiers"
@@ -60956,6 +62519,7 @@
       "wikidata": "P1155"
     },
     "name": "Scopus affiliation ID",
+    "part_of": "scopus",
     "preferred_prefix": "scopus.affiliation",
     "uri_format": "https://www.scopus.com/affil/profile.uri?afid=$1"
   },
@@ -60967,6 +62531,7 @@
       "wikidata": "P1156"
     },
     "name": "Scopus Publication",
+    "part_of": "scopus",
     "pattern": "^[1-9]\\d{0,11}$",
     "preferred_prefix": "scopus.publication",
     "uri_format": "https://www.scopus.com/sourceid/$1"
@@ -60979,6 +62544,7 @@
       "wikidata": "P1154"
     },
     "name": "Scopus Work",
+    "part_of": "scopus",
     "pattern": "^2-s2\\.0-\\d+$",
     "preferred_prefix": "scopus.work",
     "synonyms": [
@@ -61444,9 +63010,17 @@
       }
     ],
     "preferred_prefix": "semapv",
+    "publications": [
+      {
+        "doi": "10.5281/zenodo.7672103",
+        "title": "A Simple Standard for Ontological Mappings 2022: Updates of data model and outlook",
+        "year": 2022
+      }
+    ],
     "references": [
       "https://github.com/biopragmatics/bioregistry/pull/714"
     ],
+    "repository": "https://github.com/mapping-commons/semantic-mapping-vocabulary",
     "synonyms": [
       "semapv_voc",
       "sempav_voc"
@@ -62019,6 +63593,7 @@
       "prefixcommons": "sgd.pathways"
     },
     "name": "Saccharomyces genome database pathways",
+    "part_of": "sgd",
     "pattern": "^PWY\\w{2}\\-\\d{3}$",
     "preferred_prefix": "sgd.pathways",
     "providers": [
@@ -62693,6 +64268,132 @@
     "uri_format": "https://semanticscience.org/resource/SIO_$1",
     "version": "1.59"
   },
+  "sioc.access": {
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "Extends the SIOC Core Ontology (Semantically-Interlinked Online Communities) by defining basic information on permissions and access rights.",
+    "download_rdf": "http://rdfs.org/sioc/access#",
+    "example": "Permission",
+    "homepage": "http://rdfs.org/sioc/spec/",
+    "license": "CC-BY-1.0",
+    "name": "Semantically-Interlinked Online Communities Access Ontology",
+    "part_of": "sioc",
+    "preferred_prefix": "sioc.access",
+    "rdf_uri_format": "http://rdfs.org/sioc/access#$1",
+    "uri_format": "http://rdfs.org/sioc/access#$1"
+  },
+  "sioc.actions": {
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "An ontology of predicates for actions in SIOC",
+    "download_rdf": "http://rdfs.org/sioc/actions#",
+    "example": "DigitalArtifact",
+    "homepage": "http://rdfs.org/sioc/spec/",
+    "license": "CC-BY-1.0",
+    "name": "Semantically-Interlinked Online Communities Actions Ontology",
+    "part_of": "sioc",
+    "preferred_prefix": "sioc.actions",
+    "rdf_uri_format": "http://rdfs.org/sioc/actions#$1",
+    "uri_format": "http://rdfs.org/sioc/actions#$1"
+  },
+  "sioc.argument": {
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "A vocabulary of argumentation predicates for SIOC",
+    "download_rdf": "http://rdfs.org/sioc/argument#",
+    "example": "decides",
+    "homepage": "http://rdfs.org/sioc/spec/",
+    "license": "CC-BY-1.0",
+    "name": "Semantically-Interlinked Online Communities Argumentation Ontology",
+    "part_of": "sioc",
+    "preferred_prefix": "sioc.argument",
+    "rdf_uri_format": "http://rdfs.org/sioc/argument#$1",
+    "uri_format": "http://rdfs.org/sioc/argument#$1"
+  },
+  "sioc.core": {
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "Semantically-Interlinked Online Communities, or SIOC, is an attempt to link online community sites, to use Semantic Web technologies to describe the information that communities have about their structure and contents, and to find related information and new connections between content items and other community objects. SIOC is based around the use of machine-readable information provided by these sites.",
+    "download_rdf": "http://rdfs.org/sioc/ns#",
+    "example": "Item",
+    "homepage": "http://rdfs.org/sioc/spec/",
+    "license": "CC-BY-1.0",
+    "name": "Semantically-Interlinked Online Communities Core Ontology",
+    "part_of": "sioc",
+    "preferred_prefix": "sioc.core",
+    "rdf_uri_format": "http://rdfs.org/sioc/ns#$1",
+    "uri_format": "http://rdfs.org/sioc/ns#$1"
+  },
+  "sioc.quote": {
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "Extends the SIOC Core Ontology (Semantically-Interlinked Online Communities) by defining basic information on community-related web services.",
+    "download_rdf": "http://rdfs.org/sioc/services#",
+    "example": "has_service",
+    "homepage": "http://rdfs.org/sioc/spec/",
+    "license": "CC-BY-1.0",
+    "name": "Semantically-Interlinked Online Communities Services Ontology - Quote Ontology",
+    "part_of": "sioc",
+    "preferred_prefix": "sioc.quote",
+    "rdf_uri_format": "http://rdfs.org/sioc/services#$1",
+    "uri_format": "http://rdfs.org/sioc/services#$1"
+  },
+  "sioc.swan": {
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "Mappings from SIOC to SWAN, with a small number of aux terms",
+    "download_rdf": "http://rdfs.org/sioc/swan#",
+    "example": "OnlineJournal",
+    "homepage": "http://rdfs.org/sioc/spec/",
+    "license": "CC-BY-1.0",
+    "name": "Semantically-Interlinked Online Communities Services Ontology - SWAN Mapping",
+    "part_of": "sioc",
+    "preferred_prefix": "sioc.swan",
+    "rdf_uri_format": "http://rdfs.org/sioc/swan#$1",
+    "uri_format": "http://rdfs.org/sioc/swan#$1"
+  },
+  "sioc.types": {
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "Extends the SIOC Core Ontology (Semantically-Interlinked Online Communities) by defining subclasses and subproperties of SIOC terms.",
+    "download_rdf": "http://rdfs.org/sioc/types#",
+    "example": "AddressBook",
+    "homepage": "http://rdfs.org/sioc/spec/",
+    "license": "CC-BY-1.0",
+    "name": "Semantically-Interlinked Online Communities Types Ontology",
+    "part_of": "sioc",
+    "preferred_prefix": "sioc.types",
+    "rdf_uri_format": "http://rdfs.org/sioc/types#$1",
+    "uri_format": "http://rdfs.org/sioc/types#$1"
+  },
   "siren": {
     "comment": "appears in FOODON, there is no website other than the spreadsheet referenced below on langual's site",
     "contact": {
@@ -62895,6 +64596,7 @@
       "orcid": "0000-0003-4423-4370"
     },
     "description": "SKOS-Thes: An extension to SKOS based on the ISO 25964 data model. The ISO 25964 standard, published in 2011, covers all aspects of developing thesauri and setting up mappings across vocabularies to encourage high quality information retrieval across networked resources. [from https://www.dublincore.org/specifications/skos-thes/]",
+    "download_rdf": "https://www.dublincore.org/specifications/skos-thes/ns/skos-thes.ttl",
     "example": "CompoundEquivalence",
     "homepage": "https://www.dublincore.org/specifications/skos-thes/ns/",
     "name": "SKOS Thesaurus Extension",
@@ -63044,7 +64746,7 @@
     "rdf_uri_format": "http://purl.obolibrary.org/obo/SLSO_$1",
     "repository": "https://github.com/nasa/LSDAO",
     "uri_format": "http://purl.obolibrary.org/obo/SLSO_$1",
-    "version": "2025-02-26"
+    "version": "2025-09-09"
   },
   "smart": {
     "contact": {
@@ -63177,7 +64879,7 @@
     "example": "12039302",
     "github_request_issue": 1301,
     "homepage": "https://smc.jgi.doe.gov",
-    "name": "Secondary Metabolism Collaboratory",
+    "name": "Secondary Metabolism Collaboratory - biosynthetic gene cluster",
     "pattern": "^\\d+$",
     "preferred_prefix": "smc.bgc",
     "publications": [
@@ -63212,7 +64914,7 @@
     "example": "1",
     "github_request_issue": 1301,
     "homepage": "https://smc.jgi.doe.gov",
-    "name": "Secondary Metabolism Collaboratory",
+    "name": "Secondary Metabolism Collaboratory - taxon",
     "pattern": "^\\d+$",
     "preferred_prefix": "smc.source",
     "publications": [
@@ -63238,7 +64940,7 @@
       "name": "Charles Tapley Hoyt",
       "orcid": "0000-0003-4423-4370"
     },
-    "description": "SMIDs (Small Molecule Identifiers) represent gene-style identifiers for small molecules newly identified in C. elegans and other nematodes. SMIDs aim to make life easier for describing biogenic small molecules in metabolomic and genomic applications.     ",
+    "description": "SMIDs (Small Molecule Identifiers) represent gene-style identifiers for small molecules newly identified in C. elegans and other nematodes. SMIDs aim to make life easier for describing biogenic small molecules in metabolomic and genomic applications.",
     "example": "137",
     "homepage": "https://smid-db.org/",
     "name": "C. elegans Small Molecule Identifier Database",
@@ -63523,6 +65225,57 @@
     "name": "Swiss National Clinical Trials Portal",
     "preferred_prefix": "snctp"
   },
+  "snodb": {
+    "contact": {
+      "email": "michelle.scott@usherbrooke.ca",
+      "name": "Michelle S Scott",
+      "orcid": "0000-0001-6231-7714"
+    },
+    "contributor": {
+      "email": "maaya.m466@gmail.com",
+      "github": "maayamanoj466",
+      "name": "Maaya Manoj",
+      "orcid": "0009-0000-6974-6386"
+    },
+    "description": "Contains identifiers for human small nucleolar RNAs (snoRNAs) from snoDB, an interactive database of human small nucleolar RNAs (snoRNAs) that includes up-to-date information on snoRNA features, genomic location, conservation, host gene, snoRNA–RNA targets and snoRNA abundance and provides links to other resources.",
+    "example": "snoDB0001",
+    "github_request_issue": 1655,
+    "homepage": "https://bioinfo-scottgroup.med.usherbrooke.ca/snoDB",
+    "keywords": [
+      "human nucleolar rna",
+      "rna",
+      "snorna-protein"
+    ],
+    "mappings": {
+      "integbio": "nbdc02602"
+    },
+    "name": "snoDB",
+    "pattern": "^snoDB\\d{4}$",
+    "preferred_prefix": "snodb",
+    "publications": [
+      {
+        "doi": "10.1093/nar/gkac835",
+        "pmc": "PMC9825428",
+        "pubmed": "36165892",
+        "title": "snoDB 2.0: an enhanced interactive database, specializing in human snoRNAs",
+        "year": 2023
+      },
+      {
+        "doi": "10.1093/nar/gkz884",
+        "pmc": "PMC6943035",
+        "pubmed": "31598696",
+        "title": "snoDB: an interactive database of human snoRNA sequences, abundance and interactions",
+        "year": 2020
+      }
+    ],
+    "reviewer": {
+      "email": "b.gyori@northeastern.edu",
+      "github": "bgyori",
+      "name": "Benjamin M. Gyori",
+      "orcid": "0000-0001-9439-5346"
+    },
+    "uri_format": "https://bioinfo-scottgroup.med.usherbrooke.ca/snoDB/detailed_view/$1"
+  },
   "snomedct": {
     "contact": {
       "email": "custserv@nlm.nih.gov",
@@ -63537,7 +65290,7 @@
       }
     ],
     "description": "SNOMED CT (Systematized Nomenclature of Medicine -- Clinical Terms), is a systematically organized computer processable collection of medical terminology covering most areas of clinical information such as diseases, findings, procedures, microorganisms, pharmaceuticals, etc.",
-    "download_owl": "http://snomed.info/sct/900000000000207008/version/20200131",
+    "download_owl": "http://snomed.info/sct/900000000000207008/version/20250624",
     "example": "284196006",
     "homepage": "https://browser.ihtsdotools.org/",
     "keywords": [
@@ -63630,7 +65383,7 @@
       "SNOWMEDCT_US_2018_03_01"
     ],
     "uri_format": "http://snomed.info/id/$1",
-    "version": "20200131"
+    "version": "20250624"
   },
   "snornabase": {
     "contributor": {
@@ -64795,10 +66548,10 @@
       "orcid": "0000-0003-4423-4370"
     },
     "deprecated": true,
-    "description": "Datasets inside StoreDB",
+    "description": "Datasets inside StoreDB at University of Cambridge",
     "example": "1251",
     "homepage": "https://www.storedb.org/",
-    "name": "STOREDB at University of Cambridge",
+    "name": "StoreDB Dataset",
     "part_of": "storedb",
     "pattern": "^\\d+$",
     "preferred_prefix": "storedb.dataset",
@@ -64811,10 +66564,10 @@
       "name": "Charles Tapley Hoyt",
       "orcid": "0000-0003-4423-4370"
     },
-    "description": "File inside StoreDB",
+    "description": "File inside StoreDB at University of Cambridge",
     "example": "12929",
     "homepage": "https://www.storedb.org/",
-    "name": "STOREDB at University of Cambridge",
+    "name": "StoreDB File",
     "part_of": "storedb",
     "pattern": "^\\d+$",
     "preferred_prefix": "storedb.file",
@@ -64827,10 +66580,10 @@
       "name": "Charles Tapley Hoyt",
       "orcid": "0000-0003-4423-4370"
     },
-    "description": "Study inside StoreDB",
+    "description": "Study inside StoreDB at University of Cambridge",
     "example": "1174",
     "homepage": "https://www.storedb.org/",
-    "name": "STOREDB at University of Cambridge",
+    "name": "StoreDB Study",
     "part_of": "storedb",
     "pattern": "^\\d+$",
     "preferred_prefix": "storedb.study",
@@ -65287,6 +67040,37 @@
     ],
     "uri_format": "http://supfam.org/SUPERFAMILY/cgi-bin/scop.cgi?ipid=$1"
   },
+  "swan": {
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "deprecated": true,
+    "description": "SWAN ontology consists in a collection of ontologies used to create, manage and share scientific knowledge bases.",
+    "download_owl": "https://rawcdn.githack.com/pav-ontology/swan-ontology/2.0.1/swan.owl",
+    "homepage": "https://code.google.com/archive/p/swan-ontology",
+    "keywords": [
+      "ontology"
+    ],
+    "license": "CC-BY-3.0",
+    "name": "Semantic Web Applications in Neuromedicine",
+    "preferred_prefix": "swan",
+    "publications": [
+      {
+        "doi": "10.1016/j.jbi.2008.04.010",
+        "pmc": "PMC4536833",
+        "pubmed": "18583197",
+        "title": "The SWAN biomedical discourse ontology",
+        "year": 2008
+      }
+    ],
+    "references": [
+      "https://www.hcklab.org/swan-project.html"
+    ],
+    "repository": "https://github.com/pav-ontology/swan-ontology"
+  },
   "sweetrealm": {
     "contributor": {
       "email": "cthoyt@gmail.com",
@@ -65450,7 +67234,6 @@
     },
     "description": "The Software Ontology (SWO) is a resource for describing software tools, their types, tasks, versions, provenance and associated data. It contains detailed information on licensing and formats as well as software applications themselves, mainly (but not limited) to the bioinformatics community.",
     "download_json": "https://raw.githubusercontent.com/allysonlister/swo/master/swo.json",
-    "download_obo": "https://raw.githubusercontent.com/allysonlister/swo/master/swo.obo",
     "download_owl": "https://raw.githubusercontent.com/allysonlister/swo/master/swo.owl",
     "example": "0000144",
     "homepage": "https://github.com/allysonlister/swo",
@@ -65475,7 +67258,7 @@
       "wikidata.entity": "Q113014439"
     },
     "name": "Software ontology",
-    "pattern": "^\\d{7}$",
+    "pattern": "^\\d{7,8}$",
     "preferred_prefix": "SWO",
     "providers": [
       {
@@ -65493,6 +67276,13 @@
         "uri_format": "http://www.ebi.ac.uk/swo/SWO_$1"
       },
       {
+        "code": "ebi.algorithm",
+        "description": "The EBI's old SWO URIs before switching over to OBO PURLs",
+        "homepage": "http://www.ebi.ac.uk/swo/algorithm",
+        "name": "Legacy EBI SWO",
+        "uri_format": "http://www.ebi.ac.uk/swo/algorithm/SWO_$1"
+      },
+      {
         "code": "ebi.data",
         "description": "The EBI's old SWO URIs before switching over to OBO PURLs",
         "homepage": "http://www.ebi.ac.uk/swo/data",
@@ -65507,6 +67297,13 @@
         "uri_format": "http://www.ebi.ac.uk/efo/swo/SWO_$1"
       },
       {
+        "code": "ebi.interface",
+        "description": "The EBI's old SWO URIs before switching over to OBO PURLs",
+        "homepage": "http://www.ebi.ac.uk/swo/interface",
+        "name": "Legacy EBI SWO",
+        "uri_format": "http://www.ebi.ac.uk/swo/interface/SWO_$1"
+      },
+      {
         "code": "ebi.license",
         "description": "The EBI's old SWO URIs before switching over to OBO PURLs",
         "homepage": "http://www.ebi.ac.uk/swo/license",
@@ -65519,6 +67316,27 @@
         "homepage": "http://www.ebi.ac.uk/swo/maturity",
         "name": "Legacy EBI SWO",
         "uri_format": "http://www.ebi.ac.uk/swo/maturity/SWO_$1"
+      },
+      {
+        "code": "ebi.objective",
+        "description": "The EBI's old SWO URIs before switching over to OBO PURLs",
+        "homepage": "http://www.ebi.ac.uk/swo/objective",
+        "name": "Legacy EBI SWO",
+        "uri_format": "http://www.ebi.ac.uk/swo/objective/SWO_$1"
+      },
+      {
+        "code": "ebi.organization",
+        "description": "The EBI's old SWO URIs before switching over to OBO PURLs",
+        "homepage": "http://www.ebi.ac.uk/swo/organization",
+        "name": "Legacy EBI SWO",
+        "uri_format": "http://www.ebi.ac.uk/swo/organization/SWO_$1"
+      },
+      {
+        "code": "ebi.version",
+        "description": "The EBI's old SWO URIs before switching over to OBO PURLs",
+        "homepage": "http://www.ebi.ac.uk/swo/version",
+        "name": "Legacy EBI SWO",
+        "uri_format": "http://www.ebi.ac.uk/swo/version/SWO_$1"
       }
     ],
     "publications": [
@@ -66693,22 +68511,30 @@
   },
   "theiler": {
     "appears_in": [
+      "emaps",
       "mmusdv"
     ],
+    "contact": {
+      "email": "Terry.Hayamizu@jax.org",
+      "github": "tfhayamizu",
+      "name": "Terry Hayamizu",
+      "orcid": "0000-0002-0956-8634"
+    },
     "contributor": {
       "email": "cthoyt@gmail.com",
       "github": "cthoyt",
       "name": "Charles Tapley Hoyt",
       "orcid": "0000-0003-4423-4370"
     },
-    "description": "Stages 1-28 of mouse embryo development",
-    "example": "10",
+    "description": "Theiler stages (TS) define mouse development by a set of morphological criteria ([Theiler, 1989](https://doi.org/10.1007/978-3-642-88418-4)). This staging scheme is used because embryos at the same gestational age can have developed at different rates and therefore exhibit different morphological characteristics. Theiler stages may in some cases correspond to a single gestation age, but more often cover a range of ages. (from [https://www.informatics.jax.org/glossary/theiler](https://www.informatics.jax.org/glossary/theiler))",
+    "example": "23",
     "example_decoys": [
       "10e"
     ],
     "example_extras": [
       "10b"
     ],
+    "github_request_issue": 747,
     "homepage": "https://embryology.med.unsw.edu.au/embryology/index.php?title=Mouse_Stages",
     "name": "Theiler Stage",
     "pattern": "^\\d+[a-d]?$",
@@ -66720,12 +68546,28 @@
         "homepage": "https://embryology.med.unsw.edu.au/embryology/index.php?title=Mouse_Stages",
         "name": "Legacy URL at UNSW",
         "uri_format": "https://embryology.med.unsw.edu.au/embryology/index.php?title=Mouse_Stages#Theiler_Stage_$1"
+      },
+      {
+        "code": "legacy2",
+        "description": "Legacy URL at UNSW",
+        "homepage": "http://php.med.unsw.edu.au/embryology/index.php?title=Mouse_Stages",
+        "name": "Legacy URL at UNSW",
+        "uri_format": "http://php.med.unsw.edu.au/embryology/index.php?title=Mouse_Stages#Theiler_Stage_$1"
       }
     ],
+    "references": [
+      "https://www.emouseatlas.org/emap/ema/theiler_stages/StageDefinition/stagedefinition.html"
+    ],
+    "reviewer": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
     "synonyms": [
       "thielerstage"
     ],
-    "uri_format": "http://php.med.unsw.edu.au/embryology/index.php?title=Mouse_Stages#Theiler_Stage_$1"
+    "uri_format": "https://www.emouseatlas.org/emap/ema/DAOAnatomyJSP/anatomy.html?stage=TS$1"
   },
   "thermofisher": {
     "contributor": {
@@ -66849,14 +68691,14 @@
   "tngb": {
     "description": "Cell line collections (Providers)",
     "example": "67035",
-    "homepage": "http://biobanknetwork.telethon.it/",
+    "homepage": "https://biobanknetwork.telethon.it/",
     "mappings": {
       "cellosaurus": "TNGB"
     },
     "name": "Telethon Network of Genetic Biobanks",
     "pattern": "^\\d+$",
     "preferred_prefix": "tngb",
-    "uri_format": "http://biobanknetwork.telethon.it/Sample/View?sampleId=$1"
+    "uri_format": "https://biobanknetwork.telethon.it/Sample/View?sampleId=$1"
   },
   "to": {
     "appears_in": [
@@ -67517,6 +69359,46 @@
     "preferred_prefix": "tsc",
     "uri_format": "https://tetrahymena.vet.cornell.edu/display.php?stockid=$1"
   },
+  "tsrnadisease": {
+    "contact": {
+      "email": "zhenyang@fudan.edu.cn",
+      "name": "Zhen Yang",
+      "orcid": "0000-0002-6782-0316"
+    },
+    "contributor": {
+      "email": "ji.kang@northeastern.edu",
+      "github": "kanghosaeyo",
+      "name": "Kangho Ji",
+      "orcid": "0009-0009-3402-8013"
+    },
+    "description": "Identifiers correspond to curated associations between diseases and tRNA-derived small RNAs (tsRNAs) in the tsRNADisease database.",
+    "example": "TRD00001",
+    "github_request_issue": 1700,
+    "homepage": "http://compgenelab.info/tsRNADisease",
+    "keywords": [
+      "cancer",
+      "disease",
+      "tsrna"
+    ],
+    "name": "tsRNADisease",
+    "pattern": "^TRD\\d{5}$",
+    "preferred_prefix": "tsrnadisease",
+    "publications": [
+      {
+        "doi": "10.1016/j.jgg.2025.08.001",
+        "pubmed": "40812678",
+        "title": "tsRNADisease: a manually curated database of tsRNAs associated with human disease",
+        "year": 2025
+      }
+    ],
+    "reviewer": {
+      "email": "b.gyori@northeastern.edu",
+      "github": "bgyori",
+      "name": "Benjamin M. Gyori",
+      "orcid": "0000-0001-9439-5346"
+    },
+    "uri_format": "http://118.178.132.53/tsRNADisease/detail.php?entry_ID=$1"
+  },
   "ttd.drug": {
     "description": "The Therapeutic Target Database (TTD) is designed to provide information about the known therapeutic protein and nucleic acid targets described in the literature, the targeted disease conditions, the pathway information and the corresponding drugs/ligands directed at each of these targets. Cross-links to other databases allow the access to information about the sequence, 3D structure, function, nomenclature, drug/ligand binding properties, drug usage and effects, and related literature for each target.",
     "example": "D0N5OV",
@@ -67763,7 +69645,7 @@
     ],
     "twitter": "uberanat",
     "uri_format": "http://purl.obolibrary.org/obo/UBERON_$1",
-    "version": "2025-05-28"
+    "version": "2025-08-15"
   },
   "uberon.issue": {
     "contributor": {
@@ -67992,7 +69874,7 @@
       "miriam": "umbbd.enzyme",
       "n2t": "umbbd.enzyme"
     },
-    "name": "EAWAG Biocatalysis/Biodegradation Database",
+    "name": "EAWAG Biocatalysis/Biodegradation Database enzyme",
     "part_of": "umbbd",
     "pattern": "^e\\d+$",
     "preferred_prefix": "umbbd.enzyme",
@@ -68011,7 +69893,7 @@
       "miriam": "umbbd.pathway",
       "n2t": "umbbd.pathway"
     },
-    "name": "EAWAG Biocatalysis/Biodegradation Database",
+    "name": "EAWAG Biocatalysis/Biodegradation Database pathway",
     "part_of": "umbbd",
     "pattern": "^\\w+$",
     "preferred_prefix": "umbbd.pathway",
@@ -68040,7 +69922,7 @@
       "n2t": "umbbd.reaction",
       "wikidata.entity": "Q24188985"
     },
-    "name": "EAWAG Biocatalysis/Biodegradation Database",
+    "name": "EAWAG Biocatalysis/Biodegradation Database reaction",
     "part_of": "umbbd",
     "pattern": "^r\\d+$",
     "preferred_prefix": "umbbd.reaction",
@@ -68059,7 +69941,7 @@
       "miriam": "umbbd.rule",
       "n2t": "umbbd.rule"
     },
-    "name": "EAWAG Biocatalysis/Biodegradation Database",
+    "name": "EAWAG Biocatalysis/Biodegradation Database rule",
     "part_of": "umbbd",
     "pattern": "^bt\\d+$",
     "preferred_prefix": "umbbd.rule",
@@ -68129,6 +70011,7 @@
     "example": "A0118748",
     "homepage": "https://www.nlm.nih.gov/research/umls",
     "name": "Unified Medical Language System Atomic Unique Identifier",
+    "part_of": "umls",
     "pattern": "^A\\d+$",
     "preferred_prefix": "umls.aui",
     "synonyms": [
@@ -68422,7 +70305,7 @@
       "wikidata": "P352"
     },
     "name": "UniProt Protein",
-    "pattern": "^([A-N,R-Z][0-9]([A-Z][A-Z, 0-9][A-Z, 0-9][0-9]){1,2})|([O,P,Q][0-9][A-Z, 0-9][A-Z, 0-9][A-Z, 0-9][0-9])(\\.\\d+)?$",
+    "pattern": "^([A-N,R-Z][0-9]([A-Z][A-Z, 0-9][A-Z, 0-9][0-9]){1,2})|([O,P,Q][0-9][A-Z, 0-9][A-Z, 0-9][A-Z, 0-9][0-9])(\\.\\d+)?(-\\d+)?(#PRO_\\d+)?$",
     "preferred_prefix": "uniprot",
     "providers": [
       {
@@ -68640,10 +70523,12 @@
     "example": "ARBA00000001",
     "github_request_issue": 620,
     "homepage": "https://www.uniprot.org/arba",
+    "logo": "https://www.uniprot.org/uniprot-logo.img.0df091.svg",
     "mappings": {
       "go": "ARBA"
     },
     "name": "Association-Rule-Based Annotator",
+    "part_of": "uniprot",
     "pattern": "^ARBA\\d+$",
     "preferred_prefix": "uniprot.arba",
     "reviewer": {
@@ -68661,6 +70546,7 @@
     "description": "This collection is a subset of UniProtKB that provides a means to reference the proteolytic cleavage products of a precursor protein.",
     "example": "PRO_0000016681",
     "homepage": "https://www.uniprot.org",
+    "logo": "https://www.uniprot.org/uniprot-logo.img.0df091.svg",
     "mappings": {
       "miriam": "uniprot.chain"
     },
@@ -68693,6 +70579,7 @@
       "ols": "uniprotrdfs"
     },
     "name": "Uniprot Core Ontology",
+    "part_of": "uniprot",
     "preferred_prefix": "uniprot.core",
     "uri_format": "http://purl.uniprot.org/core/$1",
     "version": "2025_03"
@@ -68711,6 +70598,7 @@
     "keywords": [
       "ontology"
     ],
+    "logo": "https://www.uniprot.org/uniprot-logo.img.0df091.svg",
     "mappings": {
       "biolink": "SPDI",
       "wikidata": "P11430"
@@ -68729,6 +70617,7 @@
     "description": "The UniProt Knowledgebase (UniProtKB) is a comprehensive resource for protein sequence and functional information with extensive cross-references to more than 120 external databases. This collection is a subset of UniProtKB, and provides a means to reference isoform information.",
     "example": "Q5BJF6-3",
     "homepage": "http://www.uniprot.org/",
+    "logo": "https://www.uniprot.org/uniprot-logo.img.0df091.svg",
     "mappings": {
       "biocontext": "UNIPROT.ISOFORM",
       "biolink": "UNIPROT.ISOFORM",
@@ -68777,10 +70666,16 @@
     "description": "identifier for a scientific journal, in the UniProt database",
     "example": "3546",
     "homepage": "https://www.uniprot.org/journals",
+    "keywords": [
+      "journal",
+      "publication"
+    ],
+    "logo": "https://www.uniprot.org/uniprot-logo.img.0df091.svg",
     "mappings": {
       "wikidata": "P4616"
     },
     "name": "UniProt journal",
+    "part_of": "uniprot",
     "pattern": "^\\d{4}$",
     "preferred_prefix": "uniprot.journal",
     "rdf_uri_format": "http://purl.uniprot.org/journals/$1",
@@ -68795,6 +70690,7 @@
       "classification",
       "ontology"
     ],
+    "logo": "https://www.uniprot.org/uniprot-logo.img.0df091.svg",
     "mappings": {
       "go": "UniProtKB-KW",
       "prefixcommons": "uniprot.kw"
@@ -68834,6 +70730,7 @@
     "keywords": [
       "ontology"
     ],
+    "logo": "https://www.uniprot.org/uniprot-logo.img.0df091.svg",
     "mappings": {
       "go": "UniProtKB-SubCell"
     },
@@ -68859,10 +70756,12 @@
     "example": "BRAF_HUMAN",
     "github_request_issue": 1110,
     "homepage": "https://www.uniprot.org/",
+    "logo": "https://www.uniprot.org/uniprot-logo.img.0df091.svg",
     "mappings": {
       "togoid": "UniprotMnemonic"
     },
     "name": "UniProt",
+    "part_of": "uniprot",
     "pattern": "^[A-Z0-9]{1,10}_[A-Z0-9]{1,5}$",
     "preferred_prefix": "uniprot.mnemonic",
     "publications": [
@@ -68906,6 +70805,7 @@
     "example": "UP000005640",
     "github_request_issue": 604,
     "homepage": "https://www.uniprot.org/proteomes",
+    "logo": "https://www.uniprot.org/uniprot-logo.img.0df091.svg",
     "mappings": {
       "togoid": "UniprotProteome"
     },
@@ -68946,7 +70846,7 @@
       "structural biology"
     ],
     "license": "CC-BY-4.0",
-    "logo": "https://www.uniprot.org/og-uniprot-wide-logo-1200x630.png",
+    "logo": "https://www.uniprot.org/uniprot-logo.img.0df091.svg",
     "name": "UniProt Post-Translational Modification",
     "part_of": "uniprot",
     "pattern": "^PTM-\\d{4}$",
@@ -68985,6 +70885,7 @@
     "description": "The UniProt Tissue List is a controlled vocabulary of terms used to annotate biological tissues. It also contains cross-references to other ontologies where tissue types are specified.",
     "example": "TS-0285",
     "homepage": "https://www.uniprot.org/docs/tisslist.txt",
+    "logo": "https://www.uniprot.org/uniprot-logo.img.0df091.svg",
     "mappings": {
       "biocontext": "TISSUELIST",
       "miriam": "tissuelist",
@@ -69031,12 +70932,14 @@
     "description": "The UniProt Reference Clusters (UniRef) provide clustered sets of sequences from the UniProt Knowledgebase (including isoforms) and selected UniParc records in order to obtain complete coverage of the sequence space at several resolutions while hiding redundant sequences (but not their descriptions) from view.",
     "example": "UniRef90_P00750",
     "homepage": "https://www.uniprot.org/",
+    "logo": "https://www.uniprot.org/uniprot-logo.img.0df091.svg",
     "mappings": {
       "edam": "2346",
       "miriam": "uniref",
       "re3data": "r3d100011518"
     },
     "name": "UniRef",
+    "part_of": "uniprot",
     "pattern": "^UniRef(100|90|50)_([OPQ][0-9][A-Z0-9]{3}[0-9]|[A-NR-Z][0-9]([A-Z][A-Z0-9]{2}[0-9]){1,2}|UPI[A-F0-9]{10})$",
     "preferred_prefix": "uniref",
     "uri_format": "https://www.uniprot.org/uniref/$1"
@@ -69051,10 +70954,12 @@
     "description": "Rules are devised and tested by experienced curators using experimental data from manually annotated entries as templates. UniRule rules can annotate protein properties such as the protein name, function, catalytic activity, pathway membership, and subcellular location, along with sequence specific information, such as the positions of post-translational modifications and active sites.",
     "example": "UR000124451",
     "homepage": "https://www.uniprot.org/unirule/",
+    "logo": "https://www.uniprot.org/uniprot-logo.img.0df091.svg",
     "mappings": {
       "go": "UniRule"
     },
     "name": "UniRule",
+    "part_of": "uniprot",
     "preferred_prefix": "unirule",
     "uri_format": "https://www.uniprot.org/unirule/$1"
   },
@@ -69150,6 +71055,11 @@
     },
     "deprecated": true,
     "homepage": "http://pkuxxj.pku.edu.cn/UNPD/",
+    "keywords": [
+      "compound",
+      "natural product",
+      "small molecule"
+    ],
     "name": "Universal Natural Products Database",
     "preferred_prefix": "unpd",
     "publications": [
@@ -69198,7 +71108,8 @@
       "measurement",
       "obo",
       "ontology",
-      "unit"
+      "unit",
+      "units"
     ],
     "license": "CC-BY-3.0",
     "mappings": {
@@ -69551,7 +71462,7 @@
       "name": "Charles Tapley Hoyt",
       "orcid": "0000-0003-4423-4370"
     },
-    "description": "The National Drug File (NDF) is produced by the U.S. Department of Veterans Affairs, Veterans Health Administration (VHA). NDF is a centrally maintained electronic drug list used by the VHA hospitals and clinics. Facilities use the NDF to check drug interactions, to manage orders, and to send outpatient prescriptions to regional automated mail-out pharmacies. NDF includes information on clinical drugs, drug classes, ingredients and National Drug Code (NDC) Directory codes. ",
+    "description": "The National Drug File (NDF) is produced by the U.S. Department of Veterans Affairs, Veterans Health Administration (VHA). NDF is a centrally maintained electronic drug list used by the VHA hospitals and clinics. Facilities use the NDF to check drug interactions, to manage orders, and to send outpatient prescriptions to regional automated mail-out pharmacies. NDF includes information on clinical drugs, drug classes, ingredients and National Drug Code (NDC) Directory codes.",
     "example": "4019477",
     "homepage": "https://www.nlm.nih.gov/research/umls/sourcereleasedocs/current/VANDF",
     "keywords": [
@@ -69770,7 +71681,7 @@
     "rdf_uri_format": "http://purl.obolibrary.org/obo/VBO_$1",
     "repository": "https://github.com/monarch-initiative/vertebrate-breed-ontology",
     "uri_format": "http://purl.obolibrary.org/obo/VBO_$1",
-    "version": "2025-02-12"
+    "version": "2025-08-12"
   },
   "vbo.issue": {
     "contributor": {
@@ -70909,6 +72820,29 @@
     "preferred_prefix": "void",
     "uri_format": "http://rdfs.org/ns/void#$1"
   },
+  "vs": {
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "This vocabulary was created in the FOAF project, based on experience with FOAF, Dublin Core and other early RDF vocabularies. Deployment experience shows that changing namespace URIs is expensive and unrewarding, so this vocabulary provides terms to support in-place evolution of structured data vocabularies. By indicating status at the level of terms rather than vocabularies, dictionary-style, fine grained improvements become easier. Different organizations and parties can agree or disagree on the status of a vocabulary term; however the status published alongside the term may deserve special attention. Future work could include patterns for citing announcements and decisions, or using SKOS to decentralise the extension of the basic status levels. (from artifact)",
+    "download_rdf": "https://www.w3.org/2003/06/sw-vocab-status/ns",
+    "example": "term_status",
+    "github_request_issue": 1677,
+    "homepage": "https://www.w3.org/2003/06/sw-vocab-status/ns",
+    "keywords": [
+      "semantic web"
+    ],
+    "mappings": {
+      "zazuko": "vs"
+    },
+    "name": "SemWeb Vocab Status ontology",
+    "preferred_prefix": "vs",
+    "rdf_uri_format": "http://www.w3.org/2003/06/sw-vocab-status/ns#$1",
+    "uri_format": "http://www.w3.org/2003/06/sw-vocab-status/ns#$1"
+  },
   "vsao": {
     "contact": {
       "email": "wasila.dahdul@usd.edu",
@@ -71010,7 +72944,7 @@
       "email": "albertgoldfain@gmail.com",
       "name": "Albert Goldfain"
     },
-    "description": "The Vital Sign Ontology (VSO) is an extension of the Ontology for General Medical Science (OGMS). VSO covers the four consensus human vital signs: blood pressure, body temperature, respiration rate, pulse rate. VSO provides also a controlled structured vocabulary for describing vital signs measurement data, the various processes of measuring vital signs, and the various devices and anatomical entities participating in such measurements. ",
+    "description": "The Vital Sign Ontology (VSO) is an extension of the Ontology for General Medical Science (OGMS). VSO covers the four consensus human vital signs: blood pressure, body temperature, respiration rate, pulse rate. VSO provides also a controlled structured vocabulary for describing vital signs measurement data, the various processes of measuring vital signs, and the various devices and anatomical entities participating in such measurements.",
     "download_owl": "http://aber-owl.net/media/ontologies/VSO/1/vso.owl",
     "example": "0000041",
     "homepage": "https://bioportal.bioontology.org/ontologies/VSO",
@@ -71109,7 +73043,7 @@
     "rdf_uri_format": "http://purl.obolibrary.org/obo/VT_$1",
     "repository": "https://github.com/AnimalGenome/vertebrate-trait-ontology",
     "uri_format": "http://purl.obolibrary.org/obo/VT_$1",
-    "version": "2025-07-15"
+    "version": "2025-09-09"
   },
   "vto": {
     "contact": {
@@ -71250,7 +73184,7 @@
       "WBbt"
     ],
     "uri_format": "http://purl.obolibrary.org/obo/WBbt_$1",
-    "version": "2025-03-26"
+    "version": "2025-08-19"
   },
   "wbls": {
     "contact": {
@@ -71315,7 +73249,7 @@
       "WBls"
     ],
     "uri_format": "http://purl.obolibrary.org/obo/WBls_$1",
-    "version": "2025-04-01"
+    "version": "2025-08-12"
   },
   "wbphenotype": {
     "contact": {
@@ -71380,7 +73314,7 @@
       "WBPhenotype"
     ],
     "uri_format": "http://purl.obolibrary.org/obo/WBPhenotype_$1",
-    "version": "2025-04-01"
+    "version": "2025-08-12"
   },
   "wdr": {
     "contributor": {
@@ -71562,7 +73496,7 @@
       "name": "Charles Tapley Hoyt",
       "orcid": "0000-0003-4423-4370"
     },
-    "description": "Wikidata is a free and open knowledge base that can be read and edited by both humans and machines.\nWikidata acts as central storage for the structured data of its Wikimedia sister projects including Wikipedia, Wikivoyage, Wiktionary, Wikisource, and others. ",
+    "description": "Wikidata is a free and open knowledge base that can be read and edited by both humans and machines.\nWikidata acts as central storage for the structured data of its Wikimedia sister projects including Wikipedia, Wikivoyage, Wiktionary, Wikisource, and others.",
     "example": "P4355",
     "homepage": "https://www.wikidata.org",
     "license": "CC0-1.0",
@@ -71741,6 +73675,7 @@
     },
     "mastodon": "wikipathways@fosstodon.org",
     "name": "WikiPathways Ontology",
+    "part_of": "wikipathways",
     "preferred_prefix": "wikipathways.vocab",
     "references": [
       "https://github.com/biopragmatics/bioregistry/issues/818"
@@ -72217,9 +74152,32 @@
       "wikidata": "P1053"
     },
     "name": "ResearcherID",
+    "part_of": "wos",
     "pattern": "^[A-Z]{1,3}-\\d{4}-(19|20)\\d\\d$",
     "preferred_prefix": "wos.researcher",
     "uri_format": "https://www.webofscience.com/wos/author/record/$1"
+  },
+  "wot": {
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "he WOT, or Web Of Trust, schema is designed to facilitate the use of Public Key Cryptography tools such as PGP or GPG to sign RDF documents and document these signatures.",
+    "example": "EncryptedDocument",
+    "homepage": "http://xmlns.com/wot/0.1/",
+    "keywords": [
+      "quality",
+      "security"
+    ],
+    "mappings": {
+      "lov": "wot"
+    },
+    "name": "XML Web of Trust Ontology",
+    "preferred_prefix": "wot",
+    "rdf_uri_format": "http://xmlns.com/wot/0.1/$1",
+    "uri_format": "http://xmlns.com/wot/0.1/$1"
   },
   "wwf.ecoregion": {
     "comment": "ENVO includes xrefs to this resource. See EnvironmentOntology/envo#658",
@@ -72387,7 +74345,7 @@
     "repository": "https://github.com/rat-genome-database/XCO-experimental-condition-ontology",
     "twitter": "ratgenome",
     "uri_format": "http://purl.obolibrary.org/obo/XCO_$1",
-    "version": "4.209"
+    "version": "4.213"
   },
   "xenbase": {
     "contact": {
@@ -73256,7 +75214,7 @@
       "ZFA_RETIRED"
     ],
     "uri_format": "http://purl.obolibrary.org/obo/ZFA_$1",
-    "version": "2025-01-28"
+    "version": "2025-09-05"
   },
   "zfin": {
     "contact": {

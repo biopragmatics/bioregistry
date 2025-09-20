@@ -14,6 +14,12 @@ Similarly, downstream users of the Bioregistry often use the
 [`curies`](https://github.com/cthoyt/curies) package. See its usages with
 [this search](https://github.com/search?q=%22import+curies%22+OR+%22from+curies+import%22+-user%3Acthoyt+-user%3Asorgerlab+-user%3Abiopragmatics+-is%3Afork+-user%3Apyobo+-user%3Apybel+-user%3Agyorilab+-repo%3ANCATS-Gamma%2Frobokop+-repo%3Anutanix%2Fcurie+language%3APython&type=code&p=4&l=Python).
 
+## Summary
+
+<img src="https://docs.google.com/drawings/d/e/2PACX-1vQmRTV8DxPfj0UL0i1dgkiFTgnhvI3mRQxt-sekL5tWCc8d4DLthv-48oBxXRisCdGUluovp4CXcEgN/pub?w=1020&amp;h=797">
+
+## Details
+
 {% for entry in site.data.usages %}
 
 ### {{ entry.name }}{% if entry.logo %}<img src="{{ entry.logo }}" style="margin-left: 5px; max-height: 35px;" />{% endif %}

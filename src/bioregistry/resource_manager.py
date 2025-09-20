@@ -5,17 +5,15 @@ from __future__ import annotations
 import logging
 import typing
 from collections import Counter, defaultdict
-from collections.abc import Iterable, Mapping, Sequence
+from collections.abc import Callable, Iterable, Mapping, Sequence
 from dataclasses import dataclass
 from functools import cache
 from pathlib import Path
 from typing import (
     Any,
-    Callable,
     Generic,
     Literal,
     TypeVar,
-    Union,
     cast,
     overload,
 )
@@ -69,7 +67,7 @@ __all__ = [
 
 logger = logging.getLogger(__name__)
 
-X = TypeVar("X", bound=Union[int, str])
+X = TypeVar("X", bound=int | str)
 
 
 @dataclass
@@ -160,7 +158,7 @@ class Manager:
 
         if registry is None:
             self.registry = dict(_registry_from_path(BIOREGISTRY_PATH))
-        elif isinstance(registry, (str, Path)):
+        elif isinstance(registry, str | Path):
             self.registry = dict(_registry_from_path(registry))
         else:
             self.registry = dict(registry)
@@ -168,21 +166,21 @@ class Manager:
 
         if metaregistry is None:
             self.metaregistry = dict(_read_metaregistry(METAREGISTRY_PATH))
-        elif isinstance(metaregistry, (str, Path)):
+        elif isinstance(metaregistry, str | Path):
             self.metaregistry = dict(_read_metaregistry(metaregistry))
         else:
             self.metaregistry = dict(metaregistry)
 
         if collections is None:
             self.collections = dict(_collections_from_path(COLLECTIONS_PATH))
-        elif isinstance(collections, (str, Path)):
+        elif isinstance(collections, str | Path):
             self.collections = dict(_collections_from_path(collections))
         else:
             self.collections = dict(collections)
 
         if contexts is None:
             self.contexts = dict(_contexts_from_path(CONTEXTS_PATH))
-        elif isinstance(contexts, (str, Path)):
+        elif isinstance(contexts, str | Path):
             self.contexts = dict(_contexts_from_path(contexts))
         else:
             self.contexts = dict(contexts)
@@ -942,6 +940,18 @@ class Manager:
         if entry is None:
             return None
         return entry.get_keywords()
+
+    def get_keyword_to_resources(self) -> dict[str, list[Resource]]:
+        """Get a dictionary from keywords to resources."""
+        keyword_to_resource = defaultdict(list)
+        for resource in manager.registry.values():
+            for keyword in resource.get_keywords():
+                keyword_to_resource[keyword].append(resource)
+        return dict(keyword_to_resource)
+
+    def get_resources_with_keyword(self, keyword: str) -> list[Resource]:
+        """Get resources with the given keyword."""
+        return self.get_keyword_to_resources().get(keyword, [])
 
     def get_example(self, prefix: str) -> str | None:
         """Get an example identifier, if it's available."""

@@ -12,6 +12,7 @@
                         <i class="fas fa-angle-right"></i> {{ entry.name }}</h5>
                 </div>
                 <div class="col-4 text-right">
+                    <div class="d-flex flex-row-reverse">
                     <div class="dropdown">
                         <button class="btn btn-sm btn-outline-dark dropdown-toggle" type="button"
                                 id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
@@ -26,6 +27,11 @@
                                 </a>
                             {% endfor %}
                         </div>
+                    </div>
+                    <a class="btn btn-sm btn-outline-dark" style="margin-right: 0.5em"
+                       href="https://github.com/biopragmatics/bioregistry/issues/new?template=add-collection-prefix.yml&collection={{ entry.identifier}}&title=Add+prefix+X+to+collection+{{ entry.identifier}}">
+                        Suggest
+                    </a>
                     </div>
                 </div>
             </div>

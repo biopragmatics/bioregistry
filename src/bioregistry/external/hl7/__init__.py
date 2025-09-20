@@ -39,7 +39,7 @@ def get_hl7(*, force_download: bool = False) -> dict[str, dict[str, str]]:
         reader = csv.reader(file)
         header = next(reader)
         for row in reader:
-            row_dict = dict(zip(header, row))
+            row_dict = dict(zip(header, row, strict=False))
             record = {COLUMNS[k]: v for k, v in row_dict.items() if k in COLUMNS and v}
             rv[record.pop("prefix")] = record
     return rv

@@ -22,8 +22,12 @@ def standardize_license(license_str: str | None) -> str | None:
     license_str = license_str.strip().rstrip("/")
     if not license_str:
         return None
+    if license_str in UNSPECIFIED:
+        return None
     return LICENSES.get(license_str, license_str)
 
+
+UNSPECIFIED = {"https://creativecommons.org/licenses/unspecified"}
 
 #: https://creativecommons.org/licenses/by/3.0/
 CC_BY_4 = "CC BY 4.0"
@@ -175,6 +179,7 @@ REVERSE_LICENSES: Mapping[str | None, list[str]] = {
         "https://creativecommons.org/publicdomain/zero/1.0/",
         "https://spdx.org/licenses/CC0-1.0",
         "https://spdx.org/licenses/CC0-1.0.html",
+        "https://creativecommons.org/licenses/CC0",
     ],
     CC_MARK: [
         "http://creativecommons.org/publicdomain/mark/1.0",

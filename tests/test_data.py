@@ -126,12 +126,20 @@ class TestRegistry(unittest.TestCase):
             # f"{x.casefold()} ontology",
         )
 
-    def test_names(self):
+    def test_names(self) -> None:
         """Test that all entries have a name."""
+        name_to_prefix = defaultdict(set)
         for prefix, entry in self.registry.items():
             with self.subTest(prefix=prefix):
                 name = entry.get_name()
+                name_to_prefix[name].add(prefix)
                 self.assertIsNotNone(name, msg=f"{prefix} is missing a name")
+                if entry.name:
+                    self.assertEqual(
+                        entry.name.strip(),
+                        entry.name,
+                        msg="name should not have leading nor trailing whitespace",
+                    )
 
                 for ss in self._construct_substrings(prefix):
                     self.assertNotIn(
@@ -155,6 +163,12 @@ class TestRegistry(unittest.TestCase):
                             msg=f"Redundant alt prefix {alt_prefix} appears in name",
                         )
 
+        name_to_prefix = {
+            name: prefixes for name, prefixes in name_to_prefix.items() if len(prefixes) > 1
+        }
+        if name_to_prefix:
+            self.fail(msg=f"There are duplicate names:\n{name_to_prefix}")
+
     def test_name_expansions(self):
         """Test that default names are not capital acronyms."""
         for prefix in self.registry:
@@ -164,6 +178,8 @@ class TestRegistry(unittest.TestCase):
             if entry.name:
                 continue
             name = bioregistry.get_name(prefix)
+            if name is None:
+                continue  # checking that there's a name happens in test_names()
             if prefix == name.lower() and name.upper() == name:
                 with self.subTest(prefix=prefix):
                     self.fail(msg=f"{prefix} acronym ({name}) is not expanded")
@@ -192,7 +208,7 @@ class TestRegistry(unittest.TestCase):
 
     def test_has_description(self):
         """Test that all non-deprecated entries have a description."""
-        for prefix in self.registry:
+        for prefix, resource in self.registry.items():
             if bioregistry.is_deprecated(prefix):
                 continue
             with self.subTest(prefix=prefix, name=bioregistry.get_name(prefix)):
@@ -200,6 +216,12 @@ class TestRegistry(unittest.TestCase):
                 self.assertIsNotNone(desc)
                 self.assertNotEqual("", desc.strip())
                 self.assertNotIn("\r", desc)
+                if resource.description:
+                    self.assertEqual(
+                        resource.description.strip(),
+                        resource.description,
+                        msg="description should not have leading nor trailing whitespace",
+                    )
 
     def test_has_homepage(self):
         """Test that all non-deprecated entries have a homepage."""
@@ -254,6 +276,8 @@ class TestRegistry(unittest.TestCase):
             if "name" in entry:
                 continue
             name = bioregistry.get_name(prefix)
+            if name is None:
+                continue  # the other test checks this
 
             try:
                 _, rest = name.rstrip(")").rsplit("(", 1)
@@ -559,6 +583,10 @@ class TestRegistry(unittest.TestCase):
                 #     resource.part_of, self.registry, msg="super-resource is not a valid prefix"
                 # )
 
+                self.assertNotEqual(
+                    resource.has_canonical, resource.part_of, msg="don't double annotate these"
+                )
+
     def test_provides(self):
         """Make sure all provides relations point to valid prefixes."""
         for prefix, resource in self.registry.items():
@@ -726,6 +754,14 @@ class TestRegistry(unittest.TestCase):
             for provider in resource.providers:
                 with self.subTest(prefix=prefix, code=provider.code):
                     self.assertNotEqual(provider.code, prefix)
+                    self.assertNotEqual(provider.code, "", msg="code should not be an empty string")
+                    self.assertNotEqual(
+                        provider.homepage, "", msg="homepage should not be an empty string"
+                    )
+                    self.assertNotEqual(
+                        provider.description, "", msg="desc. should not be an empty string"
+                    )
+                    self.assertNotEqual(provider.name, "", msg="name should not be an empty string")
                     self.assertNotIn(
                         provider.code,
                         set(self.metaregistry),
@@ -737,7 +773,7 @@ class TestRegistry(unittest.TestCase):
                         provider.code,
                         msg="Provider codes must be lowercase. Ideally, they should be simple and memorable",
                     )
-                    # self.assertIn("$1", provider.uri_format)
+                    self.assertIn("$1", provider.uri_format)
                     self.assertNotIn(
                         "$2",
                         provider.uri_format,
@@ -893,8 +929,9 @@ class TestRegistry(unittest.TestCase):
                 self.assertIsNotNone(
                     resource.contact.name, msg=f"Contact for {prefix} is missing a label"
                 )
-                self.assertIsNotNone(
-                    resource.contact.email, msg=f"Contact for {prefix} is missing an email"
+                self.assertFalse(
+                    resource.contact.email is None and resource.contact.github is None,
+                    msg=f"Contact for {prefix} needs at least an email or GitHub",
                 )
                 self.assert_contact_metadata(resource.contact)
 
@@ -972,7 +1009,7 @@ class TestRegistry(unittest.TestCase):
             with self.subTest(prefix=prefix):
                 self.assertTrue(
                     prefix in set(self.registry),
-                    msg=f"mismatches.json has invalid prefix: {prefix}",
+                    msg=f"curated_mappings.sssom.tsv has invalid prefix: {prefix}",
                 )
 
     def test_request_issue(self):
