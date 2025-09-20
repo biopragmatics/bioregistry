@@ -138,6 +138,7 @@ def normalize_curie(
     'pdb:1234'
 
     Fix commonly mistaken prefix
+
     >>> normalize_curie("pubchem:1234")
     'pubchem.compound:1234'
 
@@ -357,6 +358,7 @@ def parse_curie(
     ReferenceTuple('pdb', '1234')
 
     Address banana problem
+
     >>> parse_curie("go:GO:1234")
     ReferenceTuple('go', '1234')
     >>> parse_curie("go:go:1234")
@@ -365,6 +367,7 @@ def parse_curie(
     ReferenceTuple('go', '1234')
 
     Address banana problem with OBO banana
+
     >>> parse_curie("fbbt:FBbt:1234")
     ReferenceTuple('fbbt', '1234')
     >>> parse_curie("fbbt:fbbt:1234")
@@ -373,24 +376,29 @@ def parse_curie(
     ReferenceTuple('fbbt', '1234')
 
     Address banana problem with explit banana
+
     >>> parse_curie("go.ref:GO_REF:1234")
     ReferenceTuple('go.ref', '1234')
     >>> parse_curie("go.ref:1234")
     ReferenceTuple('go.ref', '1234')
 
     Parse OBO PURL curies
+
     >>> parse_curie("GO_1234", sep="_")
     ReferenceTuple('go', '1234')
 
-    Banana with no peel:
+    Banana with no peel
+
     >>> parse_curie("omim.ps:PS12345")
     ReferenceTuple('omim.ps', '12345')
 
     Use preferred (available)
+
     >>> parse_curie("GO_1234", sep="_", use_preferred=True)
     ReferenceTuple('GO', '1234')
 
     Use preferred (unavailable)
+
     >>> parse_curie("pdb:1234", use_preferred=True)
     ReferenceTuple('pdb', '1234')
     """
