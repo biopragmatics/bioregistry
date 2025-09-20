@@ -19,7 +19,10 @@ def main() -> None:
             or resource.no_own_terms
         ):
             continue
-        resource.uri_format = resource.get_rdf_uri_format()
+        if resource.prefix == "interpro":
+            continue
+        # What are the special cases, like SWO?
+        resource.rdf_uri_format = resource.uri_format = resource.get_rdf_uri_format()
     manager.write_registry()
 
 
