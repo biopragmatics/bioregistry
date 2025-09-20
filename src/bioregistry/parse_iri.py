@@ -216,12 +216,12 @@ def normalize_parsed_curie(
 
     :param prefix: The prefix in the CURIE
     :param identifier: The identifier in the CURIE
-    :param use_preferred:
-        If set to true, uses the "preferred prefix", if available, instead
-        of the canonicalized Bioregistry prefix.
+    :param use_preferred: If set to true, uses the "preferred prefix", if available,
+        instead of the canonicalized Bioregistry prefix.
     :param strict: If true, raises an error if the prefix can't be standardized
-    :return: A normalized prefix/identifier pair, conforming to Bioregistry standards. This means no redundant
-        prefixes or bananas, all lowercase.
+
+    :returns: A normalized prefix/identifier pair, conforming to Bioregistry standards.
+        This means no redundant prefixes or bananas, all lowercase.
     """
     if strict:
         return manager.normalize_parsed_curie(
@@ -258,15 +258,15 @@ def normalize_prefix(
 ) -> str | None:
     """Get the normalized prefix, or return None if not registered.
 
-    :param prefix: The prefix to normalize, which could come from Bioregistry,
-        OBO Foundry, OLS, or any of the curated synonyms in the Bioregistry
+    :param prefix: The prefix to normalize, which could come from Bioregistry, OBO
+        Foundry, OLS, or any of the curated synonyms in the Bioregistry
     :param strict: If true and the prefix could not be looked up, raises an error
-    :param use_preferred:
-        If set to true, uses the "preferred prefix", if available, instead
-        of the canonicalized Bioregistry prefix.
-    :returns: The canonical Bioregistry prefix, it could be looked up. This
-        will usually take precedence: MIRIAM, OBO Foundry / OLS, Custom except
-        in a few cases, such as NCBITaxon.
+    :param use_preferred: If set to true, uses the "preferred prefix", if available,
+        instead of the canonicalized Bioregistry prefix.
+
+    :returns: The canonical Bioregistry prefix, it could be looked up. This will usually
+        take precedence: MIRIAM, OBO Foundry / OLS, Custom except in a few cases, such
+        as NCBITaxon.
 
     This works for synonym prefixes, like:
 
@@ -338,19 +338,20 @@ def parse_curie(
     """Parse a CURIE, normalizing the prefix and identifier if necessary.
 
     :param curie: A compact URI (CURIE) in the form of <prefix:identifier>
-    :param sep:
-        The separator for the CURIE. Defaults to the colon ":" however the slash
-        "/" is sometimes used in Identifiers.org and the underscore "_" is used for OBO PURLs.
-    :param use_preferred:
-        If set to true, uses the "preferred prefix", if available, instead
-        of the canonicalized Bioregistry prefix.
+    :param sep: The separator for the CURIE. Defaults to the colon ":" however the slash
+        "/" is sometimes used in Identifiers.org and the underscore "_" is used for OBO
+        PURLs.
+    :param use_preferred: If set to true, uses the "preferred prefix", if available,
+        instead of the canonicalized Bioregistry prefix.
     :param on_failure_return_type: whether to return a single None or a pair of None's
+
     :returns: A tuple of the prefix, identifier, if parsable
+
     :raises TypeError: If an invalid on_failure_return_type is given
 
-    The algorithm for parsing a CURIE is very simple: it splits the string on the leftmost occurrence
-    of the separator (usually a colon ":" unless specified otherwise). The left part is the prefix,
-    and the right part is the identifier.
+    The algorithm for parsing a CURIE is very simple: it splits the string on the
+    leftmost occurrence of the separator (usually a colon ":" unless specified
+    otherwise). The left part is the prefix, and the right part is the identifier.
 
     >>> parse_curie("pdb:1234")
     ReferenceTuple('pdb', '1234')
