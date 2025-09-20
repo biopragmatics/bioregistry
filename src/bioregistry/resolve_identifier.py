@@ -477,12 +477,13 @@ def get_iri(
         The default priority list is:
 
         1. Custom prefix map (``custom``)
-        1. First-party IRI (``default``)
-        2. Identifiers.org / MIRIAM (``miriam``)
-        3. Ontology Lookup Service (``ols``)
-        4. OBO PURL (``obofoundry``)
-        5. Name-to-Thing (``n2t``)
-        6. BioPortal (``bioportal``)
+        2. First-party IRI (``default``)
+        3. Identifiers.org / MIRIAM (``miriam``)
+        4. Ontology Lookup Service (``ols``)
+        5. OBO PURL (``obofoundry``)
+        6. Name-to-Thing (``n2t``)
+        7. BioPortal (``bioportal``)
+
     :param prefix_map: A custom prefix map to go with the ``custom`` key in the priority list
     :param use_bioregistry_io: Should the bioregistry resolution IRI be used? Defaults to true.
     :param provider: The provider code to use for a custom provider
