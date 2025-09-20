@@ -82,6 +82,45 @@ URI_IRI_INFO = (
 
 X = TypeVar("X")
 
+#: A controlled vocabulary of domains.
+Domain: TypeAlias = Literal[
+    "chemical",
+    "tissue",
+    "reaction",
+    "gene",
+    "cell and cell line",
+    "cellular component",
+    "model",
+    "organization",
+    "clinical trial",
+    "pathway",
+    "protein family",
+    "gene family",
+    "disease",
+    "vaccine",
+    "multiple",
+    "variant",
+    "publication",
+    "protein complex",
+    "mirna",
+    "taxonomy",
+    "project",
+    "grant",
+    "classification",
+    "protein",
+    "study",
+    "relationship",
+    "relationship type",
+    "antibody",
+    "schema",
+    "license",
+    "semantic web",
+    "geography",
+    "ptm",
+    "bibliometrics",
+    "genetic code",
+]
+
 
 def _uri_sort(uri: str) -> tuple[str, str]:
     try:
@@ -290,6 +329,14 @@ class Publication(BaseModel):
             or (self.doi is not None and self.doi == other.doi)
             or (self.pmc is not None and self.pmc == other.pmc)
         )
+
+    def _sort_key(self) -> tuple[int, str, str]:
+        return -(self.year or 0), (self.title or "").casefold(), self.get_url()
+
+    def __lt__(self, other: Publication) -> bool:
+        if not isinstance(other, Publication):
+            raise TypeError
+        return self._sort_key() < other._sort_key()
 
 
 #: The status of a resource.
@@ -554,6 +601,11 @@ class Resource(BaseModel):
     )
     keywords: list[str] | None = Field(
         default=None, description="A list of keywords for the resource"
+    )
+    domain: Domain | None = Field(
+        default=None,
+        examples=cast(list[str], typing.get_args(Domain)),
+        description="A high-level semantic type of the entities in the semantic space.",
     )
     references: list[str] | None = Field(
         default=None,
@@ -1008,7 +1060,9 @@ class Resource(BaseModel):
             return None
         # if explicitly annotated, use it. Otherwise, the capitalized version
         # of the OBO Foundry ID is the preferred prefix (e.g., for GO)
-        return self.obofoundry.get("preferredPrefix", self.obofoundry["prefix"].upper())
+        return cast(
+            str, self.obofoundry.get("preferredPrefix") or self.obofoundry["prefix"].upper()
+        )
 
     def get_wikidata_entity(self) -> str | None:
         """Get the wikidata database mapping."""
@@ -1239,6 +1293,13 @@ class Resource(BaseModel):
             "homepage",
             metaprefixes,
         )
+
+    def get_domain(self) -> str | None:
+        """Get the domain."""
+        if self.domain:
+            return self.domain
+        # TODO map in OBO Foundry domain
+        return None
 
     def get_keywords(self) -> list[str]:
         """Get keywords."""

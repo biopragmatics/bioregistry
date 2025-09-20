@@ -126,11 +126,13 @@ class TestRegistry(unittest.TestCase):
             # f"{x.casefold()} ontology",
         )
 
-    def test_names(self):
+    def test_names(self) -> None:
         """Test that all entries have a name."""
+        name_to_prefix = defaultdict(set)
         for prefix, entry in self.registry.items():
             with self.subTest(prefix=prefix):
                 name = entry.get_name()
+                name_to_prefix[name].add(prefix)
                 self.assertIsNotNone(name, msg=f"{prefix} is missing a name")
                 if entry.name:
                     self.assertEqual(
@@ -161,6 +163,12 @@ class TestRegistry(unittest.TestCase):
                             msg=f"Redundant alt prefix {alt_prefix} appears in name",
                         )
 
+        name_to_prefix = {
+            name: prefixes for name, prefixes in name_to_prefix.items() if len(prefixes) > 1
+        }
+        if name_to_prefix:
+            self.fail(msg=f"There are duplicate names:\n{name_to_prefix}")
+
     def test_name_expansions(self):
         """Test that default names are not capital acronyms."""
         for prefix in self.registry:
@@ -170,6 +178,8 @@ class TestRegistry(unittest.TestCase):
             if entry.name:
                 continue
             name = bioregistry.get_name(prefix)
+            if name is None:
+                continue  # checking that there's a name happens in test_names()
             if prefix == name.lower() and name.upper() == name:
                 with self.subTest(prefix=prefix):
                     self.fail(msg=f"{prefix} acronym ({name}) is not expanded")
@@ -266,6 +276,8 @@ class TestRegistry(unittest.TestCase):
             if "name" in entry:
                 continue
             name = bioregistry.get_name(prefix)
+            if name is None:
+                continue  # the other test checks this
 
             try:
                 _, rest = name.rstrip(")").rsplit("(", 1)
@@ -570,6 +582,10 @@ class TestRegistry(unittest.TestCase):
                 # self.assertIn(
                 #     resource.part_of, self.registry, msg="super-resource is not a valid prefix"
                 # )
+
+                self.assertNotEqual(
+                    resource.has_canonical, resource.part_of, msg="don't double annotate these"
+                )
 
     def test_provides(self):
         """Make sure all provides relations point to valid prefixes."""
@@ -993,7 +1009,7 @@ class TestRegistry(unittest.TestCase):
             with self.subTest(prefix=prefix):
                 self.assertTrue(
                     prefix in set(self.registry),
-                    msg=f"mismatches.json has invalid prefix: {prefix}",
+                    msg=f"curated_mappings.sssom.tsv has invalid prefix: {prefix}",
                 )
 
     def test_request_issue(self):

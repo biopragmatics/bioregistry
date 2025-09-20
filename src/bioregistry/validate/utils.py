@@ -5,7 +5,7 @@ from __future__ import annotations
 import json
 from collections.abc import Callable, Mapping
 from pathlib import Path
-from typing import TYPE_CHECKING, Literal
+from typing import TYPE_CHECKING, Any, Literal
 
 import click
 from pydantic import BaseModel
@@ -19,6 +19,7 @@ __all__ = [
     "click_write_messages",
     "validate_jsonld",
     "validate_ttl",
+    "validate_virtuoso",
 ]
 
 
@@ -139,6 +140,13 @@ def validate_ttl(url: str, **kwargs: Unpack[ValidateKwargs]) -> list[Message]:
             uri_prefix = uri_prefix.strip().rstrip(".").strip().strip("<>")
             inputs.append((curie_prefix, uri_prefix, line_number))
 
+    return _get_all_messages(inputs, **kwargs)
+
+
+def validate_virtuoso(url: str, **kwargs: Any) -> list[Message]:
+    """Validate a Virtuoso SPARQL endpoint's prefix map."""
+    prefix_map = get_virtuoso_prefix_map(url)
+    inputs: list[tuple[str, str, int | None]] = [(k, v, None) for k, v in prefix_map.items()]
     return _get_all_messages(inputs, **kwargs)
 
 
@@ -274,3 +282,30 @@ def _get_checker(
             return bioregistry.normalize_prefix(pp, use_preferred=use_preferred)
 
     return _check
+
+
+def get_virtuoso_prefix_map(url: str) -> dict[str, str]:
+    """Get the internal prefix map from a Virtuoso service.
+
+    :param url: The URL for the SPARQL endpoint, for example:
+
+        - https://nfdi4culture.de/sparql
+        - https://dbpedia.org/sparql
+
+    :returns: The prefix map returned by the Virtuoso service.
+    """
+    from bs4 import Tag
+    from pystow.utils import get_soup
+
+    if "nsdecl" not in url:
+        url = url + "?nsdecl"
+
+    soup = get_soup(url)
+    table_body_tag = soup.find("tbody")
+    if not isinstance(table_body_tag, Tag):
+        raise ValueError(
+            f"could not find table body tag, are you sure this is a Virtuoso "
+            f"SPARQL endpoint? Error from {url}"
+        )
+    rv = {left.text: right.text for left, right in table_body_tag.find_all("tr")}
+    return rv

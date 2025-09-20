@@ -26,7 +26,7 @@ class TestTSV(unittest.TestCase):
             self.assertTrue(is_valid_curie(row[column]))
 
         # Special handling for metaregistry CURIEs
-        object_prefix, object_id = row["object_id"].split(":", maxsplit=1)
+        object_prefix, _object_id = row["object_id"].split(":", maxsplit=1)
         self.assertIn(object_prefix, self.metaregistry)
 
         # Make sure we don't have quotes around comments
