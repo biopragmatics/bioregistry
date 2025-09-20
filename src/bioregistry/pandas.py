@@ -291,6 +291,7 @@ def validate_identifiers(
     elif prefix is not None:
         return _help_validate_identifiers(df, column, prefix)
     else:  # prefix_column is not None
+        prefix_column = _norm_column(df, prefix_column)
         prefixes = df[prefix_column].unique()
         if 0 == len(prefixes):
             raise ValueError(f"No prefixes found in column {prefix_column}")
@@ -341,7 +342,7 @@ def _help_validate_identifiers(df: pd.DataFrame, column: str, prefix: str) -> pd
         )
     pattern_re = re.compile(pattern)
     return cast(
-        pd.Series[bool],
+        "pd.Series[bool]",
         df[column].map(
             lambda s: bool(pattern_re.fullmatch(s)),
             na_action="ignore",
