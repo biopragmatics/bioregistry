@@ -1837,8 +1837,11 @@ class Resource(BaseModel):
         """Get the Identifiers.org URI format string for this entry, if possible.
 
         :param legacy_protocol: If true, uses HTTP
-        :param legacy_delimiter: If true, uses a slash delimiter for CURIEs instead of colon
-        :param legacy_banana: If true, uses a slash delimiter for CURIEs and a redundant namespace in prefix
+        :param legacy_delimiter: If true, uses a slash delimiter for CURIEs instead of
+            colon
+        :param legacy_banana: If true, uses a slash delimiter for CURIEs and a redundant
+            namespace in prefix
+
         :returns: The Identifiers.org/MIRIAM URL format string, if available.
 
         >>> from bioregistry import get_resource
@@ -1895,7 +1898,10 @@ class Resource(BaseModel):
 
         :returns: The OLS URI prefix, if available.
 
-        .. warning:: This doesn't have a normal form, so it only works for OBO Foundry at the moment.
+        .. warning::
+
+            This doesn't have a normal form, so it only works for OBO Foundry at the
+            moment.
 
         >>> from bioregistry import get_resource
         >>> get_resource("go").get_ols_uri_prefix()  # standard
@@ -1918,7 +1924,10 @@ class Resource(BaseModel):
 
         :returns: The OLS format string, if available.
 
-        .. warning:: This doesn't have a normal form, so it only works for OBO Foundry at the moment.
+        .. warning::
+
+            This doesn't have a normal form, so it only works for OBO Foundry at the
+            moment.
 
         >>> from bioregistry import get_resource
         >>> get_resource("go").get_ols_uri_format()  # standard
@@ -1993,17 +2002,18 @@ class Resource(BaseModel):
     def get_priority_prefix(self, priority: None | str | Sequence[str] = None) -> str:
         """Get a prioritized prefix.
 
-        :param priority:
-            A metaprefix or list of metaprefixes used to choose a prioritized prefix.
-            Some special values that are not themselves metaprefixes are allowed from
-            the following list:
+        :param priority: A metaprefix or list of metaprefixes used to choose a
+            prioritized prefix. Some special values that are not themselves metaprefixes
+            are allowed from the following list:
 
             - "default": corresponds to the bioregistry prefix
-            - "bioregistry.upper": an uppercase transform of the canonical bioregistry prefix
-            - "preferred": a preferred prefix, typically includes stylization in capitalization
+            - "bioregistry.upper": an uppercase transform of the canonical bioregistry
+              prefix
+            - "preferred": a preferred prefix, typically includes stylization in
+              capitalization
             - "obofoundry.preferred": the preferred prefix annotated in OBO Foundry
-        :returns:
-            The prioritized prefix for this record
+
+        :returns: The prioritized prefix for this record
         """
         if priority is None:
             return self.prefix
