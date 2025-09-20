@@ -1627,7 +1627,7 @@ class Resource(BaseModel):
     def get_mastodon_url(self) -> str | None:
         """Get the Mastodon URL for the resource.
 
-        :return: The URL link for the mastodon account, if available
+        :returns: The URL link for the mastodon account, if available
 
         >>> from bioregistry import get_resource
         >>> get_resource("go").get_mastodon_url()
@@ -1768,7 +1768,8 @@ class Resource(BaseModel):
     def get_identifiers_org_prefix(self) -> str | None:
         """Get the MIRIAM/Identifiers.org prefix, if available.
 
-        :returns: The Identifiers.org/MIRIAM prefix corresponding to the prefix, if mappable.
+        :returns: The Identifiers.org/MIRIAM prefix corresponding to the prefix, if
+            mappable.
 
         >>> from bioregistry import get_resource
         >>> get_resource("chebi").get_identifiers_org_prefix()
@@ -1792,8 +1793,11 @@ class Resource(BaseModel):
         """Get the Identifiers.org URI prefix for this entry, if possible.
 
         :param legacy_protocol: If true, uses HTTP
-        :param legacy_delimiter: If true, uses a slash delimiter for CURIEs instead of colon
-        :param legacy_banana: If true, uses a slash delimiter for CURIEs and a redundant namespace in prefix
+        :param legacy_delimiter: If true, uses a slash delimiter for CURIEs instead of
+            colon
+        :param legacy_banana: If true, uses a slash delimiter for CURIEs and a redundant
+            namespace in prefix
+
         :returns: The Identifiers.org/MIRIAM URI prefix, if available.
 
         >>> from bioregistry import get_resource
