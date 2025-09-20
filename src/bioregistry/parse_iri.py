@@ -141,6 +141,7 @@ def normalize_curie(
     'pubchem.compound:1234'
 
     Address banana problem
+
     >>> normalize_curie("GO:GO:1234")
     'go:1234'
     >>> normalize_curie("go:GO:1234")
@@ -151,6 +152,7 @@ def normalize_curie(
     'go:1234'
 
     Address banana problem with OBO banana
+
     >>> normalize_curie("fbbt:FBbt:1234")
     'fbbt:1234'
     >>> normalize_curie("fbbt:fbbt:1234")
@@ -159,16 +161,19 @@ def normalize_curie(
     'fbbt:1234'
 
     Address banana problem with explit banana
+
     >>> normalize_curie("go.ref:GO_REF:1234")
     'go.ref:1234'
     >>> normalize_curie("go.ref:1234")
     'go.ref:1234'
 
     Parse OBO PURL curies
+
     >>> normalize_curie("GO_1234", sep="_")
     'go:1234'
 
     Use preferred
+
     >>> normalize_curie("GO_1234", sep="_", use_preferred=True)
     'GO:1234'
     """
