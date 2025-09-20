@@ -248,6 +248,7 @@ class Attributable(BaseModel):
         """Add triples to an RDF graph for this author.
 
         :param graph: An RDF graph
+
         :returns: The RDF node representing this author using an ORCiD URI.
         """
         from rdflib import BNode, Literal, Node
@@ -391,7 +392,8 @@ class Provider(BaseModel):
         """Resolve the identifier into a URI.
 
         :param identifier: The identifier in the semantic space
-        :return: The URI for the identifier
+
+        :returns: The URI for the identifier
         """
         return self.uri_format.replace("$1", identifier)
 
@@ -792,6 +794,7 @@ class Resource(BaseModel):
         """Get the prefix for the given external.
 
         :param metaprefix: The metaprefix for the external resource
+
         :returns: The prefix in the external registry, if it could be mapped
 
         >>> from bioregistry import get_resource
@@ -917,8 +920,11 @@ class Resource(BaseModel):
     def get_default_uri(self, identifier: str) -> str | None:
         """Return the default URI for the identifier.
 
-        :param identifier: The local identifier in the nomenclature represented by this resource
-        :returns: The first-party provider URI for the local identifier, if one can be constructed
+        :param identifier: The local identifier in the nomenclature represented by this
+            resource
+
+        :returns: The first-party provider URI for the local identifier, if one can be
+            constructed
 
         >>> from bioregistry import get_resource
         >>> get_resource("chebi").get_default_uri("24867")
