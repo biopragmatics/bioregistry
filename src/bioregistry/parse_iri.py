@@ -126,12 +126,13 @@ def normalize_curie(
 
     :param curie: A compact URI (CURIE) in the form of <prefix:identifier>
     :param sep: The separator for the CURIE. Defaults to the colon ":" however the slash
-        "/" is sometimes used in Identifiers.org and the underscore "_" is used for OBO PURLs.
-    :param use_preferred:
-        If set to true, uses the "preferred prefix", if available, instead
-        of the canonicalized Bioregistry prefix.
+        "/" is sometimes used in Identifiers.org and the underscore "_" is used for OBO
+        PURLs.
+    :param use_preferred: If set to true, uses the "preferred prefix", if available,
+        instead of the canonicalized Bioregistry prefix.
     :param strict: If true, raises an error if the prefix can't be standardized
-    :return: A normalized CURIE, if possible using the colon as a separator
+
+    :returns: A normalized CURIE, if possible using the colon as a separator
 
     >>> normalize_curie("pdb:1234")
     'pdb:1234'
