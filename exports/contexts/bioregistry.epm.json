@@ -429,7 +429,7 @@
         ]
     },
     {
-        "pattern": "^IND\\d+$",
+        "pattern": "^(IND|GUA)\\d+$",
         "prefix": "agricola",
         "prefix_synonyms": [
             "AGR",
@@ -7864,6 +7864,23 @@
         ]
     },
     {
+        "prefix": "docid",
+        "prefix_synonyms": [
+            "DOCiD"
+        ],
+        "uri_prefix": "https://docid.africapidalliance.org/docid/",
+        "uri_prefix_synonyms": [
+            "DOCID:",
+            "DOCiD:",
+            "docid:",
+            "http://bioregistry.io/DOCiD:",
+            "http://bioregistry.io/docid:",
+            "http://docid.africapidalliance.org/docid/",
+            "https://bioregistry.io/DOCiD:",
+            "https://bioregistry.io/docid:"
+        ]
+    },
+    {
         "prefix": "dockerhub.repo",
         "uri_prefix": "https://hub.docker.com/r/",
         "uri_prefix_synonyms": [
@@ -12626,7 +12643,7 @@
         ]
     },
     {
-        "pattern": "^[A-Z]{1,2}\\d{5}$",
+        "pattern": "^(\\wT?)?\\d{5}$",
         "prefix": "goldbook",
         "uri_prefix": "https://goldbook.iupac.org/terms/view/",
         "uri_prefix_synonyms": [
@@ -14914,7 +14931,6 @@
         ]
     },
     {
-        "pattern": "^\\d+$",
         "prefix": "iconclass",
         "uri_prefix": "https://iconclass.org/",
         "uri_prefix_synonyms": [
@@ -23718,11 +23734,11 @@
     },
     {
         "pattern": "^C?\\d+$",
-        "prefix": "orphanet",
+        "prefix": "orpha",
         "prefix_synonyms": [
-            "ORPHA",
             "Orphanet",
             "ordo",
+            "orphanet",
             "orphanet.ordo"
         ],
         "uri_prefix": "http://www.orpha.net/ORDO/Orphanet_",
@@ -23736,6 +23752,7 @@
             "http://bioregistry.io/ORPHA:",
             "http://bioregistry.io/Orphanet:",
             "http://bioregistry.io/ordo:",
+            "http://bioregistry.io/orpha:",
             "http://bioregistry.io/orphanet.ordo:",
             "http://bioregistry.io/orphanet:",
             "http://identifiers.org/orphanet.ordo/",
@@ -23756,6 +23773,7 @@
             "https://bioregistry.io/ORPHA:",
             "https://bioregistry.io/Orphanet:",
             "https://bioregistry.io/ordo:",
+            "https://bioregistry.io/orpha:",
             "https://bioregistry.io/orphanet.ordo:",
             "https://bioregistry.io/orphanet:",
             "https://identifiers.org/orphanet.ordo/",
@@ -23768,6 +23786,7 @@
             "https://www.ebi.ac.uk/ols/ontologies/ordo/terms?short_form=",
             "https://www.ebi.ac.uk/ols4/ontologies/ordo/classes/http%253A%252F%252Fwww.orpha.net%252FORDO%252F",
             "https://www.ebi.ac.uk/ols4/ontologies/ordo/terms/http%253A%252F%252Fwww.orpha.net%252FORDO%252F",
+            "https://www.orpha.net/ORDO/Orphanet_",
             "https://www.orpha.net/consor/cgi-bin/OC_Exp.php?Lng=EN&Expert=",
             "https://www.orpha.net/consor/cgi-bin/OC_Exp.php?Lng=en&Expert=",
             "https://www.orpha.net/consor/cgi-bin/OC_Exp.php?lng=EN&Expert=",
@@ -27371,7 +27390,7 @@
             "http://identifiers.org/ricegap/",
             "http://identifiers.org/ricegap:",
             "http://n2t.net/ricegap:",
-            "http://rice.uga.edu/cgi-bin/ORF_infopage.cgi?orf=",
+            "http://rice.plantbiology.msu.edu/cgi-bin/gbrowse/rice/?name=",
             "https://bio2rdf.org/rgap:",
             "https://bioregistry.io/rgap:",
             "https://bioregistry.io/ricegap:",
@@ -27379,7 +27398,7 @@
             "https://identifiers.org/ricegap:",
             "https://n2t.net/ricegap:",
             "https://rice.plantbiology.msu.edu/cgi-bin/ORF_infopage.cgi?&orf=",
-            "https://rice.uga.edu/cgi-bin/ORF_infopage.cgi?orf=",
+            "https://rice.plantbiology.msu.edu/cgi-bin/gbrowse/rice/?name=",
             "rgap:",
             "ricegap:"
         ]
@@ -31127,6 +31146,18 @@
             "https://bioregistry.io/tsc:",
             "https://scicrunch.org/resolver/RRID:TSC_",
             "tsc:"
+        ]
+    },
+    {
+        "pattern": "^TRD\\d{5}$",
+        "prefix": "tsrnadisease",
+        "uri_prefix": "http://118.178.132.53/tsRNADisease/detail.php?entry_ID=",
+        "uri_prefix_synonyms": [
+            "TSRNADISEASE:",
+            "http://bioregistry.io/tsrnadisease:",
+            "https://118.178.132.53/tsRNADisease/detail.php?entry_ID=",
+            "https://bioregistry.io/tsrnadisease:",
+            "tsrnadisease:"
         ]
     },
     {

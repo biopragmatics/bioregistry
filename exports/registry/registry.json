@@ -651,7 +651,7 @@
     "preferred_prefix": "addicto",
     "repository": "https://github.com/addicto-org/addiction-ontology",
     "uri_format": "http://addictovocab.org/ADDICTO_$1",
-    "version": "2025-08-07"
+    "version": "2025-09-08"
   },
   "adms": {
     "contact": {
@@ -1110,6 +1110,9 @@
     ],
     "description": "AGRICOLA (AGRICultural OnLine Access) serves as the catalog and index to the collections of the National Agricultural Library, as well as a primary public source for world-wide access to agricultural information. The database covers materials in all formats and periods, including printed works from as far back as the 15th century.",
     "example": "IND608186955",
+    "example_extras": [
+      "GUA85008832"
+    ],
     "homepage": "http://agricola.nal.usda.gov/",
     "mappings": {
       "biocontext": "AGRICOLA",
@@ -1119,7 +1122,7 @@
       "wikidata.entity": "Q4651693"
     },
     "name": "Agricultural Online Access",
-    "pattern": "^IND\\d+$",
+    "pattern": "^(IND|GUA)\\d+$",
     "preferred_prefix": "agricola",
     "providers": [
       {
@@ -4521,7 +4524,7 @@
       "subcellular compartment"
     ],
     "license": "http://bigg.ucsd.edu/license#license",
-    "logo": "http://bigg.ucsd.edu/static/assets/bigg-github.png",
+    "logo": "https://lh3.googleusercontent.com/proxy/vQjhtm8lVovH27pBaBSbAx_50uQbOvjubQM4s-R3-6JLiEzlozInmDfqGpp7OwbbkwxbTwfqie4g1GSGOG-vryt20uzT",
     "mappings": {
       "biocontext": "BIGG.COMPARTMENT",
       "miriam": "bigg.compartment",
@@ -4547,7 +4550,7 @@
       "small molecule"
     ],
     "license": "http://bigg.ucsd.edu/license#license",
-    "logo": "http://bigg.ucsd.edu/static/assets/bigg-github.png",
+    "logo": "https://lh3.googleusercontent.com/proxy/vQjhtm8lVovH27pBaBSbAx_50uQbOvjubQM4s-R3-6JLiEzlozInmDfqGpp7OwbbkwxbTwfqie4g1GSGOG-vryt20uzT",
     "mappings": {
       "biocontext": "BIGG.METABOLITE",
       "miriam": "bigg.metabolite",
@@ -4567,7 +4570,7 @@
       "pathway"
     ],
     "license": "http://bigg.ucsd.edu/license#license",
-    "logo": "http://bigg.ucsd.edu/static/assets/bigg-github.png",
+    "logo": "https://lh3.googleusercontent.com/proxy/vQjhtm8lVovH27pBaBSbAx_50uQbOvjubQM4s-R3-6JLiEzlozInmDfqGpp7OwbbkwxbTwfqie4g1GSGOG-vryt20uzT",
     "mappings": {
       "biocontext": "BIGG.MODEL",
       "miriam": "bigg.model",
@@ -4586,7 +4589,7 @@
       "reaction"
     ],
     "license": "http://bigg.ucsd.edu/license#license",
-    "logo": "http://bigg.ucsd.edu/static/assets/bigg-github.png",
+    "logo": "https://lh3.googleusercontent.com/proxy/vQjhtm8lVovH27pBaBSbAx_50uQbOvjubQM4s-R3-6JLiEzlozInmDfqGpp7OwbbkwxbTwfqie4g1GSGOG-vryt20uzT",
     "mappings": {
       "biocontext": "BIGG.REACTION",
       "miriam": "bigg.reaction",
@@ -14412,6 +14415,7 @@
     "keywords": [
       "vaccine"
     ],
+    "logo": "https://www2.cdc.gov/TemplatePackage/4.0/assets/imgs/logo/logo-notext.svg",
     "mappings": {
       "hl7": "2.16.840.1.113883.6.59"
     },
@@ -15270,6 +15274,9 @@
       "semantic web"
     ],
     "logo": "https://www.dublincore.org/images/dcmi_logo_v802.svg",
+    "mappings": {
+      "zazuko": "dcam"
+    },
     "name": "Dublin Core Metadata Initiative Abstract Model",
     "part_of": "dc",
     "preferred_prefix": "dcam",
@@ -17150,6 +17157,42 @@
     "repository": "https://github.com/ewilderj/doap",
     "uri_format": "http://usefulinc.com/ns/doap#$1"
   },
+  "docid": {
+    "contact": {
+      "github": "Africa-PID-Alliance",
+      "name": "Joy Owango",
+      "orcid": "0000-0002-3910-2691"
+    },
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "Assigns persistent identifiers to multidisciplinary research outputs with focus on research originating in Africa, such as in cultural heritage and indigenous knowledge.",
+    "example": "20.500.14351/5a7cdd09d9b65bc39697",
+    "github_request_issue": 1692,
+    "homepage": "https://docid.africapidalliance.org/",
+    "keywords": [
+      "bibliometrics",
+      "cultural heritage",
+      "digital humanities",
+      "publishing"
+    ],
+    "name": "Digical Object Container Identifier",
+    "owners": [
+      {
+        "name": "University of Nairobi",
+        "partnered": false,
+        "ror": "02y9nww90"
+      }
+    ],
+    "preferred_prefix": "docid",
+    "synonyms": [
+      "DOCiD"
+    ],
+    "uri_format": "https://docid.africapidalliance.org/docid/$1"
+  },
   "dockerhub.repo": {
     "contributor": {
       "email": "cthoyt@gmail.com",
@@ -18211,7 +18254,7 @@
       "life science",
       "protein"
     ],
-    "logo": "https://media.licdn.com/dms/image/v2/D560BAQEHxaWkN14HEg/company-logo_200_200/company-logo_200_200/0/1666912850052/drugbank_logo?e=1753315200&v=beta&t=JkBvFRshu_gAXQ0DH4MqQilbyGDZ7CMR_f4673dzVwQ",
+    "logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fd/Drugbank_logo.svg/1280px-Drugbank_logo.svg.png",
     "mappings": {
       "bartoc": "18377",
       "biocontext": "DrugBank",
@@ -22145,6 +22188,7 @@
     "mappings": {
       "aberowl": "ENVO",
       "agroportal": "ENVO",
+      "bartoc": "562",
       "biocontext": "ENVO",
       "bioportal": "ENVO",
       "fairsharing": "FAIRsharing.azqskx",
@@ -23094,6 +23138,10 @@
     "uri_format": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/how-to-participate/org-details/$1"
   },
   "euroscivoc": {
+    "contact": {
+      "email": "OP-EU-VOCABULARIES@publications.europa.eu",
+      "name": "Publications Office of the European Union"
+    },
     "contributor": {
       "email": "cthoyt@gmail.com",
       "github": "cthoyt",
@@ -23104,6 +23152,10 @@
     "download_rdf": "https://op.europa.eu/o/opportal-service/euvoc-download-handler?cellarURI=http%3A%2F%2Fpublications.europa.eu%2Fresource%2Fdistribution%2Feuroscivoc%2F20250625-0%2Fttl%2Fskos_xl%2FEuroSciVoc.ttl&fileName=EuroSciVoc.ttl",
     "example": "ceaf4ca0-9b09-4313-85a5-2edf1762e443",
     "homepage": "https://op.europa.eu/en/web/eu-vocabularies/dataset/-/resource?uri=http://publications.europa.eu/resource/dataset/euroscivoc",
+    "mappings": {
+      "bartoc": "20394",
+      "ecoportal": "EUROSCIVOC"
+    },
     "name": "European Science Vocabulary",
     "preferred_prefix": "euroscivoc",
     "rdf_uri_format": "http://data.europa.eu/8mn/euroscivoc/$1",
@@ -27888,15 +27940,16 @@
     "description": "The Gmelin database is a large database of organometallic and inorganic compounds updated quarterly. It is based on the German publication Gmelins Handbuch der anorganischen Chemie which was originally published by Leopold Gmelin in 1817; the last print edition, the 8th, appeared in the 1990s.",
     "example": "1466",
     "example_extras": [
-      "606"
+      "606",
+      "80"
     ],
     "homepage": "https://link.springer.com/bookseries/562",
     "mappings": {
       "edam": "1004",
       "wikidata": "P1578"
     },
-    "name": "Gmelins Handbuch der anorganischen Chemie",
-    "pattern": "^[1-9][0-9]{2,6}$",
+    "name": "Gmelin's Handbook of Inorganic Chemistry",
+    "pattern": "^[1-9][0-9]{1,6}$",
     "preferred_prefix": "gmelin",
     "proprietary": true,
     "references": [
@@ -28682,23 +28735,39 @@
     "uri_format": "http://genomesonline.org/cgi-bin/GOLD/bin/GOLDCards.cgi?goldstamp=$1"
   },
   "goldbook": {
+    "contact": {
+      "email": "schalk@unf.edu",
+      "github": "stuchalk",
+      "name": "Stuart Chalk",
+      "orcid": "0000-0002-0703-7776"
+    },
     "contributor": {
       "email": "cthoyt@gmail.com",
       "github": "cthoyt",
       "name": "Charles Tapley Hoyt",
       "orcid": "0000-0003-4423-4370"
     },
-    "description": "The Compendium is popularly referred to as the \"Gold Book\", in recognition of the contribution of the late Victor Gold, who initiated work on the first edition. It is one of the series of IUPAC \"Colour Books\" on chemical nomenclature, terminology, symbols and units (see the list of source documents), and collects together terminology definitions from IUPAC recommendations already published in Pure and Applied Chemistry and in the other Colour Books.\n\nTerminology definitions published by IUPAC are drafted by international committees of experts in the appropriate chemistry sub-disciplines, and ratified by IUPAC's Interdivisional Committee on Terminology, Nomenclature and Symbols (ICTNS). In this edition of the Compendium these IUPAC-approved definitions are supplemented with some definitions from ISO and from the International Vocabulary of Basic and General Terms in Metrology; both these sources are recognised by IUPAC as authoritative. The result is a collection of nearly 7000 terms, with authoritative definitions, spanning the whole range of chemistry.",
+    "description": "The Compendium is popularly referred to as the \"Gold Book\", in recognition of the contribution of the late Victor Gold, who initiated work on the first edition. It is one of the series of IUPAC \"Colour Books\" on chemical nomenclature, terminology, symbols and units (see the list of source documents), and collects together terminology definitions from IUPAC recommendations already published in Pure and Applied Chemistry and in the other Colour Books.\n\nTerminology definitions published by IUPAC are drafted by international committees of experts in the appropriate chemistry sub-disciplines, and ratified by IUPAC's Interdivisional Committee on Terminology, Nomenclature and Symbols (ICTNS). In this edition of the Compendium these IUPAC-approved definitions are supplemented with some definitions from ISO and from the International Vocabulary of Basic and General Terms in Metrology; both these sources are recognised by IUPAC as authoritative. The result is a collection of nearly 7000 terms, with authoritative definitions, spanning the whole range of chemistry.\n\nThe API can be accessed [here](https://goldbook.iupac.org/pages/api)",
     "example": "G02681",
+    "example_extras": [
+      "08306",
+      "11214",
+      "A00494",
+      "AT07327",
+      "B00737",
+      "BT07002",
+      "C00778",
+      "CT07136"
+    ],
     "homepage": "https://goldbook.iupac.org",
-    "license": "CC BY 4.0-NC-ND",
+    "license": "CC BY 4.0-SA",
     "mappings": {
       "bartoc": "1884",
       "wikidata": "P4732",
       "wikidata.entity": "Q902163"
     },
     "name": "IUPAC Gold Book Compendium of Chemical Terminology",
-    "pattern": "^[A-Z]{1,2}\\d{5}$",
+    "pattern": "^(\\wT?)?\\d{5}$",
     "preferred_prefix": "goldbook",
     "providers": [
       {
@@ -28710,6 +28779,10 @@
       }
     ],
     "rdf_uri_format": "http://dx.doi.org/10.1351/goldbook.$1",
+    "references": [
+      "https://goldbook.iupac.org/pages/api",
+      "https://github.com/biopragmatics/bioregistry/pull/1689"
+    ],
     "uri_format": "https://goldbook.iupac.org/terms/view/$1"
   },
   "google.book": {
@@ -29199,6 +29272,9 @@
     "description": "GRDDL is a mechanism for Gleaning Resource Descriptions from Dialects of Languages. It is a technique for obtaining RDF data from XML documents and in particular XHTML pages. Authors may explicitly associate documents with transformation algorithms, typically represented in XSLT, using a link element in the head of the document. Alternatively, the information needed to obtain the transformation may be held in an associated metadata profile document or namespace document. Clients reading the document can follow links across the Web using techniques described in the GRDDL specification to discover the appropriate transformations. This document uses a number of examples from the GRDDL Use Cases document to illustrate, in detail, the techniques GRDDL provides for associating documents with appropriate instructions for extracting any embedded data. (from homepage)",
     "example": "transformation",
     "homepage": "https://www.w3.org/TR/grddl-primer/",
+    "mappings": {
+      "zazuko": "grddl"
+    },
     "name": "Gleaning Resource Descriptions from Dialects of Languages",
     "preferred_prefix": "grddl",
     "rdf_uri_format": "http://www.w3.org/2003/g/data-view#$1",
@@ -33402,13 +33478,19 @@
     },
     "description": "A classification system for the subject matter of works of art, originating from work from Henri van de Waal in the 1940.",
     "example": "3",
+    "example_extras": [
+      "11HH(ELISABETH)35",
+      "49E3932",
+      "98C",
+      "98C(...)(%2B1)",
+      "98C(ZENOBIA%20SEPTIMIA)2"
+    ],
     "homepage": "https://iconclass.org",
     "mappings": {
       "bartoc": "459",
       "wikidata.entity": "Q1502787"
     },
     "name": "Iconclass Classification",
-    "pattern": "^\\d+$",
     "preferred_prefix": "iconclass",
     "uri_format": "https://iconclass.org/$1"
   },
@@ -35690,7 +35772,7 @@
       "togoid": "Intact",
       "uniprot": "DB-0051"
     },
-    "name": "IntAct protein interaction database",
+    "name": "IntAct protein interaction",
     "owners": [
       {
         "name": "European Bioinformatics Institute",
@@ -37505,7 +37587,7 @@
       "prefixcommons": "kegg.gene",
       "wikidata": "P665"
     },
-    "name": "KEGG Genes",
+    "name": "KEGG gene",
     "part_of": "kegg",
     "pattern": "^\\w+:[\\w\\d\\.-]*$",
     "preferred_prefix": "kegg.genes",
@@ -37551,7 +37633,7 @@
       "prefixcommons": "kegg.genome",
       "wikidata": "P665"
     },
-    "name": "KEGG Genome",
+    "name": "KEGG genome",
     "part_of": "kegg",
     "pattern": "^(T0\\d+|\\w{3,5})$",
     "preferred_prefix": "kegg.genome",
@@ -37749,7 +37831,7 @@
       "prefixcommons": "kegg.pathway",
       "wikidata": "P665"
     },
-    "name": "KEGG Pathways Database",
+    "name": "KEGG pathway",
     "part_of": "kegg",
     "pattern": "^\\w{2,4}\\d{5}$",
     "preferred_prefix": "kegg.pathway",
@@ -45792,6 +45874,7 @@
       "genome"
     ],
     "license": "public domain",
+    "logo": "https://www.ncbi.nlm.nih.gov/corehtml/logo256.gif",
     "name": "NCBI Genetic Code",
     "pattern": "^\\d+$",
     "preferred_prefix": "ncbi.gc",
@@ -45890,6 +45973,7 @@
       "genome",
       "genomics"
     ],
+    "logo": "https://www.ncbi.nlm.nih.gov/corehtml/logo256.gif",
     "mappings": {
       "biocontext": "NCBIGene",
       "biolink": "NCBIGene",
@@ -46057,6 +46141,7 @@
     "keywords": [
       "protein"
     ],
+    "logo": "https://www.ncbi.nlm.nih.gov/corehtml/logo256.gif",
     "mappings": {
       "biocontext": "NCBIProtein",
       "go": "NCBI_NP",
@@ -51924,12 +52009,21 @@
     "uri_format": "http://purl.obolibrary.org/obo/ORNASEQ_$1",
     "version": "2019-07-08"
   },
-  "orphanet": {
+  "orpha": {
     "contact": {
-      "email": "bliemsl@xs4all.nl",
-      "name": "Spencer L. Liem",
-      "orcid": "0000-0002-1575-9365"
+      "email": "marc.hanauer@inserm.fr",
+      "github": "Orphanet",
+      "name": "Marc Hanauer",
+      "orcid": "0000-0002-6758-2506"
     },
+    "contributor_extras": [
+      {
+        "email": "nicolas.matentzoglu@gmail.com",
+        "github": "matentzn",
+        "name": "Nicolas Matentzoglu",
+        "orcid": "0000-0002-7356-1779"
+      }
+    ],
     "description": "Orphanet is a reference portal for information on rare diseases and orphan drugs. It’s aim is to help improve the diagnosis, care and treatment of patients with rare diseases.",
     "download_owl": "http://www.orphadata.org/data/ORDO/ordo_orphanet.owl",
     "example": "85163",
@@ -51958,7 +52052,7 @@
     },
     "name": "Orphanet",
     "pattern": "^C?\\d+$",
-    "preferred_prefix": "orphanet",
+    "preferred_prefix": "ORPHA",
     "providers": [
       {
         "code": "",
@@ -51983,8 +52077,8 @@
       }
     ],
     "synonyms": [
-      "ORPHA",
-      "Orphanet"
+      "Orphanet",
+      "orphanet"
     ],
     "twitter": "orphanet",
     "uri_format": "http://www.orpha.net/ORDO/Orphanet_$1"
@@ -51993,9 +52087,10 @@
     "banana": "Orphanet",
     "banana_peel": "_",
     "contact": {
-      "email": "ordo.orphanet@inserm.fr",
-      "name": "Ana Rath",
-      "orcid": "0000-0003-4308-6337"
+      "email": "marc.hanauer@inserm.fr",
+      "github": "Orphanet",
+      "name": "Marc Hanauer",
+      "orcid": "0000-0002-6758-2506"
     },
     "description": "The Orphanet Rare Disease ontology (ORDO) is a structured vocabulary for rare diseases, capturing relationships between diseases, genes and other relevant features which will form a useful resource for the computational analysis of rare diseases.\nIt integrates a nosology (classification of rare diseases), relationships (gene-disease relations, epiemological data) and connections with other terminologies (MeSH, UMLS, MedDRA), databases (OMIM, UniProtKB, HGNC, ensembl, Reactome, IUPHAR, Geantlas) and classifications (ICD10).",
     "download_owl": "http://www.orphadata.org/data/ORDO/ordo_orphanet.owl",
@@ -52003,7 +52098,7 @@
     "example_extras": [
       "478"
     ],
-    "has_canonical": "orphanet",
+    "has_canonical": "orpha",
     "homepage": "https://www.orpha.net",
     "keywords": [
       "biomedical science",
@@ -54381,7 +54476,7 @@
       "uniprot": "DB-0073",
       "wikidata": "P3519"
     },
-    "name": "Pfam",
+    "name": "Pfam protein family",
     "pattern": "^PF\\d{5}$",
     "preferred_prefix": "pfam",
     "providers": [
@@ -54539,7 +54634,7 @@
     "mappings": {
       "edam": "2758"
     },
-    "name": "Pfam Clans",
+    "name": "Pfam protein clan",
     "part_of": "pfam",
     "pattern": "^CL\\d+$",
     "preferred_prefix": "pfam.clan",
@@ -54971,7 +55066,7 @@
       "prefixcommons": "pharmgkb.pathways",
       "wikidata": "P7001"
     },
-    "name": "PharmGKB",
+    "name": "PharmGKB pathway",
     "pattern": "^PA\\d+$",
     "preferred_prefix": "pharmgkb.pathways",
     "providers": [
@@ -58167,7 +58262,7 @@
       "togoid": "PubchemCompound",
       "wikidata": "P662"
     },
-    "name": "PubChem CID",
+    "name": "PubChem compound",
     "part_of": "pubchem",
     "pattern": "^\\d+$",
     "preferred_prefix": "pubchem.compound",
@@ -60289,7 +60384,7 @@
       "togoid": "Rhea",
       "wikidata.entity": "Q24265951"
     },
-    "name": "Rhea, the Annotated Reactions Database",
+    "name": "Rhea reaction",
     "pattern": "^\\d{5}$",
     "preferred_prefix": "rhea",
     "providers": [
@@ -61336,7 +61431,7 @@
     "repository": "https://github.com/rat-genome-database/RS-Rat-Strain-Ontology",
     "twitter": "ratgenome",
     "uri_format": "http://purl.obolibrary.org/obo/RS_$1",
-    "version": "6.257"
+    "version": "6.258"
   },
   "rtecs": {
     "contact": {
@@ -64651,7 +64746,7 @@
     "rdf_uri_format": "http://purl.obolibrary.org/obo/SLSO_$1",
     "repository": "https://github.com/nasa/LSDAO",
     "uri_format": "http://purl.obolibrary.org/obo/SLSO_$1",
-    "version": "2025-09-02"
+    "version": "2025-09-09"
   },
   "smart": {
     "contact": {
@@ -69264,6 +69359,46 @@
     "preferred_prefix": "tsc",
     "uri_format": "https://tetrahymena.vet.cornell.edu/display.php?stockid=$1"
   },
+  "tsrnadisease": {
+    "contact": {
+      "email": "zhenyang@fudan.edu.cn",
+      "name": "Zhen Yang",
+      "orcid": "0000-0002-6782-0316"
+    },
+    "contributor": {
+      "email": "ji.kang@northeastern.edu",
+      "github": "kanghosaeyo",
+      "name": "Kangho Ji",
+      "orcid": "0009-0009-3402-8013"
+    },
+    "description": "Identifiers correspond to curated associations between diseases and tRNA-derived small RNAs (tsRNAs) in the tsRNADisease database.",
+    "example": "TRD00001",
+    "github_request_issue": 1700,
+    "homepage": "http://compgenelab.info/tsRNADisease",
+    "keywords": [
+      "cancer",
+      "disease",
+      "tsrna"
+    ],
+    "name": "tsRNADisease",
+    "pattern": "^TRD\\d{5}$",
+    "preferred_prefix": "tsrnadisease",
+    "publications": [
+      {
+        "doi": "10.1016/j.jgg.2025.08.001",
+        "pubmed": "40812678",
+        "title": "tsRNADisease: a manually curated database of tsRNAs associated with human disease",
+        "year": 2025
+      }
+    ],
+    "reviewer": {
+      "email": "b.gyori@northeastern.edu",
+      "github": "bgyori",
+      "name": "Benjamin M. Gyori",
+      "orcid": "0000-0001-9439-5346"
+    },
+    "uri_format": "http://118.178.132.53/tsRNADisease/detail.php?entry_ID=$1"
+  },
   "ttd.drug": {
     "description": "The Therapeutic Target Database (TTD) is designed to provide information about the known therapeutic protein and nucleic acid targets described in the literature, the targeted disease conditions, the pathway information and the corresponding drugs/ligands directed at each of these targets. Cross-links to other databases allow the access to information about the sequence, 3D structure, function, nomenclature, drug/ligand binding properties, drug usage and effects, and related literature for each target.",
     "example": "D0N5OV",
@@ -70388,6 +70523,7 @@
     "example": "ARBA00000001",
     "github_request_issue": 620,
     "homepage": "https://www.uniprot.org/arba",
+    "logo": "https://www.uniprot.org/uniprot-logo.img.0df091.svg",
     "mappings": {
       "go": "ARBA"
     },
@@ -70410,6 +70546,7 @@
     "description": "This collection is a subset of UniProtKB that provides a means to reference the proteolytic cleavage products of a precursor protein.",
     "example": "PRO_0000016681",
     "homepage": "https://www.uniprot.org",
+    "logo": "https://www.uniprot.org/uniprot-logo.img.0df091.svg",
     "mappings": {
       "miriam": "uniprot.chain"
     },
@@ -70461,6 +70598,7 @@
     "keywords": [
       "ontology"
     ],
+    "logo": "https://www.uniprot.org/uniprot-logo.img.0df091.svg",
     "mappings": {
       "biolink": "SPDI",
       "wikidata": "P11430"
@@ -70479,6 +70617,7 @@
     "description": "The UniProt Knowledgebase (UniProtKB) is a comprehensive resource for protein sequence and functional information with extensive cross-references to more than 120 external databases. This collection is a subset of UniProtKB, and provides a means to reference isoform information.",
     "example": "Q5BJF6-3",
     "homepage": "http://www.uniprot.org/",
+    "logo": "https://www.uniprot.org/uniprot-logo.img.0df091.svg",
     "mappings": {
       "biocontext": "UNIPROT.ISOFORM",
       "biolink": "UNIPROT.ISOFORM",
@@ -70527,6 +70666,11 @@
     "description": "identifier for a scientific journal, in the UniProt database",
     "example": "3546",
     "homepage": "https://www.uniprot.org/journals",
+    "keywords": [
+      "journal",
+      "publication"
+    ],
+    "logo": "https://www.uniprot.org/uniprot-logo.img.0df091.svg",
     "mappings": {
       "wikidata": "P4616"
     },
@@ -70546,6 +70690,7 @@
       "classification",
       "ontology"
     ],
+    "logo": "https://www.uniprot.org/uniprot-logo.img.0df091.svg",
     "mappings": {
       "go": "UniProtKB-KW",
       "prefixcommons": "uniprot.kw"
@@ -70585,6 +70730,7 @@
     "keywords": [
       "ontology"
     ],
+    "logo": "https://www.uniprot.org/uniprot-logo.img.0df091.svg",
     "mappings": {
       "go": "UniProtKB-SubCell"
     },
@@ -70610,6 +70756,7 @@
     "example": "BRAF_HUMAN",
     "github_request_issue": 1110,
     "homepage": "https://www.uniprot.org/",
+    "logo": "https://www.uniprot.org/uniprot-logo.img.0df091.svg",
     "mappings": {
       "togoid": "UniprotMnemonic"
     },
@@ -70658,6 +70805,7 @@
     "example": "UP000005640",
     "github_request_issue": 604,
     "homepage": "https://www.uniprot.org/proteomes",
+    "logo": "https://www.uniprot.org/uniprot-logo.img.0df091.svg",
     "mappings": {
       "togoid": "UniprotProteome"
     },
@@ -70698,7 +70846,7 @@
       "structural biology"
     ],
     "license": "CC-BY-4.0",
-    "logo": "https://www.uniprot.org/og-uniprot-wide-logo-1200x630.png",
+    "logo": "https://www.uniprot.org/uniprot-logo.img.0df091.svg",
     "name": "UniProt Post-Translational Modification",
     "part_of": "uniprot",
     "pattern": "^PTM-\\d{4}$",
@@ -70737,6 +70885,7 @@
     "description": "The UniProt Tissue List is a controlled vocabulary of terms used to annotate biological tissues. It also contains cross-references to other ontologies where tissue types are specified.",
     "example": "TS-0285",
     "homepage": "https://www.uniprot.org/docs/tisslist.txt",
+    "logo": "https://www.uniprot.org/uniprot-logo.img.0df091.svg",
     "mappings": {
       "biocontext": "TISSUELIST",
       "miriam": "tissuelist",
@@ -70783,12 +70932,14 @@
     "description": "The UniProt Reference Clusters (UniRef) provide clustered sets of sequences from the UniProt Knowledgebase (including isoforms) and selected UniParc records in order to obtain complete coverage of the sequence space at several resolutions while hiding redundant sequences (but not their descriptions) from view.",
     "example": "UniRef90_P00750",
     "homepage": "https://www.uniprot.org/",
+    "logo": "https://www.uniprot.org/uniprot-logo.img.0df091.svg",
     "mappings": {
       "edam": "2346",
       "miriam": "uniref",
       "re3data": "r3d100011518"
     },
     "name": "UniRef",
+    "part_of": "uniprot",
     "pattern": "^UniRef(100|90|50)_([OPQ][0-9][A-Z0-9]{3}[0-9]|[A-NR-Z][0-9]([A-Z][A-Z0-9]{2}[0-9]){1,2}|UPI[A-F0-9]{10})$",
     "preferred_prefix": "uniref",
     "uri_format": "https://www.uniprot.org/uniref/$1"
@@ -70803,10 +70954,12 @@
     "description": "Rules are devised and tested by experienced curators using experimental data from manually annotated entries as templates. UniRule rules can annotate protein properties such as the protein name, function, catalytic activity, pathway membership, and subcellular location, along with sequence specific information, such as the positions of post-translational modifications and active sites.",
     "example": "UR000124451",
     "homepage": "https://www.uniprot.org/unirule/",
+    "logo": "https://www.uniprot.org/uniprot-logo.img.0df091.svg",
     "mappings": {
       "go": "UniRule"
     },
     "name": "UniRule",
+    "part_of": "uniprot",
     "preferred_prefix": "unirule",
     "uri_format": "https://www.uniprot.org/unirule/$1"
   },
@@ -70902,6 +71055,11 @@
     },
     "deprecated": true,
     "homepage": "http://pkuxxj.pku.edu.cn/UNPD/",
+    "keywords": [
+      "compound",
+      "natural product",
+      "small molecule"
+    ],
     "name": "Universal Natural Products Database",
     "preferred_prefix": "unpd",
     "publications": [
@@ -72677,6 +72835,9 @@
     "keywords": [
       "semantic web"
     ],
+    "mappings": {
+      "zazuko": "vs"
+    },
     "name": "SemWeb Vocab Status ontology",
     "preferred_prefix": "vs",
     "rdf_uri_format": "http://www.w3.org/2003/06/sw-vocab-status/ns#$1",
@@ -72882,7 +73043,7 @@
     "rdf_uri_format": "http://purl.obolibrary.org/obo/VT_$1",
     "repository": "https://github.com/AnimalGenome/vertebrate-trait-ontology",
     "uri_format": "http://purl.obolibrary.org/obo/VT_$1",
-    "version": "2025-08-20"
+    "version": "2025-09-09"
   },
   "vto": {
     "contact": {
@@ -74184,7 +74345,7 @@
     "repository": "https://github.com/rat-genome-database/XCO-experimental-condition-ontology",
     "twitter": "ratgenome",
     "uri_format": "http://purl.obolibrary.org/obo/XCO_$1",
-    "version": "4.212"
+    "version": "4.213"
   },
   "xenbase": {
     "contact": {
@@ -75053,7 +75214,7 @@
       "ZFA_RETIRED"
     ],
     "uri_format": "http://purl.obolibrary.org/obo/ZFA_$1",
-    "version": "2025-01-28"
+    "version": "2025-09-05"
   },
   "zfin": {
     "contact": {
