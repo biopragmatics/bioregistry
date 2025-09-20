@@ -93,7 +93,8 @@ def get_prefix_map(
         additional prefixes, but with the same URI prefix?
     :param remapping: A mapping from bioregistry prefixes to preferred prefixes.
     :param blacklist: Prefixes to skip
-    :return: A mapping from prefixes to URI prefixes.
+
+    :returns: A mapping from prefixes to URI prefixes.
     """
     return manager.get_prefix_map(
         prefix_priority=prefix_priority,
