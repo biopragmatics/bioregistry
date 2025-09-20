@@ -356,10 +356,9 @@ def identifiers_to_curies(
     *,
     prefix: str | None = None,
     prefix_column: None | int | str = None,
-    target_column: str | None = None,
     use_tqdm: bool = False,
     normalize_prefixes_: bool = True,
-) -> None:
+) -> pd.Series[str]:
     """Convert a column of local unique identifiers to CURIEs.
 
     :param df: A dataframe
@@ -389,7 +388,7 @@ def identifiers_to_curies(
         df = brpd.get_goa_example()
 
         # Use a combination of column 1 (DB) and column 2 (DB Object ID) for conversion
-        brpd.identifiers_to_curies(df, column=1, prefix_column=0)
+        df['subject_curie'] = brpd.identifiers_to_curies(df, column=1, prefix_column=0)
     """
     # FIXME do pattern check first so you don't get bananas
     column = _norm_column(df, column)
@@ -399,14 +398,12 @@ def identifiers_to_curies(
         raise PrefixLocationError
 
     # valid_idx = validate_identifiers(df, column=column, prefix=prefix, prefix_column=prefix_column)
-    target_column = target_column or column
-
     if prefix is not None:
         norm_prefix = bioregistry.normalize_prefix(prefix)
         if norm_prefix is None:
             raise ValueError
 
-        df.loc[target_column] = df[column].map(
+        return df[column].map(
             functools.partial(bioregistry.curie_to_str, prefix=norm_prefix),
             na_action="ignore",
         )
@@ -414,9 +411,11 @@ def identifiers_to_curies(
         prefix_column = _norm_column(df, prefix_column)
         if normalize_prefixes_:
             normalize_prefixes(df=df, column=prefix_column)
-        df[target_column] = _multi_column_map(
+        return _multi_column_map(
             df, [prefix_column, column], bioregistry.curie_to_str, use_tqdm=use_tqdm
         )
+    else:
+        raise
 
 
 def identifiers_to_iris(
