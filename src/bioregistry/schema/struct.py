@@ -1164,6 +1164,7 @@ class Resource(BaseModel):
         """Get the pattern for the given prefix, if it's available.
 
         :returns: The pattern for the prefix, if it is available, using the following order of preference:
+
             1. Custom
             2. MIRIAM
             3. Wikidata
