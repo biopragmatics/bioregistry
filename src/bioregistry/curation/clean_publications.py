@@ -1,17 +1,18 @@
 """Clean up the publications.
 
 1. Remove duplications
-2. Remove publications missing key metadat (e.g., title)
+2. Remove publications missing key metadata (e.g., title)
 """
 
-from tqdm import tqdm
+import click
 
 import bioregistry
 from bioregistry.schema.struct import deduplicate_publications
 
 
+@click.command()
 def _main() -> None:
-    for resource in tqdm(bioregistry.manager.registry.values()):
+    for resource in bioregistry.manager.registry.values():
         if resource.publications:
             new = []
             for p in deduplicate_publications(resource.publications):
@@ -19,7 +20,7 @@ def _main() -> None:
                     continue
                 p.title = p.title.rstrip(".").replace("  ", " ")
                 new.append(p)
-            resource.publications = new
+            resource.publications = sorted(new)
     bioregistry.manager.write_registry()
 
 
