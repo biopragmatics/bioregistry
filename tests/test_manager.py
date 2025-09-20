@@ -299,4 +299,3 @@ class TestResourceManager(unittest.TestCase):
 
         self.assertIsNotNone(manager.get_resource(test_prefix))
         self.assertIsNotNone(manager.get_resource(test_synonym))
-
