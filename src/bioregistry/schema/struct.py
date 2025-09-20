@@ -1532,9 +1532,9 @@ class Resource(BaseModel):
     def is_deprecated(self) -> bool:
         """Return if the given prefix corresponds to a deprecated resource.
 
-        :returns: If the prefix has been explicitly marked as deprecated either by
-            the Bioregistry, OBO Foundry, OLS, or MIRIAM. If no marks are present,
-            assumed not to be deprecated.
+        :returns: If the prefix has been explicitly marked as deprecated either by the
+            Bioregistry, OBO Foundry, OLS, or MIRIAM. If no marks are present, assumed
+            not to be deprecated.
 
         >>> from bioregistry import get_resource
         >>> assert get_resource("imr").is_deprecated()  # marked by OBO
@@ -2052,27 +2052,29 @@ class Resource(BaseModel):
     def get_uri_format(self, priority: Sequence[str] | None = None) -> str | None:
         """Get the URI format string for the given prefix, if it's available.
 
-        :param priority: The priority order of metaresources to use for format URI lookup.
-            The default is:
+        :param priority: The priority order of metaresources to use for format URI
+            lookup. The default is:
 
             1. Manually curated URI Format in the Bioregistry
             2. Default first party (e.g., MIRIAM, BioContext, Prefix Commons, Wikidata)
             3. OBO Foundry
-            4. MIRIAM/Identifiers.org (i.e., make a URI like https://identifiers.org/<prefix>:<identifier>)
+            4. MIRIAM/Identifiers.org (i.e., make a URI like
+               https://identifiers.org/<prefix>:<identifier>)
             5. N2T (i.e., make a URI like https://n2t.org/<prefix>:<identifier>)
             6. OLS
 
-        :return: The best URI format string, where the ``$1`` should be replaced by a
+        :returns: The best URI format string, where the ``$1`` should be replaced by a
             local unique identifier. ``$1`` could potentially appear multiple times.
 
         >>> from bioregistry import get_resource
         >>> get_resource("chebi").get_uri_format()
         'http://purl.obolibrary.org/obo/CHEBI_$1'
 
-        If you want to specify a different priority order, you can do so with the ``priority`` keyword. This
-        is of particular interest to ontologists and semantic web people who might want to use ``purl.obolibrary.org``
-        URL prefixes over the URL prefixes corresponding to the first-party providers for each resource (e.g., the
-        ChEBI example above). Do so like:
+        If you want to specify a different priority order, you can do so with the
+        ``priority`` keyword. This is of particular interest to ontologists and semantic
+        web people who might want to use ``purl.obolibrary.org`` URL prefixes over the
+        URL prefixes corresponding to the first-party providers for each resource (e.g.,
+        the ChEBI example above). Do so like:
 
         >>> from bioregistry import get_resource
         >>> priority = ["obofoundry", "bioregistry", "biocontext", "miriam", "ols"]
@@ -2136,12 +2138,11 @@ class Resource(BaseModel):
     def get_uri_formats(self, *, enforce_w3c: bool = False) -> set[str]:
         """Get the set of all URI format strings.
 
-        :param enforce_w3c:
-            When generating URI prefixes from prefix synonyms,
-            should synonyms that aren't W3C-compliant be filtered out?
-        :returns:
-            A set of URI format strings, containing ``$1`` where a local
-            unique identifier should be formatted in.
+        :param enforce_w3c: When generating URI prefixes from prefix synonyms, should
+            synonyms that aren't W3C-compliant be filtered out?
+
+        :returns: A set of URI format strings, containing ``$1`` where a local unique
+            identifier should be formatted in.
         """
         uri_formats = itt.chain.from_iterable(
             _yield_protocol_variations(uri_format)
@@ -2214,7 +2215,9 @@ class Resource(BaseModel):
         """Get a CURIE for a local unique identifier in this resource's semantic space.
 
         :param identifier: A local unique identifier in this resource's semantic space
-        :param use_preferred: Should preferred prefixes be used? Set this to true if you're in the OBO context.
+        :param use_preferred: Should preferred prefixes be used? Set this to true if
+            you're in the OBO context.
+
         :returns: A CURIE for the given identifier
 
         >>> import bioregistry
@@ -2365,10 +2368,9 @@ class Resource(BaseModel):
     def get_download_obo(self) -> str | None:
         """Get the download link for the latest OBO file.
 
-        :return: A URL for an OBO text file download, if exists.
+        :returns: A URL for an OBO text file download, if exists.
 
-        Get an ontology download link annotated directly in the
-        Bioregistry:
+        Get an ontology download link annotated directly in the Bioregistry:
 
         >>> from bioregistry import get_resource
         >>> get_resource("caloha").get_download_obo()
@@ -2383,9 +2385,8 @@ class Resource(BaseModel):
         >>> get_resource("hpath").get_download_obo()
         'https://raw.githubusercontent.com/Novartis/hpath/master/src/hpath.obo'
 
-        Get ontology download link in AberOWL but not OBO Foundry
-        (note this might change over time so the exact value isn't
-        used in the doctest):
+        Get ontology download link in AberOWL but not OBO Foundry (note this might
+        change over time so the exact value isn't used in the doctest):
 
         >>> url = get_resource("dermo").get_download_obo()
         >>> assert url is not None and url.startswith("http://aber-owl.net/media/ontologies/DERMO")
@@ -2411,10 +2412,9 @@ class Resource(BaseModel):
     def get_download_owl(self) -> str | None:
         """Get the download link for the latest OWL file.
 
-        :return: A URL for an OWL file download, if exists.
+        :returns: A URL for an OWL file download, if exists.
 
-        Get an ontology download link annotated directly in the
-        Bioregistry:
+        Get an ontology download link annotated directly in the Bioregistry:
 
         >>> from bioregistry import get_resource
         >>> get_resource("orphanet.ordo").get_download_owl()
@@ -2425,9 +2425,8 @@ class Resource(BaseModel):
         >>> get_resource("mod").get_download_owl()
         'http://purl.obolibrary.org/obo/mod.owl'
 
-        Get ontology download link in AberOWL but not OBO Foundry
-        (note this might change over time so the exact value isn't
-        used in the doctest):
+        Get ontology download link in AberOWL but not OBO Foundry (note this might
+        change over time so the exact value isn't used in the doctest):
 
         >>> url = get_resource("birnlex").get_download_owl()
         >>> assert url is not None and url.startswith(
@@ -2871,7 +2870,8 @@ class Registry(BaseModel):
         """Get the provider string.
 
         :param external_prefix: The prefix used in the metaregistry
-        :return: The URL in the registry for the prefix, if it's able to provide one
+
+        :returns: The URL in the registry for the prefix, if it's able to provide one
 
         >>> from bioregistry import get_registry
         >>> get_registry("fairsharing").get_provider_uri_format("FAIRsharing.62qk8w")
@@ -2887,7 +2887,8 @@ class Registry(BaseModel):
         """Generate a provider URI string based on mapping through this registry's vocabulary.
 
         :param prefix: The prefix used in the metaregistry
-        :return: The URI format string to be used for identifiers in the semantic space
+
+        :returns: The URI format string to be used for identifiers in the semantic space
             based on this resolver or the Bioregistry's meta-resolver.
 
         >>> from bioregistry import get_registry
@@ -2907,7 +2908,8 @@ class Registry(BaseModel):
 
         :param prefix: The prefix used in the metaregistry
         :param identifier: The identifier in the semantic space
-        :return: The URI format string for the given CURIE.
+
+        :returns: The URI format string for the given CURIE.
 
         >>> from bioregistry import get_registry
         >>> get_registry("miriam").resolve("go", "0032571")
@@ -2923,6 +2925,7 @@ class Registry(BaseModel):
         """Add triples to an RDF graph for this registry.
 
         :param graph: An RDF graph
+
         :returns: The RDF node representing this registry using a Bioregistry IRI.
         """
         from rdflib import Literal
@@ -3012,6 +3015,7 @@ class Collection(BaseModel):
         """Add triples to an RDF graph for this collection.
 
         :param graph: An RDF graph
+
         :returns: The RDF node representing this collection using a Bioregistry IRI.
         """
         from rdflib import Literal
@@ -3060,10 +3064,10 @@ class Collection(BaseModel):
 class Context(BaseModel):
     """A prescriptive context.
 
-    A prescriptive context contains configuration for generating fit-for-purpose
-    prefix maps to serve various communities based on the standard Bioregistry
-    prefix map, custom prefix remapping rules, custom URI prefix remapping rules,
-    custom prefix maps, and other community-specific logic.
+    A prescriptive context contains configuration for generating fit-for-purpose prefix
+    maps to serve various communities based on the standard Bioregistry prefix map,
+    custom prefix remapping rules, custom URI prefix remapping rules, custom prefix
+    maps, and other community-specific logic.
     """
 
     name: str = Field(
