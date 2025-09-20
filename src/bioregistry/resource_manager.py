@@ -436,10 +436,12 @@ class Manager:
         ReferenceTuple('aop.relationships', '5')
 
         IRI from N2T
+
         >>> manager.parse_uri("https://n2t.net/aop.relationships:5")
         ReferenceTuple('aop.relationships', '5')
 
         Handle either HTTP or HTTPS:
+
         >>> manager.parse_uri("http://braininfo.rprc.washington.edu/centraldirectory.aspx?ID=268")
         ReferenceTuple('neuronames', '268')
         >>> manager.parse_uri("https://braininfo.rprc.washington.edu/centraldirectory.aspx?ID=268")
@@ -528,10 +530,12 @@ class Manager:
         'aop.relationships:5'
 
         URI from N2T
+
         >>> manager.compress("https://n2t.net/aop.relationships:5")
         'aop.relationships:5'
 
         URI from an OBO PURL (with preferred prefix)
+
         >>> manager.compress("http://purl.obolibrary.org/obo/DRON_00023232", use_preferred=True)
         'DRON:00023232'
         """
@@ -1733,25 +1737,30 @@ class Manager:
         :return: The best possible IRI that can be generated based on the priority list.
 
         A pre-parse CURIE can be given as the first two arguments
+
         >>> from bioregistry import manager
         >>> manager.get_iri("chebi", "24867")
         'http://purl.obolibrary.org/obo/CHEBI_24867'
 
         A CURIE can be given directly as a single argument
+
         >>> manager.get_iri("chebi:24867")
         'http://purl.obolibrary.org/obo/CHEBI_24867'
 
         A priority list can be given
+
         >>> priority = ["miriam", "default", "bioregistry"]
         >>> manager.get_iri("chebi:24867", priority=priority)
         'https://identifiers.org/CHEBI:24867'
 
         A custom prefix map can be supplied.
+
         >>> prefix_map = {"chebi": "https://example.org/chebi/"}
         >>> manager.get_iri("chebi:24867", prefix_map=prefix_map)
         'https://example.org/chebi/24867'
 
         A custom prefix map can be supplied in combination with a priority list
+
         >>> prefix_map = {"lipidmaps": "https://example.org/lipidmaps/"}
         >>> priority = ["obofoundry", "custom", "default", "bioregistry"]
         >>> manager.get_iri("chebi:24867", prefix_map=prefix_map, priority=priority)
@@ -1760,6 +1769,7 @@ class Manager:
         'https://example.org/lipidmaps/1234'
 
         A custom provider is given, which makes the Bioregistry very extensible
+
         >>> manager.get_iri("chebi:24867", provider="chebi-img")
         'https://www.ebi.ac.uk/chebi/displayImage.do?defaultImage=true&imageIndex=0&chebiId=24867'
         """
@@ -1835,23 +1845,28 @@ class Manager:
             regular expression pattern for identifiers.
 
         Standard CURIE
+
         >>> from bioregistry import manager
         >>> manager.is_valid_identifier("go", "0000001")
         True
 
         Non-standardized prefix
+
         >>> manager.is_valid_identifier("GO", "0000001")
         False
 
         Incorrect identifier
+
         >>> manager.is_valid_identifier("go", "0001")
         False
 
         Banana scenario
+
         >>> manager.is_valid_identifier("go", "GO:0000001")
         False
 
         Unknown prefix
+
         >>> manager.is_valid_identifier("xxx", "yyy")
         False
         """
@@ -1870,23 +1885,28 @@ class Manager:
             then validated.
 
         Standard CURIE
+
         >>> from bioregistry import manager
         >>> manager.is_standardizable_identifier("go", "0000001")
         True
 
         Non-standardized prefix
+
         >>> manager.is_standardizable_identifier("GO", "0000001")
         True
 
         Incorrect identifier
+
         >>> manager.is_standardizable_identifier("go", "0001")
         False
 
         Banana scenario
+
         >>> manager.is_standardizable_identifier("go", "GO:0000001")
         True
 
         Unknown prefix
+
         >>> manager.is_standardizable_identifier("xxx", "yyy")
         False
         """
@@ -1905,11 +1925,13 @@ class Manager:
             regular expression pattern for identifiers.
 
         Standard CURIE
+
         >>> from bioregistry import manager
         >>> manager.is_valid_curie("go:0000001")
         True
 
         Not a standard CURIE (i.e., no colon)
+
         >>> manager.is_valid_curie("0000001")
         False
         >>> manager.is_valid_curie("GO_0000001")
@@ -1918,18 +1940,22 @@ class Manager:
         False
 
         Non-standardized prefix
+
         >>> manager.is_valid_curie("GO:0000001")
         False
 
         Incorrect identifier
+
         >>> manager.is_valid_curie("go:0001")
         False
 
         Banana scenario
+
         >>> manager.is_valid_curie("go:GO:0000001")
         False
 
         Unknown prefix
+
         >>> manager.is_valid_curie("xxx:yyy")
         False
         """
@@ -1947,11 +1973,13 @@ class Manager:
             then validated.
 
         Standard CURIE
+
         >>> from bioregistry import manager
         >>> manager.is_standardizable_curie("go:0000001")
         True
 
         Not a standard CURIE (i.e., no colon)
+
         >>> manager.is_standardizable_curie("0000001")
         False
         >>> manager.is_standardizable_curie("GO_0000001")
@@ -1960,18 +1988,22 @@ class Manager:
         False
 
         Non-standardized prefix
+
         >>> manager.is_standardizable_curie("GO:0000001")
         True
 
         Incorrect identifier
+
         >>> manager.is_standardizable_curie("go:0001")
         False
 
         Banana scenario
+
         >>> manager.is_standardizable_curie("go:GO:0000001")
         True
 
         Unknown prefix
+
         >>> manager.is_standardizable_curie("xxx:yyy")
         False
         """
