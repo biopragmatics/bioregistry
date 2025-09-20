@@ -110,6 +110,7 @@ Domain: TypeAlias = Literal[
     "protein",
     "study",
     "relationship",
+    "relationship type",
     "antibody",
     "schema",
     "license",
@@ -328,6 +329,14 @@ class Publication(BaseModel):
             or (self.doi is not None and self.doi == other.doi)
             or (self.pmc is not None and self.pmc == other.pmc)
         )
+
+    def _sort_key(self) -> tuple[int, str, str]:
+        return -(self.year or 0), (self.title or "").casefold(), self.get_url()
+
+    def __lt__(self, other: Publication) -> bool:
+        if not isinstance(other, Publication):
+            raise TypeError
+        return self._sort_key() < other._sort_key()
 
 
 #: The status of a resource.
