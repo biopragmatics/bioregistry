@@ -110,6 +110,7 @@ Domain: TypeAlias = Literal[
     "protein",
     "study",
     "relationship",
+    "relationship type",
     "antibody",
     "schema",
     "license",
