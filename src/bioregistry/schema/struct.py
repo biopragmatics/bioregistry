@@ -990,7 +990,8 @@ class Resource(BaseModel):
         None
 
         Banana is not inferred for OBO Foundry ontologies
-        that were imported:
+        that were imported
+
         >>> get_resource("ncit").get_banana()
         None
         >>> get_resource("ncbitaxon").get_banana()
@@ -1039,20 +1040,24 @@ class Resource(BaseModel):
         :returns: The preferred prefix, if annotated in the Bioregistry or OBO Foundry.
 
         No preferred prefix annotation, defaults to normalized prefix
+
         >>> from bioregistry import get_resource
         >>> get_resource("rhea").get_preferred_prefix()
         None
 
         Preferred prefix defined in the Bioregistry
+
         >>> get_resource("wb").get_preferred_prefix()
         'WormBase'
 
         Preferred prefix defined in the OBO Foundry
+
         >>> get_resource("fbbt").get_preferred_prefix()
         'FBbt'
 
         Preferred prefix from the OBO Foundry overridden by the Bioregistry
         (see also https://github.com/OBOFoundry/OBOFoundry.github.io/issues/1559)
+
         >>> get_resource("dpo").get_preferred_prefix()
         'DPO'
         """
@@ -1201,10 +1206,12 @@ class Resource(BaseModel):
         >>> resource = br.get_resource("chebi")
 
         Strict match requires the banana to be present
+
         >>> resource.get_pattern_with_banana()
         '^CHEBI:\\d+$'
 
         Non-strict match allows the banana to be optionally present
+
         >>> resource.get_pattern_with_banana(strict=False)
         '^(CHEBI:)?\\d+$'
         """
@@ -1240,12 +1247,14 @@ class Resource(BaseModel):
         >>> resource = br.get_resource("chebi")
 
         Strict match requires banana
+
         >>> resource.get_pattern_re_with_banana().match("1234")
 
         >>> resource.get_pattern_re_with_banana().match("CHEBI:1234")
         <re.Match object; span=(0, 10), match='CHEBI:1234'>
 
         Loose match does not require banana
+
         >>> resource.get_pattern_re_with_banana(strict=False).match("1234")
         <re.Match object; span=(0, 4), match='1234'>
         >>> resource.get_pattern_re_with_banana(strict=False).match("CHEBI:1234")
@@ -2236,7 +2245,8 @@ class Resource(BaseModel):
         :param identifier: The identifier in the CURIE
         :return: A normalized identifier, possibly with banana/redundant prefix removed
 
-        Examples with explicitly annotated bananas:
+        Examples with explicitly annotated bananas
+
         >>> from bioregistry import get_resource
         >>> get_resource("vario").standardize_identifier("0376")
         '0376'
@@ -2247,7 +2257,8 @@ class Resource(BaseModel):
         >>> get_resource("swisslipid").standardize_identifier("SLM:000000001")
         '000000001'
 
-        Examples with bananas from OBO:
+        Examples with bananas from OBO
+
         >>> get_resource("fbbt").standardize_identifier("00007294")
         '00007294'
         >>> get_resource("chebi").standardize_identifier("1234")
@@ -2258,13 +2269,15 @@ class Resource(BaseModel):
         '1234'
 
         Examples from OBO Foundry that should not have a redundant
-        prefix added:
+        prefix added
+
         >>> get_resource("ncit").standardize_identifier("C73192")
         'C73192'
         >>> get_resource("ncbitaxon").standardize_identifier("9606")
         '9606'
 
-        Standard:
+        Standard
+
         >>> get_resource("pdb").standardize_identifier("00000020")
         '00000020'
         """
@@ -2311,33 +2324,38 @@ class Resource(BaseModel):
         Because identifiers.org used to have URIs in the form of https://identifiers.org/<prefix>/<prefix>:<identifier>
         for entries annotated with ``namespaceEmbeddedInLui`` as ``true``
 
-        Examples with explicitly annotated bananas:
+        Examples with explicitly annotated bananas
+
         >>> from bioregistry import get_resource
         >>> get_resource("vario").miriam_standardize_identifier("0376")
         'VariO:0376'
         >>> get_resource("vario").miriam_standardize_identifier("VariO:0376")
         'VariO:0376'
 
-        Examples with bananas from OBO:
+        Examples with bananas from OBO
+
         >>> get_resource("go").miriam_standardize_identifier("0000001")
         'GO:0000001'
         >>> get_resource("go").miriam_standardize_identifier("GO:0000001")
         'GO:0000001'
 
-        Examples from OBO Foundry:
+        Examples from OBO Foundry
+
         >>> get_resource("chebi").miriam_standardize_identifier("1234")
         'CHEBI:1234'
         >>> get_resource("chebi").miriam_standardize_identifier("CHEBI:1234")
         'CHEBI:1234'
 
         Examples from OBO Foundry that should not have a redundant
-        prefix added:
+        prefix added
+
         >>> get_resource("ncit").miriam_standardize_identifier("C73192")
         'C73192'
         >>> get_resource("ncbitaxon").miriam_standardize_identifier("9606")
         '9606'
 
-        Standard:
+        Standard
+
         >>> get_resource("pdb").miriam_standardize_identifier("00000020")
         '00000020'
         """
@@ -2382,6 +2400,7 @@ class Resource(BaseModel):
         'http://purl.obolibrary.org/obo/bfo.obo'
 
         Get ontology download link from OLS where OWL isn't available
+
         >>> get_resource("hpath").get_download_obo()
         'https://raw.githubusercontent.com/Novartis/hpath/master/src/hpath.obo'
 
