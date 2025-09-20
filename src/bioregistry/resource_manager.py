@@ -1272,10 +1272,11 @@ class Manager:
         This is complementary to :func:`get_depends_on`.
 
         :param prefix: The prefix to look up
-        :returns: The list of resources this prefix has been annotated to appear in. This
-            list could be incomplete, since curation of these fields can easily get out
-            of sync with curation of the resource itself. However, false positives should
-            be pretty rare.
+
+        :returns: The list of resources this prefix has been annotated to appear in.
+            This list could be incomplete, since curation of these fields can easily get
+            out of sync with curation of the resource itself. However, false positives
+            should be pretty rare.
         """
         resource = self.get_resource(prefix)
         if resource is None:
@@ -1290,10 +1291,11 @@ class Manager:
         This is complementary to :func:`get_appears_in`.
 
         :param prefix: The prefix to look up
-        :returns: The list of resources this prefix has been annotated to depend on. This
-            list could be incomplete, since curation of these fields can easily get out
-            of sync with curation of the resource itself. However, false positives should
-            be pretty rare.
+
+        :returns: The list of resources this prefix has been annotated to depend on.
+            This list could be incomplete, since curation of these fields can easily get
+            out of sync with curation of the resource itself. However, false positives
+            should be pretty rare.
 
         >>> from bioregistry import manager
         >>> assert "bfo" in manager.get_depends_on("foodon")
@@ -1322,8 +1324,10 @@ class Manager:
 
         :param metaprefix: The key for the external registry
         :param metaidentifier: The prefix in the external registry
-        :param normalize: Should external prefixes be normalized during lookup (e.g., lowercased)
-        :return: The bioregistry prefix (if it can be mapped)
+        :param normalize: Should external prefixes be normalized during lookup (e.g.,
+            lowercased)
+
+        :returns: The bioregistry prefix (if it can be mapped)
 
         >>> from bioregistry import manager
         >>> manager.lookup_from("obofoundry", "GO")
@@ -1383,17 +1387,16 @@ class Manager:
     def get_parts_collections(self) -> Mapping[str, list[str]]:
         """Group resources' prefixes based on their ``part_of`` entries.
 
-        :returns:
-            A dictionary with keys that appear as the values of ``Resource.part_of``
-            and whose values are lists of prefixes for resources that have the key
-            as a value in its ``part_of`` field.
+        :returns: A dictionary with keys that appear as the values of
+            ``Resource.part_of`` and whose values are lists of prefixes for resources
+            that have the key as a value in its ``part_of`` field.
 
         .. warning::
 
-            Many of the keys in this dictionary are valid Bioregistry prefixes,
-            but this is not necessary. For example, ``ctd`` is one key that
-            appears that explicitly has no prefix, since it corresponds to a
-            resource and not a vocabulary.
+            Many of the keys in this dictionary are valid Bioregistry prefixes, but this
+            is not necessary. For example, ``ctd`` is one key that appears that
+            explicitly has no prefix, since it corresponds to a resource and not a
+            vocabulary.
         """
         rv = {}
         for key, values in self.has_parts.items():
@@ -1416,7 +1419,8 @@ class Manager:
 
         :param prefix: The prefix in the CURIE
         :param identifier: The identifier in the CURIE
-        :return: A link to the Bioregistry resolver
+
+        :returns: A link to the Bioregistry resolver
         """
         reference = self.normalize_parsed_curie(
             prefix, identifier, on_failure_return_type=FailureReturnType.single
@@ -1430,7 +1434,8 @@ class Manager:
 
         :param prefix: The prefix in the CURIE
         :param identifier: The identifier in the CURIE
-        :return: A IRI string corresponding to the default provider, if available.
+
+        :returns: A IRI string corresponding to the default provider, if available.
 
         >>> from bioregistry import manager
         >>> manager.get_default_iri("chebi", "24867")
@@ -1446,7 +1451,9 @@ class Manager:
 
         :param prefix: The prefix in the CURIE
         :param identifier: The identifier in the CURIE
-        :return: A IRI string corresponding to the canonical RDF provider, if available.
+
+        :returns: A IRI string corresponding to the canonical RDF provider, if
+            available.
 
         >>> from bioregistry import manager
         >>> manager.get_rdf_uri("edam", "data_1153")
@@ -1469,8 +1476,9 @@ class Manager:
 
         :param prefix: The prefix in the CURIE
         :param identifier: The identifier in the CURIE
-        :return: A IRI string corresponding to the Identifiers.org, if the prefix exists and is
-            mapped to MIRIAM.
+
+        :returns: A IRI string corresponding to the Identifiers.org, if the prefix
+            exists and is mapped to MIRIAM.
         """
         curie = self.get_miriam_curie(prefix, identifier)
         if curie is None:
@@ -1482,7 +1490,8 @@ class Manager:
 
         :param prefix: The prefix in the CURIE
         :param identifier: The identifier in the CURIE
-        :return: A link to the Bioportal page
+
+        :returns: A link to the Bioportal page
 
         >>> from bioregistry import manager
         >>> manager.get_bioportal_iri("chebi", "24431")
@@ -1508,10 +1517,12 @@ class Manager:
         """Get an IRI using the format in the metaregistry.
 
         :param metaprefix: The metaprefix of the registry in the metaregistry
-        :param prefix: A bioregistry prefix (will be mapped to the external one automatically)
+        :param prefix: A bioregistry prefix (will be mapped to the external one
+            automatically)
         :param identifier: The identifier for the entity
-        :returns: An IRI generated from the ``resolver_url`` format string of the registry, if it
-            exists.
+
+        :returns: An IRI generated from the ``resolver_url`` format string of the
+            registry, if it exists.
 
         >>> from bioregistry import manager
         >>> manager.get_formatted_iri("miriam", "hgnc", "16793")
@@ -1532,7 +1543,9 @@ class Manager:
 
         :param prefix: The prefix
         :param identifier: The identifier
-        :return: The OBO Foundry URL if the prefix can be mapped to an OBO Foundry entry
+
+        :returns: The OBO Foundry URL if the prefix can be mapped to an OBO Foundry
+            entry
 
         >>> from bioregistry import manager
         >>> manager.get_obofoundry_iri("chebi", "24431")
@@ -1550,8 +1563,9 @@ class Manager:
 
         :param prefix: The prefix in the CURIE
         :param identifier: The identifier in the CURIE
-        :return: A IRI string corresponding to the N2T resolve, if the prefix exists and is
-            mapped to N2T.
+
+        :returns: A IRI string corresponding to the N2T resolve, if the prefix exists
+            and is mapped to N2T.
 
         >>> from bioregistry import manager
         >>> manager.get_n2t_iri("chebi", "24867")
@@ -1564,8 +1578,9 @@ class Manager:
 
         :param prefix: The prefix in the CURIE
         :param identifier: The identifier in the CURIE
-        :return: A IRI string corresponding to the RRID resolver, if the prefix exists and is
-            mapped to RRID.
+
+        :returns: A IRI string corresponding to the RRID resolver, if the prefix exists
+            and is mapped to RRID.
 
         >>> from bioregistry import manager
         >>> manager.get_rrid_iri("antibodyregistry", "493771")
@@ -1578,7 +1593,8 @@ class Manager:
 
         :param prefix: The prefix in the CURIE
         :param identifier: The identifier in the CURIE
-        :return: A link to the Scholia page
+
+        :returns: A link to the Scholia page
 
         >>> from bioregistry import manager
         >>> manager.get_scholia_iri("pubmed", "1234")
@@ -1652,6 +1668,7 @@ class Manager:
 
         :param prefix: the prefix in the CURIE
         :param identifier: the identifier in the CURIE
+
         :returns: A dictionary of IRIs associated with the CURIE
 
         >>> from bioregistry import manager
@@ -1664,10 +1681,11 @@ class Manager:
 
         :param metaprefix: The metaprefix for an external registry
         :param prefix: The Bioregistry prefix
-        :param identifier: The local unique identifier for a concept in the semantic space
-            denoted by the prefix
-        :returns: The external registry's URI (either for resolving or lookup) of the entity
-            denoted by the prefix/identifier pair.
+        :param identifier: The local unique identifier for a concept in the semantic
+            space denoted by the prefix
+
+        :returns: The external registry's URI (either for resolving or lookup) of the
+            entity denoted by the prefix/identifier pair.
 
         >>> from bioregistry import manager
         >>> manager.get_registry_uri("rrid", "antibodyregistry", "493771")
