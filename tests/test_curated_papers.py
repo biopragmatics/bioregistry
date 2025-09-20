@@ -4,6 +4,7 @@ import unittest
 from collections import Counter
 from datetime import datetime
 
+import bioregistry
 from bioregistry.constants import CURATED_PAPERS_PATH, ORCID_PATTERN
 from bioregistry.curation.literature import COLUMNS, CurationRelevance
 
@@ -15,7 +16,7 @@ class TestTSV(unittest.TestCase):
         """Set up the test case."""
         self.relevancy_types = {r.name for r in CurationRelevance}
 
-    def validate_row(self, row):
+    def validate_row(self, row, full: bool = False):
         """Validate a single row from the TSV file."""
         for field in COLUMNS:
             self.assertIn(field, row)
@@ -32,20 +33,21 @@ class TestTSV(unittest.TestCase):
         # Validate relevant is 0 or 1
         self.assertIn(row["relevant"], ["0", "1"])
 
-        """
-        Commenting out this check for now. This can be re-implemented if a need
-        for it arises in the future
+        if full:
+            # Commenting out this check for now. This can be re-implemented if a need
+            # for it arises in the future
 
-        if row["relevant"] == "1":
-            prefix = row["prefix"]
-            self.assertIsNotNone(prefix, msg="prefix should be set for all relevant entries")
-            self.assertNotEqual("", prefix, msg="prefix should not be empty for relevant entries")
-            self.assertEqual(
-                bioregistry.normalize_prefix(prefix),
-                prefix,
-                msg="prefix should be standardized for relevant entries",
-            )
-        """
+            if row["relevant"] == "1":
+                prefix = row["prefix"]
+                self.assertIsNotNone(prefix, msg="prefix should be set for all relevant entries")
+                self.assertNotEqual(
+                    "", prefix, msg="prefix should not be empty for relevant entries"
+                )
+                self.assertEqual(
+                    bioregistry.normalize_prefix(prefix),
+                    prefix,
+                    msg="prefix should be standardized for relevant entries",
+                )
 
         # Validate relevancy_type is in relevancy_vocab
         self.assertIn(row["relevancy_type"], self.relevancy_types)
