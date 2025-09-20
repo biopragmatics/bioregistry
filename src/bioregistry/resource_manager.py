@@ -1985,6 +1985,7 @@ class Manager:
         """Get a prescriptive context.
 
         :param key: The identifier for the prescriptive context, e.g., `obo`.
+
         :returns: A prescriptive context object, if available
         """
         return self.contexts.get(key)
