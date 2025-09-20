@@ -1717,12 +1717,14 @@ class Manager:
         """Get the best link for the CURIE pair, if possible.
 
         :param prefix: The prefix in the CURIE
-        :param identifier: The identifier in the CURIE. If identifier is given as None, then this function will
-            assume that the first argument (``prefix``) is actually a full CURIE.
-        :param priority: A user-defined priority list. In addition to the metaprefixes in the Bioregistry
-            corresponding to resources that are resolvers/lookup services, you can also use ``default``
-            to correspond to the first-party IRI and ``custom`` to refer to the custom prefix map.
-            The default priority list is:
+        :param identifier: The identifier in the CURIE. If identifier is given as None,
+            then this function will assume that the first argument (``prefix``) is
+            actually a full CURIE.
+        :param priority: A user-defined priority list. In addition to the metaprefixes
+            in the Bioregistry corresponding to resources that are resolvers/lookup
+            services, you can also use ``default`` to correspond to the first-party IRI
+            and ``custom`` to refer to the custom prefix map. The default priority list
+            is:
 
             1. Custom prefix map (``custom``)
             2. First-party IRI (``default``)
@@ -1731,11 +1733,14 @@ class Manager:
             5. OBO PURL (``obofoundry``)
             6. Name-to-Thing (``n2t``)
             7. BioPortal (``bioportal``)
-
-        :param prefix_map: A custom prefix map to go with the ``custom`` key in the priority list
-        :param use_bioregistry_io: Should the bioregistry resolution IRI be used? Defaults to true.
+        :param prefix_map: A custom prefix map to go with the ``custom`` key in the
+            priority list
+        :param use_bioregistry_io: Should the bioregistry resolution IRI be used?
+            Defaults to true.
         :param provider: The provider code to use for a custom provider
-        :return: The best possible IRI that can be generated based on the priority list.
+
+        :returns: The best possible IRI that can be generated based on the priority
+            list.
 
         A pre-parse CURIE can be given as the first two arguments
 
@@ -1840,10 +1845,11 @@ class Manager:
 
         :param prefix: The prefix from a compact URI
         :param identifier: The local unique identifer from a compact URI
-        :return:
-            If the CURIE is standardized in both syntax and semantics. This means that it uses the Bioregistry
-            canonical prefix, does not have a redundant prefix, and if available, matches the Bioregistry's
-            regular expression pattern for identifiers.
+
+        :returns: If the CURIE is standardized in both syntax and semantics. This means
+            that it uses the Bioregistry canonical prefix, does not have a redundant
+            prefix, and if available, matches the Bioregistry's regular expression
+            pattern for identifiers.
 
         Standard CURIE
 
@@ -1881,9 +1887,9 @@ class Manager:
 
         :param prefix: The prefix from a compact URI
         :param identifier: The local unique identifer from a compact URI
-        :return:
-            If the CURIE can be standardized (e.g., prefix normalize and identifier normalized)
-            then validated.
+
+        :returns: If the CURIE can be standardized (e.g., prefix normalize and
+            identifier normalized) then validated.
 
         Standard CURIE
 
@@ -1920,10 +1926,11 @@ class Manager:
         """Check if a CURIE is standardized and valid.
 
         :param curie: A compact URI of the form ``<prefix>:<local unique identifier>``.
-        :return:
-            If the CURIE is standardized in both syntax and semantics. This means that it uses the Bioregistry
-            canonical prefix, does not have a redundant prefix, and if available, matches the Bioregistry's
-            regular expression pattern for identifiers.
+
+        :returns: If the CURIE is standardized in both syntax and semantics. This means
+            that it uses the Bioregistry canonical prefix, does not have a redundant
+            prefix, and if available, matches the Bioregistry's regular expression
+            pattern for identifiers.
 
         Standard CURIE
 
@@ -1970,8 +1977,9 @@ class Manager:
         """Check if a CURIE is validatable, but not necessarily standardized.
 
         :param curie: A compact URI
-        :return: If the CURIE can be standardized (e.g., prefix normalize and identifier normalized)
-            then validated.
+
+        :returns: If the CURIE can be standardized (e.g., prefix normalize and
+            identifier normalized) then validated.
 
         Standard CURIE
 
