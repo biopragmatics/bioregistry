@@ -1236,10 +1236,10 @@ class Resource(BaseModel):
             MIRIAM/Identifiers.org standards. New projects should **not** use redundant
             prefixes in their local unique identifiers.
 
-        :param strict: If True (default), and a banana exists for the prefix,
-            the banana is required in the pattern. If False, the pattern
-            will match the banana if present but will also match the identifier
-            without the banana.
+        :param strict: If True (default), and a banana exists for the prefix, the banana
+            is required in the pattern. If False, the pattern will match the banana if
+            present but will also match the identifier without the banana.
+
         :returns: A compiled pattern for the prefix if available
 
         >>> import bioregistry as br
@@ -2242,7 +2242,8 @@ class Resource(BaseModel):
         """Normalize the identifier to not have a redundant prefix or banana.
 
         :param identifier: The identifier in the CURIE
-        :return: A normalized identifier, possibly with banana/redundant prefix removed
+
+        :returns: A normalized identifier, possibly with banana/redundant prefix removed
 
         Examples with explicitly annotated bananas
 
@@ -2267,8 +2268,7 @@ class Resource(BaseModel):
         >>> get_resource("chebi").standardize_identifier("CHEBI_1234")
         '1234'
 
-        Examples from OBO Foundry that should not have a redundant
-        prefix added
+        Examples from OBO Foundry that should not have a redundant prefix added
 
         >>> get_resource("ncit").standardize_identifier("C73192")
         'C73192'
@@ -2318,10 +2318,12 @@ class Resource(BaseModel):
         """Normalize the identifier for legacy usage with MIRIAM using the appropriate banana.
 
         :param identifier: The identifier in the CURIE
-        :return: A normalize identifier, possibly with banana/redundant prefix added
 
-        Because identifiers.org used to have URIs in the form of https://identifiers.org/<prefix>/<prefix>:<identifier>
-        for entries annotated with ``namespaceEmbeddedInLui`` as ``true``
+        :returns: A normalize identifier, possibly with banana/redundant prefix added
+
+        Because identifiers.org used to have URIs in the form of
+        https://identifiers.org/<prefix>/<prefix>:<identifier> for entries annotated
+        with ``namespaceEmbeddedInLui`` as ``true``
 
         Examples with explicitly annotated bananas
 
@@ -2345,8 +2347,7 @@ class Resource(BaseModel):
         >>> get_resource("chebi").miriam_standardize_identifier("CHEBI:1234")
         'CHEBI:1234'
 
-        Examples from OBO Foundry that should not have a redundant
-        prefix added
+        Examples from OBO Foundry that should not have a redundant prefix added
 
         >>> get_resource("ncit").miriam_standardize_identifier("C73192")
         'C73192'
