@@ -95,7 +95,6 @@ class NormalizedReference(curies.Reference):
     ...     reference: NormalizedReference
     >>> Derived(reference="go:0032571")
     Derived(reference=NormalizedReference(prefix='go', identifier='0032571'))
-
     """
 
     @model_validator(mode="before")
