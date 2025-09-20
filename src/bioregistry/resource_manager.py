@@ -349,11 +349,12 @@ class Manager:
     def get_resource(self, prefix: str, *, strict: bool = False) -> Resource | None:
         """Get the Bioregistry entry for the given prefix.
 
-        :param prefix: The prefix to look up, which is normalized with :func:`normalize_prefix`
-            before lookup in the Bioregistry
+        :param prefix: The prefix to look up, which is normalized with
+            :func:`normalize_prefix` before lookup in the Bioregistry
         :param strict: If true, requires the prefix to be valid or raise an exveption
-        :returns: The Bioregistry entry dictionary, which includes several keys cross-referencing
-            other registries when available.
+
+        :returns: The Bioregistry entry dictionary, which includes several keys
+            cross-referencing other registries when available.
         """
         norm_prefix = self.normalize_prefix(prefix)
         if norm_prefix is None:
@@ -393,12 +394,12 @@ class Manager:
         """Parse a compact identifier from a URI.
 
         :param uri: A valid URI
-        :param use_preferred:
-            If set to true, uses the "preferred prefix", if available, instead
-            of the canonicalized Bioregistry prefix.
-        :param on_failure_return_type: whether to return a single None or a pair of None's
+        :param use_preferred: If set to true, uses the "preferred prefix", if available,
+            instead of the canonicalized Bioregistry prefix.
+        :param on_failure_return_type: whether to return a single None or a pair of
+            None's
 
-        :return: A pair of prefix/identifier, if can be parsed
+        :returns: A pair of prefix/identifier, if can be parsed
 
         IRI from an OBO PURL:
 
