@@ -989,8 +989,7 @@ class Resource(BaseModel):
         >>> get_resource("pdb").get_banana()
         None
 
-        Banana is not inferred for OBO Foundry ontologies
-        that were imported
+        Banana is not inferred for OBO Foundry ontologies that were imported
 
         >>> get_resource("ncit").get_banana()
         None
@@ -1055,8 +1054,8 @@ class Resource(BaseModel):
         >>> get_resource("fbbt").get_preferred_prefix()
         'FBbt'
 
-        Preferred prefix from the OBO Foundry overridden by the Bioregistry
-        (see also https://github.com/OBOFoundry/OBOFoundry.github.io/issues/1559)
+        Preferred prefix from the OBO Foundry overridden by the Bioregistry (see also
+        https://github.com/OBOFoundry/OBOFoundry.github.io/issues/1559)
 
         >>> get_resource("dpo").get_preferred_prefix()
         'DPO'
