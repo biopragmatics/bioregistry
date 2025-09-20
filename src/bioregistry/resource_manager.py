@@ -488,10 +488,10 @@ class Manager:
         """Parse a compact uniform resource identifier (CURIE) from a URI.
 
         :param uri: A valid URI
-        :param use_preferred:
-            If set to true, uses the "preferred prefix", if available, instead
-            of the canonicalized Bioregistry prefix.
-        :return: A CURIE, if the URI can be parsed
+        :param use_preferred: If set to true, uses the "preferred prefix", if available,
+            instead of the canonicalized Bioregistry prefix.
+
+        :returns: A CURIE, if the URI can be parsed
 
         URI from an OBO PURL:
 
@@ -701,15 +701,17 @@ class Manager:
 
         :param prefix: The prefix in the CURIE
         :param identifier: The identifier in the CURIE
-        :param use_preferred:
-            If set to true, uses the "preferred prefix", if available, instead
-            of the canonicalized Bioregistry prefix.
-        :param on_failure_return_type: whether to return a single None or a pair of None's
+        :param use_preferred: If set to true, uses the "preferred prefix", if available,
+            instead of the canonicalized Bioregistry prefix.
+        :param on_failure_return_type: whether to return a single None or a pair of
+            None's
         :param strict: If true, raises an error if the prefix can't be standardized
-        :return: A normalized prefix/identifier pair, conforming to Bioregistry standards. This means no redundant
-            prefixes or bananas, all lowercase.
 
-        :raises PrefixStandardizationError: If strict is set to true and the prefix could not be standardized
+        :returns: A normalized prefix/identifier pair, conforming to Bioregistry
+            standards. This means no redundant prefixes or bananas, all lowercase.
+
+        :raises PrefixStandardizationError: If strict is set to true and the prefix
+            could not be standardized
         """
         norm_prefix = self.normalize_prefix(prefix, strict=False)
         if not norm_prefix:
@@ -733,6 +735,7 @@ class Manager:
 
         :param metaprefix: Which external registry should be used?
         :param normalize: Should the external prefixes be normalized?
+
         :returns: A mapping of external prefixes to bioregistry prefies
 
         >>> from bioregistry import manager
@@ -990,14 +993,14 @@ class Manager:
     ) -> Mapping[str, str]:
         """Get a mapping from prefixes to their regular expression patterns.
 
-        :param prefix_priority:
-            The order of metaprefixes OR "preferred" for choosing a primary prefix
-            OR "default" for Bioregistry prefixes
-        :param include_synonyms: Should synonyms of each prefix also be included as additional prefixes, but with
-            the same URI prefix?
+        :param prefix_priority: The order of metaprefixes OR "preferred" for choosing a
+            primary prefix OR "default" for Bioregistry prefixes
+        :param include_synonyms: Should synonyms of each prefix also be included as
+            additional prefixes, but with the same URI prefix?
         :param remapping: A mapping from prefixes to preferred prefixes.
         :param blacklist: Prefixes to skip
-        :return: A mapping from prefixes to regular expression pattern strings.
+
+        :returns: A mapping from prefixes to regular expression pattern strings.
         """
         it = self._iter_pattern_map(
             include_synonyms=include_synonyms, prefix_priority=prefix_priority, blacklist=blacklist
@@ -1040,22 +1043,18 @@ class Manager:
     ) -> curies.Converter:
         """Get a converter from this manager.
 
-        :param prefix_priority:
-            The order of metaprefixes OR "preferred" for choosing a primary prefix
-            OR "default" for Bioregistry prefixes
-        :param uri_prefix_priority:
-            The order of metaprefixes for choosing the primary URI prefix OR
-            "default" for Bioregistry prefixes
+        :param prefix_priority: The order of metaprefixes OR "preferred" for choosing a
+            primary prefix OR "default" for Bioregistry prefixes
+        :param uri_prefix_priority: The order of metaprefixes for choosing the primary
+            URI prefix OR "default" for Bioregistry prefixes
         :param include_prefixes: Should prefixes be included with colon delimiters?
-            Setting this to true makes an "omni"-reverse prefix map that can be
-            used to parse both URIs and CURIEs
-        :param strict:
-            If true, errors on URI prefix collisions. If false, sends logging
+            Setting this to true makes an "omni"-reverse prefix map that can be used to
+            parse both URIs and CURIEs
+        :param strict: If true, errors on URI prefix collisions. If false, sends logging
             and skips them.
         :param remapping: A mapping from bioregistry prefixes to preferred prefixes.
         :param rewiring: A mapping from bioregistry prefixes to new URI prefixes.
-        :param blacklist:
-            A collection of prefixes to skip
+        :param blacklist: A collection of prefixes to skip
         :param enforce_w3c: Should non-W3C-compliant prefix synoynms be removed?
 
         :returns: A list of records for :class:`curies.Converter`
@@ -1127,18 +1126,17 @@ class Manager:
     ) -> Mapping[str, str]:
         """Get a mapping from Bioregistry prefixes to their URI prefixes .
 
-        :param prefix_priority:
-            The order of metaprefixes OR "preferred" for choosing a primary prefix
-            OR "default" for Bioregistry prefixes
-        :param uri_prefix_priority:
-            The order of metaprefixes for choosing the primary URI prefix OR
-            "default" for Bioregistry prefixes
-        :param include_synonyms: Should synonyms of each prefix also be included as additional prefixes, but with
-            the same URI prefix?
+        :param prefix_priority: The order of metaprefixes OR "preferred" for choosing a
+            primary prefix OR "default" for Bioregistry prefixes
+        :param uri_prefix_priority: The order of metaprefixes for choosing the primary
+            URI prefix OR "default" for Bioregistry prefixes
+        :param include_synonyms: Should synonyms of each prefix also be included as
+            additional prefixes, but with the same URI prefix?
         :param remapping: A mapping from Bioregistry prefixes to preferred prefixes.
         :param rewiring: A mapping from Bioregistry prefixes to URI prefixes.
         :param blacklist: Prefixes to skip
-        :return: A mapping from prefixes to URI prefixes.
+
+        :returns: A mapping from prefixes to URI prefixes.
         """
         converter = self.get_converter(
             prefix_priority=prefix_priority,
@@ -1153,10 +1151,10 @@ class Manager:
         r"""Get the CURIE pattern for this resource.
 
         :param prefix: The prefix to look up
-        :param use_preferred:
-            If set to true, uses the "preferred prefix", if available, instead
-            of the canonicalized Bioregistry prefix.
-        :return: The regular expression pattern to match CURIEs against
+        :param use_preferred: If set to true, uses the "preferred prefix", if available,
+            instead of the canonicalized Bioregistry prefix.
+
+        :returns: The regular expression pattern to match CURIEs against
 
         >>> from bioregistry import manager
         >>> manager.get_curie_pattern("go")
