@@ -938,8 +938,11 @@ class Resource(BaseModel):
     def get_rdf_uri(self, identifier: str) -> str | None:
         """Return the RDF URI for the identifier.
 
-        :param identifier: The local identifier in the nomenclature represented by this resource
-        :returns: The canonical RDF URI for the local identifier, if one can be constructed
+        :param identifier: The local identifier in the nomenclature represented by this
+            resource
+
+        :returns: The canonical RDF URI for the local identifier, if one can be
+            constructed
 
         >>> from bioregistry import get_resource
         >>> get_resource("edam").get_rdf_uri("data_1153")
@@ -961,7 +964,7 @@ class Resource(BaseModel):
         Usually this corresponds to the prefix itself, with some specific stylization
         such as in the case of FBbt. The banana does NOT include a colon ":" at the end
 
-        :return: The banana, if the prefix is valid and has an associated banana.
+        :returns: The banana, if the prefix is valid and has an associated banana.
 
         Explicitly annotated banana
 
@@ -1188,10 +1191,10 @@ class Resource(BaseModel):
             MIRIAM/Identifiers.org standards. New projects should **not** use redundant
             prefixes in their local unique identifiers.
 
-        :param strict: If True (default), and a banana exists for the prefix,
-            the banana is required in the pattern. If False, the pattern
-            will match the banana if present but will also match the identifier
-            without the banana.
+        :param strict: If True (default), and a banana exists for the prefix, the banana
+            is required in the pattern. If False, the pattern will match the banana if
+            present but will also match the identifier without the banana.
+
         :returns: A pattern for the prefix if available
 
         >>> import bioregistry as br
