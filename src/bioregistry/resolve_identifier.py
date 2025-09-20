@@ -38,10 +38,12 @@ def is_valid_curie(curie: str) -> bool:
         regular expression pattern for identifiers.
 
     Standard CURIE
+
     >>> is_valid_curie("go:0000001")
     True
 
     Not a standard CURIE (i.e., no colon)
+
     >>> is_valid_curie("0000001")
     False
     >>> is_valid_curie("GO_0000001")
@@ -50,18 +52,22 @@ def is_valid_curie(curie: str) -> bool:
     False
 
     Non-standardized prefix
+
     >>> is_valid_curie("GO:0000001")
     False
 
     Incorrect identifier
+
     >>> is_valid_curie("go:0001")
     False
 
     Banana scenario
+
     >>> is_valid_curie("go:GO:0000001")
     False
 
     Unknown prefix
+
     >>> is_valid_curie("xxx:yyy")
     False
     """
@@ -76,10 +82,12 @@ def is_standardizable_curie(curie: str) -> bool:
         then validated.
 
     Standard CURIE
+
     >>> is_standardizable_curie("go:0000001")
     True
 
     Not a standard CURIE (i.e., no colon)
+
     >>> is_standardizable_curie("0000001")
     False
     >>> is_standardizable_curie("GO_0000001")
@@ -88,18 +96,22 @@ def is_standardizable_curie(curie: str) -> bool:
     False
 
     Non-standardized prefix
+
     >>> is_standardizable_curie("GO:0000001")
     True
 
     Incorrect identifier
+
     >>> is_standardizable_curie("go:0001")
     False
 
     Banana scenario
+
     >>> is_standardizable_curie("go:GO:0000001")
     True
 
     Unknown prefix
+
     >>> is_standardizable_curie("xxx:yyy")
     False
     """
@@ -119,22 +131,27 @@ def is_valid_identifier(prefix: str, identifier: str) -> bool:
     .. seealso:: The :func:`is_standardizable_identifier` performs normalization before checking validity
 
     Standard CURIE
+
     >>> is_valid_identifier("go", "0000001")
     True
 
     Non-standardized prefix
+
     >>> is_valid_identifier("GO", "0000001")
     False
 
     Incorrect identifier
+
     >>> is_valid_identifier("go", "0001")
     False
 
     Banana scenario
+
     >>> is_valid_identifier("go", "GO:0000001")
     False
 
     Unknown prefix
+
     >>> is_valid_identifier("xxx", "yyy")
     False
     """
@@ -156,22 +173,27 @@ def is_standardizable_identifier(prefix: str, identifier: str) -> bool:
         validity
 
     Standard CURIE
+
     >>> is_standardizable_identifier("go", "0000001")
     True
 
     Non-standardized prefix
+
     >>> is_standardizable_identifier("GO", "0000001")
     True
 
     Incorrect identifier
+
     >>> is_standardizable_identifier("go", "0001")
     False
 
     Banana scenario
+
     >>> is_standardizable_identifier("go", "GO:0000001")
     True
 
     Unknown prefix
+
     >>> is_standardizable_identifier("xxx", "yyy")
     False
     """
@@ -204,7 +226,8 @@ def miriam_standardize_identifier(prefix: str, identifier: str) -> str | None:
     >>> miriam_standardize_identifier("vario", "VariO:0376")
     'VariO:0376'
 
-    Examples with bananas from OBO:
+    Examples with bananas from OBO
+
     >>> import bioregistry as br
     >>> assert "GO" == br.get_banana("go")
     >>> miriam_standardize_identifier("go", "0000001")
@@ -217,13 +240,15 @@ def miriam_standardize_identifier(prefix: str, identifier: str) -> str | None:
     >>> miriam_standardize_identifier("vario", "VariO:0000001")
     'VariO:0000001'
 
-    Examples from OBO Foundry:
+    Examples from OBO Foundry
+
     >>> miriam_standardize_identifier("chebi", "1234")
     'CHEBI:1234'
     >>> miriam_standardize_identifier("chebi", "CHEBI:1234")
     'CHEBI:1234'
 
-    Examples outside of OBO:
+    Examples outside of OBO
+
     >>> miriam_standardize_identifier("mgi", "6017782")
     'MGI:6017782'
     >>> miriam_standardize_identifier("mgi", "MGI:6017782")
@@ -235,6 +260,7 @@ def miriam_standardize_identifier(prefix: str, identifier: str) -> str | None:
     'SLM:000000341'
 
     Special cases with underscore-delimited bananas
+
     >>> miriam_standardize_identifier("cellosaurus", "0001")
     'CVCL_0001'
     >>> miriam_standardize_identifier("cellosaurus", "CVCL_0001")
@@ -252,7 +278,7 @@ def miriam_standardize_identifier(prefix: str, identifier: str) -> str | None:
     >>> miriam_standardize_identifier("biomodels.kisao", "KISAO_0000057")
     'KISAO_0000057'
 
-    Standard:
+    Standard
 
     >>> import bioregistry as br
     >>> assert br.get_banana("pdb") is None
@@ -416,6 +442,7 @@ def get_bioregistry_iri(prefix: str, identifier: str) -> str | None:
     'https://bioregistry.io/fbbt:00007294'
 
     Redundant prefix (banana; explicit)
+
     >>> get_bioregistry_iri("go.ref", "GO_REF:1234")
     'https://bioregistry.io/go.ref:1234'
     >>> get_bioregistry_iri("go.ref", "1234")
@@ -456,24 +483,29 @@ def get_iri(
     :return: The best possible IRI that can be generated based on the priority list.
 
     A pre-parse CURIE can be given as the first two arguments
+
     >>> get_iri("chebi", "24867")
     'http://purl.obolibrary.org/obo/CHEBI_24867'
 
     A CURIE can be given directly as a single argument
+
     >>> get_iri("chebi:24867")
     'http://purl.obolibrary.org/obo/CHEBI_24867'
 
     A priority list can be given
+
     >>> priority = ["miriam", "default", "bioregistry"]
     >>> get_iri("chebi:24867", priority=priority)
     'https://identifiers.org/CHEBI:24867'
 
-    A custom prefix map can be supplied.
+    A custom prefix map can be supplied
+
     >>> prefix_map = {"chebi": "https://example.org/chebi/"}
     >>> get_iri("chebi:24867", prefix_map=prefix_map)
     'https://example.org/chebi/24867'
 
     A custom prefix map can be supplied in combination with a priority list
+
     >>> prefix_map = {"lipidmaps": "https://example.org/lipidmaps/"}
     >>> priority = ["obofoundry", "custom", "default", "bioregistry"]
     >>> get_iri("chebi:24867", prefix_map=prefix_map, priority=priority)
@@ -482,6 +514,7 @@ def get_iri(
     'https://example.org/lipidmaps/1234'
 
     A custom provider is given, which makes the Bioregistry very extensible
+
     >>> get_iri("chebi:24867", provider="chebi-img")
     'https://www.ebi.ac.uk/chebi/displayImage.do?defaultImage=true&imageIndex=0&chebiId=24867'
     """
