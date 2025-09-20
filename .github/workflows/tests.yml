@@ -74,14 +74,18 @@ jobs:
         with:
           enable-cache: true
           cache-dependency-glob: "pyproject.toml"
+
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
+        if: matrix.os == 'ubuntu-latest'
+  
       - name: Start blazegraph and virtuoso triplestores with docker
         if: matrix.os == 'ubuntu-latest'
         run: |
           docker compose up -d
           sleep 20
           docker compose exec virtuoso isql -U dba -P dba exec='GRANT "SPARQL_SELECT_FED" TO "SPARQL";'          
+
       - name: Test with pytest and generate coverage file
         run:
           uvx -p ${{ matrix.python-version }} --with tox-uv tox -e py
