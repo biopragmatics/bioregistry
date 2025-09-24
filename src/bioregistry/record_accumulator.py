@@ -355,14 +355,14 @@ def _enrich_converter_synonyms(converter: Converter) -> Converter:
 
 
 def _enrich_record_synonyms(record: curies.Record) -> curies.Record:
-    sss = set()
+    sss: set[str] = set()
     for s in [record.prefix, *record.prefix_synonyms]:
         sss.update(_generate_variants(s))
     record.prefix_synonyms = sorted(sss - {record.prefix})
     return record
 
 
-def _generate_variants(s: str):
+def _generate_variants(s: str) -> Iterable[str]:
     yield s
     yield s.lower()
     yield s.upper()
