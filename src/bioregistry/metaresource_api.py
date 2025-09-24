@@ -36,7 +36,8 @@ def get_registry_homepage(metaprefix: str) -> str | None:
     """Get the URL for the registry, if available.
 
     :param metaprefix: The metaprefix of the registry
-    :return: The URL for the registry, if available, otherwise ``None``.
+
+    :returns: The URL for the registry, if available, otherwise ``None``.
 
     >>> get_registry_homepage("biolink")
     'https://github.com/biolink/biolink-model'
@@ -53,7 +54,8 @@ def get_registry_description(metaprefix: str) -> str | None:
     """Get the description for the registry, if available.
 
     :param metaprefix: The metaprefix of the registry
-    :return: The description for the registry, if available, otherwise ``None``.
+
+    :returns: The description for the registry, if available, otherwise ``None``.
 
     >>> get_registry_description("biocontext")
     'BioContext contains modular JSON-LD contexts for bioinformatics data.'

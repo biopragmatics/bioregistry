@@ -32,16 +32,19 @@ def is_valid_curie(curie: str) -> bool:
     """Check if a CURIE is standardized and valid.
 
     :param curie: A compact URI of the form ``<prefix>:<local unique identifier>``.
-    :return:
-        If the CURIE is standardized in both syntax and semantics. This means that it uses the Bioregistry
-        canonical prefix, does not have a redundant prefix, and if available, matches the Bioregistry's
-        regular expression pattern for identifiers.
+
+    :returns: If the CURIE is standardized in both syntax and semantics. This means that
+        it uses the Bioregistry canonical prefix, does not have a redundant prefix, and
+        if available, matches the Bioregistry's regular expression pattern for
+        identifiers.
 
     Standard CURIE
+
     >>> is_valid_curie("go:0000001")
     True
 
     Not a standard CURIE (i.e., no colon)
+
     >>> is_valid_curie("0000001")
     False
     >>> is_valid_curie("GO_0000001")
@@ -50,18 +53,22 @@ def is_valid_curie(curie: str) -> bool:
     False
 
     Non-standardized prefix
+
     >>> is_valid_curie("GO:0000001")
     False
 
     Incorrect identifier
+
     >>> is_valid_curie("go:0001")
     False
 
     Banana scenario
+
     >>> is_valid_curie("go:GO:0000001")
     False
 
     Unknown prefix
+
     >>> is_valid_curie("xxx:yyy")
     False
     """
@@ -72,14 +79,17 @@ def is_standardizable_curie(curie: str) -> bool:
     """Check if a CURIE is validatable, but not necessarily standardized.
 
     :param curie: A compact URI
-    :return: If the CURIE can be standardized (e.g., prefix normalize and identifier normalized)
-        then validated.
+
+    :returns: If the CURIE can be standardized (e.g., prefix normalize and identifier
+        normalized) then validated.
 
     Standard CURIE
+
     >>> is_standardizable_curie("go:0000001")
     True
 
     Not a standard CURIE (i.e., no colon)
+
     >>> is_standardizable_curie("0000001")
     False
     >>> is_standardizable_curie("GO_0000001")
@@ -88,18 +98,22 @@ def is_standardizable_curie(curie: str) -> bool:
     False
 
     Non-standardized prefix
+
     >>> is_standardizable_curie("GO:0000001")
     True
 
     Incorrect identifier
+
     >>> is_standardizable_curie("go:0001")
     False
 
     Banana scenario
+
     >>> is_standardizable_curie("go:GO:0000001")
     True
 
     Unknown prefix
+
     >>> is_standardizable_curie("xxx:yyy")
     False
     """
@@ -111,30 +125,39 @@ def is_valid_identifier(prefix: str, identifier: str) -> bool:
 
     :param prefix: The prefix from a compact URI
     :param identifier: The local unique identifer from a compact URI
-    :return:
-        If the CURIE is standardized in both syntax and semantics. This means that it uses the Bioregistry
-        canonical prefix, does not have a redundant prefix, and if available, matches the Bioregistry's
-        regular expression pattern for identifiers.
 
-    .. seealso:: The :func:`is_standardizable_identifier` performs normalization before checking validity
+    :returns: If the CURIE is standardized in both syntax and semantics. This means that
+        it uses the Bioregistry canonical prefix, does not have a redundant prefix, and
+        if available, matches the Bioregistry's regular expression pattern for
+        identifiers.
+
+    .. seealso::
+
+        The :func:`is_standardizable_identifier` performs normalization before checking
+        validity
 
     Standard CURIE
+
     >>> is_valid_identifier("go", "0000001")
     True
 
     Non-standardized prefix
+
     >>> is_valid_identifier("GO", "0000001")
     False
 
     Incorrect identifier
+
     >>> is_valid_identifier("go", "0001")
     False
 
     Banana scenario
+
     >>> is_valid_identifier("go", "GO:0000001")
     False
 
     Unknown prefix
+
     >>> is_valid_identifier("xxx", "yyy")
     False
     """
@@ -146,29 +169,37 @@ def is_standardizable_identifier(prefix: str, identifier: str) -> bool:
 
     :param prefix: The prefix from a compact URI
     :param identifier: The local unique identifer from a compact URI
-    :return:
-        If the CURIE can be standardized (e.g., prefix normalize and identifier normalized)
-        then validated.
 
-    .. seealso:: The :func:`is_valid_identifier` does not perform normalization before checking validity
+    :returns: If the CURIE can be standardized (e.g., prefix normalize and identifier
+        normalized) then validated.
+
+    .. seealso::
+
+        The :func:`is_valid_identifier` does not perform normalization before checking
+        validity
 
     Standard CURIE
+
     >>> is_standardizable_identifier("go", "0000001")
     True
 
     Non-standardized prefix
+
     >>> is_standardizable_identifier("GO", "0000001")
     True
 
     Incorrect identifier
+
     >>> is_standardizable_identifier("go", "0001")
     False
 
     Banana scenario
+
     >>> is_standardizable_identifier("go", "GO:0000001")
     True
 
     Unknown prefix
+
     >>> is_standardizable_identifier("xxx", "yyy")
     False
     """
@@ -188,7 +219,8 @@ def miriam_standardize_identifier(prefix: str, identifier: str) -> str | None:
 
     :param prefix: The prefix in the CURIE
     :param identifier: The identifier in the CURIE
-    :return: A normalize identifier, possibly with banana/redundant prefix added.
+
+    :returns: A normalize identifier, possibly with banana/redundant prefix added.
         Returns none if the prefix doesn't map to MIRIAM.
 
     Examples with explicitly annotated bananas:
@@ -200,7 +232,8 @@ def miriam_standardize_identifier(prefix: str, identifier: str) -> str | None:
     >>> miriam_standardize_identifier("vario", "VariO:0376")
     'VariO:0376'
 
-    Examples with bananas from OBO:
+    Examples with bananas from OBO
+
     >>> import bioregistry as br
     >>> assert "GO" == br.get_banana("go")
     >>> miriam_standardize_identifier("go", "0000001")
@@ -213,13 +246,15 @@ def miriam_standardize_identifier(prefix: str, identifier: str) -> str | None:
     >>> miriam_standardize_identifier("vario", "VariO:0000001")
     'VariO:0000001'
 
-    Examples from OBO Foundry:
+    Examples from OBO Foundry
+
     >>> miriam_standardize_identifier("chebi", "1234")
     'CHEBI:1234'
     >>> miriam_standardize_identifier("chebi", "CHEBI:1234")
     'CHEBI:1234'
 
-    Examples outside of OBO:
+    Examples outside of OBO
+
     >>> miriam_standardize_identifier("mgi", "6017782")
     'MGI:6017782'
     >>> miriam_standardize_identifier("mgi", "MGI:6017782")
@@ -231,6 +266,7 @@ def miriam_standardize_identifier(prefix: str, identifier: str) -> str | None:
     'SLM:000000341'
 
     Special cases with underscore-delimited bananas
+
     >>> miriam_standardize_identifier("cellosaurus", "0001")
     'CVCL_0001'
     >>> miriam_standardize_identifier("cellosaurus", "CVCL_0001")
@@ -248,7 +284,7 @@ def miriam_standardize_identifier(prefix: str, identifier: str) -> str | None:
     >>> miriam_standardize_identifier("biomodels.kisao", "KISAO_0000057")
     'KISAO_0000057'
 
-    Standard:
+    Standard
 
     >>> import bioregistry as br
     >>> assert br.get_banana("pdb") is None
@@ -267,7 +303,8 @@ def get_default_iri(prefix: str, identifier: str) -> str | None:
 
     :param prefix: The prefix in the CURIE
     :param identifier: The identifier in the CURIE
-    :return: A IRI string corresponding to the default provider, if available.
+
+    :returns: A IRI string corresponding to the default provider, if available.
 
     >>> get_default_iri("chebi", "24867")
     'http://purl.obolibrary.org/obo/CHEBI_24867'
@@ -290,8 +327,9 @@ def get_identifiers_org_iri(prefix: str, identifier: str) -> str | None:
 
     :param prefix: The prefix in the CURIE
     :param identifier: The identifier in the CURIE
-    :return: A IRI string corresponding to the Identifiers.org, if the prefix exists and is
-        mapped to MIRIAM.
+
+    :returns: A IRI string corresponding to the Identifiers.org, if the prefix exists
+        and is mapped to MIRIAM.
 
     >>> get_identifiers_org_iri("chebi", "24867")
     'https://identifiers.org/CHEBI:24867'
@@ -310,7 +348,8 @@ def get_n2t_iri(prefix: str, identifier: str) -> str | None:
 
     :param prefix: The prefix in the CURIE
     :param identifier: The identifier in the CURIE
-    :return: A IRI string corresponding to the N2T resolve, if the prefix exists and is
+
+    :returns: A IRI string corresponding to the N2T resolve, if the prefix exists and is
         mapped to N2T.
 
     >>> get_n2t_iri("chebi", "24867")
@@ -324,7 +363,8 @@ def get_bioportal_iri(prefix: str, identifier: str) -> str | None:
 
     :param prefix: The prefix in the CURIE
     :param identifier: The identifier in the CURIE
-    :return: A link to the Bioportal page
+
+    :returns: A link to the Bioportal page
 
     >>> get_bioportal_iri("chebi", "24431")
     'https://bioportal.bioontology.org/ontologies/CHEBI/?p=classes&conceptid=http://purl.obolibrary.org/obo/CHEBI_24431'
@@ -342,7 +382,8 @@ def get_obofoundry_iri(prefix: str, identifier: str) -> str | None:
 
     :param prefix: The prefix
     :param identifier: The identifier
-    :return: The OBO Foundry URL if the prefix can be mapped to an OBO Foundry entry
+
+    :returns: The OBO Foundry URL if the prefix can be mapped to an OBO Foundry entry
 
     >>> get_obofoundry_iri("chebi", "24431")
     'http://purl.obolibrary.org/obo/CHEBI_24431'
@@ -365,7 +406,8 @@ def get_scholia_iri(prefix: str, identifier: str) -> str | None:
 
     :param prefix: The prefix in the CURIE
     :param identifier: The identifier in the CURIE
-    :return: A link to the Scholia page
+
+    :returns: A link to the Scholia page
 
     >>> get_scholia_iri("pubmed", "1234")
     'https://scholia.toolforge.org/pubmed/1234'
@@ -381,7 +423,8 @@ def get_bioregistry_iri(prefix: str, identifier: str) -> str | None:
 
     :param prefix: The prefix in the CURIE
     :param identifier: The identifier in the CURIE
-    :return: A link to the bioregistry resolver
+
+    :returns: A link to the bioregistry resolver
 
     >>> get_bioregistry_iri("pdb", "1234")
     'https://bioregistry.io/pdb:1234'
@@ -405,6 +448,7 @@ def get_bioregistry_iri(prefix: str, identifier: str) -> str | None:
     'https://bioregistry.io/fbbt:00007294'
 
     Redundant prefix (banana; explicit)
+
     >>> get_bioregistry_iri("go.ref", "GO_REF:1234")
     'https://bioregistry.io/go.ref:1234'
     >>> get_bioregistry_iri("go.ref", "1234")
@@ -425,44 +469,53 @@ def get_iri(
     """Get the best link for the CURIE, if possible.
 
     :param prefix: The prefix in the CURIE
-    :param identifier: The identifier in the CURIE. If identifier is given as None, then this function will
-        assume that the first argument (``prefix``) is actually a full CURIE.
-    :param priority: A user-defined priority list. In addition to the metaprefixes in the Bioregistry
-        corresponding to resources that are resolvers/lookup services, you can also use ``default``
-        to correspond to the first-party IRI and ``custom`` to refer to the custom prefix map.
-        The default priority list is:
+    :param identifier: The identifier in the CURIE. If identifier is given as None, then
+        this function will assume that the first argument (``prefix``) is actually a
+        full CURIE.
+    :param priority: A user-defined priority list. In addition to the metaprefixes in
+        the Bioregistry corresponding to resources that are resolvers/lookup services,
+        you can also use ``default`` to correspond to the first-party IRI and ``custom``
+        to refer to the custom prefix map. The default priority list is:
 
         1. Custom prefix map (``custom``)
-        1. First-party IRI (``default``)
-        2. Identifiers.org / MIRIAM (``miriam``)
-        3. Ontology Lookup Service (``ols``)
-        4. OBO PURL (``obofoundry``)
-        5. Name-to-Thing (``n2t``)
-        6. BioPortal (``bioportal``)
-    :param prefix_map: A custom prefix map to go with the ``custom`` key in the priority list
-    :param use_bioregistry_io: Should the bioregistry resolution IRI be used? Defaults to true.
+        2. First-party IRI (``default``)
+        3. Identifiers.org / MIRIAM (``miriam``)
+        4. Ontology Lookup Service (``ols``)
+        5. OBO PURL (``obofoundry``)
+        6. Name-to-Thing (``n2t``)
+        7. BioPortal (``bioportal``)
+    :param prefix_map: A custom prefix map to go with the ``custom`` key in the priority
+        list
+    :param use_bioregistry_io: Should the bioregistry resolution IRI be used? Defaults
+        to true.
     :param provider: The provider code to use for a custom provider
-    :return: The best possible IRI that can be generated based on the priority list.
+
+    :returns: The best possible IRI that can be generated based on the priority list.
 
     A pre-parse CURIE can be given as the first two arguments
+
     >>> get_iri("chebi", "24867")
     'http://purl.obolibrary.org/obo/CHEBI_24867'
 
     A CURIE can be given directly as a single argument
+
     >>> get_iri("chebi:24867")
     'http://purl.obolibrary.org/obo/CHEBI_24867'
 
     A priority list can be given
+
     >>> priority = ["miriam", "default", "bioregistry"]
     >>> get_iri("chebi:24867", priority=priority)
     'https://identifiers.org/CHEBI:24867'
 
-    A custom prefix map can be supplied.
+    A custom prefix map can be supplied
+
     >>> prefix_map = {"chebi": "https://example.org/chebi/"}
     >>> get_iri("chebi:24867", prefix_map=prefix_map)
     'https://example.org/chebi/24867'
 
     A custom prefix map can be supplied in combination with a priority list
+
     >>> prefix_map = {"lipidmaps": "https://example.org/lipidmaps/"}
     >>> priority = ["obofoundry", "custom", "default", "bioregistry"]
     >>> get_iri("chebi:24867", prefix_map=prefix_map, priority=priority)
@@ -471,6 +524,7 @@ def get_iri(
     'https://example.org/lipidmaps/1234'
 
     A custom provider is given, which makes the Bioregistry very extensible
+
     >>> get_iri("chebi:24867", provider="chebi-img")
     'https://www.ebi.ac.uk/chebi/displayImage.do?defaultImage=true&imageIndex=0&chebiId=24867'
     """
@@ -488,10 +542,12 @@ def get_formatted_iri(metaprefix: str, prefix: str, identifier: str) -> str | No
     """Get an IRI using the format in the metaregistry.
 
     :param metaprefix: The metaprefix of the registry in the metaregistry
-    :param prefix: A bioregistry prefix (will be mapped to the external one automatically)
+    :param prefix: A bioregistry prefix (will be mapped to the external one
+        automatically)
     :param identifier: The identifier for the entity
-    :returns: An IRI generated from the ``resolver_url`` format string of the registry, if it
-        exists.
+
+    :returns: An IRI generated from the ``resolver_url`` format string of the registry,
+        if it exists.
 
     >>> get_formatted_iri("miriam", "hgnc", "16793")
     'https://identifiers.org/hgnc:16793'
