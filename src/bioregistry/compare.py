@@ -120,7 +120,7 @@ def _save(
     plt.close(fig)
 
 
-def plot_attribute_pies(watermark: bool) -> FigMultiAxPair:  # type:ignore[type-var]
+def plot_attribute_pies(watermark: bool) -> FigMultiAxPair:
     """Plot how many entries have version information."""
     licenses_mapped = _get_licenses_mapped_counter()
     licenses_mapped_counter = Counter(licenses_mapped)
@@ -764,7 +764,7 @@ def plot_xrefs(registry_infos: list[RegistryInfo], watermark: bool) -> FigAxPair
 
 
 def _get_licenses_mapped_counter(threshold: int = 30) -> list[str]:
-    licenses, conflicts, obo_has_license, ols_has_license = _get_license_and_conflicts()
+    licenses, _conflicts, _obo_has_license, _ols_has_license = _get_license_and_conflicts()
     licenses_counter: typing.Counter[str] = Counter(licenses)
     licenses_mapped = [
         (
