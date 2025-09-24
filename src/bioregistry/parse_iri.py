@@ -8,7 +8,7 @@ from typing import Literal, overload
 import curies
 import pystow
 from curies import ReferenceTuple
-from pystow.utils import get_hashes
+from pystow.utils import get_hash_hexdigest
 
 from .constants import (
     BIOREGISTRY_PATH,
@@ -18,6 +18,7 @@ from .constants import (
     get_failure_return_type,
 )
 from .resource_manager import manager
+from .version import get_version
 
 __all__ = [
     "curie_from_iri",
@@ -32,9 +33,26 @@ __all__ = [
 
 @lru_cache(1)
 def get_default_converter(*, force: bool = False) -> curies.Converter:
-    """Get a converter from this manager."""
-    digest = get_hashes(BIOREGISTRY_PATH, ["sha512"])["sha512"].hexdigest()[:8]
-    path = pystow.join("bioregistry", "epm-cache", name=f"{digest}.json")
+    """Get a converter from this manager.
+
+    :param force: If set to true, busts the cached EPM
+    :returns: A converter corresponding to the "default" Bioregistry profile
+
+    The Bioregistry does non-trivial calculations taking into account
+    `part_of`, `has_canonical`, and other relationships between records
+    to produce a coherent extended prefix map (EPM). However, this is a bit
+    slow, so this function caches the result.
+
+    Further, a LRU cache is used to keep the results in memory.
+    """
+    return _get_default_converter_helper(force)
+
+
+def _get_default_converter_helper(force: bool) -> curies.Converter:
+    version = get_version()
+    digest = get_hash_hexdigest(BIOREGISTRY_PATH, "md5")[:8]
+    name = f"{version}-{digest}.json"
+    path = pystow.join("bioregistry", "epm-cache", name=name)
     if path.is_file() and not force:
         return curies.load_extended_prefix_map(path)
     rv = manager.converter

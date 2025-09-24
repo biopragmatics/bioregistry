@@ -7,16 +7,11 @@ import logging
 from collections import ChainMap, defaultdict
 from collections.abc import Callable, Hashable, Iterable, Mapping, Sequence
 from datetime import datetime
-from pathlib import Path
-from typing import (
-    Any,
-    cast,
-    overload,
-)
+from typing import Any, cast, overload
 
 import click
 import requests
-from pystow.utils import get_hashes
+from pystow.utils import get_hash_hexdigest
 
 from .constants import (
     BIOREGISTRY_PATH,
@@ -159,7 +154,7 @@ def curie_to_str(prefix: str, identifier: str) -> str:
 def get_hexdigests(alg: str = "sha256") -> Mapping[str, str]:
     """Get hex digests."""
     return {
-        path.as_posix(): _get_hexdigest(path, alg=alg)
+        path.as_posix(): get_hash_hexdigest(path, alg)
         for path in (
             BIOREGISTRY_PATH,
             REGISTRY_YAML_PATH,
@@ -167,11 +162,6 @@ def get_hexdigests(alg: str = "sha256") -> Mapping[str, str]:
             COLLECTIONS_YAML_PATH,
         )
     }
-
-
-def _get_hexdigest(path: str | Path, alg: str = "sha256") -> str:
-    hashes = get_hashes(path, [alg])
-    return hashes[alg].hexdigest()
 
 
 IdentifierGetter = Callable[[dict[str, Any], str], str]
