@@ -126,8 +126,10 @@ class TestSPARQL(unittest.TestCase):
         """Test federating on a OpenLink Virtuoso triplestore.
 
         To run Virtuoso locally:
+
         1. docker compose up
-        2. docker compose exec virtuoso isql -U dba -P dba exec='GRANT "SPARQL_SELECT_FED" TO "SPARQL";'
+        2. docker compose exec virtuoso isql -U dba -P dba exec='GRANT
+           "SPARQL_SELECT_FED" TO "SPARQL";'
         """
         for mimetype in HANDLERS:
             with self.subTest(mimetype=mimetype):
