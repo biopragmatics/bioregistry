@@ -114,7 +114,7 @@ def _get_email(ols_id: str, config: dict[str, Any]) -> str | None:
     mailing_list = config.get("mailingList")
     if not mailing_list:
         return None
-    name, email = parseaddr(mailing_list)
+    _name, email = parseaddr(mailing_list)
     if email.startswith("//"):
         logger.debug("[%s] invalid email address: %s", ols_id, mailing_list)
         return None
