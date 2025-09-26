@@ -127,6 +127,7 @@ def get_converter(
         converter = curies.remap_curie_prefixes(converter, remapping)
     if rewiring:
         converter = curies.rewire(converter, rewiring)
+    converter = _enrich_converter_synonyms(converter)
     if enforce_w3c:
         converter = _w3c_clean_converter(converter)
     return converter
@@ -347,3 +348,24 @@ def _get_records(
         )
 
     return [record for _, record in sorted(records.items())]
+
+
+def _enrich_converter_synonyms(converter: Converter) -> Converter:
+    return Converter([_enrich_record_synonyms(r) for r in converter.records])
+
+
+def _enrich_record_synonyms(record: curies.Record) -> curies.Record:
+    sss: set[str] = set()
+    for s in [record.prefix, *record.prefix_synonyms]:
+        sss.update(_generate_variants(s))
+    record.prefix_synonyms = sorted(sss - {record.prefix})
+    return record
+
+
+def _generate_variants(s: str) -> Iterable[str]:
+    yield s
+    yield s.lower()
+    yield s.upper()
+    yield s.replace("_", "")
+    yield s.replace("_", "").upper()
+    yield s.replace("_", "").lower()
