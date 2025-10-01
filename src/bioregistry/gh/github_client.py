@@ -10,8 +10,7 @@ from subprocess import CalledProcessError, check_output
 from typing import Any, cast
 
 import more_itertools
-import pystow
-import requests
+import pystow.github
 
 logger = logging.getLogger(__name__)
 HERE = os.path.dirname(os.path.abspath(__file__))
@@ -20,59 +19,17 @@ MAIN_BRANCH = "main"
 
 def has_token() -> bool:
     """Check if there is a GitHub token available."""
-    return pystow.get_config("github", "token") is not None
+    return pystow.github.get_token() is not None
 
 
 def get_issues_with_pr(issue_ids: Iterable[int], token: str | None = None) -> set[int]:
     """Get the set of issues that are already closed by a pull request."""
-    pulls = list_pulls(owner="bioregistry", repo="bioregistry", token=token)
+    pulls = pystow.github.get_pull_requests("biopragmatics", "bioregistry", token=token).json()
     return {
         issue_id
         for pull, issue_id in itt.product(pulls, issue_ids)
         if f"Closes #{issue_id}" in (pull.get("body") or "")
     }
-
-
-def get_headers(token: str | None = None) -> dict[str, str]:
-    """Get GitHub headers."""
-    headers = {
-        "Accept": "application/vnd.github.v3+json",
-    }
-    token = pystow.get_config("github", "token", passthrough=token)
-    if token:
-        headers["Authorization"] = f"token {token}"
-    return headers
-
-
-def requests_get(
-    path: str, token: str | None = None, params: Mapping[str, Any] | None = None
-) -> Any:
-    """Send a get request to the GitHub API."""
-    path = path.lstrip("/")
-    return requests.get(
-        f"https://api.github.com/{path}",
-        headers=get_headers(token=token),
-        params=params,
-        timeout=15,
-    ).json()
-
-
-def list_pulls(
-    *,
-    owner: str,
-    repo: str,
-    token: str | None = None,
-) -> list[dict[str, Any]]:
-    """List pull requests.
-
-    :param owner: The name of the owner/organization for the repository.
-    :param repo: The name of the repository.
-    :param token: The GitHub OAuth token. Not required, but if given, will let you make
-        many more queries before getting rate limited.
-
-    :returns: JSON response from GitHub
-    """
-    return cast(list[dict[str, Any]], requests_get(f"repos/{owner}/{repo}/pulls", token=token))
 
 
 def open_bioregistry_pull_request(
@@ -124,13 +81,9 @@ def open_pull_request(
     }
     if body:
         data["body"] = body
-    res = requests.post(
-        f"https://api.github.com/repos/{owner}/{repo}/pulls",
-        headers=get_headers(token=token),
-        json=data,
-        timeout=15,
-    )
-    return res.json()  # type:ignore
+
+    res = pystow.github.post_pull(owner, repo, token=token, json=data)
+    return cast(dict[str, Any], res.json())
 
 
 def get_bioregistry_form_data(
@@ -175,14 +128,15 @@ def get_form_data(
     :returns: A mapping from github issue issue data
     """
     labels = labels if isinstance(labels, str) else ",".join(labels)
-    res_json = requests_get(
-        f"repos/{owner}/{repo}/issues",
+    res_json = pystow.github.get_issues(
+        owner,
+        repo,
         token=token,
         params={
             "labels": labels,
             "state": "open",
         },
-    )
+    ).json()
     rv = {
         issue["number"]: parse_body(issue["body"])
         for issue in res_json
@@ -213,7 +167,7 @@ def get_form_data_for_issue(
 
     :returns: A mapping from github issue issue data
     """
-    res_json = requests_get(f"repos/{owner}/{repo}/issues/{issue}", token=token)
+    res_json = pystow.github.get_issue(owner, repo, issue, token=token).json()
     data = parse_body(res_json["body"])
     if remapping:
         return remap(data, remapping)
