@@ -74,7 +74,7 @@ def _process(record: dict[str, Any]) -> dict[str, Any]:
 
 def _get_uri_format(record: dict[str, Any]) -> str | None:
     raw_redirect: str | None = record.get("redirect")
-    if raw_redirect is None:
+    if raw_redirect is None or record.get("provider_id") == "MIR:00100020":
         return None
     uri_format = raw_redirect.replace("$id", "$1")
     if uri_format in SKIP_URI_FORMATS:
