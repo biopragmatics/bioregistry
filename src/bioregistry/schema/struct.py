@@ -112,6 +112,7 @@ Domain: TypeAlias = Literal[
     "relationship",
     "relationship type",
     "antibody",
+    "peptide",
     "schema",
     "license",
     "semantic web",
