@@ -53,7 +53,7 @@ def parse_iri(
     iri: str,
     *,
     use_preferred: bool = ...,
-    strict: Literal[False] = True,
+    strict: Literal[True] = ...,
     on_failure_return_type: FailureReturnType = ...,
 ) -> ReferenceTuple: ...
 
@@ -64,7 +64,7 @@ def parse_iri(
     iri: str,
     *,
     use_preferred: bool = ...,
-    strict: Literal[False] = False,
+    strict: Literal[False] = ...,
     on_failure_return_type: Literal[FailureReturnType.pair] = FailureReturnType.pair,
 ) -> ReferenceTuple | NonePair: ...
 
@@ -99,7 +99,9 @@ def parse_iri(
 
     :raises TypeError: if an invalid on_failure_return_type is given
     """
-    rv = get_default_converter().parse_uri(iri, return_none=True, strict=strict)
+    rv: ReferenceTuple | None = get_default_converter().parse_uri(
+        iri, return_none=True, strict=strict
+    )  # type:ignore[call-overload]
     if rv is None:
         return get_failure_return_type(on_failure_return_type)
     # don't invoke the manager until it's needed
