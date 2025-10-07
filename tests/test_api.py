@@ -35,3 +35,16 @@ class TestAPI(unittest.TestCase):
                     standard_id,
                     bioregistry.standardize_identifier(prefix, raw_id),
                 )
+
+    def test_default_converter(self) -> None:
+        """Test the default converter."""
+        c = bioregistry.get_default_converter()
+        self.assertEqual(
+            "kegg.pathway",
+            c.standardize_prefix("kegg.pathway"),
+        )
+        self.assertEqual(
+            "kegg.pathway:hsa00010",
+            c.standardize_curie("kegg.pathway:hsa00010", strict=True),
+            msg="kegg.pathway should have its own URI space and not get chunked into kegg",
+        )

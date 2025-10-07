@@ -24,6 +24,33 @@ from .constants import (
 )
 from .schema import Collection, Context, Registry, Resource
 
+__all__ = [
+    "OrcidStr",
+    "SemanticMapping",
+    "add_collection",
+    "add_resource",
+    "is_mismatch",
+    "read_collections",
+    "read_collections_contributions",
+    "read_context_contributions",
+    "read_contexts",
+    "read_metaregistry",
+    "read_mismatches",
+    "read_prefix_contacts",
+    "read_prefix_contributions",
+    "read_prefix_reviews",
+    "read_registry",
+    "read_registry_contributions",
+    "read_status_contributions",
+    "registries",
+    "resources",
+    "write_collections",
+    "write_contexts",
+    "write_mappings",
+    "write_metaregistry",
+    "write_registry",
+]
+
 logger = logging.getLogger(__name__)
 
 
@@ -175,7 +202,7 @@ def read_collections() -> Mapping[str, Collection]:
     return _collections_from_path(COLLECTIONS_PATH)
 
 
-def _collections_from_path(path: str | Path) -> Mapping[str, Collection]:
+def _collections_from_path(path: str | Path) -> dict[str, Collection]:
     with open(path, encoding="utf-8") as file:
         data = json.load(file)
     return {
@@ -184,12 +211,12 @@ def _collections_from_path(path: str | Path) -> Mapping[str, Collection]:
     }
 
 
-def write_collections(collections: Mapping[str, Collection]) -> None:
+def write_collections(collections: Mapping[str, Collection], *, path: Path | None = None) -> None:
     """Write the collections."""
     values = [v for _, v in sorted(collections.items())]
     for collection in values:
         collection.resources = sorted(set(collection.resources))
-    with open(COLLECTIONS_PATH, encoding="utf-8", mode="w") as file:
+    with open(path or COLLECTIONS_PATH, encoding="utf-8", mode="w") as file:
         json.dump(
             {"collections": [c.model_dump(exclude_none=True) for c in values]},
             file,
@@ -197,6 +224,15 @@ def write_collections(collections: Mapping[str, Collection]) -> None:
             sort_keys=True,
             ensure_ascii=False,
         )
+
+
+def add_collection(collection: Collection, *, path: Path | None = None) -> None:
+    """Add a new collection."""
+    if path is None:
+        path = COLLECTIONS_PATH
+    c = _collections_from_path(path)
+    c[collection.identifier] = collection
+    write_collections(c, path=path)
 
 
 def write_registry(registry: Mapping[str, Resource], *, path: Path | None = None) -> None:
@@ -241,6 +277,7 @@ def write_contexts(contexts: Mapping[str, Context]) -> None:
         )
 
 
+#: An ORCID string
 OrcidStr: TypeAlias = str
 
 
