@@ -43,7 +43,7 @@ def _g(predicate: Callable[[str], bool]) -> list[dict[str, str | None]]:
 
 def get_unparsable_uris() -> list[tuple[str, str, str]]:
     """Get a list of IRIs that can be constructed, but not parsed."""
-    rows = []
+    rows: list[tuple[str, str, str]] = []
     for prefix in tqdm(bioregistry.read_registry(), desc="Checking URIs"):
         example = bioregistry.get_example(prefix)
         if example is None:

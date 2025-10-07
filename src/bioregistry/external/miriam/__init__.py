@@ -99,7 +99,8 @@ def _process(record: dict[str, Any]) -> dict[str, Any]:
     else:
         primary, *rest = resources
     rv["homepage"] = primary["homepage"]
-    if URI_FORMAT_KEY in primary:
+    if URI_FORMAT_KEY in primary and prefix != "kegg.pathway":
+        # special case for kegg... this is hacky but needs to be done now
         rv[URI_FORMAT_KEY] = primary[URI_FORMAT_KEY]
 
     extras = []
