@@ -7995,7 +7995,11 @@ bioregistry:cstr a bioregistry.schema:0000001 ;
     rdfs:label "Common Science and Technology Resources" ;
     dcterms:description "CSTR is an identifier for Common Science and Technology Resources, to provide persistent identification services for the positioning, traceability, citation, statistics and evaluation of science and technology resources. "^^xsd:string ;
     dcterms:isPartOf bioregistry.registry:bioregistry ;
-    skos:exactMatch miriam:cstr ;
+    skos:exactMatch fairsharing:FAIRsharing.f0d465,
+        miriam:cstr ;
+    dcat:keyword "centrally registered identifier",
+        "open science",
+        "subject agnostic" ;
     foaf:homepage <https://www.cstr.cn/en/> ;
     bioregistry.schema:0000005 "31253.11.sciencedb.j00001.00123"^^xsd:string ;
     bioregistry.schema:0000006 "https://cstr.cn/$1"^^xsd:string ;
@@ -9770,7 +9774,8 @@ bioregistry:ega a bioregistry.schema:0000001 ;
     rdfs:label "European Genome-phenome Archive" ;
     dcterms:description "The European Genome-phenome Archive (EGA) is a global network for permanent archiving and sharing of personally identifiable genetic, phenotypic, and clinical data generated for the purposes of biomedical research projects or in the context of research-focused healthcare systems. Jointly managed by the European Bioinformatics Institute (EMBL-EBI) in Cambridge (UK) and the Centre for Genomic Regulation (CRG) in Barcelona."^^xsd:string ;
     dcterms:isPartOf bioregistry.registry:bioregistry ;
-    skos:exactMatch cellosaurus.resource:EGA,
+    skos:exactMatch edam.data:2383,
+        cellosaurus.resource:EGA,
         miriam:ega ;
     foaf:homepage <https://ega-archive.org/> ;
     bioregistry.schema:0000005 "EGAD00001008392"^^xsd:string ;
@@ -10537,7 +10542,7 @@ bioregistry:evorao a bioregistry.schema:0000001 ;
     foaf:homepage <https://github.com/EVORA-project/evora-ontology> ;
     bioregistry.schema:0000005 "AlternateName"^^xsd:string ;
     bioregistry.schema:0000006 "https://w3id.org/evorao/$1"^^xsd:string ;
-    bioregistry.schema:0000010 <http://aber-owl.net/media/ontologies/EVORAO/6/evorao.owl> ;
+    bioregistry.schema:0000010 <http://aber-owl.net/media/ontologies/EVORAO/8/evorao.owl> ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000019 [ rdfs:label "d3fk" ;
             foaf:mbox "evorao@evora-project.eu" ] ;
@@ -12518,7 +12523,10 @@ bioregistry:gufo a bioregistry.schema:0000001 ;
     dcterms:description "An _gentle_ implementation of the Unified Foundational Ontology (UFO), which is an upper level ontology like BFO that is concerned with e.g. expressing temporal relationships between events."^^xsd:string ;
     dcterms:isPartOf bioregistry.registry:bioregistry ;
     doap:GitRepository <https://github.com/nemo-ufes/gufo> ;
-    dcat:keyword "ontology",
+    skos:exactMatch lov:gufo ;
+    dcat:keyword "events",
+        "general & upper",
+        "ontology",
         "upper level" ;
     foaf:homepage <https://nemo-ufes.github.io/gufo> ;
     bioregistry.schema:0000005 "Person"^^xsd:string ;
@@ -30112,6 +30120,8 @@ edam.data:2356 dcterms:isPartOf bioregistry.registry:edam .
 edam.data:2367 dcterms:isPartOf bioregistry.registry:edam .
 
 edam.data:2380 dcterms:isPartOf bioregistry.registry:edam .
+
+edam.data:2383 dcterms:isPartOf bioregistry.registry:edam .
 
 edam.data:2386 dcterms:isPartOf bioregistry.registry:edam .
 
@@ -47760,6 +47770,8 @@ fairsharing:FAIRsharing.ezwdhz dcterms:isPartOf bioregistry.registry:fairsharing
 
 fairsharing:FAIRsharing.f0bxfg dcterms:isPartOf bioregistry.registry:fairsharing .
 
+fairsharing:FAIRsharing.f0d465 dcterms:isPartOf bioregistry.registry:fairsharing .
+
 fairsharing:FAIRsharing.f1449d dcterms:isPartOf bioregistry.registry:fairsharing .
 
 fairsharing:FAIRsharing.f1777e dcterms:isPartOf bioregistry.registry:fairsharing .
@@ -48377,6 +48389,8 @@ lov:frbrer dcterms:isPartOf bioregistry.registry:lov .
 lov:geo dcterms:isPartOf bioregistry.registry:lov .
 
 lov:grddl dcterms:isPartOf bioregistry.registry:lov .
+
+lov:gufo dcterms:isPartOf bioregistry.registry:lov .
 
 lov:m4i dcterms:isPartOf bioregistry.registry:lov .
 
@@ -53961,7 +53975,7 @@ bioregistry:datacite a bioregistry.schema:0000001 ;
     foaf:homepage <http://www.sparontologies.net/ontologies/datacite> ;
     bioregistry.schema:0000005 "AgentIdentifierScheme"^^xsd:string ;
     bioregistry.schema:0000006 "http://purl.org/spar/datacite/$1"^^xsd:string ;
-    bioregistry.schema:0000010 <http://aber-owl.net/media/ontologies/DATACITE/2/datacite.owl> ;
+    bioregistry.schema:0000010 <http://aber-owl.net/media/ontologies/DATACITE/3/datacite.owl> ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000019 orcid:0000-0003-0530-4305 ;
     bioregistry.schema:0000024 "http://purl.org/spar/datacite/"^^xsd:string ;
@@ -62774,6 +62788,7 @@ bioregistry.registry:lov a bioregistry.schema:0000002 ;
         lov:frbrer,
         lov:geo,
         lov:grddl,
+        lov:gufo,
         lov:m4i,
         lov:oa,
         lov:obo,
@@ -63592,6 +63607,7 @@ bioregistry.registry:edam a bioregistry.schema:0000002 ;
         edam.data:2356,
         edam.data:2367,
         edam.data:2380,
+        edam.data:2383,
         edam.data:2386,
         edam.data:2389,
         edam.data:2390,
@@ -67169,6 +67185,7 @@ bioregistry.registry:fairsharing a bioregistry.schema:0000002 ;
         fairsharing:FAIRsharing.ez2nhb,
         fairsharing:FAIRsharing.ezwdhz,
         fairsharing:FAIRsharing.f0bxfg,
+        fairsharing:FAIRsharing.f0d465,
         fairsharing:FAIRsharing.f1449d,
         fairsharing:FAIRsharing.f1777e,
         fairsharing:FAIRsharing.f2c119,

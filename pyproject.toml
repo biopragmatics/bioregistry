@@ -11,7 +11,7 @@ markers = [
 
 [project]
 name = "bioregistry"
-version = "0.12.42-dev"
+version = "0.12.44-dev"
 description = "Integrated registry of biological databases and nomenclatures"
 readme = "README.md"
 authors = [
@@ -61,7 +61,7 @@ dependencies = [
     "click",
     "more_click>=0.1.2",
     "pydantic[email]>=2.0",
-    "curies>=0.7.0",
+    "curies>=0.9.0",
 ]
 
 [project.optional-dependencies]
@@ -266,7 +266,7 @@ known-first-party = [
 docstring-code-format = true
 
 [tool.bumpversion]
-current_version = "0.12.42-dev"
+current_version = "0.12.44-dev"
 parse = "(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+)(?:-(?P<release>[0-9A-Za-z-]+(?:\\.[0-9A-Za-z-]+)*))?(?:\\+(?P<build>[0-9A-Za-z-]+(?:\\.[0-9A-Za-z-]+)*))?"
 serialize = [
     "{major}.{minor}.{patch}-{release}+{build}",
