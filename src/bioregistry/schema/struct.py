@@ -118,6 +118,7 @@ Domain: TypeAlias = Literal[
     "geography",
     "ptm",
     "bibliometrics",
+    "experiment",
     "genetic code",
 ]
 
