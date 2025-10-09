@@ -170,7 +170,7 @@
                 {% endif %}
                 <dt>
                     Links
-                    {% if homepage or obo_download or owl_download or json_download or rdf_download or skos_download %}
+                    {% if homepage or obo_download or owl_download or json_download or rdf_download or skos_download or jskos_download %}
                     <a type="button" data-toggle="modal" data-target="#links-modal">
                         <i class="far fa-question-circle"></i>
                     </a>
@@ -220,6 +220,11 @@
                     {% if skos_download %}
                         <a class="badge badge-pill badge-light" href="{{ skos_download }}">
                             SKOS <i class="fas fa-download"></i>
+                        </a>
+                    {% endif %}
+                    {% if jskos_download %}
+                        <a class="badge badge-pill badge-light" href="{{ jskos_download }}">
+                            JSKOS <i class="fas fa-download"></i>
                         </a>
                     {% endif %}
                     {% if resource.github_request_issue %}
