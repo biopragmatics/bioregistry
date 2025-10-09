@@ -32,6 +32,7 @@ __all__ = [
     "get_has_canonical",
     "get_has_parts",
     "get_homepage",
+    "get_jskos_download",
     "get_json_download",
     "get_keywords",
     "get_logo",
@@ -800,6 +801,14 @@ def get_skos_download(prefix: str) -> str | None:
     if entry is None:
         return None
     return entry.get_download_skos()
+
+
+def get_jskos_download(prefix: str) -> str | None:
+    """Get the download link for the JSKOS JSON file."""
+    entry = get_resource(prefix)
+    if entry is None:
+        return None
+    return entry.get_download_jskos()
 
 
 def get_provides_for(prefix: str) -> str | None:
