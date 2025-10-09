@@ -550,6 +550,11 @@ class Resource(BaseModel):
     """
         ),
     )
+    download_skos: str | None = Field(
+        default=None,
+        title="SKOS RDF Download URL",
+        description="The URL to download the resource as an SKOS RDF file.",
+    )
     banana: str | None = Field(
         default=None,
         description=_dedent(
@@ -2432,6 +2437,10 @@ class Resource(BaseModel):
     def get_download_rdf(self) -> str | None:
         """Get the download link for the latest RDF file."""
         return self.download_rdf or self.get_external("ols").get("download_rdf")
+
+    def get_download_skos(self) -> str | None:
+        """Get the download link for the latest SKOS RDF file."""
+        return self.download_skos
 
     def get_download_owl(self) -> str | None:
         """Get the download link for the latest OWL file.

@@ -160,6 +160,7 @@ def resource(prefix: str) -> str | werkzeug.Response | tuple[str, int]:
         owl_download=_resource.get_download_owl(),
         json_download=_resource.get_download_obograph(),
         rdf_download=_resource.get_download_rdf(),
+        skos_download=_resource.get_download_skos(),
         namespace_in_lui=_resource.get_namespace_in_lui(),
         deprecated=manager.is_deprecated(prefix),
         contact=_resource.get_contact(),

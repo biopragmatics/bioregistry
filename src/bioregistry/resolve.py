@@ -57,6 +57,7 @@ __all__ = [
     "get_repository",
     "get_repository_to_prefix",
     "get_resource",
+    "get_skos_download",
     "get_synonyms",
     "get_version",
     "get_versions",
@@ -791,6 +792,14 @@ def get_rdf_download(prefix: str) -> str | None:
     if entry is None:
         return None
     return entry.get_download_rdf()
+
+
+def get_skos_download(prefix: str) -> str | None:
+    """Get the download link for the SKOS RDF file."""
+    entry = get_resource(prefix)
+    if entry is None:
+        return None
+    return entry.get_download_skos()
 
 
 def get_provides_for(prefix: str) -> str | None:
