@@ -97,6 +97,7 @@ Domain: TypeAlias = Literal[
     "protein family",
     "gene family",
     "disease",
+    "data model",
     "vaccine",
     "multiple",
     "variant",
