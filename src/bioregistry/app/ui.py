@@ -632,10 +632,7 @@ def json_schema() -> werkzeug.Response:
 def highlights_twitter() -> str:
     """Render the twitter highlights page."""
     twitters = defaultdict(list)
-    for resource in manager.registry.values():
-        twitter = resource.get_twitter()
-        if twitter:
-            twitters[twitter].append(resource)
+    # TODO remove
     return render_template("highlights/twitter.html", twitters=twitters)
 
 
