@@ -541,7 +541,7 @@ def plot_coverage_overlaps(*, overlaps: OverlapsHint) -> FigAxPair:
     )
     ax.grid(False)
     ax.set_ylabel("")
-    ax.set_xticks([])  # type:ignore[operator]
+    ax.set_xticks([])
     ax.spines["top"].set_visible(False)
     ax.spines["right"].set_visible(False)
     ax.spines["bottom"].set_visible(False)
@@ -628,7 +628,7 @@ def plot_coverage_gains(*, overlaps: OverlapsHint, minimum_width_for_text: int =
     )
     plt.legend()
     ax.set_ylabel("")
-    ax.set_xticks([])  # type:ignore[operator]
+    ax.set_xticks([])
     ax.grid(False)
     ax.spines["top"].set_visible(False)
     ax.spines["right"].set_visible(False)
