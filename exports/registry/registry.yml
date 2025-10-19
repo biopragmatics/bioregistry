@@ -124,6 +124,46 @@ _4dn.replicate:
   synonyms:
   - 4dn.replicate
   uri_format: https://data.4dnucleome.org/experiment-set-replicates/$1
+aacdb:
+  contact:
+    email: hj@uestc.edu.cn
+    name: Jian Huang
+    orcid: 0000-0003-3282-8892
+  contributor:
+    email: ji.kang@northeastern.edu
+    github: kanghosaeyo
+    name: Kangho Ji
+    orcid: 0009-0009-3402-8013
+  description: Identifiers represent antibody-antigen complexes in the Antigen-Antibody
+    Complex Database (AACDB), which provides comprehensive structural and functional
+    annotations including paratope and epitope information, antibody developability
+    data, and antigen-drug target relationships to support immunoinformatics research
+    and therapeutic antibody development.
+  example: '61'
+  github_request_issue: 1727
+  homepage: https://i.uestc.edu.cn/AACDB
+  keywords:
+  - antibody
+  - antigen
+  - molecular biophysics
+  - structural biology
+  logo: https://i.uestc.edu.cn/AACDB/images/logo.png
+  name: Antibody-Antigen Complex Database
+  pattern: ^\d+$
+  preferred_prefix: aacdb
+  publications:
+  - doi: 10.7554/elife.104934
+    pmc: PMC12097784
+    pubmed: '40402563'
+    title: A comprehensive antigen-antibody complex database unlocking insights into
+      interaction interface
+    year: 2025
+  reviewer:
+    email: b.gyori@northeastern.edu
+    github: bgyori
+    name: Benjamin M. Gyori
+    orcid: 0000-0001-9439-5346
+  uri_format: https://i.uestc.edu.cn/AACDB/details.php?id=$1
 aaindex:
   contact:
     email: shuichi@hgc.jp
@@ -452,8 +492,7 @@ adcad:
     orcid: 0000-0001-5705-7831
   description: An ontology to support disciplinary annotation of Arctic Data Center
     datasets.
-  download_owl: http://aber-owl.net/media/ontologies/ADCAD/1/adcad.owl
-  download_rdf: https://github.com/NCEAS/adc-disciplines/raw/main/ADCAD.ttl
+  download_owl: https://github.com/NCEAS/adc-disciplines/raw/main/ADCAD.ttl
   example: '00000'
   github_request_issue: 827
   homepage: https://arcticdata.io/
@@ -1124,6 +1163,9 @@ agro:
   version: '2022-11-02'
 agrovoc:
   banana: c_
+  comment: The download page for the [rdf](https://data.apps.fao.org/catalog/dataset/agrovoc-2025-07/resource/b5571fb6-7098-4866-b053-87b550e4624a)
+    resource states it's available under CC-BY-4.0, though this information is not
+    widely accesible on the website.
   contact:
     email: alex.skrenchuk@stanford.edu
     name: Alex Skrenchuk
@@ -1136,6 +1178,7 @@ agrovoc:
     concepts and terminology under FAO's areas of interest. It is the largest Linked
     Open Data set about agriculture available for public use and its greatest impact
     is through providing the access and visibility of data across domains and languages.
+  download_rdf: https://agrovoc.fao.org/latestAgrovoc/agrovoc_core.rdf.zip
   example: '2842'
   homepage: https://data.apps.fao.org/catalog/organization/agrovoc
   keywords:
@@ -1148,6 +1191,7 @@ agrovoc:
   - forest management
   - nutritional science
   - ontology
+  license: CC-BY-4.0
   mappings:
     aberowl: AGROVOC
     agroportal: AGROVOC
@@ -1629,7 +1673,6 @@ ans.educationlevel:
   description: This vocabulary defines education levels for pre-kindergarten through
     grade 12 for the United States. It also defines general categories for post-secondary
     education (vocational, professional and life-long learning).
-  download_rdf: https://s3.amazonaws.com/jestaticd2l/purl/scheme/ASNEducationLevel
   example: Pre-K
   example_extras:
   - '1'
@@ -4029,8 +4072,7 @@ bibframe:
     example: the Bibframe property "subject" expresses an important attribute of a
     Work (what the Work is about), and the property "extent" (e.g. number of pages)
     expresses an attribute of an Instance.'
-  download_owl: http://aber-owl.net/media/ontologies/BIBFRAME/3/bibframe.owl
-  download_rdf: https://id.loc.gov/ontologies/bibframe.rdf
+  download_owl: https://id.loc.gov/ontologies/bibframe.rdf
   example: DescriptionLevel
   homepage: https://id.loc.gov/ontologies/bibframe.html
   keywords:
@@ -9192,7 +9234,7 @@ chr:
     biocontext: CHR
     bioportal: CHR
   name: Chromosome Ontology
-  preferred_prefix: chr
+  preferred_prefix: CHR
   repository: https://github.com/monarch-initiative/monochrom
   reviewer:
     email: cthoyt@gmail.com
@@ -9329,6 +9371,7 @@ citedcat:
   description: A vocabuarly for describing the background and methodology for the
     design of the DataCite profile of DCAT-AP (CiteDCAT-AP), as well as the defined
     mappings.
+  download_rdf: https://ec-jrc.github.io/datacite-to-dcat-ap/citedcat-ap.ttl
   example: isSupplementedBy
   homepage: https://ec-jrc.github.io/datacite-to-dcat-ap/
   keywords:
@@ -12754,6 +12797,22 @@ cro:
   repository: https://github.com/data2health/contributor-role-ontology
   uri_format: http://purl.obolibrary.org/obo/CRO_$1
   version: '2019-12-11'
+croissant:
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: A data model describing machine learning experiments
+  example: FileObject
+  github_request_issue: 1726
+  homepage: http://mlcommons.org/croissant/
+  keywords:
+  - artificial intelligence
+  - machine learning
+  name: Croissant Format Specification
+  preferred_prefix: croissant
+  uri_format: http://mlcommons.org/croissant/$1
 crop2ml:
   description: CropMRespository is a database of soil and crop biophysical process
     models.
@@ -13426,33 +13485,6 @@ dailymed:
     name: Bio2RDF
     uri_format: http://bio2rdf.org/dailymed:$1
   uri_format: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=$1
-dalia:
-  contact:
-    email: abdelmoneim.desouki@tu-darmstadt.de
-    github: abdoudesouki
-    name: Abdelmoneim Amer Desouki
-    orcid: 0000-0003-2083-1277
-  contributor:
-    email: cthoyt@gmail.com
-    github: cthoyt
-    name: Charles Tapley Hoyt
-    orcid: 0000-0003-4423-4370
-  description: The aim of DALIA project is to build a platform for learning material
-    for Research Data Management (RDM) and Data Science. The platform is based on
-    a knowledge graph. We introduce MoDalia, the base ontology of DALIA knowledge
-    graph. Modalia inherits some modules from EduCOR. It includes also modelling of
-    micro -credentials and certificates
-  download_rdf: https://dalia.pages.rwth-aachen.de/dalia-ontology/ontology.ttl
-  example: belongsToCluster
-  homepage: https://dalia.pages.rwth-aachen.de/dalia-ontology/
-  license: CC-BY-4.0
-  mappings:
-    re3data: r3d100014403
-  name: MoDALIA Ontology
-  preferred_prefix: dalia
-  rdf_uri_format: https://purl.org/ontology/modalia#$1
-  repository: https://git.rwth-aachen.de/dalia/dalia-ontology
-  uri_format: https://purl.org/ontology/modalia#$1
 dalia.community:
   contributor:
     email: cthoyt@gmail.com
@@ -13756,6 +13788,72 @@ datf:
     name: Bio2RDF
     uri_format: http://bio2rdf.org/datf:$1
   uri_format: http://planttfdb.cbi.pku.edu.cn/tf.php?sp=Ath&did=$1
+dbamp:
+  banana: dbAMP
+  banana_peel: _
+  contact:
+    email: leetzongyi@nycu.edu.tw
+    name: Tzong-Yi Lee
+    orcid: 0000-0001-8475-7868
+  contributor:
+    email: ji.kang@northeastern.edu
+    github: kanghosaeyo
+    name: Kangho Ji
+    orcid: 0009-0009-3402-8013
+  description: Identifiers represent antimicrobial peptides in the Database of Antimicrobial
+    Peptides (dbAMP) which is an open-access, manually curated database of antimicrobial
+    peptides (AMPs).
+  example: '28463'
+  github_request_issue: 1714
+  homepage: https://awi.cuhk.edu.cn/dbAMP/
+  keywords:
+  - antimicrobial peptides
+  logo: https://awi.cuhk.edu.cn/dbAMP/assets/img/dbAMPv2.svg
+  name: Database of Anti-Microbial Peptides
+  pattern: ^\d{5}$
+  preferred_prefix: dbamp
+  providers:
+  - code: abpdb
+    description: Antimicrobial Peptide Database (ABPDB) is a comprehensive database
+      that aggregates antimicrobial peptide data from DRAMP and dbAMP.
+    homepage: http://www.acdb.plus/ABPDB/
+    name: AntiBacterial Peptides DataBase
+    publications:
+    - doi: 10.1109/tcbbio.2025.3582844
+      pubmed: '40811252'
+      title: 'ABPDB: a Database of Antibacterial Peptides'
+      year: 2025
+    uri_format: http://www.acdb.plus/ABPDB/abp-search.php?keywords=dbAMP$1
+  publications:
+  - doi: 10.1109/tcbbio.2025.3582844
+    pubmed: '40811252'
+    title: 'ABPDB: a Database of Antibacterial Peptides'
+    year: 2025
+  - doi: 10.1093/nar/gkae1019
+    pmc: PMC11701527
+    pubmed: '39540425'
+    title: 'dbAMP 3.0: updated resource of antimicrobial activity and structural annotation
+      of peptides in the post-pandemic era'
+    year: 2025
+  - doi: 10.1093/nar/gkab1080
+    pmc: PMC8690246
+    pubmed: '34850155'
+    title: 'dbAMP 2.0: updated resource for antimicrobial peptides with an enhanced
+      scanning method for genomic and proteomic data'
+    year: 2022
+  - doi: 10.1093/nar/gky1030
+    pmc: PMC6323920
+    pubmed: '30380085'
+    title: 'dbAMP: an integrated resource for exploring antimicrobial peptides with
+      functional activities and physicochemical properties on transcriptome and proteome
+      data'
+    year: 2019
+  reviewer:
+    email: b.gyori@northeastern.edu
+    github: bgyori
+    name: Benjamin M. Gyori
+    orcid: 0000-0001-9439-5346
+  uri_format: https://awi.cuhk.edu.cn/dbAMP/information.php?db=dbamp_$1
 dbd:
   description: The DBD (transcription factor database) provides genome-wide transcription
     factor predictions for organisms across the tree of life. The prediction method
@@ -14253,7 +14351,7 @@ dcterms:
     maintained by the Dublin Core Metadata Initiative, including properties, vocabulary
     encoding schemes, syntax encoding schemes, and classes.
   download_owl: http://aber-owl.net/media/ontologies/dcterms/1/dcterms.owl
-  download_rdf: https://www.dublincore.org/specifications/dublin-core/dcmi-terms/dublin_core_terms.rdf
+  download_rdf: https://www.dublincore.org/specifications/dublin-core/dcmi-terms/dublin_core_terms.ttl
   example: title
   homepage: https://www.dublincore.org/specifications/dublin-core/dcmi-terms/
   keywords:
@@ -16720,7 +16818,24 @@ dramp:
   name: Data Repository of Antimicrobial Peptides
   pattern: ^DRAMP\d{5}$
   preferred_prefix: dramp
+  providers:
+  - code: abpdb
+    description: Antimicrobial Peptide Database (ABPDB) is a comprehensive database
+      that aggregates antimicrobial peptide data from multiple sources including DRAMP,
+      providing streamlined access to antimicrobial peptide information.
+    homepage: http://www.acdb.plus/ABPDB/
+    name: AntiBacterial Peptides DataBase
+    publications:
+    - doi: 10.1109/tcbbio.2025.3582844
+      pubmed: '40811252'
+      title: 'ABPDB: a Database of Antibacterial Peptides'
+      year: 2025
+    uri_format: http://www.acdb.plus/ABPDB/abp-search.php?keywords=$1
   publications:
+  - doi: 10.1109/tcbbio.2025.3582844
+    pubmed: '40811252'
+    title: 'ABPDB: a Database of Antibacterial Peptides'
+    year: 2025
   - doi: 10.1093/nar/gkae1046
     pmc: PMC11701585
     pubmed: '39526377'
@@ -23691,6 +23806,45 @@ funderregistry:
   - FundRef
   - crossref.funder
   uri_format: http://data.crossref.org/fundingdata/funder/10.13039/$1
+funggrowth:
+  contact:
+    email: v.robert@wi.knaw.nl
+    name: Vincent Robert
+    orcid: 0000-0002-9370-4677
+  contributor:
+    email: ji.kang@northeastern.edu
+    github: kanghosaeyo
+    name: Kangho Ji
+    orcid: 0009-0009-3402-8013
+  description: Identifiers represent experimental growth profiles documenting fungal
+    species' ability to utilize specific carbon sources (plant biomass components,
+    polysaccharides, and monosaccharides) in the FUNG-GROWTH database, which provides
+    phenotypic data to support functional genome annotation and comparative analysis
+    of carbohydrate metabolism across fungal species.
+  example: '86'
+  github_request_issue: 1720
+  homepage: https://www.fung-growth.org
+  keywords:
+  - fungi
+  - growth profiles
+  - monosaccharides
+  - plant biomass
+  - polysaccharides
+  name: Fungal Growth Database
+  pattern: ^\d+$
+  preferred_prefix: funggrowth
+  publications:
+  - doi: 10.1128/mra.00378-25
+    pmc: PMC12424322
+    pubmed: '40767478'
+    title: 'The FUNG-GROWTH database: linking fungal phenotype to genome'
+    year: 2025
+  reviewer:
+    email: b.gyori@northeastern.edu
+    github: bgyori
+    name: Benjamin M. Gyori
+    orcid: 0000-0001-9439-5346
+  uri_format: https://www.fung-growth.org/page/Display%20page%20FG/$1
 fungidb:
   contact:
     email: jason.stajich@ucr.edu
@@ -27370,7 +27524,7 @@ gtex:
   pattern: ^\w.+$
   preferred_prefix: gtex
   uri_format: https://www.gtexportal.org/home/gene/$1
-gtr:
+gtr.condition:
   appears_in:
   - mondo
   comment: Identifiers appearing in MONDO don't match any of the resources apparent
@@ -27388,10 +27542,39 @@ gtr:
   example: AN0097748
   homepage: https://www.ncbi.nlm.nih.gov/gtr/
   name: Genetic Testing Registry
-  preferred_prefix: gtr
+  preferred_prefix: gtr.condition
   synonyms:
+  - gtr
   - medgen.gtr
   uri_format: https://www.ncbi.nlm.nih.gov/gtr/conditions/$1
+gtr.lab:
+  description: The Genetic Testing Registry provides a central location for voluntary
+    submission of genetic test information by providers. The scope includes the test's
+    purpose, methodology, validity, evidence of the test's usefulness, and laboratory
+    contacts and credentials. The overarching goal of the GTR is to advance the public
+    health and research into the genetic basis of health and disease.
+  example: '000320401'
+  homepage: https://www.ncbi.nlm.nih.gov/
+  mappings:
+    miriam: gtrl
+  name: Genetic Testing Registry Labs
+  pattern: ^\d+$
+  preferred_prefix: gtr.lab
+  uri_format: https://www.ncbi.nlm.nih.gov/gtr/labs/$1
+gtr.test:
+  description: The Genetic Testing Registry provides a central location for voluntary
+    submission of genetic test information by providers. The scope includes the test's
+    purpose, methodology, validity, evidence of the test's usefulness, and laboratory
+    contacts and credentials. The overarching goal of the GTR is to advance the public
+    health and research into the genetic basis of health and disease.
+  example: '000260236'
+  homepage: https://www.ncbi.nlm.nih.gov/
+  mappings:
+    miriam: gtr
+  name: Genetic Testing Registry Tests
+  pattern: ^\d+$
+  preferred_prefix: gtr.test
+  uri_format: https://www.ncbi.nlm.nih.gov/gtr/tests/$1
 gudmap:
   contact:
     email: simon.harding@ed.ac.uk
@@ -31532,7 +31715,24 @@ iedb.assay:
   part_of: iedb
   pattern: ^\d+$
   preferred_prefix: iedb.assay
+  providers:
+  - code: cedar
+    description: Cancer Epitope Database and Analysis Resource (CEDAR) is a specialized
+      interface providing cancer-focused access to IEDB data with domain-specific
+      analysis tools and workflows.
+    homepage: https://cedar.iedb.org/
+    name: Cancer Epitope Database and Analysis Resource
+    publications:
+    - doi: 10.1007/978-1-0716-4566-6_3
+      pubmed: '40779104'
+      title: Using the Cancer Epitope Database and Analysis Resource (CEDAR)
+      year: 2025
+    uri_format: https://cedar.iedb.org/assay/$1
   publications:
+  - doi: 10.1007/978-1-0716-4566-6_3
+    pubmed: '40779104'
+    title: Using the Cancer Epitope Database and Analysis Resource (CEDAR)
+    year: 2025
   - doi: 10.1093/nar/gku938
     pmc: PMC4384014
     pubmed: '25300482'
@@ -31598,7 +31798,23 @@ iedb.epitope:
     homepage: https://bio2rdf.org
     name: Bio2RDF
     uri_format: http://bio2rdf.org/tied:$1
+  - code: cedar
+    description: Cancer Epitope Database and Analysis Resource (CEDAR) is a specialized
+      interface providing cancer-focused access to IEDB data with domain-specific
+      analysis tools and workflows.
+    homepage: https://cedar.iedb.org/
+    name: Cancer Epitope Database and Analysis Resource
+    publications:
+    - doi: 10.1007/978-1-0716-4566-6_3
+      pubmed: '40779104'
+      title: Using the Cancer Epitope Database and Analysis Resource (CEDAR)
+      year: 2025
+    uri_format: https://cedar.iedb.org/epitope/$1
   publications:
+  - doi: 10.1007/978-1-0716-4566-6_3
+    pubmed: '40779104'
+    title: Using the Cancer Epitope Database and Analysis Resource (CEDAR)
+    year: 2025
   - doi: 10.1093/nar/gku938
     pmc: PMC4384014
     pubmed: '25300482'
@@ -31704,7 +31920,24 @@ iedb.receptor:
   part_of: iedb
   pattern: ^\d+$
   preferred_prefix: iedb.receptor
+  providers:
+  - code: cedar
+    description: Cancer Epitope Database and Analysis Resource (CEDAR) is a specialized
+      interface providing cancer-focused access to IEDB data with domain-specific
+      analysis tools and workflows.
+    homepage: https://cedar.iedb.org/
+    name: Cancer Epitope Database and Analysis Resource
+    publications:
+    - doi: 10.1007/978-1-0716-4566-6_3
+      pubmed: '40779104'
+      title: Using the Cancer Epitope Database and Analysis Resource (CEDAR)
+      year: 2025
+    uri_format: https://cedar.iedb.org/receptor/$1
   publications:
+  - doi: 10.1007/978-1-0716-4566-6_3
+    pubmed: '40779104'
+    title: Using the Cancer Epitope Database and Analysis Resource (CEDAR)
+    year: 2025
   - doi: 10.1093/nar/gku938
     pmc: PMC4384014
     pubmed: '25300482'
@@ -31758,7 +31991,24 @@ iedb.reference:
   part_of: iedb
   pattern: ^\d+$
   preferred_prefix: iedb.reference
+  providers:
+  - code: cedar
+    description: Cancer Epitope Database and Analysis Resource (CEDAR) is a specialized
+      interface providing cancer-focused access to IEDB data with domain-specific
+      analysis tools and workflows.
+    homepage: https://cedar.iedb.org/
+    name: Cancer Epitope Database and Analysis Resource
+    publications:
+    - doi: 10.1007/978-1-0716-4566-6_3
+      pubmed: '40779104'
+      title: Using the Cancer Epitope Database and Analysis Resource (CEDAR)
+      year: 2025
+    uri_format: https://cedar.iedb.org/reference/$1
   publications:
+  - doi: 10.1007/978-1-0716-4566-6_3
+    pubmed: '40779104'
+    title: Using the Cancer Epitope Database and Analysis Resource (CEDAR)
+    year: 2025
   - doi: 10.1093/nar/gku938
     pmc: PMC4384014
     pubmed: '25300482'
@@ -34593,6 +34843,42 @@ kcris:
   preferred_prefix: kcris
   references:
   - https://cris.nih.go.kr/cris/search/detailSearchEn.do?seq=23973
+kdbirp:
+  contact:
+    email: zengxian@fudan.edu.cn
+    name: Xian Zeng
+    orcid: 0000-0002-1397-554X
+  contributor:
+    email: ji.kang@northeastern.edu
+    github: kanghosaeyo
+    name: Kangho Ji
+    orcid: 0009-0009-3402-8013
+  description: Identifiers represent RNA-protein interaction entries with quantitative
+    kinetic data in the Kinetic Data of Biomolecular Interactions for RNA-Protein
+    database (KDBI-RP), which is an open-access database cataloging association rates,
+    dissociation rates, and equilibrium dissociation constants for RNA-protein interactions.
+  example: '183'
+  github_request_issue: 1717
+  homepage: http://www.kdbirp.aiddlab.com
+  keywords:
+  - binding affinity
+  - kinetics
+  - rna-protein interactions
+  logo: http://www.kdbirp.aiddlab.com/static/images/logo2.png
+  name: Kinetic Data of RNA-Protein Interactions Database
+  pattern: ^\d+$
+  preferred_prefix: kdbirp
+  publications:
+  - doi: 10.1016/j.jmb.2025.169357
+    pubmed: '40716733'
+    title: 'KDBI-RP: Kinetic Data of RNA-Protein Interactions Database'
+    year: 2025
+  reviewer:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  uri_format: http://www.kdbirp.aiddlab.com/detail/$1
 kegg:
   comment: KEGG prefix has been split into several others
   deprecated: true
@@ -35113,7 +35399,7 @@ kegg.pathway:
   synonyms:
   - KEGG-path
   - KEGG_PATHWAY
-  uri_format: https://www.kegg.jp/entry/$1
+  uri_format: https://www.kegg.jp/pathway/$1
 kegg.rclass:
   contributor:
     email: cthoyt@gmail.com
@@ -35253,7 +35539,6 @@ kim.hcrt:
     name: Charles Tapley Hoyt
     orcid: 0000-0003-4423-4370
   description: A controlled vocbualry of higher education resource types
-  download_rdf: https://github.com/dini-ag-kim/hcrt/raw/refs/heads/master/hcrt.ttl
   example: simulation
   homepage: https://w3id.org/kim/hcrt/scheme.html
   name: Higher Education Resource Types
@@ -35643,6 +35928,21 @@ lepao:
   repository: https://github.com/insect-morphology/lepao
   uri_format: http://purl.obolibrary.org/obo/LEPAO_$1
   version: '2023-02-18'
+lexvo.ontology:
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: The data model underlying lexvo
+  download_owl: http://lexvo.org/ontology
+  example: Language
+  homepage: http://lexvo.org
+  keywords:
+  - ontology
+  name: Lexvo Ontology
+  preferred_prefix: lexvo.ontology
+  uri_format: http://lexvo.org/ontology#$1
 lgai.cede:
   description: LG Chemical Entity Detection Dataset (LGCEDe) is only available open-dataset
     with molecular instance level annotations (i.e. atom-bond level position annotations
@@ -36223,6 +36523,52 @@ lncipedia:
     title: 'LNCipedia: a database for annotated human lncRNA transcript sequences
       and structures'
     year: 2012
+loc.fdd:
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: 'The digital content format descriptions accessible here provide specific
+    information about individual formats and their characteristics. Each description
+    provides moderately detailed information and citations. Planned for inclusion
+    are a wide variety of formats: file formats, file-format classes, bitstream structures
+    and encodings, and the mechanisms used to compress files or bitstreams. Inclusion
+    of a description for a format does not imply that the format is preferred or acceptable
+    for Library of Congress collections. [from homepage]'
+  example: fdd000613
+  github_request_issue: 1725
+  homepage: https://www.loc.gov/preservation/digital/formats/fdd/
+  keywords:
+  - file format
+  - media type
+  name: Library of Congress Format Description Document
+  pattern: ^fdd\d+$
+  preferred_prefix: loc.fdd
+  providers:
+  - code: xml
+    description: LOC FDD XML
+    homepage: https://www.loc.gov/preservation/digital/formats/fddXML/fddXMLreadme.txt
+    name: LOC FDD XML
+    uri_format: https://www.loc.gov/preservation/digital/formats/fddXML/$1
+  references:
+  - https://www.loc.gov/preservation/digital/formats/fddXML/fddXMLreadme.txt
+  uri_format: https://www.loc.gov/preservation/digital/formats/fdd/$1
+loc.relator:
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: Relator terms and their associated codes designate the relationship
+    between an agent and a bibliographic resource.
+  download_rdf: https://id.loc.gov/download/vocabulary/relators.skosrdf.ttl.gz
+  example: arc
+  homepage: http://id.loc.gov/vocabulary/relators
+  name: Library of Congress Relator
+  preferred_prefix: loc.relator
+  rdf_uri_format: http://id.loc.gov/vocabulary/relators/$1
+  uri_format: https://id.loc.gov/vocabulary/relators/$1
 loc.resourcetype:
   contributor:
     email: cthoyt@gmail.com
@@ -36592,7 +36938,6 @@ m4i:
     all expansions are independent of each other; this makes possible for instance
     to generate expanded ontologies for any possible combinations of method × object
     of research.
-  download_owl: https://nfdi4ing.pages.rwth-aachen.de/metadata4ing/metadata4ing/ontology.xml
   download_rdf: https://nfdi4ing.pages.rwth-aachen.de/metadata4ing/metadata4ing/ontology.ttl
   example: Method
   github_request_issue: 970
@@ -36601,7 +36946,6 @@ m4i:
   - academy
   - engineering science
   - metadata
-  - ontology
   license: CC-BY-4.0
   logo: https://api.fairsharing.org/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBaWNHIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--6435da59153a976c6b09d30ac0ee96286c50a32c/Logo.png?disposition=inline
   mappings:
@@ -36617,7 +36961,7 @@ m4i:
   - name: Nationale Forschungsdateninfrastruktur
     partnered: false
     ror: 05qj6w324
-  pattern: ^\w+$
+  pattern: ^[A-Za-z_0-9]*$
   preferred_prefix: m4i
   repository: https://git.rwth-aachen.de/nfdi4ing/metadata4ing/metadata4ing
   reviewer:
@@ -40610,6 +40954,34 @@ mod:
   - PSI-MOD
   uri_format: http://purl.obolibrary.org/obo/MOD_$1
   version: 1.031.6
+modalia:
+  contact:
+    email: abdelmoneim.desouki@tu-darmstadt.de
+    github: abdoudesouki
+    name: Abdelmoneim Amer Desouki
+    orcid: 0000-0003-2083-1277
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: The aim of DALIA project is to build a platform for learning material
+    for Research Data Management (RDM) and Data Science. The platform is based on
+    a knowledge graph. We introduce MoDalia, the base ontology of DALIA knowledge
+    graph. Modalia inherits some modules from EduCOR. It includes also modelling of
+    micro -credentials and certificates
+  download_obo: https://git.rwth-aachen.de/dalia/dalia-ontology/-/raw/main/modalia.obo
+  download_rdf: https://git.rwth-aachen.de/dalia/dalia-ontology/-/raw/main/MoDalia.ttl
+  example: belongsToCluster
+  homepage: https://dalia.pages.rwth-aachen.de/dalia-ontology/
+  keywords:
+  - ontology
+  license: CC-BY-4.0
+  name: MoDALIA Ontology
+  preferred_prefix: modalia
+  rdf_uri_format: https://purl.org/ontology/modalia#$1
+  repository: https://git.rwth-aachen.de/dalia/dalia-ontology
+  uri_format: https://purl.org/ontology/modalia#$1
 modeldb:
   contact:
     email: perry.miller@yale.edu
@@ -43939,6 +44311,42 @@ nfdi4dso:
   preferred_prefix: nfdi4dso
   rdf_uri_format: https://nfdi.fiz-karlsruhe.de/nfdi4dso/$1
   uri_format: https://nfdi.fiz-karlsruhe.de/nfdi4dso/$1
+nfportal.tool:
+  contact:
+    email: robert.j.allaway@gmail.com
+    github: allaway
+    name: Robert Allaway
+    orcid: 0000-0003-3573-3565
+  contributor:
+    email: ji.kang@northeastern.edu
+    github: kanghosaeyo
+    name: Kangho Ji
+    orcid: 0009-0009-3402-8013
+  description: Identifiers represent experimental tools and resources for neurofibromatosis
+    (NF) research in the NF Data Portal Tools catalog.
+  example: 02dacc42-ea46-48fb-a4df-7a875d801086
+  github_request_issue: 1724
+  homepage: https://nf.synapse.org
+  keywords:
+  - experimental tools
+  - neurofibromatosis
+  - research resources
+  name: Neurofibromatosis Data Portal Tools
+  pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
+  preferred_prefix: nfportal.tool
+  publications:
+  - doi: 10.1038/s41597-019-0317-x
+    pmc: PMC6910996
+    pubmed: '31836719'
+    title: Engaging a community to enable disease-centric data sharing with the NF
+      Data Portal
+    year: 2019
+  reviewer:
+    email: b.gyori@northeastern.edu
+    github: bgyori
+    name: Benjamin M. Gyori
+    orcid: 0000-0001-9439-5346
+  uri_format: https://nf.synapse.org/Explore/Tools/DetailsPage?resourceId=$1
 ngbo:
   contact:
     email: dal.alghamdi92@gmail.com
@@ -44936,6 +45344,73 @@ nmrshiftdb2:
   synonyms:
   - NMRShiftDB
   uri_format: https://nmrshiftdb.nmr.uni-koeln.de/molecule/$1
+nmrxiv.compound:
+  contact:
+    github: vcnainala
+    name: Chandu Nainala
+    orcid: 0000-0002-2564-3243
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: compounds appearing in nmrXiv that have associated spectra.
+  example: '188'
+  github_request_issue: 1708
+  homepage: https://nmrxiv.org/compounds
+  keywords:
+  - chemical
+  - compound
+  name: nmrXiv compound
+  part_of: nmrxiv
+  preferred_prefix: nmrxiv.compound
+  uri_format: https://nmrxiv.org/spectra?compound=$1
+nmrxiv.project:
+  contact:
+    github: vcnainala
+    name: Chandu Nainala
+    orcid: 0000-0002-2564-3243
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: A project in the nmrXiv
+  example: P136
+  github_request_issue: 1708
+  homepage: https://nmrxiv.org/projects
+  keywords:
+  - datasets
+  - project
+  name: nmrXiv project
+  part_of: nmrxiv
+  pattern: ^P\d+$
+  preferred_prefix: nmrxiv.project
+  uri_format: https://nmrxiv.org/project/$1
+nmrxiv.sample:
+  contact:
+    github: vcnainala
+    name: Chandu Nainala
+    orcid: 0000-0002-2564-3243
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: spectra (samples) in the nmrXiv database
+  example: S1295
+  github_request_issue: 1708
+  homepage: https://nmrxiv.org/spectra
+  keywords:
+  - nmr
+  - sample
+  - spectra
+  - spectrum
+  name: nmrXiv sample
+  part_of: nmrxiv
+  pattern: ^S\d+$
+  preferred_prefix: nmrxiv.sample
+  uri_format: https://nmrxiv.org/sample/$1
 noaa:
   contributor:
     email: meghan.balk@gmail.com
@@ -57748,7 +58223,7 @@ schema:
     create, maintain, and promote schemas for structured data on the Internet, on
     web pages, in email messages, and beyond.
   download_owl: http://aber-owl.net/media/ontologies/SCHEMAORG/2/schemaorg.owl
-  download_rdf: https://schema.org/version/latest/schemaorg-all-http.rdf
+  download_rdf: https://schema.org/version/latest/schemaorg-current-https.ttl
   example: Person
   homepage: https://schema.org
   keywords:
@@ -57769,6 +58244,7 @@ schema:
   repository: http://github.com/schemaorg/schemaorg
   synonyms:
   - schemaorg
+  - sdo
   uri_format: https://schema.org/$1
 scholia.resource:
   contributor:
@@ -58539,8 +59015,8 @@ seo:
     github: cthoyt
     name: Charles Tapley Hoyt
     orcid: 0000-0003-4423-4370
-  description: SEO is a reference ontology for modelling data about scientific events
-    such as conferences, symposioums and workshops.
+  description: The Scientific Event Ontology (SEO) is a reference ontology for modeling
+    data about scientific events such as conferences, symposioums, and workshops.
   download_rdf: https://raw.githubusercontent.com/saidfathalla/SEOontology/master/SEO.ttl
   example: Symposium
   homepage: https://w3id.org/seo
@@ -61004,6 +61480,7 @@ spd:
   uri_format: http://purl.obolibrary.org/obo/SPD_$1
 spdx:
   contact:
+    email: gary@sourceauditor.com
     github: goneall
     name: Gary O'Neall
   description: The SPDX License List is a list of commonly found licenses and exceptions
@@ -61033,6 +61510,7 @@ spdx:
   uri_format: https://spdx.org/licenses/$1
 spdx.term:
   contact:
+    email: gary@sourceauditor.com
     github: goneall
     name: Gary O'Neall
   contributor:
@@ -63376,10 +63854,12 @@ tdwg.taxonrank:
     name: Charles Tapley Hoyt
     orcid: 0000-0003-4423-4370
   description: Ontology describing a controlled vocabulary for taxon ranks.
-  download_rdf: https://tdwg.github.io/ontology/ontology/voc/TaxonRank.rdf
+  download_owl: https://tdwg.github.io/ontology/ontology/voc/TaxonRank.rdf
   example: InfragenericTaxon
   github_request_issue: 1321
   homepage: https://github.com/tdwg/ontology
+  keywords:
+  - ontology
   name: TDWG Taxon Rank LSID Ontology
   preferred_prefix: tdwg.taxonrank
   repository: https://github.com/tdwg/ontology
@@ -63842,9 +64322,11 @@ togoid:
     to find a path among IDs. To guide the interpretation of biological meanings in
     the conversions, we crafted an ontology that defines the semantics of the dataset
     relations. (from https://togoid.dbcls.jp/)
-  download_rdf: https://raw.githubusercontent.com/togoid/togoid-config/main/ontology/togoid-ontology.ttl
+  download_owl: https://raw.githubusercontent.com/togoid/togoid-config/main/ontology/togoid-ontology.ttl
   example: AffyProbeset
   homepage: https://togoid.dbcls.jp/ontology
+  keywords:
+  - ontology
   name: TogoID Ontology
   preferred_prefix: togoid
   publications:
@@ -66498,6 +66980,7 @@ vann:
     zazuko: vann
   name: A vocabulary for annotating vocabulary descriptions
   preferred_prefix: vann
+  rdf_uri_format: http://purl.org/vocab/vann/$1
   uri_format: https://vocab.org/vann/#$1
 vario:
   banana: VariO
@@ -66704,11 +67187,12 @@ vcard:
     orcid: 0000-0003-4423-4370
   description: vCard is a specification developed by the Internet Engineering Task
     Force (IETF) for the description of people and organisations
-  download_rdf: https://www.w3.org/2006/vcard/ns
+  download_owl: https://www.w3.org/2006/vcard/ns
   example: Agent
   github_request_issue: 1317
   homepage: https://www.w3.org/TR/vcard-rdf/
   keywords:
+  - ontology
   - people
   mappings:
     lov: vcard
@@ -67728,12 +68212,13 @@ vs:
     alongside the term may deserve special attention. Future work could include patterns
     for citing announcements and decisions, or using SKOS to decentralise the extension
     of the basic status levels. (from artifact)
-  download_rdf: https://www.w3.org/2003/06/sw-vocab-status/ns
+  download_owl: https://www.w3.org/2003/06/sw-vocab-status/ns
   example: term_status
   github_request_issue: 1677
   homepage: https://www.w3.org/2003/06/sw-vocab-status/ns
   keywords:
   - metadata
+  - ontology
   - semantic web
   mappings:
     lov: vs

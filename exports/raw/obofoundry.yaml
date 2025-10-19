@@ -1411,9 +1411,9 @@ ontologies:
   browsers:
   - label: DO
     title: DO Browser
-    url: http://www.disease-ontology.org/
+    url: https://disease-ontology.org/
   build:
-    source_url: https://github.com/DiseaseOntology/DiseaseDriversOntology/tree/main/src/ontology/disdriv.owl
+    source_url: https://raw.githubusercontent.com/DiseaseOntology/DiseaseDriversOntology/refs/heads/main/src/ontology/disdriv.owl
   contact:
     email: lynn.schriml@gmail.com
     github: lschriml
@@ -1423,7 +1423,7 @@ ontologies:
     ExO ontology exposure stressors. An application ontology. Built in collaboration
     with EnvO, ExO, ECTO and ChEBI.
   domain: health
-  homepage: http://www.disease-ontology.org
+  homepage: https://disease-ontology.org/
   id: disdriv
   layout: ontology_detail
   license:
@@ -1448,13 +1448,13 @@ ontologies:
   - description: Human Disease Ontology
     examples:
     - description: fetal alcohol syndrome, has exposure stressor some alcohol
-      url: https://www.disease-ontology.org/?id=DOID:0050665
-    user: https://www.disease-ontology.org
+      url: https://disease-ontology.org/?id=DOID:0050665
+    user: https://disease-ontology.org/
 - activity_status: active
   browsers:
   - label: DO
     title: DO Browser
-    url: http://www.disease-ontology.org/do
+    url: https://disease-ontology.org/do
   build:
     infallible: 1
     method: obo2owl
@@ -1464,11 +1464,11 @@ ontologies:
     github: lschriml
     label: Lynn Schriml
     orcid: 0000-0001-8910-9851
-  depicted_by: http://www.disease-ontology.org/media/images/DO_logo.jpg
+  depicted_by: https://disease-ontology.org/media/images/DO_logo_teal.png
   description: An ontology for describing the classification of human diseases organized
     by etiology.
   domain: health
-  homepage: http://www.disease-ontology.org
+  homepage: https://disease-ontology.org
   id: doid
   in_foundry_order: 1
   layout: ontology_detail
@@ -1514,8 +1514,8 @@ ontologies:
   - description: MGI disease model annotations use DO
     examples:
     - description: physical disorder
-      url: http://www.informatics.jax.org/disease/DOID:0080015
-    user: http://www.informatics.jax.org/disease
+      url: https://www.informatics.jax.org/disease/DOID:0080015
+    user: https://www.informatics.jax.org/disease
   - description: Immune Epitope Database
     examples:
     - description: Antibody and T cell epitopes associated with human diseases
@@ -5214,6 +5214,23 @@ ontologies:
   repository: https://github.com/OOSTT/OOSTT
   title: Ontology of Organizational Structures of Trauma centers and Trauma systems
   tracker: https://github.com/OOSTT/OOSTT/issues
+  usages:
+  - description: OOSTT terms, such as OOSTT_00000017 'trauma program' and OOSTT_00000021
+      'trauma medical director role,' are used in the CAFE questionnaire to assess
+      trauma centers and systems.
+    type: application
+    user: https://cafe-trauma.com/
+  - description: OOSTT terms, such as OOSTT_00000002 'trauma center' and OOSTT_00000066
+      'emergency medicine liaison role,' are used in the TIPTOE questionnaire to relate
+      trauma center/system structure to patient outcomes.
+    type: application
+    user: https://tiptoe.apps.dbmi.cloud/tiptoe
+  - description: Terms from OOSTT are imported and used by OMRSE.
+    examples:
+    - description: academic degree
+      url: http://purl.obolibrary.org/obo/OOSTT_00000074
+    type: owl:Ontology
+    user: https://github.com/mcwdsi/OMRSE
 - activity_status: active
   contact:
     email: zhengj2007@gmail.com
@@ -6437,7 +6454,7 @@ ontologies:
   build:
     infallible: 1
     method: obo2owl
-    source_url: https://raw.githubusercontent.com/DiseaseOntology/SymptomOntology/master/symp.obo
+    source_url: https://raw.githubusercontent.com/DiseaseOntology/SymptomOntology/master/src/ontology/symp.obo
   contact:
     email: lynn.schriml@gmail.com
     github: lschriml
@@ -6447,7 +6464,7 @@ ontologies:
     changes in function, sensations or appearance reported by a patient indicative
     of a disease.
   domain: health
-  homepage: http://symptomontologywiki.igs.umaryland.edu/mediawiki/index.php/Main_Page
+  homepage: https://github.com/DiseaseOntology/SymptomOntology
   id: symp
   layout: ontology_detail
   license:
@@ -6479,8 +6496,8 @@ ontologies:
   - description: Symptoms of human diseases in the DO
     examples:
     - description: symptoms of human diseases
-      url: http://www.disease-ontology.org/?id=DOID:0060164
-    user: http://www.disease-ontology.org
+      url: https://disease-ontology.org/?id=DOID:0060164
+    user: https://disease-ontology.org/
 - activity_status: active
   contact:
     email: allyson.lister@oerc.ox.ac.uk
@@ -6662,11 +6679,11 @@ ontologies:
   title: Pathogen Transmission Ontology
   tracker: https://github.com/DiseaseOntology/PathogenTransmissionOntology/issues
   usages:
-  - description: Methods of trnasmission of human diseases in the DO
+  - description: Methods of transmission of human diseases in the DO
     examples:
     - description: methods of transmission of human diseases
-      url: http://www.disease-ontology.org/?id=DOID:12365
-    user: http://www.disease-ontology.org
+      url: https://disease-ontology.org/?id=DOID:12365
+    user: https://disease-ontology.org/
 - activity_status: active
   contact:
     email: balhoff@renci.org

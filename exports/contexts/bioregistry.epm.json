@@ -77,6 +77,18 @@
         ]
     },
     {
+        "pattern": "^\\d+$",
+        "prefix": "aacdb",
+        "uri_prefix": "https://i.uestc.edu.cn/AACDB/details.php?id=",
+        "uri_prefix_synonyms": [
+            "AACDB:",
+            "aacdb:",
+            "http://bioregistry.io/aacdb:",
+            "http://i.uestc.edu.cn/AACDB/details.php?id=",
+            "https://bioregistry.io/aacdb:"
+        ]
+    },
+    {
         "prefix": "aaindex",
         "uri_prefix": "http://www.genome.jp/dbget-bin/www_bget?aaindex:",
         "uri_prefix_synonyms": [
@@ -6204,6 +6216,17 @@
         ]
     },
     {
+        "prefix": "croissant",
+        "uri_prefix": "http://mlcommons.org/croissant/",
+        "uri_prefix_synonyms": [
+            "CROISSANT:",
+            "croissant:",
+            "http://bioregistry.io/croissant:",
+            "https://bioregistry.io/croissant:",
+            "https://mlcommons.org/croissant/"
+        ]
+    },
+    {
         "pattern": "^[0-9]{9}$",
         "prefix": "crop2ml",
         "uri_prefix": "http://www.crop2ml.org/cropmdb/",
@@ -6524,17 +6547,6 @@
         ]
     },
     {
-        "prefix": "dalia",
-        "uri_prefix": "https://purl.org/ontology/modalia#",
-        "uri_prefix_synonyms": [
-            "DALIA:",
-            "dalia:",
-            "http://bioregistry.io/dalia:",
-            "http://purl.org/ontology/modalia#",
-            "https://bioregistry.io/dalia:"
-        ]
-    },
-    {
         "pattern": "^[A-Za-z0-9]{8}-[A-Za-z0-9]{4}-[A-Za-z0-9]{4}-[A-Za-z0-9]{4}-[A-Za-z0-9]{12}$",
         "prefix": "dalia.community",
         "uri_prefix": "https://search.dalia.education/communities/",
@@ -6737,6 +6749,20 @@
             "https://identifiers.org/datf:",
             "https://n2t.net/datf:",
             "https://planttfdb.cbi.pku.edu.cn/tf.php?sp=Ath&did="
+        ]
+    },
+    {
+        "pattern": "^\\d{5}$",
+        "prefix": "dbamp",
+        "uri_prefix": "https://awi.cuhk.edu.cn/dbAMP/information.php?db=dbamp_",
+        "uri_prefix_synonyms": [
+            "DBAMP:",
+            "dbamp:",
+            "http://awi.cuhk.edu.cn/dbAMP/information.php?db=dbamp_",
+            "http://bioregistry.io/dbamp:",
+            "http://www.acdb.plus/ABPDB/abp-search.php?keywords=dbAMP",
+            "https://bioregistry.io/dbamp:",
+            "https://www.acdb.plus/ABPDB/abp-search.php?keywords=dbAMP"
         ]
     },
     {
@@ -8217,8 +8243,10 @@
             "DRAMP:",
             "dramp:",
             "http://bioregistry.io/dramp:",
+            "http://www.acdb.plus/ABPDB/abp-search.php?keywords=",
             "https://bioregistry.io/dramp:",
-            "https://dramp.cpu-bioinfor.org/browse/All_Information.php?id="
+            "https://dramp.cpu-bioinfor.org/browse/All_Information.php?id=",
+            "https://www.acdb.plus/ABPDB/abp-search.php?keywords="
         ]
     },
     {
@@ -11283,6 +11311,18 @@
         ]
     },
     {
+        "pattern": "^\\d+$",
+        "prefix": "funggrowth",
+        "uri_prefix": "https://www.fung-growth.org/page/Display%20page%20FG/",
+        "uri_prefix_synonyms": [
+            "FUNGGROWTH:",
+            "funggrowth:",
+            "http://bioregistry.io/funggrowth:",
+            "http://www.fung-growth.org/page/Display%20page%20FG/",
+            "https://bioregistry.io/funggrowth:"
+        ]
+    },
+    {
         "pattern": "^[A-Za-z_0-9]+$",
         "prefix": "fungidb",
         "uri_prefix": "https://fungidb.org/fungidb/app/record/gene/",
@@ -13198,21 +13238,58 @@
         ]
     },
     {
-        "prefix": "gtr",
+        "prefix": "gtr.condition",
         "prefix_synonyms": [
+            "gtr",
             "medgen.gtr"
         ],
         "uri_prefix": "https://www.ncbi.nlm.nih.gov/gtr/conditions/",
         "uri_prefix_synonyms": [
+            "GTR.CONDITION:",
             "GTR:",
             "MEDGEN.GTR:",
+            "gtr.condition:",
             "gtr:",
+            "http://bioregistry.io/gtr.condition:",
             "http://bioregistry.io/gtr:",
             "http://bioregistry.io/medgen.gtr:",
             "http://www.ncbi.nlm.nih.gov/gtr/conditions/",
+            "https://bioregistry.io/gtr.condition:",
             "https://bioregistry.io/gtr:",
             "https://bioregistry.io/medgen.gtr:",
             "medgen.gtr:"
+        ]
+    },
+    {
+        "pattern": "^\\d+$",
+        "prefix": "gtr.lab",
+        "uri_prefix": "https://www.ncbi.nlm.nih.gov/gtr/labs/",
+        "uri_prefix_synonyms": [
+            "GTR.LAB:",
+            "gtr.lab:",
+            "http://bioregistry.io/gtr.lab:",
+            "http://identifiers.org/gtrl/",
+            "http://identifiers.org/gtrl:",
+            "http://www.ncbi.nlm.nih.gov/gtr/labs/",
+            "https://bioregistry.io/gtr.lab:",
+            "https://identifiers.org/gtrl/",
+            "https://identifiers.org/gtrl:"
+        ]
+    },
+    {
+        "pattern": "^\\d+$",
+        "prefix": "gtr.test",
+        "uri_prefix": "https://www.ncbi.nlm.nih.gov/gtr/tests/",
+        "uri_prefix_synonyms": [
+            "GTR.TEST:",
+            "gtr.test:",
+            "http://bioregistry.io/gtr.test:",
+            "http://identifiers.org/gtr/",
+            "http://identifiers.org/gtr:",
+            "http://www.ncbi.nlm.nih.gov/gtr/tests/",
+            "https://bioregistry.io/gtr.test:",
+            "https://identifiers.org/gtr/",
+            "https://identifiers.org/gtr:"
         ]
     },
     {
@@ -15182,8 +15259,10 @@
         "uri_prefix_synonyms": [
             "IEDB.ASSAY:",
             "http://bioregistry.io/iedb.assay:",
+            "http://cedar.iedb.org/assay/",
             "http://www.iedb.org/assay/",
             "https://bioregistry.io/iedb.assay:",
+            "https://cedar.iedb.org/assay/",
             "iedb.assay:"
         ]
     },
@@ -15195,10 +15274,12 @@
             "IEDB.EPITOPE:",
             "http://bio2rdf.org/tied:",
             "http://bioregistry.io/iedb.epitope:",
+            "http://cedar.iedb.org/epitope/",
             "http://www.iedb.org/epId/",
             "http://www.iedb.org/epitope/",
             "https://bio2rdf.org/tied:",
             "https://bioregistry.io/iedb.epitope:",
+            "https://cedar.iedb.org/epitope/",
             "https://www.iedb.org/epId/",
             "iedb.epitope:"
         ]
@@ -15222,8 +15303,10 @@
         "uri_prefix_synonyms": [
             "IEDB.RECEPTOR:",
             "http://bioregistry.io/iedb.receptor:",
+            "http://cedar.iedb.org/receptor/",
             "http://www.iedb.org/receptor/",
             "https://bioregistry.io/iedb.receptor:",
+            "https://cedar.iedb.org/receptor/",
             "iedb.receptor:"
         ]
     },
@@ -15234,10 +15317,12 @@
         "uri_prefix_synonyms": [
             "IEDB.REFERENCE:",
             "http://bioregistry.io/iedb.reference:",
+            "http://cedar.iedb.org/reference/",
             "http://identifiers.org/iedb/",
             "http://identifiers.org/iedb:",
             "http://www.iedb.org/reference/",
             "https://bioregistry.io/iedb.reference:",
+            "https://cedar.iedb.org/reference/",
             "https://identifiers.org/iedb/",
             "https://identifiers.org/iedb:",
             "iedb.reference:"
@@ -16592,17 +16677,27 @@
         ]
     },
     {
+        "pattern": "^\\d+$",
+        "prefix": "kdbirp",
+        "uri_prefix": "http://www.kdbirp.aiddlab.com/detail/",
+        "uri_prefix_synonyms": [
+            "KDBIRP:",
+            "http://bioregistry.io/kdbirp:",
+            "https://bioregistry.io/kdbirp:",
+            "https://www.kdbirp.aiddlab.com/detail/",
+            "kdbirp:"
+        ]
+    },
+    {
         "pattern": "^([CHDEGTMKR]\\d+)|(\\w+:[\\w\\d\\.-]*)|([a-z]{3,5})|(\\w{2,4}\\d{5})$",
         "prefix": "kegg",
         "prefix_synonyms": [
             "KEGG",
             "KEGG COMPOUND",
             "KEGG DRUG",
-            "KEGG-path",
             "KEGG.COMPOUND",
             "KEGG.DRUG",
             "KEGG.EDRUG",
-            "KEGG_PATHWAY",
             "KEGG_REACTION",
             "kegg.compound",
             "kegg.disease",
@@ -16615,7 +16710,6 @@
             "kegg.metagenome",
             "kegg.module",
             "kegg.orthology",
-            "kegg.pathway",
             "kegg.reaction",
             "kegg_genome",
             "kegg_genomes"
@@ -16624,8 +16718,6 @@
         "uri_prefix_synonyms": [
             "KEGG COMPOUND:",
             "KEGG DRUG:",
-            "KEGG-PATH:",
-            "KEGG-path:",
             "KEGG.COMPOUND:",
             "KEGG.DISEASE:",
             "KEGG.DRUG:",
@@ -16638,12 +16730,10 @@
             "KEGG.METAGENOME:",
             "KEGG.MODULE:",
             "KEGG.ORTHOLOGY:",
-            "KEGG.PATHWAY:",
             "KEGG.REACTION:",
             "KEGG:",
             "KEGG_GENOME:",
             "KEGG_GENOMES:",
-            "KEGG_PATHWAY:",
             "KEGG_REACTION:",
             "http://bio2rdf.org/kegg.compound:",
             "http://bio2rdf.org/kegg.disease:",
@@ -16653,16 +16743,13 @@
             "http://bio2rdf.org/kegg.glycan:",
             "http://bio2rdf.org/kegg.metagenome:",
             "http://bio2rdf.org/kegg.orthology:",
-            "http://bio2rdf.org/kegg.pathway:",
             "http://bio2rdf.org/kegg.reaction:",
             "http://bioregistry.io/KEGG COMPOUND:",
             "http://bioregistry.io/KEGG DRUG:",
-            "http://bioregistry.io/KEGG-path:",
             "http://bioregistry.io/KEGG.COMPOUND:",
             "http://bioregistry.io/KEGG.DRUG:",
             "http://bioregistry.io/KEGG.EDRUG:",
             "http://bioregistry.io/KEGG:",
-            "http://bioregistry.io/KEGG_PATHWAY:",
             "http://bioregistry.io/KEGG_REACTION:",
             "http://bioregistry.io/kegg.compound:",
             "http://bioregistry.io/kegg.disease:",
@@ -16675,7 +16762,6 @@
             "http://bioregistry.io/kegg.metagenome:",
             "http://bioregistry.io/kegg.module:",
             "http://bioregistry.io/kegg.orthology:",
-            "http://bioregistry.io/kegg.pathway:",
             "http://bioregistry.io/kegg.reaction:",
             "http://bioregistry.io/kegg:",
             "http://bioregistry.io/kegg_genome:",
@@ -16700,8 +16786,6 @@
             "http://identifiers.org/kegg.module:",
             "http://identifiers.org/kegg.orthology/",
             "http://identifiers.org/kegg.orthology:",
-            "http://identifiers.org/kegg.pathway/",
-            "http://identifiers.org/kegg.pathway:",
             "http://identifiers.org/kegg.reaction/",
             "http://identifiers.org/kegg.reaction:",
             "http://identifiers.org/kegg/",
@@ -16716,7 +16800,6 @@
             "http://n2t.net/kegg.metagenome:",
             "http://n2t.net/kegg.module:",
             "http://n2t.net/kegg.orthology:",
-            "http://n2t.net/kegg.pathway:",
             "http://n2t.net/kegg.reaction:",
             "http://n2t.net/kegg:",
             "http://www.genome.jp/dbget-bin/www_bget?",
@@ -16727,8 +16810,6 @@
             "http://www.genome.jp/dbget-bin/www_bget?gl:",
             "http://www.genome.jp/dbget-bin/www_bget?gn:",
             "http://www.genome.jp/dbget-bin/www_bget?ko:",
-            "http://www.genome.jp/dbget-bin/www_bget?map",
-            "http://www.genome.jp/dbget-bin/www_bget?path:",
             "http://www.genome.jp/dbget-bin/www_bget?rn:",
             "http://www.genome.jp/kegg-bin/show_organism?org=",
             "https://bio2rdf.org/kegg.compound:",
@@ -16739,16 +16820,13 @@
             "https://bio2rdf.org/kegg.glycan:",
             "https://bio2rdf.org/kegg.metagenome:",
             "https://bio2rdf.org/kegg.orthology:",
-            "https://bio2rdf.org/kegg.pathway:",
             "https://bio2rdf.org/kegg.reaction:",
             "https://bioregistry.io/KEGG COMPOUND:",
             "https://bioregistry.io/KEGG DRUG:",
-            "https://bioregistry.io/KEGG-path:",
             "https://bioregistry.io/KEGG.COMPOUND:",
             "https://bioregistry.io/KEGG.DRUG:",
             "https://bioregistry.io/KEGG.EDRUG:",
             "https://bioregistry.io/KEGG:",
-            "https://bioregistry.io/KEGG_PATHWAY:",
             "https://bioregistry.io/KEGG_REACTION:",
             "https://bioregistry.io/kegg.compound:",
             "https://bioregistry.io/kegg.disease:",
@@ -16761,7 +16839,6 @@
             "https://bioregistry.io/kegg.metagenome:",
             "https://bioregistry.io/kegg.module:",
             "https://bioregistry.io/kegg.orthology:",
-            "https://bioregistry.io/kegg.pathway:",
             "https://bioregistry.io/kegg.reaction:",
             "https://bioregistry.io/kegg:",
             "https://bioregistry.io/kegg_genome:",
@@ -16786,8 +16863,6 @@
             "https://identifiers.org/kegg.module:",
             "https://identifiers.org/kegg.orthology/",
             "https://identifiers.org/kegg.orthology:",
-            "https://identifiers.org/kegg.pathway/",
-            "https://identifiers.org/kegg.pathway:",
             "https://identifiers.org/kegg.reaction/",
             "https://identifiers.org/kegg.reaction:",
             "https://identifiers.org/kegg/",
@@ -16802,7 +16877,6 @@
             "https://n2t.net/kegg.metagenome:",
             "https://n2t.net/kegg.module:",
             "https://n2t.net/kegg.orthology:",
-            "https://n2t.net/kegg.pathway:",
             "https://n2t.net/kegg.reaction:",
             "https://n2t.net/kegg:",
             "https://www.genome.jp/dbget-bin/www_bget?",
@@ -16813,14 +16887,11 @@
             "https://www.genome.jp/dbget-bin/www_bget?gl:",
             "https://www.genome.jp/dbget-bin/www_bget?gn:",
             "https://www.genome.jp/dbget-bin/www_bget?ko:",
-            "https://www.genome.jp/dbget-bin/www_bget?map",
-            "https://www.genome.jp/dbget-bin/www_bget?path:",
             "https://www.genome.jp/dbget-bin/www_bget?rn:",
             "https://www.genome.jp/kegg-bin/show_organism?org=",
             "https://www.kegg.jp/entry/",
             "kegg compound:",
             "kegg drug:",
-            "kegg-path:",
             "kegg.compound:",
             "kegg.disease:",
             "kegg.drug:",
@@ -16833,12 +16904,10 @@
             "kegg.metagenome:",
             "kegg.module:",
             "kegg.orthology:",
-            "kegg.pathway:",
             "kegg.reaction:",
             "kegg:",
             "kegg_genome:",
             "kegg_genomes:",
-            "kegg_pathway:",
             "kegg_reaction:"
         ]
     },
@@ -16853,6 +16922,43 @@
             "https://bioregistry.io/kegg.brite:",
             "https://www.genome.jp/kegg-bin/get_htext?-p+/kegg/brite/br+br",
             "kegg.brite:"
+        ]
+    },
+    {
+        "pattern": "^\\w{2,4}\\d{5}$",
+        "prefix": "kegg.pathway",
+        "prefix_synonyms": [
+            "KEGG-path",
+            "KEGG_PATHWAY"
+        ],
+        "uri_prefix": "https://www.kegg.jp/pathway/",
+        "uri_prefix_synonyms": [
+            "KEGG-PATH:",
+            "KEGG-path:",
+            "KEGG.PATHWAY:",
+            "KEGG_PATHWAY:",
+            "http://bio2rdf.org/kegg.pathway:",
+            "http://bioregistry.io/KEGG-path:",
+            "http://bioregistry.io/KEGG_PATHWAY:",
+            "http://bioregistry.io/kegg.pathway:",
+            "http://identifiers.org/kegg.pathway/",
+            "http://identifiers.org/kegg.pathway:",
+            "http://n2t.net/kegg.pathway:",
+            "http://www.genome.jp/dbget-bin/www_bget?map",
+            "http://www.genome.jp/dbget-bin/www_bget?path:",
+            "http://www.kegg.jp/pathway/",
+            "https://bio2rdf.org/kegg.pathway:",
+            "https://bioregistry.io/KEGG-path:",
+            "https://bioregistry.io/KEGG_PATHWAY:",
+            "https://bioregistry.io/kegg.pathway:",
+            "https://identifiers.org/kegg.pathway/",
+            "https://identifiers.org/kegg.pathway:",
+            "https://n2t.net/kegg.pathway:",
+            "https://www.genome.jp/dbget-bin/www_bget?map",
+            "https://www.genome.jp/dbget-bin/www_bget?path:",
+            "kegg-path:",
+            "kegg.pathway:",
+            "kegg_pathway:"
         ]
     },
     {
@@ -17137,6 +17243,17 @@
             "https://purl.obolibrary.org/obo/LEPAO_",
             "https://www.ebi.ac.uk/ols/ontologies/lepao/terms?iri=http://purl.obolibrary.org/obo/LEPAO_",
             "lepao:"
+        ]
+    },
+    {
+        "prefix": "lexvo.ontology",
+        "uri_prefix": "http://lexvo.org/ontology#",
+        "uri_prefix_synonyms": [
+            "LEXVO.ONTOLOGY:",
+            "http://bioregistry.io/lexvo.ontology:",
+            "https://bioregistry.io/lexvo.ontology:",
+            "https://lexvo.org/ontology#",
+            "lexvo.ontology:"
         ]
     },
     {
@@ -17513,6 +17630,31 @@
         ]
     },
     {
+        "pattern": "^fdd\\d+$",
+        "prefix": "loc.fdd",
+        "uri_prefix": "https://www.loc.gov/preservation/digital/formats/fdd/",
+        "uri_prefix_synonyms": [
+            "LOC.FDD:",
+            "http://bioregistry.io/loc.fdd:",
+            "http://www.loc.gov/preservation/digital/formats/fdd/",
+            "http://www.loc.gov/preservation/digital/formats/fddXML/",
+            "https://bioregistry.io/loc.fdd:",
+            "https://www.loc.gov/preservation/digital/formats/fddXML/",
+            "loc.fdd:"
+        ]
+    },
+    {
+        "prefix": "loc.relator",
+        "uri_prefix": "https://id.loc.gov/vocabulary/relators/",
+        "uri_prefix_synonyms": [
+            "LOC.RELATOR:",
+            "http://bioregistry.io/loc.relator:",
+            "http://id.loc.gov/vocabulary/relators/",
+            "https://bioregistry.io/loc.relator:",
+            "loc.relator:"
+        ]
+    },
+    {
         "prefix": "loc.resourcetype",
         "uri_prefix": "http://id.loc.gov/vocabulary/resourceTypes/",
         "uri_prefix_synonyms": [
@@ -17694,7 +17836,7 @@
         ]
     },
     {
-        "pattern": "^\\w+$",
+        "pattern": "^[A-Za-z_0-9]*$",
         "prefix": "m4i",
         "uri_prefix": "http://w3id.org/nfdi4ing/metadata4ing#",
         "uri_prefix_synonyms": [
@@ -19746,6 +19888,17 @@
         ]
     },
     {
+        "prefix": "modalia",
+        "uri_prefix": "https://purl.org/ontology/modalia#",
+        "uri_prefix_synonyms": [
+            "MODALIA:",
+            "http://bioregistry.io/modalia:",
+            "http://purl.org/ontology/modalia#",
+            "https://bioregistry.io/modalia:",
+            "modalia:"
+        ]
+    },
+    {
         "pattern": "^\\d+$",
         "prefix": "modeldb",
         "uri_prefix": "https://modeldb.science/",
@@ -21652,6 +21805,18 @@
         ]
     },
     {
+        "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$",
+        "prefix": "nfportal.tool",
+        "uri_prefix": "https://nf.synapse.org/Explore/Tools/DetailsPage?resourceId=",
+        "uri_prefix_synonyms": [
+            "NFPORTAL.TOOL:",
+            "http://bioregistry.io/nfportal.tool:",
+            "http://nf.synapse.org/Explore/Tools/DetailsPage?resourceId=",
+            "https://bioregistry.io/nfportal.tool:",
+            "nfportal.tool:"
+        ]
+    },
+    {
         "pattern": "^\\d{7}$",
         "prefix": "ngbo",
         "uri_prefix": "http://purl.obolibrary.org/obo/NGBO_",
@@ -22211,6 +22376,41 @@
             "https://identifiers.org/nmrshiftdb2:",
             "nmrshiftdb2:",
             "nmrshiftdb:"
+        ]
+    },
+    {
+        "prefix": "nmrxiv.compound",
+        "uri_prefix": "https://nmrxiv.org/spectra?compound=",
+        "uri_prefix_synonyms": [
+            "NMRXIV.COMPOUND:",
+            "http://bioregistry.io/nmrxiv.compound:",
+            "http://nmrxiv.org/spectra?compound=",
+            "https://bioregistry.io/nmrxiv.compound:",
+            "nmrxiv.compound:"
+        ]
+    },
+    {
+        "pattern": "^P\\d+$",
+        "prefix": "nmrxiv.project",
+        "uri_prefix": "https://nmrxiv.org/project/",
+        "uri_prefix_synonyms": [
+            "NMRXIV.PROJECT:",
+            "http://bioregistry.io/nmrxiv.project:",
+            "http://nmrxiv.org/project/",
+            "https://bioregistry.io/nmrxiv.project:",
+            "nmrxiv.project:"
+        ]
+    },
+    {
+        "pattern": "^S\\d+$",
+        "prefix": "nmrxiv.sample",
+        "uri_prefix": "https://nmrxiv.org/sample/",
+        "uri_prefix_synonyms": [
+            "NMRXIV.SAMPLE:",
+            "http://bioregistry.io/nmrxiv.sample:",
+            "http://nmrxiv.org/sample/",
+            "https://bioregistry.io/nmrxiv.sample:",
+            "nmrxiv.sample:"
         ]
     },
     {
@@ -28172,19 +28372,24 @@
     {
         "prefix": "schema",
         "prefix_synonyms": [
-            "schemaorg"
+            "schemaorg",
+            "sdo"
         ],
         "uri_prefix": "https://schema.org/",
         "uri_prefix_synonyms": [
             "SCHEMA:",
             "SCHEMAORG:",
+            "SDO:",
             "http://bioregistry.io/schema:",
             "http://bioregistry.io/schemaorg:",
+            "http://bioregistry.io/sdo:",
             "http://schema.org/",
             "https://bioregistry.io/schema:",
             "https://bioregistry.io/schemaorg:",
+            "https://bioregistry.io/sdo:",
             "schema:",
-            "schemaorg:"
+            "schemaorg:",
+            "sdo:"
         ]
     },
     {
@@ -32594,8 +32799,10 @@
         "uri_prefix_synonyms": [
             "VANN:",
             "http://bioregistry.io/vann:",
+            "http://purl.org/vocab/vann/",
             "http://vocab.org/vann/#",
             "https://bioregistry.io/vann:",
+            "https://purl.org/vocab/vann/",
             "vann:"
         ]
     },
