@@ -1,7 +1,6 @@
-# See https://setuptools.readthedocs.io/en/latest/build_meta.html
 [build-system]
-requires = ["setuptools", "wheel"]
-build-backend = "setuptools.build_meta"
+requires = ["uv_build>=0.9.4,<1.0"]
+build-backend = "uv_build"
 
 # Pytest, see https://docs.pytest.org/en/stable/reference/customize.html#pyproject-toml
 [tool.pytest.ini_options]
@@ -144,17 +143,6 @@ mapping-checking = [
 Homepage = "https://github.com/biopragmatics/bioregistry"
 Repository = "https://github.com/biopragmatics/bioregistry.git"
 Documentation = "https://bioregistry.readthedocs.io"
-
-[tool.setuptools]
-package-dir = { "" = "src" }
-
-[tool.setuptools.packages.find]
-# this implicitly sets `packages = ":find"`
-where = ["src"]  # list of folders that contain the packages (["."] by default)
-
-# See https://setuptools.pypa.io/en/latest/userguide/datafiles.html
-[tool.setuptools.package-data]
-"*" = ["*.*"]
 
 [project.scripts]
 bioregistry = "bioregistry.cli:main"
