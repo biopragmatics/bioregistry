@@ -119,11 +119,7 @@ Biomedicine</a> at Northeastern University.
 BIOREGISTRY_CITATION_TEXT = dedent("""\
 <h2>Citing the Bioregistry</h2>
 <p>
-    {% if config.METAREGISTRY_FIRST_PARTY %}
-    The Bioregistry can be cited with the following:
-    {% else %}
-    This registry is based on the code underlying the Bioregistry, which can be cited as follows:
-    {% endif %}
+    This web application is built on top of the Bioregistry, which can be cited with the following:
     <blockquote class="blockquote">
         Hoyt, C. T., <i>et al.</i> (2022) <a href="https://bioregistry.io/doi:10.1038/s41597-022-01807-3">The
         Unifying the identification of biomedical entities with the Bioregistry</a>. <i>Scientific Data</i>,
@@ -132,16 +128,16 @@ BIOREGISTRY_CITATION_TEXT = dedent("""\
 </p>
 <p>or by using the following LaTeX:</p>
 <pre><code class="language-bibtex">@article{Hoyt2022Bioregistry,
-author = {Hoyt, Charles Tapley and Balk, Meghan and Callahan, Tiffany J and Domingo-Fern{\'{a}}ndez, Daniel and Haendel, Melissa A and Hegde, Harshad B and Himmelstein, Daniel S and Karis, Klas and Kunze, John and Lubiana, Tiago and Matentzoglu, Nicolas and McMurry, Julie and Moxon, Sierra and Mungall, Christopher J and Rutz, Adriano and Unni, Deepak R and Willighagen, Egon and Winston, Donald and Gyori, Benjamin M},
-doi = {10.1038/s41597-022-01807-3},
-issn = {2052-4463},
-journal = {Sci. Data},
-number = {1},
-pages = {714},
-title = {Unifying the identification of biomedical entities with the Bioregistry},
-url = {https://doi.org/10.1038/s41597-022-01807-3},
-volume = {9},
-year = {2022}
+    author  = {Hoyt, Charles Tapley and Balk, Meghan and Callahan, Tiffany J and Domingo-Fern{\'{a}}ndez, Daniel and Haendel, Melissa A and Hegde, Harshad B and Himmelstein, Daniel S and Karis, Klas and Kunze, John and Lubiana, Tiago and Matentzoglu, Nicolas and McMurry, Julie and Moxon, Sierra and Mungall, Christopher J and Rutz, Adriano and Unni, Deepak R and Willighagen, Egon and Winston, Donald and Gyori, Benjamin M},
+    doi     = {10.1038/s41597-022-01807-3},
+    issn    = {2052-4463},
+    journal = {Sci. Data},
+    number  = {1},
+    pages   = {714},
+    title   = {Unifying the identification of biomedical entities with the Bioregistry},
+    url     = {https://doi.org/10.1038/s41597-022-01807-3},
+    volume  = {9},
+    year    = {2022}
 }</code></pre>
 """)
 BIOREGISTRY_BADGE_BLOCK = dedent(f"""\
