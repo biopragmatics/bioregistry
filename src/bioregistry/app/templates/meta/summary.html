@@ -36,8 +36,7 @@
         <dt class="col-lg-2 text-right text-nowrap">Open Source</dt>
         <dd class="col-lg-10">
             Anyone can make updates by pull requesting against the single source of truth JSON
-            "database". There are clear contribution guidelines and several potential
-            <a href="https://github.com/orgs/bioregistry/teams/reviewers">reviewers</a>. Automated
+            "database". There are clear contribution guidelines and decentralized review, led by the community. Automated
             testing notifies contributors of mistakes or omissions before review.
         </dd>
         <dt class="col-lg-2 text-right text-nowrap">Automated</dt>
@@ -110,12 +109,13 @@
     <p>
         While many of the resources reported above are finite, Wikidata is a bit more difficult. Because it is a
         general-purpose ontology (for lack of a better word), it contains many properties that are irrelevant
-        for the {{ config.METAREGISTRY_TITLE }}. Further, its properties that are relevant are labeled in a variety of ways. The GAS
+        for the {{ config.METAREGISTRY_TITLE }}. Further, its properties that are relevant are labeled in a variety of ways.
+        The graph analytics service (GAS, <a href="https://w.wiki/d73">see example usage</a>)
         service might provide a solution that enables graph traversal over the various hierarchies of properties
         (see <a href="https://w.wiki/qMG">this</a>).
     </p>
     <p>
-        Biological databases, ontologies, and resource will continue to be generated as we learn about new and
+        Ontologies, controlled vocabularies, databases, and other resources that mint (persistent) identifiers will continue to be generated as we learn about new and
         exciting phenomena, so the medium-term plan to grow the {{ config.METAREGISTRY_TITLE }} is to continue to cover resources
         that are not covered by the other resources it references.
     </p>
@@ -186,7 +186,7 @@
     </p>
     <h2>Providers</h2>
     <p>
-        One of the original goals of using URIs as identifiers for biomedical entities was that they could
+        One of the original goals of using URIs as identifiers for entities was that they could
         be resolved in the browser. This isn't strictly enforced, and even worse it's the case that many
         resources don't have any URIs associated with them at all. The following chart shows roughly
         the distribution of how many providers are available for each resource. Luckily, most have one or
