@@ -372,52 +372,52 @@ def parse_curie(
     otherwise). The left part is the prefix, and the right part is the identifier.
 
     >>> parse_curie("pdb:1234")
-    ReferenceTuple('pdb', '1234')
+    ReferenceTuple(prefix='pdb', identifier='1234')
 
     Address banana problem
 
     >>> parse_curie("go:GO:1234")
-    ReferenceTuple('go', '1234')
+    ReferenceTuple(prefix='go', identifier='1234')
     >>> parse_curie("go:go:1234")
-    ReferenceTuple('go', '1234')
+    ReferenceTuple(prefix='go', identifier='1234')
     >>> parse_curie("go:1234")
-    ReferenceTuple('go', '1234')
+    ReferenceTuple(prefix='go', identifier='1234')
 
     Address banana problem with OBO banana
 
     >>> parse_curie("fbbt:FBbt:1234")
-    ReferenceTuple('fbbt', '1234')
+    ReferenceTuple(prefix='fbbt', identifier='1234')
     >>> parse_curie("fbbt:fbbt:1234")
-    ReferenceTuple('fbbt', '1234')
+    ReferenceTuple(prefix='fbbt', identifier='1234')
     >>> parse_curie("fbbt:1234")
-    ReferenceTuple('fbbt', '1234')
+    ReferenceTuple(prefix='fbbt', identifier='1234')
 
     Address banana problem with explit banana
 
     >>> parse_curie("go.ref:GO_REF:1234")
-    ReferenceTuple('go.ref', '1234')
+    ReferenceTuple(prefix='go.ref', identifier='1234')
     >>> parse_curie("go.ref:1234")
-    ReferenceTuple('go.ref', '1234')
+    ReferenceTuple(prefix='go.ref', identifier='1234')
 
     Parse OBO PURL curies
 
     >>> parse_curie("GO_1234", sep="_")
-    ReferenceTuple('go', '1234')
+    ReferenceTuple(prefix='go', identifier='1234')
 
     Banana with no peel
 
     >>> parse_curie("omim.ps:PS12345")
-    ReferenceTuple('omim.ps', '12345')
+    ReferenceTuple(prefix='omim.ps', identifier='12345')
 
     Use preferred (available)
 
     >>> parse_curie("GO_1234", sep="_", use_preferred=True)
-    ReferenceTuple('GO', '1234')
+    ReferenceTuple(prefix='GO', identifier='1234')
 
     Use preferred (unavailable)
 
     >>> parse_curie("pdb:1234", use_preferred=True)
-    ReferenceTuple('pdb', '1234')
+    ReferenceTuple(prefix='pdb', identifier='1234')
     """
     if strict:
         return manager.parse_curie(

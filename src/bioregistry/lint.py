@@ -2,20 +2,6 @@
 
 import click
 
-from bioregistry.constants import CURATED_PAPERS_PATH
-from bioregistry.schema_utils import (
-    read_collections,
-    read_contexts,
-    read_mappings,
-    read_metaregistry,
-    read_registry,
-    write_collections,
-    write_contexts,
-    write_mappings,
-    write_metaregistry,
-    write_registry,
-)
-
 __all__ = [
     "lint",
 ]
@@ -24,6 +10,20 @@ __all__ = [
 @click.command()
 def lint() -> None:
     """Run the lint commands."""
+    from .constants import CURATED_PAPERS_PATH
+    from .schema_utils import (
+        read_collections,
+        read_contexts,
+        read_mappings,
+        read_metaregistry,
+        read_registry,
+        write_collections,
+        write_contexts,
+        write_mappings,
+        write_metaregistry,
+        write_registry,
+    )
+
     # clear LRU caches so if this is run after some functions that update
     # these resources, such as the align() pipeline, they don't get overwritten.
     for read_resource_func in (

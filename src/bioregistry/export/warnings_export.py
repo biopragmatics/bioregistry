@@ -14,8 +14,21 @@ import yaml
 from tqdm import tqdm
 
 import bioregistry
-from bioregistry.constants import DOCS_DATA, EXTERNAL
-from bioregistry.resolve import get_external
+from bioregistry import parse_iri
+
+from ..constants import DOCS_DATA, EXTERNAL
+from ..resolve import (
+    get_example,
+    get_external,
+    get_homepage,
+    get_name,
+    get_pattern,
+    get_provides_for,
+    has_no_terms,
+)
+from ..resolve_identifier import get_iri
+from ..schema_utils import read_metaregistry, read_registry
+from ..uri_format import get_uri_format
 
 __all__ = [
     "export_warnings",
@@ -24,8 +37,7 @@ __all__ = [
 CURATIONS_PATH = DOCS_DATA.joinpath("curation.yml")
 
 ENTRIES = sorted(
-    (prefix, resource.model_dump(exclude_none=True))
-    for prefix, resource in bioregistry.read_registry().items()
+    (prefix, resource.model_dump(exclude_none=True)) for prefix, resource in read_registry().items()
 )
 
 
@@ -33,10 +45,10 @@ def _g(predicate: Callable[[str], bool]) -> list[dict[str, str | None]]:
     return [
         {
             "prefix": prefix,
-            "name": bioregistry.get_name(prefix),
-            "homepage": bioregistry.get_homepage(prefix),
+            "name": get_name(prefix),
+            "homepage": get_homepage(prefix),
         }
-        for prefix in sorted(bioregistry.read_registry())
+        for prefix in sorted(read_registry())
         if predicate(prefix)
     ]
 
@@ -44,14 +56,14 @@ def _g(predicate: Callable[[str], bool]) -> list[dict[str, str | None]]:
 def get_unparsable_uris() -> list[tuple[str, str, str]]:
     """Get a list of IRIs that can be constructed, but not parsed."""
     rows: list[tuple[str, str, str]] = []
-    for prefix in tqdm(bioregistry.read_registry(), desc="Checking URIs"):
-        example = bioregistry.get_example(prefix)
+    for prefix in tqdm(read_registry(), desc="Checking URIs"):
+        example = get_example(prefix)
         if example is None:
             continue
-        uri = bioregistry.get_iri(prefix, example, use_bioregistry_io=False)
+        uri = get_iri(prefix, example, use_bioregistry_io=False)
         if uri is None:
             continue
-        k, v = bioregistry.parse_iri(uri)
+        k, v = parse_iri(uri)
         if k is None or v is None:
             rows.append((prefix, example, uri))
     return rows
@@ -63,20 +75,16 @@ def export_warnings() -> None:
     # unparsable = get_unparsable_uris()
     missing_wikidata_database = _g(
         lambda prefix: get_external(prefix, "wikidata").get("database") is None
-        and not bioregistry.has_no_terms(prefix)
+        and not has_no_terms(prefix)
     )
-    missing_pattern = _g(
-        lambda prefix: bioregistry.get_pattern(prefix) is None
-        and not bioregistry.has_no_terms(prefix)
-    )
+    missing_pattern = _g(lambda prefix: get_pattern(prefix) is None and not has_no_terms(prefix))
     missing_format_url = _g(
-        lambda prefix: bioregistry.get_uri_format(prefix) is None
-        and not bioregistry.has_no_terms(prefix)
+        lambda prefix: get_uri_format(prefix) is None and not has_no_terms(prefix)
     )
     missing_example = _g(
-        lambda prefix: bioregistry.get_example(prefix) is None
-        and not bioregistry.has_no_terms(prefix)
-        and bioregistry.get_provides_for(prefix) is None
+        lambda prefix: get_example(prefix) is None
+        and not has_no_terms(prefix)
+        and get_provides_for(prefix) is None
     )
 
     prefix_xrefs = [
@@ -84,7 +92,7 @@ def export_warnings() -> None:
             "metaprefix": metaprefix,
             "name": registry.get_short_name(),
         }
-        for metaprefix, registry in sorted(bioregistry.read_metaregistry().items())
+        for metaprefix, registry in sorted(read_metaregistry().items())
         if EXTERNAL.joinpath(metaprefix, "curation.tsv").is_file()
     ]
 
@@ -104,8 +112,8 @@ def export_warnings() -> None:
     miriam_pattern_wrong = [
         {
             "prefix": prefix,
-            "name": bioregistry.get_name(prefix),
-            "homepage": bioregistry.get_homepage(prefix),
+            "name": get_name(prefix),
+            "homepage": get_homepage(prefix),
             "correct": entry["pattern"],
             "miriam": entry["miriam"]["pattern"],
         }
@@ -118,9 +126,9 @@ def export_warnings() -> None:
     miriam_embedding_rewrites = [
         {
             "prefix": prefix,
-            "name": bioregistry.get_name(prefix),
-            "homepage": bioregistry.get_homepage(prefix),
-            "pattern": bioregistry.get_pattern(prefix),
+            "name": get_name(prefix),
+            "homepage": get_homepage(prefix),
+            "pattern": get_pattern(prefix),
             "correct": entry["namespace.embedded"],
             "miriam": entry["miriam"]["namespaceEmbeddedInLui"],
         }
@@ -132,9 +140,9 @@ def export_warnings() -> None:
     miriam_prefix_rewrites = [
         {
             "prefix": prefix,
-            "name": bioregistry.get_name(prefix),
-            "homepage": bioregistry.get_homepage(prefix),
-            "pattern": bioregistry.get_pattern(prefix),
+            "name": get_name(prefix),
+            "homepage": get_homepage(prefix),
+            "pattern": get_pattern(prefix),
             "correct": entry["namespace.rewrite"],
         }
         for prefix, entry in ENTRIES

@@ -12,22 +12,22 @@ from fastapi import APIRouter, Body, Depends, Header, HTTPException, Path, Query
 from fastapi.responses import JSONResponse, Response
 from pydantic import BaseModel, Field
 
-from bioregistry import Collection, Context, Manager, Registry, Resource
-from bioregistry.export.rdf_export import (
+from .utils import FORMAT_MAP, _autocomplete, _search
+from ..export.rdf_export import (
     collection_to_rdf_str,
     metaresource_to_rdf_str,
     resource_to_rdf_str,
 )
-from bioregistry.schema import Attributable, sanitize_mapping
-from bioregistry.schema_utils import (
+from ..resource_manager import Manager
+from ..schema import Attributable, sanitize_mapping
+from ..schema.struct import Collection, Context, Registry, Resource
+from ..schema_utils import (
     read_collections_contributions,
     read_prefix_contacts,
     read_prefix_contributions,
     read_prefix_reviews,
     read_registry_contributions,
 )
-
-from .utils import FORMAT_MAP, _autocomplete, _search
 
 __all__ = [
     "api_router",
@@ -143,7 +143,7 @@ def get_resources(
 def get_resource(
     manager: DependsManager,
     prefix: str = Path(
-        title="Prefix", description="The Bioregistry prefix for the entry", examples=["doid"]
+        title="Prefix", description="The internal prefix for the entry", examples=["doid"]
     ),
     accept: str = ACCEPT_HEADER,
     format: str = FORMAT_QUERY,
@@ -192,7 +192,7 @@ def get_metaresources(
 
 METAPREFIX_PATH = Path(
     title="Metaprefix",
-    description="The Bioregistry metaprefix for the external registry",
+    description="The metaprefix for the external registry",
     examples=["n2t"],
 )
 
@@ -315,7 +315,7 @@ def get_metaresource_external_mappings(
 def get_metaresource_mappings(
     manager: DependsManager, metaprefix: str = METAPREFIX_PATH
 ) -> dict[str, str]:
-    """Get mappings from the Bioregistry to an external registry."""
+    """Get mappings from internal to external prefixes for a given external registry."""
     if metaprefix not in manager.metaregistry:
         raise HTTPException(404, detail=f"Invalid metaprefix: {metaprefix}")
     return manager.get_registry_map(metaprefix)
@@ -558,11 +558,11 @@ def generate_context_json_ld(
 
     You can either give prefixes as a comma-separated list like:
 
-    https://bioregistry.io/api/context.jsonld?prefix=go,doid,oa
+    /api/context.jsonld?prefix=go,doid,oa
 
     or you can use multiple entries for "prefix" like:
 
-    https://bioregistry.io/api/context.jsonld?prefix=go&prefix=doid&prefix=oa
+    /api/context.jsonld?prefix=go&prefix=doid&prefix=oa
     """
     prefix_map = {}
     for value in prefix:

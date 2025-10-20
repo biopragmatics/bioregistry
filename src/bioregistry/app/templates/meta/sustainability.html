@@ -1,6 +1,6 @@
 {% extends "prose.html" %}
 
-{% block title %}Bioregistry Deployment and Sustainability{% endblock %}
+{% block title %}{{ config.METAREGISTRY_TITLE }} Deployment and Sustainability{% endblock %}
 
 {% block styles %}
     {{ super() }}
@@ -17,44 +17,38 @@
     <h1>Sustainability</h1>
     <h2>Deployment in the Cloud</h2>
     <p>
-        There are several aspects to the way the Bioregistry web application is deployed listed in this section.
+        There are several aspects to the way the {{ config.METAREGISTRY_TITLE }} web application is deployed listed in this section.
     </p>
-    <h3>Domain Name</h3>
-    <p>
-        The <code>bioregistry.io</code> domain is registered with Namecheap and costs about $33 per year. It is managed
-        and supported by the <a
-            href="https://gyorilab.github.io/">Gyori Lab for Computaional Biomedicine</a> at Northeastern University.
-    </p>
+    {% if config.METAREGISTRY_DOMAIN_NAME_BLOCK %}
+    {{ config.METAREGISTRY_DOMAIN_NAME_BLOCK | safe }}
+    {% endif %}
     <h3>Software</h3>
     <p>
-        The Bioregistry source code is licensed under the MIT License and is hosted openly on GitHub at
-        <a href="https://github.com/biopragmatics/bioregistry">https://github.com/biopragmatics/bioregistry</a>.
+        The {{ config.METAREGISTRY_TITLE }} source code is licensed under the MIT License and is hosted openly on GitHub at
+        <a href="{{ config.METAREGISTRY_REPOSITORY }}">{{ config.METAREGISTRY_REPOSITORY }}</a>.
 
         These are the software and operating system specifications for the currently running instance of the
-        Bioregistry:
+        {{ config.METAREGISTRY_TITLE }}:
     </p>
     <dl>
-        <dt>Bioregistry Version</dt>
+        <dt>{{ config.METAREGISTRY_TITLE }} Version</dt>
         <dd>{{ software_version }}</dd>
         {% if software_git_hash %}
         <dt>Git Hash</dt>
         <dd>
-            <a href="https://github.com/biopragmatics/bioregistry/commit/{{ software_git_hash }}">
+            <a href="{{ config.METAREGISTRY_REPOSITORY }}/commit/{{ software_git_hash }}">
                 {{ software_git_hash }}
             </a>
         </dd>
         {% endif %}
     </dl>
     <h3>Hardware</h3>
-    <p>
-        The Bioregistry is hosted on an Amazon Elastic Compute Cloud (EC2) via a load balancing service to stay secure
-        and highly available.
-        It is managed and supported by the <a href="https://gyorilab.github.io/">Gyori Lab for Computational
-        Biomedicine</a> at Northeastern University.
-    </p>
+    {% if config.METAREGISTRY_HARDWARE %}
+    <p>{{ config.METAREGISTRY_HARDWARE | safe }}</p>
+    {% endif %}
     <p>
         These are the hardware and operating system specifications for the currently running instance of the
-        Bioregistry:
+        {{ config.METAREGISTRY_TITLE }}:
     </p>
     <dl>
         <dt>Python</dt>
@@ -66,59 +60,19 @@
         <dt>Deployed</dt>
         <dd>{{ deployed }}</dd>
     </dl>
-    <h3>Containerization</h3>
-    <p>
-        A Docker image is automatically built weekly following the
-        <a href="https://github.com/biopragmatics/bioregistry/actions/workflows/update.yml">update workflow</a>
-        on GitHub Actions and pushed to the <a href="https://hub.docker.com/r/biopragmatics/bioregistry"><i class="fab fa-docker"></i>
-        biopragmatics/bioregistry</a> DockerHub repository. This image is built with the Python 3.9 alpine base image,
-        which significantly reduces non-essential components. The final compressed image weights less than 40 MB of disk
-        space and runs inside Docker with about 65 MB of memory at baseline. This could easily fit on a dedicated
-        <a href="https://aws.amazon.com/ec2/instance-types/t4/">t4g.nano</a> instance on AWS that costs about
-        $37/year on-demand or around $20/year reserved.
-    </p>
-    <h3>Deployment</h3>
-    <p>
-        The Bioregistry's EC2 instance runs the following script on a cron job that stops the current running instance,
-        pulls the latest image from this DockerHub repository and starts it back up. The whole process only takes a few
-        seconds.
-    </p>
-    <pre><code class="language-bash">#!/bin/bash
-# /data/services/restart_bioregistry.sh
-
-# Store the container's hash
-BIOREGISTRY_CONTAINER_ID=$(docker ps --filter "name=bioregistry" -aq)
-
-# Stop and remove the old container, taking advantage of the fact that it's named specifically
-if [ -n "BIOREGISTRY_CONTAINER_ID" ]; then
-  docker stop $BIOREGISTRY_CONTAINER_ID
-  docker rm $BIOREGISTRY_CONTAINER_ID
-fi
-
-# Pull the latest
-docker pull biopragmatics/bioregistry:latest
-
-# Run the start script, remove -d to run interactively
-docker run -id --name bioregistry -p 8766:8766 biopragmatics/bioregistry:latest</code></pre>
-    <p>This script can be put on the EC2 instance and run via SSH with:</p>
-    <pre><code class="language-bash">#!/bin/bash
-
-ssh -i ~/.ssh/&lt;credentials&gt.pem &lt;user&gt;@&lt;address&gt; 'sh /data/services/restart_bioregistry.sh'</code></pre>
-    <h3>SSL/TLS</h3>
-    <p>
-        The SSL/TLS certificate for <code>bioregistry.io</code> so it can be served with HTTPS is managed through
-        the <a href="https://aws.amazon.com/certificate-manager/">AWS Certificate Manager</a>.
-    </p>
+    {% if config.METAREGISTRY_DEPLOYMENT %}
+    {{ config.METAREGISTRY_DEPLOYMENT | safe }}
+    {% endif %}
 
     <h2>Project Longevity</h2>
     <p>
-        The Bioregistry is funded by the Chan Zuckerberg Initiative (CZI) Open Science Grant 2023-329850
+        The {{ config.METAREGISTRY_TITLE }} is funded by the Chan Zuckerberg Initiative (CZI) Open Science Grant 2023-329850
         which stipulates unlimited no-cost extensions. We have allocated part of this grant to ensure that
         the domain registration, hosting, and hardware will be funded in the medium- and long term under
         a conservative cost estimate of around $100-200/year.
     </p>
     <p>
-        The Bioregistry implements the <a href="https://doi.org/10.31219/osf.io/vuzt3">Open Code, Open Data,
+        The {{ config.METAREGISTRY_TITLE }} implements the <a href="https://doi.org/10.31219/osf.io/vuzt3">Open Code, Open Data,
         Open Infrastructure (O3) Guidelines</a> as a means to enable and encourage community contribution and
         maintenance in the medium- and long term. All code is permissively licensed with the MIT License
         and all data is under the Creative Commons Zero (CCO) license, meaning anyone can reuse the data
@@ -127,20 +81,20 @@ ssh -i ~/.ssh/&lt;credentials&gt.pem &lt;user&gt;@&lt;address&gt; 'sh /data/serv
 
     <h3>Mirroring</h3>
     <p>
-        The Bioregistry can be mirrored following
+        The {{ config.METAREGISTRY_TITLE }} can be mirrored following
         <a href="https://bioregistry.readthedocs.io/en/latest/deployment.html">these instructions</a>.
     </p>
 
     <h3>Deploying with Custom Content</h3>
     <p>
-        The Bioregistry can be deployed using custom content by following
+        The {{ config.METAREGISTRY_TITLE }} can be deployed using custom content by following
         <a href="https://bioregistry.readthedocs.io/en/latest/deployment.html#deploying-a-custom-bioregistry">these
         instructions</a>.
     </p>
 
     <h2>Project Governance</h2>
     <p>
-        Stakeholders in the Bioregistry have been interested in questions including:
+        Stakeholders in the {{ config.METAREGISTRY_TITLE }} have been interested in questions including:
     </p>
     <ul>
         <li>Will the service still be running in 10 years?</li>
@@ -151,7 +105,7 @@ ssh -i ~/.ssh/&lt;credentials&gt.pem &lt;user&gt;@&lt;address&gt; 'sh /data/serv
             impact?
         </li>
         <li>
-            How will the Bioregistry avoid the pitfalls of a closed curation process like the one implemented
+            How will the {{ config.METAREGISTRY_TITLE }} avoid the pitfalls of a closed curation process like the one implemented
             by Identifiers.org?
         </li>
         <li>How should inevitable prefix/namespace collisions be handled?</li>
@@ -161,11 +115,11 @@ ssh -i ~/.ssh/&lt;credentials&gt.pem &lt;user&gt;@&lt;address&gt; 'sh /data/serv
         sciences.
 
         As first steps towards addressing those, we have written explicit, public, well-defined
-            <a href="https://github.com/biopragmatics/bioregistry/blob/main/docs/CONTRIBUTING.md">contribution
+            <a href="{{ config.METAREGISTRY_REPOSITORY }}/blob/main/docs/CONTRIBUTING.md">contribution
                 guidelines</a>,
-            <a href="https://github.com/biopragmatics/bioregistry/blob/main/docs/CODE_OF_CONDUCT.md">code of
+            <a href="{{ config.METAREGISTRY_REPOSITORY }}/blob/main/docs/CODE_OF_CONDUCT.md">code of
                 conduct</a>, and
-            <a href="https://github.com/biopragmatics/bioregistry/blob/main/docs/GOVERNANCE.md">project
+            <a href="{{ config.METAREGISTRY_REPOSITORY }}/blob/main/docs/GOVERNANCE.md">project
                 governance</a>.
     </p>
     <p>
@@ -180,12 +134,12 @@ ssh -i ~/.ssh/&lt;credentials&gt.pem &lt;user&gt;@&lt;address&gt; 'sh /data/serv
         </li>
         <li>
             Participate in discussion labeled with
-            <a href="https://github.com/biopragmatics/bioregistry/issues?q=is%3Aissue+label%3APolicy">Policy</a> on the Bioregistry's GitHub issue tracker
+            <a href="{{ config.METAREGISTRY_REPOSITORY }}/issues?q=is%3Aissue+label%3APolicy">Policy</a> on the {{ config.METAREGISTRY_TITLE }}'s GitHub issue tracker
         </li>
     </ul>
     <h2>Evaluation of FAIR Data Principles</h2>
     <p>
-        Content negotiation was implemented in <a href="https://github.com/biopragmatics/bioregistry/pull/682">
+        Content negotiation was implemented in <a href="{{ config.METAREGISTRY_REPOSITORY }}/pull/682">
         PR #682</a> in order to better comply with FAIR-ness evaluations such as th
         <a href="https://fair-enough.semanticscience.org">FAIR Enough Evaluation</a>
     </p>

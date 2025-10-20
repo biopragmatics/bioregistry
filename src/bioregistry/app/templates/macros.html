@@ -145,7 +145,7 @@
                         <p>
                             Get the contact's name:
                         </p>
-                        <pre><code class="language-python">&gt;&gt;&gt; import bioregistry as br
+                        <pre><code class="language-python">&gt;&gt;&gt; import {{ config.METAREGISTRY_PYTHON_PACKAGE }} as br
 &gt;&gt;&gt; br.get_contact_name("{{ prefix }}")
 '{{ author.name }}'</code></pre>
                     {% endif %}
@@ -153,7 +153,7 @@
                         <p>
                             Get the contact's email:
                         </p>
-                        <pre><code class="language-python">&gt;&gt;&gt; import bioregistry as br
+                        <pre><code class="language-python">&gt;&gt;&gt; import {{ config.METAREGISTRY_PYTHON_PACKAGE }} as br
 &gt;&gt;&gt; br.get_contact_email("{{ prefix }}")
 '{{ author.email }}'</code></pre>
                     {% endif %}
@@ -161,7 +161,7 @@
                         <p>
                             Get the contact's GitHub handle:
                         </p>
-                        <pre><code class="language-python">&gt;&gt;&gt; import bioregistry as br
+                        <pre><code class="language-python">&gt;&gt;&gt; import {{ config.METAREGISTRY_PYTHON_PACKAGE }} as br
 &gt;&gt;&gt; br.get_contact_github("{{ prefix }}")
 '{{ author.github }}'</code></pre>
                     {% endif %}
@@ -169,7 +169,7 @@
                         <p>
                             Get the contact's ORCiD identifier:
                         </p>
-                        <pre><code class="language-python">&gt;&gt;&gt; import bioregistry as br
+                        <pre><code class="language-python">&gt;&gt;&gt; import {{ config.METAREGISTRY_PYTHON_PACKAGE }} as br
 &gt;&gt;&gt; br.get_contact_orcid("{{ prefix }}")
 '{{ author.orcid }}'</code></pre>
                     {% endif %}
@@ -180,7 +180,7 @@
 {% endmacro %}
 
 {% macro code_example(prefix, func, text, quote=True) -%}
-<pre><code class="language-python">&gt;&gt;&gt; import bioregistry as br
+<pre><code class="language-python">&gt;&gt;&gt; import {{ config.METAREGISTRY_PYTHON_PACKAGE }} as br
 &gt;&gt;&gt; br.{{ func }}("{{ prefix }}")
 {% if quote %}'{{ text }}'{% else %}{{ text }}{% endif %}</code></pre>
 {% endmacro %}

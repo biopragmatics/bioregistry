@@ -1,4 +1,4 @@
-"""Utility functions for the Bioregistry :mod:`flask` app."""
+"""Utility functions for the :mod:`flask` app."""
 
 from __future__ import annotations
 
@@ -20,9 +20,8 @@ from flask import (
 )
 from pydantic import BaseModel
 
-from bioregistry.resource_manager import Manager
-
 from .proxies import manager
+from ..resource_manager import Manager
 from ..utils import _norm
 
 

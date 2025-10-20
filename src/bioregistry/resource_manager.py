@@ -405,47 +405,47 @@ class Manager:
 
         >>> from bioregistry import manager
         >>> manager.parse_uri("http://purl.obolibrary.org/obo/DRON_00023232")
-        ReferenceTuple('dron', '00023232')
+        ReferenceTuple(prefix='dron', identifier='00023232')
 
         IRI from the OLS:
 
         >>> manager.parse_uri(
         ...     "https://www.ebi.ac.uk/ols/ontologies/ecao/terms?iri=http://purl.obolibrary.org/obo/ECAO_0107180"
         ... )  # noqa:E501
-        ReferenceTuple('ecao', '0107180')
+        ReferenceTuple(prefix='ecao', identifier='0107180')
 
         IRI from native provider
 
         >>> manager.parse_uri("https://www.alzforum.org/mutations/1234")
-        ReferenceTuple('alzforum.mutation', '1234')
+        ReferenceTuple(prefix='alzforum.mutation', identifier='1234')
 
         Dog food:
 
         >>> manager.parse_uri("https://bioregistry.io/DRON:00023232")
-        ReferenceTuple('dron', '00023232')
+        ReferenceTuple(prefix='dron', identifier='00023232')
 
         IRIs from Identifiers.org (https and http, colon and slash):
 
         >>> manager.parse_uri("https://identifiers.org/aop.relationships:5")
-        ReferenceTuple('aop.relationships', '5')
+        ReferenceTuple(prefix='aop.relationships', identifier='5')
         >>> manager.parse_uri("http://identifiers.org/aop.relationships:5")
-        ReferenceTuple('aop.relationships', '5')
+        ReferenceTuple(prefix='aop.relationships', identifier='5')
         >>> manager.parse_uri("https://identifiers.org/aop.relationships/5")
-        ReferenceTuple('aop.relationships', '5')
+        ReferenceTuple(prefix='aop.relationships', identifier='5')
         >>> manager.parse_uri("http://identifiers.org/aop.relationships/5")
-        ReferenceTuple('aop.relationships', '5')
+        ReferenceTuple(prefix='aop.relationships', identifier='5')
 
         IRI from N2T
 
         >>> manager.parse_uri("https://n2t.net/aop.relationships:5")
-        ReferenceTuple('aop.relationships', '5')
+        ReferenceTuple(prefix='aop.relationships', identifier='5')
 
         Handle either HTTP or HTTPS:
 
         >>> manager.parse_uri("http://braininfo.rprc.washington.edu/centraldirectory.aspx?ID=268")
-        ReferenceTuple('neuronames', '268')
+        ReferenceTuple(prefix='neuronames', identifier='268')
         >>> manager.parse_uri("https://braininfo.rprc.washington.edu/centraldirectory.aspx?ID=268")
-        ReferenceTuple('neuronames', '268')
+        ReferenceTuple(prefix='neuronames', identifier='268')
 
         If you provide your own prefix map, you should pre-process the prefix map with:
 
@@ -458,7 +458,7 @@ class Manager:
         Corner cases:
 
         >>> manager.parse_uri("https://omim.org/MIM:PS214100")
-        ReferenceTuple('omim.ps', '214100')
+        ReferenceTuple(prefix='omim.ps', identifier='214100')
         """
         reference = self.converter.parse_uri(uri, return_none=True)
         if reference is not None:

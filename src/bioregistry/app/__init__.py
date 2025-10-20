@@ -1,1 +1,1 @@
-"""Web application for the Bioregistry."""
+"""Web application."""

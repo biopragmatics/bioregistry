@@ -38,11 +38,11 @@
                 <dt>Download</dt>
                 <dd>
                     <a class="badge badge-pill badge-success"
-                       href="https://github.com/biopragmatics/bioregistry/blob/main/exports/contexts/{{ identifier }}.context.jsonld">
+                       href="{{ config.METAREGISTRY_REPOSITORY }}/blob/main/exports/contexts/{{ identifier }}.context.jsonld">
                         Download JSON LD <i class="fas fa-download"></i>
                     </a>
                     <a class="badge badge-pill badge-success"
-                       href="https://github.com/biopragmatics/bioregistry/blob/main/exports/contexts/{{ identifier }}.context.ttl">
+                       href="{{ config.METAREGISTRY_REPOSITORY }}/blob/main/exports/contexts/{{ identifier }}.context.ttl">
                         Download SHACL <i class="fas fa-download"></i>
                     </a>
                 </dd>
@@ -58,8 +58,8 @@
                             </li>
                         {% endfor %}
                         {% if entry.maintainers|length < 2 %}
-                            <li>Bioregistry Review Team (until this record has two maintainers, see
-                                <a href="https://github.com/biopragmatics/bioregistry/tree/main/exports/contexts#prescriptive-contexts">here</a>
+                            <li>{{ config.METAREGISTRY_TITLE }} Review Team (until this record has two maintainers, see
+                                <a href="{{ config.METAREGISTRY_REPOSITORY }}/tree/main/exports/contexts#prescriptive-contexts">here</a>
                                 for more information on governance)
                             </li>
                         {% endif %}

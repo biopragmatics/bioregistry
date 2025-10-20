@@ -10,12 +10,8 @@ import json
 import click
 import curies
 
-from bioregistry.constants import (
-    CONTEXT_BIOREGISTRY_PATH,
-    EXPORT_CONTEXTS,
-    SHACL_TURTLE_PATH,
-)
-from bioregistry.resource_manager import manager
+from ..constants import CONTEXT_BIOREGISTRY_PATH, EXPORT_CONTEXTS, SHACL_TURTLE_PATH
+from ..resource_manager import manager
 
 REVERSE_PREFIX_MAP_PATH = EXPORT_CONTEXTS.joinpath("bioregistry.rpm.json")
 EXTENDED_PREFIX_MAP_PATH = EXPORT_CONTEXTS.joinpath("bioregistry.epm.json")
