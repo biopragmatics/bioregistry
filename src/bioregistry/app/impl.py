@@ -3,10 +3,9 @@
 from __future__ import annotations
 
 import json
-from collections.abc import Mapping
 from pathlib import Path
 from textwrap import dedent
-from typing import Any, Literal, overload
+from typing import Any, Literal, cast, overload
 
 import pystow
 from a2wsgi import WSGIMiddleware
@@ -227,7 +226,7 @@ BIOREGISTRY_DOMAIN_NAME_BLOCK = dedent("""\
 @overload
 def get_app(
     manager: Manager | None = ...,
-    config: None | str | Path | Mapping[str, Any] = ...,
+    config: None | str | Path | dict[str, Any] = ...,
     *,
     first_party: bool = ...,
     return_flask: Literal[True] = True,
@@ -241,7 +240,7 @@ def get_app(
 @overload
 def get_app(
     manager: Manager | None = ...,
-    config: None | str | Path | Mapping[str, Any] = ...,
+    config: None | str | Path | dict[str, Any] = ...,
     *,
     first_party: bool = ...,
     return_flask: Literal[False] = False,
@@ -253,7 +252,7 @@ def get_app(
 
 def get_app(
     manager: Manager | None = None,
-    config: None | str | Path | Mapping[str, Any] = None,
+    config: None | str | Path | dict[str, Any] = None,
     *,
     first_party: bool = True,
     return_flask: bool = False,
@@ -347,49 +346,47 @@ def get_app(
 
 
 def _prepare_config(
-    config: None | str | Path | Mapping[str, Any] = None, first_party: bool = True
+    config: None | str | Path | dict[str, Any] = None, first_party: bool = True
 ) -> dict[str, Any]:
     if isinstance(config, str | Path):
         with open(config) as file:
-            conf = json.load(file)
+            config = cast(dict[str, Any], json.load(file))
     elif config is None:
-        conf = {}
-    else:
-        conf = config
+        config = {}
 
-    conf.setdefault("METAREGISTRY_FIRST_PARTY", first_party)
-    conf.setdefault("METAREGISTRY_CONTACT_NAME", "Charles Tapley Hoyt")
-    conf.setdefault("METAREGISTRY_CONTACT_EMAIL", "cthoyt@gmail.com")
-    conf.setdefault("METAREGISTRY_LICENSE_NAME", "MIT License")
-    conf.setdefault("METAREGISTRY_VERSION", version.get_version())
-    conf.setdefault("METAREGISTRY_EXAMPLE_PREFIX", "chebi")
-    conf.setdefault("METAREGISTRY_EXAMPLE_IDENTIFIER", "138488")
-    conf.setdefault("METAREGISTRY_LICENSE_URL", f"{INTERNAL_REPOSITORY_BLOB}/LICENSE")
-    conf.setdefault("METAREGISTRY_DOCKERHUB_SLUG", INTERNAL_DOCKERHUB_SLUG)
-    conf.setdefault("METAREGISTRY_REPOSITORY_SLUG", INTERNAL_REPOSITORY_SLUG)
-    conf.setdefault("METAREGISTRY_REPOSITORY", INTERNAL_REPOSITORY)
-    conf.setdefault("METAREGISTRY_REPOSITORY_PAGES", INTERNAL_REPOSITORY_PAGES)
-    conf.setdefault("METAREGISTRY_REPOSITORY_RAW", INTERNAL_REPOSITORY_RAW)
-    conf.setdefault("METAREGISTRY_PYTHON_PACKAGE", INTERNAL_PIP)
-    conf.setdefault("METAREGISTRY_CITATION", BIOREGISTRY_CITATION_TEXT)
-    conf.setdefault("METAREGISTRY_BADGE_BLOCK", BIOREGISTRY_BADGE_BLOCK)
-    conf.setdefault("METAREGISTRY_MASTODON", INTERNAL_MASTODON)
-    conf.setdefault("METAREGISTRY_SCHEMA_PREFIX", SCHEMA_CURIE_PREFIX)
-    conf.setdefault("METAREGISTRY_SCHEMA_URI_PREFIX", SCHEMA_URI_PREFIX)
-    conf.setdefault("METAREGISTRY_RESOURCES_SUBHEADER", RESOURCES_SUBHEADER_DEFAULT)
+    config.setdefault("METAREGISTRY_FIRST_PARTY", first_party)
+    config.setdefault("METAREGISTRY_CONTACT_NAME", "Charles Tapley Hoyt")
+    config.setdefault("METAREGISTRY_CONTACT_EMAIL", "cthoyt@gmail.com")
+    config.setdefault("METAREGISTRY_LICENSE_NAME", "MIT License")
+    config.setdefault("METAREGISTRY_VERSION", version.get_version())
+    config.setdefault("METAREGISTRY_EXAMPLE_PREFIX", "chebi")
+    config.setdefault("METAREGISTRY_EXAMPLE_IDENTIFIER", "138488")
+    config.setdefault("METAREGISTRY_LICENSE_URL", f"{INTERNAL_REPOSITORY_BLOB}/LICENSE")
+    config.setdefault("METAREGISTRY_DOCKERHUB_SLUG", INTERNAL_DOCKERHUB_SLUG)
+    config.setdefault("METAREGISTRY_REPOSITORY_SLUG", INTERNAL_REPOSITORY_SLUG)
+    config.setdefault("METAREGISTRY_REPOSITORY", INTERNAL_REPOSITORY)
+    config.setdefault("METAREGISTRY_REPOSITORY_PAGES", INTERNAL_REPOSITORY_PAGES)
+    config.setdefault("METAREGISTRY_REPOSITORY_RAW", INTERNAL_REPOSITORY_RAW)
+    config.setdefault("METAREGISTRY_PYTHON_PACKAGE", INTERNAL_PIP)
+    config.setdefault("METAREGISTRY_CITATION", BIOREGISTRY_CITATION_TEXT)
+    config.setdefault("METAREGISTRY_BADGE_BLOCK", BIOREGISTRY_BADGE_BLOCK)
+    config.setdefault("METAREGISTRY_MASTODON", INTERNAL_MASTODON)
+    config.setdefault("METAREGISTRY_SCHEMA_PREFIX", SCHEMA_CURIE_PREFIX)
+    config.setdefault("METAREGISTRY_SCHEMA_URI_PREFIX", SCHEMA_URI_PREFIX)
+    config.setdefault("METAREGISTRY_RESOURCES_SUBHEADER", RESOURCES_SUBHEADER_DEFAULT)
 
     # key for updating on non-first party
-    conf.setdefault("METAREGISTRY_TITLE", BIOREGISTRY_TITLE_DEFAULT)
-    conf.setdefault("METAREGISTRY_DESCRIPTION", BIOREGISTRY_DESCRIPTION_DEFAULT)
-    conf.setdefault("METAREGISTRY_FOOTER", BIOREGISTRY_FOOTER_DEFAULT)
-    conf.setdefault("METAREGISTRY_HEADER", BIOREGISTRY_HEADER_DEFAULT)
-    conf.setdefault("METAREGISTRY_HARDWARE", BIOREGISTRY_HARDWARE_DEFAULT)
+    config.setdefault("METAREGISTRY_TITLE", BIOREGISTRY_TITLE_DEFAULT)
+    config.setdefault("METAREGISTRY_DESCRIPTION", BIOREGISTRY_DESCRIPTION_DEFAULT)
+    config.setdefault("METAREGISTRY_FOOTER", BIOREGISTRY_FOOTER_DEFAULT)
+    config.setdefault("METAREGISTRY_HEADER", BIOREGISTRY_HEADER_DEFAULT)
+    config.setdefault("METAREGISTRY_HARDWARE", BIOREGISTRY_HARDWARE_DEFAULT)
 
     # should not be there if not first-party
-    conf.setdefault("METAREGISTRY_DEPLOYMENT", BIOREGISTRY_DEPLOYMENT_BLOCK)
-    conf.setdefault("METAREGISTRY_DOMAIN_NAME_BLOCK", BIOREGISTRY_DOMAIN_NAME_BLOCK)
+    config.setdefault("METAREGISTRY_DEPLOYMENT", BIOREGISTRY_DEPLOYMENT_BLOCK)
+    config.setdefault("METAREGISTRY_DOMAIN_NAME_BLOCK", BIOREGISTRY_DOMAIN_NAME_BLOCK)
 
-    return conf
+    return config
 
 
 example_query = """\
