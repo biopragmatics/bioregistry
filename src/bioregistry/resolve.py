@@ -319,7 +319,7 @@ def get_identifiers_org_prefix(prefix: str) -> str | None:
     'chebi'
     >>> bioregistry.get_identifiers_org_prefix("ncbitaxon")
     'taxonomy'
-    >>> assert bioregistry.get_identifiers_org_prefix("MONDO") is None
+    >>> assert bioregistry.get_identifiers_org_prefix("bioregistry") is None
     """
     entry = manager.get_resource(prefix)
     if entry is None:
@@ -455,7 +455,7 @@ def get_banana(prefix: str) -> str | None:
     Banana imported through OBO Foundry
 
     >>> get_banana("go")
-    'Go'
+    'GO'
     >>> get_banana("vario")
     'VariO'
 

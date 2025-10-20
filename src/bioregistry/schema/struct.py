@@ -1799,7 +1799,7 @@ class Resource(BaseModel):
         'chebi'
         >>> get_resource("ncbitaxon").get_identifiers_org_prefix()
         'taxonomy'
-        >>> assert get_resource("MONDO").get_identifiers_org_prefix() is None
+        >>> assert get_resource("bioregistry").get_identifiers_org_prefix() is None
         """
         return self.get_mapped_prefix("miriam")
 
