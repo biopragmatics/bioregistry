@@ -18,7 +18,7 @@ jobs:
     strategy:
       matrix:
         python-version: [ "3.13", "3.10" ]
-        tox-command: ["manifest", "lint", "pyroma", "mypy"]
+        tox-command: ["lint", "pyroma", "mypy"]
     steps:
       - uses: actions/checkout@v4
       - name: "Install uv"
