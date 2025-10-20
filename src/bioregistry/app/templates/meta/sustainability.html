@@ -19,12 +19,9 @@
     <p>
         There are several aspects to the way the {{ config.METAREGISTRY_TITLE }} web application is deployed listed in this section.
     </p>
-    <h3>Domain Name</h3>
-    <p>
-        The <code>bioregistry.io</code> domain is registered with Namecheap and costs about $33 per year. It is managed
-        and supported by the <a
-            href="https://gyorilab.github.io/">Gyori Lab for Computational Biomedicine</a> at Northeastern University.
-    </p>
+    {% if config.METAREGISTRY_DOMAIN_NAME_BLOCK %}
+    {{ config.METAREGISTRY_DOMAIN_NAME_BLOCK | safe }}
+    {% endif %}
     <h3>Software</h3>
     <p>
         The {{ config.METAREGISTRY_TITLE }} source code is licensed under the MIT License and is hosted openly on GitHub at
@@ -46,7 +43,9 @@
         {% endif %}
     </dl>
     <h3>Hardware</h3>
+    {% if config.METAREGISTRY_HARDWARE %}
     <p>{{ config.METAREGISTRY_HARDWARE | safe }}</p>
+    {% endif %}
     <p>
         These are the hardware and operating system specifications for the currently running instance of the
         {{ config.METAREGISTRY_TITLE }}:
@@ -61,19 +60,8 @@
         <dt>Deployed</dt>
         <dd>{{ deployed }}</dd>
     </dl>
-    <h3>Containerization</h3>
-    <p>
-        A Docker image is automatically built weekly following the
-        <a href="{{ config.METAREGISTRY_REPOSITORY }}/actions/workflows/update.yml">update workflow</a>
-        on GitHub Actions and pushed to the <a href="https://hub.docker.com/r/{{ config.METAREGISTRY_DOCKERHUB_SLUG }}"><i class="fab fa-docker"></i>
-        {{ config.METAREGISTRY_DOCKERHUB_SLUG }}</a> DockerHub repository. This image is built with the Python 3.9 alpine base image,
-        which significantly reduces non-essential components. The final compressed image weights less than 40 MB of disk
-        space and runs inside Docker with about 65 MB of memory at baseline. This could easily fit on a dedicated
-        <a href="https://aws.amazon.com/ec2/instance-types/t4/">t4g.nano</a> instance on AWS that costs about
-        $37/year on-demand or around $20/year reserved.
-    </p>
     {% if config.METAREGISTRY_DEPLOYMENT %}
-{{ config.METAREGISTRY_DEPLOYMENT | safe }}
+    {{ config.METAREGISTRY_DEPLOYMENT | safe }}
     {% endif %}
 
     <h2>Project Longevity</h2>

@@ -558,11 +558,11 @@ def generate_context_json_ld(
 
     You can either give prefixes as a comma-separated list like:
 
-    https://bioregistry.io/api/context.jsonld?prefix=go,doid,oa
+    /api/context.jsonld?prefix=go,doid,oa
 
     or you can use multiple entries for "prefix" like:
 
-    https://bioregistry.io/api/context.jsonld?prefix=go&prefix=doid&prefix=oa
+    /api/context.jsonld?prefix=go&prefix=doid&prefix=oa
     """
     prefix_map = {}
     for value in prefix:

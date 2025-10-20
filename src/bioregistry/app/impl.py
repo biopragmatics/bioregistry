@@ -166,7 +166,19 @@ BIOREGISTRY_BADGE_BLOCK = dedent(f"""\
 </a>
 </p>
 """)
-BIOREGISTRY_DEPLOYMENT_BLOCK = dedent("""\
+BIOREGISTRY_DEPLOYMENT_BLOCK = dedent(f"""\
+<h3>Containerization</h3>
+<p>
+    A Docker image is automatically built weekly following the
+    <a href="{INTERNAL_REPOSITORY}/actions/workflows/update.yml">update workflow</a>
+    on GitHub Actions and pushed to the <a href="https://hub.docker.com/r/{INTERNAL_DOCKERHUB_SLUG}"><i class="fab fa-docker"></i>
+    {INTERNAL_DOCKERHUB_SLUG}</a> DockerHub repository. This image is built with the Python 3.9 alpine base image,
+    which significantly reduces non-essential components. The final compressed image weights less than 40 MB of disk
+    space and runs inside Docker with about 65 MB of memory at baseline. This could easily fit on a dedicated
+    <a href="https://aws.amazon.com/ec2/instance-types/t4/">t4g.nano</a> instance on AWS that costs about
+    $37/year on-demand or around $20/year reserved.
+</p>
+
 <h3>Deployment</h3>
 <p>
     The Bioregistry's EC2 instance runs the following script on a cron job that stops the current running instance,
@@ -198,6 +210,15 @@ ssh -i ~/.ssh/&lt;credentials&gt.pem &lt;user&gt;@&lt;address&gt; 'sh /data/serv
 <p>
     The SSL/TLS certificate for <code>bioregistry.io</code> so it can be served with HTTPS is managed through
     the <a href="https://aws.amazon.com/certificate-manager/">AWS Certificate Manager</a>.
+</p>
+""")
+
+BIOREGISTRY_DOMAIN_NAME_BLOCK = dedent("""\
+<h3>Domain Name</h3>
+<p>
+    The <code>bioregistry.io</code> domain is registered with Namecheap and costs about $33 per year. It is managed
+    and supported by the <a
+        href="https://gyorilab.github.io/">Gyori Lab for Computational Biomedicine</a> at Northeastern University.
 </p>
 """)
 
@@ -290,6 +311,7 @@ def get_app(
 
     # should not be there if not first-party
     conf.setdefault("METAREGISTRY_DEPLOYMENT", BIOREGISTRY_DEPLOYMENT_BLOCK)
+    conf.setdefault("METAREGISTRY_DOMAIN_NAME_BLOCK", BIOREGISTRY_DOMAIN_NAME_BLOCK)
 
     resource = manager.registry.get(example_prefix)
     if resource is None:
