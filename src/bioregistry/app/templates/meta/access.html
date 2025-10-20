@@ -1,6 +1,6 @@
 {% extends "prose.html" %}
 
-{% block title %}Bioregistry Programmatic Usage{% endblock %}
+{% block title %}{{ config.METAREGISTRY_TITLE }} Programmatic Usage{% endblock %}
 
 {% block styles %}
     {{ super() }}
@@ -17,7 +17,7 @@
     <h2>API Usage</h2>
     <p>
         The {{ config.METAREGISTRY_TITLE }} web application is built on <a href="https://flask.palletsprojects.com">Flask</a>
-        as a thin wrapper around the <a href="https://github.com/biopragmatics/bioregistry"><code>bioregistry</code></a>
+        as a thin wrapper around the <a href="{{ config.METAREGISTRY_REPOSITORY }}"><code>{{ config.METAREGISTRY_PYTHON_PACKAGE }}</code></a>
         Python package. It exposes several endpoints for accessing the registry, metaregistry, collections, and search
         functionality for which <a href="https://swagger.io/">Swagger</a> API documentation is automatically generated
         by <a href="https://fastapi.tiangolo.com/">FastAPI</a>.
@@ -59,63 +59,63 @@ res = requests.get('{{ manager.base_url }}/api/registry/{{ resource.prefix }}').
     <h2>Python Package Usage</h2>
     <p>
         The Python source code can be found at
-        <a href="https://github.com/biopragmatics/bioregistry"><i class="fab fa-github"></i> biopragmatics/bioregistry</a>.
-        It can be installed with <code>pip install bioregistry</code> or in development mode by following
-        <a href="https://github.com/biopragmatics/bioregistry#-installation">these instructions</a>.
+        <a href="{{ config.METAREGISTRY_REPOSITORY }}"><i class="fab fa-github"></i> {{ config.METAREGISTRY_REPOSITORY_SLUG }}</a>.
+        It can be installed with <code>pip install {{ config.METAREGISTRY_PYTHON_PACKAGE }}</code> or in development mode by following
+        <a href="{{ config.METAREGISTRY_REPOSITORY }}#-installation">these instructions</a>.
     </p>
     <p>
-        The Bioregistry can be used to normalize prefixes across MIRIAM and all the (very plentiful) variants that pop
+        The {{ config.METAREGISTRY_TITLE }} can be used to normalize prefixes across MIRIAM and all the (very plentiful) variants that pop
         up in ontologies in OBO Foundry and the OLS with the <code>normalize_prefix()</code> function.
     </p>
-    <pre><code class="language-python">import bioregistry
+    <pre><code class="language-python">import {{ config.METAREGISTRY_PYTHON_PACKAGE }} as br
 
 # This works for synonym prefixes, like:
-assert 'ncbitaxon' == bioregistry.normalize_prefix('taxonomy')
+assert 'ncbitaxon' == br.normalize_prefix('taxonomy')
 
 # This works for common mistaken prefixes, like:
-assert 'pubchem.compound' == bioregistry.normalize_prefix('pubchem')
+assert 'pubchem.compound' == br.normalize_prefix('pubchem')
 
 # This works for prefixes that are often written many ways, like:
-assert 'ec' == bioregistry.normalize_prefix('ec-code')
-assert 'ec' == bioregistry.normalize_prefix('EC_CODE')
+assert 'ec' == br.normalize_prefix('ec-code')
+assert 'ec' == br.normalize_prefix('EC_CODE')
 
 # If a prefix is not registered, it gives back `None`
-assert bioregistry.normalize_prefix('not a real key') is None</code></pre>
+assert br.normalize_prefix('not a real key') is None</code></pre>
     <p>
-        Entries in the Bioregistry can be looked up with the <code>get()</code> function.
+        Entries in the {{ config.METAREGISTRY_TITLE }} can be looked up with the <code>get()</code> function.
     </p>
-    <pre><code class="language-python">entry = bioregistry.get('taxonomy')
+    <pre><code class="language-python">entry = br.get('taxonomy')
 # there are lots of mysteries to discover in this dictionary!</code></pre>
     <p>
-        The full Bioregistry can be read in a Python project using:
+        The full {{ config.METAREGISTRY_TITLE }} can be read in a Python project using:
     </p>
-    <pre><code class="language-python">registry = bioregistry.read_registry()</code></pre>
+    <pre><code class="language-python">registry = br.read_registry()</code></pre>
 
-    <h2>Local Deployment of the Bioregistry Web Application</h2>
+    <h2>Local Deployment of the {{ config.METAREGISTRY_TITLE }} Web Application</h2>
     <p>
-        As the Bioregistry is open source, it's possible to host your own instance of the Bioregistry web application.
+        As the {{ config.METAREGISTRY_TITLE }} is open source, it's possible to host your own instance of the {{ config.METAREGISTRY_TITLE }} web application.
         Further, it's possible create a local derivative of the registry, metaregistry, or collections that can be
         deployed in your own instance. Here are examples how to do that:
     </p>
     <h4>Python CLI</h4>
     <p>
-        You can also install and run the Bioregistry app from the shell:
+        You can also install and run the {{ config.METAREGISTRY_TITLE }} app from the shell:
     </p>
-    <pre><code class="language-shell">$ pip install bioregistry[web]
-$ bioregistry web</code></pre>
-    <p>You can also download the source code, install in development mode, and run the Bioregistry app from the shell:
+    <pre><code class="language-shell">$ pip install {{ config.METAREGISTRY_PYTHON_PACKAGE }}[web]
+$ {{ config.METAREGISTRY_PYTHON_PACKAGE }} web</code></pre>
+    <p>You can also download the source code, install in development mode, and run the {{ config.METAREGISTRY_TITLE }} app from the shell:
     </p>
-    <pre><code class="language-shell">$ git clone https://github.com/biopragmatics/bioregistry.git
-$ cd bioregistry
+    <pre><code class="language-shell">$ git clone {{ config.METAREGISTRY_REPOSITORY }}.git
+$ cd {{ config.METAREGISTRY_PYTHON_PACKAGE }}
 $ pip install --editable .[web]
-$ bioregistry web</code></pre>
+$ {{ config.METAREGISTRY_PYTHON_PACKAGE }} web</code></pre>
     <h4>Docker</h4>
-    <p>You can deploy your own instance of the Bioregistry with:</p>
-    <pre><code class="language-shell">$ docker run -id -p 8766:8766 biopragmatics/bioregistry:latest</code></pre>
+    <p>You can deploy your own instance of the {{ config.METAREGISTRY_TITLE }} with:</p>
+    <pre><code class="language-shell">$ docker run -id -p 8766:8766 {{ config.METAREGISTRY_DOCKERHUB_SLUG }}:latest</code></pre>
     <p>
-        If you want to mix using a custom version of the Bioregistry with a Docker-based deployment, please
-        see the dockerfile in <a href="https://github.com/biopragmatics/bioregistry-docker">
-        <i class="fab fa-github"></i> biopragmatics/bioregistry-docker</a> for inspiration.
+        If you want to mix using a custom version of the {{ config.METAREGISTRY_TITLE }} with a Docker-based deployment, please
+        see the dockerfile in <a href="{{ config.METAREGISTRY_REPOSITORY }}">
+        <i class="fab fa-github"></i> {{ config.METAREGISTRY_REPOSITORY_SLUG }}</a> for inspiration.
     </p>
     {% endif %}
 {% endblock %}

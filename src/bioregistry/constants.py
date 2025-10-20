@@ -19,6 +19,12 @@ __all__ = [
     "CURATED_MAPPINGS_PATH",
     "DATA_DIRECTORY",
     "HERE",
+    "INTERNAL_COLOR",
+    "INTERNAL_KEY",
+    "INTERNAL_LABEL",
+    "INTERNAL_METAPREFIX",
+    "INTERNAL_PIP",
+    "INTERNAL_REPOSITORY",
     "METAREGISTRY_PATH",
     "RAW_DIRECTORY",
     "FailureReturnType",
@@ -198,3 +204,29 @@ def get_failure_return_type(frt: FailureReturnType) -> None | NonePair:
     elif frt == FailureReturnType.pair:
         return None, None
     raise TypeError
+
+
+SCHEMA_CURIE_PREFIX = "bioregistry.schema"
+SCHEMA_URI_PREFIX = "https://bioregistry.io/schema/#"
+INTERNAL_MASTODON = "bioregistry@hachyderm.io"
+INTERNAL_METAPREFIX = "bioregistry"
+INTERNAL_KEY = "bioregistry"
+INTERNAL_PIP = "bioregistry"
+INTERNAL_LABEL = "Bioregistry"
+INTERNAL_REPOSITORY_SLUG = "biopragmatics/bioregistry"
+INTERNAL_REPOSITORY_PAGES = "https://biopragmatics.io/bioregistry"
+INTERNAL_REPOSITORY = f"https://github.com/{INTERNAL_REPOSITORY_SLUG}"
+INTERNAL_REPOSITORY_BLOB = f"https://github.com/{INTERNAL_REPOSITORY_SLUG}/blob/main"
+INTERNAL_REPOSITORY_RAW = f"https://raw.githubusercontent.com/{INTERNAL_REPOSITORY_SLUG}/main"
+INTERNAL_DOCKERHUB_SLUG = "biopragmatics/bioregistry"
+#: see named colors https://matplotlib.org/stable/gallery/color/named_colors.html
+INTERNAL_COLOR = "silver"
+SSSOM_METADATA = {
+    "license": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "mapping_set_id": "https://github.com/biopragmatics/bioregistry/raw/main/exports/sssom/bioregistry.sssom.tsv",
+    "mapping_set_title": INTERNAL_LABEL,
+}
+APPEARS_IN_PRED = ReferenceTuple(SCHEMA_CURIE_PREFIX, "0000018")
+DEPENDS_ON_PRED = ReferenceTuple(SCHEMA_CURIE_PREFIX, "0000017")
+PROVIDES_PRED = ReferenceTuple(SCHEMA_CURIE_PREFIX, "0000011")
+HAS_CANONICAL_PRED = ReferenceTuple(SCHEMA_CURIE_PREFIX, "0000016")

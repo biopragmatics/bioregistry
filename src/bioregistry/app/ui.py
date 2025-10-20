@@ -1,4 +1,4 @@
-"""User blueprint for the bioregistry web application."""
+"""User blueprint for the web application."""
 
 from __future__ import annotations
 
@@ -32,14 +32,14 @@ from .utils import (
     serialize_model,
 )
 from .. import version
-from ..constants import NDEX_UUID
+from ..constants import INTERNAL_LABEL, INTERNAL_METAPREFIX, NDEX_UUID
 from ..export.rdf_export import (
     collection_to_rdf_str,
     metaresource_to_rdf_str,
     resource_to_rdf_str,
 )
 from ..schema import Context
-from ..schema.constants import bioregistry_schema_terms
+from ..schema.constants import SCHEMA_TERMS
 from ..schema.struct import (
     Registry,
     RegistryGovernance,
@@ -197,17 +197,17 @@ def metaresource(metaprefix: str) -> str | flask.Response:
         return serialize_model(entry, metaresource_to_rdf_str, negotiate=True)
 
     external_prefix = entry.example
-    bioregistry_prefix: str | None
-    if metaprefix == "bioregistry":
-        bioregistry_prefix = external_prefix
+    internal_prefix: str | None
+    if metaprefix == INTERNAL_METAPREFIX:
+        internal_prefix = external_prefix
     else:
         # TODO change this to [external_prefix] instead of .get(external_prefix)
         #  when all metaregistry entries are required to have corresponding schema slots
-        bioregistry_prefix = manager.get_registry_invmap(metaprefix).get(external_prefix)
+        internal_prefix = manager.get_registry_invmap(metaprefix).get(external_prefix)
 
-    # In the case that we can't map from the external registry's prefix to Bioregistry
+    # In the case that we can't map from the external registry's prefix to the internal
     # prefix, the example identifier can't be looked up
-    example_identifier = bioregistry_prefix and manager.get_example(bioregistry_prefix)
+    example_identifier = internal_prefix and manager.get_example(internal_prefix)
     return render_template(
         "metaresource.html",
         entry=entry,
@@ -224,8 +224,8 @@ def metaresource(metaprefix: str) -> str | flask.Response:
         ),
         example_curie_url=(
             # TODO there must be a more direct way for this
-            manager.get_registry_uri(metaprefix, bioregistry_prefix, example_identifier)
-            if bioregistry_prefix and example_identifier
+            manager.get_registry_uri(metaprefix, internal_prefix, example_identifier)
+            if internal_prefix and example_identifier
             else None
         ),
         formats=[
@@ -443,8 +443,8 @@ def metaresolve(
     if prefix is None:
         return abort(
             404,
-            f"Could not map {metaidentifier} in {metaprefix} to a Bioregistry prefix."
-            f" The Bioregistry contains mappings for the following:"
+            f"Could not map {metaidentifier} in {metaprefix} to a {INTERNAL_LABEL} prefix."
+            f" The {INTERNAL_LABEL} contains mappings for the following:"
             f" {list(manager.get_registry_invmap(metaprefix))}",
         )
     return redirect(url_for(f".{resolve.__name__}", prefix=prefix, identifier=identifier))
@@ -618,8 +618,8 @@ def funding_manifest_urls() -> werkzeug.Response:
 
 @ui_blueprint.route("/schema/")
 def schema() -> str:
-    """Render the Bioregistry RDF schema."""
-    return render_template("meta/schema.html", terms=bioregistry_schema_terms)
+    """Render the RDF schema."""
+    return render_template("meta/schema.html", terms=SCHEMA_TERMS)
 
 
 @ui_blueprint.route("/schema.json")

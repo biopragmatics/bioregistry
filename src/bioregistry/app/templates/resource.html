@@ -33,7 +33,7 @@
     (instead of the canonical form <code>{{ example }}</code>) and CURIEs for this resource that look like
     <code>{{ resource.get_preferred_prefix() or resource.prefix }}:{{ banana if banana else prefix.upper() }}{{ resource.get_banana_peel() }}{{ example }}</code>
     (instead of the canonical form <code>{{ resource.get_preferred_prefix() or resource.prefix }}:{{ example }}</code>).
-    The Bioregistry will automatically strip off the banana when standardizing local unique identifiers and CURIEs.
+    The {{ config.METAREGISTRY_TITLE }} will automatically strip off the banana when standardizing local unique identifiers and CURIEs.
 {% endmacro %}
 
 {% macro get_tooltip(manager, prefix) %}
@@ -82,7 +82,7 @@
                         </div>
                     </div>
                     <a class="btn btn-sm btn-outline-dark" style="margin-right: 0.5em"
-                       href="https://github.com/biopragmatics/bioregistry/issues/new?labels=Update&template=update-misc.yml&prefix={{ prefix }}&title=Update+{{ name_pack.value }}">
+                       href="{{ config.METAREGISTRY_REPOSITORY }}/issues/new?labels=Update&template=update-misc.yml&prefix={{ prefix }}&title=Update+{{ name_pack.value }}">
                         Suggest
                     </a>
                     </div>
@@ -112,7 +112,7 @@
                 <p>
                     This resource is <span class="badge badge-warning">proprietary</span>. This means that it is not
                     freely and publicly available without restriction. Such resources are still valuable to include
-                    in the Bioregistry as they may appear in other non-proprietary resources.
+                    in the {{ config.METAREGISTRY_TITLE }} as they may appear in other non-proprietary resources.
                 </p>
             {% endif %}
 
@@ -228,7 +228,7 @@
                         </a>
                     {% endif %}
                     {% if resource.github_request_issue %}
-                        <a class="badge badge-pill badge-light" href="https://github.com/biopragmatics/bioregistry/issues/{{ resource.github_request_issue }}">
+                        <a class="badge badge-pill badge-light" href="{{ config.METAREGISTRY_REPOSITORY }}/issues/{{ resource.github_request_issue }}">
                             <i class="fas fa-info-circle"></i> Request Discussion
                         </a>
                     {% endif %}
@@ -264,9 +264,9 @@
                     <dd>
                     <a href="{{ owner.link }}">{{ owner.name }}</a>
                     {% if owner.partnered %}
-                    <a href="https://github.com/biopragmatics/bioregistry/blob/main/docs/GOVERNANCE.md#partners"
+                    <a href="{{ config.METAREGISTRY_REPOSITORY }}/blob/main/docs/GOVERNANCE.md#partners"
                            class="badge badge-pill badge-info" data-toggle="tooltip"
-                           title="This organization has partnered with the Bioregistry to proactively maintain this record. Click to see related project governance.">
+                           title="This organization has partnered with the {{ config.METAREGISTRY_TITLE }} to proactively maintain this record. Click to see related project governance.">
                         Partnered
                     </a>
                     {% endif %}
@@ -337,7 +337,7 @@
                 {% elif banana %}
                     <dt><i class="fas fa-info-circle"></i> Namespace Embedded in LUI</dt>
                     <dd>
-                        This resource has been annotated by the Bioregistry as having a potential
+                        This resource has been annotated by the {{ config.METAREGISTRY_TITLE }} as having a potential
                         namespace embedded in LUI.
                         {{ get_banana_text() }}
                     </dd>
@@ -412,7 +412,7 @@
 
         <div class="card-body">
             <p>
-                A summary of the relations in the Bioregistry schema
+                A summary of the relations in the {{ config.METAREGISTRY_TITLE }} schema
                 can be found <a href="{{ url_for("metaregistry_ui.schema") }}">here</a>.
             </p>
             <dl>
@@ -448,7 +448,7 @@
                 {% endif %}
                 {% if has_canonical %}
                     <dt>
-                        Has URI collision with ({{ utils.link_code_curie("bioregistry.schema", "0000016") }})
+                        Has URI collision with ({{ utils.link_code_curie(config.METAREGISTRY_SCHEMA_PREFIX, "0000016") }})
                     </dt>
                     <dd>
                         <p>
@@ -459,7 +459,7 @@
                             its CURIE prefix synonyms, and its URI prefix synonyms are merged into the
                             record for {{ get_tooltip(manager, has_canonical) }}.
                             If you believe that these are two distinct semantic spaces and should not be merged,
-                            please open a new issue on the <a href="https://github.com/biopragmatics/bioregistry/issues/new?labels=Update&projects=&template=update-misc.yml&prefix={{ resource.prefix }}&title=Discussion+about+URI+collisions+for+`{{ resource.prefix }}`">Bioregistry issue tracker</a>
+                            please open a new issue on the <a href="{{ config.METAREGISTRY_REPOSITORY }}/issues/new?labels=Update&projects=&template=update-misc.yml&prefix={{ resource.prefix }}&title=Discussion+about+URI+collisions+for+`{{ resource.prefix }}`">{{ config.METAREGISTRY_TITLE }} issue tracker</a>
                             for discussion.
                         </p>
                     </dd>
@@ -477,20 +477,20 @@
                             When generating an extended prefix map, their respective CURIE prefixes and URI
                             prefixes are merged into the record for <code>{{ resource.prefix }}</code>.
                             If you believe that these are distinct semantic spaces and should not be merged,
-                            please open a new issue on the <a href="https://github.com/biopragmatics/bioregistry/issues/new?labels=Update&projects=&template=update-misc.yml&prefix={{ resource.prefix }}&title=Discussion+about+URI+collisions+for+`{{ resource.prefix }}`">Bioregistry issue tracker</a>
+                            please open a new issue on the <a href="{{ config.METAREGISTRY_REPOSITORY }}/issues/new?labels=Update&projects=&template=update-misc.yml&prefix={{ resource.prefix }}&title=Discussion+about+URI+collisions+for+`{{ resource.prefix }}`">{{ config.METAREGISTRY_TITLE }} issue tracker</a>
                             for discussion.
                         </p>
                     </dd>
                 {% endif %}
                 {% if depends_on %}
                     <dt>
-                        Depends On ({{ depends_on | length }}) ({{ utils.link_code_curie("bioregistry.schema", "0000017") }})
+                        Depends On ({{ depends_on | length }}) ({{ utils.link_code_curie(config.METAREGISTRY_SCHEMA_PREFIX, "0000017") }})
                     </dt>
                     <dd>{{ get_tooltips(manager, depends_on) }}</dd>
                 {% endif %}
                 {% if appears_in %}
                     <dt>
-                        Appears In ({{ appears_in | length }}) ({{ utils.link_code_curie("bioregistry.schema", "0000018") }})
+                        Appears In ({{ appears_in | length }}) ({{ utils.link_code_curie(config.METAREGISTRY_SCHEMA_PREFIX, "0000018") }})
                     </dt>
                     <dd>{{ get_tooltips(manager, appears_in) }}</dd>
                 {% endif %}
@@ -519,7 +519,7 @@
             </h5>
             <div class="card-body">
                 <p>
-                    The metaregistry provides mappings between the Bioregistry and other registries. There are
+                    The metaregistry provides mappings between the {{ config.METAREGISTRY_TITLE }} and other registries. There are
                     {{ mappings | length }} mappings to external registries for this resource with
                     {{ mappings | map(attribute='xref') | unique | list | length }} unique external prefixes.
                 </p>
@@ -561,7 +561,7 @@
                         <td style="text-align: center;">
                             <a data-toggle="tooltip" data-html="true"
                                title="Report misalignment between {{ name_pack.value }} and <code>{{ mapping.metaprefix }}:{{ mapping.xref }}</code>"
-                               href="https://github.com/biopragmatics/bioregistry/issues/new?labels=Update%2CPrefix&template=mismatch.yml&title=Remove+incorrect+mapping+from+{{ resource.prefix }}+to+%60{{ mapping.metaprefix }}%3A{{ mapping.xref }}%60&prefix={{ resource.prefix }}&metaprefix={{ mapping.metaprefix }}&external-prefix={{ mapping.xref }}">
+                               href="{{ config.METAREGISTRY_REPOSITORY }}/issues/new?labels=Update%2CPrefix&template=mismatch.yml&title=Remove+incorrect+mapping+from+{{ resource.prefix }}+to+%60{{ mapping.metaprefix }}%3A{{ mapping.xref }}%60&prefix={{ resource.prefix }}&metaprefix={{ mapping.metaprefix }}&external-prefix={{ mapping.xref }}">
                                 <i class="fas fa-pen"></i>
                             </a>
                         </td>
@@ -597,7 +597,7 @@
                     <div class="col-4 text-right">
                         <div class="d-flex flex-row-reverse">
                         <a class="btn btn-sm btn-outline-dark" target="_blank"
-                           href="https://github.com/biopragmatics/bioregistry/issues/new?labels=Provider%2CNew&projects=&template=new-provider.yml&prefix={{ prefix }}&title=Add+provider+for+{{ name }}">
+                           href="{{ config.METAREGISTRY_REPOSITORY }}/issues/new?labels=Provider%2CNew&projects=&template=new-provider.yml&prefix={{ prefix }}&title=Add+provider+for+{{ name }}">
                             Suggest
                         </a>
                         </div>
@@ -611,7 +611,7 @@
                 </p>
                 <!--<ol>
                     <li>
-                        <strong>Metaregistry Mappings</strong> When a Bioregistry prefix is mapped to an external
+                        <strong>Metaregistry Mappings</strong> When a {{ config.METAREGISTRY_TITLE }} prefix is mapped to an external
                         registry that is able to resolve CURIEs, then a provider can be automatically generated.
                         For example, this is true for Identifiers.org, Name-to-Thing, and the OBO Foundry.
                     </li>
@@ -625,13 +625,13 @@
                     The local unique identifier <code>{{ example }}</code> is used to demonstrate the providers
                     available for {{ name_pack.value }}. Some providers may use a different example, which is displayed in the table below. 
                     A guide for curating additional providers can be found
-                    <a href="https://biopragmatics.github.io/bioregistry/curation/providers">here</a>.
+                    <a href="{{ config.METAREGISTRY_REPOSITORY_PAGES }}/curation/providers">here</a>.
                 </p>
                 {% else %}
                 <p>
                     This resource does not have any providers. Please consider contributing one after
                     reading the
-                    <a href="https://biopragmatics.github.io/bioregistry/curation/providers">curation guide</a>.
+                    <a href="{{ config.METAREGISTRY_REPOSITORY_PAGES }}/curation/providers">curation guide</a>.
                 </p>
                 {% endif %}
             </div>
@@ -645,7 +645,7 @@
                 <h5 class="card-header">Extra Providers</h5>
                 <div class="card-body">
                     <p>
-                        Additional providers curated in the Bioregistry are listed here.
+                        Additional providers curated in the {{ config.METAREGISTRY_TITLE }} are listed here.
                         These are typically inherited from Identifiers.org or Prefix Commons, and need extra curation.
                     </p>
                 </div>
@@ -688,7 +688,7 @@
                         Normalize prefixes. This can be any capitalization or punctuation
                         variant of the synonyms listed below.
                     </p>
-                    <pre><code class="language-python">&gt;&gt;&gt; import bioregistry as br
+                    <pre><code class="language-python">&gt;&gt;&gt; import {{ config.METAREGISTRY_PYTHON_PACKAGE }} as br
 &gt;&gt;&gt; br.normalize_prefix("{{ synonyms|first }}")
 '{{ prefix }}'</code></pre>
                     <p>Get all synonyms:</p>

@@ -29,12 +29,12 @@ if TYPE_CHECKING:
     import bioregistry.resource_manager
 
 __all__ = [
+    "SCHEMA_TERMS",
     # Namespaces
     "bioregistry_collection",
     "bioregistry_metaresource",
     "bioregistry_resource",
     "bioregistry_schema",
-    "bioregistry_schema_terms",
     "orcid",
 ]
 
@@ -72,7 +72,7 @@ WIKIDATA = rdflib.Namespace("http://www.wikidata.org/entity/")
 OBOINOWL = rdflib.Namespace("http://www.geneontology.org/formats/oboInOwl#")
 BRIDGEDB = rdflib.Namespace("http://vocabularies.bridgedb.org/ops#")
 
-bioregistry_schema_terms = [
+SCHEMA_TERMS = [
     ClassTerm("0000001", "Class", "Resource", "A type for entries in the Bioregistry's registry."),
     ClassTerm(
         "0000002", "Class", "Registry", "A type for entries in the Bioregistry's metaregistry."
@@ -334,12 +334,10 @@ bioregistry_resource = rdflib.namespace.Namespace("https://bioregistry.io/regist
 bioregistry_metaresource = rdflib.namespace.Namespace("https://bioregistry.io/metaregistry/")
 bioregistry_schema = rdflib.namespace.ClosedNamespace(
     uri=URIRef("https://bioregistry.io/schema/#"),
-    terms=[term.identifier for term in bioregistry_schema_terms],
+    terms=[term.identifier for term in SCHEMA_TERMS],
 )
 bioregistry_class_to_id: Mapping[str, URIRef] = {
-    term.label: bioregistry_schema[term.identifier]
-    for term in bioregistry_schema_terms
-    if term.type == "Class"
+    term.label: bioregistry_schema[term.identifier] for term in SCHEMA_TERMS if term.type == "Class"
 }
 orcid = rdflib.namespace.Namespace("https://orcid.org/")
 
@@ -378,7 +376,7 @@ def get_schema_rdf() -> rdflib.Graph:
 
 
 def _add_schema(graph: rdflib.Graph) -> rdflib.Graph:
-    for term in bioregistry_schema_terms:
+    for term in SCHEMA_TERMS:
         node = bioregistry_schema[term.identifier]
         if isinstance(term, ClassTerm):
             graph.add((node, RDF.type, RDFS.Class))
@@ -413,11 +411,11 @@ def get_schema_nx() -> "networkx.MultiDiGraph":
     import networkx as nx
 
     graph = nx.MultiDiGraph()
-    for term in bioregistry_schema_terms:
+    for term in SCHEMA_TERMS:
         if isinstance(term, ClassTerm):
             graph.add_node(term.identifier, label=term.label)
 
-    for term in bioregistry_schema_terms:
+    for term in SCHEMA_TERMS:
         if not isinstance(term, PropertyTerm):
             continue
         range = None if isinstance(term.range, URIRef) else term.range

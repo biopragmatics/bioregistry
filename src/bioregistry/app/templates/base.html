@@ -16,7 +16,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
         <!-- see tutorial https://rknight.me/blog/setting-up-mastodon-author-tags/ -->
-        <meta name="fediverse:creator" content="@bioregistry@fosstodon.org" />
+        <meta name="fediverse:creator" content="@{{ config.METAREGISTRY_MASTODON }}" />
 
         {% block styles %}
             <!-- Bootstrap CSS -->
@@ -86,10 +86,10 @@
                         Summary <i class="fa fa-external-link" aria-hidden="true"></i>
                     </a>
                     {% endif %}
-                    <a class="dropdown-item" target="_blank" href="https://biopragmatics.github.io/bioregistry/glossary/">
+                    <a class="dropdown-item" target="_blank" href="{{ config.METAREGISTRY_REPOSITORY_PAGES }}/glossary/">
                         Glossary <i class="fa fa-external-link" aria-hidden="true"></i>
                     </a>
-                    <a class="dropdown-item" target="_blank" href="https://biopragmatics.github.io/bioregistry/datamodel/">
+                    <a class="dropdown-item" target="_blank" href="{{ config.METAREGISTRY_REPOSITORY_PAGES }}/datamodel/">
                         Data Model <i class="fa fa-external-link" aria-hidden="true"></i>
                     </a>
                     <a class="dropdown-item" href="{{ url_for("metaregistry_ui.schema") }}">JSON and RDF Schemata</a>
@@ -97,7 +97,7 @@
                     <div class="dropdown-divider"></div>
                     <h6 class="dropdown-header">Maintenance</h6>
                     <a class="dropdown-item" href="{{ url_for("metaregistry_ui.sustainability") }}">Deployment and Sustainability</a>
-                    <a class="dropdown-item" target="_blank" href="https://biopragmatics.github.io/bioregistry/health/">
+                    <a class="dropdown-item" target="_blank" href="{{ config.METAREGISTRY_REPOSITORY_PAGES }}/health/">
                         Health Report <i class="fa fa-external-link" aria-hidden="true"></i>
                     </a>
                     {% endif %}
@@ -109,14 +109,17 @@
                     <!--<div class="dropdown-divider"></div>-->
                     <div class="dropdown-divider"></div>
                     <h6 class="dropdown-header">Workshops</h6>
-                    <a class="dropdown-item" target="_blank" href="https://biopragmatics.github.io/workshops/WPCI2021">
+                    <a class="dropdown-item" target="_blank" href="https://biopragmatics.github.io/workshops/wpci2021">
                         WPCI 2021 <i class="fa fa-external-link" aria-hidden="true"></i>
                     </a>
-                    <a class="dropdown-item" target="_blank" href="https://biopragmatics.github.io/workshops/WPCI2022">
+                    <a class="dropdown-item" target="_blank" href="https://biopragmatics.github.io/workshops/wpci2022">
                         WPCI 2022 <i class="fa fa-external-link" aria-hidden="true"></i>
                     </a>
-                    <a class="dropdown-item" target="_blank" href="https://biopragmatics.github.io/workshops/WPCI2023">
-                        WPCI 2023 (upcoming) <i class="fa fa-external-link" aria-hidden="true"></i>
+                    <a class="dropdown-item" target="_blank" href="https://biopragmatics.github.io/workshops/wpci2023">
+                        WPCI 2023 <i class="fa fa-external-link" aria-hidden="true"></i>
+                    </a>
+                    <a class="dropdown-item" target="_blank" href="https://biopragmatics.github.io/workshops/biocuration2025">
+                        Biocuration 2025 <i class="fa fa-external-link" aria-hidden="true"></i>
                     </a>
                 </div>
             </li>
@@ -127,21 +130,21 @@
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                     <h6 class="dropdown-header">Project Info</h6>
-                    <a class="dropdown-item" target="_blank" href="https://github.com/biopragmatics/bioregistry/blob/main/docs/CONTRIBUTING.md">
+                    <a class="dropdown-item" target="_blank" href="{{ config.METAREGISTRY_REPOSITORY }}/blob/main/docs/CONTRIBUTING.md">
                         Contribution Guidelines <i class="fa fa-external-link" aria-hidden="true"></i>
                     </a>
-                    <a class="dropdown-item" target="_blank" href="https://github.com/biopragmatics/bioregistry/blob/main/docs/CODE_OF_CONDUCT.md">
+                    <a class="dropdown-item" target="_blank" href="{{ config.METAREGISTRY_REPOSITORY }}/blob/main/docs/CODE_OF_CONDUCT.md">
                         Code of Conduct <i class="fa fa-external-link" aria-hidden="true"></i>
                     </a>
-                    <a class="dropdown-item" target="_blank" href="https://github.com/biopragmatics/bioregistry/blob/main/docs/GOVERNANCE.md">
+                    <a class="dropdown-item" target="_blank" href="{{ config.METAREGISTRY_REPOSITORY }}/blob/main/docs/GOVERNANCE.md">
                         Project Governance <i class="fa fa-external-link" aria-hidden="true"></i>
                     </a>
                     <div class="dropdown-divider"></div>
                     <h6 class="dropdown-header">Getting Started</h6>
-                    <a class="dropdown-item" target="_blank" href="https://github.com/biopragmatics/bioregistry/issues/new?labels=New%2CPrefix&template=new-prefix.yml&title=Add+prefix+%5BX%5D">
+                    <a class="dropdown-item" target="_blank" href="{{ config.METAREGISTRY_REPOSITORY }}/issues/new?labels=New%2CPrefix&template=new-prefix.yml&title=Add+prefix+%5BX%5D">
                         Request a Prefix <i class="fa fa-external-link" aria-hidden="true"></i>
                     </a>
-                    <a class="dropdown-item" target="_blank" href="https://biopragmatics.github.io/bioregistry/curation/">
+                    <a class="dropdown-item" target="_blank" href="{{ config.METAREGISTRY_REPOSITORY_PAGES }}/curation/">
                         Good First Contributions <i class="fa fa-external-link" aria-hidden="true"></i>
                     </a>
                     <!--<div class="dropdown-divider"></div>-->

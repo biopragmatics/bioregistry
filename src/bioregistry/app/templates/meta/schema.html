@@ -1,22 +1,22 @@
 {% extends "prose.html" %}
 
-{% block title %}Bioregistry Schema{% endblock %}
+{% block title %}{{ config.METAREGISTRY_TITLE }} Schema{% endblock %}
 
 {% block content %}
-    <h2>Bioregistry JSON Schema</h2>
+    <h2>{{ config.METAREGISTRY_TITLE }} JSON Schema</h2>
     <p>
-        This section describes the JSON schema used Bioregistry. It can be accessed
+        This section describes the JSON schema used by the {{ config.METAREGISTRY_TITLE }}. It can be accessed
         <a href="{{ url_for('.json_schema') }}">here</a>.
     </p>
-    <h2>Bioregistry RDF Schema</h2>
+    <h2>RDF Schema</h2>
     <p>
-        This section describes the schema elements used in the RDF dumps of the Bioregistry used with prefix
-        <code>bioregistry.schema</code> and URL <code>https://bioregistry.io/schema/#</code>. It can
-        be downloaded <a href="https://github.com/biopragmatics/bioregistry/tree/main/exports/rdf">here</a>.
+        This section describes the schema elements used in the RDF dumps of the {{ config.METAREGISTRY_TITLE }} used with prefix
+        <code>{{ config.METAREGISTRY_SCHEMA_PREFIX }}</code> and URL <code>{{ config.METAREGISTRY_SCHEMA_URI_PREFIX }}</code>. It can
+        be downloaded <a href="{{ config.METAREGISTRY_REPOSITORY }}/tree/main/exports/rdf">here</a>.
     </p>
     <p>
-        <img alt="Bioregistry schema diagram"
-             src="https://github.com/biopragmatics/bioregistry/raw/main/exports/rdf/schema.svg" height="300"/>
+        <img alt="RDF schema diagram"
+             src="{{ config.METAREGISTRY_REPOSITORY_RAW }}/exports/rdf/schema.svg" height="300"/>
     </p>
     <div class="list-group">
         {% for term in terms %}
@@ -29,7 +29,7 @@
                         </span>
                         {{ term.label }}
                     </h5>
-                    <small>bioregistry.schema:{{ term.identifier }}</small>
+                    <small>{{ config.METAREGISTRY_SCHEMA_PREFIX }}:{{ term.identifier }}</small>
                 </div>
                 <p class="mb-1">{{ markdown(term.description) | safe }}</p>
             </div>
