@@ -232,6 +232,8 @@ def get_app(
     first_party: bool = ...,
     return_flask: Literal[True] = True,
     analytics: bool = ...,
+    import_name: str | None = ...,
+    flask_kwargs: dict[str, Any] | None = ...,
 ) -> tuple[FastAPI, Flask]: ...
 
 
@@ -244,6 +246,8 @@ def get_app(
     first_party: bool = ...,
     return_flask: Literal[False] = False,
     analytics: bool = ...,
+    import_name: str | None = ...,
+    flask_kwargs: dict[str, Any] | None = ...,
 ) -> FastAPI: ...
 
 
@@ -254,6 +258,8 @@ def get_app(
     first_party: bool = True,
     return_flask: bool = False,
     analytics: bool = False,
+    import_name: str | None = None,
+    flask_kwargs: dict[str, Any] | None = None,
 ) -> FastAPI | tuple[FastAPI, Flask]:
     """Prepare the WSGI application.
 
@@ -263,61 +269,22 @@ def get_app(
     :param first_party: Set to true if deploying the "canonical" bioregistry instance
     :param return_flask: Set to true to get internal flask app
     :param analytics: Should analytics be enabled?
+    :param import_name: The import name for the flask app
+    :param flask_kwargs: Remaining keyword arguments to pass to the flask app
+        (don't pass ``import_name`` as a key here)
 
     :returns: An instantiated WSGI application
 
     :raises ValueError: if there's an issue with the configuration's integrity
     """
-    app = Flask(__name__)
+    app = Flask(import_name=import_name or __name__, **(flask_kwargs or {}))
 
     if manager is None:
         manager = resource_manager.manager
 
-    if isinstance(config, str | Path):
-        with open(config) as file:
-            conf = json.load(file)
-    elif config is None:
-        conf = {}
-    else:
-        conf = config
-
-    conf.setdefault("METAREGISTRY_FIRST_PARTY", first_party)
-    conf.setdefault("METAREGISTRY_CONTACT_NAME", "Charles Tapley Hoyt")
-    conf.setdefault("METAREGISTRY_CONTACT_EMAIL", "cthoyt@gmail.com")
-    conf.setdefault("METAREGISTRY_LICENSE_NAME", "MIT License")
-    conf.setdefault("METAREGISTRY_VERSION", version.get_version())
-    example_prefix = conf.setdefault("METAREGISTRY_EXAMPLE_PREFIX", "chebi")
-    conf.setdefault("METAREGISTRY_EXAMPLE_IDENTIFIER", "138488")
-    conf.setdefault("METAREGISTRY_LICENSE_URL", f"{INTERNAL_REPOSITORY_BLOB}/LICENSE")
-    conf.setdefault("METAREGISTRY_DOCKERHUB_SLUG", INTERNAL_DOCKERHUB_SLUG)
-    conf.setdefault("METAREGISTRY_REPOSITORY_SLUG", INTERNAL_REPOSITORY_SLUG)
-    conf.setdefault("METAREGISTRY_REPOSITORY", INTERNAL_REPOSITORY)
-    conf.setdefault("METAREGISTRY_REPOSITORY_PAGES", INTERNAL_REPOSITORY_PAGES)
-    conf.setdefault("METAREGISTRY_REPOSITORY_RAW", INTERNAL_REPOSITORY_RAW)
-    conf.setdefault("METAREGISTRY_PYTHON_PACKAGE", INTERNAL_PIP)
-    conf.setdefault("METAREGISTRY_CITATION", BIOREGISTRY_CITATION_TEXT)
-    conf.setdefault("METAREGISTRY_BADGE_BLOCK", BIOREGISTRY_BADGE_BLOCK)
-    conf.setdefault("METAREGISTRY_MASTODON", INTERNAL_MASTODON)
-    conf.setdefault("METAREGISTRY_SCHEMA_PREFIX", SCHEMA_CURIE_PREFIX)
-    conf.setdefault("METAREGISTRY_SCHEMA_URI_PREFIX", SCHEMA_URI_PREFIX)
-    conf.setdefault("METAREGISTRY_RESOURCES_SUBHEADER", RESOURCES_SUBHEADER_DEFAULT)
-
-    # key for updating on non-first party
-    conf.setdefault("METAREGISTRY_TITLE", BIOREGISTRY_TITLE_DEFAULT)
-    conf.setdefault("METAREGISTRY_DESCRIPTION", BIOREGISTRY_DESCRIPTION_DEFAULT)
-    conf.setdefault("METAREGISTRY_FOOTER", BIOREGISTRY_FOOTER_DEFAULT)
-    conf.setdefault("METAREGISTRY_HEADER", BIOREGISTRY_HEADER_DEFAULT)
-    conf.setdefault("METAREGISTRY_HARDWARE", BIOREGISTRY_HARDWARE_DEFAULT)
-
-    # should not be there if not first-party
-    conf.setdefault("METAREGISTRY_DEPLOYMENT", BIOREGISTRY_DEPLOYMENT_BLOCK)
-    conf.setdefault("METAREGISTRY_DOMAIN_NAME_BLOCK", BIOREGISTRY_DOMAIN_NAME_BLOCK)
-
-    resource = manager.registry.get(example_prefix)
-    if resource is None:
-        raise ValueError(
-            f"{example_prefix} is not available as a prefix. Set a different METAREGISTRY_EXAMPLE_PREFIX"
-        )
+    conf = _prepare_config(config, first_party)
+    example_prefix = conf["METAREGISTRY_EXAMPLE_PREFIX"]
+    resource = manager.get_resource(example_prefix, strict=True)
     if resource.get_example() is None:
         raise ValueError("Must use an example prefix with an example identifier")
     if resource.get_uri_format() is None:
@@ -377,6 +344,52 @@ def get_app(
     if return_flask:
         return fast_api, app
     return fast_api
+
+
+def _prepare_config(
+    config: None | str | Path | Mapping[str, Any] = None, first_party: bool = True
+) -> dict[str, Any]:
+    if isinstance(config, str | Path):
+        with open(config) as file:
+            conf = json.load(file)
+    elif config is None:
+        conf = {}
+    else:
+        conf = config
+
+    conf.setdefault("METAREGISTRY_FIRST_PARTY", first_party)
+    conf.setdefault("METAREGISTRY_CONTACT_NAME", "Charles Tapley Hoyt")
+    conf.setdefault("METAREGISTRY_CONTACT_EMAIL", "cthoyt@gmail.com")
+    conf.setdefault("METAREGISTRY_LICENSE_NAME", "MIT License")
+    conf.setdefault("METAREGISTRY_VERSION", version.get_version())
+    conf.setdefault("METAREGISTRY_EXAMPLE_PREFIX", "chebi")
+    conf.setdefault("METAREGISTRY_EXAMPLE_IDENTIFIER", "138488")
+    conf.setdefault("METAREGISTRY_LICENSE_URL", f"{INTERNAL_REPOSITORY_BLOB}/LICENSE")
+    conf.setdefault("METAREGISTRY_DOCKERHUB_SLUG", INTERNAL_DOCKERHUB_SLUG)
+    conf.setdefault("METAREGISTRY_REPOSITORY_SLUG", INTERNAL_REPOSITORY_SLUG)
+    conf.setdefault("METAREGISTRY_REPOSITORY", INTERNAL_REPOSITORY)
+    conf.setdefault("METAREGISTRY_REPOSITORY_PAGES", INTERNAL_REPOSITORY_PAGES)
+    conf.setdefault("METAREGISTRY_REPOSITORY_RAW", INTERNAL_REPOSITORY_RAW)
+    conf.setdefault("METAREGISTRY_PYTHON_PACKAGE", INTERNAL_PIP)
+    conf.setdefault("METAREGISTRY_CITATION", BIOREGISTRY_CITATION_TEXT)
+    conf.setdefault("METAREGISTRY_BADGE_BLOCK", BIOREGISTRY_BADGE_BLOCK)
+    conf.setdefault("METAREGISTRY_MASTODON", INTERNAL_MASTODON)
+    conf.setdefault("METAREGISTRY_SCHEMA_PREFIX", SCHEMA_CURIE_PREFIX)
+    conf.setdefault("METAREGISTRY_SCHEMA_URI_PREFIX", SCHEMA_URI_PREFIX)
+    conf.setdefault("METAREGISTRY_RESOURCES_SUBHEADER", RESOURCES_SUBHEADER_DEFAULT)
+
+    # key for updating on non-first party
+    conf.setdefault("METAREGISTRY_TITLE", BIOREGISTRY_TITLE_DEFAULT)
+    conf.setdefault("METAREGISTRY_DESCRIPTION", BIOREGISTRY_DESCRIPTION_DEFAULT)
+    conf.setdefault("METAREGISTRY_FOOTER", BIOREGISTRY_FOOTER_DEFAULT)
+    conf.setdefault("METAREGISTRY_HEADER", BIOREGISTRY_HEADER_DEFAULT)
+    conf.setdefault("METAREGISTRY_HARDWARE", BIOREGISTRY_HARDWARE_DEFAULT)
+
+    # should not be there if not first-party
+    conf.setdefault("METAREGISTRY_DEPLOYMENT", BIOREGISTRY_DEPLOYMENT_BLOCK)
+    conf.setdefault("METAREGISTRY_DOMAIN_NAME_BLOCK", BIOREGISTRY_DOMAIN_NAME_BLOCK)
+
+    return conf
 
 
 example_query = """\
