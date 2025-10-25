@@ -2012,7 +2012,7 @@ class Resource(BaseModel):
     }
 
     #: The point of this priority order is to figure out what URI format string
-    #: to give back. The "default" means it's goign to go into the metaregistry
+    #: to give back. The "default" means it's going to go into the metaregistry
     #: and try and find a real URI, not a re-directed one. If it can't manage that,
     #: try and get an OBO foundry redirect (though note this is only applicable to
     #: a small number of prefixes corresponding to ontologies). Finally, if this
@@ -2109,7 +2109,21 @@ class Resource(BaseModel):
             return uri_format
         return None
 
-    def get_uri_prefix(self, priority: Sequence[str] | None = None) -> str | None:
+    # docstr-coverage:excused `overload`
+    @overload
+    def get_uri_prefix(
+        self, priority: Sequence[str] | None = None, *, strict: Literal[False] = ...
+    ) -> str | None: ...
+
+    # docstr-coverage:excused `overload`
+    @overload
+    def get_uri_prefix(
+        self, priority: Sequence[str] | None = None, *, strict: Literal[True] = ...
+    ) -> str: ...
+
+    def get_uri_prefix(
+        self, priority: Sequence[str] | None = None, *, strict: bool = False
+    ) -> str | None:
         """Get a well-formed URI prefix, if available.
 
         :param priority: The prioirty order for :func:`get_format`.
@@ -2125,6 +2139,8 @@ class Resource(BaseModel):
             uri_prefix = self._clip_uri_format(uri_format)
             if uri_prefix is not None:
                 return uri_prefix
+        if strict:
+            raise ValueError
         return None
 
     def _clip_uri_format(self, uri_format: str | None) -> str | None:
