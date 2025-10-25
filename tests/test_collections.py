@@ -22,8 +22,6 @@ class TestCollections(unittest.TestCase):
 
     def test_minimum_metadata(self):
         """Check collections have minimal metadata and correct prefixes."""
-        registry = self.manager.registry
-
         for key, collection_pydantic in sorted(self.manager.collections.items()):
             self.assertIsInstance(collection_pydantic, Collection)
             collection = collection_pydantic.model_dump()
@@ -37,8 +35,19 @@ class TestCollections(unittest.TestCase):
                     self.assertIn("orcid", author)
                     self.assertRegex(author["orcid"], self.manager.get_pattern("orcid"))
                 self.assertIn("description", collection)
-                incorrect = {prefix for prefix in collection["resources"] if prefix not in registry}
-                self.assertEqual(set(), incorrect, msg="Invalid prefixes")
+
+                incorrect_msg = ""
+                for prefix in collection["resources"]:
+                    np = self.manager.normalize_prefix(prefix)
+                    if np == prefix:
+                        pass
+                    elif np is None:
+                        incorrect_msg += f"\n- {prefix} could not be looked up"
+                    else:
+                        incorrect_msg += f"\n- {prefix} should be standardized to {np}"
+                if incorrect_msg:
+                    self.fail(msg=f"in {key}, the following errors were found:\n{incorrect_msg}")
+
                 duplicates = {
                     prefix
                     for prefix, count in Counter(collection["resources"]).items()
