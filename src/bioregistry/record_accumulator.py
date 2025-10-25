@@ -94,6 +94,9 @@ def _stratify_resources(
 ) -> tuple[list[Resource], list[tuple[Resource, str]]]:
     primary_resources = []
     secondary_resources = []
+
+    # TODO only call it as secondary if it has an overlap with the primary
+
     for resource in resources:
         primary_prefix = resource.provides or resource.has_canonical or resource.part_of
         if primary_prefix is not None:
@@ -254,7 +257,7 @@ def _get_curie_prefixes(
     resource: Resource, priority: Sequence[str] | None = None
 ) -> tuple[str, set[str]]:
     primary = resource.get_priority_prefix(priority)
-    if primary in {"geo", "geogeo"}:
+    if primary in {"geo", "geogeo", "BOOTSTREP"}:
         return primary, set()
 
     # TODO upstream synonym getting functionality
