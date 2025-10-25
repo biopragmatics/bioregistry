@@ -31,31 +31,56 @@ uri_prefix_blacklist = {
     "https://www.ebi.ac.uk/ena/data/view/",
     "http://www.ebi.ac.uk/ena/data/view/",
     "http://arabidopsis.org/servlets/TairObject?accession=",
+    # this serves both tair.locus and araport
+    "http://bar.utoronto.ca/thalemine/portal.do?externalids=",
+    "https://bar.utoronto.ca/thalemine/portal.do?externalids=",
+    # serves both pdb and uniprot
+    "http://proteins.plus/",
+    "https://proteins.plus/",
+    # serves multiple clinical trial registries
+    "http://trialsearch.who.int/Trial2.aspx?TrialID=",
+    "https://trialsearch.who.int/Trial2.aspx?TrialID=",
 }
 prefix_resource_blacklist = {
-    ("orphanet", "http://www.orpha.net/ORDO/Orphanet_"),  # biocontext is wrong
-    ("orphanet", "https://www.orpha.net/ORDO/Orphanet_"),  # biocontext is wrong
-    ("wikidata.property", "http://scholia.toolforge.org/"),  # duplicated with wikidata
-    ("wikidata.property", "https://scholia.toolforge.org/"),  # duplicated with wikidata
-    ("uniprot", "https://www.ncbi.nlm.nih.gov/protein/"),  # FIXME not sure how to resolve this
-    ("uniprot", "http://www.ncbi.nlm.nih.gov/protein/"),  # FIXME not sure how to resolve this
-    ("cl", "https://www.ebi.ac.uk/ols/ontologies/cl/terms?iri=http://purl.obolibrary.org/obo/"),
-    ("cl", "http://www.ebi.ac.uk/ols/ontologies/cl/terms?iri=http://purl.obolibrary.org/obo/"),
-    ("uberon", "http://www.ebi.ac.uk/ols/ontologies/cl/terms?iri=http://purl.obolibrary.org/obo/"),
-    ("uberon", "https://www.ebi.ac.uk/ols/ontologies/cl/terms?iri=http://purl.obolibrary.org/obo/"),
-    ("ncbigene", "https://en.wikipedia.org/wiki/"),  # probably from wikigene?
-    ("ncbigene", "http://en.wikipedia.org/wiki/"),
-    ("wbphenotype", "http://www.wormbase.org/get?name="),  # wrong in GO
-    ("wbphenotype", "https://www.wormbase.org/get?name="),  # wrong in GO
-    ("wbls", "http://www.wormbase.org/get?name="),  # wrong in GO
-    ("wbls", "https://www.wormbase.org/get?name="),  # wrong in GO
-    ("uniprot.isoform", "http://www.uniprot.org/uniprot/"),  # wrong in miriam
-    ("uniprot.isoform", "https://www.uniprot.org/uniprot/"),  # wrong in miriam
-    ("uniprot.isoform", "http://purl.uniprot.org/uniprot/"),  # wrong in miriam
-    ("uniprot.isoform", "https://purl.uniprot.org/uniprot/"),  # wrong in miriam
+    "orphanet": {
+        "http://www.orpha.net/ORDO/Orphanet_",  # biocontext is wrong
+        "https://www.orpha.net/ORDO/Orphanet_",  # biocontext is wrong
+    },
+    "wikidata.property": {
+        "http://scholia.toolforge.org/",  # duplicated with wikidata
+        "https://scholia.toolforge.org/",  # duplicated with wikidata
+    },
+    "uniprot": {
+        "https://www.ncbi.nlm.nih.gov/protein/",  # FIXME not sure how to resolve this
+        "http://www.ncbi.nlm.nih.gov/protein/",
+    },
+    "cl": {
+        "https://www.ebi.ac.uk/ols/ontologies/cl/terms?iri=http://purl.obolibrary.org/obo/",
+        "http://www.ebi.ac.uk/ols/ontologies/cl/terms?iri=http://purl.obolibrary.org/obo/",
+    },
+    "uberon": {
+        "http://www.ebi.ac.uk/ols/ontologies/cl/terms?iri=http://purl.obolibrary.org/obo/",
+        "https://www.ebi.ac.uk/ols/ontologies/cl/terms?iri=http://purl.obolibrary.org/obo/",
+    },
+    "ncbigene": {
+        "https://en.wikipedia.org/wiki/",  # probably from wikigene?
+        "http://en.wikipedia.org/wiki/",
+    },
+    "wbphenotype": {
+        "http://www.wormbase.org/get?name=",  # wrong in GO
+        "https://www.wormbase.org/get?name=",  # wrong in GO
+    },
+    "wbls": {
+        "http://www.wormbase.org/get?name=",  # wrong in GO
+        "https://www.wormbase.org/get?name=",  # wrong in GO
+    },
+    "uniprot.isoform": {
+        "http://www.uniprot.org/uniprot/",  # wrong in miriam
+        "https://www.uniprot.org/uniprot/",  # wrong in miriam
+        "http://purl.uniprot.org/uniprot/",  # wrong in miriam
+        "https://purl.uniprot.org/uniprot/",  # wrong in miriam
+    },
 }
-if not all(not x.endswith("$1") for _, x in prefix_resource_blacklist):
-    raise RuntimeError
 
 
 def _debug_or_raise(msg: str, strict: bool = False) -> None:
@@ -64,13 +89,18 @@ def _debug_or_raise(msg: str, strict: bool = False) -> None:
     logger.debug(msg)
 
 
-def _stratify_resources(resources: Iterable[Resource]) -> tuple[list[Resource], list[Resource]]:
-    primary_resources, secondary_resources = [], []
+def _stratify_resources(
+    resources: Iterable[Resource],
+) -> tuple[list[Resource], list[tuple[Resource, str]]]:
+    primary_resources = []
+    secondary_resources = []
     for resource in resources:
-        if resource.prefix in prefix_blacklist:
-            continue
-        if resource.part_of or resource.provides or resource.has_canonical:
-            secondary_resources.append(resource)
+        if resource.provides or resource.has_canonical or resource.part_of:
+            # TODO there's some nuance to the order here, make resource.part_of the last.
+            #  check also how often there are multiple
+            secondary_resources.append(
+                (resource, resource.provides or resource.has_canonical or resource.part_of)
+            )
         else:
             primary_resources.append(resource)
     return primary_resources, secondary_resources
@@ -209,6 +239,10 @@ def _get_records(
             )
             return None
         reverse_prefix_lookup[primary_prefix] = prefix
+        if primary_prefix not in {"geo", "geogeo"}:
+            # FIXME this weird hack is not sustainable
+            secondary_prefixes[primary_prefix].add(primary_prefix.upper())
+        secondary_prefixes[primary_prefix].add(primary_prefix.lower())
         return primary_prefix
 
     def _add_synonym(*, synonym: str, prefix: str) -> None:
@@ -220,9 +254,11 @@ def _get_records(
             return
         reverse_prefix_lookup[synonym] = prefix
         secondary_prefixes[prefix].add(synonym)
+        secondary_prefixes[prefix].add(synonym.lower())
+        secondary_prefixes[prefix].add(synonym.upper())
 
     def _add_uri_synonym(*, uri_prefix: str, prefix: str) -> None:
-        if (prefix, uri_prefix) in prefix_resource_blacklist:
+        if uri_prefix in prefix_resource_blacklist.get(prefix, set()):
             return
         elif uri_prefix in uri_prefix_blacklist:
             return
@@ -269,7 +305,7 @@ def _get_records(
         if include_prefixes:
             _add_prefix_prefixes(primary_prefix=primary_prefix, resource=resource)
 
-    for resource in secondary_resources:
+    for resource, _ in secondary_resources:
         provides = resource.provides
         canonical = resource.has_canonical
         has_part = resource.part_of
@@ -297,7 +333,7 @@ def _get_records(
             uri_prefixes = {
                 p
                 for p in resource.get_uri_prefixes(enforce_w3c=enforce_w3c)
-                if (resource.prefix, p) not in prefix_resource_blacklist
+                if p not in prefix_resource_blacklist.get(resource.prefix, set())
             }
             _duplicats = [
                 uri_prefix for uri_prefix in uri_prefixes if uri_prefix in reverse_uri_prefix_lookup
