@@ -192,6 +192,9 @@ MIRIAM_BLACKLIST = {
     "Q56221155",
     "Q96212863",
 }
+URI_FORMAT_BLACKLIST = {
+    ("P4229", "https://icdcodelookup.com/icd-10/codes/$1"),
+}
 
 
 def _get_mapped() -> set[str]:
@@ -292,6 +295,10 @@ def _get_wikidata() -> dict[str, dict[str, Any]]:
                 bindings[key] = values[0]
             else:
                 bindings[key] = canonicals[prefix]
+
+        for key in ("uri_format", "uri_format_rdf"):
+            if (prefix, bindings.get(key) or None) in URI_FORMAT_BLACKLIST:
+                bindings.pop(key)
 
         pattern = bindings.get("pattern")
         if pattern:
