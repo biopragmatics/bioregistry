@@ -48,3 +48,16 @@ class TestAPI(unittest.TestCase):
             c.standardize_curie("kegg.pathway:hsa00010", strict=True),
             msg="kegg.pathway should have its own URI space and not get chunked into kegg",
         )
+        self.assertEqual(
+            "chmo",
+            c.standardize_prefix("CHMO"),
+            msg="preferred prefixes aren't making it through.",
+        )
+        self.assertEqual(
+            "chmo:0000073",
+            c.standardize_curie("CHMO:0000073"),
+        )
+        self.assertEqual(
+            "http://purl.obolibrary.org/obo/CHMO_0000073",
+            c.expand("CHMO:0000073"),
+        )
