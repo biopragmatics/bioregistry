@@ -601,7 +601,7 @@ addicto:
   preferred_prefix: addicto
   repository: https://github.com/addicto-org/addiction-ontology
   uri_format: http://addictovocab.org/ADDICTO_$1
-  version: '2025-09-08'
+  version: '2025-09-24'
 adms:
   contact:
     email: bert.van.nuffelen@tenforce.com
@@ -621,6 +621,7 @@ adms:
   - metadata
   license: CC-BY-4.0
   mappings:
+    bartoc: '17818'
     lov: adms
   name: Asset Description Metadata Schema Vocabulary
   preferred_prefix: adms
@@ -1182,15 +1183,22 @@ agrovoc:
   example: '2842'
   homepage: https://data.apps.fao.org/catalog/organization/agrovoc
   keywords:
+  - agricultural products
   - agriculture
+  - agronomy
+  - aquaculture
   - botany
+  - climate
   - data management
   - environmental science
   - fisheries science
   - food
+  - food security
   - forest management
+  - knowledge and information systems
   - nutritional science
   - ontology
+  - water management
   license: CC-BY-4.0
   mappings:
     aberowl: AGROVOC
@@ -3391,7 +3399,7 @@ bao:
   synonyms:
   - BAO
   uri_format: http://www.bioassayontology.org/bao#BAO_$1
-  version: 2.8.16
+  version: 2.8.18a
 bartoc:
   contact:
     email: voss@gbv.de
@@ -3563,7 +3571,7 @@ bcio:
   pattern: ^\d{6}$
   preferred_prefix: bcio
   uri_format: https://w3id.org/BCI-ontology#$1
-  version: '2025-07-18'
+  version: '2025-09-25'
 bco:
   appears_in:
   - fovt
@@ -4762,7 +4770,7 @@ biolink:
     orcid: 0000-0002-6601-2165
   description: A high level datamodel of biological entities (genes, diseases, phenotypes,
     pathways, individuals, substances, etc) and their associations.
-  download_owl: http://aber-owl.net/media/ontologies/BIOLINK/70/biolink.owl
+  download_owl: http://aber-owl.net/media/ontologies/BIOLINK/71/biolink.owl
   download_rdf: https://w3id.org/biolink/biolink-model.owl.ttl
   example: Gene
   homepage: https://biolink.github.io/biolink-model/
@@ -4773,6 +4781,7 @@ biolink:
   - medical informatics
   - ontology
   - translational medicine
+  license: CC0-1.0
   mappings:
     aberowl: BIOLINK
     biolink: biolink
@@ -8262,7 +8271,7 @@ chebi:
   - ChEBI
   twitter: chebit
   uri_format: http://purl.obolibrary.org/obo/CHEBI_$1
-  version: '244'
+  version: '245'
 chembank:
   comment: This resource doesn't exist on the web anymore
   deprecated: true
@@ -9809,7 +9818,7 @@ cl:
   repository: https://github.com/obophenotype/cell-ontology
   twitter: CellOntology
   uri_format: http://purl.obolibrary.org/obo/CL_$1
-  version: '2025-07-30'
+  version: '2025-10-16'
 clao:
   contact:
     email: lagonzalezmo@unal.edu.co
@@ -10400,7 +10409,7 @@ cmo:
   repository: https://github.com/rat-genome-database/CMO-Clinical-Measurement-Ontology
   twitter: ratgenome
   uri_format: http://purl.obolibrary.org/obo/CMO_$1
-  version: '2.252'
+  version: '2.253'
 cmpo:
   contact:
     email: jupp@ebi.ac.uk
@@ -13809,6 +13818,8 @@ dbamp:
   keywords:
   - antimicrobial peptides
   logo: https://awi.cuhk.edu.cn/dbAMP/assets/img/dbAMPv2.svg
+  mappings:
+    integbio: nbdc02467
   name: Database of Anti-Microbial Peptides
   pattern: ^\d{5}$
   preferred_prefix: dbamp
@@ -15779,7 +15790,7 @@ disdriv:
     exposures.
   download_owl: http://purl.obolibrary.org/obo/disdriv.owl
   example: '0000000'
-  homepage: http://www.disease-ontology.org
+  homepage: https://disease-ontology.org/
   keywords:
   - obo
   - ontology
@@ -16211,7 +16222,7 @@ doid:
   download_obo: https://github.com/DiseaseOntology/HumanDiseaseOntology/raw/main/src/ontology/doid.obo
   download_owl: http://purl.obolibrary.org/obo/doid.owl
   example: 0110974
-  homepage: http://www.disease-ontology.org
+  homepage: https://disease-ontology.org
   keywords:
   - biomedical science
   - classification
@@ -16226,7 +16237,7 @@ doid:
   - obo
   - ontology
   license: CC0-1.0
-  logo: http://www.disease-ontology.org/media/images/DO_logo.jpg
+  logo: https://disease-ontology.org/media/images/DO_logo_teal.png
   mappings:
     aberowl: DOID
     bartoc: '576'
@@ -16362,7 +16373,7 @@ doid:
   - do
   twitter: diseaseontology
   uri_format: http://purl.obolibrary.org/obo/DOID_$1
-  version: '2025-08-29'
+  version: '2025-09-30'
 dolce:
   comment: This resource doesn't exist anymore
   contributor:
@@ -16632,7 +16643,7 @@ dpo:
   rdf_uri_format: http://purl.obolibrary.org/obo/FBcv_$1
   repository: https://github.com/FlyBase/drosophila-phenotype-ontology
   uri_format: http://purl.obolibrary.org/obo/FBcv_$1
-  version: '2025-08-07'
+  version: '2025-10-17'
 dpv:
   contact:
     email: mike.adams@bbsrc.ac.uk
@@ -18866,7 +18877,7 @@ efo:
     year: 2010
   repository: https://github.com/EBISPOT/efo
   uri_format: http://www.ebi.ac.uk/efo/EFO_$1
-  version: 3.82.0
+  version: 3.83.0
 ega:
   description: The European Genome-phenome Archive (EGA) is a global network for permanent
     archiving and sharing of personally identifiable genetic, phenotypic, and clinical
@@ -19216,9 +19227,9 @@ elm:
   uri_format: http://elm.eu.org/elms/elmPages/$1.html
 elsst:
   contact:
-    email: carsten.thiel@cessda.eu
-    name: 'Carsten Thiel '
-    orcid: 0000-0003-0804-8992
+    email: alen.vodopijevec@cessda.eu
+    name: Alen Vodopijevec
+    orcid: 0000-0003-1003-0281
   contributor:
     email: cthoyt@gmail.com
     github: cthoyt
@@ -21647,7 +21658,7 @@ evorao:
     resources and services to enhance pandemic preparedness and response. While initially
     focused on virology, EVORAO is designed to be extensible and also supports metadata
     harmonization for other pathogens. [from repository]
-  download_owl: http://aber-owl.net/media/ontologies/EVORAO/8/evorao.owl
+  download_owl: http://aber-owl.net/media/ontologies/EVORAO/12/evorao.owl
   download_rdf: https://raw.githubusercontent.com/EVORA-project/evora-ontology/refs/heads/main/models/owl/evora_ontology.owl.ttl
   example: AlternateName
   homepage: https://github.com/EVORA-project/evora-ontology
@@ -22275,7 +22286,7 @@ fbbt:
   - FBbt
   - FBbt_root
   uri_format: http://purl.obolibrary.org/obo/FBbt_$1
-  version: '2025-08-07'
+  version: '2025-10-16'
 fbcv:
   appears_in:
   - ontoavida
@@ -22335,7 +22346,7 @@ fbcv:
   synonyms:
   - FBcv
   uri_format: http://purl.obolibrary.org/obo/FBcv_$1
-  version: '2025-08-07'
+  version: '2025-10-17'
 fbdv:
   contact:
     email: cp390@cam.ac.uk
@@ -22388,7 +22399,7 @@ fbdv:
   synonyms:
   - FBdv
   uri_format: http://purl.obolibrary.org/obo/FBdv_$1
-  version: '2025-05-29'
+  version: '2025-10-16'
 fbol:
   comment: Website down, checked on 2021-10-07
   deprecated: true
@@ -23995,7 +24006,7 @@ fypo:
   rdf_uri_format: http://purl.obolibrary.org/obo/FYPO_$1
   repository: https://github.com/pombase/fypo
   uri_format: http://purl.obolibrary.org/obo/FYPO_$1
-  version: '2025-08-13'
+  version: '2025-09-27'
 ga4ghdos:
   description: Assists in resolving data across cloud resources.
   example: dg.4503/01b048d0-e128-4cb0-94e9-b2d2cab7563d
@@ -26078,7 +26089,7 @@ gno:
   synonyms:
   - gnome
   uri_format: http://purl.obolibrary.org/obo/GNO_$1
-  version: '2025-01-28'
+  version: '2025-10-10'
 gnomad:
   contact:
     email: hrehm@mgh.harvard.edu
@@ -26373,7 +26384,7 @@ go:
   - gomfid
   twitter: news4go
   uri_format: http://purl.obolibrary.org/obo/GO_$1
-  version: '2025-07-22'
+  version: '2025-10-10'
 go.gpi:
   contributor:
     email: cthoyt@gmail.com
@@ -28039,7 +28050,7 @@ hancestro:
   rdf_uri_format: http://purl.obolibrary.org/obo/HANCESTRO_$1
   repository: https://github.com/EBISPOT/ancestro
   uri_format: http://purl.obolibrary.org/obo/HANCESTRO_$1
-  version: '2025-04-01'
+  version: '2025-10-14'
 hao:
   contact:
     email: diapriid@gmail.com
@@ -32147,6 +32158,7 @@ igsn:
   - centrally registered identifier
   - data management
   - earth science
+  - environmental material
   - environmental science
   - geochemistry
   - geology
@@ -40611,7 +40623,7 @@ mmo:
   repository: https://github.com/rat-genome-database/MMO-Measurement-Method-Ontology
   twitter: ratgenome
   uri_format: http://purl.obolibrary.org/obo/MMO_$1
-  version: '2.161'
+  version: '2.164'
 mmp.cat:
   description: MarCat is a gene (protein) catalogue of uncultivable and cultivable
     marine genes and proteins derived from metagenomics samples.
@@ -40977,6 +40989,8 @@ modalia:
   keywords:
   - ontology
   license: CC-BY-4.0
+  mappings:
+    bartoc: '20825'
   name: MoDALIA Ontology
   preferred_prefix: modalia
   rdf_uri_format: https://purl.org/ontology/modalia#$1
@@ -41320,7 +41334,7 @@ mondo:
   repository: https://github.com/monarch-initiative/mondo
   twitter: MonarchInit
   uri_format: http://purl.obolibrary.org/obo/MONDO_$1
-  version: '2025-09-02'
+  version: '2025-10-07'
 mondo.issue:
   contributor:
     email: cthoyt@gmail.com
@@ -41518,7 +41532,7 @@ mp:
   rdf_uri_format: http://purl.obolibrary.org/obo/MP_$1
   repository: https://github.com/mgijax/mammalian-phenotype-ontology
   uri_format: http://purl.obolibrary.org/obo/MP_$1
-  version: '2025-08-27'
+  version: '2025-09-30'
 mpath:
   contact:
     email: pns12@hermes.cam.ac.uk
@@ -41695,7 +41709,7 @@ mro:
   rdf_uri_format: http://purl.obolibrary.org/obo/MRO_$1
   repository: https://github.com/IEDB/MRO
   uri_format: http://purl.obolibrary.org/obo/MRO_$1
-  version: '2025-05-23'
+  version: '2025-09-25'
 ms:
   banana: MS
   contact:
@@ -41746,7 +41760,7 @@ ms:
   rdf_uri_format: http://purl.obolibrary.org/obo/MS_$1
   repository: https://github.com/HUPO-PSI/psi-ms-CV
   uri_format: http://purl.obolibrary.org/obo/MS_$1
-  version: 4.1.200
+  version: 4.1.204
 msigdb:
   contact:
     email: jmesirov@ucsd.edu
@@ -46641,7 +46655,7 @@ occo:
   rdf_uri_format: http://purl.obolibrary.org/obo/OCCO_$1
   repository: https://github.com/Occupation-Ontology/OccO
   uri_format: http://purl.obolibrary.org/obo/OCCO_$1
-  version: '2024-04-28'
+  version: '2025-10-06'
 oci:
   description: 'Each OCI (Open Citation Identifier) has a simple structure: oci:<identifier>-<identifier>,
     where “oci:” is the identifier prefix, and is used to identify a citation as a
@@ -47974,7 +47988,7 @@ omrse:
   rdf_uri_format: http://purl.obolibrary.org/obo/OMRSE_$1
   repository: https://github.com/mcwdsi/OMRSE
   uri_format: http://purl.obolibrary.org/obo/OMRSE_$1
-  version: '2025-06-30'
+  version: '2025-08-13'
 omx.dataset:
   contributor:
     email: cthoyt@gmail.com
@@ -54917,7 +54931,7 @@ pw:
   repository: https://github.com/rat-genome-database/PW-Pathway-Ontology
   twitter: ratgenome
   uri_format: http://purl.obolibrary.org/obo/PW_$1
-  version: '7.94'
+  version: '7.95'
 pwo:
   contact:
     email: silvio.peroni@unibo.it
@@ -58212,8 +58226,9 @@ schem:
   uri_format: https://biopragmatics.github.io/providers/schem/$1
 schema:
   contact:
-    email: johardi@stanford.edu
-    name: Josef Hardi
+    email: sivaram.arabandi@gmail.com
+    name: Sivaram Arabandi
+    orcid: 0000-0002-2973-6228
   contributor:
     email: cthoyt@gmail.com
     github: cthoyt
@@ -58222,26 +58237,29 @@ schema:
   description: Schema.org is a collaborative, community activity with a mission to
     create, maintain, and promote schemas for structured data on the Internet, on
     web pages, in email messages, and beyond.
-  download_owl: http://aber-owl.net/media/ontologies/SCHEMAORG/2/schemaorg.owl
+  download_owl: http://aber-owl.net/media/ontologies/SDO/4/sdo.owl
   download_rdf: https://schema.org/version/latest/schemaorg-current-https.ttl
   example: Person
   homepage: https://schema.org
   keywords:
-  - computer science
-  - general & upper
+  - biomedical science
+  - catalogs
+  - disease
+  - health science
+  - neurobiology
   - ontology
-  - subject agnostic
+  - phenotype
+  - sleep
   mappings:
-    aberowl: SCHEMAORG
+    aberowl: SDO
     biolink: schema
-    bioportal: SCHEMA
-    fairsharing: FAIRsharing.hzdzq8
-    lov: schema
+    bioportal: SDO
+    fairsharing: FAIRsharing.7s74s8
+    lov: sdo
     ols: schemaorg_http
     zazuko: schema
   name: Schema.org
   preferred_prefix: schema
-  repository: http://github.com/schemaorg/schemaorg
   synonyms:
   - schemaorg
   - sdo
@@ -60988,7 +61006,7 @@ snomedct:
     is a systematically organized computer processable collection of medical terminology
     covering most areas of clinical information such as diseases, findings, procedures,
     microorganisms, pharmaceuticals, etc.
-  download_owl: http://snomed.info/sct/900000000000207008/version/20250624
+  download_owl: http://snomed.info/sct/900000000000207008/version/20251017
   example: '284196006'
   homepage: https://browser.ihtsdotools.org/
   keywords:
@@ -61075,7 +61093,7 @@ snomedct:
   - SNOWMEDCT_US
   - SNOWMEDCT_US_2018_03_01
   uri_format: http://snomed.info/id/$1
-  version: '20250624'
+  version: '20251017'
 snornabase:
   contributor:
     email: cthoyt@gmail.com
@@ -63045,7 +63063,7 @@ symp:
   download_obo: http://purl.obolibrary.org/obo/symp.obo
   download_owl: http://purl.obolibrary.org/obo/symp.owl
   example: 0019171
-  homepage: http://symptomontologywiki.igs.umaryland.edu/mediawiki/index.php/Main_Page
+  homepage: https://github.com/DiseaseOntology/SymptomOntology
   keywords:
   - biomedical science
   - diagnosis
@@ -63711,7 +63729,7 @@ taxrank:
   rdf_uri_format: http://purl.obolibrary.org/obo/TAXRANK_$1
   repository: https://github.com/phenoscape/taxrank
   uri_format: http://purl.obolibrary.org/obo/TAXRANK_$1
-  version: '2025-09-22'
+  version: '2025-09-24'
 tcb:
   description: Cell line collections
   example: '2966'
@@ -66743,7 +66761,7 @@ upheno:
   rdf_uri_format: http://purl.obolibrary.org/obo/UPHENO_$1
   repository: https://github.com/obophenotype/upheno
   uri_format: http://purl.obolibrary.org/obo/UPHENO_$1
-  version: '2025-07-21'
+  version: '2025-10-12'
 urdbms.syndromefinder:
   appears_in:
   - nando
@@ -68423,7 +68441,7 @@ vt:
   rdf_uri_format: http://purl.obolibrary.org/obo/VT_$1
   repository: https://github.com/AnimalGenome/vertebrate-trait-ontology
   uri_format: http://purl.obolibrary.org/obo/VT_$1
-  version: '2025-09-09'
+  version: '2025-10-14'
 vto:
   contact:
     email: balhoff@renci.org
@@ -69586,7 +69604,7 @@ xco:
   repository: https://github.com/rat-genome-database/XCO-experimental-condition-ontology
   twitter: ratgenome
   uri_format: http://purl.obolibrary.org/obo/XCO_$1
-  version: '4.213'
+  version: '4.215'
 xenbase:
   contact:
     email: troy_pells@yahoo.ca
