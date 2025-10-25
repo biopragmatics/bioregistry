@@ -1297,6 +1297,18 @@
           "description": "An annotation between this prefix and a super-prefix. For example, ``chembl.compound`` is a part of ``chembl``.",
           "title": "Part Of"
         },
+        "part_of_database": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Part Of Database"
+        },
         "provides": {
           "anyOf": [
             {
