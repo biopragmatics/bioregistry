@@ -13,15 +13,15 @@ __all__ = [
 
 
 @click.command()
-@host_option  # type:ignore
-@port_option  # type:ignore
-@with_gunicorn_option  # type:ignore
+@host_option
+@port_option
+@with_gunicorn_option
 @click.option(
     "--workers",
     type=int,
     help="Number of workers",
 )
-@verbose_option  # type:ignore
+@verbose_option
 @click.option("--registry", type=Path, help="Path to a local registry file")
 @click.option("--metaregistry", type=Path, help="Path to a local metaregistry file")
 @click.option("--collections", type=Path, help="Path to a local collections file")
