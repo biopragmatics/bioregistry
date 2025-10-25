@@ -257,14 +257,14 @@ def _get_curie_prefixes(
     resource: Resource, priority: Sequence[str] | None = None
 ) -> tuple[str, set[str]]:
     primary = resource.get_priority_prefix(priority)
-    if primary in {"geo", "geogeo", "BOOTSTREP"}:
+    if primary in {"geo", "geogeo", "BOOTSTREP", "gramene.growthstage"}:
         return primary, set()
 
     # TODO upstream synonym getting functionality
     rest = resource.get_synonyms()
     rest.add(resource.prefix)
-    # if resource.prefix != "gramene.growthstage" and (pp := resource.get_preferred_prefix()):
-    #    rest.add(pp)
+    if pp := resource.get_preferred_prefix():
+        rest.add(pp)
     rest.update({r.lower() for r in rest})
     rest.update({r.upper() for r in rest})
     if primary in rest:
