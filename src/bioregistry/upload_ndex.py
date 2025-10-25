@@ -18,7 +18,7 @@ if TYPE_CHECKING:
 
 
 @click.command()
-@verbose_option  # type:ignore
+@verbose_option
 def main() -> None:
     """Upload the Bioregistry KG to NDEx."""
     try:
