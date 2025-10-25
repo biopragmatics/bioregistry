@@ -567,22 +567,14 @@ class TestRegistry(unittest.TestCase):
     def test_parts(self):
         """Make sure all part of relations point to valid prefixes."""
         for prefix, resource in self.registry.items():
-            if bioregistry.is_deprecated(prefix) or bioregistry.get_provides_for(prefix):
+            if bioregistry.is_deprecated(prefix) or resource.part_of is None:
                 continue
-            if resource.part_of is None or resource.part_of == "pubchem":
-                continue
-
             with self.subTest(prefix=prefix):
-                norm_part_of = bioregistry.normalize_prefix(resource.part_of)
-                if norm_part_of is not None:
-                    self.assertEqual(
-                        norm_part_of, resource.part_of, msg="part_of is not standardized"
-                    )
-                # Some are not prefixes, e.g., datanator_gene, datanator_metabolite, ctd.
-                # self.assertIn(
-                #     resource.part_of, self.registry, msg="super-resource is not a valid prefix"
-                # )
-
+                self.assertIn(
+                    resource.part_of,
+                    self.registry,
+                    msg="all part-of relations should point to prefixes",
+                )
                 self.assertNotEqual(
                     resource.has_canonical, resource.part_of, msg="don't double annotate these"
                 )

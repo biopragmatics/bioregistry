@@ -503,6 +503,7 @@ class Resource(BaseModel):
             "``chembl.compound`` is a part of ``chembl``."
         ),
     )
+    part_of_database: str | None = Field(default=None)
     provides: str | None = Field(
         default=None,
         description=(

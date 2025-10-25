@@ -30,6 +30,11 @@ SKIP = {
     "PSO_GIT",
     "EO_GIT",
 }
+BLOCK = {
+    ("WBls", "http://www.wormbase.org/get?name=$1"),
+    ("WB_REF", "http://www.wormbase.org/get?name=$1"),
+    ("WBPhenotype", "http://www.wormbase.org/get?name=$1"),
+}
 
 # The key is redundant of the value
 REDUNDANT = {
@@ -117,7 +122,8 @@ class GoAligner(Aligner):
                 ]
             ):
                 uri_format = uri_format.replace("[example_id]", "$1")
-                rv[URI_FORMAT_KEY] = uri_format
+                if (external_id, uri_format) not in BLOCK:
+                    rv[URI_FORMAT_KEY] = uri_format
 
         if "synonyms" in external_entry:
             rv["synonyms"] = external_entry["synonyms"]
