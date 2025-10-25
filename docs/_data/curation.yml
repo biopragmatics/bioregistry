@@ -184,9 +184,6 @@ formatter:
 - homepage: https://en.wikipedia.org/wiki/DSM-5
   name: Diagnostic and Statistical Manual of Mental Disorders (5th Edition)
   prefix: dsm5
-- homepage: https://echa.europa.eu/information-on-chemicals
-  name: EC number
-  prefix: ecn
 - homepage: http://ecolexicon.ugr.es/en/index.htm
   name: EcoLexicon
   prefix: ecolexicon
@@ -703,12 +700,12 @@ pattern:
 - homepage: https://dbpedia.org/ontology
   name: DBPedia Ontology
   prefix: dbo
-- homepage: https://dbpedia.org
-  name: DBPedia Resource
-  prefix: dbpedia
 - homepage: http://dbpedia.org/property
   name: DBPedia Property
   prefix: dbpedia.property
+- homepage: https://dbpedia.org
+  name: DBPedia Resource
+  prefix: dbpedia.resource
 - homepage: https://www.ncbi.nlm.nih.gov/dbvar
   name: Database of Genomic Structural Variation - Study
   prefix: dbvar.study
@@ -1014,7 +1011,7 @@ pattern:
   prefix: grddl
 - homepage: http://www.ars-grin.gov/
   name: Germplasm Resources Information Network
-  prefix: grin
+  prefix: grin.publication
 - homepage: http://www.ebi.ac.uk/Rebholz-srv/GRO/GRO.html
   name: Gene Regulation Ontology
   prefix: gro
@@ -1142,7 +1139,7 @@ pattern:
 - homepage: https://cellbank.snu.ac.kr/english
   name: Korean Cell Line Bank
   prefix: kclb
-- homepage: http://www.genome.jp/kegg/brite.html
+- homepage: https://www.genome.jp/kegg/brite.html
   name: KEGG BRITE
   prefix: kegg.brite
 - homepage: http://www.genome.jp/dbget-bin/www_bfind?enzyme
@@ -1827,8 +1824,8 @@ pattern:
   name: Ontology for Chemical Kinetic Reaction Mechanisms
   prefix: worldavatar.kin
 - homepage: https://www.webofscience.com
-  name: Web of Science ID (work)
-  prefix: wos
+  name: Web of Science work ID
+  prefix: wos.work
 - homepage: http://xmlns.com/wot/0.1/
   name: XML Web of Trust Ontology
   prefix: wot
@@ -2278,7 +2275,7 @@ wikidata:
   prefix: bmont
 - homepage: https://bmrb.io/
   name: Biological Magnetic Resonance Data Bank
-  prefix: bmrb
+  prefix: bmrb.entry
 - homepage: https://restraintsgrid.bmrb.io/NRG/MRGridServlet
   name: NMR Restraints Grid
   prefix: bmrb.restraint
@@ -2652,9 +2649,6 @@ wikidata:
   name: ClinicalTrials.gov
   prefix: clinicaltrials
 - homepage: http://www.ncbi.nlm.nih.gov/clinvar/
-  name: ClinVar Variation
-  prefix: clinvar
-- homepage: http://www.ncbi.nlm.nih.gov/clinvar/
   name: ClinVar Record
   prefix: clinvar.record
 - homepage: http://www.ncbi.nlm.nih.gov/clinvar/
@@ -2663,6 +2657,9 @@ wikidata:
 - homepage: https://www.ncbi.nlm.nih.gov/clinvar/
   name: ClinVar Submitter
   prefix: clinvar.submitter
+- homepage: http://www.ncbi.nlm.nih.gov/clinvar/
+  name: ClinVar Variation
+  prefix: clinvar.variation
 - homepage: https://github.com/Cellular-Semantics/CellMark
   name: Cell Markers Ontology
   prefix: clm
@@ -2814,11 +2811,11 @@ wikidata:
   name: COEXISTENCE
   prefix: coexistence
 - homepage: https://www.ncbi.nlm.nih.gov/research/cog/
-  name: Cluster of orthologous genes
-  prefix: cog
-- homepage: https://www.ncbi.nlm.nih.gov/research/cog/
   name: COG Categories
   prefix: cog.category
+- homepage: https://www.ncbi.nlm.nih.gov/research/cog/
+  name: Cluster of orthologous genes
+  prefix: cog.cluster
 - homepage: https://www.ncbi.nlm.nih.gov/research/cog/pathways
   name: COG Pathways
   prefix: cog.pathway
@@ -2837,9 +2834,6 @@ wikidata:
 - homepage: https://www.checklistbank.org
   name: Catalogue of Life
   prefix: col
-- homepage: http://taibnet.sinica.edu.tw/home.php
-  name: Catalogue of Life in Taiwan
-  prefix: col.taiwan
 - homepage: https://github.com/insect-morphology/colao
   name: Coleoptera Anatomy Ontology
   prefix: colao
@@ -2901,12 +2895,12 @@ wikidata:
 - homepage: https://mips.helmholtz-muenchen.de/corum
   name: Comprehensive Resource of Mammalian protein complexes
   prefix: corum
-- homepage: http://cancer.sanger.ac.uk/cosmic/
-  name: COSMIC Gene
-  prefix: cosmic
 - homepage: https://cancer.sanger.ac.uk/cell_lines/
   name: COSMIC Cell Lines
   prefix: cosmic.cell
+- homepage: http://cancer.sanger.ac.uk/cosmic/
+  name: COSMIC Gene
+  prefix: cosmic.gene
 - homepage: https://covid19.sfb.uit.no
   name: COVID-19 Surveillance Ontology
   prefix: covid19
@@ -2964,12 +2958,12 @@ wikidata:
 - homepage: https://web.archive.org/web/20091223034048/http://crisp.cit.nih.gov/Thesaurus/index.htm
   name: Computer Retrieval of Information on Science Projects Thesaurus
   prefix: csp
-- homepage: http://www.cellsignal.com/pathways/index.html
-  name: Cell Signaling Technology Pathways
-  prefix: cst
 - homepage: http://www.cellsignal.com/catalog/index.html
   name: Cell Signaling Technology Antibody
-  prefix: cst.ab
+  prefix: cst.antibody
+- homepage: http://www.cellsignal.com/pathways/index.html
+  name: Cell Signaling Technology Pathways
+  prefix: cst.pathway
 - homepage: https://www.cstr.cn/en/
   name: Common Science and Technology Resources
   prefix: cstr
@@ -3033,12 +3027,12 @@ wikidata:
 - homepage: http://darcsite.genzentrum.lmu.de/darc/index.php
   name: Database of Aligned Ribosomal Complexes
   prefix: darc
-- homepage: http://lisanwanglab.org/DASHR/
-  name: Database of small human noncoding RNAs
-  prefix: dashr
 - homepage: https://dashr1.lisanwanglab.org/show-expression-table.php?start=0
   name: DASHR expression
   prefix: dashr.expression
+- homepage: http://lisanwanglab.org/DASHR/
+  name: Database of small human noncoding RNAs
+  prefix: dashr.rna
 - homepage: http://www.sparontologies.net/ontologies/datacite
   name: DataCite Ontology
   prefix: datacite
@@ -3081,12 +3075,12 @@ wikidata:
 - homepage: https://dbpedia.org/ontology
   name: DBPedia Ontology
   prefix: dbo
-- homepage: https://dbpedia.org
-  name: DBPedia Resource
-  prefix: dbpedia
 - homepage: http://dbpedia.org/property
   name: DBPedia Property
   prefix: dbpedia.property
+- homepage: https://dbpedia.org
+  name: DBPedia Resource
+  prefix: dbpedia.resource
 - homepage: https://www.ncbi.nlm.nih.gov/sites/entrez?db=probe
   name: NCBI Probe database Public registry of nucleic acid reagents
   prefix: dbprobe
@@ -3390,9 +3384,6 @@ wikidata:
 - homepage: http://drugcentral.org
   name: Drug Central
   prefix: drugcentral
-- homepage: https://en.wikipedia.org/wiki/DSM-5
-  name: Diagnostic and Statistical Manual of Mental Disorders (5th Edition)
-  prefix: dsm5
 - homepage: https://www.dsmz.de
   name: Deutsche Sammlung von Mikroorganismen und Zellkulturen
   prefix: dsmz
@@ -3856,9 +3847,6 @@ wikidata:
 - homepage: http://www.flymine.org/
   name: FlyMine Chromosome Band
   prefix: flymine.chromosome
-- homepage: http://si.washington.edu/projects/fma
-  name: Foundational Model of Anatomy
-  prefix: fma
 - homepage: http://xmlns.com/foaf/spec/
   name: Friend of a Friend
   prefix: foaf
@@ -3928,9 +3916,6 @@ wikidata:
 - homepage: https://fungidb.org/fungidb
   name: FungiDB
   prefix: fungidb
-- homepage: http://www.indexfungorum.org
-  name: Index Fungorum
-  prefix: fungorum
 - homepage: https://github.com/pombase/fypo
   name: Fission Yeast Experimental Conditions Ontology
   prefix: fyeco
@@ -4013,8 +3998,8 @@ wikidata:
   name: Genomic Distribution of structural Superfamilies
   prefix: gendis
 - homepage: http://www.genecards.org/
-  name: GeneCards
-  prefix: genecards
+  name: GeneCards Gene
+  prefix: genecards.gene
 - homepage: http://genecards.weizmann.ac.il/geneannot/
   name: 'GeneAnnot: Microarray Gene Annotation'
   prefix: genecards.geneannot
@@ -4072,9 +4057,6 @@ wikidata:
 - homepage: https://giardiadb.org/giardiadb/
   name: GiardiaDB
   prefix: giardiadb
-- homepage: https://github.com/
-  name: GitHub username
-  prefix: github
 - homepage: https://github.com/
   name: GitHub Issue
   prefix: github.issue
@@ -4245,7 +4227,7 @@ wikidata:
   prefix: grid
 - homepage: http://www.ars-grin.gov/
   name: Germplasm Resources Information Network
-  prefix: grin
+  prefix: grin.publication
 - homepage: http://www.ebi.ac.uk/Rebholz-srv/GRO/GRO.html
   name: Gene Regulation Ontology
   prefix: gro
@@ -4516,19 +4498,10 @@ wikidata:
 - homepage: https://github.com/information-artifact-ontology/IAO/issues
   name: Information Artifact Ontology Issue Tracker
   prefix: iao.issue
-- homepage: https://icd.who.int/browse10
-  name: International Classification of Diseases, 10th Revision
-  prefix: icd10
-- homepage: https://www.icd10data.com/ICD10CM
-  name: International Classification of Diseases, 10th Revision, Clinical Modification
-  prefix: icd10cm
 - homepage: https://www.nlm.nih.gov/research/umls/sourcereleasedocs/current/ICD10PCS
   name: International Classification of Diseases, 10th Revision, Procedure Coding
     System
   prefix: icd10pcs
-- homepage: https://icd.who.int/
-  name: International Classification of Diseases, 11th Revision (Foundation Component)
-  prefix: icd11
 - homepage: https://icd.who.int/en
   name: ICD 11 Codes
   prefix: icd11.code
@@ -4871,9 +4844,6 @@ wikidata:
 - homepage: https://kaggle.com
   name: Kaggle
   prefix: kaggle
-- homepage: https://nrid.nii.ac.jp/ja/search/?kw=
-  name: e-Rad researcher number
-  prefix: kaken
 - homepage: https://cellbank.snu.ac.kr/english
   name: Korean Cell Line Bank
   prefix: kclb
@@ -4886,7 +4856,7 @@ wikidata:
 - homepage: http://www.kegg.jp/
   name: Kyoto Encyclopedia of Genes and Genomes
   prefix: kegg
-- homepage: http://www.genome.jp/kegg/brite.html
+- homepage: https://www.genome.jp/kegg/brite.html
   name: KEGG BRITE
   prefix: kegg.brite
 - homepage: https://www.genome.jp/kegg/ligand.html
@@ -5060,9 +5030,6 @@ wikidata:
 - homepage: http://lipidbank.jp/index.html
   name: LipidBank
   prefix: lipidbank
-- homepage: https://lipidmaps.org
-  name: LIPID MAPS
-  prefix: lipidmaps
 - homepage: null
   name: Lipid Ontology
   prefix: lipro
@@ -5150,9 +5117,6 @@ wikidata:
 - homepage: https://www.omicsdi.org/
   name: MassIVE
   prefix: massive
-- homepage: https://mastodon.social
-  name: Mastodon
-  prefix: mastodon
 - homepage: null
   name: Minimal Anatomical Terminology
   prefix: mat
@@ -5294,9 +5258,6 @@ wikidata:
 - homepage: http://aclame.ulb.ac.be/
   name: Aclame
   prefix: mge
-- homepage: http://www.informatics.jax.org/
-  name: Mouse Genome Informatics
-  prefix: mgi
 - homepage: https://www.ebi.ac.uk/metagenomics/
   name: MGnify Analysis
   prefix: mgnify.analysis
@@ -5860,7 +5821,7 @@ wikidata:
   prefix: nmrxiv.sample
 - homepage: https://www.fisheries.noaa.gov/species-directory
   name: NOAA Fisheries Species Directory
-  prefix: noaa
+  prefix: noaa.species
 - homepage: https://github.com/SpeciesFileGroup/nomen
   name: A nomenclatural ontology for biological names
   prefix: nomen
@@ -6131,9 +6092,6 @@ wikidata:
 - homepage: https://media.iupac.org/publications/analytical_compendium/
   name: IUPAC Compendium of Analytical Nomenclature (Orange Book)
   prefix: orangebook
-- homepage: https://orcid.org
-  name: Open Researcher and Contributor
-  prefix: orcid
 - homepage: http://senselab.med.yale.edu/OrDB/
   name: Olfactory Receptor Database
   prefix: ordb
@@ -6311,12 +6269,12 @@ wikidata:
 - homepage: https://pephub.databio.org/
   name: PEPhub
   prefix: pephub
-- homepage: http://www.peptideatlas.org/
-  name: PeptideAtlas
-  prefix: peptideatlas
 - homepage: https://db.systemsbiology.net/sbeams/cgi/PeptideAtlas/PASS_Summary
   name: PeptideAtlas Dataset
   prefix: peptideatlas.dataset
+- homepage: http://www.peptideatlas.org/
+  name: PeptideAtlas Peptide
+  prefix: peptideatlas.peptide
 - homepage: https://www.perkinelmer.com/
   name: PerkinElmer cell line collection
   prefix: perkinelmer
@@ -6475,7 +6433,7 @@ wikidata:
   prefix: pmp
 - homepage: https://www.auckland.ac.nz/en.html
   name: Physical Medicine and Rehabilitation
-  prefix: pmr
+  prefix: pmr.exposure
 - homepage: https://www.auckland.ac.nz/en.html
   name: Physiome Model Repository workspace
   prefix: pmr.workspace
@@ -6692,9 +6650,6 @@ wikidata:
 - homepage: https://www.reaxys.com
   name: Reaxys
   prefix: reaxys
-- homepage: http://rebase.neb.com/rebase/
-  name: REBASE Enzyme Number
-  prefix: rebase
 - homepage: https://ensaiosclinicos.gov.br
   name: Brazilian Registry of Clinical Trials
   prefix: rebec
@@ -6975,7 +6930,7 @@ wikidata:
   name: Semantic Mapping Vocabulary
   prefix: semapv
 - homepage: https://www.semion.io
-  name: Semion author ID
+  name: Semion author ID (archived)
   prefix: semion
 - homepage: https://github.com/DataONEorg/sem-prov-ontologies/tree/main/senso
   name: Sensitive Data Ontology
@@ -7094,9 +7049,6 @@ wikidata:
 - homepage: https://sumlineknowledgebase.com/
   name: SUM Breast Cancer Cell Line Knowledge Base
   prefix: slkbase
-- homepage: http://www.swisslipids.org/#/
-  name: SwissLipid
-  prefix: slm
 - homepage: https://github.com/nasa/LSDAO
   name: Space Life Sciences Ontology
   prefix: slso
@@ -7292,9 +7244,6 @@ wikidata:
 - homepage: https://www.w3.org/2003/11/swrl#
   name: A Semantic Web Rule Language Combining OWL and RuleML
   prefix: swrl
-- homepage: https://github.com/DiseaseOntology/SymptomOntology
-  name: Symptom Ontology
-  prefix: symp
 - homepage: https://sagebionetworks.org
   name: Synapse Data Repository
   prefix: synapse
@@ -7538,9 +7487,6 @@ wikidata:
 - homepage: http://www.grenoble.prabi.fr/obiwarehouse/unipathway
   name: UniPathway Reaction
   prefix: unipathway.reaction
-- homepage: http://www.uniprot.org
-  name: UniProt Protein
-  prefix: uniprot
 - homepage: https://www.uniprot.org/arba
   name: Association-Rule-Based Annotator
   prefix: uniprot.arba
@@ -7550,15 +7496,9 @@ wikidata:
 - homepage: http://purl.uniprot.org/core/
   name: Uniprot Core Ontology
   prefix: uniprot.core
-- homepage: https://www.uniprot.org/diseases/
-  name: UniProt Diseases
-  prefix: uniprot.disease
 - homepage: http://www.uniprot.org/
   name: UniProt Isoform
   prefix: uniprot.isoform
-- homepage: https://www.uniprot.org/journals
-  name: UniProt journal
-  prefix: uniprot.journal
 - homepage: http://www.uniprot.org/keywords/
   name: UniProt Keywords
   prefix: uniprot.keyword
@@ -7832,11 +7772,8 @@ wikidata:
   name: WoRMS-ID for taxa
   prefix: worms
 - homepage: https://www.webofscience.com
-  name: Web of Science ID (work)
-  prefix: wos
-- homepage: https://access.clarivate.com/login?app=wos
-  name: ResearcherID
-  prefix: wos.researcher
+  name: Web of Science work ID
+  prefix: wos.work
 - homepage: http://xmlns.com/wot/0.1/
   name: XML Web of Trust Ontology
   prefix: wot

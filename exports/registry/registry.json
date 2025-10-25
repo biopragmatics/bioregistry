@@ -2117,7 +2117,6 @@
       "n2t": "aop.events"
     },
     "name": "AOPWiki (Key Event)",
-    "part_of": "aop",
     "pattern": "^\\d+$",
     "preferred_prefix": "aop.events",
     "uri_format": "https://aopwiki.org/events/$1"
@@ -2132,7 +2131,6 @@
       "n2t": "aop.relationships"
     },
     "name": "AOPWiki (Key Event Relationship)",
-    "part_of": "aop",
     "pattern": "^\\d+$",
     "preferred_prefix": "aop.relationships",
     "uri_format": "https://aopwiki.org/relationships/$1"
@@ -2147,7 +2145,6 @@
       "n2t": "aop.stressor"
     },
     "name": "AOPWiki (Stressor)",
-    "part_of": "aop",
     "pattern": "^\\d+$",
     "preferred_prefix": "aop.stressor",
     "uri_format": "https://aopwiki.org/stressors/$1"
@@ -2829,7 +2826,6 @@
       "n2t": "arrayexpress.platform"
     },
     "name": "ArrayExpress Platform",
-    "part_of": "arrayexpress",
     "pattern": "^[AEP]-\\w{4}-\\d+$",
     "preferred_prefix": "arrayexpress.platform",
     "uri_format": "https://www.ebi.ac.uk/arrayexpress/arrays/$1"
@@ -4610,7 +4606,6 @@
       "n2t": "bigg.compartment"
     },
     "name": "BiGG Compartment",
-    "part_of": "bigg",
     "pattern": "^c|cm|cx|e|f|g|h|i|im|l|m|mm|n|p|r|s|u|um|v|w|x|y$",
     "preferred_prefix": "bigg.compartment",
     "uri_format": "http://bigg.ucsd.edu/compartments/$1"
@@ -5204,7 +5199,6 @@
       "edam": "2628"
     },
     "name": "BioGRID Interactions",
-    "part_of": "biogrid",
     "pattern": "^\\d+$",
     "preferred_prefix": "biogrid.interaction",
     "twitter": "biogrid",
@@ -5339,7 +5333,6 @@
       "biomarker"
     ],
     "name": "Biomarker Knowledgebase - Biomarker",
-    "part_of": "biomarkerkb",
     "pattern": "^A(N|O)\\d+-\\d+$",
     "preferred_prefix": "biomarkerkb.biomarker",
     "uri_format": "https://biomarkerkb.org/biomarker/$1"
@@ -5375,7 +5368,6 @@
       "biomarker"
     ],
     "name": "Biomarker Knowledgebase - Canonical Biomarker",
-    "part_of": "biomarkerkb",
     "pattern": "^A(N|O)\\d+$",
     "preferred_prefix": "biomarkerkb.canonical",
     "uri_format": "https://biomarkerkb.org/canonical/$1"
@@ -5806,7 +5798,6 @@
       "registry"
     ],
     "name": "Bioregistry Collections",
-    "part_of": "bioregistry",
     "pattern": "^\\d{7}$",
     "preferred_prefix": "bioregistry.collection",
     "uri_format": "https://bioregistry.io/collection/$1"
@@ -5834,7 +5825,6 @@
       "registry"
     ],
     "name": "Bioregistry Metaregistry",
-    "part_of": "bioregistry",
     "preferred_prefix": "bioregistry.registry",
     "uri_format": "https://bioregistry.io/metaregistry/$1"
   },
@@ -5858,7 +5848,6 @@
       "registry"
     ],
     "name": "Bioregistry Schema",
-    "part_of": "bioregistry",
     "pattern": "^\\d{7}$",
     "preferred_prefix": "bioregistry.schema",
     "uri_format": "https://bioregistry.io/schema/#$1"
@@ -6439,7 +6428,7 @@
     "repository": "https://github.com/SCAI-BIO/BiomarkerOntology",
     "uri_format": "http://purl.obolibrary.org/obo/BMONT_$1"
   },
-  "bmrb": {
+  "bmrb.entry": {
     "contact": {
       "email": "markley@nmrfam.wisc.edu",
       "name": "John L. Markley",
@@ -6460,7 +6449,7 @@
     },
     "name": "Biological Magnetic Resonance Data Bank",
     "pattern": "^(bmr|bmse|bmst)?[0-9]{1,6}$",
-    "preferred_prefix": "bmrb",
+    "preferred_prefix": "bmrb.entry",
     "publications": [
       {
         "doi": "10.1007/s10858-008-9221-y",
@@ -6476,6 +6465,9 @@
         "title": "BioMagResBank",
         "year": 2007
       }
+    ],
+    "synonyms": [
+      "bmrb"
     ],
     "uri_format": "https://bmrb.io/data_library/summary/index.php?bmrbId=$1"
   },
@@ -6495,7 +6487,6 @@
       "spectrometry"
     ],
     "name": "NMR Restraints Grid",
-    "part_of": "bmrb",
     "pattern": "^\\d+$",
     "preferred_prefix": "bmrb.restraint",
     "uri_format": "https://restraintsgrid.bmrb.io/NRG/MRGridServlet?block_text_type=2-parsed&db_username=wattos1&file_detail=2-parsed&format=n%2Fa&program=STAR&request_type=block&subtype=full&type=entry&mrblock_id=$1"
@@ -6720,7 +6711,6 @@
       "structrual bioinformatics"
     ],
     "name": "BRENDA Ligand",
-    "part_of": "brenda",
     "pattern": "^\\d+$",
     "preferred_prefix": "brenda.ligand",
     "uri_format": "https://www.brenda-enzymes.de/ligand.php?brenda_ligand_id=$1"
@@ -6741,7 +6731,6 @@
       "structrual bioinformatics"
     ],
     "name": "BRENDA Ligand Group",
-    "part_of": "brenda",
     "pattern": "^\\d+$",
     "preferred_prefix": "brenda.ligandgroup",
     "uri_format": "https://www.brenda-enzymes.de/ligand.php?brenda_group_id=$1"
@@ -7635,7 +7624,6 @@
       "n2t": "cath.domain"
     },
     "name": "CATH domain",
-    "part_of": "cath",
     "pattern": "^\\w+$",
     "preferred_prefix": "cath.domain",
     "uri_format": "http://www.cathdb.info/domain/$1"
@@ -8541,7 +8529,6 @@
       "registry"
     ],
     "name": "Cellosaurus Registry",
-    "part_of": "cellosaurus",
     "preferred_prefix": "cellosaurus.resource",
     "uri_format": "https://bioregistry.io/metaregistry/cellosaurus/$1"
   },
@@ -8576,7 +8563,6 @@
     "homepage": "https://cellxgene.cziscience.com/collections",
     "license": "CC-BY-4.0",
     "name": "Chan Zuckerberg CELLxGENE Collection",
-    "part_of": "cellxgene",
     "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$",
     "preferred_prefix": "cellxgene.collection",
     "publications": [
@@ -8614,7 +8600,6 @@
     "github_request_issue": 1541,
     "homepage": "https://cellxgene.cziscience.com",
     "name": "Chan Zuckerberg CELLxGENE Dataset",
-    "part_of": "cellxgene",
     "preferred_prefix": "cellxgene.dataset",
     "publications": [
       {
@@ -8948,7 +8933,7 @@
       "taxonomic classification"
     ],
     "license": "CC-BY-4.0",
-    "logo": "https://www.ebi.ac.uk/chebi/images/ChEBI_logo.png",
+    "logo": "https://www.ebi.ac.uk/chebi/chebi_logo.svg",
     "mappings": {
       "aberowl": "CHEBI",
       "bartoc": "558",
@@ -9100,7 +9085,6 @@
     "example": "31",
     "homepage": "https://data.chembiosys.de/assays",
     "name": "ChemBioSys Assay",
-    "part_of": "chembiosys",
     "pattern": "^\\d+$",
     "preferred_prefix": "chembiosys.assay",
     "uri_format": "https://data.chembiosys.de/assays/$1"
@@ -9116,7 +9100,6 @@
     "example": "103",
     "homepage": "https://data.chembiosys.de/data_files",
     "name": "ChemBioSys Dataset",
-    "part_of": "chembiosys",
     "pattern": "^\\d+$",
     "preferred_prefix": "chembiosys.data",
     "uri_format": "https://data.chembiosys.de/data_files/$1"
@@ -9132,7 +9115,6 @@
     "example": "13",
     "homepage": "https://data.chembiosys.de/institutions",
     "name": "ChemBioSys Institution",
-    "part_of": "chembiosys",
     "pattern": "^\\d+$",
     "preferred_prefix": "chembiosys.institution",
     "uri_format": "https://data.chembiosys.de/institutions/$1"
@@ -9148,7 +9130,6 @@
     "example": "27",
     "homepage": "https://data.chembiosys.de/investigations",
     "name": "ChemBioSys Investigation",
-    "part_of": "chembiosys",
     "pattern": "^\\d+$",
     "preferred_prefix": "chembiosys.investigation",
     "uri_format": "https://data.chembiosys.de/investigations/$1"
@@ -9164,7 +9145,6 @@
     "example": "11",
     "homepage": "https://data.chembiosys.de/models",
     "name": "ChemBioSys Model",
-    "part_of": "chembiosys",
     "pattern": "^\\d+$",
     "preferred_prefix": "chembiosys.model",
     "uri_format": "https://data.chembiosys.de/models/$1"
@@ -9180,7 +9160,6 @@
     "example": "604090889",
     "homepage": "https://data.chembiosys.de/",
     "name": "ChemBioSys Organism",
-    "part_of": "chembiosys",
     "pattern": "^\\d+$",
     "preferred_prefix": "chembiosys.organism",
     "uri_format": "https://data.chembiosys.de/organisms/$1"
@@ -9196,7 +9175,6 @@
     "example": "15",
     "homepage": "https://data.chembiosys.de/projects",
     "name": "ChemBioSys Project",
-    "part_of": "chembiosys",
     "pattern": "^\\d+$",
     "preferred_prefix": "chembiosys.project",
     "uri_format": "https://data.chembiosys.de/projects/$1"
@@ -9212,7 +9190,6 @@
     "example": "157",
     "homepage": "https://data.chembiosys.de/publications",
     "name": "ChemBioSys Publication",
-    "part_of": "chembiosys",
     "pattern": "^\\d+$",
     "preferred_prefix": "chembiosys.publication",
     "uri_format": "https://data.chembiosys.de/publications/$1"
@@ -9228,7 +9205,6 @@
     "example": "33",
     "homepage": "https://data.chembiosys.de/strains",
     "name": "ChemBioSys Strain",
-    "part_of": "chembiosys",
     "pattern": "^\\d+$",
     "preferred_prefix": "chembiosys.strain",
     "uri_format": "https://data.chembiosys.de/strains/$1"
@@ -9244,7 +9220,6 @@
     "example": "20",
     "homepage": "https://data.chembiosys.de/studies",
     "name": "ChemBioSys Study",
-    "part_of": "chembiosys",
     "pattern": "^\\d+$",
     "preferred_prefix": "chembiosys.study",
     "uri_format": "https://data.chembiosys.de/studies/$1"
@@ -9260,7 +9235,6 @@
     "example": "59",
     "homepage": "https://data.chembiosys.de/tags",
     "name": "ChemBioSys Tag",
-    "part_of": "chembiosys",
     "pattern": "^\\d+$",
     "preferred_prefix": "chembiosys.tag",
     "uri_format": "https://data.chembiosys.de/tags/$1"
@@ -9373,7 +9347,6 @@
       "cellosaurus": "ChEMBL-Cells"
     },
     "name": "ChEMBL database of bioactive drug-like small molecules - Cell lines section",
-    "part_of": "chembl",
     "pattern": "^CHEMBL\\d+$",
     "preferred_prefix": "chembl.cell",
     "synonyms": [
@@ -9407,7 +9380,6 @@
       "wikidata": "P592"
     },
     "name": "ChEMBL Compound",
-    "part_of": "chembl",
     "pattern": "^CHEMBL\\d+$",
     "preferred_prefix": "chembl.compound",
     "rdf_uri_format": "http://rdf.ebi.ac.uk/resource/chembl/molecule/$1",
@@ -9466,7 +9438,6 @@
       "togoid": "ChemblTarget"
     },
     "name": "ChEMBL target",
-    "part_of": "chembl",
     "pattern": "^CHEMBL\\d+$",
     "preferred_prefix": "chembl.target",
     "synonyms": [
@@ -9573,7 +9544,6 @@
       "ontology"
     ],
     "name": "ChemFOnt Chemical",
-    "part_of": "chemfont",
     "pattern": "^CFc\\d{9}$",
     "preferred_prefix": "chemfont.chemical",
     "publications": [
@@ -9616,7 +9586,6 @@
       "ontology"
     ],
     "name": "ChemFOnt Ontology",
-    "part_of": "chemfont",
     "pattern": "^CFo\\d{9}$",
     "preferred_prefix": "chemfont.ontology",
     "publications": [
@@ -10405,7 +10374,6 @@
       "miriam": "civic.aid"
     },
     "name": "CIViC Assertion",
-    "part_of": "civic",
     "pattern": "^[0-9]+$",
     "preferred_prefix": "civic.aid",
     "synonyms": [
@@ -10429,7 +10397,6 @@
       "miriam": "civic.did"
     },
     "name": "CIViC Disease",
-    "part_of": "civic",
     "pattern": "^[0-9]+$",
     "preferred_prefix": "civic.did",
     "synonyms": [
@@ -10453,7 +10420,6 @@
       "miriam": "civic.eid"
     },
     "name": "CIViC Evidence",
-    "part_of": "civic",
     "pattern": "^[0-9]+$",
     "preferred_prefix": "civic.eid",
     "synonyms": [
@@ -10481,7 +10447,6 @@
       "wikidata": "P11277"
     },
     "name": "CIViC gene",
-    "part_of": "civic",
     "pattern": "^[0-9]+$",
     "preferred_prefix": "civic.gid",
     "synonyms": [
@@ -10528,7 +10493,6 @@
       "miriam": "civic.sid"
     },
     "name": "CIViC Source",
-    "part_of": "civic",
     "pattern": "^[0-9]+$",
     "preferred_prefix": "civic.sid",
     "synonyms": [
@@ -10552,7 +10516,6 @@
       "miriam": "civic.tid"
     },
     "name": "CIViC Therapy",
-    "part_of": "civic",
     "pattern": "^[0-9]+$",
     "preferred_prefix": "civic.tid",
     "synonyms": [
@@ -10600,7 +10563,6 @@
       "wikidata": "P3329"
     },
     "name": "CIViC variant",
-    "part_of": "civic",
     "pattern": "^[0-9]+$",
     "preferred_prefix": "civic.vid",
     "synonyms": [
@@ -10966,7 +10928,47 @@
     ],
     "uri_format": "https://www.clinicaltrials.gov/study/$1"
   },
-  "clinvar": {
+  "clinvar.record": {
+    "description": "ClinVar archives reports of relationships among medically important variants and phenotypes. It records human variation, interpretations of the relationship specific variations to human health, and supporting evidence for each interpretation. Each ClinVar record (RCV identifier) represents an aggregated view of interpretations of  the same variation and condition from one or more submitters. Submissions for individual variation/phenotype combinations (SCV identifier) are also collected and made available separately. This collection references the Record Report, based on RCV accession.",
+    "example": "RCV000033555.3",
+    "homepage": "http://www.ncbi.nlm.nih.gov/clinvar/",
+    "mappings": {
+      "biocontext": "CLINVAR.RECORD",
+      "miriam": "clinvar.record",
+      "n2t": "clinvar.record"
+    },
+    "name": "ClinVar Record",
+    "pattern": "^RCV\\d+(\\.\\d+)?$",
+    "preferred_prefix": "clinvar.record",
+    "uri_format": "http://www.ncbi.nlm.nih.gov/clinvar/$1"
+  },
+  "clinvar.submission": {
+    "description": "ClinVar archives reports of relationships among medically important variants and phenotypes. It records human variation, interpretations of the relationship specific variations to human health, and supporting evidence for each interpretation. Each ClinVar record (RCV identifier) represents an aggregated view of interpretations of the same variation and condition from one or more submitters. Submissions for individual variation/phenotype combinations (SCV identifier) are also collected and made available separately. This collection references submissions, and is based on SCV accession.",
+    "example": "SCV000151292",
+    "homepage": "http://www.ncbi.nlm.nih.gov/clinvar/",
+    "mappings": {
+      "biocontext": "CLINVAR.SUBMISSION",
+      "miriam": "clinvar.submission",
+      "n2t": "clinvar.submission"
+    },
+    "name": "ClinVar Submission",
+    "pattern": "^SCV\\d+(\\.\\d+)?$",
+    "preferred_prefix": "clinvar.submission",
+    "uri_format": "http://www.ncbi.nlm.nih.gov/clinvar?term=$1"
+  },
+  "clinvar.submitter": {
+    "description": "ClinVar archives reports of relationships among medically important variants and phenotypes. It records human variation, interpretations of the relationship specific variations to human health, and supporting evidence for each interpretation. Each ClinVar record (RCV identifier) represents an aggregated view of interpretations of the same variation and condition from one or more submitters (Submitter IDs). Submissions for individual variation/phenotype combinations (SCV identifier) are also collected and made available separately. This collection references submitters (submitter ids) that submit the submissions (SCVs).",
+    "example": "26957",
+    "homepage": "https://www.ncbi.nlm.nih.gov/clinvar/",
+    "mappings": {
+      "miriam": "clinvar.submitter"
+    },
+    "name": "ClinVar Submitter",
+    "pattern": "^\\d+$",
+    "preferred_prefix": "clinvar.submitter",
+    "uri_format": "https://www.ncbi.nlm.nih.gov/clinvar/submitters/$1"
+  },
+  "clinvar.variation": {
     "contact": {
       "email": "maglott@ncbi.nlm.nih.gov",
       "name": "Donna R. Maglott",
@@ -10996,7 +10998,7 @@
     },
     "name": "ClinVar Variation",
     "pattern": "^\\d+$",
-    "preferred_prefix": "clinvar",
+    "preferred_prefix": "clinvar.variation",
     "publications": [
       {
         "doi": "10.1093/nar/gkt1113",
@@ -11007,53 +11009,10 @@
       }
     ],
     "synonyms": [
-      "clinvar.variant",
-      "clinvar.variation"
+      "clinvar",
+      "clinvar.variant"
     ],
     "uri_format": "https://www.ncbi.nlm.nih.gov/clinvar/variation/$1"
-  },
-  "clinvar.record": {
-    "description": "ClinVar archives reports of relationships among medically important variants and phenotypes. It records human variation, interpretations of the relationship specific variations to human health, and supporting evidence for each interpretation. Each ClinVar record (RCV identifier) represents an aggregated view of interpretations of  the same variation and condition from one or more submitters. Submissions for individual variation/phenotype combinations (SCV identifier) are also collected and made available separately. This collection references the Record Report, based on RCV accession.",
-    "example": "RCV000033555.3",
-    "homepage": "http://www.ncbi.nlm.nih.gov/clinvar/",
-    "mappings": {
-      "biocontext": "CLINVAR.RECORD",
-      "miriam": "clinvar.record",
-      "n2t": "clinvar.record"
-    },
-    "name": "ClinVar Record",
-    "part_of": "clinvar",
-    "pattern": "^RCV\\d+(\\.\\d+)?$",
-    "preferred_prefix": "clinvar.record",
-    "uri_format": "http://www.ncbi.nlm.nih.gov/clinvar/$1"
-  },
-  "clinvar.submission": {
-    "description": "ClinVar archives reports of relationships among medically important variants and phenotypes. It records human variation, interpretations of the relationship specific variations to human health, and supporting evidence for each interpretation. Each ClinVar record (RCV identifier) represents an aggregated view of interpretations of the same variation and condition from one or more submitters. Submissions for individual variation/phenotype combinations (SCV identifier) are also collected and made available separately. This collection references submissions, and is based on SCV accession.",
-    "example": "SCV000151292",
-    "homepage": "http://www.ncbi.nlm.nih.gov/clinvar/",
-    "mappings": {
-      "biocontext": "CLINVAR.SUBMISSION",
-      "miriam": "clinvar.submission",
-      "n2t": "clinvar.submission"
-    },
-    "name": "ClinVar Submission",
-    "part_of": "clinvar",
-    "pattern": "^SCV\\d+(\\.\\d+)?$",
-    "preferred_prefix": "clinvar.submission",
-    "uri_format": "http://www.ncbi.nlm.nih.gov/clinvar?term=$1"
-  },
-  "clinvar.submitter": {
-    "description": "ClinVar archives reports of relationships among medically important variants and phenotypes. It records human variation, interpretations of the relationship specific variations to human health, and supporting evidence for each interpretation. Each ClinVar record (RCV identifier) represents an aggregated view of interpretations of the same variation and condition from one or more submitters (Submitter IDs). Submissions for individual variation/phenotype combinations (SCV identifier) are also collected and made available separately. This collection references submitters (submitter ids) that submit the submissions (SCVs).",
-    "example": "26957",
-    "homepage": "https://www.ncbi.nlm.nih.gov/clinvar/",
-    "mappings": {
-      "miriam": "clinvar.submitter"
-    },
-    "name": "ClinVar Submitter",
-    "part_of": "clinvar",
-    "pattern": "^\\d+$",
-    "preferred_prefix": "clinvar.submitter",
-    "uri_format": "https://www.ncbi.nlm.nih.gov/clinvar/submitters/$1"
   },
   "clm": {
     "contact": {
@@ -12576,7 +12535,29 @@
     "preferred_prefix": "coexistence",
     "uri_format": "https://mamoura.eci.ufmg.br/tematres/vocab/index.php?tema=$1"
   },
-  "cog": {
+  "cog.category": {
+    "contact": {
+      "email": "cogs@ncbi.nlm.nih.gov",
+      "name": "Michael Y Galperin",
+      "orcid": "0000-0002-2265-5572"
+    },
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "Higher-level classifications of COG Pathways",
+    "example": "K",
+    "homepage": "https://www.ncbi.nlm.nih.gov/research/cog/",
+    "keywords": [
+      "pathways"
+    ],
+    "name": "COG Categories",
+    "preferred_prefix": "cog.category",
+    "uri_format": "https://www.ncbi.nlm.nih.gov/research/cog/cogcategory/$1"
+  },
+  "cog.cluster": {
     "contact": {
       "email": "cogs@ncbi.nlm.nih.gov",
       "name": "Michael Y Galperin",
@@ -12606,7 +12587,7 @@
     },
     "name": "Cluster of orthologous genes",
     "pattern": "^COG\\d+$",
-    "preferred_prefix": "cog",
+    "preferred_prefix": "cog.cluster",
     "providers": [
       {
         "code": "bio2rdf",
@@ -12632,32 +12613,10 @@
       }
     ],
     "synonyms": [
-      "COG_Cluster"
+      "COG_Cluster",
+      "cog"
     ],
     "uri_format": "https://www.ncbi.nlm.nih.gov/research/cog/cog/$1"
-  },
-  "cog.category": {
-    "contact": {
-      "email": "cogs@ncbi.nlm.nih.gov",
-      "name": "Michael Y Galperin",
-      "orcid": "0000-0002-2265-5572"
-    },
-    "contributor": {
-      "email": "cthoyt@gmail.com",
-      "github": "cthoyt",
-      "name": "Charles Tapley Hoyt",
-      "orcid": "0000-0003-4423-4370"
-    },
-    "description": "Higher-level classifications of COG Pathways",
-    "example": "K",
-    "homepage": "https://www.ncbi.nlm.nih.gov/research/cog/",
-    "keywords": [
-      "pathways"
-    ],
-    "name": "COG Categories",
-    "part_of": "cog",
-    "preferred_prefix": "cog.category",
-    "uri_format": "https://www.ncbi.nlm.nih.gov/research/cog/cogcategory/$1"
   },
   "cog.pathway": {
     "contact": {
@@ -12678,7 +12637,6 @@
       "go": "COG_Pathway"
     },
     "name": "COG Pathways",
-    "part_of": "cog",
     "preferred_prefix": "cog.pathway",
     "uri_format": "https://www.ncbi.nlm.nih.gov/research/cog/pathway/$1"
   },
@@ -12725,7 +12683,6 @@
       "protein"
     ],
     "name": "CohesinDB - cohesin site",
-    "part_of": "cohesindb",
     "pattern": "^CDBP00\\d{6}$",
     "preferred_prefix": "cohesindb.binding",
     "publications": [
@@ -12765,7 +12722,6 @@
       "gene"
     ],
     "name": "CohesinDB gene",
-    "part_of": "cohesindb",
     "pattern": "^CDBG000\\d{5}$",
     "preferred_prefix": "cohesindb.gene",
     "publications": [
@@ -12808,7 +12764,6 @@
       "protein"
     ],
     "name": "CohesinDB - cohesin-related chromatin loop",
-    "part_of": "cohesindb",
     "pattern": "^CDBL00\\d{6}$",
     "preferred_prefix": "cohesindb.loops",
     "publications": [
@@ -12900,7 +12855,6 @@
       "wikidata": "P3088"
     },
     "name": "Catalogue of Life in Taiwan",
-    "part_of": "col",
     "pattern": "^[1-9]\\d{5}$",
     "preferred_prefix": "col.taiwan",
     "reviewer": {
@@ -13502,8 +13456,25 @@
     ],
     "uri_format": "https://mips.helmholtz-muenchen.de/corum/?complex_id=$1"
   },
-  "cosmic": {
-    "comment": "Is this just HGNC Gene symbols?",
+  "cosmic.cell": {
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "COSMIC, the Catalogue Of Somatic Mutations In Cancer, is the world's largest and most comprehensive resource for exploring the impact of somatic mutations in human cancer",
+    "example": "906801",
+    "homepage": "https://cancer.sanger.ac.uk/cell_lines/",
+    "mappings": {
+      "cellosaurus": "Cosmic"
+    },
+    "name": "COSMIC Cell Lines",
+    "pattern": "^\\d+$",
+    "preferred_prefix": "cosmic.cell",
+    "uri_format": "https://cancer.sanger.ac.uk/cell_lines/sample/overview?id=$1"
+  },
+  "cosmic.gene": {
     "contact": {
       "email": "jt6@sanger.ac.uk",
       "github": "jgtate",
@@ -13519,7 +13490,6 @@
     ],
     "mappings": {
       "biocontext": "COSMIC",
-      "cellosaurus": "Cosmic",
       "edam": "3264",
       "fairsharing": "FAIRsharing.s5zmbp",
       "miriam": "cosmic",
@@ -13527,7 +13497,8 @@
     },
     "name": "COSMIC Gene",
     "pattern": "^[A-Z0-9][A-Z0-9-]*$",
-    "preferred_prefix": "cosmic",
+    "preferred_prefix": "cosmic.gene",
+    "provides": "hgnc.symbol",
     "publications": [
       {
         "doi": "10.1093/nar/gky1015",
@@ -13558,26 +13529,10 @@
         "year": 2004
       }
     ],
+    "synonyms": [
+      "cosmic"
+    ],
     "uri_format": "http://cancer.sanger.ac.uk/cosmic/gene/overview?ln=$1"
-  },
-  "cosmic.cell": {
-    "contributor": {
-      "email": "cthoyt@gmail.com",
-      "github": "cthoyt",
-      "name": "Charles Tapley Hoyt",
-      "orcid": "0000-0003-4423-4370"
-    },
-    "description": "COSMIC, the Catalogue Of Somatic Mutations In Cancer, is the world's largest and most comprehensive resource for exploring the impact of somatic mutations in human cancer",
-    "example": "906801",
-    "homepage": "https://cancer.sanger.ac.uk/cell_lines/",
-    "mappings": {
-      "cellosaurus": "Cosmic-CLP"
-    },
-    "name": "COSMIC Cell Lines",
-    "part_of": "cosmic",
-    "pattern": "^\\d+$",
-    "preferred_prefix": "cosmic.cell",
-    "uri_format": "https://cancer.sanger.ac.uk/cell_lines/sample/overview?id=$1"
   },
   "covid19": {
     "contact": {
@@ -14215,28 +14170,7 @@
     ],
     "uri_format": "http://purl.bioontology.org/ontology/CSP/$1"
   },
-  "cst": {
-    "description": "Cell Signaling Technology is a commercial organisation which provides a pathway portal to showcase their phospho-antibody products. This collection references pathways.",
-    "example": "Akt_PKB",
-    "homepage": "http://www.cellsignal.com/pathways/index.html",
-    "keywords": [
-      "biomedical science",
-      "life science"
-    ],
-    "mappings": {
-      "biocontext": "CST",
-      "fairsharing": "FAIRsharing.n8pxvx",
-      "hl7": "2.16.840.1.113883.6.62",
-      "miriam": "cst",
-      "n2t": "cst",
-      "pathguide": "193"
-    },
-    "name": "Cell Signaling Technology Pathways",
-    "pattern": "^[A-Za-z0-9_-]+$",
-    "preferred_prefix": "cst",
-    "uri_format": "http://www.cellsignal.com/reference/pathway/$1.html"
-  },
-  "cst.ab": {
+  "cst.antibody": {
     "description": "Cell Signaling Technology is a commercial organisation which provides a pathway portal to showcase their phospho-antibody products. This collection references antibody products.",
     "example": "3305",
     "homepage": "http://www.cellsignal.com/catalog/index.html",
@@ -14250,9 +14184,8 @@
       "prefixcommons": "cst"
     },
     "name": "Cell Signaling Technology Antibody",
-    "part_of": "cst",
     "pattern": "^\\d+$",
-    "preferred_prefix": "cst.ab",
+    "preferred_prefix": "cst.antibody",
     "providers": [
       {
         "code": "bio2rdf",
@@ -14262,7 +14195,33 @@
         "uri_format": "http://bio2rdf.org/cst:$1"
       }
     ],
+    "synonyms": [
+      "cst.ab"
+    ],
     "uri_format": "http://www.cellsignal.com/products/$1.html"
+  },
+  "cst.pathway": {
+    "description": "Cell Signaling Technology is a commercial organisation which provides a pathway portal to showcase their phospho-antibody products. This collection references pathways.",
+    "example": "Akt_PKB",
+    "homepage": "http://www.cellsignal.com/pathways/index.html",
+    "keywords": [
+      "biomedical science",
+      "life science"
+    ],
+    "mappings": {
+      "biocontext": "CST",
+      "fairsharing": "FAIRsharing.n8pxvx",
+      "miriam": "cst",
+      "n2t": "cst",
+      "pathguide": "193"
+    },
+    "name": "Cell Signaling Technology Pathways",
+    "pattern": "^[A-Za-z0-9_-]+$",
+    "preferred_prefix": "cst.pathway",
+    "synonyms": [
+      "cst"
+    ],
+    "uri_format": "http://www.cellsignal.com/reference/pathway/$1.html"
   },
   "cstr": {
     "description": "CSTR is an identifier for Common Science and Technology Resources, to provide persistent identification services for the positioning, traceability, citation, statistics and evaluation of science and technology resources. ",
@@ -14340,7 +14299,6 @@
       "n2t": "ctd.chemical"
     },
     "name": "CTD Chemical",
-    "part_of": "ctd",
     "pattern": "^[CD]\\d+$",
     "preferred_prefix": "ctd.chemical",
     "provides": "mesh",
@@ -14357,7 +14315,6 @@
       "n2t": "ctd.disease"
     },
     "name": "CTD Disease",
-    "part_of": "ctd",
     "pattern": "^D\\d+$",
     "preferred_prefix": "ctd.disease",
     "provides": "mesh",
@@ -14380,7 +14337,6 @@
       "uniprot": "DB-0140"
     },
     "name": "CTD Gene",
-    "part_of": "ctd",
     "pattern": "^\\d+$",
     "preferred_prefix": "ctd.gene",
     "provides": "ncbigene",
@@ -14687,7 +14643,6 @@
     "github_request_issue": 1616,
     "homepage": "https://search.dalia.education",
     "name": "DALIA Community",
-    "part_of": "dalia",
     "pattern": "^[A-Za-z0-9]{8}-[A-Za-z0-9]{4}-[A-Za-z0-9]{4}-[A-Za-z0-9]{4}-[A-Za-z0-9]{12}$",
     "preferred_prefix": "dalia.community",
     "uri_format": "https://search.dalia.education/communities/$1"
@@ -14704,7 +14659,6 @@
     "github_request_issue": 1616,
     "homepage": "https://search.dalia.education",
     "name": "DALIA Open Educational Resource",
-    "part_of": "dalia",
     "pattern": "^[A-Za-z0-9]{8}-[A-Za-z0-9]{4}-[A-Za-z0-9]{4}-[A-Za-z0-9]{4}-[A-Za-z0-9]{12}$",
     "preferred_prefix": "dalia.oer",
     "uri_format": "https://search.dalia.education/items/$1"
@@ -14789,7 +14743,21 @@
     ],
     "uri_format": "http://darcsite.genzentrum.lmu.de/darc/view.php?id=$1"
   },
-  "dashr": {
+  "dashr.expression": {
+    "description": "DASHR reports the annotation, expression and evidence for specific RNA processing (cleavage specificity scores/entropy) of human sncRNA genes, precursor and mature sncRNA products across different human tissues and cell types. DASHR integrates information from multiple existing annotation resources for small non-coding RNAs, including microRNAs (miRNAs), Piwi-interacting (piRNAs), small nuclear (snRNAs), nucleolar (snoRNAs), cytoplasmic (scRNAs), transfer (tRNAs), tRNA fragments (tRFs), and ribosomal RNAs (rRNAs). These datasets were obtained from non-diseased human tissues and cell types and were generated for studying or profiling small non-coding RNAs. This collection references RNA expression.",
+    "example": "hsa-mir-200a",
+    "homepage": "https://dashr1.lisanwanglab.org/show-expression-table.php?start=0",
+    "mappings": {
+      "biocontext": "DASHR.EXPRESSION",
+      "miriam": "dashr.expression",
+      "n2t": "dashr.expression"
+    },
+    "name": "DASHR expression",
+    "pattern": "^(hsa-(let|mir)-\\w+(-\\w+)?)|(piR-\\d+)|(chr\\w+.tRNA\\d+-\\w+)|(chr\\w+.tRNA\\d+-\\w+-tRF\\d)|((SNORD|SNORA|ACA|HBII|HBI|U)(-)?\\w+)|(HY\\d\\+(-L\\d+)?)|((LSU|SSU|5S)(-rRNA_Hsa)?(-L\\d+)?)$",
+    "preferred_prefix": "dashr.expression",
+    "uri_format": "https://dashr1.lisanwanglab.org/entry/hsa-mir-200a#$1#exprPerTissueTable"
+  },
+  "dashr.rna": {
     "contact": {
       "email": "dashr@lisanwanglab.org",
       "name": "Li-San Wang",
@@ -14809,7 +14777,7 @@
     },
     "name": "Database of small human noncoding RNAs",
     "pattern": "^(hsa-(let|mir)-\\w+(-\\w+)?)|(piR-\\d+)|(chr\\w+.tRNA\\d+-\\w+)|(chr\\w+.tRNA\\d+-\\w+-tRF\\d)|((SNORD|SNORA|ACA|HBII|HBI|U)(-)?\\w+)|(HY\\d\\+(-L\\d+)?)|((LSU|SSU|5S)(-rRNA_Hsa)?(-L\\d+)?)$",
-    "preferred_prefix": "dashr",
+    "preferred_prefix": "dashr.rna",
     "publications": [
       {
         "doi": "10.1093/nar/gkv1188",
@@ -14819,22 +14787,10 @@
         "year": 2015
       }
     ],
+    "synonyms": [
+      "dashr"
+    ],
     "uri_format": "http://lisanwanglab.org/DASHR/entry/$1"
-  },
-  "dashr.expression": {
-    "description": "DASHR reports the annotation, expression and evidence for specific RNA processing (cleavage specificity scores/entropy) of human sncRNA genes, precursor and mature sncRNA products across different human tissues and cell types. DASHR integrates information from multiple existing annotation resources for small non-coding RNAs, including microRNAs (miRNAs), Piwi-interacting (piRNAs), small nuclear (snRNAs), nucleolar (snoRNAs), cytoplasmic (scRNAs), transfer (tRNAs), tRNA fragments (tRFs), and ribosomal RNAs (rRNAs). These datasets were obtained from non-diseased human tissues and cell types and were generated for studying or profiling small non-coding RNAs. This collection references RNA expression.",
-    "example": "hsa-mir-200a",
-    "homepage": "https://dashr1.lisanwanglab.org/show-expression-table.php?start=0",
-    "mappings": {
-      "biocontext": "DASHR.EXPRESSION",
-      "miriam": "dashr.expression",
-      "n2t": "dashr.expression"
-    },
-    "name": "DASHR expression",
-    "part_of": "dashr",
-    "pattern": "^(hsa-(let|mir)-\\w+(-\\w+)?)|(piR-\\d+)|(chr\\w+.tRNA\\d+-\\w+)|(chr\\w+.tRNA\\d+-\\w+-tRF\\d)|((SNORD|SNORA|ACA|HBII|HBI|U)(-)?\\w+)|(HY\\d\\+(-L\\d+)?)|((LSU|SSU|5S)(-rRNA_Hsa)?(-L\\d+)?)$",
-    "preferred_prefix": "dashr.expression",
-    "uri_format": "https://dashr1.lisanwanglab.org/entry/hsa-mir-200a#$1#exprPerTissueTable"
   },
   "datacite": {
     "contact": {
@@ -14897,7 +14853,6 @@
       "miriam": "datanator.gene"
     },
     "name": "Datanator Gene",
-    "part_of": "datanator",
     "pattern": "^K[0-9]+$",
     "preferred_prefix": "datanator.gene",
     "uri_format": "https://www.datanator.info/gene/$1"
@@ -14910,7 +14865,6 @@
       "miriam": "datanator.metabolite"
     },
     "name": "Datanator Metabolite",
-    "part_of": "datanator",
     "pattern": "^[A-Z\\-]+$",
     "preferred_prefix": "datanator.metabolite",
     "uri_format": "https://www.datanator.info/metabolite/$1"
@@ -15223,7 +15177,7 @@
     },
     "name": "DBLP author ID",
     "preferred_prefix": "dblp.author",
-    "rdf_uri_format": "https://dblp.org/pid/$1.rdf",
+    "rdf_uri_format": "https://dblp.org/pid/$1",
     "uri_format": "https://dblp.org/pid/$1"
   },
   "dbmhc": {
@@ -15264,27 +15218,6 @@
     "preferred_prefix": "dbo",
     "uri_format": "https://dbpedia.org/ontology/$1"
   },
-  "dbpedia": {
-    "contributor": {
-      "email": "cthoyt@gmail.com",
-      "github": "cthoyt",
-      "name": "Charles Tapley Hoyt",
-      "orcid": "0000-0003-4423-4370"
-    },
-    "description": "A semi-automatically generated knowledgebase",
-    "example": "Grenada",
-    "github_request_issue": 1315,
-    "homepage": "https://dbpedia.org",
-    "mappings": {
-      "re3data": "r3d100011713"
-    },
-    "name": "DBPedia Resource",
-    "preferred_prefix": "dbpedia",
-    "synonyms": [
-      "dbr"
-    ],
-    "uri_format": "http://dbpedia.org/resource/$1"
-  },
   "dbpedia.property": {
     "appears_in": [
       "fovt"
@@ -15300,9 +15233,30 @@
     "github_request_issue": 1420,
     "homepage": "http://dbpedia.org/property",
     "name": "DBPedia Property",
-    "part_of": "dbpedia",
     "preferred_prefix": "dbpedia.property",
     "uri_format": "http://dbpedia.org/property/$1"
+  },
+  "dbpedia.resource": {
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "A semi-automatically generated knowledgebase",
+    "example": "Grenada",
+    "github_request_issue": 1315,
+    "homepage": "https://dbpedia.org",
+    "mappings": {
+      "re3data": "r3d100011713"
+    },
+    "name": "DBPedia Resource",
+    "preferred_prefix": "dbpedia.resource",
+    "synonyms": [
+      "dbpedia",
+      "dbr"
+    ],
+    "uri_format": "http://dbpedia.org/resource/$1"
   },
   "dbprobe": {
     "deprecated": true,
@@ -15534,7 +15488,6 @@
       "zazuko": "dcam"
     },
     "name": "Dublin Core Metadata Initiative Abstract Model",
-    "part_of": "dc",
     "preferred_prefix": "dcam",
     "rdf_uri_format": "http://purl.org/dc/dcam/$1",
     "uri_format": "http://purl.org/dc/dcam/$1"
@@ -15634,7 +15587,6 @@
       "biocontext": "dctypes"
     },
     "name": "Dublin Core Types",
-    "part_of": "dc",
     "preferred_prefix": "dctypes",
     "uri_format": "http://purl.org/dc/dcmitype/$1"
   },
@@ -15992,7 +15944,6 @@
     "homepage": "https://deims.org",
     "license": "CC-BY-NC-4.0",
     "name": "Dynamic Ecological Information Management System - Site and Dataset Registry - Activity",
-    "part_of": "deims",
     "pattern": "^[0-9a-f\\-]+$",
     "preferred_prefix": "deims.activity",
     "providers": [
@@ -16044,7 +15995,6 @@
     "homepage": "https://deims.org",
     "license": "CC-BY-NC-4.0",
     "name": "Dynamic Ecological Information Management System - Site and Dataset Registry - Dataset",
-    "part_of": "deims",
     "pattern": "^[0-9a-f\\-]+$",
     "preferred_prefix": "deims.dataset",
     "providers": [
@@ -16096,7 +16046,6 @@
     "homepage": "https://deims.org",
     "license": "CC-BY-NC-4.0",
     "name": "Dynamic Ecological Information Management System - Site and Dataset Registry - Locations",
-    "part_of": "deims",
     "pattern": "^[0-9a-f\\-]+$",
     "preferred_prefix": "deims.location",
     "providers": [
@@ -16148,7 +16097,6 @@
     "homepage": "https://deims.org",
     "license": "CC-BY-NC-4.0",
     "name": "Dynamic Ecological Information Management System - Site and Dataset Registry - Network",
-    "part_of": "deims",
     "pattern": "^[0-9a-f\\-]+$",
     "preferred_prefix": "deims.network",
     "publications": [
@@ -16191,7 +16139,6 @@
     "homepage": "https://deims.org",
     "license": "CC-BY-NC-4.0",
     "name": "Dynamic Ecological Information Management System - Site and Dataset Registry - Sensor",
-    "part_of": "deims",
     "pattern": "^[0-9a-f\\-]+$",
     "preferred_prefix": "deims.sensor",
     "providers": [
@@ -16244,7 +16191,6 @@
     "homepage": "https://deims.org/",
     "license": "CC-BY-NC-4.0",
     "name": "Dynamic Ecological Information Management System - Site and dataset registry",
-    "part_of": "deims",
     "pattern": "^[0-9a-f\\-]+$",
     "preferred_prefix": "deims.site",
     "providers": [
@@ -16305,7 +16251,6 @@
     "homepage": "https://deims.org",
     "license": "CC-BY-NC-4.0",
     "name": "Dynamic Ecological Information Management System - Site and Dataset Registry - Taxonomy",
-    "part_of": "deims",
     "pattern": "^\\d+$",
     "preferred_prefix": "deims.taxonomy",
     "publications": [
@@ -16930,7 +16875,6 @@
       "n2t": "dictybase.est"
     },
     "name": "dictyBase Expressed Sequence Tag",
-    "part_of": "dictybase",
     "pattern": "^DDB\\d+$",
     "preferred_prefix": "dictybase.est",
     "uri_format": "http://dictybase.org/db/cgi-bin/feature_page.pl?primary_id=$1"
@@ -17347,7 +17291,6 @@
       "miriam": "dlxb"
     },
     "name": "Linear double stranded DNA sequences",
-    "part_of": "dlx",
     "pattern": "^[A-Z0-9]{6,7}$",
     "preferred_prefix": "dlxb",
     "uri_format": "https://doulix.com/biomodules/$1"
@@ -17360,7 +17303,6 @@
       "miriam": "dlxc"
     },
     "name": "Circular double stranded DNA sequences composed",
-    "part_of": "dlx",
     "pattern": "^[A-Z0-9]{6,7}$",
     "preferred_prefix": "dlxc",
     "uri_format": "https://doulix.com/constructs/$1"
@@ -17982,7 +17924,6 @@
       "prefixcommons": "doqcs.model"
     },
     "name": "Database of Quantitative Cellular Signaling: Model",
-    "part_of": "doqcs",
     "pattern": "^\\d+$",
     "preferred_prefix": "doqcs.model",
     "providers": [
@@ -18024,7 +17965,6 @@
       "prefixcommons": "doqcs.pathway"
     },
     "name": "Database of Quantitative Cellular Signaling: Pathway",
-    "part_of": "doqcs",
     "pattern": "^\\d+$",
     "preferred_prefix": "doqcs.pathway",
     "providers": [
@@ -18258,7 +18198,6 @@
       "n2t": "dragondb.allele"
     },
     "name": "DragonDB Allele",
-    "part_of": "dragondb",
     "pattern": "^\\w+$",
     "preferred_prefix": "dragondb.allele",
     "uri_format": "http://antirrhinum.net/cgi-bin/ace/generic/tree/DragonDB?name=$1&amp;class=Allele"
@@ -18275,7 +18214,6 @@
       "n2t": "dragondb.dna"
     },
     "name": "DragonDB DNA",
-    "part_of": "dragondb",
     "pattern": "^\\d\\w+$",
     "preferred_prefix": "dragondb.dna",
     "uri_format": "http://antirrhinum.net/cgi-bin/ace/generic/tree/DragonDB?name=$1;class=DNA"
@@ -18292,7 +18230,6 @@
       "n2t": "dragondb.locus"
     },
     "name": "DragonDB Locus",
-    "part_of": "dragondb",
     "pattern": "^\\w+$",
     "preferred_prefix": "dragondb.locus",
     "uri_format": "http://antirrhinum.net/cgi-bin/ace/generic/tree/DragonDB?name=$1&amp;class=Locus"
@@ -18309,7 +18246,6 @@
       "n2t": "dragondb.protein"
     },
     "name": "DragonDB Protein",
-    "part_of": "dragondb",
     "pattern": "^\\w+$",
     "preferred_prefix": "dragondb.protein",
     "uri_format": "http://antirrhinum.net/cgi-bin/ace/generic/tree/DragonDB?name=$1;class=Peptide"
@@ -18435,7 +18371,6 @@
       "fairsharing": "FAIRsharing.FSIfv8"
     },
     "name": "Domain Resource Application Ontology",
-    "part_of": "fairsharing",
     "pattern": "^\\d{7}$",
     "preferred_prefix": "drao",
     "repository": "https://github.com/FAIRsharing/domain-ontology",
@@ -18703,7 +18638,6 @@
       "n2t": "drugbankv4.target"
     },
     "name": "DrugBank Target v4",
-    "part_of": "drugbank",
     "pattern": "^BE\\d{7}$",
     "preferred_prefix": "drugbank.bioentity",
     "synonyms": [
@@ -18736,7 +18670,6 @@
     ],
     "logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fd/Drugbank_logo.svg/1280px-Drugbank_logo.svg.png",
     "name": "DrugBank Drug Category",
-    "part_of": "drugbank",
     "pattern": "^DBCAT\\d+$",
     "preferred_prefix": "drugbank.category",
     "uri_format": "https://www.drugbank.ca/categories/$1"
@@ -18759,7 +18692,6 @@
     "homepage": "https://go.drugbank.com",
     "logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fd/Drugbank_logo.svg/1280px-Drugbank_logo.svg.png",
     "name": "DrugBank Condition",
-    "part_of": "drugbank",
     "pattern": "^DBCOND\\d+$",
     "preferred_prefix": "drugbank.condition",
     "uri_format": "https://go.drugbank.com/indications/$1"
@@ -18782,7 +18714,6 @@
     "homepage": "https://go.drugbank.com",
     "logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fd/Drugbank_logo.svg/1280px-Drugbank_logo.svg.png",
     "name": "DrugBank Metabolite",
-    "part_of": "drugbank",
     "pattern": "^DBMET\\d+$",
     "preferred_prefix": "drugbank.metabolite",
     "uri_format": "https://go.drugbank.com/metabolites/$1"
@@ -18805,7 +18736,6 @@
     "homepage": "https://go.drugbank.com",
     "logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fd/Drugbank_logo.svg/1280px-Drugbank_logo.svg.png",
     "name": "DrugBank Reaction",
-    "part_of": "drugbank",
     "pattern": "^\\d+$",
     "preferred_prefix": "drugbank.reaction",
     "uri_format": "https://go.drugbank.com/reactions/$1"
@@ -18834,7 +18764,6 @@
     ],
     "logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fd/Drugbank_logo.svg/1280px-Drugbank_logo.svg.png",
     "name": "DrugBank Salts",
-    "part_of": "drugbank",
     "pattern": "^DBSALT\\d{6}$",
     "preferred_prefix": "drugbank.salt",
     "uri_format": "https://go.drugbank.com/salts/$1"
@@ -19748,7 +19677,8 @@
     "references": [
       "https://github.com/biopragmatics/bioregistry/issues/257",
       "https://en.wikipedia.org/wiki/European_Community_number"
-    ]
+    ],
+    "uri_format": "https://www.echa.europa.eu/information-on-chemicals/ec-inventory/-/dislist/details/$1"
   },
   "eco": {
     "banana": "ECO",
@@ -20184,7 +20114,6 @@
       "n2t": "ecyano.entity"
     },
     "name": "E-cyanobacterium entity",
-    "part_of": "ecyano",
     "pattern": "^\\d+$",
     "preferred_prefix": "ecyano.entity",
     "uri_format": "https://www.e-cyanobacterium.org/bcs/entity/$1"
@@ -20197,7 +20126,6 @@
       "miriam": "ecyano.experiment"
     },
     "name": "E-cyanobacterium Experimental Data",
-    "part_of": "ecyano",
     "pattern": "^\\d+$",
     "preferred_prefix": "ecyano.experiment",
     "uri_format": "https://www.e-cyanobacterium.org/experiments-repository/?action=detail&id=$1"
@@ -20226,7 +20154,6 @@
       "n2t": "ecyano.rule"
     },
     "name": "E-cyanobacterium rule",
-    "part_of": "ecyano",
     "pattern": "^\\d+$",
     "preferred_prefix": "ecyano.rule",
     "uri_format": "https://e-cyanobacterium.org/bcs/rule/$1"
@@ -20326,7 +20253,6 @@
       "biolink": "EDAM-DATA"
     },
     "name": "EDAM Data",
-    "part_of": "edam",
     "pattern": "^\\d+$",
     "preferred_prefix": "edam.data",
     "repository": "https://github.com/edamontology/edamontology",
@@ -20357,7 +20283,6 @@
       "biolink": "EDAM-FORMAT"
     },
     "name": "EDAM Format",
-    "part_of": "edam",
     "pattern": "^\\d+$",
     "preferred_prefix": "edam.format",
     "repository": "https://github.com/edamontology/edamontology",
@@ -20388,7 +20313,6 @@
       "biolink": "EDAM-OPERATION"
     },
     "name": "EDAM Operation",
-    "part_of": "edam",
     "pattern": "^\\d+$",
     "preferred_prefix": "edam.operation",
     "repository": "https://github.com/edamontology/edamontology",
@@ -20419,7 +20343,6 @@
       "biolink": "EDAM-TOPIC"
     },
     "name": "EDAM Topic",
-    "part_of": "edam",
     "pattern": "^\\d+$",
     "preferred_prefix": "edam.topic",
     "repository": "https://github.com/edamontology/edamontology",
@@ -21261,7 +21184,6 @@
     ],
     "homepage": "https://www.iucr.org/resources/cif",
     "name": "Crystallographic Information Framework",
-    "part_of": "emmo",
     "preferred_prefix": "emmo.cif",
     "repository": "https://github.com/emmo-repo/CIF-ontology",
     "uri_format": "http://emmo.info/emmo/cif-core#$1"
@@ -21644,7 +21566,6 @@
     "example": "2",
     "homepage": "https://images.endlessforms.info/",
     "name": "EndlessForms Studio Image Collections",
-    "part_of": "endlessforms",
     "pattern": "^\\d+$",
     "preferred_prefix": "endlessforms.collection",
     "uri_format": "https://images.endlessforms.info/collection/$1"
@@ -21665,7 +21586,6 @@
     "example": "HUMAN0000174",
     "homepage": "https://graphics.endlessforms.info",
     "name": "EndlessForms Studio Element",
-    "part_of": "endlessforms",
     "preferred_prefix": "endlessforms.element",
     "uri_format": "https://graphics.endlessforms.info/element?id=$1"
   },
@@ -21685,7 +21605,6 @@
     "example": "HUMAN0000789",
     "homepage": "https://endlessforms.info",
     "name": "EndlessForms Studio Graphic",
-    "part_of": "endlessforms",
     "preferred_prefix": "endlessforms.graphic",
     "uri_format": "https://endlessforms.info/graphics/$1"
   },
@@ -21706,7 +21625,6 @@
     "homepage": "https://images.endlessforms.info/",
     "license": "CC-BY-NC-4.0",
     "name": "EndlessForms Studio Image",
-    "part_of": "endlessforms",
     "pattern": "^\\d+$",
     "preferred_prefix": "endlessforms.image",
     "uri_format": "https://images.endlessforms.info/image/$1"
@@ -21727,7 +21645,6 @@
     "example": "HUMAN0000001",
     "homepage": "https://graphics.endlessforms.info",
     "name": "EndlessForms Studio Library",
-    "part_of": "endlessforms",
     "preferred_prefix": "endlessforms.library",
     "uri_format": "https://graphics.endlessforms.info/library?id=$1"
   },
@@ -21747,7 +21664,6 @@
     "example": "HUMAN0000304",
     "homepage": "https://graphics.endlessforms.info",
     "name": "EndlessForms Studio Unit",
-    "part_of": "endlessforms",
     "preferred_prefix": "endlessforms.unit",
     "uri_format": "https://graphics.endlessforms.info/unit?id=$1"
   },
@@ -22270,7 +22186,6 @@
       "uniprot": "DB-0147"
     },
     "name": "Ensembl Bacteria",
-    "part_of": "ensembl",
     "pattern": "^((EB\\w+)|([A-Z0-9]+\\_[A-Z0-9]+))$",
     "preferred_prefix": "ensembl.bacteria",
     "providers": [
@@ -22334,7 +22249,6 @@
       "uniprot": "DB-0148"
     },
     "name": "Ensembl Fungi, the Ensembl database for accessing genome-scale data from fungi.",
-    "part_of": "ensembl",
     "pattern": "^[A-Z-a-z0-9]+$",
     "preferred_prefix": "ensembl.fungi",
     "providers": [
@@ -22391,7 +22305,6 @@
       "uniprot": "DB-0149"
     },
     "name": "Ensembl Metazoa, the Ensembl database for accessing genome-scale data from non-vertebrate metazoa.",
-    "part_of": "ensembl",
     "pattern": "^\\w+(\\.)?\\d+$",
     "preferred_prefix": "ensembl.metazoa",
     "providers": [
@@ -22436,7 +22349,6 @@
       "prefixcommons": "ensembl.plant"
     },
     "name": "Ensembl Plants",
-    "part_of": "ensembl",
     "pattern": "^\\w+(\\.\\d+)?(\\.\\d+)?$",
     "preferred_prefix": "ensembl.plant",
     "providers": [
@@ -22464,7 +22376,6 @@
       "prefixcommons": "ensembl.protist"
     },
     "name": "Ensembl Protists",
-    "part_of": "ensembl",
     "pattern": "^\\w+$",
     "preferred_prefix": "ensembl.protist",
     "providers": [
@@ -23649,7 +23560,7 @@
       "name": "d3fk"
     },
     "description": "The EVORAO Ontology provides a structured and harmonized vocabulary for describing shareable pathogens as characterized biological materials, along with their derived products and associated services, organized into collections. Developed within the EVORA project, it supports consistent metadata annotation across research infrastructures, promoting findability, accessibility, interoperability, and reusability (FAIR). By aligning with relevant standards and ontologies, EVORAO facilitates cross-domain collaboration, integration, and sharing of pathogenic resources and services to enhance pandemic preparedness and response. While initially focused on virology, EVORAO is designed to be extensible and also supports metadata harmonization for other pathogens. [from repository]",
-    "download_owl": "http://aber-owl.net/media/ontologies/EVORAO/12/evorao.owl",
+    "download_owl": "http://aber-owl.net/media/ontologies/EVORAO/13/evorao.owl",
     "download_rdf": "https://raw.githubusercontent.com/EVORA-project/evora-ontology/refs/heads/main/models/owl/evora_ontology.owl.ttl",
     "example": "AlternateName",
     "homepage": "https://github.com/EVORA-project/evora-ontology",
@@ -23984,7 +23895,6 @@
     "example": "3851",
     "homepage": "https://fairsharing.org",
     "name": "FAIRsharing Organization",
-    "part_of": "fairsharing",
     "pattern": "^\\d+$",
     "preferred_prefix": "fairsharing.organization",
     "uri_format": "https://fairsharing.org/organisations/$1"
@@ -24006,7 +23916,6 @@
     "example": "5112",
     "homepage": "https://fairsharing.org",
     "name": "FAIRsharing User",
-    "part_of": "fairsharing",
     "pattern": "^\\d+$",
     "preferred_prefix": "fairsharing.user",
     "uri_format": "https://fairsharing.org/users/$1"
@@ -24153,7 +24062,6 @@
     "github_request_issue": 872,
     "homepage": "https://www.fao.org/fishery/en/collection/asfis/en",
     "name": "Aquatic Sciences and Fisheries Information System",
-    "part_of": "fao",
     "pattern": "^\\d+$",
     "preferred_prefix": "fao.asfis",
     "reviewer": {
@@ -24345,7 +24253,6 @@
       "wikidata.entity": "Q81661622"
     },
     "name": "FlyBase Controlled Vocabulary",
-    "part_of": "flybase",
     "pattern": "^\\d{7}$",
     "preferred_prefix": "FBcv",
     "providers": [
@@ -24471,7 +24378,6 @@
     "example": "0187632",
     "homepage": "https://flybase.org",
     "name": "FlyBase Reference Report",
-    "part_of": "flybase",
     "pattern": "^\\d{7}$",
     "preferred_prefix": "fbrf",
     "uri_format": "https://flybase.org/reports/FBrf$1"
@@ -24502,7 +24408,6 @@
       "wikidata.entity": "Q114677887"
     },
     "name": "Fly taxonomy",
-    "part_of": "flybase",
     "pattern": "^\\d{8}$",
     "preferred_prefix": "FBSP",
     "rdf_uri_format": "http://purl.obolibrary.org/obo/FBSP_$1",
@@ -24523,7 +24428,6 @@
       "cellosaurus": "FlyBase_Cell_line"
     },
     "name": "Flybase Cell Line",
-    "part_of": "flybase",
     "pattern": "^\\d{7}$",
     "preferred_prefix": "fbtc",
     "synonyms": [
@@ -24792,7 +24696,6 @@
         "ror": "02catss52"
       }
     ],
-    "part_of": "chebi",
     "pattern": "^\\d{7}$",
     "preferred_prefix": "FIX",
     "providers": [
@@ -25629,7 +25532,6 @@
       "wikidata": "P7720"
     },
     "name": "Fossilworks Journal",
-    "part_of": "fossilworks",
     "pattern": "^\\d+$",
     "preferred_prefix": "fossilworks.journal",
     "reviewer": {
@@ -25655,7 +25557,6 @@
       "wikidata": "P842"
     },
     "name": "Fossilworks Taxon",
-    "part_of": "fossilworks",
     "pattern": "^[1-9]\\d{0,5}$",
     "preferred_prefix": "fossilworks.taxon",
     "reviewer": {
@@ -25858,7 +25759,6 @@
       "lov": "frbrer"
     },
     "name": "Functional Requirements for Bibliographic Records Entity-Relationship Model",
-    "part_of": "frbr",
     "preferred_prefix": "frbrer",
     "uri_format": "http://iflastandards.info/ns/fr/frbr/frbrer/$1"
   },
@@ -26720,7 +26620,6 @@
       "wikidata.entity": "Q1485161"
     },
     "name": "General Multilingual Environmental Thesaurus Concept",
-    "part_of": "gemet",
     "pattern": "^\\d+$",
     "preferred_prefix": "gemet.concept",
     "providers": [
@@ -26747,7 +26646,6 @@
     "homepage": "https://www.eionet.europa.eu/gemet/en/groups/",
     "license": "CC-BY-4.0",
     "name": "General Multilingual Environmental Thesaurus Group",
-    "part_of": "gemet",
     "pattern": "^\\d+$",
     "preferred_prefix": "gemet.group",
     "rdf_uri_format": "http://www.eionet.europa.eu/gemet/group/$1",
@@ -26765,7 +26663,6 @@
     "homepage": "https://www.eionet.europa.eu/gemet/en",
     "license": "CC-BY-4.0",
     "name": "General Multilingual Environmental Thesaurus Relation",
-    "part_of": "gemet",
     "pattern": "^\\d+$",
     "preferred_prefix": "gemet.relation",
     "uri_format": "https://www.eionet.europa.eu/gemet/en/relations/$1"
@@ -26782,7 +26679,6 @@
     "homepage": "https://www.eionet.europa.eu/gemet/en/themes",
     "license": "CC-BY-4.0",
     "name": "General Multilingual Environmental Thesaurus Theme",
-    "part_of": "gemet",
     "pattern": "^\\d+$",
     "preferred_prefix": "gemet.theme",
     "rdf_uri_format": "http://www.eionet.europa.eu/gemet/theme/$1",
@@ -27054,7 +26950,7 @@
     },
     "uri_format": "http://caps.ncbs.res.in/cgi-bin/mini/databases/gendis/sf.cgi?code=$1"
   },
-  "genecards": {
+  "genecards.gene": {
     "contact": {
       "email": "marilyn.safran@weizmann.ac.il",
       "name": "Marilyn Safran",
@@ -27079,9 +26975,9 @@
       "re3data": "r3d100012015",
       "uniprot": "DB-0030"
     },
-    "name": "GeneCards",
+    "name": "GeneCards Gene",
     "pattern": "^[A-Za-z-0-9_]+(\\@)?$",
-    "preferred_prefix": "genecards",
+    "preferred_prefix": "genecards.gene",
     "providers": [
       {
         "code": "bio2rdf",
@@ -27150,6 +27046,9 @@
         "title": "GeneCards: integrating information about genes, proteins and diseases."
       }
     ],
+    "synonyms": [
+      "genecards"
+    ],
     "uri_format": "https://www.genecards.org/cgi-bin/carddisp.pl?gene=$1"
   },
   "genecards.geneannot": {
@@ -27163,7 +27062,6 @@
       "prefixcommons": "geneannot"
     },
     "name": "GeneAnnot: Microarray Gene Annotation",
-    "part_of": "genecards",
     "preferred_prefix": "genecards.geneannot",
     "providers": [
       {
@@ -27186,7 +27084,6 @@
       "prefixcommons": "geneloc"
     },
     "name": "Gene Location",
-    "part_of": "genecards",
     "preferred_prefix": "genecards.geneloc",
     "providers": [
       {
@@ -27216,7 +27113,6 @@
       "prefixcommons": "genenote"
     },
     "name": "Gene Normal Tissue Expression",
-    "part_of": "genecards",
     "preferred_prefix": "genecards.genenote",
     "providers": [
       {
@@ -27439,8 +27335,7 @@
       "fairsharing": "FAIRsharing.t3snf",
       "integbio": "nbdc00834",
       "miriam": "genewiki",
-      "n2t": "genewiki",
-      "uniprot": "DB-0180"
+      "n2t": "genewiki"
     },
     "name": "Gene Wiki",
     "pattern": "^\\d+$",
@@ -27743,7 +27638,6 @@
     "license": "CC-BY-4.0",
     "logo": "https://www.geonames.org/img/globe.gif",
     "name": "GeoNames Feature Code",
-    "part_of": "geonames",
     "preferred_prefix": "geonames.feature",
     "uri_format": "https://www.geonames.org/recent-changes/featurecode/$1/"
   },
@@ -27945,7 +27839,6 @@
       "version control"
     ],
     "name": "GitHub Issue",
-    "part_of": "github",
     "preferred_prefix": "github.issue",
     "uri_format": "https://bioregistry.io/resolve/github/issue/$1"
   },
@@ -27966,7 +27859,6 @@
       "version control"
     ],
     "name": "GitHub Pull Request",
-    "part_of": "github",
     "preferred_prefix": "github.pull",
     "uri_format": "https://bioregistry.io/resolve/github/pull/$1"
   },
@@ -28341,7 +28233,6 @@
       "n2t": "gmd.analyte"
     },
     "name": "Golm Metabolome Database Analyte",
-    "part_of": "gmd",
     "pattern": "^([0-9a-fA-F]){8}(-([0-9a-fA-F]){4}){3}-([0-9a-fA-F]){12}$",
     "preferred_prefix": "gmd.analyte",
     "uri_format": "http://gmd.mpimp-golm.mpg.de/Analytes/$1"
@@ -28356,7 +28247,6 @@
       "n2t": "gmd.gcms"
     },
     "name": "Golm Metabolome Database GC-MS spectra",
-    "part_of": "gmd",
     "pattern": "^([0-9a-fA-F]){8}(-([0-9a-fA-F]){4}){3}-([0-9a-fA-F]){12}$",
     "preferred_prefix": "gmd.gcms",
     "uri_format": "http://gmd.mpimp-golm.mpg.de/Spectrums/$1"
@@ -28371,7 +28261,6 @@
       "n2t": "gmd.profile"
     },
     "name": "Golm Metabolome Database Profile",
-    "part_of": "gmd",
     "pattern": "^([0-9a-fA-F]){8}(-([0-9a-fA-F]){4}){3}-([0-9a-fA-F]){12}$",
     "preferred_prefix": "gmd.profile",
     "uri_format": "http://gmd.mpimp-golm.mpg.de/profile/default.aspx?XemlId=$1"
@@ -28386,7 +28275,6 @@
       "n2t": "gmd.ref"
     },
     "name": "Golm Metabolome Database Reference Substance",
-    "part_of": "gmd",
     "pattern": "^([0-9a-fA-F]){8}(-([0-9a-fA-F]){4}){3}-([0-9a-fA-F]){12}$",
     "preferred_prefix": "gmd.ref",
     "uri_format": "http://gmd.mpimp-golm.mpg.de/ReferenceSubstances/$1"
@@ -28872,7 +28760,6 @@
       "biolink": "gpi"
     },
     "name": "Gene Product Information Schema",
-    "part_of": "go",
     "preferred_prefix": "go.gpi",
     "uri_format": "http://geneontology.org/docs/gene-product-information-gpi-format/#$1"
   },
@@ -28900,7 +28787,6 @@
       "go": "gomodel"
     },
     "name": "Gene Ontology Causal Activity Model",
-    "part_of": "go",
     "preferred_prefix": "go.model",
     "providers": [
       {
@@ -28926,7 +28812,6 @@
     },
     "name": "Gene Ontology Database references",
     "namespace_in_lui": true,
-    "part_of": "go",
     "pattern": "^\\d{7}$",
     "preferred_prefix": "go.ref",
     "providers": [
@@ -28951,7 +28836,6 @@
     "example": "CHEBI",
     "homepage": "https://raw.githubusercontent.com/geneontology/go-site/master/metadata/db-xrefs.yaml",
     "name": "Gene Ontology Registry",
-    "part_of": "go",
     "preferred_prefix": "go.resource",
     "uri_format": "https://bioregistry.io/metaregistry/go/$1"
   },
@@ -28966,7 +28850,6 @@
     "example": "0000004",
     "homepage": "https://github.com/geneontology/go-site/tree/master/metadata/rules",
     "name": "Gene Ontology Rules",
-    "part_of": "go",
     "pattern": "^\\d{7}$",
     "preferred_prefix": "GORULE",
     "uri_format": "https://github.com/geneontology/go-site/blob/master/metadata/rules/gorule-$1.md"
@@ -28998,7 +28881,6 @@
       "prefixcommons": "goa"
     },
     "name": "Gene Ontology Annotation Database",
-    "part_of": "go",
     "pattern": "^(([A-N,R-Z][0-9][A-Z][A-Z, 0-9][A-Z, 0-9][0-9])|([O,P,Q][0-9][A-Z, 0-9][A-Z, 0-9][A-Z, 0-9][0-9]))|(URS[0-9A-F]{10}(_[0-9]+){0,1})|(EBI-[0-9]+)$",
     "preferred_prefix": "goa",
     "providers": [
@@ -29044,7 +28926,6 @@
       "ontology"
     ],
     "name": "GO Chemicals",
-    "part_of": "go",
     "pattern": "^\\d+$",
     "preferred_prefix": "GOCHE",
     "rdf_uri_format": "http://purl.obolibrary.org/obo/GOCHE_$1",
@@ -29071,7 +28952,6 @@
     "example": "IPI",
     "homepage": "http://geneontology.org/docs/guide-go-evidence-codes/",
     "name": "GO Evidence Code",
-    "part_of": "go",
     "preferred_prefix": "goeco"
   },
   "gold": {
@@ -29167,6 +29047,7 @@
     "uri_format": "https://gold.jgi.doe.gov/resolver?id=$1"
   },
   "gold.genome": {
+    "deprecated": true,
     "description": "- DEPRECATION NOTE -\nPlease, keep in mind that this namespace has been superseeded by ‘gold’ prefix at https://registry.identifiers.org/registry/gold, and this namespace is kept here for support to already existing citations, new ones would need to use the pointed ‘gold’ namespace.\n\nThe GOLD (Genomes OnLine Database)is a resource for centralised monitoring of genome and metagenome projects worldwide. It stores information on complete and ongoing projects, along with their associated metadata. This collection references the sequencing status of individual genomes.",
     "example": "Gi07796",
     "homepage": "http://www.genomesonline.org/cgi-bin/GOLD/index.cgi",
@@ -29176,9 +29057,9 @@
       "n2t": "gold.genome"
     },
     "name": "GOLD genome",
-    "part_of": "gold",
     "pattern": "^(Gi|Gc)\\d+$",
     "preferred_prefix": "gold.genome",
+    "provides": "gold",
     "uri_format": "http://www.genomesonline.org/cgi-bin/GOLD/GOLDCards.cgi?goldstamp=$1"
   },
   "gold.meta": {
@@ -29817,7 +29698,7 @@
     "twitter": "grid_ac",
     "uri_format": "https://www.grid.ac/institutes/$1"
   },
-  "grin": {
+  "grin.publication": {
     "description": "GRIN provides National Genetic Resources Program (NGRP) personnel and germplasm users continuous access to databases for the maintenance of passport, characterization, evaluation, inventory, and distribution data important for the effective management and utilization of national germplasm collections.",
     "example": "159787",
     "homepage": "http://www.ars-grin.gov/",
@@ -29829,7 +29710,7 @@
       "prefixcommons": "grin"
     },
     "name": "Germplasm Resources Information Network",
-    "preferred_prefix": "grin",
+    "preferred_prefix": "grin.publication",
     "providers": [
       {
         "code": "bio2rdf",
@@ -29845,6 +29726,9 @@
       "name": "Charles Tapley Hoyt",
       "orcid": "0000-0003-4423-4370"
     },
+    "synonyms": [
+      "grin"
+    ],
     "uri_format": "http://www.ars.usda.gov/research/publications/publications.htm?seq_no_115=$1"
   },
   "grin.taxonomy": {
@@ -29861,7 +29745,6 @@
       "wikidata.entity": "Q19576476"
     },
     "name": "GRIN URL",
-    "part_of": "grin",
     "pattern": "^\\d+$",
     "preferred_prefix": "grin.taxonomy",
     "uri_format": "https://npgsweb.ars-grin.gov/gringlobal/taxon/taxonomydetail?id=$1"
@@ -31210,7 +31093,6 @@
       "n2t": "hgnc.genefamily"
     },
     "name": "HGNC gene family",
-    "part_of": "hgnc",
     "pattern": "^\\d+$",
     "preferred_prefix": "hgnc.genefamily",
     "synonyms": [
@@ -31240,7 +31122,6 @@
       "miriam": "hgnc.genegroup"
     },
     "name": "HGNC Gene Group",
-    "part_of": "hgnc",
     "pattern": "^\\d+$",
     "preferred_prefix": "hgnc.genegroup",
     "uri_format": "https://www.genenames.org/data/genegroup/#!/group/$1"
@@ -31259,7 +31140,6 @@
       "wikidata": "P353"
     },
     "name": "HGNC gene symbol",
-    "part_of": "hgnc",
     "pattern": "^[A-Za-z-0-9_]+(\\@)?$",
     "preferred_prefix": "hgnc.symbol",
     "providers": [
@@ -33349,6 +33229,11 @@
         "description": "This site is dedicated exclusively to helping you look up ICD-10 codes, quickly access the codes you use most, and become more comfortable with the new code set in general.",
         "homepage": "https://icdcodelookup.com/icd-10/codes",
         "name": "ICD Code Lookup",
+        "status": {
+          "contributor": "0000-0003-4423-4370",
+          "date": "2025-10-25",
+          "value": "hijacked"
+        },
         "uri_format": "https://icdcodelookup.com/icd-10/codes/$1"
       }
     ],
@@ -33767,7 +33652,6 @@
       "genomics"
     ],
     "name": "ICEberg cis-integrative and mobilizable element",
-    "part_of": "iceberg",
     "pattern": "^\\d+$",
     "preferred_prefix": "iceberg.cime",
     "publications": [
@@ -33798,7 +33682,6 @@
       "n2t": "iceberg.element"
     },
     "name": "ICEberg integrative and conjugative element",
-    "part_of": "iceberg",
     "pattern": "^\\d+$",
     "preferred_prefix": "iceberg.element",
     "publications": [
@@ -33837,7 +33720,6 @@
       "n2t": "iceberg.family"
     },
     "name": "ICEberg family",
-    "part_of": "iceberg",
     "pattern": "^\\d+$",
     "preferred_prefix": "iceberg.family",
     "publications": [
@@ -33878,7 +33760,6 @@
       "genomics"
     ],
     "name": "ICEberg integrative and mobilizable element",
-    "part_of": "iceberg",
     "pattern": "^\\d+$",
     "preferred_prefix": "iceberg.ime",
     "publications": [
@@ -34149,7 +34030,6 @@
     "license": "CC BY-NC-SA 4.0",
     "logo": "https://ibdc.dbtindia.gov.in/icpd/static/image/ICPD-log.jpg",
     "name": "Indian Crop Phenome Database Project",
-    "part_of": "icpd",
     "pattern": "^PPJ_\\d+$",
     "preferred_prefix": "icpd.project",
     "reviewer": {
@@ -34179,7 +34059,6 @@
     "license": "CC BY-NC-SA 4.0",
     "logo": "https://ibdc.dbtindia.gov.in/icpd/static/image/ICPD-log.jpg",
     "name": "Indian Crop Phenome Database Study",
-    "part_of": "icpd",
     "pattern": "^PST_\\d+$",
     "preferred_prefix": "icpd.study",
     "reviewer": {
@@ -34614,7 +34493,6 @@
       "re3data": "r3d100012702"
     },
     "name": "Immune Epitope Database Assays",
-    "part_of": "iedb",
     "pattern": "^\\d+$",
     "preferred_prefix": "iedb.assay",
     "providers": [
@@ -34707,7 +34585,6 @@
       "re3data": "r3d100012702"
     },
     "name": "Immune Epitope Database Epitopes",
-    "part_of": "iedb",
     "pattern": "^\\d+$",
     "preferred_prefix": "iedb.epitope",
     "providers": [
@@ -34804,7 +34681,6 @@
       "re3data": "r3d100012702"
     },
     "name": "Immune Epitope Database MHC Restrictions",
-    "part_of": "iedb",
     "pattern": "^\\d+$",
     "preferred_prefix": "iedb.mhc",
     "publications": [
@@ -34871,7 +34747,6 @@
       "re3data": "r3d100012702"
     },
     "name": "Immune Epitope Database Receptors",
-    "part_of": "iedb",
     "pattern": "^\\d+$",
     "preferred_prefix": "iedb.receptor",
     "providers": [
@@ -34962,7 +34837,6 @@
       "re3data": "r3d100012702"
     },
     "name": "Immune Epitope Database References",
-    "part_of": "iedb",
     "pattern": "^\\d+$",
     "preferred_prefix": "iedb.reference",
     "providers": [
@@ -36291,7 +36165,6 @@
       "n2t": "insdc.cds"
     },
     "name": "INSDC CDS",
-    "part_of": "insdc",
     "pattern": "^([A-Z]\\d{5}|[A-Z]{2}\\d{6}|[A-Z]{4}\\d{8}|[A-J][A-Z]{2}\\d{5})(\\.\\d+)?$",
     "preferred_prefix": "insdc.cds",
     "providers": [
@@ -36323,7 +36196,6 @@
       "n2t": "insdc.gca"
     },
     "name": "Genome assembly database - INSDC accessions",
-    "part_of": "insdc",
     "pattern": "^GCA_[0-9]{9}(\\.[0-9]+)?$",
     "preferred_prefix": "insdc.gca",
     "providers": [
@@ -36346,7 +36218,6 @@
       "miriam": "refseq.gcf"
     },
     "name": "Genome assembly database - RefSeq accessions",
-    "part_of": "insdc",
     "pattern": "^GCF_[0-9]{9}(\\.[0-9]+)?$",
     "preferred_prefix": "insdc.gcf",
     "synonyms": [
@@ -36401,7 +36272,6 @@
       "re3data": "r3d100010775"
     },
     "name": "Sequence Read Archive",
-    "part_of": "insdc",
     "pattern": "^[SED]R[APRSXZ]\\d+$",
     "preferred_prefix": "insdc.sra",
     "providers": [
@@ -36573,7 +36443,6 @@
       "n2t": "intact.molecule"
     },
     "name": "IntAct Molecule",
-    "part_of": "intact",
     "pattern": "^EBI\\-[0-9]+$",
     "preferred_prefix": "intact.molecule",
     "publications": [
@@ -37981,7 +37850,7 @@
       "name": "Charles Tapley Hoyt",
       "orcid": "0000-0003-4423-4370"
     },
-    "description": "identifier for researchers in Japan used in goverment-based research funding (from 1980s)",
+    "description": "identifier for researchers in Japan used in government-based research funding (from 1980s)",
     "example": "00011461",
     "homepage": "https://nrid.nii.ac.jp/ja/search/?kw=",
     "keywords": [
@@ -38115,8 +37984,8 @@
   },
   "kegg.brite": {
     "description": "KEGG BRITE is a collection of hierarchical classifications (see new hierarchies and last updates) representing our knowledge on various aspects of biological systems. In contrast to KEGG PATHWAY, which is limited to molecular interactions and reactions, KEGG BRITE incorporates many different types of relationships.",
-    "example": "ko00071",
-    "homepage": "http://www.genome.jp/kegg/brite.html",
+    "example": "ko00002",
+    "homepage": "https://www.genome.jp/kegg/brite.html",
     "keywords": [
       "classification",
       "ontology",
@@ -38129,7 +37998,6 @@
       "prefixcommons": "kegg.brite"
     },
     "name": "KEGG BRITE",
-    "part_of": "kegg",
     "preferred_prefix": "kegg.brite",
     "providers": [
       {
@@ -38140,7 +38008,7 @@
         "uri_format": "http://bio2rdf.org/kegg.brite:$1"
       }
     ],
-    "uri_format": "http://www.genome.jp/kegg-bin/get_htext?-p+/kegg/brite/br+br$1"
+    "uri_format": "https://www.kegg.jp/brite/$1"
   },
   "kegg.compound": {
     "contact": {
@@ -38600,7 +38468,6 @@
       "wikidata": "P665"
     },
     "name": "KEGG pathway",
-    "part_of": "kegg",
     "pattern": "^\\w{2,4}\\d{5}$",
     "preferred_prefix": "kegg.pathway",
     "providers": [
@@ -39016,7 +38883,7 @@
       "name": "Charles Tapley Hoyt",
       "orcid": "0000-0003-4423-4370"
     },
-    "description": "number for the Lattes Platform entry on the person or group. Relationship between entry and subject must be supported by a source",
+    "description": "number for the Lattes Platform entry on the person or group. Relationship between entry and subject must be supported by a source.",
     "example": "0061106995455595",
     "homepage": "https://lattes.cnpq.br",
     "keywords": [
@@ -40941,7 +40808,6 @@
       "n2t": "matrixdb.association"
     },
     "name": "MatrixDB Association",
-    "part_of": "matrixdb",
     "pattern": "^([A-N,R-Z][0-9][A-Z][A-Z, 0-9][A-Z, 0-9][0-9])_.*|([O,P,Q][0-9][A-Z, 0-9][A-Z, 0-9][A-Z, 0-9][0-9]_.*)|(GAG_.*)|(MULT_.*)|(PFRAG_.*)|(LIP_.*)|(CAT_.*)$",
     "preferred_prefix": "matrixdb.association",
     "uri_format": "https://matrixdb.univ-lyon1.fr/association/$1"
@@ -41322,7 +41188,7 @@
       "MedDRA",
       "Medical Dictionary for Regulatory Activities"
     ],
-    "uri_format": "http://bioportal.bioontology.org/ontologies/MEDDRA?p=classes&conceptid=$1"
+    "uri_format": "https://bioportal.bioontology.org/ontologies/MEDDRA?p=classes&conceptid=$1"
   },
   "medgen": {
     "contact": {
@@ -41563,7 +41429,6 @@
     "example": "IA",
     "homepage": "https://www.ebi.ac.uk/merops",
     "name": "MEROPS Clan",
-    "part_of": "merops",
     "preferred_prefix": "merops.clan",
     "publications": [
       {
@@ -41694,7 +41559,6 @@
       "n2t": "merops.family"
     },
     "name": "MEROPS Family",
-    "part_of": "merops",
     "pattern": "^[SCTAGMNU]\\d+$",
     "preferred_prefix": "merops.family",
     "publications": [
@@ -41871,7 +41735,6 @@
       "n2t": "mesh.2012"
     },
     "name": "MeSH 2012",
-    "part_of": "mesh",
     "pattern": "^[A-Za-z0-9]+$",
     "preferred_prefix": "mesh.2012",
     "provides": "mesh",
@@ -41887,7 +41750,6 @@
       "n2t": "mesh.2013"
     },
     "name": "MeSH 2013",
-    "part_of": "mesh",
     "pattern": "^[A-Za-z0-9]+$",
     "preferred_prefix": "mesh.2013",
     "provides": "mesh",
@@ -41904,7 +41766,6 @@
     "example": "term",
     "homepage": "https://hhs.github.io/meshrdf/",
     "name": "Medical Subject Headings Vocabulary",
-    "part_of": "mesh",
     "preferred_prefix": "mesh.vocab",
     "references": [
       "https://id.nlm.nih.gov/mesh/query"
@@ -43472,7 +43333,6 @@
       "wikidata.entity": "Q6826947"
     },
     "name": "miRBase Families",
-    "part_of": "mirbase",
     "preferred_prefix": "mirbase.family",
     "synonyms": [
       "MIRBASE_FAMILY"
@@ -43503,7 +43363,6 @@
       "wikidata": "P2871"
     },
     "name": "miRBase mature miRNA",
-    "part_of": "mirbase",
     "pattern": "^MIMAT\\d{7}$",
     "preferred_prefix": "mirbase.mature",
     "providers": [
@@ -43678,7 +43537,6 @@
       "n2t": "miriam.collection"
     },
     "name": "MIRIAM Registry collection",
-    "part_of": "miriam",
     "pattern": "^000\\d{5}$",
     "preferred_prefix": "miriam.collection",
     "uri_format": "https://www.ebi.ac.uk/miriam/main/$1"
@@ -43699,7 +43557,6 @@
       "prefixcommons": "miriam.resource"
     },
     "name": "MIRIAM Legacy Registry Identifier",
-    "part_of": "miriam",
     "pattern": "^001\\d{5}$",
     "preferred_prefix": "miriam.resource",
     "providers": [
@@ -44727,10 +44584,9 @@
       "miriam": "modeldb.concept"
     },
     "name": "ModelDB concept",
-    "part_of": "modeldb",
     "pattern": "^\\d+$",
     "preferred_prefix": "modeldb.concept",
-    "uri_format": "https://senselab.med.yale.edu/ModelDB/ModelList?id=$1"
+    "uri_format": "https://modeldb.science/modellist/$1"
   },
   "moid": {
     "description": "M3G stands for “Metadata Management and distribution system for Multiple GNSS Networks”. M3G allows to upload, validate, and distribute GNSS station metadata such as IGS-style site logs, information about local networks, DOIs, nominal data provision, data licenses attached to the daily RINEX data, etc...",
@@ -44759,6 +44615,7 @@
     "uri_format": "http://www.molbase.com/en/index.php?app=search&search_keyword=$1"
   },
   "molbase.sheffield": {
+    "comment": "Do not confuse with molbase, which is a provider. These resources are unrelated.",
     "contributor": {
       "email": "cthoyt@gmail.com",
       "github": "cthoyt",
@@ -44770,7 +44627,6 @@
     "example": "1868",
     "homepage": "https://winter.group.shef.ac.uk/molbase/",
     "name": "MolBase",
-    "part_of": "molbase",
     "pattern": "^\\d+$",
     "preferred_prefix": "molbase.sheffield"
   },
@@ -47801,7 +47657,6 @@
       "prefixcommons": "neurolex"
     },
     "name": "NIF Standard Ontology: Neurolex",
-    "part_of": "nif",
     "pattern": "^\\d+$",
     "preferred_prefix": "neurolex",
     "providers": [
@@ -48094,7 +47949,6 @@
     "example": "01406",
     "homepage": "https://www.nextprot.org/",
     "name": "neXtProt family",
-    "part_of": "nextprot",
     "pattern": "^\\d+$",
     "preferred_prefix": "nextprot.family",
     "synonyms": [
@@ -48420,7 +48274,6 @@
       "obofoundry": "nif_cell"
     },
     "name": "NIF Cell",
-    "part_of": "nif",
     "preferred_prefix": "NIF_CELL",
     "rdf_uri_format": "http://purl.obolibrary.org/obo/NIF_CELL_$1",
     "uri_format": "http://purl.obolibrary.org/obo/NIF_CELL_$1"
@@ -48442,7 +48295,6 @@
       "obofoundry": "nif_dysfunction"
     },
     "name": "NIF Dysfunction",
-    "part_of": "nif",
     "preferred_prefix": "NIF_DYSFUNCTION",
     "rdf_uri_format": "http://purl.obolibrary.org/obo/NIF_DYSFUNCTION_$1",
     "uri_format": "http://purl.obolibrary.org/obo/NIF_DYSFUNCTION_$1"
@@ -48465,7 +48317,6 @@
     "homepage": "https://github.com/SciCrunch/NIF-Ontology",
     "license": "CC BY-4.0",
     "name": "NIF Standard Ontology: External",
-    "part_of": "nif",
     "pattern": "^\\d+$",
     "preferred_prefix": "nif.ext",
     "repository": "https://github.com/SciCrunch/NIF-Ontology",
@@ -48498,7 +48349,6 @@
       "obofoundry": "nif_grossanatomy"
     },
     "name": "NIF Gross Anatomy",
-    "part_of": "nif",
     "preferred_prefix": "NIF_GROSSANATOMY",
     "rdf_uri_format": "http://purl.obolibrary.org/obo/NIF_GROSSANATOMY_$1",
     "uri_format": "http://purl.obolibrary.org/obo/NIF_GROSSANATOMY_$1"
@@ -48533,7 +48383,6 @@
       "fairsharing": "FAIRsharing.vgw1m6"
     },
     "name": "NIF Standard Ontology",
-    "part_of": "nif",
     "pattern": "^BAMSC\\d+$",
     "preferred_prefix": "nif.std",
     "publications": [
@@ -48631,9 +48480,8 @@
       "wikidata": "P1645"
     },
     "name": "NIST/CODATA ID",
-    "part_of": "nist",
     "preferred_prefix": "nist.codata",
-    "uri_format": "http://physics.nist.gov/cgi-bin/cuu/Value?$1"
+    "uri_format": "https://physics.nist.gov/cgi-bin/cuu/Value?$1"
   },
   "nkos": {
     "contributor": {
@@ -48738,7 +48586,6 @@
       "anatomy"
     ],
     "name": "NeuroLex Anatomy",
-    "part_of": "nif",
     "pattern": "^\\d+$",
     "preferred_prefix": "nlx.anat",
     "reviewer": {
@@ -48773,7 +48620,6 @@
     ],
     "license": "CC BY-4.0",
     "name": "NIF Standard Ontology: Brain Regions",
-    "part_of": "nif",
     "pattern": "^\\d+$",
     "preferred_prefix": "nlx.br",
     "repository": "https://github.com/SciCrunch/NIF-Ontology",
@@ -48813,7 +48659,6 @@
     ],
     "license": "CC BY-4.0",
     "name": "NIF Standard Ontology: Cell Types",
-    "part_of": "nif",
     "pattern": "^\\d+$",
     "preferred_prefix": "nlx.cell",
     "repository": "https://github.com/SciCrunch/NIF-Ontology",
@@ -48850,7 +48695,6 @@
     ],
     "license": "CC BY-4.0",
     "name": "NIF Standard Ontology: Chemical",
-    "part_of": "nif",
     "pattern": "^\\d+$",
     "preferred_prefix": "nlx.chem",
     "repository": "https://github.com/SciCrunch/NIF-Ontology",
@@ -48891,7 +48735,6 @@
       "phenotypes"
     ],
     "name": "NeuroLex Dysfunction",
-    "part_of": "nif",
     "pattern": "^\\d+$",
     "preferred_prefix": "nlx.dys",
     "reviewer": {
@@ -48924,7 +48767,6 @@
     ],
     "license": "CC BY-4.0",
     "name": "NIF Standard Ontology: Cognitive Function",
-    "part_of": "nif",
     "pattern": "^\\d+$",
     "preferred_prefix": "nlx.func",
     "repository": "https://github.com/SciCrunch/NIF-Ontology",
@@ -48962,7 +48804,6 @@
     ],
     "license": "CC BY-4.0",
     "name": "NIF Standard Ontology: Investigations",
-    "part_of": "nif",
     "pattern": "^\\d+$",
     "preferred_prefix": "nlx.inv",
     "repository": "https://github.com/SciCrunch/NIF-Ontology",
@@ -49002,7 +48843,6 @@
     ],
     "license": "CC BY-4.0",
     "name": "NIF Standard Ontology: Molecules",
-    "part_of": "nif",
     "pattern": "^\\d+$",
     "preferred_prefix": "nlx.mol",
     "repository": "https://github.com/SciCrunch/NIF-Ontology",
@@ -49039,7 +48879,6 @@
     ],
     "license": "CC BY-4.0",
     "name": "NIF Standard Ontology: OEN Terms in Neurolex",
-    "part_of": "nif",
     "pattern": "^\\d+$",
     "preferred_prefix": "nlx.oen",
     "repository": "https://github.com/SciCrunch/NIF-Ontology",
@@ -49076,7 +48915,6 @@
     ],
     "license": "CC BY-4.0",
     "name": "NIF Standard Ontology: Organisms",
-    "part_of": "nif",
     "pattern": "^\\d+$",
     "preferred_prefix": "nlx.org",
     "repository": "https://github.com/SciCrunch/NIF-Ontology",
@@ -49114,7 +48952,6 @@
     ],
     "license": "CC BY-4.0",
     "name": "NIF Standard Ontology: Qualities",
-    "part_of": "nif",
     "pattern": "^\\d+$",
     "preferred_prefix": "nlx.qual",
     "repository": "https://github.com/SciCrunch/NIF-Ontology",
@@ -49151,7 +48988,6 @@
     ],
     "license": "CC BY-4.0",
     "name": "NIF Standard Ontology: Digital Resources",
-    "part_of": "nif",
     "pattern": "^\\d+$",
     "preferred_prefix": "nlx.res",
     "repository": "https://github.com/SciCrunch/NIF-Ontology",
@@ -49191,7 +49027,7 @@
       "go": "NIF_Subcellular"
     },
     "name": "NIF Standard Ontology: Subcellular Entities",
-    "part_of": "nif",
+    "part_of": "neurolex",
     "pattern": "^\\d+$",
     "preferred_prefix": "nlx.sub",
     "repository": "https://github.com/SciCrunch/NIF-Ontology",
@@ -49422,7 +49258,6 @@
       "compound"
     ],
     "name": "nmrXiv compound",
-    "part_of": "nmrxiv",
     "preferred_prefix": "nmrxiv.compound",
     "uri_format": "https://nmrxiv.org/spectra?compound=$1"
   },
@@ -49447,7 +49282,6 @@
       "project"
     ],
     "name": "nmrXiv project",
-    "part_of": "nmrxiv",
     "pattern": "^P\\d+$",
     "preferred_prefix": "nmrxiv.project",
     "uri_format": "https://nmrxiv.org/project/$1"
@@ -49475,12 +49309,24 @@
       "spectrum"
     ],
     "name": "nmrXiv sample",
-    "part_of": "nmrxiv",
     "pattern": "^S\\d+$",
     "preferred_prefix": "nmrxiv.sample",
     "uri_format": "https://nmrxiv.org/sample/$1"
   },
-  "noaa": {
+  "noaa.cameo": {
+    "description": "CAMEO Chemicals is a database of hazardous chemical datasheets that emergency responders and planners can use to get response recommendations and predict hazards—such as explosions or toxic fumes.",
+    "example": "19757",
+    "homepage": "https://cameochemicals.noaa.gov",
+    "mappings": {
+      "wikidata": "P11931",
+      "wikidata.entity": "Q125807660"
+    },
+    "name": "CAMEO Chemicals ID",
+    "pattern": "^\\d*$",
+    "preferred_prefix": "noaa.cameo",
+    "uri_format": "https://cameochemicals.noaa.gov/chemical/$1"
+  },
+  "noaa.species": {
     "contributor": {
       "email": "meghan.balk@gmail.com",
       "github": "megbalk",
@@ -49496,28 +49342,17 @@
     },
     "name": "NOAA Fisheries Species Directory",
     "pattern": "^[a-z]+(\\-[a-z]+)*$",
-    "preferred_prefix": "noaa",
+    "preferred_prefix": "noaa.species",
     "reviewer": {
       "email": "cthoyt@gmail.com",
       "github": "cthoyt",
       "name": "Charles Tapley Hoyt",
       "orcid": "0000-0003-4423-4370"
     },
+    "synonyms": [
+      "noaa"
+    ],
     "uri_format": "https://www.fisheries.noaa.gov/species/$1"
-  },
-  "noaa.cameo": {
-    "description": "CAMEO Chemicals is a database of hazardous chemical datasheets that emergency responders and planners can use to get response recommendations and predict hazards—such as explosions or toxic fumes.",
-    "example": "19757",
-    "homepage": "https://cameochemicals.noaa.gov",
-    "mappings": {
-      "wikidata": "P11931",
-      "wikidata.entity": "Q125807660"
-    },
-    "name": "CAMEO Chemicals ID",
-    "part_of": "noaa",
-    "pattern": "^\\d*$",
-    "preferred_prefix": "noaa.cameo",
-    "uri_format": "https://cameochemicals.noaa.gov/chemical/$1"
   },
   "nomen": {
     "contact": {
@@ -50107,7 +49942,7 @@
       "wikidata": "P9889"
     },
     "name": "New Zealand Threat Classification System",
-    "pattern": "^[1-9]\\d{3,7}$",
+    "pattern": "^[1-9]\\d{2,6}$",
     "preferred_prefix": "nztcs",
     "references": [
       "https://github.com/biopragmatics/bioregistry/pull/1083"
@@ -51683,7 +51518,6 @@
       "integbio": "nbdc00153"
     },
     "name": "OMIA variants",
-    "part_of": "omia",
     "pattern": "^\\d+$",
     "preferred_prefix": "omia.variant",
     "publications": [
@@ -51907,7 +51741,6 @@
       "biolink": "OMIM.PS"
     },
     "name": "OMIM Phenotypic Series",
-    "part_of": "omim",
     "pattern": "^\\d+$",
     "preferred_prefix": "omim.ps",
     "providers": [
@@ -53881,7 +53714,6 @@
       "uniprot": "DB-0069"
     },
     "name": "PANTHER Family",
-    "part_of": "panther",
     "pattern": "^PTHR\\d{5}(\\:SF\\d{1,3})?$",
     "preferred_prefix": "panther.family",
     "providers": [
@@ -53925,7 +53757,6 @@
       "n2t": "panther.node"
     },
     "name": "PANTHER Node",
-    "part_of": "panther",
     "pattern": "^PTN\\d{9}$",
     "preferred_prefix": "panther.node",
     "uri_format": "http://www.pantree.org/node/annotationNode.jsp?id=$1"
@@ -53941,7 +53772,6 @@
       "n2t": "panther.pathway"
     },
     "name": "PANTHER Pathway",
-    "part_of": "panther",
     "pattern": "^P\\d{5}$",
     "preferred_prefix": "panther.pathway",
     "uri_format": "http://www.pantherdb.org/pathway/pathwayDiagram.jsp?catAccession=$1"
@@ -53956,7 +53786,6 @@
       "n2t": "panther.pthcmp"
     },
     "name": "PANTHER Pathway Component",
-    "part_of": "panther",
     "pattern": "^(G|P|U|C|S)\\d{5}$",
     "preferred_prefix": "panther.pthcmp",
     "uri_format": "http://www.pantherdb.org/pathway/pathCatDetail.do?clsAccession=$1"
@@ -54952,7 +54781,6 @@
       "wikidata": "P3636"
     },
     "name": "PDB ligand",
-    "part_of": "pdb",
     "pattern": "^[A-Za-z0-9]+$",
     "preferred_prefix": "pdb.ligand",
     "providers": [
@@ -55364,7 +55192,20 @@
     },
     "uri_format": "https://pephub.databio.org/$1"
   },
-  "peptideatlas": {
+  "peptideatlas.dataset": {
+    "description": "Experiment details about PeptideAtlas entries. Each PASS entry provides direct access to the data files submitted to PeptideAtlas.",
+    "example": "PASS01237",
+    "homepage": "https://db.systemsbiology.net/sbeams/cgi/PeptideAtlas/PASS_Summary",
+    "mappings": {
+      "miriam": "peptideatlas.dataset",
+      "n2t": "peptideatlas.dataset"
+    },
+    "name": "PeptideAtlas Dataset",
+    "pattern": "^PASS\\d{5}$",
+    "preferred_prefix": "peptideatlas.dataset",
+    "uri_format": "http://www.peptideatlas.org/PASS/$1"
+  },
+  "peptideatlas.peptide": {
     "contact": {
       "email": "edeutsch@systemsbiology.org",
       "github": "edeutsch",
@@ -55391,9 +55232,9 @@
       "re3data": "r3d100010889",
       "uniprot": "DB-0071"
     },
-    "name": "PeptideAtlas",
+    "name": "PeptideAtlas Peptide",
     "pattern": "^PAp[0-9]{8}$",
-    "preferred_prefix": "peptideatlas",
+    "preferred_prefix": "peptideatlas.peptide",
     "providers": [
       {
         "code": "bio2rdf",
@@ -55423,21 +55264,10 @@
         "title": "PeptideAtlas: a resource for target selection for emerging targeted proteomics workflows."
       }
     ],
+    "synonyms": [
+      "peptideatlas"
+    ],
     "uri_format": "https://db.systemsbiology.net/sbeams/cgi/PeptideAtlas/Summarize_Peptide?query=QUERY&searchForThis=$1"
-  },
-  "peptideatlas.dataset": {
-    "description": "Experiment details about PeptideAtlas entries. Each PASS entry provides direct access to the data files submitted to PeptideAtlas.",
-    "example": "PASS01237",
-    "homepage": "https://db.systemsbiology.net/sbeams/cgi/PeptideAtlas/PASS_Summary",
-    "mappings": {
-      "miriam": "peptideatlas.dataset",
-      "n2t": "peptideatlas.dataset"
-    },
-    "name": "PeptideAtlas Dataset",
-    "part_of": "peptideatlas",
-    "pattern": "^PASS\\d{5}$",
-    "preferred_prefix": "peptideatlas.dataset",
-    "uri_format": "http://www.peptideatlas.org/PASS/$1"
   },
   "perkinelmer": {
     "description": "Cell line collections (Providers)",
@@ -55725,7 +55555,6 @@
       "edam": "2758"
     },
     "name": "Pfam protein clan",
-    "part_of": "pfam",
     "pattern": "^CL\\d+$",
     "preferred_prefix": "pfam.clan",
     "providers": [
@@ -57425,7 +57254,7 @@
     ],
     "uri_format": "http://www.proteinmodelportal.org/query/uniprot/$1"
   },
-  "pmr": {
+  "pmr.exposure": {
     "contact": {
       "email": "laia.subirats@gmail.com",
       "name": "Laia Subirats",
@@ -57451,7 +57280,7 @@
     },
     "name": "Physical Medicine and Rehabilitation",
     "pattern": "^[a-z0-9]{32,32}$",
-    "preferred_prefix": "pmr",
+    "preferred_prefix": "pmr.exposure",
     "publications": [
       {
         "doi": "10.1098/rsfs.2015.0103",
@@ -57497,6 +57326,9 @@
         "title": "Toward a curated CellML model repository."
       }
     ],
+    "synonyms": [
+      "pmr"
+    ],
     "twitter": "physiomeproject",
     "uri_format": "https://models.physiomeproject.org/exposure/$1"
   },
@@ -57508,7 +57340,6 @@
       "miriam": "pmr.workspace"
     },
     "name": "Physiome Model Repository workspace",
-    "part_of": "pmr",
     "pattern": "^[a-zA-Z0-9_\\-]+(/.*?)?$",
     "preferred_prefix": "pmr.workspace",
     "uri_format": "https://models.physiomeproject.org/workspace/$1"
@@ -58352,7 +58183,6 @@
       "n2t": "pride.project"
     },
     "name": "PRIDE Project",
-    "part_of": "pride",
     "pattern": "^P(X|R|A)D\\d{6}$",
     "preferred_prefix": "pride.project",
     "providers": [
@@ -59251,7 +59081,6 @@
       "prefixcommons": "pubchem.bioassay"
     },
     "name": "NCBI PubChem database of bioassay records",
-    "part_of": "pubchem",
     "pattern": "^\\d+$",
     "preferred_prefix": "pubchem.bioassay",
     "providers": [
@@ -59296,7 +59125,6 @@
     ],
     "logo": "https://pubchem.ncbi.nlm.nih.gov/pcfe/logo/PubChem_logo_splash.png",
     "name": "PubChem Cell Line",
-    "part_of": "pubchem",
     "pattern": "^\\d+$",
     "preferred_prefix": "pubchem.cell",
     "twitter": "pubchem",
@@ -59317,7 +59145,6 @@
     ],
     "logo": "https://pubchem.ncbi.nlm.nih.gov/pcfe/logo/PubChem_logo_splash.png",
     "name": "PubChem Classification",
-    "part_of": "pubchem",
     "pattern": "^\\d+$",
     "preferred_prefix": "pubchem.classification",
     "twitter": "pubchem",
@@ -59359,7 +59186,6 @@
       "wikidata": "P662"
     },
     "name": "PubChem compound",
-    "part_of": "pubchem",
     "pattern": "^\\d+$",
     "preferred_prefix": "pubchem.compound",
     "providers": [
@@ -59463,7 +59289,6 @@
     ],
     "logo": "https://pubchem.ncbi.nlm.nih.gov/pcfe/logo/PubChem_logo_splash.png",
     "name": "PubChem Element",
-    "part_of": "pubchem",
     "pattern": "^\\d+$",
     "preferred_prefix": "pubchem.element",
     "twitter": "pubchem",
@@ -59491,7 +59316,6 @@
       "wikidata": "P2153"
     },
     "name": "PubChem Substance ID (SID)",
-    "part_of": "pubchem",
     "pattern": "^\\d+$",
     "preferred_prefix": "pubchem.substance",
     "providers": [
@@ -60121,7 +59945,6 @@
       "prefixcommons": "ratmap"
     },
     "name": "Rat Genome Database RatMap",
-    "part_of": "rgd",
     "preferred_prefix": "ratmap",
     "providers": [
       {
@@ -60132,6 +59955,7 @@
         "uri_format": "http://bio2rdf.org/ratmap:$1"
       }
     ],
+    "provides": "ensembl",
     "reviewer": {
       "email": "cthoyt@gmail.com",
       "github": "cthoyt",
@@ -61044,7 +60868,6 @@
       "prefixcommons": "rex"
     },
     "name": "Physico-chemical process",
-    "part_of": "chebi",
     "pattern": "^\\d{7}$",
     "preferred_prefix": "REX",
     "providers": [
@@ -61427,7 +61250,6 @@
       "n2t": "rgd.qtl"
     },
     "name": "Rat Genome Database qTL",
-    "part_of": "rgd",
     "pattern": "^\\d+$",
     "preferred_prefix": "rgd.qtl",
     "twitter": "ratgenome",
@@ -61443,7 +61265,6 @@
       "n2t": "rgd.strain"
     },
     "name": "Rat Genome Database strain",
-    "part_of": "rgd",
     "pattern": "^\\d+$",
     "preferred_prefix": "rgd.strain",
     "twitter": "ratgenome",
@@ -63557,7 +63378,6 @@
       "edam": "1041"
     },
     "name": "SCOP(e) concise classification string",
-    "part_of": "scop",
     "preferred_prefix": "scop.sccs",
     "references": [
       "https://scop.berkeley.edu/help/#stableidentifiers"
@@ -63588,7 +63408,6 @@
       "edam": "1039"
     },
     "name": "Structural Classification of Protein - Stable Domain Identifier",
-    "part_of": "scop",
     "preferred_prefix": "scop.sid",
     "references": [
       "https://scop.berkeley.edu/help/#stableidentifiers"
@@ -63630,7 +63449,6 @@
       "wikidata": "P1155"
     },
     "name": "Scopus affiliation ID",
-    "part_of": "scopus",
     "preferred_prefix": "scopus.affiliation",
     "uri_format": "https://www.scopus.com/affil/profile.uri?afid=$1"
   },
@@ -63642,7 +63460,6 @@
       "wikidata": "P1156"
     },
     "name": "Scopus Publication",
-    "part_of": "scopus",
     "pattern": "^[1-9]\\d{0,11}$",
     "preferred_prefix": "scopus.publication",
     "uri_format": "https://www.scopus.com/sourceid/$1"
@@ -63655,7 +63472,6 @@
       "wikidata": "P1154"
     },
     "name": "Scopus Work",
-    "part_of": "scopus",
     "pattern": "^2-s2\\.0-\\d+$",
     "preferred_prefix": "scopus.work",
     "synonyms": [
@@ -64153,10 +63969,10 @@
     "mappings": {
       "wikidata": "P7671"
     },
-    "name": "Semion author ID",
+    "name": "Semion author ID (archived)",
     "pattern": "^\\d+$",
     "preferred_prefix": "semion",
-    "uri_format": "https://www.semion.io/Author/$1"
+    "uri_format": "https://web.archive.org/web/1/https://www.semion.io/Author/$1"
   },
   "senso": {
     "contact": {
@@ -64716,7 +64532,6 @@
       "prefixcommons": "sgd.pathways"
     },
     "name": "Saccharomyces genome database pathways",
-    "part_of": "sgd",
     "pattern": "^PWY\\w{2}\\-\\d{3}$",
     "preferred_prefix": "sgd.pathways",
     "providers": [
@@ -64885,7 +64700,6 @@
       "wikidata.entity": "Q113989515"
     },
     "name": "Sharkipedia Species",
-    "part_of": "sharkipedia",
     "pattern": "^\\d+$",
     "preferred_prefix": "sharkipedia.species",
     "publications": [
@@ -64927,7 +64741,6 @@
       "wikidata.entity": "Q113989515"
     },
     "name": "Sharkipedia Trait",
-    "part_of": "sharkipedia",
     "pattern": "^\\d+$",
     "preferred_prefix": "sharkipedia.trait",
     "publications": [
@@ -64969,7 +64782,6 @@
       "wikidata.entity": "Q113989515"
     },
     "name": "Sharkipedia Trend",
-    "part_of": "sharkipedia",
     "pattern": "^\\d+$",
     "preferred_prefix": "sharkipedia.trend",
     "publications": [
@@ -65289,7 +65101,6 @@
     ],
     "logo": "https://signor.uniroma2.it/img/signor_logo_noWhite.png",
     "name": "SIGNOR Relation",
-    "part_of": "signor",
     "pattern": "^SIGNOR-\\d+$",
     "preferred_prefix": "signor.relation",
     "reviewer": {
@@ -65404,7 +65215,6 @@
     "homepage": "http://rdfs.org/sioc/spec/",
     "license": "CC-BY-1.0",
     "name": "Semantically-Interlinked Online Communities Access Ontology",
-    "part_of": "sioc",
     "preferred_prefix": "sioc.access",
     "rdf_uri_format": "http://rdfs.org/sioc/access#$1",
     "uri_format": "http://rdfs.org/sioc/access#$1"
@@ -65422,7 +65232,6 @@
     "homepage": "http://rdfs.org/sioc/spec/",
     "license": "CC-BY-1.0",
     "name": "Semantically-Interlinked Online Communities Actions Ontology",
-    "part_of": "sioc",
     "preferred_prefix": "sioc.actions",
     "rdf_uri_format": "http://rdfs.org/sioc/actions#$1",
     "uri_format": "http://rdfs.org/sioc/actions#$1"
@@ -65440,7 +65249,6 @@
     "homepage": "http://rdfs.org/sioc/spec/",
     "license": "CC-BY-1.0",
     "name": "Semantically-Interlinked Online Communities Argumentation Ontology",
-    "part_of": "sioc",
     "preferred_prefix": "sioc.argument",
     "rdf_uri_format": "http://rdfs.org/sioc/argument#$1",
     "uri_format": "http://rdfs.org/sioc/argument#$1"
@@ -65458,7 +65266,6 @@
     "homepage": "http://rdfs.org/sioc/spec/",
     "license": "CC-BY-1.0",
     "name": "Semantically-Interlinked Online Communities Core Ontology",
-    "part_of": "sioc",
     "preferred_prefix": "sioc.core",
     "rdf_uri_format": "http://rdfs.org/sioc/ns#$1",
     "uri_format": "http://rdfs.org/sioc/ns#$1"
@@ -65476,7 +65283,6 @@
     "homepage": "http://rdfs.org/sioc/spec/",
     "license": "CC-BY-1.0",
     "name": "Semantically-Interlinked Online Communities Services Ontology - Quote Ontology",
-    "part_of": "sioc",
     "preferred_prefix": "sioc.quote",
     "rdf_uri_format": "http://rdfs.org/sioc/services#$1",
     "uri_format": "http://rdfs.org/sioc/services#$1"
@@ -65494,7 +65300,6 @@
     "homepage": "http://rdfs.org/sioc/spec/",
     "license": "CC-BY-1.0",
     "name": "Semantically-Interlinked Online Communities Services Ontology - SWAN Mapping",
-    "part_of": "sioc",
     "preferred_prefix": "sioc.swan",
     "rdf_uri_format": "http://rdfs.org/sioc/swan#$1",
     "uri_format": "http://rdfs.org/sioc/swan#$1"
@@ -65512,7 +65317,6 @@
     "homepage": "http://rdfs.org/sioc/spec/",
     "license": "CC-BY-1.0",
     "name": "Semantically-Interlinked Online Communities Types Ontology",
-    "part_of": "sioc",
     "preferred_prefix": "sioc.types",
     "rdf_uri_format": "http://rdfs.org/sioc/types#$1",
     "uri_format": "http://rdfs.org/sioc/types#$1"
@@ -67182,7 +66986,6 @@
       "ols": "srao"
     },
     "name": "FAIRsharing Subject Ontology",
-    "part_of": "fairsharing",
     "pattern": "^\\d{7}$",
     "preferred_prefix": "srao",
     "repository": "https://github.com/FAIRsharing/subject-ontology",
@@ -67687,7 +67490,6 @@
     "example": "1251",
     "homepage": "https://www.storedb.org/",
     "name": "StoreDB Dataset",
-    "part_of": "storedb",
     "pattern": "^\\d+$",
     "preferred_prefix": "storedb.dataset",
     "uri_format": "https://www.storedb.org/?STOREDB:DATASET$1"
@@ -67703,7 +67505,6 @@
     "example": "12929",
     "homepage": "https://www.storedb.org/",
     "name": "StoreDB File",
-    "part_of": "storedb",
     "pattern": "^\\d+$",
     "preferred_prefix": "storedb.file",
     "uri_format": "https://www.storedb.org/store_v3/download.jsp?fileId=$1"
@@ -67719,7 +67520,6 @@
     "example": "1174",
     "homepage": "https://www.storedb.org/",
     "name": "StoreDB Study",
-    "part_of": "storedb",
     "pattern": "^\\d+$",
     "preferred_prefix": "storedb.study",
     "providers": [
@@ -68205,7 +68005,6 @@
       "molecule"
     ],
     "name": "SupraBank Additive",
-    "part_of": "suprabank",
     "preferred_prefix": "suprabank.additive",
     "uri_format": "https://suprabank.org/additives/$1"
   },
@@ -68230,7 +68029,6 @@
       "molecule"
     ],
     "name": "SupraBank Buffer",
-    "part_of": "suprabank",
     "pattern": "^\\d+$",
     "preferred_prefix": "suprabank.buffer",
     "uri_format": "https://suprabank.org/buffers/$1"
@@ -68257,7 +68055,6 @@
       "relationship"
     ],
     "name": "SupraBank Interaction",
-    "part_of": "suprabank",
     "pattern": "^\\d+$",
     "preferred_prefix": "suprabank.interaction",
     "uri_format": "https://suprabank.org/interactions/$1"
@@ -68283,7 +68080,6 @@
       "molecule"
     ],
     "name": "SupraBank Molecule",
-    "part_of": "suprabank",
     "pattern": "^\\d+$",
     "preferred_prefix": "suprabank.molecule",
     "uri_format": "https://suprabank.org/molecules/$1"
@@ -68309,7 +68105,6 @@
       "molecule"
     ],
     "name": "SupraBank Solvent",
-    "part_of": "suprabank",
     "pattern": "^\\d+$",
     "preferred_prefix": "suprabank.solvent",
     "uri_format": "https://suprabank.org/solvents/$1"
@@ -69125,7 +68920,6 @@
       "prefixcommons": "tair.gene"
     },
     "name": "TAIR Gene",
-    "part_of": "tair",
     "pattern": "^\\d{7}$",
     "preferred_prefix": "tair.gene",
     "providers": [
@@ -71138,7 +70932,6 @@
       "wikidata": "P8121"
     },
     "name": "UM-BBD compound",
-    "part_of": "umbbd",
     "pattern": "^c\\d+$",
     "preferred_prefix": "umbbd.compound",
     "synonyms": [
@@ -71157,7 +70950,6 @@
       "n2t": "umbbd.enzyme"
     },
     "name": "EAWAG Biocatalysis/Biodegradation Database enzyme",
-    "part_of": "umbbd",
     "pattern": "^e\\d+$",
     "preferred_prefix": "umbbd.enzyme",
     "synonyms": [
@@ -71176,7 +70968,6 @@
       "n2t": "umbbd.pathway"
     },
     "name": "EAWAG Biocatalysis/Biodegradation Database pathway",
-    "part_of": "umbbd",
     "pattern": "^\\w+$",
     "preferred_prefix": "umbbd.pathway",
     "providers": [
@@ -71205,7 +70996,6 @@
       "wikidata.entity": "Q24188985"
     },
     "name": "EAWAG Biocatalysis/Biodegradation Database reaction",
-    "part_of": "umbbd",
     "pattern": "^r\\d+$",
     "preferred_prefix": "umbbd.reaction",
     "synonyms": [
@@ -71224,7 +71014,6 @@
       "n2t": "umbbd.rule"
     },
     "name": "EAWAG Biocatalysis/Biodegradation Database rule",
-    "part_of": "umbbd",
     "pattern": "^bt\\d+$",
     "preferred_prefix": "umbbd.rule",
     "synonyms": [
@@ -71307,7 +71096,6 @@
     "example": "A0118748",
     "homepage": "https://www.nlm.nih.gov/research/umls",
     "name": "Unified Medical Language System Atomic Unique Identifier",
-    "part_of": "umls",
     "pattern": "^A\\d+$",
     "preferred_prefix": "umls.aui",
     "synonyms": [
@@ -71830,7 +71618,6 @@
       "go": "ARBA"
     },
     "name": "Association-Rule-Based Annotator",
-    "part_of": "uniprot",
     "pattern": "^ARBA\\d+$",
     "preferred_prefix": "uniprot.arba",
     "reviewer": {
@@ -71859,7 +71646,6 @@
       "miriam": "uniprot.chain"
     },
     "name": "UniProt Chain",
-    "part_of": "uniprot",
     "pattern": "^PRO_[0-9]{10}$",
     "preferred_prefix": "uniprot.chain",
     "synonyms": [
@@ -71893,7 +71679,6 @@
       "ols": "uniprotrdfs"
     },
     "name": "Uniprot Core Ontology",
-    "part_of": "uniprot",
     "preferred_prefix": "uniprot.core",
     "uri_format": "http://purl.uniprot.org/core/$1",
     "version": "2025_03"
@@ -71924,7 +71709,6 @@
       "wikidata": "P11430"
     },
     "name": "UniProt Diseases",
-    "part_of": "uniprot",
     "pattern": "^DI-\\d{5}$",
     "preferred_prefix": "uniprot.disease",
     "synonyms": [
@@ -71951,7 +71735,6 @@
       "n2t": "uniprot.isoform"
     },
     "name": "UniProt Isoform",
-    "part_of": "uniprot",
     "pattern": "^([A-N,R-Z][0-9][A-Z][A-Z, 0-9][A-Z, 0-9][0-9])|([O,P,Q][0-9][A-Z, 0-9][A-Z, 0-9][A-Z, 0-9][0-9])(\\-\\d+)$",
     "preferred_prefix": "uniprot.isoform",
     "providers": [
@@ -72007,7 +71790,6 @@
       "wikidata": "P4616"
     },
     "name": "UniProt journal",
-    "part_of": "uniprot",
     "pattern": "^\\d{4}$",
     "preferred_prefix": "uniprot.journal",
     "rdf_uri_format": "http://purl.uniprot.org/journals/$1",
@@ -72034,7 +71816,6 @@
       "prefixcommons": "uniprot.kw"
     },
     "name": "UniProt Keywords",
-    "part_of": "uniprot",
     "pattern": "^KW-\\d{4}$",
     "preferred_prefix": "uniprot.keyword",
     "providers": [
@@ -72079,7 +71860,6 @@
       "go": "UniProtKB-SubCell"
     },
     "name": "UniProt Subcellular Locations",
-    "part_of": "uniprot",
     "pattern": "^SL-\\d+$",
     "preferred_prefix": "uniprot.location",
     "synonyms": [
@@ -72111,7 +71891,6 @@
       "togoid": "UniprotMnemonic"
     },
     "name": "UniProt",
-    "part_of": "uniprot",
     "pattern": "^[A-Z0-9]{1,10}_[A-Z0-9]{1,5}$",
     "preferred_prefix": "uniprot.mnemonic",
     "publications": [
@@ -72160,7 +71939,6 @@
       "togoid": "UniprotProteome"
     },
     "name": "UniProt Proteomes",
-    "part_of": "uniprot",
     "pattern": "^UP\\d{9}$",
     "preferred_prefix": "uniprot.proteome",
     "rdf_uri_format": "http://purl.uniprot.org/proteomes/$1",
@@ -72204,7 +71982,6 @@
     "license": "CC-BY-4.0",
     "logo": "https://www.uniprot.org/uniprot-logo.img.0df091.svg",
     "name": "UniProt Post-Translational Modification",
-    "part_of": "uniprot",
     "pattern": "^PTM-\\d{4}$",
     "preferred_prefix": "uniprot.ptm",
     "references": [
@@ -72234,7 +72011,6 @@
     "homepage": "https://www.uniprot.org/database/",
     "logo": "https://www.uniprot.org/og-uniprot-wide-logo-1200x630.png",
     "name": "UniProt Resource",
-    "part_of": "uniprot",
     "pattern": "^DB-\\d{4}$",
     "preferred_prefix": "uniprot.resource",
     "synonyms": [
@@ -72260,7 +72036,6 @@
       "n2t": "tissuelist"
     },
     "name": "Tissue List",
-    "part_of": "uniprot",
     "pattern": "^TS-\\d{4}$",
     "preferred_prefix": "uniprot.tissue",
     "uri_format": "https://www.uniprot.org/tissues/$1"
@@ -72283,7 +72058,6 @@
     "homepage": "https://web.expasy.org/variant_pages",
     "logo": "https://www.uniprot.org/og-uniprot-wide-logo-1200x630.png",
     "name": "UniProt Variants",
-    "part_of": "uniprot",
     "pattern": "^\\d+$",
     "preferred_prefix": "uniprot.var",
     "providers": [
@@ -72319,7 +72093,6 @@
       "re3data": "r3d100011518"
     },
     "name": "UniRef",
-    "part_of": "uniprot",
     "pattern": "^UniRef(100|90|50)_([OPQ][0-9][A-Z0-9]{3}[0-9]|[A-NR-Z][0-9]([A-Z][A-Z0-9]{2}[0-9]){1,2}|UPI[A-F0-9]{10})$",
     "preferred_prefix": "uniref",
     "uri_format": "https://www.uniprot.org/uniref/$1"
@@ -72345,7 +72118,6 @@
       "go": "UniRule"
     },
     "name": "UniRule",
-    "part_of": "uniprot",
     "preferred_prefix": "unirule",
     "uri_format": "https://www.uniprot.org/unirule/$1"
   },
@@ -73511,7 +73283,7 @@
       "wikidata": "P214",
       "wikidata.entity": "Q19832964"
     },
-    "name": "VIAF ID",
+    "name": "VIAF cluster ID",
     "pattern": "^\\d+$",
     "preferred_prefix": "viaf",
     "providers": [
@@ -75066,7 +74838,6 @@
     },
     "mastodon": "wikipathways@fosstodon.org",
     "name": "WikiPathways Ontology",
-    "part_of": "wikipathways",
     "preferred_prefix": "wikipathways.vocab",
     "references": [
       "https://github.com/biopragmatics/bioregistry/issues/818"
@@ -75517,24 +75288,6 @@
     "twitter": "WRMarineSpecies",
     "uri_format": "http://www.marinespecies.org/aphia.php?p=taxdetails&id=$1"
   },
-  "wos": {
-    "description": "unique academic work identifier assigned in Web of Science bibliographic database (Web of Science Core Collection only and do not include WOS: prefix)",
-    "example": "000177759000002",
-    "homepage": "https://www.webofscience.com",
-    "mappings": {
-      "wikidata": "P8372"
-    },
-    "name": "Web of Science ID (work)",
-    "preferred_prefix": "wos",
-    "references": [
-      "https://github.com/biopragmatics/bioregistry/issues/805"
-    ],
-    "synonyms": [
-      "wosid",
-      "wosuid"
-    ],
-    "uri_format": "https://www.webofscience.com/wos/woscc/full-record/WOS:$1"
-  },
   "wos.researcher": {
     "description": "identifier for a researcher in a system for scientific authors, redirects to a Web of Science ID, along with P3829",
     "example": "B-5720-2018",
@@ -75543,10 +75296,28 @@
       "wikidata": "P1053"
     },
     "name": "ResearcherID",
-    "part_of": "wos",
     "pattern": "^[A-Z]{1,3}-\\d{4}-(19|20)\\d\\d$",
     "preferred_prefix": "wos.researcher",
     "uri_format": "https://www.webofscience.com/wos/author/record/$1"
+  },
+  "wos.work": {
+    "description": "unique academic work identifier assigned in Web of Science bibliographic database (Web of Science Core Collection only and do not include WOS: prefix)",
+    "example": "000177759000002",
+    "homepage": "https://www.webofscience.com",
+    "mappings": {
+      "wikidata": "P8372"
+    },
+    "name": "Web of Science work ID",
+    "preferred_prefix": "wos.work",
+    "references": [
+      "https://github.com/biopragmatics/bioregistry/issues/805"
+    ],
+    "synonyms": [
+      "wos",
+      "wosid",
+      "wosuid"
+    ],
+    "uri_format": "https://www.webofscience.com/wos/woscc/full-record/WOS:$1"
   },
   "wot": {
     "contributor": {
@@ -75736,7 +75507,7 @@
     "repository": "https://github.com/rat-genome-database/XCO-experimental-condition-ontology",
     "twitter": "ratgenome",
     "uri_format": "http://purl.obolibrary.org/obo/XCO_$1",
-    "version": "4.215"
+    "version": "4.216"
   },
   "xenbase": {
     "contact": {
