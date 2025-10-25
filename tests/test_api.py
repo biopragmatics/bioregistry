@@ -2,6 +2,8 @@
 
 import unittest
 
+from curies import ReferenceTuple
+
 import bioregistry
 
 
@@ -60,4 +62,8 @@ class TestAPI(unittest.TestCase):
         self.assertEqual(
             "http://purl.obolibrary.org/obo/CHMO_0000073",
             c.expand("CHMO:0000073"),
+        )
+        self.assertEqual(
+            ReferenceTuple(prefix="edam.format", identifier="1915"),
+            c.parse_uri("http://edamontology.org/format_1915"),
         )
