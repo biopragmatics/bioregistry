@@ -37,6 +37,11 @@ skip_prefixes = {
     "DB-0180",  # genewiki
 }
 
+HAS_BAD_URI = {
+    "DB-0148",  # ensembl.fungi
+    "DB-0147",  # ensembl.bacteria
+}
+
 
 def get_uniprot(*, force_download: bool = True) -> dict[str, dict[str, str]]:
     """Get the UniProt registry."""
@@ -64,8 +69,9 @@ def get_uniprot(*, force_download: bool = True) -> dict[str, dict[str, str]]:
 
 
 def _process_record(record: dict[str, Any]) -> dict[str, Any] | None:
+    prefix = record.pop("id")
     rv = {
-        "prefix": record.pop("id"),
+        "prefix": prefix,
         "name": record.pop("name"),
         "abbreviation": record.pop("abbrev"),
         "homepage": record.pop("servers")[0],
@@ -95,7 +101,7 @@ def _process_record(record: dict[str, Any]) -> dict[str, Any] | None:
         return None
     else:
         value = value.replace("%s", "$1").replace("%u", "$1")
-        if "$1" in value:
+        if "$1" in value and prefix not in HAS_BAD_URI:
             rv[URI_FORMAT_KEY] = value
         else:
             logger.debug("no annotation in %s", rv["prefix"])

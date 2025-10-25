@@ -34,6 +34,7 @@ BLOCK = {
     ("WBls", "http://www.wormbase.org/get?name=$1"),
     ("WB_REF", "http://www.wormbase.org/get?name=$1"),
     ("WBPhenotype", "http://www.wormbase.org/get?name=$1"),
+    ("EnsemblFungi", "http://www.ensemblgenomes.org/id/$1"),
 }
 
 # The key is redundant of the value
