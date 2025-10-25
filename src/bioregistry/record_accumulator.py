@@ -95,12 +95,10 @@ def _stratify_resources(
     primary_resources = []
     secondary_resources = []
     for resource in resources:
-        if resource.provides or resource.has_canonical or resource.part_of:
+        primary_prefix = resource.provides or resource.has_canonical or resource.part_of
+        if primary_prefix is not None:
             # TODO there's some nuance to the order here, make resource.part_of the last.
-            #  check also how often there are multiple
-            secondary_resources.append(
-                (resource, resource.provides or resource.has_canonical or resource.part_of)
-            )
+            secondary_resources.append((resource, primary_prefix))
         else:
             primary_resources.append(resource)
     return primary_resources, secondary_resources
