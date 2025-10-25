@@ -34,6 +34,7 @@ skip_prefixes = {
     "eggNOG",  # not sure what this does
     "PlantReactome",  # incomprehensible URLs
     "Reactome",  # incomprehensible URLs
+    "DB-0180",  # genewiki
 }
 
 

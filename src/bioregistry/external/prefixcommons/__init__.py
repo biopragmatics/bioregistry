@@ -92,6 +92,7 @@ SKIP_URI_FORMATS = {
     "http://purl.obolibrary.org/obo/$1",
     "http://www.ebi.ac.uk/ontology-lookup/?termId=$1",
     "http://arabidopsis.org/servlets/TairObject?accession=$1",
+    "http://www.gramene.org/db/ontology/search?id=$1",
 }
 
 
