@@ -131,8 +131,6 @@ def _iterate_prefix_prefix(resource: Resource, *extras: str) -> Iterable[str]:
 # TODO handle when one URI is a subspace of another
 #  (e.g., uniprot.isoform and uniprot)
 
-USE_NEW_IMPLEMENTATION = True
-
 
 def get_converter(
     resources: list[Resource],
@@ -144,15 +142,15 @@ def get_converter(
     remapping: Mapping[str, str] | None = None,
     rewiring: Mapping[str, str] | None = None,
     enforce_w3c: bool = False,
+    use_new_implementation: bool = True,
 ) -> Converter:
     """Generate a converter from resources."""
-    if USE_NEW_IMPLEMENTATION:
+    if use_new_implementation:
         converter = _get_converter(
             resources,
             prefix_priority=prefix_priority,
             uri_prefix_priority=uri_prefix_priority,
             include_prefixes=include_prefixes,
-            strict=strict,
             blacklist=blacklist,
             enforce_w3c=enforce_w3c,
         )
@@ -192,7 +190,6 @@ def _get_converter(
     prefix_priority: Sequence[str] | None = None,
     uri_prefix_priority: Sequence[str] | None = None,
     include_prefixes: bool = False,
-    strict: bool = False,
     blacklist: Collection[str] | None = None,
     enforce_w3c: bool = False,
 ) -> curies.Converter:
@@ -220,11 +217,11 @@ def _get_converter(
         if include_prefixes:
             converter.add_uri_prefix_synonym(primary_prefix, f"{primary_prefix}:")
             converter.add_uri_prefix_synonym(primary_prefix, f"{primary_prefix.upper()}:")
-            # converter.add_uri_prefix_synonym(primary_prefix, f"{primary_prefix.lower()}:")
-            for p in secondary_prefixes:
-                converter.add_uri_prefix_synonym(primary_prefix, f"{p}:")
-                converter.add_uri_prefix_synonym(primary_prefix, f"{p.upper()}:")
-                # converter.add_uri_prefix_synonym(primary_prefix, f"{p.lower()}:")
+            converter.add_uri_prefix_synonym(primary_prefix, f"{primary_prefix.lower()}:")
+            for secondary_prefix in secondary_prefixes:
+                converter.add_uri_prefix_synonym(primary_prefix, f"{secondary_prefix}:")
+                converter.add_uri_prefix_synonym(primary_prefix, f"{secondary_prefix.upper()}:")
+                converter.add_uri_prefix_synonym(primary_prefix, f"{secondary_prefix.lower()}:")
 
     for resource, primary_prefix in secondary_resources:
         secondary_uri_prefix, secondary_uri_prefixes = _get_uri_prefixes(
@@ -235,20 +232,20 @@ def _get_converter(
             for s in secondary_uri_prefixes:
                 converter.add_uri_prefix_synonym(primary_prefix, s)
 
-        secondary_prefix, more_secondary_prefixes = _get_curie_prefixes(resource, prefix_priority)
+        secondary_prefix, tertiary_prefixes = _get_curie_prefixes(resource, prefix_priority)
         converter.add_prefix_synonym(primary_prefix, secondary_prefix)
-        for s in more_secondary_prefixes:
+        for s in tertiary_prefixes:
             converter.add_prefix_synonym(primary_prefix, s)
 
         if include_prefixes:
             if include_prefixes:
                 converter.add_uri_prefix_synonym(primary_prefix, f"{secondary_prefix}:")
                 converter.add_uri_prefix_synonym(primary_prefix, f"{secondary_prefix.upper()}:")
-                # converter.add_uri_prefix_synonym(primary_prefix, f"{secondary_prefix.lower()}:")
-                for p in more_secondary_prefixes:
-                    converter.add_uri_prefix_synonym(primary_prefix, f"{p}:")
-                    converter.add_uri_prefix_synonym(primary_prefix, f"{p.upper()}:")
-                    # converter.add_uri_prefix_synonym(primary_prefix, f"{p.lower()}:")
+                converter.add_uri_prefix_synonym(primary_prefix, f"{secondary_prefix.lower()}:")
+                for tertiary_prefix in tertiary_prefixes:
+                    converter.add_uri_prefix_synonym(primary_prefix, f"{tertiary_prefix}:")
+                    converter.add_uri_prefix_synonym(primary_prefix, f"{tertiary_prefix.upper()}:")
+                    converter.add_uri_prefix_synonym(primary_prefix, f"{tertiary_prefix.lower()}:")
 
     return converter
 
