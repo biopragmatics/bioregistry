@@ -194,6 +194,7 @@ MIRIAM_BLACKLIST = {
 }
 URI_FORMAT_BLACKLIST = {
     ("P4229", "https://icdcodelookup.com/icd-10/codes/$1"),
+    ("P696", "http://uri.neuinfo.org/nif/nifstd/$1"),
 }
 
 
