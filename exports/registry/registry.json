@@ -35952,6 +35952,31 @@
     },
     "name": "International Nonproprietary Names",
     "preferred_prefix": "inn",
+    "providers": [
+      {
+        "code": "dotad",
+        "description": "Database Of Therapeutic Antibody Developability (DOTAD) provides comprehensive developability assessments and annotations for therapeutic antibodies referenced by their INN names.",
+        "homepage": "https://i.uestc.edu.cn/DOTAD/",
+        "name": "Database Of Therapeutic Antibody Developability",
+        "publications": [
+          {
+            "doi": "10.1007/s12539-024-00613-2",
+            "pubmed": "38530613",
+            "title": "DOTAD: A Database of Therapeutic Antibody Developability",
+            "year": 2025
+          }
+        ],
+        "uri_format": "https://i.uestc.edu.cn/DOTAD/detail.html?INN=$1"
+      }
+    ],
+    "publications": [
+      {
+        "doi": "10.1007/s12539-024-00613-2",
+        "pubmed": "38530613",
+        "title": "DOTAD: A Database of Therapeutic Antibody Developability",
+        "year": 2025
+      }
+    ],
     "synonyms": [
       "INN_ID"
     ],
@@ -43872,12 +43897,12 @@
     "uri_format": "http://purl.org/spar/mito/$1"
   },
   "mixs": {
-    "comment": "Some things to be decided before granting - [ ] should the prefix be mixs, gsc.mixs, MIxS, MIXS, ...? - [ ] MIxS terms are most commonly identified by a short computable stable label, e.g ph_regm. The GSC CIG team are creating numeric identifiers, e.g. MIXS:0001056 - Should we support both schemes? - If we do, should these be different prefixes? I would strongly recommend this. E.g. mixs.term:ph_regm, mixs:0001056. We can then have different regex patterns for both Additional notes: - The http://gensc.org/ns/mixs/ will likely changes to a w3id.org URI that will also serve as a semweb identifier - It currently redirects to the tdwg wiki but this is I assume temporary",
+    "comment": "Some things to be decided before granting - [ ] should the prefix be mixs, gsc.mixs, MIxS, MIXS, ...? - [ ] MIxS terms are most commonly identified by a short computable stable label, e.g ph_regm. The GSC CIG team are creating numeric identifiers, e.g. MIXS:0001056 - Should we support both schemes? - If we do, should these be different prefixes? I would strongly recommend this. E.g. mixs.term:ph_regm, mixs:0001056. We can then have different regex patterns for both Additional notes: - It currently redirects to the tdwg wiki but this is I assume temporary",
     "contact": {
-      "email": "rlwalls2008@gmail.com",
-      "github": "ramonawalls",
-      "name": "Ramona Walls",
-      "orcid": "0000-0001-8815-0078"
+      "email": "mam@lbl.gov",
+      "github": "turbomam",
+      "name": "Mark Andrew Miller",
+      "orcid": "0000-0001-9076-6066"
     },
     "contributor": {
       "email": "cjmungall@lbl.gov",
@@ -43897,13 +43922,19 @@
         "github": "lnanderson",
         "name": "Lindsey N. Anderson",
         "orcid": "0000-0002-8741-7823"
+      },
+      {
+        "email": "mam@lbl.gov",
+        "github": "turbomam",
+        "name": "Mark Andrew Miller",
+        "orcid": "0000-0001-9076-6066"
       }
     ],
     "description": "The GSC family of minimum information standards (checklists) – Minimum Information about any (x) Sequence (MIxS). MIxS identifiers are for terms describing an aspect of an environmental sample.",
-    "download_owl": "http://aber-owl.net/media/ontologies/MIXS/5/mixs.owl",
+    "download_owl": "https://w3id.org/mixs/mixs.owl.ttl",
     "example": "0001056",
     "github_request_issue": 151,
-    "homepage": "https://www.gensc.org/pages/standards/all-terms.html",
+    "homepage": "https://w3id.org/mixs",
     "keywords": [
       "ontology"
     ],
@@ -43912,9 +43943,9 @@
       "bioportal": "MIXS",
       "fairsharing": "FAIRsharing.9aa0zp"
     },
-    "name": "Minimal Information about any Sequence",
+    "name": "Minimum Information about any (x) Sequence",
     "pattern": "^\\d{7}$",
-    "preferred_prefix": "mixs",
+    "preferred_prefix": "MIXS",
     "providers": [
       {
         "code": "github",
@@ -43932,6 +43963,10 @@
         "title": "Minimum information about a marker gene sequence (MIMARKS) and minimum information about any (x) sequence (MIxS) specifications",
         "year": 2011
       }
+    ],
+    "rdf_uri_format": "https://w3id.org/mixs/$1",
+    "references": [
+      "https://github.com/biopragmatics/bioregistry/pull/1738"
     ],
     "reviewer": {
       "email": "cthoyt@gmail.com",
