@@ -363,9 +363,9 @@ class Provider(BaseModel):
     """A provider."""
 
     code: str = Field(..., description="A locally unique code within the prefix for the provider")
-    name: str = Field(..., description="Name of the provider")
-    description: str = Field(..., description="Description of the provider")
-    homepage: str = Field(..., description="Homepage of the provider")
+    name: str | None = Field(None, description="Name of the provider")
+    description: str | None = Field(None, description="Description of the provider")
+    homepage: str | None = Field(None, description="Homepage of the provider")
     uri_format: str = Field(
         ...,
         title="URI Format",
