@@ -24,6 +24,14 @@ class TestDataSlow(unittest.TestCase):
             self.assertEqual((prefix, ex), bioregistry.parse_iri(b))
 
     @pytest.mark.slow
+    def test_parse_iri(self) -> None:
+        """Test parsing IRIs."""
+        self.assertEqual(
+            ("ncbitaxon", "131567"),
+            bioregistry.parse_iri("http://purl.bioontology.org/ontology/NCBITAXON/131567"),
+        )
+
+    @pytest.mark.slow
     def test_prefix_map_priorities(self):
         """Test that different lead priorities all work for prefix map generation."""
         priorities = [
