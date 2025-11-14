@@ -12,6 +12,7 @@ import curies
 
 from .resource_manager import MetaresourceAnnotatedValue, manager
 from .schema import Attributable, Resource
+from .schema.struct import AnnotatedURL
 
 __all__ = [
     "add_resource",
@@ -787,20 +788,44 @@ def get_owl_download(prefix: str) -> str | None:
     return entry.get_download_owl()
 
 
-def get_rdf_download(prefix: str) -> str | None:
+# docstr-coverage:excused `overload`
+@overload
+def get_rdf_download(
+    prefix: str, *, get_format: Literal[True] = ...
+) -> str | AnnotatedURL | None: ...
+
+
+# docstr-coverage:excused `overload`
+@overload
+def get_rdf_download(prefix: str, *, get_format: Literal[False] = ...) -> str | None: ...
+
+
+def get_rdf_download(prefix: str, *, get_format: bool = False) -> str | AnnotatedURL | None:
     """Get the download link for the RDF file."""
     entry = get_resource(prefix)
     if entry is None:
         return None
-    return entry.get_download_rdf()
+    return entry.get_download_rdf(get_format=get_format)  # type:ignore
 
 
-def get_skos_download(prefix: str) -> str | None:
+# docstr-coverage:excused `overload`
+@overload
+def get_skos_download(
+    prefix: str, *, get_format: Literal[True] = ...
+) -> str | AnnotatedURL | None: ...
+
+
+# docstr-coverage:excused `overload`
+@overload
+def get_skos_download(prefix: str, *, get_format: Literal[False] = ...) -> str | None: ...
+
+
+def get_skos_download(prefix: str, *, get_format: bool = False) -> str | AnnotatedURL | None:
     """Get the download link for the SKOS RDF file."""
     entry = get_resource(prefix)
     if entry is None:
         return None
-    return entry.get_download_skos()
+    return entry.get_download_skos(get_format=get_format)  # type:ignore
 
 
 def get_jskos_download(prefix: str) -> str | None:

@@ -277,7 +277,7 @@ class Manager:
         registry = self.get_registry(metaprefix)
         if registry is None:
             if strict:
-                raise ValueError
+                raise ValueError(f"could not find a homepage for registry {metaprefix}")
             return None
         return registry.homepage
 
@@ -361,7 +361,7 @@ class Manager:
             return None
         rv = self.registry.get(norm_prefix)
         if rv is None and strict:
-            raise ValueError
+            raise ValueError(f"could not a resource for {prefix}")
         return rv
 
     # docstr-coverage:excused `overload`
@@ -858,7 +858,7 @@ class Manager:
         entry = self.get_resource(prefix)
         if entry is None:
             if strict:
-                raise ValueError
+                raise ValueError(f"could not find a name for {prefix}")
             return None
         if provenance:
             _tmp = entry.get_name(provenance=True)
