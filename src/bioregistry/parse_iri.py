@@ -38,6 +38,9 @@ def curie_from_iri(
         instead of the canonicalized Bioregistry prefix.
 
     :returns: A CURIE string, if the IRI can be parsed.
+
+    >>> curie_from_iri("http://purl.bioontology.org/ontology/NCBITAXON/131567")
+    'ncbitaxon:131567'
     """
     rv = parse_iri(
         iri, use_preferred=use_preferred, on_failure_return_type=FailureReturnType.single

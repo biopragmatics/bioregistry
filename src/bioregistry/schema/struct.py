@@ -48,6 +48,7 @@ if TYPE_CHECKING:
     import rdflib.term
 
 __all__ = [
+    "AnnotatedURL",
     "Attributable",
     "Author",
     "Collection",
@@ -407,6 +408,17 @@ class Provider(BaseModel):
         return self.status.value != ResourceStatusAvailable
 
 
+#: A list of valid RDF formats.
+RDFFormat: TypeAlias = Literal["ttl", "rdf", "xml", "n3", "trix", "nt"]
+
+
+class AnnotatedURL(BaseModel):
+    """A URL annotated with its file type and data schema."""
+
+    url: str
+    rdf_format: RDFFormat = Field(default="ttl", title="RDF Format")
+
+
 class Resource(BaseModel):
     """Metadata about an ontology, database, or other resource."""
 
@@ -542,7 +554,7 @@ class Resource(BaseModel):
     """
         ),
     )
-    download_rdf: str | None = Field(
+    download_rdf: str | AnnotatedURL | None = Field(
         default=None,
         title="RDF Download URL",
         description=_dedent(
@@ -551,7 +563,7 @@ class Resource(BaseModel):
     """
         ),
     )
-    download_skos: str | None = Field(
+    download_skos: str | AnnotatedURL | None = Field(
         default=None,
         title="SKOS RDF Download URL",
         description="The URL to download the resource as an SKOS RDF file.",
@@ -2456,13 +2468,41 @@ class Resource(BaseModel):
             return self.download_json
         return self.get_external("obofoundry").get("download.json")
 
-    def get_download_rdf(self) -> str | None:
-        """Get the download link for the latest RDF file."""
-        return self.download_rdf or self.get_external("ols").get("download_rdf")
+    # docstr-coverage:excused `overload`
+    @overload
+    def get_download_rdf(self, *, get_format: Literal[True] = ...) -> str | AnnotatedURL | None: ...
 
-    def get_download_skos(self) -> str | None:
+    # docstr-coverage:excused `overload`
+    @overload
+    def get_download_rdf(self, *, get_format: Literal[False] = ...) -> str | None: ...
+
+    def get_download_rdf(self, *, get_format: bool = False) -> str | AnnotatedURL | None:
+        """Get the download link for the latest RDF file."""
+        if self.download_rdf is not None:
+            if isinstance(self.download_rdf, AnnotatedURL) and not get_format:
+                return self.download_rdf.url
+            else:
+                return self.download_rdf
+        return self.get_external("ols").get("download_rdf")
+
+    # docstr-coverage:excused `overload`
+    @overload
+    def get_download_skos(
+        self, *, get_format: Literal[True] = ...
+    ) -> str | AnnotatedURL | None: ...
+
+    # docstr-coverage:excused `overload`
+    @overload
+    def get_download_skos(self, *, get_format: Literal[False] = ...) -> str | None: ...
+
+    def get_download_skos(self, *, get_format: bool = False) -> str | AnnotatedURL | None:
         """Get the download link for the latest SKOS RDF file."""
-        return self.download_skos
+        if self.download_skos is not None:
+            if isinstance(self.download_skos, AnnotatedURL) and not get_format:
+                return self.download_skos.url
+            else:
+                return self.download_skos
+        return None
 
     def get_download_jskos(self) -> str | None:
         """Get the download link for the latest JSKOS JSON file."""

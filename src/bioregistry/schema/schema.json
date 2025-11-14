@@ -2,6 +2,33 @@
   "$schema": "http://json-schema.org/draft-07/schema#",
   "$id": "https://bioregistry.io/schema.json",
   "$defs": {
+    "AnnotatedURL": {
+      "description": "A URL annotated with its file type and data schema.",
+      "properties": {
+        "url": {
+          "title": "Url",
+          "type": "string"
+        },
+        "rdf_format": {
+          "default": "ttl",
+          "enum": [
+            "ttl",
+            "rdf",
+            "xml",
+            "n3",
+            "trix",
+            "nt"
+          ],
+          "title": "RDF Format",
+          "type": "string"
+        }
+      },
+      "required": [
+        "url"
+      ],
+      "title": "AnnotatedURL",
+      "type": "object"
+    },
     "Attributable": {
       "description": "An upper-level metadata for a researcher.",
       "properties": {
@@ -1367,6 +1394,9 @@
               "type": "string"
             },
             {
+              "$ref": "#/$defs/AnnotatedURL"
+            },
+            {
               "type": "null"
             }
           ],
@@ -1378,6 +1408,9 @@
           "anyOf": [
             {
               "type": "string"
+            },
+            {
+              "$ref": "#/$defs/AnnotatedURL"
             },
             {
               "type": "null"
