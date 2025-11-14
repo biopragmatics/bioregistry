@@ -863,7 +863,7 @@
 @prefix irefweb: <http://wodaklab.org/iRefWeb/interaction/show/> .
 @prefix iresite: <http://www.iresite.org/IRESite_web.php?page=view&entry_id=> .
 @prefix iro: <https://legacy.vectorbase.org/ontology-browser?cv=MIRO&t=IRO:> .
-@prefix isbn: <https://isbnsearch.org/isbn/> .
+@prefix isbn: <https://www.worldcat.org/isbn/> .
 @prefix isced1997: <https://w3id.org/kim/isced-1997/level> .
 @prefix isced2011: <https://w3id.org/kim/isced-2011/level> .
 @prefix isced2013: <https://w3id.org/kim/isced-2013/> .
@@ -17216,12 +17216,12 @@ bioregistry:isbn a bioregistry.schema:0000001 ;
     dcat:keyword "bibliography" ;
     foaf:homepage <http://www.worldcat.org/> ;
     bioregistry.schema:0000005 "9789211613865"^^xsd:string ;
-    bioregistry.schema:0000006 "https://isbnsearch.org/isbn/$1"^^xsd:string ;
+    bioregistry.schema:0000006 "https://www.worldcat.org/isbn/$1"^^xsd:string ;
     bioregistry.schema:0000008 "^(ISBN)?(-13|-10)?[:]?[ ]?(\\d{2,3}[ -]?)?\\d{1,5}[ -]?\\d{1,7}[ -]?\\d{1,6}[ -]?(\\d|X)$"^^xsd:string ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000023 "ISBN-10",
         "ISBN-13" ;
-    bioregistry.schema:0000024 "https://isbnsearch.org/isbn/"^^xsd:string ;
+    bioregistry.schema:0000024 "https://www.worldcat.org/isbn/"^^xsd:string ;
     bioregistry.schema:0000027 isbn:9789211613865 ;
     bioregistry.schema:0000029 "isbn" .
 
@@ -43462,7 +43462,7 @@ bioregistry:gaz a bioregistry.schema:0000001 ;
     bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/GAZ_$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d{8}$"^^xsd:string ;
     bioregistry.schema:0000010 obo:gaz.owl ;
-    bioregistry.schema:0000012 true ;
+    bioregistry.schema:0000012 false ;
     bioregistry.schema:0000018 bioregistry:scdo ;
     bioregistry.schema:0000019 orcid:0000-0001-8910-9851 ;
     bioregistry.schema:0000024 "http://purl.obolibrary.org/obo/GAZ_"^^xsd:string ;
@@ -46155,10 +46155,11 @@ bioregistry:qudt a bioregistry.schema:0000001 ;
         zazuko:qudt,
         fairsharing:FAIRsharing.d3pqw7,
         lov:qudt ;
-    dcat:keyword "astronomy and astrophysics",
-        "experimental measurement",
+    dcat:keyword "experimental measurement",
+        "measurement systems",
         "methods",
         "ontology",
+        "quantification",
         "unit",
         "units" ;
     foaf:homepage <https://qudt.org> ;
@@ -56404,7 +56405,7 @@ bioregistry:mba a bioregistry.schema:0000001 ;
     bioregistry.schema:0000005 "688"^^xsd:string ;
     bioregistry.schema:0000006 "https://purl.brain-bican.org/ontology/mbao/MBA_$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
-    bioregistry.schema:0000010 <https://purl.brain-bican.org/ontology/mbao/releases/2025-07-28/mbao.owl> ;
+    bioregistry.schema:0000010 <https://purl.brain-bican.org/ontology/mbao/releases/2025-10-29/mbao.owl> ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000019 [ rdfs:label "Allen Institute for Brain Science" ;
             foaf:mbox "cellsemantics@gmail.com" ] ;
@@ -58501,7 +58502,7 @@ bioregistry:hgnc a bioregistry.schema:0000001 ;
     bioregistry.schema:0000005 "16793"^^xsd:string ;
     bioregistry.schema:0000006 "https://www.genenames.org/data/gene-symbol-report/#!/hgnc_id/$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d{1,5}$"^^xsd:string ;
-    bioregistry.schema:0000010 <http://aber-owl.net/media/ontologies/HGNC/5/hgnc.owl> ;
+    bioregistry.schema:0000010 <http://aber-owl.net/media/ontologies/HGNC/6/hgnc.owl> ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000019 orcid:0000-0002-8380-5247,
         orcid:0000-0003-1818-8243 ;
