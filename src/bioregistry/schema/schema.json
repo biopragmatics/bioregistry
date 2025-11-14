@@ -384,19 +384,43 @@
           "type": "string"
         },
         "name": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
           "description": "Name of the provider",
-          "title": "Name",
-          "type": "string"
+          "title": "Name"
         },
         "description": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
           "description": "Description of the provider",
-          "title": "Description",
-          "type": "string"
+          "title": "Description"
         },
         "homepage": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
           "description": "Homepage of the provider",
-          "title": "Homepage",
-          "type": "string"
+          "title": "Homepage"
         },
         "uri_format": {
           "description": "The URI format string, which must have at least one ``$1`` in it. Note that this field is generic enough to accept IRIs. See the URI specification (https://www.rfc-editor.org/rfc/rfc3986) and IRI specification (https://www.ietf.org/rfc/rfc3987.txt) for more information.",
@@ -460,9 +484,6 @@
       },
       "required": [
         "code",
-        "name",
-        "description",
-        "homepage",
         "uri_format"
       ],
       "title": "Provider",
