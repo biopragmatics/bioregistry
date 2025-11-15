@@ -1673,6 +1673,11 @@ amphx:
   uri_format: http://purl.obolibrary.org/obo/AMPHX_$1
   version: '2020-12-18'
 ans.educationlevel:
+  contact:
+    email: sasutton@uw.edu
+    github: stuartasutton
+    name: Stuart A. Sutton
+    orcid: 0000-0002-3511-2892
   contributor:
     email: cthoyt@gmail.com
     github: cthoyt
@@ -1904,6 +1909,48 @@ aop.stressor:
   pattern: ^\d+$
   preferred_prefix: aop.stressor
   uri_format: https://aopwiki.org/stressors/$1
+aopo:
+  comment: There's no associated primary publication to my knowledge. The class and
+    property CURIE format strings are somewhat inconsistent, but all conform to http://aopkb.org/aop_ontology#AdverseOutcomePathway,
+    http://aopkb.org/aop_ontology#has_key_event or http://aopkb.org/aop_ontology#hasProcess.
+    It is not indexed in the OLS but supports the AOP-WIKI RDF (see https://doi.org/10.1089/aivt.2021.0010
+    or https://aopwiki.rdf.bigcat-bioinformatics.org/).
+  contact:
+    github: DataSciBurgoon
+    name: Lyle Burgoon
+    orcid: 0000-0003-4977-5352
+  contributor:
+    email: javier.millanacosta@maastrichtuniversity.nl
+    github: jmillanacosta
+    name: Javier Millán Acosta
+    orcid: 0000-0001-5608-781X
+  description: The AOPO provides classes and relationships for the semantic representation
+    of the Adverse Outcome Pathway framework.
+  download_owl: https://github.com/DataSciBurgoon/aop-ontology/raw/refs/heads/master/aopo.owl
+  example: AdverseOutcomePathway
+  github_request_issue: 1744
+  homepage: https://github.com/DataSciBurgoon/aop-ontology
+  keywords:
+  - adverse outcome pathway
+  - ontology
+  license: Apache-2.0
+  name: Adverse Outcome Pathway Ontology
+  pattern: ^[A-Za-z_]+$
+  preferred_prefix: aopo
+  publications:
+  - doi: 10.1089/aivt.2017.0017
+    pmc: PMC6060416
+    pubmed: '30057931'
+    title: Creating a Structured Adverse Outcome Pathway Knowledgebase via Ontology-Based
+      Annotations
+    year: 2017
+  repository: https://github.com/DataSciBurgoon/aop-ontology
+  reviewer:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  uri_format: http://aopkb.org/aop_ontology#$1
 apaonto:
   contact:
     email: awalker@apa.org
@@ -4764,7 +4811,7 @@ biolink:
     orcid: 0000-0002-6601-2165
   description: A high level datamodel of biological entities (genes, diseases, phenotypes,
     pathways, individuals, substances, etc) and their associations.
-  download_owl: http://aber-owl.net/media/ontologies/BIOLINK/71/biolink.owl
+  download_owl: http://aber-owl.net/media/ontologies/BIOLINK/73/biolink.owl
   download_rdf: https://w3id.org/biolink/biolink-model.owl.ttl
   example: Gene
   homepage: https://biolink.github.io/biolink-model/
@@ -9274,6 +9321,28 @@ cido:
   repository: https://github.com/cido-ontology/cido
   uri_format: http://purl.obolibrary.org/obo/CIDO_$1
   version: '2024-02-16'
+cidoc.crm:
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: The CIDOC Conceptual Reference Model (CRM) is a theoretical and practical
+    tool for information integration in the field of cultural heritage. It can help
+    researchers, administrators and the public explore complex questions with regards
+    to our past across diverse and dispersed datasets. The CIDOC CRM achieves this
+    by providing definitions and a formal structure for describing the implicit and
+    explicit concepts and relationships used in cultural heritage documentation and
+    of general interest for the querying and exploration of such data. Such models
+    are also known as formal ontologies. These formal descriptions allow the integration
+    of data from multiple sources in a software and schema agnostic fashion. [from
+    homepage]
+  example: E1
+  homepage: https://cidoc-crm.org
+  logo: https://cidoc-crm.org/sites/default/files/logo3.png
+  name: CIDOC Conceptual Reference Model
+  preferred_prefix: cidoc.crm
+  uri_format: http://www.cidoc-crm.org/cidoc-crm/$1
 cienciavitae:
   contributor:
     email: cthoyt@gmail.com
@@ -10288,8 +10357,10 @@ cmecs:
   name: Costal and Marine Ecological Classification Standard
   pattern: ^\d+$
   preferred_prefix: cmecs
+  rdf_uri_format: https://w3id.org/CMECS/CMECS_$1
   references:
   - http://www.natureserve.org/sites/default/files/publications/files/cmecs_version_06-2012_final.pdf
+  repository: https://github.com/NOAA-OCM/cmecs
   uri_format: https://cmecscatalog.org/cmecs/classification/unit/$1.html
 cmf:
   contact:
@@ -18521,6 +18592,7 @@ edam:
   - obo
   - omics
   - ontology
+  license: CC BY-SA 4.0
   mappings:
     aberowl: EDAM
     agroportal: EDAM
@@ -18702,6 +18774,26 @@ edda:
   name: EDDA Study Designs Taxonomy
   preferred_prefix: edda
   uri_format: http://ontologies.dbmi.pitt.edu/edda/StudyDesigns.owl#$1
+edm:
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: The Europeana Data Model (EDM) is aimed at being an integration medium
+    for collecting, connecting and enriching the descriptions provided by Europeana
+    data providers. The RDF vocabulary for http://www.europeana.eu/schemas/edm/ defines
+    the elements introduced by EDM (as opposed to the ones EDM re-uses from other
+    namespaces).
+  download_owl: https://github.com/europeana/metis-schema/raw/94c73a16320977fac121acfa366072e8e07e9158/src/main/resources/rdf_examples/edm.owl
+  example: Event
+  homepage: http://pro.europeana.eu/edm-documentation
+  keywords:
+  - ontology
+  name: Europeana Data Model vocabulary
+  preferred_prefix: edm
+  repository: https://github.com/europeana/metis-schema
+  uri_format: http://www.europeana.eu/schemas/edm/$1
 educor:
   contact:
     email: ilkou@l3s.de
@@ -19096,6 +19188,19 @@ ejprd:
   preferred_prefix: ejprd
   repository: https://github.com/EBISPOT/EJP-Ontology
   uri_format: http://purl.org/ejp-rd/vocabulary/$1
+eli:
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: An ontology to describe legislation, based on the FRBR model, that
+    encodes the ELI metadata fields.
+  example: InForce
+  homepage: https://op.europa.eu/en/web/eu-vocabularies/eli
+  name: ELI Metadata Ontology
+  preferred_prefix: eli
+  uri_format: http://data.europa.eu/eli/ontology#$1
 elm:
   contact:
     email: toby.gibson@embl.de
@@ -21124,6 +21229,24 @@ eropmoscow:
     name: Charles Tapley Hoyt
     orcid: 0000-0003-4423-4370
   uri_format: http://erop.inbi.ras.ru/result2.php?PepName=$1
+erudite:
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: A metadata stadnard to model data science training materials. Later,
+    was replaced by Bioschemas' [training materials specification](http://bioschemas.org/specifications/TrainingMaterial/specification/).
+  example: enables
+  homepage: https://www.pagestudy.org/erudite-training-resource-standard
+  keywords:
+  - educational resource
+  - learning material
+  - open educational resource
+  - schema
+  name: Educational Resource Discovery Index Schema
+  preferred_prefix: erudite
+  uri_format: http://www.bigdatau.org/schema#$1
 erv:
   description: Endogenous retroviruses (ERVs) are common in vertebrate genomes; a
     typical mammalian genome contains tens to hundreds of thousands of ERV elements.
@@ -21564,7 +21687,7 @@ evorao:
     resources and services to enhance pandemic preparedness and response. While initially
     focused on virology, EVORAO is designed to be extensible and also supports metadata
     harmonization for other pathogens. [from repository]
-  download_owl: http://aber-owl.net/media/ontologies/EVORAO/13/evorao.owl
+  download_owl: http://aber-owl.net/media/ontologies/EVORAO/14/evorao.owl
   download_rdf: https://raw.githubusercontent.com/EVORA-project/evora-ontology/refs/heads/main/models/owl/evora_ontology.owl.ttl
   example: AlternateName
   homepage: https://github.com/EVORA-project/evora-ontology
@@ -25293,6 +25416,159 @@ gesiskg:
   name: GESIS Knowledge Graph Schema
   preferred_prefix: gesiskg
   uri_format: https://data.gesis.org/gesiskg/schema/$1
+getty.att:
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: The AAT includes generic terms, and associated dates, relationships,
+    and other rich information about concepts related to or required to catalog, discover,
+    and retrieve information about art, architecture, and other visual cultural heritage,
+    including related disciplines such as archaeology and conservation. Visual works
+    include not only visual cultural works classified as "art" according to Western
+    aesthetics, but also utilitarian and ceremonial works. Terminology may be used
+    for work types, roles, materials, styles, cultures, techniques, subject, etc.,
+    so long as terms are within the defined scope of AAT. [from https://www.getty.edu/research/tools/vocabularies/aat/aat_faq.html]
+  download_rdf: https://vocab.getty.edu/aat.ttl
+  example: '300011154'
+  homepage: http://vocab.getty.edu/ontology
+  license: ODC-By-1.0
+  name: Art and Architecture Thesaurus
+  preferred_prefix: getty.att
+  providers:
+  - code: legacy
+    uri_format: http://vocab.getty.edu/resource/aat/$1
+  references:
+  - https://www.getty.edu/research/tools/vocabularies/lod/aat_semantic_representation.pdf
+  - https://www.getty.edu/research/tools/vocabularies/lod/index.html
+  uri_format: http://vocab.getty.edu/aat/$1
+getty.cona:
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: CONA compiles titles, attributions, depicted subjects, and other metadata
+    about works of art, architecture, and cultural heritage, both extant and historical,
+    physical and conceptual. Metadata is gathered and linked from museum collections,
+    special collections, archives, libraries, scholarly research, and other sources.
+    CONA is linked to the AAT, TGN, ULAN, and the IA (Iconography Authority). Through
+    rich metadata and links, CONA may provide a powerful conduit for research and
+    discovery for digital art history. [from homepage]
+  example: '700054086'
+  homepage: https://www.getty.edu/research/tools/vocabularies/cona/
+  license: ODC-By-1.0
+  name: Cultural Objects Names Authority
+  preferred_prefix: getty.cona
+  uri_format: http://vocab.getty.edu/page/cona/$1
+getty.gvp:
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: The GVP Ontology defines classes, properties and values (skos:Concepts)
+    used in GVP LOD. As of version 3.0, it is complete regarding AAT, TGN and ULAN,
+    and will be extended in time with more elements needed for other GVP vocabularies
+    (CONA).
+  download_rdf: http://vocab.getty.edu/ontology.ttl
+  example: prefLabelGVP
+  homepage: http://vocab.getty.edu/ontology
+  name: Getty Vocabulary Program ontology
+  preferred_prefix: getty.gvp
+  providers:
+  - code: legacy
+    uri_format: http://vocab.getty.edu/resource/ontology#$1
+  references:
+  - https://www.getty.edu/research/tools/vocabularies/lod/aat_semantic_representation.pdf
+  - https://www.getty.edu/research/tools/vocabularies/lod/index.html
+  uri_format: http://vocab.getty.edu/ontology#$1
+getty.ia:
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: The Getty Iconography Authority ™ (IA), Cultural Objects Name Authority
+    ® (CONA), the Union List of Artist Names ® (ULAN), the Art & Architecture Thesaurus
+    ® (AAT), the Getty Thesaurus of Geographic Names ® (TGN) are structured resources
+    that can be used to improve access to information about art, architecture, and
+    other material culture. The Vocabularies are not simply 'value vocabularies,'
+    but knowledge bases. Through rich metadata and links, the Getty Vocabularies provide
+    powerful conduits for knowledge creation, complex research, and discovery for
+    digital art history and related disciplines. [from https://www.getty.edu/research/tools/vocabularies/cona/about.html#purpose_ia]
+  example: '901001034'
+  homepage: https://www.getty.edu/cona/CONAIconographyHierarchy.aspx?iconid=901000000
+  name: Getty Iconography Authority
+  preferred_prefix: getty.ia
+  uri_format: http://vocab.getty.edu/page/ia/$1
+getty.tgn:
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: 'TGN is a structured vocabulary currently containing around 1,106,000
+    names and other information about places. Names for a place may include names
+    in the vernacular language, English, other languages, historical names, names
+    and in natural order and inverted order. Among these names, one is flagged as
+    the preferred name. TGN is a thesaurus, compliant with ISO and NISO standards
+    for thesaurus construction; it contains hierarchical, equivalence, and associative
+    relationships. Note that TGN is not a GIS (Geographic Information System). While
+    many records in TGN include coordinates, these coordinates are approximate and
+    are intended for reference only. The focus of each TGN record is a place. There
+    are around 912,000 places in the TGN. In the database, each place record (also
+    called a subject) is identified by a unique numeric ID. Linked to the record for
+    the place are names, the place''s parent or position in the hierarchy, other relationships,
+    geographic coordinates, notes, sources for the data, and place types, which are
+    terms describing the role of the place (e.g., inhabited place and state capital).
+    The temporal coverage of the TGN ranges from prehistory to the present and the
+    scope is global. The TGN is a hierarchical database; its trees branch from a root
+    called Top of the TGN hierarchies (Subject_ID: 1000000). Currently there are two
+    TGN facets, World and Extraterrestrial Places. Under the facet World, places are
+    arranged in hierarchies generally representing the current political and physical
+    world, although some historical nations and empires are also included. There may
+    be multiple broader contexts, making the TGN polyhierarchical. The primary users
+    of the Getty vocabularies include museums, art libraries, archives, visual resource
+    collection catalogers, bibliographic projects concerned with art, researchers
+    in art and art history, and the information specialists who are dealing with the
+    needs of these users. In addition, a significant number of users of the Getty
+    vocabularies are students or members of the general public.'
+  example: '1023371'
+  homepage: https://www.getty.edu/research/tools/vocabularies/tgn/
+  license: ODC-By-1.0
+  mappings:
+    bartoc: '109'
+    wikidata.entity: Q1520117
+  name: Getty Thesaurus of Geographic Names
+  pattern: ^\d+$
+  preferred_prefix: getty.tgn
+  providers:
+  - code: getty.tgn.page
+    uri_format: http://vocab.getty.edu/page/tgn/$1
+  references:
+  - https://obo-communitygroup.slack.com/archives/C023P0Z304T/p1638380238036200
+  synonyms:
+  - tgn
+  uri_format: http://vocab.getty.edu/tgn/$1
+getty.ulan:
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: The Getty Thesaurus of Geographic Names (TGN) is a structured vocabulary,
+    including names, descriptions, and other metadata for extant and historical cities,
+    empires, archaeological sites, and physical features important to research of
+    art and architecture. TGN may be linked to GIS (Geographical Information System),
+    maps, and other geographic resources. [from https://collectionstrust.org.uk/resource/thesaurus-of-geographic-names-tgn-getty/]
+  example: '500202846'
+  homepage: http://vocab.getty.edu/ulan/
+  license: ODC-By-1.0
+  name: Union List of Artist Names
+  preferred_prefix: getty.ulan
+  uri_format: http://vocab.getty.edu/ulan/$1
 gexo:
   contact:
     email: kuiper@bio.ntnu.no
@@ -35751,6 +36027,12 @@ lcsh:
   name: Library of Congress Subject Headings
   pattern: ^\w{1,2}\d{8,10}$
   preferred_prefix: lcsh
+  providers:
+  - code: subject
+    description: a subspace
+    homepage: https://id.loc.gov/authorities/subjects.html
+    name: LOC Subject
+    uri_format: http://id.loc.gov/authorities/subjects/$1
   rdf_uri_format: http://id.loc.gov/authorities/names/$1
   synonyms:
   - lcnaf
@@ -36763,6 +37045,102 @@ lrmi:
   preferred_prefix: lrmi
   rdf_uri_format: http://purl.org/dcx/lrmi-terms/$1
   uri_format: http://purl.org/dcx/lrmi-terms/$1
+lrmi.alignmenttype:
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: A concept scheme that defines the types of relationships between a
+    learning resource and a node in an educational framework.
+  example: assesses
+  github_request_issue: 1750
+  homepage: https://www.dublincore.org/specifications/lrmi/concept_schemes/alignmentType/
+  keywords:
+  - learning resource
+  - open educational resource
+  license: CC-BY-4.0
+  name: LRMI Alignment Type Vocabulary
+  preferred_prefix: lrmi.alignmenttype
+  repository: https://github.com/dcmi/lrmi
+  uri_format: http://purl.org/dcx/lrmi-vocabs/alignmentType/$1
+lrmi.educationalaudiencerole:
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: A concept scheme that defines the primary or intended roles of the
+    audience (beneficiary) of the resource being described.
+  example: mentor
+  github_request_issue: 1750
+  homepage: https://www.dublincore.org/specifications/lrmi/concept_schemes/alignmentType/
+  keywords:
+  - learning resource
+  - open educational resource
+  license: CC-BY-4.0
+  name: LRMI Educational Audience Role Vocabulary
+  preferred_prefix: lrmi.educationalaudiencerole
+  repository: https://github.com/dcmi/lrmi
+  uri_format: http://purl.org/dcx/lrmi-vocabs/educationalAudienceRole/$1
+lrmi.eduse:
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: A concept scheme that enumerates the educational uses of a learning
+    resource.
+  example: instruction
+  github_request_issue: 1750
+  homepage: https://www.dublincore.org/specifications/lrmi/concept_schemes/educationalUse/
+  keywords:
+  - learning resource
+  - open educational resource
+  license: CC-BY-4.0
+  name: LRMI Educational Use Vocabulary
+  preferred_prefix: lrmi.eduse
+  repository: https://github.com/dcmi/lrmi
+  uri_format: http://purl.org/dcx/lrmi-vocabs/educationalUse/$1
+lrmi.interact:
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: A concept scheme that defines the predominate interact mode of the
+    learning resource being described.
+  example: active
+  github_request_issue: 1750
+  homepage: https://www.dublincore.org/specifications/lrmi/concept_schemes/interactivityType/
+  keywords:
+  - learning resource
+  - open educational resource
+  license: CC-BY-4.0
+  name: LRMI Interact Type Vocabulary
+  preferred_prefix: lrmi.interact
+  repository: https://github.com/dcmi/lrmi
+  uri_format: http://purl.org/dcx/lrmi-vocabs/interactivityType/$1
+lrmi.resourcetype:
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: A top-level concept scheme that enumerates different types of Learning
+    Resource, designed to supplement existing more generic resource type schemes and
+    which can support local extensions.
+  example: activityPlan
+  github_request_issue: 1750
+  homepage: https://www.dublincore.org/specifications/lrmi/concept_schemes/learningResourceType/
+  keywords:
+  - learning resource
+  - open educational resource
+  license: CC-BY-4.0
+  name: LRMI Learning Resource Type Concept Scheme
+  preferred_prefix: lrmi.resourcetype
+  repository: https://github.com/dcmi/lrmi
+  uri_format: http://purl.org/dcx/lrmi-vocabs/learningResourceType/$1
 lspci:
   contributor:
     email: cthoyt@gmail.com
@@ -38195,6 +38573,7 @@ mesh:
   example: C063233
   example_extras:
   - D000001
+  - Q000473
   homepage: https://www.nlm.nih.gov/
   keywords:
   - bioinformatics
@@ -38227,7 +38606,7 @@ mesh:
     wikidata: P486
     wikidata.entity: Q199897
   name: Medical Subject Headings
-  pattern: ^(C|D|M)\d{6,9}$
+  pattern: ^(C|D|Q)\d+$
   preferred_prefix: mesh
   providers:
   - code: ''
@@ -41379,6 +41758,9 @@ mp:
     name: neXtProt MP Browser
     uri_format: https://www.nextprot.org/term/MP:$1
   publications:
+  - pubmed: '40963406'
+    title: Expanding and refining the Mammalian Phenotype Ontology to enhance disease
+      model discovery
   - doi: 10.1186/s13326-015-0009-1
     pmc: PMC4378007
     pubmed: '25825651'
@@ -43205,6 +43587,11 @@ ncbitaxon:
     homepage: https://bio2rdf.org
     name: Bio2RDF
     uri_format: http://bio2rdf.org/taxonomy:$1
+  - code: bioportal.purl
+    description: BioPortal assigns their own PURLs to entities in NCBI taxonomy database.
+    homepage: https://purl.bioontology.org/ontology/NCBITAXON
+    name: BioPortal
+    uri_format: http://purl.bioontology.org/ontology/NCBITAXON/$1
   - code: ebi
     description: European Nucleotide Archive (ENA)
     homepage: https://www.ebi.ac.uk/ena/
@@ -46509,6 +46896,37 @@ occo:
   repository: https://github.com/Occupation-Ontology/OccO
   uri_format: http://purl.obolibrary.org/obo/OCCO_$1
   version: '2025-10-06'
+ocdo:
+  contact:
+    email: a.azocar.guzman@fz-juelich.de
+    github: aazocar
+    name: Abril Azocar Guzman
+    orcid: 0000-0001-7564-7990
+  contributor:
+    email: philip.stroemert@tib.eu
+    github: StroemPhi
+    name: Philip Strömert
+    orcid: 0000-0002-1595-3213
+  description: The Crystallographic Defect Core Ontology (CDCO) defines the common
+    terminology shared across all types of crystallographic defects, providing a unified
+    framework for data integration in materials science.
+  download_owl: https://github.com/OCDO/cdco/raw/refs/heads/main/cdco.owl
+  example: hasDefectComplex
+  github_request_issue: 1742
+  homepage: https://github.com/OCDO/cdco
+  keywords:
+  - ontology
+  license: CC-BY-4.0
+  logo: https://raw.githubusercontent.com/OCDO/.github/refs/heads/main/profile/ocdo_logo.png
+  name: Crystallographic Defect Core Ontology
+  preferred_prefix: ocdo
+  repository: https://github.com/OCDO/cdco
+  reviewer:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  uri_format: http://purls.helmholtz-metadaten.de/cdos/cdco/$1
 oci:
   description: 'Each OCI (Open Citation Identifier) has a simple structure: oci:<identifier>-<identifier>,
     where “oci:” is the identifier prefix, and is used to identify a citation as a
@@ -48300,6 +48718,22 @@ openalex:
     name: Charles Tapley Hoyt
     orcid: 0000-0003-4423-4370
   uri_format: https://openalex.org/$1
+openeduhub.context:
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: educational levels
+  example: sekundarstufe_2
+  homepage: http://w3id.org/openeduhub/vocabs/educationalContext/
+  keywords:
+  - education level
+  - open educational resources
+  name: Educational Context
+  preferred_prefix: openeduhub.context
+  rdf_uri_format: http://w3id.org/openeduhub/vocabs/educationalContext/$1
+  uri_format: http://w3id.org/openeduhub/vocabs/educationalContext/$1
 openwemi:
   contact:
     email: kcoyle@kcoyle.net
@@ -58068,10 +58502,6 @@ schem:
   preferred_prefix: schem
   uri_format: https://biopragmatics.github.io/providers/schem/$1
 schema:
-  contact:
-    email: sivaram.arabandi@gmail.com
-    name: Sivaram Arabandi
-    orcid: 0000-0002-2973-6228
   contributor:
     email: cthoyt@gmail.com
     github: cthoyt
@@ -58080,25 +58510,11 @@ schema:
   description: Schema.org is a collaborative, community activity with a mission to
     create, maintain, and promote schemas for structured data on the Internet, on
     web pages, in email messages, and beyond.
-  download_owl: http://aber-owl.net/media/ontologies/SDO/4/sdo.owl
   download_rdf: https://schema.org/version/latest/schemaorg-current-https.ttl
   example: Person
   homepage: https://schema.org
-  keywords:
-  - biomedical science
-  - catalogs
-  - disease
-  - health science
-  - neurobiology
-  - ontology
-  - phenotype
-  - sleep
   mappings:
-    aberowl: SDO
     biolink: schema
-    bioportal: SDO
-    fairsharing: FAIRsharing.7s74s8
-    lov: sdo
     ols: schemaorg_http
     zazuko: schema
   name: Schema.org
@@ -62235,6 +62651,7 @@ sty:
   homepage: https://lhncbc.nlm.nih.gov/semanticnetwork/
   keywords:
   - ontology
+  license: https://www.nlm.nih.gov/research/umls/knowledge_sources/metathesaurus/release/license_agreement.html
   logo: https://www.nlm.nih.gov/research/umls/knowledge_sources/semantic_network/semantic-network.png
   mappings:
     aberowl: STY
@@ -63838,50 +64255,6 @@ tgma:
   repository: https://github.com/VEuPathDB-ontology/TGMA
   uri_format: http://purl.obolibrary.org/obo/TGMA_$1
   version: '2013-06-03'
-tgn:
-  contributor:
-    email: cthoyt@gmail.com
-    github: cthoyt
-    name: Charles Tapley Hoyt
-    orcid: 0000-0003-4423-4370
-  deprecated: true
-  description: 'TGN is a structured vocabulary currently containing around 1,106,000
-    names and other information about places. Names for a place may include names
-    in the vernacular language, English, other languages, historical names, names
-    and in natural order and inverted order. Among these names, one is flagged as
-    the preferred name. TGN is a thesaurus, compliant with ISO and NISO standards
-    for thesaurus construction; it contains hierarchical, equivalence, and associative
-    relationships. Note that TGN is not a GIS (Geographic Information System). While
-    many records in TGN include coordinates, these coordinates are approximate and
-    are intended for reference only. The focus of each TGN record is a place. There
-    are around 912,000 places in the TGN. In the database, each place record (also
-    called a subject) is identified by a unique numeric ID. Linked to the record for
-    the place are names, the place''s parent or position in the hierarchy, other relationships,
-    geographic coordinates, notes, sources for the data, and place types, which are
-    terms describing the role of the place (e.g., inhabited place and state capital).
-    The temporal coverage of the TGN ranges from prehistory to the present and the
-    scope is global. The TGN is a hierarchical database; its trees branch from a root
-    called Top of the TGN hierarchies (Subject_ID: 1000000). Currently there are two
-    TGN facets, World and Extraterrestrial Places. Under the facet World, places are
-    arranged in hierarchies generally representing the current political and physical
-    world, although some historical nations and empires are also included. There may
-    be multiple broader contexts, making the TGN polyhierarchical. The primary users
-    of the Getty vocabularies include museums, art libraries, archives, visual resource
-    collection catalogers, bibliographic projects concerned with art, researchers
-    in art and art history, and the information specialists who are dealing with the
-    needs of these users. In addition, a significant number of users of the Getty
-    vocabularies are students or members of the general public.'
-  example: '1023371'
-  homepage: https://www.getty.edu/research/tools/vocabularies/tgn/
-  mappings:
-    bartoc: '109'
-    wikidata.entity: Q1520117
-  name: Getty Thesaurus of Geographic Names
-  pattern: ^\d+$
-  preferred_prefix: tgn
-  references:
-  - https://obo-communitygroup.slack.com/archives/C023P0Z304T/p1638380238036200
-  uri_format: http://vocab.getty.edu/page/tgn/$1
 th:
   contributor:
     email: cthoyt@gmail.com
@@ -68552,6 +68925,38 @@ wgs84:
   name: WGS84 Geo Positioning
   preferred_prefix: wgs84
   uri_format: http://www.w3.org/2003/01/geo/wgs84_pos#$1
+who.va:
+  contributor:
+    email: b.gyori@northeastern.edu
+    github: bgyori
+    name: Benjamin M. Gyori
+    orcid: 0000-0001-9439-5346
+  description: Identifiers assigned by the World Health Organization for coding causes
+    of death from verbal autopsy (VA) reports. These codes are produced as outputs
+    in standard VA analysis software.
+  example: VAs-09.01
+  example_extras:
+  - VAs-09
+  github_request_issue: 1739
+  homepage: https://www.who.int/publications/m/item/verbal-autopsy-standards-the-2016-who-verbal-autopsy-instrument
+  keywords:
+  - cause of death
+  - verbal autopsy
+  name: World Health Organization Verbal Autopsy Code
+  pattern: ^VAs-\d{2}(?:\.\d{2})?$
+  preferred_prefix: who.va
+  publications:
+  - doi: 10.1371/journal.pmed.1002486
+    pmc: PMC5761828
+    pubmed: '29320495'
+    title: 'The WHO 2016 verbal autopsy instrument: An international standard suitable
+      for automated analysis by InterVA, InSilicoVA, and Tariff 2.0'
+    year: 2018
+  reviewer:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
 wicell:
   description: Cell line collections (Providers)
   example: ai10e-kctd13b
