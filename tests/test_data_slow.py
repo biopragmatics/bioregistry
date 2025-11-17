@@ -26,10 +26,13 @@ class TestDataSlow(unittest.TestCase):
     @pytest.mark.slow
     def test_parse_iri(self) -> None:
         """Test parsing IRIs."""
-        self.assertEqual(
-            ("ncbitaxon", "131567"),
-            bioregistry.parse_iri("http://purl.bioontology.org/ontology/NCBITAXON/131567"),
-        )
+        for p, i, u in [
+            ("ncbitaxon", "131567", "http://purl.bioontology.org/ontology/NCBITAXON/131567"),
+            ("ceds.learning_resource_type", "AlternateAssessment",
+             "https://ceds.ed.gov/element/000928#AlternateAssessment")
+        ]:
+            with self.subTest(url=u):
+                self.assertEqual((p, i), bioregistry.parse_iri(u))
 
     @pytest.mark.slow
     def test_prefix_map_priorities(self):
