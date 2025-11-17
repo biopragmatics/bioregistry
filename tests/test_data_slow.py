@@ -28,8 +28,11 @@ class TestDataSlow(unittest.TestCase):
         """Test parsing IRIs."""
         for p, i, u in [
             ("ncbitaxon", "131567", "http://purl.bioontology.org/ontology/NCBITAXON/131567"),
-            ("ceds.learning_resource_type", "AlternateAssessment",
-             "https://ceds.ed.gov/element/000928#AlternateAssessment")
+            (
+                "ceds.learning_resource_type",
+                "AlternateAssessment",
+                "https://ceds.ed.gov/element/000928#AlternateAssessment",
+            ),
         ]:
             with self.subTest(url=u):
                 self.assertEqual((p, i), bioregistry.parse_iri(u))
