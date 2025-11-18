@@ -254,7 +254,7 @@ def _process(
     keywords = []
     for x in config.get("classifications", []):
         keywords.extend(x.get("collection", []))
-        keywords.extend(s.lower() for s in x.get("subject", []))
+        keywords.extend(y for s in x.get("subject", []) if (y := s.lower()) != "general")
 
     rv = {
         "prefix": ols_id,

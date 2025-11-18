@@ -200,8 +200,7 @@
       "NFDI4CAT",
       "Foundational Ontologies",
       "DataPLANT",
-      "FAIRmat",
-      "general"
+      "FAIRmat"
     ],
     "name": "Basic Formal Ontology",
     "prefix": "bfo",
@@ -218,7 +217,6 @@
       "FID move",
       "NFDI4ING",
       "ESS",
-      "general",
       "earth sciences"
     ],
     "name": "Basisklassifikation",
@@ -486,8 +484,7 @@
     "description": "CiTO, the Citation Typing Ontology, is an ontology written in OWL 2 DL to enable characterization of the nature or type of citations, both factually and rhetorically, and to permit these descriptions to be published on the Web.  \n\nThe citations characterized may be either direct and explicit (as in the reference list of a journal article), indirect (e.g. a citation to a more recent paper by the same research group on the same topic), or implicit (e.g. as in artistic quotations or parodies, or in cases of plagiarism).\n\nCiTO contains the object property cito:cites and its sub-properties, and its inverse property cito:isCitedBy, from the original Citation Typing Ontology, CiTO v1.6.  Upon the creation of version 2.0 of CiTO, a number of new sub-properties of cito:cites were added, and the inverse properties of all the sub-properties of cito:cites were created, all of which are sub-properties of cito:isCitedBy.  The ontology has also been integrated with the SWAN Discourse Relationships Ontology by making cito:cites a sub-property of http://purl.org/swan/2.0/discourse-relationships/refersTo.\n\nRestrictions of domain and range present in the previous version of CiTO were removed from the object properties when creating CiTO v 2.0, permitting its independent use in other contexts, in addition to conventional bibliographic citations.  \n\nSo that they can be used independently, other entities that were previously included in CiTO v1.6 have now been made components of other SPAR ontologies: FaBiO, the FRBR-aligned Bibliographic Ontology; C4O, the Citation Counting and Context Characterization Ontology; and PSO, the Publication Status Ontology. \n\nThe addition of two new properties:cito:usesConclusionsFrom and its inverse cito:providesConclusionsFor on 09Dec2011 led to a version number increment from v2.0 to v2.1.\n\nThe addition of two additional properties, cito:compiles and cito:isCompiledBy, previously in the deprecated CiTO4Data ontology, on 03 July 2012 led to a version increment from v2.1 to v2.2.\n\nSubsequent expansions include:\n\nin versions 2.3 and 2.4 the addition of the object properties cito:citesAsPotentialSolution, cito:citesAsRecommendedReading, cito:repliesTo, cito:retracts, cito:speculates on, and their inverse properties;\n\nin v2.5 the addition of cito:CitationAct, cito:hasCitationEvent, cito:hasCitedEntity and cito:hasCitingEntity;\n\nin v 2.6: \nrenaming cito:hasCitationEvent to become cito:hasCitationCharacterization;\nimproving definitions of cito:CitationAct, cito:hasCitationCharacterization, cito:hasCitedEntity and cito:hasCitingEntity;\nrevising the definition of cito:isCompiledBy to correct it and bring it into line with the DataCite Metadata Kernel v2.2 definition;\nchanging the definition of cito:sharesAuthorsWith from 'An object property indicating that the citing entity has at least one author in common with the cited entity.' to 'An object property between two entities indicating that they have at least one author in common.' so that it can be used when one entity does not actually cite the other;\nadding the object properties cito:hasRelatedEntity, cito:sharesFundingAgencyWith and cito:sharesAuthorInstitutionWith;\nand adding the text 'An object property indicating that . . .' at the beginning of the textual definition (rdfs:comment) for each CiTO object property.\n\nin v 2.6.1:\nRemoved text 'An object property indicating that . . .' added in v 2.6 at the beginning of the textual definition (rdfs:comment) for each CiTO object property, so that each definition is just a direct statement of the relationship.  \nRemoved the property cito:hasRelatedEntity (in favour of using dcterms:relation).\nRenamed cito:hasReply to become cito:hasReplyFrom.\nImproved the textual definitions of cito:derides and its inverse property.\n\nin v 2.6.2:\nImproved definitions of of cito:CitationAct, cito:hasCitationCharacterization, cito:hasCitedEntity and cito:hasCitingEntity.\n\nin v 2.6.3:\nAdded examples for each citation type (i.e., all the subproperties of cito:cites).\n\nin v 2.6.4:\nAdded alignment with schema:citation.\n\nin v 2.7.0:\nAdded new property cito:linksTo, and corrected some property URL.\n\nin v 2.7.1\nCorrected some typos in property comments.\n\nin v 2.7.2\nThe name of the class cito:CitationAct has been changed to cito:Citation, and its definition has been modified. The property cito:hasCitationTimeSpan has been added.\n\nin v 2.7.3\nAdded the class cito:SelfCitation, i.e. citation in which the citing and the cited entities have at least one author in common.\n\nin v 2.8\nRenamed the class cito:SelfCitation in cito:AuthorSelfCitation. Created a new class cito:SelfCitation with a more general definition (citation in which the citing and the cited entities have something significant in common with one another), which now includes five subclasses: cito:AuthorSelfCitation, cito:JournalSelfCitation, cito:FunderSelfCitation, cito:AffiliationSelfCitation, cito:AuthorNetworkSelfCitation. The latter class is also accompanied by the new data property cito:hasCoAuthorCitationLevel, which specifies the minimal distance that one of the authors of a citing entity has with regards to one of the authors of a cited entity according to their co-author network. Added the object properties cito:sharesPublicationVenueWith and its subproperty cito:sharesJournalWith. Added the data property cito:hasCitationCreationDate, and changed the domain of cito:hasCitationTimeSpan with xsd:duration.\n\nin v 2.8.1\nRenamed the property cito:hasCoAuthorCitationLevel in cito:hasCoAuthorshipCitationLevel.",
     "homepage": "http://www.sparontologies.net/ontologies/cito",
     "keywords": [
-      "TIB",
-      "general"
+      "TIB"
     ],
     "name": "CiTO, the Citation Typing Ontology",
     "prefix": "cito",
@@ -567,8 +564,7 @@
       "TIB",
       "Digital Planning and Construction",
       "FID BAUdigital",
-      "FID move",
-      "general"
+      "FID move"
     ],
     "name": "Contributor Roles Taxonomy",
     "prefix": "credit",
@@ -598,7 +594,6 @@
     "keywords": [
       "TIB",
       "ESS",
-      "general",
       "computer science"
     ],
     "name": "The data catalog vocabulary",
@@ -628,8 +623,7 @@
       "NFDI4ING",
       "Digital Planning and Construction",
       "FID BAUdigital",
-      "ESS",
-      "general"
+      "ESS"
     ],
     "name": "DCMI Metadata Terms",
     "prefix": "dcterms",
@@ -640,7 +634,6 @@
     "download_rdf": "https://raw.githubusercontent.com/VIVO-DE/destatis_faecherklassifikation/master/faecherklassifikation.rdf",
     "keywords": [
       "TIB",
-      "general",
       "educational science"
     ],
     "name": "Destatis-F\u00e4cherklassifikation \"Personal an Hochschulen - F\u00e4chersystematik\"",
@@ -657,7 +650,6 @@
       "Digital Planning and Construction",
       "FID BAUdigital",
       "ESS",
-      "general",
       "educational science"
     ],
     "name": "DFG Classification of Subject Areas Ontology - 2020-2024",
@@ -675,7 +667,6 @@
       "Digital Planning and Construction",
       "FID BAUdigital",
       "ESS",
-      "general",
       "educational science"
     ],
     "name": "DFG Classification of Subject Areas Ontology - 2024-2028",
@@ -911,8 +902,7 @@
     "download_rdf": "file:/opt/ols/dataload/terminology/vocabularies/eu-vocabularies/edcc-taxonomy.rdf",
     "homepage": "https://op.europa.eu/de/home",
     "keywords": [
-      "Educational Resources",
-      "general"
+      "Educational Resources"
     ],
     "name": "EDCC Taxonomy",
     "prefix": "edcc",
@@ -924,7 +914,6 @@
     "homepage": "https://github.com/dini-ag-kim/educationalLevel",
     "keywords": [
       "Educational Resources",
-      "general",
       "educational science"
     ],
     "name": "Educational level",
@@ -982,8 +971,7 @@
     "description": "The 'Energy Market Roles' ontology module represents the energy market roles of energy agents. Additionally, it includes the consumer role, as it is reused in most of Smart Grid scenarios. This ontology module reuses the knowledge of the 'Actor' ontology module.",
     "download_rdf": "https://innoweb.mondragon.edu/ontologies/dabgeo/common-domain/energymarketroles/1.0/ontology.ttl",
     "keywords": [
-      "NFDI4Energy",
-      "general"
+      "NFDI4Energy"
     ],
     "name": "Energy Market Roles ontology",
     "prefix": "energymarketroles",
@@ -1116,7 +1104,6 @@
       "Digital Planning and Construction",
       "FID BAUdigital",
       "NFDI4CHEM",
-      "general",
       "computer science"
     ],
     "name": "FAIR Vocabulary",
@@ -1353,8 +1340,7 @@
     "homepage": "https://schema.coypu.org/gta/1.0",
     "keywords": [
       "CoyPu",
-      "economics",
-      "general"
+      "economics"
     ],
     "name": "Global Trade Alerts Ontology",
     "prefix": "gta",
@@ -1367,7 +1353,6 @@
     "homepage": "https://skohub.io/dini-ag-kim/hcrt/heads/master/w3id.org/kim/hcrt/scheme.en.html",
     "keywords": [
       "Educational Resources",
-      "general",
       "educational science"
     ],
     "name": "Hochschulcampus Ressourcentypen",
@@ -1381,7 +1366,6 @@
     "homepage": "https://bartoc.org/en/node/18919",
     "keywords": [
       "Educational Resources",
-      "general",
       "educational science"
     ],
     "name": "Hochschulf\u00e4chersystematik",
@@ -1434,8 +1418,7 @@
     "keywords": [
       "NFDI4ING",
       "NFDI4CHEM",
-      "FAIR Data Spaces",
-      "general"
+      "FAIR Data Spaces"
     ],
     "name": "Information Artifact Ontology (IAO)",
     "prefix": "iao",
@@ -1566,8 +1549,7 @@
     "download_rdf": "file:/opt/ols/dataload/terminology/vocabularies/eu-vocabularies/international-education-classification-skos-ap-eu.rdf",
     "homepage": "https://op.europa.eu/de/home",
     "keywords": [
-      "Educational Resources",
-      "general"
+      "Educational Resources"
     ],
     "name": "International Standard Classification of Education: Fields of Education and Training 2013",
     "prefix": "isced",
@@ -1581,7 +1563,6 @@
       "FID move",
       "Digital Planning and Construction",
       "FID BAUdigital",
-      "general",
       "computer science"
     ],
     "name": "Interdisziplin\u00e4re Forschungsfeldklassifikation",
@@ -1621,7 +1602,6 @@
     "download_rdf": "https://raw.githubusercontent.com/TIBHannover/annif_automated_indexing_at_tib/main/vocab/LinSearch/linsearch20230105.ttl",
     "keywords": [
       "TIB",
-      "general",
       "computer science"
     ],
     "name": "Fachsystematik LinSearch",
@@ -1756,8 +1736,7 @@
     "download_owl": "http://purl.obolibrary.org/obo/mmo.owl",
     "homepage": "https://github.com/rat-genome-database/MMO-Measurement-Method-Ontology/",
     "keywords": [
-      "DataPLANT",
-      "general"
+      "DataPLANT"
     ],
     "name": "Measurement Method Ontology",
     "prefix": "mmo",
@@ -1785,7 +1764,6 @@
     "homepage": "https://dalia.pages.rwth-aachen.de/dalia-ontology/",
     "keywords": [
       "TIB",
-      "general",
       "educational science"
     ],
     "name": "MoDalia Ontology",
@@ -1798,8 +1776,7 @@
     "download_rdf": "https://saidfathalla.github.io/Science-knowledge-graph-ontologies/doc/ModSci_doc/ontology.ttl",
     "homepage": "https://saidfathalla.github.io/Science-knowledge-graph-ontologies/doc/ModSci_doc/index-en.html",
     "keywords": [
-      "NFDI4ING",
-      "general"
+      "NFDI4ING"
     ],
     "name": "Modern Science Ontology",
     "prefix": "modsci",
@@ -1967,8 +1944,7 @@
       "NFDI4CHEM",
       "DataPLANT",
       "NFDI4CAT",
-      "life sciences, biology",
-      "general"
+      "life sciences, biology"
     ],
     "name": "Ontology for Biomedical Investigations",
     "prefix": "obi",
@@ -1982,8 +1958,7 @@
     "keywords": [
       "FAIR Data Spaces",
       "NFDI4CHEM",
-      "ESS",
-      "general"
+      "ESS"
     ],
     "name": "The Extensible Observation Ontology",
     "prefix": "oboe"
@@ -1995,8 +1970,7 @@
     "keywords": [
       "FAIR Data Spaces",
       "NFDI4CHEM",
-      "ESS",
-      "general"
+      "ESS"
     ],
     "name": "OBOE Characteristics",
     "prefix": "oboe-characteristics",
@@ -2009,8 +1983,7 @@
     "keywords": [
       "FAIR Data Spaces",
       "NFDI4CHEM",
-      "ESS",
-      "general"
+      "ESS"
     ],
     "name": "oboe-core",
     "prefix": "oboe-core",
@@ -2023,8 +1996,7 @@
     "keywords": [
       "FAIR Data Spaces",
       "NFDI4CHEM",
-      "ESS",
-      "general"
+      "ESS"
     ],
     "name": "oboe-standards",
     "prefix": "oboe-standards",
@@ -2036,7 +2008,6 @@
     "homepage": "https://vocabs.dariah.eu/oefos/en/",
     "keywords": [
       "Educational Resources",
-      "general",
       "educational science"
     ],
     "name": "The Austrian Fields of Science and Technology Classification (\u00d6FOS 2012)",
@@ -2080,7 +2051,6 @@
       "NFDI4CHEM",
       "ESS",
       "NFDI4CAT",
-      "general",
       "physics",
       "life sciences, biology",
       "earth sciences"
@@ -2236,8 +2206,7 @@
       "Digital Planning and Construction",
       "FID BAUdigital",
       "social sciences",
-      "economics",
-      "general"
+      "economics"
     ],
     "name": "Core organization ontology",
     "prefix": "org",
@@ -2289,7 +2258,6 @@
       "NFDI4CHEM",
       "ESS",
       "DataPLANT",
-      "general",
       "life sciences, biology",
       "earth sciences"
     ],
@@ -2415,8 +2383,7 @@
     "download_owl": "https://raw.githubusercontent.com/lcnetdev/PREMIS/master/premis3.owl",
     "homepage": "https://www.loc.gov/standards/premis/ontology/owl-version3.html",
     "keywords": [
-      "NFDI4CULTURE",
-      "general"
+      "NFDI4CULTURE"
     ],
     "name": "PREMIS",
     "prefix": "premis3",
@@ -2444,8 +2411,7 @@
     "keywords": [
       "NFDI4ING",
       "NFDI4CHEM",
-      "ESS",
-      "general"
+      "ESS"
     ],
     "name": "The PROV Ontology",
     "prefix": "prov",
@@ -2486,8 +2452,7 @@
     "description": "An ontology of the Retail Energy Market of Great Britain created by Lidcast Data Limited.",
     "download_owl": "https://raw.githubusercontent.com/DataCreater/GBEnergy/refs/heads/main/RetailEnergy0.0.1.owl",
     "keywords": [
-      "NFDI4Energy",
-      "general"
+      "NFDI4Energy"
     ],
     "license": "https://creativecommons.org/licenses/by-sa/3.0/",
     "name": "Retail Energy Market of Great Britain",
@@ -2501,8 +2466,7 @@
     "download_owl": "https://raw.githubusercontent.com/Sheeba-Samuel/REPRODUCE-ME/gh-pages/doc/reproduce-me.owl",
     "homepage": "https://sheeba-samuel.github.io/REPRODUCE-ME/doc/index-en.html",
     "keywords": [
-      "NFDI4CHEM",
-      "general"
+      "NFDI4CHEM"
     ],
     "name": "REPRODUCEME Ontology",
     "prefix": "repr",
@@ -2529,7 +2493,6 @@
       "NFDI4CHEM",
       "DataPLANT",
       "Foundational Ontologies",
-      "general",
       "life sciences, biology"
     ],
     "name": "Relation Ontology",
@@ -2722,8 +2685,7 @@
     "description": "SAREF4SYST defines Systems, Connections between systems, and Connection Points at which systems may be connected. These core concepts can be used generically to define the topology of features of interest, and can be specialized for multiple domains.",
     "homepage": "https://saref.etsi.org/saref4syst/",
     "keywords": [
-      "NFDI4ING",
-      "general"
+      "NFDI4ING"
     ],
     "name": "SAREF4SYST: an extension of SAREF for typology of systems and their inter-connections",
     "prefix": "s4syst",
@@ -2807,8 +2769,7 @@
     "homepage": "https://schema.org/",
     "keywords": [
       "FAIR Data Spaces",
-      "ESS",
-      "general"
+      "ESS"
     ],
     "name": "Schema.org Vocabulary",
     "prefix": "schema",
@@ -2898,8 +2859,7 @@
     "keywords": [
       "NFDI4ING",
       "NFDI4CHEM",
-      "ESS",
-      "general"
+      "ESS"
     ],
     "name": "Semanticscience Integrated Ontology (SIO)",
     "prefix": "sio",
@@ -2912,7 +2872,6 @@
     "homepage": "https://www.w3.org/TR/skos-reference/",
     "keywords": [
       "TIB",
-      "general",
       "computer science"
     ],
     "name": "SKOS Vocabulary",
@@ -2925,7 +2884,6 @@
     "homepage": "https://www.w3.org/TR/skos-reference/skos-xl.html",
     "keywords": [
       "TIB",
-      "general",
       "computer science"
     ],
     "name": "SKOS XL Vocabulary",
@@ -2996,8 +2954,7 @@
     "homepage": "https://stato-ontology.org/",
     "keywords": [
       "ESS",
-      "DataPLANT",
-      "general"
+      "DataPLANT"
     ],
     "name": "STATO: the statistical methods ontology",
     "prefix": "stato",
@@ -3035,8 +2992,7 @@
     "download_rdf": "https://netmode.gitlab.io/sustaingraph-ontology/ontology.ttl",
     "homepage": "https://netmode.gitlab.io/sustaingraph-ontology/",
     "keywords": [
-      "TIB",
-      "general"
+      "TIB"
     ],
     "name": "SustainGraph Ontology",
     "prefix": "sustaingraph",
@@ -3076,8 +3032,7 @@
     "homepage": "https://github.com/terms4fairskills/FAIRterminology",
     "keywords": [
       "NFDI4ING",
-      "ESS",
-      "general"
+      "ESS"
     ],
     "name": "terms4FAIRskills (T4FS)",
     "prefix": "t4fs",
@@ -3090,8 +3045,7 @@
     "homepage": "https://schema.coypu.org/ta/1.0",
     "keywords": [
       "CoyPu",
-      "economics",
-      "general"
+      "economics"
     ],
     "name": "Trade Agreement Ontology",
     "prefix": "ta",
@@ -3146,8 +3100,7 @@
     "keywords": [
       "FAIR Data Spaces",
       "NFDI4CHEM",
-      "ESS",
-      "general"
+      "ESS"
     ],
     "name": "Time Ontology in OWL",
     "prefix": "time",
@@ -3161,8 +3114,7 @@
     "homepage": "https://gitlab.com/coypu-project/coy-ontology/",
     "keywords": [
       "CoyPu",
-      "economics",
-      "general"
+      "economics"
     ],
     "name": "OECD TIVA Ontology",
     "prefix": "tiva",
@@ -3232,7 +3184,6 @@
       "NFDI4CHEM",
       "ESS",
       "DataPLANT",
-      "general",
       "physics",
       "life sciences, biology",
       "earth sciences"
@@ -3271,8 +3222,7 @@
     "description": "The VIVO Ontology is used to represent the expertise of people engaged in the creation, transmission, and preservation of knowledge and creative works. The VIVO ontology (hereafter referred to as \u201cthe ontology\u201d) represents expertise by describing the activities and accomplishments of people in terms of their relationships to particular artifacts of the work, resources they use, institutions that employ them, and other indicators. The ontology is independent of knowledge or creative domain. The ontology supports the identification, evaluation, and impact assessment of individual people and groups of people, as well as identification and reuse of the works of the people.",
     "download_owl": "https://raw.githubusercontent.com/vivo-ontologies/vivo-ontology/refs/tags/vivo-ontology-1.8.0/vivo.owl",
     "keywords": [
-      "TIB",
-      "general"
+      "TIB"
     ],
     "name": "VIVO Core Ontology",
     "prefix": "vivo",
