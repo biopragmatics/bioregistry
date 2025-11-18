@@ -53,6 +53,7 @@ __all__ = [
     "Author",
     "Collection",
     "Context",
+    "Organization",
     "Provider",
     "Publication",
     "Registry",
