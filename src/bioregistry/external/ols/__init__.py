@@ -50,6 +50,8 @@ EBI_OLS_SKIP = {
     "hra": "project ontology",
 }
 
+EBI_OLS_BASE_URL = "https://www.ebi.ac.uk/ols4/api"
+
 
 def get_ols(
     *,
@@ -58,7 +60,7 @@ def get_ols(
     """Get the EBI OLS registry."""
     return get_ols_base(
         force_download=force_download,
-        base_url="https://www.ebi.ac.uk/ols4/api",
+        base_url=EBI_OLS_BASE_URL,
         processed_path=PROCESSED_PATH,
         raw_path=RAW_PATH,
         version_processing_config_path=EBI_OLS_VERSION_PROCESSING_CONFIG_PATH,
@@ -248,6 +250,12 @@ def _process(
     version_iri = config["versionIri"]
     title = config.get("title") or config.get("localizedTitles", {}).get("en")
     description = config.get("description") or config.get("localizedDescriptions", {}).get("en")
+
+    keywords = []
+    for x in config.get("classifications", []):
+        keywords.extend(x.get("collection", []))
+        keywords.extend(s.lower() for s in x.get("subject", []))
+
     rv = {
         "prefix": ols_id,
         # "preferred_prefix": config["preferredPrefix"],
@@ -258,10 +266,16 @@ def _process(
         ),
         "description": description,
         "homepage": _clean_url(config["homepage"]),
-        # "tracker": _clean_url(config["tracker"]),
+        "tracker": _clean_url(config["tracker"]),
         "contact": _get_email(ols_id, config),
         "license": _get_license(ols_id, config),
+        "keywords": keywords,
     }
+
+    base_uris = config.get("baseUris", [])
+    if base_uris:
+        rv["uri_format"] = base_uris[0] + "$1"
+
     download = _clean_url(config["fileLocation"])
     if download is None:
         pass
@@ -273,7 +287,7 @@ def _process(
         rv["download_rdf"] = download
     else:
         logger.warning("[%s] unknown download type %s", ols_id, download)
-    rv = {k: v.strip() for k, v in rv.items() if v}
+    rv = {k: v.strip() if isinstance(v, str) else v for k, v in rv.items() if v}
     return rv
 
 

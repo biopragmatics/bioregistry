@@ -9,10 +9,11 @@ import requests
 from tqdm import tqdm
 
 import bioregistry
+from bioregistry.external.ols.tib import TIB_OLS_BASE_URL
 
 
-def _get_example(prefix: str, size: int = 1000) -> str:
-    url = f"https://www.ebi.ac.uk/ols/api/ontologies/{prefix}/terms?page=1&size={size}"
+def _get_example(prefix: str, *, size: int = 1000, base_url: str) -> str:
+    url = f"{base_url}/ontologies/{prefix}/terms?page=1&size={size}"
     return _get_example_helper(prefix, url)
 
 
@@ -37,28 +38,27 @@ def _get_example_helper(prefix: str, url: str) -> str:
 SKIP = {"afo", "dicom", "ensemblglossary", "co_321:root", "co_336", "co_359", "gexo", "hcao"}
 
 
-def _get_missing_ols() -> dict[str, str]:
+def _get_missing_ols(metaprefix: str) -> dict[str, str]:
     """Get a map of prefixes to OLS prefixes that need checking."""
     return {
-        prefix: bioregistry.get_ols_prefix(prefix)  # type: ignore
-        for prefix, resource in bioregistry.read_registry().items()
+        prefix: external
+        for prefix, external in bioregistry.get_registry_map(metaprefix).items()
         if (
             prefix not in SKIP
             and not bioregistry.has_no_terms(prefix)
-            and resource.ols
             and not bioregistry.get_example(prefix)
         )
     }
 
 
-def main() -> None:
+def _main_helper(metaprefix: str, base_url: str) -> None:
     """Get OLS examples."""
     r = dict(bioregistry.read_registry())
-    x = sorted(_get_missing_ols().items())
+    x = sorted(_get_missing_ols(metaprefix).items())
     random.shuffle(x)
     for prefix, ols_prefix in tqdm(x[:30]):
         try:
-            res = _get_example(ols_prefix, size=1000)
+            res = _get_example(ols_prefix, size=1000, base_url=base_url)
         except KeyError:
             continue
         if res is None:
@@ -71,6 +71,12 @@ def main() -> None:
                 res = res[len(prefix) + 1 :]
             r[prefix]["example"] = res
     bioregistry.write_registry(r)
+
+
+def main() -> None:
+    """Add examples from OLS instances."""
+    # _main_helper("ols", EBI_OLS_BASE_URL)
+    _main_helper("tib", TIB_OLS_BASE_URL)
 
 
 if __name__ == "__main__":

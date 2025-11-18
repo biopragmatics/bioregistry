@@ -12,7 +12,7 @@ HERE = Path(__file__).parent.resolve()
 RAW_PATH = RAW_DIRECTORY.joinpath("tib.json")
 PROCESSED_PATH = HERE.joinpath("tib-processed.json")
 VERSION_PROCESSING_CONFIG_PATH = HERE.joinpath("tib-processing-config.json")
-BASE = "https://api.terminology.tib.eu/api"
+TIB_OLS_BASE_URL = "https://api.terminology.tib.eu/api"
 
 __all__ = [
     "TIBAligner",
@@ -24,7 +24,7 @@ def get_tib_ts(*, force_download: bool = False) -> OlsRv:
     """Get the TIB Terminology Service."""
     return get_ols_base(
         force_download=force_download,
-        base_url=BASE,
+        base_url=TIB_OLS_BASE_URL,
         processed_path=PROCESSED_PATH,
         raw_path=RAW_PATH,
         version_processing_config_path=VERSION_PROCESSING_CONFIG_PATH,

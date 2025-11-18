@@ -1150,6 +1150,7 @@ class Resource(BaseModel):
             "rrid",
             "bartoc",
             "lov",
+            "tib",
         ]
         if provenance:
             return self._get_prefix_key_str("name", metaprefixes, provenance=True)
@@ -1180,6 +1181,7 @@ class Resource(BaseModel):
             "bartoc",
             "lov",
             "re3data",
+            "tib",
         )
         rv = self._get_prefix_key_str("description", metaprefixes, provenance=False)
         if rv is not None:
@@ -1335,6 +1337,7 @@ class Resource(BaseModel):
             "bartoc",
             "lov",
             "re3data",
+            "tib",
         ]
         return self._get_prefix_key_str(
             "homepage",
@@ -1366,8 +1369,9 @@ class Resource(BaseModel):
             keywords.append("ontology")
         if self.get_download_obo() or self.get_download_owl() or self.bioportal:
             keywords.append("ontology")
-        if self.lov:
-            keywords.extend(self.lov.get("keywords", []))
+        for data in [self.ols, self.tib, self.lov]:
+            if data:
+                keywords.extend(data.get("keywords"))
         return sorted(
             {
                 keyword.lower().replace("’", "'")  # noqa:RUF001
