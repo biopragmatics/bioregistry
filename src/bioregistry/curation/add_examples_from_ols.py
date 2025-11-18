@@ -12,12 +12,12 @@ from bioregistry.external.ols import EBI_OLS_BASE_URL
 from bioregistry.external.ols.tib import TIB_OLS_BASE_URL
 
 
-def _get_example(prefix: str, *, size: int = 1000, base_url: str) -> str:
+def _get_example(prefix: str, *, size: int = 1000, base_url: str) -> str | None:
     url = f"{base_url}/ontologies/{prefix}/terms?page=0&size={size}"
     return _get_example_helper(prefix, url)
 
 
-def _get_example_helper(prefix: str, url: str) -> str:
+def _get_example_helper(prefix: str, url: str) -> str | None:
     if "page=50" in url:
         tqdm.write(f"[{prefix} too deep")
         raise KeyError
