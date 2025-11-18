@@ -1,6 +1,6 @@
 """Download and align against the TIB Terminology Service."""
 
-from collections.abc import Sequence
+from collections.abc import Mapping, Sequence
 from pathlib import Path
 from typing import ClassVar
 
@@ -18,6 +18,18 @@ __all__ = [
     "TIBAligner",
     "get_tib_ts",
 ]
+
+SKIP = {
+    "bflc": "",
+    "envo2021": "",
+    "envo2023": "",
+    "ordo40": "",
+    "ordo41": "",
+    "ordo42": "",
+    "ordo46": "",
+    "ordo47": "",
+    "nmrcv2025": "",
+}
 
 
 def get_tib_ts(*, force_download: bool = False) -> OlsRv:
@@ -38,6 +50,10 @@ class TIBAligner(Aligner):
     getter = get_tib_ts
     curation_header: ClassVar[Sequence[str]] = ("name",)
     include_new = True
+
+    def get_skip(self) -> Mapping[str, str]:
+        """Get skips."""
+        return SKIP
 
 
 if __name__ == "__main__":
