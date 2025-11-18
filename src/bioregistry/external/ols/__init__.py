@@ -8,11 +8,10 @@ import json
 import logging
 from collections.abc import Mapping, Sequence
 from email.utils import parseaddr
-from functools import lru_cache
 from operator import itemgetter
 from pathlib import Path
 from textwrap import dedent
-from typing import Any, ClassVar
+from typing import Any, ClassVar, TypeAlias
 
 import requests
 from pydantic import BaseModel
@@ -24,16 +23,21 @@ from bioregistry.utils import OLSBrokenError
 
 __all__ = [
     "OLSAligner",
+    "OlsRv",
     "get_ols",
+    "get_ols_base",
+    "get_ols_processing",
 ]
 
 logger = logging.getLogger(__name__)
 
+OlsRv: TypeAlias = dict[str, dict[str, Any]]
+
+
 DIRECTORY = Path(__file__).parent.resolve()
-URL = "https://www.ebi.ac.uk/ols4/api/ontologies?size=1000"
 RAW_PATH = RAW_DIRECTORY / "ols.json"
 PROCESSED_PATH = DIRECTORY / "processed.json"
-OLS_PROCESSING = DIRECTORY / "processing_ols.json"
+OLS_PROCESSING_PATH = DIRECTORY / "processing_ols.json"
 
 OLS_SKIP = {
     "co_321:root": "this is a mistake in the way OLS imports CO",
@@ -47,14 +51,35 @@ OLS_SKIP = {
 }
 
 
-def get_ols(force_download: bool = False) -> dict[str, dict[str, Any]]:
-    """Get the OLS registry."""
-    if PROCESSED_PATH.exists() and not force_download:
-        return load_processed(PROCESSED_PATH)
+def get_ols(
+    *,
+    force_download: bool = False,
+) -> OlsRv:
+    """Get the EBI OLS registry."""
+    return get_ols_base(
+        force_download=force_download,
+        base_url="https://www.ebi.ac.uk/ols4/api",
+        processed_path=PROCESSED_PATH,
+        raw_path=RAW_PATH,
+        conf_path=OLS_PROCESSING_PATH,
+    )
 
-    data = requests.get(URL, timeout=15).json()
+
+def get_ols_base(
+    *,
+    force_download: bool = False,
+    base_url: str,
+    processed_path: Path,
+    raw_path: Path,
+    conf_path: Path | None = None,
+) -> OlsRv:
+    """Get an OLS registry."""
+    if processed_path.exists() and not force_download:
+        return load_processed(processed_path)
+
+    data = requests.get(f"{base_url}/ontologies", timeout=15, params={"size": 1000}).json()
     if "_embedded" not in data:
-        raise OLSBrokenError
+        raise OLSBrokenError(f"data did not contain an `_embedded` key. Got keys: {set(data)}")
     data["_embedded"]["ontologies"] = sorted(
         data["_embedded"]["ontologies"],
         key=itemgetter("ontologyId"),
@@ -63,15 +88,17 @@ def get_ols(force_download: bool = False) -> dict[str, dict[str, Any]]:
         raise NotImplementedError(
             "Need to implement paging since there are more entries than fit into one page"
         )
-    RAW_PATH.write_text(json.dumps(data, indent=2, sort_keys=True))
-
+    raw_path.write_text(json.dumps(data, indent=2, sort_keys=True))
+    ols_processing = (
+        _load_ols_processing(conf_path) if conf_path is not None and conf_path.is_file() else {}
+    )
     processed = {}
     for ontology in data["_embedded"]["ontologies"]:
         ols_id = ontology["ontologyId"]
         if ols_id in OLS_SKIP:
             continue
         # TODO better docs on how to maintain this file
-        config = get_ols_processing().get(ols_id)
+        config = ols_processing.get(ols_id)
         if config is None:
             if ols_id not in OLS_SKIP:
                 logger.warning("[%s] need to curate processing file", ols_id)
@@ -81,7 +108,7 @@ def get_ols(force_download: bool = False) -> dict[str, dict[str, Any]]:
             continue
         processed[ols_id] = record
 
-    with PROCESSED_PATH.open("w") as file:
+    with processed_path.open("w") as file:
         json.dump(processed, file, indent=2, sort_keys=True)
     return processed
 
@@ -249,12 +276,15 @@ def _clean_url(url: str | None) -> str | None:
     return url
 
 
-@lru_cache(maxsize=1)
 def get_ols_processing() -> Mapping[str, OLSConfig]:
     """Get OLS processing configurations."""
-    with OLS_PROCESSING.open() as file:
+    return _load_ols_processing(OLS_PROCESSING_PATH)
+
+
+def _load_ols_processing(path: Path) -> dict[str, OLSConfig]:
+    with path.open() as file:
         data = json.load(file)
-    return {record["prefix"]: OLSConfig(**record) for record in data["configurations"]}
+    return {record["prefix"]: OLSConfig.model_validate(record) for record in data["configurations"]}
 
 
 class OLSAligner(Aligner):
