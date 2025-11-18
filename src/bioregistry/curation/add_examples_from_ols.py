@@ -2,7 +2,6 @@
 
 from __future__ import annotations
 
-import random
 from typing import cast
 
 import requests
@@ -30,14 +29,13 @@ def _get_example_helper(prefix: str, url: str) -> str:
     embedded = res.get("_embedded")
     if embedded:
         for term in embedded["terms"]:
-            iri = term['iri']
+            iri = term["iri"]
             bioregistry.parse_iri(iri)
-
 
             short_form = term["short_form"]
             if short_form.casefold().startswith(ppp):
-                return cast(str, short_form[len(ppp):])
-            #else:
+                return cast(str, short_form[len(ppp) :])
+            # else:
             #    tqdm.write(f"[{prefix}] unable to use {short_form}\n\t{term}")
         next_url = res["_links"]["next"]["href"]
         return _get_example_helper(prefix, next_url)
@@ -46,7 +44,7 @@ def _get_example_helper(prefix: str, url: str) -> str:
     if not page:
         raise KeyError
 
-    if page['totalElements'] == 0:
+    if page["totalElements"] == 0:
         tqdm.write(f"no terms for {prefix}")
         return None
     raise KeyError
@@ -81,9 +79,9 @@ def _main_helper(metaprefix: str, base_url: str) -> None:
         else:
             tqdm.write(f"[{prefix}] got example {example}")
             if example.startswith(prefix.upper() + "_"):
-                example = example[len(prefix) + 1:]
+                example = example[len(prefix) + 1 :]
             if example.startswith(prefix.upper() + ":"):
-                example = example[len(prefix) + 1:]
+                example = example[len(prefix) + 1 :]
             r[prefix]["example"] = example
             bioregistry.write_registry(r)
 
