@@ -9,6 +9,7 @@ import requests
 from tqdm import tqdm
 
 import bioregistry
+from bioregistry.external.ols import EBI_OLS_BASE_URL
 from bioregistry.external.ols.tib import TIB_OLS_BASE_URL
 
 
@@ -75,7 +76,7 @@ def _main_helper(metaprefix: str, base_url: str) -> None:
 
 def main() -> None:
     """Add examples from OLS instances."""
-    # _main_helper("ols", EBI_OLS_BASE_URL)
+    _main_helper("ols", EBI_OLS_BASE_URL)
     _main_helper("tib", TIB_OLS_BASE_URL)
 
 
