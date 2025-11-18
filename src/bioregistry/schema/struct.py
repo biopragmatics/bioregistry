@@ -1371,7 +1371,7 @@ class Resource(BaseModel):
             keywords.append("ontology")
         for data in [self.ols, self.tib, self.lov]:
             if data:
-                keywords.extend(data.get("keywords"))
+                keywords.extend(data.get("keywords", []))
         return sorted(
             {
                 keyword.lower().replace("’", "'")  # noqa:RUF001
