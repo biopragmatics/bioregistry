@@ -1,0 +1,44 @@
+"""Download and align against the TIB Terminology Service."""
+
+from collections.abc import Sequence
+from pathlib import Path
+from typing import ClassVar
+
+from bioregistry.constants import RAW_DIRECTORY
+from bioregistry.external.alignment_utils import Aligner
+from bioregistry.external.ols import OlsRv, get_ols_base
+
+HERE = Path(__file__).parent.resolve()
+RAW_PATH = RAW_DIRECTORY.joinpath("tib.json")
+PROCESSED_PATH = HERE.joinpath("tib-processed.json")
+VERSION_PROCESSING_CONFIG_PATH = HERE.joinpath("tib-processing-config.json")
+BASE = "https://api.terminology.tib.eu/api"
+
+__all__ = [
+    "TIBAligner",
+    "get_tib_ts",
+]
+
+
+def get_tib_ts(*, force_download: bool = False) -> OlsRv:
+    """Get the TIB Terminology Service."""
+    return get_ols_base(
+        force_download=force_download,
+        base_url=BASE,
+        processed_path=PROCESSED_PATH,
+        raw_path=RAW_PATH,
+        version_processing_config_path=VERSION_PROCESSING_CONFIG_PATH,
+    )
+
+
+class TIBAligner(Aligner):
+    """Aligner for the TIB Terminology Service."""
+
+    key = "tib"
+    getter = get_tib_ts
+    curation_header: ClassVar[Sequence[str]] = ("name",)
+    include_new = True
+
+
+if __name__ == "__main__":
+    TIBAligner.cli()

@@ -37,9 +37,9 @@ OlsRv: TypeAlias = dict[str, dict[str, Any]]
 DIRECTORY = Path(__file__).parent.resolve()
 RAW_PATH = RAW_DIRECTORY / "ols.json"
 PROCESSED_PATH = DIRECTORY / "processed.json"
-OLS_PROCESSING_PATH = DIRECTORY / "processing_ols.json"
+EBI_OLS_VERSION_PROCESSING_CONFIG_PATH = DIRECTORY / "processing_ols.json"
 
-OLS_SKIP = {
+EBI_OLS_SKIP = {
     "co_321:root": "this is a mistake in the way OLS imports CO",
     "phi": "this is low quality and has no associated metadata",
     "epso": "can't figure out / not sure if still exists",
@@ -61,7 +61,7 @@ def get_ols(
         base_url="https://www.ebi.ac.uk/ols4/api",
         processed_path=PROCESSED_PATH,
         raw_path=RAW_PATH,
-        conf_path=OLS_PROCESSING_PATH,
+        version_processing_config_path=EBI_OLS_VERSION_PROCESSING_CONFIG_PATH,
     )
 
 
@@ -71,7 +71,7 @@ def get_ols_base(
     base_url: str,
     processed_path: Path,
     raw_path: Path,
-    conf_path: Path | None = None,
+    version_processing_config_path: Path | None = None,
 ) -> OlsRv:
     """Get an OLS registry."""
     if processed_path.exists() and not force_download:
@@ -89,21 +89,21 @@ def get_ols_base(
             "Need to implement paging since there are more entries than fit into one page"
         )
     raw_path.write_text(json.dumps(data, indent=2, sort_keys=True))
-    ols_processing = (
-        _load_ols_processing(conf_path) if conf_path is not None and conf_path.is_file() else {}
+    version_processing_configurations = (
+        _load_version_processing_configurations(version_processing_config_path)
+        if version_processing_config_path is not None and version_processing_config_path.is_file()
+        else {}
     )
     processed = {}
     for ontology in data["_embedded"]["ontologies"]:
         ols_id = ontology["ontologyId"]
-        if ols_id in OLS_SKIP:
+        if ols_id in EBI_OLS_SKIP:
             continue
         # TODO better docs on how to maintain this file
-        config = ols_processing.get(ols_id)
-        if config is None:
-            if ols_id not in OLS_SKIP:
-                logger.warning("[%s] need to curate processing file", ols_id)
-            continue
-        record = _process(ontology, config)
+        version_processing_config = version_processing_configurations.get(ols_id)
+        if version_processing_config is None:
+            logger.warning("[%s] need to curate processing file", ols_id)
+        record = _process(ontology, version_processing_config=version_processing_config)
         if not record:
             continue
         processed[ols_id] = record
@@ -158,7 +158,12 @@ def _get_license(ols_id: str, config: dict[str, Any]) -> str | None:
     return license_value
 
 
-def _get_version(ols_id: str, config: dict[str, Any], processing: OLSConfig) -> str | None:
+def _get_version(
+    ols_id: str, config: dict[str, Any], *, version_processing_config: OLSConfig | None = None
+) -> str | None:
+    if version_processing_config is None:
+        return None
+
     version_iri: str | None = config.get("versionIri")
     if version_iri:
         _, _, version_from_iri = parse_obo_version_iri(version_iri, ols_id)
@@ -166,13 +171,13 @@ def _get_version(ols_id: str, config: dict[str, Any], processing: OLSConfig) -> 
             return version_from_iri
 
     version: str | None = config.get("version")
-    if version is None and version_iri and processing.version_iri_prefix:
-        if not version_iri.startswith(processing.version_iri_prefix):
+    if version is None and version_iri and version_processing_config.version_iri_prefix:
+        if not version_iri.startswith(version_processing_config.version_iri_prefix):
             logger.info("[%s] version IRI does not start with appropriate prefix", ols_id)
         else:
-            version_cut = version_iri[len(processing.version_iri_prefix) :]
-            if processing.version_iri_suffix:
-                version_cut = version_cut[: -len(processing.version_iri_suffix)]
+            version_cut = version_iri[len(version_processing_config.version_iri_prefix) :]
+            if version_processing_config.version_iri_suffix:
+                version_cut = version_cut[: -len(version_processing_config.version_iri_suffix)]
             return version_cut
 
     if version is None:
@@ -193,7 +198,7 @@ def _get_version(ols_id: str, config: dict[str, Any], processing: OLSConfig) -> 
         )
         version = version.strip()
 
-    version_prefix = processing.version_prefix
+    version_prefix = version_processing_config.version_prefix
     if version_prefix:
         if not version.startswith(version_prefix):
             raise ValueError(
@@ -205,9 +210,9 @@ def _get_version(ols_id: str, config: dict[str, Any], processing: OLSConfig) -> 
                 )
             )
         version = version[len(version_prefix) :]
-    if processing.version_suffix_split:
+    if version_processing_config.version_suffix_split:
         version = version.split()[0]
-    version_suffix = processing.version_suffix
+    version_suffix = version_processing_config.version_suffix
     if version_suffix:
         if not version.endswith(version_suffix):
             raise ValueError(
@@ -215,8 +220,8 @@ def _get_version(ols_id: str, config: dict[str, Any], processing: OLSConfig) -> 
             )
         version = version[: -len(version_suffix)]
 
-    version_type = processing.version_type
-    version_date_fmt = processing.version_date_format
+    version_type = version_processing_config.version_type
+    version_date_fmt = version_processing_config.version_date_format
     if version_date_fmt:
         if version_date_fmt in {"%Y-%d-%m"}:
             logger.info(
@@ -235,7 +240,9 @@ def _get_version(ols_id: str, config: dict[str, Any], processing: OLSConfig) -> 
     return version
 
 
-def _process(ols_entry: Mapping[str, Any], processing: OLSConfig) -> dict[str, str] | None:
+def _process(
+    ols_entry: Mapping[str, Any], *, version_processing_config: OLSConfig | None = None
+) -> dict[str, str] | None:
     ols_id = ols_entry["ontologyId"]
     config = ols_entry["config"]
     version_iri = config["versionIri"]
@@ -246,7 +253,9 @@ def _process(ols_entry: Mapping[str, Any], processing: OLSConfig) -> dict[str, s
         # "preferred_prefix": config["preferredPrefix"],
         "name": title,
         "version.iri": _clean_url(version_iri),
-        "version": _get_version(ols_id, config, processing),
+        "version": _get_version(
+            ols_id, config, version_processing_config=version_processing_config
+        ),
         "description": description,
         "homepage": _clean_url(config["homepage"]),
         # "tracker": _clean_url(config["tracker"]),
@@ -278,10 +287,10 @@ def _clean_url(url: str | None) -> str | None:
 
 def get_ols_processing() -> Mapping[str, OLSConfig]:
     """Get OLS processing configurations."""
-    return _load_ols_processing(OLS_PROCESSING_PATH)
+    return _load_version_processing_configurations(EBI_OLS_VERSION_PROCESSING_CONFIG_PATH)
 
 
-def _load_ols_processing(path: Path) -> dict[str, OLSConfig]:
+def _load_version_processing_configurations(path: Path) -> dict[str, OLSConfig]:
     with path.open() as file:
         data = json.load(file)
     return {record["prefix"]: OLSConfig.model_validate(record) for record in data["configurations"]}
@@ -297,7 +306,7 @@ class OLSAligner(Aligner):
 
     def get_skip(self) -> Mapping[str, str]:
         """Get skipped entries from OLS."""
-        return OLS_SKIP
+        return EBI_OLS_SKIP
 
 
 if __name__ == "__main__":

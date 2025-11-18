@@ -808,6 +808,8 @@ class Resource(BaseModel):
     integbio: Mapping[str, Any] | None = Field(default=None)
     #: External data from PathGuide
     pathguide: Mapping[str, Any] | None = Field(default=None)
+    #: External data from TIB Terminology Service
+    tib: Mapping[str, Any] | None = Field(default=None)
 
     # Cached compiled pattern for identifiers
     _compiled_pattern: re.Pattern[str] | None = PrivateAttr(None)
