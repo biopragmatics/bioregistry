@@ -13,12 +13,12 @@ from tabulate import tabulate
 from tqdm import tqdm
 
 import bioregistry
-from bioregistry.schema.struct import Organization
+from bioregistry.schema.struct import Author, Organization
 
 BASE = "https://vocabularies.cessda.eu"
 MODULE = pystow.module("cessda")
 
-AGENCIES: dict[str, Organization] = {
+AGENCY_TO_ORG: dict[str, Organization] = {
     "GESIS": Organization(
         ror="018afyw53", name="GESIS - Leibniz-Institute for the Social Sciences"
     ),
@@ -27,7 +27,7 @@ AGENCIES: dict[str, Organization] = {
         ror="02wg9xc72", name="Consortium of European Social Science Data Archives"
     ),
 }
-NN = {"GESIS": "gesis", "DDI Alliance": "ddi", "CESSDA": "cessda"}
+AGENCY_TO_LOWER = {"GESIS": "gesis", "DDI Alliance": "ddi", "CESSDA": "cessda"}
 LICENSES = {
     "http://creativecommons.org/licenses/by/4.0/": "CC-BY-4.0",
 }
@@ -48,9 +48,11 @@ def main() -> None:
                 if "en(SL)" in language_to_version_to_url:
                     v = language_to_version_to_url["en(SL)"]
                     version, url_last = max(v.items())
-                # elif "en(TL)" in language_to_version_to_url:
-                #     v = language_to_version_to_url["en(TL)"]
-                #     version, url_last = max(v.items())
+                elif "en(TL)" in language_to_version_to_url:
+                    v = language_to_version_to_url["en(TL)"]
+                    version, _ = max(v.items())
+                    # the formatting is wrong for these, so reconstruct it
+                    url_last = f"/v2/vocabularies/{subprefix}/{version}"
                 else:
                     tqdm.write(
                         f"[{subprefix}] no english, choose from {set(language_to_version_to_url)}"
@@ -63,7 +65,9 @@ def main() -> None:
                 path.write_text(json.dumps(data, indent=2))
 
             name = data.get("titleEn") or data.get("titleAll")
-            description = data.get("definitionEn")
+            if not name:
+                raise ValueError
+            description = data["definitionEn"]
             version = data.get("versionEn")
 
             version_dict = data["versions"][0]
@@ -72,23 +76,26 @@ def main() -> None:
             concept = version_dict["concepts"][0]
             example = concept["notation"]
 
-            # uri format
             uri_format = f"https://vocabularies.cessda.eu/vocabulary/{notation}?lang=en#code_$1"
+            homepage = f"https://vocabularies.cessda.eu/vocabulary/{notation}"
+            license_key = LICENSES[version_dict["licenseLink"]]
 
-            prefix = f"{NN[agency]}.{notation.lower()}"
+            prefix = f"{AGENCY_TO_LOWER[agency]}.{notation.lower()}"
             resource = bioregistry.Resource(
                 prefix=prefix,
-                name=name,
-                example=example,
-                description=description,
-                license=LICENSES[version_dict["licenseLink"]],
+                name=name.strip(),
+                example=example.strip(),
+                description=description.strip() if description else None,
+                homepage=homepage,
+                license=license_key,
                 version=version,
                 uri_format=uri_format,
-                owners=[AGENCIES[agency]],
+                owners=[AGENCY_TO_ORG[agency]],
+                part_of_database=AGENCY_TO_LOWER[agency],
+                contributor=Author.get_charlie(),
             )
-            #bioregistry.add_resource(resource)
-            #bioregistry.manager.write_registry()
-
+            bioregistry.add_resource(resource)
+            bioregistry.add_to_collection("0000020", prefix)
             rows.append(
                 (
                     agency,
@@ -97,10 +104,14 @@ def main() -> None:
                     example,
                     textwrap.shorten(description, 60),
                     version,
-                    license,
+                    license_key,
                     uri_format,
+                    uri_format.replace("$1", example),
                 )
             )
+
+    bioregistry.manager.write_registry()
+    bioregistry.manager.write_collections()
 
     click.echo(tabulate(rows))
 
