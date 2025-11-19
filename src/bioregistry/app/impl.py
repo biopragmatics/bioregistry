@@ -77,7 +77,7 @@ BIOREGISTRY_FOOTER_DEFAULT = dedent(f"""\
 
     <div class="text-center">
     <a class="btn btn-outline-primary btn-sm mb-1" rel="me" href="https://{INTERNAL_MASTODON_SERVER}/@{INTERNAL_MASTODON_HANDLE}" title="{INTERNAL_MASTODON_HANDLE}"> @{INTERNAL_MASTODON}</a>
-    <a class="btn btn-outline-primary btn-sm mb-1" href="https://github.com/biopragmatics/bioregistry"><i class="fa fa-brands fa-github"></i> Source Code</a>
+    <a class="btn btn-outline-primary btn-sm mb-1" href="{INTERNAL_REPOSITORY}"><i class="fa fa-brands fa-github"></i> Source Code</a>
     </div>
 """)
 BIOREGISTRY_HEADER_DEFAULT = dedent("""\
