@@ -52,15 +52,15 @@ BIOREGISTRY_FOOTER_DEFAULT = dedent(f"""\
 <div class="container">
     <div class="row mt-3"><h5>Projects and Partners</h3></div>
     <div class="row mt-1">
-        <div class="col text-center align-self-center"><a href="https://www.iac.rwth-aachen.de"><img src="static/rwth-iac.svg" style="height: 2.3em;" /></a></div>
-        <div class="col text-center align-self-center"><a href="https://nfdi4chem.de"><img src="static/nfdi4chem.svg" style="height: 2.3em;" /></a></div>
-        <div class="col text-center align-self-center"><a href="https://dalia.education/en"><img src="static/dalia.png" style="height: 1.9em;" /></a></div>
-        <div class="col text-center align-self-center"><a href="https://www.northeastern.edu"><img src="static/northeastern.svg" style="height: 2.3em;" /></a></div>
+        <div class="col text-center align-self-center"><a href="https://www.iac.rwth-aachen.de"><img src="/static/rwth-iac.svg" style="height: 2.3em;" /></a></div>
+        <div class="col text-center align-self-center"><a href="https://nfdi4chem.de"><img src="/static/nfdi4chem.svg" style="height: 2.3em;" /></a></div>
+        <div class="col text-center align-self-center"><a href="https://dalia.education/en"><img src="/static/dalia.png" style="height: 1.9em;" /></a></div>
+        <div class="col text-center align-self-center"><a href="https://www.northeastern.edu"><img src="/static/northeastern.svg" style="height: 2.3em;" /></a></div>
     </div>
     <div class="row mt-4"><h5>Funding</h3></div>
     <div class="row mt-1">
-        <div class="col text-center align-self-center"><a href="https://www.dfg.de"><img src="static/dfg.svg" style="height: 2.3em;" /></a></div>
-        <div class="col text-center align-self-center"><a href="https://chanzuckerberg.com"><img src="static/czi.svg" style="height: 3.0em;" /></a></div>
+        <div class="col text-center align-self-center"><a href="https://www.dfg.de"><img src="/static/dfg.svg" style="height: 2.3em;" /></a></div>
+        <div class="col text-center align-self-center"><a href="https://chanzuckerberg.com"><img src="/static/czi.svg" style="height: 3.0em;" /></a></div>
         <div class="col text-center align-self-center"></div>
         <div class="col text-center align-self-center"></div>
     </div>
