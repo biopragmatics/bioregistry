@@ -49,9 +49,8 @@ BIOREGISTRY_DESCRIPTION_DEFAULT = dedent("""\
     and compact identifier (CURIE) resolver.
 """)
 BIOREGISTRY_FOOTER_DEFAULT = dedent(f"""\
-<div class="container">
     <div class="row mt-3"><h5>Projects and Partners</h3></div>
-    <div class="row mt-1">
+    <div class="row mt-2">
         <div class="col text-center align-self-center"><a href="https://www.iac.rwth-aachen.de"><img src="/static/rwth-iac.svg" style="height: 2.3em;" /></a></div>
         <div class="col text-center align-self-center"><a href="https://nfdi4chem.de"><img src="/static/nfdi4chem.svg" style="height: 2.3em;" /></a></div>
         <div class="col text-center align-self-center"><a href="https://dalia.education/en"><img src="/static/dalia.png" style="height: 1.9em;" /></a></div>
@@ -76,11 +75,10 @@ BIOREGISTRY_FOOTER_DEFAULT = dedent(f"""\
     Point of contact: Charles Tapley Hoyt (<a href="https://github.com/cthoyt">@cthoyt</a>)
     </p>
 
-    <div class="text-center mb-4">
+    <div class="text-center">
     <a class="btn btn-outline-primary btn-sm mb-1" rel="me" href="https://{INTERNAL_MASTODON_SERVER}/@{INTERNAL_MASTODON_HANDLE}" title="{INTERNAL_MASTODON_HANDLE}"> @{INTERNAL_MASTODON}</a>
     <a class="btn btn-outline-primary btn-sm mb-1" href="https://github.com/biopragmatics/bioregistry"><i class="fa fa-brands fa-github"></i> Source Code</a>
     </div>
-</div>
 """)
 BIOREGISTRY_HEADER_DEFAULT = dedent("""\
     <p class="lead">
