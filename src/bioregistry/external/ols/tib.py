@@ -32,6 +32,8 @@ SKIP = {
     "dfgfo2024": "",
     "hoom": "not sure this is its own ontology",
     "zbwext": "not sure this is its own ontology",
+    "oboecharacteristics": "duplicate of top level", # todo reinvestigate
+    "oboestandards": "duplicate of top level",
 }
 
 
