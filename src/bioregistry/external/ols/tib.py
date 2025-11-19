@@ -31,6 +31,7 @@ SKIP = {
     "nmrcv2025": "",
     "dfgfo2024": "",
     "hoom": "not sure this is its own ontology",
+    "zbwext": "not sure this is its own ontology",
 }
 
 
