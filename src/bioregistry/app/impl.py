@@ -64,7 +64,7 @@ BIOREGISTRY_FOOTER_DEFAULT = dedent(f"""\
         <div class="col text-center align-self-center"></div>
     </div>
 
-    <hr class="mt-4 mb-4"/>
+    <hr class="mt-5 mb-4"/>
 
     <p class="small text-center text-muted">
     Developed with ❤️ by the
@@ -72,7 +72,7 @@ BIOREGISTRY_FOOTER_DEFAULT = dedent(f"""\
     </br> and the
     <a href="https://gyorilab.github.io">Gyori Lab for Computational Biomedicine</a>
     at Northeastern University.<br/>
-    Point of contact: Charles Tapley Hoyt (<a href="https://github.com/cthoyt">@cthoyt</a>)
+    Point of contact: Charles Tapley Hoyt (<a href="https://github.com/cthoyt">@cthoyt</a>; RWTH Aachen)
     </p>
 
     <div class="text-center">
