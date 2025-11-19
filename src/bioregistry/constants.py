@@ -209,7 +209,7 @@ def get_failure_return_type(frt: FailureReturnType) -> None | NonePair:
 SCHEMA_CURIE_PREFIX = "bioregistry.schema"
 SCHEMA_URI_PREFIX = "https://bioregistry.io/schema/#"
 INTERNAL_MASTODON_SERVER = "hackyderm.io"
-INTERNAL_MASTODON_HANDLE = "hackyderm.io"
+INTERNAL_MASTODON_HANDLE = "bioregistry"
 INTERNAL_MASTODON = f"{INTERNAL_MASTODON_HANDLE}@{INTERNAL_MASTODON_SERVER}"
 INTERNAL_METAPREFIX = "bioregistry"
 INTERNAL_KEY = "bioregistry"
