@@ -38,8 +38,9 @@ def main() -> None:
             if not collection:
                 c[keyword.lower()] += 1
                 continue
-            # TODO add to list!
+            bioregistry.add_to_collection(collection, internal_prefix)
 
+    bioregistry.manager.write_collections()
     tqdm.write(tabulate(c.most_common(), headers=["unmapped keyword", "count"]))
 
 
