@@ -12,10 +12,11 @@ import curies
 
 from .resource_manager import MetaresourceAnnotatedValue, manager
 from .schema import Attributable, Resource
-from .schema.struct import AnnotatedURL
+from .schema.struct import AnnotatedURL, Collection
 
 __all__ = [
     "add_resource",
+    "add_to_collection",
     "count_mappings",
     "get_appears_in",
     "get_banana",
@@ -1019,6 +1020,11 @@ def get_converter(**kwargs: Any) -> curies.Converter:
 def add_resource(resource: Resource) -> None:
     """Add a resource."""
     manager.add_resource(resource)
+
+
+def add_to_collection(collection: str | Collection, resource: str | Resource) -> None:
+    """Add a resource to the collection."""
+    manager.add_to_collection(collection, resource)
 
 
 def get_logo(prefix: str) -> str | None:

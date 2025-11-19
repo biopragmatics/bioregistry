@@ -35,6 +35,7 @@ from .reference import (
 )
 from .resolve import (
     add_resource,
+    add_to_collection,
     count_mappings,
     get_appears_in,
     get_banana,
@@ -170,6 +171,7 @@ __all__ = [
     "StandardNamedReference",
     "StandardReference",
     "add_resource",
+    "add_to_collection",
     "count_mappings",
     "curie_from_iri",
     "curie_to_str",
