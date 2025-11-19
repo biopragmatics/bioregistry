@@ -50,26 +50,37 @@
                         </a>{% if not loop.last %}, {% endif %}
                     {% endfor %}
                 </dd>
+                <dt>Size</dt>
+                <dd>{{ entry.resources | length }}</dd>
                 {% if entry.references %}
                     <dt>References</dt>
                     {% for reference in entry.references %}
                         <dd><a href="{{ reference }}">{{ reference }}</a></dd>
                     {% endfor %}
                 {% endif %}
-                <dt>Resources ({{ entry.resources | length }})</dt>
-                <dd>
-                    <ul>
-                        {% for prefix in entry.resources %}
-                            <li>
-                                <a href="{{ url_for("metaregistry_ui.resource", prefix=prefix) }}">
-                                    {{ resources[prefix].get_name() }} (<code>{{ prefix }}</code>)
-                                </a>
-                                {{ utils.render_resource_warnings(resources[prefix]) }}
-                            </li>
-                        {% endfor %}
-                    </ul>
-                </dd>
             </dl>
         </div>
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th scope="col">Prefix</th>
+                <th scope="col">Name</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for prefix in entry.resources %}
+            <tr>
+                <td>
+                    <code>{{ prefix }}</code>
+                </td>
+                <td>
+                    <a href="{{ url_for("metaregistry_ui.resource", prefix=prefix) }}">
+                        {{ resources[prefix].get_name() }} {{ utils.render_resource_warnings(resources[prefix]) }}
+                    </a>
+                </td>
+            </tr>
+            {% endfor %}
+            </tbody>
+        </table>
     </div>
 {% endblock %}
