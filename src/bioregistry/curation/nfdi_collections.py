@@ -23,8 +23,8 @@ KEYWORD_TO_COLLECTION = {
 
 @click.command()
 def main() -> None:
-    """Do it."""
-    c = Counter()
+    """Populate collections based on keywords from the TIB terminology service."""
+    counter: Counter[str] = Counter()
 
     tib_to_internal = bioregistry.get_registry_invmap("tib")
 
@@ -36,12 +36,12 @@ def main() -> None:
         for keyword in tib_data.get("keywords", []):
             collection = KEYWORD_TO_COLLECTION.get(keyword.lower())
             if not collection:
-                c[keyword.lower()] += 1
+                counter[keyword.lower()] += 1
                 continue
             bioregistry.add_to_collection(collection, internal_prefix)
 
     bioregistry.manager.write_collections()
-    tqdm.write(tabulate(c.most_common(), headers=["unmapped keyword", "count"]))
+    tqdm.write(tabulate(counter.most_common(), headers=["unmapped keyword", "count"]))
 
 
 if __name__ == "__main__":
