@@ -34,6 +34,7 @@ SKIP = {
     "zbwext": "not sure this is its own ontology",
     "oboe-characteristics": "duplicate of top level",  # todo reinvestigate
     "oboe-standards": "duplicate of top level",
+    "sds": "this is not a semantic space! the RDF document linked on TIB is a description of the standard itself",
 }
 
 
