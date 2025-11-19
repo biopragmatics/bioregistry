@@ -23,6 +23,8 @@ from .. import resource_manager, version
 from ..constants import (
     INTERNAL_DOCKERHUB_SLUG,
     INTERNAL_MASTODON,
+    INTERNAL_MASTODON_HANDLE,
+    INTERNAL_MASTODON_SERVER,
     INTERNAL_PIP,
     INTERNAL_REPOSITORY,
     INTERNAL_REPOSITORY_BLOB,
@@ -47,13 +49,38 @@ BIOREGISTRY_DESCRIPTION_DEFAULT = dedent("""\
     and compact identifier (CURIE) resolver.
 """)
 BIOREGISTRY_FOOTER_DEFAULT = dedent(f"""\
-    Developed with ❤️ by the <a href="https://gyorilab.github.io">Gyori Lab for Computational Biomedicine</a>
+<div class="container">
+    <div class="row mt-3"><h5>Projects and Partners</h3></div>
+    <div class="row mt-1">
+        <div class="col text-center align-self-center"><a href="https://www.iac.rwth-aachen.de"><img src="static/rwth-iac.svg" style="height: 2.3em;" /></a></div>
+        <div class="col text-center align-self-center"><a href="https://nfdi4chem.de"><img src="static/nfdi4chem.svg" style="height: 2.3em;" /></a></div>
+        <div class="col text-center align-self-center"><a href="https://dalia.education/en"><img src="static/dalia.png" style="height: 1.9em;" /></a></div>
+        <div class="col text-center align-self-center"><a href="https://www.northeastern.edu"><img src="static/northeastern.svg" style="height: 2.3em;" /></a></div>
+    </div>
+    <div class="row mt-4"><h5>Funding</h3></div>
+    <div class="row mt-1">
+        <div class="col text-center align-self-center"><a href="https://www.dfg.de"><img src="static/dfg.svg" style="height: 2.3em;" /></a></div>
+        <div class="col text-center align-self-center"><a href="https://chanzuckerberg.com"><img src="static/czi.svg" style="height: 3.0em;" /></a></div>
+        <div class="col text-center align-self-center"></div>
+        <div class="col text-center align-self-center"></div>
+    </div>
+
+    <hr class="mt-4 mb-4"/>
+
+    <p class="small text-center text-muted">
+    Developed with ❤️ by the
+    <a href="https://www.iac.rwth-aachen.de">Institute for Inorganic Chemistry</a> at RWTH Aachen University
+    </br> and the
+    <a href="https://gyorilab.github.io">Gyori Lab for Computational Biomedicine</a>
     at Northeastern University.<br/>
-    Funded by Chan Zuckerberg Initiative (CZI) Award
-    <a href="https://gyorilab.github.io/#czi-bioregistry">2023-329850</a>.<br/>
-    Point of contact: <a href="https://github.com/cthoyt">@cthoyt</a> and
-    <a rel="me" href="https://hachyderm.io/@bioregistry" title="bioregistry">@{INTERNAL_MASTODON}</a>
-    (<a href="https://github.com/biopragmatics/bioregistry">Source code</a>)
+    Point of contact: Charles Tapley Hoyt (<a href="https://github.com/cthoyt">@cthoyt</a>)
+    </p>
+
+    <div class="text-center mb-4">
+    <a class="btn btn-outline-primary btn-sm mb-1" rel="me" href="https://{INTERNAL_MASTODON_SERVER}/@{INTERNAL_MASTODON_HANDLE}" title="{INTERNAL_MASTODON_HANDLE}"> @{INTERNAL_MASTODON}</a>
+    <a class="btn btn-outline-primary btn-sm mb-1" href="https://github.com/biopragmatics/bioregistry"><i class="fa fa-brands fa-github"></i> Source Code</a>
+    </div>
+</div>
 """)
 BIOREGISTRY_HEADER_DEFAULT = dedent("""\
     <p class="lead">
