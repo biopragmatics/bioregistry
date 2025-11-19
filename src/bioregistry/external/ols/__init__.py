@@ -296,6 +296,8 @@ def _clean_url(url: str | None) -> str | None:
         return url
     if "CO_" in url and url.startswith("http://127.0.0.1:5900"):
         return "https://cropontology.org" + url[len("http://127.0.0.1:5900") :]
+    if url.startswith("file:"):
+        return None
     return url
 
 
