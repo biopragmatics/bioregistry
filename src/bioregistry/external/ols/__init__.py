@@ -272,6 +272,9 @@ def _process(
         "keywords": keywords,
     }
 
+    # TODO automatically extract github/gitlab repository based
+    #  on tracker / homepage
+
     base_uris = config.get("baseUris", [])
     if base_uris:
         rv["uri_format"] = base_uris[0] + "$1"
