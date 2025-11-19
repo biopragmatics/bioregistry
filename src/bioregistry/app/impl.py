@@ -60,7 +60,7 @@ BIOREGISTRY_FOOTER_DEFAULT = dedent(f"""\
     <div class="row mt-4"><h5>Funding</h3></div>
     <div class="row mt-1">
         <div class="col text-center align-self-center"><a href="https://www.dfg.de"><img src="/static/dfg.svg" style="height: 2.3em;" /></a></div>
-        <div class="col text-center align-self-center"><a href="https://chanzuckerberg.com"><img src="/static/czi.svg" style="height: 3.0em;" /></a></div>
+        <div class="col text-center align-self-center"><a href="https://chanzuckerberg.com"><img src="/static/czi.svg" style="height: 3.5em;" /></a></div>
         <div class="col text-center align-self-center"></div>
         <div class="col text-center align-self-center"></div>
     </div>
