@@ -1103,7 +1103,7 @@
       "homepage": "https://www.ebi.ac.uk/ols4",
       "license": "See https://github.com/biopragmatics/bioregistry/issues/340",
       "logo_url": "https://www.ebi.ac.uk/ols4/logo.png",
-      "name": "Ontology Lookup Service",
+      "name": "EBI Ontology Lookup Service",
       "prefix": "ols",
       "provider_uri_format": "https://www.ebi.ac.uk/ols4/ontologies/$1",
       "qualities": {
@@ -1408,6 +1408,59 @@
       "resolver_type": "lookup",
       "resolver_uri_format": "https://scicrunch.org/resolver/RRID:$1_$2",
       "short_name": "RRID"
+    },
+    {
+      "availability": {
+        "alternate_providers": "missing",
+        "contact": "present",
+        "description": "required",
+        "example": "present",
+        "homepage": "present",
+        "license": "required",
+        "name": "required",
+        "pattern": "missing",
+        "provider": "present",
+        "search": true,
+        "synonyms": "missing",
+        "version": "present"
+      },
+      "bioregistry_prefix": "tib.ts",
+      "contact": {
+        "email": "baum@zbmed.de",
+        "github": "rombaum",
+        "name": "Roman Baum",
+        "orcid": "0000-0001-5246-9351"
+      },
+      "description": "The TIB Terminology Service is an instance of the EBI OLS.",
+      "example": "abcd",
+      "governance": {
+        "accepts_external_contributions": true,
+        "code_repository": "https://github.com/TIBHannover/TIB-Terminology-Service-Frontend-2.0",
+        "comments": "Accepts suggestions through the issue tracker at https://github.com/TIBHannover/TIB-Terminology-Service-Frontend-2.0/issue",
+        "curates": false,
+        "curation": "import",
+        "data_repository": "https://github.com/EBISPOT/OLS",
+        "imports": true,
+        "issue_tracker": "https://github.com/TIBHannover/TIB-Terminology-Service-Frontend-2.0/issues/",
+        "public_version_controlled_data": true,
+        "review_team": "inferrable",
+        "scope": "general",
+        "status": "active"
+      },
+      "homepage": "https://terminology.tib.eu",
+      "license": "https://github.com/TIBHannover/TIB-Terminology-Service-Frontend-2.0/issues/3",
+      "logo_url": "https://terminology.tib.eu/TIB_Logo_W_W.SVG",
+      "name": "TIB Terminology Service",
+      "prefix": "tib",
+      "provider_uri_format": "https://terminology.tib.eu/ts/ontologies/$1",
+      "qualities": {
+        "automatable_download": true,
+        "bulk_data": true,
+        "no_authentication": true,
+        "structured_data": true
+      },
+      "resolver_type": "lookup",
+      "short_name": "TIB-TS"
     },
     {
       "availability": {

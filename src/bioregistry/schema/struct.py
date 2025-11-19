@@ -808,6 +808,8 @@ class Resource(BaseModel):
     integbio: Mapping[str, Any] | None = Field(default=None)
     #: External data from PathGuide
     pathguide: Mapping[str, Any] | None = Field(default=None)
+    #: External data from TIB Terminology Service
+    tib: Mapping[str, Any] | None = Field(default=None)
 
     # Cached compiled pattern for identifiers
     _compiled_pattern: re.Pattern[str] | None = PrivateAttr(None)
@@ -1148,6 +1150,7 @@ class Resource(BaseModel):
             "rrid",
             "bartoc",
             "lov",
+            "tib",
         ]
         if provenance:
             return self._get_prefix_key_str("name", metaprefixes, provenance=True)
@@ -1178,6 +1181,7 @@ class Resource(BaseModel):
             "bartoc",
             "lov",
             "re3data",
+            "tib",
         )
         rv = self._get_prefix_key_str("description", metaprefixes, provenance=False)
         if rv is not None:
@@ -1333,6 +1337,7 @@ class Resource(BaseModel):
             "bartoc",
             "lov",
             "re3data",
+            "tib",
         ]
         return self._get_prefix_key_str(
             "homepage",
@@ -1364,8 +1369,9 @@ class Resource(BaseModel):
             keywords.append("ontology")
         if self.get_download_obo() or self.get_download_owl() or self.bioportal:
             keywords.append("ontology")
-        if self.lov:
-            keywords.extend(self.lov.get("keywords", []))
+        for data in [self.ols, self.tib, self.lov]:
+            if data:
+                keywords.extend(data.get("keywords", []))
         return sorted(
             {
                 keyword.lower().replace("’", "'")  # noqa:RUF001
