@@ -527,7 +527,7 @@
     "domains": [
       "centrally registered identifier"
     ],
-    "homepage": "https://www.linked.data.gov.au/guidelines",
+    "homepage": "https://github.com/AGLDWG/guidelines/blob/master/PID-IRI-Guidelines-v2.2.md",
     "license": "CC-BY-4.0",
     "logo": "https://api.fairsharing.org/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBbjRCIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--fd84076f93aaaa03e5a3c40990a62269ee0dfb3f/agldwg-logo-ochre-150.png?disposition=inline",
     "name": "Australian Government Link Data Working Group Persistent Identification Namespace",
@@ -1198,7 +1198,7 @@
   },
   "FAIRsharing.2d1735": {
     "abbreviation": "GRID Identifier",
-    "description": "Identifier schema for GRID",
+    "description": "Identifier schema for GRID. GRID published its final public released on 16 Sep 2021: https://doi.org/10.6084/m9.figshare.16685428. The final GRID release contains ROR IDs for every GRID record in that release, so that users can easily map from GRID to ROR. A corresponding ROR dataset was released on 23 Sep 2021: https://doi.org/10.5281/zenodo.5534443. This ROR release contains all new/updated records from the final GRID release. Additionally, a simplified CSV file with the ROR ID, name, country and GRID ID from each record is available at https://doi.org/10.5281/zenodo.5534785.",
     "domains": [
       "centrally registered identifier"
     ],
@@ -3259,12 +3259,12 @@
   },
   "FAIRsharing.58b6f9": {
     "abbreviation": "RInChI",
-    "description": "The aim of the RInChI project, in the same vein as InChI, is to create a unique data string to describe a reaction. Reaction InChIs, or RInChIs, are such data strings.",
+    "description": "The aim of the RInChI project, in the same vein as InChI, is to create a unique data string to describe a reaction. Reaction InChIs, or RInChIs, are such data strings. The RInChI format is a hierarchical, layered description of a reaction with different levels based on the Standard InChI representation of each structural component participating in the reaction.",
     "domains": [
       "Reaction data",
       "centrally registered identifier"
     ],
-    "homepage": "http://www-rinchi.ch.cam.ac.uk/",
+    "homepage": "https://github.com/IUPAC-InChI/RInChI",
     "logo": "https://api.fairsharing.org/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBcUlFIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--e03d046e3a37448b0cd9e13b86fa57a003ff3190/inchi-wheel.png?disposition=inline",
     "name": "Reaction InChI",
     "publications": [
@@ -7258,7 +7258,7 @@
   "FAIRsharing.a3d34f": {
     "abbreviation": "CETAF Stable Identifier",
     "description": "The Stable Identifiers of the Consortium of European Taxonomic Facilities (CETAF) are globally unique, consistent and reliable identifiers for specimens in natural and botanical collections. These identifiers are used in the world wide web to redirect users and systems to images, websites and metadata of the physical objects and to integrate them with the semantic web. The CETAF identifier system is based on HTTP-URIs and Linked Data principles. It is simple and future-proof. Each collection object as well as its associated information resources (e.g. multimedia, RDF, webpages) are identified by stable HTTP-URIs that will never change. The URI Syntax for the objects is chosen and maintained by the institution owning them. This flexibility is one of the main advantages of the CETAF Stable Identifier system as it allows e.g. to include branding and local scope identifiers into the CETAF Stable Identifier URI.",
-    "homepage": "https://cetafidentifiers.biowikifarm.net/wiki/Main_Page",
+    "homepage": "https://istc.cetaf.org/CETAF_Stable_Identifier_Guide",
     "license": "CC BY-SA 4.0",
     "name": "Consortium of European Taxonomic Facilities Stable Identifier",
     "publications": [
@@ -11392,7 +11392,7 @@
       "Data retrieval",
       "centrally registered identifier"
     ],
-    "homepage": "https://ror.readme.io/docs/ror-identifier-pattern",
+    "homepage": "https://ror.readme.io/docs/identifier",
     "license": "CC0-1.0",
     "logo": "https://api.fairsharing.org/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBZ3NDIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--5c0df1fa712279f60346a8a58f10ba3f5b33674c/download.png?disposition=inline",
     "name": "Research Organization Registry ID Schema",
@@ -11644,12 +11644,15 @@
     ]
   },
   "FAIRsharing.fd6003": {
-    "description": "UniProt protein identifiers are stable identifiers and should be used to cite UniProtKB entries. Upon integration into UniProtKB, each entry is assigned a unique accession number, which is called 'Primary (citable) accession number'. UniProtKB accession numbers consist of 6 or 10 alphanumeric characters in the format.",
+    "abbreviation": "UniProt AC",
+    "description": "UniProt Accession numbers are stable identifiers and should be used to cite UniProtKB entries. Upon integration into UniProtKB, each entry is assigned a unique accession number, which is called 'Primary (citable) accession number'. UniProtKB accession numbers consist of 6 or 10 alphanumeric characters in the format listed in this record's regex field.",
     "domains": [
-      "proteome"
+      "Sequence annotation",
+      "proteome",
+      "protein"
     ],
     "homepage": "https://www.uniprot.org/help/accession_numbers",
-    "name": "UniProt Protein Identifier",
+    "name": "UniProt Accession Number",
     "subjects": [
       "Proteogenomics",
       "Proteomics",
