@@ -46,6 +46,7 @@ def get_tib_ts(*, force_download: bool = False) -> OlsRv:
         processed_path=PROCESSED_PATH,
         raw_path=RAW_PATH,
         version_processing_config_path=VERSION_PROCESSING_CONFIG_PATH,
+        skip_uri_format={"edam"},
     )
 
 
