@@ -22,6 +22,7 @@ from __future__ import annotations
 import datetime
 import logging
 import textwrap
+from time import sleep
 from collections import defaultdict
 from pathlib import Path
 from typing import TYPE_CHECKING, NamedTuple, TypeAlias, cast
@@ -213,6 +214,7 @@ def _search(
         ):
             if pubmed_id not in pubmed_ids_to_filter:
                 pubmed_to_terms[pubmed_id].append(term)
+            sleep(1)
     return dict(pubmed_to_terms)
 
 
