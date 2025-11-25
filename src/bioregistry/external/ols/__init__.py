@@ -16,7 +16,7 @@ from typing import Any, ClassVar, TypeAlias
 import requests
 from pydantic import BaseModel
 
-from bioregistry.constants import RAW_DIRECTORY
+from bioregistry.constants import RAW_DIRECTORY, URI_FORMAT_KEY
 from bioregistry.external.alignment_utils import Aligner, load_processed
 from bioregistry.parse_version_iri import parse_obo_version_iri
 from bioregistry.utils import OLSBrokenError
@@ -74,6 +74,7 @@ def get_ols_base(
     processed_path: Path,
     raw_path: Path,
     version_processing_config_path: Path | None = None,
+    skip_uri_format: set[str] | None = None,
 ) -> OlsRv:
     """Get an OLS registry."""
     if processed_path.exists() and not force_download:
@@ -105,7 +106,11 @@ def get_ols_base(
         version_processing_config = version_processing_configurations.get(ols_id)
         if version_processing_config is None:
             logger.warning("[%s] need to curate processing file", ols_id)
-        record = _process(ontology, version_processing_config=version_processing_config)
+        record = _process(
+            ontology,
+            version_processing_config=version_processing_config,
+            skip_uri_format=skip_uri_format,
+        )
         if not record:
             continue
         processed[ols_id] = record
@@ -243,7 +248,10 @@ def _get_version(
 
 
 def _process(
-    ols_entry: Mapping[str, Any], *, version_processing_config: OLSConfig | None = None
+    ols_entry: Mapping[str, Any],
+    *,
+    version_processing_config: OLSConfig | None = None,
+    skip_uri_format: set[str] | None = None,
 ) -> dict[str, str] | None:
     ols_id = ols_entry["ontologyId"]
     config = ols_entry["config"]
@@ -276,8 +284,8 @@ def _process(
     #  on tracker / homepage
 
     base_uris = config.get("baseUris", [])
-    if base_uris:
-        rv["uri_format"] = base_uris[0] + "$1"
+    if base_uris and (not skip_uri_format or ols_id not in skip_uri_format):
+        rv[URI_FORMAT_KEY] = base_uris[0] + "$1"
 
     download = _clean_url(config["fileLocation"])
     if download is None:

@@ -169,6 +169,7 @@ URI_FORMAT_PATHS = [
     ("cellosaurus", URI_FORMAT_KEY),
     ("prefixcommons", URI_FORMAT_KEY),
     ("rrid", URI_FORMAT_KEY),
+    ("tib", URI_FORMAT_KEY),
 ]
 
 
@@ -1771,6 +1772,9 @@ class Resource(BaseModel):
             return None
         return f"{rv}$1"
 
+    def _get_external_uri_format(self, metaprefix: str) -> str | None:
+        return self.get_external(metaprefix).get(URI_FORMAT_KEY)
+
     def get_biocontext_uri_format(self) -> str | None:
         """Get the BioContext URI format string for this entry, if available.
 
@@ -1780,7 +1784,7 @@ class Resource(BaseModel):
         >>> get_resource("hgmd").get_biocontext_uri_format()
         'http://www.hgmd.cf.ac.uk/ac/gene.php?gene=$1'
         """
-        return self.get_external("biocontext").get(URI_FORMAT_KEY)
+        return self._get_external_uri_format("biocontext")
 
     def get_bartoc_uri_format(self) -> str | None:
         """Get the BARTOC URI format string for this entry, if available.
@@ -1791,7 +1795,7 @@ class Resource(BaseModel):
         >>> get_resource("ddc").get_bartoc_uri_format()
         'http://dewey.info/class/$1/e23/'
         """
-        return self.get_external("bartoc").get(URI_FORMAT_KEY)
+        return self._get_external_uri_format("bartoc")
 
     def get_prefixcommons_prefix(self) -> str | None:
         """Get the Prefix Commons prefix."""
@@ -1806,7 +1810,7 @@ class Resource(BaseModel):
         >>> get_resource("antweb").get_prefixcommons_uri_format()
         'http://www.antweb.org/specimen.do?name=$1'
         """
-        return self.get_external("prefixcommons").get(URI_FORMAT_KEY)
+        return self._get_external_uri_format("prefixcommons")
 
     def get_identifiers_org_prefix(self) -> str | None:
         """Get the MIRIAM/Identifiers.org prefix, if available.
