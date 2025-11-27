@@ -1,5 +1,7 @@
 """Add SWEET ontologies."""
 
+from typing import cast
+
 import click
 import pystow
 
@@ -55,9 +57,7 @@ def main() -> None:
         """
         example_records = list(inner_graph.query(example_query))
         if example_records:
-            example_uri = example_records[0][0]  # type:ignore
-            if example_uri is None:
-                raise ValueError
+            example_uri = cast(str, example_records[0][0])  # type:ignore[index]
             example = example_uri.removeprefix(uri_prefix)
         else:
             click.echo(f"[{sweet_internal_prefix}] missing example")
