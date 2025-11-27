@@ -1,5 +1,6 @@
 """Add SWEET ontologies."""
 
+import click
 import pystow
 
 import bioregistry
@@ -9,6 +10,7 @@ MODULE = pystow.module("bioregistry", "sweet")
 ALL_PREFIXES_URL = "https://github.com/ESIPFed/sweet/raw/refs/heads/master/sweetPrefixes.ttl"
 
 
+@click.command()
 def main() -> None:
     """Add SWEET ontologies."""
     graph = MODULE.ensure_rdf(url=ALL_PREFIXES_URL)
@@ -19,54 +21,59 @@ def main() -> None:
                sh:namespace ?namespace .
         }
     """
-    for prefix, namespace in graph.query(sparql):  # type:ignore
-        if prefix == "soall":
+    for sweet_internal_prefix, uri_prefix in graph.query(sparql):  # type:ignore
+        sweet_internal_prefix = str(sweet_internal_prefix)
+        uri_prefix = str(uri_prefix)
+
+        if sweet_internal_prefix == "soall":
             continue  # this is the combine one, not its own prefix
 
-        key = namespace.removeprefix("http://sweetontology.net/").rstrip("/")
-        if not key:
+        sweet_internal_key = uri_prefix.removeprefix("http://sweetontology.net/").rstrip("/")
+        if not sweet_internal_key:
             continue
 
-        url = f"https://github.com/ESIPFed/sweet/raw/refs/heads/master/src/{key}.ttl"
-        inner_graph = MODULE.ensure_rdf(url=url)
+        download_rdf = (
+            f"https://github.com/ESIPFed/sweet/raw/refs/heads/master/src/{sweet_internal_key}.ttl"
+        )
+        inner_graph = MODULE.ensure_rdf(url=download_rdf)
 
         ontology_name_query = """
             SELECT ?name
             WHERE { owl:Ontology ^rdf:type/rdfs:label ?name }
             LIMIT 1
         """
-        res = inner_graph.query(ontology_name_query)
-        name = str(next(iter(res))[0])  # type:ignore
+        name = str(next(iter(inner_graph.query(ontology_name_query)))[0])  # type:ignore
 
         example_query = f"""
-            SELECT ?term ?name
+            SELECT ?term
             WHERE {{
                 ?term rdf:type owl:Class;
                       rdfs:label ?name ;
-
-                FILTER STRSTARTS(str(?term), "{namespace}")
+                FILTER STRSTARTS(str(?term), "{uri_prefix}")
             }}
             LIMIT 1
         """
         example_records = list(inner_graph.query(example_query))
         if example_records:
-            example_uri, _example_name = example_records[0]  # type:ignore
-            example = example_uri.removeprefix(namespace)
+            example_uri = example_records[0][0]  # type:ignore
+            example = example_uri.removeprefix(uri_prefix)
         else:
-            example = None
+            click.echo(f"missing example for {sweet_internal_prefix} {name}")
+            continue
 
-        if not prefix.startswith("so"):
+        if not sweet_internal_prefix.startswith("so"):
             raise ValueError
+
         resource = bioregistry.Resource(
-            prefix=f"sweet.{prefix.removeprefix('so')}",
-            synonyms=[prefix, f"sweet.{key.lower()}"],
+            prefix=f"sweet.{sweet_internal_prefix.removeprefix('so')}",
+            synonyms=[sweet_internal_prefix, f"sweet.{sweet_internal_key.lower()}"],
             name=name,
-            homepage=str(namespace),
-            uri_format=f"{namespace}$1",
+            homepage=str(uri_prefix),
+            uri_format=f"{uri_prefix}$1",
             description="The Semantic Web for Earth and Environmental Terminology (SWEET) ontology for "
             + name.removeprefix("SWEET Ontology "),
             example=example,
-            download_rdf=url,
+            download_rdf=download_rdf,
             part_of="sweet",
             license="CC0-1.0",
             repository="https://github.com/ESIPFed/sweet",
