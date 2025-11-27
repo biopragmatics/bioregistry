@@ -20,6 +20,19 @@ MANUAL = {
     "sorelh": "hasAttribute",
     "soreaer": "AbyssopelagicZone",
     "sorelcl": "hasAverageAnnualPrecipitation",
+    "sorelm": "averageOver",
+    "sorelph": "colderThan",
+    "sorelsc": "causedBy",
+    "sorelt": "dayOfYear",
+    "sorelsp": "adjacentTo",
+    "sorepsd": "Counterclockwise",
+    "sorelpr": "fillValue",
+    "sostss": "Continental",
+    "sostrt": "Accurate",
+    "sostsl": "CaK",
+    "sosttf": "Annual",
+    "sosttg": "0MYA",
+    "sostv": "Clear",
 }
 
 
@@ -74,39 +87,45 @@ def main() -> None:
         elif sweet_internal_prefix in MANUAL:
             example = MANUAL[sweet_internal_prefix]
         else:
-            click.echo(f"[{sweet_internal_prefix}] missing example in {name_short} ({uri_prefix})")
-            continue
+            raise ValueError(
+                f"[{sweet_internal_prefix}] missing example in {name_short} ({uri_prefix})"
+            )
 
         if not sweet_internal_prefix.startswith("so"):
             raise ValueError
 
         nsl = name_short.lower()
         if nsl.startswith("human "):
-            pass
+            keywords = [nsl.removeprefix("human ")]
         elif nsl.startswith("material "):
-            pass
+            keywords = ["materials", nsl.removeprefix("material ")]
         elif nsl.startswith("phenomena "):
-            pass
+            keywords = ["phenomena", nsl.removeprefix("phenomena ")]
+        elif nsl.startswith("property relationships "):
+            keywords = [nsl.removeprefix("property relationships ")]
         elif nsl.startswith("property "):
-            pass
+            keywords = [nsl.removeprefix("property ")]
         elif nsl.startswith("process "):
-            pass
+            keywords = [nsl.removeprefix("process ")]
         elif nsl.startswith("realm land "):
-            pass
+            keywords = [nsl.removeprefix("realm land") + "land"]
         elif nsl.startswith("realm "):
-            pass
+            keywords = ["realm", nsl.removeprefix("realm ")]
         elif nsl.startswith("representation "):
-            pass
+            keywords = [nsl.removeprefix("realm ")]
         elif nsl.startswith("state "):
-            pass
+            keywords = [nsl.removeprefix("realm ")]
+        elif nsl.startswith("relationships "):
+            keywords = [nsl.removeprefix("relationships ")]
         else:
-            click.echo(f"[{sweet_internal_prefix}] could not categorize - {name_short}")
+            keywords = [nsl.lower()]
 
         prefix = f"sweet.{sweet_internal_prefix.removeprefix('so')}"
         resource = bioregistry.Resource(
             prefix=prefix,
             synonyms=[sweet_internal_prefix],
             name=name,
+            keywords=keywords,
             homepage=str(uri_prefix),
             uri_format=f"{uri_prefix}$1",
             description=f"The Semantic Web for Earth and Environmental Terminology (SWEET) ontology for {name_short}",
