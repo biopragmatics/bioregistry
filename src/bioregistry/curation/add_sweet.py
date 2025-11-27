@@ -11,6 +11,17 @@ MODULE = pystow.module("bioregistry", "sweet")
 
 ALL_PREFIXES_URL = "https://github.com/ESIPFed/sweet/raw/refs/heads/master/sweetPrefixes.ttl"
 
+MANUAL = {
+    "sosto": "Acute",
+    "sostri": "Catastrophic",
+    "sostsp": "Big",
+    "sorel": "hasPhenomena",
+    "sorelch": "atomicMass",
+    "sorelh": "hasAttribute",
+    "soreaer": "AbyssopelagicZone",
+    "sorelcl": "hasAverageAnnualPrecipitation",
+}
+
 
 @click.command()
 def main() -> None:
@@ -60,12 +71,36 @@ def main() -> None:
         if example_records:
             example_uri = cast(str, example_records[0][0])  # type:ignore[index]
             example = example_uri.removeprefix(uri_prefix)
+        elif sweet_internal_prefix in MANUAL:
+            example = MANUAL[sweet_internal_prefix]
         else:
             click.echo(f"[{sweet_internal_prefix}] missing example in {name_short} ({uri_prefix})")
             continue
 
         if not sweet_internal_prefix.startswith("so"):
             raise ValueError
+
+        nsl = name_short.lower()
+        if nsl.startswith("human "):
+            pass
+        elif nsl.startswith("material "):
+            pass
+        elif nsl.startswith("phenomena "):
+            pass
+        elif nsl.startswith("property "):
+            pass
+        elif nsl.startswith("process "):
+            pass
+        elif nsl.startswith("realm land "):
+            pass
+        elif nsl.startswith("realm "):
+            pass
+        elif nsl.startswith("representation "):
+            pass
+        elif nsl.startswith("state "):
+            pass
+        else:
+            click.echo(f"[{sweet_internal_prefix}] could not categorize - {name_short}")
 
         prefix = f"sweet.{sweet_internal_prefix.removeprefix('so')}"
         resource = bioregistry.Resource(
