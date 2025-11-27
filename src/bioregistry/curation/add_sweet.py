@@ -25,12 +25,12 @@ def main() -> None:
         sweet_internal_prefix = str(sweet_internal_prefix)
         uri_prefix = str(uri_prefix)
 
-        if sweet_internal_prefix == "soall":
+        if sweet_internal_prefix in {"soall", "sweet"}:
             continue  # this is the combine one, not its own prefix
 
         sweet_internal_key = uri_prefix.removeprefix("http://sweetontology.net/").rstrip("/")
         if not sweet_internal_key:
-            continue
+            raise ValueError(f"no internal key found for {sweet_internal_prefix}")
 
         download_rdf = (
             f"https://github.com/ESIPFed/sweet/raw/refs/heads/master/src/{sweet_internal_key}.ttl"
@@ -56,17 +56,20 @@ def main() -> None:
         example_records = list(inner_graph.query(example_query))
         if example_records:
             example_uri = example_records[0][0]  # type:ignore
+            if example_uri is None:
+                raise ValueError
             example = example_uri.removeprefix(uri_prefix)
         else:
-            click.echo(f"missing example for {sweet_internal_prefix} {name}")
+            click.echo(f"[{sweet_internal_prefix}] missing example")
             continue
 
         if not sweet_internal_prefix.startswith("so"):
             raise ValueError
 
+        prefix = f"sweet.{sweet_internal_prefix.removeprefix('so')}"
         resource = bioregistry.Resource(
-            prefix=f"sweet.{sweet_internal_prefix.removeprefix('so')}",
-            synonyms=[sweet_internal_prefix, f"sweet.{sweet_internal_key.lower()}"],
+            prefix=prefix,
+            synonyms=[sweet_internal_prefix],
             name=name,
             homepage=str(uri_prefix),
             uri_format=f"{uri_prefix}$1",
