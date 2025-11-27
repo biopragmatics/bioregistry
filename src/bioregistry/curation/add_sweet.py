@@ -125,7 +125,7 @@ def main() -> None:
             prefix=prefix,
             synonyms=[sweet_internal_prefix],
             name=name,
-            keywords=keywords,
+            keywords=sorted(keywords),
             homepage=str(uri_prefix),
             uri_format=f"{uri_prefix}$1",
             description=f"The Semantic Web for Earth and Environmental Terminology (SWEET) ontology for {name_short}",
