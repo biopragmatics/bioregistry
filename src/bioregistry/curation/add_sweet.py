@@ -45,6 +45,7 @@ def main() -> None:
             LIMIT 1
         """
         name = str(next(iter(inner_graph.query(ontology_name_query)))[0])  # type:ignore
+        name_short = name.removeprefix("SWEET Ontology ")
 
         example_query = f"""
             SELECT ?term
@@ -60,7 +61,7 @@ def main() -> None:
             example_uri = cast(str, example_records[0][0])  # type:ignore[index]
             example = example_uri.removeprefix(uri_prefix)
         else:
-            click.echo(f"[{sweet_internal_prefix}] missing example")
+            click.echo(f"[{sweet_internal_prefix}] missing example in {name_short} ({uri_prefix})")
             continue
 
         if not sweet_internal_prefix.startswith("so"):
@@ -73,8 +74,7 @@ def main() -> None:
             name=name,
             homepage=str(uri_prefix),
             uri_format=f"{uri_prefix}$1",
-            description="The Semantic Web for Earth and Environmental Terminology (SWEET) ontology for "
-            + name.removeprefix("SWEET Ontology "),
+            description=f"The Semantic Web for Earth and Environmental Terminology (SWEET) ontology for {name_short}",
             example=example,
             download_rdf=download_rdf,
             part_of="sweet",
