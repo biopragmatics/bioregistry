@@ -206,7 +206,7 @@ subsets:
 
 imports:
   - linkml:types
-  - https://w3id.org/biolink/biolink-model/attributes
+  - attributes
 
 types:
 
@@ -1171,6 +1171,12 @@ slots:
 
   ## Clinical Trials
 
+  elevate to prediction:
+    is_a: node property
+    description: >-
+      A boolean flag indicating whether a clinical trial finding should be elevated to a prediction.
+    range: boolean
+
   clinical trial phase:
     is_a: node property
     description: >-
@@ -1245,7 +1251,7 @@ slots:
     is_a: node property
     description: >-
       The start date of a clinical trial as determined by clinicaltrials.gov
-    range: date
+    range: string
     domain: clinical trial
   clinical trial enrollment:
     is_a: node property
@@ -1260,6 +1266,7 @@ slots:
       The age stage of a clinical trial as determined by clinicaltrials.gov (adult, child, older adult)
     range: ClinicalTrialAgeStageEnum
     domain: clinical trial
+    multivalued: true
 
   clinical trial age range:
     is_a: node property
@@ -1509,6 +1516,14 @@ slots:
       disease, condition or phenotype it is currently being reviewed to treat.  For specific levels of FDA
       approval for a specific condition, disease, phenotype, etc., see the association slot, 'clinical approval status.'
     range: ApprovalStatusEnum
+
+
+  FDA regulatory approvals:
+    description: >-
+      Numbers that identify specific drug applications. Each drug can have multiple approval numbers
+      (for example, as seen with ranitidine having both ANADA200536 and ANDA200536).
+    range: string
+    multivalued: true
 
   drug regulatory status world wide:
     aliases: ['max phase']
@@ -6527,6 +6542,11 @@ slots:
     is_a: association slot
     range: ResearchPhaseEnum
 
+  number of cases:
+    is_a: has count
+    description: >-
+      The number of cases in a study or clinical trial, primarily used in conversion of drug approval data.
+
   has supporting studies:
     is_a: association slot
     range: study
@@ -7810,6 +7830,12 @@ classes:
       - max tolerated dose
       - is toxic
       - has chemical role
+      - chembl prodrug
+      - chembl black box warning
+      - chembl natural product
+      - chembl availability type
+      - chembl chirality
+      - chembl drug warning
     exact_mappings:
       - CHEBI:24431
       - SIO:010004  # Chemical entity
@@ -9969,6 +9995,7 @@ classes:
       - has supporting studies
       - update date
       - has confidence score
+      - elevate to prediction
     slot_usage:
       type:
         description: rdf:type of biolink:Association should be fixed at rdf:Statement
@@ -10650,10 +10677,16 @@ classes:
       - subject part qualifier
       - subject derivative qualifier
       - subject context qualifier
+      - qualified predicate
+      - object direction qualifier
+      - object aspect qualifier
       - object form or variant qualifier
       - object part qualifier
       - object context qualifier
       - anatomical context qualifier
+      - causal mechanism qualifier
+      - dgidb interaction score 
+      - dgidb evidence score 
     slot_usage:
       subject:
         range: chemical entity
@@ -10669,6 +10702,10 @@ classes:
         range: ChemicalEntityDerivativeEnum
       subject context qualifier:
         range: anatomical entity
+      object direction qualifier:
+        range: DirectionQualifierEnum
+      object aspect qualifier:
+        range: GeneOrGeneProductOrChemicalEntityAspectEnum
       object form or variant qualifier:
         range: ChemicalOrGeneOrGeneProductFormOrVariantEnum
       object part qualifier:
@@ -10677,6 +10714,8 @@ classes:
         range: anatomical entity
       anatomical context qualifier:
         range: anatomical entity
+      causal mechanism qualifier:
+        range: CausalMechanismQualifierEnum
 
   gene regulates gene association:
     is_a: association
@@ -10790,7 +10829,9 @@ classes:
       Describes an effect that a chemical has on a gene or gene product (e.g. an impact
       of on its abundance, activity,localization, processing, expression, etc.)
     is_a: chemical affects biological entity association
-
+    slots:
+      - dgidb interaction score 
+      - dgidb evidence score 
 
   gene affects chemical association:
     description: >-
@@ -12084,6 +12125,8 @@ classes:
     slots:
       - clinical approval status
       - max research phase
+      - FDA regulatory approvals
+      - number of cases
     defining_slots:
       - subject
       - object
@@ -12094,6 +12137,8 @@ classes:
     slots:
       - clinical approval status
       - max research phase
+      - FDA regulatory approvals
+      - number of cases
     defining_slots:
       - subject
       - object
