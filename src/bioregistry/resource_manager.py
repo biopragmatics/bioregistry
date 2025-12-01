@@ -55,6 +55,7 @@ from .schema_utils import (
     _read_metaregistry,
     _registry_from_path,
     read_mismatches,
+    write_collections,
     write_registry,
 )
 from .utils import NormDict, _norm, get_ec_url
@@ -221,6 +222,16 @@ class Manager:
             self._converter.add_prefix(resource.prefix, uri_prefix)
             # TODO what about synonyms
 
+    def add_to_collection(self, collection: str | Collection, resource: str | Resource) -> None:
+        """Add a resource to the collection."""
+        if isinstance(collection, Collection):
+            collection = collection.identifier
+        if isinstance(resource, Resource):
+            resource = resource.prefix
+        elif resource not in self.registry:
+            raise ValueError
+        self.collections[collection].resources.append(resource)
+
     @property
     def converter(self) -> curies.Converter:
         """Get the default converter."""
@@ -235,6 +246,10 @@ class Manager:
     def get_registry(self, metaprefix: str) -> Registry | None:
         """Get the metaregistry entry for the given prefix."""
         return self.metaregistry.get(metaprefix)
+
+    def write_collections(self) -> None:
+        """Write collections."""
+        write_collections(self.collections)
 
     # docstr-coverage:excused `overload`
     @overload
@@ -277,7 +292,7 @@ class Manager:
         registry = self.get_registry(metaprefix)
         if registry is None:
             if strict:
-                raise ValueError
+                raise ValueError(f"could not find a homepage for registry {metaprefix}")
             return None
         return registry.homepage
 
@@ -361,7 +376,7 @@ class Manager:
             return None
         rv = self.registry.get(norm_prefix)
         if rv is None and strict:
-            raise ValueError
+            raise ValueError(f"could not a resource for {prefix}")
         return rv
 
     # docstr-coverage:excused `overload`
@@ -858,7 +873,7 @@ class Manager:
         entry = self.get_resource(prefix)
         if entry is None:
             if strict:
-                raise ValueError
+                raise ValueError(f"could not find a name for {prefix}")
             return None
         if provenance:
             _tmp = entry.get_name(provenance=True)

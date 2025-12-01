@@ -1,6 +1,11 @@
 """Extract registry information."""
 
-from .collection_api import get_collection, get_context
+from .collection_api import (
+    get_collection,
+    get_collection_prefixes,
+    get_collection_resources,
+    get_context,
+)
 from .metaresource_api import (
     get_registry,
     get_registry_description,
@@ -30,6 +35,7 @@ from .reference import (
 )
 from .resolve import (
     add_resource,
+    add_to_collection,
     count_mappings,
     get_appears_in,
     get_banana,
@@ -165,6 +171,7 @@ __all__ = [
     "StandardNamedReference",
     "StandardReference",
     "add_resource",
+    "add_to_collection",
     "count_mappings",
     "curie_from_iri",
     "curie_to_str",
@@ -176,6 +183,8 @@ __all__ = [
     "get_bioregistry_iri",
     "get_canonical_for",
     "get_collection",
+    "get_collection_prefixes",
+    "get_collection_resources",
     "get_contact",
     "get_contact_email",
     "get_contact_github",

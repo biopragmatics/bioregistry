@@ -2,6 +2,33 @@
   "$schema": "http://json-schema.org/draft-07/schema#",
   "$id": "https://bioregistry.io/schema.json",
   "$defs": {
+    "AnnotatedURL": {
+      "description": "A URL annotated with its file type and data schema.",
+      "properties": {
+        "url": {
+          "title": "Url",
+          "type": "string"
+        },
+        "rdf_format": {
+          "default": "ttl",
+          "enum": [
+            "ttl",
+            "rdf",
+            "xml",
+            "n3",
+            "trix",
+            "nt"
+          ],
+          "title": "RDF Format",
+          "type": "string"
+        }
+      },
+      "required": [
+        "url"
+      ],
+      "title": "AnnotatedURL",
+      "type": "object"
+    },
     "Attributable": {
       "description": "An upper-level metadata for a researcher.",
       "properties": {
@@ -357,19 +384,43 @@
           "type": "string"
         },
         "name": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
           "description": "Name of the provider",
-          "title": "Name",
-          "type": "string"
+          "title": "Name"
         },
         "description": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
           "description": "Description of the provider",
-          "title": "Description",
-          "type": "string"
+          "title": "Description"
         },
         "homepage": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
           "description": "Homepage of the provider",
-          "title": "Homepage",
-          "type": "string"
+          "title": "Homepage"
         },
         "uri_format": {
           "description": "The URI format string, which must have at least one ``$1`` in it. Note that this field is generic enough to accept IRIs. See the URI specification (https://www.rfc-editor.org/rfc/rfc3986) and IRI specification (https://www.ietf.org/rfc/rfc3987.txt) for more information.",
@@ -433,9 +484,6 @@
       },
       "required": [
         "code",
-        "name",
-        "description",
-        "homepage",
         "uri_format"
       ],
       "title": "Provider",
@@ -1367,6 +1415,9 @@
               "type": "string"
             },
             {
+              "$ref": "#/$defs/AnnotatedURL"
+            },
+            {
               "type": "null"
             }
           ],
@@ -1378,6 +1429,9 @@
           "anyOf": [
             {
               "type": "string"
+            },
+            {
+              "$ref": "#/$defs/AnnotatedURL"
             },
             {
               "type": "null"
@@ -2232,6 +2286,19 @@
           ],
           "default": null,
           "title": "Pathguide"
+        },
+        "tib": {
+          "anyOf": [
+            {
+              "additionalProperties": true,
+              "type": "object"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Tib"
         }
       },
       "required": [

@@ -22,6 +22,7 @@ from .n2t import get_n2t
 from .ncbi import get_ncbi
 from .obofoundry import get_obofoundry
 from .ols import get_ols
+from .ols.tib import get_tib_ts
 from .ontobee import get_ontobee
 from .pathguide import get_pathguide
 from .prefixcommons import get_prefixcommons
@@ -57,6 +58,7 @@ __all__ = [
     "get_prefixcommons",
     "get_re3data",
     "get_rrid",
+    "get_tib_ts",
     "get_togoid",
     "get_uniprot",
     "get_wikidata",
@@ -94,4 +96,5 @@ GETTERS: list[tuple[str, str, Callable[..., dict[str, dict[str, Any]]]]] = [
     ("togoid", "TogoID", get_togoid),
     ("zazuko", "Zazuko", get_zazuko),
     ("rrid", "RRID", get_rrid),
+    ("tib", "TIB TS", get_tib_ts),
 ]
