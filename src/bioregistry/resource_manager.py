@@ -44,11 +44,11 @@ from .schema import (
     Attributable,
     Collection,
     Context,
+    MetaprefixAnnotatedValue,
     Registry,
     Resource,
     sanitize_model,
 )
-from .schema.struct import MetaprefixAnnotatedValue
 from .schema_utils import (
     _collections_from_path,
     _contexts_from_path,

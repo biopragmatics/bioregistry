@@ -20,12 +20,8 @@ from bioregistry.constants import BIOREGISTRY_PATH, DISALLOWED_EMAIL_PARTS, EMAI
 from bioregistry.export.rdf_export import resource_to_rdf_str
 from bioregistry.license_standardizer import REVERSE_LICENSES, standardize_license
 from bioregistry.resource_manager import MetaresourceAnnotatedValue
-from bioregistry.schema.struct import (
-    SCHEMA_PATH,
-    Attributable,
-    Publication,
-    get_json_schema,
-)
+from bioregistry.schema import Attributable, Publication, get_json_schema
+from bioregistry.schema.struct import SCHEMA_PATH
 from bioregistry.schema_utils import is_mismatch, read_status_contributions
 from bioregistry.utils import _norm
 
