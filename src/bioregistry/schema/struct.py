@@ -56,9 +56,12 @@ __all__ = [
     "Organization",
     "Provider",
     "Publication",
+    "RDFFormat",
     "Registry",
     "Resource",
     "ResourceStatus",
+    "StatusCheck",
+    "deduplicate_publications",
     "get_json_schema",
 ]
 

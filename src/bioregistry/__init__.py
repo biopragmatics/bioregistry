@@ -127,7 +127,7 @@ from .resolve_identifier import (
     standardize_identifier,
 )
 from .resource_manager import Manager, manager
-from .schema.struct import (
+from .schema import (
     Author,
     Collection,
     Context,

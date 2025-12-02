@@ -14,7 +14,7 @@ from ..constants import (
     TABLES_SUMMARY_LATEX_PATH,
 )
 from ..resolve import count_mappings
-from ..schema.struct import Registry
+from ..schema import Registry
 from ..schema_utils import read_metaregistry
 from ..summary import BioregistrySummary
 

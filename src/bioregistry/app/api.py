@@ -19,8 +19,7 @@ from ..export.rdf_export import (
     resource_to_rdf_str,
 )
 from ..resource_manager import Manager
-from ..schema import Attributable, sanitize_mapping
-from ..schema.struct import Collection, Context, Registry, Resource
+from ..schema import Attributable, Collection, Context, Registry, Resource, sanitize_mapping
 from ..schema_utils import (
     read_collections_contributions,
     read_prefix_contacts,

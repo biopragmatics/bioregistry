@@ -8,7 +8,7 @@ from .app.cli import web
 from .compare import compare
 from .export.cli import export
 from .lint import lint
-from .schema.struct import generate_schema
+from .schema import generate_schema
 from .utils import get_hexdigests, secho
 from .validate.cli import validate
 from .version import VERSION

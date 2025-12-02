@@ -13,7 +13,7 @@ from tabulate import tabulate
 from tqdm import tqdm
 
 import bioregistry
-from bioregistry.schema.struct import Author, Organization
+from bioregistry.schema import Author, Organization
 
 BASE = "https://vocabularies.cessda.eu"
 MODULE = pystow.module("cessda")

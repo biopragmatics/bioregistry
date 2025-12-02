@@ -38,9 +38,8 @@ from ..export.rdf_export import (
     metaresource_to_rdf_str,
     resource_to_rdf_str,
 )
-from ..schema import Context
-from ..schema.constants import SCHEMA_TERMS
-from ..schema.struct import (
+from ..schema import (
+    Context,
     Registry,
     RegistryGovernance,
     RegistryQualities,
@@ -49,6 +48,7 @@ from ..schema.struct import (
     get_json_schema,
     schema_status_map,
 )
+from ..schema.constants import SCHEMA_TERMS
 from ..schema_utils import (
     read_collections_contributions,
     read_context_contributions,
