@@ -48,10 +48,12 @@ if TYPE_CHECKING:
     import rdflib.term
 
 __all__ = [
+    "AnnotatedURL",
     "Attributable",
     "Author",
     "Collection",
     "Context",
+    "Organization",
     "Provider",
     "Publication",
     "Registry",
@@ -167,6 +169,7 @@ URI_FORMAT_PATHS = [
     ("cellosaurus", URI_FORMAT_KEY),
     ("prefixcommons", URI_FORMAT_KEY),
     ("rrid", URI_FORMAT_KEY),
+    ("tib", URI_FORMAT_KEY),
 ]
 
 
@@ -363,9 +366,9 @@ class Provider(BaseModel):
     """A provider."""
 
     code: str = Field(..., description="A locally unique code within the prefix for the provider")
-    name: str = Field(..., description="Name of the provider")
-    description: str = Field(..., description="Description of the provider")
-    homepage: str = Field(..., description="Homepage of the provider")
+    name: str | None = Field(None, description="Name of the provider")
+    description: str | None = Field(None, description="Description of the provider")
+    homepage: str | None = Field(None, description="Homepage of the provider")
     uri_format: str = Field(
         ...,
         title="URI Format",
@@ -405,6 +408,17 @@ class Provider(BaseModel):
         if self.status is None:
             return False
         return self.status.value != ResourceStatusAvailable
+
+
+#: A list of valid RDF formats.
+RDFFormat: TypeAlias = Literal["ttl", "rdf", "xml", "n3", "trix", "nt"]
+
+
+class AnnotatedURL(BaseModel):
+    """A URL annotated with its file type and data schema."""
+
+    url: str
+    rdf_format: RDFFormat = Field(default="ttl", title="RDF Format")
 
 
 class Resource(BaseModel):
@@ -542,7 +556,7 @@ class Resource(BaseModel):
     """
         ),
     )
-    download_rdf: str | None = Field(
+    download_rdf: str | AnnotatedURL | None = Field(
         default=None,
         title="RDF Download URL",
         description=_dedent(
@@ -551,7 +565,7 @@ class Resource(BaseModel):
     """
         ),
     )
-    download_skos: str | None = Field(
+    download_skos: str | AnnotatedURL | None = Field(
         default=None,
         title="SKOS RDF Download URL",
         description="The URL to download the resource as an SKOS RDF file.",
@@ -796,6 +810,8 @@ class Resource(BaseModel):
     integbio: Mapping[str, Any] | None = Field(default=None)
     #: External data from PathGuide
     pathguide: Mapping[str, Any] | None = Field(default=None)
+    #: External data from TIB Terminology Service
+    tib: Mapping[str, Any] | None = Field(default=None)
 
     # Cached compiled pattern for identifiers
     _compiled_pattern: re.Pattern[str] | None = PrivateAttr(None)
@@ -1136,6 +1152,7 @@ class Resource(BaseModel):
             "rrid",
             "bartoc",
             "lov",
+            "tib",
         ]
         if provenance:
             return self._get_prefix_key_str("name", metaprefixes, provenance=True)
@@ -1166,6 +1183,7 @@ class Resource(BaseModel):
             "bartoc",
             "lov",
             "re3data",
+            "tib",
         )
         rv = self._get_prefix_key_str("description", metaprefixes, provenance=False)
         if rv is not None:
@@ -1321,6 +1339,7 @@ class Resource(BaseModel):
             "bartoc",
             "lov",
             "re3data",
+            "tib",
         ]
         return self._get_prefix_key_str(
             "homepage",
@@ -1352,8 +1371,9 @@ class Resource(BaseModel):
             keywords.append("ontology")
         if self.get_download_obo() or self.get_download_owl() or self.bioportal:
             keywords.append("ontology")
-        if self.lov:
-            keywords.extend(self.lov.get("keywords", []))
+        for data in [self.ols, self.tib, self.lov]:
+            if data:
+                keywords.extend(data.get("keywords", []))
         return sorted(
             {
                 keyword.lower().replace("’", "'")  # noqa:RUF001
@@ -1752,6 +1772,9 @@ class Resource(BaseModel):
             return None
         return f"{rv}$1"
 
+    def _get_external_uri_format(self, metaprefix: str) -> str | None:
+        return self.get_external(metaprefix).get(URI_FORMAT_KEY)
+
     def get_biocontext_uri_format(self) -> str | None:
         """Get the BioContext URI format string for this entry, if available.
 
@@ -1761,7 +1784,7 @@ class Resource(BaseModel):
         >>> get_resource("hgmd").get_biocontext_uri_format()
         'http://www.hgmd.cf.ac.uk/ac/gene.php?gene=$1'
         """
-        return self.get_external("biocontext").get(URI_FORMAT_KEY)
+        return self._get_external_uri_format("biocontext")
 
     def get_bartoc_uri_format(self) -> str | None:
         """Get the BARTOC URI format string for this entry, if available.
@@ -1772,7 +1795,7 @@ class Resource(BaseModel):
         >>> get_resource("ddc").get_bartoc_uri_format()
         'http://dewey.info/class/$1/e23/'
         """
-        return self.get_external("bartoc").get(URI_FORMAT_KEY)
+        return self._get_external_uri_format("bartoc")
 
     def get_prefixcommons_prefix(self) -> str | None:
         """Get the Prefix Commons prefix."""
@@ -1787,7 +1810,7 @@ class Resource(BaseModel):
         >>> get_resource("antweb").get_prefixcommons_uri_format()
         'http://www.antweb.org/specimen.do?name=$1'
         """
-        return self.get_external("prefixcommons").get(URI_FORMAT_KEY)
+        return self._get_external_uri_format("prefixcommons")
 
     def get_identifiers_org_prefix(self) -> str | None:
         """Get the MIRIAM/Identifiers.org prefix, if available.
@@ -2456,13 +2479,41 @@ class Resource(BaseModel):
             return self.download_json
         return self.get_external("obofoundry").get("download.json")
 
-    def get_download_rdf(self) -> str | None:
-        """Get the download link for the latest RDF file."""
-        return self.download_rdf or self.get_external("ols").get("download_rdf")
+    # docstr-coverage:excused `overload`
+    @overload
+    def get_download_rdf(self, *, get_format: Literal[True] = ...) -> str | AnnotatedURL | None: ...
 
-    def get_download_skos(self) -> str | None:
+    # docstr-coverage:excused `overload`
+    @overload
+    def get_download_rdf(self, *, get_format: Literal[False] = ...) -> str | None: ...
+
+    def get_download_rdf(self, *, get_format: bool = False) -> str | AnnotatedURL | None:
+        """Get the download link for the latest RDF file."""
+        if self.download_rdf is not None:
+            if isinstance(self.download_rdf, AnnotatedURL) and not get_format:
+                return self.download_rdf.url
+            else:
+                return self.download_rdf
+        return self.get_external("ols").get("download_rdf")
+
+    # docstr-coverage:excused `overload`
+    @overload
+    def get_download_skos(
+        self, *, get_format: Literal[True] = ...
+    ) -> str | AnnotatedURL | None: ...
+
+    # docstr-coverage:excused `overload`
+    @overload
+    def get_download_skos(self, *, get_format: Literal[False] = ...) -> str | None: ...
+
+    def get_download_skos(self, *, get_format: bool = False) -> str | AnnotatedURL | None:
         """Get the download link for the latest SKOS RDF file."""
-        return self.download_skos
+        if self.download_skos is not None:
+            if isinstance(self.download_skos, AnnotatedURL) and not get_format:
+                return self.download_skos.url
+            else:
+                return self.download_skos
+        return None
 
     def get_download_jskos(self) -> str | None:
         """Get the download link for the latest JSKOS JSON file."""
