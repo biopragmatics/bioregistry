@@ -832,6 +832,33 @@
       "Anatomy"
     ]
   },
+  "FAIRsharing.23b8a3": {
+    "abbreviation": "GAIDeT",
+    "contact": {
+      "email": "serhii.nazarovets@gmail.com",
+      "name": "Serhii Nazarovets ",
+      "orcid": "0000-0002-5067-4498"
+    },
+    "description": "GAIDeT (Generative AI Delegation Taxonomy) is a taxonomy and ontology for transparently disclosing which research and writing tasks were delegated to generative AI tools. GAIDeT provides a structured framework for documenting GAI’s role in scholarly research. It classifies research activities into key domains – conceptualization, literature review, methodology, data analysis, writing, supervision, and ethical review – ensuring transparency and human accountability.\n",
+    "homepage": "https://doi.org/10.1080/08989621.2025.2544331",
+    "name": "Generative AI Delegation Taxonomy",
+    "publications": [
+      {
+        "doi": "10.1080/08989621.2025.2544331",
+        "title": "GAIDeT (Generative AI Delegation Taxonomy): A taxonomy for humans to delegate tasks to generative artificial intelligence in scientific research and publishing",
+        "year": 2025
+      },
+      {
+        "doi": "10.59350/psjb9-z1x39",
+        "title": "GAIDeT: a practical taxonomy for declaring AI use in research and publishing",
+        "year": 2025
+      }
+    ],
+    "repository": "https://github.com/panbibliotekar/gaidet-declaration",
+    "subjects": [
+      "Artificial Intelligence"
+    ]
+  },
   "FAIRsharing.23th83": {
     "abbreviation": "GeoSpecies",
     "contact": {
@@ -1678,13 +1705,13 @@
     ]
   },
   "FAIRsharing.322dc0": {
-    "description": "Identifier schema for BioSamples. The BioSample Database stores information about biological samples used in molecular experiments, such as sequencing, gene expression or proteomics. It includes reference samples, such as cell lines, which are repeatedly used in experiments. Accession numbers for the reference samples will be exchanged with a similar database at NCBI, and DDBJ (Japan). Record access may be affected due to different release cycles and inter-institutional synchronisation.",
+    "description": "Identifier schema for BioSamples. Submissions to BioSamples result in accession numbers. These are a unique set of characters that identify each sample. e.g. SAMEA116043744. The unique identifier can be used to cross-reference BioSamples with other archives, such as ENA or EGA, and also serves as a permanent identifier for the sample.",
     "domains": [
       "Sample annotation",
       "centrally registered identifier",
       "sequencing assay"
     ],
-    "homepage": "https://registry.identifiers.org/registry/biosample",
+    "homepage": "https://read-docs-biosamples.readthedocs.io/en/latest/submit/general-guide/accession-numbers.html",
     "name": "BioSamples identifier",
     "publications": [
       {
@@ -3709,6 +3736,37 @@
     ],
     "subjects": [
       "Life Science"
+    ]
+  },
+  "FAIRsharing.654931": {
+    "abbreviation": "OSO",
+    "contact": {
+      "email": "steven.piel@ifremer.fr",
+      "name": "Steven PIEL",
+      "orcid": "0009-0008-1759-5254"
+    },
+    "description": "OSO (Observatories of Seas Ontology) is a lightweight and multilingual ontology developed to describe and interlink marine observing systems, including their infrastructures, platforms, sites, equipment, and responsible organisations.\nIt is maintained by Ifremer and designed to support metadata harmonisation across European marine research infrastructures such as EMSO ERIC. The ontology uses standard vocabularies (OWL, DCAT, Dublin Core, FOAF, SKOS, etc.) and aligns with external identifiers (ROR, EDMO, DOI). OSO aims to improve semantic interoperability, enable FAIR metadata publication, and support long-term data stewardship in the marine domain.",
+    "domains": [
+      "marine coral reef biome",
+      "marine environment",
+      "marine metagenome"
+    ],
+    "homepage": "https://w3id.org/earthsemantics/OSO",
+    "license": "CC-BY-4.0",
+    "logo": "https://api.fairsharing.org/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBdGdHIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--44d6c2d157aad1fd2aea08ddc6bee8effe6ba67d/oso.png?disposition=inline",
+    "name": "Observatories of Seas Ontology ",
+    "repository": "https://github.com/emso-eric/oso-ontology",
+    "subjects": [
+      "Marine Biology",
+      "Earth Science"
+    ],
+    "user_defined_tags": [
+      "earth observation",
+      "Marine Chemistry",
+      "Marine Litter",
+      "marine energy",
+      "semantic web",
+      "marine observatories"
     ]
   },
   "FAIRsharing.658tcg": {
@@ -6998,7 +7056,7 @@
       "Transcription Factor",
       "binding site"
     ],
-    "homepage": "http://tfclass.bioinf.med.uni-goettingen.de/index.jsf",
+    "homepage": "http://tfclass.bioinf.med.uni-goettingen.de/",
     "name": "Transcription Factor Class",
     "publications": [
       {
@@ -11300,7 +11358,7 @@
     "domains": [
       "centrally registered identifier"
     ],
-    "homepage": "https://www.cstr.cn/doc/specification/",
+    "homepage": "https://www.cstr.cn/doc/specification",
     "name": "Common Science and Technology Resource Identifier",
     "subjects": [
       "Subject Agnostic"
@@ -11343,6 +11401,34 @@
     "subjects": [
       "Economics",
       "Political Science"
+    ]
+  },
+  "FAIRsharing.f31b8f": {
+    "abbreviation": "SPLASH",
+    "contact": {
+      "email": "ofiehn@ucdavis.edu",
+      "name": "Oliver Fiehn",
+      "orcid": "0000-0002-6261-8928"
+    },
+    "description": "The SPLASH (SPectraL hASH) identifier is a unique and unambiguous database-independent spectral identifier for chemical structures. It contains four separate blocks that define different layers of information, separated by dashes. The first block is the SPLASH identifier, the second and third are spectral summary blocks, and the fourth is the full spectrum hash block. The first block (splash10) encodes the SPLASH identifier, starting with letters for semantic web compatibility, followed by a number representing the measurement type (1 for MS, 2 and above for other data types to be included in the future) and the SPLASH version number, starting at 0, to allow future specification updates. The the second and third blocks are , intensities are summed over fixed (but different) bin sizes and wrapped over ten bins. The second block (0002) is formed using a reduced spectrum (the top ten or fewer ions greater than 10% of the base peak). This reduced spectrum is summed over bins of 5 Da. Each bin is then scaled to a single-digit integral value in base 3 (0–2), and the resulting 10 digit histogram is converted to a base 36 number, resulting in a 4-digit block. In the third block (0900000000) the intensities are summed over 100-Da bin sizes, each bin is then scaled to a single-digit, integral base-10 digit (0–9). The fourth block (full spectrum hash) is represented by a Secure Hash Algorithm SHA256 (numbers and lowercase letters only), calculated in hexadecimal notation and truncated to 20 characters. The full spectrum string of m/z and relative intensity pairs are sorted by ascending m/z and then by descending intensity. The m/z value is multiplied by 10^6, cast to a long (64-bit) integer and joined with the normalized intensity as strings separated by a colon. The resulting ion pairs are then joined, delimited by a single space.",
+    "domains": [
+      "Mass spectrum"
+    ],
+    "homepage": "https://splash.fiehnlab.ucdavis.edu/",
+    "name": "The Spectral Hash Identifier",
+    "publications": [
+      {
+        "doi": "10.1038/nbt.3689",
+        "pubmed": "27824832",
+        "title": "SPLASH, a hashed identifier for mass spectra",
+        "year": 2016
+      }
+    ],
+    "repository": "https://github.com/berlinguyinca/spectra-hash",
+    "subjects": [
+      "Lipidomics",
+      "Metabolomics",
+      "Proteomics"
     ]
   },
   "FAIRsharing.f50cc0": {
@@ -18663,6 +18749,12 @@
         "pubmed": "23180794",
         "title": "TFClass: an expandable hierarchical classification of human transcription factors",
         "year": 2012
+      },
+      {
+        "doi": "10.1093/nar/gkx987",
+        "pubmed": "29087517",
+        "title": "TFClass: expanding the classification of human transcription factors to their mammalian orthologs",
+        "year": 2017
       }
     ],
     "subjects": [

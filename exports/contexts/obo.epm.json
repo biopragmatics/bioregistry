@@ -536,6 +536,7 @@
             "http://identifiers.org/CHEBI:",
             "http://identifiers.org/chebi/CHEBI:",
             "http://n2t.net/chebi:",
+            "http://www.ebi.ac.uk/chebi/search?query=",
             "http://www.ebi.ac.uk/chebi/searchId.do?chebiId=",
             "http://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:",
             "http://www.ebi.ac.uk/ols/ontologies/chebi/terms?iri=http://purl.obolibrary.org/obo/CHEBI_",
@@ -550,6 +551,7 @@
             "https://identifiers.org/chebi/CHEBI:",
             "https://n2t.net/chebi:",
             "https://purl.obolibrary.org/obo/CHEBI_",
+            "https://www.ebi.ac.uk/chebi/search?query=",
             "https://www.ebi.ac.uk/chebi/searchId.do?chebiId=",
             "https://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:",
             "https://www.ebi.ac.uk/ols/ontologies/chebi/terms?iri=http://purl.obolibrary.org/obo/CHEBI_",
@@ -9669,15 +9671,27 @@
         "prefix_synonyms": [
             "BIOSCHEMA",
             "BIOSCHEMAS",
-            "bioschema"
+            "BIOSCHEMAS_DRAFT",
+            "bioschema",
+            "bioschemas_draft"
         ],
         "uri_prefix": "https://bioschemas.org/profiles/",
         "uri_prefix_synonyms": [
             "http://bioregistry.io/bioschema:",
             "http://bioregistry.io/bioschemas:",
+            "http://bioregistry.io/bioschemas_draft:",
+            "http://bioschemas.org/draft_terms/",
             "http://bioschemas.org/profiles/",
+            "http://bioschemas.org/terms/",
+            "http://discovery.biothings.io/view/bioschemastypes/",
+            "http://w3id.org/bioschemas/terms/",
             "https://bioregistry.io/bioschema:",
-            "https://bioregistry.io/bioschemas:"
+            "https://bioregistry.io/bioschemas:",
+            "https://bioregistry.io/bioschemas_draft:",
+            "https://bioschemas.org/draft_terms/",
+            "https://bioschemas.org/terms/",
+            "https://discovery.biothings.io/view/bioschemastypes/",
+            "https://w3id.org/bioschemas/terms/"
         ]
     },
     {
@@ -15813,6 +15827,19 @@
         ]
     },
     {
+        "pattern": "^\\d{8}$",
+        "prefix": "emg",
+        "prefix_synonyms": [
+            "EMG"
+        ],
+        "uri_prefix": "https://purls.helmholtz-metadaten.de/emg/EMG_",
+        "uri_prefix_synonyms": [
+            "http://bioregistry.io/emg:",
+            "http://purls.helmholtz-metadaten.de/emg/EMG_",
+            "https://bioregistry.io/emg:"
+        ]
+    },
+    {
         "prefix": "emi",
         "prefix_synonyms": [
             "EMI"
@@ -19077,6 +19104,19 @@
         ]
     },
     {
+        "pattern": "^[A-Z]\\d+$",
+        "prefix": "gtn",
+        "prefix_synonyms": [
+            "GTN"
+        ],
+        "uri_prefix": "https://gxy.io/GTN:",
+        "uri_prefix_synonyms": [
+            "http://bioregistry.io/gtn:",
+            "http://gxy.io/GTN:",
+            "https://bioregistry.io/gtn:"
+        ]
+    },
+    {
         "prefix": "gtr.condition",
         "prefix_synonyms": [
             "GTR",
@@ -22151,10 +22191,10 @@
         "uri_prefix": "https://cellbank.snu.ac.kr/english/sub/catalog.php?s_cellid=464&page=detail_info&CatNo=59&strQ=",
         "uri_prefix_synonyms": [
             "http://bioregistry.io/kclb:",
+            "http://cellbank.snu.ac.kr/cellline/search?sc=y&q=",
             "http://cellbank.snu.ac.kr/english/sub/catalog.php?s_cellid=464&page=detail_info&CatNo=59&strQ=",
-            "http://cellbank.snu.ac.kr/main/tmpl/sub_main.php?m_cd=6&m_id=0201&strQ=",
             "https://bioregistry.io/kclb:",
-            "https://cellbank.snu.ac.kr/main/tmpl/sub_main.php?m_cd=6&m_id=0201&strQ="
+            "https://cellbank.snu.ac.kr/cellline/search?sc=y&q="
         ]
     },
     {
@@ -22436,6 +22476,19 @@
             "http://bioregistry.io/kestrelo:",
             "https://bioregistry.io/kestrelo:",
             "https://purl.obolibrary.org/obo/kestrelo_"
+        ]
+    },
+    {
+        "pattern": "^[a-z]\\w+$",
+        "prefix": "kim.amb",
+        "prefix_synonyms": [
+            "KIM.AMB"
+        ],
+        "uri_prefix": "https://dini-ag-kim.github.io/amb/20231019/#",
+        "uri_prefix_synonyms": [
+            "http://bioregistry.io/kim.amb:",
+            "http://dini-ag-kim.github.io/amb/20231019/#",
+            "https://bioregistry.io/kim.amb:"
         ]
     },
     {

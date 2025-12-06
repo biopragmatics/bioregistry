@@ -3585,18 +3585,20 @@
     "version": "2018-09-13"
   },
   "atomistic": {
-    "description": "An EMMO-based domain ontology for atomistic and electronic modelling.Atomistic is released under the Creative Commons Attribution 4.0 International license (CC BY 4.0).",
+    "description": "An EMMO-based domain ontology for atomistic and electronic modelling.",
     "example": "08fd7117-66ac-5b6d-b65e-34a826675877",
     "homepage": "https://github.com/emmo-repo/domain-atomistic",
     "keywords": [
       "engineering",
       "nfdi4ing"
     ],
+    "license": "CC-BY-4.0",
     "mappings": {
       "tib": "atomistic"
     },
     "name": "Atomistic",
     "preferred_prefix": "atomistic",
+    "repository": "https://github.com/emmo-repo/domain-atomistic",
     "uri_format": "https://w3id.org/emmo/domain/atomistic#$1"
   },
   "autdb": {
@@ -5427,7 +5429,7 @@
       "orcid": "0000-0002-6601-2165"
     },
     "description": "A high level datamodel of biological entities (genes, diseases, phenotypes, pathways, individuals, substances, etc) and their associations.",
-    "download_owl": "http://aber-owl.net/media/ontologies/BIOLINK/73/biolink.owl",
+    "download_owl": "http://aber-owl.net/media/ontologies/BIOLINK/74/biolink.owl",
     "download_rdf": "https://w3id.org/biolink/biolink-model.owl.ttl",
     "example": "Gene",
     "homepage": "https://biolink.github.io/biolink-model/",
@@ -6145,6 +6147,7 @@
       "orcid": "0000-0003-4423-4370"
     },
     "description": "Bioschemas aims to improve the Findability on the Web of life sciences resources such as datasets, software, and training materials. It does this by encouraging people in the life sciences to use Schema.org markup in their websites so that they are indexable by search engines and other services. Bioschemas encourages the consistent use of markup to ease the consumption of the contained markup across many sites. This structured information then makes it easier to discover, collate, and analyse distributed resources. [from BioSchemas.org]",
+    "download_rdf": "https://bioschemas.org/types/bioschemas_types.ttl",
     "example": "Dataset",
     "homepage": "https://bioschemas.org",
     "mappings": {
@@ -6152,9 +6155,31 @@
     },
     "name": "BioSchemas",
     "preferred_prefix": "bioschemas",
+    "providers": [
+      {
+        "code": "biothings",
+        "uri_format": "https://discovery.biothings.io/view/bioschemastypes/$1"
+      },
+      {
+        "code": "draft",
+        "description": "BioSchemas makes a difference between its draft and released terms by putting them in different namespaces. This causes problems when consuming it, so this URI format maps them all into a unified semantic space",
+        "homepage": "https://bioschemas.org",
+        "name": "BioSchemas Draft",
+        "uri_format": "https://bioschemas.org/draft_terms/$1"
+      },
+      {
+        "code": "term",
+        "uri_format": "https://bioschemas.org/terms/$1"
+      },
+      {
+        "code": "w3id",
+        "uri_format": "https://w3id.org/bioschemas/terms/$1"
+      }
+    ],
     "repository": "https://github.com/BioSchemas/specifications",
     "synonyms": [
-      "bioschema"
+      "bioschema",
+      "bioschemas_draft"
     ],
     "twitter": "bioschemas",
     "uri_format": "https://bioschemas.org/profiles/$1"
@@ -10419,8 +10444,8 @@
       "name": "Charles Tapley Hoyt",
       "orcid": "0000-0003-4423-4370"
     },
-    "description": "CHEMROF is an ontological framework for Chemical Entities Mixtures Reactions Ontological Framework. This OWL ontology is an automated Translation of the source LinkML schema, https://w3id.org/chemrof",
-    "download_owl": "http://aber-owl.net/media/ontologies/CHEMROF/4/chemrof.owl",
+    "description": "A data model for managing information about chemical entities, ranging from atoms through molecules to complex mixtures.",
+    "download_owl": "https://raw.githubusercontent.com/chemkg/chemrof/main/schema/owl/chemrof.owl.ttl",
     "example": "FullySpecifiedAtom",
     "homepage": "https://chemkg.github.io/chemrof/",
     "keywords": [
@@ -11199,10 +11224,10 @@
     ],
     "banana": "CL",
     "contact": {
-      "email": "addiehl@buffalo.edu",
-      "github": "addiehl",
-      "name": "Alexander Diehl",
-      "orcid": "0000-0001-9990-8331"
+      "email": "do12@sanger.ac.uk",
+      "github": "dosumis",
+      "name": "David Osumi-Sutherland",
+      "orcid": "0000-0002-7073-9172"
     },
     "contributor_extras": [
       {
@@ -15024,11 +15049,15 @@
     "example": "E12768",
     "homepage": "https://evs.nci.nih.gov/ftp1/CTCAE/About.html",
     "keywords": [
+      "biomedical science",
+      "cancer",
+      "disease",
       "ontology"
     ],
     "mappings": {
       "aberowl": "CTCAE",
-      "bioportal": "CTCAE"
+      "bioportal": "CTCAE",
+      "fairsharing": "FAIRsharing.dcsw6j"
     },
     "name": "Common Terminology Criteria for Adverse Events",
     "pattern": "^E\\d+$",
@@ -15039,6 +15068,12 @@
         "pubmed": "29854250",
         "title": "Towards precision informatics of pharmacovigilance: OAE-CTCAE mapping and OAE-based representation and analysis of adverse events in patients treated with cancer drugs",
         "year": 2018
+      },
+      {
+        "doi": "10.1111/j.1476-5810.2004.0053b.x",
+        "pubmed": "19379294",
+        "title": "Veterinary Co-operative Oncology Group - Common Terminology Criteria for Adverse Events (VCOG-CTCAE) following chemotherapy or biological antineoplastic therapy in dogs and cats v1.0",
+        "year": 2004
       }
     ],
     "references": [
@@ -16345,6 +16380,10 @@
     "uri_format": "http://purl.org/dc/terms/$1"
   },
   "dctypes": {
+    "contact": {
+      "email": "kdurante@stanford.edu",
+      "name": "Kim Durante"
+    },
     "contributor": {
       "email": "cthoyt@gmail.com",
       "github": "cthoyt",
@@ -16361,6 +16400,7 @@
     "mappings": {
       "aberowl": "DCMITYPE",
       "biocontext": "dctypes",
+      "bioportal": "DCMITYPE",
       "zazuko": "dcmitype"
     },
     "name": "Dublin Core Types",
@@ -22810,6 +22850,35 @@
     "name": "European Medicines Evaluation Agency",
     "preferred_prefix": "emea"
   },
+  "emg": {
+    "contact": {
+      "email": "oonagh.mannix@helmholtz-berlin.de",
+      "name": "Oonagh Brendike-Mannix",
+      "orcid": "0000-0003-0575-2853"
+    },
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "The Electron Microscopy (EM) Glossary is a widespread community effort to harmonize terminology in the electron and ion microscopies. It is created in a not-for profit collaboration between academic and non-university research institutions including domain and metadata experts. It provides harmonized terminology for application level semantic artifacts to source from and align with. [from homepage]",
+    "download_owl": "https://owl.emglossary.helmholtz-metadaten.de/ontology.owl",
+    "download_rdf": "https://owl.emglossary.helmholtz-metadaten.de/ontology.ttl",
+    "example": "00000005",
+    "homepage": "https://purls.helmholtz-metadaten.de/emg",
+    "keywords": [
+      "ontology"
+    ],
+    "license": "CC-BY-4.0",
+    "logo": "https://codebase.helmholtz.cloud/em_glossary/em_glossary/-/raw/main/EMGlossary.png",
+    "name": "Electron Microscopy Glossary",
+    "pattern": "^\\d{8}$",
+    "preferred_prefix": "emg",
+    "rdf_uri_format": "https://purls.helmholtz-metadaten.de/emg/EMG_$1",
+    "repository": "https://codebase.helmholtz.cloud/em_glossary/em_glossary",
+    "uri_format": "https://purls.helmholtz-metadaten.de/emg/EMG_$1"
+  },
   "emi": {
     "contact": {
       "email": "Tarcisio.Mendes@sib.swiss",
@@ -25328,6 +25397,10 @@
     "preferred_prefix": "euroscivoc.schema"
   },
   "eurovoc": {
+    "contact": {
+      "email": "OP-EU-VOCABULARIES@publications.europa.eu",
+      "name": "Publications Office of the European Union"
+    },
     "contributor": {
       "email": "cthoyt@gmail.com",
       "github": "cthoyt",
@@ -25337,6 +25410,32 @@
     "description": "EuroVoc is the EU's multilingual and multidisciplinary thesaurus. It contains keywords, organized in 21 domains and 127 sub-domains, which are used to describe the content of documents in EUR-Lex. [from homepage]",
     "example": "1837",
     "homepage": "https://eur-lex.europa.eu/browse/eurovoc.html",
+    "keywords": [
+      "agriculture",
+      "business administration",
+      "economics",
+      "employment",
+      "energy engineering",
+      "environmental science",
+      "fisheries science",
+      "food",
+      "forest management",
+      "geography",
+      "international relations",
+      "linguistics",
+      "political science",
+      "public finance",
+      "social policy",
+      "social science",
+      "trade",
+      "transport",
+      "transportation planning"
+    ],
+    "mappings": {
+      "bartoc": "15",
+      "ecoportal": "EUROVOC",
+      "fairsharing": "FAIRsharing.d0a681"
+    },
     "name": "EuroVoc",
     "pattern": "^\\d+$",
     "preferred_prefix": "eurovoc",
@@ -32420,6 +32519,73 @@
     "preferred_prefix": "gtex",
     "uri_format": "https://www.gtexportal.org/home/gene/$1"
   },
+  "gtn": {
+    "contact": {
+      "email": "saskia.hiltemann@rz.uni-freiburg.de",
+      "github": "shiltemann",
+      "name": "Saskia Hiltemann",
+      "orcid": "0000-0003-3803-468X"
+    },
+    "contributor": {
+      "email": "d.djamalova@fz-juelich.de",
+      "github": "ddjamalova",
+      "name": "Dilfuza Djamalova",
+      "orcid": "0009-0004-7782-2894"
+    },
+    "contributor_extras": [
+      {
+        "email": "jacobo.miranda@embl.de",
+        "github": "mirandaembl",
+        "name": "Jacobo Miranda",
+        "orcid": "0009-0005-0673-021X"
+      }
+    ],
+    "description": "Identifiers in the GTN correspond to training materials in various formats (markdown, slides, video). The users can apply learned concepts directly within the framework via galaxy workflows.",
+    "example": "T00148",
+    "github_request_issue": 1778,
+    "homepage": "https://training.galaxyproject.org/training-material/",
+    "keywords": [
+      "galaxy",
+      "learning materials",
+      "learning resources",
+      "training materials"
+    ],
+    "license": "CC-BY-4.0",
+    "name": "Galaxy Training Network",
+    "pattern": "^[A-Z]\\d+$",
+    "preferred_prefix": "gtn",
+    "publications": [
+      {
+        "doi": "10.1371/journal.pcbi.1010752",
+        "pmc": "PMC9829167",
+        "pubmed": "36622853",
+        "title": "Galaxy Training: A powerful framework for teaching!",
+        "year": 2023
+      },
+      {
+        "doi": "10.1371/journal.pcbi.1007854",
+        "pmc": "PMC7241697",
+        "pubmed": "32437350",
+        "title": "Ten simple rules for making training materials FAIR",
+        "year": 2020
+      },
+      {
+        "doi": "10.1016/j.cels.2018.05.012",
+        "pmc": "PMC6296361",
+        "pubmed": "29953864",
+        "title": "Community-Driven Data Analysis Training for Biology",
+        "year": 2018
+      }
+    ],
+    "repository": "https://github.com/galaxyproject/training-material",
+    "reviewer": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "uri_format": "https://gxy.io/GTN:$1"
+  },
   "gtr.condition": {
     "appears_in": [
       "mondo"
@@ -35458,6 +35624,7 @@
     ],
     "mappings": {
       "lov": "hydra",
+      "re3data": "r3d100011525",
       "zazuko": "hydra"
     },
     "name": "The Hydra Core Vocabulary",
@@ -41268,6 +41435,76 @@
     "pattern": "^\\d{7}$",
     "preferred_prefix": "kestrelo",
     "uri_format": "http://purl.obolibrary.org/obo/kestrelo_$1"
+  },
+  "kim.amb": {
+    "contact": {
+      "github": "acka47",
+      "name": "Adrian Pohl",
+      "orcid": "0000-0001-9083-7442"
+    },
+    "contributor": {
+      "email": "m.voigt@hzdr.de",
+      "github": "eilmiv",
+      "name": "Martin Voigt",
+      "orcid": "0000-0001-5556-838X"
+    },
+    "description": "A cross-sectoral metadata profile for describing teaching and learning resources, primarily based on [schema.org](https://schema.org) and the Learning Resource Metadata Initiative LRMI, and additionally utilizing elements of the Simple Knowledge Organization System SKOS. A JSON-LD11-compliant data structure is defined in the form of this HTML specification, including a JSON schema against which data can be automatically checked for conformity with the profile.",
+    "example": "conditionsofaccess",
+    "github_request_issue": 1780,
+    "homepage": "https://dini-ag-kim.github.io/amb/20231019/",
+    "keywords": [
+      "learning material",
+      "learning materials",
+      "open educational resource",
+      "open educational resources",
+      "schema"
+    ],
+    "license": "CC0-1.0",
+    "name": "Allgemeines Metadatenprofil für Bildungsressourcen",
+    "pattern": "^[a-z]\\w+$",
+    "preferred_prefix": "kim.amb",
+    "repository": "https://gitub.com/dini-ag-kim/amb",
+    "reviewer": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "uri_format": "https://dini-ag-kim.github.io/amb/20231019/#$1"
+  },
+  "kim.conditionsofaccess": {
+    "contributor": {
+      "github": "eilmiv",
+      "name": "Martin Voigt",
+      "orcid": "0000-0001-5556-838X"
+    },
+    "description": "Identifiers describing conditions of access to an object (login) as defined by the [OER metadata group](https://oerworldmap.org/resource/urn:uuid:fd06253e-fe67-4910-b923-51db9d27e59f).",
+    "example": "no_login",
+    "example_decoys": [
+      "nope"
+    ],
+    "example_extras": [
+      "login"
+    ],
+    "github_request_issue": 1782,
+    "homepage": "https://skohub.io/dini-ag-kim/value-lists/heads/main/w3id.org/kim/conditionsOfAccess/index.html",
+    "keywords": [
+      "learning material",
+      "learning materials",
+      "open educational resource",
+      "open educational resources"
+    ],
+    "license": "CC0-1.0",
+    "name": "Conditions of Access",
+    "pattern": "^login|no_login$",
+    "preferred_prefix": "kim.conditionsofaccess",
+    "reviewer": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "uri_format": "https://skohub.io/dini-ag-kim/value-lists/heads/main/w3id.org/kim/conditionsOfAccess/$1.html"
   },
   "kim.educationlevel": {
     "contributor": {
@@ -72163,16 +72400,24 @@
     },
     "description": "The Semantic Web for Earth and Environmental Terminology is a mature foundational ontology that contains over 6000 concepts organized in 200 ontologies represented in OWL. Top level concepts include Representation (math, space, science, time, data), Realm (Ocean, Land Surface, Terrestrial Hydroshere, Atmosphere, etc.), Phenomena (macro-scale ecological and physical), Processes (micro-scale physical, biological, chemical, and mathematical), Human Activities (Decision, Commerce, Jurisdiction, Environmental, Research).",
     "download_obo": "https://raw.githubusercontent.com/EnvironmentOntology/envo/master/src/envo/sources/sweetrealm.obo",
+    "download_owl": "http://aber-owl.net/media/ontologies/SWEET/2/sweet.owl",
     "example": "realmGeol/GeologicFeature",
     "homepage": "http://sweetontology.net/",
     "keywords": [
+      "earth science",
       "earth sciences",
+      "environmental science",
       "ess",
+      "geography",
+      "geology",
       "nfdi4ing",
       "ontology"
     ],
     "mappings": {
+      "aberowl": "SWEET",
+      "bartoc": "20510",
       "bioportal": "SWEET",
+      "fairsharing": "FAIRsharing.jh4xht",
       "tib": "sweet"
     },
     "name": "Semantic Web for Earth and Environment Technology Ontology",
