@@ -12,10 +12,12 @@ import bioregistry
 
 SKOSMOS_APIS = [
     ("finto", "https://api.finto.fi/rest/v1/"),
-    # see https://vocabs-api.acdh.oeaw.ac.at
+    # see https://vocabs-api.acdh.oeaw.ac.at, this is the same as DARIAH
     ("acdhchvs", "https://vocabs.acdh.oeaw.ac.at/rest/v1/"),
     ("loterre", "https://skosmos.loterre.fr/rest/v1/"),
-    ("", "https://data.legilux.public.lu/vocabulaires/rest/v1/"),
+    # see https://bartoc.org/en/node/18937
+    ("legilux", "https://data.legilux.public.lu/vocabulaires/rest/v1/"),
+    ("gesis", "https://data.gesis.org/cvbrowser/"),  # fix api?
 ]
 
 
