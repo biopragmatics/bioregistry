@@ -1,7 +1,7 @@
 """Import a resource from a LinkML configuration.
 
-This curation workflow can be called from the command line by passing a URL to
-a LinkML YAML configuration file like in the following:
+This curation workflow can be called from the command line by passing a URL to a LinkML
+YAML configuration file like in the following:
 
 .. code-block:: console
 
@@ -11,6 +11,18 @@ Here are some more example LinkML YAML configuration files:
 
 - https://github.com/HendrikBorgelt/CatCore/blob/main/src/catcore/schema/catcore.yaml
 - https://github.com/mapping-commons/sssom/blob/master/src/sssom_schema/schema/sssom_schema.yaml
+
+.. warning::
+
+    This workflow doesn't produce complete Bioregistry records! You still must add:
+
+    1. ``homepage``
+    2. ``contributor``
+
+    Given most LinkML configurations are on GitHub, you can probably figure out:
+
+    - ``repository``
+    - ``contact``
 """
 
 import click

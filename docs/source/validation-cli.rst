@@ -126,8 +126,8 @@ Validating Prefix Maps in LinkML
 
 `LinkML <https://linkml.io>`_ enables defining a data model with YAML. Each definition
 also includes a prefix map, which can be validate against the Bioregistry. Here's an
-abridged excerpt of one
-`such configuration <https://github.com/HendrikBorgelt/CatCore/blob/main/src/catcore/schema/catcore.yaml>`_:
+abridged excerpt of one `such configuration
+<https://github.com/HendrikBorgelt/CatCore/blob/main/src/catcore/schema/catcore.yaml>`_:
 
 .. code-block:: yaml
 
@@ -163,18 +163,18 @@ following output:
 
     $ bioregistry validate linkml --tablefmt rst --use-preferred https://github.com/HendrikBorgelt/CatCore/raw/refs/heads/main/src/catcore/schema/catcore.yaml
 
-========  ===================================================  =========================  ===============================
-prefix    uri_prefix                                           issue                      solution
-========  ===================================================  =========================  ===============================
-catcore   `https://w3id.org/nfdi4cat/catcore/`                 unknown CURIE prefix
-AFR       `http://purl.allotrope.org/ontologies/result#AFR_`   unknown CURIE prefix
-AFP       `http://purl.allotrope.org/ontologies/process#AFP_`  unknown CURIE prefix
-AFQ       `http://purl.allotrope.org/ontologies/quality#AFQ_`  unknown CURIE prefix
-nmrCV     `http://nmrML.org/nmrCV#NMR:`                        non-standard CURIE prefix  Switch to preferred prefix: NMR
-AFRL      `http://purl.allotrope.org/ontologies/role#AFRL_`    unknown CURIE prefix
-SIO       `http://semanticscience.org/resource/SIO_`           non-standard CURIE prefix  Switch to preferred prefix: sio
-========  ===================================================  =========================  ===============================
+======= =================================================== ========================= ===============================
+prefix  uri_prefix                                          issue                     solution
+======= =================================================== ========================= ===============================
+catcore `https://w3id.org/nfdi4cat/catcore/`                unknown CURIE prefix
+AFR     `http://purl.allotrope.org/ontologies/result#AFR_`  unknown CURIE prefix
+AFP     `http://purl.allotrope.org/ontologies/process#AFP_` unknown CURIE prefix
+AFQ     `http://purl.allotrope.org/ontologies/quality#AFQ_` unknown CURIE prefix
+nmrCV   `http://nmrML.org/nmrCV#NMR:`                       non-standard CURIE prefix Switch to preferred prefix: NMR
+AFRL    `http://purl.allotrope.org/ontologies/role#AFRL_`   unknown CURIE prefix
+SIO     `http://semanticscience.org/resource/SIO_`          non-standard CURIE prefix Switch to preferred prefix: sio
+======= =================================================== ========================= ===============================
 
 Note that LinkML is developed by members of the OBO Community, and therefore, its
-prefixes often skew towards OBO community preferences. Therefore, you might want to
-use the ``--use-preferred`` flag.
+prefixes often skew towards OBO community preferences. Therefore, you might want to use
+the ``--use-preferred`` flag.

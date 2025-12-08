@@ -3,7 +3,7 @@
 import unittest
 
 import bioregistry
-from bioregistry.curation.add_linkml import get_resource
+from bioregistry.curation.add_linkml import get_resource_from_linkml
 
 
 class TestImportLinkML(unittest.TestCase):
@@ -24,5 +24,5 @@ class TestImportLinkML(unittest.TestCase):
         )
         self.assertEqual(
             resource.model_dump(exclude_unset=True, exclude_none=True),
-            get_resource(url).model_dump(exclude_unset=True, exclude_none=True),
+            get_resource_from_linkml(url).model_dump(exclude_unset=True, exclude_none=True),
         )
