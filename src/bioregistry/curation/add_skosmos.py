@@ -23,6 +23,7 @@ SKOSMOS_APIS: list[tuple[str, str | None]] = [
     ("lincs.skosmos", None),  # TODO could not find API
     ("zpid", "https://vocabs.leibniz-psychology.org/rest/v1/"),
     ("zbw", None),
+    ("sshopencloud", "http://vocabs.acdh.oeaw.ac.at/rest/v1/"),
 ]
 
 BARTOC_REGISTRIES_URL = "https://bartoc.org/registries"
