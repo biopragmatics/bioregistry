@@ -1,6 +1,8 @@
 """This script adds skosmos."""
 
 import json
+import sys
+from typing import Any
 
 import click
 import requests
@@ -10,25 +12,67 @@ from tqdm import tqdm
 
 import bioregistry
 
-SKOSMOS_APIS = [
+SKOSMOS_APIS: list[tuple[str, str | None]] = [
     ("finto", "https://api.finto.fi/rest/v1/"),
     # see https://vocabs-api.acdh.oeaw.ac.at, this is the same as DARIAH
     ("acdhchvs", "https://vocabs.acdh.oeaw.ac.at/rest/v1/"),
     ("loterre", "https://skosmos.loterre.fr/rest/v1/"),
     # see https://bartoc.org/en/node/18937
     ("legilux", "https://data.legilux.public.lu/vocabulaires/rest/v1/"),
-    ("gesis", "https://data.gesis.org/cvbrowser/"),  # fix api?
+    ("gesis", None),  # fix api?
+    ("lincs.skosmos", None),  # TODO could not find API
+    ("zpid", "https://vocabs.leibniz-psychology.org/rest/v1/"),
+    ("zbw", None),
 ]
+
+BARTOC_REGISTRIES_URL = "https://bartoc.org/registries"
+SKIP = {
+    "18943",  # BARTOC Skosmos
+}
+
+
+def get_bartoc_skosmos() -> list[tuple[str, str | None, dict[str, Any]]]:
+    """Get BARTOC registries with SKOSMOS APIs."""
+    res = requests.get(BARTOC_REGISTRIES_URL, timeout=5, params={"format": "jskos"})
+    res_json = res.json()
+    rows = []
+    for key, data in res_json.items():
+        prefix = key.removeprefix("http://bartoc.org/en/node/")
+        if prefix in SKIP:
+            continue
+        for api in data.get("API", []):
+            if api["type"] == "http://bartoc.org/api-type/skosmos":
+                api_url = api["url"] + "rest/v1/"
+                break
+        else:
+            # if we didn't find a SKOSMOS API endpoint, skip this record
+            continue
+
+        rows.append((prefix, api_url, data))
+    return rows
 
 
 @click.command()
 def main() -> None:
     """Import content from skosmos."""
+    yy = bioregistry.get_registry_invmap("bartoc")
+    xx = get_bartoc_skosmos()
+    srows = [
+        (prefix, data["prefLabel"]["en"], data["url"].rstrip("/"))
+        for prefix, url, data in xx
+        if prefix not in yy
+    ]
+    if srows:
+        click.echo(tabulate(srows, headers=["bartoc_id", "name", "homepage"]))
+        raise sys.exit(0)
+
     lang = "en"
 
     rows = []
 
     for service_prefix, api_base in SKOSMOS_APIS:
+        if not api_base:
+            continue
         service_name = bioregistry.get_name(service_prefix, strict=True)
         client = skosmos_client.SkosmosClient(api_base)
         for v in tqdm(client.vocabularies(lang), desc=service_name, unit="vocabulary"):
