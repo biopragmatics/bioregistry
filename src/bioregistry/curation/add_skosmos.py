@@ -10,21 +10,23 @@ from tqdm import tqdm
 
 import bioregistry
 
+SKOSMOS_APIS = [
+    ("finto", "https://api.finto.fi/rest/v1/"),
+    # see https://vocabs-api.acdh.oeaw.ac.at
+    ("acdhchvs", "https://vocabs.acdh.oeaw.ac.at/rest/v1/"),
+    ("loterre", "https://skosmos.loterre.fr/rest/v1/"),
+    ("", "https://data.legilux.public.lu/vocabulaires/rest/v1/"),
+]
+
 
 @click.command()
 def main() -> None:
     """Import content from skosmos."""
     lang = "en"
-    places = [
-        ("finto", "https://api.finto.fi/rest/v1/"),
-        # see https://vocabs-api.acdh.oeaw.ac.at
-        ("acdhchvs", "https://vocabs.acdh.oeaw.ac.at/rest/v1/"),
-        ("loterre", "https://skosmos.loterre.fr/rest/v1/"),
-        ("", "https://data.legilux.public.lu/vocabulaires/rest/v1/"),
-    ]
+
     rows = []
 
-    for service_prefix, api_base in places:
+    for service_prefix, api_base in SKOSMOS_APIS:
         service_name = bioregistry.get_name(service_prefix, strict=True)
         client = skosmos_client.SkosmosClient(api_base)
         for v in tqdm(client.vocabularies(lang), desc=service_name, unit="vocabulary"):
@@ -37,7 +39,7 @@ def main() -> None:
             # strip off redundant prefix
             pfx = prefix + " - "
             if name.lower().startswith(pfx):
-                name = name[len(pfx):]
+                name = name[len(pfx) :]
 
             v = client.get_vocabulary(prefix, lang=lang)
             tqdm.write(json.dumps(v))
