@@ -44,17 +44,18 @@ from .schema import (
     Attributable,
     Collection,
     Context,
+    MetaprefixAnnotatedValue,
     Registry,
     Resource,
     sanitize_model,
 )
-from .schema.struct import MetaprefixAnnotatedValue
 from .schema_utils import (
     _collections_from_path,
     _contexts_from_path,
     _read_metaregistry,
     _registry_from_path,
     read_mismatches,
+    write_collections,
     write_registry,
 )
 from .utils import NormDict, _norm, get_ec_url
@@ -221,6 +222,16 @@ class Manager:
             self._converter.add_prefix(resource.prefix, uri_prefix)
             # TODO what about synonyms
 
+    def add_to_collection(self, collection: str | Collection, resource: str | Resource) -> None:
+        """Add a resource to the collection."""
+        if isinstance(collection, Collection):
+            collection = collection.identifier
+        if isinstance(resource, Resource):
+            resource = resource.prefix
+        elif resource not in self.registry:
+            raise ValueError
+        self.collections[collection].resources.append(resource)
+
     @property
     def converter(self) -> curies.Converter:
         """Get the default converter."""
@@ -235,6 +246,10 @@ class Manager:
     def get_registry(self, metaprefix: str) -> Registry | None:
         """Get the metaregistry entry for the given prefix."""
         return self.metaregistry.get(metaprefix)
+
+    def write_collections(self) -> None:
+        """Write collections."""
+        write_collections(self.collections)
 
     # docstr-coverage:excused `overload`
     @overload

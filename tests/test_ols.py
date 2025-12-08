@@ -3,7 +3,7 @@
 import json
 import unittest
 
-from bioregistry.external.ols import OLS_PROCESSING, VersionType
+from bioregistry.external.ols import EBI_OLS_VERSION_PROCESSING_CONFIG_PATH, VersionType
 
 
 class TestOLS(unittest.TestCase):
@@ -11,7 +11,7 @@ class TestOLS(unittest.TestCase):
 
     def test_version_types(self):
         """Test all processing configurations have valid version types."""
-        data = json.loads(OLS_PROCESSING.read_text())
+        data = json.loads(EBI_OLS_VERSION_PROCESSING_CONFIG_PATH.read_text())
         for entry in data["configurations"]:
             prefix = entry["prefix"]
             with self.subTest(prefix=prefix):

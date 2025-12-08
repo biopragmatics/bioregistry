@@ -7,7 +7,7 @@
 import click
 
 import bioregistry
-from bioregistry.schema.struct import deduplicate_publications
+from bioregistry.schema import deduplicate_publications
 
 
 @click.command()

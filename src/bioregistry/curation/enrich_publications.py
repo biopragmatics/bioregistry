@@ -13,7 +13,7 @@ from manubot.cite.pubmed import get_pmid_for_doi, get_pubmed_csl_item
 from tqdm import tqdm
 
 from bioregistry import manager
-from bioregistry.schema.struct import Publication, deduplicate_publications
+from bioregistry.schema import Publication, deduplicate_publications
 from bioregistry.utils import removeprefix
 
 

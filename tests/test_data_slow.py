@@ -6,6 +6,7 @@ from collections import defaultdict
 import pytest
 
 import bioregistry
+from bioregistry import get_obo_context_prefix_map
 
 
 class TestDataSlow(unittest.TestCase):
@@ -26,10 +27,16 @@ class TestDataSlow(unittest.TestCase):
     @pytest.mark.slow
     def test_parse_iri(self) -> None:
         """Test parsing IRIs."""
-        self.assertEqual(
-            ("ncbitaxon", "131567"),
-            bioregistry.parse_iri("http://purl.bioontology.org/ontology/NCBITAXON/131567"),
-        )
+        for p, i, u in [
+            ("ncbitaxon", "131567", "http://purl.bioontology.org/ontology/NCBITAXON/131567"),
+            (
+                "ceds.learning_resource_type",
+                "AlternateAssessment",
+                "https://ceds.ed.gov/element/000928#AlternateAssessment",
+            ),
+        ]:
+            with self.subTest(url=u):
+                self.assertEqual((p, i), bioregistry.parse_iri(u))
 
     @pytest.mark.slow
     def test_prefix_map_priorities(self):
@@ -92,3 +99,9 @@ class TestDataSlow(unittest.TestCase):
 
             x[iri] = parts, unmapped, canonical_target, all_targets
         self.assertEqual({}, x)
+
+    @pytest.mark.slow
+    def test_obo_prefix_map(self):
+        """Test the integrity of the OBO prefix map."""
+        obofoundry_prefix_map = get_obo_context_prefix_map()
+        self.assertIn("FlyBase", set(obofoundry_prefix_map))

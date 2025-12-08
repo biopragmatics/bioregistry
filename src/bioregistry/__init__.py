@@ -35,6 +35,7 @@ from .reference import (
 )
 from .resolve import (
     add_resource,
+    add_to_collection,
     count_mappings,
     get_appears_in,
     get_banana,
@@ -126,7 +127,7 @@ from .resolve_identifier import (
     standardize_identifier,
 )
 from .resource_manager import Manager, manager
-from .schema.struct import (
+from .schema import (
     Author,
     Collection,
     Context,
@@ -170,6 +171,7 @@ __all__ = [
     "StandardNamedReference",
     "StandardReference",
     "add_resource",
+    "add_to_collection",
     "count_mappings",
     "curie_from_iri",
     "curie_to_str",
