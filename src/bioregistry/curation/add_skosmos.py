@@ -19,11 +19,13 @@ SKOSMOS_APIS: list[tuple[str, str | None]] = [
     ("loterre", "https://skosmos.loterre.fr/rest/v1/"),
     # see https://bartoc.org/en/node/18937
     ("legilux", "https://data.legilux.public.lu/vocabulaires/rest/v1/"),
-    ("gesis", None),  # fix api?
-    ("lincs.skosmos", None),  # TODO could not find API
+    ("gesis", None), 
+    ("lincs.skosmos", None),
     ("zpid", "https://vocabs.leibniz-psychology.org/rest/v1/"),
     ("zbw", None),
     ("sshopencloud", "http://vocabs.acdh.oeaw.ac.at/rest/v1/"),
+    ("nbvok", "https://www.nb.no/nbvok/rest/v1/"),
+    ("ilc4clarin", None)
 ]
 
 BARTOC_REGISTRIES_URL = "https://bartoc.org/registries"
@@ -64,7 +66,8 @@ def main() -> None:
         if prefix not in yy
     ]
     if srows:
-        click.echo(tabulate(srows, headers=["bartoc_id", "name", "homepage"]))
+        click.echo("\nStill need to curate prefixes (or skips) for the following SKOSMOS listed in BARTOC:\n")
+        click.echo(tabulate(srows, headers=["bartoc", "name", "homepage"]))
         raise sys.exit(0)
 
     lang = "en"
