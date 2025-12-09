@@ -189,14 +189,6 @@
                             Repository <i class="fab fa-github"></i>
                         </a>
                     {% endif %}
-                    {%- if resource.contact_group_email %}
-                        <a class="badge badge-pill badge-light" href="{{ resource.contact_group_email }}">
-                            Mailing List <i class="fas fa-address-book"></i></i></a>
-                    {%- endif %}
-                    {%- if resource.contact_page %}
-                        <a class="badge badge-pill badge-light" href="{{ resource.contact_page }}">
-                            Contact Page <i class="fas fa-address-book"></i></i></a>
-                    {%- endif %}
                     {% if obo_download %}
                         <a class="badge badge-pill badge-light" href="{{ obo_download }}">
                             OBO <i class="fas fa-download"></i>
@@ -238,110 +230,6 @@
                         </a>
                     {% endif %}
                 </dd>
-                <dt>
-                    Contact
-                    {% if contact %}
-                    <a type="button" data-toggle="modal" data-target="#contact-modal">
-                        <i class="far fa-question-circle"></i>
-                    </a>
-                    {% endif %}
-                </dt>
-                <dd>
-                    {% if contact %}
-                        {{ utils.render_author(contact, link=none) }}
-                    {% else %}
-                        <span class="badge badge-pill badge-warning">Missing Contact</span>
-                    {% endif %}
-                </dd>
-                {%- for secondary_contact in resource.contact_extras or [] %}
-                <dd>
-                    {{ utils.render_author(secondary_contact, link=none) }}
-                </dd>
-                {%- endfor %}
-                {% if resource.owners %}
-                    <dt>Identifier Space Owner{% if resource.owners | length > 1 %}s{% endif %}</dt>
-                    {% for owner in resource.owners %}
-                    <dd>
-                    <a href="{{ owner.link }}">{{ owner.name }}</a>
-                    {% if owner.partnered %}
-                    <a href="{{ config.METAREGISTRY_REPOSITORY }}/blob/main/docs/GOVERNANCE.md#partners"
-                           class="badge badge-pill badge-info" data-toggle="tooltip"
-                           title="This organization has partnered with the {{ config.METAREGISTRY_TITLE }} to proactively maintain this record. Click to see related project governance.">
-                        Partnered
-                    </a>
-                    {% endif %}
-                    </dd>
-                    {% endfor %}
-                {% endif %}
-                <dt>Pattern for Local Unique Identifiers</dt>
-                <dd>
-                    {% if pattern %}
-                        <p>
-                            Local identifiers in {{ name_pack.value }} should match this
-                            regular expression:<br/><kbd>{{ pattern }}</kbd>
-                        </p>
-                    {% elif has_no_terms %}
-                        <span class="badge badge-pill badge-secondary">No terms in {{ prefix }}</span>
-                    {% else %}
-                        <span class="badge badge-pill badge-warning">Missing LUI pattern</span>
-                    {% endif %}
-                </dd>
-                <dt>Example Local Unique Identifier{% if resource.example_extras %}s{% endif %}</dt>
-                <dd>
-                    {% if example %}
-                        <a href="{{ url_for("metaregistry_ui.reference", prefix=prefix, identifier=example) }}">{{ example }}</a>
-                        {% if providers %}
-                        &nbsp;
-                        <a class="badge badge-pill badge-info" href="{{ url_for("metaregistry_ui.resolve", prefix=prefix, identifier=example) }}"><i class="fas fa-share-square"></i> Resolve</a>
-                        {% endif %}
-                        {% for extra_example in example_extras %}
-                            <br />
-                            <a href="{{ url_for("metaregistry_ui.reference", prefix=prefix, identifier=extra_example) }}">{{ extra_example }}</a>
-                            {% if providers %}
-                                &nbsp;
-                                <a class="badge badge-pill badge-info" href="{{ url_for("metaregistry_ui.resolve", prefix=prefix, identifier=extra_example) }}"><i class="fas fa-share-square"></i> Resolve</a>
-                            {% endif %}
-                        {% endfor %}
-                    {% elif has_no_terms %}
-                        <span class="badge badge-pill badge-secondary">No Terms in {{ prefix }}</span>
-                    {% else %}
-                        <span class="badge badge-pill badge-warning">Missing Example Local Unique Identifier</span>
-                    {% endif %}
-                </dd>
-                {% if pattern and curie_pattern %}
-                <dt>Pattern for CURIES</dt>
-                <dd>
-                    <p>
-                        Compact URIs (CURIEs) constructed from {{ name_pack.value }} should match
-                        this regular expression:<br/><kbd>{{ curie_pattern }}</kbd>
-                    </p>
-                </dd>
-                {% endif %}
-                {% if example and example_curie %}
-                <dt>Example CURIE{% if resource.example_extras %}s{% endif %}</dt>
-                <dd>
-                    <a href="{{ url_for("metaregistry_ui.reference", prefix=prefix, identifier=example) }}">{{ example_curie }}</a>
-                    {% for example_curie_extra, example_extra in zip(example_curie_extras, example_extras) %}
-                        <br />
-                        <a href="{{ url_for("metaregistry_ui.reference", prefix=prefix, identifier=example_extra) }}">{{ example_curie_extra }}</a>
-                    {% endfor %}
-                </dd>
-                {% endif %}
-                {% if namespace_in_lui %}
-                    <dt><i class="fas fa-info-circle"></i> MIRIAM Namespace Embedded in LUI</dt>
-                    <dd>
-                        The legacy MIRIAM standard for generating CURIEs with this resource
-                        annotates the <code>namespaceEmbeddedInLUI</code> as true.
-                        {{ get_banana_text() }}
-                    </dd>
-                {% elif banana %}
-                    <dt><i class="fas fa-info-circle"></i> Namespace Embedded in LUI</dt>
-                    <dd>
-                        This resource has been annotated by the {{ config.METAREGISTRY_TITLE }} as having a potential
-                        namespace embedded in LUI.
-                        {{ get_banana_text() }}
-                    </dd>
-                {% endif %}
 
                 {% set publications = resource.get_publications() %}
                 {% if publications %}
@@ -372,38 +260,13 @@
                         {% endif %}
                     </dd>
                 {% endif %}
-                {% if resource.contributor or resource.contributor_extras %}
-                    <dt>Contributors</dt>
-                    <dd>
-                        <ul>
-                            {% if resource.contributor %}
-                                <li>
-                                    <span class="badge badge-info">submitter</span> {{ utils.render_author(resource.contributor, link=url_for('metaregistry_ui.contributor', orcid=resource.contributor.orcid)) }}
-                                </li>
-                            {% endif %}
-                            {% for contributor in resource.contributor_extras or [] %}
-                                <li>
-                                    <span class="badge badge-info">contributor</span> {{ utils.render_author(contributor, link=url_for('metaregistry_ui.contributor', orcid=contributor.orcid)) }}
-                                </li>
-                            {% endfor %}
-                        </ul>
-                    </dd>
-                {% endif %}
-                {% if resource.reviewer %}
-                    <dt>Reviewer</dt>
-                    <dd>
-                        {{ utils.render_author(resource.reviewer, link=url_for('metaregistry_ui.contributor', orcid=resource.reviewer.orcid)) }}
-                    </dd>
-                    {%- for reviewer in resource.reviewer_extras or [] %}
-                    <dd>
-                        {{ utils.render_author(reviewer, link=url_for('metaregistry_ui.contributor', orcid=reviewer.orcid)) }}
-                    </dd>
-                    {%- endfor %}
-                {% endif %}
             </dl>
         </div>
-
     </div>
+
+    {% include "resource-standards.html" %}
+
+    {% include "resource-bibliometrics.html" %}
 
     {% if provides or provided_by or part_of or has_parts or has_canonical or canonical_for or depends_on or appears_in or in_collections %}
     <div class="card" style="margin-top: 20px">
@@ -572,20 +435,6 @@
         </div>
     {% endif %}
 
-    {% if resource.get_rdf_uri_format() %}
-        <div class="card" style="margin-top: 20px">
-            <h5 class="card-header">RDF Information</h5>
-            <div class="card-body">
-                <p>
-                    When using this resource in RDF, the following URI format should be used:
-                </p>
-                <p>
-                    <code>{{ resource.get_rdf_uri_format() }}</code>
-                </p>
-            </div>
-        </div>
-    {% endif %}
-
     {% if not resource.no_own_terms %}
         <div class="card" style="margin-top: 20px">
             <a id="providers"></a>
@@ -623,7 +472,7 @@
                 {% if providers %}
                 <p>
                     The local unique identifier <code>{{ example }}</code> is used to demonstrate the providers
-                    available for {{ name_pack.value }}. Some providers may use a different example, which is displayed in the table below. 
+                    available for {{ name_pack.value }}. Some providers may use a different example, which is displayed in the table below.
                     A guide for curating additional providers can be found
                     <a href="{{ config.METAREGISTRY_REPOSITORY_PAGES }}/curation/providers">here</a>.
                 </p>
