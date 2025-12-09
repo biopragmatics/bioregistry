@@ -1,5 +1,5 @@
 <div class="card" style="margin-top: 20px">
-    <div class="card-header"><h5>Contacts</h5></div>
+    <h5 class="card-header">Contacts</h5>
     <div class="card-body">
         {%- if resource.contact_group_email %}
         <a class="badge badge-pill badge-light" href="{{ resource.contact_group_email }}">
@@ -48,22 +48,18 @@
             {% endif %}
             {% if resource.contributor or resource.contributor_extras %}
             <dt>Contributors</dt>
+            {% if resource.contributor %}
             <dd>
-                <ul>
-                    {% if resource.contributor %}
-                    <li>
-                        <span class="badge badge-info">submitter</span> {{ utils.render_author(resource.contributor,
-                        link=url_for('metaregistry_ui.contributor', orcid=resource.contributor.orcid)) }}
-                    </li>
-                    {% endif %}
-                    {% for contributor in resource.contributor_extras or [] %}
-                    <li>
-                        <span class="badge badge-info">contributor</span> {{ utils.render_author(contributor,
-                        link=url_for('metaregistry_ui.contributor', orcid=contributor.orcid)) }}
-                    </li>
-                    {% endfor %}
-                </ul>
+                <span class="badge badge-info">submitter</span> {{ utils.render_author(resource.contributor,
+                link=url_for('metaregistry_ui.contributor', orcid=resource.contributor.orcid)) }}
             </dd>
+            {% endif %}
+            {% for contributor in resource.contributor_extras or [] %}
+            <dd>
+                <span class="badge badge-info">contributor</span> {{ utils.render_author(contributor,
+                link=url_for('metaregistry_ui.contributor', orcid=contributor.orcid)) }}
+            </dd>
+            {% endfor %}
             {% endif %}
 
             {% if resource.reviewer %}

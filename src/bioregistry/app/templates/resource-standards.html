@@ -1,5 +1,5 @@
 <div class="card" style="margin-top: 20px">
-    <div class="card-header"><h5>Identifier Standards</h5></div>
+    <h5 class="card-header">Identifier Standards</h5>
     <div class="card-body">
         <dl>
             <dt>Pattern for Local Unique Identifiers</dt>
@@ -62,6 +62,13 @@
                 {% endfor %}
             </dd>
             {% endif %}
+            {% if resource.get_rdf_uri_format() %}
+            <dt>Pattern for RDF URIs</dt>
+            <dd><kbd>{{ resource.get_rdf_uri_format() }}</kbd></dd>
+            <dt>Example RDF URI</dt>
+            {% set rdf_uri_example = resource.get_rdf_uri_format().replace("$1", example) %}
+            <dd><a href="{{ rdf_uri_example }}">{{ rdf_uri_example }}</a></dd>
+            {% endif %}
             {% if namespace_in_lui %}
             <dt><i class="fas fa-info-circle"></i> MIRIAM Namespace Embedded in LUI</dt>
             <dd>
@@ -80,17 +87,3 @@
         </dl>
     </div>
 </div>
-
-{% if resource.get_rdf_uri_format() %}
-<div class="card" style="margin-top: 20px">
-    <h5 class="card-header">RDF Information</h5>
-    <div class="card-body">
-        <p>
-            When using this resource in RDF, the following URI format should be used:
-        </p>
-        <p>
-            <code>{{ resource.get_rdf_uri_format() }}</code>
-        </p>
-    </div>
-</div>
-{% endif %}
