@@ -5,7 +5,7 @@ from __future__ import annotations
 import json
 from collections.abc import Callable, Mapping
 from pathlib import Path
-from typing import TYPE_CHECKING, Any, Literal
+from typing import TYPE_CHECKING, Any, Literal, cast
 
 import click
 from pydantic import BaseModel
@@ -18,6 +18,7 @@ __all__ = [
     "Message",
     "click_write_messages",
     "validate_jsonld",
+    "validate_linkml",
     "validate_ttl",
     "validate_virtuoso",
 ]
@@ -146,6 +147,13 @@ def validate_ttl(url: str, **kwargs: Unpack[ValidateKwargs]) -> list[Message]:
 def validate_virtuoso(url: str, **kwargs: Any) -> list[Message]:
     """Validate a Virtuoso SPARQL endpoint's prefix map."""
     prefix_map = get_virtuoso_prefix_map(url)
+    inputs: list[tuple[str, str, int | None]] = [(k, v, None) for k, v in prefix_map.items()]
+    return _get_all_messages(inputs, **kwargs)
+
+
+def validate_linkml(url: str, **kwargs: Any) -> list[Message]:
+    """Validate a LinkML YAML configuration's prefix map."""
+    prefix_map = get_linkml_prefix_map(url)
     inputs: list[tuple[str, str, int | None]] = [(k, v, None) for k, v in prefix_map.items()]
     return _get_all_messages(inputs, **kwargs)
 
@@ -309,3 +317,22 @@ def get_virtuoso_prefix_map(url: str) -> dict[str, str]:
         )
     rv = {left.text: right.text for left, right in table_body_tag.find_all("tr")}
     return rv
+
+
+def get_linkml_prefix_map(url: str) -> dict[str, str]:
+    """Get the prefix map from a LinkML YAML configuration.
+
+    :param url: The URL for the LinkML YAML configuration. Examples:
+
+        - https://github.com/HendrikBorgelt/CatCore/raw/refs/heads/main/src/catcore/schema/catcore.yaml
+        - https://github.com/mapping-commons/sssom/raw/refs/heads/master/src/sssom_schema/schema/sssom_schema.yaml
+
+    :returns: The prefix map defined in the LinkML configuration
+    """
+    import requests
+    import yaml
+
+    res = requests.get(url, timeout=5)
+    res.raise_for_status()
+    data = yaml.safe_load(res.text)
+    return cast(dict[str, str], data["prefixes"])
