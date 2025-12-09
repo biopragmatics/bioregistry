@@ -234,31 +234,15 @@
                 {% set publications = resource.get_publications() %}
                 {% if publications %}
                     <dt>Publications</dt>
-                    <dd>
-                        {% if publications | length == 1 %}
-                            {{ utils.render_publication(publications[0]) }}
-                        {% else %}
-                            <ul>
-                                {% for publication in publications %}
-                                    <li>{{ utils.render_publication(publication) }}</li>
-                                {% endfor %}
-                            </ul>
-                        {% endif %}
-                    </dd>
+                    {%- for publication in publications %}
+                    <dd>{{ utils.render_publication(publication) }}</dd>
+                    {%- endfor %}
                 {% endif %}
                 {% if resource.references %}
                     <dt>References</dt>
-                    <dd>
-                        {% if resource.references | length == 1 %}
-                            {{ utils.render_reference(resource.references[0]) }}
-                        {% else %}
-                            <ul>
-                                {% for reference in resource.references %}
-                                    <li>{{ utils.render_reference(reference) }}</li>
-                                {% endfor %}
-                            </ul>
-                        {% endif %}
-                    </dd>
+                    {%- for reference in resource.references %}
+                    <dd>{{ utils.render_reference(reference) }}</dd>
+                    {%- endfor %}
                 {% endif %}
             </dl>
         </div>
