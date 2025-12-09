@@ -33,12 +33,28 @@ import bioregistry
 
 __all__ = [
     "get_resource_from_linkml",
-    "main",
+    "import_from_linkml",
+    "import_from_linkml_cli",
 ]
 
 
+def import_from_linkml(url: str) -> None:
+    """Get a resource from a LinkML configuration and write it to the registry.
+
+    :param url: The URL to a LinkML YAML configuration file.
+    :returns: A Bioregistry resource object
+    """
+    resource = get_resource_from_linkml(url)
+    bioregistry.manager.add_resource(resource)
+    bioregistry.manager.write_registry()
+
+
 def get_resource_from_linkml(url: str) -> bioregistry.Resource:
-    """Get a resource from a LinkML configuration."""
+    """Get a resource from a LinkML configuration.
+
+    :param url: The URL to a LinkML YAML configuration file.
+    :returns: A Bioregistry resource object
+    """
     res = requests.get(url, timeout=5)
     res.raise_for_status()
     data = yaml.safe_load(res.text)
@@ -64,12 +80,10 @@ def get_resource_from_linkml(url: str) -> bioregistry.Resource:
 
 @click.command()
 @click.argument("url")
-def main(url: str) -> None:
+def import_from_linkml_cli(url: str) -> None:
     """Add a resource from the URL."""
-    resource = get_resource_from_linkml(url)
-    bioregistry.manager.add_resource(resource)
-    bioregistry.manager.write_registry()
+    import_from_linkml(url)
 
 
 if __name__ == "__main__":
-    main()
+    import_from_linkml_cli()
