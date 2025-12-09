@@ -19,7 +19,7 @@ SKOSMOS_APIS: list[tuple[str, str | None]] = [
     ("loterre", "https://skosmos.loterre.fr/rest/v1/"),
     # see https://bartoc.org/en/node/18937
     ("legilux", "https://data.legilux.public.lu/vocabulaires/rest/v1/"),
-    ("gesis", None), 
+    ("gesis", None),
     ("lincs.skosmos", None),
     ("zpid", "https://vocabs.leibniz-psychology.org/rest/v1/"),
     ("zbw", None),
