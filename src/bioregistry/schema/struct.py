@@ -3121,6 +3121,9 @@ class Collection(BaseModel):
         ...,
         description="A list of authors/contributors to the collection",
     )
+    organizations: list[Organization] | None = Field(
+        None, description="A list of organizations that contribute to this collection"
+    )
     context: str | None = Field(default=None, description="The JSON-LD context's name")
     references: list[str] | None = Field(default=None, description="URL references")
 
