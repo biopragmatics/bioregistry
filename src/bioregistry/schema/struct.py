@@ -185,7 +185,7 @@ class MetaprefixAnnotatedValue(Generic[X]):
 
 
 class Organization(BaseModel):
-    """Model for organizataions."""
+    """Model for organizations."""
 
     ror: str | None = Field(
         default=None,
