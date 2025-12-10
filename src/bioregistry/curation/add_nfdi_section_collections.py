@@ -1,6 +1,5 @@
 """Summarize NFDI consortia that don't have a collection."""
 
-
 import click
 import wikidata_client
 
