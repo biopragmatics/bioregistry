@@ -222,6 +222,10 @@ class Manager:
             self._converter.add_prefix(resource.prefix, uri_prefix)
             # TODO what about synonyms
 
+    def add_collection(self, collection: Collection) -> None:
+        """Add a collection."""
+        self.collections[collection.identifier] = collection
+
     def add_to_collection(self, collection: str | Collection, resource: str | Resource) -> None:
         """Add a resource to the collection."""
         if isinstance(collection, Collection):
