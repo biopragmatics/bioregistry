@@ -218,7 +218,12 @@ def write_collections(collections: Mapping[str, Collection], *, path: Path | Non
         collection.resources = sorted(set(collection.resources))
     with open(path or COLLECTIONS_PATH, encoding="utf-8", mode="w") as file:
         json.dump(
-            {"collections": [c.model_dump(exclude_none=True) for c in values]},
+            {
+                "collections": [
+                    c.model_dump(exclude_none=True, exclude_defaults=True, exclude_unset=True)
+                    for c in values
+                ]
+            },
             file,
             indent=2,
             sort_keys=True,
