@@ -4278,6 +4278,7 @@ bibo:
   - catalogs
   - ontology
   mappings:
+    bartoc: '17844'
     lov: bibo
     zazuko: bibo
   name: The Bibliographic Ontology
@@ -8758,6 +8759,8 @@ chebi:
     pubmed: '17932057'
     title: 'ChEBI: a database and ontology for chemical entities of biological interest'
     year: 2007
+  - doi: 10.1093/nar/gkaf1271
+    title: 'ChEBI: re-engineered for a sustainable future'
   rdf_uri_format: http://purl.obolibrary.org/obo/CHEBI_$1
   references:
   - https://github.com/biopragmatics/bioregistry/issues/1760
@@ -8768,7 +8771,7 @@ chebi:
   - ChEBI
   twitter: chebit
   uri_format: http://purl.obolibrary.org/obo/CHEBI_$1
-  version: '246'
+  version: '247'
 chembank:
   comment: This resource doesn't exist on the web anymore
   deprecated: true
@@ -10350,7 +10353,7 @@ cl:
   repository: https://github.com/obophenotype/cell-ontology
   twitter: CellOntology
   uri_format: http://purl.obolibrary.org/obo/CL_$1
-  version: '2025-11-03'
+  version: '2025-11-25'
 clao:
   contact:
     email: lagonzalezmo@unal.edu.co
@@ -10940,7 +10943,7 @@ cmo:
   repository: https://github.com/rat-genome-database/CMO-Clinical-Measurement-Ontology
   twitter: ratgenome
   uri_format: http://purl.obolibrary.org/obo/CMO_$1
-  version: '2.257'
+  version: '2.259'
 cmpo:
   contact:
     email: jupp@ebi.ac.uk
@@ -17630,7 +17633,7 @@ doid:
   - do
   twitter: diseaseontology
   uri_format: http://purl.obolibrary.org/obo/DOID_$1
-  version: '2025-10-31'
+  version: '2025-11-25'
 dolce:
   comment: This resource doesn't exist anymore
   contributor:
@@ -19178,6 +19181,7 @@ ec:
     publication</a>.</td></tr><tr><td>IntEnz</td><td><a href="https://www.ebi.ac.uk/intenz">https://www.ebi.ac.uk/intenz</a></td><td>Shutdown
     in 2024</td></tr><tr><td>ExPaSy</td><td><a href="https://enzyme.expasy.org">https://enzyme.expasy.org</a></td></tr><tr><td>EnzymePortal</td><td><a
     href="https://www.ebi.ac.uk/enzymeportal">https://www.ebi.ac.uk/enzymeportal</a></td><td></td></tr></tbody></table>'
+  download_owl: https://w3id.org/biopragmatics/resources/ec/2025-04-09/ec.ofn
   example: 1.1.1.1
   example_decoys:
   - '100'
@@ -19209,6 +19213,7 @@ ec:
   - enzyme
   - enzyme commission number
   - enzymology
+  - ontology
   license: CC-BY-4.0
   logo: https://www.enzyme-database.org/images/banner_5.gif
   mappings:
@@ -19220,6 +19225,7 @@ ec:
     integbio: nbdc00508
     miriam: ec-code
     n2t: ec-code
+    ols: ec
     pathguide: '106'
     prefixcommons: intenz
     re3data: r3d100010803
@@ -24970,6 +24976,7 @@ fma:
   - FMAID
   - FMA_RETIRED
   uri_format: https://www.ebi.ac.uk/ols4/ontologies/fma/terms?obo_id=FMA:$1
+  version: 5.0.0
 foaf:
   contact:
     email: rafael.goncalves@stanford.edu
@@ -25845,14 +25852,20 @@ gaidet:
   example: '0000001'
   homepage: https://github.com/panbibliotekar/gaidet-declaration
   keywords:
+  - artificial intelligence
   - attribution
   - contributor roles
   - delegation
   - ontology
+  mappings:
+    fairsharing: FAIRsharing.23b8a3
   name: Generative Artificial Intelligence Delegation Taxonomy
   pattern: ^\d{7}$
   preferred_prefix: gaidet
   publications:
+  - doi: 10.59350/psjb9-z1x39
+    title: 'GAIDeT: a practical taxonomy for declaring AI use in research and publishing'
+    year: 2025
   - doi: 10.1080/08989621.2025.2544331
     title: A taxonomy for humans to delegate tasks to generative artificial intelligence
       in scientific research and publishing
@@ -31936,7 +31949,7 @@ hp:
   - hpo
   twitter: hp_ontology
   uri_format: http://purl.obolibrary.org/obo/HP_$1
-  version: '2025-10-22'
+  version: '2025-11-24'
 hpa:
   contact:
     email: mathias.uhlen@scilifelab.se
@@ -43410,7 +43423,7 @@ mmo:
   repository: https://github.com/rat-genome-database/MMO-Measurement-Method-Ontology
   twitter: ratgenome
   uri_format: http://purl.obolibrary.org/obo/MMO_$1
-  version: '2.164'
+  version: '2.166'
 mmp.cat:
   description: MarCat is a gene (protein) catalogue of uncultivable and cultivable
     marine genes and proteins derived from metagenomics samples.
@@ -43770,7 +43783,7 @@ mod:
   synonyms:
   - PSI-MOD
   uri_format: http://purl.obolibrary.org/obo/MOD_$1
-  version: 1.031.6
+  version: 1.032.4
 modalia:
   contact:
     email: abdelmoneim.desouki@tu-darmstadt.de
@@ -44049,6 +44062,40 @@ molbic.protein:
     name: Benjamin M. Gyori
     orcid: 0000-0001-9439-5346
   uri_format: https://molbic.idrblab.net/data/protein/details/$1
+molgluedb:
+  contact:
+    email: qc@ouc.edu.cn
+    name: Chong Qin
+    orcid: 0000-0001-8108-1698
+  contributor:
+    email: ji.kang@northeastern.edu
+    github: kanghosaeyo
+    name: Kangho Ji
+    orcid: 0009-0009-3402-8013
+  description: Identifiers correspond to molecular glue compounds in the MolGlueDB
+    which is a free and open-access online database dedicated to the collection and
+    integration of molecular glue compound information.
+  example: '1'
+  github_request_issue: 1775
+  homepage: https://www.molgluedb.com
+  keywords:
+  - compound
+  - degraders
+  - proteolysis
+  name: MolGlueDB
+  pattern: ^\d+$
+  preferred_prefix: molgluedb
+  publications:
+  - doi: 10.1093/nar/gkaf811
+    pubmed: '40842115'
+    title: 'MolGlueDB: an online database of molecular glues'
+    year: 2025
+  reviewer:
+    email: b.gyori@northeastern.edu
+    github: bgyori
+    name: Benjamin M. Gyori
+    orcid: 0000-0001-9439-5346
+  uri_format: https://www.molgluedb.com/browseDB/$1
 molmedb:
   contact:
     email: karel.berka@upol.cz
@@ -44174,7 +44221,7 @@ mondo:
   repository: https://github.com/monarch-initiative/mondo
   twitter: MonarchInit
   uri_format: http://purl.obolibrary.org/obo/MONDO_$1
-  version: '2025-11-04'
+  version: '2025-12-02'
 mondo.issue:
   contributor:
     email: cthoyt@gmail.com
@@ -44379,7 +44426,7 @@ mp:
   rdf_uri_format: http://purl.obolibrary.org/obo/MP_$1
   repository: https://github.com/mgijax/mammalian-phenotype-ontology
   uri_format: http://purl.obolibrary.org/obo/MP_$1
-  version: '2025-10-23'
+  version: '2025-11-19'
 mpath:
   contact:
     email: pns12@hermes.cam.ac.uk
@@ -58667,7 +58714,7 @@ rbo:
   rdf_uri_format: http://purl.obolibrary.org/obo/RBO_$1
   repository: https://github.com/Radiobiology-Informatics-Consortium/RBO
   uri_format: http://purl.obolibrary.org/obo/RBO_$1
-  version: '2025-09-17'
+  version: '2025-11-26'
 rcb:
   contact:
     email: atsushi.yoshiki@riken.jp
@@ -65431,19 +65478,35 @@ spike.map:
     year: 2008
   uri_format: http://www.cs.tau.ac.il/~spike/maps/$1.html
 splash:
+  contact:
+    email: ofiehn@ucdavis.edu
+    name: Oliver Fiehn
+    orcid: 0000-0002-6261-8928
   description: The spectra hash code (SPLASH) is a unique and non-proprietary identifier
     for spectra, and is independent of how the spectra were acquired or processed.
     It can be easily calculated for a wide range of spectra, including Mass spectroscopy,  infrared
     spectroscopy, ultraviolet and nuclear magnetic resonance.
   example: splash10-0zq2000000-77302b0326a418630a84
   homepage: http://mona.fiehnlab.ucdavis.edu/
+  keywords:
+  - lipidomics
+  - mass spectrum
+  - metabolomics
+  - proteomics
   mappings:
     biocontext: SPLASH
+    fairsharing: FAIRsharing.f31b8f
     miriam: splash
     n2t: splash
   name: Spectra Hash Code
   pattern: ^splash\d[A-Z-a-z0-9]-[A-Za-z0-9]+-[A-Za-z0-9]+$
   preferred_prefix: splash
+  publications:
+  - doi: 10.1038/nbt.3689
+    pubmed: '27824832'
+    title: SPLASH, a hashed identifier for mass spectra
+    year: 2016
+  repository: https://github.com/berlinguyinca/spectra-hash
   uri_format: http://mona.fiehnlab.ucdavis.edu/#/spectra/splash/$1
 splicenest:
   comment: This resource doesn't exist on the web anymore
@@ -77585,7 +77648,7 @@ vo:
   rdf_uri_format: http://purl.obolibrary.org/obo/VO_$1
   repository: https://github.com/vaccineontology/VO
   uri_format: http://purl.obolibrary.org/obo/VO_$1
-  version: '2025-11-01'
+  version: '2025-12-03'
 voc4cat:
   comment: The most current version of a concept can be accessed so * https://w3id.org/nfdi4cat/voc4cat_0000123
     other/older versions from releases like so * https://w3id.org/nfdi4cat/voc4cat/v2023-08-17/voc4cat_0000123.
@@ -77893,7 +77956,7 @@ vt:
   rdf_uri_format: http://purl.obolibrary.org/obo/VT_$1
   repository: https://github.com/AnimalGenome/vertebrate-trait-ontology
   uri_format: http://purl.obolibrary.org/obo/VT_$1
-  version: '2025-11-18'
+  version: '2025-12-02'
 vto:
   contact:
     email: balhoff@renci.org
@@ -79230,7 +79293,7 @@ xco:
   repository: https://github.com/rat-genome-database/XCO-experimental-condition-ontology
   twitter: ratgenome
   uri_format: http://purl.obolibrary.org/obo/XCO_$1
-  version: '4.220'
+  version: '4.221'
 xenbase:
   contact:
     email: troy_pells@yahoo.ca

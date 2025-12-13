@@ -4729,6 +4729,7 @@
       "ontology"
     ],
     "mappings": {
+      "bartoc": "17844",
       "lov": "bibo",
       "zazuko": "bibo"
     },
@@ -9601,6 +9602,10 @@
         "pubmed": "17932057",
         "title": "ChEBI: a database and ontology for chemical entities of biological interest",
         "year": 2007
+      },
+      {
+        "doi": "10.1093/nar/gkaf1271",
+        "title": "ChEBI: re-engineered for a sustainable future"
       }
     ],
     "rdf_uri_format": "http://purl.obolibrary.org/obo/CHEBI_$1",
@@ -9615,7 +9620,7 @@
     ],
     "twitter": "chebit",
     "uri_format": "http://purl.obolibrary.org/obo/CHEBI_$1",
-    "version": "246"
+    "version": "247"
   },
   "chembank": {
     "comment": "This resource doesn't exist on the web anymore",
@@ -11323,7 +11328,7 @@
     "repository": "https://github.com/obophenotype/cell-ontology",
     "twitter": "CellOntology",
     "uri_format": "http://purl.obolibrary.org/obo/CL_$1",
-    "version": "2025-11-03"
+    "version": "2025-11-25"
   },
   "clao": {
     "contact": {
@@ -11942,7 +11947,7 @@
     "repository": "https://github.com/rat-genome-database/CMO-Clinical-Measurement-Ontology",
     "twitter": "ratgenome",
     "uri_format": "http://purl.obolibrary.org/obo/CMO_$1",
-    "version": "2.257"
+    "version": "2.259"
   },
   "cmpo": {
     "contact": {
@@ -19323,7 +19328,7 @@
     ],
     "twitter": "diseaseontology",
     "uri_format": "http://purl.obolibrary.org/obo/DOID_$1",
-    "version": "2025-10-31"
+    "version": "2025-11-25"
   },
   "dolce": {
     "comment": "This resource doesn't exist anymore",
@@ -20984,6 +20989,7 @@
       "orcid": "0000-0003-3889-2879"
     },
     "description": "The Enzyme Nomenclature (also known as the Enzyme Commission Code) is a species-agnostic controlled vocabulary for specific enzymes and an associated hierarchical classification into 7 main categories.\n\nThe Enzyme Nomenclature is maintained by the [Nomenclature Committee](https://iubmb.org/about/committees/nomenclature-committee/) of the International Union of Biochemistry and Molecular Biology (IUBMB). A detailed history of the nomenclature since the 1950s can be found [here](https://iubmb.qmul.ac.uk/enzyme/history.html).\n\nThere are few notable resources providing access to the Enzyme Nomenclature:\n\n<table class=\"table table-striped\"><thead><tr><th>Website</th><th>Homepage</td><th>Notes</td></tr></thead><tbody><tr><td>ExplorEnz</td><td><a href=\"https://www.enzyme-database.org\">https://www.enzyme-database.org</a></td><td>This is the resource officially recommended by IUBMB</td></tr><tr><td>IUBMB (via by Queen Mary)</td><td><a href=\"https://iubmb.qmul.ac.uk/enzyme\">https://iubmb.qmul.ac.uk/enzyme</a></td><td>This is a web-based version of the <a href=\"https://archive.org/details/enzymenomenclatu0000inte_d6c2\">1992 publication</a>.</td></tr><tr><td>IntEnz</td><td><a href=\"https://www.ebi.ac.uk/intenz\">https://www.ebi.ac.uk/intenz</a></td><td>Shutdown in 2024</td></tr><tr><td>ExPaSy</td><td><a href=\"https://enzyme.expasy.org\">https://enzyme.expasy.org</a></td></tr><tr><td>EnzymePortal</td><td><a href=\"https://www.ebi.ac.uk/enzymeportal\">https://www.ebi.ac.uk/enzymeportal</a></td><td></td></tr></tbody></table>",
+    "download_owl": "https://w3id.org/biopragmatics/resources/ec/2025-04-09/ec.ofn",
     "example": "1.1.1.1",
     "example_decoys": [
       "100",
@@ -21016,7 +21022,8 @@
       "classification",
       "enzyme",
       "enzyme commission number",
-      "enzymology"
+      "enzymology",
+      "ontology"
     ],
     "license": "CC-BY-4.0",
     "logo": "https://www.enzyme-database.org/images/banner_5.gif",
@@ -21029,6 +21036,7 @@
       "integbio": "nbdc00508",
       "miriam": "ec-code",
       "n2t": "ec-code",
+      "ols": "ec",
       "pathguide": "106",
       "prefixcommons": "intenz",
       "re3data": "r3d100010803",
@@ -27346,7 +27354,8 @@
       "FMAID",
       "FMA_RETIRED"
     ],
-    "uri_format": "https://www.ebi.ac.uk/ols4/ontologies/fma/terms?obo_id=FMA:$1"
+    "uri_format": "https://www.ebi.ac.uk/ols4/ontologies/fma/terms?obo_id=FMA:$1",
+    "version": "5.0.0"
   },
   "foaf": {
     "contact": {
@@ -28275,15 +28284,24 @@
     "example": "0000001",
     "homepage": "https://github.com/panbibliotekar/gaidet-declaration",
     "keywords": [
+      "artificial intelligence",
       "attribution",
       "contributor roles",
       "delegation",
       "ontology"
     ],
+    "mappings": {
+      "fairsharing": "FAIRsharing.23b8a3"
+    },
     "name": "Generative Artificial Intelligence Delegation Taxonomy",
     "pattern": "^\\d{7}$",
     "preferred_prefix": "gaidet",
     "publications": [
+      {
+        "doi": "10.59350/psjb9-z1x39",
+        "title": "GAIDeT: a practical taxonomy for declaring AI use in research and publishing",
+        "year": 2025
+      },
       {
         "doi": "10.1080/08989621.2025.2544331",
         "title": "A taxonomy for humans to delegate tasks to generative artificial intelligence in scientific research and publishing",
@@ -34884,7 +34902,7 @@
     ],
     "twitter": "hp_ontology",
     "uri_format": "http://purl.obolibrary.org/obo/HP_$1",
-    "version": "2025-10-22"
+    "version": "2025-11-24"
   },
   "hpa": {
     "contact": {
@@ -47313,7 +47331,7 @@
     "repository": "https://github.com/rat-genome-database/MMO-Measurement-Method-Ontology",
     "twitter": "ratgenome",
     "uri_format": "http://purl.obolibrary.org/obo/MMO_$1",
-    "version": "2.164"
+    "version": "2.166"
   },
   "mmp.cat": {
     "description": "MarCat is a gene (protein) catalogue of uncultivable and cultivable marine genes and proteins derived from metagenomics samples.",
@@ -47712,7 +47730,7 @@
       "PSI-MOD"
     ],
     "uri_format": "http://purl.obolibrary.org/obo/MOD_$1",
-    "version": "1.031.6"
+    "version": "1.032.4"
   },
   "modalia": {
     "contact": {
@@ -48010,6 +48028,46 @@
     },
     "uri_format": "https://molbic.idrblab.net/data/protein/details/$1"
   },
+  "molgluedb": {
+    "contact": {
+      "email": "qc@ouc.edu.cn",
+      "name": "Chong Qin",
+      "orcid": "0000-0001-8108-1698"
+    },
+    "contributor": {
+      "email": "ji.kang@northeastern.edu",
+      "github": "kanghosaeyo",
+      "name": "Kangho Ji",
+      "orcid": "0009-0009-3402-8013"
+    },
+    "description": "Identifiers correspond to molecular glue compounds in the MolGlueDB which is a free and open-access online database dedicated to the collection and integration of molecular glue compound information.",
+    "example": "1",
+    "github_request_issue": 1775,
+    "homepage": "https://www.molgluedb.com",
+    "keywords": [
+      "compound",
+      "degraders",
+      "proteolysis"
+    ],
+    "name": "MolGlueDB",
+    "pattern": "^\\d+$",
+    "preferred_prefix": "molgluedb",
+    "publications": [
+      {
+        "doi": "10.1093/nar/gkaf811",
+        "pubmed": "40842115",
+        "title": "MolGlueDB: an online database of molecular glues",
+        "year": 2025
+      }
+    ],
+    "reviewer": {
+      "email": "b.gyori@northeastern.edu",
+      "github": "bgyori",
+      "name": "Benjamin M. Gyori",
+      "orcid": "0000-0001-9439-5346"
+    },
+    "uri_format": "https://www.molgluedb.com/browseDB/$1"
+  },
   "molmedb": {
     "contact": {
       "email": "karel.berka@upol.cz",
@@ -48152,7 +48210,7 @@
     "repository": "https://github.com/monarch-initiative/mondo",
     "twitter": "MonarchInit",
     "uri_format": "http://purl.obolibrary.org/obo/MONDO_$1",
-    "version": "2025-11-04"
+    "version": "2025-12-02"
   },
   "mondo.issue": {
     "contributor": {
@@ -48371,7 +48429,7 @@
     "rdf_uri_format": "http://purl.obolibrary.org/obo/MP_$1",
     "repository": "https://github.com/mgijax/mammalian-phenotype-ontology",
     "uri_format": "http://purl.obolibrary.org/obo/MP_$1",
-    "version": "2025-10-23"
+    "version": "2025-11-19"
   },
   "mpath": {
     "contact": {
@@ -63822,7 +63880,7 @@
     "rdf_uri_format": "http://purl.obolibrary.org/obo/RBO_$1",
     "repository": "https://github.com/Radiobiology-Informatics-Consortium/RBO",
     "uri_format": "http://purl.obolibrary.org/obo/RBO_$1",
-    "version": "2025-09-17"
+    "version": "2025-11-26"
   },
   "rcb": {
     "contact": {
@@ -71093,17 +71151,38 @@
     "uri_format": "http://www.cs.tau.ac.il/~spike/maps/$1.html"
   },
   "splash": {
+    "contact": {
+      "email": "ofiehn@ucdavis.edu",
+      "name": "Oliver Fiehn",
+      "orcid": "0000-0002-6261-8928"
+    },
     "description": "The spectra hash code (SPLASH) is a unique and non-proprietary identifier for spectra, and is independent of how the spectra were acquired or processed. It can be easily calculated for a wide range of spectra, including Mass spectroscopy,  infrared spectroscopy, ultraviolet and nuclear magnetic resonance.",
     "example": "splash10-0zq2000000-77302b0326a418630a84",
     "homepage": "http://mona.fiehnlab.ucdavis.edu/",
+    "keywords": [
+      "lipidomics",
+      "mass spectrum",
+      "metabolomics",
+      "proteomics"
+    ],
     "mappings": {
       "biocontext": "SPLASH",
+      "fairsharing": "FAIRsharing.f31b8f",
       "miriam": "splash",
       "n2t": "splash"
     },
     "name": "Spectra Hash Code",
     "pattern": "^splash\\d[A-Z-a-z0-9]-[A-Za-z0-9]+-[A-Za-z0-9]+$",
     "preferred_prefix": "splash",
+    "publications": [
+      {
+        "doi": "10.1038/nbt.3689",
+        "pubmed": "27824832",
+        "title": "SPLASH, a hashed identifier for mass spectra",
+        "year": 2016
+      }
+    ],
+    "repository": "https://github.com/berlinguyinca/spectra-hash",
     "uri_format": "http://mona.fiehnlab.ucdavis.edu/#/spectra/splash/$1"
   },
   "splicenest": {
@@ -84428,7 +84507,7 @@
     "rdf_uri_format": "http://purl.obolibrary.org/obo/VO_$1",
     "repository": "https://github.com/vaccineontology/VO",
     "uri_format": "http://purl.obolibrary.org/obo/VO_$1",
-    "version": "2025-11-01"
+    "version": "2025-12-03"
   },
   "voc4cat": {
     "comment": "The most current version of a concept can be accessed so * https://w3id.org/nfdi4cat/voc4cat_0000123 other/older versions from releases like so * https://w3id.org/nfdi4cat/voc4cat/v2023-08-17/voc4cat_0000123. This is pretty unique and isn't tracked by the Bioregistry currently.",
@@ -84735,7 +84814,7 @@
     "rdf_uri_format": "http://purl.obolibrary.org/obo/VT_$1",
     "repository": "https://github.com/AnimalGenome/vertebrate-trait-ontology",
     "uri_format": "http://purl.obolibrary.org/obo/VT_$1",
-    "version": "2025-11-18"
+    "version": "2025-12-02"
   },
   "vto": {
     "contact": {
@@ -86231,7 +86310,7 @@
     "repository": "https://github.com/rat-genome-database/XCO-experimental-condition-ontology",
     "twitter": "ratgenome",
     "uri_format": "http://purl.obolibrary.org/obo/XCO_$1",
-    "version": "4.220"
+    "version": "4.221"
   },
   "xenbase": {
     "contact": {
