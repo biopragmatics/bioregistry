@@ -12,7 +12,7 @@ from a2wsgi import WSGIMiddleware
 from curies.mapping_service import MappingServiceGraph, MappingServiceSPARQLProcessor
 from fastapi import APIRouter, FastAPI
 from flask import Flask
-from flask_bootstrap import Bootstrap4
+from flask_bootstrap import Bootstrap5
 from markdown import markdown
 from rdflib_endpoint.sparql_router import SparqlRouter
 
@@ -317,7 +317,7 @@ def get_app(
     # note from klas:
     # "host": removeprefix(removeprefix(manager.base_url, "https://"), "http://"),
 
-    Bootstrap4(app)
+    Bootstrap5(app)
 
     app.register_blueprint(ui_blueprint)
 
