@@ -131,18 +131,18 @@ def get_integbio(*, force_download: bool = False) -> dict[str, dict[str, Any]]:
         inplace=True,
     )
     for key in SKIP:
-        del df[key]
+        del df[key]  # type:ignore[operator]
 
     df["fairsharing"] = df["fairsharing"].map(_parse_fairsharing_url, na_action="ignore")
     df = df[df["languages"] != "ja"]  # skip only japanese language database for now
-    del df["languages"]
+    del df["languages"]  # type:ignore[operator]
     # df["languages"] = df["languages"].map(_strip_split, na_action="ignore")
     df["target_keywords"] = df["target_keywords"].map(_strip_split, na_action="ignore")
     df["information_keywords"] = df["information_keywords"].map(_strip_split, na_action="ignore")
     df["pubmeds"] = df["references"].map(_parse_references, na_action="ignore")
     df["description"] = df["description"].map(lambda s: s.replace("\r\n", "\n"), na_action="ignore")
 
-    del df["references"]
+    del df["references"]  # type:ignore[operator]
     # TODO ground database maintenance with ROR?
     rv: dict[str, dict[str, Any]] = {}
     for _, row in df.iterrows():
