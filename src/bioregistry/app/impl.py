@@ -68,7 +68,7 @@ BIOREGISTRY_FOOTER_DEFAULT = dedent(f"""\
 
     <p class="small text-center text-muted">
     Developed with ❤️ by the
-    <a href="https://www.iac.rwth-aachen.de">Institute for Inorganic Chemistry</a> at RWTH Aachen University
+    <a href="https://www.iac.rwth-aachen.de">Institute of Inorganic Chemistry</a> at RWTH Aachen University
     </br> and the
     <a href="https://gyorilab.github.io">Gyori Lab for Computational Biomedicine</a>
     at Northeastern University.<br/>
