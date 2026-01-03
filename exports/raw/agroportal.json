@@ -2355,7 +2355,7 @@
       "https://data.agroportal.lirmm.fr/projects/VEST-AP"
     ],
     "repository": "https://github.com/FoodOntology/foodon",
-    "version": "2025-08-01",
+    "version": "2025-12-30",
     "viewingRestriction": "public"
   },
   {
@@ -2880,7 +2880,7 @@
     "projects": [
       "https://data.agroportal.lirmm.fr/projects/LEXEAU"
     ],
-    "version": "2.3",
+    "version": "2.4",
     "viewingRestriction": "public",
     "views": [
       "https://data.agroportal.lirmm.fr/ontologies/LEXEAU-FR"
@@ -5111,7 +5111,7 @@
       "name": "Filipi Miranda Soares"
     },
     "description": "The Agriculture Product Types Ontology (APTO) is an ontology of types, meaning it does not contain individuals and is intended as a classification system for agricultural commodities price index databases in Brazil. This ontology contains labels and comments in both Portuguese and English. There are two main modules: :Organism and :Product_type. The :Organism class contains subclasses that represent the taxonomy of species related to the production of given product types. It imports taxonomic information from the Global Biodiversity Information Facility (GBIF) Backbone Taxonomy via API. The :Product_type class has six main subclasses organized into major groups: :Inorganic_compound :Animal_product :Plant_product :Raw_product :Processed_product :By-product The :Animal_product and :Plant_product classes include subclasses indicating the type of processing the product has undergone. These subclasses are also children of :Raw_product, :Processed_product, and :By-product. Object Properties APTO defines nine object properties: :has_ingredient and :is_ingredient_of (inverse properties): Indicate that a product type is used in the manufacturing of a processed product type (e.g., :Cow_cheese :has_ingredient :Cow_milk). :derives_from and :derives_in (inverse properties, imported from the Relations Ontology (RO)): Indicate that a product type originates from another product type (e.g., :Cocoa_almond :derives_from :Cocoa). :member_of_taxon (imported from the Biological Collections Ontology (BCO)): Indicates that an organismal entity belongs to a taxon (e.g., :Pacu :member_of_taxon :Piaractus_mesopotamicus). :produced_by and :produces (inverse properties, imported from RO): Indicate that an organismal entity produces a given type of product. For example, :Assai :produced_by :Assai_palm, and :Assai_palm :member_of_taxon :Euterpe_oleracea. If only the final product is listed in commodity databases and the rest of the organism holds no commercial value, the product is linked directly to the taxon (e.g., :Pineapple :produced_by :Ananas_comosus). :residue_of: Indicates that a by-product is the residue of manufacturing another product (e.g., :Whey :residue_of :Cheese). :is_a_hybrid_of: Specific to the :Organism subclasses, indicating a hybrid of two species (e.g., :Citrus_aurantium :is_a_hybrid_of ( :Citrus_reticulata and :Citrus_maxima ))., meaning it does not contain individuals and is intended as a classification system for agricultural commodities price index databases in Brazil. This ontology contains labels and comments in both Portuguese and English. There are two main modules: :Organism and :Product_type. The :Organism class contains subclasses that represent the taxonomy of species related to the production of given product types. It imports taxonomic information from the Global Biodiversity Information Facility (GBIF) Backbone Taxonomy via API. The :Product_type class has six main subclasses organized into major groups: :Inorganic_compound :Animal_product :Plant_product :Raw_product :Processed_product :By-product The :Animal_product and :Plant_product classes include subclasses indicating the type of processing the product has undergone.",
-    "exampleIdentifier": "https://w3id.org/APTO#Product_type",
+    "exampleIdentifier": "https://w3id.org/APTO#PT0051",
     "hasDomain": [
       "https://data.agroportal.lirmm.fr/categories/AGRI",
       "https://data.agroportal.lirmm.fr/categories/AGRI-PROD",
@@ -5200,6 +5200,7 @@
     "hasDomain": [
       "https://data.agroportal.lirmm.fr/categories/FISH"
     ],
+    "homepage": "https://worldfishcenter.org/aquadata-ontology",
     "license": "CC-BY-4.0",
     "links": {
       "@context": {
@@ -5250,7 +5251,13 @@
       "xl_labels": "https://data.agroportal.lirmm.fr/ontologies/AQFO/skos_xl_labels"
     },
     "name": "Aquatic Food Ontology",
+    "notes": [
+      "https://data.agroportal.lirmm.fr/notes/62efa3f0-c9ff-013e-cf2e-5254006dce65",
+      "https://data.agroportal.lirmm.fr/notes/9bf0e070-c9ff-013e-cf2e-5254006dce65",
+      "https://data.agroportal.lirmm.fr/notes/774c6320-c9ff-013e-cf2e-5254006dce65"
+    ],
     "ontologyType": "https://data.agroportal.lirmm.fr/ontology_types/ONTOLOGY",
+    "repository": "https://github.com/WorldFishCenter/fish-ontology",
     "viewingRestriction": "public"
   },
   {
@@ -5641,6 +5648,7 @@
     "name": "BioAGgressor Ontology",
     "ontologyType": "https://data.agroportal.lirmm.fr/ontology_types/ONTOLOGY",
     "projects": [
+      "https://data.agroportal.lirmm.fr/projects/D2KAB",
       "https://data.agroportal.lirmm.fr/projects/Vitioeno"
     ],
     "publications": [
@@ -5812,7 +5820,8 @@
     "name": "BigDataGrapes Ontology",
     "ontologyType": "https://data.agroportal.lirmm.fr/ontology_types/ONTOLOGY",
     "projects": [
-      "https://data.agroportal.lirmm.fr/projects/BDG"
+      "https://data.agroportal.lirmm.fr/projects/BDG",
+      "https://data.agroportal.lirmm.fr/projects/BigDataGrapes"
     ],
     "repository": "https://github.com/BigDataGrapes-EU/ontology",
     "version": "1.0",
@@ -12102,6 +12111,9 @@
     },
     "name": "InfraRisk Ontology",
     "ontologyType": "https://data.agroportal.lirmm.fr/ontology_types/ONTOLOGY",
+    "projects": [
+      "https://data.agroportal.lirmm.fr/projects/INFRARISK"
+    ],
     "version": "1.0",
     "viewingRestriction": "public"
   },
@@ -13669,6 +13681,9 @@
     },
     "name": "Ontology for Nutritional Studies",
     "ontologyType": "https://data.agroportal.lirmm.fr/ontology_types/ONTOLOGY",
+    "projects": [
+      "https://data.agroportal.lirmm.fr/projects/ENPADASI"
+    ],
     "version": "Relese version 1.0",
     "viewingRestriction": "public"
   },
@@ -14048,6 +14063,10 @@
     },
     "name": "Ploutos Common Semantic Model",
     "ontologyType": "https://data.agroportal.lirmm.fr/ontology_types/ONTOLOGY",
+    "projects": [
+      "https://data.agroportal.lirmm.fr/projects/PLOUTOS"
+    ],
+    "repository": "https://gitlab.com/Ploutos-project/ploutos-common-semantic-model",
     "viewingRestriction": "public"
   },
   {
@@ -14641,7 +14660,10 @@
     "projects": [
       "https://data.agroportal.lirmm.fr/projects/MIAPPE",
       "https://data.agroportal.lirmm.fr/projects/RDAWheat",
-      "https://data.agroportal.lirmm.fr/projects/VEST-AP"
+      "https://data.agroportal.lirmm.fr/projects/VEST-AP",
+      "https://data.agroportal.lirmm.fr/projects/EPPN2020",
+      "https://data.agroportal.lirmm.fr/projects/TransPLANT",
+      "https://data.agroportal.lirmm.fr/projects/ELIXIR-EXCELERATE"
     ],
     "repository": "https://github.com/MIAPPE/MIAPPE-ontology",
     "version": "1.1-beta",
@@ -15256,6 +15278,7 @@
       "email": "ga.ubbiali@gmail.com",
       "name": "Giorgio A. Ubbiali"
     },
+    "description": "The Sustainability Core Ontology (SCO) is a middle-level ontology, covering the terminology related to the three major theoretical challenges of sustainability: 1) The polysemy of the term sustainability. 2) The relationship between sustainability and sustainable development. 3) The complexity underlying sustainability. SCO is designed to be the pivotal resource upon which to harmonize and integrate ontologies regarding sustainability. The ultimate goal is to establish a family of interoperable sustainability ontologies. Currently, SCO employs Basic Formal Ontology (BFO) and Unified Foundational Ontology (UFO) as the upper-level ontologies. SCO V1.1.0 is the current release and is comprised of two segments: SCO-B (B for BFO) and SCO-U (U for UFO). SCO-B aligns the SCO vocabulary with BFO. SCO-U aligns the SCO vocabulary with gUFO (UFO implementation in the Web Ontology Language (OWL)). SCO V1.1.0. conforms to OBO-Foundry principles. The most recent version of SCO-B segment can always be found at https://w3id.org/sco. The most recent version of SCO-U segment can always be found at https://w3id.org/sco/sco-u. This file provides SCO-B segment. References – TLOs: https://github.com/BFO-ontology/BFO-2020 https://ontouml.readthedocs.io/en/latest/intro/ufo.html https://nemo-ufes.github.io/gufo/",
     "homepage": "https://www.w3id.org/sco/repo",
     "license": "CC-BY-4.0",
     "links": {
@@ -15851,6 +15874,9 @@
     },
     "name": "agINFRA Soil Vocabulary",
     "ontologyType": "https://data.agroportal.lirmm.fr/ontology_types/ONTOLOGY",
+    "projects": [
+      "https://data.agroportal.lirmm.fr/projects/agINFRA"
+    ],
     "version": "V-2014",
     "viewingRestriction": "public"
   },
@@ -16678,7 +16704,8 @@
     "ontologyType": "https://data.agroportal.lirmm.fr/ontology_types/ONTOLOGY",
     "projects": [
       "https://data.agroportal.lirmm.fr/projects/LOVInra",
-      "https://data.agroportal.lirmm.fr/projects/VEST-AP"
+      "https://data.agroportal.lirmm.fr/projects/VEST-AP",
+      "https://data.agroportal.lirmm.fr/projects/ATA-RI"
     ],
     "viewingRestriction": "public"
   },
@@ -18311,6 +18338,7 @@
       "email": "ga.ubbiali@gmail.com",
       "name": "Giorgio A. Ubbiali"
     },
+    "description": "SCO is a middle-level ontology, representing the major theoretical challenges to sustainability: 1) The polysemy of the term sustainability. 2) The relationship between sustainability and sustainable development. 3) The complexity underlying sustainability. SCO aims to play a pivotal role in harmonizing and integrating top-level and domain ontologies regarding sustainability., SCO V1.1.0 aligns with two Top-Level Ontologies (TLOs), Basic Formal Ontology (BFO) and Unified Foundational Ontology (UFO). SCO V1.1.0 is comprised of two segments: SCO-B (B for BFO) and SCO-U (U for UFO). SCO-B aligns the SCO vocabulary with BFO (as SCO V1.0.0). SCO-U aligns the SCO vocabulary with gUFO (UFO implementation in the Web Ontology Language (OWL)). This file provides SCO-U segment. References – TLOs: https://github.com/BFO-ontology/BFO-2020 https://ontouml.readthedocs.io/en/latest/intro/ufo.html https://nemo-ufes.github.io/gufo/",
     "homepage": "https://www.w3id.org/sco/repo",
     "license": "CC-BY-4.0",
     "links": {
@@ -18982,6 +19010,7 @@
       "https://data.agroportal.lirmm.fr/categories/FOREST",
       "https://data.agroportal.lirmm.fr/categories/SOIL"
     ],
+    "homepage": "https://agroforesterie.github.io/",
     "license": "CC-BY-4.0",
     "links": {
       "@context": {

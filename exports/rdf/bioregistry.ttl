@@ -411,8 +411,8 @@
 @prefix dc: <http://purl.org/dc/elements/1.1/> .
 @prefix dcam: <http://purl.org/dc/dcam/> .
 @prefix dcat: <http://www.w3.org/ns/dcat#> .
-@prefix dcmitype: <http://purl.org/dc/dcmitype/> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix dctypes: <http://purl.org/dc/dcmitype/> .
 @prefix ddanat: <http://purl.obolibrary.org/obo/DDANAT_> .
 @prefix ddi: <http://rdf-vocabulary.ddialliance.org/lifecycle#> .
 @prefix ddi.aggregationmethod: <https://vocabularies.cessda.eu/vocabulary/AggregationMethod?lang=en#code_> .
@@ -723,10 +723,10 @@
 @prefix genewiki: <http://plugins.biogps.org/cgi-bin/wp.cgi?id=> .
 @prefix geno: <http://purl.obolibrary.org/obo/GENO_> .
 @prefix genprop: <https://www.ebi.ac.uk/interpro/genomeproperties/#> .
-@prefix geo: <http://www.opengis.net/ont/geosparql#> .
 @prefix geo1: <https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=> .
 @prefix geogeo: <http://purl.obolibrary.org/obo/GEO_> .
 @prefix geonames: <https://www.geonames.org/> .
+@prefix geosparql: <http://www.opengis.net/ont/geosparql#> .
 @prefix gesah: <http://ontology.tib.eu/gesah/> .
 @prefix gesis.kategorienschemawahlstudien: <https://vocabularies.cessda.eu/vocabulary/KategorienschemaWahlstudien?lang=en#code_> .
 @prefix gesis.rexconcepts: <https://vocabularies.cessda.eu/vocabulary/rexconcepts?lang=en#code_> .
@@ -1099,6 +1099,7 @@
 @prefix metatlas.reaction: <https://metabolicatlas.org/identifier/MetabolicAtlas/> .
 @prefix metlin: <http://metlin.scripps.edu/metabo_info.php?molid=> .
 @prefix metnetdb: <http://metnetonline.org/browse_pathway2.php?pthID=> .
+@prefix metpo: <https://w3id.org/metpo/> .
 @prefix mex: <https://www.metabolome-express.org/datasetview.php?datasetid=> .
 @prefix mf: <http://purl.obolibrary.org/obo/MF_> .
 @prefix mfmo: <http://purl.obolibrary.org/obo/MFMO_> .
@@ -1395,6 +1396,7 @@
 @prefix p_3dmet: <http://www.3dmet.dna.affrc.go.jp/cgi/show_data.php?acc=> .
 @prefix p_4dn.biosource: <https://data.4dnucleome.org/biosources/> .
 @prefix p_4dn.replicate: <https://data.4dnucleome.org/experiment-set-replicates/> .
+@prefix pahg: <https://www.pahgncb.com/genomedb/public/genefamily/> .
 @prefix paleodb: <http://fossilworks.org/?a=taxonInfo&taxon_no=> .
 @prefix pandit: <http://www.ebi.ac.uk/goldman-srv/pandit/pandit.cgi?action=browse&fam=> .
 @prefix panet: <http://purl.org/pan-science/PaNET/PaNET> .
@@ -1469,6 +1471,7 @@
 @prefix planttfdb: <http://planttfdb.cbi.pku.edu.cn/tf.php?uid=> .
 @prefix plasmodb: <http://plasmodb.org/plasmo/showRecord.do?name=GeneRecordClasses.GeneRecordClass&source_id=> .
 @prefix plos: <http://localhost/plosthes.2017-1#> .
+@prefix pmads: <https://pmads-db.org/result/?id=> .
 @prefix pmap.cutdb: <http://cutdb.burnham.org/relation/show/> .
 @prefix pmc: <http://europepmc.org/articles/> .
 @prefix pmdb: <https://bioinformatics.cineca.it/PMDB/user//search.php?idsearch=> .
@@ -20363,6 +20366,28 @@ bioregistry:metnetdb a bioregistry.schema:0000001 ;
     bioregistry.schema:0000027 metnetdb:377369 ;
     bioregistry.schema:0000029 "metnetdb" .
 
+bioregistry:metpo a bioregistry.schema:0000001 ;
+    rdfs:label "Microbial Ecophysiological Trait and Phenotype Ontology" ;
+    dcterms:contributor orcid:0000-0001-9076-6066 ;
+    dcterms:description "METPO (Microbial Ecophysiological Trait and Phenotype Ontology) provides standardized terms for describing microbial phenotypes, growth characteristics, and culture conditions. It includes classes for growth media, temperature tolerances, pH tolerances, and relationships like \"grows in\" and \"does not grow in\"."^^xsd:string ;
+    dcterms:isPartOf bioregistry.registry:bioregistry ;
+    doap:GitRepository <https://github.com/berkeleybop/metpo> ;
+    dcat:keyword "microbes",
+        "ontology",
+        "phenotypes" ;
+    foaf:homepage <https://github.com/berkeleybop/metpo> ;
+    bioregistry.schema:0000005 "1004005"^^xsd:string ;
+    bioregistry.schema:0000006 "https://w3id.org/metpo/$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
+    bioregistry.schema:0000010 metpo:metpo.owl ;
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000019 orcid:0000-0001-9076-6066 ;
+    bioregistry.schema:0000021 orcid:0000-0003-4423-4370 ;
+    bioregistry.schema:0000024 "https://w3id.org/metpo/"^^xsd:string ;
+    bioregistry.schema:0000026 ror:02jbv0t02 ;
+    bioregistry.schema:0000027 metpo:1004005 ;
+    bioregistry.schema:0000029 "metpo" .
+
 bioregistry:mex a bioregistry.schema:0000001 ;
     rdfs:label "Metabolome Express" ;
     dcterms:description "A public place to process, interpret and share GC/MS metabolomics datasets."^^xsd:string ;
@@ -25099,6 +25124,28 @@ bioregistry:p3db.site a bioregistry.schema:0000001 ;
     bioregistry.schema:0000027 <http://www.p3db.org/phosphosite.php?id=65&ref=0> ;
     bioregistry.schema:0000029 "p3db.site" .
 
+bioregistry:pahg a bioregistry.schema:0000001 ;
+    rdfs:label "Phylogenomic Analysis of Human Genome" ;
+    dcterms:contributor orcid:0009-0009-3402-8013 ;
+    dcterms:description "Identifiers correspond to curated multigene families in the human genome from the Phylogenomic Analysis of Human Genome (PAHG) database, focusing on evolutionary relationships and gene duplication events across vertebrates."^^xsd:string ;
+    dcterms:isPartOf bioregistry.registry:bioregistry ;
+    dcat:keyword "gene duplication",
+        "human genome",
+        "multigene families",
+        "paralogons",
+        "phylogenomics",
+        "vertebrate evolution" ;
+    foaf:homepage <https://www.pahgncb.com> ;
+    bioregistry.schema:0000005 "92"^^xsd:string ;
+    bioregistry.schema:0000006 "https://www.pahgncb.com/genomedb/public/genefamily/$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000019 orcid:0000-0002-9922-9723 ;
+    bioregistry.schema:0000021 orcid:0000-0003-4423-4370 ;
+    bioregistry.schema:0000024 "https://www.pahgncb.com/genomedb/public/genefamily/"^^xsd:string ;
+    bioregistry.schema:0000027 pahg:92 ;
+    bioregistry.schema:0000029 "pahg" .
+
 bioregistry:paleodb a bioregistry.schema:0000001 ;
     rdfs:label "Paleobiology Database" ;
     dcterms:description "The Paleobiology Database seeks to provide researchers and the public with information about the entire fossil record. It stores global, collection-based occurrence and taxonomic data for marine and terrestrial animals and plants of any geological age, as well as web-based software for statistical analysis of the data."^^xsd:string ;
@@ -26185,6 +26232,25 @@ bioregistry:plos a bioregistry.schema:0000001 ;
     bioregistry.schema:0000024 "http://localhost/plosthes.2017-1#"^^xsd:string ;
     bioregistry.schema:0000027 plos:1443 ;
     bioregistry.schema:0000029 "plos" .
+
+bioregistry:pmads a bioregistry.schema:0000001 ;
+    rdfs:label "PMADS" ;
+    dcterms:contributor orcid:0009-0009-3402-8013 ;
+    dcterms:description "Identifiers correspond to curated and proteomics-inferred associations between protein post-translational modifications (PTM) and drug sensitivity."^^xsd:string ;
+    dcterms:isPartOf bioregistry.registry:bioregistry ;
+    dcat:keyword "drug sensitivity",
+        "modification",
+        "proteomics" ;
+    foaf:homepage <https://pmads-db.org> ;
+    bioregistry.schema:0000005 "acc0079"^^xsd:string ;
+    bioregistry.schema:0000006 "https://pmads-db.org/result/?id=$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^acc\\d{4}$"^^xsd:string ;
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000019 orcid:0000-0001-8364-8328 ;
+    bioregistry.schema:0000021 orcid:0000-0001-9439-5346 ;
+    bioregistry.schema:0000024 "https://pmads-db.org/result/?id="^^xsd:string ;
+    bioregistry.schema:0000027 pmads:acc0079 ;
+    bioregistry.schema:0000029 "pmads" .
 
 bioregistry:pmap.cutdb a bioregistry.schema:0000001 ;
     rdfs:label "CutDB" ;
@@ -33684,6 +33750,9 @@ orcid:0000-0001-8149-5890 rdfs:label "Robert Hoehndorf" ;
 
 orcid:0000-0001-8175-045X rdfs:label "Marcin Pawel Joachimiak" ;
     foaf:mbox "MJoachimiak@lbl.gov" .
+
+orcid:0000-0001-8364-8328 rdfs:label "Haiyun Wang" ;
+    foaf:mbox "wanglab.tj@outlook.com" .
 
 orcid:0000-0001-8372-8387 rdfs:label "Carlo Ravagli" ;
     foaf:mbox "carlo.ravagli@novartis.com" .
@@ -44385,7 +44454,7 @@ bioregistry:dctypes a bioregistry.schema:0000001 ;
     bioregistry.schema:0000023 "dcmitype",
         "dcmitypes" ;
     bioregistry.schema:0000024 "http://purl.org/dc/dcmitype/"^^xsd:string ;
-    bioregistry.schema:0000027 dcmitype:Collection ;
+    bioregistry.schema:0000027 dctypes:Collection ;
     bioregistry.schema:0000029 "dctypes" .
 
 bioregistry:ddi.aggregationmethod a bioregistry.schema:0000001 ;
@@ -46011,7 +46080,7 @@ bioregistry:geosparql a bioregistry.schema:0000001 ;
     bioregistry.schema:0000019 [ rdfs:label "Kim Durante" ;
             foaf:mbox "kdurante@stanford.edu" ] ;
     bioregistry.schema:0000024 "http://www.opengis.net/ont/geosparql#"^^xsd:string ;
-    bioregistry.schema:0000027 geo:hasDefaultGeometry ;
+    bioregistry.schema:0000027 geosparql:hasDefaultGeometry ;
     bioregistry.schema:0000029 "geosparql" .
 
 bioregistry:gesah a bioregistry.schema:0000001 ;
@@ -57928,9 +57997,6 @@ orcid:0000-0001-9052-2854 rdfs:label "Kim Durante" ;
 orcid:0000-0001-9076-6015 rdfs:label "Chris Grove" ;
     foaf:mbox "cgrove@caltech.edu" .
 
-orcid:0000-0001-9076-6066 rdfs:label "Mark Andrew Miller" ;
-    foaf:mbox "mam@lbl.gov" .
-
 orcid:0000-0001-9105-5960 rdfs:label "Michael Hucka" ;
     foaf:mbox "mhucka@caltech.edu" .
 
@@ -58102,9 +58168,6 @@ orcid:0000-0002-9900-7880 rdfs:label "Yvonne Bradford" ;
 
 orcid:0000-0002-9903-4248 rdfs:label "Michael Baudis" ;
     foaf:mbox "mbaudis@me.com" .
-
-orcid:0000-0002-9922-9723 rdfs:label "Yiming Bao" ;
-    foaf:mbox "baoym@big.ac.cn" .
 
 orcid:0000-0003-0185-8861 rdfs:label "Gary Bader" ;
     foaf:mbox "gary.bader@utoronto.ca" .
@@ -66935,6 +66998,9 @@ orcid:0000-0002-8844-9165 rdfs:label "Damion Dooley" ;
 orcid:0000-0002-9077-5664 rdfs:label "Ulrike Wittig" ;
     foaf:mbox "ulrike.wittig@h-its.org" .
 
+orcid:0000-0002-9922-9723 rdfs:label "Yiming Bao" ;
+    foaf:mbox "baoym@big.ac.cn" .
+
 orcid:0000-0003-0443-9902 rdfs:label "Adriano Rutz" ;
     foaf:mbox "adriano.rutz@ik.me" .
 
@@ -68363,6 +68429,9 @@ orcid:0000-0001-5809-9523 rdfs:label "Darren A. Natale",
 orcid:0000-0001-5985-7429 rdfs:label "Colin Batchelor" ;
     foaf:mbox "BatchelorC@rsc.org",
         "batchelorc@rsc.org" .
+
+orcid:0000-0001-9076-6066 rdfs:label "Mark Andrew Miller" ;
+    foaf:mbox "mam@lbl.gov" .
 
 orcid:0000-0001-9311-9745 rdfs:label "Terence D. Murphy" ;
     foaf:mbox "murphyte@ncbi.nlm.nih.gov" .
@@ -69798,9 +69867,6 @@ orcid:0000-0003-4446-6200 rdfs:label "Jessica Kissinger",
         "oharb@pcbi.upenn.edu",
         "oharb@upenn.edu" .
 
-orcid:0009-0009-3402-8013 rdfs:label "Kangho Ji" ;
-    foaf:mbox "ji.kang@northeastern.edu" .
-
 bioregistry:caro a bioregistry.schema:0000001 ;
     rdfs:label "Common Anatomy Reference Ontology" ;
     dcterms:description "The Common Anatomy Reference Ontology (CARO) is being developed to facilitate interoperability between existing anatomy ontologies for different species, and will provide a template for building new anatomy ontologies."^^xsd:string ;
@@ -70370,6 +70436,9 @@ bioregistry:xpo a bioregistry.schema:0000001 ;
 
 orcid:0000-0002-6388-446X rdfs:label "Malachi Griffith" ;
     foaf:mbox "mgriffit@wustl.edu" .
+
+orcid:0009-0009-3402-8013 rdfs:label "Kangho Ji" ;
+    foaf:mbox "ji.kang@northeastern.edu" .
 
 bioregistry:fovt a bioregistry.schema:0000001 ;
     rdfs:label "FuTRES Ontology of Vertebrate Traits" ;
@@ -81091,6 +81160,7 @@ bioregistry.registry:bioregistry a bioregistry.schema:0000002 ;
         bioregistry:metatlas.reaction,
         bioregistry:metlin,
         bioregistry:metnetdb,
+        bioregistry:metpo,
         bioregistry:mex,
         bioregistry:mf,
         bioregistry:mfmo,
@@ -81429,6 +81499,7 @@ bioregistry.registry:bioregistry a bioregistry.schema:0000002 ;
         bioregistry:p3db.site,
         bioregistry:packagist,
         bioregistry:pactr,
+        bioregistry:pahg,
         bioregistry:paleodb,
         bioregistry:pandit,
         bioregistry:panet,
@@ -81517,6 +81588,7 @@ bioregistry.registry:bioregistry a bioregistry.schema:0000002 ;
         bioregistry:plasmodb,
         bioregistry:plo,
         bioregistry:plos,
+        bioregistry:pmads,
         bioregistry:pmap.cutdb,
         bioregistry:pmap.substratedb,
         bioregistry:pmc,

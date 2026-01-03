@@ -2222,7 +2222,7 @@ apo:
   repository: https://github.com/obophenotype/ascomycete-phenotype-ontology
   twitter: yeastgenome
   uri_format: http://purl.obolibrary.org/obo/APO_$1
-  version: '2025-11-10'
+  version: '2025-12-19'
 apollosv:
   appears_in:
   - scdo
@@ -18305,7 +18305,7 @@ dron:
   rdf_uri_format: http://purl.obolibrary.org/obo/DRON_$1
   repository: https://github.com/mcwdsi/dron
   uri_format: http://purl.obolibrary.org/obo/DRON_$1
-  version: '2025-11-20'
+  version: '2025-12-19'
 drsanv0:
   description: 'This namespace is used for GA4GH Data Repository Service (DRS) access
     to the USA National Institutes of Health (NIH), National Human Genome Research
@@ -41608,6 +41608,46 @@ metnetdb:
     name: Charles Tapley Hoyt
     orcid: 0000-0003-4423-4370
   uri_format: http://metnetonline.org/browse_pathway2.php?pthID=$1
+metpo:
+  contact:
+    email: mam@lbl.gov
+    github: turbomam
+    name: Mark Andrew Miller
+    orcid: 0000-0001-9076-6066
+  contributor:
+    email: mam@lbl.gov
+    github: turbomam
+    name: Mark Andrew Miller
+    orcid: 0000-0001-9076-6066
+  description: METPO (Microbial Ecophysiological Trait and Phenotype Ontology) provides
+    standardized terms for describing microbial phenotypes, growth characteristics,
+    and culture conditions. It includes classes for growth media, temperature tolerances,
+    pH tolerances, and relationships like "grows in" and "does not grow in".
+  download_json: https://w3id.org/metpo/metpo.json
+  download_obo: https://w3id.org/metpo/metpo.obo
+  download_owl: https://w3id.org/metpo/metpo.owl
+  example: '1004005'
+  github_request_issue: 1794
+  homepage: https://github.com/berkeleybop/metpo
+  keywords:
+  - microbes
+  - ontology
+  - phenotypes
+  name: Microbial Ecophysiological Trait and Phenotype Ontology
+  owners:
+  - name: Lawrence Berkeley National Laboratory
+    partnered: false
+    ror: 02jbv0t02
+    wikidata: Q1133630
+  pattern: ^\d+$
+  preferred_prefix: METPO
+  repository: https://github.com/berkeleybop/metpo
+  reviewer:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  uri_format: https://w3id.org/metpo/$1
 mex:
   description: A public place to process, interpret and share GC/MS metabolomics datasets.
   example: '36'
@@ -44427,7 +44467,7 @@ mp:
   rdf_uri_format: http://purl.obolibrary.org/obo/MP_$1
   repository: https://github.com/mgijax/mammalian-phenotype-ontology
   uri_format: http://purl.obolibrary.org/obo/MP_$1
-  version: '2025-11-19'
+  version: '2025-12-18'
 mpath:
   contact:
     email: pns12@hermes.cam.ac.uk
@@ -52613,6 +52653,44 @@ pactr:
   preferred_prefix: pactr
   references:
   - https://pactr.samrc.ac.za/TrialDisplay.aspx?TrialID=25488
+pahg:
+  contact:
+    email: baoym@big.ac.cn
+    name: Yiming Bao
+    orcid: 0000-0002-9922-9723
+  contributor:
+    email: ji.kang@northeastern.edu
+    github: kanghosaeyo
+    name: Kangho Ji
+    orcid: 0009-0009-3402-8013
+  description: Identifiers correspond to curated multigene families in the human genome
+    from the Phylogenomic Analysis of Human Genome (PAHG) database, focusing on evolutionary
+    relationships and gene duplication events across vertebrates.
+  example: '92'
+  github_request_issue: 1796
+  homepage: https://www.pahgncb.com
+  keywords:
+  - gene duplication
+  - human genome
+  - multigene families
+  - paralogons
+  - phylogenomics
+  - vertebrate evolution
+  name: Phylogenomic Analysis of Human Genome
+  pattern: ^\d+$
+  preferred_prefix: pahg
+  publications:
+  - doi: 10.1186/s12863-025-01361-y
+    pmc: PMC12522930
+    pubmed: '41087926'
+    title: 'PAHG: the database of human multi-gene families'
+    year: 2025
+  reviewer:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  uri_format: https://www.pahgncb.com/genomedb/public/genefamily/$1
 paleodb:
   description: The Paleobiology Database seeks to provide researchers and the public
     with information about the entire fossil record. It stores global, collection-based
@@ -55828,6 +55906,40 @@ plos:
   synonyms:
   - PLOSTHES
   uri_format: http://localhost/plosthes.2017-1#$1
+pmads:
+  contact:
+    email: wanglab.tj@outlook.com
+    name: Haiyun Wang
+    orcid: 0000-0001-8364-8328
+  contributor:
+    email: ji.kang@northeastern.edu
+    github: kanghosaeyo
+    name: Kangho Ji
+    orcid: 0009-0009-3402-8013
+  description: Identifiers correspond to curated and proteomics-inferred associations
+    between protein post-translational modifications (PTM) and drug sensitivity.
+  example: acc0079
+  github_request_issue: 1799
+  homepage: https://pmads-db.org
+  keywords:
+  - drug sensitivity
+  - modification
+  - proteomics
+  name: PMADS
+  pattern: ^acc\d{4}$
+  preferred_prefix: pmads
+  publications:
+  - doi: 10.1093/nar/gkaf1033
+    pubmed: '41099621'
+    title: 'PMADS: an integrated database of curated and proteomics-inferred associations
+      between protein post-translational modifications and drug sensitivity.'
+    year: 2025
+  reviewer:
+    email: b.gyori@northeastern.edu
+    github: bgyori
+    name: Benjamin M. Gyori
+    orcid: 0000-0001-9439-5346
+  uri_format: https://pmads-db.org/result/?id=$1
 pmap.cutdb:
   contact:
     email: adam@burnham.org
