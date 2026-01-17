@@ -226,7 +226,7 @@
       "name": "Filipi Miranda Soares"
     },
     "description": "The Agriculture Product Types Ontology (APTO) is an ontology of types, meaning it does not contain individuals and is intended as a classification system for agricultural commodities price index databases in Brazil. This ontology contains labels and comments in both Portuguese and English. There are two main modules: :Organism and :Product_type. The :Organism class contains subclasses that represent the taxonomy of species related to the production of given product types. It imports taxonomic information from the Global Biodiversity Information Facility (GBIF) Backbone Taxonomy via API. The :Product_type class has six main subclasses organized into major groups: :Inorganic_compound :Animal_product :Plant_product :Raw_product :Processed_product :By-product The :Animal_product and :Plant_product classes include subclasses indicating the type of processing the product has undergone. These subclasses are also children of :Raw_product, :Processed_product, and :By-product. Object Properties APTO defines nine object properties: :has_ingredient and :is_ingredient_of (inverse properties): Indicate that a product type is used in the manufacturing of a processed product type (e.g., :Cow_cheese :has_ingredient :Cow_milk). :derives_from and :derives_in (inverse properties, imported from the Relations Ontology (RO)): Indicate that a product type originates from another product type (e.g., :Cocoa_almond :derives_from :Cocoa). :member_of_taxon (imported from the Biological Collections Ontology (BCO)): Indicates that an organismal entity belongs to a taxon (e.g., :Pacu :member_of_taxon :Piaractus_mesopotamicus). :produced_by and :produces (inverse properties, imported from RO): Indicate that an organismal entity produces a given type of product. For example, :Assai :produced_by :Assai_palm, and :Assai_palm :member_of_taxon :Euterpe_oleracea. If only the final product is listed in commodity databases and the rest of the organism holds no commercial value, the product is linked directly to the taxon (e.g., :Pineapple :produced_by :Ananas_comosus). :residue_of: Indicates that a by-product is the residue of manufacturing another product (e.g., :Whey :residue_of :Cheese). :is_a_hybrid_of: Specific to the :Organism subclasses, indicating a hybrid of two species (e.g., :Citrus_aurantium :is_a_hybrid_of ( :Citrus_reticulata and :Citrus_maxima ))., meaning it does not contain individuals and is intended as a classification system for agricultural commodities price index databases in Brazil. This ontology contains labels and comments in both Portuguese and English. There are two main modules: :Organism and :Product_type. The :Organism class contains subclasses that represent the taxonomy of species related to the production of given product types. It imports taxonomic information from the Global Biodiversity Information Facility (GBIF) Backbone Taxonomy via API. The :Product_type class has six main subclasses organized into major groups: :Inorganic_compound :Animal_product :Plant_product :Raw_product :Processed_product :By-product The :Animal_product and :Plant_product classes include subclasses indicating the type of processing the product has undergone.",
-    "example_uri": "https://w3id.org/APTO#PT0051",
+    "example_uri": "https://w3id.org/APTO/PT0051",
     "homepage": "https://almescore.github.io/APTO/",
     "license": "CC-BY-4.0",
     "name": "Agriculture Product Types Ontology",
@@ -237,7 +237,7 @@
       "https://doi.org/10.1109/ACCESS.2025.3595447"
     ],
     "repository": "https://github.com/AlmesCore/APTO/tree/main",
-    "version": "1.2999999523162841797"
+    "version": "1.3.2"
   },
   "AQFO": {
     "contact": {
@@ -542,43 +542,24 @@
     "prefix": "CDNO",
     "repository": "https://github.com/Southern-Cross-Plant-Science/cdno"
   },
-  "CEON-ACTOR": {
+  "CEON": {
     "contact": {
-      "email": "mohamed-el-amine.boukerfa@inrae.fr",
-      "name": "LOV_migration"
+      "email": "huanyu.li@liu.se",
+      "name": "Huanyu Li"
     },
-    "description": "The Actor module of CEON (Circular Economy Ontology Network).",
-    "license": "CC-BY-4.0",
-    "name": "Circular Economy Ontology Network (CEON) - Actor Module",
-    "prefix": "CEON-ACTOR",
-    "version": "0.4"
-  },
-  "CEON-ACTORODP": {
-    "contact": {
-      "email": "mohamed-el-amine.boukerfa@inrae.fr",
-      "name": "LOV_migration"
-    },
-    "description": "A core ODP of the CEON ontology network, defining aspects of the actor concept.",
-    "license": "CC-BY-4.0",
-    "name": "Circular Economy Ontology Network (CEON) - Actor ODP",
-    "prefix": "CEON-ACTORODP",
-    "version": "0.4"
-  },
-  "CEON-CVN": {
-    "contact": {
-      "email": "mohamed-el-amine.boukerfa@inrae.fr",
-      "name": "LOV_migration"
-    },
-    "description": "A core module of the CEON ontology network, defining aspects of the circular value network (CVN) itself.",
-    "license": "CC-BY-4.0",
-    "name": "Circular Economy Ontology Network (CEON) - Circular Value Network Module",
-    "prefix": "CEON-CVN",
-    "version": "0.3"
+    "description": "The full module of CEON (Circular Economy Ontology Network).",
+    "example_uri": "http://w3id.org/CEON/ontology/cvn/CircularStrategy",
+    "homepage": "https://liusemweb.github.io/CEON/",
+    "license": "https://github.com/LiUSemWeb/CEON/blob/master/LICENSE",
+    "name": "Circular Economy Ontology Network",
+    "prefix": "CEON",
+    "repository": "https://github.com/LiUSemWeb/CEON/",
+    "version": "0.2"
   },
   "CEON-ENERGY": {
     "contact": {
-      "email": "mohamed-el-amine.boukerfa@inrae.fr",
-      "name": "LOV_migration"
+      "email": "huanyu.li@liu.se",
+      "name": "Huanyu Li"
     },
     "description": "A module of the CEON ontology network defining aspects of the energy concept.",
     "license": "CC-BY-4.0",
@@ -586,81 +567,16 @@
     "prefix": "CEON-ENERGY",
     "version": "0.2"
   },
-  "CEON-MATERIAL": {
-    "contact": {
-      "email": "mohamed-el-amine.boukerfa@inrae.fr",
-      "name": "LOV_migration"
-    },
-    "description": "The Material module of CEON (Circular Economy Ontology Network).",
-    "license": "CC-BY-4.0",
-    "name": "Circular Economy Ontology Network (CEON) - Material Module",
-    "prefix": "CEON-MATERIAL",
-    "version": "0.4"
-  },
-  "CEON-PLAN": {
-    "contact": {
-      "email": "mohamed-el-amine.boukerfa@inrae.fr",
-      "name": "LOV_migration"
-    },
-    "description": "The Plan module of CEON (Circular Economy Ontology Network).",
-    "license": "CC-BY-4.0",
-    "name": "Circular Economy Ontology Network (CEON) - Plan Module",
-    "prefix": "CEON-PLAN",
-    "version": "0.1"
-  },
-  "CEON-PROCESS": {
-    "contact": {
-      "email": "mohamed-el-amine.boukerfa@inrae.fr",
-      "name": "LOV_migration"
-    },
-    "description": "The Process module of CEON (Circular Economy Ontology Network).",
-    "license": "CC-BY-4.0",
-    "name": "Circular Economy Ontology Network (CEON) - Process Module",
-    "prefix": "CEON-PROCESS",
-    "version": "0.5"
-  },
   "CEON-PROCESSODP": {
     "contact": {
-      "email": "mohamed-el-amine.boukerfa@inrae.fr",
-      "name": "LOV_migration"
+      "email": "huanyu.li@liu.se",
+      "name": "Huanyu Li"
     },
     "description": "A core ODP of the CEON ontology network, defining aspects of the process concept.",
     "license": "CC-BY-4.0",
     "name": "Circular Economy Ontology Network (CEON) - Process ODP",
     "prefix": "CEON-PROCESSODP",
     "version": "0.5"
-  },
-  "CEON-PRODUCT": {
-    "contact": {
-      "email": "mohamed-el-amine.boukerfa@inrae.fr",
-      "name": "LOV_migration"
-    },
-    "description": "The Product module of CEON (Circular Economy Ontology Network).",
-    "name": "Circular Economy Ontology Network (CEON) - Product Module",
-    "prefix": "CEON-PRODUCT",
-    "version": "v2025-07-30"
-  },
-  "CEON-RESOURCEODP": {
-    "contact": {
-      "email": "mohamed-el-amine.boukerfa@inrae.fr",
-      "name": "LOV_migration"
-    },
-    "description": "A core ODP of the CEON ontology network defining aspects of the resource concept.",
-    "license": "CC-BY-4.0",
-    "name": "Circular Economy Ontology Network (CEON) - Resource ODP",
-    "prefix": "CEON-RESOURCEODP",
-    "version": "0.5"
-  },
-  "CEON-VALUE": {
-    "contact": {
-      "email": "mohamed-el-amine.boukerfa@inrae.fr",
-      "name": "LOV_migration"
-    },
-    "description": "A core ODP of the CEON ontology network, defining aspects of the value concept.",
-    "license": "CC-BY-4.0",
-    "name": "Circular Economy Ontology Network (CEON) - Value Module",
-    "prefix": "CEON-VALUE",
-    "version": "0.3"
   },
   "CGO": {
     "contact": {
@@ -1412,36 +1328,6 @@
     "prefix": "DFC",
     "version": "v4.0"
   },
-  "DFC-B": {
-    "contact": {
-      "email": "mohamed-el-amine.boukerfa@inrae.fr",
-      "name": "LOV_migration"
-    },
-    "description": "DFC Business Ontology",
-    "name": "DataFoodConsortium - Business Ontology",
-    "prefix": "DFC-B",
-    "version": "v3.0"
-  },
-  "DFC-P": {
-    "contact": {
-      "email": "mohamed-el-amine.boukerfa@inrae.fr",
-      "name": "LOV_migration"
-    },
-    "description": "A common vocabulary for digital food platforms (Product Glossary Part)",
-    "name": "A common vocabulary for digital food platforms (Product Glossary Part)",
-    "prefix": "DFC-P",
-    "version": "v4.0"
-  },
-  "DFC-T": {
-    "contact": {
-      "email": "mohamed-el-amine.boukerfa@inrae.fr",
-      "name": "LOV_migration"
-    },
-    "description": "A common vocabulary for digital food platforms (Technical Part)",
-    "name": "A common vocabulary for digital food platforms (Technical Part)",
-    "prefix": "DFC-T",
-    "version": "v4.0"
-  },
   "DSW": {
     "contact": {
       "email": "steve.baskauf@vanderbilt.edu",
@@ -1548,7 +1434,7 @@
     "name": "Experimental Factor Ontology",
     "prefix": "EFO",
     "repository": "https://github.com/EBISPOT/efo",
-    "version": "3.85.0"
+    "version": "3.86.0"
   },
   "ENVO": {
     "contact": {
@@ -1999,6 +1885,42 @@
     "prefix": "GR-TAX",
     "version": "2013"
   },
+  "ICASA-CORE": {
+    "contact": {
+      "email": "willis8@illinois.edu",
+      "name": "Craig Willis"
+    },
+    "description": "Ontology based on the ICASA version 2.0 data standard. The foundation of the standard is a master list of variables with major separations among descriptions of management practices or treatments, environmental conditions (soil and weather data), and measurements of crop responses as described in White et al (2013)., and measurements of crop responses as described in White et al (2013).",
+    "homepage": "https://github.com/craig-willis/icasa",
+    "name": "Core ICASA ontology for integrated description of agricultural field experiments and production",
+    "prefix": "ICASA-CORE",
+    "repository": "https://github.com/craig-willis/icasa",
+    "version": "1.0-alpha"
+  },
+  "ICASA-VARIABLES": {
+    "contact": {
+      "email": "willis8@illinois.edu",
+      "name": "Craig Willis"
+    },
+    "description": "Ontology based on the ICASA version 2.0 data standard. The foundation of the standard is a master list of variables with major separations among descriptions of management practices or treatments, environmental conditions (soil and weather data), and measurements of crop responses as described in White et al (2013)., and measurements of crop responses as described in White et al (2013).",
+    "homepage": "https://github.com/craig-willis/icasa",
+    "name": "Variables: ICASA ontology for integrated description of agricultural field experiments and production",
+    "prefix": "ICASA-VARIABLES",
+    "repository": "https://github.com/craig-willis/icasa",
+    "version": "1.0-alpha"
+  },
+  "ICASA-VU": {
+    "contact": {
+      "email": "willis8@illinois.edu",
+      "name": "Craig Willis"
+    },
+    "description": "Ontology intended to model variables and units capturing the ICASA measured data variables as well as CF standard names and BETYdb variables., Ontology intended to model variables and units capturing the ICASA measured data variables as well as CF standard names and BETYdb variables.",
+    "homepage": "https://github.com/craig-willis/icasa",
+    "name": "ICASA Ontology for Variables and Units",
+    "prefix": "ICASA-VU",
+    "repository": "https://github.com/craig-willis/icasa",
+    "version": "1.0-alpha"
+  },
   "ICC": {
     "contact": {
       "email": "faq-hq@fao.org",
@@ -2118,11 +2040,20 @@
       "email": "jeanlouisjanin@gmail.com",
       "name": "Jean-Louis Janin"
     },
-    "description": "The aim of the Lexeau® project is to promote cross-comprehension between those involved in the water sector - scientists, engineers, technicians, administrative staff and lawyers - in their respective areas of expertise, and with the general public. It includes the production of LEXEAU, a bilingual ontology, as a source of the water lexicon published by the Académie de l'Eau. - Le projet Lexeau® a pour but de promouvoir l'intercompréhension entre les acteurs du domaine de l'eau, scientifiques, ingénieurs, techniciens, administratifs et juristes, dans leur domaine de compétence, et avec le grand public. Il comprend la production de LEXEAU, une ontologie bilingue, comme source du lexique de publié par l'Académie de l'Eau.",
+    "description": "The aim of the Lexeau® project is to promote cross-comprehension between those involved in the water sector - scientists, engineers, technicians, administrative staff and lawyers - in their respective areas of expertise, and with the general public. It includes the production of LEXEAU, a bilingual ontology, as a source of the water lexicon published by the Académie de l'Eau. - Le projet Lexeau® a pour but de promouvoir l'intercompréhension entre les acteurs du domaine de l'eau, scientifiques, ingénieurs, techniciens, administratifs et juristes, dans leur domaine de compétence, et avec le grand public. Il comprend la production de LEXEAU, une ontologie bilingue, comme source du lexique de l'eau publié par l'Académie de l'Eau.",
     "license": "CC-BY-4.0",
     "name": "A lexicon of water related textual and geophysicla data - Un lexique de données textuelles et géophysiques sur l'eau",
     "prefix": "LEXEAU",
     "version": "2.4"
+  },
+  "LEXIQUE": {
+    "contact": {
+      "email": "jeanlouisjanin@gmail.com",
+      "name": "Jean-Louis Janin"
+    },
+    "description": "Derived from the LEXEAU ontology version 2.4 on 2026-01-13, as the core of other stratified technical lexicons",
+    "name": "Un noyau conceptuel pour élaborer des lexiques techniques stratifiés des ressources naturelles",
+    "prefix": "LEXIQUE"
   },
   "LHO": {
     "contact": {
@@ -2594,6 +2525,9 @@
     "license": "CC-BY-4.0",
     "name": "Plant Phenotype Experiment Ontology",
     "prefix": "PPEO",
+    "publications": [
+      "https://doi.org/10.1111/nph.16544"
+    ],
     "repository": "https://github.com/MIAPPE/MIAPPE-ontology",
     "version": "1.1-beta"
   },
@@ -2638,7 +2572,7 @@
       "https://planteome.org/references"
     ],
     "repository": "https://github.com/Planteome/plant-stress-ontology",
-    "version": "2025-12-16"
+    "version": "2026-01-08"
   },
   "REPO": {
     "contact": {
@@ -3227,7 +3161,7 @@
       "https://doi.org/10.1093/database/bas033"
     ],
     "repository": "https://github.com/bio-ontology-research-group/unit-ontology",
-    "version": "2026-01-09"
+    "version": "2026-01-16"
   },
   "USE": {
     "contact": {

@@ -96,6 +96,7 @@ prefixes:
   medgen: 'https://www.ncbi.nlm.nih.gov/medgen/'
   metacyc.reaction: 'http://identifiers.org/metacyc.reaction:'
   METANETX.REACTION: 'https://www.metanetx.org/equa_info/'
+  METPO: 'https://w3id.org/metpo/'
   MESH: 'http://id.nlm.nih.gov/mesh/'
   MI: 'http://purl.obolibrary.org/obo/MI_'
   mirbase: 'http://identifiers.org/mirbase'
@@ -5956,14 +5957,23 @@ slots:
       - SEPIO:0000187
       - SEPIO:0000167
 
-  has evidence:
+  has evidence of type:
     is_a: association slot
     range: evidence type
     description: >-
-      connects an association to an instance of supporting evidence
+      Connects an association to an evidence type ontology term.
+      Generally represents terms from the ECO ontology.
+    multivalued: true
+
+  has evidence:
+    is_a: association slot
+    range: information content entity
+    description: >-
+      Connects an association to detailed information providing supporting evidence.
     exact_mappings:
       - RO:0002558
     multivalued: true
+    inlined: false
 
   has study results:
     is_a: association slot
@@ -6674,6 +6684,10 @@ slots:
     required: false
     range: biological sex
 
+  druggable gene category:
+    description: Classification of druggable genes based on knowledge about drug or small molecule activities.
+    range: DruggableGeneCategoryEnum
+
 classes:
   # Add the KGX-specific classes without modifying biolink classes
   KnowledgeGraph:
@@ -7269,7 +7283,9 @@ classes:
       - SEPIO:0000167
 
   evidence type:
-    is_a: information content entity
+    is_a: named thing
+    mixins:
+      - ontology class
     aliases: ['evidence code']
     description: >-
       Class of evidence that supports an association
@@ -7278,7 +7294,12 @@ classes:
     exact_mappings:
       - ECO:0000000
 
-   ## Publications
+  evidence:
+    is_a: information content entity
+    description: >-
+      Dereferences detailed evidence that supports an association
+
+    ## Publications
 
    # TODO: to review additional ontology relating to Publications, such as http://www.sparontologies.net/ontologies
   publication:
@@ -8699,9 +8720,6 @@ classes:
       distinct, others such as MESH conflate.  Please see definitions of phenotypic feature and disease in this model
       for their independent descriptions.  This class is helpful to enforce domains and ranges
       that may involve either a disease or a phenotypic feature.
-    union_of:
-      - disease
-      - phenotypic feature
     narrow_mappings:
       # UMLS Semantic Type "Finding" - more specialized use of 'disease or phenotypic feature'
       - STY:T033
@@ -8941,7 +8959,7 @@ classes:
       - FAO
 
 
-   ## entity mixins
+  ## entity mixins
 
   chemical entity or gene or gene product:
     description: >-
@@ -9967,6 +9985,7 @@ classes:
       - qualifiers  # deprecated
       - publications
       - sources
+      - has evidence of type
       - has evidence
       - knowledge source
       - primary knowledge source
@@ -11511,7 +11530,7 @@ classes:
       object direction qualifier:
         range: DirectionQualifierEnum
       predicate:
-        subproperty_of: affects
+        subproperty_of: contributes to
     comments:
       - NCIT:R176 refers to the inverse relationship
       - for use in describing the affect that the loss of function of a gene can have on exacerbating or ameliorating a symptom/phenotype
@@ -11597,6 +11616,8 @@ classes:
 
   druggable gene to disease association:
     is_a: gene to disease association
+    slots:
+      - druggable gene category
     slot_usage:
       subject:
         range: gene or gene product
@@ -11606,8 +11627,6 @@ classes:
           this leads to a protective or improving disease state.
       predicate:
         subproperty_of: target for
-      has evidence:
-        range: DruggableGeneCategoryEnum
     defining_slots:
       - subject
       - object
@@ -13387,9 +13406,8 @@ enums:
         description: >-
           These targets do not have known drug or small molecule activities that satisfy the activity
           thresholds detailed below AND satisfy one or more of the following criteria:
-          target is above the cutoff criteria for Tdark
-          target is annotated with a Gene Ontology Molecular Function or Biological Process leaf term(s)
-          with an Experimental Evidence code
+          target is above the cutoff criteria for the target is annotated with a
+          Gene Ontology Molecular Function or Biological Process leaf term(s) with an Experimental Evidence code
       "tdark":
         description: >-
           These are targets about which virtually nothing is known. They do not have known drug or small
@@ -13641,6 +13659,15 @@ enums:
           results, we can consider them to be inherently true statements, whose broader utility is dependent on
           subsequent generalization of the reported result to a broader population, and/or interpretation of the
           result as support for a more meaningful statements about the domain of discourse.
+      text_co_occurrence:
+        description: >-
+          A statement reporting that mentions of two concepts in some corpus of text (e.g. the biomedical literature)
+          occur together at a statistically significant frequency - suggesting that a real-world biological or clinical
+          relationship may exist between the concepts. 
+        notes: >-
+          Such statements often utilize NLP/text-mining to identify concept mentions in text, but the reported statement is
+          generated by a data analysis pipeline that performs calculations on mention counts and determines the strength
+          of their correlation. 
       observation:
         description: >-
           A statement reporting (and possibly quantifying) a phenomenon that was observed to occur -
