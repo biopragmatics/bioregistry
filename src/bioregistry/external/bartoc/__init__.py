@@ -5,10 +5,10 @@ from collections.abc import Sequence
 from pathlib import Path
 from typing import Any, ClassVar
 
-import requests
+from pystow.utils import download
 from tqdm import tqdm
 
-from bioregistry.constants import URI_FORMAT_KEY
+from bioregistry.constants import RAW_DIRECTORY, URI_FORMAT_KEY
 from bioregistry.license_standardizer import standardize_license
 
 from ..alignment_utils import Aligner, load_processed
@@ -16,11 +16,20 @@ from ..alignment_utils import Aligner, load_processed
 __all__ = [
     "BartocAligner",
     "get_bartoc",
+    "main",
 ]
 
 HERE = Path(__file__).parent.resolve()
+RAW_PATH = RAW_DIRECTORY / "bartoc.jsonl"
 PROCESSED_PATH = HERE / "processed.json"
 URL = "https://bartoc.org/data/dumps/latest.ndjson"
+
+
+def get_bartoc_raw(*, force: bool = False) -> list[dict[str, Any]]:
+    """Download and open BARTOC."""
+    download(url=URL, path=RAW_PATH, force=force)
+    with RAW_PATH.open() as file:
+        return [json.loads(line) for line in file]
 
 
 def get_bartoc(*, force_download: bool = True) -> dict[str, dict[str, Any]]:
@@ -37,12 +46,12 @@ def get_bartoc(*, force_download: bool = True) -> dict[str, dict[str, Any]]:
     """
     if PROCESSED_PATH.is_file() and not force_download:
         return load_processed(PROCESSED_PATH)
-    rv = {}
-    for line in requests.get(URL, timeout=15).iter_lines():
-        record = json.loads(line)
-        record = _process_bartoc_record(record)
-        rv[record["prefix"]] = record
-
+    records = get_bartoc_raw(force=force_download)
+    rv = {
+        processed_record["prefix"]: processed_record
+        for record in records
+        if (processed_record := _process_bartoc_record(record))
+    }
     PROCESSED_PATH.write_text(json.dumps(rv, indent=2, ensure_ascii=False, sort_keys=True))
     return rv
 
@@ -95,5 +104,7 @@ class BartocAligner(Aligner):
     curation_header: ClassVar[Sequence[str]] = ["name", "homepage", "description"]
 
 
+main = BartocAligner.get_cli()
+
 if __name__ == "__main__":
-    BartocAligner.cli()
+    main()
