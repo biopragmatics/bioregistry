@@ -32,6 +32,7 @@ __all__ = [
     "iris_to_curies",
     "normalize_curies",
     "normalize_prefixes",
+    "pd_collapse_to_curies",
     "validate_curies",
     "validate_identifiers",
     "validate_prefixes",
@@ -160,14 +161,14 @@ def validate_prefixes(
     return results
 
 
-def summarize_prefix_validation(df: pd.DataFrame, idx: pd.Series[str]) -> None:
+def summarize_prefix_validation(df: pd.DataFrame, idx: pd.Series[str], column: str) -> None:
     """Provide a summary of prefix validation."""
     # TODO add suggestions on what to do next, e.g.:,
     #  1. can some be normalized? use normalization function
     #  2. slice out invalid content
     #  3. make new prefix request to Bioregistry
     count = (~idx).sum()
-    unique = sorted(df[~idx][0].unique())
+    unique = sorted(df[~idx][column].unique())
 
     print(  # noqa:T201
         f"{count:,} of {len(df.index):,} ({count / len(df.index):.0%})",
@@ -222,10 +223,11 @@ def validate_curies(
     return cast("pd.Series[str]", results)
 
 
-def summarize_curie_validation(df: pd.DataFrame, idx: pd.Series[str]) -> None:
+def summarize_curie_validation(df: pd.DataFrame, idx: pd.Series[str], column: int | str) -> None:
     """Provide a summary of CURIE validation."""
+    column = _norm_column(df, column)
     count = (~idx).sum()
-    unique = sorted(df[~idx][0].unique())
+    unique = sorted(df[~idx][column].unique())
     print(  # noqa:T201
         f"{count:,} of {len(df.index):,} ({count / len(df.index):.0%})",
         "rows with the following CURIEs need to be fixed:",
@@ -288,7 +290,8 @@ def validate_identifiers(
         raise PrefixLocationError
     elif prefix is not None:
         return _help_validate_identifiers(df, column, prefix)
-    else:  # prefix_column is not None
+    elif prefix_column is not None:
+        prefix_column = _norm_column(df, prefix_column)
         prefixes = df[prefix_column].unique()
         if 0 == len(prefixes):
             raise ValueError(f"No prefixes found in column {prefix_column}")
@@ -316,11 +319,13 @@ def validate_identifiers(
             "pd.Series[bool]",
             _multi_column_map(
                 df,
-                [cast(str, prefix_column), column],
+                [prefix_column, column],
                 _validate_lambda,
                 use_tqdm=use_tqdm,
             ),
         )
+    else:
+        raise RuntimeError
     if target_column:
         df[target_column] = results
     return results
@@ -339,7 +344,7 @@ def _help_validate_identifiers(df: pd.DataFrame, column: str, prefix: str) -> pd
         )
     pattern_re = re.compile(pattern)
     return cast(
-        pd.Series[bool],
+        "pd.Series[bool]",
         df[column].map(
             lambda s: bool(pattern_re.fullmatch(s)),
             na_action="ignore",
@@ -353,10 +358,9 @@ def identifiers_to_curies(
     *,
     prefix: str | None = None,
     prefix_column: None | int | str = None,
-    target_column: str | None = None,
     use_tqdm: bool = False,
     normalize_prefixes_: bool = True,
-) -> None:
+) -> pd.Series[str]:
     """Convert a column of local unique identifiers to CURIEs.
 
     :param df: A dataframe
@@ -386,7 +390,7 @@ def identifiers_to_curies(
         df = brpd.get_goa_example()
 
         # Use a combination of column 1 (DB) and column 2 (DB Object ID) for conversion
-        brpd.identifiers_to_curies(df, column=1, prefix_column=0)
+        df["subject_curie"] = brpd.identifiers_to_curies(df, column=1, prefix_column=0)
     """
     # FIXME do pattern check first so you don't get bananas
     column = _norm_column(df, column)
@@ -396,14 +400,12 @@ def identifiers_to_curies(
         raise PrefixLocationError
 
     # valid_idx = validate_identifiers(df, column=column, prefix=prefix, prefix_column=prefix_column)
-    target_column = target_column or column
-
     if prefix is not None:
         norm_prefix = bioregistry.normalize_prefix(prefix)
         if norm_prefix is None:
             raise ValueError
 
-        df.loc[target_column] = df[column].map(
+        return df[column].map(
             functools.partial(bioregistry.curie_to_str, prefix=norm_prefix),
             na_action="ignore",
         )
@@ -411,9 +413,11 @@ def identifiers_to_curies(
         prefix_column = _norm_column(df, prefix_column)
         if normalize_prefixes_:
             normalize_prefixes(df=df, column=prefix_column)
-        df[target_column] = _multi_column_map(
+        return _multi_column_map(
             df, [prefix_column, column], bioregistry.curie_to_str, use_tqdm=use_tqdm
         )
+    else:
+        raise
 
 
 def identifiers_to_iris(
@@ -576,3 +580,21 @@ def iris_to_curies(
     """
     column = _norm_column(df, column)
     df[target_column or column] = df[column].map(bioregistry.curie_from_iri, na_action="ignore")
+
+
+def pd_collapse_to_curies(
+    df: pd.DataFrame,
+    prefix_column: int | str,
+    identifier_column: int | str,
+    *,
+    target_column: str,
+) -> None:
+    """Collapse a prefix and identifier column together into a CURIE column."""
+    prefix_column = _norm_column(df, prefix_column)
+    identifier_column = _norm_column(df, identifier_column)
+    df[target_column] = [
+        f"{prefix}:{identifier}"
+        for prefix, identifier in df[[prefix_column, identifier_column]].values
+    ]
+    del df[prefix_column]
+    del df[identifier_column]
