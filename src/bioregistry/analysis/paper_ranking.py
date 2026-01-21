@@ -22,9 +22,9 @@ from __future__ import annotations
 import datetime
 import logging
 import textwrap
-from time import sleep
 from collections import defaultdict
 from pathlib import Path
+from time import sleep
 from typing import TYPE_CHECKING, NamedTuple, TypeAlias, cast
 
 import click
