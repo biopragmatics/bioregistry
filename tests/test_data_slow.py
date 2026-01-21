@@ -6,6 +6,7 @@ from collections import defaultdict
 import pytest
 
 import bioregistry
+from bioregistry import get_obo_context_prefix_map
 
 
 class TestDataSlow(unittest.TestCase):
@@ -98,3 +99,9 @@ class TestDataSlow(unittest.TestCase):
 
             x[iri] = parts, unmapped, canonical_target, all_targets
         self.assertEqual({}, x)
+
+    @pytest.mark.slow
+    def test_obo_prefix_map(self):
+        """Test the integrity of the OBO prefix map."""
+        obofoundry_prefix_map = get_obo_context_prefix_map()
+        self.assertIn("FlyBase", set(obofoundry_prefix_map))

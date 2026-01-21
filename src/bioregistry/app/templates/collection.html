@@ -42,14 +42,21 @@
                 <dt>Identifier</dt>
                 <dd><code>{{ identifier }}</code></dd>
                 <dt>Contributors</dt>
-                <dd>
-                    {% for author in entry.authors %}
+                    {%- for author in entry.authors %}
+                    <dd style="margin-bottom: 0;">
                         <a href="{{ url_for("metaregistry_ui.contributor", orcid=author.orcid) }}">
                             {{ author.name }}
                             <i class="fab fa-orcid"></i>
-                        </a>{% if not loop.last %}, {% endif %}
-                    {% endfor %}
-                </dd>
+                        </a>
+                    </dd>
+                    {%- endfor %}
+                    {%- if entry.organizations %}
+                    {%- for organization in entry.organizations %}
+                    <dd style="margin-bottom: 0;">
+                        <a href="{{ organization.link }}">{{ organization.name }}</a>
+                    </dd>
+                    {%- endfor %}
+                    {%- endif %}
                 <dt>Size</dt>
                 <dd>{{ entry.resources | length }}</dd>
                 {% if entry.references %}
@@ -60,7 +67,7 @@
                 {% endif %}
             </dl>
         </div>
-        <table class="table table-striped">
+        <table class="table table-striped" style="margin-bottom: 0;">
             <thead>
             <tr>
                 <th scope="col">Prefix</th>

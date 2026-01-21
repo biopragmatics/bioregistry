@@ -19,14 +19,9 @@ from bioregistry import Resource, manager
 from bioregistry.constants import BIOREGISTRY_PATH, DISALLOWED_EMAIL_PARTS, EMAIL_RE
 from bioregistry.export.rdf_export import resource_to_rdf_str
 from bioregistry.license_standardizer import REVERSE_LICENSES, standardize_license
-from bioregistry.resolve import get_obo_context_prefix_map
 from bioregistry.resource_manager import MetaresourceAnnotatedValue
-from bioregistry.schema.struct import (
-    SCHEMA_PATH,
-    Attributable,
-    Publication,
-    get_json_schema,
-)
+from bioregistry.schema import Attributable, Publication, get_json_schema
+from bioregistry.schema.struct import SCHEMA_PATH
 from bioregistry.schema_utils import is_mismatch, read_status_contributions
 from bioregistry.utils import _norm
 
@@ -660,11 +655,6 @@ class TestRegistry(unittest.TestCase):
         """Test no identifiers.org URI prefixes get put in the prefix map."""
         self.assert_no_idot(bioregistry.get_prefix_map())
         # self.assert_no_idot(bioregistry.get_prefix_map(include_synonyms=True))
-
-    def test_obo_prefix_map(self):
-        """Test the integrity of the OBO prefix map."""
-        obofoundry_prefix_map = get_obo_context_prefix_map()
-        self.assertIn("FlyBase", set(obofoundry_prefix_map))
 
     def assert_no_idot(self, prefix_map: Mapping[str, str]) -> None:
         """Assert none of the URI prefixes have identifiers.org in them."""

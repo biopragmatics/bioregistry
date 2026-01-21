@@ -10,7 +10,7 @@ from pathlib import Path
 import pandas as pd
 
 from bioregistry.analysis.paper_ranking import load_curated_papers, train
-from bioregistry.schema.struct import Publication, Resource
+from bioregistry.schema import Publication, Resource
 from bioregistry.schema_utils import write_registry
 
 

@@ -56,9 +56,12 @@ __all__ = [
     "Organization",
     "Provider",
     "Publication",
+    "RDFFormat",
     "Registry",
     "Resource",
     "ResourceStatus",
+    "StatusCheck",
+    "deduplicate_publications",
     "get_json_schema",
 ]
 
@@ -182,7 +185,7 @@ class MetaprefixAnnotatedValue(Generic[X]):
 
 
 class Organization(BaseModel):
-    """Model for organizataions."""
+    """Model for organizations."""
 
     ror: str | None = Field(
         default=None,
@@ -3109,14 +3112,22 @@ class Collection(BaseModel):
     description: str = Field(
         ...,
         description="A description of the collection",
+        min_length=30,
     )
     resources: list[str] = Field(
         ...,
         description="A list of prefixes of resources appearing in the collection",
+        min_length=1,
     )
     authors: list[Author] = Field(
         ...,
         description="A list of authors/contributors to the collection",
+        min_length=1,
+    )
+    organizations: list[Organization] | None = Field(
+        None,
+        description="A list of organizations that contribute to this collection",
+        min_length=1,
     )
     context: str | None = Field(default=None, description="The JSON-LD context's name")
     references: list[str] | None = Field(default=None, description="URL references")

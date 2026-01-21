@@ -44,11 +44,11 @@ from .schema import (
     Attributable,
     Collection,
     Context,
+    MetaprefixAnnotatedValue,
     Registry,
     Resource,
     sanitize_model,
 )
-from .schema.struct import MetaprefixAnnotatedValue
 from .schema_utils import (
     _collections_from_path,
     _contexts_from_path,
@@ -221,6 +221,10 @@ class Manager:
         if self._converter is not None and (uri_prefix := resource.get_uri_prefix()):
             self._converter.add_prefix(resource.prefix, uri_prefix)
             # TODO what about synonyms
+
+    def add_collection(self, collection: Collection) -> None:
+        """Add a collection."""
+        self.collections[collection.identifier] = collection
 
     def add_to_collection(self, collection: str | Collection, resource: str | Resource) -> None:
         """Add a resource to the collection."""

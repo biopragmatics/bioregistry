@@ -11,8 +11,7 @@ from typing import Any, Literal, overload
 import curies
 
 from .resource_manager import MetaresourceAnnotatedValue, manager
-from .schema import Attributable, Resource
-from .schema.struct import AnnotatedURL, Collection
+from .schema import AnnotatedURL, Attributable, Collection, Resource
 
 __all__ = [
     "add_resource",

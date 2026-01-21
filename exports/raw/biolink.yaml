@@ -6,7 +6,7 @@ license: https://creativecommons.org/publicdomain/zero/1.0/
 
 # Version should be kept in sync with primary Git repository release tag
 
-version: 4.3.5
+version: 4.3.6
 
 ## ------------
 ##
@@ -96,6 +96,7 @@ prefixes:
   medgen: 'https://www.ncbi.nlm.nih.gov/medgen/'
   metacyc.reaction: 'http://identifiers.org/metacyc.reaction:'
   METANETX.REACTION: 'https://www.metanetx.org/equa_info/'
+  METPO: 'https://w3id.org/metpo/'
   MESH: 'http://id.nlm.nih.gov/mesh/'
   MI: 'http://purl.obolibrary.org/obo/MI_'
   mirbase: 'http://identifiers.org/mirbase'
@@ -206,7 +207,7 @@ subsets:
 
 imports:
   - linkml:types
-  - https://w3id.org/biolink/biolink-model/attributes
+  - attributes
 
 types:
 
@@ -1171,6 +1172,12 @@ slots:
 
   ## Clinical Trials
 
+  elevate to prediction:
+    is_a: node property
+    description: >-
+      A boolean flag indicating whether a clinical trial finding should be elevated to a prediction.
+    range: boolean
+
   clinical trial phase:
     is_a: node property
     description: >-
@@ -1245,7 +1252,7 @@ slots:
     is_a: node property
     description: >-
       The start date of a clinical trial as determined by clinicaltrials.gov
-    range: date
+    range: string
     domain: clinical trial
   clinical trial enrollment:
     is_a: node property
@@ -1260,6 +1267,7 @@ slots:
       The age stage of a clinical trial as determined by clinicaltrials.gov (adult, child, older adult)
     range: ClinicalTrialAgeStageEnum
     domain: clinical trial
+    multivalued: true
 
   clinical trial age range:
     is_a: node property
@@ -1509,6 +1517,14 @@ slots:
       disease, condition or phenotype it is currently being reviewed to treat.  For specific levels of FDA
       approval for a specific condition, disease, phenotype, etc., see the association slot, 'clinical approval status.'
     range: ApprovalStatusEnum
+
+
+  FDA regulatory approvals:
+    description: >-
+      Numbers that identify specific drug applications. Each drug can have multiple approval numbers
+      (for example, as seen with ranitidine having both ANADA200536 and ANDA200536).
+    range: string
+    multivalued: true
 
   drug regulatory status world wide:
     aliases: ['max phase']
@@ -1911,6 +1927,7 @@ slots:
       - value: cerebral cortext  # UBERON:0000956
     in_subset:
       - translator_minimal
+    multivalued: true
 
   species context qualifier:
     is_a: statement qualifier
@@ -5940,14 +5957,23 @@ slots:
       - SEPIO:0000187
       - SEPIO:0000167
 
-  has evidence:
+  has evidence of type:
     is_a: association slot
     range: evidence type
     description: >-
-      connects an association to an instance of supporting evidence
+      Connects an association to an evidence type ontology term.
+      Generally represents terms from the ECO ontology.
+    multivalued: true
+
+  has evidence:
+    is_a: association slot
+    range: information content entity
+    description: >-
+      Connects an association to detailed information providing supporting evidence.
     exact_mappings:
       - RO:0002558
     multivalued: true
+    inlined: false
 
   has study results:
     is_a: association slot
@@ -6527,6 +6553,11 @@ slots:
     is_a: association slot
     range: ResearchPhaseEnum
 
+  number of cases:
+    is_a: has count
+    description: >-
+      The number of cases in a study or clinical trial, primarily used in conversion of drug approval data.
+
   has supporting studies:
     is_a: association slot
     range: study
@@ -6652,6 +6683,10 @@ slots:
     description: The biological sex of the entity (e.g., male or female) regarding a case description from a phenopacket
     required: false
     range: biological sex
+
+  druggable gene category:
+    description: Classification of druggable genes based on knowledge about drug or small molecule activities.
+    range: DruggableGeneCategoryEnum
 
 classes:
   # Add the KGX-specific classes without modifying biolink classes
@@ -7248,7 +7283,9 @@ classes:
       - SEPIO:0000167
 
   evidence type:
-    is_a: information content entity
+    is_a: named thing
+    mixins:
+      - ontology class
     aliases: ['evidence code']
     description: >-
       Class of evidence that supports an association
@@ -7257,7 +7294,12 @@ classes:
     exact_mappings:
       - ECO:0000000
 
-   ## Publications
+  evidence:
+    is_a: information content entity
+    description: >-
+      Dereferences detailed evidence that supports an association
+
+    ## Publications
 
    # TODO: to review additional ontology relating to Publications, such as http://www.sparontologies.net/ontologies
   publication:
@@ -7810,6 +7852,12 @@ classes:
       - max tolerated dose
       - is toxic
       - has chemical role
+      - chembl prodrug
+      - chembl black box warning
+      - chembl natural product
+      - chembl availability type
+      - chembl chirality
+      - chembl drug warning
     exact_mappings:
       - CHEBI:24431
       - SIO:010004  # Chemical entity
@@ -8672,9 +8720,6 @@ classes:
       distinct, others such as MESH conflate.  Please see definitions of phenotypic feature and disease in this model
       for their independent descriptions.  This class is helpful to enforce domains and ranges
       that may involve either a disease or a phenotypic feature.
-    union_of:
-      - disease
-      - phenotypic feature
     narrow_mappings:
       # UMLS Semantic Type "Finding" - more specialized use of 'disease or phenotypic feature'
       - STY:T033
@@ -8914,7 +8959,7 @@ classes:
       - FAO
 
 
-   ## entity mixins
+  ## entity mixins
 
   chemical entity or gene or gene product:
     description: >-
@@ -9940,6 +9985,7 @@ classes:
       - qualifiers  # deprecated
       - publications
       - sources
+      - has evidence of type
       - has evidence
       - knowledge source
       - primary knowledge source
@@ -9969,6 +10015,7 @@ classes:
       - has supporting studies
       - update date
       - has confidence score
+      - elevate to prediction
     slot_usage:
       type:
         description: rdf:type of biolink:Association should be fixed at rdf:Statement
@@ -10436,7 +10483,7 @@ classes:
         range: case
         description: "the case (e.g. patient) that has the property"
 
-  chemical to chemical association:
+  chemical entity to chemical entity association:
     description: >-
       A relationship between two chemical entities. This can encompass actual
       interactions as well as temporal causal edges, e.g. one chemical converted to another.
@@ -10456,7 +10503,7 @@ classes:
 
   reaction to participant association:
     description:
-    is_a: chemical to chemical association
+    is_a: chemical entity to chemical entity association
     slots:
       - stoichiometry
       - reaction direction
@@ -10476,14 +10523,14 @@ classes:
       object:
         range: gene or gene product
 
-  chemical to chemical derivation association:
+  chemical entity to chemical derivation association:
     description: >-
       A causal relationship between two chemical entities, where the subject
       represents the upstream entity and the object represents the downstream.
       For any such association there is an implicit reaction: IF R has-input C1 AND
       R has-output C2 AND R enabled-by P AND
       R type Reaction THEN C1 derives-into C2 catalyst qualifier P
-    is_a: chemical to chemical association
+    is_a: chemical entity to chemical entity association
     defining_slots:
       - subject
       - predicate
@@ -10507,7 +10554,7 @@ classes:
           catalyzes the reaction that causes the subject chemical to
           transform into the object chemical.
 
-  chemical to disease or phenotypic feature association:
+  chemical entity to disease or phenotypic feature association:
     description: >-
       An interaction between a chemical entity and a phenotype or disease,
       where the presence of the chemical gives rise to or exacerbates the phenotype.
@@ -10586,7 +10633,7 @@ classes:
       predicate:
         subproperty_of: part of
 
-  chemical to pathway association:
+  chemical entity to pathway association:
     description: >-
       An interaction between a chemical entity and a biological process or pathway.
     is_a: association
@@ -10602,6 +10649,26 @@ classes:
       object:
         range: pathway
         description: "the pathway that is affected by the chemical"
+
+  chemical entity to biological process association:
+    description: >-
+      An association between a chemical entity and a biological process,
+      where the chemical entity has some effect on the biological process.
+    is_a: association
+    slots:
+      - species context qualifier
+      - anatomical context qualifier
+      - qualified predicate
+      - object direction qualifier
+    slot_usage:
+      subject:
+        range: chemical entity
+        description: "the chemical entity that affects the biological process"
+      object:
+        range: biological process
+        description: "the biological process that is affected by the chemical entity"
+      predicate:
+        subproperty_of: affects
 
   named thing associated with likelihood of named thing association:
      # TODO: better name
@@ -10650,10 +10717,16 @@ classes:
       - subject part qualifier
       - subject derivative qualifier
       - subject context qualifier
+      - qualified predicate
+      - object direction qualifier
+      - object aspect qualifier
       - object form or variant qualifier
       - object part qualifier
       - object context qualifier
       - anatomical context qualifier
+      - causal mechanism qualifier
+      - dgidb interaction score
+      - dgidb evidence score
     slot_usage:
       subject:
         range: chemical entity
@@ -10669,6 +10742,10 @@ classes:
         range: ChemicalEntityDerivativeEnum
       subject context qualifier:
         range: anatomical entity
+      object direction qualifier:
+        range: DirectionQualifierEnum
+      object aspect qualifier:
+        range: GeneOrGeneProductOrChemicalEntityAspectEnum
       object form or variant qualifier:
         range: ChemicalOrGeneOrGeneProductFormOrVariantEnum
       object part qualifier:
@@ -10677,6 +10754,8 @@ classes:
         range: anatomical entity
       anatomical context qualifier:
         range: anatomical entity
+      causal mechanism qualifier:
+        range: CausalMechanismQualifierEnum
 
   gene regulates gene association:
     is_a: association
@@ -10790,7 +10869,9 @@ classes:
       Describes an effect that a chemical has on a gene or gene product (e.g. an impact
       of on its abundance, activity,localization, processing, expression, etc.)
     is_a: chemical affects biological entity association
-
+    slots:
+      - dgidb interaction score
+      - dgidb evidence score
 
   gene affects chemical association:
     description: >-
@@ -11449,7 +11530,7 @@ classes:
       object direction qualifier:
         range: DirectionQualifierEnum
       predicate:
-        subproperty_of: affects
+        subproperty_of: contributes to
     comments:
       - NCIT:R176 refers to the inverse relationship
       - for use in describing the affect that the loss of function of a gene can have on exacerbating or ameliorating a symptom/phenotype
@@ -11535,6 +11616,8 @@ classes:
 
   druggable gene to disease association:
     is_a: gene to disease association
+    slots:
+      - druggable gene category
     slot_usage:
       subject:
         range: gene or gene product
@@ -11544,8 +11627,6 @@ classes:
           this leads to a protective or improving disease state.
       predicate:
         subproperty_of: target for
-      has evidence:
-        range: DruggableGeneCategoryEnum
     defining_slots:
       - subject
       - object
@@ -12084,6 +12165,8 @@ classes:
     slots:
       - clinical approval status
       - max research phase
+      - FDA regulatory approvals
+      - number of cases
     defining_slots:
       - subject
       - object
@@ -12094,6 +12177,8 @@ classes:
     slots:
       - clinical approval status
       - max research phase
+      - FDA regulatory approvals
+      - number of cases
     defining_slots:
       - subject
       - object
@@ -13321,9 +13406,8 @@ enums:
         description: >-
           These targets do not have known drug or small molecule activities that satisfy the activity
           thresholds detailed below AND satisfy one or more of the following criteria:
-          target is above the cutoff criteria for Tdark
-          target is annotated with a Gene Ontology Molecular Function or Biological Process leaf term(s)
-          with an Experimental Evidence code
+          target is above the cutoff criteria for the target is annotated with a
+          Gene Ontology Molecular Function or Biological Process leaf term(s) with an Experimental Evidence code
       "tdark":
         description: >-
           These are targets about which virtually nothing is known. They do not have known drug or small
@@ -13575,6 +13659,15 @@ enums:
           results, we can consider them to be inherently true statements, whose broader utility is dependent on
           subsequent generalization of the reported result to a broader population, and/or interpretation of the
           result as support for a more meaningful statements about the domain of discourse.
+      text_co_occurrence:
+        description: >-
+          A statement reporting that mentions of two concepts in some corpus of text (e.g. the biomedical literature)
+          occur together at a statistically significant frequency - suggesting that a real-world biological or clinical
+          relationship may exist between the concepts. 
+        notes: >-
+          Such statements often utilize NLP/text-mining to identify concept mentions in text, but the reported statement is
+          generated by a data analysis pipeline that performs calculations on mention counts and determines the strength
+          of their correlation. 
       observation:
         description: >-
           A statement reporting (and possibly quantifying) a phenomenon that was observed to occur -

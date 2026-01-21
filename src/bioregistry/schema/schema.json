@@ -147,6 +147,7 @@
         },
         "description": {
           "description": "A description of the collection",
+          "minLength": 30,
           "title": "Description",
           "type": "string"
         },
@@ -155,6 +156,7 @@
           "items": {
             "type": "string"
           },
+          "minItems": 1,
           "title": "Resources",
           "type": "array"
         },
@@ -163,8 +165,26 @@
           "items": {
             "$ref": "#/$defs/Author"
           },
+          "minItems": 1,
           "title": "Authors",
           "type": "array"
+        },
+        "organizations": {
+          "anyOf": [
+            {
+              "items": {
+                "$ref": "#/$defs/Organization"
+              },
+              "minItems": 1,
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "A list of organizations that contribute to this collection",
+          "title": "Organizations"
         },
         "context": {
           "anyOf": [
@@ -329,7 +349,7 @@
       "type": "object"
     },
     "Organization": {
-      "description": "Model for organizataions.",
+      "description": "Model for organizations.",
       "properties": {
         "ror": {
           "anyOf": [

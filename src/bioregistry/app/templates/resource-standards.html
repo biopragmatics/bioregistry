@@ -1,0 +1,89 @@
+<div class="card" style="margin-top: 20px">
+    <h5 class="card-header">Identifier Standards</h5>
+    <div class="card-body">
+        <dl>
+            <dt>Pattern for Local Unique Identifiers</dt>
+            <dd>
+                {% if pattern %}
+                <p>
+                    Local identifiers in {{ name_pack.value }} should match this
+                    regular expression:<br/><kbd>{{ pattern }}</kbd>
+                </p>
+                {% elif has_no_terms %}
+                <span class="badge badge-pill badge-secondary">No terms in {{ prefix }}</span>
+                {% else %}
+                <span class="badge badge-pill badge-warning">Missing LUI pattern</span>
+                {% endif %}
+            </dd>
+            <dt>Example Local Unique Identifier{% if resource.example_extras %}s{% endif %}</dt>
+            <dd>
+                {% if example %}
+                <a href="{{ url_for("metaregistry_ui.reference", prefix=prefix, identifier=example) }}">{{ example
+                }}</a>
+                {% if providers %}
+                &nbsp;
+                <a class="badge badge-pill badge-info" href="{{ url_for("metaregistry_ui.resolve", prefix=prefix,
+                identifier=example) }}"><i class="fas fa-share-square"></i> Resolve</a>
+                {% endif %}
+                {% for extra_example in example_extras %}
+                <br/>
+                <a href="{{ url_for("metaregistry_ui.reference", prefix=prefix, identifier=extra_example) }}">{{
+                extra_example }}</a>
+                {% if providers %}
+                &nbsp;
+                <a class="badge badge-pill badge-info" href="{{ url_for("metaregistry_ui.resolve", prefix=prefix,
+                identifier=extra_example) }}"><i class="fas fa-share-square"></i> Resolve</a>
+                {% endif %}
+                {% endfor %}
+                {% elif has_no_terms %}
+                <span class="badge badge-pill badge-secondary">No Terms in {{ prefix }}</span>
+                {% else %}
+                <span class="badge badge-pill badge-warning">Missing Example Local Unique Identifier</span>
+                {% endif %}
+            </dd>
+            {% if pattern and curie_pattern %}
+            <dt>Pattern for CURIES</dt>
+            <dd>
+                <p>
+                    Compact URIs (CURIEs) constructed from {{ name_pack.value }} should match
+                    this regular expression:<br/><kbd>{{ curie_pattern }}</kbd>
+                </p>
+            </dd>
+            {% endif %}
+            {% if example and example_curie %}
+            <dt>Example CURIE{% if resource.example_extras %}s{% endif %}</dt>
+            <dd>
+                <a href="{{ url_for("metaregistry_ui.reference", prefix=prefix, identifier=example) }}">{{
+                example_curie }}</a>
+                {% for example_curie_extra, example_extra in zip(example_curie_extras, example_extras) %}
+                <br/>
+                <a href="{{ url_for("metaregistry_ui.reference", prefix=prefix, identifier=example_extra) }}">{{
+                example_curie_extra }}</a>
+                {% endfor %}
+            </dd>
+            {% endif %}
+            {% if resource.get_rdf_uri_format() %}
+            <dt>Pattern for RDF URIs</dt>
+            <dd><kbd>{{ resource.get_rdf_uri_format() }}</kbd></dd>
+            <dt>Example RDF URI</dt>
+            {% set rdf_uri_example = resource.get_rdf_uri_format().replace("$1", example) %}
+            <dd><a href="{{ rdf_uri_example }}">{{ rdf_uri_example }}</a></dd>
+            {% endif %}
+            {% if namespace_in_lui %}
+            <dt><i class="fas fa-info-circle"></i> MIRIAM Namespace Embedded in LUI</dt>
+            <dd>
+                The legacy MIRIAM standard for generating CURIEs with this resource
+                annotates the <code>namespaceEmbeddedInLUI</code> as true.
+                {{ get_banana_text() }}
+            </dd>
+            {% elif banana %}
+            <dt><i class="fas fa-info-circle"></i> Namespace Embedded in LUI</dt>
+            <dd>
+                This resource has been annotated by the {{ config.METAREGISTRY_TITLE }} as having a potential
+                namespace embedded in LUI.
+                {{ get_banana_text() }}
+            </dd>
+            {% endif %}
+        </dl>
+    </div>
+</div>

@@ -32,6 +32,7 @@ from ..constants import (
     SCHEMA_TURTLE_PATH,
 )
 from ..resource_manager import Manager, manager
+from ..schema import Collection, Registry, Resource
 from ..schema.constants import (
     ROR,
     WIKIDATA,
@@ -42,7 +43,6 @@ from ..schema.constants import (
     bioregistry_schema,
     get_schema_rdf,
 )
-from ..schema.struct import Collection, Registry, Resource
 
 logger = logging.getLogger(__name__)
 
