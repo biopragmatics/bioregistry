@@ -705,6 +705,11 @@
     "publications": [
       "https://www.fao.org/agrovoc/publications"
     ],
+    "sampleQueries": [
+      "# Select the countries and regions with their M49 code and with prefLabel in English\r\n\r\nPREFIX skos: <http://www.w3.org/2004/02/skos/core#> \r\nPREFIX skosxl: <http://www.w3.org/2008/05/skos-xl#> \r\nPREFIX agrontology: <http://aims.fao.org/aos/agrontology#>  \r\nSELECT ?concept ?m49Code ?label \r\nWHERE { \r\n  ?concept a skos:Concept . \r\n  ?concept agrontology:m49Code ?m49Code . \r\n  ?concept skosxl:prefLabel/skosxl:literalForm ?label . \r\n  FILTER(lang(?label) = 'en') \r\n} \r\nORDER BY ?label",
+      "#Select all properties of the concept \"water\"\r\n\r\nPREFIX skos: <http://www.w3.org/2004/02/skos/core#> \r\nPREFIX skosxl: <http://www.w3.org/2008/05/skos-xl#> \r\n\r\nSELECT DISTINCT ?property ?value ?label \r\nWHERE { \r\n  <http://aims.fao.org/aos/agrovoc/c_8309> ?property ?value . \r\n  OPTIONAL {\r\n    ?value a skosxl:Label .\r\n    ?value skosxl:literalForm ?label \r\n  }\r\n}\r\n#                                                                                                                           ",
+      "#Select all concepts having a prefLabel in English\r\n\r\nPREFIX skos: <http://www.w3.org/2004/02/skos/core#> \r\nPREFIX skosxl: <http://www.w3.org/2008/05/skos-xl#> \r\n\r\nSELECT ?concept ?prefLabel \r\nWHERE { \r\n  ?concept a skos:Concept . \r\n  ?concept skosxl:prefLabel/skosxl:literalForm ?prefLabel . \r\n  FILTER(lang(?prefLabel) = 'en') \r\n}\r\n#                                                                                                                                                        "
+    ],
     "viewingRestriction": "public",
     "views": [
       "https://data.agroportal.lirmm.fr/ontologies/AGROVOC-PT-BR"
@@ -833,7 +838,8 @@
       "https://data.agroportal.lirmm.fr/categories/FOOD",
       "https://data.agroportal.lirmm.fr/categories/HEALTH",
       "https://data.agroportal.lirmm.fr/categories/HUSB",
-      "https://data.agroportal.lirmm.fr/categories/PHENO"
+      "https://data.agroportal.lirmm.fr/categories/PHENO",
+      "https://data.agroportal.lirmm.fr/categories/ZOO"
     ],
     "homepage": "http://www.atol-ontology.com/",
     "license": "CC-BY-4.0",
@@ -2694,7 +2700,7 @@
       "http://geneontology.org/page/publications"
     ],
     "repository": "https://sourceforge.net/projects/geneontology/",
-    "version": "2025-10-10",
+    "version": "2026-01-23",
     "viewingRestriction": "public"
   },
   {
@@ -3578,7 +3584,8 @@
       "https://data.agroportal.lirmm.fr/ontologies/PPD-POF",
       "https://data.agroportal.lirmm.fr/ontologies/PPD-RSV",
       "https://data.agroportal.lirmm.fr/ontologies/PPD-SOL",
-      "https://data.agroportal.lirmm.fr/ontologies/PPD-STF"
+      "https://data.agroportal.lirmm.fr/ontologies/PPD-STF",
+      "https://data.agroportal.lirmm.fr/ontologies/PPD-OSR"
     ]
   },
   {
@@ -3743,7 +3750,7 @@
       "https://data.agroportal.lirmm.fr/projects/VEST-AP"
     ],
     "repository": "http://purl.obolibrary.org/obo/ro.owl",
-    "version": "2025-06-24",
+    "version": "2025-12-17",
     "viewingRestriction": "public"
   },
   {
@@ -4876,7 +4883,7 @@
       "https://data.agroportal.lirmm.fr/categories/ENV",
       "https://data.agroportal.lirmm.fr/categories/NAT-RES"
     ],
-    "homepage": "https://almescore.github.io/Almes-Core/",
+    "homepage": "https://almescore.github.io/Almes-Core",
     "license": "CC-BY-4.0",
     "links": {
       "@context": {
@@ -5654,7 +5661,8 @@
     "version": "1.2",
     "viewingRestriction": "public",
     "views": [
-      "https://data.agroportal.lirmm.fr/ontologies/BAG-GV"
+      "https://data.agroportal.lirmm.fr/ontologies/BAG-GV",
+      "https://data.agroportal.lirmm.fr/ontologies/BAG-ORG"
     ]
   },
   {
@@ -9911,7 +9919,7 @@
       "name": "Steve Baskauf"
     },
     "description": "Version 0.4 to 1.0 fixed reversed dsw:locates and dsw:locatedAt. Added labels. Changed comments and descriptions to conform to DC and DwC precedent. Added subClassOf relations to RO hasEvidence and isEvidenceFor. Specified preferred direction for inverse object property pairs., Changes from version 0.2.1 to version 0.3: removal of all functional and inverse function properties of object property terms, use of dwctype classes, deprecation of terms replaced by dwciri: terms, removal of references to TDWG Ontology., Changes from version 0.3 to 0.4 change DwC class namespace from dwctype: to dwc: to follow class proposal, removed references to TDWG TaxonConcept ontology; deprecated terms that now have equivalent terms in Darwin Core., Change from version 1.0 to 1.0.1 Add CC0 license.",
-    "exampleIdentifier": "http://xmlns.com/foaf/0.1/Agent",
+    "exampleIdentifier": "http://rs.tdwg.org/dwc/terms/Organism",
     "group": [
       "https://data.agroportal.lirmm.fr/groups/SEMANDIV"
     ],
@@ -14595,6 +14603,9 @@
       "xl_labels": "https://data.agroportal.lirmm.fr/ontologies/PFEEPSA/skos_xl_labels"
     },
     "name": "Poultry Farm Energy Efficiency Prediction Semantic Assistant Ontology",
+    "notes": [
+      "https://data.agroportal.lirmm.fr/notes/d19d0a80-d751-013e-9fd2-5254006dce65"
+    ],
     "ontologyType": "https://data.agroportal.lirmm.fr/ontology_types/ONTOLOGY",
     "repository": "https://github.com/iesnaola/eepsa",
     "version": "1.0",
@@ -14710,7 +14721,7 @@
       "https://planteome.org/references"
     ],
     "repository": "https://github.com/Planteome/plant-ontology",
-    "version": "July 2023",
+    "version": "January 2026",
     "viewingRestriction": "public"
   },
   {
@@ -18326,70 +18337,6 @@
     "viewingRestriction": "public"
   },
   {
-    "@id": "https://data.agroportal.lirmm.fr/ontologies/TESTM",
-    "@type": "http://data.bioontology.org/metadata/Ontology",
-    "acronym": "TESTM",
-    "administeredBy": [
-      "https://data.agroportal.lirmm.fr/users/appliance"
-    ],
-    "contact": {
-      "email": "muh@gmail.com",
-      "name": "ontoportal_ui"
-    },
-    "description": "hello",
-    "links": {
-      "@context": {
-        "agents": "http://xmlns.com/foaf/0.1/Agent",
-        "analytics": "http://data.bioontology.org/metadata/Analytics",
-        "categories": "http://data.bioontology.org/metadata/Category",
-        "classes": "http://www.w3.org/2002/07/owl#Class",
-        "collections": "http://www.w3.org/2004/02/skos/core#Collection",
-        "download": "http://data.bioontology.org/metadata/Ontology",
-        "groups": "http://data.bioontology.org/metadata/Group",
-        "instances": "http://data.bioontology.org/metadata/Instance",
-        "latest_submission": "http://data.bioontology.org/metadata/OntologySubmission",
-        "mappings": "metadata/Mapping",
-        "metrics": "http://data.bioontology.org/metadata/Metrics",
-        "notes": "http://data.bioontology.org/metadata/Note",
-        "projects": "http://data.bioontology.org/metadata/Project",
-        "properties": "http://data.bioontology.org/metadata/Property",
-        "reviews": "http://data.bioontology.org/metadata/Review",
-        "roots": "http://www.w3.org/2002/07/owl#Class",
-        "schemes": "http://www.w3.org/2004/02/skos/core#ConceptScheme",
-        "single_class": "http://www.w3.org/2002/07/owl#Class",
-        "submissions": "http://data.bioontology.org/metadata/OntologySubmission",
-        "ui": "http://data.bioontology.org/metadata/Ontology",
-        "views": "http://data.bioontology.org/metadata/Ontology",
-        "xl_labels": "http://www.w3.org/2008/05/skos-xl#Label"
-      },
-      "agents": "https://data.agroportal.lirmm.fr/ontologies/TESTM/agents",
-      "analytics": "https://data.agroportal.lirmm.fr/ontologies/TESTM/analytics",
-      "categories": "https://data.agroportal.lirmm.fr/ontologies/TESTM/categories",
-      "classes": "https://data.agroportal.lirmm.fr/ontologies/TESTM/classes",
-      "collections": "https://data.agroportal.lirmm.fr/ontologies/TESTM/collections",
-      "download": "https://data.agroportal.lirmm.fr/ontologies/TESTM/download",
-      "groups": "https://data.agroportal.lirmm.fr/ontologies/TESTM/groups",
-      "instances": "https://data.agroportal.lirmm.fr/ontologies/TESTM/instances",
-      "latest_submission": "https://data.agroportal.lirmm.fr/ontologies/TESTM/latest_submission",
-      "mappings": "https://data.agroportal.lirmm.fr/ontologies/TESTM/mappings",
-      "metrics": "https://data.agroportal.lirmm.fr/ontologies/TESTM/metrics",
-      "notes": "https://data.agroportal.lirmm.fr/ontologies/TESTM/notes",
-      "projects": "https://data.agroportal.lirmm.fr/ontologies/TESTM/projects",
-      "properties": "https://data.agroportal.lirmm.fr/ontologies/TESTM/properties",
-      "reviews": "https://data.agroportal.lirmm.fr/ontologies/TESTM/reviews",
-      "roots": "https://data.agroportal.lirmm.fr/ontologies/TESTM/classes/roots",
-      "schemes": "https://data.agroportal.lirmm.fr/ontologies/TESTM/schemes",
-      "single_class": "https://data.agroportal.lirmm.fr/ontologies/TESTM/classes/{class_id}",
-      "submissions": "https://data.agroportal.lirmm.fr/ontologies/TESTM/submissions",
-      "ui": "http://agroportal.lirmm.fr/ontologies/TESTM",
-      "views": "https://data.agroportal.lirmm.fr/ontologies/TESTM/views",
-      "xl_labels": "https://data.agroportal.lirmm.fr/ontologies/TESTM/skos_xl_labels"
-    },
-    "name": "TESTM",
-    "ontologyType": "https://data.agroportal.lirmm.fr/ontology_types/ONTOLOGY",
-    "viewingRestriction": "public"
-  },
-  {
     "@id": "https://data.agroportal.lirmm.fr/ontologies/ECOCROP",
     "@type": "http://data.bioontology.org/metadata/Ontology",
     "acronym": "ECOCROP",
@@ -18464,6 +18411,100 @@
     ],
     "repository": "https://git.wur.nl/FoodInformatics/i-know-foo/-/tree/main/ECOCROP%20Ontology",
     "summaryOnly": true,
+    "viewingRestriction": "public"
+  },
+  {
+    "@id": "https://data.agroportal.lirmm.fr/ontologies/AGRITRUST",
+    "@type": "http://data.bioontology.org/metadata/Ontology",
+    "acronym": "AGRITRUST",
+    "administeredBy": [
+      "https://data.agroportal.lirmm.fr/users/Bergier"
+    ],
+    "contact": {
+      "email": "ivan.bergier@embrapa.br",
+      "name": "Ivan Bergier"
+    },
+    "description": "New regulations, such as the EU Unrestricted Deforestation Regulation (EUDR), make verifiable agricultural data (AgData) essential for global trade. However, its value is compromised by a widespread \"AgData Paradox,\" characterized by distrust and fragmentation. To address this problem, we present AgriTrust, a federated semantic governance framework that automates and governs data sharing. Its key methodological innovation lies in the deep integration of a multi-sectorial governance model with a semantic digital layer, implemented through the AgriTrust Ontology (an OWL ontology for tokenization and traceability) and a multi-vendor, blockchain-agnostic architecture that avoids single-vendor dependence.",
+    "exampleIdentifier": "https://w3id.org/agrisemantics/AGRITRUST/AssetShape",
+    "hasDomain": [
+      "https://data.agroportal.lirmm.fr/categories/AG-ENG",
+      "https://data.agroportal.lirmm.fr/categories/AG-RES",
+      "https://data.agroportal.lirmm.fr/categories/AGRI",
+      "https://data.agroportal.lirmm.fr/categories/AGRI-PROD",
+      "https://data.agroportal.lirmm.fr/categories/AGRO",
+      "https://data.agroportal.lirmm.fr/categories/ANIM",
+      "https://data.agroportal.lirmm.fr/categories/BOTA",
+      "https://data.agroportal.lirmm.fr/categories/ECONOM",
+      "https://data.agroportal.lirmm.fr/categories/ECOSYS",
+      "https://data.agroportal.lirmm.fr/categories/ENV",
+      "https://data.agroportal.lirmm.fr/categories/FOREST",
+      "https://data.agroportal.lirmm.fr/categories/GEO",
+      "https://data.agroportal.lirmm.fr/categories/GOVT",
+      "https://data.agroportal.lirmm.fr/categories/HEALTH",
+      "https://data.agroportal.lirmm.fr/categories/LAW",
+      "https://data.agroportal.lirmm.fr/categories/OBS",
+      "https://data.agroportal.lirmm.fr/categories/PLANT",
+      "https://data.agroportal.lirmm.fr/categories/RURAL",
+      "https://data.agroportal.lirmm.fr/categories/TECH",
+      "https://data.agroportal.lirmm.fr/categories/ZOO"
+    ],
+    "homepage": "https://agroportal.lirmm.fr/ontologies/AGRITRUST",
+    "license": "CC-BY-4.0",
+    "links": {
+      "@context": {
+        "agents": "http://xmlns.com/foaf/0.1/Agent",
+        "analytics": "http://data.bioontology.org/metadata/Analytics",
+        "categories": "http://data.bioontology.org/metadata/Category",
+        "classes": "http://www.w3.org/2002/07/owl#Class",
+        "collections": "http://www.w3.org/2004/02/skos/core#Collection",
+        "download": "http://data.bioontology.org/metadata/Ontology",
+        "groups": "http://data.bioontology.org/metadata/Group",
+        "instances": "http://data.bioontology.org/metadata/Instance",
+        "latest_submission": "http://data.bioontology.org/metadata/OntologySubmission",
+        "mappings": "metadata/Mapping",
+        "metrics": "http://data.bioontology.org/metadata/Metrics",
+        "notes": "http://data.bioontology.org/metadata/Note",
+        "projects": "http://data.bioontology.org/metadata/Project",
+        "properties": "http://data.bioontology.org/metadata/Property",
+        "reviews": "http://data.bioontology.org/metadata/Review",
+        "roots": "http://www.w3.org/2002/07/owl#Class",
+        "schemes": "http://www.w3.org/2004/02/skos/core#ConceptScheme",
+        "single_class": "http://www.w3.org/2002/07/owl#Class",
+        "submissions": "http://data.bioontology.org/metadata/OntologySubmission",
+        "ui": "http://data.bioontology.org/metadata/Ontology",
+        "views": "http://data.bioontology.org/metadata/Ontology",
+        "xl_labels": "http://www.w3.org/2008/05/skos-xl#Label"
+      },
+      "agents": "https://data.agroportal.lirmm.fr/ontologies/AGRITRUST/agents",
+      "analytics": "https://data.agroportal.lirmm.fr/ontologies/AGRITRUST/analytics",
+      "categories": "https://data.agroportal.lirmm.fr/ontologies/AGRITRUST/categories",
+      "classes": "https://data.agroportal.lirmm.fr/ontologies/AGRITRUST/classes",
+      "collections": "https://data.agroportal.lirmm.fr/ontologies/AGRITRUST/collections",
+      "download": "https://data.agroportal.lirmm.fr/ontologies/AGRITRUST/download",
+      "groups": "https://data.agroportal.lirmm.fr/ontologies/AGRITRUST/groups",
+      "instances": "https://data.agroportal.lirmm.fr/ontologies/AGRITRUST/instances",
+      "latest_submission": "https://data.agroportal.lirmm.fr/ontologies/AGRITRUST/latest_submission",
+      "mappings": "https://data.agroportal.lirmm.fr/ontologies/AGRITRUST/mappings",
+      "metrics": "https://data.agroportal.lirmm.fr/ontologies/AGRITRUST/metrics",
+      "notes": "https://data.agroportal.lirmm.fr/ontologies/AGRITRUST/notes",
+      "projects": "https://data.agroportal.lirmm.fr/ontologies/AGRITRUST/projects",
+      "properties": "https://data.agroportal.lirmm.fr/ontologies/AGRITRUST/properties",
+      "reviews": "https://data.agroportal.lirmm.fr/ontologies/AGRITRUST/reviews",
+      "roots": "https://data.agroportal.lirmm.fr/ontologies/AGRITRUST/classes/roots",
+      "schemes": "https://data.agroportal.lirmm.fr/ontologies/AGRITRUST/schemes",
+      "single_class": "https://data.agroportal.lirmm.fr/ontologies/AGRITRUST/classes/{class_id}",
+      "submissions": "https://data.agroportal.lirmm.fr/ontologies/AGRITRUST/submissions",
+      "ui": "http://agroportal.lirmm.fr/ontologies/AGRITRUST",
+      "views": "https://data.agroportal.lirmm.fr/ontologies/AGRITRUST/views",
+      "xl_labels": "https://data.agroportal.lirmm.fr/ontologies/AGRITRUST/skos_xl_labels"
+    },
+    "name": "Agricultural Traceability and Trusted Data Sharing Ontology",
+    "ontologyType": "https://data.agroportal.lirmm.fr/ontology_types/ONTOLOGY",
+    "publications": [
+      "https://arxiv.org/abs/2511.05572"
+    ],
+    "repository": "https://www.gitlab.cnptia.embrapa.br/m327882/agritrust-ontology",
+    "version": "1.0.1",
     "viewingRestriction": "public"
   },
   {
@@ -18744,144 +18785,6 @@
     "viewingRestriction": "public"
   },
   {
-    "@id": "https://data.agroportal.lirmm.fr/ontologies/CEON-ENERGY",
-    "@type": "http://data.bioontology.org/metadata/Ontology",
-    "acronym": "CEON-ENERGY",
-    "administeredBy": [
-      "https://data.agroportal.lirmm.fr/users/LOV_migration"
-    ],
-    "contact": {
-      "email": "huanyu.li@liu.se",
-      "name": "Huanyu Li"
-    },
-    "description": "A module of the CEON ontology network defining aspects of the energy concept.",
-    "license": "CC-BY-4.0",
-    "links": {
-      "@context": {
-        "agents": "http://xmlns.com/foaf/0.1/Agent",
-        "analytics": "http://data.bioontology.org/metadata/Analytics",
-        "categories": "http://data.bioontology.org/metadata/Category",
-        "classes": "http://www.w3.org/2002/07/owl#Class",
-        "collections": "http://www.w3.org/2004/02/skos/core#Collection",
-        "download": "http://data.bioontology.org/metadata/Ontology",
-        "groups": "http://data.bioontology.org/metadata/Group",
-        "instances": "http://data.bioontology.org/metadata/Instance",
-        "latest_submission": "http://data.bioontology.org/metadata/OntologySubmission",
-        "mappings": "metadata/Mapping",
-        "metrics": "http://data.bioontology.org/metadata/Metrics",
-        "notes": "http://data.bioontology.org/metadata/Note",
-        "projects": "http://data.bioontology.org/metadata/Project",
-        "properties": "http://data.bioontology.org/metadata/Property",
-        "reviews": "http://data.bioontology.org/metadata/Review",
-        "roots": "http://www.w3.org/2002/07/owl#Class",
-        "schemes": "http://www.w3.org/2004/02/skos/core#ConceptScheme",
-        "single_class": "http://www.w3.org/2002/07/owl#Class",
-        "submissions": "http://data.bioontology.org/metadata/OntologySubmission",
-        "ui": "http://data.bioontology.org/metadata/Ontology",
-        "views": "http://data.bioontology.org/metadata/Ontology",
-        "xl_labels": "http://www.w3.org/2008/05/skos-xl#Label"
-      },
-      "agents": "https://data.agroportal.lirmm.fr/ontologies/CEON-ENERGY/agents",
-      "analytics": "https://data.agroportal.lirmm.fr/ontologies/CEON-ENERGY/analytics",
-      "categories": "https://data.agroportal.lirmm.fr/ontologies/CEON-ENERGY/categories",
-      "classes": "https://data.agroportal.lirmm.fr/ontologies/CEON-ENERGY/classes",
-      "collections": "https://data.agroportal.lirmm.fr/ontologies/CEON-ENERGY/collections",
-      "download": "https://data.agroportal.lirmm.fr/ontologies/CEON-ENERGY/download",
-      "groups": "https://data.agroportal.lirmm.fr/ontologies/CEON-ENERGY/groups",
-      "instances": "https://data.agroportal.lirmm.fr/ontologies/CEON-ENERGY/instances",
-      "latest_submission": "https://data.agroportal.lirmm.fr/ontologies/CEON-ENERGY/latest_submission",
-      "mappings": "https://data.agroportal.lirmm.fr/ontologies/CEON-ENERGY/mappings",
-      "metrics": "https://data.agroportal.lirmm.fr/ontologies/CEON-ENERGY/metrics",
-      "notes": "https://data.agroportal.lirmm.fr/ontologies/CEON-ENERGY/notes",
-      "projects": "https://data.agroportal.lirmm.fr/ontologies/CEON-ENERGY/projects",
-      "properties": "https://data.agroportal.lirmm.fr/ontologies/CEON-ENERGY/properties",
-      "reviews": "https://data.agroportal.lirmm.fr/ontologies/CEON-ENERGY/reviews",
-      "roots": "https://data.agroportal.lirmm.fr/ontologies/CEON-ENERGY/classes/roots",
-      "schemes": "https://data.agroportal.lirmm.fr/ontologies/CEON-ENERGY/schemes",
-      "single_class": "https://data.agroportal.lirmm.fr/ontologies/CEON-ENERGY/classes/{class_id}",
-      "submissions": "https://data.agroportal.lirmm.fr/ontologies/CEON-ENERGY/submissions",
-      "ui": "http://agroportal.lirmm.fr/ontologies/CEON-ENERGY",
-      "views": "https://data.agroportal.lirmm.fr/ontologies/CEON-ENERGY/views",
-      "xl_labels": "https://data.agroportal.lirmm.fr/ontologies/CEON-ENERGY/skos_xl_labels"
-    },
-    "name": "Circular Economy Ontology Network (CEON) - Energy Module",
-    "ontologyType": "https://data.agroportal.lirmm.fr/ontology_types/ONTOLOGY",
-    "projects": [
-      "https://data.agroportal.lirmm.fr/projects/Onto-DESIDE"
-    ],
-    "version": "0.2",
-    "viewingRestriction": "public"
-  },
-  {
-    "@id": "https://data.agroportal.lirmm.fr/ontologies/CEON-PROCESSODP",
-    "@type": "http://data.bioontology.org/metadata/Ontology",
-    "acronym": "CEON-PROCESSODP",
-    "administeredBy": [
-      "https://data.agroportal.lirmm.fr/users/LOV_migration"
-    ],
-    "contact": {
-      "email": "huanyu.li@liu.se",
-      "name": "Huanyu Li"
-    },
-    "description": "A core ODP of the CEON ontology network, defining aspects of the process concept.",
-    "license": "CC-BY-4.0",
-    "links": {
-      "@context": {
-        "agents": "http://xmlns.com/foaf/0.1/Agent",
-        "analytics": "http://data.bioontology.org/metadata/Analytics",
-        "categories": "http://data.bioontology.org/metadata/Category",
-        "classes": "http://www.w3.org/2002/07/owl#Class",
-        "collections": "http://www.w3.org/2004/02/skos/core#Collection",
-        "download": "http://data.bioontology.org/metadata/Ontology",
-        "groups": "http://data.bioontology.org/metadata/Group",
-        "instances": "http://data.bioontology.org/metadata/Instance",
-        "latest_submission": "http://data.bioontology.org/metadata/OntologySubmission",
-        "mappings": "metadata/Mapping",
-        "metrics": "http://data.bioontology.org/metadata/Metrics",
-        "notes": "http://data.bioontology.org/metadata/Note",
-        "projects": "http://data.bioontology.org/metadata/Project",
-        "properties": "http://data.bioontology.org/metadata/Property",
-        "reviews": "http://data.bioontology.org/metadata/Review",
-        "roots": "http://www.w3.org/2002/07/owl#Class",
-        "schemes": "http://www.w3.org/2004/02/skos/core#ConceptScheme",
-        "single_class": "http://www.w3.org/2002/07/owl#Class",
-        "submissions": "http://data.bioontology.org/metadata/OntologySubmission",
-        "ui": "http://data.bioontology.org/metadata/Ontology",
-        "views": "http://data.bioontology.org/metadata/Ontology",
-        "xl_labels": "http://www.w3.org/2008/05/skos-xl#Label"
-      },
-      "agents": "https://data.agroportal.lirmm.fr/ontologies/CEON-PROCESSODP/agents",
-      "analytics": "https://data.agroportal.lirmm.fr/ontologies/CEON-PROCESSODP/analytics",
-      "categories": "https://data.agroportal.lirmm.fr/ontologies/CEON-PROCESSODP/categories",
-      "classes": "https://data.agroportal.lirmm.fr/ontologies/CEON-PROCESSODP/classes",
-      "collections": "https://data.agroportal.lirmm.fr/ontologies/CEON-PROCESSODP/collections",
-      "download": "https://data.agroportal.lirmm.fr/ontologies/CEON-PROCESSODP/download",
-      "groups": "https://data.agroportal.lirmm.fr/ontologies/CEON-PROCESSODP/groups",
-      "instances": "https://data.agroportal.lirmm.fr/ontologies/CEON-PROCESSODP/instances",
-      "latest_submission": "https://data.agroportal.lirmm.fr/ontologies/CEON-PROCESSODP/latest_submission",
-      "mappings": "https://data.agroportal.lirmm.fr/ontologies/CEON-PROCESSODP/mappings",
-      "metrics": "https://data.agroportal.lirmm.fr/ontologies/CEON-PROCESSODP/metrics",
-      "notes": "https://data.agroportal.lirmm.fr/ontologies/CEON-PROCESSODP/notes",
-      "projects": "https://data.agroportal.lirmm.fr/ontologies/CEON-PROCESSODP/projects",
-      "properties": "https://data.agroportal.lirmm.fr/ontologies/CEON-PROCESSODP/properties",
-      "reviews": "https://data.agroportal.lirmm.fr/ontologies/CEON-PROCESSODP/reviews",
-      "roots": "https://data.agroportal.lirmm.fr/ontologies/CEON-PROCESSODP/classes/roots",
-      "schemes": "https://data.agroportal.lirmm.fr/ontologies/CEON-PROCESSODP/schemes",
-      "single_class": "https://data.agroportal.lirmm.fr/ontologies/CEON-PROCESSODP/classes/{class_id}",
-      "submissions": "https://data.agroportal.lirmm.fr/ontologies/CEON-PROCESSODP/submissions",
-      "ui": "http://agroportal.lirmm.fr/ontologies/CEON-PROCESSODP",
-      "views": "https://data.agroportal.lirmm.fr/ontologies/CEON-PROCESSODP/views",
-      "xl_labels": "https://data.agroportal.lirmm.fr/ontologies/CEON-PROCESSODP/skos_xl_labels"
-    },
-    "name": "Circular Economy Ontology Network (CEON) - Process ODP",
-    "ontologyType": "https://data.agroportal.lirmm.fr/ontology_types/ONTOLOGY",
-    "projects": [
-      "https://data.agroportal.lirmm.fr/projects/Onto-DESIDE"
-    ],
-    "version": "0.5",
-    "viewingRestriction": "public"
-  },
-  {
     "@id": "https://data.agroportal.lirmm.fr/ontologies/DFC",
     "@type": "http://data.bioontology.org/metadata/Ontology",
     "acronym": "DFC",
@@ -18950,6 +18853,71 @@
       "https://data.agroportal.lirmm.fr/ontologies/DFC-T",
       "https://data.agroportal.lirmm.fr/ontologies/DFC-B"
     ]
+  },
+  {
+    "@id": "https://data.agroportal.lirmm.fr/ontologies/GEOP",
+    "@type": "http://data.bioontology.org/metadata/Ontology",
+    "acronym": "GEOP",
+    "administeredBy": [
+      "https://data.agroportal.lirmm.fr/users/LOV_migration"
+    ],
+    "contact": {
+      "email": "mohamed-el-amine.boukerfa@inrae.fr",
+      "name": "LOV Migration"
+    },
+    "description": "FAO's geopolitical ontology version 1.1 was populated with FAO, UN and internationally recognized data sources.",
+    "links": {
+      "@context": {
+        "agents": "http://xmlns.com/foaf/0.1/Agent",
+        "analytics": "http://data.bioontology.org/metadata/Analytics",
+        "categories": "http://data.bioontology.org/metadata/Category",
+        "classes": "http://www.w3.org/2002/07/owl#Class",
+        "collections": "http://www.w3.org/2004/02/skos/core#Collection",
+        "download": "http://data.bioontology.org/metadata/Ontology",
+        "groups": "http://data.bioontology.org/metadata/Group",
+        "instances": "http://data.bioontology.org/metadata/Instance",
+        "latest_submission": "http://data.bioontology.org/metadata/OntologySubmission",
+        "mappings": "metadata/Mapping",
+        "metrics": "http://data.bioontology.org/metadata/Metrics",
+        "notes": "http://data.bioontology.org/metadata/Note",
+        "projects": "http://data.bioontology.org/metadata/Project",
+        "properties": "http://data.bioontology.org/metadata/Property",
+        "reviews": "http://data.bioontology.org/metadata/Review",
+        "roots": "http://www.w3.org/2002/07/owl#Class",
+        "schemes": "http://www.w3.org/2004/02/skos/core#ConceptScheme",
+        "single_class": "http://www.w3.org/2002/07/owl#Class",
+        "submissions": "http://data.bioontology.org/metadata/OntologySubmission",
+        "ui": "http://data.bioontology.org/metadata/Ontology",
+        "views": "http://data.bioontology.org/metadata/Ontology",
+        "xl_labels": "http://www.w3.org/2008/05/skos-xl#Label"
+      },
+      "agents": "https://data.agroportal.lirmm.fr/ontologies/GEOP/agents",
+      "analytics": "https://data.agroportal.lirmm.fr/ontologies/GEOP/analytics",
+      "categories": "https://data.agroportal.lirmm.fr/ontologies/GEOP/categories",
+      "classes": "https://data.agroportal.lirmm.fr/ontologies/GEOP/classes",
+      "collections": "https://data.agroportal.lirmm.fr/ontologies/GEOP/collections",
+      "download": "https://data.agroportal.lirmm.fr/ontologies/GEOP/download",
+      "groups": "https://data.agroportal.lirmm.fr/ontologies/GEOP/groups",
+      "instances": "https://data.agroportal.lirmm.fr/ontologies/GEOP/instances",
+      "latest_submission": "https://data.agroportal.lirmm.fr/ontologies/GEOP/latest_submission",
+      "mappings": "https://data.agroportal.lirmm.fr/ontologies/GEOP/mappings",
+      "metrics": "https://data.agroportal.lirmm.fr/ontologies/GEOP/metrics",
+      "notes": "https://data.agroportal.lirmm.fr/ontologies/GEOP/notes",
+      "projects": "https://data.agroportal.lirmm.fr/ontologies/GEOP/projects",
+      "properties": "https://data.agroportal.lirmm.fr/ontologies/GEOP/properties",
+      "reviews": "https://data.agroportal.lirmm.fr/ontologies/GEOP/reviews",
+      "roots": "https://data.agroportal.lirmm.fr/ontologies/GEOP/classes/roots",
+      "schemes": "https://data.agroportal.lirmm.fr/ontologies/GEOP/schemes",
+      "single_class": "https://data.agroportal.lirmm.fr/ontologies/GEOP/classes/{class_id}",
+      "submissions": "https://data.agroportal.lirmm.fr/ontologies/GEOP/submissions",
+      "ui": "http://agroportal.lirmm.fr/ontologies/GEOP",
+      "views": "https://data.agroportal.lirmm.fr/ontologies/GEOP/views",
+      "xl_labels": "https://data.agroportal.lirmm.fr/ontologies/GEOP/skos_xl_labels"
+    },
+    "name": "FAO Geopolitical Ontology",
+    "ontologyType": "https://data.agroportal.lirmm.fr/ontology_types/ONTOLOGY",
+    "version": "version 1.1",
+    "viewingRestriction": "public"
   },
   {
     "@id": "https://data.agroportal.lirmm.fr/ontologies/FWO",
@@ -19027,6 +18995,12 @@
     "administeredBy": [
       "https://data.agroportal.lirmm.fr/users/LOV_migration"
     ],
+    "contact": {
+      "email": "mohamed-el-amine.boukerfa@inrae.fr",
+      "name": "LOV Migration"
+    },
+    "description": "Defines concepts and properties specific for the SmartProducts Philips use case (cooking domain)., Defines concepts and properties specific for the Philips use case (cooking domain).",
+    "homepage": "http://projects.kmi.open.ac.uk/smartproducts/ontology.html",
     "links": {
       "@context": {
         "agents": "http://xmlns.com/foaf/0.1/Agent",
@@ -19077,6 +19051,7 @@
     },
     "name": "SmartProducts Food Domain Model",
     "ontologyType": "https://data.agroportal.lirmm.fr/ontology_types/ONTOLOGY",
+    "version": "v2015-01-11",
     "viewingRestriction": "public"
   },
   {
@@ -19516,7 +19491,7 @@
     "@type": "http://data.bioontology.org/metadata/Ontology",
     "acronym": "CEON",
     "administeredBy": [
-      "https://data.agroportal.lirmm.fr/users/jonquet"
+      "https://data.agroportal.lirmm.fr/users/huanyu-li"
     ],
     "contact": {
       "email": "huanyu.li@liu.se",
@@ -19589,9 +19564,11 @@
       "https://data.agroportal.lirmm.fr/ontologies/CEON-ACTOR",
       "https://data.agroportal.lirmm.fr/ontologies/CEON-ACTORODP",
       "https://data.agroportal.lirmm.fr/ontologies/CEON-CVN",
+      "https://data.agroportal.lirmm.fr/ontologies/CEON-ENERGY",
       "https://data.agroportal.lirmm.fr/ontologies/CEON-MATERIAL",
       "https://data.agroportal.lirmm.fr/ontologies/CEON-PLAN",
       "https://data.agroportal.lirmm.fr/ontologies/CEON-PROCESS",
+      "https://data.agroportal.lirmm.fr/ontologies/CEON-PROCESSODP",
       "https://data.agroportal.lirmm.fr/ontologies/CEON-PRODUCT",
       "https://data.agroportal.lirmm.fr/ontologies/CEON-RESOURCEODP",
       "https://data.agroportal.lirmm.fr/ontologies/CEON-VALUE"
@@ -19621,6 +19598,7 @@
       "https://data.agroportal.lirmm.fr/categories/GEO",
       "https://data.agroportal.lirmm.fr/categories/OBS"
     ],
+    "homepage": "https://github.com/davide1797/OntoPFAS",
     "license": "CC-BY-4.0",
     "links": {
       "@context": {
@@ -19676,7 +19654,6 @@
       "https://hal.science/hal-05189813"
     ],
     "repository": "https://github.com/davide1797/OntoPFAS",
-    "version": "1",
     "viewingRestriction": "public"
   },
   {

@@ -2114,12 +2114,11 @@
   },
   "FAIRsharing.3e603c": {
     "abbreviation": "PURL",
-    "description": "PURLs are Web addresses or Uniform Resource Locators (URLs) that act as permanent identifiers in the face of a dynamic and changing Web infrastructure. Instead of resolving directly to Web resources (documents, data, services, people, etc.). PURLs allow third party control over both URL resolution and resource metadata provision. A URL is simply an address of a resource on the World Wide Web. A Persistent URL is an address on the World Wide Web that causes a redirection to another Web resource. If a Web resource changes location (and hence URL), a PURL pointing to it can be updated. A user of a PURL always uses the same Web address, even though the resource in question may have moved. PURLs may be used by publishers to manage their own information space or by Web users to manage theirs; a PURL service is independent of the publisher of information. Please note that the referenced homepage contains links to an archived google code site, and may not refer to the current specification location. Please get in touch with us if you have more information.",
+    "description": "PURLs are Web addresses or Uniform Resource Locators (URLs) that act as permanent identifiers in the face of a dynamic and changing Web infrastructure. Instead of resolving directly to Web resources (documents, data, services, people, etc.). PURLs allow third party control over both URL resolution and resource metadata provision. A URL is simply an address of a resource on the World Wide Web. A Persistent URL is an address on the World Wide Web that causes a redirection to another Web resource. If a Web resource changes location (and hence URL), a PURL pointing to it can be updated. A user of a PURL always uses the same Web address, even though the resource in question may have moved. PURLs may be used by publishers to manage their own information space or by Web users to manage theirs; a PURL service is independent of the publisher of information. When a user retrieves a PURL they will be redirected to the current location of the resource. When an author needs to move a page they can update the PURL to point to the new location. PURLs with a common prefix are grouped together into domains. Each domain has a single maintainer who can add new PURLs to the domain and make changes to existing PURLs within the domain. Each PURL has a target and status code or type. The target specifies where the PURL redirects to. The type is a status code from HTTP specification. The default PURL type is \"302 Found\", meaning that the object of the request was found elsewhere. This is the status code that should be used if there is not a reason to use a different one.\n\nA partial PURL is a special type which will match the beginning of a URL. The PURL resolver will match as much of a PURL as it can and append the remainder to the end of the resolved URL. This reduces the need to create multiple PURLs to handle all of the resources that share a common location. For more on partials, see the section below the following table.",
     "domains": [
       "centrally registered identifier"
     ],
-    "homepage": "https://code.google.com/archive/p/persistenturls/",
-    "license": "Apache 2.0 License",
+    "homepage": "https://purl.archive.org/help",
     "name": "Persistent Uniform Resource Locator",
     "subjects": [
       "Subject Agnostic"
@@ -2199,7 +2198,7 @@
   "FAIRsharing.3kcgmr": {
     "abbreviation": "CARO",
     "contact": {
-      "email": "haendel@ohsu.edu",
+      "email": "mhaendel@unc.edu",
       "name": "Melissa Haendel",
       "orcid": "0000-0001-9114-8737"
     },
@@ -2208,6 +2207,7 @@
       "Annotation"
     ],
     "homepage": "http://bioportal.bioontology.org/ontologies/CARO?p=summary",
+    "license": "CC-BY-4.0",
     "name": "Common Anatomy Reference Ontology",
     "publications": [
       {
@@ -2216,6 +2216,7 @@
         "year": 2008
       }
     ],
+    "repository": "https://github.com/obophenotype/caro",
     "subjects": [
       "Life Science",
       "Anatomy"
@@ -5896,11 +5897,11 @@
   },
   "FAIRsharing.9228fv": {
     "abbreviation": "CROPUSAGE",
-    "description": "A thesaurus about crops cultivated in France. The hierarchy is based on the final destination of the crop (human food, animal breeding, food industry) and the cultivated system. The hierachy is not based on scientific agronomic taxon like (species, genus). We are interested on categorize the usage of the crop, not on the plant classification.",
+    "description": "An RDF vocabulary for describing the basic structure and content of concept schemes such as thesauri, classification schemes, subject heading lists, taxonomies, 'folksonomies', other types of controlled vocabulary, and also concept schemes embedded in glossaries and terminologies. The sources used are the parcel register, the agricultural larousse, wikipedia, the official catalogue of species and varieties of plants cultivated in France of GEVES, the \"fodder plants for peerages\" sheets of the GNIS, the Ephy database, the list of crops to be used to fill in the description of the plots and the annual agricultural statistics of the Agreste, the tables of the Acta catalogue published in 2021. Concerning vegetables and their classification, we looked for the common points between several sources: Wikipedia, Bonduelle, FranceAgriMer, Encyclopedia Universalis, AM Nagelseim, the Bec Hellouin farm. To our conclusion, there is no consensus on the classification of vegetables. This classification is used to organize the Plant Health Bulletins (BSV) and the GECO sheets. ",
     "domains": [
       "food"
     ],
-    "homepage": "https://doi.org/10.1016/j.compag.2017.10.022",
+    "homepage": "https://doi.org/10.15454/QHFTMX",
     "license": "CC-BY-4.0",
     "name": "French Crop Usage",
     "publications": [
@@ -6674,7 +6675,7 @@
   },
   "FAIRsharing.FrSPDi": {
     "description": "This thesaurus is based on the vocabulary used in scientific publications for Artificial nutrition and neighbor fields. It contains more than 2500 concepts in two languages (English and French), including various variants (synonyms, acronyms) divided into a number of microthesauri where the terms are grouped around a theme or a semantic field.",
-    "homepage": "https://loterre.istex.fr/BL8/en/",
+    "homepage": "https://dx.doi.org/10.13143/lotr.2136",
     "license": "CC-BY-4.0",
     "name": "Artificial Nutrition Thesaurus",
     "subjects": [
@@ -7973,7 +7974,7 @@
   "FAIRsharing.av8nfd": {
     "abbreviation": "OFSMR",
     "description": "This is the food-matrix ontology for the Open Food Safety Model Repository. Transferring predictive microbial models from research into real world food manufacturing or risk assessment applications is still a challenge for members of the food safety modelling community. This ontology supports the repository where existing predictive models previously published in the scientific literature were re-implemented using Predictive Modelling in Food Markup Language (PMF-ML), which is based on SBML.",
-    "homepage": "https://sites.google.com/site/openfsmr/",
+    "homepage": "https://bioportal.bioontology.org/ontologies/OFSMR",
     "name": "Open Food Safety Model Ontology",
     "publications": [
       {
@@ -12125,6 +12126,7 @@
       "Bioimaging"
     ],
     "homepage": "https://github.com/edamontology/edam-bioimaging",
+    "license": "CC BY-SA 4.0",
     "name": "EDAM Bioimaging Ontology",
     "publications": [
       {
@@ -12134,6 +12136,7 @@
         "year": 2013
       }
     ],
+    "repository": "https://github.com/edamontology/edam-bioimaging",
     "subjects": [
       "Bioinformatics"
     ]
@@ -12431,17 +12434,18 @@
     ]
   },
   "FAIRsharing.hFLKCn": {
-    "abbreviation": "DOI",
+    "abbreviation": "DOI (ISO 26324:2025)",
     "contact": {
       "email": "jonathanmtclark@gmail.com",
       "name": "Jonathan Clark",
       "orcid": "0000-0001-9551-9662"
     },
-    "description": "The digital object identifier (DOI) system originated in a joint initiative of three trade associations in the publishing industry (International Publishers Association; International Association of Scientific, Technical and Medical Publishers; Association of American Publishers). The system was announced at the Frankfurt Book Fair 1997. The International DOI® Foundation (IDF) was created to develop and manage the DOI system, also in 1997. The DOI system was adopted as International Standard ISO 26324 in 2012. The DOI system implements the Handle System and adds a number of new features. The DOI system provides an infrastructure for persistent unique identification of objects of any type. The DOI system is designed to work over the Internet. A DOI name is permanently assigned to an object to provide a resolvable persistent network link to current information about that object, including where the object, or information about it, can be found on the Internet. While information about an object can change over time, its DOI name will not change. A DOI name can be resolved within the DOI system to values of one or more types of data relating to the object identified by that DOI name, such as a URL, an e-mail address, other identifiers and descriptive metadata. The DOI system enables the construction of automated services and transactions. Applications of the DOI system include but are not limited to managing information and documentation location and access; managing metadata; facilitating electronic transactions; persistent unique identification of any form of any data; and commercial and non-commercial transactions. The content of an object associated with a DOI name is described unambiguously by DOI metadata, based on a structured extensible data model that enables the object to be associated with metadata of any desired degree of precision and granularity to support description and services. The data model supports interoperability between DOI applications. The scope of the DOI system is not defined by reference to the type of content (format, etc.) of the referent, but by reference to the functionalities it provides and the context of use. The DOI system provides, within networks of DOI applications, for unique identification, persistence, resolution, metadata and semantic interoperability.",
+    "description": "The digital object identifier (DOI) system originated in a joint initiative of three trade associations in the publishing industry (International Publishers Association; International Association of Scientific, Technical and Medical Publishers; Association of American Publishers). The system was announced at the Frankfurt Book Fair 1997. The International DOI® Foundation (IDF) was created to develop and manage the DOI system, also in 1997. The DOI system was adopted as International Standard ISO 26324 in 2012 and updated in 2025. The DOI system implements the Handle System and adds a number of new features. The DOI system provides an infrastructure for persistent unique identification of objects of any type. The DOI system is designed to work over the Internet. A DOI name is permanently assigned to an object to provide a resolvable persistent network link to current information about that object, including where the object, or information about it, can be found on the Internet. While information about an object can change over time, its DOI name will not change. A DOI name can be resolved within the DOI system to values of one or more types of data relating to the object identified by that DOI name, such as a URL, an e-mail address, other identifiers and descriptive metadata. The DOI system enables the construction of automated services and transactions. Applications of the DOI system include but are not limited to managing information and documentation location and access; managing metadata; facilitating electronic transactions; persistent unique identification of any form of any data; and commercial and non-commercial transactions. The content of an object associated with a DOI name is described unambiguously by DOI metadata, based on a structured extensible data model that enables the object to be associated with metadata of any desired degree of precision and granularity to support description and services. The data model supports interoperability between DOI applications. The scope of the DOI system is not defined by reference to the type of content (format, etc.) of the referent, but by reference to the functionalities it provides and the context of use. The DOI system provides, within networks of DOI applications, for unique identification, persistence, resolution, metadata and semantic interoperability.",
     "domains": [
       "centrally registered identifier"
     ],
-    "homepage": "https://www.doi.org",
+    "homepage": "https://www.doi.org/the-identifier/resources/handbook/",
+    "license": "CC-BY-4.0",
     "name": "Digital Object Identifier",
     "publications": [
       {
@@ -12887,14 +12891,10 @@
   },
   "FAIRsharing.jT49Da": {
     "description": "The Provenance Vocabulary provides classes and properties for describing provenance of Web data. The vocabulary focuses on two main use cases: 1.) It enables consumers of Web data to describe provenance of data retrieved from the Web and of data derived from such Web data. 2.) It enables providers of Web data to publish provenance-related metadata about their data. Notice, the vocabulary is not intended for describing provenance of other kinds of Web content. The Provenance Vocabulary is designed as a Web data specific specialization of the W3C PROV Ontology (PROV-O); classes and properties provided by the vocabulary are domain specific extensions of the more general concepts introduced in PROV-O. As a consequence, any Provenance Vocabulary based description of provenance can be easily interpreted and exchanged according to the W3C PROV family of standards. While this vocabulary is in a stable state, it is not being actively developed at this time.",
-    "domains": [
-      "Resource metadata"
-    ],
     "homepage": "http://purl.org/net/provenance/ns",
     "license": "https://creativecommons.org/licenses/by/1.0",
     "name": "Provenance Vocabulary",
     "subjects": [
-      "Data Management",
       "Computer Science"
     ]
   },
@@ -13842,19 +13842,24 @@
   },
   "FAIRsharing.m0e1s0": {
     "abbreviation": "SOY",
-    "description": "This is a community-curated controlled vocabulary for soybean field growth stages (Soybean Whole Plant Growth Ontology), plant structure names (Soybean Structure Ontology), development (Soybean Development Ontology) and plant traits (Soybean Trait Ontology). Where applicable, soybean specific terms have been associated with their Plant Ontology (PO) and Gramene Plant Trait Ontology (TO) synonyms to facilitate cross species comparisons.  Currently, there are 4 divisions to SOY terms, soybean structural terms (Soybean Structure Ontology), developmental stages (Soybean Developmental Ontology), whole plant development terms (Soybean Whole Plant Growth Stages) and trait terms (Soybean Trait Ontology). For the trait, structure and development terms the old SoyTO and SoyGRO accessions have been added to their records as synonyms for continuity.",
+    "description": "The ontologies below were developed to provide a controlled vocabulary for: field growth stages (Soybean Whole Plant Growth Ontology), plant structure (Soybean Structure Ontology), development (Soybean Development Ontology), and plant traits (Soybean Trait Ontology). Where applicable, soybean specific terms have been associated with their Plant Ontology (PO) synonyms to facilitate cross species comparisons. Since the original release of the SoyBase Ontologies, they have been re-factored at the request of the Plant Ontology Consortium. This change resulted in the elimination of a separate accession system for SoyTO and SoyGRO. These terms were re-accessioned into the SoyWGR namespace and the SoyWGR prefix was changed to SOY. Input from the community is welcomed.",
     "domains": [
       "phenotype",
       "life cycle stage"
     ],
-    "homepage": "https://soybase.org/ontology.php",
-    "name": "SoyOntology",
+    "homepage": "https://www.soybase.org/tools/ontology/",
+    "name": "SoyBase Soybean Ontologies",
     "publications": [
       {
         "doi": "10.1093/nar/gkp798",
         "pubmed": "20008513",
         "title": "SoyBase, the USDA-ARS soybean genetics and genomics database",
         "year": 2009
+      },
+      {
+        "doi": "10.1093/nar/gkaa1107",
+        "title": "A new decade and new data at SoyBase, the USDA-ARS soybean genetics and genomics database",
+        "year": 2021
       }
     ],
     "subjects": [
@@ -13862,8 +13867,7 @@
       "Botany",
       "Anatomy",
       "Developmental Biology"
-    ],
-    "twitter": "SoyBaseDatabase"
+    ]
   },
   "FAIRsharing.m0pprb": {
     "abbreviation": "RCTONT",
@@ -15366,7 +15370,6 @@
     ]
   },
   "FAIRsharing.q47I0t": {
-    "abbreviation": "CryoEM Ontology",
     "contact": {
       "email": "coss@cnb.csic.es",
       "name": "Carlos Oscar S. Sorzano",
@@ -15377,8 +15380,7 @@
       "Bioimaging",
       "electron microscopy"
     ],
-    "homepage": "http://scipion.i2pc.es/ontology/cryoem",
-    "license": "CC-BY-3.0",
+    "homepage": "https://github.com/I2PC/cryoem",
     "name": "CryoEM Ontology",
     "repository": "https://github.com/I2PC/cryoem",
     "subjects": [
@@ -15795,11 +15797,11 @@
   },
   "FAIRsharing.r7Kwy7": {
     "abbreviation": "CAS RN",
-    "description": "Identifier used by the Chemical Abstracts Service Registry. A CAS Registry Number is a numeric identifier that can contain up to 10 digits, divided by hyphens into three parts. The right-most digit is a check digit used to verify the validity and uniqueness of the entire number.",
+    "description": "Chemical compounds are described in many ways, including molecular formulas, chemical structures, generic, systematic, common, and trade names. This lack of clarity can cause frustration, delays, and even safety concerns. A CAS Registry Number (CAS RN®) is a unique and unambiguous identifier for a specific substance that allows clear communication and, with the help of CAS scientists, links together all available data and research about that substance. Governmental agencies rely on CAS Registry Numbers for substance identification in regulatory applications because they are unique, easily validated, and internationally recognised. CAS RNs are used by the Chemical Abstracts Service Registry. A CAS Registry Number is a numeric identifier that can contain up to 10 digits, divided by hyphens into three parts. The right-most digit is a check digit used to verify the validity and uniqueness of the entire number.",
     "domains": [
       "chemical entity"
     ],
-    "homepage": "https://www.cas.org/cas-data/cas-registry",
+    "homepage": "https://www.cas.org/training/documentation/chemical-substances/checkdig",
     "name": "CAS Registry Number",
     "publications": [
       {
@@ -18407,7 +18409,7 @@
       "infection process",
       "pathogen"
     ],
-    "homepage": "http://www.phidias.us/bbp/idobru/index.php",
+    "homepage": "https://hegroup.org/projects.html",
     "name": "Brucellosis Ontology",
     "publications": [
       {
@@ -19310,9 +19312,9 @@
       "pathogen",
       "vaccination"
     ],
-    "homepage": "https://github.com/vaccineontology/VO",
-    "license": "CC-BY-3.0",
-    "logo": "https://api.fairsharing.org/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBaUFDIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--0d3898a5618b34c0bc948bb0d101e906f212f05f/vo_banner.png?disposition=inline",
+    "homepage": "http://www.violinet.org/vaccineontology",
+    "license": "CC-BY-4.0",
+    "logo": "https://api.fairsharing.org/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBck1IIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--bcbea6b26f9bd1db48d5f256c3d75bedd6fc2332/Screenshot%20From%202026-01-26%2011-30-20.png?disposition=inline",
     "name": "The Vaccine Ontology",
     "publications": [
       {
@@ -19344,6 +19346,11 @@
         "pubmed": "24209834",
         "title": "Network-based analysis of vaccine-related associations reveals consistent knowledge with the vaccine ontology",
         "year": 2013
+      },
+      {
+        "doi": "10.1101/2025.08.12.669998",
+        "title": "VO: The Vaccine Ontology",
+        "year": 2025
       }
     ],
     "repository": "https://github.com/vaccineontology",
