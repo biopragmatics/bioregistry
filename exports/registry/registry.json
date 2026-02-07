@@ -6382,6 +6382,8 @@
     ],
     "license": "CC-BY-3.0",
     "mappings": {
+      "aberowl": "BIOTOP",
+      "bioportal": "BIOTOP",
       "lov": "biotop"
     },
     "name": "BioTop",
@@ -6665,6 +6667,10 @@
     "pattern": "^(bmr|bmse|bmst)?[0-9]{1,6}$",
     "preferred_prefix": "bmrb.entry",
     "publications": [
+      {
+        "doi": "10.1093/nar/gkac1050",
+        "pubmed": "36478084"
+      },
       {
         "doi": "10.1007/s10858-008-9221-y",
         "pmc": "PMC2268728",
@@ -9489,6 +9495,7 @@
       }
     ],
     "description": "Chemical Entities of Biological Interest (ChEBI) is a freely available dictionary of molecular entities focused on 'small' chemical compounds.",
+    "download_json": "http://purl.obolibrary.org/obo/chebi.json",
     "download_obo": "http://purl.obolibrary.org/obo/chebi.obo",
     "download_owl": "http://purl.obolibrary.org/obo/chebi.owl",
     "example": "138488",
@@ -18236,8 +18243,8 @@
       "ontology"
     ],
     "mappings": {
-      "aberowl": "DCM",
-      "bioportal": "DCM",
+      "aberowl": "DICOM",
+      "bioportal": "DICOM",
       "fairsharing": "FAIRsharing.b7z8by",
       "hl7": "1.2.840.10008.2.16.4",
       "ols": "dicom"
@@ -25516,7 +25523,7 @@
       "name": "d3fk"
     },
     "description": "The EVORAO Ontology provides a structured and harmonized vocabulary for describing shareable pathogens as characterized biological materials, along with their derived products and associated services, organized into collections. Developed within the EVORA project, it supports consistent metadata annotation across research infrastructures, promoting findability, accessibility, interoperability, and reusability (FAIR). By aligning with relevant standards and ontologies, EVORAO facilitates cross-domain collaboration, integration, and sharing of pathogenic resources and services to enhance pandemic preparedness and response. While initially focused on virology, EVORAO is designed to be extensible and also supports metadata harmonization for other pathogens. [from repository]",
-    "download_owl": "http://aber-owl.net/media/ontologies/EVORAO/18/evorao.owl",
+    "download_owl": "http://aber-owl.net/media/ontologies/EVORAO/21/evorao.owl",
     "download_rdf": "https://raw.githubusercontent.com/EVORA-project/evora-ontology/refs/heads/main/models/owl/evora_ontology.owl.ttl",
     "example": "AlternateName",
     "homepage": "https://github.com/EVORA-project/evora-ontology",
@@ -43354,7 +43361,7 @@
     "download_obo": "http://purl.obolibrary.org/obo/ma.obo",
     "download_owl": "http://purl.obolibrary.org/obo/ma.owl",
     "example": "0002502",
-    "homepage": "https://github.com/obophenotype/mouse-anatomy-ontology",
+    "homepage": "https://github.com/obophenotype/adult-mouse-anatomy-ontology",
     "keywords": [
       "anatomy",
       "mouse",
@@ -43402,7 +43409,7 @@
       }
     ],
     "rdf_uri_format": "http://purl.obolibrary.org/obo/MA_$1",
-    "repository": "https://github.com/obophenotype/mouse-anatomy-ontology",
+    "repository": "https://github.com/obophenotype/adult-mouse-anatomy-ontology",
     "uri_format": "http://purl.obolibrary.org/obo/MA_$1",
     "version": "2026-01-09"
   },
@@ -53903,6 +53910,7 @@
       "orcid": "0000-0002-7356-1779"
     },
     "description": "The OBO namespace is the top-level namespace used by Open Biological and Biomedical Ontology (OBO) Foundry ontologies.",
+    "download_owl": "http://aber-owl.net/media/ontologies/OBO/2/obo.owl",
     "example": "uberon",
     "example_extras": [
       "go",
@@ -53912,10 +53920,14 @@
     "keywords": [
       "biology",
       "health",
+      "ontology",
       "ontology and terminology"
     ],
+    "license": "CC-BY-4.0",
     "mappings": {
+      "aberowl": "OBO",
       "biocontext": "OBO",
+      "bioportal": "OBO",
       "fairsharing": "FAIRsharing.847069",
       "integbio": "nbdc00305",
       "lov": "obo"
@@ -61965,6 +61977,10 @@
     "version": "72.0"
   },
   "prefer": {
+    "contact": {
+      "email": "txellmgsol@gmail.com",
+      "name": "Shawn Zheng Kai Tan"
+    },
     "description": "An ontology for PREcision FERmentation.",
     "download_owl": "http://purl.obolibrary.org/obo/prefer/releases/2026-01-08/prefer.owl",
     "example": "0000020",
@@ -61972,7 +61988,10 @@
     "keywords": [
       "ontology"
     ],
+    "license": "CC-BY-4.0",
     "mappings": {
+      "aberowl": "PREFER",
+      "bioportal": "PREFER",
       "ols": "prefer"
     },
     "name": "PREFER Ontology",
@@ -66101,7 +66120,9 @@
     "license": "CC0-1.0",
     "logo": "https://ror.org/img/ror-logo.svg",
     "mappings": {
+      "aberowl": "ROR",
       "bartoc": "20474",
+      "bioportal": "ROR",
       "fairsharing": "FAIRsharing.1jKfji",
       "miriam": "ror",
       "n2t": "ror",
@@ -67008,15 +67029,24 @@
     "uri_format": "https://saref.etsi.org/saref4city/$1"
   },
   "saref.ehaw": {
-    "description": "The objective of SAREF4EHAW is to extend SAREF ontology for the eHealth/Ageing-well (EHAW) vertical. Clause 4.1 of the present document shortly introduces a high level view of the envisioned SAREF4EHAW semantic model and modular ontology, with the retained concepts (i.e. classes) and their relations. \nSAREF4EHAW extension has been specified and formalised by investigating EHAW domain related resources, as reported in ETSI TR 103 509, such as: potential stakeholders, standardization initiatives, alliances/associations, European projects, EC directives, existing ontologies, and data repositories. Therefore, SAREF4EHAW modular ontology shall both:\n - Allow the implementation of a limited set of typical EHAW related use cases already identified in ETSI TR 103 509, i.e.\n - Use case 1 ?elderly at home monitoring and support?,\n - Use case 2 ?monitoring and support of healthy lifestyles for citizens?,\n - Use case 3 ?Early Warning System (EWS) and Cardiovascular Accidents detection?.\n - Fulfil the eHealth Ageing Well related requirements provided in ETSI TR 103 509, mainly the ontological ones that were mostly taken as input for the ontology specification.\n\nSAREF4EHAW mainly reuses the following existing ontologies: SAREF, ETSI SmartBAN reference model, SAREF 4 Environment extension and W3C SSN System module. The following figure presents the high level view of SAREF4EHAW ontology.\n![SAREF4SYST overview](diagrams/SAREF4EHAW_Model.jpg)\nFor semantic interoperability handling purposes, an ontology based solution, combined with sensing-as-a-service and WoT strategies, is retained for SAREF4EHAW. Therefore, an upper level ontology, at service level, shall also behas been fully modelled (Service class and sub-classes depicted in the previous figure).\nFor embedded semantic analytics purposes, SAREF4EHAW shall behas been designed using the modularity principle (see ETSI TR 103 509) and can thus be mainly described by the following self-contained knowledge sub-ontologies (or modules): HealthActor, Ban, HealthDevice, Function (measured data related concepts included) and Service.",
+    "contact": {
+      "email": "mohamed-el-amine.boukerfa@inrae.fr",
+      "name": "LOV Migration"
+    },
+    "description": "The objective of SAREF4EHAW is to extend SAREF ontology for the eHealth/Ageing-well (EHAW) vertical. Clause 4.1 of the present document shortly introduces a high level view of the envisioned SAREF4EHAW semantic model and modular ontology, with the retained concepts (i.e. classes) and their relations. SAREF4EHAW extension has been specified and formalised by investigating EHAW domain related resources, as reported in ETSI TR 103 509, such as: potential stakeholders, standardization initiatives, alliances/associations, European projects, EC directives, existing ontologies, and data repositories. Therefore, SAREF4EHAW modular ontology shall both: - Allow the implementation of a limited set of typical EHAW related use cases already identified in ETSI TR 103 509, i.e. - Use case 1 ?elderly at home monitoring and support?, - Use case 2 ?monitoring and support of healthy lifestyles for citizens?, - Use case 3 ?Early Warning System (EWS) and Cardiovascular Accidents detection?. - Fulfil the eHealth Ageing Well related requirements provided in ETSI TR 103 509, mainly the ontological ones that were mostly taken as input for the ontology specification. SAREF4EHAW mainly reuses the following existing ontologies: SAREF, ETSI SmartBAN reference model, SAREF 4 Environment extension and W3C SSN System module. The following figure presents the high level view of SAREF4EHAW ontology. ![SAREF4SYST overview](diagrams/SAREF4EHAW_Model.jpg) For semantic interoperability handling purposes, an ontology based solution, combined with sensing-as-a-service and WoT strategies, is retained for SAREF4EHAW. Therefore, an upper level ontology, at service level, shall also behas been fully modelled (Service class and sub-classes depicted in the previous figure). For embedded semantic analytics purposes, SAREF4EHAW shall behas been designed using the modularity principle (see ETSI TR 103 509) and can thus be mainly described by the following self-contained knowledge sub-ontologies (or modules): HealthActor, Ban, HealthDevice, Function (measured data related concepts included) and Service., i.e. - Use case 1 “elderly at home monitoring and support”, - Use case 2 “monitoring and support of healthy lifestyles for citizens”, - Use case 3 “Early Warning System (EWS) and Cardiovascular Accidents detection”. - Fulfil the eHealth Ageing Well related requirements provided in ETSI TR 103 509",
+    "download_owl": "http://aber-owl.net/media/ontologies/S4EHAW/1/s4ehaw.owl",
     "example": "Activity",
     "homepage": "https://saref.etsi.org/saref4ehaw/",
     "keywords": [
       "engineering",
       "iot",
-      "nfdi4ing"
+      "nfdi4ing",
+      "ontology"
     ],
+    "license": "https://forge.etsi.org/etsi-software-license",
     "mappings": {
+      "aberowl": "S4EHAW",
+      "bioportal": "S4EHAW",
       "lov": "s4ehaw",
       "tib": "s4ehaw"
     },
@@ -70207,6 +70237,10 @@
         "pubmed": "9847187",
         "title": "SMART: identification and annotation of domains from signalling and extracellular protein sequences",
         "year": 1999
+      },
+      {
+        "doi": "10.1093/nar/gkaf1023",
+        "pubmed": "41062452"
       },
       {
         "doi": "10.1093/nar/gkx922",
@@ -82139,6 +82173,7 @@
     "homepage": "http://www.uniprot.org",
     "keywords": [
       "biology",
+      "ontology",
       "protein",
       "taxonomic classification"
     ],
@@ -82148,6 +82183,7 @@
       "aberowl": "UP",
       "biocontext": "UniProtKB",
       "biolink": "UniProtKB",
+      "bioportal": "UNIPROT",
       "cellosaurus": "UniProtKB",
       "edam": "3021",
       "fairsharing": "FAIRsharing.wf28wm",
@@ -84657,7 +84693,7 @@
       "vaccine"
     ],
     "license": "CC-BY-4.0",
-    "logo": "https://api.fairsharing.org/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBaUFDIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--0d3898a5618b34c0bc948bb0d101e906f212f05f/vo_banner.png?disposition=inline",
+    "logo": "https://api.fairsharing.org/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBck1IIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--bcbea6b26f9bd1db48d5f256c3d75bedd6fc2332/Screenshot%20From%202026-01-26%2011-30-20.png?disposition=inline",
     "mappings": {
       "aberowl": "VO",
       "biocontext": "VO",
@@ -84721,6 +84757,11 @@
         "pubmed": "20875156",
         "title": "Bioinformatics analysis of Brucella vaccines and vaccine targets using VIOLIN",
         "year": 2010
+      },
+      {
+        "doi": "10.1101/2025.08.12.669998",
+        "title": "VO: The Vaccine Ontology",
+        "year": 2025
       }
     ],
     "rdf_uri_format": "http://purl.obolibrary.org/obo/VO_$1",
