@@ -164,9 +164,9 @@ def _fill_abstracts(
         pubmed_to_article = _get_articles_dict(df)
 
     df["abstract"] = df["pubmed"].map(
-        lambda pubmed: article.get_abstract()
-        if (article := pubmed_to_article.get(pubmed))
-        else None,
+        lambda pubmed: (
+            article.get_abstract() if (article := pubmed_to_article.get(pubmed)) else None
+        ),
         na_action="ignore",
     )
 
