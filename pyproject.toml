@@ -10,7 +10,7 @@ markers = [
 
 [project]
 name = "bioregistry"
-version = "0.13.12-dev"
+version = "0.13.21-dev"
 description = "Integrated registry of biological databases and nomenclatures"
 readme = "README.md"
 authors = [
@@ -88,7 +88,7 @@ align = [
     "defusedxml",
     "class-resolver",
     "fairsharing-client>=0.1.0",
-    "pandas",
+    "pandas<3.0",
 ]
 export = [
     "pyyaml",
@@ -100,12 +100,12 @@ charts = [
     "matplotlib",
     "matplotlib_venn",
     "seaborn",
-    "pandas",
+    "pandas<3.0",
     "jinja2",
 ]
 health = [
     "click_default_group",
-    "pandas",
+    "pandas<3.0",
     "tabulate",
     "pyyaml",
     "jinja2",
@@ -126,13 +126,13 @@ web = [
     "api-analytics[fastapi]",
 ]
 paper-ranking = [
-    "pandas",
+    "pandas<3.0",
     "scikit-learn",
     "tabulate",
     "pubmed-downloader>=0.0.12",
 ]
 mapping-checking = [
-    "pandas",
+    "pandas<3.0",
     "sentence_transformers",
 ]
 
@@ -254,7 +254,7 @@ known-first-party = [
 docstring-code-format = true
 
 [tool.bumpversion]
-current_version = "0.13.12-dev"
+current_version = "0.13.21-dev"
 parse = "(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+)(?:-(?P<release>[0-9A-Za-z-]+(?:\\.[0-9A-Za-z-]+)*))?(?:\\+(?P<build>[0-9A-Za-z-]+(?:\\.[0-9A-Za-z-]+)*))?"
 serialize = [
     "{major}.{minor}.{patch}-{release}+{build}",

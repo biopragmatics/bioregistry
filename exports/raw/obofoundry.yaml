@@ -577,6 +577,8 @@ ontologies:
     ontology_purl: http://purl.obolibrary.org/obo/chebi.owl
   - id: chebi.obo
     ontology_purl: http://purl.obolibrary.org/obo/chebi.obo
+  - id: chebi.json
+    ontology_purl: http://purl.obolibrary.org/obo/chebi.json
   - id: chebi.owl.gz
     ontology_purl: http://purl.obolibrary.org/obo/chebi.owl.gz
     title: chebi, compressed owl
@@ -1154,6 +1156,16 @@ ontologies:
   repository: https://github.com/OBOFoundry/COB
   title: Core Ontology for Biology and Biomedicine
   tracker: https://github.com/OBOFoundry/COB/issues
+  usages:
+  - description: Ontologies using COB terms
+    examples:
+    - description: List of ontologies using at least one COB term (See section entitled
+        "Which ontologies use it?")
+      url: http://dashboard.obofoundry.org/dashboard/cob/dashboard.html
+    - description: List of ontologies using the term 'organism' (See section entitled
+        "Ontologies that use the Class")
+      url: https://ontobee.org/ontology/COB?iri=http://purl.obolibrary.org/obo/COB_0000022
+    user: (multiple)
 - activity_status: active
   contact:
     email: entiminae@gmail.com
@@ -1885,12 +1897,12 @@ ontologies:
   - id: https://doi.org/10.1016/B978-0-12-800043-4.00023-3
     title: 'Textual Anatomics: the Mouse Developmental Anatomy Ontology and the Gene
       Expression Database for Mouse Development (GXD)'
-  repository: https://github.com/obophenotype/mouse-anatomy-ontology
+  repository: https://github.com/obophenotype/developmental-mouse-anatomy-ontology
   taxon:
     id: NCBITaxon:10088
     label: Mus
   title: Mouse Developmental Anatomy Ontology
-  tracker: https://github.com/obophenotype/mouse-anatomy-ontology/issues
+  tracker: https://github.com/obophenotype/developmental-mouse-anatomy-ontology/issues
   usages:
   - description: GXD
     seeAlso: https://doi.org/10.25504/FAIRsharing.q9neh8
@@ -2571,10 +2583,6 @@ ontologies:
   title: Plant Gall Ontology
   tracker: https://github.com/adeans/gallont/issues
 - activity_status: active
-  build:
-    method: archive
-    path: archive
-    source_url: http://build.berkeleybop.org/job/build-gaz/lastSuccessfulBuild/artifact/*zip*/archive.zip
   contact:
     email: lschriml@som.umaryland.edu
     github: lschriml
@@ -3416,11 +3424,6 @@ ontologies:
   title: Lepidoptera Anatomy Ontology
   tracker: https://github.com/insect-morphology/lepao/issues
 - activity_status: active
-  build:
-    infallible: 1
-    insert_ontology_id: true
-    method: obo2owl
-    source_url: ftp://ftp.informatics.jax.org/pub/reports/adult_mouse_anatomy.obo
   contact:
     email: Terry.Hayamizu@jax.org
     github: tfhayamizu
@@ -3429,7 +3432,7 @@ ontologies:
   description: A structured controlled vocabulary of the adult anatomy of the mouse
     (Mus).
   domain: anatomy and development
-  homepage: https://github.com/obophenotype/mouse-anatomy-ontology
+  homepage: https://github.com/obophenotype/adult-mouse-anatomy-ontology
   id: ma
   layout: ontology_detail
   license:
@@ -3444,12 +3447,12 @@ ontologies:
     ontology_purl: http://purl.obolibrary.org/obo/ma.owl
   - id: ma.obo
     ontology_purl: http://purl.obolibrary.org/obo/ma.obo
-  repository: https://github.com/obophenotype/mouse-anatomy-ontology
+  repository: https://github.com/obophenotype/adult-mouse-anatomy-ontology
   taxon:
     id: NCBITaxon:10088
     label: Mus
   title: Mouse adult gross anatomy
-  tracker: https://github.com/obophenotype/mouse-anatomy-ontology/issues
+  tracker: https://github.com/obophenotype/adult-mouse-anatomy-ontology/issues
   usages:
   - description: GXD
     seeAlso: https://doi.org/10.25504/FAIRsharing.q9neh8
@@ -7051,6 +7054,8 @@ ontologies:
     ontology_purl: http://purl.obolibrary.org/obo/uo.owl
   - id: uo.obo
     ontology_purl: http://purl.obolibrary.org/obo/uo.obo
+  - id: uo.json
+    ontology_purl: http://purl.obolibrary.org/obo/uo.json
   publications:
   - id: https://www.ncbi.nlm.nih.gov/pubmed/23060432
     title: 'The Units Ontology: a tool for integrating units of measurement in science'
@@ -7135,7 +7140,7 @@ ontologies:
     orcid: 0000-0002-4142-7153
   dependencies:
   - id: ncbitaxon
-  depicted_by: https://github.com/tis-lab/closed-illustrations/blob/15058315cba1018e09572b28ebeee262a458b1c6/logos/vbo-logo/VBO-black-logo-stackedv2.png
+  depicted_by: https://raw.githubusercontent.com/tis-lab/closed-illustrations/master/logos/vbo-logo/VBO-black-logo-stackedv2.png
   description: Vertebrate Breed Ontology is an ontology created to serve as a single
     computable resource for vertebrate breed names.
   domain: organisms

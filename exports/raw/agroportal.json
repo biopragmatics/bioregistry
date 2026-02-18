@@ -83,15 +83,6 @@
       "name": "Afeez Adesina Adedayo"
     },
     "description": "The \"Advances in Agriculture and Biology” Ontology is a domain-specific vocabulary developed to support the classification and semantic annotation of scholarly contents in the fields of agriculture and biology. It is intended to enhance data interoperability, indexing, and retrieval in agricultural and biological research and publishing. The ontology is aligned with the themes and publications of the Advances in Agriculture and Biology journal and is useful for researchers, data curators, and digital library platforms.",
-    "group": [
-      "https://data.agroportal.lirmm.fr/groups/AGBIODATA",
-      "https://data.agroportal.lirmm.fr/groups/CROP",
-      "https://data.agroportal.lirmm.fr/groups/D2KAB",
-      "https://data.agroportal.lirmm.fr/groups/INRAE",
-      "https://data.agroportal.lirmm.fr/groups/PLANTEOME",
-      "https://data.agroportal.lirmm.fr/groups/WHEAT",
-      "https://data.agroportal.lirmm.fr/groups/EXCLU"
-    ],
     "hasDomain": [
       "https://data.agroportal.lirmm.fr/categories/AG-ENG",
       "https://data.agroportal.lirmm.fr/categories/AG-RES",
@@ -706,6 +697,11 @@
     "publications": [
       "https://www.fao.org/agrovoc/publications"
     ],
+    "sampleQueries": [
+      "# Select the countries and regions with their M49 code and with prefLabel in English\r\n\r\nPREFIX skos: <http://www.w3.org/2004/02/skos/core#> \r\nPREFIX skosxl: <http://www.w3.org/2008/05/skos-xl#> \r\nPREFIX agrontology: <http://aims.fao.org/aos/agrontology#>  \r\nSELECT ?concept ?m49Code ?label \r\nWHERE { \r\n  ?concept a skos:Concept . \r\n  ?concept agrontology:m49Code ?m49Code . \r\n  ?concept skosxl:prefLabel/skosxl:literalForm ?label . \r\n  FILTER(lang(?label) = 'en') \r\n} \r\nORDER BY ?label",
+      "#Select all properties of the concept \"water\"\r\n\r\nPREFIX skos: <http://www.w3.org/2004/02/skos/core#> \r\nPREFIX skosxl: <http://www.w3.org/2008/05/skos-xl#> \r\n\r\nSELECT DISTINCT ?property ?value ?label \r\nWHERE { \r\n  <http://aims.fao.org/aos/agrovoc/c_8309> ?property ?value . \r\n  OPTIONAL {\r\n    ?value a skosxl:Label .\r\n    ?value skosxl:literalForm ?label \r\n  }\r\n}\r\n#                                                                                                                           ",
+      "#Select all concepts having a prefLabel in English\r\n\r\nPREFIX skos: <http://www.w3.org/2004/02/skos/core#> \r\nPREFIX skosxl: <http://www.w3.org/2008/05/skos-xl#> \r\n\r\nSELECT ?concept ?prefLabel \r\nWHERE { \r\n  ?concept a skos:Concept . \r\n  ?concept skosxl:prefLabel/skosxl:literalForm ?prefLabel . \r\n  FILTER(lang(?prefLabel) = 'en') \r\n}\r\n#                                                                                                                                                        "
+    ],
     "viewingRestriction": "public",
     "views": [
       "https://data.agroportal.lirmm.fr/ontologies/AGROVOC-PT-BR"
@@ -834,7 +830,8 @@
       "https://data.agroportal.lirmm.fr/categories/FOOD",
       "https://data.agroportal.lirmm.fr/categories/HEALTH",
       "https://data.agroportal.lirmm.fr/categories/HUSB",
-      "https://data.agroportal.lirmm.fr/categories/PHENO"
+      "https://data.agroportal.lirmm.fr/categories/PHENO",
+      "https://data.agroportal.lirmm.fr/categories/ZOO"
     ],
     "homepage": "http://www.atol-ontology.com/",
     "license": "CC-BY-4.0",
@@ -1225,8 +1222,7 @@
     "description": "Rice Trait Dictionary in template v 5.0 - IRRI - March 2016 - Based on SES, RD, UPOV variables and on variables used by CIAT, FLAR and the GRISP Phenotyping Network variables",
     "exampleIdentifier": "http://www.cropontology.org/rdf/CO_320:0000600/5",
     "group": [
-      "https://data.agroportal.lirmm.fr/groups/CROP",
-      "https://data.agroportal.lirmm.fr/groups/PLANTEOME"
+      "https://data.agroportal.lirmm.fr/groups/CROP"
     ],
     "hasDomain": [
       "https://data.agroportal.lirmm.fr/categories/PHENO"
@@ -1311,7 +1307,6 @@
       "https://data.agroportal.lirmm.fr/groups/AGBIODATA",
       "https://data.agroportal.lirmm.fr/groups/CROP",
       "https://data.agroportal.lirmm.fr/groups/D2KAB",
-      "https://data.agroportal.lirmm.fr/groups/PLANTEOME",
       "https://data.agroportal.lirmm.fr/groups/WHEAT"
     ],
     "hasDomain": [
@@ -1401,8 +1396,7 @@
     "description": "(to come)",
     "exampleIdentifier": "http://www.cropontology.org/rdf/CO_330:0000056/2",
     "group": [
-      "https://data.agroportal.lirmm.fr/groups/CROP",
-      "https://data.agroportal.lirmm.fr/groups/PLANTEOME"
+      "https://data.agroportal.lirmm.fr/groups/CROP"
     ],
     "hasDomain": [
       "https://data.agroportal.lirmm.fr/categories/PHENO"
@@ -2124,7 +2118,7 @@
       "email": "efo-users@lists.sourceforge.net",
       "name": "EFO User List"
     },
-    "description": "The Experimental Factor Ontology (EFO) provides a systematic description of many experimental variables available in EBI databases, and for projects such as the GWAS catalog. It combines parts of several biological ontologies, such as UBERON anatomy, ChEBI chemical compounds, and Cell Ontology. EFO is developed by the EMBL-EBI Samples, Phenotypes and Ontologies Team (SPOT). We also add terms for external users when requested.",
+    "description": "The Experimental Factor Ontology (EFO) provides a systematic description of many experimental variables available in EBI databases, and for projects such as the GWAS catalog. It combines parts of several biological ontologies, such as UBERON anatomy, ChEBI chemical compounds, and Cell Ontology. EFO is developed by the EMBL-EBI Samples, Phenotypes and Ontologies Team (SPOT). We also add terms for external users when requested., and for projects such as the NHGRI-EBI GWAS catalog. It combines parts of several biological ontologies, Cell Ontology and the Monarch Disease Ontology (MONDO). The scope of EFO is to support the annotation, analysis and visualization of data handled by many groups at the EBI and as the core ontology for Open Targets.",
     "exampleIdentifier": "http://www.orpha.net/ORDO/Orphanet_1390",
     "group": [
       "https://data.agroportal.lirmm.fr/groups/WHEAT"
@@ -2187,7 +2181,7 @@
       "https://data.agroportal.lirmm.fr/projects/VEST-AP"
     ],
     "repository": "https://github.com/EBISPOT/efo",
-    "version": "3.84.0",
+    "version": "3.86.0",
     "viewingRestriction": "public"
   },
   {
@@ -2355,7 +2349,7 @@
       "https://data.agroportal.lirmm.fr/projects/VEST-AP"
     ],
     "repository": "https://github.com/FoodOntology/foodon",
-    "version": "2025-08-01",
+    "version": "2025-12-30",
     "viewingRestriction": "public"
   },
   {
@@ -2698,7 +2692,7 @@
       "http://geneontology.org/page/publications"
     ],
     "repository": "https://sourceforge.net/projects/geneontology/",
-    "version": "2025-10-10",
+    "version": "2026-01-23",
     "viewingRestriction": "public"
   },
   {
@@ -2819,7 +2813,7 @@
       "email": "jeanlouisjanin@gmail.com",
       "name": "Jean-Louis Janin"
     },
-    "description": "The aim of the Lexeau® project is to promote cross-comprehension between those involved in the water sector - scientists, engineers, technicians, administrative staff and lawyers - in their respective areas of expertise, and with the general public. It includes the production of LEXEAU, a multilingual ontology, as a source of bilingual water lexicons published by the Académie de l'Eau. - Le projet Lexeau® a pour but de promouvoir l'intercompréhension entre les acteurs du domaine de l'eau, scientifiques, ingénieurs, techniciens, administratifs et juristes, dans leur domaine de compétence, et avec le grand public. Il comprend la production de LEXEAU, une ontologie multilingue, comme source de lexiques de l'eau bilingues publiés par l'Académie de l'Eau.",
+    "description": "The aim of the Lexeau® project is to promote cross-comprehension between those involved in the water sector - scientists, engineers, technicians, administrative staff and lawyers - in their respective areas of expertise, and with the general public. It includes the production of LEXEAU, a bilingual ontology, as a source of the water lexicon published by the Académie de l'Eau. - Le projet Lexeau® a pour but de promouvoir l'intercompréhension entre les acteurs du domaine de l'eau, scientifiques, ingénieurs, techniciens, administratifs et juristes, dans leur domaine de compétence, et avec le grand public. Il comprend la production de LEXEAU, une ontologie bilingue, comme source du lexique de l'eau publié par l'Académie de l'Eau.",
     "hasDomain": [
       "https://data.agroportal.lirmm.fr/categories/NAT-RES"
     ],
@@ -2880,7 +2874,7 @@
     "projects": [
       "https://data.agroportal.lirmm.fr/projects/LEXEAU"
     ],
-    "version": "2.2",
+    "version": "2.4",
     "viewingRestriction": "public",
     "views": [
       "https://data.agroportal.lirmm.fr/ontologies/LEXEAU-FR"
@@ -3040,7 +3034,7 @@
       "https://data.agroportal.lirmm.fr/projects/LOVInra",
       "https://data.agroportal.lirmm.fr/projects/VEST-AP"
     ],
-    "version": "0.2000000000000000111",
+    "version": "0.2",
     "viewingRestriction": "public"
   },
   {
@@ -3582,7 +3576,8 @@
       "https://data.agroportal.lirmm.fr/ontologies/PPD-POF",
       "https://data.agroportal.lirmm.fr/ontologies/PPD-RSV",
       "https://data.agroportal.lirmm.fr/ontologies/PPD-SOL",
-      "https://data.agroportal.lirmm.fr/ontologies/PPD-STF"
+      "https://data.agroportal.lirmm.fr/ontologies/PPD-STF",
+      "https://data.agroportal.lirmm.fr/ontologies/PPD-OSR"
     ]
   },
   {
@@ -3747,7 +3742,7 @@
       "https://data.agroportal.lirmm.fr/projects/VEST-AP"
     ],
     "repository": "http://purl.obolibrary.org/obo/ro.owl",
-    "version": "2025-06-24",
+    "version": "2025-12-17",
     "viewingRestriction": "public"
   },
   {
@@ -4004,7 +3999,7 @@
     "projects": [
       "https://data.agroportal.lirmm.fr/projects/D2KAB"
     ],
-    "version": "22.0",
+    "version": "23.0",
     "viewingRestriction": "public"
   },
   {
@@ -4880,7 +4875,7 @@
       "https://data.agroportal.lirmm.fr/categories/ENV",
       "https://data.agroportal.lirmm.fr/categories/NAT-RES"
     ],
-    "homepage": "https://almescore.github.io/Almes-Core/",
+    "homepage": "https://almescore.github.io/Almes-Core",
     "license": "CC-BY-4.0",
     "links": {
       "@context": {
@@ -5111,7 +5106,7 @@
       "name": "Filipi Miranda Soares"
     },
     "description": "The Agriculture Product Types Ontology (APTO) is an ontology of types, meaning it does not contain individuals and is intended as a classification system for agricultural commodities price index databases in Brazil. This ontology contains labels and comments in both Portuguese and English. There are two main modules: :Organism and :Product_type. The :Organism class contains subclasses that represent the taxonomy of species related to the production of given product types. It imports taxonomic information from the Global Biodiversity Information Facility (GBIF) Backbone Taxonomy via API. The :Product_type class has six main subclasses organized into major groups: :Inorganic_compound :Animal_product :Plant_product :Raw_product :Processed_product :By-product The :Animal_product and :Plant_product classes include subclasses indicating the type of processing the product has undergone. These subclasses are also children of :Raw_product, :Processed_product, and :By-product. Object Properties APTO defines nine object properties: :has_ingredient and :is_ingredient_of (inverse properties): Indicate that a product type is used in the manufacturing of a processed product type (e.g., :Cow_cheese :has_ingredient :Cow_milk). :derives_from and :derives_in (inverse properties, imported from the Relations Ontology (RO)): Indicate that a product type originates from another product type (e.g., :Cocoa_almond :derives_from :Cocoa). :member_of_taxon (imported from the Biological Collections Ontology (BCO)): Indicates that an organismal entity belongs to a taxon (e.g., :Pacu :member_of_taxon :Piaractus_mesopotamicus). :produced_by and :produces (inverse properties, imported from RO): Indicate that an organismal entity produces a given type of product. For example, :Assai :produced_by :Assai_palm, and :Assai_palm :member_of_taxon :Euterpe_oleracea. If only the final product is listed in commodity databases and the rest of the organism holds no commercial value, the product is linked directly to the taxon (e.g., :Pineapple :produced_by :Ananas_comosus). :residue_of: Indicates that a by-product is the residue of manufacturing another product (e.g., :Whey :residue_of :Cheese). :is_a_hybrid_of: Specific to the :Organism subclasses, indicating a hybrid of two species (e.g., :Citrus_aurantium :is_a_hybrid_of ( :Citrus_reticulata and :Citrus_maxima ))., meaning it does not contain individuals and is intended as a classification system for agricultural commodities price index databases in Brazil. This ontology contains labels and comments in both Portuguese and English. There are two main modules: :Organism and :Product_type. The :Organism class contains subclasses that represent the taxonomy of species related to the production of given product types. It imports taxonomic information from the Global Biodiversity Information Facility (GBIF) Backbone Taxonomy via API. The :Product_type class has six main subclasses organized into major groups: :Inorganic_compound :Animal_product :Plant_product :Raw_product :Processed_product :By-product The :Animal_product and :Plant_product classes include subclasses indicating the type of processing the product has undergone.",
-    "exampleIdentifier": "https://w3id.org/APTO#Product_type",
+    "exampleIdentifier": "https://w3id.org/APTO/PT0051",
     "hasDomain": [
       "https://data.agroportal.lirmm.fr/categories/AGRI",
       "https://data.agroportal.lirmm.fr/categories/AGRI-PROD",
@@ -5180,7 +5175,7 @@
       "https://doi.org/10.1109/ACCESS.2025.3595447"
     ],
     "repository": "https://github.com/AlmesCore/APTO/tree/main",
-    "version": "1.2999999523162841797",
+    "version": "1.3.2",
     "viewingRestriction": "public"
   },
   {
@@ -5200,6 +5195,7 @@
     "hasDomain": [
       "https://data.agroportal.lirmm.fr/categories/FISH"
     ],
+    "homepage": "https://worldfishcenter.org/aquadata-ontology",
     "license": "CC-BY-4.0",
     "links": {
       "@context": {
@@ -5250,7 +5246,13 @@
       "xl_labels": "https://data.agroportal.lirmm.fr/ontologies/AQFO/skos_xl_labels"
     },
     "name": "Aquatic Food Ontology",
+    "notes": [
+      "https://data.agroportal.lirmm.fr/notes/62efa3f0-c9ff-013e-cf2e-5254006dce65",
+      "https://data.agroportal.lirmm.fr/notes/9bf0e070-c9ff-013e-cf2e-5254006dce65",
+      "https://data.agroportal.lirmm.fr/notes/774c6320-c9ff-013e-cf2e-5254006dce65"
+    ],
     "ontologyType": "https://data.agroportal.lirmm.fr/ontology_types/ONTOLOGY",
+    "repository": "https://github.com/WorldFishCenter/fish-ontology",
     "viewingRestriction": "public"
   },
   {
@@ -5641,16 +5643,18 @@
     "name": "BioAGgressor Ontology",
     "ontologyType": "https://data.agroportal.lirmm.fr/ontology_types/ONTOLOGY",
     "projects": [
+      "https://data.agroportal.lirmm.fr/projects/D2KAB",
       "https://data.agroportal.lirmm.fr/projects/Vitioeno"
     ],
     "publications": [
       "https://hal.science/hal-04638343"
     ],
     "repository": "https://forgemia.inra.fr/bsv/bio-agressor-ontology",
-    "version": "1.1",
+    "version": "1.2",
     "viewingRestriction": "public",
     "views": [
-      "https://data.agroportal.lirmm.fr/ontologies/BAG-GV"
+      "https://data.agroportal.lirmm.fr/ontologies/BAG-GV",
+      "https://data.agroportal.lirmm.fr/ontologies/BAG-ORG"
     ]
   },
   {
@@ -5812,7 +5816,8 @@
     "name": "BigDataGrapes Ontology",
     "ontologyType": "https://data.agroportal.lirmm.fr/ontology_types/ONTOLOGY",
     "projects": [
-      "https://data.agroportal.lirmm.fr/projects/BDG"
+      "https://data.agroportal.lirmm.fr/projects/BDG",
+      "https://data.agroportal.lirmm.fr/projects/BigDataGrapes"
     ],
     "repository": "https://github.com/BigDataGrapes-EU/ontology",
     "version": "1.0",
@@ -6833,7 +6838,7 @@
       "https://data.agroportal.lirmm.fr/projects/VEST-AP"
     ],
     "repository": "https://github.com/obophenotype/cell-ontology",
-    "version": "2025-11-25",
+    "version": "2025-12-17",
     "viewingRestriction": "public"
   },
   {
@@ -7084,8 +7089,7 @@
     "exampleIdentifier": "http://www.cropontology.org/rdf/CO_322:0000850",
     "group": [
       "https://data.agroportal.lirmm.fr/groups/AGBIODATA",
-      "https://data.agroportal.lirmm.fr/groups/CROP",
-      "https://data.agroportal.lirmm.fr/groups/PLANTEOME"
+      "https://data.agroportal.lirmm.fr/groups/CROP"
     ],
     "hasDomain": [
       "https://data.agroportal.lirmm.fr/categories/PHENO"
@@ -7248,8 +7252,7 @@
     "exampleIdentifier": "http://www.cropontology.org/rdf/CO_324:0000660",
     "group": [
       "https://data.agroportal.lirmm.fr/groups/AGBIODATA",
-      "https://data.agroportal.lirmm.fr/groups/CROP",
-      "https://data.agroportal.lirmm.fr/groups/PLANTEOME"
+      "https://data.agroportal.lirmm.fr/groups/CROP"
     ],
     "hasDomain": [
       "https://data.agroportal.lirmm.fr/categories/PHENO"
@@ -7571,8 +7574,7 @@
     "description": "Sweet Potato Trait Dictionary in template v5",
     "exampleIdentifier": "http://www.cropontology.org/rdf/CO_331:0000601/1",
     "group": [
-      "https://data.agroportal.lirmm.fr/groups/CROP",
-      "https://data.agroportal.lirmm.fr/groups/PLANTEOME"
+      "https://data.agroportal.lirmm.fr/groups/CROP"
     ],
     "hasDomain": [
       "https://data.agroportal.lirmm.fr/categories/PHENO"
@@ -7741,8 +7743,7 @@
     "exampleIdentifier": "http://www.cropontology.org/rdf/CO_334:0100676",
     "group": [
       "https://data.agroportal.lirmm.fr/groups/AGBIODATA",
-      "https://data.agroportal.lirmm.fr/groups/CROP",
-      "https://data.agroportal.lirmm.fr/groups/PLANTEOME"
+      "https://data.agroportal.lirmm.fr/groups/CROP"
     ],
     "hasDomain": [
       "https://data.agroportal.lirmm.fr/categories/PHENO"
@@ -7909,8 +7910,7 @@
     "exampleIdentifier": "http://www.cropontology.org/rdf/CO_336:0000230/2",
     "group": [
       "https://data.agroportal.lirmm.fr/groups/AGBIODATA",
-      "https://data.agroportal.lirmm.fr/groups/CROP",
-      "https://data.agroportal.lirmm.fr/groups/PLANTEOME"
+      "https://data.agroportal.lirmm.fr/groups/CROP"
     ],
     "hasDomain": [
       "https://data.agroportal.lirmm.fr/categories/PHENO"
@@ -8159,8 +8159,7 @@
     "exampleIdentifier": "http://www.cropontology.org/rdf/CO_339:0000117",
     "group": [
       "https://data.agroportal.lirmm.fr/groups/AGBIODATA",
-      "https://data.agroportal.lirmm.fr/groups/CROP",
-      "https://data.agroportal.lirmm.fr/groups/PLANTEOME"
+      "https://data.agroportal.lirmm.fr/groups/CROP"
     ],
     "hasDomain": [
       "https://data.agroportal.lirmm.fr/categories/PHENO"
@@ -8328,8 +8327,7 @@
     "description": "Pigeonpea Trait Dictionary in template v5",
     "exampleIdentifier": "http://www.cropontology.org/rdf/CO_341:0000015",
     "group": [
-      "https://data.agroportal.lirmm.fr/groups/CROP",
-      "https://data.agroportal.lirmm.fr/groups/PLANTEOME"
+      "https://data.agroportal.lirmm.fr/groups/CROP"
     ],
     "hasDomain": [
       "https://data.agroportal.lirmm.fr/categories/PHENO"
@@ -8411,8 +8409,7 @@
     "description": "Yam trait ontology",
     "exampleIdentifier": "http://www.cropontology.org/rdf/CO_343:0000357",
     "group": [
-      "https://data.agroportal.lirmm.fr/groups/CROP",
-      "https://data.agroportal.lirmm.fr/groups/PLANTEOME"
+      "https://data.agroportal.lirmm.fr/groups/CROP"
     ],
     "hasDomain": [
       "https://data.agroportal.lirmm.fr/categories/PHENO"
@@ -9914,7 +9911,7 @@
       "name": "Steve Baskauf"
     },
     "description": "Version 0.4 to 1.0 fixed reversed dsw:locates and dsw:locatedAt. Added labels. Changed comments and descriptions to conform to DC and DwC precedent. Added subClassOf relations to RO hasEvidence and isEvidenceFor. Specified preferred direction for inverse object property pairs., Changes from version 0.2.1 to version 0.3: removal of all functional and inverse function properties of object property terms, use of dwctype classes, deprecation of terms replaced by dwciri: terms, removal of references to TDWG Ontology., Changes from version 0.3 to 0.4 change DwC class namespace from dwctype: to dwc: to follow class proposal, removed references to TDWG TaxonConcept ontology; deprecated terms that now have equivalent terms in Darwin Core., Change from version 1.0 to 1.0.1 Add CC0 license.",
-    "exampleIdentifier": "http://xmlns.com/foaf/0.1/Agent",
+    "exampleIdentifier": "http://rs.tdwg.org/dwc/terms/Organism",
     "group": [
       "https://data.agroportal.lirmm.fr/groups/SEMANDIV"
     ],
@@ -11957,6 +11954,231 @@
     "viewingRestriction": "public"
   },
   {
+    "@id": "https://data.agroportal.lirmm.fr/ontologies/ICASA-CORE",
+    "@type": "http://data.bioontology.org/metadata/Ontology",
+    "acronym": "ICASA-CORE",
+    "administeredBy": [
+      "https://data.agroportal.lirmm.fr/users/croussey",
+      "https://data.agroportal.lirmm.fr/users/jonquet",
+      "https://data.agroportal.lirmm.fr/users/Lloren%C3%A7"
+    ],
+    "contact": {
+      "email": "willis8@illinois.edu",
+      "name": "Craig Willis"
+    },
+    "description": "Ontology based on the ICASA version 2.0 data standard. The foundation of the standard is a master list of variables with major separations among descriptions of management practices or treatments, environmental conditions (soil and weather data), and measurements of crop responses as described in White et al (2013)., and measurements of crop responses as described in White et al (2013).",
+    "hasDomain": [
+      "https://data.agroportal.lirmm.fr/categories/AGRO",
+      "https://data.agroportal.lirmm.fr/categories/BIO",
+      "https://data.agroportal.lirmm.fr/categories/PHENO",
+      "https://data.agroportal.lirmm.fr/categories/PLANT"
+    ],
+    "homepage": "https://github.com/craig-willis/icasa",
+    "links": {
+      "@context": {
+        "agents": "http://xmlns.com/foaf/0.1/Agent",
+        "analytics": "http://data.bioontology.org/metadata/Analytics",
+        "categories": "http://data.bioontology.org/metadata/Category",
+        "classes": "http://www.w3.org/2002/07/owl#Class",
+        "collections": "http://www.w3.org/2004/02/skos/core#Collection",
+        "download": "http://data.bioontology.org/metadata/Ontology",
+        "groups": "http://data.bioontology.org/metadata/Group",
+        "instances": "http://data.bioontology.org/metadata/Instance",
+        "latest_submission": "http://data.bioontology.org/metadata/OntologySubmission",
+        "mappings": "metadata/Mapping",
+        "metrics": "http://data.bioontology.org/metadata/Metrics",
+        "notes": "http://data.bioontology.org/metadata/Note",
+        "projects": "http://data.bioontology.org/metadata/Project",
+        "properties": "http://data.bioontology.org/metadata/Property",
+        "reviews": "http://data.bioontology.org/metadata/Review",
+        "roots": "http://www.w3.org/2002/07/owl#Class",
+        "schemes": "http://www.w3.org/2004/02/skos/core#ConceptScheme",
+        "single_class": "http://www.w3.org/2002/07/owl#Class",
+        "submissions": "http://data.bioontology.org/metadata/OntologySubmission",
+        "ui": "http://data.bioontology.org/metadata/Ontology",
+        "views": "http://data.bioontology.org/metadata/Ontology",
+        "xl_labels": "http://www.w3.org/2008/05/skos-xl#Label"
+      },
+      "agents": "https://data.agroportal.lirmm.fr/ontologies/ICASA-CORE/agents",
+      "analytics": "https://data.agroportal.lirmm.fr/ontologies/ICASA-CORE/analytics",
+      "categories": "https://data.agroportal.lirmm.fr/ontologies/ICASA-CORE/categories",
+      "classes": "https://data.agroportal.lirmm.fr/ontologies/ICASA-CORE/classes",
+      "collections": "https://data.agroportal.lirmm.fr/ontologies/ICASA-CORE/collections",
+      "download": "https://data.agroportal.lirmm.fr/ontologies/ICASA-CORE/download",
+      "groups": "https://data.agroportal.lirmm.fr/ontologies/ICASA-CORE/groups",
+      "instances": "https://data.agroportal.lirmm.fr/ontologies/ICASA-CORE/instances",
+      "latest_submission": "https://data.agroportal.lirmm.fr/ontologies/ICASA-CORE/latest_submission",
+      "mappings": "https://data.agroportal.lirmm.fr/ontologies/ICASA-CORE/mappings",
+      "metrics": "https://data.agroportal.lirmm.fr/ontologies/ICASA-CORE/metrics",
+      "notes": "https://data.agroportal.lirmm.fr/ontologies/ICASA-CORE/notes",
+      "projects": "https://data.agroportal.lirmm.fr/ontologies/ICASA-CORE/projects",
+      "properties": "https://data.agroportal.lirmm.fr/ontologies/ICASA-CORE/properties",
+      "reviews": "https://data.agroportal.lirmm.fr/ontologies/ICASA-CORE/reviews",
+      "roots": "https://data.agroportal.lirmm.fr/ontologies/ICASA-CORE/classes/roots",
+      "schemes": "https://data.agroportal.lirmm.fr/ontologies/ICASA-CORE/schemes",
+      "single_class": "https://data.agroportal.lirmm.fr/ontologies/ICASA-CORE/classes/{class_id}",
+      "submissions": "https://data.agroportal.lirmm.fr/ontologies/ICASA-CORE/submissions",
+      "ui": "http://agroportal.lirmm.fr/ontologies/ICASA-CORE",
+      "views": "https://data.agroportal.lirmm.fr/ontologies/ICASA-CORE/views",
+      "xl_labels": "https://data.agroportal.lirmm.fr/ontologies/ICASA-CORE/skos_xl_labels"
+    },
+    "name": "Core ICASA ontology for integrated description of agricultural field experiments and production",
+    "ontologyType": "https://data.agroportal.lirmm.fr/ontology_types/ONTOLOGY",
+    "repository": "https://github.com/craig-willis/icasa",
+    "version": "1.0-alpha",
+    "viewingRestriction": "public"
+  },
+  {
+    "@id": "https://data.agroportal.lirmm.fr/ontologies/ICASA-VARIABLES",
+    "@type": "http://data.bioontology.org/metadata/Ontology",
+    "acronym": "ICASA-VARIABLES",
+    "administeredBy": [
+      "https://data.agroportal.lirmm.fr/users/croussey",
+      "https://data.agroportal.lirmm.fr/users/jonquet",
+      "https://data.agroportal.lirmm.fr/users/Lloren%C3%A7"
+    ],
+    "contact": {
+      "email": "willis8@illinois.edu",
+      "name": "Craig Willis"
+    },
+    "description": "Ontology based on the ICASA version 2.0 data standard. The foundation of the standard is a master list of variables with major separations among descriptions of management practices or treatments, environmental conditions (soil and weather data), and measurements of crop responses as described in White et al (2013)., and measurements of crop responses as described in White et al (2013).",
+    "hasDomain": [
+      "https://data.agroportal.lirmm.fr/categories/AGRO",
+      "https://data.agroportal.lirmm.fr/categories/BIO",
+      "https://data.agroportal.lirmm.fr/categories/PHENO",
+      "https://data.agroportal.lirmm.fr/categories/PLANT"
+    ],
+    "homepage": "https://github.com/craig-willis/icasa",
+    "links": {
+      "@context": {
+        "agents": "http://xmlns.com/foaf/0.1/Agent",
+        "analytics": "http://data.bioontology.org/metadata/Analytics",
+        "categories": "http://data.bioontology.org/metadata/Category",
+        "classes": "http://www.w3.org/2002/07/owl#Class",
+        "collections": "http://www.w3.org/2004/02/skos/core#Collection",
+        "download": "http://data.bioontology.org/metadata/Ontology",
+        "groups": "http://data.bioontology.org/metadata/Group",
+        "instances": "http://data.bioontology.org/metadata/Instance",
+        "latest_submission": "http://data.bioontology.org/metadata/OntologySubmission",
+        "mappings": "metadata/Mapping",
+        "metrics": "http://data.bioontology.org/metadata/Metrics",
+        "notes": "http://data.bioontology.org/metadata/Note",
+        "projects": "http://data.bioontology.org/metadata/Project",
+        "properties": "http://data.bioontology.org/metadata/Property",
+        "reviews": "http://data.bioontology.org/metadata/Review",
+        "roots": "http://www.w3.org/2002/07/owl#Class",
+        "schemes": "http://www.w3.org/2004/02/skos/core#ConceptScheme",
+        "single_class": "http://www.w3.org/2002/07/owl#Class",
+        "submissions": "http://data.bioontology.org/metadata/OntologySubmission",
+        "ui": "http://data.bioontology.org/metadata/Ontology",
+        "views": "http://data.bioontology.org/metadata/Ontology",
+        "xl_labels": "http://www.w3.org/2008/05/skos-xl#Label"
+      },
+      "agents": "https://data.agroportal.lirmm.fr/ontologies/ICASA-VARIABLES/agents",
+      "analytics": "https://data.agroportal.lirmm.fr/ontologies/ICASA-VARIABLES/analytics",
+      "categories": "https://data.agroportal.lirmm.fr/ontologies/ICASA-VARIABLES/categories",
+      "classes": "https://data.agroportal.lirmm.fr/ontologies/ICASA-VARIABLES/classes",
+      "collections": "https://data.agroportal.lirmm.fr/ontologies/ICASA-VARIABLES/collections",
+      "download": "https://data.agroportal.lirmm.fr/ontologies/ICASA-VARIABLES/download",
+      "groups": "https://data.agroportal.lirmm.fr/ontologies/ICASA-VARIABLES/groups",
+      "instances": "https://data.agroportal.lirmm.fr/ontologies/ICASA-VARIABLES/instances",
+      "latest_submission": "https://data.agroportal.lirmm.fr/ontologies/ICASA-VARIABLES/latest_submission",
+      "mappings": "https://data.agroportal.lirmm.fr/ontologies/ICASA-VARIABLES/mappings",
+      "metrics": "https://data.agroportal.lirmm.fr/ontologies/ICASA-VARIABLES/metrics",
+      "notes": "https://data.agroportal.lirmm.fr/ontologies/ICASA-VARIABLES/notes",
+      "projects": "https://data.agroportal.lirmm.fr/ontologies/ICASA-VARIABLES/projects",
+      "properties": "https://data.agroportal.lirmm.fr/ontologies/ICASA-VARIABLES/properties",
+      "reviews": "https://data.agroportal.lirmm.fr/ontologies/ICASA-VARIABLES/reviews",
+      "roots": "https://data.agroportal.lirmm.fr/ontologies/ICASA-VARIABLES/classes/roots",
+      "schemes": "https://data.agroportal.lirmm.fr/ontologies/ICASA-VARIABLES/schemes",
+      "single_class": "https://data.agroportal.lirmm.fr/ontologies/ICASA-VARIABLES/classes/{class_id}",
+      "submissions": "https://data.agroportal.lirmm.fr/ontologies/ICASA-VARIABLES/submissions",
+      "ui": "http://agroportal.lirmm.fr/ontologies/ICASA-VARIABLES",
+      "views": "https://data.agroportal.lirmm.fr/ontologies/ICASA-VARIABLES/views",
+      "xl_labels": "https://data.agroportal.lirmm.fr/ontologies/ICASA-VARIABLES/skos_xl_labels"
+    },
+    "name": "Variables: ICASA ontology for integrated description of agricultural field experiments and production",
+    "ontologyType": "https://data.agroportal.lirmm.fr/ontology_types/ONTOLOGY",
+    "repository": "https://github.com/craig-willis/icasa",
+    "version": "1.0-alpha",
+    "viewingRestriction": "public"
+  },
+  {
+    "@id": "https://data.agroportal.lirmm.fr/ontologies/ICASA-VU",
+    "@type": "http://data.bioontology.org/metadata/Ontology",
+    "acronym": "ICASA-VU",
+    "administeredBy": [
+      "https://data.agroportal.lirmm.fr/users/croussey",
+      "https://data.agroportal.lirmm.fr/users/jonquet",
+      "https://data.agroportal.lirmm.fr/users/Lloren%C3%A7"
+    ],
+    "contact": {
+      "email": "willis8@illinois.edu",
+      "name": "Craig Willis"
+    },
+    "description": "Ontology intended to model variables and units capturing the ICASA measured data variables as well as CF standard names and BETYdb variables., Ontology intended to model variables and units capturing the ICASA measured data variables as well as CF standard names and BETYdb variables.",
+    "hasDomain": [
+      "https://data.agroportal.lirmm.fr/categories/AGRO",
+      "https://data.agroportal.lirmm.fr/categories/BIO",
+      "https://data.agroportal.lirmm.fr/categories/PHENO",
+      "https://data.agroportal.lirmm.fr/categories/PLANT"
+    ],
+    "homepage": "https://github.com/craig-willis/icasa",
+    "links": {
+      "@context": {
+        "agents": "http://xmlns.com/foaf/0.1/Agent",
+        "analytics": "http://data.bioontology.org/metadata/Analytics",
+        "categories": "http://data.bioontology.org/metadata/Category",
+        "classes": "http://www.w3.org/2002/07/owl#Class",
+        "collections": "http://www.w3.org/2004/02/skos/core#Collection",
+        "download": "http://data.bioontology.org/metadata/Ontology",
+        "groups": "http://data.bioontology.org/metadata/Group",
+        "instances": "http://data.bioontology.org/metadata/Instance",
+        "latest_submission": "http://data.bioontology.org/metadata/OntologySubmission",
+        "mappings": "metadata/Mapping",
+        "metrics": "http://data.bioontology.org/metadata/Metrics",
+        "notes": "http://data.bioontology.org/metadata/Note",
+        "projects": "http://data.bioontology.org/metadata/Project",
+        "properties": "http://data.bioontology.org/metadata/Property",
+        "reviews": "http://data.bioontology.org/metadata/Review",
+        "roots": "http://www.w3.org/2002/07/owl#Class",
+        "schemes": "http://www.w3.org/2004/02/skos/core#ConceptScheme",
+        "single_class": "http://www.w3.org/2002/07/owl#Class",
+        "submissions": "http://data.bioontology.org/metadata/OntologySubmission",
+        "ui": "http://data.bioontology.org/metadata/Ontology",
+        "views": "http://data.bioontology.org/metadata/Ontology",
+        "xl_labels": "http://www.w3.org/2008/05/skos-xl#Label"
+      },
+      "agents": "https://data.agroportal.lirmm.fr/ontologies/ICASA-VU/agents",
+      "analytics": "https://data.agroportal.lirmm.fr/ontologies/ICASA-VU/analytics",
+      "categories": "https://data.agroportal.lirmm.fr/ontologies/ICASA-VU/categories",
+      "classes": "https://data.agroportal.lirmm.fr/ontologies/ICASA-VU/classes",
+      "collections": "https://data.agroportal.lirmm.fr/ontologies/ICASA-VU/collections",
+      "download": "https://data.agroportal.lirmm.fr/ontologies/ICASA-VU/download",
+      "groups": "https://data.agroportal.lirmm.fr/ontologies/ICASA-VU/groups",
+      "instances": "https://data.agroportal.lirmm.fr/ontologies/ICASA-VU/instances",
+      "latest_submission": "https://data.agroportal.lirmm.fr/ontologies/ICASA-VU/latest_submission",
+      "mappings": "https://data.agroportal.lirmm.fr/ontologies/ICASA-VU/mappings",
+      "metrics": "https://data.agroportal.lirmm.fr/ontologies/ICASA-VU/metrics",
+      "notes": "https://data.agroportal.lirmm.fr/ontologies/ICASA-VU/notes",
+      "projects": "https://data.agroportal.lirmm.fr/ontologies/ICASA-VU/projects",
+      "properties": "https://data.agroportal.lirmm.fr/ontologies/ICASA-VU/properties",
+      "reviews": "https://data.agroportal.lirmm.fr/ontologies/ICASA-VU/reviews",
+      "roots": "https://data.agroportal.lirmm.fr/ontologies/ICASA-VU/classes/roots",
+      "schemes": "https://data.agroportal.lirmm.fr/ontologies/ICASA-VU/schemes",
+      "single_class": "https://data.agroportal.lirmm.fr/ontologies/ICASA-VU/classes/{class_id}",
+      "submissions": "https://data.agroportal.lirmm.fr/ontologies/ICASA-VU/submissions",
+      "ui": "http://agroportal.lirmm.fr/ontologies/ICASA-VU",
+      "views": "https://data.agroportal.lirmm.fr/ontologies/ICASA-VU/views",
+      "xl_labels": "https://data.agroportal.lirmm.fr/ontologies/ICASA-VU/skos_xl_labels"
+    },
+    "name": "ICASA Ontology for Variables and Units",
+    "ontologyType": "https://data.agroportal.lirmm.fr/ontology_types/ONTOLOGY",
+    "repository": "https://github.com/craig-willis/icasa",
+    "version": "1.0-alpha",
+    "viewingRestriction": "public"
+  },
+  {
     "@id": "https://data.agroportal.lirmm.fr/ontologies/ICC",
     "@type": "http://data.bioontology.org/metadata/Ontology",
     "acronym": "ICC",
@@ -12102,6 +12324,9 @@
     },
     "name": "InfraRisk Ontology",
     "ontologyType": "https://data.agroportal.lirmm.fr/ontology_types/ONTOLOGY",
+    "projects": [
+      "https://data.agroportal.lirmm.fr/projects/INFRARISK"
+    ],
     "version": "1.0",
     "viewingRestriction": "public"
   },
@@ -12633,7 +12858,7 @@
       "https://github.com/decide-project-eu/LivestockHealthOntology"
     ],
     "repository": "https://github.com/decide-project-eu/LivestockHealthOntologyIntegration-CattlePigPoultryUsecase-",
-    "version": "V1.3",
+    "version": "V1.4",
     "viewingRestriction": "public"
   },
   {
@@ -13669,6 +13894,9 @@
     },
     "name": "Ontology for Nutritional Studies",
     "ontologyType": "https://data.agroportal.lirmm.fr/ontology_types/ONTOLOGY",
+    "projects": [
+      "https://data.agroportal.lirmm.fr/projects/ENPADASI"
+    ],
     "version": "Relese version 1.0",
     "viewingRestriction": "public"
   },
@@ -14048,6 +14276,10 @@
     },
     "name": "Ploutos Common Semantic Model",
     "ontologyType": "https://data.agroportal.lirmm.fr/ontology_types/ONTOLOGY",
+    "projects": [
+      "https://data.agroportal.lirmm.fr/projects/PLOUTOS"
+    ],
+    "repository": "https://gitlab.com/Ploutos-project/ploutos-common-semantic-model",
     "viewingRestriction": "public"
   },
   {
@@ -14294,7 +14526,7 @@
       "https://doi.org/10.3732/ajb.1200222"
     ],
     "repository": "https://github.com/Planteome/plant-experimental-conditions-ontology",
-    "version": "July 2023",
+    "version": "December 2025",
     "viewingRestriction": "public"
   },
   {
@@ -14363,6 +14595,9 @@
       "xl_labels": "https://data.agroportal.lirmm.fr/ontologies/PFEEPSA/skos_xl_labels"
     },
     "name": "Poultry Farm Energy Efficiency Prediction Semantic Assistant Ontology",
+    "notes": [
+      "https://data.agroportal.lirmm.fr/notes/d19d0a80-d751-013e-9fd2-5254006dce65"
+    ],
     "ontologyType": "https://data.agroportal.lirmm.fr/ontology_types/ONTOLOGY",
     "repository": "https://github.com/iesnaola/eepsa",
     "version": "1.0",
@@ -14478,7 +14713,7 @@
       "https://planteome.org/references"
     ],
     "repository": "https://github.com/Planteome/plant-ontology",
-    "version": "July 2023",
+    "version": "January 2026",
     "viewingRestriction": "public"
   },
   {
@@ -14641,7 +14876,13 @@
     "projects": [
       "https://data.agroportal.lirmm.fr/projects/MIAPPE",
       "https://data.agroportal.lirmm.fr/projects/RDAWheat",
-      "https://data.agroportal.lirmm.fr/projects/VEST-AP"
+      "https://data.agroportal.lirmm.fr/projects/VEST-AP",
+      "https://data.agroportal.lirmm.fr/projects/EPPN2020",
+      "https://data.agroportal.lirmm.fr/projects/TransPLANT",
+      "https://data.agroportal.lirmm.fr/projects/ELIXIR-EXCELERATE"
+    ],
+    "publications": [
+      "https://doi.org/10.1111/nph.16544"
     ],
     "repository": "https://github.com/MIAPPE/MIAPPE-ontology",
     "version": "1.1-beta",
@@ -14740,7 +14981,7 @@
       "email": "cooperl@oregonstate.edu",
       "name": "Laurel Cooper"
     },
-    "description": "The Plant Stress Ontology (PSO) describes biotic and abiotic stresses that a plant may encounter. An ontology containing biotic and abiotic plant stresses. Part of the Planteome suite of reference ontologies.",
+    "description": "The Plant Stress Ontology (PSO) describes biotic and abiotic stresses that a plant may encounter. An ontology containing biotic and abiotic plant stresses. Part of the Planteome suite of reference ontologies., An ontology describing biotic and abiotic plant stresses.",
     "exampleIdentifier": "http://purl.obolibrary.org/obo/PSO_0000013",
     "group": [
       "https://data.agroportal.lirmm.fr/groups/OBO-FOUNDRY",
@@ -14820,7 +15061,7 @@
       "https://planteome.org/references"
     ],
     "repository": "https://github.com/Planteome/plant-stress-ontology",
-    "version": "2023-11-14",
+    "version": "2026-01-08",
     "viewingRestriction": "public"
   },
   {
@@ -15256,7 +15497,7 @@
       "email": "ga.ubbiali@gmail.com",
       "name": "Giorgio A. Ubbiali"
     },
-    "description": "The Sustainability Core Ontology (SCO) is a middle-level ontology, covering the terminology related to the three major theoretical challenges of sustainability: 1) The polysemy of the term sustainability. 2) The relationship between sustainability and sustainable development. 3) The complexity underlying sustainability. SCO is designed to be the pivotal resource upon which to harmonize and integrate ontologies regarding sustainability. The ultimate goal is to establish a family of interoperable sustainability ontologies. Currently, SCO employs Basic Formal Ontology (BFO) and Unified Foundational Ontology (UFO) as the upper-level ontologies. SCO V1.1.0 is the current release and is comprised of two segments: SCO-B (B for BFO) and SCO-U (U for UFO). SCO-B aligns the SCO vocabulary with BFO. SCO-U aligns the SCO vocabulary with gUFO (UFO implementation in the Web Ontology Language (OWL)). SCO V1.1.0. covers three natural languages, English, French, and Italian. SCO V1.1.0. conforms to OBO-Foundry principles. The most recent version of SCO-B segment can always be found at https://w3id.org/sco. The most recent version of SCO-U segment can always be found at https://w3id.org/sco/sco-u.",
+    "description": "The Sustainability Core Ontology (SCO) is a middle-level ontology, covering the terminology related to the three major theoretical challenges of sustainability: 1) The polysemy of the term sustainability. 2) The relationship between sustainability and sustainable development. 3) The complexity underlying sustainability. SCO is designed to be the pivotal resource upon which to harmonize and integrate ontologies regarding sustainability. The ultimate goal is to establish a family of interoperable sustainability ontologies. Currently, SCO employs Basic Formal Ontology (BFO) and Unified Foundational Ontology (UFO) as the upper-level ontologies. SCO V1.1.0 is the current release and is comprised of two segments: SCO-B (B for BFO) and SCO-U (U for UFO). SCO-B aligns the SCO vocabulary with BFO. SCO-U aligns the SCO vocabulary with gUFO (UFO implementation in the Web Ontology Language (OWL)). SCO V1.1.0. conforms to OBO-Foundry principles. The most recent version of SCO-B segment can always be found at https://w3id.org/sco. The most recent version of SCO-U segment can always be found at https://w3id.org/sco/sco-u. This file provides SCO-B segment. References – TLOs: https://github.com/BFO-ontology/BFO-2020 https://ontouml.readthedocs.io/en/latest/intro/ufo.html https://nemo-ufes.github.io/gufo/",
     "homepage": "https://www.w3id.org/sco/repo",
     "license": "CC-BY-4.0",
     "links": {
@@ -15852,6 +16093,9 @@
     },
     "name": "agINFRA Soil Vocabulary",
     "ontologyType": "https://data.agroportal.lirmm.fr/ontology_types/ONTOLOGY",
+    "projects": [
+      "https://data.agroportal.lirmm.fr/projects/agINFRA"
+    ],
     "version": "V-2014",
     "viewingRestriction": "public"
   },
@@ -16679,7 +16923,8 @@
     "ontologyType": "https://data.agroportal.lirmm.fr/ontology_types/ONTOLOGY",
     "projects": [
       "https://data.agroportal.lirmm.fr/projects/LOVInra",
-      "https://data.agroportal.lirmm.fr/projects/VEST-AP"
+      "https://data.agroportal.lirmm.fr/projects/VEST-AP",
+      "https://data.agroportal.lirmm.fr/projects/ATA-RI"
     ],
     "viewingRestriction": "public"
   },
@@ -17184,7 +17429,7 @@
       "https://doi.org/10.1093/database/bas033"
     ],
     "repository": "https://github.com/bio-ontology-research-group/unit-ontology",
-    "version": "2023-05-25",
+    "version": "2026-01-16",
     "viewingRestriction": "public"
   },
   {
@@ -18084,70 +18329,6 @@
     "viewingRestriction": "public"
   },
   {
-    "@id": "https://data.agroportal.lirmm.fr/ontologies/TESTM",
-    "@type": "http://data.bioontology.org/metadata/Ontology",
-    "acronym": "TESTM",
-    "administeredBy": [
-      "https://data.agroportal.lirmm.fr/users/appliance"
-    ],
-    "contact": {
-      "email": "muh@gmail.com",
-      "name": "ontoportal_ui"
-    },
-    "description": "hello",
-    "links": {
-      "@context": {
-        "agents": "http://xmlns.com/foaf/0.1/Agent",
-        "analytics": "http://data.bioontology.org/metadata/Analytics",
-        "categories": "http://data.bioontology.org/metadata/Category",
-        "classes": "http://www.w3.org/2002/07/owl#Class",
-        "collections": "http://www.w3.org/2004/02/skos/core#Collection",
-        "download": "http://data.bioontology.org/metadata/Ontology",
-        "groups": "http://data.bioontology.org/metadata/Group",
-        "instances": "http://data.bioontology.org/metadata/Instance",
-        "latest_submission": "http://data.bioontology.org/metadata/OntologySubmission",
-        "mappings": "metadata/Mapping",
-        "metrics": "http://data.bioontology.org/metadata/Metrics",
-        "notes": "http://data.bioontology.org/metadata/Note",
-        "projects": "http://data.bioontology.org/metadata/Project",
-        "properties": "http://data.bioontology.org/metadata/Property",
-        "reviews": "http://data.bioontology.org/metadata/Review",
-        "roots": "http://www.w3.org/2002/07/owl#Class",
-        "schemes": "http://www.w3.org/2004/02/skos/core#ConceptScheme",
-        "single_class": "http://www.w3.org/2002/07/owl#Class",
-        "submissions": "http://data.bioontology.org/metadata/OntologySubmission",
-        "ui": "http://data.bioontology.org/metadata/Ontology",
-        "views": "http://data.bioontology.org/metadata/Ontology",
-        "xl_labels": "http://www.w3.org/2008/05/skos-xl#Label"
-      },
-      "agents": "https://data.agroportal.lirmm.fr/ontologies/TESTM/agents",
-      "analytics": "https://data.agroportal.lirmm.fr/ontologies/TESTM/analytics",
-      "categories": "https://data.agroportal.lirmm.fr/ontologies/TESTM/categories",
-      "classes": "https://data.agroportal.lirmm.fr/ontologies/TESTM/classes",
-      "collections": "https://data.agroportal.lirmm.fr/ontologies/TESTM/collections",
-      "download": "https://data.agroportal.lirmm.fr/ontologies/TESTM/download",
-      "groups": "https://data.agroportal.lirmm.fr/ontologies/TESTM/groups",
-      "instances": "https://data.agroportal.lirmm.fr/ontologies/TESTM/instances",
-      "latest_submission": "https://data.agroportal.lirmm.fr/ontologies/TESTM/latest_submission",
-      "mappings": "https://data.agroportal.lirmm.fr/ontologies/TESTM/mappings",
-      "metrics": "https://data.agroportal.lirmm.fr/ontologies/TESTM/metrics",
-      "notes": "https://data.agroportal.lirmm.fr/ontologies/TESTM/notes",
-      "projects": "https://data.agroportal.lirmm.fr/ontologies/TESTM/projects",
-      "properties": "https://data.agroportal.lirmm.fr/ontologies/TESTM/properties",
-      "reviews": "https://data.agroportal.lirmm.fr/ontologies/TESTM/reviews",
-      "roots": "https://data.agroportal.lirmm.fr/ontologies/TESTM/classes/roots",
-      "schemes": "https://data.agroportal.lirmm.fr/ontologies/TESTM/schemes",
-      "single_class": "https://data.agroportal.lirmm.fr/ontologies/TESTM/classes/{class_id}",
-      "submissions": "https://data.agroportal.lirmm.fr/ontologies/TESTM/submissions",
-      "ui": "http://agroportal.lirmm.fr/ontologies/TESTM",
-      "views": "https://data.agroportal.lirmm.fr/ontologies/TESTM/views",
-      "xl_labels": "https://data.agroportal.lirmm.fr/ontologies/TESTM/skos_xl_labels"
-    },
-    "name": "TESTM",
-    "ontologyType": "https://data.agroportal.lirmm.fr/ontology_types/ONTOLOGY",
-    "viewingRestriction": "public"
-  },
-  {
     "@id": "https://data.agroportal.lirmm.fr/ontologies/ECOCROP",
     "@type": "http://data.bioontology.org/metadata/Ontology",
     "acronym": "ECOCROP",
@@ -18217,6 +18398,105 @@
     },
     "name": "ECOCROP Ontology",
     "ontologyType": "https://data.agroportal.lirmm.fr/ontology_types/ONTOLOGY",
+    "publications": [
+      "https://doi.org/10.1007/978-3-031-53770-7_7"
+    ],
+    "repository": "https://git.wur.nl/FoodInformatics/i-know-foo/-/tree/main/ECOCROP%20Ontology",
+    "summaryOnly": true,
+    "viewingRestriction": "public"
+  },
+  {
+    "@id": "https://data.agroportal.lirmm.fr/ontologies/AGRITRUST",
+    "@type": "http://data.bioontology.org/metadata/Ontology",
+    "acronym": "AGRITRUST",
+    "administeredBy": [
+      "https://data.agroportal.lirmm.fr/users/Bergier"
+    ],
+    "contact": {
+      "email": "ivan.bergier@embrapa.br",
+      "name": "Ivan Bergier"
+    },
+    "description": "New regulations, such as the EU Unrestricted Deforestation Regulation (EUDR), make verifiable agricultural data (AgData) essential for global trade. However, its value is compromised by a widespread \"AgData Paradox,\" characterized by distrust and fragmentation. To address this problem, we present AgriTrust, a federated semantic governance framework that automates and governs data sharing. Its key methodological innovation lies in the deep integration of a multi-sectorial governance model with a semantic digital layer, implemented through the AgriTrust Ontology (an OWL ontology for tokenization and traceability) and a multi-vendor, blockchain-agnostic architecture that avoids single-vendor dependence.",
+    "exampleIdentifier": "https://w3id.org/agrisemantics/AGRITRUST/AssetShape",
+    "hasDomain": [
+      "https://data.agroportal.lirmm.fr/categories/AG-ENG",
+      "https://data.agroportal.lirmm.fr/categories/AG-RES",
+      "https://data.agroportal.lirmm.fr/categories/AGRI",
+      "https://data.agroportal.lirmm.fr/categories/AGRI-PROD",
+      "https://data.agroportal.lirmm.fr/categories/AGRO",
+      "https://data.agroportal.lirmm.fr/categories/ANIM",
+      "https://data.agroportal.lirmm.fr/categories/BOTA",
+      "https://data.agroportal.lirmm.fr/categories/ECONOM",
+      "https://data.agroportal.lirmm.fr/categories/ECOSYS",
+      "https://data.agroportal.lirmm.fr/categories/ENV",
+      "https://data.agroportal.lirmm.fr/categories/FOREST",
+      "https://data.agroportal.lirmm.fr/categories/GEO",
+      "https://data.agroportal.lirmm.fr/categories/GOVT",
+      "https://data.agroportal.lirmm.fr/categories/HEALTH",
+      "https://data.agroportal.lirmm.fr/categories/LAW",
+      "https://data.agroportal.lirmm.fr/categories/OBS",
+      "https://data.agroportal.lirmm.fr/categories/PLANT",
+      "https://data.agroportal.lirmm.fr/categories/RURAL",
+      "https://data.agroportal.lirmm.fr/categories/TECH",
+      "https://data.agroportal.lirmm.fr/categories/ZOO"
+    ],
+    "homepage": "https://agroportal.lirmm.fr/ontologies/AGRITRUST",
+    "license": "CC-BY-4.0",
+    "links": {
+      "@context": {
+        "agents": "http://xmlns.com/foaf/0.1/Agent",
+        "analytics": "http://data.bioontology.org/metadata/Analytics",
+        "categories": "http://data.bioontology.org/metadata/Category",
+        "classes": "http://www.w3.org/2002/07/owl#Class",
+        "collections": "http://www.w3.org/2004/02/skos/core#Collection",
+        "download": "http://data.bioontology.org/metadata/Ontology",
+        "groups": "http://data.bioontology.org/metadata/Group",
+        "instances": "http://data.bioontology.org/metadata/Instance",
+        "latest_submission": "http://data.bioontology.org/metadata/OntologySubmission",
+        "mappings": "metadata/Mapping",
+        "metrics": "http://data.bioontology.org/metadata/Metrics",
+        "notes": "http://data.bioontology.org/metadata/Note",
+        "projects": "http://data.bioontology.org/metadata/Project",
+        "properties": "http://data.bioontology.org/metadata/Property",
+        "reviews": "http://data.bioontology.org/metadata/Review",
+        "roots": "http://www.w3.org/2002/07/owl#Class",
+        "schemes": "http://www.w3.org/2004/02/skos/core#ConceptScheme",
+        "single_class": "http://www.w3.org/2002/07/owl#Class",
+        "submissions": "http://data.bioontology.org/metadata/OntologySubmission",
+        "ui": "http://data.bioontology.org/metadata/Ontology",
+        "views": "http://data.bioontology.org/metadata/Ontology",
+        "xl_labels": "http://www.w3.org/2008/05/skos-xl#Label"
+      },
+      "agents": "https://data.agroportal.lirmm.fr/ontologies/AGRITRUST/agents",
+      "analytics": "https://data.agroportal.lirmm.fr/ontologies/AGRITRUST/analytics",
+      "categories": "https://data.agroportal.lirmm.fr/ontologies/AGRITRUST/categories",
+      "classes": "https://data.agroportal.lirmm.fr/ontologies/AGRITRUST/classes",
+      "collections": "https://data.agroportal.lirmm.fr/ontologies/AGRITRUST/collections",
+      "download": "https://data.agroportal.lirmm.fr/ontologies/AGRITRUST/download",
+      "groups": "https://data.agroportal.lirmm.fr/ontologies/AGRITRUST/groups",
+      "instances": "https://data.agroportal.lirmm.fr/ontologies/AGRITRUST/instances",
+      "latest_submission": "https://data.agroportal.lirmm.fr/ontologies/AGRITRUST/latest_submission",
+      "mappings": "https://data.agroportal.lirmm.fr/ontologies/AGRITRUST/mappings",
+      "metrics": "https://data.agroportal.lirmm.fr/ontologies/AGRITRUST/metrics",
+      "notes": "https://data.agroportal.lirmm.fr/ontologies/AGRITRUST/notes",
+      "projects": "https://data.agroportal.lirmm.fr/ontologies/AGRITRUST/projects",
+      "properties": "https://data.agroportal.lirmm.fr/ontologies/AGRITRUST/properties",
+      "reviews": "https://data.agroportal.lirmm.fr/ontologies/AGRITRUST/reviews",
+      "roots": "https://data.agroportal.lirmm.fr/ontologies/AGRITRUST/classes/roots",
+      "schemes": "https://data.agroportal.lirmm.fr/ontologies/AGRITRUST/schemes",
+      "single_class": "https://data.agroportal.lirmm.fr/ontologies/AGRITRUST/classes/{class_id}",
+      "submissions": "https://data.agroportal.lirmm.fr/ontologies/AGRITRUST/submissions",
+      "ui": "http://agroportal.lirmm.fr/ontologies/AGRITRUST",
+      "views": "https://data.agroportal.lirmm.fr/ontologies/AGRITRUST/views",
+      "xl_labels": "https://data.agroportal.lirmm.fr/ontologies/AGRITRUST/skos_xl_labels"
+    },
+    "name": "Agricultural Traceability and Trusted Data Sharing Ontology",
+    "ontologyType": "https://data.agroportal.lirmm.fr/ontology_types/ONTOLOGY",
+    "publications": [
+      "https://arxiv.org/abs/2511.05572"
+    ],
+    "repository": "https://www.gitlab.cnptia.embrapa.br/m327882/agritrust-ontology",
+    "version": "1.0.1",
     "viewingRestriction": "public"
   },
   {
@@ -18307,7 +18587,7 @@
       "email": "ga.ubbiali@gmail.com",
       "name": "Giorgio A. Ubbiali"
     },
-    "description": "The Sustainability Core Ontology (SCO) is a middle-level ontology, covering the terminology related to the three major theoretical challenges of sustainability: 1) The polysemy of the term sustainability. 2) The relationship between sustainability and sustainable development. 3) The complexity underlying sustainability. SCO is designed to be the pivotal resource upon which to harmonize and integrate ontologies regarding sustainability. The ultimate goal is to establish a family of interoperable sustainability ontologies. Currently, SCO employs Basic Formal Ontology (BFO) and Unified Foundational Ontology (UFO) as the upper-level ontologies. SCO V1.1.0 is the current release and is comprised of two segments: SCO-B (B for BFO) and SCO-U (U for UFO). SCO-B aligns the SCO vocabulary with BFO. SCO-U aligns the SCO vocabulary with gUFO (UFO implementation in the Web Ontology Language (OWL)). SCO V1.1.0. covers three natural languages, English, French, and Italian. SCO V1.1.0. conforms to OBO-Foundry principles. The most recent version of SCO-B segment can always be found at https://w3id.org/sco. The most recent version of SCO-U segment can always be found at https://w3id.org/sco/sco-u.",
+    "description": "SCO is a middle-level ontology, representing the major theoretical challenges to sustainability: 1) The polysemy of the term sustainability. 2) The relationship between sustainability and sustainable development. 3) The complexity underlying sustainability. SCO aims to play a pivotal role in harmonizing and integrating top-level and domain ontologies regarding sustainability., SCO V1.1.0 aligns with two Top-Level Ontologies (TLOs), Basic Formal Ontology (BFO) and Unified Foundational Ontology (UFO). SCO V1.1.0 is comprised of two segments: SCO-B (B for BFO) and SCO-U (U for UFO). SCO-B aligns the SCO vocabulary with BFO (as SCO V1.0.0). SCO-U aligns the SCO vocabulary with gUFO (UFO implementation in the Web Ontology Language (OWL)). This file provides SCO-U segment. References – TLOs: https://github.com/BFO-ontology/BFO-2020 https://ontouml.readthedocs.io/en/latest/intro/ufo.html https://nemo-ufes.github.io/gufo/",
     "homepage": "https://www.w3id.org/sco/repo",
     "license": "CC-BY-4.0",
     "links": {
@@ -18362,6 +18642,408 @@
     "ontologyType": "https://data.agroportal.lirmm.fr/ontology_types/ONTOLOGY",
     "repository": "https://w3id.org/sco/repo",
     "version": "2025-03-19",
+    "viewingRestriction": "public"
+  },
+  {
+    "@id": "https://data.agroportal.lirmm.fr/ontologies/TAX",
+    "@type": "http://data.bioontology.org/metadata/Ontology",
+    "acronym": "TAX",
+    "administeredBy": [
+      "https://data.agroportal.lirmm.fr/users/LOV_migration"
+    ],
+    "contact": {
+      "email": "mohamed-el-amine.boukerfa@inrae.fr",
+      "name": "LOV_migration"
+    },
+    "description": "EUdaphobase Taxonomy Ontology for the European Soil-Biology Data Warehouse for Soil Protection",
+    "license": "https://opensource.org/licenses/MIT",
+    "links": {
+      "@context": {
+        "agents": "http://xmlns.com/foaf/0.1/Agent",
+        "analytics": "http://data.bioontology.org/metadata/Analytics",
+        "categories": "http://data.bioontology.org/metadata/Category",
+        "classes": "http://www.w3.org/2002/07/owl#Class",
+        "collections": "http://www.w3.org/2004/02/skos/core#Collection",
+        "download": "http://data.bioontology.org/metadata/Ontology",
+        "groups": "http://data.bioontology.org/metadata/Group",
+        "instances": "http://data.bioontology.org/metadata/Instance",
+        "latest_submission": "http://data.bioontology.org/metadata/OntologySubmission",
+        "mappings": "metadata/Mapping",
+        "metrics": "http://data.bioontology.org/metadata/Metrics",
+        "notes": "http://data.bioontology.org/metadata/Note",
+        "projects": "http://data.bioontology.org/metadata/Project",
+        "properties": "http://data.bioontology.org/metadata/Property",
+        "reviews": "http://data.bioontology.org/metadata/Review",
+        "roots": "http://www.w3.org/2002/07/owl#Class",
+        "schemes": "http://www.w3.org/2004/02/skos/core#ConceptScheme",
+        "single_class": "http://www.w3.org/2002/07/owl#Class",
+        "submissions": "http://data.bioontology.org/metadata/OntologySubmission",
+        "ui": "http://data.bioontology.org/metadata/Ontology",
+        "views": "http://data.bioontology.org/metadata/Ontology",
+        "xl_labels": "http://www.w3.org/2008/05/skos-xl#Label"
+      },
+      "agents": "https://data.agroportal.lirmm.fr/ontologies/TAX/agents",
+      "analytics": "https://data.agroportal.lirmm.fr/ontologies/TAX/analytics",
+      "categories": "https://data.agroportal.lirmm.fr/ontologies/TAX/categories",
+      "classes": "https://data.agroportal.lirmm.fr/ontologies/TAX/classes",
+      "collections": "https://data.agroportal.lirmm.fr/ontologies/TAX/collections",
+      "download": "https://data.agroportal.lirmm.fr/ontologies/TAX/download",
+      "groups": "https://data.agroportal.lirmm.fr/ontologies/TAX/groups",
+      "instances": "https://data.agroportal.lirmm.fr/ontologies/TAX/instances",
+      "latest_submission": "https://data.agroportal.lirmm.fr/ontologies/TAX/latest_submission",
+      "mappings": "https://data.agroportal.lirmm.fr/ontologies/TAX/mappings",
+      "metrics": "https://data.agroportal.lirmm.fr/ontologies/TAX/metrics",
+      "notes": "https://data.agroportal.lirmm.fr/ontologies/TAX/notes",
+      "projects": "https://data.agroportal.lirmm.fr/ontologies/TAX/projects",
+      "properties": "https://data.agroportal.lirmm.fr/ontologies/TAX/properties",
+      "reviews": "https://data.agroportal.lirmm.fr/ontologies/TAX/reviews",
+      "roots": "https://data.agroportal.lirmm.fr/ontologies/TAX/classes/roots",
+      "schemes": "https://data.agroportal.lirmm.fr/ontologies/TAX/schemes",
+      "single_class": "https://data.agroportal.lirmm.fr/ontologies/TAX/classes/{class_id}",
+      "submissions": "https://data.agroportal.lirmm.fr/ontologies/TAX/submissions",
+      "ui": "http://agroportal.lirmm.fr/ontologies/TAX",
+      "views": "https://data.agroportal.lirmm.fr/ontologies/TAX/views",
+      "xl_labels": "https://data.agroportal.lirmm.fr/ontologies/TAX/skos_xl_labels"
+    },
+    "name": "EUTaxO - EUdaphobase Taxonomy Ontology",
+    "ontologyType": "https://data.agroportal.lirmm.fr/ontology_types/ONTOLOGY",
+    "version": "v2.0.0 - Changes:\nThis major version adapts the ontology to better comply with the FAIR principles.\n- Changed URI from \"https://www.eudaphobase.eu/ontologies/taxonomy\" to \"https://w3id.org/EUTaxO\"\n- Complete ontology metadata\n- Complete labels and comments for all terms\n- Remove support to parse output excel file\n- Remove all spaces from URIs",
+    "viewingRestriction": "public"
+  },
+  {
+    "@id": "https://data.agroportal.lirmm.fr/ontologies/FOO",
+    "@type": "http://data.bioontology.org/metadata/Ontology",
+    "acronym": "FOO",
+    "administeredBy": [
+      "https://data.agroportal.lirmm.fr/users/LOV_migration"
+    ],
+    "contact": {
+      "email": "mohamed-el-amine.boukerfa@inrae.fr",
+      "name": "LOV_migration"
+    },
+    "description": "This ontology describes wildlife observations generated by sensors.",
+    "license": "CC BY-SA 4.0",
+    "links": {
+      "@context": {
+        "agents": "http://xmlns.com/foaf/0.1/Agent",
+        "analytics": "http://data.bioontology.org/metadata/Analytics",
+        "categories": "http://data.bioontology.org/metadata/Category",
+        "classes": "http://www.w3.org/2002/07/owl#Class",
+        "collections": "http://www.w3.org/2004/02/skos/core#Collection",
+        "download": "http://data.bioontology.org/metadata/Ontology",
+        "groups": "http://data.bioontology.org/metadata/Group",
+        "instances": "http://data.bioontology.org/metadata/Instance",
+        "latest_submission": "http://data.bioontology.org/metadata/OntologySubmission",
+        "mappings": "metadata/Mapping",
+        "metrics": "http://data.bioontology.org/metadata/Metrics",
+        "notes": "http://data.bioontology.org/metadata/Note",
+        "projects": "http://data.bioontology.org/metadata/Project",
+        "properties": "http://data.bioontology.org/metadata/Property",
+        "reviews": "http://data.bioontology.org/metadata/Review",
+        "roots": "http://www.w3.org/2002/07/owl#Class",
+        "schemes": "http://www.w3.org/2004/02/skos/core#ConceptScheme",
+        "single_class": "http://www.w3.org/2002/07/owl#Class",
+        "submissions": "http://data.bioontology.org/metadata/OntologySubmission",
+        "ui": "http://data.bioontology.org/metadata/Ontology",
+        "views": "http://data.bioontology.org/metadata/Ontology",
+        "xl_labels": "http://www.w3.org/2008/05/skos-xl#Label"
+      },
+      "agents": "https://data.agroportal.lirmm.fr/ontologies/FOO/agents",
+      "analytics": "https://data.agroportal.lirmm.fr/ontologies/FOO/analytics",
+      "categories": "https://data.agroportal.lirmm.fr/ontologies/FOO/categories",
+      "classes": "https://data.agroportal.lirmm.fr/ontologies/FOO/classes",
+      "collections": "https://data.agroportal.lirmm.fr/ontologies/FOO/collections",
+      "download": "https://data.agroportal.lirmm.fr/ontologies/FOO/download",
+      "groups": "https://data.agroportal.lirmm.fr/ontologies/FOO/groups",
+      "instances": "https://data.agroportal.lirmm.fr/ontologies/FOO/instances",
+      "latest_submission": "https://data.agroportal.lirmm.fr/ontologies/FOO/latest_submission",
+      "mappings": "https://data.agroportal.lirmm.fr/ontologies/FOO/mappings",
+      "metrics": "https://data.agroportal.lirmm.fr/ontologies/FOO/metrics",
+      "notes": "https://data.agroportal.lirmm.fr/ontologies/FOO/notes",
+      "projects": "https://data.agroportal.lirmm.fr/ontologies/FOO/projects",
+      "properties": "https://data.agroportal.lirmm.fr/ontologies/FOO/properties",
+      "reviews": "https://data.agroportal.lirmm.fr/ontologies/FOO/reviews",
+      "roots": "https://data.agroportal.lirmm.fr/ontologies/FOO/classes/roots",
+      "schemes": "https://data.agroportal.lirmm.fr/ontologies/FOO/schemes",
+      "single_class": "https://data.agroportal.lirmm.fr/ontologies/FOO/classes/{class_id}",
+      "submissions": "https://data.agroportal.lirmm.fr/ontologies/FOO/submissions",
+      "ui": "http://agroportal.lirmm.fr/ontologies/FOO",
+      "views": "https://data.agroportal.lirmm.fr/ontologies/FOO/views",
+      "xl_labels": "https://data.agroportal.lirmm.fr/ontologies/FOO/skos_xl_labels"
+    },
+    "name": "Forest Observatory Ontology (FOO)",
+    "ontologyType": "https://data.agroportal.lirmm.fr/ontology_types/ONTOLOGY",
+    "version": "BBC Wildlife Ontology Reused 26 June 2024",
+    "viewingRestriction": "public"
+  },
+  {
+    "@id": "https://data.agroportal.lirmm.fr/ontologies/DFC",
+    "@type": "http://data.bioontology.org/metadata/Ontology",
+    "acronym": "DFC",
+    "administeredBy": [
+      "https://data.agroportal.lirmm.fr/users/LOV_migration"
+    ],
+    "contact": {
+      "email": "mohamed-el-amine.boukerfa@inrae.fr",
+      "name": "LOV_migration"
+    },
+    "description": "A common vocabulary for digital food platforms",
+    "links": {
+      "@context": {
+        "agents": "http://xmlns.com/foaf/0.1/Agent",
+        "analytics": "http://data.bioontology.org/metadata/Analytics",
+        "categories": "http://data.bioontology.org/metadata/Category",
+        "classes": "http://www.w3.org/2002/07/owl#Class",
+        "collections": "http://www.w3.org/2004/02/skos/core#Collection",
+        "download": "http://data.bioontology.org/metadata/Ontology",
+        "groups": "http://data.bioontology.org/metadata/Group",
+        "instances": "http://data.bioontology.org/metadata/Instance",
+        "latest_submission": "http://data.bioontology.org/metadata/OntologySubmission",
+        "mappings": "metadata/Mapping",
+        "metrics": "http://data.bioontology.org/metadata/Metrics",
+        "notes": "http://data.bioontology.org/metadata/Note",
+        "projects": "http://data.bioontology.org/metadata/Project",
+        "properties": "http://data.bioontology.org/metadata/Property",
+        "reviews": "http://data.bioontology.org/metadata/Review",
+        "roots": "http://www.w3.org/2002/07/owl#Class",
+        "schemes": "http://www.w3.org/2004/02/skos/core#ConceptScheme",
+        "single_class": "http://www.w3.org/2002/07/owl#Class",
+        "submissions": "http://data.bioontology.org/metadata/OntologySubmission",
+        "ui": "http://data.bioontology.org/metadata/Ontology",
+        "views": "http://data.bioontology.org/metadata/Ontology",
+        "xl_labels": "http://www.w3.org/2008/05/skos-xl#Label"
+      },
+      "agents": "https://data.agroportal.lirmm.fr/ontologies/DFC/agents",
+      "analytics": "https://data.agroportal.lirmm.fr/ontologies/DFC/analytics",
+      "categories": "https://data.agroportal.lirmm.fr/ontologies/DFC/categories",
+      "classes": "https://data.agroportal.lirmm.fr/ontologies/DFC/classes",
+      "collections": "https://data.agroportal.lirmm.fr/ontologies/DFC/collections",
+      "download": "https://data.agroportal.lirmm.fr/ontologies/DFC/download",
+      "groups": "https://data.agroportal.lirmm.fr/ontologies/DFC/groups",
+      "instances": "https://data.agroportal.lirmm.fr/ontologies/DFC/instances",
+      "latest_submission": "https://data.agroportal.lirmm.fr/ontologies/DFC/latest_submission",
+      "mappings": "https://data.agroportal.lirmm.fr/ontologies/DFC/mappings",
+      "metrics": "https://data.agroportal.lirmm.fr/ontologies/DFC/metrics",
+      "notes": "https://data.agroportal.lirmm.fr/ontologies/DFC/notes",
+      "projects": "https://data.agroportal.lirmm.fr/ontologies/DFC/projects",
+      "properties": "https://data.agroportal.lirmm.fr/ontologies/DFC/properties",
+      "reviews": "https://data.agroportal.lirmm.fr/ontologies/DFC/reviews",
+      "roots": "https://data.agroportal.lirmm.fr/ontologies/DFC/classes/roots",
+      "schemes": "https://data.agroportal.lirmm.fr/ontologies/DFC/schemes",
+      "single_class": "https://data.agroportal.lirmm.fr/ontologies/DFC/classes/{class_id}",
+      "submissions": "https://data.agroportal.lirmm.fr/ontologies/DFC/submissions",
+      "ui": "http://agroportal.lirmm.fr/ontologies/DFC",
+      "views": "https://data.agroportal.lirmm.fr/ontologies/DFC/views",
+      "xl_labels": "https://data.agroportal.lirmm.fr/ontologies/DFC/skos_xl_labels"
+    },
+    "name": "Data Food Consortium Ontology",
+    "ontologyType": "https://data.agroportal.lirmm.fr/ontology_types/ONTOLOGY",
+    "version": "v4.0",
+    "viewingRestriction": "public",
+    "views": [
+      "https://data.agroportal.lirmm.fr/ontologies/DFC-P",
+      "https://data.agroportal.lirmm.fr/ontologies/DFC-T",
+      "https://data.agroportal.lirmm.fr/ontologies/DFC-B"
+    ]
+  },
+  {
+    "@id": "https://data.agroportal.lirmm.fr/ontologies/GEOP",
+    "@type": "http://data.bioontology.org/metadata/Ontology",
+    "acronym": "GEOP",
+    "administeredBy": [
+      "https://data.agroportal.lirmm.fr/users/LOV_migration"
+    ],
+    "contact": {
+      "email": "mohamed-el-amine.boukerfa@inrae.fr",
+      "name": "LOV Migration"
+    },
+    "description": "FAO's geopolitical ontology version 1.1 was populated with FAO, UN and internationally recognized data sources.",
+    "links": {
+      "@context": {
+        "agents": "http://xmlns.com/foaf/0.1/Agent",
+        "analytics": "http://data.bioontology.org/metadata/Analytics",
+        "categories": "http://data.bioontology.org/metadata/Category",
+        "classes": "http://www.w3.org/2002/07/owl#Class",
+        "collections": "http://www.w3.org/2004/02/skos/core#Collection",
+        "download": "http://data.bioontology.org/metadata/Ontology",
+        "groups": "http://data.bioontology.org/metadata/Group",
+        "instances": "http://data.bioontology.org/metadata/Instance",
+        "latest_submission": "http://data.bioontology.org/metadata/OntologySubmission",
+        "mappings": "metadata/Mapping",
+        "metrics": "http://data.bioontology.org/metadata/Metrics",
+        "notes": "http://data.bioontology.org/metadata/Note",
+        "projects": "http://data.bioontology.org/metadata/Project",
+        "properties": "http://data.bioontology.org/metadata/Property",
+        "reviews": "http://data.bioontology.org/metadata/Review",
+        "roots": "http://www.w3.org/2002/07/owl#Class",
+        "schemes": "http://www.w3.org/2004/02/skos/core#ConceptScheme",
+        "single_class": "http://www.w3.org/2002/07/owl#Class",
+        "submissions": "http://data.bioontology.org/metadata/OntologySubmission",
+        "ui": "http://data.bioontology.org/metadata/Ontology",
+        "views": "http://data.bioontology.org/metadata/Ontology",
+        "xl_labels": "http://www.w3.org/2008/05/skos-xl#Label"
+      },
+      "agents": "https://data.agroportal.lirmm.fr/ontologies/GEOP/agents",
+      "analytics": "https://data.agroportal.lirmm.fr/ontologies/GEOP/analytics",
+      "categories": "https://data.agroportal.lirmm.fr/ontologies/GEOP/categories",
+      "classes": "https://data.agroportal.lirmm.fr/ontologies/GEOP/classes",
+      "collections": "https://data.agroportal.lirmm.fr/ontologies/GEOP/collections",
+      "download": "https://data.agroportal.lirmm.fr/ontologies/GEOP/download",
+      "groups": "https://data.agroportal.lirmm.fr/ontologies/GEOP/groups",
+      "instances": "https://data.agroportal.lirmm.fr/ontologies/GEOP/instances",
+      "latest_submission": "https://data.agroportal.lirmm.fr/ontologies/GEOP/latest_submission",
+      "mappings": "https://data.agroportal.lirmm.fr/ontologies/GEOP/mappings",
+      "metrics": "https://data.agroportal.lirmm.fr/ontologies/GEOP/metrics",
+      "notes": "https://data.agroportal.lirmm.fr/ontologies/GEOP/notes",
+      "projects": "https://data.agroportal.lirmm.fr/ontologies/GEOP/projects",
+      "properties": "https://data.agroportal.lirmm.fr/ontologies/GEOP/properties",
+      "reviews": "https://data.agroportal.lirmm.fr/ontologies/GEOP/reviews",
+      "roots": "https://data.agroportal.lirmm.fr/ontologies/GEOP/classes/roots",
+      "schemes": "https://data.agroportal.lirmm.fr/ontologies/GEOP/schemes",
+      "single_class": "https://data.agroportal.lirmm.fr/ontologies/GEOP/classes/{class_id}",
+      "submissions": "https://data.agroportal.lirmm.fr/ontologies/GEOP/submissions",
+      "ui": "http://agroportal.lirmm.fr/ontologies/GEOP",
+      "views": "https://data.agroportal.lirmm.fr/ontologies/GEOP/views",
+      "xl_labels": "https://data.agroportal.lirmm.fr/ontologies/GEOP/skos_xl_labels"
+    },
+    "name": "FAO Geopolitical Ontology",
+    "ontologyType": "https://data.agroportal.lirmm.fr/ontology_types/ONTOLOGY",
+    "version": "version 1.1",
+    "viewingRestriction": "public"
+  },
+  {
+    "@id": "https://data.agroportal.lirmm.fr/ontologies/FWO",
+    "@type": "http://data.bioontology.org/metadata/Ontology",
+    "acronym": "FWO",
+    "administeredBy": [
+      "https://data.agroportal.lirmm.fr/users/LOV_migration"
+    ],
+    "contact": {
+      "email": "mohamed-el-amine.boukerfa@inrae.fr",
+      "name": "LOV_migration"
+    },
+    "description": "An ontology to model food donation logistics.",
+    "license": "CC-BY-4.0",
+    "links": {
+      "@context": {
+        "agents": "http://xmlns.com/foaf/0.1/Agent",
+        "analytics": "http://data.bioontology.org/metadata/Analytics",
+        "categories": "http://data.bioontology.org/metadata/Category",
+        "classes": "http://www.w3.org/2002/07/owl#Class",
+        "collections": "http://www.w3.org/2004/02/skos/core#Collection",
+        "download": "http://data.bioontology.org/metadata/Ontology",
+        "groups": "http://data.bioontology.org/metadata/Group",
+        "instances": "http://data.bioontology.org/metadata/Instance",
+        "latest_submission": "http://data.bioontology.org/metadata/OntologySubmission",
+        "mappings": "metadata/Mapping",
+        "metrics": "http://data.bioontology.org/metadata/Metrics",
+        "notes": "http://data.bioontology.org/metadata/Note",
+        "projects": "http://data.bioontology.org/metadata/Project",
+        "properties": "http://data.bioontology.org/metadata/Property",
+        "reviews": "http://data.bioontology.org/metadata/Review",
+        "roots": "http://www.w3.org/2002/07/owl#Class",
+        "schemes": "http://www.w3.org/2004/02/skos/core#ConceptScheme",
+        "single_class": "http://www.w3.org/2002/07/owl#Class",
+        "submissions": "http://data.bioontology.org/metadata/OntologySubmission",
+        "ui": "http://data.bioontology.org/metadata/Ontology",
+        "views": "http://data.bioontology.org/metadata/Ontology",
+        "xl_labels": "http://www.w3.org/2008/05/skos-xl#Label"
+      },
+      "agents": "https://data.agroportal.lirmm.fr/ontologies/FWO/agents",
+      "analytics": "https://data.agroportal.lirmm.fr/ontologies/FWO/analytics",
+      "categories": "https://data.agroportal.lirmm.fr/ontologies/FWO/categories",
+      "classes": "https://data.agroportal.lirmm.fr/ontologies/FWO/classes",
+      "collections": "https://data.agroportal.lirmm.fr/ontologies/FWO/collections",
+      "download": "https://data.agroportal.lirmm.fr/ontologies/FWO/download",
+      "groups": "https://data.agroportal.lirmm.fr/ontologies/FWO/groups",
+      "instances": "https://data.agroportal.lirmm.fr/ontologies/FWO/instances",
+      "latest_submission": "https://data.agroportal.lirmm.fr/ontologies/FWO/latest_submission",
+      "mappings": "https://data.agroportal.lirmm.fr/ontologies/FWO/mappings",
+      "metrics": "https://data.agroportal.lirmm.fr/ontologies/FWO/metrics",
+      "notes": "https://data.agroportal.lirmm.fr/ontologies/FWO/notes",
+      "projects": "https://data.agroportal.lirmm.fr/ontologies/FWO/projects",
+      "properties": "https://data.agroportal.lirmm.fr/ontologies/FWO/properties",
+      "reviews": "https://data.agroportal.lirmm.fr/ontologies/FWO/reviews",
+      "roots": "https://data.agroportal.lirmm.fr/ontologies/FWO/classes/roots",
+      "schemes": "https://data.agroportal.lirmm.fr/ontologies/FWO/schemes",
+      "single_class": "https://data.agroportal.lirmm.fr/ontologies/FWO/classes/{class_id}",
+      "submissions": "https://data.agroportal.lirmm.fr/ontologies/FWO/submissions",
+      "ui": "http://agroportal.lirmm.fr/ontologies/FWO",
+      "views": "https://data.agroportal.lirmm.fr/ontologies/FWO/views",
+      "xl_labels": "https://data.agroportal.lirmm.fr/ontologies/FWO/skos_xl_labels"
+    },
+    "name": "Food Wastage Ontology",
+    "ontologyType": "https://data.agroportal.lirmm.fr/ontology_types/ONTOLOGY",
+    "publications": [
+      "http://purl.org/dc/elements/1.1/"
+    ],
+    "version": "v1.0",
+    "viewingRestriction": "public"
+  },
+  {
+    "@id": "https://data.agroportal.lirmm.fr/ontologies/SPFOOD",
+    "@type": "http://data.bioontology.org/metadata/Ontology",
+    "acronym": "SPFOOD",
+    "administeredBy": [
+      "https://data.agroportal.lirmm.fr/users/LOV_migration"
+    ],
+    "contact": {
+      "email": "mohamed-el-amine.boukerfa@inrae.fr",
+      "name": "LOV Migration"
+    },
+    "description": "Defines concepts and properties specific for the SmartProducts Philips use case (cooking domain)., Defines concepts and properties specific for the Philips use case (cooking domain).",
+    "homepage": "http://projects.kmi.open.ac.uk/smartproducts/ontology.html",
+    "links": {
+      "@context": {
+        "agents": "http://xmlns.com/foaf/0.1/Agent",
+        "analytics": "http://data.bioontology.org/metadata/Analytics",
+        "categories": "http://data.bioontology.org/metadata/Category",
+        "classes": "http://www.w3.org/2002/07/owl#Class",
+        "collections": "http://www.w3.org/2004/02/skos/core#Collection",
+        "download": "http://data.bioontology.org/metadata/Ontology",
+        "groups": "http://data.bioontology.org/metadata/Group",
+        "instances": "http://data.bioontology.org/metadata/Instance",
+        "latest_submission": "http://data.bioontology.org/metadata/OntologySubmission",
+        "mappings": "metadata/Mapping",
+        "metrics": "http://data.bioontology.org/metadata/Metrics",
+        "notes": "http://data.bioontology.org/metadata/Note",
+        "projects": "http://data.bioontology.org/metadata/Project",
+        "properties": "http://data.bioontology.org/metadata/Property",
+        "reviews": "http://data.bioontology.org/metadata/Review",
+        "roots": "http://www.w3.org/2002/07/owl#Class",
+        "schemes": "http://www.w3.org/2004/02/skos/core#ConceptScheme",
+        "single_class": "http://www.w3.org/2002/07/owl#Class",
+        "submissions": "http://data.bioontology.org/metadata/OntologySubmission",
+        "ui": "http://data.bioontology.org/metadata/Ontology",
+        "views": "http://data.bioontology.org/metadata/Ontology",
+        "xl_labels": "http://www.w3.org/2008/05/skos-xl#Label"
+      },
+      "agents": "https://data.agroportal.lirmm.fr/ontologies/SPFOOD/agents",
+      "analytics": "https://data.agroportal.lirmm.fr/ontologies/SPFOOD/analytics",
+      "categories": "https://data.agroportal.lirmm.fr/ontologies/SPFOOD/categories",
+      "classes": "https://data.agroportal.lirmm.fr/ontologies/SPFOOD/classes",
+      "collections": "https://data.agroportal.lirmm.fr/ontologies/SPFOOD/collections",
+      "download": "https://data.agroportal.lirmm.fr/ontologies/SPFOOD/download",
+      "groups": "https://data.agroportal.lirmm.fr/ontologies/SPFOOD/groups",
+      "instances": "https://data.agroportal.lirmm.fr/ontologies/SPFOOD/instances",
+      "latest_submission": "https://data.agroportal.lirmm.fr/ontologies/SPFOOD/latest_submission",
+      "mappings": "https://data.agroportal.lirmm.fr/ontologies/SPFOOD/mappings",
+      "metrics": "https://data.agroportal.lirmm.fr/ontologies/SPFOOD/metrics",
+      "notes": "https://data.agroportal.lirmm.fr/ontologies/SPFOOD/notes",
+      "projects": "https://data.agroportal.lirmm.fr/ontologies/SPFOOD/projects",
+      "properties": "https://data.agroportal.lirmm.fr/ontologies/SPFOOD/properties",
+      "reviews": "https://data.agroportal.lirmm.fr/ontologies/SPFOOD/reviews",
+      "roots": "https://data.agroportal.lirmm.fr/ontologies/SPFOOD/classes/roots",
+      "schemes": "https://data.agroportal.lirmm.fr/ontologies/SPFOOD/schemes",
+      "single_class": "https://data.agroportal.lirmm.fr/ontologies/SPFOOD/classes/{class_id}",
+      "submissions": "https://data.agroportal.lirmm.fr/ontologies/SPFOOD/submissions",
+      "ui": "http://agroportal.lirmm.fr/ontologies/SPFOOD",
+      "views": "https://data.agroportal.lirmm.fr/ontologies/SPFOOD/views",
+      "xl_labels": "https://data.agroportal.lirmm.fr/ontologies/SPFOOD/skos_xl_labels"
+    },
+    "name": "SmartProducts Food Domain Model",
+    "ontologyType": "https://data.agroportal.lirmm.fr/ontology_types/ONTOLOGY",
+    "version": "v2015-01-11",
     "viewingRestriction": "public"
   },
   {
@@ -18510,6 +19192,73 @@
     "viewingRestriction": "public"
   },
   {
+    "@id": "https://data.agroportal.lirmm.fr/ontologies/LEXIQUE",
+    "@type": "http://data.bioontology.org/metadata/Ontology",
+    "acronym": "LEXIQUE",
+    "administeredBy": [
+      "https://data.agroportal.lirmm.fr/users/Janin"
+    ],
+    "contact": {
+      "email": "jeanlouisjanin@gmail.com",
+      "name": "Jean-Louis Janin"
+    },
+    "description": "Derived from the LEXEAU ontology version 2.4 on 2026-01-13, as the core of other stratified technical lexicons",
+    "hasDomain": [
+      "https://data.agroportal.lirmm.fr/categories/NAT-RES"
+    ],
+    "links": {
+      "@context": {
+        "agents": "http://xmlns.com/foaf/0.1/Agent",
+        "analytics": "http://data.bioontology.org/metadata/Analytics",
+        "categories": "http://data.bioontology.org/metadata/Category",
+        "classes": "http://www.w3.org/2002/07/owl#Class",
+        "collections": "http://www.w3.org/2004/02/skos/core#Collection",
+        "download": "http://data.bioontology.org/metadata/Ontology",
+        "groups": "http://data.bioontology.org/metadata/Group",
+        "instances": "http://data.bioontology.org/metadata/Instance",
+        "latest_submission": "http://data.bioontology.org/metadata/OntologySubmission",
+        "mappings": "metadata/Mapping",
+        "metrics": "http://data.bioontology.org/metadata/Metrics",
+        "notes": "http://data.bioontology.org/metadata/Note",
+        "projects": "http://data.bioontology.org/metadata/Project",
+        "properties": "http://data.bioontology.org/metadata/Property",
+        "reviews": "http://data.bioontology.org/metadata/Review",
+        "roots": "http://www.w3.org/2002/07/owl#Class",
+        "schemes": "http://www.w3.org/2004/02/skos/core#ConceptScheme",
+        "single_class": "http://www.w3.org/2002/07/owl#Class",
+        "submissions": "http://data.bioontology.org/metadata/OntologySubmission",
+        "ui": "http://data.bioontology.org/metadata/Ontology",
+        "views": "http://data.bioontology.org/metadata/Ontology",
+        "xl_labels": "http://www.w3.org/2008/05/skos-xl#Label"
+      },
+      "agents": "https://data.agroportal.lirmm.fr/ontologies/LEXIQUE/agents",
+      "analytics": "https://data.agroportal.lirmm.fr/ontologies/LEXIQUE/analytics",
+      "categories": "https://data.agroportal.lirmm.fr/ontologies/LEXIQUE/categories",
+      "classes": "https://data.agroportal.lirmm.fr/ontologies/LEXIQUE/classes",
+      "collections": "https://data.agroportal.lirmm.fr/ontologies/LEXIQUE/collections",
+      "download": "https://data.agroportal.lirmm.fr/ontologies/LEXIQUE/download",
+      "groups": "https://data.agroportal.lirmm.fr/ontologies/LEXIQUE/groups",
+      "instances": "https://data.agroportal.lirmm.fr/ontologies/LEXIQUE/instances",
+      "latest_submission": "https://data.agroportal.lirmm.fr/ontologies/LEXIQUE/latest_submission",
+      "mappings": "https://data.agroportal.lirmm.fr/ontologies/LEXIQUE/mappings",
+      "metrics": "https://data.agroportal.lirmm.fr/ontologies/LEXIQUE/metrics",
+      "notes": "https://data.agroportal.lirmm.fr/ontologies/LEXIQUE/notes",
+      "projects": "https://data.agroportal.lirmm.fr/ontologies/LEXIQUE/projects",
+      "properties": "https://data.agroportal.lirmm.fr/ontologies/LEXIQUE/properties",
+      "reviews": "https://data.agroportal.lirmm.fr/ontologies/LEXIQUE/reviews",
+      "roots": "https://data.agroportal.lirmm.fr/ontologies/LEXIQUE/classes/roots",
+      "schemes": "https://data.agroportal.lirmm.fr/ontologies/LEXIQUE/schemes",
+      "single_class": "https://data.agroportal.lirmm.fr/ontologies/LEXIQUE/classes/{class_id}",
+      "submissions": "https://data.agroportal.lirmm.fr/ontologies/LEXIQUE/submissions",
+      "ui": "http://agroportal.lirmm.fr/ontologies/LEXIQUE",
+      "views": "https://data.agroportal.lirmm.fr/ontologies/LEXIQUE/views",
+      "xl_labels": "https://data.agroportal.lirmm.fr/ontologies/LEXIQUE/skos_xl_labels"
+    },
+    "name": "Un noyau conceptuel pour élaborer des lexiques techniques stratifiés des ressources naturelles",
+    "ontologyType": "https://data.agroportal.lirmm.fr/ontology_types/ONTOLOGY",
+    "viewingRestriction": "public"
+  },
+  {
     "@id": "https://data.agroportal.lirmm.fr/ontologies/RICE",
     "@type": "http://data.bioontology.org/metadata/Ontology",
     "acronym": "RICE",
@@ -18593,9 +19342,6 @@
       "name": "Gilson Augusto Helfer"
     },
     "description": "SoilBR: an ontology for management and classification of Brazilian soil fertility extended from AgroRDF https://ghelfer.net/ontologies/soil-ontology/agro.rdf To use the reasoner in Protégé, you need the Pellet plugin and set the Individual inferences as Object properties and Data properties assertions.",
-    "group": [
-      "https://data.agroportal.lirmm.fr/groups/CROP"
-    ],
     "hasDomain": [
       "https://data.agroportal.lirmm.fr/categories/AGRI",
       "https://data.agroportal.lirmm.fr/categories/AGRO",
@@ -18733,18 +19479,23 @@
     "viewingRestriction": "public"
   },
   {
-    "@id": "https://data.agroportal.lirmm.fr/ontologies/DFC-B",
+    "@id": "https://data.agroportal.lirmm.fr/ontologies/CEON",
     "@type": "http://data.bioontology.org/metadata/Ontology",
-    "acronym": "DFC-B",
+    "acronym": "CEON",
     "administeredBy": [
-      "https://data.agroportal.lirmm.fr/users/bdarnala"
+      "https://data.agroportal.lirmm.fr/users/huanyu-li"
     ],
     "contact": {
-      "email": "baptiste.darnala@elzeard.co",
-      "name": "Baptiste Darnala"
+      "email": "huanyu.li@liu.se",
+      "name": "Huanyu Li"
     },
-    "description": "This ontology will help to describe the business model applied to the products described in the product ontology of the Data Food Consortium. Information about products, offers, orders, and logistics are described to facilitate the distribution of products in short circuits. , A common vocabulary for digital food platforms (Business Part)",
-    "license": "https://www.gnu.org/licenses/agpl-3.0.en.html",
+    "description": "The full module of CEON (Circular Economy Ontology Network).",
+    "exampleIdentifier": "http://w3id.org/CEON/ontology/cvn/CircularStrategy",
+    "hasDomain": [
+      "https://data.agroportal.lirmm.fr/categories/ECONOM"
+    ],
+    "homepage": "https://liusemweb.github.io/CEON/",
+    "license": "https://github.com/LiUSemWeb/CEON/blob/master/LICENSE",
     "links": {
       "@context": {
         "agents": "http://xmlns.com/foaf/0.1/Agent",
@@ -18770,45 +19521,62 @@
         "views": "http://data.bioontology.org/metadata/Ontology",
         "xl_labels": "http://www.w3.org/2008/05/skos-xl#Label"
       },
-      "agents": "https://data.agroportal.lirmm.fr/ontologies/DFC-B/agents",
-      "analytics": "https://data.agroportal.lirmm.fr/ontologies/DFC-B/analytics",
-      "categories": "https://data.agroportal.lirmm.fr/ontologies/DFC-B/categories",
-      "classes": "https://data.agroportal.lirmm.fr/ontologies/DFC-B/classes",
-      "collections": "https://data.agroportal.lirmm.fr/ontologies/DFC-B/collections",
-      "download": "https://data.agroportal.lirmm.fr/ontologies/DFC-B/download",
-      "groups": "https://data.agroportal.lirmm.fr/ontologies/DFC-B/groups",
-      "instances": "https://data.agroportal.lirmm.fr/ontologies/DFC-B/instances",
-      "latest_submission": "https://data.agroportal.lirmm.fr/ontologies/DFC-B/latest_submission",
-      "mappings": "https://data.agroportal.lirmm.fr/ontologies/DFC-B/mappings",
-      "metrics": "https://data.agroportal.lirmm.fr/ontologies/DFC-B/metrics",
-      "notes": "https://data.agroportal.lirmm.fr/ontologies/DFC-B/notes",
-      "projects": "https://data.agroportal.lirmm.fr/ontologies/DFC-B/projects",
-      "properties": "https://data.agroportal.lirmm.fr/ontologies/DFC-B/properties",
-      "reviews": "https://data.agroportal.lirmm.fr/ontologies/DFC-B/reviews",
-      "roots": "https://data.agroportal.lirmm.fr/ontologies/DFC-B/classes/roots",
-      "schemes": "https://data.agroportal.lirmm.fr/ontologies/DFC-B/schemes",
-      "single_class": "https://data.agroportal.lirmm.fr/ontologies/DFC-B/classes/{class_id}",
-      "submissions": "https://data.agroportal.lirmm.fr/ontologies/DFC-B/submissions",
-      "ui": "http://agroportal.lirmm.fr/ontologies/DFC-B",
-      "views": "https://data.agroportal.lirmm.fr/ontologies/DFC-B/views",
-      "xl_labels": "https://data.agroportal.lirmm.fr/ontologies/DFC-B/skos_xl_labels"
+      "agents": "https://data.agroportal.lirmm.fr/ontologies/CEON/agents",
+      "analytics": "https://data.agroportal.lirmm.fr/ontologies/CEON/analytics",
+      "categories": "https://data.agroportal.lirmm.fr/ontologies/CEON/categories",
+      "classes": "https://data.agroportal.lirmm.fr/ontologies/CEON/classes",
+      "collections": "https://data.agroportal.lirmm.fr/ontologies/CEON/collections",
+      "download": "https://data.agroportal.lirmm.fr/ontologies/CEON/download",
+      "groups": "https://data.agroportal.lirmm.fr/ontologies/CEON/groups",
+      "instances": "https://data.agroportal.lirmm.fr/ontologies/CEON/instances",
+      "latest_submission": "https://data.agroportal.lirmm.fr/ontologies/CEON/latest_submission",
+      "mappings": "https://data.agroportal.lirmm.fr/ontologies/CEON/mappings",
+      "metrics": "https://data.agroportal.lirmm.fr/ontologies/CEON/metrics",
+      "notes": "https://data.agroportal.lirmm.fr/ontologies/CEON/notes",
+      "projects": "https://data.agroportal.lirmm.fr/ontologies/CEON/projects",
+      "properties": "https://data.agroportal.lirmm.fr/ontologies/CEON/properties",
+      "reviews": "https://data.agroportal.lirmm.fr/ontologies/CEON/reviews",
+      "roots": "https://data.agroportal.lirmm.fr/ontologies/CEON/classes/roots",
+      "schemes": "https://data.agroportal.lirmm.fr/ontologies/CEON/schemes",
+      "single_class": "https://data.agroportal.lirmm.fr/ontologies/CEON/classes/{class_id}",
+      "submissions": "https://data.agroportal.lirmm.fr/ontologies/CEON/submissions",
+      "ui": "http://agroportal.lirmm.fr/ontologies/CEON",
+      "views": "https://data.agroportal.lirmm.fr/ontologies/CEON/views",
+      "xl_labels": "https://data.agroportal.lirmm.fr/ontologies/CEON/skos_xl_labels"
     },
-    "name": "DataFoodConsortium - Business Ontology",
+    "name": "Circular Economy Ontology Network",
     "ontologyType": "https://data.agroportal.lirmm.fr/ontology_types/ONTOLOGY",
-    "repository": "https://github.com/datafoodconsortium/ontology",
-    "version": "1.16.0",
-    "viewingRestriction": "public"
+    "projects": [
+      "https://data.agroportal.lirmm.fr/projects/Onto-DESIDE"
+    ],
+    "repository": "https://github.com/LiUSemWeb/CEON/",
+    "version": "0.2",
+    "viewingRestriction": "public",
+    "views": [
+      "https://data.agroportal.lirmm.fr/ontologies/CEON-ACTOR",
+      "https://data.agroportal.lirmm.fr/ontologies/CEON-ACTORODP",
+      "https://data.agroportal.lirmm.fr/ontologies/CEON-CVN",
+      "https://data.agroportal.lirmm.fr/ontologies/CEON-ENERGY",
+      "https://data.agroportal.lirmm.fr/ontologies/CEON-MATERIAL",
+      "https://data.agroportal.lirmm.fr/ontologies/CEON-PLAN",
+      "https://data.agroportal.lirmm.fr/ontologies/CEON-PROCESS",
+      "https://data.agroportal.lirmm.fr/ontologies/CEON-PROCESSODP",
+      "https://data.agroportal.lirmm.fr/ontologies/CEON-PRODUCT",
+      "https://data.agroportal.lirmm.fr/ontologies/CEON-RESOURCEODP",
+      "https://data.agroportal.lirmm.fr/ontologies/CEON-VALUE"
+    ]
   },
   {
     "@id": "https://data.agroportal.lirmm.fr/ontologies/ONTOPFAS",
     "@type": "http://data.bioontology.org/metadata/Ontology",
     "acronym": "ONTOPFAS",
     "administeredBy": [
+      "https://data.agroportal.lirmm.fr/users/davide.di-pierro",
       "https://data.agroportal.lirmm.fr/users/lylia.abrouk"
     ],
     "contact": {
-      "email": "abrouk@lirmm.fr",
-      "name": "Lylia ABROUK"
+      "email": "lylia.abrouk@u-bourgogne.fr",
+      "name": "Lylia Abrouk"
     },
     "description": "OntoPFAS is a conceptualization of the PFAS domain, concerning its exposure, measurement, and spread aspects. Combining chemical, geographical, and sensor data, it aims to represent a hub for practitioners of different fields willing to contribute with data, models, or artificial intelligence applications.",
     "group": [
@@ -18822,6 +19590,7 @@
       "https://data.agroportal.lirmm.fr/categories/GEO",
       "https://data.agroportal.lirmm.fr/categories/OBS"
     ],
+    "homepage": "https://github.com/davide1797/OntoPFAS",
     "license": "CC-BY-4.0",
     "links": {
       "@context": {
@@ -18871,8 +19640,12 @@
       "views": "https://data.agroportal.lirmm.fr/ontologies/ONTOPFAS/views",
       "xl_labels": "https://data.agroportal.lirmm.fr/ontologies/ONTOPFAS/skos_xl_labels"
     },
-    "name": "OntoPFAS",
+    "name": "OntoPFAS: an Ontology for the Forever Chemicals",
     "ontologyType": "https://data.agroportal.lirmm.fr/ontology_types/ONTOLOGY",
+    "publications": [
+      "https://hal.science/hal-05189813"
+    ],
+    "repository": "https://github.com/davide1797/OntoPFAS",
     "viewingRestriction": "public"
   },
   {
@@ -18953,6 +19726,88 @@
     "viewingRestriction": "public"
   },
   {
+    "@id": "https://data.agroportal.lirmm.fr/ontologies/AFY",
+    "@type": "http://data.bioontology.org/metadata/Ontology",
+    "acronym": "AFY",
+    "administeredBy": [
+      "https://data.agroportal.lirmm.fr/users/raphael"
+    ],
+    "contact": {
+      "email": "raphael.conde-salazar@inrae.fr",
+      "name": "Raphaël Conde Salazar"
+    },
+    "description": "Agroforestry Ontology is a knowledge model that provides a unifying framework for structuring agroforestry data and knowledge. It's an ontology designed to define the different types of agroforestry systems., Ontologie des systèmes agroforestiers, Ontology of agroforestry systems",
+    "exampleIdentifier": "https://agroportal.lirmm.fr/check_resolvability?url=https://w3id.org/afy/StructuralElement",
+    "group": [
+      "https://data.agroportal.lirmm.fr/groups/INRAE"
+    ],
+    "hasDomain": [
+      "https://data.agroportal.lirmm.fr/categories/AG-ENG",
+      "https://data.agroportal.lirmm.fr/categories/AG-RES",
+      "https://data.agroportal.lirmm.fr/categories/AGRI",
+      "https://data.agroportal.lirmm.fr/categories/ECOSYS",
+      "https://data.agroportal.lirmm.fr/categories/FOREST",
+      "https://data.agroportal.lirmm.fr/categories/SOIL"
+    ],
+    "homepage": "https://agroforesterie.github.io/",
+    "license": "CC-BY-4.0",
+    "links": {
+      "@context": {
+        "agents": "http://xmlns.com/foaf/0.1/Agent",
+        "analytics": "http://data.bioontology.org/metadata/Analytics",
+        "categories": "http://data.bioontology.org/metadata/Category",
+        "classes": "http://www.w3.org/2002/07/owl#Class",
+        "collections": "http://www.w3.org/2004/02/skos/core#Collection",
+        "download": "http://data.bioontology.org/metadata/Ontology",
+        "groups": "http://data.bioontology.org/metadata/Group",
+        "instances": "http://data.bioontology.org/metadata/Instance",
+        "latest_submission": "http://data.bioontology.org/metadata/OntologySubmission",
+        "mappings": "metadata/Mapping",
+        "metrics": "http://data.bioontology.org/metadata/Metrics",
+        "notes": "http://data.bioontology.org/metadata/Note",
+        "projects": "http://data.bioontology.org/metadata/Project",
+        "properties": "http://data.bioontology.org/metadata/Property",
+        "reviews": "http://data.bioontology.org/metadata/Review",
+        "roots": "http://www.w3.org/2002/07/owl#Class",
+        "schemes": "http://www.w3.org/2004/02/skos/core#ConceptScheme",
+        "single_class": "http://www.w3.org/2002/07/owl#Class",
+        "submissions": "http://data.bioontology.org/metadata/OntologySubmission",
+        "ui": "http://data.bioontology.org/metadata/Ontology",
+        "views": "http://data.bioontology.org/metadata/Ontology",
+        "xl_labels": "http://www.w3.org/2008/05/skos-xl#Label"
+      },
+      "agents": "https://data.agroportal.lirmm.fr/ontologies/AFY/agents",
+      "analytics": "https://data.agroportal.lirmm.fr/ontologies/AFY/analytics",
+      "categories": "https://data.agroportal.lirmm.fr/ontologies/AFY/categories",
+      "classes": "https://data.agroportal.lirmm.fr/ontologies/AFY/classes",
+      "collections": "https://data.agroportal.lirmm.fr/ontologies/AFY/collections",
+      "download": "https://data.agroportal.lirmm.fr/ontologies/AFY/download",
+      "groups": "https://data.agroportal.lirmm.fr/ontologies/AFY/groups",
+      "instances": "https://data.agroportal.lirmm.fr/ontologies/AFY/instances",
+      "latest_submission": "https://data.agroportal.lirmm.fr/ontologies/AFY/latest_submission",
+      "mappings": "https://data.agroportal.lirmm.fr/ontologies/AFY/mappings",
+      "metrics": "https://data.agroportal.lirmm.fr/ontologies/AFY/metrics",
+      "notes": "https://data.agroportal.lirmm.fr/ontologies/AFY/notes",
+      "projects": "https://data.agroportal.lirmm.fr/ontologies/AFY/projects",
+      "properties": "https://data.agroportal.lirmm.fr/ontologies/AFY/properties",
+      "reviews": "https://data.agroportal.lirmm.fr/ontologies/AFY/reviews",
+      "roots": "https://data.agroportal.lirmm.fr/ontologies/AFY/classes/roots",
+      "schemes": "https://data.agroportal.lirmm.fr/ontologies/AFY/schemes",
+      "single_class": "https://data.agroportal.lirmm.fr/ontologies/AFY/classes/{class_id}",
+      "submissions": "https://data.agroportal.lirmm.fr/ontologies/AFY/submissions",
+      "ui": "http://agroportal.lirmm.fr/ontologies/AFY",
+      "views": "https://data.agroportal.lirmm.fr/ontologies/AFY/views",
+      "xl_labels": "https://data.agroportal.lirmm.fr/ontologies/AFY/skos_xl_labels"
+    },
+    "name": "Agroforestry Ontology",
+    "ontologyType": "https://data.agroportal.lirmm.fr/ontology_types/ONTOLOGY",
+    "publications": [
+      "https://hal.inrae.fr/tel-03519007v1"
+    ],
+    "version": "1.0.0",
+    "viewingRestriction": "public"
+  },
+  {
     "@id": "https://data.agroportal.lirmm.fr/ontologies/T-SITA",
     "@type": "http://data.bioontology.org/metadata/Ontology",
     "acronym": "T-SITA",
@@ -19018,6 +19873,9 @@
     },
     "name": "Thesaurus for Soil Invertebrate Trait-Based Approaches",
     "ontologyType": "https://data.agroportal.lirmm.fr/ontology_types/ONTOLOGY",
+    "projects": [
+      "https://data.agroportal.lirmm.fr/projects/BETSI"
+    ],
     "publications": [
       "https://doi.org/10.1371/journal.pone.0108985"
     ],
