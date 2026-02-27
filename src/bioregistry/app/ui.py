@@ -101,7 +101,7 @@ def collections() -> str:
     """Serve the collections page."""
     return render_template(
         "collections.html",
-        rows=manager.collections.items(),
+        collections=manager.collections.values(),
         formats=FORMATS,
     )
 
