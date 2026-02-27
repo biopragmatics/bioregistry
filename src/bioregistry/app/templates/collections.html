@@ -59,13 +59,21 @@
                 <th scope="col">Description</th>
             </tr>
             </thead>
-            {% for identifier, row in rows %}
+            {% for collection in collections %}
                 <tr>
                     <td>
-                        <a href="{{ url_for('metaregistry_ui.collection', identifier=identifier) }}">{{ row.name }}</a>
+                        <a href="{{ url_for('metaregistry_ui.collection', identifier=collection.identifier) }}">{{ collection.name }}</a>
                     </td>
-                    <td class="text-right">{{ row.resources | length }}</td>
-                    <td><small>{{ markdown(row.description) | safe }}</small></td>
+                    <td class="text-right">{{ collection.resources | length }}</td>
+                    <td>
+                        <small>{{ markdown(collection.description) | safe }}</small>
+
+                        {% if collection.organizations %}
+                        {% for org in collection.organizations %}
+                        <span class="badge bg-light text-dark">{{ org.name }}</span>
+                        {% endfor %}
+                        {% endif %}
+                    </td>
                 </tr>
             {% endfor %}
         </table>
