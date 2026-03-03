@@ -40,7 +40,7 @@
     "download_owl": "https://raw.githubusercontent.com/tibonto/aeon/main/aeon.owl",
     "homepage": "https://github.com/tibonto/aeon",
     "keywords": [
-      "TIB",
+      "Miscellaneous",
       "history",
       "social sciences",
       "educational science"
@@ -168,27 +168,27 @@
     "description": "The Bibframe vocabulary consists of RDF classes and properties used for the description of items cataloged principally by libraries, but may also be used to describe items cataloged by museums and archives. Classes include the three core classes - Work, Instance, and Item - in addition to many more classes to support description. Properties describe characteristics of the resource being described as well as relationships among resources. For example: one Work might be a \"translation of\" another Work; an Instance may be an \"instance of\" a particular Bibframe Work. Other properties describe attributes of Works and Instances. For example: the Bibframe property \"subject\" expresses an important attribute of a Work (what the Work is about), and the property \"extent\" (e.g. number of pages) expresses an attribute of an Instance.",
     "homepage": "https://www.loc.gov/bibframe/",
     "keywords": [
-      "TIB",
+      "Miscellaneous",
       "computer science"
     ],
     "name": "BIBFRAME vocabulary",
     "prefix": "bf",
     "tracker": "https://github.com/lcnetdev/bibframe-ontology/issues",
     "uri_format": "http://id.loc.gov/ontologies/bibframe/$1",
-    "version.iri": "http://id.loc.gov/ontologies/bibframe-2-6-0/"
+    "version.iri": "http://id.loc.gov/ontologies/bibframe-3-0-1/"
   },
   "bflc": {
     "description": "BIBFRAME vocabulary with LC extensions",
     "homepage": "http://id.loc.gov/ontologies/bflc",
     "keywords": [
-      "TIB",
+      "Miscellaneous",
       "computer science"
     ],
     "name": "BIBFRAME vocabulary with LC extensions, see also https://github.com/lcnetdev/bflc-ontology/",
     "prefix": "bflc",
     "tracker": "https://git.tib.eu/terminology/ts-ols4-config/-/blob/main/docs/ontology_metadata_overview.md#tracker",
     "uri_format": "http://id.loc.gov/ontologies/bflc/$1",
-    "version.iri": "http://id.loc.gov/ontologies/bflc-2-6-0/"
+    "version.iri": "http://id.loc.gov/ontologies/bflc-3-0-0/"
   },
   "bfo": {
     "description": "The upper level ontology upon which OBO Foundry ontologies are built.",
@@ -349,23 +349,12 @@
     "prefix": "ccrel",
     "uri_format": "http://creativecommons.org/ns#$1"
   },
-  "cf": {
-    "description": "Ontology representation of the Climate and Forecast (CF) standard names parameter vocabulary, which is intended for use with climate and forecast data in the atmosphere, surface and ocean domains. Every CF parameter is captured as a SKOS concept.This vocabulary is a simplified version of the CF vocabulary P07 from the NERC Vocabulary Server (NVS), National Oceanography Centre - British Oceanographic Data Centre (BODC), https://vocab.nerc.ac.uk.",
-    "homepage": "http://vocab.nerc.ac.uk/collection/P07/current",
-    "keywords": [
-      "ESS",
-      "earth sciences"
-    ],
-    "name": "Climate and Forecast Standard Names",
-    "prefix": "cf",
-    "uri_format": "http://vocab.nerc.ac.uk/collection/P07/current/$1"
-  },
   "cgo": {
     "description": "This ontology describes concepts related to greenhouses. It mainly describes Dutch greenhouses, but can also be applied to greenhouses outside of The Netherlands. The ontology describes multiple aspects of the domain of greenhouses.",
     "download_rdf": "https://ontology.tno.nl/ddings/Greenhouse_ontology_v1.3.ttl",
     "homepage": "https://gitlab.com/ddings/common-greenhouse-ontology",
     "keywords": [
-      "TIB",
+      "ESS",
       "chemical and environmental engineering",
       "horticulture",
       "earth sciences"
@@ -481,7 +470,7 @@
     "description": "CiTO, the Citation Typing Ontology, is an ontology written in OWL 2 DL to enable characterization of the nature or type of citations, both factually and rhetorically, and to permit these descriptions to be published on the Web.  \n\nThe citations characterized may be either direct and explicit (as in the reference list of a journal article), indirect (e.g. a citation to a more recent paper by the same research group on the same topic), or implicit (e.g. as in artistic quotations or parodies, or in cases of plagiarism).\n\nCiTO contains the object property cito:cites and its sub-properties, and its inverse property cito:isCitedBy, from the original Citation Typing Ontology, CiTO v1.6.  Upon the creation of version 2.0 of CiTO, a number of new sub-properties of cito:cites were added, and the inverse properties of all the sub-properties of cito:cites were created, all of which are sub-properties of cito:isCitedBy.  The ontology has also been integrated with the SWAN Discourse Relationships Ontology by making cito:cites a sub-property of http://purl.org/swan/2.0/discourse-relationships/refersTo.\n\nRestrictions of domain and range present in the previous version of CiTO were removed from the object properties when creating CiTO v 2.0, permitting its independent use in other contexts, in addition to conventional bibliographic citations.  \n\nSo that they can be used independently, other entities that were previously included in CiTO v1.6 have now been made components of other SPAR ontologies: FaBiO, the FRBR-aligned Bibliographic Ontology; C4O, the Citation Counting and Context Characterization Ontology; and PSO, the Publication Status Ontology. \n\nThe addition of two new properties:cito:usesConclusionsFrom and its inverse cito:providesConclusionsFor on 09Dec2011 led to a version number increment from v2.0 to v2.1.\n\nThe addition of two additional properties, cito:compiles and cito:isCompiledBy, previously in the deprecated CiTO4Data ontology, on 03 July 2012 led to a version increment from v2.1 to v2.2.\n\nSubsequent expansions include:\n\nin versions 2.3 and 2.4 the addition of the object properties cito:citesAsPotentialSolution, cito:citesAsRecommendedReading, cito:repliesTo, cito:retracts, cito:speculates on, and their inverse properties;\n\nin v2.5 the addition of cito:CitationAct, cito:hasCitationEvent, cito:hasCitedEntity and cito:hasCitingEntity;\n\nin v 2.6: \nrenaming cito:hasCitationEvent to become cito:hasCitationCharacterization;\nimproving definitions of cito:CitationAct, cito:hasCitationCharacterization, cito:hasCitedEntity and cito:hasCitingEntity;\nrevising the definition of cito:isCompiledBy to correct it and bring it into line with the DataCite Metadata Kernel v2.2 definition;\nchanging the definition of cito:sharesAuthorsWith from 'An object property indicating that the citing entity has at least one author in common with the cited entity.' to 'An object property between two entities indicating that they have at least one author in common.' so that it can be used when one entity does not actually cite the other;\nadding the object properties cito:hasRelatedEntity, cito:sharesFundingAgencyWith and cito:sharesAuthorInstitutionWith;\nand adding the text 'An object property indicating that . . .' at the beginning of the textual definition (rdfs:comment) for each CiTO object property.\n\nin v 2.6.1:\nRemoved text 'An object property indicating that . . .' added in v 2.6 at the beginning of the textual definition (rdfs:comment) for each CiTO object property, so that each definition is just a direct statement of the relationship.  \nRemoved the property cito:hasRelatedEntity (in favour of using dcterms:relation).\nRenamed cito:hasReply to become cito:hasReplyFrom.\nImproved the textual definitions of cito:derides and its inverse property.\n\nin v 2.6.2:\nImproved definitions of of cito:CitationAct, cito:hasCitationCharacterization, cito:hasCitedEntity and cito:hasCitingEntity.\n\nin v 2.6.3:\nAdded examples for each citation type (i.e., all the subproperties of cito:cites).\n\nin v 2.6.4:\nAdded alignment with schema:citation.\n\nin v 2.7.0:\nAdded new property cito:linksTo, and corrected some property URL.\n\nin v 2.7.1\nCorrected some typos in property comments.\n\nin v 2.7.2\nThe name of the class cito:CitationAct has been changed to cito:Citation, and its definition has been modified. The property cito:hasCitationTimeSpan has been added.\n\nin v 2.7.3\nAdded the class cito:SelfCitation, i.e. citation in which the citing and the cited entities have at least one author in common.\n\nin v 2.8\nRenamed the class cito:SelfCitation in cito:AuthorSelfCitation. Created a new class cito:SelfCitation with a more general definition (citation in which the citing and the cited entities have something significant in common with one another), which now includes five subclasses: cito:AuthorSelfCitation, cito:JournalSelfCitation, cito:FunderSelfCitation, cito:AffiliationSelfCitation, cito:AuthorNetworkSelfCitation. The latter class is also accompanied by the new data property cito:hasCoAuthorCitationLevel, which specifies the minimal distance that one of the authors of a citing entity has with regards to one of the authors of a cited entity according to their co-author network. Added the object properties cito:sharesPublicationVenueWith and its subproperty cito:sharesJournalWith. Added the data property cito:hasCitationCreationDate, and changed the domain of cito:hasCitationTimeSpan with xsd:duration.\n\nin v 2.8.1\nRenamed the property cito:hasCoAuthorCitationLevel in cito:hasCoAuthorshipCitationLevel.",
     "homepage": "http://www.sparontologies.net/ontologies/cito",
     "keywords": [
-      "TIB"
+      "Miscellaneous"
     ],
     "name": "CiTO, the Citation Typing Ontology",
     "prefix": "cito",
@@ -512,7 +501,7 @@
     "name": "Core Ontology for Biology and Biomedicine",
     "prefix": "cob",
     "tracker": "https://github.com/OBOFoundry/COB/issues/",
-    "version.iri": "http://purl.obolibrary.org/obo/cob/releases/2025-06-30/cob.owl"
+    "version.iri": "http://purl.obolibrary.org/obo/cob/releases/2025-12-12/cob.owl"
   },
   "condo": {
     "description": "The COnCEPT upper-level Design Ontology (COnDO).",
@@ -558,7 +547,6 @@
     "homepage": "https://credit.niso.org/",
     "keywords": [
       "NFDI4ING",
-      "TIB",
       "Digital Planning and Construction",
       "FID BAUdigital",
       "FID move"
@@ -589,7 +577,6 @@
     "download_rdf": "https://www.w3.org/ns/dcat3.ttl",
     "homepage": "https://www.w3.org/TR/vocab-dcat-3/",
     "keywords": [
-      "TIB",
       "ESS",
       "computer science"
     ],
@@ -628,7 +615,7 @@
     "description": "Diese Ontologie basiert auf \"Statistisches Bundesamt (2018): Anhang \u00dcbersicht 1 - F\u00e4chergruppen, Lehr- und Forschungsbereiche, Fachgebiete - Stand 2017. In: Statistisches Bundesamt: Bildung und Kultur - Personal an Hochschulen. Fachserie 11 Reihe 4.4. S. 351. URL: https://www.statistischebibliothek.de/mir/servlets/MCRFileNodeServlet/DEHeft_derivate_00041050/2110440177004.pdf#%5B%7B%22num%22%3A1748%2C%22gen%22%3A0%7D%2C%7B%22name%22%3A%22Fit%22%7D%5D (letzter Zugriff: 2022-10-12).\" In SKOS konvertiert von Tatiana Walther unter Mitwirkung von Christian Hauschke (Technische Informationsbibliothek (TIB) Hannover). Die Bezeichnungen und Inhalte der F\u00e4chersystematik sind unver\u00e4ndert.",
     "download_rdf": "https://raw.githubusercontent.com/VIVO-DE/destatis_faecherklassifikation/master/faecherklassifikation.rdf",
     "keywords": [
-      "TIB",
+      "Miscellaneous",
       "educational science"
     ],
     "name": "Destatis-F\u00e4cherklassifikation \"Personal an Hochschulen - F\u00e4chersystematik\"",
@@ -750,7 +737,7 @@
     "name": "DataPLANT Biology Ontology",
     "prefix": "dpbo",
     "tracker": "https://github.com/nfdi4plants/nfdi4plants_ontology/issues/",
-    "uri_format": "https://purl.org/nfdi4plants/ontology/dpbo$1",
+    "uri_format": "https://purl.org/nfdi4plants/ontology/dpbo/DPBO_$1",
     "version.iri": "http://purl.obolibrary.org/obo/dpbo/init/2020-12-01/dpbo.owl"
   },
   "dpv": {
@@ -887,8 +874,7 @@
     ],
     "name": "EDAM - The ontology of data analysis and management",
     "prefix": "edam",
-    "tracker": "https://github.com/edamontology/edamontology/issues",
-    "version.iri": "http://edamontology.org/1.25-20240924T0027Z-unstable(1.26)"
+    "tracker": "https://github.com/edamontology/edamontology/issues"
   },
   "edcc": {
     "description": "EDCC Taxonomy contains the terms that are used to classify citizens' requests to the Europe Direct Contact Centre (EDCC). EDCC Taxonomy is maintained by the Directorate-General for Communication of the European Commission and published by the Publications Office of the European Union on the EU Vocabularies website.",
@@ -915,7 +901,7 @@
   },
   "efo": {
     "contact": "efo-users@ebi.ac.uk",
-    "description": "The Experimental Factor Ontology (EFO) provides a systematic description of many experimental variables available in EBI databases, and for external projects such as the NHGRI GWAS catalogue. It combines parts of several biological ontologies, such as anatomy, disease and chemical compounds. The scope of EFO is to support the annotation, analysis and visualization of data handled by many groups at the EBI and as the core ontology for OpenTargets.org",
+    "description": "The Experimental Factor Ontology (EFO) provides a systematic description of many experimental variables available in EBI databases, and for projects such as the NHGRI-EBI GWAS catalog. It combines parts of several biological ontologies, such as UBERON anatomy, ChEBI chemical compounds, Cell Ontology and the Monarch Disease Ontology (MONDO). The scope of EFO is to support the annotation, analysis and visualization of data handled by many groups at the EBI and as the core ontology for Open Targets.",
     "download_owl": "http://www.ebi.ac.uk/efo/efo.owl",
     "homepage": "https://www.ebi.ac.uk/efo/",
     "keywords": [
@@ -928,7 +914,7 @@
     ],
     "name": "Experimental Factor Ontology",
     "prefix": "efo",
-    "version.iri": "http://www.ebi.ac.uk/efo/releases/v3.83.0/efo.owl"
+    "version.iri": "http://www.ebi.ac.uk/efo/releases/v3.86.0/efo.owl"
   },
   "emdat": {
     "description": "Crisis and hazard related taxonomy developed by CRED for disaster preparedness and humanitarian actions at national and international level.",
@@ -1076,7 +1062,7 @@
     "download_owl": "https://raw.githubusercontent.com/SPAROntologies/fabio/master/docs/current/fabio.owl",
     "homepage": "https://sparontologies.github.io/fabio/current/fabio.html",
     "keywords": [
-      "TIB",
+      "Miscellaneous",
       "literature"
     ],
     "name": "FaBiO, the FRBR-aligned Bibliographic Ontology",
@@ -1112,7 +1098,7 @@
     "prefix": "fibo",
     "tracker": "https://github.com/edmcouncil/fibo/issues",
     "uri_format": "https://spec.edmcouncil.org/fibo/ontology/AboutFIBOProd$1",
-    "version.iri": "https://spec.edmcouncil.org/fibo/ontology/20251001/AboutFIBOProd/"
+    "version.iri": "https://spec.edmcouncil.org/fibo/ontology/20251201/AboutFIBOProd/"
   },
   "fiestaiot": {
     "description": "Many testbeds owning devices or applications interacting with the sensors, store their inherent observations and other related data in their own proprietary format. In other words, making a testbed independent and isolated from others that cannot directly interact with each other. Differences in the data format lead to interoperability issues between the testbeds and much work has to be done in order to ensure the compatibility. One has to understand different data formats and create the mapping between them. As a result, a testbed must understand other testbed's format and create the mapping both while sending and receiving information. One method to accomplish interoperability is through the usage of semantic-based technologies to annotate all the information shared by the platforms. Nevertheless, some of the relevant existing ontologies promise interoperability but: \n\n- do not address the problem to describe the observation in an interoperable manner to ease further tasks, such as reasoning, \n- many of them are domain-specific and cannot be applied across domains, \n- they have missing concepts and do not suffice the needs of the measurements provided by the sensors, and \n- many ontologies do not follow best practices making it hard to correctly interpret and reuse concepts.\n\n\nIn order to address the above-mentioned limitations, we provide FIESTA-IoT ontology (a unified semantic model) that follows best practices. FIESTA-IoT Ontology is a merge of concepts from various ontologies such as IoT-lite, M3-lite Taxonomy, SSN, Time and DUL (see Figure 1). The FIESTA-IoT Ontology is divided into 2 parts: resource description and observations produced. One has to follow the Figure 2 and Figure 3, respectively, for understanding what all concepts are associated with resource description and observation. Using such information testbeds can annotate their data to FIESTA-IoT specific requirements and the annotators developed can achieve FIESTA-IoT certification. For reference we provide sample annotations as figure (see Figure 4 and Figure 5) for both resource graph and observation graph.\n\nFor more details please see:\n\n- R. Agarwal, D. Fernandez, T. Elsaleh, A. Gyrard, J. Lanza, L. Sanchez, N. Georgantas, V. Issarny, \"Unified IoT Ontology to Enable Interoperability and Federation of Testbeds\", 3rd IEEE WF-IoT, Reston, VA, USA, 12-14 December 2016. (https://hal.inria.fr/hal-01386917/document)\n- FIESTA-IoT Consortium (R. Agarwal editor), \"Deliverable D3.1.2 Semantic Models for Testbeds, Interoperability and Mobility Support, and Best Practices\", project FIESTA-IoT deliverable, 2016.\n- FIESTA-IoT Consortium (R. Agarwal editor), \"Deliverable D3.1.1 Semantic Models for Testbeds, Interoperability and Mobility Support, and Best Practices\", project FIESTA-IoT deliverable, 2016.\n\nWe further acknowledge, testbed provider such as SmartSantander, UniS, KETI, Inria, and other open call testbeds for their valuable comments. Please report any errors to rachit.agarwal@inria.fr.",
@@ -1126,17 +1112,6 @@
     "prefix": "fiestaiot",
     "tracker": "https://github.com/fiesta-iot/ontology/issues",
     "uri_format": "http://purl.org/iot/ontology/fiesta-iot#$1"
-  },
-  "fix": {
-    "description": "An ontology of physico-chemical methods and properties.",
-    "download_owl": "http://purl.obolibrary.org/obo/fix.owl",
-    "keywords": [
-      "NFDI4CHEM",
-      "chemistry"
-    ],
-    "name": "Physico-chemical methods and properties",
-    "prefix": "fix",
-    "version.iri": "http://purl.obolibrary.org/obo/fix/releases/2020-04-13/fix.owl"
   },
   "flopo": {
     "contact": "robert.hoehndorf@kaust.edu.sa",
@@ -1293,7 +1268,7 @@
     "name": "GND Ontology",
     "prefix": "gndo",
     "uri_format": "https://d-nb.info/standards/elementset/gnd#$1",
-    "version.iri": "https://d-nb.info/standards/elementset/gnd_20240806"
+    "version.iri": "https://d-nb.info/standards/elementset/gnd_20251216"
   },
   "go": {
     "contact": "go@geneontology.org",
@@ -1308,7 +1283,7 @@
     "name": "Gene Ontology",
     "prefix": "go",
     "tracker": "https://github.com/geneontology/go-ontology/issues/",
-    "version.iri": "http://purl.obolibrary.org/obo/go/releases/2025-10-10/go.owl"
+    "version.iri": "http://purl.obolibrary.org/obo/go/releases/2026-01-23/go.owl"
   },
   "gpo": {
     "description": "Ontology to model processes",
@@ -1384,7 +1359,7 @@
     "name": "Human Phenotype Ontology",
     "prefix": "hp",
     "tracker": "https://github.com/obophenotype/human-phenotype-ontology/issues/",
-    "version.iri": "http://purl.obolibrary.org/obo/hp/releases/2025-10-22/hp.owl"
+    "version.iri": "http://purl.obolibrary.org/obo/hp/releases/2026-01-08/hp.owl"
   },
   "hpont": {
     "description": "The Heat Pump Ontology (HPOnt) aims to formalize and represent all the relevant information of Heat Pumps. The HPOnt has been developed as part of the REACT project which has received funding from the European Union\u2019s Horizon 2020 research and innovation programme under grant agreement no. 824395.",
@@ -1529,7 +1504,7 @@
     "prefix": "iofcore",
     "tracker": "https://github.com/iofoundry/ontology/issues",
     "uri_format": "https://spec.industrialontologies.org/ontology/core/Core/$1",
-    "version.iri": "https://spec.industrialontologies.org/ontology/202401/core/Core/"
+    "version.iri": "https://spec.industrialontologies.org/ontology/202502/core/Core/"
   },
   "isced": {
     "description": "The International Standard Classification of Education (ISCED) is a framework for assembling, compiling and analysing cross-nationally comparable statistics on education. ISCED Fields of Education and Training classifies education programmes and related qualifications by fields of study: A field is the `broad domain, branch or area of content covered by an education programme or qualification'. The International Standard Classification of Education is maintained by DG EMPL and published by the Publications Office of the European Union on the EU Vocabularies website.",
@@ -1587,7 +1562,7 @@
     "description": "F\u00e4cher f\u00fcr die LinSearch-Fachzuordnung",
     "download_rdf": "https://raw.githubusercontent.com/TIBHannover/annif_automated_indexing_at_tib/main/vocab/LinSearch/linsearch20230105.ttl",
     "keywords": [
-      "TIB",
+      "Miscellaneous",
       "computer science"
     ],
     "name": "Fachsystematik LinSearch",
@@ -1636,7 +1611,7 @@
     "prefix": "m4i",
     "tracker": "https://git.rwth-aachen.de/nfdi4ing/metadata4ing/metadata4ing/-/issues",
     "uri_format": "http://w3id.org/nfdi4ing/metadata4ing#$1",
-    "version.iri": "http://w3id.org/nfdi4ing/metadata4ing/1.3.1"
+    "version.iri": "http://w3id.org/nfdi4ing/metadata4ing/1.4.0"
   },
   "mat": {
     "description": "The material properties ontology provides the vocabulary to describe the composition of building elements.",
@@ -1710,7 +1685,7 @@
     "download_owl": "http://purl.obolibrary.org/obo/mi.owl",
     "homepage": "https://github.com/HUPO-PSI/psi-mi-CV",
     "keywords": [
-      "TIB",
+      "Miscellaneous",
       "life sciences, biology"
     ],
     "name": "Molecular Interactions",
@@ -1727,7 +1702,7 @@
     "name": "Measurement Method Ontology",
     "prefix": "mmo",
     "tracker": "https://github.com/rat-genome-database/MMO-Measurement-Method-Ontology/issues",
-    "version.iri": "http://purl.obolibrary.org/obo/mmo/2.164/mmo.owl"
+    "version.iri": "http://purl.obolibrary.org/obo/mmo/2.169/mmo.owl"
   },
   "mod": {
     "description": "PSI-MOD is an ontology consisting of terms that describe protein chemical modifications, logically linked by an is_a relationship in such a way as to form a direct acyclic graph (DAG). The PSI-MOD ontology has more than 45 top-level nodes, and provides alternative hierarchical paths for classifying protein modifications either by the molecular structure of the modification, or by the amino acid residue that is modified.",
@@ -1742,14 +1717,14 @@
     "name": "Protein Modification",
     "prefix": "mod",
     "tracker": "https://github.com/HUPO-PSI/psi-mod-CV/issues",
-    "version.iri": "http://purl.obolibrary.org/obo/mod/1.031.6/mod.owl"
+    "version.iri": "http://purl.obolibrary.org/obo/mod/1.032.4/mod.owl"
   },
   "modalia": {
     "description": "An ontology encoding the data model of the DALIA knowledge graph, reusing/extending Schema.org, FaBIO, EduCOR, HRCT, and other ontologies/CVs",
     "download_rdf": "https://git.rwth-aachen.de/dalia/dalia-ontology/-/raw/main/MoDalia.ttl",
     "homepage": "https://dalia.pages.rwth-aachen.de/dalia-ontology/",
     "keywords": [
-      "TIB",
+      "Educational Resources",
       "educational science"
     ],
     "name": "MoDalia Ontology",
@@ -1797,7 +1772,7 @@
     "name": "Mass Spectrometry",
     "prefix": "ms",
     "tracker": "https://github.com/HUPO-PSI/psi-ms-CV/issues",
-    "version.iri": "http://purl.obolibrary.org/obo/ms/4.1.214/ms.owl"
+    "version.iri": "http://purl.obolibrary.org/obo/ms/4.1.232/ms.owl"
   },
   "msio": {
     "description": "an application ontology for supporting description and annotation of mass-spectrometry and nmr-spectroscopy based metabolomics experiments and fluxomics studies.",
@@ -1863,7 +1838,7 @@
     "prefix": "n4e",
     "tracker": "https://git.rwth-aachen.de/nfdi4earth/knowledgehub/nfdi4earth-kh-schema/-/issues",
     "uri_format": "http://nfdi4earth.de/ontology/$1",
-    "version.iri": "https://nfdi4earth.pages.rwth-aachen.de/knowledgehub/nfdi4earth-kh-schema/ontology-v0.35.2.owl.xml"
+    "version.iri": "https://nfdi4earth.pages.rwth-aachen.de/knowledgehub/nfdi4earth-kh-schema/ontology-v0.37.0.owl.xml"
   },
   "ncit": {
     "description": "NCI Thesaurus (NCIt)is a reference terminology that includes broad coverage of the cancer domain, including cancer related diseases, findings and abnormalities. The NCIt OBO Edition aims to increase integration of the NCIt with OBO Library ontologies. NCIt OBO Edition releases should be considered experimental.",
@@ -1884,7 +1859,6 @@
     "download_owl": "https://raw.githubusercontent.com/nexusformat/NeXusOntology/refs/heads/main/ontology/NeXusOntology.owl",
     "homepage": "https://github.com/nexusformat/NeXusOntology",
     "keywords": [
-      "TIB",
       "FAIRmat",
       "physics"
     ],
@@ -1935,7 +1909,7 @@
     "name": "Ontology for Biomedical Investigations",
     "prefix": "obi",
     "tracker": "http://purl.obolibrary.org/obo/obi/tracker",
-    "version.iri": "http://purl.obolibrary.org/obo/obi/2025-10-14/obi.owl"
+    "version.iri": "http://purl.obolibrary.org/obo/obi/2025-12-18/obi.owl"
   },
   "oboe": {
     "description": "The Extensible Observation Ontology (OBOE) is a formal ontology for capturing the semantics of scientific observation and measurement. The ontology supports researchers to add detailed semantic annotations to scientific data, thereby clarifying the inherent meaning of scientific observations.",
@@ -2176,8 +2150,7 @@
     ],
     "name": "Orphanet Rare Disease Ontology 4.7",
     "prefix": "ordo47",
-    "uri_format": "http://www.orpha.net/ORDO/Orphanet_$1",
-    "version.iri": "https://www.orphadata.com/data/ontologies/ordo/last_version/ORDO_en_4.7.owl"
+    "uri_format": "http://www.orpha.net/ORDO/Orphanet_$1"
   },
   "org": {
     "contact": "public-gld-comments@w3.org",
@@ -2274,7 +2247,7 @@
     "name": "Plant Environmental Conditions Ontology",
     "prefix": "peco",
     "tracker": "https://github.com/Planteome/plant-experimental-conditions-ontology/issues/",
-    "version.iri": "http://purl.obolibrary.org/obo/peco/releases/2025-10-30/peco.owl"
+    "version.iri": "http://purl.obolibrary.org/obo/peco/releases/2025-12-02/peco.owl"
   },
   "physh": {
     "description": "PhySH (Physics Subject Headings) is a physics classification scheme developed by APS to organize journal, meeting, and other content by topic.",
@@ -2317,7 +2290,7 @@
     "prefix": "pmd",
     "tracker": "https://github.com/materialdigital/core-ontology/issues",
     "uri_format": "https://w3id.org/pmd/co/PMD_$1",
-    "version.iri": "https://w3id.org/pmd/co/3.0.0-alpha4"
+    "version.iri": "https://w3id.org/pmd/co/3.0.0-rc2"
   },
   "po": {
     "description": "An ontology that describes plant anatomy, morphology, and growth and development in plants.",
@@ -2331,7 +2304,7 @@
     "name": "Plant Ontology",
     "prefix": "po",
     "tracker": "https://github.com/Planteome/plant-ontology/issues",
-    "version.iri": "http://purl.obolibrary.org/obo/po/releases/2025-10-31/po.owl"
+    "version.iri": "http://purl.obolibrary.org/obo/po/releases/2026-01-09/po.owl"
   },
   "ppeo": {
     "description": "The Plant Phenotyping Experiment Ontology (PPEO) is an implementation of the Minimal Information About Plant Phenotyping Experiment. It lists and organises all the informations necessary to describe and reuse a phenotyping dataset following FAIR principles (Findable Interoperable Accessible Reusable). It has been initiated with experts from Elixir, Emphasis, Bioversity International - CGIAR and RDA.",
@@ -2386,6 +2359,18 @@
     "tracker": "https://github.com/proco-ontology/PROCO/issues",
     "version.iri": "http://purl.obolibrary.org/obo/proco/releases/2022-04-11/proco.owl"
   },
+  "pror": {
+    "description": "PRO Research: An ontology for describing RDM-Policies in a structured way",
+    "download_rdf": "http://w3id.org/nfdi4ing/pro-research/ontology.ttl",
+    "keywords": [
+      "NFDI4ING",
+      "engineering"
+    ],
+    "name": "PRO Research: An ontology for describing RDM-Policies in a structured way",
+    "prefix": "pror",
+    "tracker": "https://git.rwth-aachen.de/nfdi4ing/pro-research/pro-research-ontology/-/issues",
+    "uri_format": "http://w3id.org/nfdi4ing/pro-research#$1"
+  },
   "prov": {
     "description": "The PROV Ontology provides a set of classes, properties, and restrictions that can be used to represent and interchange provenance information generated in different systems and under different contexts. It can also be specialized to create new classes and properties to model provenance information for different applications and domains.",
     "download_owl": "https://www.w3.org/ns/prov-o.owl",
@@ -2411,7 +2396,7 @@
     "name": "Plant Stress Ontology",
     "prefix": "pso",
     "tracker": "https://github.com/Planteome/plant-stress-ontology/issues/",
-    "version.iri": "http://purl.obolibrary.org/obo/pso/releases/2023-11-14/pso.owl"
+    "version.iri": "http://purl.obolibrary.org/obo/pso/releases/2026-01-08/pso.owl"
   },
   "raum": {
     "description": "SKOS-Modellierung des Thesaurus FINDEX Raum des Fraunhofer-Informationszentrums Raum und Bau IRB",
@@ -2455,18 +2440,6 @@
     "tracker": "https://github.com/Sheeba-Samuel/REPRODUCE-ME/issues",
     "uri_format": "https://w3id.org/reproduceme#$1"
   },
-  "rex": {
-    "description": "REX is an ontology of physico-chemical processes, i.e. physico-chemical changes occurring in course of time. REX includes both microscopic processes (involving molecular entities or subatomic particles) and macroscopic processes. Some biochemical processes from Gene Ontology (GO Biological process) can be described as instances of REX.",
-    "download_owl": "http://purl.obolibrary.org/obo/rex.owl",
-    "keywords": [
-      "NFDI4CHEM",
-      "NFDI4CAT",
-      "chemistry"
-    ],
-    "name": "Physico-chemical process",
-    "prefix": "rex",
-    "version.iri": "http://purl.obolibrary.org/obo/rex/releases/2017-11-19/rex.owl"
-  },
   "ro": {
     "description": "Relationship types shared across multiple ontologies.",
     "download_owl": "http://purl.obolibrary.org/obo/ro.owl",
@@ -2480,7 +2453,7 @@
     "name": "Relation Ontology",
     "prefix": "ro",
     "tracker": "https://github.com/oborel/obo-relations/issues",
-    "version.iri": "http://purl.obolibrary.org/obo/ro/releases/2025-06-24/ro.owl"
+    "version.iri": "http://purl.obolibrary.org/obo/ro/releases/2025-12-17/ro.owl"
   },
   "rosetta": {
     "description": "The ROSETTA ontology of industrial robotics devices and robotic skills.",
@@ -2513,7 +2486,7 @@
     "description": "SAREF4AGRI is an extension of SAREF for the agriculture and food domain. SAREF4AGRI is specified and published by ETSI in the TS 103 410-6 associated to this ontology file. The list of use cases, standards and requirements that guided the creation of SAREF4AGRI are described in the associated ETSI TR 103 511.",
     "homepage": "https://saref.etsi.org/saref4agri/",
     "keywords": [
-      "TIB",
+      "Miscellaneous",
       "agriculture"
     ],
     "name": "SAREF4AGRI: an extension of SAREF for the agriculture and food domain",
@@ -2853,7 +2826,7 @@
     "download_rdf": "https://www.w3.org/2009/08/skos-reference/skos.rdf",
     "homepage": "https://www.w3.org/TR/skos-reference/",
     "keywords": [
-      "TIB",
+      "Miscellaneous",
       "computer science"
     ],
     "name": "SKOS Vocabulary",
@@ -2865,7 +2838,7 @@
     "download_rdf": "https://www.w3.org/2009/08/skos-reference/skos-xl.rdf",
     "homepage": "https://www.w3.org/TR/skos-reference/skos-xl.html",
     "keywords": [
-      "TIB",
+      "Miscellaneous",
       "computer science"
     ],
     "name": "SKOS XL Vocabulary",
@@ -2973,7 +2946,7 @@
     "download_rdf": "https://netmode.gitlab.io/sustaingraph-ontology/ontology.ttl",
     "homepage": "https://netmode.gitlab.io/sustaingraph-ontology/",
     "keywords": [
-      "TIB"
+      "Miscellaneous"
     ],
     "name": "SustainGraph Ontology",
     "prefix": "sustaingraph",
@@ -3113,7 +3086,7 @@
     ],
     "name": "Plant Trait Ontology",
     "prefix": "to",
-    "version.iri": "http://purl.obolibrary.org/obo/to/releases/2025-11-07/to.owl"
+    "version.iri": "http://purl.obolibrary.org/obo/to/releases/2026-01-14/to.owl"
   },
   "tso": {
     "description": "The scope of the TUBES ontology is to explicitly define the topology of interconnected building service system and their relationship to the spatial structure. It has a strong alignment to other ontologies within the W3C community and aims to provide the means to link information at data level within the AEC industry.",
@@ -3154,7 +3127,7 @@
     "name": "Uber-anatomy ontology",
     "prefix": "uberon",
     "tracker": "https://github.com/obophenotype/uberon/issues/",
-    "version.iri": "http://purl.obolibrary.org/obo/uberon/releases/2025-08-15/uberon.owl"
+    "version.iri": "http://purl.obolibrary.org/obo/uberon/releases/2025-12-04/uberon.owl"
   },
   "uo": {
     "description": "The Ontology of Units of Measure models concepts and relations for defining and using measures and units in scientific research. It includes common units like SI units (meter, kilogram) and others like the mile. OM supports the following application areas- Geometry; Mechanics; Thermodynamics; Electromagnetism; Fluid mechanics; Chemical physics; Photometry; Radiometry and Radiobiology; Nuclear physics; Astronomy and Astrophysics; Cosmology; Earth science; Meteorology; Material science; Microbiology; Economics; Information technology and Typography.",
@@ -3172,14 +3145,14 @@
     "name": "Units of measurement ontology",
     "prefix": "uo",
     "tracker": "https://github.com/bio-ontology-research-group/unit-ontology/issues",
-    "version.iri": "http://purl.obolibrary.org/obo/uo/releases/2023-05-25/uo.owl"
+    "version.iri": "http://purl.obolibrary.org/obo/uo/releases/2026-01-16/uo.owl"
   },
   "vann": {
     "description": "This document describes a vocabulary for annotating descriptions of vocabularies with examples and usage notes.",
     "download_rdf": "https://vocab.org/vann/vann-vocab-20100607.rdf",
     "homepage": "https://vocab.org/vann/",
     "keywords": [
-      "TIB",
+      "Miscellaneous",
       "computer science"
     ],
     "name": "VANN: A vocabulary for annotating vocabulary descriptions",
@@ -3203,7 +3176,7 @@
     "description": "The VIVO Ontology is used to represent the expertise of people engaged in the creation, transmission, and preservation of knowledge and creative works. The VIVO ontology (hereafter referred to as \u201cthe ontology\u201d) represents expertise by describing the activities and accomplishments of people in terms of their relationships to particular artifacts of the work, resources they use, institutions that employ them, and other indicators. The ontology is independent of knowledge or creative domain. The ontology supports the identification, evaluation, and impact assessment of individual people and groups of people, as well as identification and reuse of the works of the people.",
     "download_owl": "https://raw.githubusercontent.com/vivo-ontologies/vivo-ontology/refs/tags/vivo-ontology-1.8.0/vivo.owl",
     "keywords": [
-      "TIB"
+      "Miscellaneous"
     ],
     "name": "VIVO Core Ontology",
     "prefix": "vivo",
@@ -3266,7 +3239,7 @@
     "description": "Extensions to SKOS and other standard vocabularies used by the German National Library of Economics (ZBW)",
     "download_rdf": "https://zbw.eu/namespaces/zbw-extensions/zbw-extensions.rdf",
     "keywords": [
-      "TIB",
+      "Miscellaneous",
       "computer science"
     ],
     "name": "Extensions to SKOS and other standard vocabularies used by the German National Library of Economics (ZBW)",
