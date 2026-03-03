@@ -6,7 +6,7 @@ license: https://creativecommons.org/publicdomain/zero/1.0/
 
 # Version should be kept in sync with primary Git repository release tag
 
-version: 4.3.6
+version: 4.3.7
 
 ## ------------
 ##
@@ -445,6 +445,11 @@ slots:
       - qud:quantityValue
     in_subset:
       - samples
+
+  has binary relation:
+    description: >-
+      Qualifies a value context with a mathematical binary relation.
+    range: BinaryRelationEnum
 
   has unit:
     description: >-
@@ -1489,15 +1494,25 @@ slots:
     description: >-
       The numerical value describing the strength of an affinity between two entities.  For instance, if a chemical inhibits a protein with a pIC50 of 8.6,
       the affinity is 8.6. Used in conjunction with the affinity parameter slot.
-    is_a: association slot
+    is_a: node property
     range: float
 
   affinity parameter:
     description: >-
-      The type of parameter describing the strength of an affinity between two entities.  For instance, if a chemical inhibits a protein with a pIC50 of 8.6,
-      the affinity parameter is pIC50.  Used in conjunction with the affinity slot.
-    is_a: association slot
+      The type of parameter describing the strength of an affinity
+      between two entities.  For instance, if a chemical inhibits
+      a protein with a pIC50 of 8.6, the 'affinity parameter' is pIC50.
+      Used in conjunction with the 'affinity' slot, within an 'affinity measurement'.
+    is_a: node property
     range: AffinityParameterEnum
+
+  has affinity:
+    is_a: association slot
+    description: >-
+      Set of measurements documenting the strength of chemical entity to gene or gene product interactions.
+    range: affinity measurement
+    multivalued: true
+    inlined_as_list: true
 
   FDA adverse event level:
     description: >-
@@ -6538,10 +6553,16 @@ slots:
   clinical approval status:
     is_a: association slot
     description: >-
+      The clinical approval status of a chemical entity for treating a specific disease or condition,
+      as captured in the context of the association between the chemical and the disease.
     range: ClinicalApprovalStatusEnum
 
   max research phase:
     is_a: association slot
+    description: >-
+      The maximum research phase reached for a specific chemical-disease pair, indicating the highest
+      clinical trial phase achieved for the chemical entity's investigation as a treatment for the
+      associated disease or condition.
     range: ResearchPhaseEnum
 
   number of cases:
@@ -7843,6 +7864,7 @@ classes:
       - max tolerated dose
       - is toxic
       - has chemical role
+      - routes of delivery
       - chembl prodrug
       - chembl black box warning
       - chembl natural product
@@ -7887,6 +7909,18 @@ classes:
       - KEGG.ENVIRON
       - KEGG
       - UMLS
+
+  affinity measurement:
+    is_a: named thing
+    description: >-
+      The type of measurement describing the strength of an affinity between two entities.
+      For instance, if a chemical inhibits a protein with a pIC50 of 8.6,
+      the affinity parameter is pIC50 and the affinity value is 8.6.
+      The binary relation, if given, qualifies the affinity as greater than, less than, or equal.
+    slots:
+      - affinity parameter
+      - affinity
+      - has binary relation
 
   small molecule:
     is_a: molecular entity
@@ -7940,7 +7974,6 @@ classes:
       - model_organism_database
       - translator_minimal
 
-
   chemical mixture:
     is_a: chemical entity
     mixins:
@@ -7952,7 +7985,6 @@ classes:
       - is supplement
       - highest FDA approval status
       - drug regulatory status world wide
-      - routes of delivery
     in_subset:
       - translator_minimal
     id_prefixes:
@@ -9614,7 +9646,6 @@ classes:
     id_prefixes:
       - CLINICALTRIALS
 
-
   clinical intervention:
     is_a: clinical entity
 
@@ -10729,6 +10760,7 @@ classes:
     broad_mappings:
       - SIO:001257    ## chemical-gene association
     slots:
+      - has affinity
       - subject form or variant qualifier
       - subject part qualifier
       - subject derivative qualifier
@@ -10777,7 +10809,7 @@ classes:
     is_a: association
     description: >-
       Describes the relationship between an enzyme (usually a macromolecular
-      complex or gene product) and the molecules it acts on (substrate). 
+      complex or gene product) and the molecules it acts on (substrate).
       The substrate can be a chemical, a polypeptide, or a protein.
     notes: >-
       Using macromolecular machine should cover cases of gene-protein conflation.
@@ -12360,7 +12392,7 @@ classes:
       A relationship between two anatomical entities where the relationship
       is mereological, i.e the two entities are related by parthood, that is,
       the subject is has the object entity as a part (the expected predicate is
-      "biolink:has_part" or suitable predicate slots inheriting from it, i.e., 
+      "biolink:has_part" or suitable predicate slots inheriting from it, i.e.,
       "biolink:has_plasma_membrane_part",  "biolink:has_variant_part", etc.).
       This includes relationships between cells and cellular components,
       between issues and cells, whole organisms and tissues.
@@ -12385,7 +12417,7 @@ classes:
       A relationship between two anatomical entities where the relationship
       is mereological, i.e the two entities are related by parthood, that is,
       the subject is a part of the object entity (the expected predicate is
-      "biolink:part_of" or suitable predicate slots inheriting from it, i.e., 
+      "biolink:part_of" or suitable predicate slots inheriting from it, i.e.,
       "biolink:plasma_membrane_part_of",  "biolink:variant_part_of", etc.).
       This includes relationships between cellular components and cells,
       between cells and tissues, tissues and whole organisms.
@@ -12551,6 +12583,14 @@ classes:
 
 
 enums:
+
+  BinaryRelationEnum:
+    description: >-
+      Mathematical binary relation qualifiers of a value in its context.
+    permissible_values:
+      less_than:
+      equal_to:
+      greater_than:
 
   ResponseEnum:
     description: >-
@@ -13502,10 +13542,16 @@ enums:
 
   DrugDeliveryEnum:
     permissible_values:
-      "inhalation":
-      "oral":
-      "absorption_through_the_skin":
-      "intravenous_injection":
+      inhalation:
+      oral:
+      absorption_through_the_skin:
+      injection:
+      intravenous_injection:
+        is_a: injection
+      subcutaneous_injection:
+        is_a: injection
+      intramuscular_injection:
+        is_a: injection
 
   ResourceRoleEnum:
     description: >-
@@ -13523,18 +13569,37 @@ enums:
 
   AffinityParameterEnum:
     description: >-
-      The types of parameters that can be used to describe the affinity between two entities, characteristically chemicals and proteins.
+      The types of parameters that can be used to describe the affinity between two entities,
+      characteristically chemicals and proteins. The values are generally 
+      stated as the negative base 10 logarithm of the raw measurements.
     permissible_values:
       "pIC50":
         description: >-
-          Negative logarithm of the molar concentration of a chemical that produces a 50% inhibition of a function
+          Negative base 10 logarithm of the the inhibitory concentration 50% (IC50)
+          measures the concentration needed to block or inhibit a biological response.
       "pEC50":
         description: >-
-          Negative logarithm of the molar concentration of a chemical that produces a 50% excitation of a function
+          Negative base 10 logarithm of the molar concentration of
+          a chemical that produces a 50% excitation of a function
       "pAC50":
       "pXC50":
       "pKi":
+        description: >-
+          Negative base 10 logarithm of the equilibrium binding affinity for a ligand that reduces
+          the activity of its binding partner. Ki represents the concentration at which the
+          inhibitor ligand occupies 50% of the receptor sites when no competing ligand is present
+      "pKon":
+        description: >-
+          Negative base 10 logarithm of the association rate constant (Kon) describes
+          the rate at which molecules bind to each other.
+      "pKoff":
+        description: >-
+          Negative base 10 logarithm of the dissociation rate constant (koff) describes
+          the rate at which they dissociate.
       "pKd":
+        description: >-
+          Negative base 10 logarithm of the equilibrium dissociation constant (KD) which
+          is a measure of the binding affinity and is defined as the ratio of koff to kon.
 
   FDAIDAAdverseEventEnum:
     description: >-
