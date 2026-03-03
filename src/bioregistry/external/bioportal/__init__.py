@@ -71,7 +71,7 @@ class OntoPortalClient:
         # see https://data.bioontology.org/documentation#Ontology
         res = self.query(self.base_url + "/ontologies", summaryOnly=False, notes=True)
         records = res.json()
-        records = thread_map(  # type:ignore
+        records = thread_map(
             self._preprocess,
             records,
             unit="ontology",

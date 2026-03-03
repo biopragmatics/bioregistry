@@ -5,7 +5,7 @@ Example API endpoint: https://www.re3data.org/api/v1/repository/r3d100010772
 
 import json
 import logging
-from collections.abc import Mapping, Sequence
+from collections.abc import Sequence
 from pathlib import Path
 from typing import Any, ClassVar
 from xml.etree import ElementTree
@@ -60,7 +60,7 @@ def get_re3data(force_download: bool = False) -> dict[str, dict[str, Any]]:
         identifier_to_doi[identifier_element.text.strip()] = doi
 
     records = dict(
-        thread_map(  # type:ignore
+        thread_map(
             _get_record,
             identifier_to_doi,
             unit_scale=True,
@@ -82,7 +82,7 @@ def get_re3data(force_download: bool = False) -> dict[str, dict[str, Any]]:
     return records
 
 
-def _get_record(identifier: str) -> tuple[str, Mapping[str, Any]]:
+def _get_record(identifier: str) -> tuple[str, dict[str, Any]]:
     res = requests.get(f"{BASE_URL}/api/v1/repository/{identifier}", timeout=15)
     tree = ElementTree.fromstring(res.text)[0]
     return identifier, _process_record(identifier, tree)
