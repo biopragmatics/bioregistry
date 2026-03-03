@@ -975,9 +975,9 @@
     "keywords": [
       "educational science",
       "history",
+      "miscellaneous",
       "ontology",
-      "social sciences",
-      "tib"
+      "social sciences"
     ],
     "license": "CC-BY-4.0",
     "mappings": {
@@ -1065,6 +1065,7 @@
     },
     "description": "Allotrope Merged Ontology Suite",
     "download_owl": "http://purl.allotrope.org/voc/afo/merged/REC/2025/12/merged-without-qudt-and-inferred",
+    "example": "result#AFR_10001055",
     "homepage": "https://www.allotrope.org/",
     "keywords": [
       "agricultural engineering",
@@ -1091,9 +1092,8 @@
       "tib": "afo"
     },
     "name": "Allotrope Merged Ontology Suite",
-    "no_own_terms": true,
     "preferred_prefix": "afo",
-    "uri_format": "https://purl.allotrope.org/voc/afo/merged/REC/2025/03/merged-without-qudt-and-inferred$1",
+    "uri_format": "http://purl.allotrope.org/ontologies/$1",
     "version": "2025-12-01"
   },
   "afpo": {
@@ -1633,7 +1633,7 @@
     ],
     "repository": "https://github.com/insect-morphology/aism",
     "uri_format": "http://purl.obolibrary.org/obo/AISM_$1",
-    "version": "2025-03-18"
+    "version": "2026-02-14"
   },
   "alfred": {
     "comment": "This resource doesn't exist on the web anymore",
@@ -1757,6 +1757,70 @@
       "https://github.com/biopragmatics/bioregistry/pull/1098"
     ],
     "uri_format": "http://www.allergome.org/script/dettaglio.php?id_molecule=$1"
+  },
+  "allotrope.process": {
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "The process component of the Allotrope ontology suite",
+    "example": "0001263",
+    "homepage": "https://www.allotrope.org/",
+    "name": "Allotrope process",
+    "part_of": "afo",
+    "pattern": "^\\d+$",
+    "preferred_prefix": "allotrope.process",
+    "uri_format": "http://purl.allotrope.org/ontologies/process#AFP_$1"
+  },
+  "allotrope.quality": {
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "The quality component of the Allotrope ontology suite",
+    "example": "0000236",
+    "homepage": "https://www.allotrope.org/",
+    "name": "Allotrope quality",
+    "part_of": "afo",
+    "pattern": "^\\d+$",
+    "preferred_prefix": "allotrope.quality",
+    "uri_format": "http://purl.allotrope.org/ontologies/quality#AFQ_$1"
+  },
+  "allotrope.result": {
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "The result component of the Allotrope ontology suite",
+    "example": "0001055",
+    "homepage": "https://www.allotrope.org/",
+    "name": "Allotrope result",
+    "part_of": "afo",
+    "pattern": "^\\d+$",
+    "preferred_prefix": "allotrope.result",
+    "uri_format": "http://purl.allotrope.org/ontologies/result#AFR_$1"
+  },
+  "allotrope.role": {
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "The role component of the Allotrope ontology suite",
+    "example": "0000248",
+    "homepage": "https://www.allotrope.org/",
+    "name": "Allotrope role",
+    "part_of": "afo",
+    "pattern": "^\\d+$",
+    "preferred_prefix": "allotrope.role",
+    "uri_format": "http://purl.allotrope.org/ontologies/role#AFRL_$1"
   },
   "alzforum.mutation": {
     "contributor": {
@@ -4686,9 +4750,9 @@
     "homepage": "https://id.loc.gov/ontologies/bibframe.html",
     "keywords": [
       "computer science",
+      "miscellaneous",
       "ontology",
-      "subject agnostic",
-      "tib"
+      "subject agnostic"
     ],
     "license": "CC0-1.0",
     "mappings": {
@@ -4777,11 +4841,15 @@
       "orcid": "0000-0003-1238-1499"
     },
     "description": "BiGG is a knowledgebase of Biochemically, Genetically and Genomically structured genome-scale metabolic network reconstructions. It more published genome-scale metabolic networks into a single database with a set of stardized identifiers called BiGG IDs. Genes in the BiGG models are mapped to NCBI genome annotations, and metabolites are linked to many external databases (KEGG, PubChem, and many more). This collection references model compartments.",
+    "download_json": "https://w3id.org/biopragmatics/resources/bigg.compartment/bigg.compartment.json",
+    "download_obo": "https://w3id.org/biopragmatics/resources/bigg.compartment/bigg.compartment.obo",
+    "download_owl": "https://w3id.org/biopragmatics/resources/bigg.compartment/bigg.compartment.owl",
     "example": "c",
     "homepage": "http://bigg.ucsd.edu/compartments/",
     "keywords": [
       "cellular component",
       "compartment",
+      "ontology",
       "subcellular compartment"
     ],
     "license": "http://bigg.ucsd.edu/license#license",
@@ -4804,6 +4872,9 @@
       "orcid": "0000-0003-1238-1499"
     },
     "description": "BiGG is a knowledgebase of Biochemically, Genetically and Genomically structured genome-scale metabolic network reconstructions. It published genome-scale metabolic networks into a single database with a set of standardized identifiers called BiGG IDs. Genes in the BiGG models are mapped to NCBI genome annotations, and metabolites are linked to many external databases (KEGG, PubChem, and many more). This collection references individual metabolites.",
+    "download_json": "https://w3id.org/biopragmatics/resources/bigg.metabolite/bigg.metabolite.json",
+    "download_obo": "https://w3id.org/biopragmatics/resources/bigg.metabolite/bigg.metabolite.obo",
+    "download_owl": "https://w3id.org/biopragmatics/resources/bigg.metabolite/bigg.metabolite.owl",
     "example": "12dgr161",
     "example_extras": [
       "12dgr161[c]"
@@ -4813,6 +4884,7 @@
       "chemical",
       "compound",
       "metabolite",
+      "ontology",
       "small molecule"
     ],
     "license": "http://bigg.ucsd.edu/license#license",
@@ -4835,10 +4907,14 @@
       "orcid": "0000-0003-1238-1499"
     },
     "description": "BiGG is a knowledgebase of Biochemically, Genetically and Genomically structured genome-scale metabolic network reconstructions. It more published genome-scale metabolic networks into a single database with a set of stardized identifiers called BiGG IDs. Genes in the BiGG models are mapped to NCBI genome annotations, and metabolites are linked to many external databases (KEGG, PubChem, and many more). This collection references individual models.",
+    "download_json": "https://w3id.org/biopragmatics/resources/bigg.model/bigg.model.json",
+    "download_obo": "https://w3id.org/biopragmatics/resources/bigg.model/bigg.model.obo",
+    "download_owl": "https://w3id.org/biopragmatics/resources/bigg.model/bigg.model.owl",
     "example": "iECABU_c1320",
     "homepage": "http://bigg.ucsd.edu/models",
     "keywords": [
       "metabolic model",
+      "ontology",
       "pathway"
     ],
     "license": "http://bigg.ucsd.edu/license#license",
@@ -4861,9 +4937,13 @@
       "orcid": "0000-0003-1238-1499"
     },
     "description": "BiGG is a knowledgebase of Biochemically, Genetically and Genomically structured genome-scale metabolic network reconstructions. It more published genome-scale metabolic networks into a single database with a set of stardized identifiers called BiGG IDs. Genes in the BiGG models are mapped to NCBI genome annotations, and metabolites are linked to many external databases (KEGG, PubChem, and many more). This collection references reactions.",
+    "download_json": "https://w3id.org/biopragmatics/resources/bigg.reaction/bigg.reaction.json",
+    "download_obo": "https://w3id.org/biopragmatics/resources/bigg.reaction/bigg.reaction.obo",
+    "download_owl": "https://w3id.org/biopragmatics/resources/bigg.reaction/bigg.reaction.owl",
     "example": "13GS",
     "homepage": "http://bigg.ucsd.edu/universal/reactions",
     "keywords": [
+      "ontology",
       "reaction"
     ],
     "license": "http://bigg.ucsd.edu/license#license",
@@ -5457,7 +5537,7 @@
     "pattern": "^\\S+$",
     "preferred_prefix": "biolink",
     "repository": "https://github.com/biolink/biolink-model",
-    "uri_format": "https://w3id.org/biolink/vocab/$1"
+    "uri_format": "https://biolink.github.io/biolink-model/$1"
   },
   "biomagresbank": {
     "description": "A repository for Data from NMR Spectroscopy on Proteins, Peptides, and Nucleic Acids.",
@@ -5581,7 +5661,7 @@
     },
     "description": "BioModels Database is a data resource that allows biologists to store, search and retrieve published mathematical models of biological interests.",
     "example": "BIOMD0000000048",
-    "homepage": "https://www.ebi.ac.uk/biomodels/",
+    "homepage": "https://biomodels.org/",
     "keywords": [
       "model"
     ],
@@ -5604,6 +5684,13 @@
         "uri_format": "http://bio2rdf.org/biomodels:$1"
       },
       {
+        "code": "ebi",
+        "description": "BioModels Database",
+        "homepage": "https://www.ebi.ac.uk/biomodels/",
+        "name": "BioModels Database",
+        "uri_format": "https://www.ebi.ac.uk/biomodels/$1"
+      },
+      {
         "code": "omicsdi",
         "description": "BioModels through OmicsDI",
         "homepage": "https://www.omicsdi.org/",
@@ -5623,7 +5710,7 @@
     "synonyms": [
       "BIOMD"
     ],
-    "uri_format": "https://www.ebi.ac.uk/biomodels/$1"
+    "uri_format": "https://biomodels.org/$1"
   },
   "biomodels.kisao": {
     "banana": "KISAO",
@@ -8375,12 +8462,16 @@
       "orcid": "0000-0003-4423-4370"
     },
     "description": "Datasets around different cancer cell lines generated by the Broad Institute and Novartis",
+    "download_json": "https://w3id.org/biopragmatics/resources/ccle/ccle.json",
+    "download_obo": "https://w3id.org/biopragmatics/resources/ccle/ccle.obo",
+    "download_owl": "https://w3id.org/biopragmatics/resources/ccle/ccle.owl",
     "example": "BT20_BREAST",
     "homepage": "https://www.cbioportal.org/study/summary?id=ccle_broad_2019",
     "keywords": [
       "cancer cell line",
       "cell",
-      "cell line"
+      "cell line",
+      "ontology"
     ],
     "license": "ODbL-1.0",
     "logo": "https://sites.broadinstitute.org/files/files/ccle/files/cclelogo_200h_4.jpg",
@@ -8677,7 +8768,7 @@
     "rdf_uri_format": "http://purl.obolibrary.org/obo/CDNO_$1",
     "repository": "https://github.com/CompositionalDietaryNutritionOntology/cdno",
     "uri_format": "http://purl.obolibrary.org/obo/CDNO_$1",
-    "version": "2025-06-09"
+    "version": "2026-02-15"
   },
   "cdpd": {
     "description": "The Canadian Drug Product Database (DPD) contains product specific information on drugs approved for use in Canada, and includes human pharmaceutical and biological drugs, veterinary drugs and disinfectant products. This information includes 'brand name', 'route of administration' and a Canadian 'Drug Identification Number' (DIN).",
@@ -9357,10 +9448,14 @@
       "orcid": "0000-0003-4423-4370"
     },
     "description": "Nomenclature Consortium around Chicken genes (analogous to the HGNC for humans)",
+    "download_json": "https://w3id.org/biopragmatics/resources/cgnc/cgnc.json",
+    "download_obo": "https://w3id.org/biopragmatics/resources/cgnc/cgnc.obo",
+    "download_owl": "https://w3id.org/biopragmatics/resources/cgnc/cgnc.owl",
     "example": "10087",
     "homepage": "http://birdgenenames.org",
     "keywords": [
-      "gene"
+      "gene",
+      "ontology"
     ],
     "license": "CC-BY-4.0",
     "logo": "https://birdgenenames.org/img/CGNC.png",
@@ -9629,7 +9724,7 @@
     ],
     "twitter": "chebit",
     "uri_format": "http://purl.obolibrary.org/obo/CHEBI_$1",
-    "version": "248"
+    "version": "249"
   },
   "chembank": {
     "comment": "This resource doesn't exist on the web anymore",
@@ -9962,11 +10057,15 @@
       "orcid": "0000-0002-0294-5484"
     },
     "description": "ChEMBL is a database of bioactive compounds, their quantitative properties and bioactivities (binding constants, pharmacology and ADMET, etc). The data is abstracted and curated from the primary scientific literature.",
+    "download_json": "https://w3id.org/biopragmatics/resources/chembl.compound/chembl.compound.json",
+    "download_obo": "https://w3id.org/biopragmatics/resources/chembl.compound/chembl.compound.obo",
+    "download_owl": "https://w3id.org/biopragmatics/resources/chembl.compound/chembl.compound.owl",
     "example": "CHEMBL465070",
     "homepage": "https://www.ebi.ac.uk/chembldb/",
     "keywords": [
       "chemical",
       "compound",
+      "ontology",
       "small molecule"
     ],
     "license": "CC-BY-SA-3.0",
@@ -10020,11 +10119,15 @@
       "orcid": "0000-0002-0294-5484"
     },
     "description": "ChEMBL is a database of bioactive compounds, their quantitative properties and bioactivities (binding constants, pharmacology and ADMET, etc). The data is abstracted and curated from the primary scientific literature.",
+    "download_json": "https://w3id.org/biopragmatics/resources/chembl.target/chembl.target.json",
+    "download_obo": "https://w3id.org/biopragmatics/resources/chembl.target/chembl.target.obo",
+    "download_owl": "https://w3id.org/biopragmatics/resources/chembl.target/chembl.target.owl",
     "example": "CHEMBL3467",
     "homepage": "https://www.ebi.ac.uk/chembldb/",
     "keywords": [
       "cell",
       "cell line",
+      "ontology",
       "protein",
       "protein complex"
     ],
@@ -10991,9 +11094,9 @@
     "homepage": "http://www.sparontologies.net/ontologies/cito",
     "keywords": [
       "knowledge and information systems",
+      "miscellaneous",
       "ontology",
-      "spar",
-      "tib"
+      "spar"
     ],
     "mappings": {
       "fairsharing": "FAIRsharing.b220d4",
@@ -11090,10 +11193,14 @@
       "orcid": "0000-0002-6388-446X"
     },
     "description": "A CIViC Gene Summary is created to provide a high-level overview of clinical relevance of cancer variants for the gene. Gene Summaries in CIViC focus on emphasizing the clinical relevance from a molecular perspective rather than describing the biological function of the gene unless necessary to contextualize its clinical relevance in cancer. Gene Summaries include relevant cancer subtypes, specific treatments for the gene’s associated variants, pathway interactions, functional alterations caused by the variants in the gene, and normal/abnormal functions of the gene with associated roles in oncogenesis",
+    "download_json": "https://w3id.org/biopragmatics/resources/civic.gid/civic.gid.json",
+    "download_obo": "https://w3id.org/biopragmatics/resources/civic.gid/civic.gid.obo",
+    "download_owl": "https://w3id.org/biopragmatics/resources/civic.gid/civic.gid.owl",
     "example": "272",
     "homepage": "https://civicdb.org/",
     "keywords": [
-      "gene"
+      "gene",
+      "ontology"
     ],
     "license": "CC0-1.0",
     "logo": "https://civic.readthedocs.io/en/latest/_images/CIViC_logo_for-light-bg_LG_v5a1.png",
@@ -11541,12 +11648,16 @@
       "name": "ClinicalTrials.gov Helpdesk"
     },
     "description": "ClinicalTrials.gov provides free access to information on clinical studies for a wide range of diseases and conditions. Studies listed in the database are conducted in 175 countries",
+    "download_json": "https://w3id.org/biopragmatics/resources/clinicaltrials/clinicaltrials.json.gz",
+    "download_obo": "https://w3id.org/biopragmatics/resources/clinicaltrials/clinicaltrials.obo.gz",
+    "download_owl": "https://w3id.org/biopragmatics/resources/clinicaltrials/clinicaltrials.owl.gz",
     "example": "NCT00222573",
     "homepage": "https://clinicaltrials.gov/",
     "keywords": [
       "disease",
       "drug",
-      "human"
+      "human",
+      "ontology"
     ],
     "license": "https://clinicaltrials.gov/about-site/terms-conditions#availability",
     "logo": "https://clinicaltrials.gov/assets/images/ctg-header-logo.svg",
@@ -11956,7 +12067,7 @@
     "repository": "https://github.com/rat-genome-database/CMO-Clinical-Measurement-Ontology",
     "twitter": "ratgenome",
     "uri_format": "http://purl.obolibrary.org/obo/CMO_$1",
-    "version": "2.263"
+    "version": "2.266"
   },
   "cmpo": {
     "contact": {
@@ -13693,9 +13804,13 @@
       "orcid": "0000-0001-7456-0594"
     },
     "description": "A database that describes manually curated macromolecular complexes and provides links to details about these complexes in other databases.",
+    "download_json": "https://w3id.org/biopragmatics/resources/complexportal/complexportal.json",
+    "download_obo": "https://w3id.org/biopragmatics/resources/complexportal/complexportal.obo",
+    "download_owl": "https://w3id.org/biopragmatics/resources/complexportal/complexportal.owl",
     "example": "CPX-263",
     "homepage": "https://www.ebi.ac.uk/complexportal",
     "keywords": [
+      "ontology",
       "protein complex"
     ],
     "license": "CC0-1.0",
@@ -14069,6 +14184,26 @@
     "preferred_prefix": "coriell",
     "uri_format": "http://ccr.coriell.org/Sections/Search/Sample_Detail.aspx?Ref=$1"
   },
+  "corpusvitrearum": {
+    "contact": {
+      "email": "jonatan.steller@adwmainz.de",
+      "github": "jonatansteller",
+      "name": "Jonatan Jalle Steller",
+      "orcid": "0000-0002-5101-5275"
+    },
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "A digital photo archive",
+    "example": "F3436",
+    "homepage": "https://corpusvitrearum.de",
+    "name": "Corpus Vitrearum",
+    "preferred_prefix": "corpusvitrearum",
+    "uri_format": "https://corpusvitrearum.de/id/$1"
+  },
   "corrdb": {
     "contact": {
       "email": "zhu@iastate.edu",
@@ -14411,6 +14546,9 @@
       }
     ],
     "description": "Current Procedural Terminology, more commonly known as CPT®, refers to a medical code set created and maintained by the American Medical Association — and used by physicians, allied health professionals, nonphysician practitioners, hospitals, outpatient facilities, and laboratories to represent the services and procedures they perform. No provider of outpatient services gets paid without reporting the proper CPT® codes. [Description taken from this site](https://www.aapc.com/codes/cpt-codes-range/)]",
+    "download_json": "https://w3id.org/biopragmatics/resources/cpt/cpt.json",
+    "download_obo": "https://w3id.org/biopragmatics/resources/cpt/cpt.obo",
+    "download_owl": "https://w3id.org/biopragmatics/resources/cpt/cpt.owl",
     "example": "00103",
     "github_request_issue": 357,
     "homepage": "https://www.aapc.com",
@@ -14551,7 +14689,9 @@
       "orcid": "0000-0003-4423-4370"
     },
     "description": "CRediT (Contributor Roles Taxonomy) is high-level taxonomy, including 14 roles, that can be used to represent the roles typically played by contributors to scientific scholarly output. The roles describe each contributor’s specific contribution to the scholarly output.",
-    "download_owl": "https://w3id.org/biopragmatics/resources/credit/2022/credit.ofn",
+    "download_json": "https://w3id.org/biopragmatics/resources/credit/credit.json",
+    "download_obo": "https://w3id.org/biopragmatics/resources/credit/credit.obo",
+    "download_owl": "https://w3id.org/biopragmatics/resources/credit/credit.owl",
     "example": "software",
     "homepage": "https://credit.niso.org/",
     "keywords": [
@@ -14566,8 +14706,7 @@
       "omics",
       "ontology",
       "resource metadata",
-      "subject agnostic",
-      "tib"
+      "subject agnostic"
     ],
     "license": "CC-BY-4.0",
     "logo": "https://api.fairsharing.org/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBaUFCIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--af4f02374db4f42007e6674ea2055ccaa36aa830/credit-icon-499x500-1.png?disposition=inline",
@@ -15376,9 +15515,13 @@
       "orcid": "0000-0003-4423-4370"
     },
     "description": "The CDC's National Center of Immunization and Respiratory Diseases (NCIRD) developed and maintains the CVX (vaccine administered) code set. The table below has the most up to date values. It includes both active and inactive vaccines available in the US. CVX codes for inactive vaccines allow transmission of historical immunization records.",
+    "download_json": "https://w3id.org/biopragmatics/resources/cvx/cvx.json",
+    "download_obo": "https://w3id.org/biopragmatics/resources/cvx/cvx.obo",
+    "download_owl": "https://w3id.org/biopragmatics/resources/cvx/cvx.owl",
     "example": "54",
     "homepage": "https://www2a.cdc.gov/vaccines/iis/iisstandards/vaccines.asp?rpt=cvx",
     "keywords": [
+      "ontology",
       "vaccine"
     ],
     "logo": "https://www2.cdc.gov/TemplatePackage/4.0/assets/imgs/logo/logo-notext.svg",
@@ -16326,7 +16469,6 @@
       "ess",
       "ontology",
       "subject agnostic",
-      "tib",
       "w3c rec"
     ],
     "mappings": {
@@ -17757,12 +17899,16 @@
       "orcid": "0000-0003-4423-4370"
     },
     "description": "Cell lines used in the Dependency Map (DepMap). Highly related to CCLE Cells.",
+    "download_json": "https://w3id.org/biopragmatics/resources/depmap/depmap.json",
+    "download_obo": "https://w3id.org/biopragmatics/resources/depmap/depmap.obo",
+    "download_owl": "https://w3id.org/biopragmatics/resources/depmap/depmap.owl",
     "example": "ACH-000001",
     "homepage": "https://depmap.org/portal",
     "keywords": [
       "cancer cell line",
       "cell",
-      "cell line"
+      "cell line",
+      "ontology"
     ],
     "license": "CC-BY-4.0",
     "logo": "https://target-discovery.depmap.org/img/depmaplogo.png",
@@ -17879,8 +18025,8 @@
     "homepage": "https://github.com/VIVO-DE/destatis_faecherklassifikation",
     "keywords": [
       "educational science",
-      "subject",
-      "tib"
+      "miscellaneous",
+      "subject"
     ],
     "mappings": {
       "tib": "destf"
@@ -18361,10 +18507,14 @@
       "orcid": "0000-0002-4532-2703"
     },
     "description": "The dictyBase database provides data on the model organism Dictyostelium discoideum and related species. It contains the complete genome sequence, ESTs, gene models and functional annotations. This collection references gene information.",
+    "download_json": "https://w3id.org/biopragmatics/resources/dictybase.gene/dictybase.gene.json",
+    "download_obo": "https://w3id.org/biopragmatics/resources/dictybase.gene/dictybase.gene.obo",
+    "download_owl": "https://w3id.org/biopragmatics/resources/dictybase.gene/dictybase.gene.owl",
     "example": "DDB_G0267522",
     "homepage": "http://dictybase.org/",
     "keywords": [
-      "gene"
+      "gene",
+      "ontology"
     ],
     "license": "CC-BY-SA-4.0",
     "logo": "https://dictybase-docker.github.io/developer-docs/static/4eeedc37c188406acdddc392200815a7/logo-nav-light.png",
@@ -19337,7 +19487,7 @@
     ],
     "twitter": "diseaseontology",
     "uri_format": "http://purl.obolibrary.org/obo/DOID_$1",
-    "version": "2025-12-23"
+    "version": "2026-02-28"
   },
   "dolce": {
     "comment": "This resource doesn't exist anymore",
@@ -20352,6 +20502,9 @@
       "orcid": "0000-0003-4423-4370"
     },
     "description": "DrugCentral  provides information on active ingredients chemical entities, pharmaceutical products, drug mode of action, indications, pharmacologic action.",
+    "download_json": "https://w3id.org/biopragmatics/resources/drugcentral/drugcentral.json",
+    "download_obo": "https://w3id.org/biopragmatics/resources/drugcentral/drugcentral.obo",
+    "download_owl": "https://w3id.org/biopragmatics/resources/drugcentral/drugcentral.owl",
     "example": "307",
     "homepage": "http://drugcentral.org",
     "keywords": [
@@ -20359,6 +20512,7 @@
       "drug development",
       "drug discovery",
       "drug repositioning",
+      "ontology",
       "pharmacology",
       "pharmacy"
     ],
@@ -20998,7 +21152,9 @@
       "orcid": "0000-0003-3889-2879"
     },
     "description": "The Enzyme Nomenclature (also known as the Enzyme Commission Code) is a species-agnostic controlled vocabulary for specific enzymes and an associated hierarchical classification into 7 main categories.\n\nThe Enzyme Nomenclature is maintained by the [Nomenclature Committee](https://iubmb.org/about/committees/nomenclature-committee/) of the International Union of Biochemistry and Molecular Biology (IUBMB). A detailed history of the nomenclature since the 1950s can be found [here](https://iubmb.qmul.ac.uk/enzyme/history.html).\n\nThere are few notable resources providing access to the Enzyme Nomenclature:\n\n<table class=\"table table-striped\"><thead><tr><th>Website</th><th>Homepage</td><th>Notes</td></tr></thead><tbody><tr><td>ExplorEnz</td><td><a href=\"https://www.enzyme-database.org\">https://www.enzyme-database.org</a></td><td>This is the resource officially recommended by IUBMB</td></tr><tr><td>IUBMB (via by Queen Mary)</td><td><a href=\"https://iubmb.qmul.ac.uk/enzyme\">https://iubmb.qmul.ac.uk/enzyme</a></td><td>This is a web-based version of the <a href=\"https://archive.org/details/enzymenomenclatu0000inte_d6c2\">1992 publication</a>.</td></tr><tr><td>IntEnz</td><td><a href=\"https://www.ebi.ac.uk/intenz\">https://www.ebi.ac.uk/intenz</a></td><td>Shutdown in 2024</td></tr><tr><td>ExPaSy</td><td><a href=\"https://enzyme.expasy.org\">https://enzyme.expasy.org</a></td></tr><tr><td>EnzymePortal</td><td><a href=\"https://www.ebi.ac.uk/enzymeportal\">https://www.ebi.ac.uk/enzymeportal</a></td><td></td></tr></tbody></table>",
-    "download_owl": "https://w3id.org/biopragmatics/resources/ec/2025-04-09/ec.ofn",
+    "download_json": "https://w3id.org/biopragmatics/resources/ec/ec.json",
+    "download_obo": "https://w3id.org/biopragmatics/resources/ec/ec.obo",
+    "download_owl": "https://w3id.org/biopragmatics/resources/ec/ec.owl",
     "example": "1.1.1.1",
     "example_decoys": [
       "100",
@@ -21785,7 +21941,7 @@
     "rdf_uri_format": "http://purl.obolibrary.org/obo/ECTO_$1",
     "repository": "https://github.com/EnvironmentOntology/environmental-exposure-ontology",
     "uri_format": "http://purl.obolibrary.org/obo/ECTO_$1",
-    "version": "2023-02-14"
+    "version": "2026-02-17"
   },
   "ecyano.entity": {
     "description": "E-cyanobacterium.org is a web-based platform for public sharing, annotation, analysis, and visualisation of dynamical models and wet-lab experiments related to cyanobacteria. It allows models to be represented at different levels of abstraction — as biochemical reaction networks or ordinary differential equations.It provides concise mappings of mathematical models to a formalised consortium-agreed biochemical description, with the aim of connecting the world of biological knowledge with benefits of mathematical description of dynamic processes. This collection references entities.",
@@ -22233,7 +22389,7 @@
     ],
     "repository": "https://github.com/EBISPOT/efo",
     "uri_format": "http://www.ebi.ac.uk/efo/EFO_$1",
-    "version": "3.86.0"
+    "version": "3.87.0"
   },
   "ega": {
     "description": "The European Genome-phenome Archive (EGA) is a global network for permanent archiving and sharing of personally identifiable genetic, phenotypic, and clinical data generated for the purposes of biomedical research projects or in the context of research-focused healthcare systems. Jointly managed by the European Bioinformatics Institute (EMBL-EBI) in Cambridge (UK) and the Centre for Genomic Regulation (CRG) in Barcelona.",
@@ -22760,7 +22916,7 @@
       "EMAPA_RETIRED"
     ],
     "uri_format": "http://purl.obolibrary.org/obo/EMAPA_$1",
-    "version": "2025-12-30"
+    "version": "2026-02-11"
   },
   "emaps": {
     "contact": {
@@ -25523,7 +25679,7 @@
       "name": "d3fk"
     },
     "description": "The EVORAO Ontology provides a structured and harmonized vocabulary for describing shareable pathogens as characterized biological materials, along with their derived products and associated services, organized into collections. Developed within the EVORA project, it supports consistent metadata annotation across research infrastructures, promoting findability, accessibility, interoperability, and reusability (FAIR). By aligning with relevant standards and ontologies, EVORAO facilitates cross-domain collaboration, integration, and sharing of pathogenic resources and services to enhance pandemic preparedness and response. While initially focused on virology, EVORAO is designed to be extensible and also supports metadata harmonization for other pathogens. [from repository]",
-    "download_owl": "http://aber-owl.net/media/ontologies/EVORAO/21/evorao.owl",
+    "download_owl": "http://aber-owl.net/media/ontologies/EVORAO/23/evorao.owl",
     "download_rdf": "https://raw.githubusercontent.com/EVORA-project/evora-ontology/refs/heads/main/models/owl/evora_ontology.owl.ttl",
     "example": "AlternateName",
     "homepage": "https://github.com/EVORA-project/evora-ontology",
@@ -25733,10 +25889,10 @@
     "homepage": "https://github.com/sparontologies/fabio",
     "keywords": [
       "literature",
+      "miscellaneous",
       "ontology",
       "spar",
-      "subject agnostic",
-      "tib"
+      "subject agnostic"
     ],
     "mappings": {
       "aberowl": "FaBiO",
@@ -25797,6 +25953,31 @@
       }
     ],
     "uri_format": "https://www.facebase.org/data/record/#1/isa:dataset/accession=$1"
+  },
+  "factgrid": {
+    "contact": {
+      "email": "olaf.simons@pierre-marteau.com",
+      "github": "OlafSimons",
+      "name": "Olaf Simons",
+      "orcid": "0000-0001-9230-4666"
+    },
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "A wikibase for linguistic knowledge",
+    "example": "Q24708",
+    "homepage": "https://database.factgrid.de",
+    "name": "FactGrid",
+    "pattern": "^Q\\d+$",
+    "preferred_prefix": "factgrid",
+    "rdf_uri_format": "https://database.factgrid.de/wiki/Item:Q24708",
+    "references": [
+      "https://github.com/FactGrid"
+    ],
+    "uri_format": "https://database.factgrid.de/viewer/item/$1"
   },
   "fair": {
     "description": "This is the formal vocabulary (ontology) describing the FAIR principles.",
@@ -26925,6 +27106,9 @@
       "orcid": "0000-0002-1567-7626"
     },
     "description": "FlyBase is the database of the Drosophila Genome Projects and of associated literature.",
+    "download_json": "https://w3id.org/biopragmatics/resources/flybase/flybase.json",
+    "download_obo": "https://w3id.org/biopragmatics/resources/flybase/flybase.obo",
+    "download_owl": "https://w3id.org/biopragmatics/resources/flybase/flybase.owl",
     "example": "FBgn0011293",
     "homepage": "https://bioentity.link/",
     "keywords": [
@@ -26954,6 +27138,7 @@
       "molecular genetics",
       "movie",
       "mutant",
+      "ontology",
       "phenotype",
       "rna-seq",
       "sequence",
@@ -28215,7 +28400,7 @@
     "rdf_uri_format": "http://purl.obolibrary.org/obo/FYPO_$1",
     "repository": "https://github.com/pombase/fypo",
     "uri_format": "http://purl.obolibrary.org/obo/FYPO_$1",
-    "version": "2026-01-16"
+    "version": "2026-02-25"
   },
   "ga4ghdos": {
     "description": "Assists in resolving data across cloud resources.",
@@ -28429,11 +28614,15 @@
       "orcid": "0000-0003-4423-4370"
     },
     "description": "Database of rare diseases and related terms, including symptoms, healthcare resources, and organizations supporting research of the disease.",
+    "download_json": "https://w3id.org/biopragmatics/resources/gard/gard.json",
+    "download_obo": "https://w3id.org/biopragmatics/resources/gard/gard.obo",
+    "download_owl": "https://w3id.org/biopragmatics/resources/gard/gard.owl",
     "example": "6038",
     "homepage": "https://rarediseases.info.nih.gov/diseases",
     "keywords": [
       "condition",
       "disease",
+      "ontology",
       "symptom"
     ],
     "logo": "https://rarediseases.info.nih.gov/assets/GARD_Logo_Mobile.svg",
@@ -29527,7 +29716,7 @@
     "rdf_uri_format": "http://purl.obolibrary.org/obo/GENO_$1",
     "repository": "https://github.com/monarch-initiative/GENO-ontology",
     "uri_format": "http://purl.obolibrary.org/obo/GENO_$1",
-    "version": "2025-07-25"
+    "version": "2026-02-02"
   },
   "genpept": {
     "description": "The GenPept database is a collection of sequences based on translations from annotated coding regions in GenBank.",
@@ -29712,12 +29901,16 @@
       "orcid": "0000-0003-4423-4370"
     },
     "description": "The GeoNames geographical database covers all countries and contains over eleven million placenames that are available for download free of charge.",
+    "download_json": "https://w3id.org/biopragmatics/resources/geonames/geonames.json",
+    "download_obo": "https://w3id.org/biopragmatics/resources/geonames/geonames.obo",
+    "download_owl": "https://w3id.org/biopragmatics/resources/geonames/geonames.owl",
     "example": "3532759",
     "homepage": "https://www.geonames.org",
     "keywords": [
       "geographic location",
       "geography",
-      "geoinformatics"
+      "geoinformatics",
+      "ontology"
     ],
     "license": "CC-BY-4.0",
     "logo": "https://www.geonames.org/img/globe.gif",
@@ -29746,10 +29939,14 @@
       "orcid": "0000-0003-4423-4370"
     },
     "description": "All geographical features in GeoNames are categorized into one out of nine feature classes and further subcategorized into one out of 645 feature codes.",
+    "download_json": "https://w3id.org/biopragmatics/resources/geonames.feature/geonames.feature.json",
+    "download_obo": "https://w3id.org/biopragmatics/resources/geonames.feature/geonames.feature.obo",
+    "download_owl": "https://w3id.org/biopragmatics/resources/geonames.feature/geonames.feature.owl",
     "example": "ADM1",
     "homepage": "https://www.geonames.org/export/codes.html",
     "keywords": [
-      "geography"
+      "geography",
+      "ontology"
     ],
     "license": "CC-BY-4.0",
     "logo": "https://www.geonames.org/img/globe.gif",
@@ -31241,7 +31438,7 @@
     ],
     "twitter": "news4go",
     "uri_format": "http://purl.obolibrary.org/obo/GO_$1",
-    "version": "2025-10-10"
+    "version": "2026-01-23"
   },
   "go.gpi": {
     "contributor": {
@@ -32483,10 +32680,14 @@
       "orcid": "0000-0003-1982-9065"
     },
     "description": "The Genome Taxonomy Database (GTDB) is an initiative to establish a standardized microbial taxonomy based on genome phylogeny.",
+    "download_json": "https://w3id.org/biopragmatics/resources/gtdb/gtdb.json.gz",
+    "download_obo": "https://w3id.org/biopragmatics/resources/gtdb/gtdb.obo.gz",
+    "download_owl": "https://w3id.org/biopragmatics/resources/gtdb/gtdb.owl",
     "example": "g__Prochlorococcus_A",
     "github_request_issue": 1242,
     "homepage": "https://gtdb.ecogenomic.org",
     "keywords": [
+      "ontology",
       "taxonomy"
     ],
     "license": "CC-BY-SA-4.0",
@@ -33627,7 +33828,9 @@
       "orcid": "0000-0002-8380-5247"
     },
     "description": "The HGNC (HUGO Gene Nomenclature Committee) provides an approved gene name and symbol (short-form abbreviation) for each known human gene.  All approved symbols are stored in the HGNC database, and each symbol is unique. HGNC identifiers refer to records in the HGNC symbol database.",
-    "download_owl": "https://w3id.org/biopragmatics/resources/hgnc/2026-01-06/hgnc.ofn",
+    "download_json": "https://w3id.org/biopragmatics/resources/hgnc/hgnc.json.gz",
+    "download_obo": "https://w3id.org/biopragmatics/resources/hgnc/hgnc.obo",
+    "download_owl": "https://w3id.org/biopragmatics/resources/hgnc/hgnc.owl.gz",
     "example": "16793",
     "homepage": "http://www.genenames.org",
     "keywords": [
@@ -33780,7 +33983,9 @@
       "orcid": "0000-0002-8380-5247"
     },
     "description": "The HGNC (HUGO Gene Nomenclature Committee) provides an approved gene name and symbol (short-form abbreviation) for each known human gene. All approved symbols are stored in the HGNC database, and each symbol is unique. In addition, HGNC also provides a unique numerical ID to identify gene families, providing a display of curated hierarchical relationships between families.",
-    "download_owl": "https://w3id.org/biopragmatics/resources/hgnc.genegroup/2025-10-07/hgnc.genegroup.ofn",
+    "download_json": "https://w3id.org/biopragmatics/resources/hgnc.genegroup/hgnc.genegroup.json",
+    "download_obo": "https://w3id.org/biopragmatics/resources/hgnc.genegroup/hgnc.genegroup.obo",
+    "download_owl": "https://w3id.org/biopragmatics/resources/hgnc.genegroup/hgnc.genegroup.owl",
     "example": "141",
     "homepage": "https://www.genenames.org",
     "keywords": [
@@ -34912,7 +35117,7 @@
     ],
     "twitter": "hp_ontology",
     "uri_format": "http://purl.obolibrary.org/obo/HP_$1",
-    "version": "2026-01-08"
+    "version": "2026-02-16"
   },
   "hpa": {
     "contact": {
@@ -35838,6 +36043,9 @@
       }
     ],
     "description": "The 10th revision of the International Classification of Diseases (ICD) issued by the World Health Organization (WHO). ICD is formally named 'The International Statistical Classification of Diseases and Related Health Problems'. It contains codes for diseases, signs and symptoms, abnormal findings, complaints, social circumstances, and external causes of injury or diseases.\n\nNote that the WHO version of ICD-10 is distinct from the ICD-10-CM (Clinical Modification) issued by the U.S. National Center for Health Statistics for use in the United States.",
+    "download_json": "https://w3id.org/biopragmatics/resources/icd10/icd10.json",
+    "download_obo": "https://w3id.org/biopragmatics/resources/icd10/icd10.obo",
+    "download_owl": "https://w3id.org/biopragmatics/resources/icd10/icd10.owl",
     "example": "C34",
     "example_decoys": [
       "G00X",
@@ -36093,6 +36301,9 @@
       }
     ],
     "description": "The ICD-11 Foundation is the comprehensive base layer of the International Classification of Diseases, encompassing all diagnostic concepts, definitions, and semantic relationships, designed for flexibility and adaptability across various use cases, including research, ontology development, and detailed health data analysis.",
+    "download_json": "https://w3id.org/biopragmatics/resources/icd11/icd11.json",
+    "download_obo": "https://w3id.org/biopragmatics/resources/icd11/icd11.obo",
+    "download_owl": "https://w3id.org/biopragmatics/resources/icd11/icd11.owl",
     "example": "402558626",
     "homepage": "https://icd.who.int/",
     "keywords": [
@@ -36103,7 +36314,8 @@
       "epidemiology",
       "global health",
       "health science",
-      "morbidity"
+      "morbidity",
+      "ontology"
     ],
     "license": "CC-BY-ND-3.0-IGO",
     "logo": "https://upload.wikimedia.org/wikipedia/commons/2/23/ICD-11_Logo.jpg",
@@ -36683,7 +36895,7 @@
     "rdf_uri_format": "http://purl.obolibrary.org/obo/ICO_$1",
     "repository": "https://github.com/ICO-ontology/ICO",
     "uri_format": "http://purl.obolibrary.org/obo/ICO_$1",
-    "version": "2025-03-15"
+    "version": "2026-02-28"
   },
   "iconclass": {
     "contact": {
@@ -36699,6 +36911,9 @@
       "orcid": "0000-0003-4423-4370"
     },
     "description": "A classification system for the subject matter of works of art, originating from work from Henri van de Waal in the 1940.",
+    "download_json": "https://w3id.org/biopragmatics/resources/iconclass/iconclass.json",
+    "download_obo": "https://w3id.org/biopragmatics/resources/iconclass/iconclass.obo",
+    "download_owl": "https://w3id.org/biopragmatics/resources/iconclass/iconclass.owl",
     "example": "3",
     "example_extras": [
       "11HH(ELISABETH)35",
@@ -36708,6 +36923,9 @@
       "98C(ZENOBIA%20SEPTIMIA)2"
     ],
     "homepage": "https://iconclass.org",
+    "keywords": [
+      "ontology"
+    ],
     "mappings": {
       "bartoc": "459",
       "wikidata.entity": "Q1502787"
@@ -39366,6 +39584,9 @@
       "orcid": "0000-0002-6982-4660"
     },
     "description": "InterPro is a database of protein families, domains and functional sites in which identifiable features found in known proteins can be applied to unknown protein sequences.",
+    "download_json": "https://w3id.org/biopragmatics/resources/interpro/interpro.json",
+    "download_obo": "https://w3id.org/biopragmatics/resources/interpro/interpro.obo",
+    "download_owl": "https://w3id.org/biopragmatics/resources/interpro/interpro.owl",
     "example": "IPR016380",
     "homepage": "http://www.ebi.ac.uk/interpro/index.html",
     "keywords": [
@@ -40141,11 +40362,15 @@
       "orcid": "0000-0003-4423-4370"
     },
     "description": "Information system with taxonomic data on plants, animals, fungi, and microbes of North America and the world.",
+    "download_json": "https://w3id.org/biopragmatics/resources/itis/itis.json.gz",
+    "download_obo": "https://w3id.org/biopragmatics/resources/itis/itis.obo",
+    "download_owl": "https://w3id.org/biopragmatics/resources/itis/itis.owl.gz",
     "example": "589462",
     "homepage": "https://www.itis.gov/",
     "keywords": [
       "biodiversity",
       "life science",
+      "ontology",
       "taxonomy"
     ],
     "license": "CC0-1.0",
@@ -41115,10 +41340,14 @@
       "orcid": "0000-0001-6123-540X"
     },
     "description": "KEGG Genome is a collection of organisms whose genomes have been completely sequenced.",
+    "download_json": "https://w3id.org/biopragmatics/resources/kegg.genome/kegg.genome.json",
+    "download_obo": "https://w3id.org/biopragmatics/resources/kegg.genome/kegg.genome.obo",
+    "download_owl": "https://w3id.org/biopragmatics/resources/kegg.genome/kegg.genome.owl",
     "example": "T06648",
     "homepage": "http://www.genome.jp/kegg/catalog/org_list.html",
     "keywords": [
-      "genome"
+      "genome",
+      "ontology"
     ],
     "license": "https://www.kegg.jp/kegg/legal.html",
     "logo": "https://www.genome.jp/Fig/kegg128.gif",
@@ -42955,7 +43184,7 @@
     "references": [
       "https://github.com/biopragmatics/bioregistry/pull/1171"
     ],
-    "uri_format": "https://loop.frontiersin.org/people/$1/overview"
+    "uri_format": "https://loop.frontiersin.org/people/$1"
   },
   "loqate": {
     "contact": {
@@ -43411,7 +43640,7 @@
     "rdf_uri_format": "http://purl.obolibrary.org/obo/MA_$1",
     "repository": "https://github.com/obophenotype/adult-mouse-anatomy-ontology",
     "uri_format": "http://purl.obolibrary.org/obo/MA_$1",
-    "version": "2026-01-09"
+    "version": "2026-02-24"
   },
   "macie": {
     "contact": {
@@ -44841,7 +45070,9 @@
       }
     ],
     "description": "MeSH (Medical Subject Headings) is the National Library of Medicine's controlled vocabulary thesaurus. It consists of sets of terms naming descriptors in a hierarchical structure that permits searching at various levels of specificity. This thesaurus is used by NLM for indexing articles from biomedical journals, cataloguing of books, documents, etc.",
-    "download_owl": "https://w3id.org/biopragmatics/resources/mesh/2025/mesh.ofn",
+    "download_json": "https://w3id.org/biopragmatics/resources/mesh/mesh.json.gz",
+    "download_obo": "https://w3id.org/biopragmatics/resources/mesh/mesh.obo",
+    "download_owl": "https://w3id.org/biopragmatics/resources/mesh/mesh.owl.gz",
     "example": "C063233",
     "example_extras": [
       "D000001",
@@ -45712,6 +45943,9 @@
       "orcid": "0000-0003-3342-5753"
     },
     "description": "The Mouse Genome Database (MGD) project includes data on gene characterization, nomenclature, mapping, gene homologies among mammals, sequence links, phenotypes, allelic variants and mutants, and strain data.",
+    "download_json": "https://w3id.org/biopragmatics/resources/mgi/mgi.json.gz",
+    "download_obo": "https://w3id.org/biopragmatics/resources/mgi/mgi.obo.gz",
+    "download_owl": "https://w3id.org/biopragmatics/resources/mgi/mgi.owl.gz",
     "example": "6017782",
     "homepage": "http://www.informatics.jax.org/",
     "keywords": [
@@ -45732,6 +45966,7 @@
       "life science",
       "model",
       "molecular neuroanatomy resource",
+      "ontology",
       "ontology and terminology",
       "orthology",
       "pathology",
@@ -45972,13 +46207,13 @@
       "interaction",
       "life science",
       "life sciences, biology",
+      "miscellaneous",
       "molecular interaction",
       "molecule",
       "obo",
       "ontology",
       "protein",
-      "protein interactions",
-      "tib"
+      "protein interactions"
     ],
     "license": "CC-BY-4.0",
     "mappings": {
@@ -46517,11 +46752,15 @@
       "orcid": "0000-0001-6043-807X"
     },
     "description": "The miRBase Sequence Database is a searchable database of published miRNA sequences and annotation. The data were previously provided by the miRNA Registry. Each entry in the miRBase Sequence database represents a predicted hairpin portion of a miRNA transcript (termed mir in the database), with information on the location and sequence of the mature miRNA sequence (termed miR).",
+    "download_json": "https://w3id.org/biopragmatics/resources/mirbase/mirbase.json",
+    "download_obo": "https://w3id.org/biopragmatics/resources/mirbase/mirbase.obo",
+    "download_owl": "https://w3id.org/biopragmatics/resources/mirbase/mirbase.owl",
     "example": "MI0026471",
     "homepage": "http://www.mirbase.org/",
     "keywords": [
       "biology",
       "gene",
+      "ontology",
       "rna"
     ],
     "license": "public domain",
@@ -46613,11 +46852,15 @@
       "orcid": "0000-0003-4423-4370"
     },
     "description": "The miRBase database is a searchable database of published miRNA sequences and annotation. Each entry in the miRBase Sequence database represents a predicted hairpin portion of a miRNA transcript (termed mir in the database), with information on the location and sequence of the mature miRNA sequence (termed miR). Both hairpin and mature sequences are available for searching and browsing, and entries can also be retrieved by name, keyword, references and annotation. All sequence and annotation data are also available for download.",
+    "download_json": "https://w3id.org/biopragmatics/resources/mirbase.family/mirbase.family.json",
+    "download_obo": "https://w3id.org/biopragmatics/resources/mirbase.family/mirbase.family.obo",
+    "download_owl": "https://w3id.org/biopragmatics/resources/mirbase.family/mirbase.family.owl",
     "example": "MIPF0000002",
     "homepage": "http://www.mirbase.org/",
     "keywords": [
       "gene",
-      "mirna"
+      "mirna",
+      "ontology"
     ],
     "license": "public domain",
     "logo": "https://www.mirbase.org/static/images/mirbase-logo_new.png",
@@ -46639,10 +46882,14 @@
       "orcid": "0000-0001-6043-807X"
     },
     "description": "The miRBase Sequence Database is a searchable database of published miRNA sequences and annotation. This collection refers specifically to the mature miRNA sequence.",
+    "download_json": "https://w3id.org/biopragmatics/resources/mirbase.mature/mirbase.mature.json",
+    "download_obo": "https://w3id.org/biopragmatics/resources/mirbase.mature/mirbase.mature.obo",
+    "download_owl": "https://w3id.org/biopragmatics/resources/mirbase.mature/mirbase.mature.owl",
     "example": "MIMAT0046872",
     "homepage": "http://www.mirbase.org/",
     "keywords": [
       "nucleotide",
+      "ontology",
       "sequence"
     ],
     "license": "public domain",
@@ -47394,7 +47641,7 @@
     "repository": "https://github.com/rat-genome-database/MMO-Measurement-Method-Ontology",
     "twitter": "ratgenome",
     "uri_format": "http://purl.obolibrary.org/obo/MMO_$1",
-    "version": "2.169"
+    "version": "2.170"
   },
   "mmp.cat": {
     "description": "MarCat is a gene (protein) catalogue of uncultivable and cultivable marine genes and proteins derived from metagenomics samples.",
@@ -47814,9 +48061,9 @@
     "example": "belongsToCluster",
     "homepage": "https://dalia.pages.rwth-aachen.de/dalia-ontology/",
     "keywords": [
+      "educational resources",
       "educational science",
-      "ontology",
-      "tib"
+      "ontology"
     ],
     "license": "CC-BY-4.0",
     "mappings": {
@@ -48273,7 +48520,7 @@
     "repository": "https://github.com/monarch-initiative/mondo",
     "twitter": "MonarchInit",
     "uri_format": "http://purl.obolibrary.org/obo/MONDO_$1",
-    "version": "2026-01-06"
+    "version": "2026-02-03"
   },
   "mondo.issue": {
     "contributor": {
@@ -48492,7 +48739,7 @@
     "rdf_uri_format": "http://purl.obolibrary.org/obo/MP_$1",
     "repository": "https://github.com/mgijax/mammalian-phenotype-ontology",
     "uri_format": "http://purl.obolibrary.org/obo/MP_$1",
-    "version": "2025-12-18"
+    "version": "2026-02-17"
   },
   "mpath": {
     "contact": {
@@ -48685,7 +48932,7 @@
     "rdf_uri_format": "http://purl.obolibrary.org/obo/MRO_$1",
     "repository": "https://github.com/IEDB/MRO",
     "uri_format": "http://purl.obolibrary.org/obo/MRO_$1",
-    "version": "2026-01-13"
+    "version": "2026-02-10"
   },
   "ms": {
     "banana": "MS",
@@ -48741,7 +48988,7 @@
     "rdf_uri_format": "http://purl.obolibrary.org/obo/MS_$1",
     "repository": "https://github.com/HUPO-PSI/psi-ms-CV",
     "uri_format": "http://purl.obolibrary.org/obo/MS_$1",
-    "version": "4.1.231"
+    "version": "4.1.236"
   },
   "msigdb": {
     "contact": {
@@ -48756,12 +49003,16 @@
       "orcid": "0000-0003-4423-4370"
     },
     "description": "The Molecular Signatures Database (MSigDB) is a collection of annotated gene sets for use with GSEA software. From this web site, you can",
+    "download_json": "https://w3id.org/biopragmatics/resources/msigdb/msigdb.json.gz",
+    "download_obo": "https://w3id.org/biopragmatics/resources/msigdb/msigdb.obo.gz",
+    "download_owl": "https://w3id.org/biopragmatics/resources/msigdb/msigdb.owl.gz",
     "example": "M1",
     "homepage": "https://www.gsea-msigdb.org",
     "keywords": [
       "gene family",
       "gene group",
       "gene set",
+      "ontology",
       "pathway",
       "reaction"
     ],
@@ -50038,11 +50289,15 @@
       "orcid": "0000-0003-4423-4370"
     },
     "description": "Genetic code, mitochontrial genetic code, and other linked information to NCBI taxonomy entries.",
+    "download_json": "https://w3id.org/biopragmatics/resources/ncbi.gc/ncbi.gc.json",
+    "download_obo": "https://w3id.org/biopragmatics/resources/ncbi.gc/ncbi.gc.obo",
+    "download_owl": "https://w3id.org/biopragmatics/resources/ncbi.gc/ncbi.gc.owl",
     "example": "11",
     "homepage": "https://www.ncbi.nlm.nih.gov/Taxonomy/taxonomyhome.html/index.cgi?chapter=cgencodes",
     "keywords": [
       "genetic code",
-      "genome"
+      "genome",
+      "ontology"
     ],
     "license": "public domain",
     "logo": "https://www.ncbi.nlm.nih.gov/corehtml/logo256.gif",
@@ -51403,8 +51658,7 @@
     "homepage": "https://github.com/nexusformat/NeXusOntology",
     "keywords": [
       "fairmat",
-      "physics",
-      "tib"
+      "physics"
     ],
     "mappings": {
       "tib": "nexus"
@@ -51909,11 +52163,15 @@
       "orcid": "0000-0001-9439-5346"
     },
     "description": "RePORTER is an electronic tool that allows users to search a repository of both intramural and extramural NIH-funded research projects and access publications and patents resulting from NIH funding.",
+    "download_json": "https://w3id.org/biopragmatics/resources/nihreporter.project/nihreporter.project.json.gz",
+    "download_obo": "https://w3id.org/biopragmatics/resources/nihreporter.project/nihreporter.project.obo.gz",
+    "download_owl": "https://w3id.org/biopragmatics/resources/nihreporter.project/nihreporter.project.owl.gz",
     "example": "10343835",
     "github_request_issue": 400,
     "homepage": "https://reporter.nih.gov/",
     "keywords": [
       "bibliometrics",
+      "ontology",
       "project"
     ],
     "logo": "https://files.nccih.nih.gov/nccih-nih-reporter-twitter-card-01.jpg",
@@ -52020,10 +52278,14 @@
       "orcid": "0000-0003-4423-4370"
     },
     "description": "The NLM Catalog provides access to NLM bibliographic data for journals, books, audiovisuals, computer software, electronic resources and other materials. Links to the library's holdings in LocatorPlus, NLM's online public access catalog, are also provided. [from homepage]",
+    "download_json": "https://w3id.org/biopragmatics/resources/nlm/nlm.json",
+    "download_obo": "https://w3id.org/biopragmatics/resources/nlm/nlm.obo",
+    "download_owl": "https://w3id.org/biopragmatics/resources/nlm/nlm.owl",
     "example": "101775319",
     "homepage": "https://www.ncbi.nlm.nih.gov/nlmcatalog",
     "keywords": [
-      "journal"
+      "journal",
+      "ontology"
     ],
     "license": "public domain",
     "logo": "https://upload.wikimedia.org/wikipedia/commons/5/52/Logo_of_U.S._National_Library_of_Medicine.png",
@@ -52052,11 +52314,15 @@
       "orcid": "0000-0003-4423-4370"
     },
     "description": "Publisher short codes appearin in the NLM Catalog.",
+    "download_json": "https://w3id.org/biopragmatics/resources/nlm.publisher/nlm.publisher.json",
+    "download_obo": "https://w3id.org/biopragmatics/resources/nlm.publisher/nlm.publisher.obo",
+    "download_owl": "https://w3id.org/biopragmatics/resources/nlm.publisher/nlm.publisher.owl",
     "example": "wiley",
     "github_request_issue": 1318,
     "homepage": "https://ftp.ncbi.nlm.nih.gov/pubmed/xmlprovidernames.txt",
     "keywords": [
       "bibliometrics",
+      "ontology",
       "publisher"
     ],
     "license": "public domain",
@@ -53065,12 +53331,16 @@
       "orcid": "0000-0003-4423-4370"
     },
     "description": "Database for integrating species source of natural products & connecting natural products to biological targets via  experimental-derived quantitative activity data.",
+    "download_json": "https://w3id.org/biopragmatics/resources/npass/npass.json",
+    "download_obo": "https://w3id.org/biopragmatics/resources/npass/npass.obo",
+    "download_owl": "https://w3id.org/biopragmatics/resources/npass/npass.owl",
     "example": "NPC139585",
     "homepage": "http://bidd.group/NPASS/",
     "keywords": [
       "chemical",
       "compound",
       "natural product",
+      "ontology",
       "small molecule"
     ],
     "license": "CC-BY-NC",
@@ -54157,6 +54427,9 @@
     ],
     "license": "CC-BY-4.0",
     "logo": "https://raw.githubusercontent.com/OCDO/.github/refs/heads/main/profile/ocdo_logo.png",
+    "mappings": {
+      "aberowl": "OCDO"
+    },
     "name": "Crystallographic Defect Core Ontology",
     "preferred_prefix": "ocdo",
     "repository": "https://github.com/OCDO/cdco",
@@ -54967,6 +55240,11 @@
     "preferred_prefix": "oidc"
   },
   "okn.sd": {
+    "contact": {
+      "github": "dgarijo",
+      "name": "Daniel Garijo",
+      "orcid": "0000-0003-0454-7145"
+    },
     "description": "An ontology for describing software components, including their metadata (attribution, licensing, usage instructions, how to get support) and their inputs, outputs and variables. The ontology extends schema.org and codemeta vocabularies and is based on OntoSoft, which proposed a vocabulary for describing software by asking scientists questions.",
     "example": "CatalogIdentifier",
     "homepage": "https://knowledgecaptureanddiscovery.github.io/SoftwareDescriptionOntology/release/1.9.0/index-en.html",
@@ -54979,6 +55257,7 @@
     },
     "name": "The Software Description Ontology",
     "preferred_prefix": "okn.sd",
+    "repository": "https://github.com/knowledgecaptureanddiscovery/SoftwareDescriptionOntology",
     "uri_format": "https://w3id.org/okn/o/sd#$1"
   },
   "olatdv": {
@@ -55400,10 +55679,14 @@
       }
     ],
     "description": "A Phenotypic Series is a tabular view of genetic heterogeneity of similar phenotypes across the genome.",
+    "download_json": "https://w3id.org/biopragmatics/resources/omim.ps/omim.ps.json",
+    "download_obo": "https://w3id.org/biopragmatics/resources/omim.ps/omim.ps.obo",
+    "download_owl": "https://w3id.org/biopragmatics/resources/omim.ps/omim.ps.owl",
     "example": "214100",
     "homepage": "https://www.omim.org/phenotypicSeriesTitles/all",
     "keywords": [
       "disease",
+      "ontology",
       "phenotype"
     ],
     "license": "https://www.omim.org/help/agreement",
@@ -55888,7 +56171,7 @@
     "rdf_uri_format": "http://purl.obolibrary.org/obo/ONS_$1",
     "repository": "https://github.com/enpadasi/Ontology-for-Nutritional-Studies",
     "uri_format": "http://purl.obolibrary.org/obo/ONS_$1",
-    "version": "2024-07-03"
+    "version": "2026-02-06"
   },
   "ontie": {
     "contact": {
@@ -57681,6 +57964,9 @@
       "orcid": "0000-0003-4423-4370"
     },
     "description": "PathBank is an interactive, visual database containing more than 100 000 machine-readable pathways found in model organisms such as humans, mice, E. coli, yeast, and Arabidopsis thaliana.",
+    "download_json": "https://w3id.org/biopragmatics/resources/pathbank/pathbank.json.gz",
+    "download_obo": "https://w3id.org/biopragmatics/resources/pathbank/pathbank.obo.gz",
+    "download_owl": "https://w3id.org/biopragmatics/resources/pathbank/pathbank.owl.gz",
     "example": "SMP0000219",
     "homepage": "https://pathbank.org",
     "keywords": [
@@ -57699,6 +57985,7 @@
       "microbiology",
       "molecular biology",
       "molecular microbiology",
+      "ontology",
       "plant genetics",
       "proteomics",
       "systems biology",
@@ -58117,6 +58404,34 @@
     "preferred_prefix": "PBA",
     "repository": "https://github.com/brain-bican/primate_brain_atlas_ontology",
     "uri_format": "https://biopragmatics.github.io/providers/pba/$1"
+  },
+  "pbpko": {
+    "contact": {
+      "email": "saurav.kumar@iispv.cat",
+      "github": "Crispae",
+      "name": "Saurav Kumar",
+      "orcid": "0000-0003-0593-2598"
+    },
+    "description": "An ontology for modeling and understanding of pharmacokinetics in biological systems.",
+    "download_json": "http://purl.obolibrary.org/obo/pbpko.json",
+    "download_obo": "http://purl.obolibrary.org/obo/pbpko.obo",
+    "download_owl": "http://purl.obolibrary.org/obo/pbpko.owl",
+    "example": "10008",
+    "homepage": "https://github.com/InSilicoVida-Research-Lab/pbpko",
+    "keywords": [
+      "obo",
+      "ontology"
+    ],
+    "license": "CC-BY-3.0",
+    "mappings": {
+      "obofoundry": "pbpko",
+      "ols": "pbpko"
+    },
+    "name": "Physiologically-Based Pharmacokinetic Ontology",
+    "preferred_prefix": "PBPKO",
+    "rdf_uri_format": "http://purl.obolibrary.org/obo/PBPKO_$1",
+    "repository": "https://github.com/InSilicoVida-Research-Lab/pbpko",
+    "uri_format": "http://purl.obolibrary.org/obo/PBPKO_$1"
   },
   "pcl": {
     "contact": {
@@ -59203,11 +59518,15 @@
       "orcid": "0000-0002-6982-4660"
     },
     "description": "The Pfam database contains information about protein domains and families. For each entry a protein sequence alignment and a Hidden Markov Model is stored.",
+    "download_json": "https://w3id.org/biopragmatics/resources/pfam/pfam.json",
+    "download_obo": "https://w3id.org/biopragmatics/resources/pfam/pfam.obo",
+    "download_owl": "https://w3id.org/biopragmatics/resources/pfam/pfam.owl",
     "example": "PF11779",
     "homepage": "https://www.ebi.ac.uk/interpro/",
     "keywords": [
       "biology",
       "domain",
+      "ontology",
       "protein"
     ],
     "license": "CC0-1.0",
@@ -59381,9 +59700,13 @@
       "orcid": "0000-0003-4423-4370"
     },
     "description": "Higher order grouping of Pfam families",
+    "download_json": "https://w3id.org/biopragmatics/resources/pfam.clan/pfam.clan.json",
+    "download_obo": "https://w3id.org/biopragmatics/resources/pfam.clan/pfam.clan.obo",
+    "download_owl": "https://w3id.org/biopragmatics/resources/pfam.clan/pfam.clan.owl",
     "example": "CL0192",
     "homepage": "https://pfam.xfam.org",
     "keywords": [
+      "ontology",
       "protein family"
     ],
     "license": "CC0-1.0",
@@ -59641,9 +59964,13 @@
       "orcid": "0000-0001-5527-6475"
     },
     "description": "The PharmGKB database is a central repository for genetic, genomic, molecular and cellular phenotype data and clinical information about people who have participated in pharmacogenomics research studies. The data includes, but is not limited to, clinical and basic pharmacokinetic and pharmacogenomic research in the cardiovascular, pulmonary, cancer, pathways, metabolic and transporter domains.",
+    "download_json": "https://w3id.org/biopragmatics/resources/pharmgkb.disease/pharmgkb.disease.json",
+    "download_obo": "https://w3id.org/biopragmatics/resources/pharmgkb.disease/pharmgkb.disease.obo",
+    "download_owl": "https://w3id.org/biopragmatics/resources/pharmgkb.disease/pharmgkb.disease.owl",
     "example": "PA447218",
     "homepage": "http://www.pharmgkb.org/",
     "keywords": [
+      "ontology",
       "pharmacogenomics"
     ],
     "license": "CC-BY-SA-4.0",
@@ -59694,10 +60021,14 @@
       "orcid": "0000-0001-5527-6475"
     },
     "description": "The PharmGKB database is a central repository for genetic, genomic, molecular and cellular phenotype data and clinical information about people who have participated in pharmacogenomics research studies. The data includes, but is not limited to, clinical and basic pharmacokinetic and pharmacogenomic research in the cardiovascular, pulmonary, cancer, pathways, metabolic and transporter domains.",
+    "download_json": "https://w3id.org/biopragmatics/resources/pharmgkb.drug/pharmgkb.drug.json",
+    "download_obo": "https://w3id.org/biopragmatics/resources/pharmgkb.drug/pharmgkb.drug.obo",
+    "download_owl": "https://w3id.org/biopragmatics/resources/pharmgkb.drug/pharmgkb.drug.owl",
     "example": "PA448710",
     "homepage": "http://www.pharmgkb.org/",
     "keywords": [
       "drug",
+      "ontology",
       "pharmacogenomics"
     ],
     "license": "CC-BY-SA-4.0",
@@ -59748,6 +60079,9 @@
       "orcid": "0000-0001-5527-6475"
     },
     "description": "The PharmGKB database is a central repository for genetic, genomic, molecular and cellular phenotype data and clinical information about people who have participated in pharmacogenomics research studies. The data includes, but is not limited to, clinical and basic pharmacokinetic and pharmacogenomic research in the cardiovascular, pulmonary, cancer, pathways, metabolic and transporter domains.",
+    "download_json": "https://w3id.org/biopragmatics/resources/pharmgkb.gene/pharmgkb.gene.json",
+    "download_obo": "https://w3id.org/biopragmatics/resources/pharmgkb.gene/pharmgkb.gene.obo",
+    "download_owl": "https://w3id.org/biopragmatics/resources/pharmgkb.gene/pharmgkb.gene.owl",
     "example": "PA131",
     "homepage": "http://www.pharmgkb.org/",
     "keywords": [
@@ -59805,9 +60139,13 @@
       "orcid": "0000-0001-5527-6475"
     },
     "description": "The PharmGKB database is a central repository for genetic, genomic, molecular and cellular phenotype data and clinical information about people who have participated in pharmacogenomics research studies. The data includes, but is not limited to, clinical and basic pharmacokinetic and pharmacogenomic research in the cardiovascular, pulmonary, cancer, pathways, metabolic and transporter domains. \nPharmGKB Pathways are drug centric, gene based, interactive pathways which focus on candidate genes and gene groups and associated genotype and phenotype data of relevance for pharmacogenetic and pharmacogenomic studies.",
+    "download_json": "https://w3id.org/biopragmatics/resources/pharmgkb.pathways/pharmgkb.pathways.json",
+    "download_obo": "https://w3id.org/biopragmatics/resources/pharmgkb.pathways/pharmgkb.pathways.obo",
+    "download_owl": "https://w3id.org/biopragmatics/resources/pharmgkb.pathways/pharmgkb.pathways.owl",
     "example": "PA146123006",
     "homepage": "http://www.pharmgkb.org/",
     "keywords": [
+      "ontology",
       "pathway",
       "pharmacogenomics"
     ],
@@ -59865,12 +60203,16 @@
       "orcid": "0000-0003-4423-4370"
     },
     "description": "SNPs and other variants that can be mapped to dbSNP.",
+    "download_json": "https://w3id.org/biopragmatics/resources/pharmgkb.variant/pharmgkb.variant.json",
+    "download_obo": "https://w3id.org/biopragmatics/resources/pharmgkb.variant/pharmgkb.variant.obo",
+    "download_owl": "https://w3id.org/biopragmatics/resources/pharmgkb.variant/pharmgkb.variant.owl",
     "example": "PA166156302",
     "github_request_issue": 1368,
     "homepage": "https://www.pharmgkb.org",
     "keywords": [
       "genetic variant",
       "genetic variation",
+      "ontology",
       "snp"
     ],
     "license": "CC-BY-SA-4.0",
@@ -60334,11 +60676,15 @@
     },
     "deprecated": true,
     "description": "The Pathway Interaction Database is a highly-structured, curated collection of information about known human biomolecular interactions and key cellular processes assembled into signaling pathways. This datatype provides access to pathway information.",
+    "download_json": "https://w3id.org/biopragmatics/resources/pid.pathway/pid.pathway.json",
+    "download_obo": "https://w3id.org/biopragmatics/resources/pid.pathway/pid.pathway.obo",
+    "download_owl": "https://w3id.org/biopragmatics/resources/pid.pathway/pid.pathway.owl",
     "example": "eff796f3-6195-11e5-8ac5-06603eb7f303",
     "homepage": "https://www.ndexbio.org/index.html#/networkset/8a2d7ee9-1513-11e9-bb6a-0ac135e8bacf",
     "keywords": [
       "gene",
       "life science",
+      "ontology",
       "pathway",
       "protein",
       "small molecule"
@@ -60804,6 +61150,28 @@
     ],
     "twitter": "VEuPathDB",
     "uri_format": "http://plasmodb.org/plasmo/showRecord.do?name=GeneRecordClasses.GeneRecordClass&source_id=$1"
+  },
+  "plastchem": {
+    "contact": {
+      "email": "martin.wagner@ntnu.no",
+      "name": "Martin Wagner",
+      "orcid": "0000-0002-4402-3234"
+    },
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "A database of chemicals relevant for plastics and polymer sciences.",
+    "example": "1",
+    "homepage": "https://plastchem-project.org/documentation/",
+    "name": "PlastChem",
+    "pattern": "^\\d+$",
+    "preferred_prefix": "plastchem",
+    "references": [
+      "https://zenodo.org/records/10701706/files/plastchem_db_v1.0.xlsx?download=1"
+    ]
   },
   "plo": {
     "contact": {
@@ -61501,10 +61869,14 @@
       "orcid": "0000-0001-6330-7526"
     },
     "description": "PomBase is a model organism database established to provide access to molecular data and biological information for the fission yeast Schizosaccharomyces pombe. It encompasses annotation of genomic sequence and features, comprehensive manual literature curation and genome-wide data sets.",
+    "download_json": "https://w3id.org/biopragmatics/resources/pombase/pombase.json",
+    "download_obo": "https://w3id.org/biopragmatics/resources/pombase/pombase.obo",
+    "download_owl": "https://w3id.org/biopragmatics/resources/pombase/pombase.owl",
     "example": "SPCC13B11.01",
     "homepage": "https://www.pombase.org/",
     "keywords": [
-      "life science"
+      "life science",
+      "ontology"
     ],
     "license": "CC-BY-4.0",
     "logo": "https://www.pombase.org/assets/pombase-logo.png",
@@ -62046,7 +62418,7 @@
     },
     "deprecated": true,
     "description": "The PRIDE PRoteomics IDEntifications database is a centralized, standards compliant, public data repository that provides protein and peptide identifications together with supporting evidence. This collection references experiments and assays.",
-    "download_owl": "http://purl.obolibrary.org/obo/pride/releases/2026-01-17/pride.owl",
+    "download_owl": "http://purl.obolibrary.org/obo/pride/releases/2026-02-23/pride.owl",
     "example": "0000006",
     "homepage": "https://github.com/PRIDE-Utilities/pride-ontology",
     "keywords": [
@@ -62151,7 +62523,7 @@
     "repository": "https://github.com/PRIDE-Utilities/pride-ontology",
     "twitter": "pride_ebi",
     "uri_format": "http://purl.obolibrary.org/obo/PRIDE_$1",
-    "version": "2026-01-17"
+    "version": "2026-02-23"
   },
   "pride.project": {
     "description": "The PRIDE PRoteomics IDEntifications database is a centralized, standards compliant, public data repository that provides protein and peptide identifications together with supporting evidence. This collection references projects.",
@@ -62473,6 +62845,27 @@
     ],
     "rdf_uri_format": "http://purl.obolibrary.org/obo/PROPREO_$1",
     "uri_format": "http://purl.obolibrary.org/obo/PROPREO_$1"
+  },
+  "pror": {
+    "contact": {
+      "email": "tobias.hamann@wzl-iqs.rwth-aachen.de",
+      "github": "tobiashamann",
+      "name": "Tobias Hamann",
+      "orcid": "0000-0002-8021-5524"
+    },
+    "description": "PRO Research: An ontology for describing RDM-Policies in a structured way",
+    "example": "isReferencedByPolicy",
+    "homepage": "http://w3id.org/nfdi4ing/pro-research",
+    "keywords": [
+      "engineering",
+      "nfdi4ing"
+    ],
+    "mappings": {
+      "tib": "pror"
+    },
+    "name": "PRO Research: An ontology for describing RDM-Policies in a structured way",
+    "preferred_prefix": "pror",
+    "uri_format": "http://w3id.org/nfdi4ing/pro-research#$1"
   },
   "prosite": {
     "contact": {
@@ -62868,6 +63261,7 @@
       "name": "Charles Tapley Hoyt",
       "orcid": "0000-0003-4423-4370"
     },
+    "deprecated": true,
     "description": "This site contains a comprehensive database of identified pseudogenes, utilities used to find pseudogenes, various publication data sets and a pseudogene knowledgebase.",
     "example": "PGOHUM00000289843",
     "homepage": "http://www.pseudogene.org",
@@ -62895,7 +63289,7 @@
     "synonyms": [
       "pseudogene.org"
     ],
-    "uri_format": "http://tables.pseudogene.org/[?species_name]/$1"
+    "uri_format": "https://bioregistry.io/pseudogene:$1"
   },
   "pseudomonas": {
     "description": "The Pseudomonas Genome Database is a resource for peer-reviewed, continually updated annotation for all Pseudomonas species. It includes gene and protein sequence information, as well as regulation and predicted function and annotation.",
@@ -64291,10 +64685,14 @@
       }
     ],
     "description": "The Reactome project is a collaboration to develop a curated resource of core pathways and reactions in human biology.",
+    "download_json": "https://w3id.org/biopragmatics/resources/reactome/reactome.json.gz",
+    "download_obo": "https://w3id.org/biopragmatics/resources/reactome/reactome.obo",
+    "download_owl": "https://w3id.org/biopragmatics/resources/reactome/reactome.owl.gz",
     "example": "R-BTA-418592",
     "homepage": "https://www.reactome.org/",
     "keywords": [
       "human",
+      "ontology",
       "pathway",
       "reaction"
     ],
@@ -65008,6 +65406,9 @@
       "orcid": "0000-0002-6443-9376"
     },
     "description": "Rat Genome Database seeks to collect, consolidate, and integrate rat genomic and genetic data with curated functional and physiological data and make these data widely available to the scientific community. This collection references genes.",
+    "download_json": "https://w3id.org/biopragmatics/resources/rgd/rgd.json.gz",
+    "download_obo": "https://w3id.org/biopragmatics/resources/rgd/rgd.obo",
+    "download_owl": "https://w3id.org/biopragmatics/resources/rgd/rgd.owl.gz",
     "example": "7499841",
     "homepage": "http://rgd.mcw.edu/",
     "keywords": [
@@ -65288,11 +65689,15 @@
       "orcid": "0000-0002-1216-2969"
     },
     "description": " Rhea is an expert-curated knowledgebase of chemical and transport reactions of biological interest. Enzyme-catalyzed and spontaneously occurring reactions are curated from peer-reviewed literature and represented in a computationally tractable manner by using the ChEBI (Chemical Entities of Biological Interest) ontology to describe reaction participants.\n\nRhea covers the reactions described by the IUBMB Enzyme Nomenclature as well as many additional reactions and can be used for enzyme annotation, genome-scale metabolic modeling and omics-related analyses. Rhea is the standard for enzyme and transporter annotation in UniProtKB.",
+    "download_json": "https://w3id.org/biopragmatics/resources/rhea/rhea.json.gz",
+    "download_obo": "https://w3id.org/biopragmatics/resources/rhea/rhea.obo",
+    "download_owl": "https://w3id.org/biopragmatics/resources/rhea/rhea.owl.gz",
     "example": "12345",
     "homepage": "https://www.rhea-db.org/",
     "keywords": [
       "biochemistry",
       "life science",
+      "ontology",
       "reaction",
       "small molecule"
     ],
@@ -66110,7 +66515,9 @@
       "orcid": "0000-0002-2916-3423"
     },
     "description": "ROR (Research Organization Registry) is a global, community-led registry\nof open persistent identifiers for research organizations. ROR is jointly\noperated by California Digital Library, Crossref, and Datacite.",
-    "download_owl": "https://w3id.org/rorio/rorio.owl",
+    "download_json": "https://w3id.org/biopragmatics/resources/ror/ror.json.gz",
+    "download_obo": "https://w3id.org/biopragmatics/resources/ror/ror.obo",
+    "download_owl": "https://w3id.org/biopragmatics/resources/ror/ror.owl.gz",
     "example": "03yrm5c26",
     "homepage": "https://ror.org",
     "keywords": [
@@ -66441,7 +66848,7 @@
     "repository": "https://github.com/rat-genome-database/RS-Rat-Strain-Ontology",
     "twitter": "ratgenome",
     "uri_format": "http://purl.obolibrary.org/obo/RS_$1",
-    "version": "6.266"
+    "version": "6.270"
   },
   "rtecs": {
     "contact": {
@@ -66949,7 +67356,7 @@
       "agriculture",
       "food",
       "iot",
-      "tib"
+      "miscellaneous"
     ],
     "mappings": {
       "lov": "s4agri",
@@ -67585,6 +67992,7 @@
     ],
     "mappings": {
       "aberowl": "SCHEMAORG",
+      "bartoc": "18250",
       "biolink": "schema",
       "bioportal": "SCHEMA",
       "lov": "sdo",
@@ -68233,6 +68641,18 @@
     "name": "SDMX-RDF vocabulary",
     "preferred_prefix": "sdmx"
   },
+  "sdy": {
+    "description": "ImmPort is a scientific data resource funded by the National Institutes of Health (NIH) to preserve and share immunology research and clinical trials data generated by NIH researchers and external organizations. ImmPort uses FAIR principles to maximize reuse of deposited data for advancement of biomedical sciences.",
+    "example": "sdy998",
+    "homepage": "https://docs.immport.org/home/team/",
+    "mappings": {
+      "miriam": "sdy"
+    },
+    "name": "Immunology Database and Analysis Portal (ImmPort)",
+    "pattern": "^[sS][dD][yY]\\d+$",
+    "preferred_prefix": "sdy",
+    "uri_format": "https://immport.org/shared/study/$1"
+  },
   "sedml.format": {
     "description": "Data format that can be used in conjunction with the Simulation Experimental Description Markup Language (SED-ML).",
     "example": "csv",
@@ -68611,6 +69031,9 @@
       "orcid": "0000-0001-9163-5180"
     },
     "description": "The Saccharomyces Genome Database (SGD) project collects information and maintains a database of the molecular biology of the yeast Saccharomyces cerevisiae.",
+    "download_json": "https://w3id.org/biopragmatics/resources/sgd/sgd.json",
+    "download_obo": "https://w3id.org/biopragmatics/resources/sgd/sgd.obo",
+    "download_owl": "https://w3id.org/biopragmatics/resources/sgd/sgd.owl",
     "example": "S000002493",
     "homepage": "https://www.yeastgenome.org/",
     "keywords": [
@@ -68619,6 +69042,7 @@
       "genome",
       "life science",
       "nucleotide",
+      "ontology",
       "proteomics",
       "transcriptomics"
     ],
@@ -69379,6 +69803,23 @@
     },
     "uri_format": "http://www.mgc.ac.cn/cgi-bin/ShiBASE/ShiBASE_query.cgi?synonym=$1"
   },
+  "shnex": {
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "A vocabulary used in tandem with SHACL for representing node shapes",
+    "example": "instancesOf",
+    "homepage": "https://www.w3.org/TR/shacl12-node-expr/",
+    "license": "W3C-20150513",
+    "name": "SHACL Node Expression",
+    "preferred_prefix": "shnex",
+    "rdf_uri_format": "http://www.w3.org/ns/shacl-node-expr#$1",
+    "repository": "https://github.com/w3c/data-shapes",
+    "uri_format": "http://www.w3.org/ns/shacl-node-expr#$1"
+  },
   "shsh": {
     "description": "This shapes graph can be used to validate SHACL shapes graphs against a subset of the syntax rules.",
     "download_rdf": "http://www.w3.org/ns/shacl-shacl",
@@ -69545,10 +69986,14 @@
       "orcid": "0000-0002-9528-6018"
     },
     "description": "SIGNOR, the SIGnaling Network Open Resource, organizes and stores in a structured format signaling information published in the scientific literature.",
+    "download_json": "https://w3id.org/biopragmatics/resources/signor/signor.json",
+    "download_obo": "https://w3id.org/biopragmatics/resources/signor/signor.obo",
+    "download_owl": "https://w3id.org/biopragmatics/resources/signor/signor.owl",
     "example": "SIGNOR-C41",
     "homepage": "https://signor.uniroma2.it/",
     "keywords": [
-      "biology"
+      "biology",
+      "ontology"
     ],
     "license": "CC-BY-NC-4.0",
     "logo": "https://signor.uniroma2.it/img/signor_logo_noWhite.png",
@@ -69690,7 +70135,7 @@
     },
     "name": "Semanticscience Integrated Ontology",
     "pattern": "^\\d{6}$",
-    "preferred_prefix": "sio",
+    "preferred_prefix": "SIO",
     "publications": [
       {
         "doi": "10.1186/2041-1480-5-14",
@@ -70011,9 +70456,9 @@
     "homepage": "https://www.w3.org/2004/02/skos/",
     "keywords": [
       "computer science",
+      "miscellaneous",
       "ontology",
       "subject agnostic",
-      "tib",
       "w3c rec"
     ],
     "mappings": {
@@ -70064,9 +70509,9 @@
       "computer science",
       "data model",
       "metadata",
+      "miscellaneous",
       "semantic web",
       "skos",
-      "tib",
       "w3c rec"
     ],
     "mappings": {
@@ -70120,11 +70565,15 @@
       "orcid": "0000-0003-2148-9135"
     },
     "description": "SwissLipids is a curated resource that provides information about known lipids, including lipid structure, metabolism, interactions, and subcellular and tissue localization. Information is curated from peer-reviewed literature and referenced using established ontologies, and provided with full provenance and evidence codes for curated assertions.",
+    "download_json": "https://w3id.org/biopragmatics/resources/slm/slm.json.gz",
+    "download_obo": "https://w3id.org/biopragmatics/resources/slm/slm.obo.gz",
+    "download_owl": "https://w3id.org/biopragmatics/resources/slm/slm.owl.gz",
     "example": "000000341",
     "homepage": "http://www.swisslipids.org/#/",
     "keywords": [
       "life science",
-      "metabolomics"
+      "metabolomics",
+      "ontology"
     ],
     "license": "CC-BY-4.0",
     "logo": "https://www.swisslipids.org/images/SL_title_swiss.png",
@@ -71167,6 +71616,21 @@
     "preferred_prefix": "sparcdrs",
     "uri_format": "https://services.scicrunch.io/sparc/drs/v1/package/$1"
   },
+  "sparql": {
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "Used for operations in SPARQL, such as ceil() and bound().",
+    "example": "ceil",
+    "homepage": "https://www.w3.org/ns/sparql",
+    "name": "SPARQL Operation",
+    "preferred_prefix": "sparql",
+    "rdf_uri_format": "http://www.w3.org/ns/sparql#$1",
+    "uri_format": "http://www.w3.org/ns/sparql#$1"
+  },
   "spbase": {
     "comment": "This resource doesn't exist on the web anymore",
     "deprecated": true,
@@ -71264,13 +71728,17 @@
       "name": "Gary O'Neall"
     },
     "description": "The SPDX License List is a list of commonly found licenses and exceptions used in free and open source and other collaborative software or documentation. The purpose of the SPDX License List is to enable easy and efficient identification of such licenses and exceptions in an SPDX document, in source files or elsewhere. The SPDX License List includes a standardized short identifier, full name, vetted license text including matching guidelines markup as appropriate, and a canonical permanent URL for each license and exception.",
+    "download_json": "https://w3id.org/biopragmatics/resources/spdx/spdx.json",
+    "download_obo": "https://w3id.org/biopragmatics/resources/spdx/spdx.obo",
+    "download_owl": "https://w3id.org/biopragmatics/resources/spdx/spdx.owl",
     "example": "CC-BY-1.0",
     "example_extras": [
       "GPL-1.0+"
     ],
     "homepage": "https://spdx.org/licenses",
     "keywords": [
-      "license"
+      "license",
+      "ontology"
     ],
     "logo": "https://spdx.dev/wp-content/uploads/sites/31/2023/08/logo-color.svg",
     "mappings": {
@@ -72275,6 +72743,9 @@
       }
     ],
     "description": "UMLS Semantic Network The Semantic Network consists of (1) a set of broad subject categories, or Semantic Types, that provide a consistent categorization of all concepts represented in the UMLS Metathesaurus, and (2) a set of useful and important relationships, or Semantic Relations, that exist between Semantic Types.",
+    "download_json": "https://w3id.org/biopragmatics/resources/sty/sty.json",
+    "download_obo": "https://w3id.org/biopragmatics/resources/sty/sty.obo",
+    "download_owl": "https://w3id.org/biopragmatics/resources/sty/sty.owl",
     "example": "T039",
     "homepage": "https://lhncbc.nlm.nih.gov/semanticnetwork/",
     "keywords": [
@@ -72285,6 +72756,7 @@
     "mappings": {
       "aberowl": "STY",
       "agroportal": "STY",
+      "bartoc": "21017",
       "biolink": "UMLSSG",
       "bioportal": "STY",
       "ecoportal": "STY",
@@ -72677,7 +73149,7 @@
     "example": "6T",
     "homepage": "https://netmode.gitlab.io/sustaingraph-ontology/",
     "keywords": [
-      "tib"
+      "miscellaneous"
     ],
     "mappings": {
       "tib": "sustaingraph"
@@ -80028,8 +80500,8 @@
     "keywords": [
       "chemical and environmental engineering",
       "earth sciences",
-      "horticulture",
-      "tib"
+      "ess",
+      "horticulture"
     ],
     "mappings": {
       "tib": "cgo"
@@ -80178,7 +80650,7 @@
     "homepage": "https://github.com/TIBHannover/annif_automated_indexing_at_tib",
     "keywords": [
       "computer science",
-      "tib"
+      "miscellaneous"
     ],
     "mappings": {
       "tib": "linsearch"
@@ -82169,6 +82641,9 @@
       }
     ],
     "description": "The UniProt Knowledgebase (UniProtKB) is a comprehensive resource for protein sequence and functional information with extensive cross-references to more than 120 external databases. Besides amino acid sequence and a description, it also provides taxonomic data and citation information.",
+    "download_json": "https://w3id.org/biopragmatics/resources/uniprot/uniprot.json.gz",
+    "download_obo": "https://w3id.org/biopragmatics/resources/uniprot/uniprot.obo.gz",
+    "download_owl": "https://w3id.org/biopragmatics/resources/uniprot/uniprot.owl.gz",
     "example": "P0DP23",
     "homepage": "http://www.uniprot.org",
     "keywords": [
@@ -82490,7 +82965,7 @@
     "name": "Uniprot Core Ontology",
     "preferred_prefix": "uniprot.core",
     "uri_format": "http://purl.uniprot.org/core/$1",
-    "version": "2025_03"
+    "version": "2026_01"
   },
   "uniprot.disease": {
     "contact": {
@@ -82781,10 +83256,14 @@
       }
     ],
     "description": "The post-translational modifications used in the UniProt knowledgebase (Swiss-Prot and TrEMBL). The definition of the post-translational modifications usage as well as other information is provided in the following format",
+    "download_json": "https://w3id.org/biopragmatics/resources/uniprot.ptm/uniprot.ptm.json",
+    "download_obo": "https://w3id.org/biopragmatics/resources/uniprot.ptm/uniprot.ptm.obo",
+    "download_owl": "https://w3id.org/biopragmatics/resources/uniprot.ptm/uniprot.ptm.owl",
     "example": "PTM-0450",
     "homepage": "https://ftp.uniprot.org/pub/databases/uniprot/current_release/knowledgebase/complete/docs/ptmlist",
     "keywords": [
       "biochemistry",
+      "ontology",
       "post-translational modification",
       "structural biology"
     ],
@@ -83486,7 +83965,7 @@
     "keywords": [
       "computer science",
       "metadata",
-      "tib"
+      "miscellaneous"
     ],
     "mappings": {
       "lov": "vann",
@@ -83857,6 +84336,7 @@
       "name": "Charles Tapley Hoyt",
       "orcid": "0000-0003-4423-4370"
     },
+    "deprecated": true,
     "description": "A repository for high-quality gene models produced by the manual annotation of vertebrate genomes.",
     "example": "OTTHUMG00000169812",
     "homepage": "https://vega.archive.ensembl.org/index.html",
@@ -83899,7 +84379,7 @@
     "synonyms": [
       "VEGA"
     ],
-    "uri_format": "http://vega.sanger.ac.uk/[?species_name]/Gene/Summary?g=$1"
+    "uri_format": "https://bioregistry.io/vega:$1"
   },
   "vegbank": {
     "description": "VegBank is the vegetation plot database of the Ecological Society of America's Panel on Vegetation Classification. VegBank consists of three linked databases that contain (1) vegetation plot records, (2) vegetation types recognized in the U.S. National Vegetation Classification and other vegetation types submitted by users, and (3) all plant taxa recognized by ITIS/USDA as well as all other plant taxa recorded in plot records. Vegetation records, community types and plant taxa may be submitted to VegBank and may be subsequently searched, viewed, annotated, revised, interpreted, downloaded, and cited. ",
@@ -84590,11 +85070,11 @@
     "homepage": "https://vivoweb.org",
     "keywords": [
       "academy",
+      "miscellaneous",
       "natural science",
       "ontology",
       "resource metadata",
-      "study design",
-      "tib"
+      "study design"
     ],
     "license": "unlicense",
     "mappings": {
@@ -85074,7 +85554,7 @@
     "rdf_uri_format": "http://purl.obolibrary.org/obo/VT_$1",
     "repository": "https://github.com/AnimalGenome/vertebrate-trait-ontology",
     "uri_format": "http://purl.obolibrary.org/obo/VT_$1",
-    "version": "2026-01-21"
+    "version": "2026-02-23"
   },
   "vto": {
     "contact": {
@@ -85619,7 +86099,9 @@
       }
     ],
     "description": "WikiPathways is a database of biological pathways maintained by and for the scientific community.",
-    "download_owl": "https://w3id.org/biopragmatics/resources/wikipathways/20251010/wikipathways.ofn",
+    "download_json": "https://w3id.org/biopragmatics/resources/wikipathways/wikipathways.json",
+    "download_obo": "https://w3id.org/biopragmatics/resources/wikipathways/wikipathways.obo",
+    "download_owl": "https://w3id.org/biopragmatics/resources/wikipathways/wikipathways.owl",
     "example": "WP732",
     "homepage": "http://www.wikipathways.org/",
     "keywords": [
@@ -85859,7 +86341,11 @@
     "uri_format": "https://en.wiktionary.org/wiki/$1"
   },
   "wlmo": {
-    "description": "The ontology developed for representing wildlife monitoring capture events, the setup within which they were observed and their results.",
+    "contact": {
+      "email": "alexander.wolodkin@senckenberg.de",
+      "name": "Alexander Wolodkin"
+    },
+    "description": "This semantic artifact describes the semantic relationships between entities which model the setup of a biodiversity monitoring project based on capturing audiovisual digital recordings. It encodes the semantics of the Wildlife Monitoring Ontology and at the same time provides the datamodel behind the wildlive.senckenberg.de platform.",
     "example": "Annotation",
     "homepage": "https://wildlive.senckenberg.de/wlmo/current/",
     "keywords": [
@@ -85867,6 +86353,7 @@
       "ess"
     ],
     "mappings": {
+      "ecoportal": "WLMO",
       "tib": "wlmo"
     },
     "name": "Wildlife Monitoring Ontology",
@@ -86300,6 +86787,15 @@
     "name": "ResearcherID",
     "pattern": "^[A-Z]{1,3}-\\d{4}-(19|20)\\d\\d$",
     "preferred_prefix": "wos.researcher",
+    "providers": [
+      {
+        "code": "researcherid",
+        "description": "Researcher ID",
+        "homepage": "http://www.researcherid.com",
+        "name": "Researcher ID",
+        "uri_format": "http://www.researcherid.com/rid/$1"
+      }
+    ],
     "uri_format": "https://www.webofscience.com/wos/author/record/$1"
   },
   "wos.work": {
@@ -86569,7 +87065,7 @@
     "repository": "https://github.com/rat-genome-database/XCO-experimental-condition-ontology",
     "twitter": "ratgenome",
     "uri_format": "http://purl.obolibrary.org/obo/XCO_$1",
-    "version": "4.225"
+    "version": "4.227"
   },
   "xenbase": {
     "contact": {
@@ -87469,6 +87965,9 @@
       "orcid": "0000-0001-5831-7439"
     },
     "description": "ZFIN serves as the zebrafish model organism database. This collection references all zebrafish biological entities in ZFIN.",
+    "download_json": "https://w3id.org/biopragmatics/resources/zfin/zfin.json.gz",
+    "download_obo": "https://w3id.org/biopragmatics/resources/zfin/zfin.obo",
+    "download_owl": "https://w3id.org/biopragmatics/resources/zfin/zfin.owl.gz",
     "example": "ZDB-GENE-041118-11",
     "homepage": "http://zfin.org",
     "keywords": [
@@ -87484,6 +87983,7 @@
       "genetics",
       "genome",
       "genomics",
+      "ontology",
       "pathology",
       "research",
       "zebrafish",
