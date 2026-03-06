@@ -29,11 +29,6 @@ def get_registry(metaprefix: str, *, strict: Literal[True] = ...) -> Registry: .
 def get_registry(metaprefix: str, *, strict: Literal[False] = ...) -> Registry | None: ...
 
 
-# docstr-coverage:excused `overload`
-@overload
-def get_registry(metaprefix: str) -> Registry | None: ...
-
-
 def get_registry(metaprefix: str, *, strict: bool = False) -> Registry | None:
     """Get the metaregistry entry for the given prefix."""
     return manager.get_registry(metaprefix, strict=strict)  # type:ignore[call-overload,no-any-return]

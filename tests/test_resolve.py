@@ -34,7 +34,7 @@ class TestResolve(unittest.TestCase):
     def test_get(self) -> None:
         """Test getting content from the bioregistry."""
         ncbitaxon_entry = bioregistry.get_resource("ncbitaxon", strict=True)
-        self.assertIn("NCBI_Taxon_ID", ncbitaxon_entry.synonyms)
+        self.assertIn("NCBI_Taxon_ID", ncbitaxon_entry.synonyms or [])
         self.assertIsNotNone(get_external("ncbitaxon", "miriam"))
         self.assertIsNotNone(get_external("ncbitaxon", "obofoundry"))
         self.assertIsNotNone(get_external("ncbitaxon", "ols"))
@@ -147,6 +147,8 @@ class TestResolve(unittest.TestCase):
             "^chembl\\.compound:CHEMBL\\d+$", bioregistry.get_curie_pattern("chembl.compound")
         )
         pattern = bioregistry.get_curie_pattern("panther.pthcmp")
+        if pattern is None:
+            raise self.fail("no curie pattern found")
         self.assertRegex("panther.pthcmp:P00266", pattern)
         self.assertNotRegex("pantherXpthcmp:P00266", pattern)
 
@@ -158,13 +160,14 @@ class TestResolve(unittest.TestCase):
         self.assertIsNotNone(resource)
 
         obofoundry = resource.get_external("obofoundry")
-        self.assertIsNotNone(obofoundry)
+        if obofoundry is None:
+            raise self.fail("obofoundry not found")
         self.assertIn("depends_on", obofoundry)
 
         fobi_dependencies = manager.get_depends_on(test_prefix)
         self.assertIsNotNone(fobi_dependencies)
-        self.assertIn(test_target, fobi_dependencies)
+        self.assertIn(test_target, fobi_dependencies or [])
 
         fobi_dependencies = bioregistry.get_depends_on(test_prefix)
         self.assertIsNotNone(fobi_dependencies)
-        self.assertIn(test_target, fobi_dependencies)
+        self.assertIn(test_target, fobi_dependencies or [])

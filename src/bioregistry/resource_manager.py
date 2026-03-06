@@ -247,12 +247,15 @@ class Manager:
         """Write the registry."""
         write_registry(self.registry)
 
+    # docstr-coverage:excused `overload`
     @overload
     def get_registry(self, metaprefix: str, *, strict: Literal[False]) -> Registry | None: ...
 
+    # docstr-coverage:excused `overload`
     @overload
     def get_registry(self, metaprefix: str, *, strict: Literal[True]) -> Registry: ...
 
+    # docstr-coverage:excused `overload`
     @overload
     def get_registry(self, metaprefix: str) -> Registry | None: ...
 
@@ -898,17 +901,13 @@ class Manager:
     # docstr-coverage:excused `overload`
     @overload
     def get_namespace_in_lui(
-        self, prefix: str, *, provenance: Literal[False] = False
+        self, prefix: str, *, provenance: Literal[False] = ...
     ) -> bool | None: ...
 
     # docstr-coverage:excused `overload`
     @overload
-    def get_namespace_in_lui(self, prefix: str) -> bool | None: ...
-
-    # docstr-coverage:excused `overload`
-    @overload
     def get_namespace_in_lui(
-        self, prefix: str, *, provenance: Literal[True] = True
+        self, prefix: str, *, provenance: Literal[True] = ...
     ) -> None | MetaresourceAnnotatedValue[bool]: ...
 
     def get_namespace_in_lui(
