@@ -28,11 +28,11 @@ class TestValidation(unittest.TestCase):
     def test_validate_jsonld_exceptions(self) -> None:
         """Test errors when validating JSON-LD."""
         with self.assertRaises(TypeError):
-            validate_jsonld(None)
+            validate_jsonld(None)  # type:ignore
         with self.assertRaises(TypeError):
             validate_jsonld({})
         with self.assertRaises(TypeError):
-            validate_jsonld({"@context": None})
+            validate_jsonld({"@context": None})  # type:ignore
 
     def test_validate_jsonld(self) -> None:
         """Test validating JSON-LD."""

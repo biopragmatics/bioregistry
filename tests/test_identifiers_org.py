@@ -50,13 +50,17 @@ class TestIdentifiersOrg(unittest.TestCase):
         for prefix, entry in self.entries.items():
             if prefix in MIRIAM_BLACKLIST:
                 continue
-            example = entry.get_example()
-            self.assertIsNotNone(example)
-            pattern = entry.miriam.get("pattern")
+            if not entry.miriam:
+                raise self.fail("all MIRIAM entries should a data dictionary")
+            pattern = entry.miriam and entry.miriam.get("pattern")
             self.assertIsNotNone(pattern)
+            example = entry.get_example()
+            if example is None:
+                raise self.fail("all MIRIAM entries should have an example")
             with self.subTest(prefix=prefix, example=example, pattern=pattern):
                 standardized_example = entry.miriam_standardize_identifier(example)
-                self.assertIsNotNone(standardized_example)
+                if standardized_example is None:
+                    raise self.fail("miriam standardize should not return none")
                 self.assertRegex(standardized_example, pattern)
 
     def test_curie(self) -> None:
@@ -85,19 +89,22 @@ class TestIdentifiersOrg(unittest.TestCase):
                 continue
             if prefix in IDOT_BROKEN:
                 continue  # identifiers.org is broken for these prefixes
-            example = bioregistry.get_example(prefix)
-            self.assertIsNotNone(example)
             with self.subTest(prefix=prefix, banana=banana, peel=entry.get_banana_peel()):
+                example = bioregistry.get_example(prefix)
+                if example is None:
+                    raise self.fail("no example available")
                 self.assert_url(prefix, example)
 
     def assert_url(self, prefix: str, identifier: str) -> None:
         """Assert the URL resolves."""
         url = bioregistry.get_identifiers_org_iri(prefix, identifier)
-        self.assertIsNotNone(url)
-        res = self.session.get(url, allow_redirects=False)
+        if url is None:
+            raise self.fail("no URL available")
+        res = self.session.get(url, timeout=5, allow_redirects=False)
+        res.raise_for_status()
         self.assertEqual(302, res.status_code, msg=f"failed with URL: {url}")
 
-    @unittest.skip
+    @unittest.skip(reason="slow")
     def test_url_auto(self) -> None:
         """Test generating and resolving Identifiers.org URIs.
 
@@ -111,6 +118,8 @@ class TestIdentifiersOrg(unittest.TestCase):
             if miriam_prefix is None or prefix in IDOT_BROKEN:
                 continue
             identifier = entry.get_example()
+            if identifier is None:
+                raise self.fail("requires identifier example")
             with self.subTest(prefix=prefix, identifier=identifier):
                 self.assert_url(prefix, identifier)
 

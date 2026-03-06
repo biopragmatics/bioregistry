@@ -24,7 +24,8 @@ class TestPandasUtils(unittest.TestCase):
 
     def test_validate_prefixes(self) -> None:
         """Test normalizing prefixes."""
-        for column in ["prefix", 0]:  # test both indexing techniques work
+        columns: list[str | int] = ["prefix", 0]
+        for column in columns:  # test both indexing techniques work
             res = brpd.validate_prefixes(self.df, column)
             self.assertEqual([True, False, True, True, False], list(res))
 
@@ -41,15 +42,6 @@ class TestPandasUtils(unittest.TestCase):
         res = brpd.validate_identifiers(self.df, "identifier", prefix_column="prefix")
         self.assertEqual([True, True, False, False, None], list(res))
 
-    @unittest.skip
-    def test_normalize_identifiers(self) -> None:
-        """Test normalizing identifiers."""
-        brpd.normalize_identifiers(self.df)
-
-        res = brpd.validate_identifiers(self.df, "identifier", prefix_column="prefix")
-        # Note the fourth position got properly normalized and is True!
-        self.assertEqual([True, True, False, True, None], list(res))
-
     def test_identifiers_to_curies(self) -> None:
         """Test converting local unique identifiers to CURIEs."""
         rows = [
@@ -63,7 +55,7 @@ class TestPandasUtils(unittest.TestCase):
         brpd.identifiers_to_curies(
             df, column="identifier", prefix_column="prefix", normalize_prefixes_=False
         )
-        processed_rows = [
+        processed_rows: list[tuple[str, str] | tuple[None, None]] = [
             ("go", "go:0000001"),
             ("GO", "GO:0000002"),
             ("xxx", "xxx:yyy"),

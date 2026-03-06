@@ -2,6 +2,7 @@
 
 import unittest
 from collections import Counter
+from typing import Any
 
 from bioregistry import is_valid_curie
 from bioregistry.constants import CURATED_MAPPINGS_PATH
@@ -15,7 +16,7 @@ class TestTSV(unittest.TestCase):
         """Set up the test case."""
         self.metaregistry = read_metaregistry()
 
-    def validate_row(self, row) -> None:
+    def validate_row(self, row: dict[str, Any]) -> None:
         """Validate a single row from the TSV file."""
         # Constraints on what prefix has to be used for some columns
         self.assertEqual("orcid", row["creator_id"].split(":")[0])
@@ -41,13 +42,13 @@ class TestTSV(unittest.TestCase):
             header = next(tsv_file).strip("\n").split("\t")
             for row, line in enumerate(tsv_file, start=2):
                 with self.subTest(row=row, line=line):
-                    line = line.strip("\n").split("\t")
+                    part = line.strip("\n").split("\t")
                     self.assertEqual(
                         len(header),
-                        len(line),
+                        len(part),
                         msg="Wrong number of columns. This is usually due to the wrong amount of trailing tabs.",
                     )
-                    data = dict(zip(header, line, strict=False))
+                    data = dict(zip(header, part, strict=False))
                     self.validate_row(data)
                     mapping_keys.append(
                         (
