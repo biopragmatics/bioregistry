@@ -58,7 +58,7 @@ class YAMLResponse(Response):
 
     media_type = "application/yaml"
 
-    def render(self, content: BaseModel | dict[str, BaseModel]) -> bytes:
+    def render(self, content: BaseModel | Mapping[str, BaseModel]) -> bytes:
         """Render content as YAML."""
         if isinstance(content, BaseModel):
             content = content.model_dump(
