@@ -46,7 +46,7 @@ def get_bartoc(*, force_download: bool = True) -> dict[str, dict[str, Any]]:
     return rv
 
 
-URI_FORMAT_SKIPS = {}
+URI_FORMAT_SKIPS: dict[str, str] = {}
 
 
 def _process_bartoc_record(record: dict[str, Any]) -> dict[str, Any]:
