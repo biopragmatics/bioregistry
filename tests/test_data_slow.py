@@ -6,7 +6,7 @@ from collections import defaultdict
 import pytest
 
 import bioregistry
-from bioregistry import get_obo_context_prefix_map
+from bioregistry import Resource, get_obo_context_prefix_map
 
 
 class TestDataSlow(unittest.TestCase):
@@ -63,10 +63,9 @@ class TestDataSlow(unittest.TestCase):
         #  for example if one prefix has http://example.org/foo/$1 and a different one
         #  has https://example.org/foo/$1
         prefix_map = bioregistry.get_prefix_map()
-        dd = defaultdict(dict)
+        dd: defaultdict[str, dict[str, Resource]] = defaultdict(dict)
         for prefix, iri in prefix_map.items():
-            resource = bioregistry.get_resource(prefix)
-            self.assertIsNotNone(resource)
+            resource = bioregistry.get_resource(prefix, strict=True)
             if resource.provides is not None:
                 # Don't consider resources that are providing, such as `ctd.gene`
                 continue

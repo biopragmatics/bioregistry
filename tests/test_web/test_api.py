@@ -5,7 +5,8 @@ from __future__ import annotations
 import itertools as itt
 import json
 import unittest
-from typing import ClassVar
+from collections.abc import Callable, Iterable
+from typing import TYPE_CHECKING, Any, ClassVar, cast
 
 import rdflib
 import rdflib.plugins.parsers.notation3
@@ -17,6 +18,9 @@ from bioregistry import Resource
 from bioregistry.app.api import MappingResponse, URIResponse
 from bioregistry.app.impl import get_app
 
+if TYPE_CHECKING:
+    import httpx
+
 
 class TestWeb(unittest.TestCase):
     """Tests for the web application."""
@@ -27,7 +31,7 @@ class TestWeb(unittest.TestCase):
     @classmethod
     def setUpClass(cls) -> None:
         """Set up the test case with an app."""
-        cls.fastapi = get_app()
+        cls.fastapi = get_app(return_flask=False)
         cls.client = TestClient(cls.fastapi)
 
     def test_api_registry(self) -> None:
@@ -46,8 +50,10 @@ class TestWeb(unittest.TestCase):
             with self.subTest(endpoint=endpoint):
                 self._test_registry(endpoint, parse_func)
 
-    def _test_registry(self, endpoint, parse_func) -> None:
-        res = self.client.get(endpoint)
+    def _test_registry(
+        self, endpoint: str, parse_func: Callable[[httpx.Response], dict[str, Resource]]
+    ) -> None:
+        res: httpx.Response = self.client.get(endpoint)
         self.assertEqual(200, res.status_code)
         self.assertIsInstance(res.text, str)
         registry = parse_func(res)
@@ -55,11 +61,11 @@ class TestWeb(unittest.TestCase):
         self.assertEqual("CHEBI", registry["chebi"].get_preferred_prefix())
 
     @staticmethod
-    def _parse_registry_json(res) -> dict[str, Resource]:
+    def _parse_registry_json(res: httpx.Response) -> dict[str, Resource]:
         data = res.json().items()
         return {key: Resource.model_validate(resource) for key, resource in data}
 
-    def _parse_registry_rdf(self, res, fmt: str) -> dict[str, Resource]:
+    def _parse_registry_rdf(self, res: httpx.Response, fmt: str) -> dict[str, Resource]:
         graph = rdflib.Graph()
         try:
             graph.parse(data=res.text, format=fmt)
@@ -77,7 +83,7 @@ class TestWeb(unittest.TestCase):
         }
         """
         rv = {}
-        for record in graph.query(sparql):
+        for record in cast(Iterable[dict[str, dict[str, Any]]], graph.query(sparql)):
             prefix = record["prefix"]["value"]
             rv[prefix] = Resource(
                 prefix=prefix,
@@ -89,7 +95,7 @@ class TestWeb(unittest.TestCase):
         return rv
 
     @staticmethod
-    def _parse_registry_yaml(res) -> dict[str, Resource]:
+    def _parse_registry_yaml(res: httpx.Response) -> dict[str, Resource]:
         data = yaml.safe_load(res.text).items()
         return {key: Resource.model_validate(resource) for key, resource in data}
 
@@ -135,7 +141,7 @@ class TestWeb(unittest.TestCase):
                     g.query("SELECT ?s WHERE { ?s a <https://bioregistry.io/schema/#0000001> }")
                 )
                 self.assertEqual(1, len(results))
-                self.assertEqual("https://bioregistry.io/registry/_3dmet", str(results[0][0]))
+                self.assertEqual("https://bioregistry.io/registry/_3dmet", str(results[0][0]))  # type:ignore
 
     def test_api_metaregistry(self) -> None:
         """Test the metaregistry endpoint."""

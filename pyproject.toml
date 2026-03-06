@@ -63,7 +63,7 @@ dependencies = [
     "curies>=0.12.2",
 ]
 
-[project.optional-dependencies]
+[dependency-groups]
 tests = [
     "pytest",
     "coverage",
@@ -71,6 +71,23 @@ tests = [
     "httpx",
     "scikit-learn",
 ]
+typing = [
+    "types-PyYAML",
+    "types-Markdown",
+    "types-tabulate",
+    "types-requests",
+    "types-python-dateutil",
+    "types-Flask",
+    "types-WTForms",
+    "types-tqdm",
+    "types-beautifulsoup4",
+    "types-Markdown",
+    "matplotlib-stubs",
+    "pandas-stubs",
+    "fastapi[all]",
+]
+
+[project.optional-dependencies]
 docs = [
     "sphinx>=8",
     "sphinx-rtd-theme>=3.0",
