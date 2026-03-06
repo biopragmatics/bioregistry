@@ -217,7 +217,7 @@ class TestResourceManager(unittest.TestCase):
     def test_full_rdf(self) -> None:
         """Test the full dump."""
         full = get_full_rdf(self.manager)
-        prefixes = {
+        prefixes = {  # type:ignore[misc]
             prefix[len("https://bioregistry.io/registry/") :]
             for (prefix,) in full.query(
                 "SELECT ?s WHERE { ?s a <https://bioregistry.io/schema/#0000001> }"

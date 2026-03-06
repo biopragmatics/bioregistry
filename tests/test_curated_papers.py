@@ -9,13 +9,11 @@ import bioregistry
 from bioregistry.constants import CURATED_PAPERS_PATH, ORCID_PATTERN
 from bioregistry.curation.literature import COLUMNS, CurationRelevance
 
+RELEVANCY_TYPES: set[str] = {field.name for field in CurationRelevance}
+
 
 class TestTSV(unittest.TestCase):
     """Tests for curated_papers tsv file."""
-
-    def setUp(self) -> None:
-        """Set up the test case."""
-        self.relevancy_types = {r.name for r in CurationRelevance}
 
     def validate_row(self, row: dict[str, Any], full: bool = False) -> None:
         """Validate a single row from the TSV file."""
@@ -51,7 +49,7 @@ class TestTSV(unittest.TestCase):
                 )
 
         # Validate relevancy_type is in relevancy_vocab
-        self.assertIn(row["relevancy_type"], self.relevancy_types)
+        self.assertIn(row["relevancy_type"], RELEVANCY_TYPES)
 
         self.assertRegex(row["orcid"], ORCID_PATTERN)
 
@@ -74,13 +72,13 @@ class TestTSV(unittest.TestCase):
             self.assertEqual(header, COLUMNS, msg="header is not correct")
             for row, line in enumerate(tsv_file, start=2):
                 with self.subTest(row=row, line=line):
-                    line = line.strip("\n").split("\t")
+                    parts = line.strip("\n").split("\t")
                     self.assertEqual(
                         len(COLUMNS),
-                        len(line),
+                        len(parts),
                         msg="wrong number of columns. This is usually due to the wrong amount of trailing tabs.",
                     )
-                    data = dict(zip(COLUMNS, line, strict=False))
+                    data = dict(zip(COLUMNS, parts, strict=False))
                     self.validate_row(data)
                     pubmeds.append(data["pubmed"])
 

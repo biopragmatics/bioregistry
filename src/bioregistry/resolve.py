@@ -222,6 +222,23 @@ def get_pattern(prefix: str) -> str | None:
     return manager.get_pattern(prefix)
 
 
+# docstr-coverage:excused `overload`
+@overload
+def get_namespace_in_lui(prefix: str, *, provenance: Literal[False]) -> bool | None: ...
+
+
+# docstr-coverage:excused `overload`
+@overload
+def get_namespace_in_lui(prefix: str) -> bool | None: ...
+
+
+# docstr-coverage:excused `overload`
+@overload
+def get_namespace_in_lui(
+    prefix: str, *, provenance: Literal[True]
+) -> MetaresourceAnnotatedValue[bool] | None: ...
+
+
 def get_namespace_in_lui(
     prefix: str, *, provenance: bool = False
 ) -> bool | MetaresourceAnnotatedValue[bool] | None:

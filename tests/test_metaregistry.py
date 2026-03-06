@@ -93,7 +93,7 @@ class TestMetaregistry(unittest.TestCase):
         self.assertIsNone(bioregistry.get_registry("nope"))
         self.assertIsNone(bioregistry.get_registry_name("nope"))
         self.assertIsNone(bioregistry.get_registry_homepage("nope"))
-        self.assertIsNone(bioregistry.get_registry_provider_uri_format("nope", ...))
+        self.assertIsNone(bioregistry.get_registry_provider_uri_format("nope", "nope"))
         self.assertIsNone(bioregistry.get_registry_example("nope"))
         self.assertIsNone(bioregistry.get_registry_description("nope"))
 

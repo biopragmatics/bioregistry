@@ -4,6 +4,8 @@ from __future__ import annotations
 
 import json
 import unittest
+from collections.abc import Callable
+from typing import Any
 
 import rdflib
 import yaml
@@ -63,11 +65,12 @@ class TestUI(unittest.TestCase):
 
     def test_ui_collection_json(self) -> None:
         """Test the UI registry with content negotiation for json/yaml."""
-        identifier = "0000001"
-        for accept, loads in [
+        cases: list[tuple[str, Callable[[str], dict[str, Any]]]] = [
             ("application/json", json.loads),
             ("application/yaml", yaml.safe_load),
-        ]:
+        ]
+        identifier = "0000001"
+        for accept, loads in cases:
             with self.subTest(format=format), self.app.test_client() as client:
                 res = client.get(f"/collection/{identifier}", headers={"Accept": accept})
                 self.assertEqual(

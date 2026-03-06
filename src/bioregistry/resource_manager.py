@@ -903,6 +903,10 @@ class Manager:
 
     # docstr-coverage:excused `overload`
     @overload
+    def get_namespace_in_lui(self, prefix: str) -> bool | None: ...
+
+    # docstr-coverage:excused `overload`
+    @overload
     def get_namespace_in_lui(
         self, prefix: str, *, provenance: Literal[True] = True
     ) -> None | MetaresourceAnnotatedValue[bool]: ...

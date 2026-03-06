@@ -9,6 +9,7 @@ import unittest
 from collections import defaultdict
 from collections.abc import Mapping
 from textwrap import dedent
+from typing import Any
 
 import curies
 import rdflib
@@ -75,7 +76,7 @@ class TestRegistry(unittest.TestCase):
         """Test that there are no Windows-style line returns in curated data."""
         for prefix, resource in self.registry.items():
             with self.subTest(prefix=prefix):
-                resource_dict = resource.model_dump()
+                resource_dict: Mapping[str, Any] = resource.model_dump()
                 for key, value in resource_dict.items():
                     if isinstance(value, str):
                         self.assertNotIn(
@@ -123,13 +124,13 @@ class TestRegistry(unittest.TestCase):
 
     def test_names(self) -> None:
         """Test that all entries have a name."""
-        name_to_prefix = defaultdict(set)
+        name_to_prefix: defaultdict[str, set[str]] = defaultdict(set)
         for prefix, entry in self.registry.items():
             with self.subTest(prefix=prefix):
                 name = entry.get_name()
-                name_to_prefix[name].add(prefix)
                 if name is None:
                     raise self.fail(f"{prefix} is missing a name")
+                name_to_prefix[name].add(prefix)
                 if entry.name:
                     self.assertEqual(
                         entry.name.strip(),
@@ -159,10 +160,10 @@ class TestRegistry(unittest.TestCase):
                             msg=f"Redundant alt prefix {alt_prefix} appears in name",
                         )
 
-        name_to_prefix = {
+        name_to_prefix_rasterized: dict[str, set[str]] = {
             name: prefixes for name, prefixes in name_to_prefix.items() if len(prefixes) > 1
         }
-        if name_to_prefix:
+        if name_to_prefix_rasterized:
             self.fail(msg=f"There are duplicate names:\n{name_to_prefix}")
 
     def test_name_expansions(self) -> None:
@@ -209,7 +210,8 @@ class TestRegistry(unittest.TestCase):
                 continue
             with self.subTest(prefix=prefix, name=bioregistry.get_name(prefix)):
                 desc = bioregistry.get_description(prefix)
-                self.assertIsNotNone(desc)
+                if desc is None:
+                    raise self.fail("description must be set explicitly or inherited")
                 self.assertNotEqual("", desc.strip())
                 self.assertNotIn("\r", desc)
                 if resource.description:
@@ -269,7 +271,7 @@ class TestRegistry(unittest.TestCase):
             if bioregistry.is_deprecated(prefix):
                 continue
             entry = bioregistry.get_resource(prefix)
-            if "name" in entry:
+            if entry.name is not None:
                 continue
             name = bioregistry.get_name(prefix)
             if name is None:
@@ -424,7 +426,8 @@ class TestRegistry(unittest.TestCase):
                         f"\nSee: https://www.ebi.ac.uk/ols/ontologies/{entry.ols['prefix']}/terms"
                     )
                 example = entry.get_example()
-                self.assertIsNotNone(example, msg=msg)
+                if example is None:
+                    raise self.fail()
                 self.assertEqual(entry.standardize_identifier(example), example)
 
                 pattern = entry.get_pattern_re()
@@ -474,7 +477,8 @@ class TestRegistry(unittest.TestCase):
                 continue
             with self.subTest(prefix=prefix):
                 pattern = entry.get_pattern()
-                self.assertIsNotNone(pattern)
+                if pattern is None:
+                    raise self.fail("example decoys can not be set without a pattern")
                 for example in entry.example_decoys:
                     self.assertNotRegex(example, pattern)
 
@@ -725,7 +729,7 @@ class TestRegistry(unittest.TestCase):
                             resource.mappings,
                             msg=f"did not find {metaprefix} mapping in {prefix} in {d}",
                         )
-                        self.assertIn(metaprefix, set(resource.mappings))
+                        self.assertIn(metaprefix, set(resource.mappings or []))
 
     def test_providers(self) -> None:
         """Make sure provider codes are unique."""
@@ -783,21 +787,29 @@ class TestRegistry(unittest.TestCase):
         self.assertIsNone(bioregistry.get_namespace_in_lui("nope"))
         self.assertIsNone(bioregistry.get_namespace_in_lui("nope", provenance=True))
         self.assertIsNone(bioregistry.get_namespace_in_lui("nope", provenance=False))
-        res = bioregistry.get_namespace_in_lui("go")
-        self.assertIsInstance(res, bool)
-        self.assertTrue(res)
+        res1 = bioregistry.get_namespace_in_lui("go")
+        if res1 is None:
+            raise self.fail(msg="could not look up status for pdb")
+        self.assertIsInstance(res1, bool)
+        self.assertTrue(res1)
 
-        res = bioregistry.get_namespace_in_lui("pdb")
-        self.assertIsInstance(res, bool)
-        self.assertFalse(res)
+        res2 = bioregistry.get_namespace_in_lui("pdb")
+        if res2 is None:
+            raise self.fail(msg="could not look up status for pdb")
+        self.assertIsInstance(res2, bool)
+        self.assertFalse(res2)
 
-        res = bioregistry.get_namespace_in_lui("go", provenance=True)
-        self.assertIsInstance(res, MetaresourceAnnotatedValue)
-        self.assertTrue(res.value)
+        res3 = bioregistry.get_namespace_in_lui("go", provenance=True)
+        if res3 is None:
+            raise self.fail(msg="could not look up status for go")
+        self.assertIsInstance(res3, MetaresourceAnnotatedValue)
+        self.assertTrue(res3.value)
 
-        res = bioregistry.get_namespace_in_lui("pdb", provenance=True)
-        self.assertIsInstance(res, MetaresourceAnnotatedValue)
-        self.assertFalse(res.value)
+        res4 = bioregistry.get_namespace_in_lui("pdb", provenance=True)
+        if res4 is None:
+            raise self.fail(msg="could not look up status for pdb")
+        self.assertIsInstance(res4, MetaresourceAnnotatedValue)
+        self.assertFalse(res4.value)
 
         for prefix, resource in self.registry.items():
             if not resource.get_namespace_in_lui():
@@ -924,7 +936,10 @@ class TestRegistry(unittest.TestCase):
             if not resource.contact_extras:
                 continue
             with self.subTest(prefix=prefix):
-                self.assertIsNotNone(resource.contact)
+                if resource.contact is None:
+                    raise self.fail(
+                        "when contact_extras is used, a primary contact must also be set"
+                    )
                 for contact in resource.contact_extras:
                     self.assert_contact_metadata(contact)
                     self.assertNotEqual(
@@ -1077,7 +1092,7 @@ class TestRegistry(unittest.TestCase):
                         self.assert_publication_identifiers(publication)
 
                     # Test no duplicates
-                    index: defaultdict[str, defaultdict[list[Publication]]] = defaultdict(
+                    index: defaultdict[str, defaultdict[str, list[Publication]]] = defaultdict(
                         lambda: defaultdict(list)
                     )
                     for publication in resource.publications:
