@@ -31,6 +31,6 @@ def sanitize_model(base_model: BaseModel, **kwargs: Any) -> Mapping[str, Any]:
     return sanitize_dict(base_model.model_dump(**kwargs))
 
 
-def sanitize_mapping(mapping: Mapping[str, BaseModel]) -> Mapping[str, Mapping[str, Any]]:
+def sanitize_mapping(mapping: Mapping[str, BaseModel]) -> dict[str, Mapping[str, Any]]:
     """Sanitize a dictionary whose values are Pydantic models."""
     return {key: sanitize_model(base_model) for key, base_model in mapping.items()}

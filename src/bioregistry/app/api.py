@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Annotated
+from typing import Annotated, Any
 
 import yaml
 from curies import Reference
@@ -60,6 +60,7 @@ class YAMLResponse(Response):
 
     def render(self, content: BaseModel | Mapping[str, BaseModel]) -> bytes:
         """Render content as YAML."""
+        data: dict[str, Any]
         if isinstance(content, BaseModel):
             data = content.model_dump(
                 exclude_none=True,
