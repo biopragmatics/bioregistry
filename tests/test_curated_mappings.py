@@ -2,6 +2,7 @@
 
 import unittest
 from collections import Counter
+from typing import Any
 
 from bioregistry import is_valid_curie
 from bioregistry.constants import CURATED_MAPPINGS_PATH
@@ -11,11 +12,11 @@ from bioregistry.schema_utils import SemanticMapping, read_mappings, read_metare
 class TestTSV(unittest.TestCase):
     """Tests for curated_mappings tsv file."""
 
-    def setUp(self):
+    def setUp(self) -> None:
         """Set up the test case."""
         self.metaregistry = read_metaregistry()
 
-    def validate_row(self, row):
+    def validate_row(self, row: dict[str, Any]) -> None:
         """Validate a single row from the TSV file."""
         # Constraints on what prefix has to be used for some columns
         self.assertEqual("orcid", row["creator_id"].split(":")[0])
@@ -34,20 +35,20 @@ class TestTSV(unittest.TestCase):
             self.assertFalse(row["comment"].startswith('"'))
             self.assertFalse(row["comment"].endswith('"'))
 
-    def test_tsv_file(self):
+    def test_tsv_file(self) -> None:
         """Tests all rows in TSV file are valid."""
         with CURATED_MAPPINGS_PATH.open() as tsv_file:
             mapping_keys = []
             header = next(tsv_file).strip("\n").split("\t")
             for row, line in enumerate(tsv_file, start=2):
                 with self.subTest(row=row, line=line):
-                    line = line.strip("\n").split("\t")
+                    part = line.strip("\n").split("\t")
                     self.assertEqual(
                         len(header),
-                        len(line),
+                        len(part),
                         msg="Wrong number of columns. This is usually due to the wrong amount of trailing tabs.",
                     )
-                    data = dict(zip(header, line, strict=False))
+                    data = dict(zip(header, part, strict=False))
                     self.validate_row(data)
                     mapping_keys.append(
                         (
@@ -91,11 +92,11 @@ class TestTSV(unittest.TestCase):
 class TestSemanticMappings(unittest.TestCase):
     """Tests to make sure semantic mappings are read correctly from TSV."""
 
-    def setUp(self):
+    def setUp(self) -> None:
         """Set up the test case."""
         self.mappings = read_mappings()
 
-    def test_semantic_mappings(self):
+    def test_semantic_mappings(self) -> None:
         """Test semantic mapping validity."""
         for mapping in self.mappings:
             self.assertIsInstance(mapping, SemanticMapping)

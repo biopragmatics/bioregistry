@@ -11,7 +11,7 @@ from bioregistry.utils import norm
 class TestDuplicates(unittest.TestCase):
     """Tests for duplicates."""
 
-    def test_unique_keys(self):
+    def test_unique_keys(self) -> None:
         """Test that all prefixes are norm-unique."""
         registry = bioregistry.read_registry()
 
@@ -19,7 +19,7 @@ class TestDuplicates(unittest.TestCase):
             with self.subTest(a=a, b=b):
                 self.assertNotEqual(norm(a), norm(b))
 
-    def test_synonyms(self):
+    def test_synonyms(self) -> None:
         """Test that there are no synonyms that conflict with keys."""
         registry = bioregistry.read_registry()
         norm_prefixes = {norm(prefix) for prefix in registry}

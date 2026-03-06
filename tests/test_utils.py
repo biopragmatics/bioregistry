@@ -8,7 +8,7 @@ from bioregistry.utils import backfill, deduplicate, get_ec_url
 class TestDeduplicate(unittest.TestCase):
     """Test deduplication workflow."""
 
-    def test_backfill(self):
+    def test_backfill(self) -> None:
         """Test record backfill."""
         records = [
             {"pubmed": "pmid_1"},
@@ -44,7 +44,7 @@ class TestDeduplicate(unittest.TestCase):
             res,
         )
 
-    def test_deduplicate(self):
+    def test_deduplicate(self) -> None:
         """Test record deduplication."""
         records = [
             {"arxiv": "arxiv_1", "doi": "doi_1"},

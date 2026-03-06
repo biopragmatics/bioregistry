@@ -54,7 +54,7 @@ class Aligner:
 
     normalize_invmap: ClassVar[bool] = False
 
-    def __init__(self, force_download: bool | None = None):
+    def __init__(self, force_download: bool | None = None) -> None:
         """Instantiate the aligner."""
         if not hasattr(self.__class__, "key"):
             raise TypeError

@@ -300,7 +300,7 @@ def context(identifier: str) -> str:
 class ResponseWrapperError(ValueError):
     """An exception that helps with code reuse that returns multiple value types."""
 
-    def __init__(self, response: str | werkzeug.Response, code: int | None = None):
+    def __init__(self, response: str | werkzeug.Response, code: int | None = None) -> None:
         """Instantiate this "exception", which is a tricky way of writing a macro."""
         self.response = response
         self.code = code

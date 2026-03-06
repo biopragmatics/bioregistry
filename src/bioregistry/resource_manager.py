@@ -145,7 +145,7 @@ class Manager:
         contexts: None | str | Path | Mapping[str, Context] = None,
         mismatches: Mapping[str, Mapping[str, set[str]]] | None = None,
         base_url: str | None = None,
-    ):
+    ) -> None:
         """Instantiate a registry manager.
 
         :param registry: A custom registry. If none given, defaults to the Bioregistry.
@@ -247,8 +247,22 @@ class Manager:
         """Write the registry."""
         write_registry(self.registry)
 
-    def get_registry(self, metaprefix: str) -> Registry | None:
+    # docstr-coverage:excused `overload`
+    @overload
+    def get_registry(self, metaprefix: str, *, strict: Literal[False]) -> Registry | None: ...
+
+    # docstr-coverage:excused `overload`
+    @overload
+    def get_registry(self, metaprefix: str, *, strict: Literal[True]) -> Registry: ...
+
+    # docstr-coverage:excused `overload`
+    @overload
+    def get_registry(self, metaprefix: str) -> Registry | None: ...
+
+    def get_registry(self, metaprefix: str, *, strict: bool = False) -> Registry | None:
         """Get the metaregistry entry for the given prefix."""
+        if strict:
+            return self.metaregistry[metaprefix]
         return self.metaregistry.get(metaprefix)
 
     def write_collections(self) -> None:
@@ -887,13 +901,13 @@ class Manager:
     # docstr-coverage:excused `overload`
     @overload
     def get_namespace_in_lui(
-        self, prefix: str, *, provenance: Literal[False] = False
+        self, prefix: str, *, provenance: Literal[False] = ...
     ) -> bool | None: ...
 
     # docstr-coverage:excused `overload`
     @overload
     def get_namespace_in_lui(
-        self, prefix: str, *, provenance: Literal[True] = True
+        self, prefix: str, *, provenance: Literal[True] = ...
     ) -> None | MetaresourceAnnotatedValue[bool]: ...
 
     def get_namespace_in_lui(
