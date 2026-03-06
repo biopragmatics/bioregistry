@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Annotated, Any
+from typing import Annotated
 
 import yaml
 from curies import Reference
@@ -58,13 +58,17 @@ class YAMLResponse(Response):
 
     media_type = "application/yaml"
 
-    def render(self, content: Any) -> bytes:
+    def render(self, content: BaseModel | dict[str, BaseModel]) -> bytes:
         """Render content as YAML."""
         if isinstance(content, BaseModel):
             content = content.model_dump(
                 exclude_none=True,
                 exclude_unset=True,
             )
+        elif isinstance(content, dict):
+            content = sanitize_mapping(content)
+        else:
+            raise TypeError
         return yaml.safe_dump(
             content,
             allow_unicode=True,
@@ -117,7 +121,7 @@ def get_resources(
     if accept == "application/json":
         return manager.registry
     elif accept == "application/yaml":
-        return YAMLResponse(sanitize_mapping(manager.registry))
+        return YAMLResponse(manager.registry)
     elif accept in RDF_MEDIA_TYPES:
         raise NotImplementedError
     else:
@@ -182,7 +186,7 @@ def get_metaresources(
     if accept == "application/json":
         return manager.metaregistry
     elif accept == "application/yaml":
-        return YAMLResponse(sanitize_mapping(manager.metaregistry))
+        return YAMLResponse(manager.metaregistry)
     elif accept in RDF_MEDIA_TYPES:
         raise NotImplementedError
     else:
@@ -331,7 +335,7 @@ def get_collections(
     if accept == "application/json":
         return manager.collections
     elif accept == "application/yaml":
-        return YAMLResponse(sanitize_mapping(manager.collections))
+        return YAMLResponse(manager.collections)
     elif accept in RDF_MEDIA_TYPES:
         raise NotImplementedError
     else:
@@ -398,7 +402,7 @@ def get_contexts(
     if accept == "application/json":
         return manager.contexts
     elif accept == "application/yaml":
-        return YAMLResponse(sanitize_mapping(manager.contexts))
+        return YAMLResponse(manager.contexts)
     else:
         raise HTTPException(400, f"Bad Accept header: {accept}")
 
@@ -427,7 +431,7 @@ def get_contributors(
     if accept == "application/json":
         return contributors
     elif accept == "application/yaml":
-        return YAMLResponse(sanitize_mapping(contributors))
+        return YAMLResponse(contributors)
     else:
         raise HTTPException(400, f"Bad Accept header: {accept}")
 
