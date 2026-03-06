@@ -173,6 +173,8 @@ URI_FORMAT_PATHS = [
     ("prefixcommons", URI_FORMAT_KEY),
     ("rrid", URI_FORMAT_KEY),
     ("tib", URI_FORMAT_KEY),
+    # FIXME add BARTOC, after figuring out how to
+    #  avoid adding incorrect ones
 ]
 
 

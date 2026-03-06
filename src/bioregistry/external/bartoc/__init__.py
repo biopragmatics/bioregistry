@@ -8,10 +8,9 @@ from typing import Any, ClassVar
 import requests
 from tqdm import tqdm
 
-from bioregistry.constants import URI_FORMAT_KEY
+from bioregistry.constants import RAW_DIRECTORY, URI_FORMAT_KEY
+from bioregistry.external.alignment_utils import Aligner, load_processed
 from bioregistry.license_standardizer import standardize_license
-
-from ..alignment_utils import Aligner, load_processed
 
 __all__ = [
     "BartocAligner",
@@ -47,6 +46,11 @@ def get_bartoc(*, force_download: bool = True) -> dict[str, dict[str, Any]]:
     return rv
 
 
+URI_FORMAT_SKIPS = {
+    "216": "OGMS annotates BFO (http://purl.obolibrary.org/obo/BFO_$1) for some reason",
+}
+
+
 def _process_bartoc_record(record: dict[str, Any]) -> dict[str, Any]:
     prefix = record["uri"][len("http://bartoc.org/en/node/") :]
     rv = {
@@ -77,11 +81,21 @@ def _process_bartoc_record(record: dict[str, Any]) -> dict[str, Any]:
         if license_key:
             rv["license"] = license_key
 
-    uri_pattern = record.get("uriPattern")
-    if uri_pattern and "(" in uri_pattern and ")" in uri_pattern:
-        left_pos = uri_pattern.find("(")
-        right_pos = uri_pattern.find(")")
-        rv[URI_FORMAT_KEY] = uri_pattern[:left_pos] + "$1" + uri_pattern[1 + right_pos :]
+    if prefix in URI_FORMAT_SKIPS:
+        pass
+    elif uri_prefix := record.pop("namespace", None):
+        rv[URI_FORMAT_KEY] = uri_prefix.strip() + "$1"
+    elif uri_pattern := record.get("uriPattern"):
+        if "(" not in uri_pattern and ")" not in uri_pattern:
+            logger.debug(f"bad URI pattern: {uri_pattern}, assuming is URI prefix")
+            rv[URI_FORMAT_KEY] = uri_pattern.strip() + "$1"
+        else:
+            left_pos = uri_pattern.find("(")
+            right_pos = uri_pattern.find(")")
+            rv[URI_FORMAT_KEY] = uri_pattern[:left_pos] + "$1" + uri_pattern[1 + right_pos :]
+
+    if example := _get_example(record):
+        rv["example"] = example
 
     return {k: v for k, v in rv.items() if k and v}
 
