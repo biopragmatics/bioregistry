@@ -1,6 +1,5 @@
 """Download registry information from NCBI."""
 
-import json
 import logging
 import re
 import textwrap
@@ -12,8 +11,9 @@ from urllib.parse import urlsplit, urlunsplit
 from bs4 import BeautifulSoup
 from pystow.utils import download
 
+from bioregistry.alignment_model import Record, dump_records, load_processed
 from bioregistry.constants import RAW_DIRECTORY
-from bioregistry.external.alignment_utils import Aligner, load_processed
+from bioregistry.external.alignment_utils import Aligner
 
 __all__ = [
     "NcbiAligner",
@@ -54,7 +54,7 @@ OBSOLETE = {
 }
 
 
-def get_ncbi(force_download: bool = False) -> dict[str, dict[str, str]]:
+def get_ncbi(force_download: bool = False) -> dict[str, Record]:
     """Get the NCBI data."""
     if PROCESSED_PATH.exists() and not force_download:
         return load_processed(PROCESSED_PATH)
@@ -142,11 +142,9 @@ def get_ncbi(force_download: bool = False) -> dict[str, dict[str, str]]:
 
             item["example"] = identifier
 
-        rv[prefix] = item
+        rv[prefix] = Record.model_validate(item)
 
-    with PROCESSED_PATH.open("w") as file:
-        json.dump(rv, file, indent=2, sort_keys=True)
-
+    dump_records(rv, PROCESSED_PATH)
     return rv
 
 
@@ -158,12 +156,12 @@ class NcbiAligner(Aligner):
     getter_kwargs: ClassVar[dict[str, Any]] = {"force_download": False}
     curation_header: ClassVar[Sequence[str]] = ("name", "example", "homepage")
 
-    def get_curation_row(self, external_id: str, external_entry: dict[str, Any]) -> Sequence[str]:
+    def get_curation_row(self, external_id: str, external_entry: Record) -> Sequence[str]:
         """Return the relevant fields from an NCBI entry for pretty-printing."""
         return [
-            textwrap.shorten(external_entry["name"], 50),
-            external_entry.get("example", ""),
-            external_entry.get("homepage", ""),
+            textwrap.shorten(external_entry.name or "", 50),
+            external_entry.example[0] if external_entry.example else "",
+            external_entry.homepage or "",
         ]
 
 

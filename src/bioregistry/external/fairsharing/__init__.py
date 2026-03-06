@@ -7,15 +7,15 @@
 
 from __future__ import annotations
 
-import json
 import logging
 import re
 from collections.abc import MutableMapping, Sequence
 from pathlib import Path
 from typing import Any, ClassVar
 
+from bioregistry.alignment_model import Record, dump_records, load_processed
 from bioregistry.constants import ORCID_PATTERN
-from bioregistry.external.alignment_utils import Aligner, load_processed
+from bioregistry.external.alignment_utils import Aligner
 from bioregistry.license_standardizer import standardize_license
 from bioregistry.utils import removeprefix, removesuffix
 
@@ -43,7 +43,7 @@ ORCID_RE = re.compile(ORCID_PATTERN)
 
 def get_fairsharing(
     *, force_download: bool = False, force_reload: bool = False, use_tqdm: bool = True
-) -> dict[str, dict[str, Any]]:
+) -> dict[str, Record]:
     """Get the FAIRsharing registry."""
     if PROCESSED_PATH.exists() and not force_download and not force_reload:
         return load_processed(PROCESSED_PATH)
@@ -51,13 +51,12 @@ def get_fairsharing(
     from fairsharing_client import load_fairsharing
 
     data = load_fairsharing(force_download=force_download, use_tqdm=use_tqdm)
-    rv = {}
-    for prefix, record in data.items():
-        new_record = _process_record(record)
-        if new_record:
-            rv[prefix] = new_record
-    with PROCESSED_PATH.open("w") as file:
-        json.dump(rv, file, indent=2, ensure_ascii=False, sort_keys=True)
+    rv = {
+        prefix: record
+        for prefix, raw_record in data.items()
+        if (record := _process_record(raw_record)) is not None
+    }
+    dump_records(rv, PROCESSED_PATH)
     return rv
 
 
@@ -70,7 +69,7 @@ KEEP = {
 }
 
 
-def _process_record(record: MutableMapping[str, Any]) -> dict[str, Any] | None:
+def _process_record(record: MutableMapping[str, Any]) -> Record | None:
     if record.get("record_type") not in ALLOWED_TYPES:
         return None
     rv = {key: record[key] for key in KEEP if record[key]}
@@ -140,7 +139,7 @@ def _process_record(record: MutableMapping[str, Any]) -> dict[str, Any] | None:
             rv["license"] = license_standard
 
     rv = {k: v for k, v in rv.items() if k and v}
-    return rv
+    return Record.model_validate(rv)
 
 
 #: Licenses that are one-off and don't need curating

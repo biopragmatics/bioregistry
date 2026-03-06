@@ -31,6 +31,7 @@ from pydantic import BaseModel, EmailStr, Field, PrivateAttr
 from pydantic.json_schema import models_json_schema
 from typing_extensions import Self
 
+from bioregistry import alignment_model
 from bioregistry import constants as brc
 from bioregistry.constants import (
     BIOREGISTRY_REMOTE_URL,
@@ -46,6 +47,8 @@ from bioregistry.utils import curie_to_str, deduplicate, removeprefix, removesuf
 if TYPE_CHECKING:
     import rdflib
     import rdflib.term
+
+    import bioregistry.alignment_model
 
 __all__ = [
     "AnnotatedURL",
@@ -765,7 +768,7 @@ class Resource(BaseModel):
     #: External data from the Gene Ontology's custom registry
     go: Mapping[str, Any] | None = None
     #: External data from the Open Biomedical Ontologies (OBO) Foundry catalog
-    obofoundry: Mapping[str, Any] | None = None
+    obofoundry: alignment_model.Record | None = None
     #: External data from the BioPortal ontology repository
     bioportal: Mapping[str, Any] | None = None
     #: External data from the EcoPortal ontology repository
@@ -837,13 +840,8 @@ class Resource(BaseModel):
         >>> get_resource("chebi").get_mapped_prefix("obofoundry")
         'CHEBI'
         """
-        if metaprefix == "obofoundry":
-            obofoundry_dict = self.obofoundry or {}
-            if "preferredPrefix" in obofoundry_dict:
-                return cast(str, obofoundry_dict["preferredPrefix"])
-            if "prefix" in obofoundry_dict:
-                return cast(str, obofoundry_dict["prefix"]).upper()
-            return None
+        if metaprefix == "obofoundry" and self.obofoundry and self.obofoundry.preferred_prefix:
+            return self.obofoundry.preferred_prefix
         return self.get_mappings().get(metaprefix)
 
     # docstr-coverage:excused `overload`
@@ -1107,8 +1105,9 @@ class Resource(BaseModel):
             return None
         # if explicitly annotated, use it. Otherwise, the capitalized version
         # of the OBO Foundry ID is the preferred prefix (e.g., for GO)
-        return cast(
-            str, self.obofoundry.get("preferredPrefix") or self.obofoundry["prefix"].upper()
+        return (
+            self.obofoundry.preferred_prefix
+            or cast(dict[str, str], self.mappings)["prefix"].upper()
         )
 
     def get_wikidata_entity(self) -> str | None:
@@ -1457,8 +1456,8 @@ class Resource(BaseModel):
         """
         if self.contact and self.contact.name:
             return self.contact.name
-        if self.obofoundry and "contact.label" in self.obofoundry:
-            return cast(str, self.obofoundry["contact.label"])
+        if self.obofoundry and self.obofoundry.contact and self.obofoundry.contact.name:
+            return self.obofoundry.contact.name
         for ext in [self.fairsharing, self.bioportal, self.ecoportal, self.agroportal]:
             if not ext:
                 continue
@@ -1480,8 +1479,8 @@ class Resource(BaseModel):
         """
         if self.contact and self.contact.github:
             return self.contact.github
-        if self.obofoundry and "contact.github" in self.obofoundry:
-            return cast(str, self.obofoundry["contact.github"])
+        if self.obofoundry and self.obofoundry.contact and self.obofoundry.contact.github:
+            return self.obofoundry.contact.github
 
         # Manually curated upgrade map. TODO externalize this
         orcid = self.get_contact_orcid()
@@ -1504,8 +1503,8 @@ class Resource(BaseModel):
         """
         if self.contact and self.contact.orcid:
             return self.contact.orcid
-        if self.obofoundry and "contact.orcid" in self.obofoundry:
-            return cast(str, self.obofoundry["contact.orcid"])
+        if self.obofoundry and self.obofoundry.contact and self.obofoundry.contact.orcid:
+            return self.obofoundry.contact.orcid
         if self.fairsharing:
             rv = self.fairsharing.get("contact", {}).get("orcid")
             if rv:
@@ -1597,33 +1596,28 @@ class Resource(BaseModel):
                 return True
         return False
 
+    @staticmethod
+    def _convert_publication(
+        publication: bioregistry.alignment_model.Publication,
+    ) -> Publication | None:
+        if all(not x for x in (publication.doi, publication.pmc, publication.pubmed)):
+            return None
+        return Publication(
+            title=publication.name,
+            year=publication.year,
+            # ids
+            doi=publication.doi.lower() if publication.doi else None,
+            pmc=publication.pmc,
+            pubmed=publication.pubmed,
+        )
+
     def get_publications(self) -> list[Publication]:
         """Get a list of publications."""
         publications = self.publications or []
         if self.obofoundry:
-            for publication in self.obofoundry.get("publications", []):
-                url, title = publication["id"], publication["title"].rstrip(".")
-                if url.startswith("https://www.ncbi.nlm.nih.gov/pubmed/"):
-                    pubmed = url[len("https://www.ncbi.nlm.nih.gov/pubmed/") :]
-                    publications.append(
-                        Publication(pubmed=pubmed, title=title, doi=None, pmc=None, year=None)
-                    )
-                elif url.startswith("https://doi.org/"):
-                    doi = url[len("https://doi.org/") :]
-                    publications.append(
-                        Publication(doi=doi.lower(), title=title, pubmed=None, pmc=None, year=None)
-                    )
-                elif url.startswith("https://www.medrxiv.org/content/"):
-                    doi = url[len("https://www.medrxiv.org/content/") :]
-                    publications.append(
-                        Publication(doi=doi.lower(), title=title, pubmed=None, pmc=None, year=None)
-                    )
-                elif url.startswith("https://zenodo.org/record/"):
-                    continue
-                elif "ceur-ws.org" in url:
-                    continue
-                else:
-                    logger.warning("unhandled obo foundry publication ID: %s", url)
+            for obo_publication in self.obofoundry.publications:
+                if xx := self._convert_publication(obo_publication):
+                    publications.append(xx)
         if self.fairsharing:
             for publication in self.fairsharing.get("publications", []):
                 pubmed = publication.get("pubmed")
@@ -1691,8 +1685,6 @@ class Resource(BaseModel):
         """Get the Twitter handle for the resource."""
         if self.twitter:
             return self.twitter
-        if self.obofoundry and "twitter" in self.obofoundry:
-            return cast(str, self.obofoundry["twitter"])
         if self.fairsharing and "twitter" in self.fairsharing:
             return cast(str, self.fairsharing["twitter"])
         return None
@@ -1701,8 +1693,8 @@ class Resource(BaseModel):
         """Get the logo for the resource."""
         if self.logo:
             return self.logo
-        if self.obofoundry and "logo" in self.obofoundry:
-            return cast(str, self.obofoundry["logo"])
+        if self.obofoundry and self.obofoundry.logo:
+            return self.obofoundry.logo
         if self.fairsharing and "logo" in self.fairsharing:
             return cast(str, self.fairsharing["logo"])
         return None

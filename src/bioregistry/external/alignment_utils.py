@@ -1,11 +1,11 @@
 """Utilities for registry alignment."""
 
 import csv
-import json
 from collections.abc import Callable, Iterable, Mapping, Sequence
 from pathlib import Path
 from typing import Any, ClassVar, ParamSpec, TypeAlias
-
+from typing import Any, ClassVar
+import json
 import click
 from curies.w3c import NCNAME_RE
 from pystow.utils import download
@@ -13,6 +13,7 @@ from tabulate import tabulate
 
 from ..alignment_model import Record, dump_records
 from ..alignment_model import load_processed as load_records
+from ..alignment_model import Record
 from ..constants import METADATA_CURATION_DIRECTORY
 from ..resource_manager import Manager
 from ..schema import Resource
@@ -65,7 +66,10 @@ class Aligner:
 
     normalize_invmap: ClassVar[bool] = False
 
-    def __init__(self, force_download: bool | None = None) -> None:
+    #: Records form the external registry
+    external_registry: dict[str, Record]
+
+    def __init__(self, *, force_download: bool | None = None, force_process: bool | None = None):
         """Instantiate the aligner."""
         if not hasattr(self.__class__, "key"):
             raise TypeError
@@ -79,12 +83,16 @@ class Aligner:
 
         kwargs = dict(self.getter_kwargs or {})
         kwargs.setdefault("force_download", True)
+        kwargs.setdefault("force_process", True)
         if force_download is not None:
             kwargs["force_download"] = force_download
+        if force_process is not None:
+            kwargs["force_process"] = force_process
+
         self.external_registry = self.__class__.getter(**kwargs)
         self.skip_external = self.get_skip()
 
-        # Get all of the pre-curated mappings from the Bioregistry
+        # Get all the pre-curated mappings from the Bioregistry
         self.external_id_to_bioregistry_id = self.manager.get_registry_invmap(
             self.key,
             normalize=self.normalize_invmap,
@@ -119,12 +127,17 @@ class Aligner:
             if not self.alt_key_match:
                 bioregistry_id = self.manager.normalize_prefix(external_id)
             else:
-                alt_match = external_entry.get(self.alt_key_match)
-                if alt_match:
+                alt_match = getattr(external_entry, self.alt_key_match)
+                if isinstance(alt_match, str):
                     bioregistry_id = self.manager.normalize_prefix(alt_match)
+                elif isinstance(alt_match, list):
+                    for am in alt_match:
+                        bioregistry_id = self.manager.normalize_prefix(am)
+                        if bioregistry_id:
+                            break
 
             if bioregistry_id is None and self.alt_keys_match:
-                for alt_match in external_entry.get(self.alt_keys_match, []):
+                for alt_match in getattr(external_entry, self.alt_keys_match, []):
                     bioregistry_id = self.manager.normalize_prefix(alt_match)
                     if bioregistry_id:
                         break
@@ -159,30 +172,14 @@ class Aligner:
                 self._align_action(bioregistry_id, external_id, external_entry)
                 continue
 
-    def _align_action(
-        self, bioregistry_id: str, external_id: str, external_entry: dict[str, Any]
-    ) -> None:
+    def _align_action(self, bioregistry_id: str, external_id: str, external_entry: Record) -> None:
         if self.internal_registry[bioregistry_id].mappings is None:
             self.internal_registry[bioregistry_id].mappings = {}
         self.internal_registry[bioregistry_id].mappings[self.key] = external_id  # type:ignore
 
-        _entry = self.prepare_external(external_id, external_entry)
-        _entry[self.subkey] = external_id
-        self.internal_registry[bioregistry_id][self.key] = _entry
+        # setattr(_entry, self.subkey, external_id)
+        self.internal_registry[bioregistry_id][self.key] = external_entry
         self.external_id_to_bioregistry_id[external_id] = bioregistry_id
-
-    def prepare_external(self, external_id: str, external_entry: dict[str, Any]) -> dict[str, Any]:
-        """Prepare a dictionary to be added to the bioregistry for each external registry entry.
-
-        The default implementation returns `external_entry` unchanged. If you need more
-        than that, override this method.
-
-        :param external_id: The external registry identifier
-        :param external_entry: The external registry data
-
-        :returns: The dictionary to be added to the bioregistry for the aligned entry
-        """
-        return external_entry
 
     def write_registry(self) -> None:
         """Write the internal registry."""
@@ -191,9 +188,11 @@ class Aligner:
     @classmethod
     def align(
         cls,
+        *,
         dry: bool = False,
         show: bool = False,
         force_download: bool | None = None,
+        force_process: bool | None = None,
     ) -> None:
         """Align and output the curation sheet.
 
@@ -201,7 +200,7 @@ class Aligner:
         :param show: If true, print a curation table
         :param force_download: Force re-download of the data
         """
-        instance = cls(force_download=force_download)
+        instance = cls(force_download=force_download, force_process=force_process)
         if not dry:
             instance.write_registry()
         if show:
@@ -216,14 +215,22 @@ class Aligner:
         @click.option("--dry", is_flag=True, help="if set, don't write changes to the registry")
         @click.option("--show", is_flag=True, help="if set, print a curation table")
         @click.option(
-            "--no-force", is_flag=True, help="if set, do not force re-downloading the data"
+            "--force/--no-force",
+            is_flag=True,
+            help="if set, do not force re-downloading the data",
+            default=True,
         )
-        def _main(dry: bool, show: bool, no_force: bool) -> None:
-            cls.align(dry=dry, show=show, force_download=not no_force)
+        @click.option(
+            "--force-process", is_flag=True, help="if set, do not force re-processing the data"
+        )
+        def _main(dry: bool, show: bool, force: bool, force_process: bool) -> None:
+            cls.align(
+                dry=dry, show=show, force_download=force, force_process=force_process or force
+            )
 
         _main(*args, **kwargs)
 
-    def get_curation_row(self, external_id: str, external_entry: dict[str, Any]) -> Sequence[str]:
+    def get_curation_row(self, external_id: str, external_entry: Record) -> Sequence[str]:
         """Get a sequence of items that will be ech row in the curation table.
 
         :param external_id: The external registry identifier
@@ -244,7 +251,7 @@ class Aligner:
         """
         rv = []
         for k in self.curation_header:
-            value = external_entry.get(k)
+            value = getattr(external_entry, k)
             if value is None:
                 rv.append("")
             elif isinstance(value, str):

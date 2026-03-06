@@ -16,8 +16,9 @@ from typing import Any, ClassVar, TypeAlias
 import requests
 from pydantic import BaseModel
 
+from bioregistry.alignment_model import Person, Record, dump_records, load_processed
 from bioregistry.constants import RAW_DIRECTORY, URI_FORMAT_KEY
-from bioregistry.external.alignment_utils import Aligner, load_processed
+from bioregistry.external.alignment_utils import Aligner
 from bioregistry.parse_version_iri import parse_obo_version_iri
 from bioregistry.utils import OLSBrokenError
 
@@ -53,10 +54,7 @@ EBI_OLS_SKIP = {
 EBI_OLS_BASE_URL = "https://www.ebi.ac.uk/ols4/api"
 
 
-def get_ols(
-    *,
-    force_download: bool = False,
-) -> OlsRv:
+def get_ols(*, force_download: bool = False) -> dict[str, Record]:
     """Get the EBI OLS registry."""
     return get_ols_base(
         force_download=force_download,
@@ -75,7 +73,7 @@ def get_ols_base(
     raw_path: Path,
     version_processing_config_path: Path | None = None,
     skip_uri_format: set[str] | None = None,
-) -> OlsRv:
+) -> dict[str, Record]:
     """Get an OLS registry."""
     if processed_path.exists() and not force_download:
         return load_processed(processed_path)
@@ -97,6 +95,7 @@ def get_ols_base(
         if version_processing_config_path is not None and version_processing_config_path.is_file()
         else {}
     )
+
     processed = {}
     for ontology in data["_embedded"]["ontologies"]:
         ols_id = ontology["ontologyId"]
@@ -115,8 +114,7 @@ def get_ols_base(
             continue
         processed[ols_id] = record
 
-    with processed_path.open("w") as file:
-        json.dump(processed, file, indent=2, sort_keys=True)
+    dump_records(processed, PROCESSED_PATH)
     return processed
 
 
@@ -144,15 +142,15 @@ class OLSConfig(BaseModel):
     version_iri_suffix: str | None = None
 
 
-def _get_email(ols_id: str, config: dict[str, Any]) -> str | None:
+def _get_contact(ols_id: str, config: dict[str, Any]) -> Person | None:
     mailing_list = config.get("mailingList")
     if not mailing_list:
         return None
-    _name, email = parseaddr(mailing_list)
+    name, email = parseaddr(mailing_list)
     if email.startswith("//"):
         logger.debug("[%s] invalid email address: %s", ols_id, mailing_list)
         return None
-    return email
+    return Person(email=email, name=name or None)
 
 
 def _get_license(ols_id: str, config: dict[str, Any]) -> str | None:
@@ -252,7 +250,7 @@ def _process(
     *,
     version_processing_config: OLSConfig | None = None,
     skip_uri_format: set[str] | None = None,
-) -> dict[str, str] | None:
+) -> Record:
     ols_id = ols_entry["ontologyId"]
     config = ols_entry["config"]
     version_iri = config["versionIri"]
@@ -275,7 +273,7 @@ def _process(
         "description": description,
         "homepage": _clean_url(config["homepage"]),
         "tracker": _clean_url(config["tracker"]),
-        "contact": _get_email(ols_id, config),
+        "contact": _get_contact(ols_id, config),
         "license": _get_license(ols_id, config),
         "keywords": keywords,
     }
@@ -296,15 +294,18 @@ def _process(
         rv["download_owl"] = download
     elif download.endswith(".rdf") or download.endswith(".ttl"):
         rv["download_rdf"] = download
+    elif download.endswith(".xml"):
+        logger.warning("[%s] XML download is unhandled %s", ols_id, download)
     else:
         logger.warning("[%s] unknown download type %s", ols_id, download)
     rv = {k: v.strip() if isinstance(v, str) else v for k, v in rv.items() if v}
-    return rv
+    return Record.model_validate(rv)
 
 
 def _clean_url(url: str | None) -> str | None:
     if url is None:
-        return url
+        return None
+    url = url.strip()
     if "CO_" in url and url.startswith("http://127.0.0.1:5900"):
         return "https://cropontology.org" + url[len("http://127.0.0.1:5900") :]
     if url.startswith("file:"):

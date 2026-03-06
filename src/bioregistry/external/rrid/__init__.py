@@ -9,8 +9,9 @@ https://docs.google.com/spreadsheets/d/1BEPZXZsENhK7592AR83xUwbPbR2J-GVQ/edit?us
 import csv
 from collections.abc import Mapping, Sequence
 from pathlib import Path
-from typing import ClassVar
+from typing import Any, ClassVar
 
+from bioregistry.alignment_model import Record
 from bioregistry.constants import RAW_DIRECTORY
 from bioregistry.external.alignment_utils import Aligner
 
@@ -18,7 +19,6 @@ __all__ = [
     "RRIDAligner",
     "get_rrid",
 ]
-
 
 HERE = Path(__file__).parent.resolve()
 PATH = RAW_DIRECTORY.joinpath("rrid.tsv")
@@ -45,7 +45,7 @@ UNCURATABLE = {
 }
 
 
-def get_rrid(*, force_download: bool = False) -> dict[str, dict[str, str]]:
+def get_rrid(*, force_download: bool = False) -> dict[str, Record]:
     """Get RRIDs."""
     rv = {}
     with PATH.open() as file:
@@ -54,38 +54,38 @@ def get_rrid(*, force_download: bool = False) -> dict[str, dict[str, str]]:
             rrid_pattern = record.get("RRID_Identifier_Pattern")
             if not rrid_pattern or not rrid_pattern.startswith("RRID:"):
                 continue
-
             prefix = rrid_pattern[len("RRID:") :].rstrip("_")
-            ddd = {
-                "name": record["Resource_Name"],
-                "homepage": record["Resource_URL"],
-                "scr": record["scr_id"][len("SCR_") :],
-                # "uri_format": f"https://scicrunch.org/resolver/RRID:{prefix}_$1",
-            }
-
-            pubmeds = [
-                x[len("PMID:") :]
-                for x in _split(record["Defining_Citation"])
-                if x.startswith("PMID:")
-            ]
-            if pubmeds:
-                ddd["pubmeds"] = pubmeds
-
-            keywords = sorted(set(_split(record["Keywords"])).difference(skip))
-            if keywords:
-                ddd["keywords"] = keywords
-
-            abbreviation = record["Abbreviation"]
-            if abbreviation and abbreviation != prefix:
-                ddd["abbreviation"] = abbreviation
-            twitter = record["Twitter_Handle"]
-            if twitter:
-                ddd["twitter"] = twitter.lstrip("@")
-
-            # could get license
-            rv[prefix] = ddd
-
+            rv[prefix] = _process_record(prefix, record)
     return rv
+
+
+def _process_record(prefix: str, record: dict[str, Any]) -> Record:
+    ddd = {
+        "name": record["Resource_Name"],
+        "homepage": record["Resource_URL"],
+        "scr": record["scr_id"][len("SCR_") :],
+        # "uri_format": f"https://scicrunch.org/resolver/RRID:{prefix}_$1",
+    }
+
+    pubmeds = [
+        x[len("PMID:") :] for x in _split(record["Defining_Citation"]) if x.startswith("PMID:")
+    ]
+    if pubmeds:
+        ddd["pubmeds"] = pubmeds
+
+    keywords = sorted(set(_split(record["Keywords"])).difference(skip))
+    if keywords:
+        ddd["keywords"] = keywords
+
+    abbreviation = record["Abbreviation"]
+    if abbreviation and abbreviation != prefix:
+        ddd["abbreviation"] = abbreviation
+    twitter = record["Twitter_Handle"]
+    if twitter:
+        ddd["twitter"] = twitter.lstrip("@")
+
+    # TODO could get license
+    return Record.model_validate(ddd)
 
 
 def _split(s: str) -> list[str]:

@@ -15,8 +15,8 @@ import requests
 from tqdm import tqdm
 from tqdm.contrib.concurrent import thread_map
 
+from bioregistry.alignment_model import Record, dump_records, load_processed
 from bioregistry.constants import EMAIL_RE, RAW_DIRECTORY
-from bioregistry.external.alignment_utils import load_processed
 from bioregistry.license_standardizer import standardize_license
 from bioregistry.utils import removeprefix
 
@@ -63,7 +63,7 @@ class OntoPortalClient:
         params.setdefault("apikey", self.api_key)
         return requests.get(url, params=params, timeout=30)
 
-    def download(self, force_download: bool = False) -> dict[str, dict[str, Any]]:
+    def download(self, force_download: bool = False) -> dict[str, Record]:
         """Get the full dump of the OntoPortal site's registry."""
         if self.processed_path.exists() and not force_download:
             return load_processed(self.processed_path)
@@ -86,8 +86,7 @@ class OntoPortalClient:
         )
         rv = {result["prefix"]: result for result in records}
 
-        with self.processed_path.open("w") as file:
-            json.dump(rv, file, indent=2, sort_keys=True, ensure_ascii=False)
+        dump_records(rv, self.processed_path)
         return rv
 
     def _preprocess(self, record: dict[str, Any]) -> dict[str, Any]:
@@ -155,7 +154,7 @@ class OntoPortalClient:
 
         return {k: v for k, v in record.items() if v}
 
-    def process(self, entry: dict[str, Any]) -> dict[str, Any]:
+    def process(self, entry: dict[str, Any]) -> Record:
         """Process a record from the OntoPortal site's API."""
         prefix = entry["acronym"]
         rv = {
@@ -170,7 +169,8 @@ class OntoPortalClient:
             "example_uri": entry.get("exampleIdentifier"),
             "license": entry.get("license"),
         }
-        return {k: v for k, v in rv.items() if v}
+        rv = {k: v for k, v in rv.items() if v}
+        return Record.model_validate(rv)
 
 
 bioportal_client = OntoPortalClient(
@@ -179,7 +179,7 @@ bioportal_client = OntoPortalClient(
 )
 
 
-def get_bioportal(force_download: bool = False) -> dict[str, dict[str, Any]]:
+def get_bioportal(force_download: bool = False) -> dict[str, Record]:
     """Get the BioPortal registry."""
     return bioportal_client.download(force_download=force_download)
 
@@ -190,7 +190,7 @@ ecoportal_client = OntoPortalClient(
 )
 
 
-def get_ecoportal(force_download: bool = False) -> dict[str, dict[str, Any]]:
+def get_ecoportal(force_download: bool = False) -> dict[str, Record]:
     """Get the EcoPortal registry."""
     return ecoportal_client.download(force_download=force_download)
 
@@ -201,7 +201,7 @@ agroportal_client = OntoPortalClient(
 )
 
 
-def get_agroportal(force_download: bool = False) -> dict[str, dict[str, Any]]:
+def get_agroportal(force_download: bool = False) -> dict[str, Record]:
     """Get the AgroPortal registry."""
     return agroportal_client.download(force_download=force_download)
 

@@ -1,15 +1,15 @@
 """Download the LOV registry."""
 
-import json
 import tempfile
 from collections import defaultdict
 from collections.abc import Iterable, Sequence
 from pathlib import Path
-from typing import Any, ClassVar, cast
+from typing import ClassVar, cast
 
 from pystow.utils import download, read_rdf
 
-from bioregistry.external.alignment_utils import Aligner, load_processed
+from bioregistry.alignment_model import Record, dump_records, load_processed
+from bioregistry.external.alignment_utils import Aligner
 
 __all__ = [
     "LOVAligner",
@@ -41,9 +41,7 @@ KEYWORD_SPARQL = """\
 columns = ["vocab", "name", "prefix", "uri_prefix", "description", "modified", "homepage"]
 
 
-def get_lov(
-    *, force_download: bool = False, force_refresh: bool = False
-) -> dict[str, dict[str, Any]]:
+def get_lov(*, force_download: bool = False, force_refresh: bool = False) -> dict[str, Record]:
     """Get the LOV data cloud registry."""
     if PROCESSED_PATH.exists() and not force_download and not force_refresh:
         return load_processed(PROCESSED_PATH)
@@ -70,9 +68,9 @@ def get_lov(
             del d["vocab"]
         else:
             d["homepage"] = d.pop("vocab")
-        records[cast(str, d["prefix"])] = d
+        records[d["prefix"]] = Record.model_validate(d)
 
-    PROCESSED_PATH.write_text(json.dumps(records, indent=2))
+    dump_records(records, PROCESSED_PATH)
     return records
 
 

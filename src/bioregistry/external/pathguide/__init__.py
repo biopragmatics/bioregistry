@@ -1,11 +1,12 @@
 """Download registry information from Pathguide."""
 
 from collections.abc import Sequence
-from typing import Any, ClassVar
+from typing import ClassVar
 
 import requests
 from bs4 import BeautifulSoup
 
+from bioregistry.alignment_model import Record
 from bioregistry.external.alignment_utils import Aligner
 
 __all__ = [
@@ -14,7 +15,7 @@ __all__ = [
 ]
 
 
-def get_pathguide(*, force_download: bool = False) -> dict[str, dict[str, Any]]:
+def get_pathguide(*, force_download: bool = False) -> dict[str, Record]:
     """Get the Pathguide metdata."""
     res = requests.get("http://pathguide.org/", timeout=15)
     soup = BeautifulSoup(res.text, "html.parser")
@@ -31,14 +32,17 @@ def get_pathguide(*, force_download: bool = False) -> dict[str, dict[str, Any]]:
         standards = sorted(
             {td.text for td in standards_td.find_all("td") if td.attrs.get("class") == ["Standard"]}
         )
-        rv[pathguide_id] = {
+        dd = {
             "prefix": pathguide_id,
             "abbreviation": abbreviation,
             "name": name,
             "homepage": homepage,
         }
         if standards:
-            rv[pathguide_id]["keywords"] = standards
+            dd["keywords"] = standards
+
+        rv[pathguide_id] = Record.model_validate(dd)
+
     return rv
 
 

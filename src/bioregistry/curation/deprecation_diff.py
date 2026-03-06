@@ -4,12 +4,13 @@ import click
 import pandas as pd
 
 import bioregistry
+from bioregistry.alignment_model import Status
 
 
 @click.command()
 def main() -> None:
     """Show discrepancies between Bioregistry and OBO Foundry deprecation status."""
-    rows = []
+    rows: list[tuple[str, bool | None, bool | None, str]] = []
     for prefix, resource in bioregistry.read_registry().items():
         if resource.obofoundry is None and resource.miriam:
             continue
@@ -18,7 +19,7 @@ def main() -> None:
             continue
 
         obo_deprecation = (
-            None if resource.obofoundry is None else resource.obofoundry.get("deprecated", False)
+            None if resource.obofoundry is None else resource.obofoundry.status != Status.active
         )
         miriam_deprecation = (resource.miriam or {}).get("deprecated")
 
@@ -30,7 +31,7 @@ def main() -> None:
                 rows.append((prefix, resource.deprecated, obo_deprecation, "-"))
         elif miriam_deprecation is not None:
             if resource.deprecated != miriam_deprecation:
-                rows.append((prefix, resource.deprecated, "-", miriam_deprecation))
+                rows.append((prefix, resource.deprecated, None, miriam_deprecation))
 
     df = pd.DataFrame(rows, columns=["prefix", "bioregistry", "obo", "miriam"])
     click.echo(df.to_markdown())
