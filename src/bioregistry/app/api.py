@@ -61,16 +61,16 @@ class YAMLResponse(Response):
     def render(self, content: BaseModel | Mapping[str, BaseModel]) -> bytes:
         """Render content as YAML."""
         if isinstance(content, BaseModel):
-            content = content.model_dump(
+            data = content.model_dump(
                 exclude_none=True,
                 exclude_unset=True,
             )
         elif isinstance(content, dict):
-            content = sanitize_mapping(content)
+            data = sanitize_mapping(content)
         else:
             raise TypeError
         return yaml.safe_dump(
-            content,
+            data,
             allow_unicode=True,
             indent=2,
         ).encode("utf-8")
