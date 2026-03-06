@@ -74,6 +74,7 @@ def get_resource_from_linkml(url: str) -> bioregistry.Resource:
         uri_format=f"{uri_prefix}$1",
         example=first_class,
         version=data.pop("version", None),
+        homepage=data.pop("id", None),
     )
     return rv
 
