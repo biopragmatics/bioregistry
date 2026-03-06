@@ -173,6 +173,7 @@ URI_FORMAT_PATHS = [
     ("prefixcommons", URI_FORMAT_KEY),
     ("rrid", URI_FORMAT_KEY),
     ("tib", URI_FORMAT_KEY),
+    ("bartoc", URI_FORMAT_KEY),
 ]
 
 
