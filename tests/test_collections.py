@@ -20,7 +20,7 @@ class TestCollections(unittest.TestCase):
         """Set up the test case."""
         self.manager = manager
 
-    def test_minimum_metadata(self):
+    def test_minimum_metadata(self) -> None:
         """Check collections have minimal metadata and correct prefixes."""
         for key, collection_pydantic in sorted(self.manager.collections.items()):
             self.assertIsInstance(collection_pydantic, Collection)
@@ -58,7 +58,7 @@ class TestCollections(unittest.TestCase):
                     sorted(collection_pydantic.resources), collection_pydantic.resources
                 )
 
-    def test_get_collection(self):
+    def test_get_collection(self) -> None:
         """Test getting a collection."""
         self.assertIsNone(self.manager.collections.get("nope"))
 
@@ -77,7 +77,7 @@ class TestCollections(unittest.TestCase):
         self.assertIn("@context", context_jsonld)
         self.assertEqual(prefix_map, context_jsonld["@context"])
 
-    def test_get_rdf(self):
+    def test_get_rdf(self) -> None:
         """Test conversion to RDF."""
         collection = manager.collections["0000001"]
         s = collection_to_rdf_str(collection, manager=self.manager)

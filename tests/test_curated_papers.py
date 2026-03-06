@@ -12,11 +12,11 @@ from bioregistry.curation.literature import COLUMNS, CurationRelevance
 class TestTSV(unittest.TestCase):
     """Tests for curated_papers tsv file."""
 
-    def setUp(self):
+    def setUp(self) -> None:
         """Set up the test case."""
         self.relevancy_types = {r.name for r in CurationRelevance}
 
-    def validate_row(self, row, full: bool = False):
+    def validate_row(self, row, full: bool = False) -> None:
         """Validate a single row from the TSV file."""
         for field in COLUMNS:
             self.assertIn(field, row)
@@ -65,7 +65,7 @@ class TestTSV(unittest.TestCase):
         except ValueError:
             self.fail("date_curated should follow format YYYY-MM-DD")
 
-    def test_tsv_file(self):
+    def test_tsv_file(self) -> None:
         """Tests all rows in TSV file are valid."""
         with CURATED_PAPERS_PATH.open() as tsv_file:
             pubmeds = []

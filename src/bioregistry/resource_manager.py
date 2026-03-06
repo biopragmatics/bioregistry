@@ -145,7 +145,7 @@ class Manager:
         contexts: None | str | Path | Mapping[str, Context] = None,
         mismatches: Mapping[str, Mapping[str, set[str]]] | None = None,
         base_url: str | None = None,
-    ):
+    ) -> None:
         """Instantiate a registry manager.
 
         :param registry: A custom registry. If none given, defaults to the Bioregistry.

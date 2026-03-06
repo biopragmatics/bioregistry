@@ -11,7 +11,7 @@ from bioregistry.resolve import get_external
 class TestResolve(unittest.TestCase):
     """Tests for getting Bioregistry content."""
 
-    def test_resolve(self):
+    def test_resolve(self) -> None:
         """Test prefixes can be resolved properly."""
         for expected, query in [
             ("ncbitaxon", "ncbitaxon"),
@@ -31,7 +31,7 @@ class TestResolve(unittest.TestCase):
         with self.assertRaises(ValueError):
             bioregistry.normalize_prefix("nope", strict=True)
 
-    def test_get(self):
+    def test_get(self) -> None:
         """Test getting content from the bioregistry."""
         ncbitaxon_entry = bioregistry.get_resource("ncbitaxon")
         self.assertIn("NCBI_Taxon_ID", ncbitaxon_entry.synonyms)
@@ -40,7 +40,7 @@ class TestResolve(unittest.TestCase):
         self.assertIsNotNone(get_external("ncbitaxon", "ols"))
         self.assertIsNotNone(get_external("ncbitaxon", "wikidata"))
 
-    def test_validate_true(self):
+    def test_validate_true(self) -> None:
         """Test that validation returns true."""
         tests = [
             ("ec", "1"),
@@ -100,7 +100,7 @@ class TestResolve(unittest.TestCase):
                     msg=f"CURIE {prefix}:{identifier} does not loosely match {bioregistry.get_pattern(prefix)}",
                 )
 
-    def test_validate_false(self):
+    def test_validate_false(self) -> None:
         """Test that validation returns false."""
         for prefix, identifier in [
             ("chebi", "A1234"),
@@ -109,7 +109,7 @@ class TestResolve(unittest.TestCase):
             with self.subTest(prefix=prefix, identifier=identifier):
                 self.assertFalse(bioregistry.is_standardizable_identifier(prefix, identifier))
 
-    def test_lui(self):
+    def test_lui(self) -> None:
         """Test the LUI makes sense (spoilers, they don't).
 
         Discussion is ongoing at:
@@ -132,7 +132,7 @@ class TestResolve(unittest.TestCase):
                     msg=f"{prefix} pattern: {re_pattern}",
                 )
 
-    def test_curie_pattern(self):
+    def test_curie_pattern(self) -> None:
         """Test CURIE pattern.
 
         .. seealso::
@@ -148,7 +148,7 @@ class TestResolve(unittest.TestCase):
         self.assertRegex("panther.pthcmp:P00266", pattern)
         self.assertNotRegex("pantherXpthcmp:P00266", pattern)
 
-    def test_depends_on(self):
+    def test_depends_on(self) -> None:
         """Test getting dependencies."""
         test_prefix = "foodon"
         test_target = "bfo"

@@ -94,7 +94,7 @@ SELECT DISTINCT ?s ?o WHERE {{
 class TestSPARQL(unittest.TestCase):
     """Tests for federated SPARQL queries to the Bioregistry mapping service."""
 
-    def assert_endpoint(self, endpoint: str, query: str, *, accept: str):
+    def assert_endpoint(self, endpoint: str, query: str, *, accept: str) -> None:
         """Assert the endpoint returns favorable results."""
         records = get(endpoint, query, accept=accept)
         self.assertIn(
@@ -105,7 +105,7 @@ class TestSPARQL(unittest.TestCase):
     @unittest.skipUnless(
         sparql_service_available(LOCAL_BLAZEGRAPH), reason="No local BlazeGraph is running"
     )
-    def test_federate_blazegraph(self):
+    def test_federate_blazegraph(self) -> None:
         """Test federating on a Blazegraph triplestore.
 
         To run blazegraph locally with ``docker compose up`` or:
@@ -122,7 +122,7 @@ class TestSPARQL(unittest.TestCase):
     @unittest.skipUnless(
         sparql_service_available(LOCAL_VIRTUOSO), reason="No local Virtuoso is running"
     )
-    def test_federate_virtuoso(self):
+    def test_federate_virtuoso(self) -> None:
         """Test federating on a OpenLink Virtuoso triplestore.
 
         To run Virtuoso locally:

@@ -10,7 +10,7 @@ import bioregistry
 class TestAPI(unittest.TestCase):
     """Tests for top-level API functions."""
 
-    def test_standardize_identifier(self):
+    def test_standardize_identifier(self) -> None:
         """Test standardizing identifiers."""
         config = [
             ("vario", "0376", "0376"),

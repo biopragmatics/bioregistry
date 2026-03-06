@@ -22,7 +22,7 @@ class TestPaperRanking(unittest.TestCase):
 
     @unittest.mock.patch("bioregistry.analysis.paper_ranking._get_articles_dict")
     @unittest.mock.patch("bioregistry.analysis.paper_ranking._search")
-    def test_pipeline(self, mock_search, mock_get_articles_dict):
+    def test_pipeline(self, mock_search, mock_get_articles_dict) -> None:
         """Smoke test to ensure pipeline runs successfully without error."""
         import pubmed_downloader
         from pubmed_downloader import Article

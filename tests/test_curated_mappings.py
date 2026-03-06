@@ -11,11 +11,11 @@ from bioregistry.schema_utils import SemanticMapping, read_mappings, read_metare
 class TestTSV(unittest.TestCase):
     """Tests for curated_mappings tsv file."""
 
-    def setUp(self):
+    def setUp(self) -> None:
         """Set up the test case."""
         self.metaregistry = read_metaregistry()
 
-    def validate_row(self, row):
+    def validate_row(self, row) -> None:
         """Validate a single row from the TSV file."""
         # Constraints on what prefix has to be used for some columns
         self.assertEqual("orcid", row["creator_id"].split(":")[0])
@@ -34,7 +34,7 @@ class TestTSV(unittest.TestCase):
             self.assertFalse(row["comment"].startswith('"'))
             self.assertFalse(row["comment"].endswith('"'))
 
-    def test_tsv_file(self):
+    def test_tsv_file(self) -> None:
         """Tests all rows in TSV file are valid."""
         with CURATED_MAPPINGS_PATH.open() as tsv_file:
             mapping_keys = []
@@ -91,11 +91,11 @@ class TestTSV(unittest.TestCase):
 class TestSemanticMappings(unittest.TestCase):
     """Tests to make sure semantic mappings are read correctly from TSV."""
 
-    def setUp(self):
+    def setUp(self) -> None:
         """Set up the test case."""
         self.mappings = read_mappings()
 
-    def test_semantic_mappings(self):
+    def test_semantic_mappings(self) -> None:
         """Test semantic mapping validity."""
         for mapping in self.mappings:
             self.assertIsInstance(mapping, SemanticMapping)

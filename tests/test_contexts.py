@@ -22,7 +22,7 @@ class TestContexts(unittest.TestCase):
         self.valid_metaprefixes = set(bioregistry.read_metaregistry()) | {"default"}
         self.valid_prefixes = set(bioregistry.read_registry())
 
-    def test_linted(self):
+    def test_linted(self) -> None:
         """Test the context file is linted."""
         text = CONTEXTS_PATH.read_text(encoding="utf-8")
         linted_text = json.dumps(
@@ -33,7 +33,7 @@ class TestContexts(unittest.TestCase):
         )
         self.assertEqual(linted_text, text)
 
-    def test_obo_context(self):
+    def test_obo_context(self) -> None:
         """Test the OBO context map."""
         p = "http://purl.obolibrary.org/obo"
         prefix_map, _pattern_map = manager.get_context_artifacts("obo", include_synonyms=False)
@@ -56,7 +56,7 @@ class TestContexts(unittest.TestCase):
             msg="When overriding, this means that bioregistry prefix isn't properly added to the synonyms list",
         )
 
-    def test_obo_converter(self):
+    def test_obo_converter(self) -> None:
         """Test getting a converter from a context."""
         converter = manager.get_converter_from_context("obo")
         self.assertEqual("ICD10WHO", converter.standardize_prefix("icd10"))
@@ -67,7 +67,7 @@ class TestContexts(unittest.TestCase):
         self.assertEqual("GO", converter.standardize_prefix("go"))
         self.assertEqual("oboInOwl", converter.standardize_prefix("oboinowl"))
 
-    def test_data(self):
+    def test_data(self) -> None:
         """Test the data integrity."""
         for key, context in self.contexts.items():
             self.assertNotIn(
