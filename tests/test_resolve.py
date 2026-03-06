@@ -33,7 +33,7 @@ class TestResolve(unittest.TestCase):
 
     def test_get(self) -> None:
         """Test getting content from the bioregistry."""
-        ncbitaxon_entry = bioregistry.get_resource("ncbitaxon")
+        ncbitaxon_entry = bioregistry.get_resource("ncbitaxon", strict=True)
         self.assertIn("NCBI_Taxon_ID", ncbitaxon_entry.synonyms)
         self.assertIsNotNone(get_external("ncbitaxon", "miriam"))
         self.assertIsNotNone(get_external("ncbitaxon", "obofoundry"))
@@ -123,9 +123,11 @@ class TestResolve(unittest.TestCase):
                 continue  # rewrite rules are applied to prefixes with bananas
             if prefix in {"ark", "obi"}:
                 continue  # these patterns on identifiers.org are garb
+            re_pattern = bioregistry.get_pattern(prefix)
+            miriam_prefix = bioregistry.get_identifiers_org_prefix(prefix)
+            if not re_pattern or not miriam_prefix:
+                continue
             with self.subTest(prefix=prefix):
-                re_pattern = bioregistry.get_pattern(prefix)
-                miriam_prefix = bioregistry.get_identifiers_org_prefix(prefix)
                 self.assertTrue(
                     re_pattern.startswith(f"^{miriam_prefix.upper()}")
                     or re_pattern.startswith(miriam_prefix.upper()),

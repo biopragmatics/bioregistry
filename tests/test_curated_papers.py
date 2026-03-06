@@ -3,6 +3,7 @@
 import unittest
 from collections import Counter
 from datetime import datetime
+from typing import Any
 
 import bioregistry
 from bioregistry.constants import CURATED_PAPERS_PATH, ORCID_PATTERN
@@ -16,7 +17,7 @@ class TestTSV(unittest.TestCase):
         """Set up the test case."""
         self.relevancy_types = {r.name for r in CurationRelevance}
 
-    def validate_row(self, row, full: bool = False) -> None:
+    def validate_row(self, row: dict[str, Any], full: bool = False) -> None:
         """Validate a single row from the TSV file."""
         for field in COLUMNS:
             self.assertIn(field, row)

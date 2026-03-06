@@ -1,6 +1,8 @@
 """Test for validation utilities."""
 
 import unittest
+from collections.abc import Mapping
+from typing import ClassVar
 
 import bioregistry
 from bioregistry.validate.utils import Message, validate_jsonld
@@ -15,6 +17,8 @@ TEST_CONTEXT = {
 
 class TestValidation(unittest.TestCase):
     """Test case for validation utilities."""
+
+    rpm: ClassVar[Mapping[str, str]]
 
     @classmethod
     def setUpClass(cls) -> None:

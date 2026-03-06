@@ -76,7 +76,7 @@ class TestUI(unittest.TestCase):
                     msg=f"Failed on {identifier} to accept {accept} ({format})",
                 )
                 self.assertEqual({accept}, {t for t, _ in res.request.accept_mimetypes})
-                collection = Collection(**loads(res.text))
+                collection = Collection.model_validate(loads(res.text))
                 self.assertEqual(self.manager.collections[identifier], collection)
 
     def test_ui_collection_rdf(self) -> None:
@@ -108,7 +108,8 @@ class TestUI(unittest.TestCase):
                 )
                 self.assertEqual(1, len(results))
                 self.assertEqual(
-                    f"https://bioregistry.io/collection/{identifier}", str(results[0][0])
+                    f"https://bioregistry.io/collection/{identifier}",
+                    str(results[0][0]),  # type:ignore[index]
                 )
 
     def test_ui_registry_rdf(self) -> None:
@@ -140,7 +141,8 @@ class TestUI(unittest.TestCase):
                 )
                 self.assertEqual(1, len(results))
                 self.assertEqual(
-                    f"https://bioregistry.io/metaregistry/{metaprefix}", str(results[0][0])
+                    f"https://bioregistry.io/metaregistry/{metaprefix}",
+                    str(results[0][0]),  # type:ignore[index]
                 )
 
     def test_missing_prefix(self) -> None:

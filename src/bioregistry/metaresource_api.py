@@ -2,6 +2,8 @@
 
 from __future__ import annotations
 
+from typing import Literal, overload
+
 from .resource_manager import manager
 from .schema import Registry
 
@@ -17,9 +19,21 @@ __all__ = [
 ]
 
 
-def get_registry(metaprefix: str) -> Registry | None:
+@overload
+def get_registry(metaprefix: str, *, strict: Literal[True]) -> Registry: ...
+
+
+@overload
+def get_registry(metaprefix: str, *, strict: Literal[False]) -> Registry | None: ...
+
+
+@overload
+def get_registry(metaprefix: str) -> Registry | None: ...
+
+
+def get_registry(metaprefix: str, *, strict: bool = False) -> Registry | None:
     """Get the metaregistry entry for the given prefix."""
-    return manager.get_registry(metaprefix)
+    return manager.get_registry(metaprefix, strict=strict)
 
 
 def get_registry_name(metaprefix: str) -> str | None:

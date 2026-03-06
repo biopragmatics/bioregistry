@@ -98,7 +98,7 @@ class TestMetaregistry(unittest.TestCase):
         self.assertIsNone(bioregistry.get_registry_description("nope"))
 
         metaprefix = "uniprot"
-        registry = bioregistry.get_registry(metaprefix)
+        registry = bioregistry.get_registry(metaprefix, strict=True)
         self.assertIsInstance(registry, Registry)
         self.assertEqual(metaprefix, registry.prefix)
 

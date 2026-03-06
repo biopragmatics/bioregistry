@@ -64,6 +64,8 @@ class TestCollections(unittest.TestCase):
 
         identifier = "0000001"
         collection = self.manager.collections.get(identifier)
+        if collection is None:
+            raise self.fail(msg="No collection found")
         self.assertIsInstance(collection, Collection)
         self.assertEqual(identifier, collection.identifier)
 

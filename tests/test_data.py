@@ -128,7 +128,8 @@ class TestRegistry(unittest.TestCase):
             with self.subTest(prefix=prefix):
                 name = entry.get_name()
                 name_to_prefix[name].add(prefix)
-                self.assertIsNotNone(name, msg=f"{prefix} is missing a name")
+                if name is None:
+                    raise self.fail(f"{prefix} is missing a name")
                 if entry.name:
                     self.assertEqual(
                         entry.name.strip(),
@@ -522,20 +523,20 @@ class TestRegistry(unittest.TestCase):
         self.assertIsNone(bioregistry.get_obofoundry_uri_prefix("nope"))
         self.assertIsNone(bioregistry.get_obo_download("nope"))
         self.assertIsNone(bioregistry.get_owl_download("nope"))
-        self.assertIsNone(bioregistry.get_ols_iri("nope", ...))
-        self.assertIsNone(bioregistry.get_obofoundry_iri("nope", ...))
+        self.assertIsNone(bioregistry.get_ols_iri("nope", "nope"))
+        self.assertIsNone(bioregistry.get_obofoundry_iri("nope", "nope"))
         self.assertFalse(bioregistry.is_deprecated("nope"))
         self.assertIsNone(bioregistry.get_provides_for("nope"))
         self.assertIsNone(bioregistry.get_version("gmelin"))
-        self.assertFalse(bioregistry.is_standardizable_identifier("nope", ...))
-        self.assertIsNone(bioregistry.get_default_iri("nope", ...))
-        self.assertIsNone(bioregistry.get_identifiers_org_iri("nope", ...))
-        self.assertIsNone(bioregistry.get_n2t_iri("nope", ...))
-        self.assertIsNone(bioregistry.get_bioportal_iri("nope", ...))
-        self.assertIsNone(bioregistry.get_bioportal_iri("gmelin", ...))
-        self.assertIsNone(bioregistry.get_identifiers_org_iri("nope", ...))
-        self.assertIsNone(bioregistry.get_identifiers_org_iri("gmelin", ...))
-        self.assertIsNone(bioregistry.get_iri("gmelin", ...))
+        self.assertFalse(bioregistry.is_standardizable_identifier("nope", "nope"))
+        self.assertIsNone(bioregistry.get_default_iri("nope", "nope"))
+        self.assertIsNone(bioregistry.get_identifiers_org_iri("nope", "nope"))
+        self.assertIsNone(bioregistry.get_n2t_iri("nope", "nope"))
+        self.assertIsNone(bioregistry.get_bioportal_iri("nope", "nope"))
+        self.assertIsNone(bioregistry.get_bioportal_iri("gmelin", "80"))
+        self.assertIsNone(bioregistry.get_identifiers_org_iri("nope", "nope"))
+        self.assertIsNone(bioregistry.get_identifiers_org_iri("gmelin", "80"))
+        self.assertIsNone(bioregistry.get_iri("gmelin", "80"))
 
     def test_get(self) -> None:
         """Test getting resources."""
@@ -1204,7 +1205,8 @@ class TestRegistry(unittest.TestCase):
                 # If any organizations are partnered, ensure fully
                 # filled out contact.
                 if any(owner.partnered for owner in resource.owners):
-                    self.assertIsNotNone(resource.contact)
+                    if resource.contact is None:
+                        raise self.fail("contact should not be None")
                     self.assertIsNotNone(resource.contact.github)
                     self.assertIsNotNone(resource.contact.email)
                     self.assertIsNotNone(resource.contact.orcid)

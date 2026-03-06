@@ -247,8 +247,19 @@ class Manager:
         """Write the registry."""
         write_registry(self.registry)
 
-    def get_registry(self, metaprefix: str) -> Registry | None:
+    @overload
+    def get_registry(self, metaprefix: str, *, strict: Literal[False]) -> Registry | None: ...
+
+    @overload
+    def get_registry(self, metaprefix: str, *, strict: Literal[True]) -> Registry: ...
+
+    @overload
+    def get_registry(self, metaprefix: str) -> Registry | None: ...
+
+    def get_registry(self, metaprefix: str, *, strict: bool = False) -> Registry | None:
         """Get the metaregistry entry for the given prefix."""
+        if strict:
+            return self.metaregistry[metaprefix]
         return self.metaregistry.get(metaprefix)
 
     def write_collections(self) -> None:

@@ -2,7 +2,7 @@
 
 import csv
 import unittest
-from xml import etree
+from xml.etree import ElementTree
 
 import requests
 
@@ -15,7 +15,7 @@ LOCAL_VIRTUOSO = "http://localhost:8890/sparql"
 
 
 def _handle_res_xml(res: requests.Response) -> set[tuple[str, str]]:
-    root = etree.ElementTree.fromstring(res.text)
+    root = ElementTree.fromstring(res.text)
     results = root.find("{http://www.w3.org/2005/sparql-results#}results")
     rv = set()
     for result in results:
