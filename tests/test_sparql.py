@@ -46,7 +46,7 @@ HANDLERS = {
 }
 
 
-def get(endpoint: str, sparql: str, accept) -> set[tuple[str, str]]:
+def get(endpoint: str, sparql: str, accept: str) -> set[tuple[str, str]]:
     """Get a response from a given SPARQL query."""
     res = requests.get(
         endpoint,

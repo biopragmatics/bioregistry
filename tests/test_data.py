@@ -112,7 +112,7 @@ class TestRegistry(unittest.TestCase):
                 self.fail(f"{prefix} had extra keys: {extra}")
 
     @staticmethod
-    def _construct_substrings(x) -> tuple[str, str, str, str]:
+    def _construct_substrings(x: str) -> tuple[str, str, str, str]:
         return (
             f"({x.casefold()})",
             f"{x.casefold()}: ",
@@ -1076,7 +1076,9 @@ class TestRegistry(unittest.TestCase):
                         self.assert_publication_identifiers(publication)
 
                     # Test no duplicates
-                    index = defaultdict(lambda: defaultdict(list))
+                    index: defaultdict[str, defaultdict[list[Publication]]] = defaultdict(
+                        lambda: defaultdict(list)
+                    )
                     for publication in resource.publications:
                         for key, value in publication.model_dump().items():
                             if key in {"title", "year"} or value is None:
@@ -1134,6 +1136,7 @@ class TestRegistry(unittest.TestCase):
         #     continue
         # if resource.get_mappings():
         #     continue  # TODO remove this after first found of curation is done
+        return False
 
     def test_keywords(self) -> None:
         """Assert that all entries have keywords."""
