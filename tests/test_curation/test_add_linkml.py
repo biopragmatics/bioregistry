@@ -20,6 +20,7 @@ class TestImportLinkML(unittest.TestCase):
             version="1.0.0",
             uri_format="https://w3id.org/nfdi4cat/catcore/$1",
             example="CatCoreEntity",
+            homepage="https://w3id.org/nfdi4cat/catcore",
             # TODO add depends_on from the `prefixes` list?
         )
         self.assertEqual(
