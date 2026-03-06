@@ -16,19 +16,27 @@ LOCAL_VIRTUOSO = "http://localhost:8890/sparql"
 
 def _handle_res_xml(res: requests.Response) -> set[tuple[str, str]]:
     root = ElementTree.fromstring(res.text)
+    results: ElementTree.Element[str] | None = root.find(
+        "{http://www.w3.org/2005/sparql-results#}results"
+    )
+    if results is None:
+        return set()
     rv = set()
-    if results := root.find("{http://www.w3.org/2005/sparql-results#}results"):
-        for result in results:
-            parsed_result = {
-                name: uri.text
-                for binding in result
-                if binding.attrib
-                and (name := binding.attrib["name"])
-                and (uri := binding.find("{http://www.w3.org/2005/sparql-results#}uri"))
-                and uri.text
-            }
-            rv.add((parsed_result["s"], parsed_result["o"]))
+    for result in results:
+        parsed_result = _parse_result(result)
+        rv.add((parsed_result["s"], parsed_result["o"]))
     return rv
+
+
+def _parse_result(result: ElementTree.Element[str]) -> dict[str, str]:
+    parsed_result = {}
+    for binding in result:
+        name = binding.attrib["name"]
+        url = binding.find("{http://www.w3.org/2005/sparql-results#}uri")
+        if url is None or url.text is None:
+            continue
+        parsed_result[name] = url.text
+    return parsed_result
 
 
 def _handle_res_json(res: requests.Response) -> set[tuple[str, str]]:
