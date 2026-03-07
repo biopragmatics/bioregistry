@@ -4,12 +4,15 @@ import csv
 import json
 from collections.abc import Callable, Iterable, Mapping, Sequence
 from pathlib import Path
-from typing import Any, ClassVar, TypeAlias
+from typing import Any, ClassVar, ParamSpec, TypeAlias
 
 import click
 from curies.w3c import NCNAME_RE
+from pystow.utils import download
 from tabulate import tabulate
 
+from ..alignment_model import Record, dump_records
+from ..alignment_model import load_processed as load_records
 from ..constants import METADATA_CURATION_DIRECTORY
 from ..resource_manager import Manager
 from ..schema import Resource
@@ -19,6 +22,9 @@ from ..utils import norm
 __all__ = [
     "Aligner",
     "Getter",
+    "adapter",
+    "build_getter",
+    "build_no_raw_getter",
     "load_processed",
 ]
 
@@ -38,7 +44,7 @@ class Aligner:
 
     #: The function that gets the external registry as a dictionary from the string identifier to
     #: the entries (could be anything, but a dictionary is probably best)
-    getter: ClassVar[Callable[..., Mapping[str, Any]]]
+    getter: ClassVar[Getter]
 
     #: Keyword arguments to pass to the getter function on call
     getter_kwargs: ClassVar[Mapping[str, Any] | None] = None
@@ -304,3 +310,71 @@ def load_processed(path: Path) -> dict[str, dict[str, Any]]:
     """Load a processed."""
     with path.open() as file:
         return json.load(file)  # type:ignore
+
+
+P = ParamSpec("P")
+
+
+def adapter(f: Callable[P, dict[str, Record]]) -> Getter:
+    """Adapt a new-style getter."""
+
+    def _getter(*args: P.args, **kwargs: P.kwargs) -> GetterRt:
+        r = f(*args, **kwargs)
+        return {
+            prefix: model.model_dump(exclude_unset=True, exclude_none=True, exclude_defaults=True)
+            for prefix, model in r.items()
+        }
+
+    _getter.__new_style_bioregistry = True  # type:ignore[attr-defined]
+    return _getter
+
+
+def cleanup_json(path: Path) -> None:
+    """Clean up a processed JSON file."""
+    with path.open() as file:
+        data = json.load(file)
+    path.write_text(json.dumps(data, indent=2, ensure_ascii=False) + "\n")
+
+
+def build_getter(
+    *,
+    processed_path: Path,
+    raw_path: Path,
+    url: str,
+    func: Callable[[Path], dict[str, Record]],
+    cleanup: Callable[[Path], None] | None = None,
+) -> Getter:
+    """Construct a getter function."""
+
+    @adapter
+    def getter(*, force_download: bool = False, force_process: bool = False) -> dict[str, Record]:
+        """Get the registry."""
+        if processed_path.exists() and not force_download and not force_process:
+            return load_records(processed_path)
+        download(url=url, path=raw_path, force=force_download)
+        if cleanup is not None:
+            cleanup(raw_path)
+        rv = func(raw_path)
+        dump_records(rv, processed_path)
+        return rv
+
+    return getter
+
+
+def build_no_raw_getter(
+    *,
+    processed_path: Path,
+    func: Callable[[], dict[str, Record]],
+) -> Getter:
+    """Construct a getter function."""
+
+    @adapter
+    def getter(*, force_download: bool = False, force_process: bool = False) -> dict[str, Record]:
+        """Get the registry."""
+        if processed_path.exists() and not force_download and not force_process:
+            return load_records(processed_path)
+        rv = func()
+        dump_records(rv, processed_path)
+        return rv
+
+    return getter
