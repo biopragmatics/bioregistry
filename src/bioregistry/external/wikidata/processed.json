@@ -112,6 +112,20 @@
     "prefix": "P10115",
     "uri_format": "https://sirs.kemkes.go.id/fo/home/profile_rs/$1"
   },
+  "P10133": {
+    "description": "identifier for a member of the Russian Academy of Sciences",
+    "example": [
+      "1147",
+      "19",
+      "2583",
+      "51690"
+    ],
+    "homepage": "http://www.ras.ru",
+    "name": "Russian Academy of Sciences person ID",
+    "pattern": "^[1-9]\\d+$",
+    "prefix": "P10133",
+    "uri_format": "https://web.archive.org/web/https://www.ras.ru/win/db/show_per.asp?P=.id-$1.ln-ru"
+  },
   "P10168": {
     "description": "numerical identifier for a botanical collector in the Z\u00fcrich Herbaria",
     "example": [
@@ -203,7 +217,7 @@
     "homepage": "https://www.leopoldina.org/mitglieder/mitglieder-seit-1652/",
     "name": "Leopoldina member ID (new)",
     "prefix": "P10299",
-    "uri_format": "https://www.leopoldina.org/mitgliederverzeichnis/mitglieder/member/Member/show/$1/"
+    "uri_format": "https://www.leopoldina.org/mitglieder/mitgliederverzeichnis/detail/$1/"
   },
   "P10331": {
     "description": "identifier of a species or subspecies in the Washington Native Plant Society Plant Directory",
@@ -515,6 +529,7 @@
     "uri_format": "https://umanity.jp/racedata/db/horse_top.php?code=$1"
   },
   "P10785": {
+    "database": "Q111961534",
     "description": "identifier for a race horse in the Japan Bloodstock Information System (JBIS)",
     "example": [
       "0000293624",
@@ -572,7 +587,7 @@
       "3",
       "313"
     ],
-    "homepage": "http://woodyplants.cals.cornell.edu/home",
+    "homepage": "https://woodyplants.cals.cornell.edu/home",
     "name": "Woody Plants Database ID",
     "pattern": "^[1-9]\\d*$",
     "prefix": "P10793",
@@ -1309,6 +1324,19 @@
     "prefix": "P11623",
     "uri_format": "https://www.cancer.gov/publications/dictionaries/cancer-drug/def/$1"
   },
+  "P11624": {
+    "description": "identifier of the data-sheet of members of the Hungarian Art Academy",
+    "example": [
+      "MMA23044",
+      "MMA33974",
+      "MMA7096"
+    ],
+    "homepage": "https://mmakademia.hu/akademikusok",
+    "name": "HAA member ID (former scheme)",
+    "pattern": "^MMA\\d+$",
+    "prefix": "P11624",
+    "uri_format": "https://mmakademia.hu/alkoto/-/record/$1"
+  },
   "P11650": {
     "description": "ID for a taxon in the Moscow Digital Herbarium",
     "example": [
@@ -1349,6 +1377,7 @@
     "uri_format": "https://cctr1.umkc.edu/find/$db=eVK2&ms=$1"
   },
   "P11691": {
+    "database": "Q60390398",
     "description": "numerical identifier for an entry on the Feminae website",
     "example": [
       "28949",
@@ -1437,6 +1466,20 @@
     "pattern": "^[a-z\\_\\-]+$",
     "prefix": "P11829",
     "uri_format": "https://www.chicagobotanic.org/plantcollections/plantfinder/$1"
+  },
+  "P11860": {
+    "database": "Q4037789",
+    "description": "identifier for separate publication at the eLibrary.Ru",
+    "example": [
+      "22250595",
+      "9289428",
+      "9291364"
+    ],
+    "homepage": "https://www.elibrary.ru",
+    "name": "elibrary.ru article ID",
+    "pattern": "^[1-9]\\d+$",
+    "prefix": "P11860",
+    "uri_format": "https://www.elibrary.ru/item.asp?id=$1"
   },
   "P11901": {
     "description": "identifier for an entry in the NCI Dictionary of Cancer Terms",
@@ -1821,6 +1864,7 @@
     "uri_format": "https://gobotany.nativeplanttrust.org/$1/"
   },
   "P12183": {
+    "database": "Q122950481",
     "description": "identifier for species and subspecies of the flora and fauna of Japan in the Search System of Japanese Red Data",
     "example": [
       "13067",
@@ -2349,6 +2393,7 @@
   "P12464": {
     "description": "identifier for the type specimen of a plant taxon, in JSTOR Global Plants",
     "example": [
+      "E00279162",
       "P00542461"
     ],
     "homepage": "https://plants.jstor.org/",
@@ -3025,6 +3070,19 @@
     "prefix": "P13352",
     "uri_format": "https://hiking.biji.co/index.php?q=plant&act=detail&id=$1"
   },
+  "P13408": {
+    "description": "ID of a profile in National Academy of Engineering website",
+    "example": [
+      "271500",
+      "29537",
+      "29997",
+      "30507"
+    ],
+    "homepage": "https://www.nae.edu/",
+    "name": "National Academy of Engineering member ID",
+    "prefix": "P13408",
+    "uri_format": "https://www.nae.edu/$1/wd"
+  },
   "P13416": {
     "description": "chemical in the fluorescent substances database",
     "example": [
@@ -3153,9 +3211,7 @@
     "example": [
       "http://commons.wikimedia.org/wiki/Special:FilePath/%E9%BB%83%E8%98%AD%20Michelia%20champaca%20-%E9%A6%99%E6%B8%AF%E8%8D%94%E6%9E%9D%E8%A7%92%E5%85%AC%E5%9C%92%20Lai%20Chi%20Kok%20Park%2C%20Hong%20Kong-%20%289216126584%29.jpg",
       "http://commons.wikimedia.org/wiki/Special:FilePath/Bark%20of%20Mangifera%20indica.jpg",
-      "http://commons.wikimedia.org/wiki/Special:FilePath/Common%20blackbird%20%28Turdus%20merula%29%20chicks%202%20days%20old.jpg",
-      "http://commons.wikimedia.org/wiki/Special:FilePath/Psidium%20guajava%20fruit.jpg",
-      "http://commons.wikimedia.org/wiki/Special:FilePath/Vanellus%20chilensis-Huevos.jpg"
+      "http://commons.wikimedia.org/wiki/Special:FilePath/Psidium%20guajava%20fruit.jpg"
     ],
     "name": "taxon aspect image",
     "prefix": "P13696",
@@ -3229,6 +3285,16 @@
     "prefix": "P1391",
     "uri_format": "https://www.indexfungorum.org/names/NamesRecord.asp?RecordID=$1"
   },
+  "P13926": {
+    "description": "point in time when an archaeological object or assemblage was buried, hidden, lost, or otherwise deposited",
+    "example": [
+      "0700-01-01T00:00:00Z",
+      "0900-01-01T00:00:00Z",
+      "1700-01-01T00:00:00Z"
+    ],
+    "name": "time of deposition",
+    "prefix": "P13926"
+  },
   "P1395": {
     "description": "identifier at www.cancer.gov",
     "example": [
@@ -3241,6 +3307,31 @@
     "pattern": "^[a-z\\-]+$",
     "prefix": "P1395",
     "uri_format": "https://www.cancer.gov/types/$1"
+  },
+  "P13964": {
+    "description": "An identifier for a publication in the U.S. Geological Survey (USGS) Publications Warehouse. It consists of publications written by USGS staff members.",
+    "example": [
+      "70014537",
+      "70250464",
+      "70265631"
+    ],
+    "homepage": "https://pubs.usgs.gov/browse/",
+    "name": "USGS publication ID",
+    "prefix": "P13964",
+    "uri_format": "https://pubs.usgs.gov/publication/$1"
+  },
+  "P13987": {
+    "database": "Q12326522",
+    "description": "identifier of a medical condition in the online scientific reference work Medicin.dk",
+    "example": [
+      "163",
+      "225",
+      "52"
+    ],
+    "homepage": "https://min.medicin.dk/Sygdomme/Sygdom/",
+    "name": "Medicin.dk medical condition ID",
+    "prefix": "P13987",
+    "uri_format": "https://min.medicin.dk/Sygdomme/Sygdom/$1"
   },
   "P1402": {
     "database": "Q1406710",
@@ -3255,6 +3346,44 @@
     "pattern": "^[1-9][0-9]{3,5}$",
     "prefix": "P1402",
     "uri_format": "https://purl.org/sig/ont/fma/fma$1"
+  },
+  "P14091": {
+    "description": "identifier for a member of the Accademia Nazionale dei Lincei",
+    "example": [
+      "golgi-camillo",
+      "levi-montalcini-rita",
+      "sella-quintino"
+    ],
+    "homepage": "https://www.lincei.it/it/accademici-dal-1870",
+    "name": "Accademia Nazionale dei Lincei ID",
+    "prefix": "P14091",
+    "uri_format": "https://www.lincei.it/it/socio/$1/"
+  },
+  "P14111": {
+    "database": "Q38669",
+    "description": "identifier of this dog breed at the official website of the Australian National Kennel Council (ANKC)",
+    "example": [
+      "130",
+      "188",
+      "27",
+      "34"
+    ],
+    "homepage": "https://dogsaustralia.org.au/BrowseBreed/browse-a-breed",
+    "name": "Australian National Kennel Council ID",
+    "prefix": "P14111",
+    "uri_format": "https://dogsaustralia.org.au/BrowseBreed/browse-a-breed/$1/_"
+  },
+  "P14166": {
+    "description": "identifier of a taxon or synonym in BISMaL",
+    "example": [
+      "0000001",
+      "9016240",
+      "9053885"
+    ],
+    "homepage": "https://www.godac.jamstec.go.jp/bismal",
+    "name": "BISMaL taxon ID",
+    "prefix": "P14166",
+    "uri_format": "https://www.godac.jamstec.go.jp/bismal/view/$1"
   },
   "P1421": {
     "database": "Q19576476",
@@ -3463,6 +3592,19 @@
     "pattern": "^H\\d\\.\\d{2}\\.\\d{2}\\.\\d\\.\\d{5}$",
     "prefix": "P1694"
   },
+  "P1717": {
+    "database": "Q1520862",
+    "description": "identifier of the French national Water Information System",
+    "example": [
+      "402-0100",
+      "O1--0250"
+    ],
+    "homepage": "http://www.sandre.eaufrance.fr/Rechercher-une-donnee-d-un-jeu",
+    "name": "Sandre river ID",
+    "pattern": "^[A-Z-]?[0-9-]{6,8}[AG]?$",
+    "prefix": "P1717",
+    "uri_format": "https://www.sandre.eaufrance.fr/geo/CoursEau_Carthage2017/$1"
+  },
   "P1727": {
     "description": "identifier for a taxon in the Flora of North America database",
     "example": [
@@ -3485,7 +3627,7 @@
     "name": "Bradley and Fletcher checklist number",
     "pattern": "^([1-2]\\d|[1-9])\\d{0,2}[a-z]?$",
     "prefix": "P1743",
-    "uri_format": "https://ukmoths.org.uk/search/?entry=$1"
+    "uri_format": "https://www.ukmoths.org.uk/species/$1/"
   },
   "P1744": {
     "description": "reference for a species in the 2013 checklist of over 2,700 species British lepidoptera",
@@ -3624,6 +3766,7 @@
     "prefix": "P1928"
   },
   "P1929": {
+    "database": "Q20023123",
     "description": "identifier in the ClinVar database for human genomic variation",
     "example": [
       "13961",
@@ -3647,7 +3790,7 @@
     "prefix": "P1930"
   },
   "P1931": {
-    "description": "Identifier for a chemical in the NIOSH Pocket Guide to Chemical Hazards",
+    "description": "identifier for a chemical in the NIOSH Pocket Guide to Chemical Hazards",
     "example": [
       "0004",
       "0171",
@@ -3682,7 +3825,8 @@
     "uri_format": "https://conifers.org/$1.php"
   },
   "P1960": {
-    "description": "identifier of a person, in the Google Scholar academic search service",
+    "database": "Q123238212",
+    "description": "identifier of a person in the Google Scholar academic search service",
     "example": [
       "CUO0vDcAAAAJ",
       "QPdLuj8AAAAJ"
@@ -3830,13 +3974,13 @@
   },
   "P2037": {
     "database": "Q364",
-    "description": "username of this project, person or organization on GitHub",
+    "description": "account of this project, person or organization on GitHub",
     "example": [
       "google",
       "michaelni"
     ],
     "homepage": "https://github.com/",
-    "name": "GitHub username",
+    "name": "GitHub account",
     "pattern": "^[0-9A-Za-z]([0-9A-Za-z\\-]{0,37}[0-9A-Za-z])?$",
     "prefix": "P2037",
     "short_name": [
@@ -3942,8 +4086,8 @@
       "10960",
       "11074",
       "12010",
-      "12229",
-      "12897"
+      "12897",
+      "jos\u00e9-sarukh\u00e1n-12229"
     ],
     "homepage": "https://royalsociety.org/",
     "name": "Fellow of the Royal Society ID",
@@ -4055,7 +4199,7 @@
     "uri_format": "https://isni.org/isni/$1"
   },
   "P214": {
-    "database": "Q19832964",
+    "database": "Q54919",
     "description": "identifier for the Virtual International Authority File database [format: up to 22 digits]; please note: VIAF is a cluster, the ID can include multiple items",
     "example": [
       "120062731",
@@ -4138,16 +4282,15 @@
   },
   "P227": {
     "database": "Q54506313",
-    "description": "identifier from an international authority file of names, subjects, and organizations",
+    "description": "identifier from the Gemeinsame Normdatei authority file of names, subjects, and organizations",
     "example": [
-      "118540238",
       "118604740",
+      "118626523",
       "118627813",
       "1231643-X",
       "4010921-5",
       "4079154-3",
-      "4131406-2",
-      "4426550-5",
+      "4132700-7",
       "7505698-7"
     ],
     "homepage": "https://portal.dnb.de",
@@ -4435,6 +4578,7 @@
     "uri_format": "https://www.echa.europa.eu/substance-information/-/substanceinfo/$1"
   },
   "P2576": {
+    "database": "Q7864116",
     "description": "identifier of a UCSC's release of a genome",
     "example": [
       "Chr 19: 34.85 \u2013 34.89 Mb",
@@ -4579,7 +4723,7 @@
     "name": "Australasian Pollen and Spore Atlas Code (archived)",
     "pattern": "^\\d+(\\-\\d+)*(-\\(\\d+(\\-\\d+)*\\))?$",
     "prefix": "P2809",
-    "uri_format": "https://web.archive.org/web/*/http://apsa.anu.edu.au/sample/$1"
+    "uri_format": "http://apsa.anu.edu.au/samples/sample.php?id=$1"
   },
   "P2833": {
     "description": "identifier for a taxon, in the ARKive database",
@@ -4636,13 +4780,13 @@
   "P2877": {
     "description": "the chemical compound identifier for the EBI SureChEMBL 'chemical compounds in patents' database",
     "example": [
-      "SCHEMBL17951640",
-      "SCHEMBL181779",
-      "SCHEMBL298931"
+      "17951640",
+      "181779",
+      "298931"
     ],
     "homepage": "https://www.surechembl.org/",
     "name": "SureChEMBL ID",
-    "pattern": "^SCHEMBL\\d+$",
+    "pattern": "^\\d+$",
     "prefix": "P2877",
     "uri_format": "https://www.surechembl.org/chemical/$1"
   },
@@ -4770,7 +4914,8 @@
     "description": "identifier for a Lepidoptera taxon, in the UK Natural History Museum's 'Global Lepidoptera Names Index'",
     "example": [
       "3543",
-      "4433"
+      "4433",
+      "63074"
     ],
     "homepage": "http://www.nhm.ac.uk/jdsml/research-curation/research/projects/lepindex",
     "name": "LepIndex ID",
@@ -4989,7 +5134,7 @@
       "173",
       "26"
     ],
-    "homepage": "http://opencitations.net/corpus",
+    "homepage": "https://search.opencitations.net/",
     "name": "OpenCitations bibliographic resource ID",
     "pattern": "^\\d{1,7}$",
     "prefix": "P3181",
@@ -5045,7 +5190,21 @@
     "prefix": "P3240",
     "uri_format": "https://species.nbnatlas.org/species/$1"
   },
+  "P3277": {
+    "description": "identifier for a member of the Royal Academy of Dutch language and literature",
+    "example": [
+      "de-vriendt-seraphin",
+      "deprez-ada",
+      "nuyts-jan"
+    ],
+    "homepage": "https://kantl.be/over-kantl/organisatie/alle-leden",
+    "name": "KANTL member ID",
+    "pattern": "^[a-z]+(-[a-z]+)+(\\.-[a-z])?$",
+    "prefix": "P3277",
+    "uri_format": "https://kantl.be/over-kantl/organisatie/alle-leden/$1"
+  },
   "P3288": {
+    "database": "Q3570011",
     "description": "identifier of a taxon in the World Spider Catalog",
     "example": [
       "urn:lsid:nmbe.ch:spiderfam:0102",
@@ -5565,6 +5724,7 @@
     "uri_format": "https://www.wildflowers.co.il/english/plant.asp?ID=$1"
   },
   "P3747": {
+    "database": "Q7550801",
     "description": "identifier for an author at the Social Science Research Network",
     "example": [
       "112517",
@@ -5689,10 +5849,10 @@
       "j-e-bob-burns",
       "jeremy-hamilton-miller"
     ],
-    "homepage": "http://www.histmodbiomed.org/",
+    "homepage": "https://histmodbiomed.history.qmul.ac.uk",
     "name": "History of Modern Biomedicine ID",
     "prefix": "P3885",
-    "uri_format": "http://www.histmodbiomed.org/taxonomy/term/$1.html"
+    "uri_format": "https://histmodbiomed.history.qmul.ac.uk/taxonomy/term/$1.html"
   },
   "P3887": {
     "description": "identifier of member of the Royal Flemish Academy of Belgium for Science and the Arts",
@@ -5754,6 +5914,7 @@
     "uri_format": "https://www.ranm.es/academicos/$1"
   },
   "P3951": {
+    "database": "Q19835482",
     "description": "identifier of a document in BioRxiv, a preprint repository for the biological sciences launched in November 2013",
     "example": [
       "028522",
@@ -5824,6 +5985,7 @@
     "uri_format": "https://animaldiversity.org/accounts/$1/"
   },
   "P4028": {
+    "database": "Q123458396",
     "description": "identifier for a paper in Google Scholar",
     "example": [
       "139042526584660102",
@@ -5862,6 +6024,18 @@
     "pattern": "^\\d{9}$",
     "prefix": "P4058",
     "uri_format": "https://finess.esante.gouv.fr/fininter/jsp/actionDetailEtablissement.do?noFiness=$1"
+  },
+  "P4114": {
+    "description": "Akademie der K\u00fcnste in Berlin member ID",
+    "example": [
+      "50060",
+      "52203"
+    ],
+    "homepage": "http://www.adk.de/de/akademie/mitglieder/suche.htm",
+    "name": "ADK member ID",
+    "pattern": "^(4999[6-9]|5[0-4]\\d\\d\\d|55[0-6]\\d\\d|5570\\d|5571[0-8]|6[0-7]\\d\\d\\d)$",
+    "prefix": "P4114",
+    "uri_format": "https://www.adk.de/de/akademie/mitglieder/?we_objectID=$1"
   },
   "P4122": {
     "description": "identifier for a plant species in the Palynological Database (PalDat) for pollen of the University of Vienna",
@@ -6239,6 +6413,7 @@
     "uri_format": "https://www.1177.se/Fakta-och-rad/Sjukdomar/$1"
   },
   "P4700": {
+    "database": "Q2933237",
     "description": "identifier for a journal or an article in Cairn, an online library of French-language scholarly journals",
     "example": [
       "revue-actes-de-la-recherche-en-sciences-sociales",
@@ -6719,6 +6894,7 @@
   "P5214": {
     "description": "identifier for a taxonomic paper about Paleozoic ammonoids, in the GONIAT database",
     "example": [
+      "lit00000000000000000000000000871",
       "lit00000000000000000000000001050"
     ],
     "homepage": "http://www.goniat.org/",
@@ -6980,7 +7156,7 @@
     "uri_format": "https://www.guidetopharmacology.org/GRAC/ObjectDisplayForward?objectId=$1"
   },
   "P5463": {
-    "database": "Q55255797",
+    "database": "Q337234",
     "description": "identifier for a member of the Academy of Europe",
     "example": [
       "Aaviksoo_Jaak",
@@ -7022,13 +7198,13 @@
   "P5496": {
     "description": "identifier for a doctor in the M\u00e9dicos hist\u00f3ricos database of the Complutense University of Madrid",
     "example": [
-      "11",
-      "1606",
-      "2485"
+      "833466",
+      "835191",
+      "836617"
     ],
-    "homepage": "http://webs.ucm.es/BUCM/med/archivo/",
+    "homepage": "https://medicoshistoricos.ucm.es/s/medes/page/inicio",
     "name": "M\u00e9dicos hist\u00f3ricos doctor ID",
-    "pattern": "^[1-9]\\d*$",
+    "pattern": "^83\\d{4}$",
     "prefix": "P5496",
     "uri_format": "https://medicoshistoricos.ucm.es/s/medes/item/$1"
   },
@@ -7044,6 +7220,18 @@
     "pattern": "^BTO:\\d+$",
     "prefix": "P5501",
     "uri_format": "https://www.brenda-enzymes.org/ontology.php?ontology_id=3&id_go=$1"
+  },
+  "P5527": {
+    "description": "identifier for a member on the Academia Brasileira de Letras website",
+    "example": [
+      "cleonice-berardinelli",
+      "oliveira-viana",
+      "pardal-mallet"
+    ],
+    "homepage": "http://www.academia.org.br/academicos/membros?title=&field_cadeira_value=&field_cadeira_posicao_value=All",
+    "name": "Academia Brasileira de Letras ID",
+    "prefix": "P5527",
+    "uri_format": "https://www.academia.org.br/academicos/$1"
   },
   "P5530": {
     "description": "DOI of a scientific or academic article at altmetric.com, to track citation metrics",
@@ -7104,6 +7292,19 @@
     "pattern": "^[8-9]\\d{3}(/[0-3])?$",
     "prefix": "P563",
     "uri_format": "https://codes.iarc.fr/search.php?cx=009987501641899931167%3A2_7lsevqpdm&cof=FORID%3A9&ie=UTF-8&ie=ISO-8859-1&oe=ISO-8859-1&sa=&q=$1"
+  },
+  "P5635": {
+    "description": "identifier for a writer on the Academy of New Zealand Literature website",
+    "example": [
+      "anna-smaill",
+      "bill-manhire",
+      "tusiata-avia"
+    ],
+    "homepage": "https://www.anzliterature.com/members/",
+    "name": "ANZL writer ID",
+    "pattern": "^[a-z]+-[a-z]+(-[a-z]+)?$",
+    "prefix": "P5635",
+    "uri_format": "https://www.anzliterature.com/member/$1/"
   },
   "P5661": {
     "description": "identifier for a member of the 'Acad\u00e9mie de Montpellier' on its website",
@@ -7296,7 +7497,8 @@
     "name": "EC enzyme number",
     "pattern": "^\\d\\.\\d{1,2}\\.\\d{1,2}\\.\\d{1,3}$",
     "prefix": "P591",
-    "uri_format": "http://enzyme.expasy.org/EC/$1"
+    "uri_format": "http://enzyme.expasy.org/EC/$1",
+    "uri_format_rdf": "https://purl.expasy.org/enzyme/EC/$1"
   },
   "P592": {
     "description": "identifier from a chemical database of bioactive molecules with drug-like properties",
@@ -7512,6 +7714,7 @@
     "uri_format": "https://www.cms.int/en/species/$1"
   },
   "P6034": {
+    "database": "Q113570617",
     "description": "identifier for a taxon in Plant Finder, on the Missouri Botanical Garden website",
     "example": [
       "279622",
@@ -7925,7 +8128,7 @@
     "name": "Michigan Flora ID",
     "pattern": "^[1-9]\\d*$",
     "prefix": "P6103",
-    "uri_format": "https://michiganflora.net/species.aspx?id=$1"
+    "uri_format": "https://michiganflora.net/record/$1"
   },
   "P6105": {
     "description": "taxon identifier on the Observation.org platform",
@@ -8069,7 +8272,7 @@
     "uri_format": "http://academie.arles.free.fr/$1.htm"
   },
   "P6174": {
-    "database": "Q10458475",
+    "database": "Q337352",
     "description": "fellows of The World Academy of Sciences (TWAS)",
     "example": [
       "bahadur-raghu-raj",
@@ -8116,7 +8319,7 @@
       "1105497016"
     ],
     "homepage": "https://app.dimensions.ai/",
-    "name": "Dimensions Publication ID",
+    "name": "Dimensions publication ID",
     "pattern": "^\\d{10}$",
     "prefix": "P6179",
     "uri_format": "https://app.dimensions.ai/details/publication/pub.$1"
@@ -8146,6 +8349,18 @@
     "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$",
     "prefix": "P6220",
     "uri_format": "https://explorer.opentrials.net/trials/$1"
+  },
+  "P6226": {
+    "description": "identifier for a member of the 'Acad\u00e9mie royale de langue et de litt\u00e9rature fran\u00e7aises de Belgique' on its website",
+    "example": [
+      "antoine",
+      "bajomee",
+      "maeterlinck"
+    ],
+    "homepage": "https://www.arllfb.be/composition/",
+    "name": "ARLLFB member ID",
+    "prefix": "P6226",
+    "uri_format": "https://www.arllfb.be/composition/membres/$1.html"
   },
   "P6227": {
     "description": "identifier for a taxon on the Flora of Wisconsin website",
@@ -8211,6 +8426,7 @@
     "uri_format": "https://svampe.databasen.org/taxon/$1"
   },
   "P627": {
+    "database": "Q32059",
     "description": "identifier for a taxon in the International Union for Conservation of Nature database; source for conservation status (P141)",
     "example": [
       "40966",
@@ -8391,6 +8607,7 @@
     "prefix": "P6433"
   },
   "P6479": {
+    "database": "Q5970536",
     "description": "identifier for an author in IEEE Xplore",
     "example": [
       "37271072100",
@@ -8403,6 +8620,7 @@
     "uri_format": "https://ieeexplore.ieee.org/author/$1"
   },
   "P6480": {
+    "database": "Q5970536",
     "description": "identifier for a document in IEEE Xplore",
     "example": [
       "1580791",
@@ -8583,6 +8801,7 @@
     "prefix": "P663"
   },
   "P6634": {
+    "database": "Q116153251",
     "description": "identifier for a person, on the LinkedIn website",
     "example": [
       "deborahlehr",
@@ -8591,7 +8810,7 @@
       "ursula-von-der-leyen"
     ],
     "name": "LinkedIn personal profile ID",
-    "pattern": "^[\\p{L}0-9\\-&_'\u2019\\.]+$",
+    "pattern": "^[\\p{L}0-9\\-&_\u201d\u201c'\u2019\\.]+$",
     "prefix": "P6634",
     "short_name": [
       "LinkedIn"
@@ -8613,6 +8832,7 @@
     "uri_format_rdf": "http://www.kegg.jp/entry/$1"
   },
   "P6661": {
+    "database": "Q19835482",
     "description": "identifier for a scientific or academic preprint of a paper, in the Rxivist database",
     "example": [
       "10282",
@@ -8894,7 +9114,7 @@
     "pattern": "^[1-9][0-9]{0,6}$",
     "prefix": "P685",
     "uri_format": "https://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?mode=Info&id=$1",
-    "uri_format_rdf": "http://purl.uniprot.org/taxonomy/$1"
+    "uri_format_rdf": "http://purl.obolibrary.org/obo/NCBITaxon_$1"
   },
   "P6852": {
     "description": "unique numerical identifier for crystal structures submitted to the Cambridge Crystallographic Data Centre (CCDC)",
@@ -9053,10 +9273,10 @@
     "name": "Disease Ontology ID",
     "pattern": "^DOID:([0-9]{7}|[1-9][0-9]{0,4})$",
     "prefix": "P699",
-    "uri_format": "http://www.disease-ontology.org/?id=$1",
-    "uri_format_rdf": "http://purl.obolibrary.org/obo/DOID_$1"
+    "uri_format": "https://www.disease-ontology.org/?id=$1"
   },
   "P7001": {
+    "database": "Q18392556",
     "description": "unique identifier for an entity in the PharmGKB knowledgebase",
     "example": [
       "PA134955224",
@@ -9069,7 +9289,7 @@
     "name": "PharmGKB ID",
     "pattern": "^PA[1-9]\\d*$",
     "prefix": "P7001",
-    "uri_format": "https://www.pharmgkb.org/accession/$1"
+    "uri_format": "https://www.clinpgx.org/accession/$1"
   },
   "P704": {
     "database": "Q177900",
@@ -9105,7 +9325,7 @@
       "8717"
     ],
     "name": "Taxonomicon ID",
-    "pattern": "^\\d*$",
+    "pattern": "^\\d+$",
     "prefix": "P7066",
     "uri_format": "http://taxonomicon.taxonomy.nl/TaxonName.aspx?id=$1"
   },
@@ -9253,7 +9473,7 @@
       "9D00.0",
       "EJ40.0"
     ],
-    "homepage": "https://icd.who.int/ar/",
+    "homepage": "https://icd.who.int/browse/latest-release/mms/en",
     "name": "ICD-11 ID (MMS)",
     "prefix": "P7329"
   },
@@ -9270,6 +9490,19 @@
     "pattern": "^PW:([0-9]{7})$",
     "prefix": "P7333",
     "uri_format": "https://purl.bioontology.org/ontology/PW/$1"
+  },
+  "P7346": {
+    "description": "identifier for fossils at fossiilid.info",
+    "example": [
+      "11578",
+      "12524",
+      "94"
+    ],
+    "homepage": "https://fossiilid.info",
+    "name": "Fossiilid.info ID",
+    "pattern": "^[1-9]\\d*$",
+    "prefix": "P7346",
+    "uri_format": "https://fossiilid.info/$1"
   },
   "P7366": {
     "database": "Q494230",
@@ -9345,6 +9578,7 @@
     "uri_format": "https://ati.woodlandtrust.org.uk/tree-search/tree/?treeId=$1"
   },
   "P7468": {
+    "database": "Q697240",
     "description": "ID of hospital registered under Ministry of Health and Welfare (Taiwan)",
     "example": [
       "0601160016",
@@ -9543,7 +9777,7 @@
     "name": "ICD-11 ID (Foundation)",
     "pattern": "^[1-9]\\d*$",
     "prefix": "P7807",
-    "uri_format": "https://icd.who.int/browse/2025-01/mms/en#$1"
+    "uri_format": "https://icd.who.int/browse/latest-release/foundation/en#$1"
   },
   "P7830": {
     "description": "LiverTox database ID",
@@ -9693,6 +9927,7 @@
     "uri_format_rdf": "http://aims.fao.org/aos/agrovoc/$1"
   },
   "P8062": {
+    "database": "Q2868312",
     "description": "identifier for a French medical facility on the Ameli website",
     "example": [
       "B7U0kTIxMTG3",
@@ -9966,7 +10201,7 @@
   },
   "P8204": {
     "database": "Q112193769",
-    "description": "tabular data on Wikimedia Commons of confirmed cases, recoveries, deaths, etc. due to a medical event; corresponds to P8011, P1603, P8049, P8010, P1120. Try to avoid deleting such statements.",
+    "description": "tabular data on Wikimedia Commons of confirmed cases, recoveries, deaths, etc. due to a medical event; corresponds to P8011, P1603, P8049, P8010, P1120. Try to avoid deleting such statements",
     "example": [
       "http://commons.wikimedia.org/data/main/Data:COVID-19+cases+in+Santa+Clara+County,+California.tab",
       "http://commons.wikimedia.org/data/main/Data:COVID-19+hospitalizations+in+Denmark.tab",
@@ -10069,6 +10304,7 @@
     "uri_format": "https://web.archive.org/web/0/http://www.fossilworks.org/cgi-bin/bridge.pl?a=taxonInfo&taxon_no=$1"
   },
   "P846": {
+    "database": "Q1531570",
     "description": "taxon identifier in GBIF",
     "example": [
       "1948418",
@@ -10199,7 +10435,8 @@
     "homepage": "https://github.com/DiseaseOntology/SymptomOntology",
     "name": "Symptom Ontology ID",
     "prefix": "P8656",
-    "uri_format": "https://www.ebi.ac.uk/ols/ontologies/symp/terms?iri=http://purl.obolibrary.org/obo/SYMP_$1"
+    "uri_format": "https://www.ebi.ac.uk/ols/ontologies/symp/terms?iri=http://purl.obolibrary.org/obo/SYMP_$1",
+    "uri_format_rdf": "http://purl.obolibrary.org/obo/SYMP_$1"
   },
   "P8660": {
     "description": "identifier for a taxon in the Native Plants Database, on the Lady Bird Johnson Wildflower Center website",
@@ -10250,16 +10487,16 @@
     "uri_format": "https://rnacentral.org/rna/$1"
   },
   "P8707": {
-    "description": "identifier for a taxon in the Norwegian Biodiversity Information Centre database, a database on species and ecosystems in Norway",
+    "description": "identifier for a taxon's scientific name in the Norwegian Biodiversity Information Centre database, a database on species and ecosystems in Norway",
     "example": [
       "102795",
       "3611"
     ],
     "homepage": "https://www.artsdatabanken.no/",
-    "name": "NBIC taxon ID",
+    "name": "NBIC scientific name ID",
     "pattern": "^[1-9]\\d{0,5}$",
     "prefix": "P8707",
-    "uri_format": "https://artsdatabanken.no/Taxon/_/$1"
+    "uri_format": "https://artsdatabanken.no/arter/takson/$1"
   },
   "P8724": {
     "description": "identifier for a scientific name in the Biodiversity Heritage Library (BHL)",
@@ -10286,6 +10523,7 @@
     "uri_format": "https://www.calflora.org/app/ipl/ipx?loc_id=gpi$1"
   },
   "P8758": {
+    "database": "Q252430",
     "description": "identifier for an article on Pers\u00e9e",
     "example": [
       "1895_0769-0959_1998_num_26_1_1376",
@@ -10332,6 +10570,18 @@
     "prefix": "P8792",
     "uri_format": "https://bioweb.bio/$1"
   },
+  "P8832": {
+    "description": "identifier for a member of the Polish Academy of Sciences",
+    "example": [
+      "ALEXANDER, Jeffrey C.",
+      "BARTOSZ, Grzegorz",
+      "OPA\u0141EK, Kazimierz"
+    ],
+    "homepage": "https://pan.pl/czlonkowie/",
+    "name": "Polish Academy of Sciences ID",
+    "prefix": "P8832",
+    "uri_format": "https://pan.pl/czlonkowie/$1"
+  },
   "P8877": {
     "database": "Q3305342",
     "description": "identifier of a fellow of the Royal Society of Canada",
@@ -10345,6 +10595,7 @@
     "uri_format": "https://rsc-src.ca/en/$1"
   },
   "P888": {
+    "database": "Q19832971",
     "description": "identifier for an article or a book in JSTOR",
     "example": [
       "10.5325/style.35.3.472",
@@ -10421,6 +10672,7 @@
     "uri_format": "https://qikan.cqvip.com/Qikan/Article/Detail?id=$1"
   },
   "P893": {
+    "database": "Q7550801",
     "description": "identifier for an article/paper at the SSRN",
     "example": [
       "1667659",
@@ -10717,6 +10969,7 @@
     "uri_format_rdf": "http://purl.obolibrary.org/obo/HAO_$1"
   },
   "P938": {
+    "database": "Q837101",
     "description": "identifier for a species in FishBase",
     "example": [
       "1234",
@@ -10726,7 +10979,7 @@
     "name": "FishBase species ID",
     "pattern": "^[1-9]\\d{0,4}$",
     "prefix": "P938",
-    "uri_format": "https://www.fishbase.org/summary/$1"
+    "uri_format": "https://www.fishbase.ca/summary/$1"
   },
   "P9405": {
     "description": "structure identifiers in the NMRShiftDB",
@@ -10998,6 +11251,7 @@
     "uri_format_rdf": "http://ipni.org/urn:lsid:ipni.org:names:$1"
   },
   "P962": {
+    "database": "Q2574835",
     "description": "identifier per MycoBank - a database that provides an authoritative and comprehensive list of names of fungi",
     "example": [
       "2196",
@@ -11088,14 +11342,15 @@
   "P9656": {
     "description": "identifier for a member of the Istituto Veneto di Scienze, Lettere ed Arti",
     "example": [
-      "1318",
-      "1432",
-      "1446"
+      "aloisi-massimiliano",
+      "austoni-mario",
+      "bonsembiante-mario-2",
+      "rinaldo-andrea"
     ],
-    "homepage": "http://www.istitutoveneto.it/flex/cm/pages/ServeBLOB.php/L/IT/IDPagina/17",
+    "homepage": "https://www.istitutoveneto.it/accademici/soci-del-passato/",
     "name": "Istituto Veneto di Scienze, Lettere ed Arti member ID",
     "prefix": "P9656",
-    "uri_format": "https://www.istitutoveneto.it/flex/cm/pages/ServeBLOB.php/L/IT/IDPagina/$1"
+    "uri_format": "https://www.istitutoveneto.it/$1/"
   },
   "P9674": {
     "description": "identifier for a contributor to the Burke Herbarium Image Collection",
@@ -11413,5 +11668,13 @@
     "pattern": "^[a-z]+(-[a-z]+)+$",
     "prefix": "P9985",
     "uri_format": "https://people.embo.org/profile/$1"
+  },
+  "Q136696641": {
+    "name": "Q136696641",
+    "prefix": "Q136696641"
+  },
+  "Q137773419": {
+    "name": "Q137773419",
+    "prefix": "Q137773419"
   }
 }
