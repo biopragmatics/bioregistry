@@ -4,7 +4,7 @@ import csv
 import json
 from collections.abc import Callable, Iterable, Mapping, Sequence
 from pathlib import Path
-from typing import Any, ClassVar
+from typing import Any, ClassVar, TypeAlias
 
 import click
 from curies.w3c import NCNAME_RE
@@ -18,8 +18,13 @@ from ..utils import norm
 
 __all__ = [
     "Aligner",
+    "Getter",
     "load_processed",
 ]
+
+GetterRt: TypeAlias = Mapping[str, Any]
+
+Getter: TypeAlias = Callable[..., GetterRt]
 
 
 class Aligner:
