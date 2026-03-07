@@ -29,7 +29,7 @@ class License(BaseModel):
     url: str | None = None
 
 
-class Status(enum.StrEnum):
+class Status(enum.Enum):
     """Represents the project status."""
 
     active = enum.auto()
