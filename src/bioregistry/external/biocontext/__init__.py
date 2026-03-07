@@ -19,7 +19,6 @@ DIRECTORY = Path(__file__).parent.resolve()
 RAW_PATH = RAW_DIRECTORY / "biocontext.json"
 PROCESSED_PATH = DIRECTORY / "processed.json"
 URL = "https://raw.githubusercontent.com/prefixcommons/biocontext/master/registry/commons_context.jsonld"
-SKIP_PARTS = {"identifiers.org", "purl.obolibrary.org"}
 
 
 def parse_biocontext_raw(path: Path) -> dict[str, Record]:
@@ -29,7 +28,6 @@ def parse_biocontext_raw(path: Path) -> dict[str, Record]:
     rv = {
         prefix: Record(uri_format=f"{uri_prefix.strip()}$1")
         for prefix, uri_prefix in data["@context"].items()
-        if any(p in uri_prefix for p in SKIP_PARTS)
     }
     return rv
 
