@@ -18,6 +18,7 @@ import click
 import requests
 from pystow.utils import get_hashes
 
+from .alignment_model import Record, Status
 from .constants import (
     BIOREGISTRY_PATH,
     COLLECTIONS_YAML_PATH,
@@ -182,10 +183,9 @@ def get_ols_descendants(
     ontology: str,
     uri: str,
     *,
-    force_download: bool = False,
     get_identifier: IdentifierGetter | None = None,
     clean: IdentifierCleaner | None = None,
-) -> dict[str, dict[str, Any]]:
+) -> dict[str, Record]:
     """Get descendants in the OLS."""
     url = f"https://www.ebi.ac.uk/ols/api/ontologies/{ontology}/terms/{uri}/descendants?size=1000"
     res = requests.get(url, timeout=15)
@@ -204,7 +204,7 @@ def _process_ols(
     terms: list[dict[str, Any]],
     clean: IdentifierCleaner | None = None,
     get_identifier: IdentifierGetter | None = None,
-) -> dict[str, dict[str, Any]]:
+) -> dict[str, Record]:
     if clean is None:
         clean = _clean
     if get_identifier is None:
@@ -213,11 +213,12 @@ def _process_ols(
     for term in terms:
         identifier = get_identifier(term, ontology)
         description = term.get("description")
-        rv[identifier] = {
-            "name": clean(term["label"]),
-            "description": description and description[0],
-            "obsolete": term.get("is_obsolete", False),
-        }
+        status = Status.deprecated if term.get("is_obsolete") else None
+        rv[identifier] = Record(
+            name=clean(term["label"]),
+            description=description[0] if description else None,
+            status=status,
+        )
     return rv
 
 

@@ -17,8 +17,10 @@ from curies.w3c import NCNAME_RE
 
 import bioregistry
 from bioregistry import Resource, manager
+from bioregistry.alignment_model import Record
 from bioregistry.constants import BIOREGISTRY_PATH, DISALLOWED_EMAIL_PARTS, EMAIL_RE
 from bioregistry.export.rdf_export import resource_to_rdf_str
+from bioregistry.external import GETTERS
 from bioregistry.license_standardizer import REVERSE_LICENSES, standardize_license
 from bioregistry.resource_manager import MetaresourceAnnotatedValue
 from bioregistry.schema import Attributable, Publication, get_json_schema
@@ -1274,3 +1276,37 @@ class TestRegistry(unittest.TestCase):
         """Test status contributions."""
         status_contributions = read_status_contributions(self.registry)
         self.assertIn("0009-0006-4842-7427", status_contributions)
+
+    def test_download_owl(self) -> None:
+        """Test download OWL."""
+        self.assertEqual(
+            "http://aber-owl.net/media/ontologies/ADW/2/adw.owl",
+            bioregistry.get_owl_download("adw"),
+        )
+        self.assertEqual(
+            "http://aber-owl.net/media/ontologies/ADW/2/adw.owl",
+            bioregistry.get_resource("adw", strict=True).get_download_owl(),
+        )
+        self.assertEqual(
+            "http://aber-owl.net/media/ontologies/ADW/2/adw.owl",
+            manager.rasterized_resource(
+                bioregistry.get_resource("adw", strict=True)
+            ).get_download_owl(),
+        )
+
+    def test_external_records(self) -> None:
+        """Test external records are conformant."""
+        metaprefixes = [
+            metaprefix
+            for metaprefix, _, func in GETTERS
+            if getattr(func, "__new_style_bioregistry", None)
+        ]
+        for resource in bioregistry.resources():
+            for metaprefix in metaprefixes:
+                external = resource.get_external(metaprefix)
+                if not external:
+                    continue
+                with self.subTest(prefix=resource.prefix, registry=metaprefix):
+                    Record.model_validate(
+                        {k: v for k, v in external.items() if k != "prefix"}, extra="forbid"
+                    )

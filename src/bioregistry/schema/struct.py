@@ -2474,7 +2474,7 @@ class Resource(BaseModel):
         return (
             self.get_external("obofoundry").get("download.obo")
             or self.get_external("ols").get("download_obo")
-            or self.get_external("aberowl").get("download_obo")
+            or self._get_download("aberowl", "obo")
         )
 
     def get_download_obograph(self) -> str | None:
@@ -2554,8 +2554,15 @@ class Resource(BaseModel):
             self.get_external("obofoundry").get("download.owl")
             or self.get_external("ols").get("version.iri")
             or self.get_external("ols").get("download_owl")
-            or self.get_external("aberowl").get("download_owl")
+            or self._get_download("cropoct", "owl")
+            or self._get_download("aberowl", "owl")
         )
+
+    def _get_download(self, metaprefix: str, artifact_type: str) -> str | None:
+        for artifact in self.get_external(metaprefix).get("artifacts", []):
+            if artifact["type"] == artifact_type:
+                return cast(str, artifact["url"])
+        return None
 
     def has_download(self) -> bool:
         """Check if this resource can be downloaded."""
