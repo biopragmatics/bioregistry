@@ -7,6 +7,7 @@
 @prefix ac: <http://www.w3.org/ns/activitystreams#> .
 @prefix ac.subtype: <http://rs.tdwg.org/acsubtype/> .
 @prefix aceview.worm: <https://www.ncbi.nlm.nih.gov/IEB/Research/Acembly/av.cgi?db=worm&c=Gene&l=> .
+@prefix acl: <http://www.w3.org/ns/auth/acl#> .
 @prefix adcad: <https://purl.dataone.org/odo/ADCAD_> .
 @prefix addgene: <http://addgene.org/> .
 @prefix addicto: <http://addictovocab.org/ADDICTO_> .
@@ -416,8 +417,8 @@
 @prefix dc: <http://purl.org/dc/elements/1.1/> .
 @prefix dcam: <http://purl.org/dc/dcam/> .
 @prefix dcat: <http://www.w3.org/ns/dcat#> .
+@prefix dcmitype: <http://purl.org/dc/dcmitype/> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
-@prefix dctypes: <http://purl.org/dc/dcmitype/> .
 @prefix ddanat: <http://purl.obolibrary.org/obo/DDANAT_> .
 @prefix ddi: <http://rdf-vocabulary.ddialliance.org/lifecycle#> .
 @prefix ddi.aggregationmethod: <https://vocabularies.cessda.eu/vocabulary/AggregationMethod?lang=en#code_> .
@@ -729,10 +730,10 @@
 @prefix genewiki: <http://plugins.biogps.org/cgi-bin/wp.cgi?id=> .
 @prefix geno: <http://purl.obolibrary.org/obo/GENO_> .
 @prefix genprop: <https://www.ebi.ac.uk/interpro/genomeproperties/#> .
+@prefix geo: <http://www.opengis.net/ont/geosparql#> .
 @prefix geo1: <https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=> .
 @prefix geogeo: <http://purl.obolibrary.org/obo/GEO_> .
 @prefix geonames: <https://www.geonames.org/> .
-@prefix geosparql: <http://www.opengis.net/ont/geosparql#> .
 @prefix gesah: <http://ontology.tib.eu/gesah/> .
 @prefix gesis.kategorienschemawahlstudien: <https://vocabularies.cessda.eu/vocabulary/KategorienschemaWahlstudien?lang=en#code_> .
 @prefix gesis.rexconcepts: <https://vocabularies.cessda.eu/vocabulary/rexconcepts?lang=en#code_> .
@@ -3728,7 +3729,10 @@ bioregistry:acl a bioregistry.schema:0000001 ;
     dcat:keyword "api" ;
     foaf:homepage <http://www.w3.org/wiki/WebAccessControl> ;
     bioregistry.schema:0000005 "Access"^^xsd:string ;
+    bioregistry.schema:0000006 "http://www.w3.org/ns/auth/acl#$1"^^xsd:string ;
     bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000024 "http://www.w3.org/ns/auth/acl#"^^xsd:string ;
+    bioregistry.schema:0000027 acl:Access ;
     bioregistry.schema:0000029 "acl" .
 
 bioregistry:addexbio a bioregistry.schema:0000001 ;
@@ -10241,8 +10245,11 @@ bioregistry:ddc a bioregistry.schema:0000001 ;
         bartoc:241 ;
     foaf:homepage <http://www.oclc.org/dewey/> ;
     bioregistry.schema:0000005 "325.4"^^xsd:string ;
+    bioregistry.schema:0000006 "http://dewey.info/class/$1/e23/"^^xsd:string ;
     bioregistry.schema:0000008 "^(([0-9][0-9]?|[0-9]{3}(-[0-9]{3})?|[0-9]{3}(-[0-9]{3}(:[0-9]+)?)?|[0-9]{3}\\.[0-9]+(-[0-9]{3}\\.[0-9]+(:[0-9]+)?)?|T[1-9][A-Z]?--[0-9]+(-T[1-9][A-Z]?--[0-9]+(:[0-9]+)?)?|[1-9][A-Z]?--[0-9]+(-[1-9][A-Z]?--[0-9]+(:[0-9]+)?)?)?)$"^^xsd:string ;
     bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000024 "https://bioregistry.io/ddc:"^^xsd:string ;
+    bioregistry.schema:0000027 <http://dewey.info/class/325.4/e23/> ;
     bioregistry.schema:0000029 "ddc" .
 
 bioregistry:ddi a bioregistry.schema:0000001 ;
@@ -13281,6 +13288,7 @@ bioregistry:factgrid a bioregistry.schema:0000001 ;
     dcterms:contributor orcid:0000-0003-4423-4370 ;
     dcterms:description "A wikibase for linguistic knowledge"^^xsd:string ;
     dcterms:isPartOf bioregistry.registry:bioregistry ;
+    skos:exactMatch re3data:r3d100013283 ;
     foaf:homepage <https://database.factgrid.de> ;
     bioregistry.schema:0000005 "Q24708"^^xsd:string ;
     bioregistry.schema:0000006 "https://database.factgrid.de/viewer/item/$1"^^xsd:string ;
@@ -24020,7 +24028,8 @@ bioregistry:ocdo a bioregistry.schema:0000001 ;
     dcterms:description "The Crystallographic Defect Core Ontology (CDCO) defines the common terminology shared across all types of crystallographic defects, providing a unified framework for data integration in materials science."^^xsd:string ;
     dcterms:isPartOf bioregistry.registry:bioregistry ;
     doap:GitRepository <https://github.com/OCDO/cdco> ;
-    skos:exactMatch aberowl:OCDO ;
+    skos:exactMatch aberowl:OCDO,
+        bioportal:OCDO ;
     dcat:keyword "ontology" ;
     foaf:homepage <https://github.com/OCDO/cdco> ;
     bioregistry.schema:0000005 "hasDefectComplex"^^xsd:string ;
@@ -25474,7 +25483,10 @@ bioregistry:pbpko a bioregistry.schema:0000001 ;
     dcterms:description "An ontology for modeling and understanding of pharmacokinetics in biological systems."^^xsd:string ;
     dcterms:isPartOf bioregistry.registry:bioregistry ;
     doap:GitRepository <https://github.com/InSilicoVida-Research-Lab/pbpko> ;
-    skos:exactMatch ols:pbpko,
+    skos:exactMatch aberowl:PBPKO,
+        ontobee:PBPKO,
+        bioportal:PBPKO,
+        ols:pbpko,
         obofoundry:pbpko ;
     dcat:keyword "obo",
         "ontology" ;
@@ -35717,6 +35729,8 @@ aberowl:PATO dcterms:isPartOf bioregistry.registry:aberowl .
 
 aberowl:PAV dcterms:isPartOf bioregistry.registry:aberowl .
 
+aberowl:PBPKO dcterms:isPartOf bioregistry.registry:aberowl .
+
 aberowl:PCL dcterms:isPartOf bioregistry.registry:aberowl .
 
 aberowl:PCO dcterms:isPartOf bioregistry.registry:aberowl .
@@ -36734,6 +36748,8 @@ ontobee:OVAE dcterms:isPartOf bioregistry.registry:ontobee .
 ontobee:OlatDv dcterms:isPartOf bioregistry.registry:ontobee .
 
 ontobee:PATO dcterms:isPartOf bioregistry.registry:ontobee .
+
+ontobee:PBPKO dcterms:isPartOf bioregistry.registry:ontobee .
 
 ontobee:PCL dcterms:isPartOf bioregistry.registry:ontobee .
 
@@ -38705,6 +38721,8 @@ bioportal:OBOREL dcterms:isPartOf bioregistry.registry:bioportal .
 
 bioportal:OCCO dcterms:isPartOf bioregistry.registry:bioportal .
 
+bioportal:OCDO dcterms:isPartOf bioregistry.registry:bioportal .
+
 bioportal:OGG dcterms:isPartOf bioregistry.registry:bioportal .
 
 bioportal:OGI dcterms:isPartOf bioregistry.registry:bioportal .
@@ -38766,6 +38784,8 @@ bioportal:PANET dcterms:isPartOf bioregistry.registry:bioportal .
 bioportal:PATO dcterms:isPartOf bioregistry.registry:bioportal .
 
 bioportal:PAV dcterms:isPartOf bioregistry.registry:bioportal .
+
+bioportal:PBPKO dcterms:isPartOf bioregistry.registry:bioportal .
 
 bioportal:PCL dcterms:isPartOf bioregistry.registry:bioportal .
 
@@ -44799,7 +44819,7 @@ bioregistry:dctypes a bioregistry.schema:0000001 ;
     bioregistry.schema:0000023 "dcmitype",
         "dcmitypes" ;
     bioregistry.schema:0000024 "http://purl.org/dc/dcmitype/"^^xsd:string ;
-    bioregistry.schema:0000027 dctypes:Collection ;
+    bioregistry.schema:0000027 dcmitype:Collection ;
     bioregistry.schema:0000029 "dctypes" .
 
 bioregistry:ddi.aggregationmethod a bioregistry.schema:0000001 ;
@@ -46433,7 +46453,7 @@ bioregistry:geosparql a bioregistry.schema:0000001 ;
     bioregistry.schema:0000019 [ rdfs:label "Kim Durante" ;
             foaf:mbox "kdurante@stanford.edu" ] ;
     bioregistry.schema:0000024 "http://www.opengis.net/ont/geosparql#"^^xsd:string ;
-    bioregistry.schema:0000027 geosparql:hasDefaultGeometry ;
+    bioregistry.schema:0000027 geo:hasDefaultGeometry ;
     bioregistry.schema:0000029 "geosparql" .
 
 bioregistry:gesah a bioregistry.schema:0000001 ;
@@ -63288,6 +63308,8 @@ re3data:r3d100013060 dcterms:isPartOf bioregistry.registry:re3data .
 
 re3data:r3d100013263 dcterms:isPartOf bioregistry.registry:re3data .
 
+re3data:r3d100013283 dcterms:isPartOf bioregistry.registry:re3data .
+
 re3data:r3d100013293 dcterms:isPartOf bioregistry.registry:re3data .
 
 re3data:r3d100013295 dcterms:isPartOf bioregistry.registry:re3data .
@@ -65990,7 +66012,6 @@ OGMS is based on the papers Toward an Ontological Treatment of Disease and Diagn
     skos:exactMatch aberowl:OGMS,
         ontobee:OGMS,
         wikidata.property:Q55118512,
-        bartoc:216,
         bioportal:OGMS,
         biocontext:OGMS,
         fairsharing:FAIRsharing.rvz0m9,
@@ -72071,6 +72092,7 @@ bioregistry:bfo a bioregistry.schema:0000001 ;
         agroportal:BFO,
         ontobee:BFO,
         wikidata.property:Q4866972,
+        bartoc:216,
         bioportal:BFO,
         biocontext:BFO,
         go.resource:BFO,
@@ -73901,6 +73923,7 @@ bioregistry.registry:re3data a bioregistry.schema:0000002 ;
         re3data:r3d100013051,
         re3data:r3d100013060,
         re3data:r3d100013263,
+        re3data:r3d100013283,
         re3data:r3d100013293,
         re3data:r3d100013295,
         re3data:r3d100013314,
@@ -74799,6 +74822,7 @@ bioregistry.registry:ontobee a bioregistry.schema:0000002 ;
         ontobee:OVAE,
         ontobee:OlatDv,
         ontobee:PATO,
+        ontobee:PBPKO,
         ontobee:PCL,
         ontobee:PCO,
         ontobee:PDRO,
@@ -76274,6 +76298,7 @@ bioregistry.registry:bioportal a bioregistry.schema:0000002 ;
         bioportal:OBOE,
         bioportal:OBOREL,
         bioportal:OCCO,
+        bioportal:OCDO,
         bioportal:OGG,
         bioportal:OGI,
         bioportal:OGMS,
@@ -76305,6 +76330,7 @@ bioregistry.registry:bioportal a bioregistry.schema:0000002 ;
         bioportal:PANET,
         bioportal:PATO,
         bioportal:PAV,
+        bioportal:PBPKO,
         bioportal:PCL,
         bioportal:PCO,
         bioportal:PDRO,
@@ -76682,6 +76708,7 @@ bioregistry.registry:aberowl a bioregistry.schema:0000002 ;
         aberowl:PANET,
         aberowl:PATO,
         aberowl:PAV,
+        aberowl:PBPKO,
         aberowl:PCL,
         aberowl:PCO,
         aberowl:PDRO,

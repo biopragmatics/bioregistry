@@ -531,6 +531,7 @@ acl:
     zazuko: acl
   name: Basic Access Control ontology
   preferred_prefix: acl
+  uri_format: http://www.w3.org/ns/auth/acl#$1
 adcad:
   contact:
     email: brycemecum@gmail.com
@@ -4150,6 +4151,7 @@ bfo:
   mappings:
     aberowl: BFO
     agroportal: BFO
+    bartoc: '216'
     biocontext: BFO
     bioportal: BFO
     fairsharing: FAIRsharing.wcpd6f
@@ -15300,6 +15302,7 @@ ddc:
   name: Dewey Decimal Classification
   pattern: ^(([0-9][0-9]?|[0-9]{3}(-[0-9]{3})?|[0-9]{3}(-[0-9]{3}(:[0-9]+)?)?|[0-9]{3}\.[0-9]+(-[0-9]{3}\.[0-9]+(:[0-9]+)?)?|T[1-9][A-Z]?--[0-9]+(-T[1-9][A-Z]?--[0-9]+(:[0-9]+)?)?|[1-9][A-Z]?--[0-9]+(-[1-9][A-Z]?--[0-9]+(:[0-9]+)?)?)?)$
   preferred_prefix: ddc
+  uri_format: http://dewey.info/class/$1/e23/
 ddi:
   contact:
     email: soldatova.larisa@gmail.com
@@ -23748,6 +23751,8 @@ factgrid:
   description: A wikibase for linguistic knowledge
   example: Q24708
   homepage: https://database.factgrid.de
+  mappings:
+    re3data: r3d100013283
   name: FactGrid
   pattern: ^Q\d+$
   preferred_prefix: factgrid
@@ -49959,6 +49964,7 @@ ocdo:
   logo: https://raw.githubusercontent.com/OCDO/.github/refs/heads/main/profile/ocdo_logo.png
   mappings:
     aberowl: OCDO
+    bioportal: OCDO
   name: Crystallographic Defect Core Ontology
   preferred_prefix: ocdo
   repository: https://github.com/OCDO/cdco
@@ -50463,7 +50469,6 @@ ogms:
   logo: https://avatars2.githubusercontent.com/u/12973154?s=200&v=4
   mappings:
     aberowl: OGMS
-    bartoc: '216'
     biocontext: OGMS
     bioportal: OGMS
     fairsharing: FAIRsharing.rvz0m9
@@ -53716,8 +53721,11 @@ pbpko:
   - ontology
   license: CC-BY-3.0
   mappings:
+    aberowl: PBPKO
+    bioportal: PBPKO
     obofoundry: pbpko
     ols: pbpko
+    ontobee: PBPKO
   name: Physiologically-Based Pharmacokinetic Ontology
   preferred_prefix: PBPKO
   rdf_uri_format: http://purl.obolibrary.org/obo/PBPKO_$1
