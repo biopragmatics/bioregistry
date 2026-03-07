@@ -109,6 +109,8 @@ class Record(BaseModel):
 
 def make_record(record: dict[str, Any]) -> Record:
     """Make a record."""
+    # TODO what about stripping strings in lists?
+    #     rv = {k: v.strip() if isinstance(v, str) else v for k, v in data.items() if v}
     record = {k: v for k, v in record.items() if k and v}
     return Record.model_validate(record, extra="forbid")
 

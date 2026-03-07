@@ -8,11 +8,9 @@ from collections.abc import Sequence
 from pathlib import Path
 from typing import Any, ClassVar
 
-import requests
-
-from bioregistry.alignment_model import Record, dump_records, load_processed
+from bioregistry.alignment_model import Record
 from bioregistry.constants import RAW_DIRECTORY, URI_FORMAT_KEY
-from bioregistry.external.alignment_utils import Aligner
+from bioregistry.external.alignment_utils import Aligner, build_getter
 from bioregistry.utils import removeprefix
 
 __all__ = [
@@ -44,18 +42,9 @@ HAS_BAD_URI = {
 }
 
 
-def get_uniprot(*, force_download: bool = True) -> dict[str, Record]:
-    """Get the UniProt registry."""
-    if PROCESSED_PATH.is_file() and not force_download:
-        return load_processed(PROCESSED_PATH)
-
-    RAW_PATH.write_text(
-        json.dumps(
-            requests.get(URL, timeout=30).json(), indent=2, sort_keys=True, ensure_ascii=False
-        )
-    )
+def process_uniprot_raw(path: Path) -> dict[str, Record]:
     rv = {}
-    for record in json.loads(RAW_PATH.read_text())["results"]:
+    for record in json.loads(path.read_text())["results"]:
         prefix = record.pop("id")
         if prefix in skip_prefixes:
             continue
@@ -64,8 +53,6 @@ def get_uniprot(*, force_download: bool = True) -> dict[str, Record]:
         if processed_record is None:
             continue
         rv[prefix] = processed_record
-
-    dump_records(rv, PROCESSED_PATH)
     return rv
 
 
@@ -109,6 +96,14 @@ def _process_record(record: dict[str, Any]) -> Record | None:
     if record:
         logger.debug("forgot something: %s", record)
     return Record.model_validate(rv)
+
+
+get_uniprot = build_getter(
+    processed_path=PROCESSED_PATH,
+    raw_path=RAW_PATH,
+    url=URL,
+    func=process_uniprot_raw,
+)
 
 
 class UniProtAligner(Aligner):

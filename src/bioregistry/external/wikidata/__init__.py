@@ -7,9 +7,9 @@ from pathlib import Path
 from textwrap import dedent
 from typing import ClassVar
 
-from bioregistry.alignment_model import Record, dump_records, load_processed
+from bioregistry.alignment_model import Record, make_record
 from bioregistry.constants import BIOREGISTRY_PATH, URI_FORMAT_KEY
-from bioregistry.external.alignment_utils import Aligner
+from bioregistry.external.alignment_utils import Aligner, build_no_raw_getter
 from bioregistry.utils import query_wikidata, removeprefix
 
 __all__ = [
@@ -213,7 +213,7 @@ def _get_query(properties: Iterable[str]) -> str:
     return QUERY_FMT % values
 
 
-def _get_wikidata(*, force_process: bool = False) -> dict[str, Record]:
+def _get_wikidata() -> dict[str, Record]:
     """Iterate over Wikidata properties connected to biological databases."""
     mapped = _get_mapped()
     # throw out anything that can be queried directly
@@ -310,20 +310,15 @@ def _get_wikidata(*, force_process: bool = False) -> dict[str, Record]:
                 pattern = pattern + "$"
             bindings["pattern"] = pattern
 
-        rv[prefix] = Record.model_validate({k: v for k, v in bindings.items() if k and v})
+        rv[prefix] = make_record(bindings)
 
     return rv
 
 
-def get_wikidata(*, force_download: bool = False, force_process: bool = False) -> dict[str, Record]:
-    """Get the wikidata registry."""
-    if PROCESSED_PATH.exists() and not force_download and not force_process:
-        return load_processed(PROCESSED_PATH)
-
-    data = _get_wikidata(force_process=force_process)
-    dump_records(data, PROCESSED_PATH)
-    return data
-
+get_wikidata = build_no_raw_getter(
+    processed_path=PROCESSED_PATH,
+    func=_get_wikidata,
+)
 
 # Unlike the other aligners, the wikidata one doesn't really do the job of making the alignment.
 # It's more of a stand-in and curation sheet generator right now.

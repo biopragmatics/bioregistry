@@ -70,9 +70,7 @@ def main() -> None:
             tqdm.write(f"[{prefix:15}] URI format: {uri_format}")
             continue
 
-        if not all(
-            [data.name, data.description, data.homepage, data.pattern, data.example]
-        ):
+        if not all([data.name, data.description, data.homepage, data.pattern, data.example]):
             continue
 
         example = data.example[0]

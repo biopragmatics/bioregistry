@@ -10,7 +10,7 @@ from typing import ClassVar
 
 from pystow.utils import download
 
-from bioregistry.alignment_model import Record, dump_records, load_processed
+from bioregistry.alignment_model import Record, dump_records, load_processed, make_record
 from bioregistry.constants import RAW_DIRECTORY, URI_FORMAT_KEY
 from bioregistry.external.alignment_utils import Aligner
 
@@ -71,7 +71,7 @@ def get_cellosaurus(
             d[mapped_key] = value
         if not keep_missing_uri and URI_FORMAT_KEY not in d:
             continue
-        rv[d.pop("prefix")] = Record.model_validate(d)
+        rv[d.pop("prefix")] = make_record(d)
 
     dump_records(rv, PROCESSED_PATH)
     return rv

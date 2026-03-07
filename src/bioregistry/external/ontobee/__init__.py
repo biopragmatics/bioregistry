@@ -8,7 +8,7 @@ from typing import ClassVar
 from bs4 import BeautifulSoup
 from pystow.utils import download
 
-from bioregistry.alignment_model import Record, dump_records, load_processed
+from bioregistry.alignment_model import Record, dump_records, load_processed, make_record
 from bioregistry.constants import RAW_DIRECTORY
 from bioregistry.external.alignment_utils import Aligner
 
@@ -49,7 +49,7 @@ def get_ontobee(force_download: bool = False) -> dict[str, Record]:
     for row in table_body.find_all("tr"):  # type:ignore
         cells = row.find_all("td")
         prefix = cells[1].text
-        rv[prefix] = Record.model_validate(
+        rv[prefix] = make_record(
             {
                 "name": cells[2].text,
                 "keywords": [LEGEND[cells[3].text.upper()]],

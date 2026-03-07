@@ -11,7 +11,7 @@ from urllib.parse import urlsplit, urlunsplit
 from bs4 import BeautifulSoup
 from pystow.utils import download
 
-from bioregistry.alignment_model import Record, dump_records, load_processed
+from bioregistry.alignment_model import Record, dump_records, load_processed, make_record
 from bioregistry.constants import RAW_DIRECTORY
 from bioregistry.external.alignment_utils import Aligner
 
@@ -142,7 +142,7 @@ def get_ncbi(force_download: bool = False) -> dict[str, Record]:
 
             item["example"] = identifier
 
-        rv[prefix] = Record.model_validate(item)
+        rv[prefix] = make_record(item)
 
     dump_records(rv, PROCESSED_PATH)
     return rv

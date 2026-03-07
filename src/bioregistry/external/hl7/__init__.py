@@ -10,7 +10,7 @@ from collections.abc import Sequence
 from pathlib import Path
 from typing import ClassVar
 
-from bioregistry.alignment_model import Record
+from bioregistry.alignment_model import Record, make_record
 from bioregistry.external.alignment_utils import Aligner
 
 __all__ = [
@@ -42,7 +42,7 @@ def get_hl7(*, force_download: bool = False) -> dict[str, Record]:
         for row in reader:
             row_dict = dict(zip(header, row, strict=False))
             record = {COLUMNS[k]: v for k, v in row_dict.items() if k in COLUMNS and v}
-            rv[record.pop("prefix")] = Record.model_validate(record)
+            rv[record.pop("prefix")] = make_record(record)
     return rv
 
 

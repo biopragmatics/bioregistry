@@ -15,7 +15,7 @@ import requests
 from tqdm import tqdm
 from tqdm.contrib.concurrent import thread_map
 
-from bioregistry.alignment_model import Record, dump_records, load_processed
+from bioregistry.alignment_model import Record, dump_records, load_processed, make_record
 from bioregistry.constants import EMAIL_RE, RAW_DIRECTORY
 from bioregistry.license_standardizer import standardize_license
 from bioregistry.utils import removeprefix
@@ -169,8 +169,7 @@ class OntoPortalClient:
             "example_uri": entry.get("exampleIdentifier"),
             "license": entry.get("license"),
         }
-        rv = {k: v for k, v in rv.items() if v}
-        return Record.model_validate(rv)
+        return make_record(rv)
 
 
 bioportal_client = OntoPortalClient(

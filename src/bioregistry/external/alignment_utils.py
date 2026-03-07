@@ -1,11 +1,11 @@
 """Utilities for registry alignment."""
 
 import csv
+import json
 from collections.abc import Callable, Iterable, Mapping, Sequence
 from pathlib import Path
 from typing import Any, ClassVar, ParamSpec, TypeAlias
-from typing import Any, ClassVar
-import json
+
 import click
 from curies.w3c import NCNAME_RE
 from pystow.utils import download
@@ -13,7 +13,6 @@ from tabulate import tabulate
 
 from ..alignment_model import Record, dump_records
 from ..alignment_model import load_processed as load_records
-from ..alignment_model import Record
 from ..constants import METADATA_CURATION_DIRECTORY
 from ..resource_manager import Manager
 from ..schema import Resource

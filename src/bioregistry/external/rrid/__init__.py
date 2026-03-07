@@ -11,7 +11,7 @@ from collections.abc import Mapping, Sequence
 from pathlib import Path
 from typing import Any, ClassVar
 
-from bioregistry.alignment_model import Record
+from bioregistry.alignment_model import Record, make_record
 from bioregistry.constants import RAW_DIRECTORY
 from bioregistry.external.alignment_utils import Aligner
 
@@ -85,7 +85,7 @@ def _process_record(prefix: str, record: dict[str, Any]) -> Record:
         ddd["twitter"] = twitter.lstrip("@")
 
     # TODO could get license
-    return Record.model_validate(ddd)
+    return make_record(ddd)
 
 
 def _split(s: str) -> list[str]:

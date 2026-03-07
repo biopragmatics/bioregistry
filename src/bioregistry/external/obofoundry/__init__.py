@@ -22,6 +22,7 @@ from bioregistry.alignment_model import (
     Status,
     dump_records,
     load_processed,
+    make_record,
 )
 from bioregistry.constants import RAW_DIRECTORY
 from bioregistry.external.alignment_utils import Aligner
@@ -183,7 +184,7 @@ def _process(record: dict[str, Any]) -> Record:
             logo = f"https://obofoundry.org{logo}"
         rv["logo"] = logo
 
-    return Record.model_validate(rv)
+    return make_record(rv)
 
 
 def get_obofoundry_example(prefix: str) -> str | None:

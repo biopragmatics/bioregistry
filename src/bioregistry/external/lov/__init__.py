@@ -8,7 +8,7 @@ from typing import ClassVar, cast
 
 from pystow.utils import download, read_rdf
 
-from bioregistry.alignment_model import Record, dump_records, load_processed
+from bioregistry.alignment_model import Record, dump_records, load_processed, make_record
 from bioregistry.external.alignment_utils import Aligner
 
 __all__ = [
@@ -68,7 +68,7 @@ def get_lov(*, force_download: bool = False, force_refresh: bool = False) -> dic
             del d["vocab"]
         else:
             d["homepage"] = d.pop("vocab")
-        records[d["prefix"]] = Record.model_validate(d)
+        records[d["prefix"]] = make_record(d)
 
     dump_records(records, PROCESSED_PATH)
     return records

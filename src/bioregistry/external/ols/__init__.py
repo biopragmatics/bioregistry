@@ -16,7 +16,7 @@ from typing import Any, ClassVar, TypeAlias
 import requests
 from pydantic import BaseModel
 
-from bioregistry.alignment_model import Person, Record, dump_records, load_processed
+from bioregistry.alignment_model import Person, Record, dump_records, load_processed, make_record
 from bioregistry.constants import RAW_DIRECTORY, URI_FORMAT_KEY
 from bioregistry.external.alignment_utils import Aligner
 from bioregistry.parse_version_iri import parse_obo_version_iri
@@ -298,8 +298,7 @@ def _process(
         logger.warning("[%s] XML download is unhandled %s", ols_id, download)
     else:
         logger.warning("[%s] unknown download type %s", ols_id, download)
-    rv = {k: v.strip() if isinstance(v, str) else v for k, v in rv.items() if v}
-    return Record.model_validate(rv)
+    return make_record(rv)
 
 
 def _clean_url(url: str | None) -> str | None:

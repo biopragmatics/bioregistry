@@ -13,7 +13,7 @@ from collections.abc import MutableMapping, Sequence
 from pathlib import Path
 from typing import Any, ClassVar
 
-from bioregistry.alignment_model import Record, dump_records, load_processed
+from bioregistry.alignment_model import Record, dump_records, load_processed, make_record
 from bioregistry.constants import ORCID_PATTERN
 from bioregistry.external.alignment_utils import Aligner
 from bioregistry.license_standardizer import standardize_license
@@ -138,8 +138,7 @@ def _process_record(record: MutableMapping[str, Any]) -> Record | None:
         else:
             rv["license"] = license_standard
 
-    rv = {k: v for k, v in rv.items() if k and v}
-    return Record.model_validate(rv)
+    return make_record(rv)
 
 
 #: Licenses that are one-off and don't need curating

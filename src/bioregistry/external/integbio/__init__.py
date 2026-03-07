@@ -5,13 +5,13 @@ from __future__ import annotations
 import logging
 from collections.abc import Sequence
 from pathlib import Path
-from typing import Any, ClassVar
+from typing import ClassVar
 
 import pandas as pd
 import requests
 from bs4 import BeautifulSoup
 
-from bioregistry.alignment_model import Record, dump_records
+from bioregistry.alignment_model import Record, dump_records, make_record
 from bioregistry.external.alignment_utils import Aligner
 
 __all__ = [
@@ -144,10 +144,10 @@ def get_integbio(*, force_download: bool = False) -> dict[str, Record]:
 
     del df["references"]
     # TODO ground database maintenance with ROR?
-    rv: dict[str, dict[str, Any]] = {}
+    rv: dict[str, Record] = {}
     for _, row in df.iterrows():
         rr = {k: v for k, v in row.items() if isinstance(v, (str, list))}
-        rv[row["prefix"].lower()] = Record.model_validate(rr)
+        rv[row["prefix"].lower()] = make_record(rr)
     dump_records(rv, PROCESSED_PATH)
     return rv
 

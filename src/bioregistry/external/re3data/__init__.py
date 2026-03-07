@@ -14,7 +14,7 @@ from xml.etree import ElementTree
 import requests
 from tqdm.contrib.concurrent import thread_map
 
-from bioregistry.alignment_model import Record, dump_records, load_processed
+from bioregistry.alignment_model import Record, dump_records, load_processed, make_record
 from bioregistry.external.alignment_utils import Aligner
 from bioregistry.utils import removeprefix
 
@@ -111,8 +111,7 @@ def _process_record(identifier: str, tree_inner: ElementTree.Element) -> Record:
     if license_element is not None:
         data["license"] = license_element.text
 
-    rv = {k: v.strip() if isinstance(v, str) else v for k, v in data.items() if v}
-    return Record.model_validate(rv)
+    return make_record(data)
 
 
 def _clean_xref(xref: str) -> tuple[str, str] | None:

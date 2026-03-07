@@ -9,7 +9,7 @@ from typing import Any, ClassVar
 from pydantic import BaseModel, Field
 from pystow.utils import download
 
-from bioregistry.alignment_model import Record, Status, dump_records, load_processed
+from bioregistry.alignment_model import Record, Status, dump_records, load_processed, make_record
 from bioregistry.constants import RAW_DIRECTORY, URI_FORMAT_KEY
 from bioregistry.external.alignment_utils import Aligner
 
@@ -106,7 +106,7 @@ def _process(record: dict[str, Any]) -> Record[MiriamExtra]:
         if not resource.get("deprecated")
     ]
     if not resources:
-        return Record[MiriamExtra].model_validate(rv)
+        return make_record(rv)
 
     has_official = any(resource["official"] for resource in resources)
     if has_official:
@@ -132,7 +132,7 @@ def _process(record: dict[str, Any]) -> Record[MiriamExtra]:
         extras.append(provider)
     if extras:
         rv["providers"] = extras
-    return Record[MiriamExtra].model_validate(rv)
+    return make_record(rv)
 
 
 SKIP_PROVIDERS = {

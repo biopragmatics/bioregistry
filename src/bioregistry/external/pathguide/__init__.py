@@ -6,7 +6,7 @@ from typing import ClassVar
 import requests
 from bs4 import BeautifulSoup
 
-from bioregistry.alignment_model import Record
+from bioregistry.alignment_model import Record, make_record
 from bioregistry.external.alignment_utils import Aligner
 
 __all__ = [
@@ -41,7 +41,7 @@ def get_pathguide(*, force_download: bool = False) -> dict[str, Record]:
         if standards:
             dd["keywords"] = standards
 
-        rv[pathguide_id] = Record.model_validate(dd)
+        rv[pathguide_id] = make_record(dd)
 
     return rv
 

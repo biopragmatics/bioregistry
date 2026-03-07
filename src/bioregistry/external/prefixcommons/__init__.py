@@ -15,7 +15,7 @@ from typing import Any, ClassVar
 
 from pystow.utils import download
 
-from bioregistry.alignment_model import Record, dump_records, load_processed
+from bioregistry.alignment_model import Record, dump_records, load_processed, make_record
 from bioregistry.constants import RAW_DIRECTORY
 from bioregistry.external.alignment_utils import Aligner
 from bioregistry.license_standardizer import standardize_license
@@ -111,7 +111,7 @@ def get_prefixcommons(
         for line in lines:
             prefix, data = _process_row(line)
             if prefix and data:
-                rows[prefix] = Record.model_validate(data)
+                rows[prefix] = make_record(data)
 
     dump_records(rows, PROCESSED_PATH)
     return rows

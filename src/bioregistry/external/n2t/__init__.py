@@ -9,7 +9,7 @@ from typing import Any, ClassVar
 import yaml
 from pystow.utils import download
 
-from bioregistry.alignment_model import Record, dump_records, load_processed
+from bioregistry.alignment_model import Record, dump_records, load_processed, make_record
 from bioregistry.constants import RAW_DIRECTORY, URI_FORMAT_KEY
 from bioregistry.external.alignment_utils import Aligner
 
@@ -68,8 +68,7 @@ def _process(record: dict[str, Any]) -> Record:
         "example": record.get("test"),
         "namespaceEmbeddedInLui": (record.get("prefixed") == "true"),
     }
-    rv = {k: v for k, v in rv.items() if v is not None}
-    return Record.model_validate(rv)
+    return make_record(rv)
 
 
 def _get_uri_format(record: dict[str, Any]) -> str | None:

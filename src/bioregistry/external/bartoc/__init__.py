@@ -17,6 +17,7 @@ from ...alignment_model import (
     Record,
     dump_records,
     load_processed,
+    make_record,
 )
 
 __all__ = [
@@ -105,7 +106,7 @@ def _process_bartoc_record(prefix: str, record: dict[str, Any]) -> Record:
     if examples := record.pop("EXAMPLES", []):
         rv["example"] = examples[0].strip()
 
-    return Record.model_validate({k: v for k, v in rv.items() if k and v})
+    return make_record(rv)
 
 
 class BartocAligner(Aligner):

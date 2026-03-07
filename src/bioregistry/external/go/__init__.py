@@ -9,7 +9,7 @@ from typing import Any, ClassVar
 import yaml
 from pystow.utils import download
 
-from bioregistry.alignment_model import Record, dump_records, load_processed
+from bioregistry.alignment_model import Record, dump_records, load_processed, make_record
 from bioregistry.constants import RAW_DIRECTORY, URI_FORMAT_KEY
 from bioregistry.external.alignment_utils import Aligner
 
@@ -113,7 +113,7 @@ def _process_record(data: Mapping[str, Any]) -> Record:
     if "synonyms" in data:
         rv["synonyms"] = data["synonyms"]
 
-    return Record.model_validate(rv)
+    return make_record(rv)
 
 
 class GoAligner(Aligner):
