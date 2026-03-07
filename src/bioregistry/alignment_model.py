@@ -11,11 +11,6 @@ from typing import Any
 from curies import NamableReference
 from pydantic import BaseModel, Field
 
-try:
-    from enum import StrEnum
-except ImportError:
-    from backports.strenum import StrEnum  # type:ignore[no-redef]
-
 
 class Person(BaseModel):
     """Represents the fields for a person."""
@@ -34,15 +29,15 @@ class License(BaseModel):
     url: str | None = None
 
 
-class Status(StrEnum):
+class Status(str, enum.Enum):
     """Represents the project status."""
 
-    active = enum.auto()
-    inactive = enum.auto()
-    abandoned = enum.auto()
-    orphaned = enum.auto()
-    replaced = enum.auto()
-    deprecated = enum.auto()
+    active = "active"
+    inactive = "inactive"
+    abandoned = "abandoned"
+    orphaned = "orphaned"
+    replaced = "replaced"
+    deprecated = "deprecated"
 
 
 class Publication(BaseModel):
@@ -62,13 +57,13 @@ class Publication(BaseModel):
     zenodo: str | None = None
 
 
-class ArtifactType(StrEnum):
+class ArtifactType(str, enum.Enum):
     """A semantic space artifact type."""
 
-    obo = enum.auto()
-    obograph_json = enum.auto()
-    rdf = enum.auto()
-    owl = enum.auto()
+    obo = "obo"
+    obograph_json = "obograph_json"
+    rdf = "rdf"
+    owl = "owl"
 
 
 class Artifact(BaseModel):
