@@ -11,7 +11,7 @@ from tqdm import tqdm
 from bioregistry.constants import RAW_DIRECTORY, URI_FORMAT_KEY
 from bioregistry.license_standardizer import standardize_license
 
-from ..alignment_utils import Aligner
+from ..alignment_utils import Aligner, adapter
 from ...alignment_model import (
     License,
     Record,
@@ -31,6 +31,7 @@ PROCESSED_PATH = HERE / "processed.json"
 URL = "https://bartoc.org/data/dumps/latest.ndjson"
 
 
+@adapter
 def get_bartoc(*, force_download: bool = False, force_process: bool = False) -> dict[str, Record]:
     """Get the BARTOC registry.
 

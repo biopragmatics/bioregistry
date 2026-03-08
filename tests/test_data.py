@@ -1294,6 +1294,12 @@ class TestRegistry(unittest.TestCase):
             ).get_download_owl(),
         )
 
+    def test_upgraded(self) -> None:
+        """Test external records are conformant."""
+        for metaprefix, _, func in GETTERS:
+            with self.subTest(metaprefix=metaprefix):
+                self.assertTrue(getattr(func, "__new_style_bioregistry", None))
+
     def test_external_records(self) -> None:
         """Test external records are conformant."""
         metaprefixes = [

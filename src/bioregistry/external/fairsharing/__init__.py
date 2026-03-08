@@ -15,7 +15,7 @@ from typing import Any, ClassVar
 
 from bioregistry.alignment_model import Record, dump_records, load_processed, make_record
 from bioregistry.constants import ORCID_PATTERN
-from bioregistry.external.alignment_utils import Aligner
+from bioregistry.external.alignment_utils import Aligner, adapter
 from bioregistry.license_standardizer import standardize_license
 from bioregistry.utils import removeprefix, removesuffix
 
@@ -41,6 +41,7 @@ ALLOWED_TYPES = {
 ORCID_RE = re.compile(ORCID_PATTERN)
 
 
+@adapter
 def get_fairsharing(
     *, force_download: bool = False, force_reload: bool = False, use_tqdm: bool = True
 ) -> dict[str, Record]:

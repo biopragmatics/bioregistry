@@ -11,7 +11,7 @@ from pystow.utils import download
 
 from bioregistry.alignment_model import Record, dump_records, load_processed, make_record
 from bioregistry.constants import RAW_DIRECTORY, URI_FORMAT_KEY
-from bioregistry.external.alignment_utils import Aligner
+from bioregistry.external.alignment_utils import Aligner, adapter
 
 __all__ = [
     "GoAligner",
@@ -50,6 +50,7 @@ GO_URL = "https://raw.githubusercontent.com/geneontology/go-site/master/metadata
 PROCESSING_GO_PATH = DIRECTORY / "processing_go.json"
 
 
+@adapter
 def get_go(force_download: bool = False) -> dict[str, Record]:
     """Get the GO registry."""
     if PROCESSED_PATH.exists() and not force_download:

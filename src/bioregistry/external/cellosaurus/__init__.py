@@ -12,7 +12,7 @@ from pystow.utils import download
 
 from bioregistry.alignment_model import Record, dump_records, load_processed, make_record
 from bioregistry.constants import RAW_DIRECTORY, URI_FORMAT_KEY
-from bioregistry.external.alignment_utils import Aligner
+from bioregistry.external.alignment_utils import Aligner, adapter
 
 __all__ = [
     "CellosaurusAligner",
@@ -34,6 +34,7 @@ KEYMAP = {
 }
 
 
+@adapter
 def get_cellosaurus(
     force_download: bool = False, keep_missing_uri: bool = True
 ) -> dict[str, Record]:
