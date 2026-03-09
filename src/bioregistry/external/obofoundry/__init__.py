@@ -86,7 +86,7 @@ def _process(record: dict[str, Any]) -> dict[str, Any]:
         "domain": record.get("domain"),
     }
 
-    for key in ("publications", "twitter"):
+    for key in ("publications",):
         value = record.get(key)
         if value:
             rv[key] = value

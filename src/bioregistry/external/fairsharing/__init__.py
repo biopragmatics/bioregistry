@@ -120,8 +120,6 @@ def _process_record(record: MutableMapping[str, Any]) -> dict[str, Any] | None:
         rv["contact"] = contacts[0]
 
     for support_link in metadata.get("support_links", []):
-        if support_link["type"] == "Twitter":
-            rv["twitter"] = removeprefix(support_link["url"], "https://twitter.com/")
         if support_link["type"] == "Github":
             rv["repository"] = support_link["url"]
 
