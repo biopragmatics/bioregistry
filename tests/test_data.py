@@ -14,12 +14,14 @@ from typing import Any
 import curies
 import rdflib
 from curies.w3c import NCNAME_RE
+from pystow.utils import safe_open_dict_reader
 
 import bioregistry
 from bioregistry import Resource, manager
 from bioregistry.alignment_model import Record
 from bioregistry.constants import (
     BIOREGISTRY_PATH,
+    CURATED_MAPPINGS_PATH,
     DISALLOWED_EMAIL_PARTS,
     EMAIL_RE,
     METAREGISTRY_PATH,
@@ -1319,9 +1321,10 @@ class TestRegistry(unittest.TestCase):
     def test_mappings_when_data(self) -> None:
         """Make sure metaprefixes line up."""
         metaprefixes = {
-            record["prefix"] for record in json.loads(METAREGISTRY_PATH.read_text())["metaregistry"]
+            record["prefix"]
+            for record in json.loads(METAREGISTRY_PATH.read_text(encoding="utf-8"))["metaregistry"]
         }
-        registry = json.loads(BIOREGISTRY_PATH.read_text())
+        registry = json.loads(BIOREGISTRY_PATH.read_text(encoding="utf-8"))
         for prefix, record in registry.items():
             for metaprefix in metaprefixes:
                 if metaprefix not in record:
@@ -1329,3 +1332,34 @@ class TestRegistry(unittest.TestCase):
                 with self.subTest(prefix=prefix, registry=metaprefix):
                     self.assertIn("mappings", record)
                     self.assertIn(metaprefix, record["mappings"])
+
+    def test_data_when_mappings(self) -> None:
+        """Make sure that all mappings have associated data."""
+        registry = json.loads(BIOREGISTRY_PATH.read_text(encoding="utf-8"))
+        for prefix, record in registry.items():
+            mappings = record.get("mappings")
+            if not mappings:
+                continue
+            for metaprefix in mappings:
+                if metaprefix == "wikidata.entity":
+                    continue
+                with self.subTest(prefix=prefix, registry=metaprefix):
+                    self.assertIn(metaprefix, record)
+
+    def test_negative_mappings(self) -> None:
+        """Test that explicitly curated negative mappings are not apparent in the main JSON file."""
+        registry = json.loads(BIOREGISTRY_PATH.read_text(encoding="utf-8"))
+        with safe_open_dict_reader(CURATED_MAPPINGS_PATH) as reader:
+            for record in reader:
+                if record["predicate_modifier"] != "Not":
+                    continue
+                prefix = record["subject_id"].removeprefix("bioregistry:")
+                metaprefix, value = curies.ReferenceTuple.from_curie(record["object_id"])
+                mappings = registry[prefix].get("mappings")
+                if not mappings:
+                    continue
+                vv = mappings.get(metaprefix)
+                if not vv:
+                    continue
+                with self.subTest(prefix=prefix, registry=metaprefix):
+                    self.assertNotEqual(value, vv)
