@@ -90,7 +90,6 @@ class TestNewPrefix(unittest.TestCase):
             proprietary=None,
             has_canonical=None,
             preferred_prefix=None,
-            twitter=None,
             mastodon=None,
             github_request_issue=issue_id,
             logo=None,
