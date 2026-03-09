@@ -629,11 +629,9 @@ def json_schema() -> werkzeug.Response:
 
 
 @ui_blueprint.route("/highlights/twitter")
-def highlights_twitter() -> str:
-    """Render the twitter highlights page."""
-    twitters = defaultdict(list)
-    # TODO remove
-    return render_template("highlights/twitter.html", twitters=twitters)
+def highlights_twitter() -> int:
+    """Render a HTTP 410 Gone (forever) for twitter content, which is no longer supported."""
+    return 410
 
 
 @ui_blueprint.route("/highlights/relations")
