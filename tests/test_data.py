@@ -1321,9 +1321,10 @@ class TestRegistry(unittest.TestCase):
     def test_mappings_when_data(self) -> None:
         """Make sure metaprefixes line up."""
         metaprefixes = {
-            record["prefix"] for record in json.loads(METAREGISTRY_PATH.read_text())["metaregistry"]
+            record["prefix"]
+            for record in json.loads(METAREGISTRY_PATH.read_text(encoding="utf-8"))["metaregistry"]
         }
-        registry = json.loads(BIOREGISTRY_PATH.read_text())
+        registry = json.loads(BIOREGISTRY_PATH.read_text(encoding="utf-8"))
         for prefix, record in registry.items():
             for metaprefix in metaprefixes:
                 if metaprefix not in record:
@@ -1334,7 +1335,7 @@ class TestRegistry(unittest.TestCase):
 
     def test_data_when_mappings(self) -> None:
         """Make sure that all mappings have associated data."""
-        registry = json.loads(BIOREGISTRY_PATH.read_text())
+        registry = json.loads(BIOREGISTRY_PATH.read_text(encoding="utf-8"))
         for prefix, record in registry.items():
             mappings = record.get("mappings")
             if not mappings:
@@ -1347,7 +1348,7 @@ class TestRegistry(unittest.TestCase):
 
     def test_negative_mappings(self) -> None:
         """Test that explicitly curated negative mappings are not apparent in the main JSON file."""
-        registry = json.loads(BIOREGISTRY_PATH.read_text())
+        registry = json.loads(BIOREGISTRY_PATH.read_text(encoding="utf-8"))
         with safe_open_dict_reader(CURATED_MAPPINGS_PATH) as reader:
             for record in reader:
                 if record["predicate_modifier"] != "Not":

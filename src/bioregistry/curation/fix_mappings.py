@@ -30,7 +30,9 @@ def main() -> None:
         if "mappings" in v and not v["mappings"]:
             del v["mappings"]
 
-    BIOREGISTRY_PATH.write_text(json.dumps(registry, indent=2, ensure_ascii=False))
+    BIOREGISTRY_PATH.write_text(
+        json.dumps(registry, indent=2, ensure_ascii=False), encoding="utf-8"
+    )
 
 
 if __name__ == "__main__":
