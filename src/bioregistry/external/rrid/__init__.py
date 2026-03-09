@@ -78,9 +78,6 @@ def get_rrid(*, force_download: bool = False) -> dict[str, dict[str, str]]:
             abbreviation = record["Abbreviation"]
             if abbreviation and abbreviation != prefix:
                 ddd["abbreviation"] = abbreviation
-            twitter = record["Twitter_Handle"]
-            if twitter:
-                ddd["twitter"] = twitter.lstrip("@")
 
             # could get license
             rv[prefix] = ddd
