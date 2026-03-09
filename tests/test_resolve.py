@@ -11,7 +11,7 @@ from bioregistry.resolve import get_external
 class TestResolve(unittest.TestCase):
     """Tests for getting Bioregistry content."""
 
-    def test_resolve(self):
+    def test_resolve(self) -> None:
         """Test prefixes can be resolved properly."""
         for expected, query in [
             ("ncbitaxon", "ncbitaxon"),
@@ -28,16 +28,19 @@ class TestResolve(unittest.TestCase):
             with self.subTest(query=query):
                 self.assertEqual(expected, bioregistry.normalize_prefix(query))
 
-    def test_get(self):
+        with self.assertRaises(ValueError):
+            bioregistry.normalize_prefix("nope", strict=True)
+
+    def test_get(self) -> None:
         """Test getting content from the bioregistry."""
-        ncbitaxon_entry = bioregistry.get_resource("ncbitaxon")
-        self.assertIn("NCBI_Taxon_ID", ncbitaxon_entry.synonyms)
+        ncbitaxon_entry = bioregistry.get_resource("ncbitaxon", strict=True)
+        self.assertIn("NCBI_Taxon_ID", ncbitaxon_entry.synonyms or [])
         self.assertIsNotNone(get_external("ncbitaxon", "miriam"))
         self.assertIsNotNone(get_external("ncbitaxon", "obofoundry"))
         self.assertIsNotNone(get_external("ncbitaxon", "ols"))
         self.assertIsNotNone(get_external("ncbitaxon", "wikidata"))
 
-    def test_validate_true(self):
+    def test_validate_true(self) -> None:
         """Test that validation returns true."""
         tests = [
             ("ec", "1"),
@@ -97,7 +100,7 @@ class TestResolve(unittest.TestCase):
                     msg=f"CURIE {prefix}:{identifier} does not loosely match {bioregistry.get_pattern(prefix)}",
                 )
 
-    def test_validate_false(self):
+    def test_validate_false(self) -> None:
         """Test that validation returns false."""
         for prefix, identifier in [
             ("chebi", "A1234"),
@@ -106,7 +109,7 @@ class TestResolve(unittest.TestCase):
             with self.subTest(prefix=prefix, identifier=identifier):
                 self.assertFalse(bioregistry.is_standardizable_identifier(prefix, identifier))
 
-    def test_lui(self):
+    def test_lui(self) -> None:
         """Test the LUI makes sense (spoilers, they don't).
 
         Discussion is ongoing at:
@@ -120,19 +123,23 @@ class TestResolve(unittest.TestCase):
                 continue  # rewrite rules are applied to prefixes with bananas
             if prefix in {"ark", "obi"}:
                 continue  # these patterns on identifiers.org are garb
+            re_pattern = bioregistry.get_pattern(prefix)
+            miriam_prefix = bioregistry.get_identifiers_org_prefix(prefix)
+            if not re_pattern or not miriam_prefix:
+                continue
             with self.subTest(prefix=prefix):
-                re_pattern = bioregistry.get_pattern(prefix)
-                miriam_prefix = bioregistry.get_identifiers_org_prefix(prefix)
                 self.assertTrue(
                     re_pattern.startswith(f"^{miriam_prefix.upper()}")
                     or re_pattern.startswith(miriam_prefix.upper()),
                     msg=f"{prefix} pattern: {re_pattern}",
                 )
 
-    def test_curie_pattern(self):
+    def test_curie_pattern(self) -> None:
         """Test CURIE pattern.
 
-        .. seealso:: https://github.com/biopragmatics/bioregistry/issues/245
+        .. seealso::
+
+            https://github.com/biopragmatics/bioregistry/issues/245
         """
         self.assertEqual("^chebi:\\d+$", bioregistry.get_curie_pattern("chebi"))
         self.assertEqual("^CHEBI:\\d+$", bioregistry.get_curie_pattern("chebi", use_preferred=True))
@@ -140,10 +147,12 @@ class TestResolve(unittest.TestCase):
             "^chembl\\.compound:CHEMBL\\d+$", bioregistry.get_curie_pattern("chembl.compound")
         )
         pattern = bioregistry.get_curie_pattern("panther.pthcmp")
+        if pattern is None:
+            raise self.fail("no curie pattern found")
         self.assertRegex("panther.pthcmp:P00266", pattern)
         self.assertNotRegex("pantherXpthcmp:P00266", pattern)
 
-    def test_depends_on(self):
+    def test_depends_on(self) -> None:
         """Test getting dependencies."""
         test_prefix = "foodon"
         test_target = "bfo"
@@ -151,13 +160,14 @@ class TestResolve(unittest.TestCase):
         self.assertIsNotNone(resource)
 
         obofoundry = resource.get_external("obofoundry")
-        self.assertIsNotNone(obofoundry)
+        if obofoundry is None:
+            raise self.fail("obofoundry not found")
         self.assertIn("depends_on", obofoundry)
 
         fobi_dependencies = manager.get_depends_on(test_prefix)
         self.assertIsNotNone(fobi_dependencies)
-        self.assertIn(test_target, fobi_dependencies)
+        self.assertIn(test_target, fobi_dependencies or [])
 
         fobi_dependencies = bioregistry.get_depends_on(test_prefix)
         self.assertIsNotNone(fobi_dependencies)
-        self.assertIn(test_target, fobi_dependencies)
+        self.assertIn(test_target, fobi_dependencies or [])

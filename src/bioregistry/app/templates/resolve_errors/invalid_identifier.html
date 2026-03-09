@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 
-{% block title %}Bioregistry Resolution Error{% endblock %}
+{% block title %}{{ config.METAREGISTRY_TITLE }} Resolution Error{% endblock %}
 
 {% block container %}
     <div class="card card-body">
@@ -16,7 +16,7 @@
         <p>
             If you believe this judgement to be erroneous but don't know how it should be updated, please let us know
             via the
-            <a href="https://github.com/biopragmatics/bioregistry/issues/new?assignees=&labels=Regex%2C+Update&template=update-regular-expression-pattern.md&title=Update+regular+expression+pattern+for+%60{{ prefix }}%60+because+failed+on+%60{{ identifier }}%60">
+            <a href="{{ config.METAREGISTRY_REPOSITORY }}/issues/new?assignees=&labels=Regex%2C+Update&template=update-regular-expression-pattern.md&title=Update+regular+expression+pattern+for+%60{{ prefix }}%60+because+failed+on+%60{{ identifier }}%60">
                 GitHub Issue tracker</a>.
         </p>
         <p>
@@ -24,17 +24,17 @@
         </p>
         <ul>
             <li>
-                <a href="https://github.com/biopragmatics/bioregistry/issues/new?assignees=&labels=Regex%2C+Update&template=update-regular-expression-pattern.md&title=Update+regular+expression+pattern+for+%60{{ prefix }}%60+because+failed+on+%60{{ identifier }}%60">
+                <a href="{{ config.METAREGISTRY_REPOSITORY }}/issues/new?assignees=&labels=Regex%2C+Update&template=update-regular-expression-pattern.md&title=Update+regular+expression+pattern+for+%60{{ prefix }}%60+because+failed+on+%60{{ identifier }}%60">
                     Add an issue</a> on our GitHub issue tracker stating how the pattern should be updated.
             </li>
             <li>
                 Update the pattern yourself by <a
-                    href="https://github.com/biopragmatics/bioregistry/edit/main/src/bioregistry/data/bioregistry.json">
-                editing the Bioregistry</a> in GitHub through the web browser.
+                    href="{{ config.METAREGISTRY_REPOSITORY }}/edit/main/src/bioregistry/data/bioregistry.json">
+                editing the {{ config.METAREGISTRY_TITLE }}</a> in GitHub through the web browser.
             </li>
             <li>
-                Make a pull request to <a href="https://github.com/biopragmatics/bioregistry">
-                <i class="fab fa-github"></i> biopragmatics/bioregistry</a>.
+                Make a pull request to <a href="{{ config.METAREGISTRY_REPOSITORY }}">
+                <i class="fab fa-github"></i> {{ config.METAREGISTRY_REPOSITORY_SLUG }}</a>.
             </li>
         </ul>
     </div>

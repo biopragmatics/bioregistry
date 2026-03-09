@@ -81,7 +81,7 @@
                     <h5 class="mb-1"><i class="fas fa-list"></i> View Registry</h5>
                     <small class="text-muted">{{ "{:,}".format(registry_size) }} entries</small>
                 </div>
-                <p class="mb-1">The integrative registry of databases, ontologies, and resources.</p>
+                <p class="mb-1">The integrative registry of databases, ontologies, and resources that assign (persistent) identifiers.</p>
             </a>
             <a href="{{ url_for('metaregistry_ui.metaresources') }}"
                class="list-group-item list-group-item-action flex-column align-items-start">
@@ -120,13 +120,13 @@
                 </p>
                 {# <small class="text-muted">Donec id elit non mi porta.</small> #}
             </a>
-            <a href="https://github.com/biopragmatics/bioregistry/issues/new?labels=New%2CPrefix&template=new-prefix.yml&title=Add+prefix+%5BX%5D"
+            <a href="{{ config.METAREGISTRY_REPOSITORY }}/issues/new?labels=New%2CPrefix&template=new-prefix.yml&title=Add+prefix+%5BX%5D"
                class="list-group-item list-group-item-action flex-column align-items-start">
                 <div class="d-flex w-100 justify-content-between">
                     <h5 class="mb-1"><i class="fas fa-question"></i> Request a Prefix</h5>
                 </div>
                 <p class="mb-1">
-                    Request a new prefix in the Bioregistry via its GitHub Issue tracker.
+                    Request a new prefix in the {{ config.METAREGISTRY_TITLE }} via its GitHub Issue tracker.
                 </p>
                 {# <small class="text-muted">Donec id elit non mi porta.</small> #}
             </a>
@@ -136,7 +136,7 @@
                     <h5 class="mb-1"><i class="fas fa-download"></i> Download</h5>
                 </div>
                 <p class="mb-1">
-                    All of the data in the {{ config.METAREGISTRY_TITLE }} (version {{ config.METAREGISTRY_VERSION }}).
+                    All the data in the {{ config.METAREGISTRY_TITLE }} (version {{ config.METAREGISTRY_VERSION }}).
                 </p>
                 <small class="text-muted">Available under the CC0 1.0 Universal License.</small>
             </a>

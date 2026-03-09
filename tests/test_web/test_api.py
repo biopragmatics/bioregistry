@@ -5,7 +5,8 @@ from __future__ import annotations
 import itertools as itt
 import json
 import unittest
-from typing import ClassVar
+from collections.abc import Callable, Iterable
+from typing import TYPE_CHECKING, Any, ClassVar, cast
 
 import rdflib
 import rdflib.plugins.parsers.notation3
@@ -17,6 +18,9 @@ from bioregistry import Resource
 from bioregistry.app.api import MappingResponse, URIResponse
 from bioregistry.app.impl import get_app
 
+if TYPE_CHECKING:
+    import httpx
+
 
 class TestWeb(unittest.TestCase):
     """Tests for the web application."""
@@ -27,10 +31,10 @@ class TestWeb(unittest.TestCase):
     @classmethod
     def setUpClass(cls) -> None:
         """Set up the test case with an app."""
-        cls.fastapi = get_app()
+        cls.fastapi = get_app(return_flask=False)
         cls.client = TestClient(cls.fastapi)
 
-    def test_api_registry(self):
+    def test_api_registry(self) -> None:
         """Test the registry endpoint."""
         fail_endpoint = "/api/registry?format=FAIL"
         with self.subTest(endpoint=fail_endpoint):
@@ -46,8 +50,10 @@ class TestWeb(unittest.TestCase):
             with self.subTest(endpoint=endpoint):
                 self._test_registry(endpoint, parse_func)
 
-    def _test_registry(self, endpoint, parse_func):
-        res = self.client.get(endpoint)
+    def _test_registry(
+        self, endpoint: str, parse_func: Callable[[httpx.Response], dict[str, Resource]]
+    ) -> None:
+        res: httpx.Response = self.client.get(endpoint)
         self.assertEqual(200, res.status_code)
         self.assertIsInstance(res.text, str)
         registry = parse_func(res)
@@ -55,11 +61,11 @@ class TestWeb(unittest.TestCase):
         self.assertEqual("CHEBI", registry["chebi"].get_preferred_prefix())
 
     @staticmethod
-    def _parse_registry_json(res) -> dict[str, Resource]:
+    def _parse_registry_json(res: httpx.Response) -> dict[str, Resource]:
         data = res.json().items()
         return {key: Resource.model_validate(resource) for key, resource in data}
 
-    def _parse_registry_rdf(self, res, fmt: str) -> dict[str, Resource]:
+    def _parse_registry_rdf(self, res: httpx.Response, fmt: str) -> dict[str, Resource]:
         graph = rdflib.Graph()
         try:
             graph.parse(data=res.text, format=fmt)
@@ -77,7 +83,7 @@ class TestWeb(unittest.TestCase):
         }
         """
         rv = {}
-        for record in graph.query(sparql):
+        for record in cast(Iterable[dict[str, dict[str, Any]]], graph.query(sparql)):
             prefix = record["prefix"]["value"]
             rv[prefix] = Resource(
                 prefix=prefix,
@@ -89,11 +95,11 @@ class TestWeb(unittest.TestCase):
         return rv
 
     @staticmethod
-    def _parse_registry_yaml(res) -> dict[str, Resource]:
+    def _parse_registry_yaml(res: httpx.Response) -> dict[str, Resource]:
         data = yaml.safe_load(res.text).items()
         return {key: Resource.model_validate(resource) for key, resource in data}
 
-    def test_api_resource(self):
+    def test_api_resource(self) -> None:
         """Test the resource endpoint."""
         res = self.client.get("/api/registry/3dmet?format=nope")
         self.assertEqual(400, res.status_code)
@@ -108,7 +114,7 @@ class TestWeb(unittest.TestCase):
             res = self.client.get("/api/registry/nope")
             self.assertEqual(404, res.status_code)
 
-    def test_ui_resource_rdf(self):
+    def test_ui_resource_rdf(self) -> None:
         """Test the UI resource with content negotiation."""
         prefixes = ["3dmet", "_3dmet"]
         fmts = [
@@ -135,23 +141,23 @@ class TestWeb(unittest.TestCase):
                     g.query("SELECT ?s WHERE { ?s a <https://bioregistry.io/schema/#0000001> }")
                 )
                 self.assertEqual(1, len(results))
-                self.assertEqual("https://bioregistry.io/registry/_3dmet", str(results[0][0]))
+                self.assertEqual("https://bioregistry.io/registry/_3dmet", str(results[0][0]))  # type:ignore
 
-    def test_api_metaregistry(self):
+    def test_api_metaregistry(self) -> None:
         """Test the metaregistry endpoint."""
         self.assert_endpoint(
             "/api/metaregistry",
             ["json", "yaml"],
         )
 
-    def test_api_metaresource(self):
+    def test_api_metaresource(self) -> None:
         """Test the metaresource endpoint."""
         self.assert_endpoint(
             "/api/metaregistry/miriam",
             ["json", "yaml", "turtle", "jsonld"],
         )
 
-    def test_api_reference(self):
+    def test_api_reference(self) -> None:
         """Test the reference endpoint."""
         for value in [
             "/api/reference/chebi:24867",
@@ -162,14 +168,14 @@ class TestWeb(unittest.TestCase):
                 ["json", "yaml"],
             )
 
-    def test_api_collections(self):
+    def test_api_collections(self) -> None:
         """Test the collections endpoint."""
         self.assert_endpoint(
             "/api/collection",
             ["json", "yaml"],
         )
 
-    def test_api_collection(self):
+    def test_api_collection(self) -> None:
         """Test the collection endpoint."""
         self.assert_endpoint(
             "/api/collection/0000001",
@@ -180,28 +186,28 @@ class TestWeb(unittest.TestCase):
         self.assertIn("@context", res)
         self.assertIn("biostudies", res["@context"])
 
-    def test_api_contexts(self):
+    def test_api_contexts(self) -> None:
         """Test the contexts endpoint."""
         self.assert_endpoint(
             "/api/context",
             ["json", "yaml"],
         )
 
-    def test_api_context(self):
+    def test_api_context(self) -> None:
         """Test the context endpoint."""
         self.assert_endpoint(
             "/api/context/obo",
             ["json", "yaml"],
         )
 
-    def test_api_contributors(self):
+    def test_api_contributors(self) -> None:
         """Test the contributors endpoint."""
         self.assert_endpoint(
             "/api/contributors",
             ["json", "yaml"],
         )
 
-    def test_api_contributor(self):
+    def test_api_contributor(self) -> None:
         """Test the contributor endpoint."""
         self.assert_endpoint(
             "/api/contributor/0000-0003-4423-4370",
@@ -220,19 +226,19 @@ class TestWeb(unittest.TestCase):
                 res = self.client.get(url)
                 self.assertEqual(200, res.status_code, msg=f"\n\n{res.text}")
 
-    def test_search(self):
+    def test_search(self) -> None:
         """Test search."""
         res = self.client.get("/api/search?q=che")
         self.assertEqual(200, res.status_code, msg=f"\n\n{res.text}")
 
-    def test_autocomplete(self):
+    def test_autocomplete(self) -> None:
         """Test search."""
         for q in ["che", "chebi", "xxxxx", "chebi:123", "chebi:dd"]:
             with self.subTest(query=q):
                 res = self.client.get(f"/api/autocomplete?q={q}")
                 self.assertEqual(200, res.status_code)
 
-    def test_external_registry_mappings(self):
+    def test_external_registry_mappings(self) -> None:
         """Test external registry mappings."""
         url = "/api/metaregistry/obofoundry/mapping/bioportal"
         res = self.client.get(url)
@@ -246,10 +252,12 @@ class TestWeb(unittest.TestCase):
         # This is a non-ontology so it won't get in OBO Foundry
         self.assertIn("DCTERMS", res_parsed.meta.target_only)
 
-    def test_iri_mapping(self):
+    def test_iri_mapping(self) -> None:
         """Test IRI mappings.
 
-        .. seealso:: https://github.com/biopragmatics/bioregistry/issues/1065
+        .. seealso::
+
+            https://github.com/biopragmatics/bioregistry/issues/1065
         """
         uri = "http://id.nlm.nih.gov/mesh/C063233"
         res = self.client.post("/api/uri/parse/", json={"uri": uri})

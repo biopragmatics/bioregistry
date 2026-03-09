@@ -1,18 +1,20 @@
 """Download the AberOWL registry."""
 
-import json
+from collections.abc import Sequence
 from pathlib import Path
-from typing import Any
+from typing import Any, ClassVar
 
 import yaml
-from pystow.utils import download
+from tqdm import tqdm
 
+from bioregistry.alignment_model import Artifact, ArtifactType, Record, make_record
 from bioregistry.constants import RAW_DIRECTORY
-from bioregistry.external.alignment_utils import Aligner
+from bioregistry.external.alignment_utils import Aligner, build_getter, cleanup_json
 
 __all__ = [
     "AberOWLAligner",
     "get_aberowl",
+    "parse_aberowl_raw",
 ]
 
 DIRECTORY = Path(__file__).parent.resolve()
@@ -20,50 +22,86 @@ RAW_PATH = RAW_DIRECTORY / "aberowl.json"
 PROCESSED_PATH = DIRECTORY / "processed.json"
 ABEROWL_URL = "http://aber-owl.net/api/ontology/?drf_fromat=json&format=json"
 
+SKIP = {
+    "vfdsad": "test",
+    "dlgkj": "test",
+    "hi": "test",
+    "zinnane": "test",
+    "alperk": "test",
+    "x": "stub",
+    "acro": "test",
+    "a": "spam",
+    "cd": "spam",
+    "tfernandes": "spam",
+}
 
-def get_aberowl(force_download: bool = False) -> dict[str, dict[str, Any]]:
-    """Get the AberOWL registry."""
-    if PROCESSED_PATH.exists() and not force_download:
-        with PROCESSED_PATH.open() as file:
-            return json.load(file)
 
-    download(url=ABEROWL_URL, path=RAW_PATH, force=True)
-    with RAW_PATH.open() as file:
+def parse_aberowl_raw(path: Path) -> dict[str, Record]:
+    """Parse the raw AberOWL YAML."""
+    with path.open() as file:
         entries = yaml.full_load(file)
-    rv = {entry["acronym"]: _process(entry) for entry in entries}
-    with PROCESSED_PATH.open("w") as file:
-        json.dump(rv, file, indent=2, sort_keys=True)
+    rv = {
+        entry["acronym"]: record
+        for entry in entries
+        if (record := process_aberowl_record(entry)) is not None and entry["acronym"] not in SKIP
+    }
     return rv
 
 
-def _process(entry: dict[str, Any]) -> dict[str, str]:
+def process_aberowl_record(entry: dict[str, Any]) -> Record | None:
+    """Process a record from AberOWL."""
+    prefix = entry["acronym"]
     rv = {
-        "prefix": entry["acronym"],
         "name": entry["name"],
     }
     submission = entry.get("submission", {})
-    if submission:
-        rv["homepage"] = submission.get("home_page")
+    if not submission:
+        # TODO return None instead
+        return Record.model_validate(rv)
 
-        description = submission.get("description")
-        if description:
-            description = (
-                description.strip().replace("\r\n", " ").replace("\n", " ").replace("  ", " ")
+    rv["homepage"] = submission.get("home_page")
+
+    description = submission.get("description")
+    if description:
+        description = description.strip().replace("\r\n", " ").replace("\n", " ").replace("  ", " ")
+        rv["description"] = description
+    version = submission.get("version")
+    if version:
+        rv["version"] = version.strip()
+    download_url_suffix = submission.get("download_url")
+    if not download_url_suffix:
+        pass
+    elif download_url_suffix.endswith(".owl"):
+        rv.setdefault("artifacts", []).append(
+            Artifact(
+                url=f"http://aber-owl.net/{download_url_suffix}",
+                type=ArtifactType.owl,
             )
-            rv["description"] = description
-        version = submission.get("version")
-        if version:
-            rv["version"] = version.strip()
-        download_url_suffix = submission.get("download_url")
-        if not download_url_suffix:
-            pass
-        elif download_url_suffix.endswith(".owl"):
-            rv["download_owl"] = f"http://aber-owl.net/{download_url_suffix}"
-        elif download_url_suffix.endswith(".obo"):
-            rv["download_obo"] = f"http://aber-owl.net/{download_url_suffix}"
-        else:
-            pass  # what's going on here?
-    return {k: v for k, v in rv.items() if k and v}
+        )
+    elif download_url_suffix.endswith(".obo"):
+        rv.setdefault("artifacts", []).append(
+            Artifact(
+                url=f"http://aber-owl.net/{download_url_suffix}",
+                type=ArtifactType.obo,
+            )
+        )
+    elif download_url_suffix.endswith(".skos"):
+        pass  # TODO
+    elif download_url_suffix.endswith(".umls"):
+        pass  # TODO
+    else:
+        tqdm.write(f"[aberowl:{prefix}] unknown download URL: {download_url_suffix}")
+
+    return make_record(rv)
+
+
+get_aberowl = build_getter(
+    processed_path=PROCESSED_PATH,
+    raw_path=RAW_PATH,
+    url=ABEROWL_URL,
+    func=parse_aberowl_raw,
+    cleanup=cleanup_json,
+)
 
 
 class AberOWLAligner(Aligner):
@@ -71,7 +109,7 @@ class AberOWLAligner(Aligner):
 
     key = "aberowl"
     getter = get_aberowl
-    curation_header = ["name", "homepage", "description"]
+    curation_header: ClassVar[Sequence[str]] = ["name", "homepage", "description"]
 
 
 if __name__ == "__main__":

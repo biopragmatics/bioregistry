@@ -14,7 +14,7 @@
       "name": "Resources mentioned in \"Sharing biological data: why, when, and how\"",
       "resources": [
         "biostudies",
-        "bmrb",
+        "bmrb.entry",
         "cellimage",
         "ega.dataset",
         "ega.study",
@@ -183,6 +183,7 @@
         "doco",
         "fabio",
         "frapo",
+        "mito",
         "pso",
         "puro",
         "pwo",
@@ -256,8 +257,8 @@
       "resources": [
         "atcc",
         "clinicaltrials",
-        "clinvar",
-        "cosmic",
+        "clinvar.variation",
+        "cosmic.gene",
         "cpt",
         "cvx",
         "dbsnp",
@@ -332,7 +333,7 @@
         "hgnc",
         "interpro",
         "mgi",
-        "orphanet",
+        "orpha",
         "orphanet.ordo",
         "panther.family",
         "panther.node",
@@ -374,6 +375,18 @@
       "description": "A collection of ontologies relevant for chemistry.\n\nThe NFDI program deploys a [custom instance](https://terminology.tib.eu/ts/ontologies?collection=NFDI4CAT&and=false&page=1) of the Ontology Lookup Service (OLS) that provides the ontologies in this list.\n\nA further analysis of the metadata landscape of the ontologies in this list can be found [here](https://github.com/nfdi4cat/Ontology-Overview-of-NFDI4Cat).\n\nOntoCompChem and OntoKin appear on the NFDI4Cat list but have not yet been registered in the Bioregistry because the resources are missing/incomplete such that they do not meet minimum Bioregistry metadata standards. These might be added in the future if additional metadata can be found.",
       "identifier": "0000011",
       "name": "NDFI4Cat Collection",
+      "organizations": [
+        {
+          "name": "NFDI4Cat",
+          "ror": "01k9z4a50",
+          "wikidata": "Q98380342"
+        },
+        {
+          "name": "NFDI",
+          "ror": "05qj6w324",
+          "wikidata": "Q61658497"
+        }
+      ],
       "references": [
         "https://nfdi4cat.org/services/ontologie-sammlung/",
         "https://terminology.tib.eu/ts/ontologies?collection=NFDI4CAT&and=false&page=1",
@@ -381,21 +394,31 @@
       ],
       "resources": [
         "afo",
+        "bao",
         "bfo",
         "cao",
         "chebi",
         "cheminf",
         "chmo",
         "dolce",
+        "edam",
         "emmo",
         "emmo.cif",
+        "envo",
         "iso15926",
+        "m4i",
+        "mop",
+        "ms",
         "nfdi4chem.ontocape",
         "nfdi4chem.osmo",
+        "obi",
+        "om",
         "rex",
         "rxno",
         "sbo",
-        "voc4cat"
+        "voc4cat",
+        "worldavatar.compchem",
+        "worldavatar.kin"
       ]
     },
     {
@@ -469,6 +492,18 @@
       "description": "A collection of ontologies relevant within the [NFDI4Chem project](https://www.nfdi4chem.de/) that is mostly based on the overview paper [Ontologies4Chem: the landscape of ontologies in chemistry](https://doi.org/10.1515/pac-2021-2007).\n\nNFDI4Chem deploys a [custom instance](https://terminology.nfdi4chem.de/ts/) of the Ontology Lookup Service (OLS), called NFDI4Chem Terminology Services (TS), that provides the ontologies in this list. This list contains ontologies that cover various domains of chemistry (e.g. ChEBI, CHMO, and RXNO), those that are dependencies of these chemistry specific ontologies (e.g. BFO, RO, IAO, and OBI) as well as those ontologies, which where indexed in the NFDI4Chem TS for interoperability research purposes (e.g. PROV-O, SOSA, and OBOE).",
       "identifier": "0000014",
       "name": "NFDI4Chem Collection",
+      "organizations": [
+        {
+          "name": "NFDI4Chem",
+          "ror": "05wwzbv21",
+          "wikidata": "Q96678459"
+        },
+        {
+          "name": "NFDI",
+          "ror": "05qj6w324",
+          "wikidata": "Q61658497"
+        }
+      ],
       "references": [
         "https://terminology.nfdi4chem.de/ts/",
         "https://doi.org/10.1515/pac-2021-2007"
@@ -479,6 +514,7 @@
         "bto",
         "chebi",
         "cheminf",
+        "chemrof",
         "chiro",
         "chmo",
         "duo",
@@ -486,7 +522,9 @@
         "efo",
         "enm",
         "envo",
+        "fair",
         "fix",
+        "gainesville.core",
         "iao",
         "mod",
         "mop",
@@ -496,6 +534,7 @@
         "obi",
         "oboe",
         "om",
+        "ontorxn",
         "pato",
         "proco",
         "prov",
@@ -508,12 +547,1283 @@
         "sosa",
         "ssn",
         "ssn.system",
+        "suprabank.additive",
+        "suprabank.buffer",
+        "suprabank.interaction",
+        "suprabank.molecule",
+        "suprabank.solvent",
         "swo",
         "time",
         "uo",
         "vibso",
         "voc4cat",
-        "worldavatar.kin"
+        "worldavatar.compchem",
+        "worldavatar.kin",
+        "worldavatar.os"
+      ]
+    },
+    {
+      "authors": [
+        {
+          "email": "cthoyt@gmail.com",
+          "github": "cthoyt",
+          "name": "Charles Tapley Hoyt",
+          "orcid": "0000-0003-4423-4370"
+        }
+      ],
+      "description": "A collection of resources added during Biocuration 2025 in Kansas City, MO, USA.",
+      "identifier": "0000015",
+      "name": "Biocuration Conference 2025 Collection",
+      "resources": [
+        "antifam",
+        "biomarkerkb.biomarker",
+        "biomarkerkb.canonical",
+        "blastrule",
+        "emi",
+        "endlessforms.collection",
+        "endlessforms.element",
+        "endlessforms.graphic",
+        "endlessforms.image",
+        "endlessforms.library",
+        "endlessforms.unit",
+        "gdo"
+      ]
+    },
+    {
+      "authors": [
+        {
+          "email": "robert.j.allaway@gmail.com",
+          "github": "allaway",
+          "name": "Robert Allaway",
+          "orcid": "0000-0003-3573-3565"
+        }
+      ],
+      "description": "A curated list by Sage Bionetworks of external resources that are automatically linked on Synapse.org and affiliated data portals",
+      "identifier": "0000016",
+      "name": "Synapse.org external links",
+      "resources": [
+        "ado",
+        "agrkb",
+        "anzctr",
+        "arrayexpress",
+        "arxiv",
+        "atc",
+        "atcc",
+        "bacdive",
+        "bfo",
+        "bgee.gene",
+        "biocyc",
+        "biogrid",
+        "bioportal",
+        "bioproject",
+        "biorxiv",
+        "biosample",
+        "biostudies",
+        "bmrb.entry",
+        "brenda",
+        "brenda.ligand",
+        "brenda.ligandgroup",
+        "bto",
+        "cath",
+        "cbioportal",
+        "cdd",
+        "cellimage",
+        "cellxgene.collection",
+        "chebi",
+        "chembl",
+        "chembl.compound",
+        "chemspider",
+        "civic.aid",
+        "civic.did",
+        "civic.eid",
+        "civic.gid",
+        "civic.sid",
+        "civic.tid",
+        "civic.vid",
+        "clinicaltrials",
+        "clinvar.record",
+        "clinvar.variation",
+        "complexportal",
+        "cosmic.cell",
+        "cosmic.gene",
+        "cpt",
+        "ctd.chemical",
+        "ctri",
+        "cvx",
+        "dbgap",
+        "dbsnp",
+        "decipher",
+        "depmap",
+        "dhba",
+        "disprot",
+        "dmba",
+        "doi",
+        "doid",
+        "drks",
+        "drugbank",
+        "drugcentral",
+        "duo",
+        "ec",
+        "ecacc",
+        "edam",
+        "ega.dataset",
+        "ega.study",
+        "emdb",
+        "empiar",
+        "ena.embl",
+        "ensembl",
+        "ensembl.metazoa",
+        "ensembl.plant",
+        "euclinicaltrials",
+        "eupath",
+        "exac.variant",
+        "fairsharing",
+        "flybase",
+        "fma",
+        "funderregistry",
+        "gard",
+        "gbif",
+        "gdc",
+        "genecards.gene",
+        "geo",
+        "go",
+        "gramene.gene",
+        "gramene.growthstage",
+        "gramene.protein",
+        "gtdb",
+        "hba",
+        "hc.trial",
+        "hgnc",
+        "hl7.v2codesystem",
+        "hmdb",
+        "icd10",
+        "icd9",
+        "icdc",
+        "icf",
+        "idr",
+        "imgt.hla",
+        "inchi",
+        "inchikey",
+        "insdc",
+        "insdc.sra",
+        "intact",
+        "interpro",
+        "iso.3166",
+        "isrctn",
+        "itis",
+        "jaxmice",
+        "kegg",
+        "kegg.compound",
+        "kegg.disease",
+        "kegg.drug",
+        "kegg.glycan",
+        "kegg.pathway",
+        "kegg.reaction",
+        "loinc",
+        "massive",
+        "mba",
+        "mesh",
+        "metabolights",
+        "metacyc.compound",
+        "mgi",
+        "mir",
+        "mirbase",
+        "mondo",
+        "ncbigene",
+        "ncbiprotein",
+        "ncbitaxon",
+        "ncit",
+        "ndc",
+        "ndfrt",
+        "nextprot",
+        "nihreporter.project",
+        "nord",
+        "omim",
+        "omop",
+        "orcid",
+        "orpha",
+        "orphanet.ordo",
+        "osf",
+        "panther.family",
+        "panther.pathway",
+        "panther.pthcmp",
+        "pba",
+        "pdb",
+        "pdb-ccd",
+        "pdb.ligand",
+        "pdc.study",
+        "peco",
+        "peptideatlas.dataset",
+        "pfam",
+        "pfam.clan",
+        "pharmgkb.disease",
+        "pharmgkb.drug",
+        "pharmgkb.gene",
+        "pharmgkb.pathways",
+        "pmc",
+        "pombase",
+        "pride.project",
+        "pubchem.compound",
+        "pubmed",
+        "px",
+        "radlex",
+        "reactome",
+        "rebec",
+        "refseq",
+        "rfam",
+        "rfc",
+        "rgd",
+        "rhea",
+        "rnacentral",
+        "ror",
+        "rrid",
+        "rrrc",
+        "rxnorm",
+        "scop",
+        "sgd",
+        "signor",
+        "snomedct",
+        "so",
+        "ssbd.dataset",
+        "ssbd.project",
+        "stitch",
+        "string",
+        "tao",
+        "tcdb",
+        "uberon",
+        "unii",
+        "uniparc",
+        "uniprot",
+        "uniprot.isoform",
+        "uniprot.proteome",
+        "uniref",
+        "wikidata",
+        "wikigenes",
+        "wikipathways",
+        "wormbase",
+        "xenbase",
+        "zenodo.record",
+        "zfin",
+        "zinc"
+      ]
+    },
+    {
+      "authors": [
+        {
+          "email": "cthoyt@gmail.com",
+          "github": "cthoyt",
+          "name": "Charles Tapley Hoyt",
+          "orcid": "0000-0003-4423-4370"
+        }
+      ],
+      "description": "Prefixes relevant for the [Data Literacy Alliance (DALIA)](https://dalia.education/en) project",
+      "identifier": "0000017",
+      "name": "DALIA Resources",
+      "resources": [
+        "ans.educationlevel",
+        "bibframe",
+        "bibo",
+        "bmbf.glossary",
+        "ceds.element",
+        "citedcat",
+        "codata.rdmt",
+        "dai.thesauri",
+        "datacite",
+        "dbpedia.resource",
+        "dcterms",
+        "emmo",
+        "fabio",
+        "iana.mediatype",
+        "isced1997",
+        "isced2011",
+        "loc.fdd",
+        "m4i",
+        "marc21",
+        "modalia",
+        "nfdi4dso",
+        "owl",
+        "prov",
+        "sage.socialsciencethesaurus",
+        "schema",
+        "sio",
+        "spdx",
+        "spdx.term",
+        "t4fs",
+        "unesco.thesaurus",
+        "wdrs",
+        "wikidata"
+      ]
+    },
+    {
+      "authors": [
+        {
+          "email": "cthoyt@gmail.com",
+          "github": "cthoyt",
+          "name": "Charles Tapley Hoyt",
+          "orcid": "0000-0003-4423-4370"
+        },
+        {
+          "email": "m.voigt@hzdr.de",
+          "github": "eilmiv",
+          "name": "Martin Voigt",
+          "orcid": "0000-0001-5556-838X"
+        }
+      ],
+      "description": "The prefixes appearing in this collection correspond resources whose entities could appear as values for target groups, media types, educational levels, and other fields in OER data models. It can also include parts that are used to construct schemas for OERs\n\nIt was originally curated as part of the publication [_Teaching RDM in a smart advanced inorganic lab course and its provision in the DALIA platform_ (arxiv:2509.18902)](https://arxiv.org/pdf/2509.18902).",
+      "identifier": "0000018",
+      "name": "Resources for modeling Open Educational Resources",
+      "references": [
+        "https://arxiv.org/pdf/2509.18902"
+      ],
+      "resources": [
+        "adcad",
+        "ans.educationlevel",
+        "ccso",
+        "ceds.learning_resource_type",
+        "edam",
+        "gsso",
+        "iana.mediatype",
+        "isced1997",
+        "isced2011",
+        "isced2013",
+        "kim.amb",
+        "kim.conditionsofaccess",
+        "kim.educationlevel",
+        "kim.esv",
+        "kim.hcrt",
+        "kim.hochschulfaechersystematik",
+        "kim.lp",
+        "kim.schularten",
+        "kim.schulfaecher",
+        "loc.fdd",
+        "lrmi",
+        "lrmi.alignmenttype",
+        "lrmi.educationalaudiencerole",
+        "lrmi.eduse",
+        "lrmi.interact",
+        "lrmi.resourcetype",
+        "modalia",
+        "oeh.educationlevel",
+        "oerschema",
+        "openeduhub.context",
+        "schema",
+        "t4fs",
+        "unesco.thesaurus",
+        "vivo"
+      ]
+    },
+    {
+      "authors": [
+        {
+          "email": "cthoyt@gmail.com",
+          "github": "cthoyt",
+          "name": "Charles Tapley Hoyt",
+          "orcid": "0000-0003-4423-4370"
+        }
+      ],
+      "description": "Prefixes relevant for the digital humanities",
+      "identifier": "0000019",
+      "name": "Digital Humanities",
+      "references": [
+        "https://det.social/@HxxxKxxx/115492424655875213"
+      ],
+      "resources": [
+        "cidoc.crm",
+        "edm",
+        "getty.att",
+        "getty.cona",
+        "getty.gvp",
+        "getty.ia",
+        "getty.tgn",
+        "getty.ulan",
+        "iconclass"
+      ]
+    },
+    {
+      "authors": [
+        {
+          "email": "cthoyt@gmail.com",
+          "github": "cthoyt",
+          "name": "Charles Tapley Hoyt",
+          "orcid": "0000-0003-4423-4370"
+        }
+      ],
+      "description": "[KonsortSWD (Strengthen, Widen, Deepen)](https://www.nfdi.de/consortia-konsortswd) is the German National Data Infrastructure (NFDI) consortium for social, educational, behavioral, and economic sciences. This collection reflects the prefixes collected by NFDI Section Metadata for ontologies and controlled vocabularies used by members of the consortium.",
+      "identifier": "0000020",
+      "name": "KonsortSWD",
+      "organizations": [
+        {
+          "name": "KonsortSWD",
+          "ror": "020tty630",
+          "wikidata": "Q98380340"
+        },
+        {
+          "name": "NFDI",
+          "ror": "05qj6w324",
+          "wikidata": "Q61658497"
+        }
+      ],
+      "resources": [
+        "cessda",
+        "cessda.cdcpublishernames",
+        "cessda.cessdadatacataloguecollections",
+        "cessda.cessdapersistentidentifiertypes",
+        "cessda.countrynamesandcodes",
+        "cessda.topicclassification",
+        "ddi.aggregationmethod",
+        "ddi.analysisunit",
+        "ddi.characterset",
+        "ddi.commonalitytype",
+        "ddi.contributorrole",
+        "ddi.datasourcetype",
+        "ddi.datatype",
+        "ddi.datetype",
+        "ddi.generaldataformat",
+        "ddi.languageproficiency",
+        "ddi.lifecycleeventtype",
+        "ddi.modeofcollection",
+        "ddi.numerictype",
+        "ddi.responseunit",
+        "ddi.samplingprocedure",
+        "ddi.softwarepackage",
+        "ddi.summarystatistictype",
+        "ddi.timemethod",
+        "ddi.timezone",
+        "ddi.typeofaddress",
+        "ddi.typeofconceptgroup",
+        "ddi.typeoffrequency",
+        "ddi.typeofinstrument",
+        "ddi.typeofnote",
+        "ddi.typeoftelephone",
+        "ddi.typeoftranslationmethod",
+        "gesis.kategorienschemawahlstudien",
+        "gesis.rexconcepts",
+        "gesis.rexdatatype",
+        "gesis.rexgroups",
+        "gesis.variables-relations"
+      ]
+    },
+    {
+      "authors": [
+        {
+          "email": "cthoyt@gmail.com",
+          "github": "cthoyt",
+          "name": "Charles Tapley Hoyt",
+          "orcid": "0000-0003-4423-4370"
+        }
+      ],
+      "description": "Prefixes for ontologies relevant for the NFDI4Energy",
+      "identifier": "0000021",
+      "name": "NFDI4Energy Resources",
+      "organizations": [
+        {
+          "name": "NFDI4Energy",
+          "ror": "0238fds33",
+          "wikidata": "Q113499626"
+        },
+        {
+          "name": "NFDI",
+          "ror": "05qj6w324",
+          "wikidata": "Q61658497"
+        }
+      ],
+      "resources": [
+        "bonsai",
+        "brick",
+        "digitalconstruction.energy",
+        "dogont",
+        "energymarketroles",
+        "meno",
+        "oeo",
+        "openadr",
+        "saref.ener",
+        "saref.grid",
+        "sargon",
+        "tib.re",
+        "udsaes.fmi",
+        "udsaes.sms",
+        "zbw.stw"
+      ]
+    },
+    {
+      "authors": [
+        {
+          "email": "cthoyt@gmail.com",
+          "github": "cthoyt",
+          "name": "Charles Tapley Hoyt",
+          "orcid": "0000-0003-4423-4370"
+        }
+      ],
+      "description": "Prefixes for ontologies relevant for the NFDI4Ing",
+      "identifier": "0000022",
+      "name": "NFDI4Ing Resources",
+      "organizations": [
+        {
+          "name": "NFDI4ING",
+          "ror": "00enhv193",
+          "wikidata": "Q98380344"
+        },
+        {
+          "name": "NFDI",
+          "ror": "05qj6w324",
+          "wikidata": "Q61658497"
+        }
+      ],
+      "resources": [
+        "afo",
+        "atomistic",
+        "battinfo",
+        "bfo",
+        "bonsai",
+        "bot",
+        "brick",
+        "building",
+        "cc",
+        "commoncoreontology",
+        "condo",
+        "cora",
+        "credit",
+        "dcterms",
+        "dfg.fo",
+        "digitalconstruction.energy",
+        "digitalconstruction.lifecycle",
+        "digitalconstruction.occupancy",
+        "dogont",
+        "dpvocab",
+        "duo",
+        "edam",
+        "emmo",
+        "fair",
+        "fidbaudigital.subject",
+        "fiesta.iot",
+        "findex.bau",
+        "findex.raum",
+        "ftonto",
+        "geosparql",
+        "gist",
+        "iao",
+        "idsa",
+        "iirds.core",
+        "iirds.mch",
+        "iirds.sft",
+        "infosecsos",
+        "iofcore",
+        "kdsf.ffk",
+        "kit.mtxx",
+        "kpio",
+        "listdb.onto",
+        "m4i",
+        "mathmoddb",
+        "mobivoc",
+        "modsci",
+        "oeo",
+        "okn.sd",
+        "om",
+        "panet",
+        "physh",
+        "pmdco",
+        "polymat",
+        "prov",
+        "rosetta",
+        "saref",
+        "saref.auto",
+        "saref.building",
+        "saref.ehaw",
+        "saref.ener",
+        "saref.environment",
+        "saref.industry",
+        "saref.lift",
+        "saref.system",
+        "saref.water",
+        "saref.wearable",
+        "sepio",
+        "sh",
+        "sio",
+        "sosa",
+        "ssn",
+        "ssn.system",
+        "sweet",
+        "swo",
+        "t4fs",
+        "tib.bk",
+        "tib.bo",
+        "tib.dot",
+        "tib.dr",
+        "tib.gpo",
+        "tib.hpont",
+        "tib.ifc",
+        "tib.io",
+        "tib.ioc",
+        "tib.lis",
+        "tib.mat",
+        "tib.mdo",
+        "tib.mdv",
+        "tib.mt",
+        "tib.n0",
+        "tib.ofm",
+        "tib.sto",
+        "tib.tso",
+        "tribain",
+        "uat",
+        "uo",
+        "vssocore",
+        "woc.ontology",
+        "wot.td"
+      ]
+    },
+    {
+      "authors": [
+        {
+          "email": "cthoyt@gmail.com",
+          "github": "cthoyt",
+          "name": "Charles Tapley Hoyt",
+          "orcid": "0000-0003-4423-4370"
+        }
+      ],
+      "description": "Prefixes for ontologies relevant for the DataPLANT (i.e. the NFDI consortium for plants)",
+      "identifier": "0000023",
+      "name": "DataPLANT Resources",
+      "organizations": [
+        {
+          "name": "DataPLANT",
+          "ror": "01v7r4v08",
+          "wikidata": "Q98380336"
+        },
+        {
+          "name": "NFDI",
+          "ror": "05qj6w324",
+          "wikidata": "Q61658497"
+        }
+      ],
+      "resources": [
+        "agro",
+        "bao",
+        "bco",
+        "bfo",
+        "bto",
+        "chebi",
+        "chmo",
+        "cob",
+        "dpbo",
+        "edam",
+        "efo",
+        "envo",
+        "flopo",
+        "go",
+        "mmo",
+        "mod",
+        "ms",
+        "msio",
+        "ncit",
+        "obi",
+        "omp",
+        "pato",
+        "pco",
+        "peco",
+        "po",
+        "ppeo",
+        "ppo",
+        "pso",
+        "ro",
+        "stato",
+        "swo",
+        "to",
+        "uberon",
+        "uo"
+      ]
+    },
+    {
+      "authors": [
+        {
+          "email": "cthoyt@gmail.com",
+          "github": "cthoyt",
+          "name": "Charles Tapley Hoyt",
+          "orcid": "0000-0003-4423-4370"
+        }
+      ],
+      "description": "Prefixes for ontologies relevant for [FAIRmat](https://www.nfdi.de/consortia-fairmat).",
+      "identifier": "0000024",
+      "name": "FAIRmat Resources",
+      "organizations": [
+        {
+          "name": "FAIRmat",
+          "ror": "034pbpe12",
+          "wikidata": "Q108542373"
+        },
+        {
+          "name": "NFDI",
+          "ror": "05qj6w324",
+          "wikidata": "Q61658497"
+        }
+      ],
+      "resources": [
+        "bfo",
+        "nexus",
+        "tfsco",
+        "voc4cat"
+      ]
+    },
+    {
+      "authors": [
+        {
+          "email": "cthoyt@gmail.com",
+          "github": "cthoyt",
+          "name": "Charles Tapley Hoyt",
+          "orcid": "0000-0003-4423-4370"
+        },
+        {
+          "github": "epoz",
+          "name": "Etienne Posthumus",
+          "orcid": "0000-0002-0006-7542"
+        }
+      ],
+      "description": "Prefixes for ontologies relevant for NFDI4Culture.",
+      "identifier": "0000025",
+      "name": "NFDI4Culture Resources",
+      "organizations": [
+        {
+          "name": "NFDI4Culture",
+          "ror": "001jhv750",
+          "wikidata": "Q98276929"
+        },
+        {
+          "name": "NFDI",
+          "ror": "05qj6w324",
+          "wikidata": "Q61658497"
+        }
+      ],
+      "resources": [
+        "bot",
+        "cidoc.crm",
+        "gesah",
+        "iconclass",
+        "nfdi4culture.cto",
+        "premis"
+      ]
+    },
+    {
+      "authors": [
+        {
+          "email": "cthoyt@gmail.com",
+          "github": "cthoyt",
+          "name": "Charles Tapley Hoyt",
+          "orcid": "0000-0003-4423-4370"
+        }
+      ],
+      "description": "Prefixes for ontologies relevant for DAPHNE4NFDI.",
+      "identifier": "0000026",
+      "name": "DAPHNE4NFDI Resources",
+      "organizations": [
+        {
+          "name": "DAPHNE4NFDI",
+          "ror": "03xrvbe74",
+          "wikidata": "Q108542327"
+        },
+        {
+          "name": "NFDI",
+          "ror": "05qj6w324",
+          "wikidata": "Q61658497"
+        }
+      ],
+      "resources": [
+        "emg"
+      ]
+    },
+    {
+      "authors": [
+        {
+          "email": "cthoyt@gmail.com",
+          "github": "cthoyt",
+          "name": "Charles Tapley Hoyt",
+          "orcid": "0000-0003-4423-4370"
+        }
+      ],
+      "description": "A collection of ontologies, controlled vocabularies, database, and schemas relevant for MaRDI",
+      "identifier": "0000027",
+      "name": "MaRDI Collection",
+      "organizations": [
+        {
+          "name": "MaRDI",
+          "ror": "04ncnzm65",
+          "wikidata": "Q108327788"
+        },
+        {
+          "name": "NFDI",
+          "ror": "05qj6w324",
+          "wikidata": "Q61658497"
+        }
+      ],
+      "resources": [
+        "bioregistry"
+      ]
+    },
+    {
+      "authors": [
+        {
+          "email": "cthoyt@gmail.com",
+          "github": "cthoyt",
+          "name": "Charles Tapley Hoyt",
+          "orcid": "0000-0003-4423-4370"
+        }
+      ],
+      "description": "A collection of ontologies, controlled vocabularies, database, and schemas relevant for BERD@NFDI",
+      "identifier": "0000028",
+      "name": "BERD@NFDI Collection",
+      "organizations": [
+        {
+          "name": "BERD@NFDI",
+          "ror": "02cxb1m07",
+          "wikidata": "Q108542181"
+        },
+        {
+          "name": "NFDI",
+          "ror": "05qj6w324",
+          "wikidata": "Q61658497"
+        }
+      ],
+      "resources": [
+        "bioregistry"
+      ]
+    },
+    {
+      "authors": [
+        {
+          "email": "cthoyt@gmail.com",
+          "github": "cthoyt",
+          "name": "Charles Tapley Hoyt",
+          "orcid": "0000-0003-4423-4370"
+        }
+      ],
+      "description": "A collection of ontologies, controlled vocabularies, database, and schemas relevant for NFDI4DataScience",
+      "identifier": "0000029",
+      "name": "NFDI4DataScience Collection",
+      "organizations": [
+        {
+          "name": "NFDI4DataScience",
+          "ror": "00bb4nn95",
+          "wikidata": "Q108542422"
+        },
+        {
+          "name": "NFDI",
+          "ror": "05qj6w324",
+          "wikidata": "Q61658497"
+        }
+      ],
+      "resources": [
+        "bioregistry"
+      ]
+    },
+    {
+      "authors": [
+        {
+          "email": "cthoyt@gmail.com",
+          "github": "cthoyt",
+          "name": "Charles Tapley Hoyt",
+          "orcid": "0000-0003-4423-4370"
+        }
+      ],
+      "description": "A collection of ontologies, controlled vocabularies, database, and schemas relevant for NFDI4Earth",
+      "identifier": "0000030",
+      "name": "NFDI4Earth Collection",
+      "organizations": [
+        {
+          "name": "NFDI4Earth",
+          "ror": "01f5dqg10",
+          "wikidata": "Q108542504"
+        },
+        {
+          "name": "NFDI",
+          "ror": "05qj6w324",
+          "wikidata": "Q61658497"
+        }
+      ],
+      "resources": [
+        "bioregistry"
+      ]
+    },
+    {
+      "authors": [
+        {
+          "email": "cthoyt@gmail.com",
+          "github": "cthoyt",
+          "name": "Charles Tapley Hoyt",
+          "orcid": "0000-0003-4423-4370"
+        }
+      ],
+      "description": "A collection of ontologies, controlled vocabularies, database, and schemas relevant for NFDI-MatWerk",
+      "identifier": "0000031",
+      "name": "NFDI-MatWerk Collection",
+      "organizations": [
+        {
+          "name": "NFDI-MatWerk",
+          "ror": "01d2qgg03",
+          "wikidata": "Q108542607"
+        },
+        {
+          "name": "NFDI",
+          "ror": "05qj6w324",
+          "wikidata": "Q61658497"
+        }
+      ],
+      "resources": [
+        "bioregistry"
+      ]
+    },
+    {
+      "authors": [
+        {
+          "email": "cthoyt@gmail.com",
+          "github": "cthoyt",
+          "name": "Charles Tapley Hoyt",
+          "orcid": "0000-0003-4423-4370"
+        }
+      ],
+      "description": "A collection of ontologies, controlled vocabularies, database, and schemas relevant for PUNCH4NFDI",
+      "identifier": "0000032",
+      "name": "PUNCH4NFDI Collection",
+      "organizations": [
+        {
+          "name": "PUNCH4NFDI",
+          "ror": "03f6sdf65",
+          "wikidata": "Q108542637"
+        },
+        {
+          "name": "NFDI",
+          "ror": "05qj6w324",
+          "wikidata": "Q61658497"
+        }
+      ],
+      "resources": [
+        "bioregistry"
+      ]
+    },
+    {
+      "authors": [
+        {
+          "email": "cthoyt@gmail.com",
+          "github": "cthoyt",
+          "name": "Charles Tapley Hoyt",
+          "orcid": "0000-0003-4423-4370"
+        }
+      ],
+      "description": "A collection of ontologies, controlled vocabularies, database, and schemas relevant for FAIRagro",
+      "identifier": "0000033",
+      "name": "FAIRagro Collection",
+      "organizations": [
+        {
+          "name": "FAIRagro",
+          "ror": "00r0qs524",
+          "wikidata": "Q113486316"
+        },
+        {
+          "name": "NFDI",
+          "ror": "05qj6w324",
+          "wikidata": "Q61658497"
+        }
+      ],
+      "resources": [
+        "bioregistry"
+      ]
+    },
+    {
+      "authors": [
+        {
+          "email": "damien@gerbi-gmb.de",
+          "github": "gouttegd",
+          "name": "Damien Goutte-Gattat",
+          "orcid": "0000-0002-6095-8718"
+        }
+      ],
+      "description": "A collection of ontologies, controlled vocabularies, database, and schemas relevant for NFDI4BIOIMAGE",
+      "identifier": "0000034",
+      "name": "NFDI4BIOIMAGE Collection",
+      "organizations": [
+        {
+          "name": "NFDI4BIOIMAGE",
+          "ror": "01vnkaz16",
+          "wikidata": "Q113500855"
+        },
+        {
+          "name": "NFDI",
+          "ror": "05qj6w324",
+          "wikidata": "Q61658497"
+        }
+      ],
+      "resources": [
+        "bioregistry",
+        "chebi",
+        "cl",
+        "clo",
+        "cmpo",
+        "dicom",
+        "doid",
+        "edam",
+        "efo",
+        "fbbi",
+        "go",
+        "mesh",
+        "mondo",
+        "mp",
+        "mpath",
+        "ncbitaxon",
+        "obi",
+        "radlex",
+        "snomedct",
+        "swo",
+        "uberon",
+        "uo"
+      ]
+    },
+    {
+      "authors": [
+        {
+          "email": "cthoyt@gmail.com",
+          "github": "cthoyt",
+          "name": "Charles Tapley Hoyt",
+          "orcid": "0000-0003-4423-4370"
+        }
+      ],
+      "description": "A collection of ontologies, controlled vocabularies, database, and schemas relevant for NFDIxCS",
+      "identifier": "0000035",
+      "name": "NFDIxCS Collection",
+      "organizations": [
+        {
+          "name": "NFDIxCS",
+          "ror": "0033j3009",
+          "wikidata": "Q113501071"
+        },
+        {
+          "name": "NFDI",
+          "ror": "05qj6w324",
+          "wikidata": "Q61658497"
+        }
+      ],
+      "resources": [
+        "bioregistry"
+      ]
+    },
+    {
+      "authors": [
+        {
+          "email": "cthoyt@gmail.com",
+          "github": "cthoyt",
+          "name": "Charles Tapley Hoyt",
+          "orcid": "0000-0003-4423-4370"
+        }
+      ],
+      "description": "A collection of ontologies, controlled vocabularies, database, and schemas relevant for NFDI4Objects",
+      "identifier": "0000036",
+      "name": "NFDI4Objects Collection",
+      "organizations": [
+        {
+          "name": "NFDI4Objects",
+          "ror": "01xptp363",
+          "wikidata": "Q98229157"
+        },
+        {
+          "name": "NFDI",
+          "ror": "05qj6w324",
+          "wikidata": "Q61658497"
+        }
+      ],
+      "resources": [
+        "bioregistry"
+      ]
+    },
+    {
+      "authors": [
+        {
+          "email": "cthoyt@gmail.com",
+          "github": "cthoyt",
+          "name": "Charles Tapley Hoyt",
+          "orcid": "0000-0003-4423-4370"
+        }
+      ],
+      "description": "A collection of ontologies, controlled vocabularies, database, and schemas relevant for NFDI4Memory",
+      "identifier": "0000037",
+      "name": "NFDI4Memory Collection",
+      "organizations": [
+        {
+          "name": "NFDI4Memory",
+          "ror": "0310v3480",
+          "wikidata": "Q98231721"
+        },
+        {
+          "name": "NFDI",
+          "ror": "05qj6w324",
+          "wikidata": "Q61658497"
+        }
+      ],
+      "resources": [
+        "bioregistry"
+      ]
+    },
+    {
+      "authors": [
+        {
+          "email": "cthoyt@gmail.com",
+          "github": "cthoyt",
+          "name": "Charles Tapley Hoyt",
+          "orcid": "0000-0003-4423-4370"
+        }
+      ],
+      "description": "A collection of ontologies, controlled vocabularies, database, and schemas relevant for Text+",
+      "identifier": "0000038",
+      "name": "Text+ Collection",
+      "organizations": [
+        {
+          "name": "Text+",
+          "ror": "04dy2xw62",
+          "wikidata": "Q98271443"
+        },
+        {
+          "name": "NFDI",
+          "ror": "05qj6w324",
+          "wikidata": "Q61658497"
+        }
+      ],
+      "resources": [
+        "bioregistry"
+      ]
+    },
+    {
+      "authors": [
+        {
+          "email": "cthoyt@gmail.com",
+          "github": "cthoyt",
+          "name": "Charles Tapley Hoyt",
+          "orcid": "0000-0003-4423-4370"
+        }
+      ],
+      "description": "A collection of ontologies, controlled vocabularies, database, and schemas relevant for GHGA",
+      "identifier": "0000039",
+      "name": "GHGA Collection",
+      "organizations": [
+        {
+          "name": "GHGA",
+          "ror": "05nfk7108",
+          "wikidata": "Q98380337"
+        },
+        {
+          "name": "NFDI",
+          "ror": "05qj6w324",
+          "wikidata": "Q61658497"
+        }
+      ],
+      "resources": [
+        "bioregistry"
+      ]
+    },
+    {
+      "authors": [
+        {
+          "email": "cthoyt@gmail.com",
+          "github": "cthoyt",
+          "name": "Charles Tapley Hoyt",
+          "orcid": "0000-0003-4423-4370"
+        }
+      ],
+      "description": "A collection of ontologies, controlled vocabularies, database, and schemas relevant for NFDI4Biodiversity",
+      "identifier": "0000040",
+      "name": "NFDI4Biodiversity Collection",
+      "organizations": [
+        {
+          "name": "NFDI4Biodiversity",
+          "ror": "03fqpzb44",
+          "wikidata": "Q98380341"
+        },
+        {
+          "name": "NFDI",
+          "ror": "05qj6w324",
+          "wikidata": "Q61658497"
+        }
+      ],
+      "resources": [
+        "bioregistry"
+      ]
+    },
+    {
+      "authors": [
+        {
+          "email": "cthoyt@gmail.com",
+          "github": "cthoyt",
+          "name": "Charles Tapley Hoyt",
+          "orcid": "0000-0003-4423-4370"
+        }
+      ],
+      "description": "A collection of ontologies, controlled vocabularies, database, and schemas relevant for NFDI4Health",
+      "identifier": "0000041",
+      "name": "NFDI4Health Collection",
+      "organizations": [
+        {
+          "name": "NFDI4Health",
+          "ror": "0305k8y39",
+          "wikidata": "Q98380343"
+        },
+        {
+          "name": "NFDI",
+          "ror": "05qj6w324",
+          "wikidata": "Q61658497"
+        }
+      ],
+      "resources": [
+        "bioregistry"
+      ]
+    },
+    {
+      "authors": [
+        {
+          "email": "cthoyt@gmail.com",
+          "github": "cthoyt",
+          "name": "Charles Tapley Hoyt",
+          "orcid": "0000-0003-4423-4370"
+        }
+      ],
+      "description": "A collection of ontologies, controlled vocabularies, database, and schemas relevant for NFDI4Microbiota",
+      "identifier": "0000042",
+      "name": "NFDI4Microbiota Collection",
+      "organizations": [
+        {
+          "name": "NFDI4Microbiota",
+          "ror": "03a4sp974",
+          "wikidata": "Q99534506"
+        },
+        {
+          "name": "NFDI",
+          "ror": "05qj6w324",
+          "wikidata": "Q61658497"
+        }
+      ],
+      "resources": [
+        "bioregistry"
+      ]
+    },
+    {
+      "authors": [
+        {
+          "email": "cthoyt@gmail.com",
+          "github": "cthoyt",
+          "name": "Charles Tapley Hoyt",
+          "orcid": "0000-0003-4423-4370"
+        }
+      ],
+      "description": "A collection of ontologies, controlled vocabularies, database, and schemas relevant for NFDI4Immuno",
+      "identifier": "0000043",
+      "name": "NFDI4Immuno Collection",
+      "organizations": [
+        {
+          "name": "NFDI4Immuno",
+          "ror": "01k8bwd50",
+          "wikidata": "Q113543313"
+        },
+        {
+          "name": "NFDI",
+          "ror": "05qj6w324",
+          "wikidata": "Q61658497"
+        }
+      ],
+      "resources": [
+        "bioregistry"
       ]
     }
   ]

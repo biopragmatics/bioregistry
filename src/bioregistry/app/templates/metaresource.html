@@ -39,10 +39,10 @@
                 <dt>Metaprefix</dt>
                 <dd><code>{{ metaprefix }}</code></dd>
                 {% if entry.bioregistry_prefix and metaprefix != entry.bioregistry_prefix %}
-                <dt>Bioregistry Prefix</dt>
+                <dt>{{ config.METAREGISTRY_TITLE }} Prefix</dt>
                 <dd>
                     For this registry, the metaprefix (i.e., the key for the registry)
-                    is not the same as the Bioregistry prefix. Follow this link for additional
+                    is not the same as the {{ config.METAREGISTRY_TITLE }} prefix. Follow this link for additional
                     information.
                 </dd>
                 <dd>{{ utils.render_prefix(entry.bioregistry_prefix) }}</dd>
@@ -72,12 +72,12 @@
                     {% endif %}
 
                     <a class="badge badge-pill badge-light"
-                       title="Download a JSON file containing mappings from Bioregistry prefixes to {{ entry.get_short_name() }} prefixes."
+                       title="Download a JSON file containing mappings from {{ config.METAREGISTRY_TITLE }} prefixes to {{ entry.get_short_name() }} prefixes."
                        href="{{ fastapi_url_for("get_metaresource_mappings", metaprefix=entry.prefix) }}">
                         Download Prefix Mappings
                     </a>
                     <a class="badge badge-pill badge-light"
-                       title="Download a slimmed version of the Bioregistry for records mapped to {{ entry.get_short_name() }}."
+                       title="Download a slimmed version of the {{ config.METAREGISTRY_TITLE }} for records mapped to {{ entry.get_short_name() }}."
                        href="{{ fastapi_url_for("get_external_registry_slim", metaprefix=entry.prefix) }}">
                         Download Slim Registry
                     </a>

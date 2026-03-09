@@ -1,17 +1,16 @@
 """Download the BARTOC registry."""
 
 import json
-from collections.abc import Mapping
+from collections.abc import Sequence
 from pathlib import Path
-from typing import Any
+from typing import Any, ClassVar
 
 import requests
 from tqdm import tqdm
 
 from bioregistry.constants import URI_FORMAT_KEY
+from bioregistry.external.alignment_utils import Aligner, load_processed
 from bioregistry.license_standardizer import standardize_license
-
-from ..alignment_utils import Aligner
 
 __all__ = [
     "BartocAligner",
@@ -23,25 +22,31 @@ PROCESSED_PATH = HERE / "processed.json"
 URL = "https://bartoc.org/data/dumps/latest.ndjson"
 
 
-def get_bartoc(force_download: bool = True) -> Mapping[str, Mapping[str, Any]]:
+def get_bartoc(*, force_download: bool = True) -> dict[str, dict[str, Any]]:
     """Get the BARTOC registry.
 
-    :param force_download: If true, forces download. If false and the file
-        is already cached, reuses it.
+    :param force_download: If true, forces download. If false and the file is already
+        cached, reuses it.
+
     :returns: The BARTOC registry
 
-    .. seealso:: https://bartoc.org/
+    .. seealso::
+
+        https://bartoc.org/
     """
     if PROCESSED_PATH.is_file() and not force_download:
-        return json.loads(PROCESSED_PATH.read_text())
+        return load_processed(PROCESSED_PATH)
     rv = {}
-    for line in requests.get(URL).iter_lines():
+    for line in requests.get(URL, timeout=15).iter_lines():
         record = json.loads(line)
         record = _process_bartoc_record(record)
         rv[record["prefix"]] = record
 
     PROCESSED_PATH.write_text(json.dumps(rv, indent=2, ensure_ascii=False, sort_keys=True))
     return rv
+
+
+URI_FORMAT_SKIPS: dict[str, str] = {}
 
 
 def _process_bartoc_record(record: dict[str, Any]) -> dict[str, Any]:
@@ -74,11 +79,21 @@ def _process_bartoc_record(record: dict[str, Any]) -> dict[str, Any]:
         if license_key:
             rv["license"] = license_key
 
-    uri_pattern = record.get("uriPattern")
-    if uri_pattern and "(" in uri_pattern and ")" in uri_pattern:
-        left_pos = uri_pattern.find("(")
-        right_pos = uri_pattern.find(")")
-        rv[URI_FORMAT_KEY] = uri_pattern[:left_pos] + "$1" + uri_pattern[1 + right_pos :]
+    if prefix in URI_FORMAT_SKIPS:
+        pass
+    elif uri_prefix := record.pop("namespace", None):
+        rv[URI_FORMAT_KEY] = uri_prefix.strip() + "$1"
+    elif uri_pattern := record.get("uriPattern"):
+        if "(" not in uri_pattern and ")" not in uri_pattern:
+            tqdm.write(f"bad URI pattern: {uri_pattern}, assuming is URI prefix")
+            rv[URI_FORMAT_KEY] = uri_pattern.strip() + "$1"
+        else:
+            left_pos = uri_pattern.find("(")
+            right_pos = uri_pattern.find(")")
+            rv[URI_FORMAT_KEY] = uri_pattern[:left_pos] + "$1" + uri_pattern[1 + right_pos :]
+
+    if examples := record.pop("EXAMPLES", []):
+        rv["example"] = examples[0].strip()
 
     return {k: v for k, v in rv.items() if k and v}
 
@@ -89,7 +104,7 @@ class BartocAligner(Aligner):
     key = "bartoc"
     getter = get_bartoc
     alt_key_match = "abbreviation"
-    curation_header = ["name", "homepage", "description"]
+    curation_header: ClassVar[Sequence[str]] = ["name", "homepage", "description"]
 
 
 if __name__ == "__main__":

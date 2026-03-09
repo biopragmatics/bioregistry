@@ -17,7 +17,7 @@ class TestMetaregistry(unittest.TestCase):
         """Set up the test case."""
         self.manager = bioregistry.manager
 
-    def test_minimum_metadata(self):
+    def test_minimum_metadata(self) -> None:
         """Test the metaregistry entries have a minimum amount of data."""
         for metaprefix, registry in self.manager.metaregistry.items():
             self.assertIsInstance(registry, Registry)
@@ -88,17 +88,17 @@ class TestMetaregistry(unittest.TestCase):
                     self.assertIsNotNone(registry.governance.data_repository)
                     self.assertIsNotNone(registry.governance.issue_tracker)
 
-    def test_get_registry(self):
+    def test_get_registry(self) -> None:
         """Test getting a registry."""
         self.assertIsNone(bioregistry.get_registry("nope"))
         self.assertIsNone(bioregistry.get_registry_name("nope"))
         self.assertIsNone(bioregistry.get_registry_homepage("nope"))
-        self.assertIsNone(bioregistry.get_registry_provider_uri_format("nope", ...))
+        self.assertIsNone(bioregistry.get_registry_provider_uri_format("nope", "nope"))
         self.assertIsNone(bioregistry.get_registry_example("nope"))
         self.assertIsNone(bioregistry.get_registry_description("nope"))
 
         metaprefix = "uniprot"
-        registry = bioregistry.get_registry(metaprefix)
+        registry = bioregistry.get_registry(metaprefix, strict=True)
         self.assertIsInstance(registry, Registry)
         self.assertEqual(metaprefix, registry.prefix)
 
@@ -119,7 +119,7 @@ class TestMetaregistry(unittest.TestCase):
         url = bioregistry.get_registry_provider_uri_format(metaprefix, example)
         self.assertEqual("https://www.uniprot.org/database/DB-0174", url)
 
-    def test_resolver(self):
+    def test_resolver(self) -> None:
         """Test generating resolver URLs."""
         # Can't resolve since nope isn't a valid registry
         self.assertIsNone(bioregistry.get_registry_uri("nope", "chebi", "1234"))
@@ -129,7 +129,7 @@ class TestMetaregistry(unittest.TestCase):
         url = bioregistry.get_registry_uri("bioregistry", "chebi", "1234")
         self.assertEqual("https://bioregistry.io/chebi:1234", url)
 
-    def test_get_rdf(self):
+    def test_get_rdf(self) -> None:
         """Test conversion to RDF."""
         registry = self.manager.metaregistry["uniprot"]
         s = metaresource_to_rdf_str(registry, manager=manager)
@@ -137,7 +137,7 @@ class TestMetaregistry(unittest.TestCase):
         g = rdflib.Graph()
         g.parse(data=s)
 
-    def test_corresponding(self):
+    def test_corresponding(self) -> None:
         """Test data corresponds between the registry and metaregistry."""
         for metaprefix, registry in self.manager.metaregistry.items():
             if registry.bioregistry_prefix:
@@ -154,8 +154,8 @@ class TestMetaregistry(unittest.TestCase):
             with self.subTest(metaprefix=metaprefix):
                 self.assertRegex(registry.example, pattern)
 
-            # Test URI format string
-            if registry.provider_uri_format:
-                uri_formats = resource.get_uri_formats()
-                self.assertLess(0, len(uri_formats))
-                self.assertIn(registry.provider_uri_format, uri_formats)
+                # Test URI format string
+                if registry.provider_uri_format:
+                    uri_formats = resource.get_uri_formats()
+                    self.assertLess(0, len(uri_formats))
+                    self.assertIn(registry.provider_uri_format, uri_formats)

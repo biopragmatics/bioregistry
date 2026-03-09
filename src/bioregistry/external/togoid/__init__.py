@@ -1,13 +1,15 @@
 """Download TogoID."""
 
 import json
+from collections.abc import Iterable, Sequence
 from pathlib import Path
+from typing import Any, ClassVar, cast
 
 import requests
 import yaml
 
 from bioregistry.constants import RAW_DIRECTORY, URI_FORMAT_KEY
-from bioregistry.external.alignment_utils import Aligner
+from bioregistry.external.alignment_utils import Aligner, load_processed
 
 __all__ = [
     "TogoIDAligner",
@@ -31,7 +33,10 @@ def _get_ontology() -> dict[str, str]:
 
     graph = rdflib.Graph()
     graph.parse(ONTOLOGY_URL, format="turtle")
-    rows = graph.query("SELECT ?namespace ?prefix WHERE { ?namespace dcterms:identifier ?prefix }")
+    rows = cast(
+        Iterable[tuple[str, str]],
+        graph.query("SELECT ?namespace ?prefix WHERE { ?namespace dcterms:identifier ?prefix }"),
+    )
     return {
         str(prefix): namespace.removeprefix("http://togoid.dbcls.jp/ontology#")
         for namespace, prefix in rows
@@ -39,7 +44,7 @@ def _get_ontology() -> dict[str, str]:
 
 
 def _get_descriptions() -> dict[str, str]:
-    res = requests.get(DATASET_DESCRIPTIONS_URL)
+    res = requests.get(DATASET_DESCRIPTIONS_URL, timeout=15)
 
     # Replace \r\n and \r or \n individually with a single space
     def _sanitize_description(description: str) -> str:
@@ -52,8 +57,8 @@ def _get_descriptions() -> dict[str, str]:
     }
 
 
-def _get_dataset():
-    data = yaml.safe_load(requests.get(DATASET_URL).text)
+def _get_dataset() -> dict[str, dict[str, Any]]:
+    data = yaml.safe_load(requests.get(DATASET_URL, timeout=15).text)
     rv = {}
     for prefix, record in data.items():
         name = record.get("label")
@@ -77,11 +82,12 @@ def _get_dataset():
     return rv
 
 
-def get_togoid(*, force_download: bool = False, force_refresh: bool = False):
+def get_togoid(
+    *, force_download: bool = False, force_refresh: bool = False
+) -> dict[str, dict[str, Any]]:
     """Get the TogoID data."""
     if PROCESSED_PATH.exists() and not force_refresh:
-        with PROCESSED_PATH.open() as file:
-            return json.load(file)
+        return load_processed(PROCESSED_PATH)
 
     key_to_prefix = _get_ontology()
     key_to_description = _get_descriptions()
@@ -103,7 +109,7 @@ class TogoIDAligner(Aligner):
 
     key = "togoid"
     getter = get_togoid
-    curation_header = ("name", "uri_format")
+    curation_header: ClassVar[Sequence[str]] = ("name", "uri_format")
 
 
 if __name__ == "__main__":

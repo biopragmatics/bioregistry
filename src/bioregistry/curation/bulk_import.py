@@ -1,24 +1,25 @@
 """A script for doing bulk import.
 
-If you have a local file or remote file accessible by HTTP/HTTPS/FTP,
-you can use the `--path` option like in:
+If you have a local file or remote file accessible by HTTP/HTTPS/FTP, you can use the
+`--path` option like in:
 
 .. code-block:: shell
 
     $ python -m bioregistry.curation.bulk_google_import --path <your file path>
 
-If you are doing curation on Google Sheets, you can copy the sheet identifier
-and use the `--google-sheet` option like in:
+If you are doing curation on Google Sheets, you can copy the sheet identifier and use
+the `--google-sheet` option like in:
 
 .. code-block:: shell
 
     $ python -m bioregistry.curation.bulk_google_import --google-sheet 10MPt-H6My33mOa1V_VkLh4YG8609N7B_Dey0CBnfTL4
 """
 
+from __future__ import annotations
+
 import sys
 from collections import defaultdict
-from collections.abc import Mapping
-from typing import Any, Optional
+from typing import Any
 
 import click
 import pandas as pd
@@ -30,7 +31,7 @@ from bioregistry.utils import norm
 NESTED = {"contact", "contributor"}
 
 
-def _resource_from_row(row: Mapping[str, Any]) -> Resource:
+def _resource_from_row(row: dict[str, Any]) -> Resource:
     kwargs = {}
     nested: defaultdict[str, dict[str, str]] = defaultdict(dict)
     for key, value in row.items():
@@ -56,9 +57,9 @@ def _resource_from_row(row: Mapping[str, Any]) -> Resource:
     return Resource(**kwargs)
 
 
-def _bulk_import_df(df: pd.DataFrame):
+def _bulk_import_df(df: pd.DataFrame) -> None:
     for _, row in df.iterrows():
-        resource = _resource_from_row(row.to_dict())
+        resource = _resource_from_row(row.to_dict())  # type:ignore[arg-type]
         try:
             add_resource(resource)
         except KeyError as e:
@@ -70,7 +71,7 @@ def _bulk_import_df(df: pd.DataFrame):
 @click.option("--google-sheet")
 @click.option("--google-sheet-gid", type=int, default=0)
 @click.option("--path")
-def main(google_sheet: Optional[str], google_sheet_gid: int, path: Optional[str]):
+def main(google_sheet: str | None, google_sheet_gid: int, path: str | None) -> None:
     """Import prefixes from a google sheet in bulk."""
     # google_sheet = "10MPt-H6My33mOa1V_VkLh4YG8609N7B_Dey0CBnfTL4"
     if google_sheet:
@@ -80,7 +81,7 @@ def main(google_sheet: Optional[str], google_sheet_gid: int, path: Optional[str]
         df = pd.read_csv(path, sep="," if path.endswith("csv") else "\t")
     else:
         click.secho("no sheet provided", fg="red")
-        return sys.exit(1)
+        raise sys.exit(1)
 
     _bulk_import_df(df)
 

@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+{% import "macros.html" as utils %}
+
+{% block title %}{{ config.METAREGISTRY_TITLE }} - Keywords{% endblock %}
+
+{% block styles %}
+{{ super() }}
+<!-- DataTables, see: https://datatables.net/examples/styling/bootstrap4.html-->
+<link
+    rel="stylesheet"
+    href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css"
+/>
+{% endblock %}
+
+{% block scripts %}
+{{ super() }}
+<!-- DataTables, see: https://datatables.net/examples/styling/bootstrap4.html-->
+<script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $("#table-keywords").DataTable({
+            "order": [[0, "asc"]]
+        });
+        $("#table-keywords_wrapper").children(":first-child").addClass("card-body");
+        $("#table-keywords_wrapper").children(":last-child").addClass("card-body");
+    });
+</script>
+{% endblock %}
+
+{% block container %}
+<div class="card">
+    <div class="card-header">
+        <h5 style="margin: 0">Keywords</h5>
+    </div>
+    <table id="table-keywords" class="table table-striped table-hover">
+        <thead>
+        <tr>
+            <td>Keyword</td>
+            <td>Prefixes</td>
+        </tr>
+        </thead>
+        <tbody>
+        {% for keyword, resources in keywords|dictsort %}
+        <tr>
+            <td><a href="{{ url_for(".get_keyword", keyword=keyword) }}">{{ keyword }}</a></td>
+            <td>
+                {% for resource in resources %}
+                {{ utils.render_prefix(resource.prefix, classes="badge badge-pill badge-primary") }}
+                {% endfor %}
+            </td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

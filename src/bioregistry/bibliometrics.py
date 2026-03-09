@@ -1,12 +1,14 @@
 """Utilities for publications."""
 
+from __future__ import annotations
+
 import typing
 from collections import Counter
 from collections.abc import Iterable
 from typing import TYPE_CHECKING
 
 from .resource_manager import manager
-from .schema.struct import Publication, deduplicate_publications
+from .schema import Publication, deduplicate_publications
 
 if TYPE_CHECKING:
     import pandas
@@ -31,7 +33,7 @@ def get_all_publications() -> list[Publication]:
     )
 
 
-def get_publications_df() -> "pandas.DataFrame":
+def get_publications_df() -> pandas.DataFrame:
     """Get a dataframe with all publications."""
     import pandas
 

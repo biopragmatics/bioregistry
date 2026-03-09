@@ -1,17 +1,21 @@
 """Scraper for FAIRsharing.
 
-.. seealso:: https://beta.fairsharing.org/API_doc
+.. seealso::
+
+    https://beta.fairsharing.org/API_doc
 """
+
+from __future__ import annotations
 
 import json
 import logging
 import re
-from collections.abc import MutableMapping
+from collections.abc import MutableMapping, Sequence
 from pathlib import Path
-from typing import Any, Optional
+from typing import Any, ClassVar
 
 from bioregistry.constants import ORCID_PATTERN
-from bioregistry.external.alignment_utils import Aligner
+from bioregistry.external.alignment_utils import Aligner, load_processed
 from bioregistry.license_standardizer import standardize_license
 from bioregistry.utils import removeprefix, removesuffix
 
@@ -38,12 +42,11 @@ ORCID_RE = re.compile(ORCID_PATTERN)
 
 
 def get_fairsharing(
-    *, force_download: bool = False, force_reload: bool = False, use_tqdm: bool = False
-):
+    *, force_download: bool = False, force_reload: bool = False, use_tqdm: bool = True
+) -> dict[str, dict[str, Any]]:
     """Get the FAIRsharing registry."""
     if PROCESSED_PATH.exists() and not force_download and not force_reload:
-        with PROCESSED_PATH.open() as file:
-            return json.load(file)
+        return load_processed(PROCESSED_PATH)
 
     from fairsharing_client import load_fairsharing
 
@@ -67,7 +70,7 @@ KEEP = {
 }
 
 
-def _process_record(record: MutableMapping[str, Any]) -> Optional[MutableMapping[str, Any]]:
+def _process_record(record: MutableMapping[str, Any]) -> dict[str, Any] | None:
     if record.get("record_type") not in ALLOWED_TYPES:
         return None
     rv = {key: record[key] for key in KEEP if record[key]}
@@ -144,7 +147,7 @@ def _process_record(record: MutableMapping[str, Any]) -> Optional[MutableMapping
 SKIP_LICENSES: set[str] = set()
 
 
-def _process_publication(publication):
+def _process_publication(publication: dict[str, Any]) -> dict[str, Any] | None:
     rv = {}
     doi = publication.get("doi")
     if doi:
@@ -159,7 +162,7 @@ def _process_publication(publication):
     if pubmed:
         rv["pubmed"] = str(pubmed)
     if not doi and not pubmed:
-        return
+        return None
     title = publication.get("title")
     if title:
         title = title.replace("  ", " ").rstrip(".")
@@ -177,7 +180,7 @@ class FairsharingAligner(Aligner):
     alt_key_match = "abbreviation"
     skip_deprecated = True
     getter = get_fairsharing
-    curation_header = ("abbreviation", "name", "description")
+    curation_header: ClassVar[Sequence[str]] = ("abbreviation", "name", "description")
 
 
 if __name__ == "__main__":

@@ -27,6 +27,7 @@ from .n2t import N2TAligner
 from .ncbi import NcbiAligner
 from .obofoundry import OBOFoundryAligner
 from .ols import OLSAligner
+from .ols.tib import TIBAligner
 from .ontobee import OntobeeAligner
 from .pathguide import PathguideAligner
 from .prefixcommons import PrefixCommonsAligner
@@ -67,6 +68,7 @@ __all__ = [
     "PrefixCommonsAligner",
     "RRIDAligner",
     "Re3dataAligner",
+    "TIBAligner",
     "TogoIDAligner",
     "UniProtAligner",
     "WikidataAligner",

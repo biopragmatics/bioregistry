@@ -1,0 +1,79 @@
+<div class="card" style="margin-top: 20px">
+    <h5 class="card-header">Contacts</h5>
+    <div class="card-body">
+        {%- if resource.contact_group_email %}
+        <a class="badge badge-pill badge-light" href="{{ resource.contact_group_email }}">
+            Mailing List <i class="fas fa-address-book"></i></i></a>
+        {%- endif %}
+        {%- if resource.contact_page %}
+        <a class="badge badge-pill badge-light" href="{{ resource.contact_page }}">
+            Contact Page <i class="fas fa-address-book"></i></i></a>
+        {%- endif %}
+        <dl>
+            <dt>
+                Contact
+                {% if contact %}
+                <a type="button" data-toggle="modal" data-target="#contact-modal">
+                    <i class="far fa-question-circle"></i>
+                </a>
+                {% endif %}
+            </dt>
+            <dd>
+                {% if contact %}
+                {{ utils.render_author(contact, link=none) }}
+                {% else %}
+                <span class="badge badge-pill badge-warning">Missing Contact</span>
+                {% endif %}
+            </dd>
+            {%- for secondary_contact in resource.contact_extras or [] %}
+            <dd>
+                {{ utils.render_author(secondary_contact, link=none) }}
+            </dd>
+            {%- endfor %}
+
+            {% if resource.owners %}
+            <dt>Identifier Space Owner{% if resource.owners | length > 1 %}s{% endif %}</dt>
+            {% for owner in resource.owners %}
+            <dd>
+                <a href="{{ owner.link }}">{{ owner.name }}</a>
+                {% if owner.partnered %}
+                <a href="{{ config.METAREGISTRY_REPOSITORY }}/blob/main/docs/GOVERNANCE.md#partners"
+                   class="badge badge-pill badge-info" data-toggle="tooltip"
+                   title="This organization has partnered with the {{ config.METAREGISTRY_TITLE }} to proactively maintain this record. Click to see related project governance.">
+                    Partnered
+                </a>
+                {% endif %}
+            </dd>
+            {% endfor %}
+            {% endif %}
+            {% if resource.contributor or resource.contributor_extras %}
+            <dt>Contributors</dt>
+            {% if resource.contributor %}
+            <dd>
+                <span class="badge badge-info">submitter</span> {{ utils.render_author(resource.contributor,
+                link=url_for('metaregistry_ui.contributor', orcid=resource.contributor.orcid)) }}
+            </dd>
+            {% endif %}
+            {% for contributor in resource.contributor_extras or [] %}
+            <dd>
+                <span class="badge badge-info">contributor</span> {{ utils.render_author(contributor,
+                link=url_for('metaregistry_ui.contributor', orcid=contributor.orcid)) }}
+            </dd>
+            {% endfor %}
+            {% endif %}
+
+            {% if resource.reviewer %}
+            <dt>Reviewer</dt>
+            <dd>
+                {{ utils.render_author(resource.reviewer, link=url_for('metaregistry_ui.contributor',
+                orcid=resource.reviewer.orcid)) }}
+            </dd>
+            {%- for reviewer in resource.reviewer_extras or [] %}
+            <dd>
+                {{ utils.render_author(reviewer, link=url_for('metaregistry_ui.contributor', orcid=reviewer.orcid)) }}
+            </dd>
+            {%- endfor %}
+            {% endif %}
+        </dl>
+    </div>
+</div>

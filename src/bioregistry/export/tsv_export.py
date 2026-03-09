@@ -1,4 +1,4 @@
-"""Export components of the bioregistry to TSV."""
+"""Export TSV."""
 
 from __future__ import annotations
 

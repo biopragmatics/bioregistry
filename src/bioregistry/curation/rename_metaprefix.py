@@ -11,7 +11,7 @@ from bioregistry.constants import BIOREGISTRY_PATH
 @click.command()
 @click.argument("old_metaprefix")
 @click.argument("new_metaprefix")
-def main(old_metaprefix: str, new_metaprefix: str):
+def main(old_metaprefix: str, new_metaprefix: str) -> None:
     """Rename a metaprefix."""
     registry = json.loads(BIOREGISTRY_PATH.read_text())
     for value in registry.values():

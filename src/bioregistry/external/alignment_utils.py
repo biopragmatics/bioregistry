@@ -1,13 +1,18 @@
 """Utilities for registry alignment."""
 
 import csv
-from collections.abc import Iterable, Mapping, Sequence
-from typing import Any, Callable, ClassVar, Optional
+import json
+from collections.abc import Callable, Iterable, Mapping, Sequence
+from pathlib import Path
+from typing import Any, ClassVar, ParamSpec, TypeAlias
 
 import click
 from curies.w3c import NCNAME_RE
+from pystow.utils import download
 from tabulate import tabulate
 
+from ..alignment_model import Record, dump_records
+from ..alignment_model import load_processed as load_records
 from ..constants import METADATA_CURATION_DIRECTORY
 from ..resource_manager import Manager
 from ..schema import Resource
@@ -16,7 +21,16 @@ from ..utils import norm
 
 __all__ = [
     "Aligner",
+    "Getter",
+    "adapter",
+    "build_getter",
+    "build_no_raw_getter",
+    "load_processed",
 ]
+
+GetterRt: TypeAlias = Mapping[str, Any]
+
+Getter: TypeAlias = Callable[..., GetterRt]
 
 
 class Aligner:
@@ -30,19 +44,19 @@ class Aligner:
 
     #: The function that gets the external registry as a dictionary from the string identifier to
     #: the entries (could be anything, but a dictionary is probably best)
-    getter: ClassVar[Callable[..., Mapping[str, Any]]]
+    getter: ClassVar[Getter]
 
     #: Keyword arguments to pass to the getter function on call
-    getter_kwargs: ClassVar[Optional[Mapping[str, Any]]] = None
+    getter_kwargs: ClassVar[Mapping[str, Any] | None] = None
 
     #: Should new entries be included automatically? Only set this true for aligners of
     #: very high confidence (e.g., OBO Foundry but not BioPortal)
     include_new: ClassVar[bool] = False
 
     #: Set this if there's another part of the data besides the ID that should be matched
-    alt_key_match: ClassVar[Optional[str]] = None
+    alt_key_match: ClassVar[str | None] = None
 
-    alt_keys_match: ClassVar[Optional[str]] = None
+    alt_keys_match: ClassVar[str | None] = None
 
     #: Set to true if you don't want to align to deprecated resources
     skip_deprecated: ClassVar[bool] = False
@@ -51,7 +65,7 @@ class Aligner:
 
     normalize_invmap: ClassVar[bool] = False
 
-    def __init__(self, force_download: Optional[bool] = None):
+    def __init__(self, force_download: bool | None = None) -> None:
         """Instantiate the aligner."""
         if not hasattr(self.__class__, "key"):
             raise TypeError
@@ -160,12 +174,13 @@ class Aligner:
     def prepare_external(self, external_id: str, external_entry: dict[str, Any]) -> dict[str, Any]:
         """Prepare a dictionary to be added to the bioregistry for each external registry entry.
 
-        The default implementation returns `external_entry` unchanged.
-        If you need more than that, override this method.
+        The default implementation returns `external_entry` unchanged. If you need more
+        than that, override this method.
 
         :param external_id: The external registry identifier
         :param external_entry: The external registry data
-        :return: The dictionary to be added to the bioregistry for the aligned entry
+
+        :returns: The dictionary to be added to the bioregistry for the aligned entry
         """
         return external_entry
 
@@ -178,7 +193,7 @@ class Aligner:
         cls,
         dry: bool = False,
         show: bool = False,
-        force_download: Optional[bool] = None,
+        force_download: bool | None = None,
     ) -> None:
         """Align and output the curation sheet.
 
@@ -194,7 +209,7 @@ class Aligner:
         instance.write_curation_table()
 
     @classmethod
-    def cli(cls):
+    def cli(cls, *args: Any, **kwargs: Any) -> None:
         """Construct a CLI for the aligner."""
 
         @click.command(help=f"Align {cls.key}")
@@ -206,21 +221,26 @@ class Aligner:
         def _main(dry: bool, show: bool, no_force: bool) -> None:
             cls.align(dry=dry, show=show, force_download=not no_force)
 
-        _main()
+        _main(*args, **kwargs)
 
     def get_curation_row(self, external_id: str, external_entry: dict[str, Any]) -> Sequence[str]:
         """Get a sequence of items that will be ech row in the curation table.
 
         :param external_id: The external registry identifier
         :param external_entry: The external registry data
-        :return: A sequence of cells to add to the curation table.
+
+        :returns: A sequence of cells to add to the curation table.
+
         :raises TypeError: If an invalid value is encountered
 
-        The default implementation of this function iterates over all of the keys
-        in the class variable :data:`curation_header` and looks inside each record
-        for those in order.
+        The default implementation of this function iterates over all of the keys in the
+        class variable :data:`curation_header` and looks inside each record for those in
+        order.
 
-        .. note:: You don't need to pass the external ID. this will automatically be the first element.
+        .. note::
+
+            You don't need to pass the external ID. this will automatically be the first
+            element.
         """
         rv = []
         for k in self.curation_header:
@@ -231,7 +251,7 @@ class Aligner:
                 rv.append(value.strip().replace("\n", " ").replace("  ", " "))
             elif isinstance(value, bool):
                 rv.append("true" if value else "false")
-            elif isinstance(value, (list, tuple, set)):
+            elif isinstance(value, list | tuple | set):
                 rv.append("|".join(sorted(v.strip() for v in value)))
             else:
                 raise TypeError(f"unexpected type in curation header: {value}")
@@ -266,7 +286,7 @@ class Aligner:
             writer.writerow((self.subkey, *self.curation_header))
             writer.writerows(rows)
 
-    def get_curation_table(self, **kwargs: Any) -> Optional[str]:
+    def get_curation_table(self, **kwargs: Any) -> str | None:
         """Get the curation table as a string, built by :mod:`tabulate`."""
         kwargs.setdefault("tablefmt", "rst")
         headers = (self.subkey, *self.curation_header)
@@ -284,3 +304,77 @@ class Aligner:
         s = self.get_curation_table(**kwargs)
         if s:
             print(s)  # noqa:T201
+
+
+def load_processed(path: Path) -> dict[str, dict[str, Any]]:
+    """Load a processed."""
+    with path.open() as file:
+        return json.load(file)  # type:ignore
+
+
+P = ParamSpec("P")
+
+
+def adapter(f: Callable[P, dict[str, Record]]) -> Getter:
+    """Adapt a new-style getter."""
+
+    def _getter(*args: P.args, **kwargs: P.kwargs) -> GetterRt:
+        r = f(*args, **kwargs)
+        return {
+            prefix: model.model_dump(exclude_unset=True, exclude_none=True, exclude_defaults=True)
+            for prefix, model in r.items()
+        }
+
+    _getter.__new_style_bioregistry = True  # type:ignore[attr-defined]
+    return _getter
+
+
+def cleanup_json(path: Path) -> None:
+    """Clean up a processed JSON file."""
+    with path.open() as file:
+        data = json.load(file)
+    path.write_text(json.dumps(data, indent=2, ensure_ascii=False) + "\n")
+
+
+def build_getter(
+    *,
+    processed_path: Path,
+    raw_path: Path,
+    url: str,
+    func: Callable[[Path], dict[str, Record]],
+    cleanup: Callable[[Path], None] | None = None,
+) -> Getter:
+    """Construct a getter function."""
+
+    @adapter
+    def getter(*, force_download: bool = False, force_process: bool = False) -> dict[str, Record]:
+        """Get the registry."""
+        if processed_path.exists() and not force_download and not force_process:
+            return load_records(processed_path)
+        download(url=url, path=raw_path, force=force_download)
+        if cleanup is not None:
+            cleanup(raw_path)
+        rv = func(raw_path)
+        dump_records(rv, processed_path)
+        return rv
+
+    return getter
+
+
+def build_no_raw_getter(
+    *,
+    processed_path: Path,
+    func: Callable[[], dict[str, Record]],
+) -> Getter:
+    """Construct a getter function."""
+
+    @adapter
+    def getter(*, force_download: bool = False, force_process: bool = False) -> dict[str, Record]:
+        """Get the registry."""
+        if processed_path.exists() and not force_download and not force_process:
+            return load_records(processed_path)
+        rv = func()
+        dump_records(rv, processed_path)
+        return rv
+
+    return getter

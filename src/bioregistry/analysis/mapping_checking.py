@@ -10,9 +10,10 @@
 
 """Run the mapping checking workflow.
 
-Detect potentially incorrect mappings by comparing embeddings of bioregistry entry metadata
-against the metadata corresponding to mapped prefixes. Low similarity scores indicate a potential
-false positive mapping that can be reviewed manually and removed if confirmed to be incorrect.
+Detect potentially incorrect mappings by comparing embeddings of bioregistry entry
+metadata against the metadata corresponding to mapped prefixes. Low similarity scores
+indicate a potential false positive mapping that can be reviewed manually and removed if
+confirmed to be incorrect.
 
 Run with either of the following commands:
 
@@ -25,7 +26,7 @@ from __future__ import annotations
 
 from collections import defaultdict
 from collections.abc import Mapping
-from typing import Any
+from typing import Any, cast
 
 import pandas as pd
 import tqdm
@@ -113,7 +114,7 @@ def get_scored_mappings_for_prefix(
 
     # Compute embeddings for each mapping entry (in a single list but the
     # calculation is done individually)
-    texts = [entry["external_text"] for entry in mapping_entries]
+    texts = cast(list[str], [entry["external_text"] for entry in mapping_entries])
     embeddings = model.encode(texts, convert_to_tensor=True)
     # Calculate embedding for the reference text
     ref_embedding = model.encode(reference_text, convert_to_tensor=True)
@@ -123,7 +124,7 @@ def get_scored_mappings_for_prefix(
     cosine_scores = cos_sim(ref_embedding, embeddings)[0].tolist()
 
     # Add similarity score and reference text to each entry in the mapping entries
-    for entry, score in zip(mapping_entries, cosine_scores):
+    for entry, score in zip(mapping_entries, cosine_scores, strict=False):
         entry["similarity"] = score
 
     return mapping_entries
@@ -141,21 +142,22 @@ def _get_mismatch_entries() -> dict[str, Any]:
     # For all the curated mismatches, read the external registry involved
     # and extract the part relevant for the curated mismatch, then add it to
     # the raw registry for scoring
-    mismatch_entries: defaultdict[str, Any] = defaultdict(dict)
+    mismatch_entries: defaultdict[str, dict[str, Any]] = defaultdict(dict)
     # We compile content from external registries directly to be able
     # to access known mismatches that are otherwise not propagated to the
     # bioregistry
     for bioregistry_prefix, mismatch_data in mismatches.items():
-        for external_registry, external_prefix in mismatch_data.items():
-            if external_registry not in external_registries:
-                external_registries[external_registry] = external_getters[external_registry](
-                    force_download=False
-                )
-            external_entry = external_registries[external_registry].get(external_prefix)
-            if not external_entry:
-                continue
-            external_entry["prefix"] = external_prefix
-            mismatch_entries[bioregistry_prefix][external_registry] = external_entry
+        for external_registry, external_prefixes in mismatch_data.items():
+            for external_prefix in external_prefixes:
+                if external_registry not in external_registries:
+                    external_registries[external_registry] = external_getters[external_registry](
+                        force_download=False
+                    )
+                external_entry = external_registries[external_registry].get(external_prefix)
+                if not external_entry:
+                    continue
+                external_entry["prefix"] = external_prefix
+                mismatch_entries[bioregistry_prefix][external_registry] = external_entry
     return dict(mismatch_entries)
 
 
@@ -189,7 +191,7 @@ def get_scored_mappings(model: SentenceTransformer) -> pd.DataFrame:
     return df_sorted
 
 
-def _main():
+def _main() -> None:
     # Choose an embedding model
     model = SentenceTransformer(DEFAULT_MODEL)
     # Run mappings

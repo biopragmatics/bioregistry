@@ -1,19 +1,21 @@
 """Download registry information from CROPOCT."""
 
 import io
-import json
 import logging
+from collections.abc import Mapping, Sequence
 from pathlib import Path
+from typing import Any, ClassVar
 
 import yaml
-from pystow.utils import download
 
+from bioregistry.alignment_model import Record, make_record
 from bioregistry.constants import RAW_DIRECTORY
-from bioregistry.external.alignment_utils import Aligner
+from bioregistry.external.alignment_utils import Aligner, build_getter
 
 __all__ = [
     "CropOCTAligner",
     "get_cropoct",
+    "process_cropoct_raw",
 ]
 
 logger = logging.getLogger(__name__)
@@ -24,17 +26,17 @@ PROCESSED_PATH = DIRECTORY / "processed.json"
 CROPOCT_URL = "https://cropontology.org/metadata"
 
 
-def get_cropoct(force_download: bool = False):
-    """Get the CropOCT registry."""
-    if PROCESSED_PATH.exists() and not force_download:
-        with PROCESSED_PATH.open() as file:
-            return json.load(file)
+def process_cropoct_raw(path: Path) -> dict[str, Record]:
+    """Parse CropOCT raw JSON."""
+    with path.open() as file:
+        data = yaml.safe_load(file)
+    rv = {record["id"]: _process(record) for record in data["ontologies"]}
+    return rv
 
-    download(url=CROPOCT_URL, path=RAW_PATH, force=True)
 
+def _cleanup(path: Path) -> None:
     lines = []
-    with RAW_PATH.open() as file:
-        next(file)  # throw away header
+    with path.open() as file:
         for i, line in enumerate(file):
             line = line.rstrip()
             line = line.replace(" : ", ": ")
@@ -44,30 +46,37 @@ def get_cropoct(force_download: bool = False):
             lines.append(line)
 
     fixed = "\n".join(lines)
-    RAW_PATH.write_text(
+    path.write_text(
         yaml.safe_dump(
             yaml.safe_load(io.StringIO(fixed)),
             indent=2,
         )
     )
-    with RAW_PATH.open() as file:
-        data = yaml.safe_load(file)
-
-    rv = {record["id"]: _process(record) for record in data["ontologies"]}
-    with PROCESSED_PATH.open("w") as file:
-        json.dump(rv, file, indent=2, sort_keys=True)
-    return rv
 
 
-def _process(record):
+def _process(record: Mapping[str, Any]) -> Record:
     rv = {
-        "prefix": record["id"],
         "name": record["title"],
         "homepage": record["homepage"],
-        "download_owl": record.get("ontology_purl"),
         "description": record.get("description"),
     }
-    return {k: v for k, v in rv.items() if k and v}
+    if owl_url := record.get("ontology_purl"):
+        rv["artifacts"] = [
+            {
+                "type": "owl",
+                "url": owl_url,
+            }
+        ]
+    return make_record(rv)
+
+
+get_cropoct = build_getter(
+    processed_path=PROCESSED_PATH,
+    raw_path=RAW_PATH,
+    url=CROPOCT_URL,
+    func=process_cropoct_raw,
+    cleanup=_cleanup,
+)
 
 
 class CropOCTAligner(Aligner):
@@ -75,7 +84,7 @@ class CropOCTAligner(Aligner):
 
     key = "cropoct"
     getter = get_cropoct
-    curation_header = ["name", "homepage", "description"]
+    curation_header: ClassVar[Sequence[str]] = ["name", "homepage", "description"]
 
 
 if __name__ == "__main__":

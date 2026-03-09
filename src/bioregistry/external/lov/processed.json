@@ -424,7 +424,7 @@
     "prefix": "era",
     "uri_prefix": "http://data.europa.eu/949/$1",
     "description": "This is the human and machine readable Vocabulary/Ontology governed by the European Union Agency for Railways. It represents the concepts and relationships linked to the sectorial legal framework and the use cases under the Agency\u00b4s remit. Currently, this vocabulary covers the European railway infrastructure and the vehicles authorized to operate over it. It is a semantic/browsable representation of the RINF and ERATV application guides that were built by domain experts in the RINF and ERATV working parties.\nSince version 2.6.0, the ontology includes the routebook concepts described in appendix D2 \\\"Elements the infrastructure manager has to provide to the railway undertaking for the Route Book\\\" (https://eur-lex.europa.eu/eli/reg_impl/2019/773/oj) and the appendix D3 \\\"ERTMS trackside engineering information relevant to operation that the infrastructure manager shall provide to the railway undertaking\\\".",
-    "modified": "2024-06-18",
+    "modified": "2026-01-23",
     "homepage": "https://data-interop.era.europa.eu/era-vocabulary/",
     "keywords": [
       "Transport",
@@ -460,7 +460,7 @@
     "prefix": "eurio",
     "uri_prefix": "http://data.europa.eu/s66#$1",
     "description": "The EUropean Research Information Ontology (EURIO) conceptualises, formally encodes and makes available in an open, structured and machine-readable format data about resarch projects funded by the EU's framework programmes for research and innovation.",
-    "modified": "2021-08-20",
+    "modified": "2025-05-08",
     "keywords": [
       "Academy",
       "Metadata"
@@ -755,6 +755,18 @@
       "Metadata"
     ]
   },
+  "graphql": {
+    "name": "GraphQL Vocabulary",
+    "prefix": "graphql",
+    "uri_prefix": "http://datashapes.org/graphql#$1",
+    "description": "A vocabulary to annotate RDF schemas (in particular SHACL shapes) with metadata to define mappings to GraphQL.",
+    "modified": "2026-01-21",
+    "keywords": [
+      "API",
+      "Methods"
+    ],
+    "homepage": "http://datashapes.org/graphql"
+  },
   "cis": {
     "name": "Cultural-ON (Cultural ONtology): Ontologia dei Luoghi della Cultura e degli Eventi Culturali",
     "prefix": "cis",
@@ -998,6 +1010,18 @@
     "homepage": "http://dev.poderopedia.com/documentation/index",
     "keywords": [
       "People"
+    ]
+  },
+  "ekc": {
+    "name": "EKC Data Model Vocabulary: Ontology Design for the Encyclopedic Archives of Korean Culture (ekc)",
+    "prefix": "ekc",
+    "uri_prefix": "http://dh.aks.ac.kr/ontologies/ekc#$1",
+    "description": "The present specification is based on the document \\\"Ontology:EKC 2022\\\", originally led by Hyeon Kim in the Center for Digital Humanities at the Academy of Korean Studies.",
+    "modified": "2025-07-27",
+    "homepage": "https://github.com/dongshins/EKC_ontology",
+    "keywords": [
+      "Metadata",
+      "Multimedia"
     ]
   },
   "dogont": {
@@ -3680,7 +3704,7 @@
     "prefix": "dcite",
     "uri_prefix": "http://purl.org/spar/datacite/$1",
     "description": "The DataCite Ontology is an ontology written in OWL 2 DL to enable certain metadata properties of the DataCite Metadata Specification version 2.0 (http://datacite.org/schema/DataCite-MetadataKernel_v2.0.pdf) to be described in RDF.",
-    "modified": "2014-05-21",
+    "modified": "2022-09-15",
     "keywords": [
       "SPAR"
     ],
@@ -5460,6 +5484,7 @@
     "description": "This vocabulary is intended to describe all the aspects which are needed to communicate incident related information for fire department services",
     "modified": "2014-09-12",
     "keywords": [
+      "Services",
       "Society"
     ],
     "homepage": "http://vocab.resc.info/communication"
@@ -5485,6 +5510,127 @@
       "Methods"
     ],
     "homepage": "http://vocab.sti2.at/vrank"
+  },
+  "ceon-actor": {
+    "name": "Circular Economy Ontology Network (CEON) - Actor Module",
+    "prefix": "ceon-actor",
+    "uri_prefix": "http://w3id.org/CEON/ontology/actor/$1",
+    "description": "The Actor module of CEON (Circular Economy Ontology Network).",
+    "modified": "2025-07-30",
+    "keywords": [
+      "People"
+    ],
+    "homepage": "http://w3id.org/CEON/ontology/actor/"
+  },
+  "ceon-actorODP": {
+    "name": "Circular Economy Ontology Network (CEON) - Actor ODP",
+    "prefix": "ceon-actorODP",
+    "uri_prefix": "http://w3id.org/CEON/ontology/actorODP/$1",
+    "description": "A core ODP of the CEON ontology network, defining aspects of the actor concept.",
+    "modified": "2025-07-30",
+    "keywords": [
+      "People"
+    ],
+    "homepage": "http://w3id.org/CEON/ontology/actorODP/"
+  },
+  "ceon-cvn": {
+    "name": "Circular Economy Ontology Network (CEON) - Circular Value Network Module",
+    "prefix": "ceon-cvn",
+    "uri_prefix": "http://w3id.org/CEON/ontology/cvn/$1",
+    "description": "A core module of the CEON ontology network, defining aspects of the circular value network (CVN) itself.",
+    "modified": "2025-07-30",
+    "keywords": [
+      "Industry"
+    ],
+    "homepage": "http://w3id.org/CEON/ontology/cvn/"
+  },
+  "ceon-energy": {
+    "name": "Circular Economy Ontology Network (CEON) - Energy Module",
+    "prefix": "ceon-energy",
+    "uri_prefix": "http://w3id.org/CEON/ontology/energy/$1",
+    "description": "A module of the CEON ontology network defining aspects of the energy concept.",
+    "modified": "2025-07-30",
+    "keywords": [
+      "Environment"
+    ],
+    "homepage": "http://w3id.org/CEON/ontology/energy/"
+  },
+  "ceon-material": {
+    "name": "Circular Economy Ontology Network (CEON) - Material Module",
+    "prefix": "ceon-material",
+    "uri_prefix": "http://w3id.org/CEON/ontology/material/$1",
+    "description": "The Material module of CEON (Circular Economy Ontology Network).",
+    "modified": "2025-07-30",
+    "keywords": [
+      "Industry"
+    ],
+    "homepage": "http://w3id.org/CEON/ontology/material/"
+  },
+  "ceon-plan": {
+    "name": "Circular Economy Ontology Network (CEON) - Plan Module",
+    "prefix": "ceon-plan",
+    "uri_prefix": "http://w3id.org/CEON/ontology/plan/$1",
+    "description": "The Plan module of CEON (Circular Economy Ontology Network).",
+    "modified": "2025-07-30",
+    "keywords": [
+      "Events"
+    ],
+    "homepage": "http://w3id.org/CEON/ontology/plan/"
+  },
+  "ceon-process": {
+    "name": "Circular Economy Ontology Network (CEON) - Process Module",
+    "prefix": "ceon-process",
+    "uri_prefix": "http://w3id.org/CEON/ontology/process/$1",
+    "description": "The Process module of CEON (Circular Economy Ontology Network).",
+    "modified": "2025-07-30",
+    "keywords": [
+      "Events"
+    ],
+    "homepage": "http://w3id.org/CEON/ontology/process/"
+  },
+  "ceon-processODP": {
+    "name": "Circular Economy Ontology Network (CEON) - Process ODP",
+    "prefix": "ceon-processODP",
+    "uri_prefix": "http://w3id.org/CEON/ontology/processODP/$1",
+    "description": "A core ODP of the CEON ontology network, defining aspects of the process concept.",
+    "modified": "2025-07-30",
+    "keywords": [
+      "Events"
+    ],
+    "homepage": "http://w3id.org/CEON/ontology/processODP/"
+  },
+  "ceon-product": {
+    "name": "Circular Economy Ontology Network (CEON) - Product Module",
+    "prefix": "ceon-product",
+    "uri_prefix": "http://w3id.org/CEON/ontology/product/$1",
+    "description": "The Product module of CEON (Circular Economy Ontology Network).",
+    "modified": "2025-07-30",
+    "keywords": [
+      "Industry"
+    ],
+    "homepage": "http://w3id.org/CEON/ontology/product/"
+  },
+  "ceon-resourceODP": {
+    "name": "Circular Economy Ontology Network (CEON) - Resource ODP",
+    "prefix": "ceon-resourceODP",
+    "uri_prefix": "http://w3id.org/CEON/ontology/resourceODP/$1",
+    "description": "A core ODP of the CEON ontology network defining aspects of the resource concept.",
+    "modified": "2025-07-30",
+    "keywords": [
+      "Industry"
+    ],
+    "homepage": "http://w3id.org/CEON/ontology/resourceODP/"
+  },
+  "ceon-value": {
+    "name": "Circular Economy Ontology Network (CEON) - Value Module",
+    "prefix": "ceon-value",
+    "uri_prefix": "http://w3id.org/CEON/ontology/value/$1",
+    "description": "A core ODP of the CEON ontology network, defining aspects of the value concept.",
+    "modified": "2025-07-30",
+    "keywords": [
+      "Industry"
+    ],
+    "homepage": "http://w3id.org/CEON/ontology/value/"
   },
   "amlo-core": {
     "name": "AMLO-core vocabulary",
@@ -5684,6 +5830,17 @@
       "IoT"
     ],
     "homepage": "http://w3id.org/rsp/vocals#"
+  },
+  "attack": {
+    "name": "MITRE ATT&CK Ontology",
+    "prefix": "attack",
+    "uri_prefix": "http://w3id.org/sepses/vocab/ref/attack#$1",
+    "description": "An ontology to represent MITRE ATT & CK.\nThis ontology is developed based on the MITRE ATT & CK  (https://attack.mitre.org/)",
+    "modified": "2025-11-22",
+    "keywords": [
+      "Security"
+    ],
+    "homepage": "http://w3id.org/sepses/vocab/ref/attack"
   },
   "cbcm": {
     "name": "The European Union Company Mobility Ontology (EUCM ontology)",
@@ -7767,6 +7924,17 @@
       "Support"
     ]
   },
+  "glc": {
+    "name": "GLACIATION Metadata Reference Model",
+    "prefix": "glc",
+    "uri_prefix": "https://glaciation-project.eu/MetadataReferenceModel#$1",
+    "description": "The GLACIATION platform develops a novel Distributed Knowledge Graph (DKG) that stretches across the edge-core-cloud architecture to reduce energy consumption, improving data processing and optimizing data movement operations. Towards this aim, the platform needs to consume the data and metadata that are fed into the DKG. The metadata can affect and inform the decision-making processes in the GLACIATION architecture and introduces the GLACIATION Metadata Reference Model that will be used for modelling the metadata in the DKG.\n\nThe GLACIATION Reference Metadata Model makes data ingestion and processing interoperable inside the GLACIATION platform. Linked Data allows for a high level of flexibility and to tackle the variety and merging issues that emerge in heterogenous environments, especially due to the wide range of sensors and other data sources that the platform may integrate. The GLACIATION Reference Metadata Model is tailored to fit the specific purposes of the GLACIATION platform, while the GLACIATION use cases define the scope of the model for better interoperability.\n\nThere are common metadata challenges for all use cases. This stems from the use of the Kubernetes orchestration system as a basis for the GLACIATION platform. In addition, common to the platform is the ingestion of data from other sources into the DKG that can then be used to affect processing decisions. There are direct data flows from sensors within the system, but also data and metadata from sources external to the system. This allows the system to react e.g. to environmental situations like weather or temperature, but also to requirements concerning security or privacy. Exemplary uses and specializations of the reference model to the GLACIATION use cases are also provided.\n\nThe GLACIATION Metadata Reference Model can be used for scheduling and performing tasks. The model can be considered as a general conceptualization of a tasks scheduling problem that considers various measuring indicators over the deployed resources. It captures the assignment of time-constrained tasks to time constrained and energy consuming resources, that can satisfy various hard and soft constraints, even compositions of such constraints. The tasks can be monitored through various measuring resources using a variety of single or aggregated, predicted or real measurements.\n\nThe model is generic, by being both domain and application independent, describing the scheduling tasks, without providing specific solutions on how they can be solved. It can be easily adjusted to each of the current three GLACIATION use cases, covering also the Kubernetes orchestration and its Telemetry System deployed by the project. The proposed model makes it feasible to answer the competency queries defined by each of the Glaciation's use case.",
+    "modified": "2025-11-05",
+    "keywords": [
+      "Metadata"
+    ],
+    "homepage": "https://glaciation-project.eu/MetadataReferenceModel"
+  },
   "tresiot": {
     "name": "Ontology for Trust Recommendation in Social Internet of Things",
     "prefix": "tresiot",
@@ -7777,6 +7945,43 @@
       "IoT"
     ],
     "homepage": "https://liidr.org/trust-recommendation-in-social-internet-of-things/"
+  },
+  "dpp": {
+    "name": "Verisav Digital Product Passport Vocabulary",
+    "prefix": "dpp",
+    "uri_prefix": "https://ns.verisav.fr/dpp#$1",
+    "description": "Vocabulary for Digital Product Passports (DPP) managing product lifecycle, warranties, repairs, and compliance with EU regulations (ESPR EU 2024/1781). Aligned with GS1 Digital Link standards, including GTIN, GLN, granularity (model/batch/serial) and compound identifier support.",
+    "modified": "2026-01-23",
+    "keywords": [
+      "Food",
+      "Industry"
+    ],
+    "homepage": "https://ns.verisav.fr/dpp#"
+  },
+  "rma": {
+    "name": "Verisav RMA / Ticketing Vocabulary",
+    "prefix": "rma",
+    "uri_prefix": "https://ns.verisav.fr/rma#$1",
+    "description": "Vocabulary for Return Merchandise Authorization (RMA) and service ticket management, standardizing communication between consumers, retailers, and repairers.",
+    "modified": "2025-12-28",
+    "keywords": [
+      "Food",
+      "Industry"
+    ],
+    "homepage": "https://ns.verisav.fr/rma#"
+  },
+  "wty": {
+    "name": "Verisav Warranty & Contracts Vocabulary",
+    "prefix": "wty",
+    "uri_prefix": "https://ns.verisav.fr/wty#$1",
+    "description": "Vocabulary for machine-readable warranties and contracts, enabling complete automation of payment decisions and coverage assessment in after-sales service.",
+    "modified": "2025-12-28",
+    "keywords": [
+      "Contracts",
+      "Food",
+      "Industry"
+    ],
+    "homepage": "https://ns.verisav.fr/wty#"
   },
   "ei2a": {
     "name": "Aragon Interoperable Information Structure Ontology\nEI2A",
@@ -7823,6 +8028,18 @@
     ],
     "homepage": "https://privatealpha.com/ontology/transformation/1#"
   },
+  "ce": {
+    "name": "CityExplorer Ontology",
+    "prefix": "ce",
+    "uri_prefix": "https://purl.org/cityexplorer#$1",
+    "description": "This ontology models personalized tourist experiences by representing cities, points of interest, events, accommodations, restaurants, transportation, and their relationships. This ontology is part of a university project.",
+    "modified": "2025-11-22",
+    "keywords": [
+      "Events",
+      "Society"
+    ],
+    "homepage": "https://purl.org/cityexplorer"
+  },
   "apco": {
     "name": "African Public Contract Ontology",
     "prefix": "apco",
@@ -7849,7 +8066,7 @@
   "psn": {
     "name": "Product Supply Network Vocabulary",
     "prefix": "psn",
-    "uri_prefix": "http://purl.org/dc/terms/$1",
+    "uri_prefix": "https://purl.org/psn/vocab#$1",
     "description": "A small ontology to model supply networks (supply chains) from all industries through products that are interlinked based on derivational dependencies.",
     "modified": "2024-07-22",
     "keywords": [
@@ -7867,6 +8084,17 @@
     "keywords": [
       "Services"
     ]
+  },
+  "vas": {
+    "name": "VAS. A Semantic Model for Earth Observation Remote Sensing",
+    "prefix": "vas",
+    "uri_prefix": "https://robotica.uv.es/proyectos/ASOTVAS/def/ciencia-tecnologia/vas#$1",
+    "description": "The VAS ontological model enables the semantic integration of the heterogeneous observations used in ASOTVAS project ( https://robotica.uv.es/proyectos/ASOTVAS/ ), including ground measurements, UAV acquisitions and satellite products. Built as an extension of the W3C SOSA ontology (Janowicz et al., 2018), it incorporates a domain-specific vocabulary tailored to the needs of the Valencia Anchor Station as a CEOS LPV supersite.\nThe model provides additional classes and properties to represent, in a homogeneous way, the different observational platforms: field sensors installed at VAS stations, UAVs equipped with multispectral cameras, and satellite missions such as Sentinel-2 and Sentinel-3. All observations follow a common SOSA pattern and share the same structure for results, units and timestamps.\nBy aligning field, UAV and satellite observations under a unified semantic framework, the VAS ontology supports interoperable data access, consistent representation across scales, and integrated analysis of the multi-source measurements collected in ASOTVAS.",
+    "modified": "2025-11-28",
+    "keywords": [
+      "IoT"
+    ],
+    "homepage": "https://robotica.uv.es/proyectos/ASOTVAS/def/ciencia-tecnologia/vas"
   },
   "saref": {
     "name": "SAREF: the Smart Appliances REFerence ontology",
@@ -8138,6 +8366,17 @@
       "IoT"
     ]
   },
+  "gsn": {
+    "name": "OntoGSN",
+    "prefix": "gsn",
+    "uri_prefix": "https://w3id.org/OntoGSN/ontology#$1",
+    "description": "OntoGSN is an ontology for managing assurance cases in the Goal Structuring Notation (GSN). The goal of the ontology is to help users in linking the elements of their cases - claims and evidence - with the internationalized resource identifiers (IRIs) of represented concepts, events and data, and in evaluating the validity of their argument.",
+    "modified": "2025-08-19",
+    "keywords": [
+      "Industry"
+    ],
+    "homepage": "https://w3id.org/OntoGSN/ontology"
+  },
   "tro": {
     "name": "Transparent Relations Ontology",
     "prefix": "tro",
@@ -8149,6 +8388,40 @@
       "eBusiness"
     ],
     "homepage": "https://w3id.org/TRO"
+  },
+  "a4bdg": {
+    "name": "aerOS Building ontology",
+    "prefix": "a4bdg",
+    "uri_prefix": "https://w3id.org/aerOS/building#$1",
+    "description": "Ontology that defines the conceptual model for the Pilot 5 - Smart Building use case",
+    "modified": "2025-06-16",
+    "keywords": [
+      "IoT"
+    ],
+    "homepage": "https://w3id.org/aerOS/building"
+  },
+  "aeros": {
+    "name": "aerOS Continuum Ontology",
+    "prefix": "aeros",
+    "uri_prefix": "https://w3id.org/aerOS/continuum#$1",
+    "description": "Ontology for the orchestration of the aerOS continuum.",
+    "modified": "2025-06-16",
+    "keywords": [
+      "Services",
+      "Support"
+    ],
+    "homepage": "https://w3id.org/aerOS/continuum#"
+  },
+  "aerdcat": {
+    "name": "aerOS Data Catalog Ontology",
+    "prefix": "aerdcat",
+    "uri_prefix": "http://www.w3.org/ns/dcat#$1",
+    "description": "Ontology that defines concepts for representing the aerOS Data Catalog",
+    "modified": "2025-06-16",
+    "keywords": [
+      "Catalogs"
+    ],
+    "homepage": "https://w3id.org/aerOS/data-catalog#"
   },
   "airo": {
     "name": "AI Risk Ontology",
@@ -8377,6 +8650,18 @@
     ],
     "homepage": "https://w3id.org/dco"
   },
+  "dtw": {
+    "name": "WoTDT: The WoT Digital Twin Ontology.",
+    "prefix": "dtw",
+    "uri_prefix": "https://w3id.org/def/dtw#$1",
+    "description": "Digital Twin ontology used to define Digital Twins and Semantic Digital Twins and aggregations by dimensions using Web of Things.",
+    "modified": "2025-06-15",
+    "keywords": [
+      "Industry",
+      "IoT"
+    ],
+    "homepage": "https://w3id.org/def/dtw#"
+  },
   "foo": {
     "name": "Forest Observatory Ontology (FOO)",
     "prefix": "foo",
@@ -8454,7 +8739,7 @@
     "prefix": "dpv",
     "uri_prefix": "https://w3id.org/dpv#$1",
     "description": "The Data Privacy Vocabulary (DPV) provides terms (classes and properties) to represent information about processing of personal data, for example - purposes, processing operations, personal data, technical and organisational measures.",
-    "modified": "2022-08-18",
+    "modified": "2025-08-01",
     "homepage": "https://github.com/w3c/dpv/",
     "keywords": [
       "People",
@@ -8490,12 +8775,24 @@
     "prefix": "dseco",
     "uri_prefix": "https://w3id.org/dseco/ontology/$1",
     "description": "The DNS Security Ontology (DSecO) project is a data model for representing and reasoning on Domain Name System (DNS) data.\nThe ontology is developed using web technologies (e.g. RDF, OWL, SKOS) and is intended as a structure for realizing a DNS Knowledge Graph (KG) for administration and security assessment applications. The model has been developed in collaboration with operational teams, and in connection with third parties linked vocabularies.\n\nAlignment with third parties vocabularies is implemented on a per class or per property basis when relevant (e.g. with `rdfs:subClassOf`, `owl:equivalentClass`).\nDirections for direct instanciation of these vocabularies are provided for cases where implementing a class/property alignment is redundant.\nAlignment holds for the following vocabulary releases:\n\n- [ORG](https://www.w3.org/TR/vocab-org/) 0.8\n- [UCO](https://github.com/ucoProject/uco) Release-0.8.0",
-    "modified": "2025-01-16",
+    "modified": "2025-06-14",
     "homepage": "https://w3id.org/dseco/doc/",
     "keywords": [
       "API",
       "Services"
     ]
+  },
+  "dsv": {
+    "name": "Data Specification Vocabulary",
+    "prefix": "dsv",
+    "uri_prefix": "https://w3id.org/dsv#$1",
+    "description": "Data Specification Vocabulary (DSV) is a vocabulary for describing semantic data specifications, namely vocabularies and application profiles.",
+    "modified": "2025-05-13",
+    "keywords": [
+      "RDF",
+      "Vocabularies"
+    ],
+    "homepage": "https://w3id.org/dsv#"
   },
   "ecfo": {
     "name": "The Emission Conversion Factor Ontology",
@@ -8576,6 +8873,18 @@
       "Geometry"
     ],
     "homepage": "https://w3id.org/fog"
+  },
+  "fwo": {
+    "name": "Food Wastage Ontology",
+    "prefix": "fwo",
+    "uri_prefix": "https://w3id.org/foodwaste/ontology#$1",
+    "description": "An ontology to model food donation logistics.",
+    "modified": "2025-11-22",
+    "keywords": [
+      "Food",
+      "Industry"
+    ],
+    "homepage": "https://w3id.org/foodwaste/ontology"
   },
   "gom": {
     "name": "GOM: Geometry Metadata Ontology",
@@ -8658,6 +8967,17 @@
     ],
     "homepage": "https://w3id.org/ibp/CTRLont"
   },
+  "icon": {
+    "name": "ICON Ontology",
+    "prefix": "icon",
+    "uri_prefix": "https://w3id.org/icon/ontology/$1",
+    "description": "The ICON ontology deals with high granularity art interpretation. It was developed by conceptualizing Panofsky's theory of levels of interpretation, therefore artworks can be described according to Pre-iconographical, Iconographical and Iconological information.",
+    "modified": "2025-09-11",
+    "homepage": "https://w3id.org/icon/docs/",
+    "keywords": [
+      "Methods"
+    ]
+  },
   "iddo": {
     "name": "The Interconnected Data Dictionary Ontology (IDDO)",
     "prefix": "iddo",
@@ -8717,6 +9037,17 @@
       "General & Upper"
     ],
     "homepage": "https://w3id.org/isCharacterisedBy"
+  },
+  "ishi": {
+    "name": "Ishikawa diagram ontology",
+    "prefix": "ishi",
+    "uri_prefix": "https://w3id.org/ishikawa-diagram-ontology#$1",
+    "description": "The Ishikawa ontology aims to provide a data and view model to manage data encoded in Ishikawa diagrams which are also known as fishbone or cause and effect diagram (CED).\nIshikawa diagrams result from (iterative) workshops. Thus, the ontology includes the basic modelling of workshops to create Ishikawa diagrams.",
+    "modified": "2025-05-13",
+    "keywords": [
+      "Methods"
+    ],
+    "homepage": "https://w3id.org/ishikawa-diagram-ontology"
   },
   "isoprops": {
     "name": "ISO 23386 Property Ontology (ISOProps)",
@@ -8972,6 +9303,18 @@
     ],
     "homepage": "https://w3id.org/opm"
   },
+  "opti": {
+    "name": "Offshore Wind Power Platform Ontology for OPTiMAR",
+    "prefix": "opti",
+    "uri_prefix": "https://w3id.org/optimar#$1",
+    "description": "This ontology describes the components, failures, sensors, and events related to offshore wind platforms.",
+    "modified": "2025-10-06",
+    "keywords": [
+      "Environment",
+      "IoT"
+    ],
+    "homepage": "https://w3id.org/optimar"
+  },
   "okh": {
     "name": "Open Know How (OKH) ontology",
     "prefix": "okh",
@@ -9007,6 +9350,30 @@
     ],
     "homepage": "https://w3id.org/pep/"
   },
+  "pghdprovo": {
+    "name": "Patient Generated Health Data Provenance Ontology",
+    "prefix": "pghdprovo",
+    "uri_prefix": "https://w3id.org/pghdprovo#$1",
+    "description": "Patient Generated Health Data (PGHD) refer to health data collected by patient or their relatives. This ontology seeks to capture information about the data, the provenance and data quality associated with PGHD shared with an EHR.",
+    "modified": "2025-12-23",
+    "keywords": [
+      "Health",
+      "Metadata"
+    ],
+    "homepage": "https://w3id.org/pghdprovo"
+  },
+  "pko": {
+    "name": "Procedural Knowledge Ontology (PKO)",
+    "prefix": "pko",
+    "uri_prefix": "https://w3id.org/pko#$1",
+    "description": "The Procedural Knowledge Ontology (PKO) addresses the Procedural Knowledge (PK) domain, and models procedures, their executions, and related resources and agents.",
+    "modified": "2025-07-09",
+    "keywords": [
+      "Events",
+      "Methods"
+    ],
+    "homepage": "https://w3id.org/pko"
+  },
   "rto": {
     "name": "Rail Topology Ontology",
     "prefix": "rto",
@@ -9029,6 +9396,18 @@
       "Methods"
     ],
     "homepage": "https://w3id.org/rains"
+  },
+  "rdfc": {
+    "name": "RDF Connect Ontology",
+    "prefix": "rdfc",
+    "uri_prefix": "https://w3id.org/rdf-connect#$1",
+    "description": "An ontology for describing programming language-specific runners, processors and pipelines in RDF-based data processing frameworks.",
+    "modified": "2025-09-02",
+    "keywords": [
+      "Catalogs",
+      "Services"
+    ],
+    "homepage": "https://w3id.org/rdf-connect/ontology"
   },
   "rdfp": {
     "name": "The RDF Presentation ontology",
@@ -9270,6 +9649,17 @@
       "Methods"
     ]
   },
+  "semts": {
+    "name": "The Semantic Time Series Ontology",
+    "prefix": "semts",
+    "uri_prefix": "https://w3id.org/semts/ontology#$1",
+    "description": "SemTS is an ontology designed to identify and describe segments within time series data, which are specific data points or intervals that can overlap. These segments encompass characteristic knowledge about the time interval they cover, including common time series features, structural anomalies, motifs, or information provided by domain experts. By classifying and semantically representing this knowledge, SemTS promotes organized reusability and efficient propagation, potentially reducing resource expenditure while enhancing future analyses. It employs established semantic approaches. Examples are DCAT to reference associated time series data, OWL-Time to define the index structure of time series data and segments or ML-Schema to expand the expressiveness regarding data analysis task information. SemTS's design involves categorizing time series knowledge and mapping it to specific intervals and dimensions of time series data. It introduces a class called TimeSeriesSegment to model these segments, extending the DCAT Dataset class to enable segments to be part of other segments. This structure allows for the association of knowledge, such as anomalies, with particular intervals or data points. TimeIndex specifications extend OWL-Time classes, while dimensional details are represented by DataDimension. The segment-wise consideration of knowledge indirectly serves as an index structure, linking meaningful time series data with categorized knowledge. At the highest level of abstraction, time series knowledge is divided into three categories: DataKnowledge, ScenarioKnowledge, and MethodKnowledge. DataKnowledge refers to insights extracted directly from the data or through analytical methods, such as class membership from time series clustering. ScenarioKnowledge describes verified contexts, including data annotations or domain-specific process knowledge, often equating to expert-provided a priori information and can also define facts derived from inferred knowledge. MethodKnowledge encompasses effective analytical method presets or mathematical/logical equivalents of established process information.",
+    "modified": "2025-09-03",
+    "keywords": [
+      "Time"
+    ],
+    "homepage": "https://w3id.org/semts/ontology#"
+  },
   "seo": {
     "name": "The Scientific Events Ontology",
     "prefix": "seo",
@@ -9329,6 +9719,28 @@
       "API",
       "RDF"
     ]
+  },
+  "sulo": {
+    "name": "Simplified Upper Level Ontology",
+    "prefix": "sulo",
+    "uri_prefix": "https://w3id.org/sulo/$1",
+    "description": "The Simplified Upper Level Ontology (SULO) is ontology with a minimal set of classes and relations to guide the development of a personal health knowledge graph.",
+    "modified": "2025-07-11",
+    "keywords": [
+      "Health"
+    ],
+    "homepage": "https://w3id.org/sulo/sulo/"
+  },
+  "tido": {
+    "name": "The Threat Intelligence Decision Ontology",
+    "prefix": "tido",
+    "uri_prefix": "https://w3id.org/tido#$1",
+    "description": "The TIDO ontology can be used to describe the decision processes within the threat intelligence domain",
+    "modified": "2025-05-07",
+    "keywords": [
+      "Methods"
+    ],
+    "homepage": "https://w3id.org/tido#"
   },
   "tb": {
     "name": "Timebank Ontology",
@@ -9561,6 +9973,18 @@
       "Services"
     ],
     "homepage": "https://w3id.org/vocab/xbrll"
+  },
+  "vpa": {
+    "name": "ERA ontology for verified permissions",
+    "prefix": "vpa",
+    "uri_prefix": "https://w3id.org/vpa#$1",
+    "description": "ERA ontology for verified permissions, as applied in vehicle(type) authorisations, registrations and approvals",
+    "modified": "2025-05-23",
+    "keywords": [
+      "Methods",
+      "Transport"
+    ],
+    "homepage": "https://w3id.org/vpa"
   },
   "wfont": {
     "name": "Wind Farm Ontology (wfont)",

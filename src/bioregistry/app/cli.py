@@ -1,10 +1,13 @@
 """Web command for running the app."""
 
+from __future__ import annotations
+
 from pathlib import Path
-from typing import Optional
 
 import click
 from more_click import host_option, port_option, verbose_option, with_gunicorn_option
+
+from bioregistry.constants import BIOREGISTRY_DEFAULT_BASE_URL
 
 __all__ = [
     "web",
@@ -26,24 +29,28 @@ __all__ = [
 @click.option("--collections", type=Path, help="Path to a local collections file")
 @click.option("--contexts", type=Path, help="Path to a local contexts file")
 @click.option("--config", type=Path, help="Path to a configuration file")
+@click.option("--analytics", is_flag=True)
 @click.option(
     "--base-url",
     type=str,
-    default="https://bioregistry.io",
+    default=BIOREGISTRY_DEFAULT_BASE_URL,
     show_default=True,
     help="Base URL for app",
 )
+@click.option("--tab", is_flag=True, help="If passed, automatically opens a web browser")
 def web(
     host: str,
     port: str,
     with_gunicorn: bool,
-    workers: Optional[int],
-    registry: Optional[Path],
-    metaregistry: Optional[Path],
-    collections: Optional[Path],
-    contexts: Optional[Path],
-    config: Optional[Path],
-    base_url: Optional[str],
+    workers: int | None,
+    registry: Path | None,
+    metaregistry: Path | None,
+    collections: Path | None,
+    contexts: Path | None,
+    config: Path | None,
+    base_url: str | None,
+    analytics: bool,
+    tab: bool,
 ) -> None:
     """Run the web application."""
     import uvicorn
@@ -69,5 +76,11 @@ def web(
         and metaregistry is None
         and collections is None
         and contexts is None,
+        return_flask=False,
+        analytics=analytics,
     )
+    if tab:
+        import webbrowser
+
+        webbrowser.open_new_tab(f"http://{host}:{port}")
     uvicorn.run(app, host=host, port=int(port), workers=workers)

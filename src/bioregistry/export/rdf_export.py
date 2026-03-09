@@ -1,7 +1,10 @@
 """Export the Bioregistry to RDF."""
 
+from __future__ import annotations
+
 import logging
-from typing import Any, Callable, Optional, Union, cast
+from collections.abc import Callable
+from typing import Any
 
 import click
 import rdflib
@@ -20,9 +23,7 @@ from rdflib import (
 )
 from rdflib.term import _is_valid_uri
 
-import bioregistry
-from bioregistry import Manager
-from bioregistry.constants import (
+from ..constants import (
     RDF_JSONLD_PATH,
     RDF_NT_PATH,
     RDF_TURTLE_PATH,
@@ -30,7 +31,9 @@ from bioregistry.constants import (
     SCHEMA_NT_PATH,
     SCHEMA_TURTLE_PATH,
 )
-from bioregistry.schema.constants import (
+from ..resource_manager import Manager, manager
+from ..schema import Collection, Registry, Resource
+from ..schema.constants import (
     ROR,
     WIKIDATA,
     _add_schema,
@@ -40,21 +43,18 @@ from bioregistry.schema.constants import (
     bioregistry_schema,
     get_schema_rdf,
 )
-from bioregistry.schema.struct import Collection, Registry, Resource
 
 logger = logging.getLogger(__name__)
 
-NAMESPACES = {
-    _ns: Namespace(_uri) for _ns, _uri in bioregistry.manager.get_internal_prefix_map().items()
+NAMESPACES: dict[str, Namespace] = {
+    _ns: Namespace(_uri) for _ns, _uri in manager.get_internal_prefix_map().items()
 }
-NAMESPACE_WARNINGS = set()
+NAMESPACE_WARNINGS: set[str] = set()
 
 
 @click.command()
 def export_rdf() -> None:
     """Export RDF."""
-    from bioregistry import manager
-
     schema_rdf = get_schema_rdf()
     schema_rdf.serialize(SCHEMA_TURTLE_PATH.as_posix(), format="turtle")
     schema_rdf.serialize(SCHEMA_NT_PATH.as_posix(), format="nt", encoding="utf-8")
@@ -100,14 +100,14 @@ def get_full_rdf(manager: Manager) -> rdflib.Graph:
         uri_prefix = resource.get_uri_prefix()
         if uri_prefix:
             graph.bind(resource.prefix, uri_prefix)
-        _add_resource(graph=graph, manager=manager, resource=resource)
+        _add_resource(graph=graph, manager_=manager, resource=resource)
     return graph
 
 
 def collection_to_rdf_str(
     collection: Collection,
     manager: Manager,
-    fmt: Optional[str] = None,
+    fmt: str | None = None,
 ) -> str:
     """Get a collection as an RDF string."""
     graph = _graph(manager=manager)
@@ -118,7 +118,7 @@ def collection_to_rdf_str(
 def metaresource_to_rdf_str(
     registry: Registry,
     manager: Manager,
-    fmt: Optional[str] = None,
+    fmt: str | None = None,
 ) -> str:
     """Get a collection as an RDF string."""
     graph = _graph(manager=manager)
@@ -129,15 +129,15 @@ def metaresource_to_rdf_str(
 def resource_to_rdf_str(
     resource: Resource,
     manager: Manager,
-    fmt: Optional[str] = None,
+    fmt: str | None = None,
 ) -> str:
     """Get a collection as an RDF string."""
     graph = _graph(manager=manager)
-    _add_resource(resource, manager=manager, graph=graph)
+    _add_resource(resource, manager_=manager, graph=graph)
     return graph.serialize(format=fmt or "turtle")
 
 
-def _get_resource_functions() -> list[tuple[Union[str, URIRef], Callable[[Resource], Any], URIRef]]:
+def _get_resource_functions() -> list[tuple[str | URIRef, Callable[[Resource], Any], URIRef]]:
     return [
         ("0000008", Resource.get_pattern, XSD.string),
         ("0000006", Resource.get_uri_format, XSD.string),
@@ -148,7 +148,7 @@ def _get_resource_functions() -> list[tuple[Union[str, URIRef], Callable[[Resour
     ]
 
 
-def _get_resource_function_2() -> list[tuple[Union[str, URIRef], Callable[[Resource], Any]]]:
+def _get_resource_function_2() -> list[tuple[str | URIRef, Callable[[Resource], Any]]]:
     return [
         ("0000027", Resource.get_example_iri),
         (FOAF.homepage, Resource.get_homepage),
@@ -156,10 +156,8 @@ def _get_resource_function_2() -> list[tuple[Union[str, URIRef], Callable[[Resou
     ]
 
 
-def _add_resource(  # noqa:C901
-    resource: Resource, *, manager: Manager, graph: rdflib.Graph
-) -> None:
-    node = cast(URIRef, bioregistry_resource[resource.prefix])
+def _add_resource(resource: Resource, *, manager_: Manager, graph: rdflib.Graph) -> None:
+    node = bioregistry_resource[resource.prefix]
     graph.add((node, RDF.type, bioregistry_schema["0000001"]))
     graph.add((node, RDFS.label, Literal(resource.get_name())))
     graph.add((node, bioregistry_schema["0000029"], Literal(resource.prefix)))
@@ -196,10 +194,10 @@ def _add_resource(  # noqa:C901
 
     # Ontological relationships
 
-    for depends_on in manager.get_depends_on(resource.prefix) or []:
+    for depends_on in manager_.get_depends_on(resource.prefix) or []:
         graph.add((node, bioregistry_schema["0000017"], bioregistry_resource[depends_on]))
 
-    for appears_in in manager.get_appears_in(resource.prefix) or []:
+    for appears_in in manager_.get_appears_in(resource.prefix) or []:
         graph.add((node, bioregistry_schema["0000018"], bioregistry_resource[appears_in]))
 
     for owner in resource.owners or []:
@@ -211,12 +209,12 @@ def _add_resource(  # noqa:C901
             continue
         graph.add((node, bioregistry_schema["0000026"], obj))
 
-    part_of = manager.get_part_of(resource.prefix)
+    part_of = manager_.get_part_of(resource.prefix)
     if part_of:
         graph.add((node, DCTERMS.isPartOf, bioregistry_resource[part_of]))
         graph.add((bioregistry_resource[part_of], DCTERMS.hasPart, node))
 
-    provides = manager.get_provides_for(resource.prefix)
+    provides = manager_.get_provides_for(resource.prefix)
     if provides:
         graph.add((node, bioregistry_schema["0000011"], bioregistry_resource[provides]))
 
@@ -245,7 +243,7 @@ def _add_resource(  # noqa:C901
 
     mappings = resource.get_mappings()
     for metaprefix, metaidentifier in (mappings or {}).items():
-        metaresource = manager.metaregistry[metaprefix]
+        metaresource = manager_.metaregistry[metaprefix]
         if metaprefix not in NAMESPACES and metaresource.bioregistry_prefix in NAMESPACES:
             metaprefix = metaresource.bioregistry_prefix
         if metaprefix not in NAMESPACES:

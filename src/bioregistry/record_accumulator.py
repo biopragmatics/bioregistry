@@ -1,19 +1,18 @@
 """Generating records for :mod:`curies`."""
 
+from __future__ import annotations
+
 import itertools as itt
 import logging
 from collections import defaultdict
 from collections.abc import Collection, Iterable, Mapping, Sequence
-from typing import (
-    Optional,
-    cast,
-)
+from typing import cast
 
 import curies
 from curies import Converter, Record
 from curies.w3c import NCNAME_RE
 
-from .schema.struct import Resource
+from .schema import Resource
 
 __all__ = [
     "get_converter",
@@ -32,30 +31,56 @@ uri_prefix_blacklist = {
     "https://www.ebi.ac.uk/ena/data/view/",
     "http://www.ebi.ac.uk/ena/data/view/",
     "http://arabidopsis.org/servlets/TairObject?accession=",
+    # this serves both tair.locus and araport
+    "http://bar.utoronto.ca/thalemine/portal.do?externalids=",
+    "https://bar.utoronto.ca/thalemine/portal.do?externalids=",
+    # serves both pdb and uniprot
+    "http://proteins.plus/",
+    "https://proteins.plus/",
+    # serves multiple clinical trial registries
+    "http://trialsearch.who.int/Trial2.aspx?TrialID=",
+    "https://trialsearch.who.int/Trial2.aspx?TrialID=",
 }
 prefix_resource_blacklist = {
-    ("orphanet", "http://www.orpha.net/ORDO/Orphanet_"),  # biocontext is wrong
-    ("orphanet", "https://www.orpha.net/ORDO/Orphanet_"),  # biocontext is wrong
-    ("wikidata.property", "http://scholia.toolforge.org/"),  # duplicated with wikidata
-    ("wikidata.property", "https://scholia.toolforge.org/"),  # duplicated with wikidata
-    ("uniprot", "https://www.ncbi.nlm.nih.gov/protein/"),  # FIXME not sure how to resolve this
-    ("uniprot", "http://www.ncbi.nlm.nih.gov/protein/"),  # FIXME not sure how to resolve this
-    ("cl", "https://www.ebi.ac.uk/ols/ontologies/cl/terms?iri=http://purl.obolibrary.org/obo/"),
-    ("cl", "http://www.ebi.ac.uk/ols/ontologies/cl/terms?iri=http://purl.obolibrary.org/obo/"),
-    ("uberon", "http://www.ebi.ac.uk/ols/ontologies/cl/terms?iri=http://purl.obolibrary.org/obo/"),
-    ("uberon", "https://www.ebi.ac.uk/ols/ontologies/cl/terms?iri=http://purl.obolibrary.org/obo/"),
-    ("ncbigene", "https://en.wikipedia.org/wiki/"),  # probably from wikigene?
-    ("ncbigene", "http://en.wikipedia.org/wiki/"),
-    ("wbphenotype", "http://www.wormbase.org/get?name="),  # wrong in GO
-    ("wbphenotype", "https://www.wormbase.org/get?name="),  # wrong in GO
-    ("wbls", "http://www.wormbase.org/get?name="),  # wrong in GO
-    ("wbls", "https://www.wormbase.org/get?name="),  # wrong in GO
-    ("uniprot.isoform", "http://www.uniprot.org/uniprot/"),  # wrong in miriam
-    ("uniprot.isoform", "https://www.uniprot.org/uniprot/"),  # wrong in miriam
-    ("uniprot.isoform", "http://purl.uniprot.org/uniprot/"),  # wrong in miriam
-    ("uniprot.isoform", "https://purl.uniprot.org/uniprot/"),  # wrong in miriam
+    "orphanet": {
+        "http://www.orpha.net/ORDO/Orphanet_",  # biocontext is wrong
+        "https://www.orpha.net/ORDO/Orphanet_",  # biocontext is wrong
+    },
+    "wikidata.property": {
+        "http://scholia.toolforge.org/",  # duplicated with wikidata
+        "https://scholia.toolforge.org/",  # duplicated with wikidata
+    },
+    "uniprot": {
+        "https://www.ncbi.nlm.nih.gov/protein/",  # FIXME not sure how to resolve this
+        "http://www.ncbi.nlm.nih.gov/protein/",
+    },
+    "cl": {
+        "https://www.ebi.ac.uk/ols/ontologies/cl/terms?iri=http://purl.obolibrary.org/obo/",
+        "http://www.ebi.ac.uk/ols/ontologies/cl/terms?iri=http://purl.obolibrary.org/obo/",
+    },
+    "uberon": {
+        "http://www.ebi.ac.uk/ols/ontologies/cl/terms?iri=http://purl.obolibrary.org/obo/",
+        "https://www.ebi.ac.uk/ols/ontologies/cl/terms?iri=http://purl.obolibrary.org/obo/",
+    },
+    "ncbigene": {
+        "https://en.wikipedia.org/wiki/",  # probably from wikigene?
+        "http://en.wikipedia.org/wiki/",
+    },
+    "wbphenotype": {
+        "http://www.wormbase.org/get?name=",  # wrong in GO
+        "https://www.wormbase.org/get?name=",  # wrong in GO
+    },
+    "wbls": {
+        "http://www.wormbase.org/get?name=",  # wrong in GO
+        "https://www.wormbase.org/get?name=",  # wrong in GO
+    },
+    "uniprot.isoform": {
+        "http://www.uniprot.org/uniprot/",  # wrong in miriam
+        "https://www.uniprot.org/uniprot/",  # wrong in miriam
+        "http://purl.uniprot.org/uniprot/",  # wrong in miriam
+        "https://purl.uniprot.org/uniprot/",  # wrong in miriam
+    },
 }
-assert all(not x.endswith("$1") for _, x in prefix_resource_blacklist)
 
 
 def _debug_or_raise(msg: str, strict: bool = False) -> None:
@@ -64,13 +89,19 @@ def _debug_or_raise(msg: str, strict: bool = False) -> None:
     logger.debug(msg)
 
 
-def _stratify_resources(resources: Iterable[Resource]) -> tuple[list[Resource], list[Resource]]:
-    primary_resources, secondary_resources = [], []
+def _stratify_resources(
+    resources: Iterable[Resource],
+) -> tuple[list[Resource], list[tuple[Resource, str]]]:
+    primary_resources = []
+    secondary_resources = []
+
+    # TODO only call it as secondary if it has an overlap with the primary
+
     for resource in resources:
-        if resource.prefix in prefix_blacklist:
-            continue
-        if resource.part_of or resource.provides or resource.has_canonical:
-            secondary_resources.append(resource)
+        primary_prefix = resource.provides or resource.has_canonical or resource.part_of
+        if primary_prefix is not None:
+            # TODO there's some nuance to the order here, make resource.part_of the last.
+            secondary_resources.append((resource, primary_prefix))
         else:
             primary_resources.append(resource)
     return primary_resources, secondary_resources
@@ -103,25 +134,38 @@ def _iterate_prefix_prefix(resource: Resource, *extras: str) -> Iterable[str]:
 
 def get_converter(
     resources: list[Resource],
-    prefix_priority: Optional[Sequence[str]] = None,
-    uri_prefix_priority: Optional[Sequence[str]] = None,
+    prefix_priority: Sequence[str] | None = None,
+    uri_prefix_priority: Sequence[str] | None = None,
     include_prefixes: bool = False,
     strict: bool = False,
-    blacklist: Optional[Collection[str]] = None,
-    remapping: Optional[Mapping[str, str]] = None,
-    rewiring: Optional[Mapping[str, str]] = None,
+    blacklist: Collection[str] | None = None,
+    remapping: Mapping[str, str] | None = None,
+    rewiring: Mapping[str, str] | None = None,
     enforce_w3c: bool = False,
+    use_new_implementation: bool = True,
 ) -> Converter:
     """Generate a converter from resources."""
-    records = _get_records(
-        resources,
-        prefix_priority=prefix_priority,
-        uri_prefix_priority=uri_prefix_priority,
-        include_prefixes=include_prefixes,
-        strict=strict,
-        blacklist=blacklist,
-    )
-    converter = curies.Converter(records)
+    if use_new_implementation:
+        converter = _get_converter(
+            resources,
+            prefix_priority=prefix_priority,
+            uri_prefix_priority=uri_prefix_priority,
+            include_prefixes=include_prefixes,
+            blacklist=blacklist,
+            enforce_w3c=enforce_w3c,
+        )
+    else:
+        converter = curies.Converter(
+            _get_records(
+                resources,
+                prefix_priority=prefix_priority,
+                uri_prefix_priority=uri_prefix_priority,
+                include_prefixes=include_prefixes,
+                strict=strict,
+                blacklist=blacklist,
+                enforce_w3c=enforce_w3c,
+            )
+        )
     if remapping:
         converter = curies.remap_curie_prefixes(converter, remapping)
     if rewiring:
@@ -141,13 +185,111 @@ def _w3c_clean_converter(converter: Converter) -> Converter:
     return Converter(_w3c_clean_record(record) for record in converter.records)
 
 
-def _get_records(  # noqa: C901
+def _get_converter(
     resources: list[Resource],
-    prefix_priority: Optional[Sequence[str]] = None,
-    uri_prefix_priority: Optional[Sequence[str]] = None,
+    prefix_priority: Sequence[str] | None = None,
+    uri_prefix_priority: Sequence[str] | None = None,
+    include_prefixes: bool = False,
+    blacklist: Collection[str] | None = None,
+    enforce_w3c: bool = False,
+) -> curies.Converter:
+    blacklist = set(blacklist or []).union(prefix_blacklist)
+    resources = [r for r in resources if r.prefix not in blacklist]
+    converter = curies.Converter()
+
+    primary_resources, secondary_resources = _stratify_resources(resources)
+
+    for resource in primary_resources:
+        primary_uri_prefix, secondary_uri_prefixes = _get_uri_prefixes(
+            resource, uri_prefix_priority, enforce_w3c=enforce_w3c
+        )
+        if primary_uri_prefix is None:
+            continue
+        primary_prefix, secondary_prefixes = _get_curie_prefixes(resource, prefix_priority)
+        converter.add_prefix(
+            primary_prefix,
+            primary_uri_prefix,
+            secondary_prefixes,
+            secondary_uri_prefixes,
+            pattern=resource.get_pattern(),
+            merge=False,
+        )
+        if include_prefixes:
+            converter.add_uri_prefix_synonym(primary_prefix, f"{primary_prefix}:")
+            converter.add_uri_prefix_synonym(primary_prefix, f"{primary_prefix.upper()}:")
+            converter.add_uri_prefix_synonym(primary_prefix, f"{primary_prefix.lower()}:")
+            for secondary_prefix in secondary_prefixes:
+                converter.add_uri_prefix_synonym(primary_prefix, f"{secondary_prefix}:")
+                converter.add_uri_prefix_synonym(primary_prefix, f"{secondary_prefix.upper()}:")
+                converter.add_uri_prefix_synonym(primary_prefix, f"{secondary_prefix.lower()}:")
+
+    for resource, primary_prefix in secondary_resources:
+        secondary_uri_prefix, secondary_uri_prefixes = _get_uri_prefixes(
+            resource, uri_prefix_priority, enforce_w3c=enforce_w3c
+        )
+        if secondary_uri_prefix:
+            converter.add_uri_prefix_synonym(primary_prefix, secondary_uri_prefix)
+            for s in secondary_uri_prefixes:
+                converter.add_uri_prefix_synonym(primary_prefix, s)
+
+        secondary_prefix, tertiary_prefixes = _get_curie_prefixes(resource, prefix_priority)
+        converter.add_prefix_synonym(primary_prefix, secondary_prefix)
+        for s in tertiary_prefixes:
+            converter.add_prefix_synonym(primary_prefix, s)
+
+        if include_prefixes:
+            if include_prefixes:
+                converter.add_uri_prefix_synonym(primary_prefix, f"{secondary_prefix}:")
+                converter.add_uri_prefix_synonym(primary_prefix, f"{secondary_prefix.upper()}:")
+                converter.add_uri_prefix_synonym(primary_prefix, f"{secondary_prefix.lower()}:")
+                for tertiary_prefix in tertiary_prefixes:
+                    converter.add_uri_prefix_synonym(primary_prefix, f"{tertiary_prefix}:")
+                    converter.add_uri_prefix_synonym(primary_prefix, f"{tertiary_prefix.upper()}:")
+                    converter.add_uri_prefix_synonym(primary_prefix, f"{tertiary_prefix.lower()}:")
+
+    return converter
+
+
+def _get_curie_prefixes(
+    resource: Resource, priority: Sequence[str] | None = None
+) -> tuple[str, set[str]]:
+    primary = resource.get_priority_prefix(priority)
+    if primary in {"geo", "geogeo", "BOOTSTREP", "gramene.growthstage"}:
+        return primary, set()
+
+    # TODO upstream synonym getting functionality
+    rest = resource.get_synonyms()
+    rest.add(resource.prefix)
+    if pp := resource.get_preferred_prefix():
+        rest.add(pp)
+    rest.update({r.lower() for r in rest})
+    rest.update({r.upper() for r in rest})
+    if primary in rest:
+        rest.remove(primary)
+    return primary, rest
+
+
+def _get_uri_prefixes(
+    resource: Resource, priority: Sequence[str] | None, enforce_w3c: bool
+) -> tuple[str | None, set[str]]:
+    primary = resource.get_uri_prefix(priority=priority)
+    rest = (
+        resource.get_uri_prefixes(enforce_w3c=enforce_w3c)
+        - {primary}
+        - prefix_resource_blacklist.get(resource.prefix, set())
+        - uri_prefix_blacklist
+    )
+    return primary, rest
+
+
+def _get_records(
+    resources: list[Resource],
+    prefix_priority: Sequence[str] | None = None,
+    uri_prefix_priority: Sequence[str] | None = None,
     include_prefixes: bool = False,
     strict: bool = False,
-    blacklist: Optional[Collection[str]] = None,
+    blacklist: Collection[str] | None = None,
+    enforce_w3c: bool = False,
 ) -> list[curies.Record]:
     """Generate records from resources."""
     blacklist = set(blacklist or []).union(prefix_blacklist)
@@ -182,7 +324,7 @@ def _get_records(  # noqa: C901
     #: in all records to bioregistry prefixes
     reverse_prefix_lookup: dict[str, str] = {}
 
-    def _add_primary_uri_prefix(prefix: str) -> Optional[str]:
+    def _add_primary_uri_prefix(prefix: str) -> str | None:
         primary_uri_prefix = primary_uri_prefixes[prefix]
         if primary_uri_prefix in reverse_uri_prefix_lookup:
             logger.debug(
@@ -196,7 +338,7 @@ def _get_records(  # noqa: C901
         reverse_uri_prefix_lookup[primary_uri_prefix] = prefix
         return primary_uri_prefix
 
-    def _add_primary_prefix(prefix: str) -> Optional[str]:
+    def _add_primary_prefix(prefix: str) -> str | None:
         primary_prefix = primary_prefixes[prefix]
         if primary_prefix in reverse_prefix_lookup:
             logger.debug(
@@ -207,6 +349,10 @@ def _get_records(  # noqa: C901
             )
             return None
         reverse_prefix_lookup[primary_prefix] = prefix
+        if primary_prefix not in {"geo", "geogeo"}:
+            # FIXME this weird hack is not sustainable
+            secondary_prefixes[primary_prefix].add(primary_prefix.upper())
+        secondary_prefixes[primary_prefix].add(primary_prefix.lower())
         return primary_prefix
 
     def _add_synonym(*, synonym: str, prefix: str) -> None:
@@ -218,9 +364,11 @@ def _get_records(  # noqa: C901
             return
         reverse_prefix_lookup[synonym] = prefix
         secondary_prefixes[prefix].add(synonym)
+        secondary_prefixes[prefix].add(synonym.lower())
+        secondary_prefixes[prefix].add(synonym.upper())
 
     def _add_uri_synonym(*, uri_prefix: str, prefix: str) -> None:
-        if (prefix, uri_prefix) in prefix_resource_blacklist:
+        if uri_prefix in prefix_resource_blacklist.get(prefix, set()):
             return
         elif uri_prefix in uri_prefix_blacklist:
             return
@@ -235,7 +383,7 @@ def _get_records(  # noqa: C901
             secondary_uri_prefixes[prefix].add(uri_prefix)
 
     def _add_prefix_prefixes(
-        primary_prefix: str, resource: Resource, target_prefix: Optional[str] = None
+        primary_prefix: str, resource: Resource, target_prefix: str | None = None
     ) -> None:
         if target_prefix is None:
             target_prefix = resource.prefix
@@ -262,12 +410,12 @@ def _get_records(  # noqa: C901
             continue
         for synonym in resource.get_synonyms():
             _add_synonym(synonym=synonym, prefix=resource.prefix)
-        for uri_prefix in resource.get_uri_prefixes():
+        for uri_prefix in resource.get_uri_prefixes(enforce_w3c=enforce_w3c):
             _add_uri_synonym(uri_prefix=uri_prefix, prefix=resource.prefix)
         if include_prefixes:
             _add_prefix_prefixes(primary_prefix=primary_prefix, resource=resource)
 
-    for resource in secondary_resources:
+    for resource, _ in secondary_resources:
         provides = resource.provides
         canonical = resource.has_canonical
         has_part = resource.part_of
@@ -285,7 +433,7 @@ def _get_records(  # noqa: C901
             _add_synonym(synonym=resource.prefix, prefix=prefix)
             for synonym in resource.get_synonyms():
                 _add_synonym(synonym=synonym, prefix=prefix)
-            for uri_prefix in resource.get_uri_prefixes():
+            for uri_prefix in resource.get_uri_prefixes(enforce_w3c=enforce_w3c):
                 _add_uri_synonym(uri_prefix=uri_prefix, prefix=prefix)
             if include_prefixes:
                 _add_prefix_prefixes(
@@ -294,8 +442,8 @@ def _get_records(  # noqa: C901
         elif has_part:
             uri_prefixes = {
                 p
-                for p in resource.get_uri_prefixes()
-                if (resource.prefix, p) not in prefix_resource_blacklist
+                for p in resource.get_uri_prefixes(enforce_w3c=enforce_w3c)
+                if p not in prefix_resource_blacklist.get(resource.prefix, set())
             }
             _duplicats = [
                 uri_prefix for uri_prefix in uri_prefixes if uri_prefix in reverse_uri_prefix_lookup
@@ -323,7 +471,7 @@ def _get_records(  # noqa: C901
                     continue
                 for synonym in resource.get_synonyms():
                     _add_synonym(synonym=synonym, prefix=resource.prefix)
-                for uri_prefix in resource.get_uri_prefixes():
+                for uri_prefix in resource.get_uri_prefixes(enforce_w3c=enforce_w3c):
                     _add_uri_synonym(uri_prefix=uri_prefix, prefix=resource.prefix)
                 if include_prefixes:
                     _add_prefix_prefixes(primary_prefix=primary_prefix, resource=resource)

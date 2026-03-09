@@ -345,6 +345,21 @@
     "homepage": "http://4dx.embl.de/4DXpress",
     "name": "Bilateria anatomy"
   },
+  "bmont": {
+    "contact": "alpha.tom.kodamullil@scai.fraunhofer.de",
+    "contact.github": "akodamullil",
+    "contact.label": "Alpha Tom Kodamullil",
+    "contact.orcid": "0000-0001-9896-3531",
+    "deprecated": false,
+    "description": "An application ontology that represents comprehensive knowledge involving a variety of fields of medical and biological aspects.",
+    "domain": "health",
+    "homepage": "https://github.com/SCAI-BIO/BiomarkerOntology",
+    "license": "CC BY 4.0",
+    "license.url": "http://creativecommons.org/licenses/by/4.0/",
+    "name": "Biomarker Ontology",
+    "preferredPrefix": "BMONT",
+    "repository": "https://github.com/SCAI-BIO/BiomarkerOntology"
+  },
   "bootstrep": {
     "contact": "vlee@ebi.ac.uk",
     "contact.label": "Vivian Lee",
@@ -421,7 +436,7 @@
     "contact.github": "mellybelly",
     "contact.label": "Melissa Haendel",
     "contact.orcid": "0000-0001-9114-8737",
-    "deprecated": false,
+    "deprecated": true,
     "description": "An upper level ontology to facilitate interoperability between existing anatomy ontologies for different species",
     "domain": "anatomy and development",
     "download.owl": "http://purl.obolibrary.org/obo/caro.owl",
@@ -526,15 +541,20 @@
     "deprecated": false,
     "description": "A structured classification of molecular entities of biological interest focusing on 'small' chemical compounds.",
     "domain": "chemistry and biochemistry",
+    "download.json": "http://purl.obolibrary.org/obo/chebi.json",
     "download.obo": "http://purl.obolibrary.org/obo/chebi.obo",
     "download.owl": "http://purl.obolibrary.org/obo/chebi.owl",
     "homepage": "http://www.ebi.ac.uk/chebi",
     "license": "CC BY 4.0",
     "license.url": "https://creativecommons.org/licenses/by/4.0/",
-    "logo": "https://www.ebi.ac.uk/chebi/images/ChEBI_logo.png",
+    "logo": "https://www.ebi.ac.uk/chebi/chebi_logo.svg",
     "name": "Chemical Entities of Biological Interest",
     "preferredPrefix": "CHEBI",
     "publications": [
+      {
+        "id": "https://doi.org/10.1093/nar/gkaf1271",
+        "title": "ChEBI: re-engineered for a sustainable future"
+      },
       {
         "id": "https://www.ncbi.nlm.nih.gov/pubmed/26467479",
         "title": "ChEBI in 2016: Improved services and an expanding collection of metabolites."
@@ -676,10 +696,10 @@
       "xpo",
       "ehdaa2"
     ],
-    "contact": "addiehl@buffalo.edu",
-    "contact.github": "addiehl",
-    "contact.label": "Alexander Diehl",
-    "contact.orcid": "0000-0001-9990-8331",
+    "contact": "do12@sanger.ac.uk",
+    "contact.github": "dosumis",
+    "contact.label": "David Osumi-Sutherland",
+    "contact.orcid": "0000-0002-7073-9172",
     "depends_on": [
       "go",
       "ncbitaxon",
@@ -762,8 +782,8 @@
     "repository": "https://github.com/CLO-Ontology/CLO"
   },
   "clyh": {
-    "contact": "lucas.leclere@obs-vlfr.fr",
-    "contact.github": "L-Leclere",
+    "contact": "lucas.leclere@obs-banyuls.fr",
+    "contact.github": "Leclere-L",
     "contact.label": "Lucas Leclere",
     "contact.orcid": "0000-0002-7440-0467",
     "depends_on": [
@@ -1034,7 +1054,7 @@
     "description": "Ontology for drivers and triggers of human diseases, built to classify ExO ontology exposure stressors. An application ontology. Built in collaboration with EnvO, ExO, ECTO and ChEBI.",
     "domain": "health",
     "download.owl": "http://purl.obolibrary.org/obo/disdriv.owl",
-    "homepage": "http://www.disease-ontology.org",
+    "homepage": "https://disease-ontology.org/",
     "license": "CC0 1.0",
     "license.url": "https://creativecommons.org/publicdomain/zero/1.0/",
     "name": "Disease Drivers Ontology",
@@ -1056,10 +1076,10 @@
     "domain": "health",
     "download.obo": "http://purl.obolibrary.org/obo/doid.obo",
     "download.owl": "http://purl.obolibrary.org/obo/doid.owl",
-    "homepage": "http://www.disease-ontology.org",
+    "homepage": "https://disease-ontology.org",
     "license": "CC0 1.0",
     "license.url": "https://creativecommons.org/publicdomain/zero/1.0/",
-    "logo": "http://www.disease-ontology.org/media/images/DO_logo.jpg",
+    "logo": "https://disease-ontology.org/media/images/DO_logo_teal.png",
     "name": "Human Disease Ontology",
     "preferredPrefix": "DOID",
     "publications": [
@@ -1350,7 +1370,7 @@
         "title": "Textual Anatomics: the Mouse Developmental Anatomy Ontology and the Gene Expression Database for Mouse Development (GXD)"
       }
     ],
-    "repository": "https://github.com/obophenotype/mouse-anatomy-ontology"
+    "repository": "https://github.com/obophenotype/developmental-mouse-anatomy-ontology"
   },
   "envo": {
     "appears_in": [
@@ -1501,6 +1521,28 @@
     "deprecated": true,
     "domain": "anatomy and development",
     "name": "eVOC (Expressed Sequence Annotation for Humans)"
+  },
+  "exmo": {
+    "contact": "xyz19940216@163.com",
+    "contact.github": "DarkKnight0-0",
+    "contact.label": "Xingyun Liu",
+    "contact.orcid": "0000-0002-9295-2767",
+    "deprecated": false,
+    "description": "A core reference ontology built upon BFO about exercise medicine and it contains the related terms for healthy people, people with chronic conditions and people living with diability to exercise.",
+    "domain": "health",
+    "download.owl": "http://purl.obolibrary.org/obo/exmo.owl",
+    "homepage": "https://github.com/Exercise-Medicine-Ontology/EXMO",
+    "license": "CC BY 4.0",
+    "license.url": "https://creativecommons.org/licenses/by/4.0/",
+    "name": "Exercise Medicine Ontology",
+    "preferredPrefix": "EXMO",
+    "publications": [
+      {
+        "id": "https://www.ncbi.nlm.nih.gov/pubmed/39695140",
+        "title": "Core reference ontology for individualized exercise prescription"
+      }
+    ],
+    "repository": "https://github.com/Exercise-Medicine-Ontology/EXMO"
   },
   "exo": {
     "appears_in": [
@@ -1889,7 +1931,7 @@
     "contact.github": "lschriml",
     "contact.label": "Lynn Schriml",
     "contact.orcid": "0000-0001-8910-9851",
-    "deprecated": true,
+    "deprecated": false,
     "description": "A gazetteer constructed on ontological principles. The countries are actively maintained.",
     "domain": "environment",
     "download.obo": "http://purl.obolibrary.org/obo/gaz.obo",
@@ -1898,6 +1940,7 @@
     "license": "CC0 1.0",
     "license.url": "https://creativecommons.org/publicdomain/zero/1.0/",
     "name": "Gazetteer",
+    "preferredPrefix": "GAZ",
     "repository": "https://github.com/EnvironmentOntology/gaz"
   },
   "gecko": {
@@ -2320,8 +2363,8 @@
     "domain": "investigations",
     "download.owl": "http://purl.obolibrary.org/obo/ico.owl",
     "homepage": "https://github.com/ICO-ontology/ICO",
-    "license": "CC BY 3.0",
-    "license.url": "http://creativecommons.org/licenses/by/3.0/",
+    "license": "CC BY 4.0",
+    "license.url": "http://creativecommons.org/licenses/by/4.0/",
     "name": "Informed Consent Ontology",
     "preferredPrefix": "ICO",
     "repository": "https://github.com/ICO-ontology/ICO"
@@ -2518,12 +2561,12 @@
     "domain": "anatomy and development",
     "download.obo": "http://purl.obolibrary.org/obo/ma.obo",
     "download.owl": "http://purl.obolibrary.org/obo/ma.owl",
-    "homepage": "https://github.com/obophenotype/mouse-anatomy-ontology",
+    "homepage": "https://github.com/obophenotype/adult-mouse-anatomy-ontology",
     "license": "CC BY 4.0",
     "license.url": "https://creativecommons.org/licenses/by/4.0/",
     "name": "Mouse adult gross anatomy",
     "preferredPrefix": "MA",
-    "repository": "https://github.com/obophenotype/mouse-anatomy-ontology"
+    "repository": "https://github.com/obophenotype/adult-mouse-anatomy-ontology"
   },
   "mamo": {
     "deprecated": true,
@@ -2883,10 +2926,10 @@
     "repository": "https://github.com/HUPO-PSI/psi-mod-CV"
   },
   "mondo": {
-    "contact": "nicole@tislab.org",
-    "contact.github": "nicolevasilevsky",
-    "contact.label": "Nicole Vasilevsky",
-    "contact.orcid": "0000-0001-5208-3432",
+    "contact": "Sabrina@tislab.org",
+    "contact.github": "sabrinatoro",
+    "contact.label": "Sabrina Toro",
+    "contact.orcid": "0000-0002-4142-7153",
     "deprecated": false,
     "description": "A global community effort to harmonize multiple disease resources to yield a coherent merged ontology.",
     "domain": "health",
@@ -2900,6 +2943,10 @@
     "name": "Mondo Disease Ontology",
     "preferredPrefix": "MONDO",
     "publications": [
+      {
+        "id": "https://doi.org/10.1093/genetics/iyaf215",
+        "title": "Mondo: Integrating Disease Terminology Across Communities"
+      },
       {
         "id": "https://www.medrxiv.org/content/10.1101/2022.04.13.22273750",
         "title": "Mondo: Unifying diseases for the world, by the world"
@@ -2946,8 +2993,16 @@
     "preferredPrefix": "MP",
     "publications": [
       {
+        "id": "https://www.ncbi.nlm.nih.gov/pubmed/40963406",
+        "title": "Expanding and refining the Mammalian Phenotype Ontology to enhance disease model discovery"
+      },
+      {
         "id": "https://www.ncbi.nlm.nih.gov/pubmed/22961259",
         "title": "The Mammalian Phenotype Ontology as a unifying standard for experimental and high-throughput phenotyping data"
+      },
+      {
+        "id": "https://www.ncbi.nlm.nih.gov/pubmed/25825651",
+        "title": "Expanding the mammalian phenotype ontology to support automated exchange of high throughput mouse phenotyping data generated by large-scale mouse knockout screens"
       }
     ],
     "repository": "https://github.com/mgijax/mammalian-phenotype-ontology"
@@ -3100,21 +3155,17 @@
       "ontoavida",
       "scdo"
     ],
-    "contact": "haendel@ohsu.edu",
-    "contact.github": "mellybelly",
-    "contact.label": "Melissa Haendel",
-    "contact.orcid": "0000-0001-9114-8737",
     "deprecated": false,
     "description": "NCI Thesaurus (NCIt)is a reference terminology that includes broad coverage of the cancer domain, including cancer related diseases, findings and abnormalities. The NCIt OBO Edition aims to increase integration of the NCIt with OBO Library ontologies. NCIt OBO Edition releases should be considered experimental.",
     "domain": "health",
     "download.obo": "http://purl.obolibrary.org/obo/ncit.obo",
     "download.owl": "http://purl.obolibrary.org/obo/ncit.owl",
-    "homepage": "https://github.com/NCI-Thesaurus/thesaurus-obo-edition",
+    "homepage": "https://github.com/ncit-obo-org/ncit-obo-edition",
     "license": "CC BY 4.0",
     "license.url": "https://creativecommons.org/licenses/by/4.0/",
     "name": "NCI Thesaurus OBO Edition",
     "preferredPrefix": "NCIT",
-    "repository": "https://github.com/NCI-Thesaurus/thesaurus-obo-edition"
+    "repository": "https://github.com/ncit-obo-org/ncit-obo-edition"
   },
   "ncro": {
     "contact": "huang@southalabama.edu",
@@ -3701,11 +3752,21 @@
     "description": "The Obstetric and Neonatal Ontology is a structured controlled vocabulary to provide a representation of the data from electronic health records (EHRs) involved in the care of the pregnant woman, and of her baby.",
     "domain": "health",
     "download.owl": "http://purl.obolibrary.org/obo/ontoneo.owl",
-    "homepage": "ontoneo.com",
-    "license": "CC BY 3.0",
-    "license.url": "http://creativecommons.org/licenses/by/3.0/",
+    "homepage": "https://ontoneo.com/",
+    "license": "CC BY 4.0",
+    "license.url": "https://creativecommons.org/licenses/by/4.0/",
     "name": "Obstetric and Neonatal Ontology",
     "preferredPrefix": "ONTONEO",
+    "publications": [
+      {
+        "id": "https://doi.org/10.5281/zenodo.17429771",
+        "title": "OntONeo: The Obstetric and Neonatal Ontology"
+      },
+      {
+        "id": "https://doi.org/10.5281/zenodo.17508651",
+        "title": "Formal Ontologies in Knowledge Organization within the Obstetric and Neonatal Domain"
+      }
+    ],
     "repository": "https://github.com/ontoneo-project/Ontoneo"
   },
   "oostt": {
@@ -3852,6 +3913,24 @@
       }
     ],
     "repository": "https://github.com/pato-ontology/pato"
+  },
+  "pbpko": {
+    "contact": "saurav.kumar@iispv.cat",
+    "contact.github": "Crispae",
+    "contact.label": "Saurav Kumar",
+    "contact.orcid": "0000-0003-0593-2598",
+    "deprecated": false,
+    "description": "An ontology for modeling and understanding of pharmacokinetics in biological systems.",
+    "domain": "chemistry and biochemistry",
+    "download.json": "http://purl.obolibrary.org/obo/pbpko.json",
+    "download.obo": "http://purl.obolibrary.org/obo/pbpko.obo",
+    "download.owl": "http://purl.obolibrary.org/obo/pbpko.owl",
+    "homepage": "https://github.com/InSilicoVida-Research-Lab/pbpko",
+    "license": "CC BY 3.0",
+    "license.url": "http://creativecommons.org/licenses/by/3.0/",
+    "name": "Physiologically-Based Pharmacokinetic Ontology",
+    "preferredPrefix": "PBPKO",
+    "repository": "https://github.com/InSilicoVida-Research-Lab/pbpko"
   },
   "pcl": {
     "contact": "davidos@ebi.ac.uk",
@@ -4747,7 +4826,7 @@
     "domain": "health",
     "download.obo": "http://purl.obolibrary.org/obo/symp.obo",
     "download.owl": "http://purl.obolibrary.org/obo/symp.owl",
-    "homepage": "http://symptomontologywiki.igs.umaryland.edu/mediawiki/index.php/Main_Page",
+    "homepage": "https://github.com/DiseaseOntology/SymptomOntology",
     "license": "CC0 1.0",
     "license.url": "https://creativecommons.org/publicdomain/zero/1.0/",
     "name": "Symptom Ontology",
@@ -5055,6 +5134,7 @@
     "deprecated": false,
     "description": "Metrical units for use in conjunction with PATO",
     "domain": "phenotype",
+    "download.json": "http://purl.obolibrary.org/obo/uo.json",
     "download.obo": "http://purl.obolibrary.org/obo/uo.obo",
     "download.owl": "http://purl.obolibrary.org/obo/uo.owl",
     "homepage": "https://github.com/bio-ontology-research-group/unit-ontology",
@@ -5172,8 +5252,15 @@
     "homepage": "https://github.com/monarch-initiative/vertebrate-breed-ontology",
     "license": "CC BY 4.0",
     "license.url": "https://creativecommons.org/licenses/by/4.0/",
+    "logo": "https://raw.githubusercontent.com/tis-lab/closed-illustrations/master/logos/vbo-logo/VBO-black-logo-stackedv2.png",
     "name": "Vertebrate Breed Ontology",
     "preferredPrefix": "VBO",
+    "publications": [
+      {
+        "id": "https://doi.org/10.1111/jvim.70133",
+        "title": "The Vertebrate Breed Ontology: Toward Effective Breed Data Standardization"
+      }
+    ],
     "repository": "https://github.com/monarch-initiative/vertebrate-breed-ontology"
   },
   "vhog": {

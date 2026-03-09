@@ -6,13 +6,14 @@ import re
 import textwrap
 from collections.abc import Sequence
 from pathlib import Path
+from typing import Any, ClassVar
 from urllib.parse import urlsplit, urlunsplit
 
 from bs4 import BeautifulSoup
 from pystow.utils import download
 
 from bioregistry.constants import RAW_DIRECTORY
-from bioregistry.external.alignment_utils import Aligner
+from bioregistry.external.alignment_utils import Aligner, load_processed
 
 __all__ = [
     "NcbiAligner",
@@ -56,8 +57,7 @@ OBSOLETE = {
 def get_ncbi(force_download: bool = False) -> dict[str, dict[str, str]]:
     """Get the NCBI data."""
     if PROCESSED_PATH.exists() and not force_download:
-        with PROCESSED_PATH.open() as file:
-            return json.load(file)
+        return load_processed(PROCESSED_PATH)
 
     download(url=URL, path=RAW_PATH, force=True)
     with RAW_PATH.open() as file:
@@ -81,7 +81,7 @@ def get_ncbi(force_download: bool = False) -> dict[str, dict[str, str]]:
         prefix = REWRITES.get(prefix, prefix)
 
         if prefix in REDUNDANT:
-            logger.warning(f"skipping {prefix}")
+            logger.debug(f"skipping {prefix}")
             continue
 
         name = cells[2].text.strip()
@@ -155,15 +155,15 @@ class NcbiAligner(Aligner):
 
     key = "ncbi"
     getter = get_ncbi
-    getter_kwargs = {"force_download": False}
-    curation_header = ("name", "example", "homepage")
+    getter_kwargs: ClassVar[dict[str, Any]] = {"force_download": False}
+    curation_header: ClassVar[Sequence[str]] = ("name", "example", "homepage")
 
-    def get_curation_row(self, external_id, external_entry) -> Sequence[str]:
+    def get_curation_row(self, external_id: str, external_entry: dict[str, Any]) -> Sequence[str]:
         """Return the relevant fields from an NCBI entry for pretty-printing."""
         return [
             textwrap.shorten(external_entry["name"], 50),
-            external_entry.get("example"),
-            external_entry.get("homepage"),
+            external_entry.get("example", ""),
+            external_entry.get("homepage", ""),
         ]
 
 

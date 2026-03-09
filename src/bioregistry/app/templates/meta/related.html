@@ -52,7 +52,8 @@
 {% block content %}
     <h2>Comparison of Registries</h2>
     <p>
-        An overview on registries covering biomedical ontologies, controlled vocabularies, and databases.
+        An overview on registries covering ontologies, controlled vocabularies, databases, and
+        other resources that mint (persistent) identifiers.
     </p>
     <h3>Data Models</h3>
     <p>
@@ -155,14 +156,14 @@
         <dt>CURIE Resolver</dt>
         <dd>
             This field denotes if the registry can act as a resolver, i.e., it redirects to an external
-            page about a given biomedical concept or entity based on its CURIE and
+            page about a given concept or entity based on its CURIE and
             the registry's internal metadata data about the prefix's associated
             URI format string.
         </dd>
         <dt>CURIE Lookup</dt>
         <dd>
             This field denotes if the registry act as a lookup service, i.e., it gives information
-            about a given biomedical concept or entity based on its CURIE.
+            about a given concept or entity based on its CURIE.
         </dd>
     </dl>
     <table id="comparison-capabilities" class="table table-striped table-hover table-sm">
@@ -317,21 +318,30 @@
     </table>
 
     <h2>Related Software</h2>
-    <h3>Conversion between CURIEs and IRIs</h3>
+    <h3>Conversion between CURIEs and URIs</h3>
     <p>
-        The semantic web and ontology communities are bound to the use of IRIs as identifiers and therefore are very
-        interested in the interconversion between compact identifiers (i.e., CURIEs) and IRIs. While the Bioregistry
-        provides many tools for one way conversion from CURIEs to IRIs, there are several related packages that help
-        parse CURIEs from IRIs:
+        The semantic web and ontology communities are bound to the use of URIs as identifiers and therefore are very
+        interested in the interconversion between compact identifiers (i.e., CURIEs) and URIs. While the {{ config.METAREGISTRY_TITLE }}
+        provides many tools for one way conversion from CURIEs to URIs, there are several related packages that help
+        parse CURIEs from URIs:
     </p>
     <ul>
+        <li>
+            The <a href="https://github.com/biopragmatics/curies">curies</a> Python package
+            provides a fully tested, faultless implementation of CURIE and URI conversion.
+        </li>
+        <li>
+            The <a href="https://github.com/biopragmatics/curies.r">curies.rs</a> Rust package
+            provides a fully tested, faultless implementation of CURIE and URI conversion
+            and bindings to WASM, Javascript, R, Python, and later to Java.
+        </li>
         <li>
             The <a href="https://www.npmjs.com/package/@geneontology/dbxrefs">@geneontogy/dbxrefs</a> Node.js package
             translates CURIEs into URLs using the Gene Ontology Registry.
         </li>
         <li>
             The <a href="https://github.com/geneontology/curie-util-py">curie-util-py</a> Python package more generally
-            loads JSON-LD files to convert between IRIs and CURIEs.
+            loads JSON-LD files to convert between URIs and CURIEs.
         </li>
     </ul>
 {% endblock %}

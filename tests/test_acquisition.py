@@ -8,6 +8,6 @@ from bioregistry.external.obofoundry import get_obofoundry_example
 class TestUtils(unittest.TestCase):
     """Test utilities."""
 
-    def test_obolibrary_example(self):
+    def test_obolibrary_example(self) -> None:
         """Test looking up an example from the OBO Foundry PURL service configuration."""
         self.assertEqual("0011124", get_obofoundry_example("pcl"))

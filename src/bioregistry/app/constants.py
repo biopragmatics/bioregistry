@@ -1,6 +1,7 @@
 """Large data chunks for the web app."""
 
-from bioregistry import version
+from .. import version
+from ..constants import INTERNAL_LABEL, INTERNAL_REPOSITORY_BLOB
 
 __all__ = [
     "BIOSCHEMAS",
@@ -9,8 +10,9 @@ __all__ = [
 BIOSCHEMAS = {
     "@context": "http://schema.org/",
     "@type": "DataSet",
-    "name": "Bioregistry",
-    "description": "The Bioregistry is an open source, community curated registry,"
+    "name": INTERNAL_LABEL,
+    # Maybe externalize the description, too
+    "description": f"The {INTERNAL_LABEL} is an open source, community curated registry,"
     " meta-registry, and compact identifier resolver",
     "url": "https://bioregistry.io",
     "version": version.get_version(),
@@ -36,25 +38,31 @@ BIOSCHEMAS = {
     ],
     "provider": {
         "@type": "Organization",
-        "name": "Harvard Medical School",
-        "url": "https://hms.harvard.edu/",
+        "name": "RWTH Aachen University",
+        "url": "https://rwth-aachen.de",
     },
     "citation": "https://doi.org/10.1038/s41597-022-01807-3",
     "distribution": [
         {
-            "contentUrl": "https://github.com/biopragmatics/bioregistry/blob/main/docs/_data/bioregistry.ttl",
+            "contentUrl": f"{INTERNAL_REPOSITORY_BLOB}/docs/_data/bioregistry.ttl",
             "encodingFormat": "text/turtle",
             "@type": "DataDownload",
         },
         {
-            "contentUrl": "https://github.com/biopragmatics/bioregistry/blob/main/docs/_data/bioregistry.nt",
+            "contentUrl": f"{INTERNAL_REPOSITORY_BLOB}/docs/_data/bioregistry.nt",
             "encodingFormat": "application/n-triples",
             "@type": "DataDownload",
         },
         {
-            "contentUrl": "https://github.com/biopragmatics/bioregistry/blob/main/docs/_data/bioregistry.jsonld",
+            "contentUrl": f"{INTERNAL_REPOSITORY_BLOB}/main/docs/_data/bioregistry.jsonld",
             "encodingFormat": "application/ld+json",
             "@type": "DataDownload",
         },
     ],
 }
+
+KEY_A = "df1808a3"
+KEY_B = "0d15"
+KEY_C = "4e75"
+KEY_D = "9b71"
+KEY_E = "b9e7da1d6ac3"

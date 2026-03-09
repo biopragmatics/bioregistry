@@ -7,7 +7,7 @@ import bioregistry
 from bioregistry.constants import BIOREGISTRY_MODULE
 
 
-def descriptions():
+def descriptions() -> None:
     """Make a curation sheet for descriptions."""
     columns = [
         "prefix",
@@ -35,7 +35,7 @@ def descriptions():
     df.to_csv(path, sep="\t", index=False)
 
 
-def examples():
+def examples() -> None:
     """Make a curation sheet for examples."""
     columns = [
         "prefix",
@@ -67,7 +67,7 @@ def examples():
     df.to_csv(path, sep="\t", index=False)
 
 
-def homepages():
+def homepages() -> None:
     """Make a curation sheet for homepages."""
     columns = [
         "prefix",

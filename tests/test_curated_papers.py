@@ -3,19 +3,19 @@
 import unittest
 from collections import Counter
 from datetime import datetime
+from typing import Any
 
+import bioregistry
 from bioregistry.constants import CURATED_PAPERS_PATH, ORCID_PATTERN
 from bioregistry.curation.literature import COLUMNS, CurationRelevance
+
+RELEVANCY_TYPES: set[str] = {field.name for field in CurationRelevance}
 
 
 class TestTSV(unittest.TestCase):
     """Tests for curated_papers tsv file."""
 
-    def setUp(self):
-        """Set up the test case."""
-        self.relevancy_types = {r.name for r in CurationRelevance}
-
-    def validate_row(self, row):
+    def validate_row(self, row: dict[str, Any], full: bool = False) -> None:
         """Validate a single row from the TSV file."""
         for field in COLUMNS:
             self.assertIn(field, row)
@@ -32,23 +32,24 @@ class TestTSV(unittest.TestCase):
         # Validate relevant is 0 or 1
         self.assertIn(row["relevant"], ["0", "1"])
 
-        """
-        Commenting out this check for now. This can be re-implemented if a need
-        for it arises in the future
+        if full:
+            # Commenting out this check for now. This can be re-implemented if a need
+            # for it arises in the future
 
-        if row["relevant"] == "1":
-            prefix = row["prefix"]
-            self.assertIsNotNone(prefix, msg="prefix should be set for all relevant entries")
-            self.assertNotEqual("", prefix, msg="prefix should not be empty for relevant entries")
-            self.assertEqual(
-                bioregistry.normalize_prefix(prefix),
-                prefix,
-                msg="prefix should be standardized for relevant entries",
-            )
-        """
+            if row["relevant"] == "1":
+                prefix = row["prefix"]
+                self.assertIsNotNone(prefix, msg="prefix should be set for all relevant entries")
+                self.assertNotEqual(
+                    "", prefix, msg="prefix should not be empty for relevant entries"
+                )
+                self.assertEqual(
+                    bioregistry.normalize_prefix(prefix),
+                    prefix,
+                    msg="prefix should be standardized for relevant entries",
+                )
 
         # Validate relevancy_type is in relevancy_vocab
-        self.assertIn(row["relevancy_type"], self.relevancy_types)
+        self.assertIn(row["relevancy_type"], RELEVANCY_TYPES)
 
         self.assertRegex(row["orcid"], ORCID_PATTERN)
 
@@ -63,7 +64,7 @@ class TestTSV(unittest.TestCase):
         except ValueError:
             self.fail("date_curated should follow format YYYY-MM-DD")
 
-    def test_tsv_file(self):
+    def test_tsv_file(self) -> None:
         """Tests all rows in TSV file are valid."""
         with CURATED_PAPERS_PATH.open() as tsv_file:
             pubmeds = []
@@ -71,13 +72,13 @@ class TestTSV(unittest.TestCase):
             self.assertEqual(header, COLUMNS, msg="header is not correct")
             for row, line in enumerate(tsv_file, start=2):
                 with self.subTest(row=row, line=line):
-                    line = line.strip("\n").split("\t")
+                    parts = line.strip("\n").split("\t")
                     self.assertEqual(
                         len(COLUMNS),
-                        len(line),
+                        len(parts),
                         msg="wrong number of columns. This is usually due to the wrong amount of trailing tabs.",
                     )
-                    data = dict(zip(COLUMNS, line))
+                    data = dict(zip(COLUMNS, parts, strict=False))
                     self.validate_row(data)
                     pubmeds.append(data["pubmed"])
 

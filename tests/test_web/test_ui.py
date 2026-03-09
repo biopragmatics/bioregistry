@@ -4,6 +4,8 @@ from __future__ import annotations
 
 import json
 import unittest
+from collections.abc import Callable
+from typing import Any
 
 import rdflib
 import yaml
@@ -18,9 +20,10 @@ class TestUI(unittest.TestCase):
     def setUp(self) -> None:
         """Set up the test case with an app."""
         _, self.app = get_app(return_flask=True)
+        self.app.testing = True
         self.manager = self.app.manager
 
-    def test_ui(self):
+    def test_ui(self) -> None:
         """Test user-facing pages don't error."""
         with self.app.test_client() as client:
             for endpoint in [
@@ -46,6 +49,9 @@ class TestUI(unittest.TestCase):
                 "sustainability",
                 "related",
                 "acknowledgements",
+                "keywords",  # for backwards compatibility
+                "keyword",
+                "keyword/unit",
             ]:
                 with self.subTest(endpoint=endpoint):
                     res = client.get(endpoint, follow_redirects=True)
@@ -57,13 +63,14 @@ class TestUI(unittest.TestCase):
                     ):
                         json.loads(res.text)
 
-    def test_ui_collection_json(self):
+    def test_ui_collection_json(self) -> None:
         """Test the UI registry with content negotiation for json/yaml."""
-        identifier = "0000001"
-        for accept, loads in [
+        cases: list[tuple[str, Callable[[str], dict[str, Any]]]] = [
             ("application/json", json.loads),
             ("application/yaml", yaml.safe_load),
-        ]:
+        ]
+        identifier = "0000001"
+        for accept, loads in cases:
             with self.subTest(format=format), self.app.test_client() as client:
                 res = client.get(f"/collection/{identifier}", headers={"Accept": accept})
                 self.assertEqual(
@@ -72,10 +79,10 @@ class TestUI(unittest.TestCase):
                     msg=f"Failed on {identifier} to accept {accept} ({format})",
                 )
                 self.assertEqual({accept}, {t for t, _ in res.request.accept_mimetypes})
-                collection = Collection(**loads(res.text))
+                collection = Collection.model_validate(loads(res.text))
                 self.assertEqual(self.manager.collections[identifier], collection)
 
-    def test_ui_collection_rdf(self):
+    def test_ui_collection_rdf(self) -> None:
         """Test the UI registry with content negotiation."""
         identifier = "0000001"
         for accept, format in [
@@ -104,10 +111,11 @@ class TestUI(unittest.TestCase):
                 )
                 self.assertEqual(1, len(results))
                 self.assertEqual(
-                    f"https://bioregistry.io/collection/{identifier}", str(results[0][0])
+                    f"https://bioregistry.io/collection/{identifier}",
+                    str(results[0][0]),  # type:ignore[index]
                 )
 
-    def test_ui_registry_rdf(self):
+    def test_ui_registry_rdf(self) -> None:
         """Test the UI registry with content negotiation."""
         metaprefix = "miriam"
         for accept, format in [
@@ -136,10 +144,11 @@ class TestUI(unittest.TestCase):
                 )
                 self.assertEqual(1, len(results))
                 self.assertEqual(
-                    f"https://bioregistry.io/metaregistry/{metaprefix}", str(results[0][0])
+                    f"https://bioregistry.io/metaregistry/{metaprefix}",
+                    str(results[0][0]),  # type:ignore[index]
                 )
 
-    def test_missing_prefix(self):
+    def test_missing_prefix(self) -> None:
         """Test missing prefix responses."""
         with self.app.test_client() as client:
             for query in ["xxxx", "xxxx:yyyy"]:
@@ -147,7 +156,7 @@ class TestUI(unittest.TestCase):
                     res = client.get(f"/{query}")
                     self.assertEqual(404, res.status_code)
 
-    def test_resolve_failures(self):
+    def test_resolve_failures(self) -> None:
         """Test resolve failures."""
         with self.app.test_client() as client:
             for endpoint in ["chebi:ddd", "xxx:yyy", "gmelin:1"]:
@@ -155,14 +164,14 @@ class TestUI(unittest.TestCase):
                     res = client.get(endpoint)
                     self.assertEqual(404, res.status_code)
 
-    def test_banana_redirects(self):
+    def test_banana_redirects(self) -> None:
         """Test banana redirects."""
         with self.app.test_client() as client:
             for prefix, identifier, location in [
                 ("agrovoc", "c_2842", "http://aims.fao.org/aos/agrovoc/c_2842"),
                 ("agrovoc", "2842", "http://aims.fao.org/aos/agrovoc/c_2842"),
-                # Related to https://github.com/biopragmatics/bioregistry/issues/93, the app route is not greedy,
-                # so it parses on the rightmost colon.
+                # Related to https://github.com/biopragmatics/bioregistry/issues/93,
+                # the app route is not greedy, so it parses on the rightmost colon.
                 # ("go", "0032571", "http://amigo.geneontology.org/amigo/term/GO:0032571"),
                 # ("go", "GO:0032571", "http://amigo.geneontology.org/amigo/term/GO:0032571"),
             ]:
@@ -175,7 +184,7 @@ class TestUI(unittest.TestCase):
                     )
                     self.assertEqual(location, res.headers["Location"])
 
-    def test_redirects(self):
+    def test_redirects(self) -> None:
         """Test healthy redirects."""
         with self.app.test_client() as client:
             for endpoint in [
@@ -195,7 +204,32 @@ class TestUI(unittest.TestCase):
                     res = client.get(endpoint, follow_redirects=False)
                     self.assertEqual(302, res.status_code)  # , msg=res.text)
 
-    def test_redirect_404(self):
+    def test_custom_redirects(self) -> None:
+        """Test custom redirects."""
+        with self.app.test_client() as client:
+            # test some custom redirects
+            for endpoint, expected in [
+                ("/EC:1.2.3.4", "https://www.enzyme-database.org/query.php?ec=1.2.3.4"),
+                ("/EC:2.3.1.n12", "https://www.enzyme-database.org/query.php?ec=2.3.1.n12"),
+                ("/EC:3.4.24.B15", "https://www.enzyme-database.org/query.php?ec=3.4.24.B15"),
+                ("/EC:1.2.3", "https://www.enzyme-database.org/class.php?c=1&sc=2&ssc=3"),
+                ("/EC:1.2.3.-", "https://www.enzyme-database.org/class.php?c=1&sc=2&ssc=3"),
+                ("/EC:1.2.3.-", "https://www.enzyme-database.org/class.php?c=1&sc=2&ssc=3"),
+            ]:
+                with self.subTest(endpoint=endpoint):
+                    res = client.get(endpoint, follow_redirects=False)
+                    self.assertEqual(302, res.status_code)
+                    self.assertEqual(expected, res.location)
+
+            # test some bad ones
+            for endpoint in [
+                "/EC:1.2.3.4.5",
+            ]:
+                with self.subTest(endpoint=endpoint):
+                    res = client.get(endpoint)
+                    self.assertEqual(404, res.status_code)
+
+    def test_redirect_404(self) -> None:
         """Test 404 errors."""
         with self.app.test_client() as client:
             for endpoint in [
@@ -206,7 +240,7 @@ class TestUI(unittest.TestCase):
                     res = client.get(endpoint, follow_redirects=False)
                     self.assertEqual(404, res.status_code)
 
-    def test_reference_page(self):
+    def test_reference_page(self) -> None:
         """Test the reference page."""
         with self.app.test_client() as client:
             for endpoint in [
@@ -215,3 +249,12 @@ class TestUI(unittest.TestCase):
                 with self.subTest(endpoint=endpoint):
                     res = client.get(endpoint, follow_redirects=False)
                     self.assertEqual(200, res.status_code)
+
+    def test_inactive_reference(self) -> None:
+        """Test filtering out legacy providers."""
+        with self.app.test_client() as client:
+            res = client.get("/registry/oid", follow_redirects=False)
+            self.assertEqual(200, res.status_code)
+            self.assertNotIn(
+                "oid_www", res.text, msg="Should not be showing extra provider with code `oid_www`"
+            )

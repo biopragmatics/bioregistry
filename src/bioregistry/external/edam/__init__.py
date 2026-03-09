@@ -1,10 +1,10 @@
 """Import accessions from EDAM."""
 
-import json
-from collections.abc import Mapping
+from collections.abc import Mapping, Sequence
 from pathlib import Path
+from typing import ClassVar
 
-from bioregistry.external.alignment_utils import Aligner
+from bioregistry.external.alignment_utils import Aligner, build_no_raw_getter
 from bioregistry.utils import get_ols_descendants
 
 __all__ = [
@@ -17,24 +17,17 @@ PROCESSED_PATH = DIRECTORY / "processed.json"
 
 EDAM_PARENT_IRI = "http%253A%252F%252Fedamontology.org%252Fdata_2091"
 
-
-def get_edam(force_download: bool = False):
-    """Get the EDAM registry."""
-    if PROCESSED_PATH.exists() and not force_download:
-        return json.loads(PROCESSED_PATH.read_text())
-
-    rv = get_ols_descendants(
+get_edam = build_no_raw_getter(
+    processed_path=PROCESSED_PATH,
+    func=lambda: get_ols_descendants(
         ontology="edam",
         uri=EDAM_PARENT_IRI,
-        force_download=force_download,
         get_identifier=_get_identifier,
-    )
-
-    PROCESSED_PATH.write_text(json.dumps(rv, indent=2, sort_keys=True))
-    return rv
+    ),
+)
 
 
-def _get_identifier(term, ontology: str) -> str:
+def _get_identifier(term: dict[str, str], ontology: str) -> str:
     # note that this prefix doesn't match the ontology name
     return term["obo_id"][len("data:") :]
 
@@ -45,7 +38,7 @@ class EDAMAligner(Aligner):
     key = "edam"
     getter = get_edam
     alt_key_match = "name"
-    curation_header = ("name", "description")
+    curation_header: ClassVar[Sequence[str]] = ["name", "description"]
 
     def get_skip(self) -> Mapping[str, str]:
         """Get entries that should be skipped and their reasons."""

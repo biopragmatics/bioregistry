@@ -7,7 +7,7 @@ import bioregistry
 
 
 @click.command()
-def main():
+def main() -> None:
     """Run the script."""
     r = dict(bioregistry.read_registry())
     for prefix, resource in r.items():
@@ -25,7 +25,9 @@ def main():
         if resource.uri_format:
             click.echo(f"{prefix} has url {resource.uri_format}")
             url = bioregistry.get_iri(prefix, resource.example)
-            res = requests.get(url)
+            if url is None:
+                raise RuntimeError
+            res = requests.get(url, timeout=15)
             click.echo(res.text)
             click.echo("")
             continue

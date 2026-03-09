@@ -20,10 +20,8 @@ class TestCollections(unittest.TestCase):
         """Set up the test case."""
         self.manager = manager
 
-    def test_minimum_metadata(self):
+    def test_minimum_metadata(self) -> None:
         """Check collections have minimal metadata and correct prefixes."""
-        registry = self.manager.registry
-
         for key, collection_pydantic in sorted(self.manager.collections.items()):
             self.assertIsInstance(collection_pydantic, Collection)
             collection = collection_pydantic.model_dump()
@@ -37,8 +35,19 @@ class TestCollections(unittest.TestCase):
                     self.assertIn("orcid", author)
                     self.assertRegex(author["orcid"], self.manager.get_pattern("orcid"))
                 self.assertIn("description", collection)
-                incorrect = {prefix for prefix in collection["resources"] if prefix not in registry}
-                self.assertEqual(set(), incorrect, msg="Invalid prefixes")
+
+                incorrect_msg = ""
+                for prefix in collection["resources"]:
+                    np = self.manager.normalize_prefix(prefix)
+                    if np == prefix:
+                        pass
+                    elif np is None:
+                        incorrect_msg += f"\n- {prefix} could not be looked up"
+                    else:
+                        incorrect_msg += f"\n- {prefix} should be standardized to {np}"
+                if incorrect_msg:
+                    self.fail(msg=f"in {key}, the following errors were found:\n{incorrect_msg}")
+
                 duplicates = {
                     prefix
                     for prefix, count in Counter(collection["resources"]).items()
@@ -49,12 +58,14 @@ class TestCollections(unittest.TestCase):
                     sorted(collection_pydantic.resources), collection_pydantic.resources
                 )
 
-    def test_get_collection(self):
+    def test_get_collection(self) -> None:
         """Test getting a collection."""
         self.assertIsNone(self.manager.collections.get("nope"))
 
         identifier = "0000001"
         collection = self.manager.collections.get(identifier)
+        if collection is None:
+            raise self.fail(msg="No collection found")
         self.assertIsInstance(collection, Collection)
         self.assertEqual(identifier, collection.identifier)
 
@@ -68,7 +79,7 @@ class TestCollections(unittest.TestCase):
         self.assertIn("@context", context_jsonld)
         self.assertEqual(prefix_map, context_jsonld["@context"])
 
-    def test_get_rdf(self):
+    def test_get_rdf(self) -> None:
         """Test conversion to RDF."""
         collection = manager.collections["0000001"]
         s = collection_to_rdf_str(collection, manager=self.manager)

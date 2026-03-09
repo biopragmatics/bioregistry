@@ -1,1 +1,1 @@
-"""Data in the bioregistry."""
+"""A submodule containing data files."""
