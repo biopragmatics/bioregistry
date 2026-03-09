@@ -1329,3 +1329,16 @@ class TestRegistry(unittest.TestCase):
                 with self.subTest(prefix=prefix, registry=metaprefix):
                     self.assertIn("mappings", record)
                     self.assertIn(metaprefix, record["mappings"])
+
+    def test_data_when_mappings(self) -> None:
+        """Make sure that all mappings have associated data."""
+        registry = json.loads(BIOREGISTRY_PATH.read_text())
+        for prefix, record in registry.items():
+            mappings = record.get("mappings")
+            if not mappings:
+                continue
+            for metaprefix in mappings:
+                if metaprefix == "wikidata.entity":
+                    continue
+                with self.subTest(prefix=prefix, registry=metaprefix):
+                    self.assertIn(metaprefix, record)
