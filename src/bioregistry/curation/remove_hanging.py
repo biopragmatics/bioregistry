@@ -1,19 +1,16 @@
-"""
-Go through each source and remove mappings that are to
-resources that don't exist
-"""
+"""Remove mappings to external prefixes that don't exist anymore."""
 
 import json
 
-from bioregistry.external.align import aligner_resolver
 import click
 
 from bioregistry.constants import BIOREGISTRY_PATH
+from bioregistry.external.align import aligner_resolver
 
 
 @click.command()
 def main() -> None:
-    """Remove mappings that have been manually curated as false."""
+    """Remove mappings to external prefixes that don't exist anymore."""
     registry = json.loads(BIOREGISTRY_PATH.read_text())
 
     for aligner_cls in aligner_resolver:
