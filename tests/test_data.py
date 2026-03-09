@@ -18,7 +18,12 @@ from curies.w3c import NCNAME_RE
 import bioregistry
 from bioregistry import Resource, manager
 from bioregistry.alignment_model import Record
-from bioregistry.constants import BIOREGISTRY_PATH, DISALLOWED_EMAIL_PARTS, EMAIL_RE
+from bioregistry.constants import (
+    BIOREGISTRY_PATH,
+    DISALLOWED_EMAIL_PARTS,
+    EMAIL_RE,
+    METAREGISTRY_PATH,
+)
 from bioregistry.export.rdf_export import resource_to_rdf_str
 from bioregistry.external import GETTERS
 from bioregistry.license_standardizer import REVERSE_LICENSES, standardize_license
@@ -1310,3 +1315,17 @@ class TestRegistry(unittest.TestCase):
                     Record.model_validate(
                         {k: v for k, v in external.items() if k != "prefix"}, extra="forbid"
                     )
+
+    def test_mappings_when_data(self) -> None:
+        """Make sure metaprefixes line up."""
+        metaprefixes = {
+            record["prefix"] for record in json.loads(METAREGISTRY_PATH.read_text())["metaregistry"]
+        }
+        registry = json.loads(BIOREGISTRY_PATH.read_text())
+        for prefix, record in registry.items():
+            for metaprefix in metaprefixes:
+                if metaprefix not in record:
+                    continue
+                with self.subTest(prefix=prefix, registry=metaprefix):
+                    self.assertIn("mappings", record)
+                    self.assertIn(metaprefix, record["mappings"])
