@@ -30,9 +30,7 @@
 {% endmacro %}
 
 {% macro render_reference(reference) -%}
-    {% if reference.startswith("https://twitter.com") %}
-        <span class="badge badge-info">Tweet</span>
-    {% elif reference.startswith("https://github.com/") and "issues/" in reference %}
+    {% if reference.startswith("https://github.com/") and "issues/" in reference %}
         <span class="badge badge-info">GitHub Issue</span>
     {% elif reference.startswith("https://github.com/") and "pull" in reference %}
         <span class="badge badge-info">GitHub PR</span>

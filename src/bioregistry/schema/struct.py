@@ -743,7 +743,6 @@ class Resource(BaseModel):
     """
         ),
     )
-    twitter: str | None = Field(default=None, description="The twitter handle for the project")
     mastodon: str | None = Field(default=None, description="The mastodon handle for the project")
     github_request_issue: int | None = Field(
         default=None, description="The GitHub issue for the new prefix request"
@@ -1689,13 +1688,7 @@ class Resource(BaseModel):
 
     def get_twitter(self) -> str | None:
         """Get the Twitter handle for the resource."""
-        if self.twitter:
-            return self.twitter
-        if self.obofoundry and "twitter" in self.obofoundry:
-            return cast(str, self.obofoundry["twitter"])
-        if self.fairsharing and "twitter" in self.fairsharing:
-            return cast(str, self.fairsharing["twitter"])
-        return None
+        raise NotImplementedError("twitter is no longer tracked")
 
     def get_logo(self) -> str | None:
         """Get the logo for the resource."""

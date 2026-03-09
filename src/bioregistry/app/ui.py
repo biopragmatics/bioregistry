@@ -629,14 +629,9 @@ def json_schema() -> werkzeug.Response:
 
 
 @ui_blueprint.route("/highlights/twitter")
-def highlights_twitter() -> str:
-    """Render the twitter highlights page."""
-    twitters = defaultdict(list)
-    for resource in manager.registry.values():
-        twitter = resource.get_twitter()
-        if twitter:
-            twitters[twitter].append(resource)
-    return render_template("highlights/twitter.html", twitters=twitters)
+def highlights_twitter() -> flask.Response:
+    """Render a HTTP 410 Gone (forever) for twitter content, which is no longer supported."""
+    return flask.Response("twitter content is no longer tracked", status=410)
 
 
 @ui_blueprint.route("/highlights/relations")

@@ -1267,7 +1267,6 @@ class Manager:
             reviewer=resource.reviewer,
             owners=resource.owners,
             mastodon=resource.get_mastodon(),
-            twitter=resource.get_twitter(),
             github_request_issue=resource.github_request_issue,
             # Ontology Relations
             part_of=resource.part_of,
