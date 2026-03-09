@@ -629,9 +629,9 @@ def json_schema() -> werkzeug.Response:
 
 
 @ui_blueprint.route("/highlights/twitter")
-def highlights_twitter() -> int:
+def highlights_twitter() -> flask.Response:
     """Render a HTTP 410 Gone (forever) for twitter content, which is no longer supported."""
-    return 410
+    return flask.Response("twitter content is no longer tracked", status=410)
 
 
 @ui_blueprint.route("/highlights/relations")
