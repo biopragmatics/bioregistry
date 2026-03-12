@@ -123,13 +123,30 @@
     {%- if indirect %}
     <div class="card" style="margin-top: 25px">
         <div class="card-header">
-            <h4>Indirect Dependencies</h4>
+            <h5 style="margin: 0">Indirect Dependencies</h5>
         </div>
-        <ul>
-        {%- for kk in indirect %}
-        <li>{{ kk.name }} (<code>{{ kk.prefix }}</code>)</li>
-        {%- endfor %}
-        </ul>
+        <table class="table table-striped" style="margin-bottom: 0;">
+            <thead>
+            <tr>
+                <th scope="col">Prefix</th>
+                <th scope="col">Name</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for indirect_resource in indirect %}
+            <tr>
+                <td>
+                    <code>{{ indirect_resource.prefix }}</code>
+                </td>
+                <td>
+                    <a href="{{ url_for("metaregistry_ui.resource", prefix=prefix) }}">
+                        {{ indirect_resource.get_name() }} {{ utils.render_resource_warnings(indirect_resource) }}
+                    </a>
+                </td>
+            </tr>
+            {% endfor %}
+            </tbody>
+        </table>
     </div>
     {%- endif %}
 {% endblock %}
