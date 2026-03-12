@@ -2154,18 +2154,26 @@ class Manager:
             mappings=mappings,
         )
 
-    def _get_transitive(self, collection: Collection) -> list[Resource]:
+    def get_collection_indirect_dependencies(self, collection: str | Collection) -> list[Resource]:
         """Get all the "depends on" recursively for a collection."""
-        rv: dict[str, Resource] = {prefix: self.registry[prefix] for prefix in collection.resources}
+        if isinstance(collection, str):
+            collection = self.collections[collection]
+        return self.get_indirect_dependencies(collection.resources)
+
+    def get_indirect_dependencies(self, prefixes: list[str]) -> list[Resource]:
+        """Get all the "depends on" recursively for a list of prefixes."""
+        prefix_set = set(prefixes)
+        rv: dict[str, Resource] = {}
         to_visit = []
-        to_visit.extend(collection.resources)
+        to_visit.extend(prefix_set)
         while to_visit:
-            pp = to_visit.pop()
-            if pp in rv:
+            prefix = to_visit.pop()
+            if prefix in rv:
                 continue
-            rv[pp] = self.registry[pp]
-            to_visit.extend(self.registry[pp].depends_on or [])
-        return [v for k, v in rv.items() if k not in collection.resources]
+            rv[prefix] = self.registry[prefix]
+            to_visit.extend(p for p in self.registry[prefix].depends_on or [] if p not in rv)
+
+        return [resource for prefix, resource in rv.items() if prefix not in prefix_set]
 
 
 def _read_contributors(

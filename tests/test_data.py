@@ -1363,3 +1363,8 @@ class TestRegistry(unittest.TestCase):
                     continue
                 with self.subTest(prefix=prefix, registry=metaprefix):
                     self.assertNotEqual(value, vv)
+
+    def test_depends_on(self) -> None:
+        """Test depends on."""
+        self.assertIn("bfo", manager.get_depends_on("chebi"))
+        self.assertIn("rdf", {r.prefix for r in manager.get_indirect_dependencies(["chebi"])})

@@ -119,4 +119,17 @@
 
         {# TODO add transitive dependencies #}
     </div>
+
+    {%- if indirect %}
+    <div class="card" style="margin-top: 25px">
+        <div class="card-header">
+            <h4>Indirect Dependencies</h4>
+        </div>
+        <ul>
+        {%- for kk in indirect %}
+        <li>{{ kk.name }} (<code>{{ kk.prefix }}</code>)</li>
+        {%- endfor %}
+        </ul>
+    </div>
+    {%- endif %}
 {% endblock %}
