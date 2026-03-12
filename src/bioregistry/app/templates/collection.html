@@ -37,10 +37,21 @@
             </div>
         </div>
         <div class="card-body">
+            {%- if entry.logo %}
+            <img src="{{ entry.logo }}" alt="logo for {{ entry.name }}" style="float:right; max-height: 2.5em; padding-left: 1em;" />
+            {%- endif %}
             {{ markdown(entry.description) | safe }}
             <dl>
                 <dt>Identifier</dt>
                 <dd><code>{{ identifier }}</code></dd>
+                {%- if entry.keywords %}
+                <dt>Keywords</dt>
+                <dd>
+                {%- for keyword in entry.keywords|sort %}
+                    <span class="badge badge-light">{{ keyword }}</span>
+                {%- endfor %}
+                </dd>
+                {%- endif %}
                 {%- if entry.maintainers %}
                 <dt>Maintainers</dt>
                 {%- for maintainer in entry.maintainers %}
@@ -64,7 +75,12 @@
                     {%- if entry.organizations %}
                     {%- for organization in entry.organizations %}
                     <dd style="margin-bottom: 0;">
-                        <a href="{{ organization.link }}">{{ organization.name }}</a>
+                        <a href="{{ organization.link }}">
+                            {{ organization.name }}
+                            {%- if organization.ror -%}
+                            <img style="max-height: 1em; margin-left: 0.3em" src="/static/ror.svg" alt="ror logo" />
+                            {%- endif %}
+                        </a>
                     </dd>
                     {%- endfor %}
                     {%- endif %}

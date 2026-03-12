@@ -2190,10 +2190,7 @@ class Manager:
 
     def _get_transitive(self, collection: Collection) -> list[Resource]:
         """Get all the "depends on" recursively for a collection."""
-        rv: dict[str, Resource] = {
-            prefix: self.registry[prefix]
-            for prefix in collection.resources
-        }
+        rv: dict[str, Resource] = {prefix: self.registry[prefix] for prefix in collection.resources}
         to_visit = []
         to_visit.extend(collection.resources)
         while to_visit:
