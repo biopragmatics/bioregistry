@@ -249,15 +249,18 @@ class Manager:
 
     # docstr-coverage:excused `overload`
     @overload
-    def get_registry(self, metaprefix: str, *, strict: Literal[False]) -> Registry | None: ...
+    def get_registry(self, metaprefix: str, *, strict: Literal[False]) -> Registry | None:
+        ...
 
     # docstr-coverage:excused `overload`
     @overload
-    def get_registry(self, metaprefix: str, *, strict: Literal[True]) -> Registry: ...
+    def get_registry(self, metaprefix: str, *, strict: Literal[True]) -> Registry:
+        ...
 
     # docstr-coverage:excused `overload`
     @overload
-    def get_registry(self, metaprefix: str) -> Registry | None: ...
+    def get_registry(self, metaprefix: str) -> Registry | None:
+        ...
 
     def get_registry(self, metaprefix: str, *, strict: bool = False) -> Registry | None:
         """Get the metaregistry entry for the given prefix."""
@@ -271,13 +274,15 @@ class Manager:
 
     # docstr-coverage:excused `overload`
     @overload
-    def get_registry_name(self, metaprefix: str, *, strict: Literal[True] = True) -> str: ...
+    def get_registry_name(self, metaprefix: str, *, strict: Literal[True] = True) -> str:
+        ...
 
     # docstr-coverage:excused `overload`
     @overload
     def get_registry_name(
         self, metaprefix: str, *, strict: Literal[False] = False
-    ) -> str | None: ...
+    ) -> str | None:
+        ...
 
     def get_registry_name(self, metaprefix: str, *, strict: bool = False) -> str | None:
         """Get the registry name."""
@@ -297,13 +302,15 @@ class Manager:
 
     # docstr-coverage:excused `overload`
     @overload
-    def get_registry_homepage(self, metaprefix: str, *, strict: Literal[True] = True) -> str: ...
+    def get_registry_homepage(self, metaprefix: str, *, strict: Literal[True] = True) -> str:
+        ...
 
     # docstr-coverage:excused `overload`
     @overload
     def get_registry_homepage(
         self, metaprefix: str, *, strict: Literal[False] = False
-    ) -> str | None: ...
+    ) -> str | None:
+        ...
 
     def get_registry_homepage(self, metaprefix: str, *, strict: bool = False) -> str | None:
         """Get the registry homepage."""
@@ -336,13 +343,15 @@ class Manager:
     @overload
     def normalize_prefix(
         self, prefix: str, *, use_preferred: bool = False, strict: Literal[True] = True
-    ) -> str: ...
+    ) -> str:
+        ...
 
     # docstr-coverage:excused `overload`
     @overload
     def normalize_prefix(
         self, prefix: str, *, use_preferred: bool = False, strict: Literal[False] = False
-    ) -> str | None: ...
+    ) -> str | None:
+        ...
 
     def normalize_prefix(
         self, prefix: str, *, use_preferred: bool = False, strict: bool = False
@@ -373,11 +382,13 @@ class Manager:
 
     # docstr-coverage:excused `overload`
     @overload
-    def get_resource(self, prefix: str, *, strict: Literal[True] = True) -> Resource: ...
+    def get_resource(self, prefix: str, *, strict: Literal[True] = True) -> Resource:
+        ...
 
     # docstr-coverage:excused `overload`
     @overload
-    def get_resource(self, prefix: str, *, strict: Literal[False] = False) -> Resource | None: ...
+    def get_resource(self, prefix: str, *, strict: Literal[False] = False) -> Resource | None:
+        ...
 
     def get_resource(self, prefix: str, *, strict: bool = False) -> Resource | None:
         """Get the Bioregistry entry for the given prefix.
@@ -405,7 +416,8 @@ class Manager:
         *,
         use_preferred: bool = ...,
         on_failure_return_type: Literal[FailureReturnType.single],
-    ) -> ReferenceTuple | None: ...
+    ) -> ReferenceTuple | None:
+        ...
 
     # docstr-coverage:excused `overload`
     @overload
@@ -415,7 +427,8 @@ class Manager:
         *,
         use_preferred: bool = ...,
         on_failure_return_type: Literal[FailureReturnType.pair] = FailureReturnType.pair,
-    ) -> ReferenceTuple | NonePair: ...
+    ) -> ReferenceTuple | NonePair:
+        ...
 
     def parse_uri(
         self,
@@ -509,13 +522,15 @@ class Manager:
     @overload
     def compress(
         self, uri: str, *, use_preferred: bool = ..., strict: Literal[True] = True
-    ) -> str: ...
+    ) -> str:
+        ...
 
     # docstr-coverage:excused `overload`
     @overload
     def compress(
         self, uri: str, *, use_preferred: bool = ..., strict: Literal[False] = False
-    ) -> str | None: ...
+    ) -> str | None:
+        ...
 
     def compress(
         self, uri: str, *, use_preferred: bool = False, strict: bool = False
@@ -589,7 +604,8 @@ class Manager:
         use_preferred: bool = ...,
         on_failure_return_type: FailureReturnType = ...,
         strict: Literal[True] = True,
-    ) -> ReferenceTuple: ...
+    ) -> ReferenceTuple:
+        ...
 
     # docstr-coverage:excused `overload`
     @overload
@@ -601,7 +617,8 @@ class Manager:
         use_preferred: bool = ...,
         on_failure_return_type: Literal[FailureReturnType.single] = FailureReturnType.single,
         strict: Literal[False] = False,
-    ) -> ReferenceTuple | None: ...
+    ) -> ReferenceTuple | None:
+        ...
 
     # docstr-coverage:excused `overload`
     @overload
@@ -613,7 +630,8 @@ class Manager:
         use_preferred: bool = ...,
         on_failure_return_type: Literal[FailureReturnType.pair] = FailureReturnType.pair,
         strict: Literal[False] = False,
-    ) -> ReferenceTuple | NonePair: ...
+    ) -> ReferenceTuple | NonePair:
+        ...
 
     def parse_curie(
         self,
@@ -648,7 +666,8 @@ class Manager:
         sep: str = ...,
         use_preferred: bool = ...,
         strict: Literal[True] = True,
-    ) -> str: ...
+    ) -> str:
+        ...
 
     # docstr-coverage:excused `overload`
     @overload
@@ -659,7 +678,8 @@ class Manager:
         sep: str = ...,
         use_preferred: bool = ...,
         strict: Literal[False] = False,
-    ) -> str | None: ...
+    ) -> str | None:
+        ...
 
     def normalize_curie(
         self,
@@ -699,7 +719,8 @@ class Manager:
         use_preferred: bool = ...,
         on_failure_return_type: FailureReturnType = ...,
         strict: Literal[True] = True,
-    ) -> ReferenceTuple: ...
+    ) -> ReferenceTuple:
+        ...
 
     # docstr-coverage:excused `overload`
     @overload
@@ -711,7 +732,8 @@ class Manager:
         use_preferred: bool = ...,
         on_failure_return_type: Literal[FailureReturnType.single],
         strict: Literal[False] = False,
-    ) -> ReferenceTuple | None: ...
+    ) -> ReferenceTuple | None:
+        ...
 
     # docstr-coverage:excused `overload`
     @overload
@@ -723,7 +745,8 @@ class Manager:
         use_preferred: bool = ...,
         on_failure_return_type: Literal[FailureReturnType.pair],
         strict: Literal[False] = False,
-    ) -> ReferenceTuple | NonePair: ...
+    ) -> ReferenceTuple | NonePair:
+        ...
 
     def normalize_parsed_curie(
         self,
@@ -837,15 +860,18 @@ class Manager:
 
     # docstr-coverage:excused `overload`
     @overload
-    def _repack(self, obj: None) -> None: ...
+    def _repack(self, obj: None) -> None:
+        ...
 
     # docstr-coverage:excused `overload`
     @overload
-    def _repack(self, obj: X) -> X: ...
+    def _repack(self, obj: X) -> X:
+        ...
 
     # docstr-coverage:excused `overload`
     @overload
-    def _repack(self, obj: MetaprefixAnnotatedValue[X]) -> MetaresourceAnnotatedValue[X]: ...
+    def _repack(self, obj: MetaprefixAnnotatedValue[X]) -> MetaresourceAnnotatedValue[X]:
+        ...
 
     def _repack(
         self, obj: None | X | MetaprefixAnnotatedValue[X]
@@ -864,25 +890,29 @@ class Manager:
     @overload
     def get_name(
         self, prefix: str, *, provenance: Literal[False] = False, strict: Literal[True] = True
-    ) -> str: ...
+    ) -> str:
+        ...
 
     # docstr-coverage:excused `overload`
     @overload
     def get_name(
         self, prefix: str, *, provenance: Literal[True] = True, strict: Literal[True] = True
-    ) -> MetaresourceAnnotatedValue[str]: ...
+    ) -> MetaresourceAnnotatedValue[str]:
+        ...
 
     # docstr-coverage:excused `overload`
     @overload
     def get_name(
         self, prefix: str, *, provenance: Literal[False] = False, strict: Literal[False] = False
-    ) -> str | None: ...
+    ) -> str | None:
+        ...
 
     # docstr-coverage:excused `overload`
     @overload
     def get_name(
         self, prefix: str, *, provenance: Literal[True] = True, strict: Literal[False] = False
-    ) -> MetaresourceAnnotatedValue[str] | None: ...
+    ) -> MetaresourceAnnotatedValue[str] | None:
+        ...
 
     def get_name(
         self, prefix: str, *, provenance: bool = False, strict: bool = False
@@ -902,13 +932,15 @@ class Manager:
     @overload
     def get_namespace_in_lui(
         self, prefix: str, *, provenance: Literal[False] = ...
-    ) -> bool | None: ...
+    ) -> bool | None:
+        ...
 
     # docstr-coverage:excused `overload`
     @overload
     def get_namespace_in_lui(
         self, prefix: str, *, provenance: Literal[True] = ...
-    ) -> None | MetaresourceAnnotatedValue[bool]: ...
+    ) -> None | MetaresourceAnnotatedValue[bool]:
+        ...
 
     def get_namespace_in_lui(
         self, prefix: str, *, provenance: bool = False
@@ -930,11 +962,13 @@ class Manager:
 
     # docstr-coverage:excused `overload`
     @overload
-    def get_homepage(self, prefix: str, *, strict: Literal[True] = True) -> str: ...
+    def get_homepage(self, prefix: str, *, strict: Literal[True] = True) -> str:
+        ...
 
     # docstr-coverage:excused `overload`
     @overload
-    def get_homepage(self, prefix: str, *, strict: Literal[False] = False) -> str | None: ...
+    def get_homepage(self, prefix: str, *, strict: Literal[False] = False) -> str | None:
+        ...
 
     def get_homepage(self, prefix: str, *, strict: bool = False) -> str | None:
         """Get the description for the given prefix, if it's available."""
@@ -2153,6 +2187,22 @@ class Manager:
             target_only=target_only,
             mappings=mappings,
         )
+
+    def _get_transitive(self, collection: Collection) -> list[Resource]:
+        """Get all the "depends on" recursively for a collection."""
+        rv: dict[str, Resource] = {
+            prefix: self.registry[prefix]
+            for prefix in collection.resources
+        }
+        to_visit = []
+        to_visit.extend(collection.resources)
+        while to_visit:
+            pp = to_visit.pop()
+            if pp in rv:
+                continue
+            rv[pp] = self.registry[pp]
+            to_visit.extend(self.registry[pp].depends_on or [])
+        return [v for k, v in rv.items() if k not in collection.resources]
 
 
 def _read_contributors(

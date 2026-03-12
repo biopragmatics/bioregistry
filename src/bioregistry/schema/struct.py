@@ -3125,6 +3125,12 @@ class Collection(BaseModel):
         description="A list of authors/contributors to the collection",
         min_length=1,
     )
+    maintainers: list[Author] = Field(
+        ...,
+        description="A list of maintainers for the collection",
+        min_length=1,
+    )
+    logo: str | None = None
     organizations: list[Organization] | None = Field(
         None,
         description="A list of organizations that contribute to this collection",
@@ -3132,6 +3138,7 @@ class Collection(BaseModel):
     )
     context: str | None = Field(default=None, description="The JSON-LD context's name")
     references: list[str] | None = Field(default=None, description="URL references")
+    # keywords?
 
     def add_triples(self, graph: rdflib.Graph) -> None:
         """Add triples to an RDF graph for this collection.
@@ -3141,7 +3148,7 @@ class Collection(BaseModel):
         :returns: The RDF node representing this collection using a Bioregistry IRI.
         """
         from rdflib import Literal
-        from rdflib.namespace import DC, DCTERMS, RDF, RDFS
+        from rdflib.namespace import DC, DCTERMS, DOAP, FOAF, RDF, RDFS, XSD
 
         from .constants import (
             bioregistry_class_to_id,
@@ -3156,7 +3163,14 @@ class Collection(BaseModel):
 
         for author in self.authors:
             author_node = author.add_triples(graph)
-            graph.add((node, DC.creator, author_node))
+            graph.add((node, DC.contributor, author_node))
+
+        for maintainer in self.maintainers or []:
+            maintainer_node = maintainer.add_triples(graph)
+            graph.add((node, DOAP.maintainer, maintainer_node))
+
+        if self.logo is not None:
+            graph.add((node, FOAF.logo, Literal(self.logo, datatype=XSD.anyURI)))
 
         for resource in self.resources:
             graph.add((node, DCTERMS.hasPart, bioregistry_resource[resource]))

@@ -41,6 +41,17 @@
             <dl>
                 <dt>Identifier</dt>
                 <dd><code>{{ identifier }}</code></dd>
+                {%- if entry.maintainers %}
+                <dt>Maintainers</dt>
+                {%- for maintainer in entry.maintainers %}
+                <dd style="margin-bottom: 0;">
+                     <a href="{{ url_for("metaregistry_ui.contributor", orcid=maintainer.orcid) }}">
+                        {{ maintainer.name }}
+                        <i class="fab fa-orcid"></i>
+                    </a>
+                </dd>
+                {%- endfor %}
+                {%- endif %}
                 <dt>Contributors</dt>
                     {%- for author in entry.authors %}
                     <dd style="margin-bottom: 0;">
@@ -89,5 +100,7 @@
             {% endfor %}
             </tbody>
         </table>
+
+        {# TODO add transitive dependencies #}
     </div>
 {% endblock %}
