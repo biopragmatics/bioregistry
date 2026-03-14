@@ -558,7 +558,7 @@ class TestRegistry(unittest.TestCase):
         # No OBO Foundry format for dbSNP b/c not in OBO Foundry (and probably never will be)
         self.assertIsNone(bioregistry.get_obofoundry_uri_prefix("dbsnp"))
 
-        self.assertEqual("FAIRsharing.mya1ff", bioregistry.get_fairsharing_prefix("ega.dataset"))
+        self.assertEqual("FAIRsharing.t9fvdn", bioregistry.get_fairsharing_prefix("adw"))
 
         self.assertEqual(
             "https://meshb.nlm.nih.gov/record/ui?ui=D010146",

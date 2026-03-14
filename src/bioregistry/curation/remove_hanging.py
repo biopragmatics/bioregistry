@@ -14,8 +14,6 @@ def main() -> None:
     registry = json.loads(BIOREGISTRY_PATH.read_text())
 
     for aligner_cls in aligner_resolver:
-        if aligner_cls.key == "fairsharing":
-            continue  # needs to update fairsharing to bring along deprecated records
         click.echo(aligner_cls.key)
         data = aligner_cls.getter(force_download=False)
         for record in registry.values():
