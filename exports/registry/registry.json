@@ -7090,6 +7090,7 @@
   },
   "brick": {
     "description": "Brick is an open-source effort to standardize semantic descriptions of the physical, logical and virtual assets in buildings and the relationships between them. Brick consists of an extensible dictionary of terms and concepts in and around buildings, a set of relationships for linking and composing concepts together, and a flexible data model permitting seamless integration of Brick with existing tools and databases. Through the use of powerful Semantic Web technology, Brick can describe the broad set of idiosyncratic and custom features, assets and subsystems found across the building stock in a consistent matter. Adopting Brick as the canonical description of a building enables the following: 1) Brick lowers the cost of deploying analytics, energy efficiency measures and intelligent controls across buildings, 2) Brick presents an integrated, cross-vendor representation of the multitude of subsystems in modern buildings: HVAC, lighting, fire, security and so on, 3) Brick simplifies the development of smart analytics and control applications, and 4) Brick reduces the reliance upon the non-standard, unstructured labels endemic to building management systems.\n",
+    "download_rdf": "https://github.com/BrickSchema/Brick/releases/download/nightly/Brick.ttl",
     "example": "Ablutions_Room",
     "homepage": "https://brickschema.org/",
     "keywords": [
@@ -10886,6 +10887,35 @@
       "https://github.com/biopragmatics/bioregistry/pull/1171"
     ],
     "uri_format": "https://www.cienciavitae.pt/$1"
+  },
+  "cim": {
+    "contributor": {
+      "github": "Aamirmuhammad91",
+      "name": "Aamir Muhammad",
+      "orcid": "0009-0002-9374-1029"
+    },
+    "description": "An ontology encoding the Common Information Model (CIM) schema",
+    "download_owl": "https://raw.githubusercontent.com/cimug-org/IEC-CIM-Ontology/refs/heads/main/TheCimOntology.owl",
+    "example": "AggregatedPnode.TradingHubValues",
+    "github_request_issue": 1840,
+    "homepage": "http://cim.puffinsemantics.com/",
+    "keywords": [
+      "energy",
+      "ontology"
+    ],
+    "name": "Common Information Model Ontology",
+    "preferred_prefix": "cim",
+    "references": [
+      "https://www.dmtf.org/sites/default/files/svm11postersession_submission_2.pdf"
+    ],
+    "repository": "https://github.com/cimug-org/IEC-CIM-Ontology",
+    "reviewer": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "uri_format": "http://www.iec.ch/TC57/CIM#$1"
   },
   "cio": {
     "contact": {
@@ -36227,7 +36257,6 @@
     "homepage": "https://www.cdc.gov/nchs/icd/icd9.htm",
     "license": "CC BY-ND 3.0 IGO",
     "mappings": {
-      "bartoc": "447",
       "biolink": "ICD9",
       "hl7": "2.16.840.1.113883.6.42",
       "wikidata": "P493",
@@ -40830,9 +40859,10 @@
       "miriam": "kegg",
       "n2t": "kegg",
       "pathguide": "16",
-      "uniprot": "DB-0053"
+      "uniprot": "DB-0053",
+      "wikidata": "P665"
     },
-    "name": "Kyoto Encyclopedia of Genes and Genomes",
+    "name": "KEGG ID",
     "pattern": "^([CHDEGTMKR]\\d+)|(\\w+:[\\w\\d\\.-]*)|([a-z]{3,5})|(\\w{2,4}\\d{5})$",
     "preferred_prefix": "kegg",
     "publications": [
@@ -40848,6 +40878,7 @@
         "year": 2016
       }
     ],
+    "rdf_uri_format": "http://www.kegg.jp/entry/$1",
     "synonyms": [
       "KEGG"
     ],
@@ -40900,8 +40931,7 @@
       "integbio": "nbdc00814",
       "miriam": "kegg.compound",
       "n2t": "kegg.compound",
-      "prefixcommons": "kegg.compound",
-      "wikidata": "P665"
+      "prefixcommons": "kegg.compound"
     },
     "name": "KEGG Compound",
     "part_of": "kegg",
@@ -41002,8 +41032,7 @@
       "integbio": "nbdc00812",
       "miriam": "kegg.drug",
       "n2t": "kegg.drug",
-      "prefixcommons": "kegg.drug",
-      "wikidata": "P665"
+      "prefixcommons": "kegg.drug"
     },
     "name": "KEGG Drug",
     "part_of": "kegg",
@@ -41087,8 +41116,7 @@
       "biolink": "KEGG.GENES",
       "miriam": "kegg.genes",
       "n2t": "kegg.genes",
-      "prefixcommons": "kegg.gene",
-      "wikidata": "P665"
+      "prefixcommons": "kegg.gene"
     },
     "name": "KEGG gene",
     "part_of": "kegg",
@@ -41137,8 +41165,7 @@
       "integbio": "nbdc00816",
       "miriam": "kegg.genome",
       "n2t": "kegg.genome",
-      "prefixcommons": "kegg.genome",
-      "wikidata": "P665"
+      "prefixcommons": "kegg.genome"
     },
     "name": "KEGG genome",
     "part_of": "kegg",
@@ -41335,8 +41362,7 @@
       "go": "KEGG_PATHWAY",
       "miriam": "kegg.pathway",
       "n2t": "kegg.pathway",
-      "prefixcommons": "kegg.pathway",
-      "wikidata": "P665"
+      "prefixcommons": "kegg.pathway"
     },
     "name": "KEGG pathway",
     "pattern": "^\\w{2,4}\\d{5}$",
@@ -55201,7 +55227,6 @@
       "traits"
     ],
     "mappings": {
-      "biocontext": "OMIA",
       "integbio": "nbdc00153"
     },
     "name": "OMIA variants",
@@ -59677,6 +59702,45 @@
     "preferred_prefix": "pharmacodb.tissue",
     "uri_format": "https://pharmacodb.ca/tissues/$1"
   },
+  "pharmgkb": {
+    "description": "unique identifier for an entity in the PharmGKB knowledgebase",
+    "example": "PA134955224",
+    "homepage": "https://www.pharmgkb.org/",
+    "keywords": [
+      "classification",
+      "gene",
+      "gene expression",
+      "pathway"
+    ],
+    "mappings": {
+      "edam": "2649",
+      "pathguide": "117",
+      "prefixcommons": "pharmgkb",
+      "re3data": "r3d100012325",
+      "wikidata": "P7001"
+    },
+    "name": "PharmGKB",
+    "pattern": "^PA[1-9]\\d*$",
+    "preferred_prefix": "pharmgkb",
+    "providers": [
+      {
+        "code": "bio2rdf",
+        "description": "Bio2RDF is an open-source project that uses Semantic Web technologies to build and provide the largest network of Linked Data for the Life Sciences. Bio2RDF defines a set of simple conventions to create RDF(S) compatible Linked Data from a diverse set of heterogeneously formatted sources obtained from multiple data providers.",
+        "homepage": "https://bio2rdf.org",
+        "name": "Bio2RDF",
+        "uri_format": "http://bio2rdf.org/pharmgkb:$1"
+      }
+    ],
+    "publications": [
+      {
+        "pubmed": "22103613"
+      },
+      {
+        "pubmed": "11908751"
+      }
+    ],
+    "uri_format": "https://www.clinpgx.org/accession/$1"
+  },
   "pharmgkb.disease": {
     "contact": {
       "email": "teri.klein@stanford.edu",
@@ -59702,10 +59766,10 @@
       "edam": "2651",
       "miriam": "pharmgkb.disease",
       "n2t": "pharmgkb.disease",
-      "prefixcommons": "pharmgkb.disease",
-      "wikidata": "P7001"
+      "prefixcommons": "pharmgkb.disease"
     },
     "name": "PharmGKB Disease",
+    "part_of": "pharmgkb",
     "pattern": "^PA\\d+$",
     "preferred_prefix": "pharmgkb.disease",
     "providers": [
@@ -59760,10 +59824,10 @@
       "edam": "2652",
       "miriam": "pharmgkb.drug",
       "n2t": "pharmgkb.drug",
-      "prefixcommons": "pharmgkb.drug",
-      "wikidata": "P7001"
+      "prefixcommons": "pharmgkb.drug"
     },
     "name": "PharmGKB Drug",
+    "part_of": "pharmgkb",
     "pattern": "^PA\\d+$",
     "preferred_prefix": "pharmgkb.drug",
     "providers": [
@@ -59819,10 +59883,10 @@
       "go": "PharmGKB",
       "miriam": "pharmgkb.gene",
       "n2t": "pharmgkb.gene",
-      "prefixcommons": "pharmgkb.gene",
-      "wikidata": "P7001"
+      "prefixcommons": "pharmgkb.gene"
     },
     "name": "PharmGKB Gene",
+    "part_of": "pharmgkb",
     "pattern": "^PA\\w+$",
     "preferred_prefix": "pharmgkb.gene",
     "providers": [
@@ -59877,10 +59941,10 @@
       "edam": "2650",
       "miriam": "pharmgkb.pathways",
       "n2t": "pharmgkb.pathways",
-      "prefixcommons": "pharmgkb.pathways",
-      "wikidata": "P7001"
+      "prefixcommons": "pharmgkb.pathways"
     },
     "name": "PharmGKB pathway",
+    "part_of": "pharmgkb",
     "pattern": "^PA\\d+$",
     "preferred_prefix": "pharmgkb.pathways",
     "providers": [
@@ -59941,6 +60005,7 @@
       "biolink": "PHARMGKB.VARIANT"
     },
     "name": "PharmGKB Variant",
+    "part_of": "pharmgkb",
     "pattern": "^PA\\d+$",
     "preferred_prefix": "pharmgkb.variant",
     "uri_format": "https://www.pharmgkb.org/variant/$1"

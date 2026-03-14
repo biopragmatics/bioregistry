@@ -11526,6 +11526,18 @@
         ]
     },
     {
+        "prefix": "cim",
+        "prefix_synonyms": [
+            "CIM"
+        ],
+        "uri_prefix": "http://www.iec.ch/TC57/CIM#",
+        "uri_prefix_synonyms": [
+            "http://bioregistry.io/cim:",
+            "https://bioregistry.io/cim:",
+            "https://www.iec.ch/TC57/CIM#"
+        ]
+    },
+    {
         "prefix": "citedcat",
         "prefix_synonyms": [
             "CITEDCAT"
@@ -20954,6 +20966,23 @@
         ]
     },
     {
+        "pattern": "^[A-Za-z0-9]+$",
+        "prefix": "ifloprop",
+        "prefix_synonyms": [
+            "IFLOPROP"
+        ],
+        "uri_prefix": "https://purl.infoflora.ch/concept/ifloprop/",
+        "uri_prefix_synonyms": [
+            "http://bioregistry.io/ifloprop:",
+            "http://identifiers.org/ifloprop/",
+            "http://identifiers.org/ifloprop:",
+            "http://purl.infoflora.ch/concept/ifloprop/",
+            "https://bioregistry.io/ifloprop:",
+            "https://identifiers.org/ifloprop/",
+            "https://identifiers.org/ifloprop:"
+        ]
+    },
+    {
         "prefix": "igrhcellid",
         "prefix_synonyms": [
             "IGRHCELLID"
@@ -27641,9 +27670,7 @@
         "uri_prefix_synonyms": [
             "http://bioregistry.io/omia.variant:",
             "http://omia.org/variant/omia.variant:",
-            "http://purl.obolibrary.org/obo/OMIA_",
-            "https://bioregistry.io/omia.variant:",
-            "https://purl.obolibrary.org/obo/OMIA_"
+            "https://bioregistry.io/omia.variant:"
         ]
     },
     {
@@ -29047,104 +29074,80 @@
         ]
     },
     {
-        "pattern": "^PA\\d+$",
-        "prefix": "pharmgkb.disease",
+        "pattern": "^PA[1-9]\\d*$",
+        "prefix": "pharmgkb",
         "prefix_synonyms": [
-            "PHARMGKB.DISEASE"
+            "PHARMGKB",
+            "PHARMGKB.DISEASE",
+            "PHARMGKB.DRUG",
+            "PHARMGKB.GENE",
+            "PHARMGKB.PATHWAYS",
+            "PHARMGKB.VARIANT",
+            "pharmgkb.disease",
+            "pharmgkb.drug",
+            "pharmgkb.gene",
+            "pharmgkb.pathways",
+            "pharmgkb.variant"
         ],
-        "uri_prefix": "http://www.pharmgkb.org/disease/",
+        "uri_prefix": "https://www.clinpgx.org/accession/",
         "uri_prefix_synonyms": [
             "http://bio2rdf.org/pharmgkb.disease:",
+            "http://bio2rdf.org/pharmgkb.drug:",
+            "http://bio2rdf.org/pharmgkb.gene:",
+            "http://bio2rdf.org/pharmgkb.pathways:",
             "http://bioregistry.io/pharmgkb.disease:",
+            "http://bioregistry.io/pharmgkb.drug:",
+            "http://bioregistry.io/pharmgkb.gene:",
+            "http://bioregistry.io/pharmgkb.pathways:",
+            "http://bioregistry.io/pharmgkb.variant:",
+            "http://bioregistry.io/pharmgkb:",
             "http://identifiers.org/pharmgkb.disease/",
             "http://identifiers.org/pharmgkb.disease:",
-            "http://n2t.net/pharmgkb.disease:",
-            "https://bio2rdf.org/pharmgkb.disease:",
-            "https://bioregistry.io/pharmgkb.disease:",
-            "https://identifiers.org/pharmgkb.disease/",
-            "https://identifiers.org/pharmgkb.disease:",
-            "https://n2t.net/pharmgkb.disease:",
-            "https://www.pharmgkb.org/disease/"
-        ]
-    },
-    {
-        "pattern": "^PA\\d+$",
-        "prefix": "pharmgkb.drug",
-        "prefix_synonyms": [
-            "PHARMGKB.DRUG"
-        ],
-        "uri_prefix": "http://www.pharmgkb.org/drug/",
-        "uri_prefix_synonyms": [
-            "http://bio2rdf.org/pharmgkb.drug:",
-            "http://bioregistry.io/pharmgkb.drug:",
             "http://identifiers.org/pharmgkb.drug/",
             "http://identifiers.org/pharmgkb.drug:",
-            "http://n2t.net/pharmgkb.drug:",
-            "https://bio2rdf.org/pharmgkb.drug:",
-            "https://bioregistry.io/pharmgkb.drug:",
-            "https://identifiers.org/pharmgkb.drug/",
-            "https://identifiers.org/pharmgkb.drug:",
-            "https://n2t.net/pharmgkb.drug:",
-            "https://www.pharmgkb.org/drug/"
-        ]
-    },
-    {
-        "pattern": "^PA\\w+$",
-        "prefix": "pharmgkb.gene",
-        "prefix_synonyms": [
-            "PHARMGKB.GENE"
-        ],
-        "uri_prefix": "http://www.pharmgkb.org/gene/",
-        "uri_prefix_synonyms": [
-            "http://bio2rdf.org/pharmgkb.gene:",
-            "http://bioregistry.io/pharmgkb.gene:",
             "http://identifiers.org/pharmgkb.gene/",
             "http://identifiers.org/pharmgkb.gene:",
-            "http://n2t.net/pharmgkb.gene:",
-            "http://www.pharmgkb.org/do/serve?objId=",
-            "https://bio2rdf.org/pharmgkb.gene:",
-            "https://bioregistry.io/pharmgkb.gene:",
-            "https://identifiers.org/pharmgkb.gene/",
-            "https://identifiers.org/pharmgkb.gene:",
-            "https://n2t.net/pharmgkb.gene:",
-            "https://www.pharmgkb.org/do/serve?objId=",
-            "https://www.pharmgkb.org/gene/"
-        ]
-    },
-    {
-        "pattern": "^PA\\d+$",
-        "prefix": "pharmgkb.pathways",
-        "prefix_synonyms": [
-            "PHARMGKB.PATHWAYS"
-        ],
-        "uri_prefix": "http://www.pharmgkb.org/pathway/",
-        "uri_prefix_synonyms": [
-            "http://bio2rdf.org/pharmgkb.pathways:",
-            "http://bioregistry.io/pharmgkb.pathways:",
             "http://identifiers.org/pharmgkb.pathways/",
             "http://identifiers.org/pharmgkb.pathways:",
+            "http://n2t.net/pharmgkb.disease:",
+            "http://n2t.net/pharmgkb.drug:",
+            "http://n2t.net/pharmgkb.gene:",
             "http://n2t.net/pharmgkb.pathways:",
             "http://www.clinpgx.org/accession/",
+            "http://www.pharmgkb.org/disease/",
+            "http://www.pharmgkb.org/do/serve?objId=",
+            "http://www.pharmgkb.org/drug/",
+            "http://www.pharmgkb.org/gene/",
+            "http://www.pharmgkb.org/pathway/",
+            "http://www.pharmgkb.org/variant/",
+            "https://bio2rdf.org/pharmgkb.disease:",
+            "https://bio2rdf.org/pharmgkb.drug:",
+            "https://bio2rdf.org/pharmgkb.gene:",
             "https://bio2rdf.org/pharmgkb.pathways:",
+            "https://bioregistry.io/pharmgkb.disease:",
+            "https://bioregistry.io/pharmgkb.drug:",
+            "https://bioregistry.io/pharmgkb.gene:",
             "https://bioregistry.io/pharmgkb.pathways:",
+            "https://bioregistry.io/pharmgkb.variant:",
+            "https://bioregistry.io/pharmgkb:",
+            "https://identifiers.org/pharmgkb.disease/",
+            "https://identifiers.org/pharmgkb.disease:",
+            "https://identifiers.org/pharmgkb.drug/",
+            "https://identifiers.org/pharmgkb.drug:",
+            "https://identifiers.org/pharmgkb.gene/",
+            "https://identifiers.org/pharmgkb.gene:",
             "https://identifiers.org/pharmgkb.pathways/",
             "https://identifiers.org/pharmgkb.pathways:",
+            "https://n2t.net/pharmgkb.disease:",
+            "https://n2t.net/pharmgkb.drug:",
+            "https://n2t.net/pharmgkb.gene:",
             "https://n2t.net/pharmgkb.pathways:",
-            "https://www.clinpgx.org/accession/",
-            "https://www.pharmgkb.org/pathway/"
-        ]
-    },
-    {
-        "pattern": "^PA\\d+$",
-        "prefix": "pharmgkb.variant",
-        "prefix_synonyms": [
-            "PHARMGKB.VARIANT"
-        ],
-        "uri_prefix": "https://www.pharmgkb.org/variant/",
-        "uri_prefix_synonyms": [
-            "http://bioregistry.io/pharmgkb.variant:",
-            "http://www.pharmgkb.org/variant/",
-            "https://bioregistry.io/pharmgkb.variant:"
+            "https://www.pharmgkb.org/disease/",
+            "https://www.pharmgkb.org/do/serve?objId=",
+            "https://www.pharmgkb.org/drug/",
+            "https://www.pharmgkb.org/gene/",
+            "https://www.pharmgkb.org/pathway/",
+            "https://www.pharmgkb.org/variant/"
         ]
     },
     {
