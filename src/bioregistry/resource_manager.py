@@ -2164,7 +2164,7 @@ class Manager:
         """Get all the "depends on" recursively for a list of prefixes."""
         prefix_set = set(prefixes)
         rv: dict[str, Resource] = {}
-        to_visit = []
+        to_visit: list[str] = []
         to_visit.extend(prefix_set)
         while to_visit:
             prefix = to_visit.pop()

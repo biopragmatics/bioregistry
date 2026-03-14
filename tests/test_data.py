@@ -1366,5 +1366,5 @@ class TestRegistry(unittest.TestCase):
 
     def test_depends_on(self) -> None:
         """Test depends on."""
-        self.assertIn("bfo", manager.get_depends_on("chebi"))
+        self.assertIn("bfo", manager.get_depends_on("chebi") or [])
         self.assertIn("rdf", {r.prefix for r in manager.get_indirect_dependencies(["chebi"])})
