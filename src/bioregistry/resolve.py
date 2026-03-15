@@ -448,8 +448,8 @@ def get_fairsharing_prefix(prefix: str) -> str | None:
 
     :returns: The FAIRSharing prefix corresponding to the prefix, if mappable.
 
-    >>> get_fairsharing_prefix("genbank")
-    'FAIRsharing.9kahy4'
+    >>> get_fairsharing_prefix("go")
+    'FAIRsharing.6xq0ee'
     """
     return manager.get_mapped_prefix(prefix, "fairsharing")
 
@@ -889,7 +889,7 @@ def get_part_of(prefix: str) -> str | None:
     :returns: The prefixes of the parent resource for this prefix, if one is annotated.
         This is the inverse of :func:`get_has_parts`.
 
-    >>> assert "chembl" in get_part_of("chembl.compound")
+    >>> assert "kegg" in get_part_of("kegg.compound")
     """
     return manager.get_part_of(prefix)
 
@@ -902,7 +902,7 @@ def get_has_parts(prefix: str) -> list[str] | None:
     :returns: The prefixes of resource for which this prefix is the parent. This is the
         inverse of :func:`get_has_parts`.
 
-    >>> assert "chembl.compound" in get_has_parts("chembl")
+    >>> assert "kegg.compound" in get_has_parts("kegg")
     """
     return manager.get_has_parts(prefix)
 
