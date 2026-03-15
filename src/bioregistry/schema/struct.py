@@ -823,7 +823,7 @@ class Resource(BaseModel):
         """Get an external registry."""
         return self.model_dump().get(metaprefix) or {}
 
-    def get_mapped_prefix(self, metaprefix: str, use_obo_preferred: bool = False) -> str | None:
+    def get_mapped_prefix(self, metaprefix: str, use_obo_preferred: bool = True) -> str | None:
         """Get the prefix for the given external.
 
         :param metaprefix: The metaprefix for the external resource
