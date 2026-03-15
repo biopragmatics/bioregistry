@@ -7,6 +7,7 @@ from collections import Counter
 import rdflib
 
 from bioregistry import manager
+from bioregistry.constants import NFDI_ROR
 from bioregistry.export.rdf_export import collection_to_rdf_str
 from bioregistry.schema import Collection
 
@@ -86,3 +87,16 @@ class TestCollections(unittest.TestCase):
         self.assertIsInstance(s, str)
         g = rdflib.Graph()
         g.parse(data=s)
+
+    def test_nfdi(self) -> None:
+        """Test NFDI collections."""
+        for collection in self.manager.values():
+            if not any(org.ror == NFDI_ROR for org in collection.organizations or []):
+                continue
+            with self.subTest(name=collection.name):
+                self.assertIsNotNone(collection.logo, msg="all NFDI collections need a logo")
+                self.assertIn(
+                    "bioregistry",
+                    collection.resources,
+                    msg="all NFDI collections implicitly rely on the Bioregistry",
+                )

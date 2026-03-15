@@ -120,6 +120,10 @@ BIOREGISTRY_REMOTE_URL = pystow.get_config(
     "bioregistry", "url", default=BIOREGISTRY_DEFAULT_BASE_URL
 )
 
+#: The research organization registry (ROR) identifier
+#: for the German National Forschungsdateninfrastructur (NFDI) project
+NFDI_ROR = "05qj6w324"
+
 #: Resolution is broken on identifiers.org for the following
 IDOT_BROKEN = {
     "gramene.growthstage",
