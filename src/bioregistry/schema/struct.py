@@ -2385,8 +2385,8 @@ class Resource(BaseModel):
         if self.download_obo:
             return self.download_obo
         return (
-            self.get_external("obofoundry").get("download.obo")
-            or self.get_external("ols").get("download_obo")
+            self._get_download("obofoundry", "obo")
+            or self._get_download("ols", "obo")
             or self._get_download("aberowl", "obo")
         )
 
@@ -2394,7 +2394,7 @@ class Resource(BaseModel):
         """Get the download link for the latest OBOGraph JSON file."""
         if self.download_json:
             return self.download_json
-        return self.get_external("obofoundry").get("download.json")
+        return self._get_download("obofoundry", "json")
 
     # docstr-coverage:excused `overload`
     @overload
@@ -2411,7 +2411,7 @@ class Resource(BaseModel):
                 return self.download_rdf.url
             else:
                 return self.download_rdf
-        return self.get_external("ols").get("download_rdf")
+        return self._get_download("ols", "rdf")
 
     # docstr-coverage:excused `overload`
     @overload
@@ -2464,9 +2464,9 @@ class Resource(BaseModel):
         if self.download_owl:
             return self.download_owl
         return (
-            self.get_external("obofoundry").get("download.owl")
+            self._get_download("obofoundry", "owl")
             or self.get_external("ols").get("version.iri")
-            or self.get_external("ols").get("download_owl")
+            or self._get_download("ols", "owl")
             or self._get_download("cropoct", "owl")
             or self._get_download("aberowl", "owl")
         )

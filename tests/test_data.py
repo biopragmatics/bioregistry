@@ -1284,6 +1284,16 @@ class TestRegistry(unittest.TestCase):
         status_contributions = read_status_contributions(self.registry)
         self.assertIn("0009-0006-4842-7427", status_contributions)
 
+    def test_download_obo(self) -> None:
+        """Test getting OBO download link."""
+        bfo = manager.get_resource("bfo", strict=True)
+        self.assertIsNotNone(bfo.obofoundry)
+        self.assertIn("artifacts", bfo.obofoundry)
+        for _artifact in bfo.obofoundry["artifacts"]:
+            pass
+
+        self.assertEqual("http://purl.obolibrary.org/obo/bfo.obo", bfo.get_download_obo())
+
     def test_download_owl(self) -> None:
         """Test download OWL."""
         self.assertEqual(
@@ -1299,6 +1309,10 @@ class TestRegistry(unittest.TestCase):
             manager.rasterized_resource(
                 bioregistry.get_resource("adw", strict=True)
             ).get_download_owl(),
+        )
+        self.assertEqual(
+            "http://purl.obolibrary.org/obo/mod.owl",
+            manager.get_resource("mod", strict=True).get_download_owl(),
         )
 
     def test_upgraded(self) -> None:
