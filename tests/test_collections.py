@@ -90,7 +90,7 @@ class TestCollections(unittest.TestCase):
 
     def test_nfdi(self) -> None:
         """Test NFDI collections."""
-        for collection in self.manager.values():
+        for collection in self.manager.collections.values():
             if not any(org.ror == NFDI_ROR for org in collection.organizations or []):
                 continue
             with self.subTest(name=collection.name):
