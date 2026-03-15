@@ -29,7 +29,7 @@ get_edam = build_no_raw_getter(
 
 def _get_identifier(term: dict[str, str], ontology: str) -> str:
     # note that this prefix doesn't match the ontology name
-    return term["obo_id"][len("data:") :]
+    return term["obo_id"][len("EDAM_data:") :]
 
 
 class EDAMAligner(Aligner):
