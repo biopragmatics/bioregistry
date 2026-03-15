@@ -440,7 +440,7 @@ def metaresolve(
     """
     if metaprefix not in manager.metaregistry:
         return abort(404, f"invalid metaprefix: {metaprefix}")
-    prefix = manager.lookup_from(metaprefix, metaidentifier, normalize=True)
+    prefix = manager.lookup_from(metaprefix, metaidentifier)
     if prefix is None:
         return abort(
             404,
