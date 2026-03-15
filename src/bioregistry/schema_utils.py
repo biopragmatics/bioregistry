@@ -329,11 +329,13 @@ def read_prefix_contacts(registry: Mapping[str, Resource]) -> Mapping[OrcidStr, 
 def read_collections_contributions(
     collections: Mapping[str, Collection],
 ) -> Mapping[OrcidStr, set[str]]:
-    """Get a mapping from contributor ORCID identifiers to collections."""
+    """Get a mapping from contributor/maintainer ORCID identifiers to collections."""
     rv = defaultdict(set)
     for collection_id, resource in collections.items():
-        for author in resource.authors or []:
-            rv[author.orcid].add(collection_id)
+        for contributor in resource.authors or []:
+            rv[contributor.orcid].add(collection_id)
+        for maintainer in resource.maintainers or []:
+            rv[maintainer.orcid].add(collection_id)
     return dict(rv)
 
 
