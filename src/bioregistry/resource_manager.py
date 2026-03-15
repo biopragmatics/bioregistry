@@ -2154,6 +2154,27 @@ class Manager:
             mappings=mappings,
         )
 
+    def get_collection_indirect_dependencies(self, collection: str | Collection) -> list[Resource]:
+        """Get all the "depends on" recursively for a collection."""
+        if isinstance(collection, str):
+            collection = self.collections[collection]
+        return self.get_indirect_dependencies(collection.resources)
+
+    def get_indirect_dependencies(self, prefixes: list[str]) -> list[Resource]:
+        """Get all the "depends on" recursively for a list of prefixes."""
+        prefix_set = set(prefixes)
+        rv: dict[str, Resource] = {}
+        to_visit: list[str] = []
+        to_visit.extend(prefix_set)
+        while to_visit:
+            prefix = to_visit.pop()
+            if prefix in rv:
+                continue
+            rv[prefix] = self.registry[prefix]
+            to_visit.extend(p for p in self.registry[prefix].depends_on or [] if p not in rv)
+
+        return [resource for prefix, resource in rv.items() if prefix not in prefix_set]
+
 
 def _read_contributors(
     registry: dict[str, Resource],

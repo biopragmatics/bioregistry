@@ -255,12 +255,13 @@ def collection(identifier: str) -> str | flask.Response:
     accept = get_accept_media_type()
     if accept != "text/html":
         return serialize_model(entry, collection_to_rdf_str, negotiate=True)
-
+    indirect = manager.get_collection_indirect_dependencies(entry)
     return render_template(
         "collection.html",
         identifier=identifier,
         entry=entry,
         resources={prefix: manager.get_resource(prefix) for prefix in entry.resources},
+        indirect=indirect,
         formats=[
             *FORMATS,
             ("Context (JSON-LD)", "context"),

@@ -169,6 +169,35 @@
           "title": "Authors",
           "type": "array"
         },
+        "maintainers": {
+          "anyOf": [
+            {
+              "items": {
+                "$ref": "#/$defs/Author"
+              },
+              "minItems": 1,
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "A list of maintainers for the collection",
+          "title": "Maintainers"
+        },
+        "logo": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Logo"
+        },
         "organizations": {
           "anyOf": [
             {
@@ -214,6 +243,21 @@
           "default": null,
           "description": "URL references",
           "title": "References"
+        },
+        "keywords": {
+          "anyOf": [
+            {
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Keywords"
         }
       },
       "required": [

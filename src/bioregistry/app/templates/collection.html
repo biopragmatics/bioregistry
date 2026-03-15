@@ -37,10 +37,32 @@
             </div>
         </div>
         <div class="card-body">
+            {%- if entry.logo %}
+            <img src="{{ entry.logo }}" alt="logo for {{ entry.name }}" style="float:right; max-height: 2.5em; padding-left: 1em;" />
+            {%- endif %}
             {{ markdown(entry.description) | safe }}
             <dl>
                 <dt>Identifier</dt>
                 <dd><code>{{ identifier }}</code></dd>
+                {%- if entry.keywords %}
+                <dt>Keywords</dt>
+                <dd>
+                {%- for keyword in entry.keywords|sort %}
+                    <span class="badge badge-light">{{ keyword }}</span>
+                {%- endfor %}
+                </dd>
+                {%- endif %}
+                {%- if entry.maintainers %}
+                <dt>Maintainers</dt>
+                {%- for maintainer in entry.maintainers %}
+                <dd style="margin-bottom: 0;">
+                     <a href="{{ url_for("metaregistry_ui.contributor", orcid=maintainer.orcid) }}">
+                        {{ maintainer.name }}
+                        <i class="fab fa-orcid"></i>
+                    </a>
+                </dd>
+                {%- endfor %}
+                {%- endif %}
                 <dt>Contributors</dt>
                     {%- for author in entry.authors %}
                     <dd style="margin-bottom: 0;">
@@ -53,7 +75,12 @@
                     {%- if entry.organizations %}
                     {%- for organization in entry.organizations %}
                     <dd style="margin-bottom: 0;">
-                        <a href="{{ organization.link }}">{{ organization.name }}</a>
+                        <a href="{{ organization.link }}">
+                            {{ organization.name }}
+                            {%- if organization.ror -%}
+                            <img style="max-height: 1em; margin-left: 0.3em" src="/static/ror.svg" alt="ror logo" />
+                            {%- endif %}
+                        </a>
                     </dd>
                     {%- endfor %}
                     {%- endif %}
@@ -90,4 +117,34 @@
             </tbody>
         </table>
     </div>
+
+    {%- if indirect %}
+    <div class="card" style="margin-top: 25px">
+        <div class="card-header">
+            <h5 style="margin: 0">Indirect Dependencies</h5>
+        </div>
+        <table class="table table-striped" style="margin-bottom: 0;">
+            <thead>
+            <tr>
+                <th scope="col">Prefix</th>
+                <th scope="col">Name</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for indirect_resource in indirect %}
+            <tr>
+                <td>
+                    <code>{{ indirect_resource.prefix }}</code>
+                </td>
+                <td>
+                    <a href="{{ url_for("metaregistry_ui.resource", prefix=prefix) }}">
+                        {{ indirect_resource.get_name() }} {{ utils.render_resource_warnings(indirect_resource) }}
+                    </a>
+                </td>
+            </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    {%- endif %}
 {% endblock %}
