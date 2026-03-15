@@ -177,6 +177,7 @@ def _get_license(ols_id: str, config: dict[str, Any]) -> License | None:
         return None
     if not license_value:
         logger.info("[%s] missing license in OLS. Contact: %s", ols_id, config["mailingList"])
+        return None
     return License(name=license_value)
 
 
@@ -283,9 +284,6 @@ def _process(
         "prefix": ols_id,
         # "preferred_prefix": config["preferredPrefix"],
         "name": title,
-        "extras": {
-            "version.iri": _clean_url(version_iri),
-        },
         "version": _get_version(
             ols_id, config, version_processing_config=version_processing_config
         ),
@@ -296,6 +294,9 @@ def _process(
         "license": _get_license(ols_id, config),
         "keywords": keywords,
     }
+
+    if clean_version_iri := _clean_url(version_iri):
+        rv.setdefault("extras", {})['version.iri'] = clean_version_iri
 
     # TODO automatically extract github/gitlab repository based
     #  on tracker / homepage
