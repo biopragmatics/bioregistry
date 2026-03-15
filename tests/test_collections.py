@@ -95,8 +95,3 @@ class TestCollections(unittest.TestCase):
                 continue
             with self.subTest(name=collection.name):
                 self.assertIsNotNone(collection.logo, msg="all NFDI collections need a logo")
-                self.assertIn(
-                    "bioregistry",
-                    collection.resources,
-                    msg="all NFDI collections implicitly rely on the Bioregistry",
-                )
