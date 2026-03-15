@@ -29,13 +29,11 @@ from .constants import (
     INTERNAL_PIP,
     INTERNAL_REPOSITORY,
 )
-from .license_standardizer import standardize_license
 from .metaresource_api import get_registry_short_name
 from .resolve import (
     get_contact_email,
     get_description,
     get_example,
-    get_external,
     get_homepage,
     get_json_download,
     get_license,
@@ -83,13 +81,6 @@ def _get_has(func: Callable[[str], typing.Any], yes: str = "Yes", no: str = "No"
     )
 
 
-HAS_WIKIDATA_DATABASE = Counter(
-    "No" if key is None else "Yes"
-    for key in read_registry()
-    if not is_deprecated(key) and "database" in get_external(key, "wikidata")
-)
-
-
 def _get_has_present(func: Callable[[str], X | None]) -> Counter[X]:
     values = (func(prefix) for prefix in read_registry())
     return Counter(value for value in values if value)
@@ -126,10 +117,17 @@ def _save(
     plt.close(fig)
 
 
-def plot_attribute_pies(watermark: bool) -> FigMultiAxPair:
+def plot_attribute_pies(watermark: bool, *, license_threshold: int = 25) -> FigMultiAxPair:
     """Plot how many entries have version information."""
-    licenses_mapped = _get_licenses_mapped_counter()
-    licenses_mapped_counter = Counter(licenses_mapped)
+    license_counter = Counter(
+        license_v for resource in manager.registry.values() if (license_v := resource.get_license())
+    )
+    other = sum(count for _, count in license_counter.items() if count < license_threshold)
+    license_counter = Counter(
+        {k: count for k, count in license_counter.items() if count >= license_threshold}
+    )
+    license_counter["Other"] = other
+
     measurements = [
         ("Name", _get_has(get_name)),
         ("Homepage", _get_has(get_homepage)),
@@ -138,19 +136,9 @@ def plot_attribute_pies(watermark: bool) -> FigMultiAxPair:
         ("Pattern", _get_has(get_pattern)),
         ("Provider", _get_has(get_uri_format)),
         ("License", _get_has(get_license)),
-        (
-            "License Type",
-            Counter(
-                {
-                    license_key: count
-                    for license_key, count in licenses_mapped_counter.most_common()
-                    if license_key is not None and license_key != "None"
-                }
-            ),
-        ),
+        ("License Type", license_counter),
         ("Version", _get_has(get_version)),
         ("Contact Email", _get_has(get_contact_email)),
-        ("Wikidata Database", HAS_WIKIDATA_DATABASE),
         ("OBO", _get_has(get_obo_download)),
         ("OWL", _get_has(get_owl_download)),
         ("JSON", _get_has(get_json_download)),
@@ -458,37 +446,6 @@ def _count_providers(resource: Resource) -> int:
     return rv
 
 
-def _get_license_and_conflicts() -> tuple[list[str], set[str], set[str], set[str]]:
-    licenses: list[str] = []
-    conflicts: set[str] = set()
-    obo_has_license: set[str] = set()
-    ols_has_license: set[str] = set()
-    for key in read_registry():
-        obo_license = standardize_license(get_external(key, "obofoundry").get("license"))
-        if obo_license:
-            obo_has_license.add(key)
-
-        ols_license = standardize_license(get_external(key, "ols").get("license"))
-        if ols_license:
-            ols_has_license.add(key)
-
-        if not obo_license and not ols_license:
-            licenses.append("None")
-        if obo_license and not ols_license:
-            licenses.append(obo_license)
-        elif not obo_license and ols_license:
-            licenses.append(ols_license)
-        elif obo_license == ols_license:
-            licenses.append(typing.cast(str, obo_license))
-        else:  # different licenses!
-            licenses.append(typing.cast(str, ols_license))
-            licenses.append(typing.cast(str, obo_license))
-            conflicts.add(key)
-            # logger.warning(f"[{key}] Conflicting licenses- {obo_license} and {ols_license}")
-            continue
-    return licenses, conflicts, obo_has_license, ols_has_license
-
-
 def _remap(*, key: str, prefixes: Collection[str]) -> set[str]:
     br_external_to = {}
     for br_id, resource in read_registry().items():
@@ -769,22 +726,6 @@ def plot_xrefs(registry_infos: list[RegistryInfo], watermark: bool) -> FigAxPair
     offset = 0.7
     ax.set_xlim((-offset, len(ax.patches) - (1 + offset)))
     return fig, ax
-
-
-def _get_licenses_mapped_counter(threshold: int = 30) -> list[str]:
-    licenses, _conflicts, _obo_has_license, _ols_has_license = _get_license_and_conflicts()
-    licenses_counter: typing.Counter[str] = Counter(licenses)
-    licenses_mapped = [
-        (
-            "None"
-            if license_ is None
-            else license_
-            if licenses_counter[license_] > threshold
-            else "Other"
-        )
-        for license_ in licenses
-    ]
-    return licenses_mapped
 
 
 if __name__ == "__main__":
