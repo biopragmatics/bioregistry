@@ -95,8 +95,8 @@ def get_ols_base(
         else {}
     )
     processed = {}
-    with raw_path.open() as f:
-        data = json.load(f)
+    with raw_path.open() as file:
+        data = json.load(file)
         for ontology in data["_embedded"]["ontologies"]:
             ols_id = ontology["ontologyId"]
             if ols_id in EBI_OLS_SKIP:
@@ -114,11 +114,11 @@ def get_ols_base(
                 continue
             processed[ols_id] = record
 
-    dump_records(processed, PROCESSED_PATH)
+    dump_records(processed, processed_path)
     return processed
 
 
-def _download(base_url: str, raw_path: Path, force: bool = False):
+def _download(base_url: str, raw_path: Path, force: bool = False) -> None:
     if raw_path.is_file() and not force:
         return
     data = requests.get(f"{base_url}/ontologies", timeout=15, params={"size": 1000}).json()
