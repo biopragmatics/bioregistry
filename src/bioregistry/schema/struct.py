@@ -35,7 +35,6 @@ from bioregistry import constants as brc
 from bioregistry.constants import (
     BIOREGISTRY_REMOTE_URL,
     DOCS,
-    EMAIL_RE,
     MIRIAM_NAMESPACE_IN_LUI,
     ORCID_PATTERN,
     PATTERN_KEY,
@@ -1402,21 +1401,8 @@ class Resource(BaseModel):
         >>> get_resource("frapo").get_contact_email()
         'silvio.peroni@unibo.it'
         """
-        if self.contact and self.contact.email:
-            return self.contact.email
-        # FIXME if contact is not none but email is, this will have a problem after
-        rv = self._get_prefix_key_str("contact", ("obofoundry", "ols"))
-        if isinstance(rv, str):
-            if EMAIL_RE.match(rv):
-                return rv
-            logger.warning("[%s] invalid email address listed: %s", self.name, rv)
-            return None
-        for ext in [self.fairsharing, self.bioportal, self.ecoportal, self.agroportal]:
-            if not ext:
-                continue
-            rv = ext.get("contact", {}).get("email")
-            if isinstance(rv, str):
-                return rv
+        if contact := self.get_contact():
+            return contact.email
         return None
 
     def get_contact_name(self) -> str | None:
@@ -1432,16 +1418,8 @@ class Resource(BaseModel):
         >>> get_resource("frapo").get_contact_name()
         'Silvio Peroni'
         """
-        if self.contact and self.contact.name:
-            return self.contact.name
-        if self.obofoundry and "contact.label" in self.obofoundry:
-            return cast(str, self.obofoundry["contact.label"])
-        for ext in [self.fairsharing, self.bioportal, self.ecoportal, self.agroportal]:
-            if not ext:
-                continue
-            rv = ext.get("contact", {}).get("name")
-            if isinstance(rv, str):
-                return rv
+        if contact := self.get_contact():
+            return contact.name
         return None
 
     def get_contact_github(self) -> str | None:
@@ -1455,15 +1433,11 @@ class Resource(BaseModel):
         >>> get_resource("agro").get_contact_github()  # from OBO Foundry
         'marieALaporte'
         """
-        if self.contact and self.contact.github:
-            return self.contact.github
-        if self.obofoundry and "contact.github" in self.obofoundry:
-            return cast(str, self.obofoundry["contact.github"])
-
-        # Manually curated upgrade map. TODO externalize this
-        orcid = self.get_contact_orcid()
-        if orcid and orcid in ORCID_TO_GITHUB:
-            return ORCID_TO_GITHUB[orcid]
+        if contact := self.get_contact():
+            if contact.github:
+                return contact.github
+            elif contact.orcid and contact.orcid in ORCID_TO_GITHUB:
+                return ORCID_TO_GITHUB[contact.orcid]
         return None
 
     def get_contact_orcid(self) -> str | None:

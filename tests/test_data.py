@@ -249,6 +249,11 @@ class TestRegistry(unittest.TestCase):
             with self.subTest(prefix=prefix):
                 self.fail(msg=f"malformed homepage: {homepage}")
 
+    def test_contact_name(self) -> None:
+        """Test getting contact name."""
+        chebi = manager.get_resource("chebi", strict=True)
+        self.assertEqual("Adnan Malik", chebi.get_contact_name())
+
     def test_email(self) -> None:
         """Test that the email getter returns valid email addresses."""
         for prefix in self.registry:
