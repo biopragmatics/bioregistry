@@ -981,11 +981,6 @@ def get_curie_pattern(prefix: str, *, use_preferred: bool = False) -> str | None
     return manager.get_curie_pattern(prefix, use_preferred=use_preferred)
 
 
-def get_license_conflicts() -> list[tuple[str, str | None, str | None, str | None]]:
-    """Get license conflicts."""
-    return manager.get_license_conflicts()
-
-
 def get_obo_health_url(prefix: str) -> str | None:
     """Get the OBO community health badge."""
     return manager.get_obo_health_url(prefix)

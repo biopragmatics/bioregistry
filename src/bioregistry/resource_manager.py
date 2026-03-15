@@ -39,7 +39,6 @@ from .constants import (
     NonePair,
     get_failure_return_type,
 )
-from .license_standardizer import standardize_license
 from .schema import (
     Attributable,
     Collection,
@@ -1292,26 +1291,6 @@ class Manager:
             proprietary=resource.proprietary,
             # TODO automate checking that all fields have a function?
         )
-
-    def get_license_conflicts(self) -> list[tuple[str, str | None, str | None, str | None]]:
-        """Get license conflicts."""
-        conflicts = []
-        for prefix, entry in self.registry.items():
-            override = entry.license
-            obo_license = entry.get_external("obofoundry").get("license")
-            ols_license = entry.get_external("ols").get("license")
-            if 2 > sum(license_ is not None for license_ in (override, obo_license, ols_license)):
-                continue  # can't be a conflict if all none or only 1 is available
-            obo_norm = standardize_license(obo_license)
-            ols_norm = standardize_license(ols_license)
-            first, *rest = [
-                norm_license
-                for norm_license in (override, obo_norm, ols_norm)
-                if norm_license is not None
-            ]
-            if any(first != element for element in rest):
-                conflicts.append((prefix, override, obo_license, ols_license))
-        return conflicts
 
     def get_appears_in(self, prefix: str) -> list[str] | None:
         """Return a list of resources that this resource (has been annotated to) depends on.

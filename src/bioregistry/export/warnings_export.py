@@ -13,7 +13,6 @@ import click
 import yaml
 from tqdm import tqdm
 
-import bioregistry
 from bioregistry import parse_iri
 
 from ..constants import DOCS_DATA, EXTERNAL
@@ -158,10 +157,7 @@ def export_warnings() -> None:
                 "wrong_patterns": miriam_pattern_wrong,
                 "embedding_rewrites": miriam_embedding_rewrites,
                 "prefix_rewrites": miriam_prefix_rewrites,
-                "license_conflict": [
-                    {"prefix": prefix, "obo": obo, "ols": ols}
-                    for prefix, _override, obo, ols in bioregistry.get_license_conflicts()
-                ],
+                "license_conflict": [],
             },
             file,
         )
