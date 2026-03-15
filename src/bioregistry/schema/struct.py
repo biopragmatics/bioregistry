@@ -823,10 +823,11 @@ class Resource(BaseModel):
         """Get an external registry."""
         return self.model_dump().get(metaprefix) or {}
 
-    def get_mapped_prefix(self, metaprefix: str) -> str | None:
+    def get_mapped_prefix(self, metaprefix: str, use_obo_preferred: bool = False) -> str | None:
         """Get the prefix for the given external.
 
         :param metaprefix: The metaprefix for the external resource
+        :param use_obo_preferred: Whether to use OBO preferred prefix
 
         :returns: The prefix in the external registry, if it could be mapped
 
@@ -836,7 +837,7 @@ class Resource(BaseModel):
         >>> get_resource("chebi").get_mapped_prefix("obofoundry")
         'CHEBI'
         """
-        if metaprefix == "obofoundry":
+        if metaprefix == "obofoundry" and use_obo_preferred:
             obofoundry_dict = self.obofoundry or {}
             if "preferredPrefix" in obofoundry_dict:
                 return cast(str, obofoundry_dict["preferredPrefix"])
@@ -1720,7 +1721,7 @@ class Resource(BaseModel):
         'NCBITaxon'
         >>> assert get_resource("sty").get_obofoundry_prefix() is None
         """
-        return self.get_mapped_prefix("obofoundry")
+        return self.get_mapped_prefix("obofoundry", use_obo_preferred=True)
 
     def get_obofoundry_uri_prefix(self) -> str | None:
         """Get the OBO Foundry URI prefix for this entry, if possible.

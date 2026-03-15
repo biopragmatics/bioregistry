@@ -142,15 +142,12 @@ class TestResourceManager(unittest.TestCase):
 
     def test_lookup_from(self) -> None:
         """Test the lookup_from method."""
-        for metaprefix, key, normalize, expected in [
-            ("obofoundry", "GO", False, "go"),
-            ("obofoundry", "go", False, None),
-            ("obofoundry", "go", True, "go"),
+        for metaprefix, key, expected in [
+            ("obofoundry", "GO", None),
+            ("obofoundry", "go", "go"),
         ]:
-            with self.subTest(meteprefix=metaprefix, key=key, norm=normalize):
-                self.assertEqual(
-                    expected, self.manager.lookup_from(metaprefix, key, normalize=normalize)
-                )
+            with self.subTest(meteprefix=metaprefix, key=key):
+                self.assertEqual(expected, self.manager.lookup_from(metaprefix, key))
 
     def test_curie_validation(self) -> None:
         """Test validation functions."""

@@ -133,7 +133,6 @@ class OBOFoundryAligner(Aligner):
     getter = get_obofoundry
     curation_header: ClassVar[Sequence[str]] = ("deprecated", "name", "description")
     include_new = True
-    normalize_invmap = True
 
     def get_skip(self) -> Mapping[str, str]:
         """Get the prefixes in the OBO Foundry that should be skipped."""

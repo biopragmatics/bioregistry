@@ -63,8 +63,6 @@ class Aligner:
 
     subkey: ClassVar[str] = "prefix"
 
-    normalize_invmap: ClassVar[bool] = False
-
     def __init__(self, force_download: bool | None = None) -> None:
         """Instantiate the aligner."""
         if not hasattr(self.__class__, "key"):
@@ -84,11 +82,8 @@ class Aligner:
         self.external_registry = self.__class__.getter(**kwargs)
         self.skip_external = self.get_skip()
 
-        # Get all of the pre-curated mappings from the Bioregistry
-        self.external_id_to_bioregistry_id = self.manager.get_registry_invmap(
-            self.key,
-            normalize=self.normalize_invmap,
-        )
+        # Get the pre-curated mappings from the Bioregistry
+        self.external_id_to_bioregistry_id = self.manager.get_registry_invmap(self.key)
 
         # Run lexical alignment
         self._align()

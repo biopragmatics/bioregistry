@@ -21,7 +21,9 @@ class TestMetaregistry(unittest.TestCase):
         """Test the metaregistry entries have a minimum amount of data."""
         for metaprefix, registry in self.manager.metaregistry.items():
             self.assertIsInstance(registry, Registry)
-            external_prefixes = set(self.manager.get_registry_invmap(metaprefix))
+            external_prefixes = set(
+                self.manager.get_registry_invmap(metaprefix, use_obo_preferred=True)
+            )
             with self.subTest(metaprefix=metaprefix):
                 self.assertIsNotNone(registry.name)
                 self.assertIsNotNone(registry.homepage)
