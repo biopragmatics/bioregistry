@@ -1294,10 +1294,12 @@ class TestRegistry(unittest.TestCase):
         bfo = manager.get_resource("bfo", strict=True)
         self.assertIsNotNone(bfo.obofoundry)
         self.assertIn("artifacts", bfo.obofoundry)
-        for _artifact in bfo.obofoundry["artifacts"]:
-            pass
-
         self.assertEqual("http://purl.obolibrary.org/obo/bfo.obo", bfo.get_download_obo())
+
+    def test_download_obograph(self) -> None:
+        """Test getting OBO Graph JSON download link."""
+        vbo = manager.get_resource("vbo", strict=True)
+        self.assertEqual("http://purl.obolibrary.org/obo/vbo.json", vbo.get_download_obograph())
 
     def test_download_owl(self) -> None:
         """Test download OWL."""

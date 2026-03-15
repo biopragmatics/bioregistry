@@ -1199,7 +1199,7 @@ class Resource(BaseModel):
         )
         rv = self._get_prefix_key_str("description", metaprefixes, provenance=False)
         if rv is not None:
-            return rv
+            return rv.strip()
         return None
 
     def get_pattern(self) -> str | None:
@@ -2356,7 +2356,7 @@ class Resource(BaseModel):
         """Get the download link for the latest OBOGraph JSON file."""
         if self.download_json:
             return self.download_json
-        return self._get_download("obofoundry", "json")
+        return self._get_download("obofoundry", "obograph_json")
 
     # docstr-coverage:excused `overload`
     @overload
