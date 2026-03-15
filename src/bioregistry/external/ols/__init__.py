@@ -296,7 +296,7 @@ def _process(
     }
 
     if clean_version_iri := _clean_url(version_iri):
-        rv.setdefault("extras", {})['version.iri'] = clean_version_iri
+        rv.setdefault("extras", {})["version.iri"] = clean_version_iri
 
     # TODO automatically extract github/gitlab repository based
     #  on tracker / homepage
