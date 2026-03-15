@@ -1328,7 +1328,7 @@ class Resource(BaseModel):
             rv = miriam["extras"][MIRIAM_NAMESPACE_IN_LUI]
             if provenance:
                 return MetaprefixAnnotatedValue[bool](value=rv, metaprefix="miriam")
-            return rv
+            return cast(bool, rv)
         return False
 
     def get_homepage(self) -> str | None:

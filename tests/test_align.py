@@ -16,6 +16,7 @@ class TestAlign(unittest.TestCase):
         def mock_getter(
             force_download: bool = False, force_process: bool = False
         ) -> dict[str, dict[str, Any]]:
+            """Mock getter for FAIRsharing."""
             return {
                 "FAIRsharing.Z8OKi5": {
                     "name": "ABCD database",
@@ -23,6 +24,8 @@ class TestAlign(unittest.TestCase):
             }
 
         class MockAligner(Aligner):
+            """Mock aligner for FAIRsharing."""
+
             key = "fairsharing"
             getter = mock_getter
             curation_header = ()
@@ -34,7 +37,7 @@ class TestAlign(unittest.TestCase):
         self.assertEqual({"FAIRsharing.Z8OKi5": "abcd"}, aligner.external_id_to_bioregistry_id)
 
         self.assertIsNotNone(resource.fairsharing)
-        self.assertEqual("ABCD database", resource.fairsharing.get("name"))
+        self.assertEqual("ABCD database", (resource.fairsharing or {}).get("name"))
 
     def test_cross_mapped(self) -> None:
         """Test when there are cross-conflicts."""
@@ -42,9 +45,12 @@ class TestAlign(unittest.TestCase):
         def mock_getter(
             force_download: bool = False, force_process: bool = False
         ) -> dict[str, dict[str, Any]]:
+            """Mock getter for OBO foundry."""
             return {"geo": {"name": "geographical entity ontology", "preferred_prefix": "GEO"}}
 
         class MockAligner(Aligner):
+            """Mock aligner for OBO foundry."""
+
             key = "obofoundry"
             getter = mock_getter
             curation_header = ()
@@ -60,4 +66,4 @@ class TestAlign(unittest.TestCase):
 
         self.assertIsNone(geo.obofoundry)
         self.assertIsNotNone(geogeo.obofoundry)
-        self.assertEqual("geo", geogeo.obofoundry.get("prefix"))
+        self.assertEqual("geo", (geogeo.obofoundry or {}).get("prefix"))

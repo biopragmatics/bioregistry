@@ -1293,7 +1293,7 @@ class TestRegistry(unittest.TestCase):
         """Test getting OBO download link."""
         bfo = manager.get_resource("bfo", strict=True)
         self.assertIsNotNone(bfo.obofoundry)
-        self.assertIn("artifacts", bfo.obofoundry)
+        self.assertIn("artifacts", bfo.obofoundry or {})
         self.assertEqual("http://purl.obolibrary.org/obo/bfo.obo", bfo.get_download_obo())
 
     def test_download_obograph(self) -> None:
@@ -1399,7 +1399,7 @@ class TestRegistry(unittest.TestCase):
     @unittest.skip(reason="sometimes run locally, but this is pretty pedantic")
     def test_no_double_mappings(self) -> None:
         """Test no double mappings."""
-        counter = Counter()
+        counter: Counter[tuple[str, str]] = Counter()
         for resource in self.registry.values():
             for k, v in (resource.mappings or {}).items():
                 if k in {"wikidata.entity", "fairsharing", "re3data", "integbio"}:
