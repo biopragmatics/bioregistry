@@ -75,6 +75,16 @@ class Artifact(BaseModel):
     description: str | None = None
 
 
+class Provider(BaseModel):
+    """Represents a provider."""
+
+    code: str
+    uri_format: str
+    homepage: str | None = None
+    description: str | None = None
+    name: str | None = None
+
+
 class Record(BaseModel):
     """Represents a record in a semantic space registry."""
 
@@ -107,6 +117,7 @@ class Record(BaseModel):
     modified: datetime.datetime | None = Field(None, description="Date last modified")
     xrefs: dict[str, str] | None = None
     prefix_synonyms: list[str] | None = None
+    providers: list[Provider] | None = None
     extras: dict[str, Any] | None = Field(None, description="Extras specific to the resource.")
 
 

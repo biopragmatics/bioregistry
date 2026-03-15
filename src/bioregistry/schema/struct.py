@@ -2139,27 +2139,15 @@ class Resource(BaseModel):
         provider_codes = {provider.code for provider in providers}
         provider_uris = {provider.uri_format for provider in providers}
         rv.extend(providers)
-        if self.miriam:
-            for p_data in self.miriam.get("providers", []):
-                provider = Provider(**p_data)
+
+        for metaprefix in ["miriam", "prefixcommons"]:
+            for provider_raw in self.get_external(metaprefix).get("providers") or []:
+                provider = Provider.model_validate(provider_raw)
                 if provider.code in provider_codes or provider.uri_format in provider_uris:
                     # this means we've done an explicit override in the Bioregistry curated data
                     continue
                 rv.append(provider)
-        prefixcommons_prefix = self.get_prefixcommons_prefix()
-        if prefixcommons_prefix:
-            rv.append(
-                Provider(
-                    code="bio2rdf",
-                    name="Bio2RDF",
-                    homepage="https://bio2rdf.org",
-                    uri_format=f"http://bio2rdf.org/{prefixcommons_prefix}:$1",
-                    description="Bio2RDF is an open-source project that uses Semantic Web technologies to "
-                    "build and provide the largest network of Linked Data for the Life Sciences. Bio2RDF "
-                    "defines a set of simple conventions to create RDF(S) compatible Linked Data from a diverse "
-                    "set of heterogeneously formatted sources obtained from multiple data providers.",
-                )
-            )
+
         rv = sorted(rv, key=attrgetter("code"))
         if filter_known_inactive:
             rv = [v for v in rv if not v.is_known_inactive()]

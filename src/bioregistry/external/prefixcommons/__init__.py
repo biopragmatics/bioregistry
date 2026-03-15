@@ -13,7 +13,7 @@ from collections.abc import Mapping, Sequence
 from pathlib import Path
 from typing import Any, ClassVar
 
-from bioregistry.alignment_model import License, Publication, Record, make_record
+from bioregistry.alignment_model import License, Provider, Publication, Record, make_record
 from bioregistry.constants import RAW_DIRECTORY
 from bioregistry.external.alignment_utils import Aligner, build_getter
 from bioregistry.license_standardizer import standardize_license
@@ -92,6 +92,12 @@ SKIP_URI_FORMATS = {
     "http://arabidopsis.org/servlets/TairObject?accession=$1",
     "http://www.gramene.org/db/ontology/search?id=$1",
 }
+BIO2RDF_DESC = (
+    "Bio2RDF is an open-source project that uses Semantic Web technologies to "
+    "build and provide the largest network of Linked Data for the Life Sciences. Bio2RDF "
+    "defines a set of simple conventions to create RDF(S) compatible Linked Data from a diverse "
+    "set of heterogeneously formatted sources obtained from multiple data providers."
+)
 
 
 def parse_prefixcommons(path: Path) -> dict[str, Record]:
@@ -177,9 +183,22 @@ def _process_row(line: str) -> tuple[str, dict[str, Any]] | tuple[None, None]:
             logger.warning("got multiple RDF formats for %s", prefix)
         rv["uri_format_rdf"] = uri_rdf_formats[0]
 
+    rv["providers"] = [
+        Provider(
+            code="bio2rdf",
+            name="Bio2RDF",
+            homepage="https://bio2rdf.org",
+            uri_format=f"http://bio2rdf.org/{prefix}:$1",
+            description=BIO2RDF_DESC,
+        )
+    ]
     alt_uri_formats_clean = _get_uri_formats(rv, "alternate_uri_formats")
     if alt_uri_formats_clean:
         rv.setdefault("extras", {})["alt_uri_formats"] = alt_uri_formats_clean
+    # TODO properly get this into providers, but will probably require
+    #  a lot of curation
+    #  for uri_format in _get_uri_formats(rv, "alternate_uri_formats"):
+    #      rv['providers'].append(Provider(uri_format=uri_format))
 
     pattern = rv.get("pattern")
     if isinstance(pattern, str):

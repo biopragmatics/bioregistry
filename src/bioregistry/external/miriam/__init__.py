@@ -6,7 +6,7 @@ from operator import itemgetter
 from pathlib import Path
 from typing import Any, ClassVar
 
-from bioregistry.alignment_model import Record, Status, make_record
+from bioregistry.alignment_model import Provider, Record, Status, make_record
 from bioregistry.constants import MIRIAM_NAMESPACE_IN_LUI, RAW_DIRECTORY, URI_FORMAT_KEY
 from bioregistry.external.alignment_utils import Aligner, build_getter
 
@@ -116,9 +116,9 @@ def _process(record: dict[str, Any]) -> Record:
         ):
             continue
         del provider["official"]
-        extras.append(provider)
+        extras.append(Provider.model_validate(provider))
     if extras:
-        rv["extras"]["providers"] = extras
+        rv["providers"] = extras
     return make_record(rv)
 
 
