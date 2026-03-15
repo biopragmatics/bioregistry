@@ -1809,7 +1809,7 @@ class Manager:
         A custom provider is given, which makes the Bioregistry very extensible
 
         >>> manager.get_iri("chebi:24867", provider="chebi-img")
-        'https://www.ebi.ac.uk/chebi/displayImage.do?defaultImage=true&imageIndex=0&chebiId=24867'
+        'https://www.ebi.ac.uk/chebi/backend/api/public/compound/24867/structure/?width=300&height=300'
         """
         if identifier is None:
             reference = self.parse_curie(prefix, on_failure_return_type=FailureReturnType.single)
