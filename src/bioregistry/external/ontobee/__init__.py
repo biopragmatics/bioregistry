@@ -22,8 +22,8 @@ PROCESSED_PATH = DIRECTORY / "processed.json"
 
 URL = "http://www.ontobee.org/"
 LEGEND = {
-    "F": ["obofoundry", "ontology"],  # "Foundry",
-    "L": ["obofoundry", "ontology"],  # "Library",
+    "F": ["obo", "ontology"],  # "Foundry",
+    "L": ["obo", "ontology"],  # "Library",
     "N": ["ontology"],  # "Not Specified/No",
 }
 
