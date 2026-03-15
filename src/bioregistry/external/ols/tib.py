@@ -4,9 +4,10 @@ from collections.abc import Mapping, Sequence
 from pathlib import Path
 from typing import ClassVar
 
+from bioregistry.alignment_model import Record
 from bioregistry.constants import RAW_DIRECTORY
-from bioregistry.external.alignment_utils import Aligner
-from bioregistry.external.ols import OlsRv, get_ols_base
+from bioregistry.external.alignment_utils import Aligner, adapter
+from bioregistry.external.ols import get_ols_base
 
 HERE = Path(__file__).parent.resolve()
 RAW_PATH = RAW_DIRECTORY.joinpath("tib.json")
@@ -38,10 +39,12 @@ SKIP = {
 }
 
 
-def get_tib_ts(*, force_download: bool = False) -> OlsRv:
+@adapter
+def get_tib_ts(*, force_download: bool = False, force_process: bool = False) -> dict[str, Record]:
     """Get the TIB Terminology Service."""
     return get_ols_base(
         force_download=force_download,
+        force_process=force_process,
         base_url=TIB_OLS_BASE_URL,
         processed_path=PROCESSED_PATH,
         raw_path=RAW_PATH,
@@ -56,7 +59,6 @@ class TIBAligner(Aligner):
     key = "tib"
     getter = get_tib_ts
     curation_header: ClassVar[Sequence[str]] = ("name",)
-    include_new = True
 
     def get_skip(self) -> Mapping[str, str]:
         """Get skips."""

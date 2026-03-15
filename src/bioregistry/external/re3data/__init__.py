@@ -3,17 +3,20 @@
 Example API endpoint: https://www.re3data.org/api/v1/repository/r3d100010772
 """
 
-import json
+from __future__ import annotations
+
 import logging
 from collections.abc import Sequence
+from functools import partial
 from pathlib import Path
 from typing import Any, ClassVar
 from xml.etree import ElementTree
 
-import requests
+import pystow
 from tqdm.contrib.concurrent import thread_map
 
-from bioregistry.external.alignment_utils import Aligner, load_processed
+from bioregistry.alignment_model import License, Record, dump_records, load_processed, make_record
+from bioregistry.external.alignment_utils import Aligner, adapter
 from bioregistry.utils import removeprefix
 
 __all__ = [
@@ -25,11 +28,16 @@ logger = logging.getLogger(__name__)
 DIRECTORY = Path(__file__).parent.resolve()
 PROCESSED_PATH = DIRECTORY / "processed.json"
 
+MODULE = pystow.module("re3data")
+RAW_PATH = MODULE.join(name="manifest.xml")
+
 BASE_URL = "https://www.re3data.org"
 SCHEMA = "{http://www.re3data.org/schema/2-2}"
+MANIFEST_URL = f"{BASE_URL}/api/v1/repositories"
 
 
-def get_re3data(force_download: bool = False) -> dict[str, dict[str, Any]]:
+@adapter
+def get_re3data(force_download: bool = False, force_process: bool = False) -> dict[str, Record]:
     """Get the re3data registry.
 
     This takes about 9 minutes since it has to look up each of the ~3K records with
@@ -39,11 +47,10 @@ def get_re3data(force_download: bool = False) -> dict[str, dict[str, Any]]:
 
     :returns: The re3data pre-processed data
     """
-    if PROCESSED_PATH.exists() and not force_download:
+    if PROCESSED_PATH.is_file() and not force_download and not force_process:
         return load_processed(PROCESSED_PATH)
 
-    res = requests.get(f"{BASE_URL}/api/v1/repositories", timeout=15)
-    tree = ElementTree.fromstring(res.text)
+    tree = MODULE.ensure_xml(url=MANIFEST_URL, force=force_download, name="manifest.xml")
 
     identifier_to_doi = {}
     for repository in tree.findall("repository"):
@@ -59,9 +66,9 @@ def get_re3data(force_download: bool = False) -> dict[str, dict[str, Any]]:
         )
         identifier_to_doi[identifier_element.text.strip()] = doi
 
-    records = dict(
+    records: dict[str, Record] = dict(
         thread_map(
-            _get_record,
+            partial(_get_record, force=force_download),
             identifier_to_doi,
             unit_scale=True,
             unit="record",
@@ -74,32 +81,33 @@ def get_re3data(force_download: bool = False) -> dict[str, dict[str, Any]]:
     for identifier, record in records.items():
         doi = identifier_to_doi.get(identifier)
         if doi:
-            record["doi"] = doi
+            if record.xrefs is None:
+                record.xrefs = {}
+            record.xrefs["doi"] = doi
 
-    with PROCESSED_PATH.open("w") as file:
-        json.dump(records, file, indent=2, sort_keys=True, ensure_ascii=False)
-
+    dump_records(records, PROCESSED_PATH)
     return records
 
 
-def _get_record(identifier: str) -> tuple[str, dict[str, Any]]:
-    res = requests.get(f"{BASE_URL}/api/v1/repository/{identifier}", timeout=15)
-    tree = ElementTree.fromstring(res.text)[0]
-    return identifier, _process_record(identifier, tree)
+def _get_record(identifier: str, force: bool) -> tuple[str, Record]:
+    url = f"{BASE_URL}/api/v1/repository/{identifier}"
+    tree = MODULE.ensure_xml("records", url=url, force=force, name=f"{identifier}.xml")
+    root = tree.getroot()
+    return identifier, _process_record(identifier, root[0])
 
 
-def _process_record(identifier: str, tree_inner: ElementTree.Element) -> dict[str, Any]:
+def _process_record(identifier: str, tree_inner: ElementTree.Element) -> Record:
     xrefs = (
         _clean_xref(element.text.strip())
         for element in tree_inner.findall(f"{SCHEMA}repositoryIdentifier")
         if element.text is not None
     )
-    data = {
+    data: dict[str, Any] = {
         "prefix": identifier,
         "name": tree_inner.findtext(f"{SCHEMA}repositoryName"),
         "description": tree_inner.findtext(f"{SCHEMA}description"),
         "homepage": tree_inner.findtext(f"{SCHEMA}repositoryURL"),
-        "synonyms": [
+        "prefix_synonyms": [
             element.text.strip()
             for element in tree_inner.findall(f"{SCHEMA}additionalName")
             if element.text is not None
@@ -109,28 +117,30 @@ def _process_record(identifier: str, tree_inner: ElementTree.Element) -> dict[st
 
     license_element = tree_inner.find(f"{SCHEMA}databaseLicense/{SCHEMA}databaseLicenseName")
     if license_element is not None:
-        data["license"] = license_element.text
+        data["license"] = License(name=license_element.text)
 
-    return {k: v.strip() if isinstance(v, str) else v for k, v in data.items() if v}
+    return make_record(data)
 
 
 def _clean_xref(xref: str) -> tuple[str, str] | None:
-    if (
-        xref.startswith("FAIRsharing_DOI:10.25504/")
-        or xref.startswith("FAIRsharing_doi:10.25504/")
-        or xref.startswith("FAIRsharing_dOI:10.25504/")
-        or xref.startswith("FAIRSharing_doi:10.25504/")
-        or xref.startswith("FAIRsharing_doi;10.25504/")
-        or xref.startswith("FAIRsharing_doi: 10.25504/")
-        or xref.startswith("fairsharing_DOI:10.25504/")
-        or xref.startswith("fairsharing_doi:10.25504/")
-        or xref.startswith("FAIRsharin_doi:10.25504/")
-        or xref.startswith("FAIRsharing_doi.:10.25504/")
-        or xref.startswith("FAIRsharing_DOI: 10.25504/")
-        or xref.startswith("FAIRsharing_doi::10.25504/")
-        or xref.startswith("FAIRsharing_doi:10.24404/")
-    ):
-        return "fairsharing", xref[len("FAIRsharing_DOI:10.25504/") :]
+    for pp in [
+        "FAIRsharing_DOI:10.25504/",
+        "FAIRsharing_doi:10.25504/",
+        "FAIRsharing_dOI:10.25504/",
+        "FAIRsharing_doi:10.25504/",
+        "FAIRSharing_doi:10.25504/",
+        "FAIRsharing_doi;10.25504/",
+        "FAIRsharing_doi: 10.25504/",
+        "fairsharing_doi:10.25504/",
+        "fairsharing_DOI:10.25504/",
+        "FAIRsharin_doi:10.25504/",
+        "FAIRsharing_doi.:10.25504/",
+        "FAIRsharing_DOI: 10.25504/",
+        "FAIRsharing_doi::10.25504/",
+        "FAIRsharing_doi:10.24404/",
+    ]:
+        if xref.startswith(pp):
+            return "fairsharing", xref.removeprefix(pp)
 
     for start, key in [
         ("biodbcore-", "biodbcore"),
@@ -188,7 +198,7 @@ def _clean_xref(xref: str) -> tuple[str, str] | None:
 
 
 class Re3dataAligner(Aligner):
-    """Aligner for the Registry of Research Data Repositoris (r3data)."""
+    """Aligner for the Registry of Research Data Repositories (re3data)."""
 
     key = "re3data"
     alt_key_match = "name"

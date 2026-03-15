@@ -6,7 +6,7 @@ import json
 import logging
 import re
 import unittest
-from collections import defaultdict
+from collections import Counter, defaultdict
 from collections.abc import Mapping
 from textwrap import dedent
 from typing import Any
@@ -248,6 +248,11 @@ class TestRegistry(unittest.TestCase):
                 continue
             with self.subTest(prefix=prefix):
                 self.fail(msg=f"malformed homepage: {homepage}")
+
+    def test_contact_name(self) -> None:
+        """Test getting contact name."""
+        chebi = manager.get_resource("chebi", strict=True)
+        self.assertEqual("Adnan Malik", chebi.get_contact_name())
 
     def test_email(self) -> None:
         """Test that the email getter returns valid email addresses."""
@@ -1284,6 +1289,18 @@ class TestRegistry(unittest.TestCase):
         status_contributions = read_status_contributions(self.registry)
         self.assertIn("0009-0006-4842-7427", status_contributions)
 
+    def test_download_obo(self) -> None:
+        """Test getting OBO download link."""
+        bfo = manager.get_resource("bfo", strict=True)
+        self.assertIsNotNone(bfo.obofoundry)
+        self.assertIn("artifacts", bfo.obofoundry or {})
+        self.assertEqual("http://purl.obolibrary.org/obo/bfo.obo", bfo.get_download_obo())
+
+    def test_download_obograph(self) -> None:
+        """Test getting OBO Graph JSON download link."""
+        vbo = manager.get_resource("vbo", strict=True)
+        self.assertEqual("http://purl.obolibrary.org/obo/vbo.json", vbo.get_download_obograph())
+
     def test_download_owl(self) -> None:
         """Test download OWL."""
         self.assertEqual(
@@ -1300,6 +1317,16 @@ class TestRegistry(unittest.TestCase):
                 bioregistry.get_resource("adw", strict=True)
             ).get_download_owl(),
         )
+        self.assertEqual(
+            "http://purl.obolibrary.org/obo/mod.owl",
+            manager.get_resource("mod", strict=True).get_download_owl(),
+        )
+
+    def test_upgraded(self) -> None:
+        """Test external records are conformant."""
+        for metaprefix, _, func in sorted(GETTERS):
+            with self.subTest(metaprefix=metaprefix):
+                self.assertTrue(getattr(func, "__new_style_bioregistry", None))
 
     def test_external_records(self) -> None:
         """Test external records are conformant."""
@@ -1340,11 +1367,11 @@ class TestRegistry(unittest.TestCase):
             mappings = record.get("mappings")
             if not mappings:
                 continue
-            for metaprefix in mappings:
+            for metaprefix, metavalue in mappings.items():
                 if metaprefix == "wikidata.entity":
                     continue
-                with self.subTest(prefix=prefix, registry=metaprefix):
-                    self.assertIn(metaprefix, record)
+                with self.subTest(prefix=prefix, registry=metaprefix, ext=metavalue):
+                    self.assertIn(metaprefix, record, msg=f"\n\ngot value {metavalue}")
 
     def test_negative_mappings(self) -> None:
         """Test that explicitly curated negative mappings are not apparent in the main JSON file."""
@@ -1368,3 +1395,24 @@ class TestRegistry(unittest.TestCase):
         """Test depends on."""
         self.assertIn("bfo", manager.get_depends_on("chebi") or [])
         self.assertIn("rdf", {r.prefix for r in manager.get_indirect_dependencies(["chebi"])})
+
+    @unittest.skip(reason="sometimes run locally, but this is pretty pedantic")
+    def test_no_double_mappings(self) -> None:
+        """Test no double mappings."""
+        counter: Counter[tuple[str, str]] = Counter()
+        for resource in self.registry.values():
+            for k, v in (resource.mappings or {}).items():
+                if k in {"wikidata.entity", "fairsharing", "re3data", "integbio"}:
+                    continue  # metaprefixes for database databases can have multiple mappings
+                counter[k, v] += 1
+
+        failures = [(*k, v) for k, v in counter.items() if v > 1]
+        if failures:
+            from tabulate import tabulate
+
+            self.fail(
+                "\n\n"
+                + tabulate(
+                    failures, headers=["metaprefix", "metaidentifier", "count"], tablefmt="github"
+                )
+            )

@@ -156,6 +156,8 @@ MIRIAM_BLACKLIST = {
 }
 IDENTIFIERS_ORG_URL_PREFIX = "https://identifiers.org/"
 
+MIRIAM_NAMESPACE_IN_LUI = "namespaceEmbeddedInLui"
+
 #: The priority list
 LINK_PRIORITY = [
     "custom",

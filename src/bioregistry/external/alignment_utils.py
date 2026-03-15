@@ -63,14 +63,20 @@ class Aligner:
 
     subkey: ClassVar[str] = "prefix"
 
-    def __init__(self, force_download: bool | None = None) -> None:
+    def __init__(
+        self,
+        *,
+        force_download: bool | None = None,
+        force_process: bool | None = None,
+        manager: Manager | None = None,
+    ) -> None:
         """Instantiate the aligner."""
         if not hasattr(self.__class__, "key"):
             raise TypeError
         if not hasattr(self.__class__, "curation_header"):
             raise TypeError
 
-        self.manager = Manager()
+        self.manager = Manager() if manager is None else manager
 
         if self.key not in self.manager.metaregistry:
             raise TypeError(f"invalid metaprefix for aligner: {self.key}")
@@ -79,6 +85,8 @@ class Aligner:
         kwargs.setdefault("force_download", True)
         if force_download is not None:
             kwargs["force_download"] = force_download
+        if force_process is not None:
+            kwargs["force_process"] = force_process
         self.external_registry = self.__class__.getter(**kwargs)
         self.skip_external = self.get_skip()
 
@@ -115,8 +123,20 @@ class Aligner:
                 bioregistry_id = self.manager.normalize_prefix(external_id)
             else:
                 alt_match = external_entry.get(self.alt_key_match)
-                if alt_match:
+                if alt_match is None:
+                    pass
+                elif isinstance(alt_match, str):
                     bioregistry_id = self.manager.normalize_prefix(alt_match)
+                elif isinstance(alt_match, list):
+                    bioregistry_id = None
+                    for mm in alt_match:
+                        bioregistry_id = self.manager.normalize_prefix(mm)
+                        if bioregistry_id is not None:
+                            break
+                else:
+                    raise TypeError(
+                        f"alt_match {self.alt_key_match} has unsupported type {type(alt_match)}"
+                    )
 
             if bioregistry_id is None and self.alt_keys_match:
                 for alt_match in external_entry.get(self.alt_keys_match, []):
@@ -161,23 +181,9 @@ class Aligner:
             self.internal_registry[bioregistry_id].mappings = {}
         self.internal_registry[bioregistry_id].mappings[self.key] = external_id  # type:ignore
 
-        _entry = self.prepare_external(external_id, external_entry)
-        _entry[self.subkey] = external_id
-        self.internal_registry[bioregistry_id][self.key] = _entry
+        external_entry[self.subkey] = external_id
+        self.internal_registry[bioregistry_id][self.key] = external_entry
         self.external_id_to_bioregistry_id[external_id] = bioregistry_id
-
-    def prepare_external(self, external_id: str, external_entry: dict[str, Any]) -> dict[str, Any]:
-        """Prepare a dictionary to be added to the bioregistry for each external registry entry.
-
-        The default implementation returns `external_entry` unchanged. If you need more
-        than that, override this method.
-
-        :param external_id: The external registry identifier
-        :param external_entry: The external registry data
-
-        :returns: The dictionary to be added to the bioregistry for the aligned entry
-        """
-        return external_entry
 
     def write_registry(self) -> None:
         """Write the internal registry."""
@@ -189,6 +195,7 @@ class Aligner:
         dry: bool = False,
         show: bool = False,
         force_download: bool | None = None,
+        force_process: bool | None = None,
     ) -> None:
         """Align and output the curation sheet.
 
@@ -196,7 +203,7 @@ class Aligner:
         :param show: If true, print a curation table
         :param force_download: Force re-download of the data
         """
-        instance = cls(force_download=force_download)
+        instance = cls(force_download=force_download, force_process=force_process)
         if not dry:
             instance.write_registry()
         if show:
@@ -335,7 +342,7 @@ def build_getter(
     *,
     processed_path: Path,
     raw_path: Path,
-    url: str,
+    url: str | Callable[[], str],
     func: Callable[[Path], dict[str, Record]],
     cleanup: Callable[[Path], None] | None = None,
 ) -> Getter:
@@ -346,7 +353,11 @@ def build_getter(
         """Get the registry."""
         if processed_path.exists() and not force_download and not force_process:
             return load_records(processed_path)
-        download(url=url, path=raw_path, force=force_download)
+        download(
+            url=url if isinstance(url, str) else url(),
+            path=raw_path,
+            force=force_download,
+        )
         if cleanup is not None:
             cleanup(raw_path)
         rv = func(raw_path)

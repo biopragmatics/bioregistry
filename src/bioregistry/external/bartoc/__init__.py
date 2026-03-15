@@ -1,58 +1,51 @@
 """Download the BARTOC registry."""
 
 import json
+import logging
 from collections.abc import Sequence
 from pathlib import Path
 from typing import Any, ClassVar
 
-import requests
-from tqdm import tqdm
-
-from bioregistry.constants import URI_FORMAT_KEY
-from bioregistry.external.alignment_utils import Aligner, load_processed
+from bioregistry.constants import RAW_DIRECTORY, URI_FORMAT_KEY
 from bioregistry.license_standardizer import standardize_license
+
+from ..alignment_utils import Aligner, build_getter
+from ...alignment_model import License, Record, make_record
 
 __all__ = [
     "BartocAligner",
     "get_bartoc",
 ]
 
+logger = logging.getLogger(__name__)
+
 HERE = Path(__file__).parent.resolve()
+RAW_PATH = RAW_DIRECTORY.joinpath("bartoc.jsonl")
 PROCESSED_PATH = HERE / "processed.json"
 URL = "https://bartoc.org/data/dumps/latest.ndjson"
 
 
-def get_bartoc(*, force_download: bool = True) -> dict[str, dict[str, Any]]:
-    """Get the BARTOC registry.
-
-    :param force_download: If true, forces download. If false and the file is already
-        cached, reuses it.
-
-    :returns: The BARTOC registry
-
-    .. seealso::
-
-        https://bartoc.org/
-    """
-    if PROCESSED_PATH.is_file() and not force_download:
-        return load_processed(PROCESSED_PATH)
+def process_bartoc(path: Path) -> dict[str, Record]:
+    """Process BARTOC."""
     rv = {}
-    for line in requests.get(URL, timeout=15).iter_lines():
-        record = json.loads(line)
-        record = _process_bartoc_record(record)
-        rv[record["prefix"]] = record
-
-    PROCESSED_PATH.write_text(json.dumps(rv, indent=2, ensure_ascii=False, sort_keys=True))
+    with path.open() as file:
+        for line in file:
+            data = json.loads(line)
+            prefix = data["uri"][len("http://bartoc.org/en/node/") :]
+            rv[prefix] = _process_bartoc_record(prefix, data)
     return rv
+
+
+get_bartoc = build_getter(
+    processed_path=PROCESSED_PATH, raw_path=RAW_PATH, url=URL, func=process_bartoc
+)
 
 
 URI_FORMAT_SKIPS: dict[str, str] = {}
 
 
-def _process_bartoc_record(record: dict[str, Any]) -> dict[str, Any]:
-    prefix = record["uri"][len("http://bartoc.org/en/node/") :]
+def _process_bartoc_record(prefix: str, record: dict[str, Any]) -> Record:
     rv = {
-        "prefix": prefix,
         "description": record.get("definition", {}).get("en", [""])[0].strip('"').strip(),
         "homepage": record.get("url", "").strip(),
         "name": record.get("prefLabel", {}).get("en", "").strip(),
@@ -61,23 +54,24 @@ def _process_bartoc_record(record: dict[str, Any]) -> dict[str, Any]:
     if pattern:
         rv["pattern"] = "^" + pattern.strip().lstrip("^").rstrip("$") + "$"
 
+    # FIXME what about external mappings?
     for identifier in record.get("identifier", []):
         if identifier.startswith("http://www.wikidata.org/entity/"):
-            rv["wikidata_database"] = identifier[len("http://www.wikidata.org/entity/") :]
+            rv.setdefault("xrefs", {})["wikidata"] = identifier[
+                len("http://www.wikidata.org/entity/") :
+            ]
 
-    abbreviations = record.get("notation")
-    if abbreviations:
-        if len(abbreviations) > 1:
-            tqdm.write(f"[bartoc:{prefix}] got multiple abbr.: {abbreviations}")
-        abbreviation = abbreviations[0].strip()
-        if " " in abbreviation:
-            tqdm.write(f"[bartoc:{prefix}] space in abbr.: {abbreviation}")
-        rv["abbreviation"] = abbreviation
+    for short_name in record.get("notation", []):
+        short_name = short_name.strip()
+        if " " in short_name:
+            logger.debug(f"[bartoc:{prefix}] space in abbr.: {short_name}")
+        rv.setdefault("short_names", []).append(short_name)
 
     for license_dict in record.get("license", []):
-        license_key = standardize_license(license_dict["uri"].strip())
+        license_url = license_dict["uri"].strip()
+        license_key = standardize_license(license_url)
         if license_key:
-            rv["license"] = license_key
+            rv["license"] = License(url=license_url, spdx=license_key)
 
     if prefix in URI_FORMAT_SKIPS:
         pass
@@ -85,7 +79,7 @@ def _process_bartoc_record(record: dict[str, Any]) -> dict[str, Any]:
         rv[URI_FORMAT_KEY] = uri_prefix.strip() + "$1"
     elif uri_pattern := record.get("uriPattern"):
         if "(" not in uri_pattern and ")" not in uri_pattern:
-            tqdm.write(f"bad URI pattern: {uri_pattern}, assuming is URI prefix")
+            logger.debug(f"bad URI pattern: {uri_pattern}, assuming is URI prefix")
             rv[URI_FORMAT_KEY] = uri_pattern.strip() + "$1"
         else:
             left_pos = uri_pattern.find("(")
@@ -93,9 +87,9 @@ def _process_bartoc_record(record: dict[str, Any]) -> dict[str, Any]:
             rv[URI_FORMAT_KEY] = uri_pattern[:left_pos] + "$1" + uri_pattern[1 + right_pos :]
 
     if examples := record.pop("EXAMPLES", []):
-        rv["example"] = examples[0].strip()
+        rv["examples"] = [example.strip() for example in examples]
 
-    return {k: v for k, v in rv.items() if k and v}
+    return make_record(rv)
 
 
 class BartocAligner(Aligner):
@@ -103,7 +97,7 @@ class BartocAligner(Aligner):
 
     key = "bartoc"
     getter = get_bartoc
-    alt_key_match = "abbreviation"
+    alt_key_match = "abbreviation"  # or short_name
     curation_header: ClassVar[Sequence[str]] = ["name", "homepage", "description"]
 
 

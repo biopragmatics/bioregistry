@@ -6,21 +6,21 @@
 """
 
 import csv
+from collections.abc import Sequence
 from pathlib import Path
+from typing import Any, ClassVar
+
+from bioregistry.alignment_model import Record, Status, dump_records, load_processed, make_record
+from bioregistry.external.alignment_utils import Aligner, adapter
 
 __all__ = [
     "HL7Aligner",
     "get_hl7",
 ]
 
-from collections.abc import Sequence
-from typing import ClassVar
-
-from bioregistry.external.alignment_utils import Aligner
-
 HERE = Path(__file__).parent.resolve()
-DATA = HERE.joinpath("OID_Report.csv")
-
+RAW_PATH = HERE.joinpath("OID_Report.csv")
+PROCESSED_PATH = HERE.joinpath("processed.json")
 COLUMNS = {
     "Comp_OID": "prefix",
     "Symbolic_name": "preferred_prefix",
@@ -32,16 +32,39 @@ COLUMNS = {
 }
 
 
-def get_hl7(*, force_download: bool = False) -> dict[str, dict[str, str]]:
+@adapter
+def get_hl7(*, force_download: bool = False, force_process: bool = False) -> dict[str, Record]:
     """Get HL7 OIDs."""
+    if PROCESSED_PATH.exists() and not force_download and not force_process:
+        return load_processed(PROCESSED_PATH)
+    rv = process_hl7(RAW_PATH)
+    dump_records(rv, PROCESSED_PATH)
+    return rv
+
+
+def process_hl7(path: Path) -> dict[str, Record]:
+    """Process HL7."""
     rv = {}
-    with DATA.open() as file:
+    with path.open() as file:
         reader = csv.reader(file)
         header = next(reader)
         for row in reader:
             row_dict = dict(zip(header, row, strict=False))
-            record = {COLUMNS[k]: v for k, v in row_dict.items() if k in COLUMNS and v}
-            rv[record.pop("prefix")] = record
+            record: dict[str, Any] = {
+                COLUMNS[k]: v for k, v in row_dict.items() if k in COLUMNS and v
+            }
+            match record.pop("status"):
+                case "Complete" | "Pending" | "Edited":
+                    record["status"] = Status.active
+                case "Retired" | "retired":
+                    record["status"] = Status.inactive
+                case "Deprecated" | "Obsolete":
+                    record["status"] = Status.deprecated
+                case "Rejected":
+                    pass  # what to do?
+            if organization := record.pop("organization", None):
+                record.setdefault("extras", {})["organization"] = organization
+            rv[record.pop("prefix")] = make_record(record)
     return rv
 
 
@@ -60,10 +83,9 @@ class HL7Aligner(Aligner):
     # called but only passed by reference.
     getter = get_hl7
 
-    # This lists all of the keys inside each record to be displayed in the curation
+    # This lists all keys inside each record to be displayed in the curation
     # sheet. Below, the
     curation_header: ClassVar[Sequence[str]] = (
-        "status",
         "preferred_prefix",
         "name",
         "homepage",
