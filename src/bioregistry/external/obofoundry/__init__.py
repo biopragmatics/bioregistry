@@ -149,7 +149,7 @@ def _process(record: dict[str, Any]) -> Record:
         "description": record.get("description"),
         "status": status,
         "homepage": record.get("homepage"),
-        "preferred_prefix": record["preferredPrefix"],
+        "preferred_prefix": record.get("preferredPrefix") or prefix.upper(),
         "contact": contact,
         "license": _get_license(record),
         "repository": record.get("repository"),
