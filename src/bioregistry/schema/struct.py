@@ -36,6 +36,7 @@ from bioregistry.constants import (
     BIOREGISTRY_REMOTE_URL,
     DOCS,
     EMAIL_RE,
+    MIRIAM_NAMESPACE_IN_LUI,
     ORCID_PATTERN,
     PATTERN_KEY,
     URI_FORMAT_KEY,
@@ -254,6 +255,10 @@ class Attributable(BaseModel):
         ),
     )
 
+    def get_score(self) -> int:
+        """Get a score."""
+        return sum((3 * (self.orcid is not None), self.email is not None, self.github is not None))
+
     def add_triples(self, graph: rdflib.Graph) -> rdflib.term.Node:
         """Add triples to an RDF graph for this author.
 
@@ -423,6 +428,32 @@ class AnnotatedURL(BaseModel):
 
     url: str
     rdf_format: RDFFormat = Field(default="ttl", title="RDF Format")
+
+
+DEFAULT_METAPREFIX_PRIORITY = [
+    "obofoundry",
+    "ols",
+    "wikidata",
+    "go",
+    "ncbi",
+    "bioportal",
+    "agroportal",
+    "ecoportal",
+    "miriam",
+    "n2t",
+    "cellosaurus",
+    "cropoct",
+    "cheminf",
+    "edam",
+    "prefixcommons",
+    "rrid",
+    "bartoc",
+    "lov",
+    "tib",
+    "integbio",
+    "aberowl",
+    "re3data",
+]
 
 
 class Resource(BaseModel):
@@ -839,8 +870,8 @@ class Resource(BaseModel):
         """
         if metaprefix == "obofoundry" and use_obo_preferred:
             obofoundry_dict = self.obofoundry or {}
-            if "preferredPrefix" in obofoundry_dict:
-                return cast(str, obofoundry_dict["preferredPrefix"])
+            if "preferred_prefix" in obofoundry_dict:
+                return cast(str, obofoundry_dict["preferred_prefix"])
             if "prefix" in obofoundry_dict:
                 return cast(str, obofoundry_dict["prefix"]).upper()
             return None
@@ -889,10 +920,7 @@ class Resource(BaseModel):
         if isinstance(metaprefixes, str):
             metaprefixes = [metaprefixes]
         for metaprefix in metaprefixes:
-            external = self.get_external(metaprefix)
-            if external is None:
-                raise TypeError
-            rv = external.get(key)
+            rv = self.get_external(metaprefix).get(key)
             if rv is not None:
                 if isinstance(rv, str):
                     rv = rv.replace("\r\n", "\n")
@@ -1108,7 +1136,7 @@ class Resource(BaseModel):
         # if explicitly annotated, use it. Otherwise, the capitalized version
         # of the OBO Foundry ID is the preferred prefix (e.g., for GO)
         return cast(
-            str, self.obofoundry.get("preferredPrefix") or self.obofoundry["prefix"].upper()
+            str, self.obofoundry.get("preferred_prefix") or self.obofoundry["prefix"].upper()
         )
 
     def get_wikidata_entity(self) -> str | None:
@@ -1137,30 +1165,9 @@ class Resource(BaseModel):
 
     def get_name(self, *, provenance: bool = False) -> None | str | MetaprefixAnnotatedValue[str]:
         """Get the name for the given prefix, if it's available."""
-        metaprefixes: Sequence[str] = [
-            "obofoundry",
-            "ols",
-            "wikidata",
-            "go",
-            "ncbi",
-            "bioportal",
-            "agroportal",
-            "ecoportal",
-            "miriam",
-            "n2t",
-            "cellosaurus",
-            "cropoct",
-            "cheminf",
-            "edam",
-            "prefixcommons",
-            "rrid",
-            "bartoc",
-            "lov",
-            "tib",
-        ]
         if provenance:
-            return self._get_prefix_key_str("name", metaprefixes, provenance=True)
-        return self._get_prefix_key_str("name", metaprefixes, provenance=False)
+            return self._get_prefix_key_str("name", DEFAULT_METAPREFIX_PRIORITY, provenance=True)
+        return self._get_prefix_key_str("name", DEFAULT_METAPREFIX_PRIORITY, provenance=False)
 
     def get_description(self, use_markdown: bool = False) -> str | None:
         """Get the description for the given prefix, if available."""
@@ -1188,12 +1195,12 @@ class Resource(BaseModel):
             "lov",
             "re3data",
             "tib",
+            "integbio",
+            "cellosaurus",
         )
         rv = self._get_prefix_key_str("description", metaprefixes, provenance=False)
         if rv is not None:
             return rv
-        if self.cellosaurus and "category" in self.cellosaurus:
-            return cast(str, self.cellosaurus["category"])
         return None
 
     def get_pattern(self) -> str | None:
@@ -1318,37 +1325,16 @@ class Resource(BaseModel):
         """Check if the namespace should appear in the LUI."""
         if self.namespace_in_lui is not None:
             return self.namespace_in_lui
-        if provenance:
-            return self._get_prefix_key_bool("namespaceEmbeddedInLui", "miriam", provenance=True)
-        return self._get_prefix_key_bool("namespaceEmbeddedInLui", "miriam", provenance=False)
+        if miriam := self.get_external("miriam"):
+            rv = miriam["extras"][MIRIAM_NAMESPACE_IN_LUI]
+            if provenance:
+                return MetaprefixAnnotatedValue[bool](value=rv, metaprefix="miriam")
+            return rv
+        return False
 
     def get_homepage(self) -> str | None:
         """Return the homepage, if available."""
-        metaprefixes: Sequence[str] = [
-            "obofoundry",
-            "ols",
-            "miriam",
-            "n2t",
-            "wikidata",
-            "go",
-            "ncbi",
-            "cellosaurus",
-            "prefixcommons",
-            "fairsharing",
-            "cropoct",
-            "bioportal",
-            "agroportal",
-            "ecoportal",
-            "rrid",
-            "bartoc",
-            "lov",
-            "re3data",
-            "tib",
-        ]
-        return self._get_prefix_key_str(
-            "homepage",
-            metaprefixes,
-        )
+        return self._get_prefix_key_str("homepage", DEFAULT_METAPREFIX_PRIORITY)
 
     def get_domain(self) -> str | None:
         """Get the domain."""
@@ -1362,22 +1348,11 @@ class Resource(BaseModel):
         keywords = []
         if self.keywords:
             keywords.extend(self.keywords)
-        if self.prefixcommons:
-            keywords.extend(self.prefixcommons.get("keywords", []))
-        if self.rrid:
-            keywords.extend(self.rrid.get("keywords", []))
-        if self.fairsharing:
-            keywords.extend(self.fairsharing.get("subjects", []))
-            keywords.extend(self.fairsharing.get("user_defined_tags", []))
-            keywords.extend(self.fairsharing.get("domains", []))
-        if self.obofoundry:
-            keywords.append("obo")
-            keywords.append("ontology")
+        for metaprefix in self.mappings or []:
+            if kk := self.get_external(metaprefix).get("keywords"):
+                keywords.extend(kk)
         if self.get_download_obo() or self.get_download_owl() or self.bioportal:
             keywords.append("ontology")
-        for data in [self.ols, self.tib, self.lov]:
-            if data:
-                keywords.extend(data.get("keywords", []))
         return sorted(
             {
                 keyword.lower().replace("’", "'")  # noqa:RUF001
@@ -1402,15 +1377,17 @@ class Resource(BaseModel):
         >>> get_resource("frapo").get_contact().email
         'silvio.peroni@unibo.it'
         """
-        name = self.get_contact_name()
-        if name is None:
-            return None
-        return Attributable(
-            name=name,
-            email=self.get_contact_email(),
-            orcid=self.get_contact_orcid(),
-            github=self.get_contact_github(),
-        )
+        if self.contact is not None:
+            return self.contact
+
+        contacts = []
+        for metaprefix in self.mappings or []:
+            if contact := self.get_external(metaprefix).get("contact"):
+                if contact.get("name"):
+                    contacts.append(Attributable.model_validate(contact))
+        if contacts:
+            return max(contacts, key=lambda c: c.get_score())
+        return None
 
     def get_contact_email(self) -> str | None:
         """Return the contact email, if available.
@@ -1522,19 +1499,11 @@ class Resource(BaseModel):
 
     def get_example(self, *, strict: bool = False) -> str | None:
         """Get an example identifier, if it's available."""
-        example = self.example
-        if example is not None:
-            return example
-        miriam_example = self.get_external("miriam").get("sampleId")
-        if miriam_example is not None:
-            return cast(str, miriam_example)
-        for metaprefix in ["ncbi", "n2t", "prefixcommons"]:
-            example = self.get_external(metaprefix).get("example")
-            if example is not None:
-                return cast(str, example)
-        wikidata_examples = self.get_external("wikidata").get("example", [])
-        if wikidata_examples:
-            return cast(str, wikidata_examples[0])
+        if self.example is not None:
+            return self.example
+        for metaprefix in ["miriam", "ncbi", "n2t", "prefixcommons", "wikidata"]:
+            if examples := self.get_external(metaprefix).get("examples", []):
+                return cast(str, examples[0])
         if strict:
             raise ValueError
         return None
@@ -1592,70 +1561,20 @@ class Resource(BaseModel):
         if self.deprecated is not None:
             return self.deprecated
         for key in ("obofoundry", "ols", "miriam"):
-            external = self.get_external(key)
-            if external.get("deprecated"):
+            if self.get_external(key).get("status") in {"deprecated", "inactive"}:
                 return True
         return False
 
     def get_publications(self) -> list[Publication]:
         """Get a list of publications."""
         publications = self.publications or []
-        if self.obofoundry:
-            for publication in self.obofoundry.get("publications", []):
-                url, title = publication["id"], publication["title"].rstrip(".")
-                if url.startswith("https://www.ncbi.nlm.nih.gov/pubmed/"):
-                    pubmed = url[len("https://www.ncbi.nlm.nih.gov/pubmed/") :]
-                    publications.append(
-                        Publication(pubmed=pubmed, title=title, doi=None, pmc=None, year=None)
-                    )
-                elif url.startswith("https://doi.org/"):
-                    doi = url[len("https://doi.org/") :]
-                    publications.append(
-                        Publication(doi=doi.lower(), title=title, pubmed=None, pmc=None, year=None)
-                    )
-                elif url.startswith("https://www.medrxiv.org/content/"):
-                    doi = url[len("https://www.medrxiv.org/content/") :]
-                    publications.append(
-                        Publication(doi=doi.lower(), title=title, pubmed=None, pmc=None, year=None)
-                    )
-                elif url.startswith("https://zenodo.org/record/"):
-                    continue
-                elif "ceur-ws.org" in url:
-                    continue
-                else:
-                    logger.warning("unhandled obo foundry publication ID: %s", url)
-        if self.fairsharing:
-            for publication in self.fairsharing.get("publications", []):
-                pubmed = publication.get("pubmed")
-                doi = publication.get("doi")
-                title = publication.get("title")
-                year = publication.get("year")
-                if pubmed or doi:
-                    publications.append(
-                        Publication(
-                            pubmed=pubmed,
-                            doi=doi,
-                            title=title,
-                            pmc=None,
-                            year=year,
-                        )
-                    )
-        if self.prefixcommons:
-            for pubmed in self.prefixcommons.get("pubmed_ids", []):
-                publications.append(
-                    Publication(pubmed=pubmed, doi=None, pmc=None, title=None, year=None)
-                )
-        if self.rrid:
-            for pubmed in self.rrid.get("pubmeds", []):
-                publications.append(
-                    Publication(pubmed=pubmed, doi=None, pmc=None, title=None, year=None)
-                )
-        if self.uniprot:
-            for publication in self.uniprot.get("publications", []):
+        # TODO can look through agroportal, ecoportal, and bioportal for publications too,
+        #  also extend this to _all_ metaprefixes
+        for metaprefix in ("obofoundry", "fairsharing", "prefixcommons", "rrid", "uniprot"):
+            for publication in self.get_external(metaprefix).get("publications", []):
                 publications.append(Publication.model_validate(publication))
         for provider in self.providers or []:
             publications.extend(provider.publications or [])
-        # can look through agroportal, ecoportal, and bioportal for publications too
         return deduplicate_publications(publications)
 
     def get_mastodon(self) -> str | None:
@@ -2574,9 +2493,17 @@ class Resource(BaseModel):
         if self.license:
             return self.license
         for metaprefix in ("obofoundry", "ols", "bioportal"):
-            license_value = standardize_license(self.get_external(metaprefix).get("license"))
-            if license_value is not None:
-                return license_value
+            match self.get_external(metaprefix).get("license"):
+                case str() as license_str:
+                    if license_value := standardize_license(license_str):
+                        return license_value
+                case dict() as license_dict:
+                    if "spdx" in license_dict:
+                        return cast(str, license_dict["spdx"])
+                    if "name" in license_dict and (
+                        license_value := standardize_license(license_dict["name"])
+                    ):
+                        return license_value
         return None
 
     def get_license_url(self) -> str | None:

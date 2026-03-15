@@ -43,7 +43,7 @@ class Status(str, enum.Enum):
 class Publication(BaseModel):
     """Represents a publication."""
 
-    name: str | None = None
+    title: str | None = None
     year: int | None = None
     url: str | None = None
 
@@ -64,6 +64,7 @@ class ArtifactType(str, enum.Enum):
     obograph_json = "obograph_json"
     rdf = "rdf"
     owl = "owl"
+    xml = "xml"
 
 
 class Artifact(BaseModel):
@@ -84,6 +85,7 @@ class Record(BaseModel):
     status: Status | None = None
     homepage: str | None = None
     repository: str | None = None
+    tracker: str | None = None
     license: License | None = None
     contact: Person | None = None
     domain: str | None = None
@@ -104,12 +106,15 @@ class Record(BaseModel):
     keywords: list[str] | None = None
     modified: datetime.datetime | None = Field(None, description="Date last modified")
     xrefs: dict[str, str] | None = None
+    prefix_synonyms: list[str] | None = None
     extras: dict[str, Any] | None = Field(None, description="Extras specific to the resource.")
 
 
 def make_record(record: dict[str, Any]) -> Record:
     """Make a record."""
-    record = {k: v for k, v in record.items() if k and v}
+    # TODO what about stripping strings in lists?
+    #     rv = {k: v.strip() if isinstance(v, str) else v for k, v in data.items() if v}
+    record = {k: v for k, v in record.items() if k and v and k != "prefix"}
     return Record.model_validate(record, extra="forbid")
 
 

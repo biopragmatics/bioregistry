@@ -7,15 +7,22 @@
 
 from __future__ import annotations
 
-import json
 import logging
 import re
 from collections.abc import MutableMapping, Sequence
 from pathlib import Path
 from typing import Any, ClassVar
 
+from bioregistry.alignment_model import (
+    License,
+    Publication,
+    Record,
+    dump_records,
+    load_processed,
+    make_record,
+)
 from bioregistry.constants import ORCID_PATTERN
-from bioregistry.external.alignment_utils import Aligner, load_processed
+from bioregistry.external.alignment_utils import Aligner, adapter
 from bioregistry.license_standardizer import standardize_license
 from bioregistry.utils import removeprefix, removesuffix
 
@@ -41,39 +48,40 @@ ALLOWED_TYPES = {
 ORCID_RE = re.compile(ORCID_PATTERN)
 
 
+@adapter
 def get_fairsharing(
-    *, force_download: bool = False, force_reload: bool = False, use_tqdm: bool = True
-) -> dict[str, dict[str, Any]]:
+    *, force_download: bool = False, force_process: bool = False, use_tqdm: bool = True
+) -> dict[str, Record]:
     """Get the FAIRsharing registry."""
-    if PROCESSED_PATH.exists() and not force_download and not force_reload:
+    if PROCESSED_PATH.exists() and not force_download and not force_process:
         return load_processed(PROCESSED_PATH)
 
     from fairsharing_client import load_fairsharing
 
     data = load_fairsharing(force_download=force_download, use_tqdm=use_tqdm)
-    rv = {}
-    for prefix, record in data.items():
-        new_record = _process_record(record)
-        if new_record:
-            rv[prefix] = new_record
-    with PROCESSED_PATH.open("w") as file:
-        json.dump(rv, file, indent=2, ensure_ascii=False, sort_keys=True)
+    rv = {
+        prefix: record
+        for prefix, raw_record in data.items()
+        if (record := _process_record(raw_record)) is not None
+    }
+    dump_records(rv, PROCESSED_PATH)
     return rv
 
 
 KEEP = {
     "description",
     "name",
-    "subjects",
-    "user_defined_tags",
-    "domains",
 }
 
 
-def _process_record(record: MutableMapping[str, Any]) -> dict[str, Any] | None:
+def _process_record(record: MutableMapping[str, Any]) -> Record | None:
     if record.get("record_type") not in ALLOWED_TYPES:
         return None
     rv = {key: record[key] for key in KEEP if record[key]}
+
+    for k in ["subjects", "user_defined_tags", "domains"]:
+        if keywords := record.pop(k, None):
+            rv.setdefault("keywords", []).extend(keywords)
 
     abbreviation = record.get("abbreviation")
     if abbreviation:
@@ -87,7 +95,7 @@ def _process_record(record: MutableMapping[str, Any]) -> dict[str, Any] | None:
             " Vocabulary",
             " Taxonomy",
         ]:
-            rv["abbreviation"] = removesuffix(abbreviation, suf)
+            rv["short_names"] = [removesuffix(abbreviation, suf)]
 
     metadata = record.get("metadata", {})
 
@@ -99,12 +107,12 @@ def _process_record(record: MutableMapping[str, Any]) -> dict[str, Any] | None:
     if homepage:
         rv["homepage"] = homepage
 
-    rv["publications"] = list(
-        filter(
-            None,
-            (_process_publication(publication) for publication in record.get("publications", [])),
-        )
-    )
+    if publications := record.pop("publications", []):
+        rv["publications"] = [
+            publication
+            for publication_raw in publications
+            if (publication := _process_publication(publication_raw))
+        ]
 
     contacts = [
         {removeprefix(k, "contact_"): v for k, v in contact.items()}
@@ -120,6 +128,9 @@ def _process_record(record: MutableMapping[str, Any]) -> dict[str, Any] | None:
         rv["contact"] = contacts[0]
 
     for support_link in metadata.get("support_links", []):
+        if support_link["type"] == "Twitter":
+            pass
+            # rv["twitter"] = removeprefix(support_link["url"], "https://twitter.com/")
         if support_link["type"] == "Github":
             rv["repository"] = support_link["url"]
 
@@ -133,22 +144,22 @@ def _process_record(record: MutableMapping[str, Any]) -> dict[str, Any] | None:
             if license_standard not in missed and license_standard not in SKIP_LICENSES:
                 missed.add(license_standard)
                 logger.debug("Need to curate license URL: %s", license_standard)
-            continue
+            rv["license"] = License(url=url)
         else:
-            rv["license"] = license_standard
+            rv["license"] = License(name=license_standard, url=url)
 
-    rv = {k: v for k, v in rv.items() if k and v}
-    return rv
+    return make_record(rv)
 
 
 #: Licenses that are one-off and don't need curating
 SKIP_LICENSES: set[str] = set()
 
 
-def _process_publication(publication: dict[str, Any]) -> dict[str, Any] | None:
+def _process_publication(data: dict[str, Any]) -> Publication | None:
     rv = {}
-    doi = publication.get("doi")
-    if doi:
+    if url := data.pop("url", None):
+        rv["url"] = url
+    if doi := data.pop("doi", None):
         doi = doi.rstrip(".").lower()
         doi = removeprefix(doi, "doi:")
         doi = removeprefix(doi, "https://doi.org/")
@@ -156,26 +167,23 @@ def _process_publication(publication: dict[str, Any]) -> dict[str, Any] | None:
             doi = None
         else:
             rv["doi"] = doi
-    pubmed = publication.get("pubmed_id")
-    if pubmed:
+    if pubmed := data.pop("pubmed_id", None):
         rv["pubmed"] = str(pubmed)
     if not doi and not pubmed:
         return None
-    title = publication.get("title")
-    if title:
+    if title := data.pop("title", None):
         title = title.replace("  ", " ").rstrip(".")
         rv["title"] = title
-    year = publication.get("year")
-    if year:
+    if year := data.pop("year", None):
         rv["year"] = int(year)
-    return rv
+    return Publication.model_validate(rv)
 
 
 class FairsharingAligner(Aligner):
     """Aligner for the FAIRsharing."""
 
     key = "fairsharing"
-    alt_key_match = "abbreviation"
+    alt_key_match = "short_names"
     skip_deprecated = True
     getter = get_fairsharing
     curation_header: ClassVar[Sequence[str]] = ("abbreviation", "name", "description")

@@ -1,23 +1,29 @@
 """Download registry information from Pathguide."""
 
 from collections.abc import Sequence
-from typing import Any, ClassVar
+from pathlib import Path
+from typing import ClassVar
 
-import requests
 from bs4 import BeautifulSoup
 
-from bioregistry.external.alignment_utils import Aligner
+from bioregistry.alignment_model import Record, make_record
+from bioregistry.constants import RAW_DIRECTORY
+from bioregistry.external.alignment_utils import Aligner, build_getter
 
 __all__ = [
     "PathguideAligner",
     "get_pathguide",
 ]
 
+PROCESSED_PATH = Path(__file__).parent / "processed.json"
+RAW_PATH = RAW_DIRECTORY.joinpath("pathguide.html")
+URL = "http://pathguide.org/"
 
-def get_pathguide(*, force_download: bool = False) -> dict[str, dict[str, Any]]:
-    """Get the Pathguide metdata."""
-    res = requests.get("http://pathguide.org/", timeout=15)
-    soup = BeautifulSoup(res.text, "html.parser")
+
+def process_pathguide(path: Path) -> dict[str, Record]:
+    """Process Pathguide."""
+    with path.open() as f:
+        soup = BeautifulSoup(f.read(), "html.parser")
     rv = {}
     for tr in soup.find_all("tr"):
         tr_id = tr.attrs.get("id")
@@ -31,15 +37,25 @@ def get_pathguide(*, force_download: bool = False) -> dict[str, dict[str, Any]]:
         standards = sorted(
             {td.text for td in standards_td.find_all("td") if td.attrs.get("class") == ["Standard"]}
         )
-        rv[pathguide_id] = {
+        dd = {
             "prefix": pathguide_id,
-            "abbreviation": abbreviation,
+            "short_names": [abbreviation],
             "name": name,
             "homepage": homepage,
         }
         if standards:
-            rv[pathguide_id]["keywords"] = standards
+            dd["keywords"] = standards
+
+        rv[pathguide_id] = make_record(dd)
     return rv
+
+
+get_pathguide = build_getter(
+    processed_path=PROCESSED_PATH,
+    raw_path=RAW_PATH,
+    url=URL,
+    func=process_pathguide,
+)
 
 
 class PathguideAligner(Aligner):

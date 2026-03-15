@@ -6,10 +6,9 @@ from operator import itemgetter
 from pathlib import Path
 from typing import Any, ClassVar
 
-from pystow.utils import download
-
-from bioregistry.constants import RAW_DIRECTORY, URI_FORMAT_KEY
-from bioregistry.external.alignment_utils import Aligner, load_processed
+from bioregistry.alignment_model import Record, Status, make_record
+from bioregistry.constants import MIRIAM_NAMESPACE_IN_LUI, RAW_DIRECTORY, URI_FORMAT_KEY
+from bioregistry.external.alignment_utils import Aligner, build_getter
 
 __all__ = [
     "MiriamAligner",
@@ -35,32 +34,34 @@ SKIP_URI_FORMATS = {
 }
 
 
-def get_miriam(
-    force_download: bool = False, force_process: bool = False
-) -> dict[str, dict[str, Any]]:
-    """Get the MIRIAM registry."""
-    if PROCESSED_PATH.exists() and not force_download and not force_process:
-        return load_processed(PROCESSED_PATH)
-
-    download(url=MIRIAM_URL, path=RAW_PATH, force=force_download)
-    with open(RAW_PATH) as file:
+def process_miriam(path: Path) -> dict[str, Record]:
+    """Process MIRIAM."""
+    with open(path) as file:
         data = json.load(file)
-
-    data["payload"]["namespaces"] = sorted(data["payload"]["namespaces"], key=itemgetter("prefix"))
-    if force_download:
-        with open(RAW_PATH, "w") as file:
-            json.dump(data, file, indent=2, sort_keys=True, ensure_ascii=False)
-
     rv = {
         record["prefix"]: _process(record)
         for record in data["payload"]["namespaces"]
         # records whose prefixes start with `dg.` appear to be unreleased
         if not record["prefix"].startswith("dg.") and record["prefix"] not in SKIP
     }
-    with PROCESSED_PATH.open("w") as file:
-        json.dump(rv, file, indent=2, sort_keys=True)
     return rv
 
+
+def _cleanup_miriam(path: Path) -> None:
+    with open(path) as file:
+        data = json.load(file)
+    data["payload"]["namespaces"] = sorted(data["payload"]["namespaces"], key=itemgetter("prefix"))
+    with open(path, "w") as file:
+        json.dump(data, file, indent=2, sort_keys=True, ensure_ascii=False)
+
+
+get_miriam = build_getter(
+    processed_path=PROCESSED_PATH,
+    url=MIRIAM_URL,
+    raw_path=RAW_PATH,
+    func=process_miriam,
+    cleanup=_cleanup_miriam,
+)
 
 #: Pairs of MIRIAM prefix and provider codes (or name, since some providers don't have codes)
 PROVIDER_BLACKLIST = {
@@ -72,15 +73,17 @@ PROVIDER_BLACKLIST = {
 }
 
 
-def _process(record: dict[str, Any]) -> dict[str, Any]:
+def _process(record: dict[str, Any]) -> Record:
     prefix = record["prefix"]
     rv = {
         "prefix": prefix,
-        "id": record["mirId"][len("MIR:") :],
         "name": record["name"],
-        "deprecated": record["deprecated"],
-        "namespaceEmbeddedInLui": record["namespaceEmbeddedInLui"],
-        "sampleId": record["sampleId"],
+        "status": Status.deprecated if record["deprecated"] else Status.active,
+        "extras": {
+            MIRIAM_NAMESPACE_IN_LUI: record["namespaceEmbeddedInLui"],
+            "miriam_id": record["mirId"][len("MIR:") :],
+        },
+        "examples": [record["sampleId"]],
         "description": record["description"],
         "pattern": record["pattern"],
     }
@@ -90,7 +93,7 @@ def _process(record: dict[str, Any]) -> dict[str, Any]:
         if not resource.get("deprecated")
     ]
     if not resources:
-        return rv
+        return make_record(rv)
 
     has_official = any(resource["official"] for resource in resources)
     if has_official:
@@ -115,8 +118,8 @@ def _process(record: dict[str, Any]) -> dict[str, Any]:
         del provider["official"]
         extras.append(provider)
     if extras:
-        rv["providers"] = extras
-    return rv
+        rv["extras"]["providers"] = extras
+    return make_record(rv)
 
 
 SKIP_PROVIDERS = {
