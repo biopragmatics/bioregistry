@@ -48,7 +48,7 @@ from ..schema import (
     get_json_schema,
     schema_status_map,
 )
-from ..schema.constants import SCHEMA_TERMS
+from ..schema.constants import NFDI_ROR, SCHEMA_TERMS
 from ..schema_utils import (
     read_collections_contributions,
     read_context_contributions,
@@ -93,6 +93,19 @@ def metaresources() -> str:
         "metaresources.html",
         rows=manager.metaregistry.values(),
         formats=FORMATS,
+    )
+
+
+@ui_blueprint.route("/collections-nfdi")
+def get_nfdi_collections() -> str:
+    """Serve the NFDI collections page."""
+    return render_template(
+        "collections-nfdi.html",
+        collections=[
+            c
+            for c in manager.collections.values()
+            if any(org.ror == NFDI_ROR for org in c.organizations or [])
+        ],
     )
 
 

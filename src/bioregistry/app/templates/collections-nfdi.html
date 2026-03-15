@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% import "macros.html" as utils %}
+
+{% block title %}{{ config.METAREGISTRY_TITLE }} - Collections{% endblock %}
+
+{% block container %}
+    <div class="card">
+        <div class="card-header">
+            <h5 style="margin: 0">Collections</h5>
+        </div>
+        <div class="card-body">
+            <p>
+                NFDI collections blah blah
+            </p>
+            <ul>
+                <li>
+                    <a href="{{ config.METAREGISTRY_REPOSITORY }}/issues/new?template=add-new-collection.md">
+                        Make a suggestion</a> on GitHub.
+                </li>
+                <li>Edit the <a
+                        href="{{ config.METAREGISTRY_REPOSITORY }}/edit/main/src/bioregistry/data/collections.json">collections.json</a>
+                    file with the GitHub editor.
+                </li>
+                <li>
+                    Make a <a href="{{ config.METAREGISTRY_REPOSITORY }}">pull request</a> directly.
+                </li>
+            </ul>
+        </div>
+        <table id="table-entries" class="table table-striped table-hover ">
+            <thead>
+            <tr>
+                <th scope="col">Name</th>
+                <th scope="col">Description</th>
+            </tr>
+            </thead>
+            {% for collection in collections %}
+                <tr>
+                    <td>
+                        <a href="{{ url_for('metaregistry_ui.collection', identifier=collection.identifier) }}">{{ collection.name }}</a>
+                    </td>
+                    <td>
+                        <small>{{ markdown(collection.description) | safe }}</small>
+                    </td>
+                </tr>
+            {% endfor %}
+        </table>
+    </div>
+{% endblock %}

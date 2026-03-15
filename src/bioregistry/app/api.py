@@ -392,6 +392,21 @@ def get_collection(
         raise HTTPException(400, f"Bad Accept header: {accept}")
 
 
+class PostCollection(Collection):
+    identifier: str | None = None
+
+
+@api_router.get(
+    "/collection/",
+    tags=["collection"],
+)
+def add_collection(manager: DependsManager, collection: PostCollection):
+    bad = {prefix for prefix in collection.resources if prefix not in manager.registry}
+    if bad:
+        raise HTTPException(400, f"non-standard prefixes: {bad}")
+    # TODO now, interact with GitHub to create a new issue
+
+
 @api_router.get("/context", response_model=Mapping[str, Context], tags=["context"])
 def get_contexts(
     manager: DependsManager,
