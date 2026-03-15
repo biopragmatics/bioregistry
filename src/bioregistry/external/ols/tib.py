@@ -59,7 +59,6 @@ class TIBAligner(Aligner):
     key = "tib"
     getter = get_tib_ts
     curation_header: ClassVar[Sequence[str]] = ("name",)
-    include_new = True
 
     def get_skip(self) -> Mapping[str, str]:
         """Get skips."""
