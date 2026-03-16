@@ -429,7 +429,9 @@ def get_collection_mapped(
             mappings[prefix] = external_prefix
         else:
             misses.add(prefix)
-        if external_version_mappings := manager.has_version_mappings.get(prefix):
+        if external_version_mappings := manager.has_version_mappings.get(prefix, {}).get(
+            metaprefix, set()
+        ):
             version_mappings[prefix].update(external_version_mappings)
 
     return CollectionMappingResult(
