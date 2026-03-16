@@ -138,6 +138,15 @@ def read_mismatches() -> dict[str, dict[str, set[str]]]:
     return {k: dict(v) for k, v in mismatches.items()}
 
 
+def read_has_version_mappings() -> dict[str, dict[str, set[str]]]:
+    """Read the version mapping subset of curated mappings as a nested dictionary data structure."""
+    versioned: defaultdict[str, defaultdict[str, set[str]]] = defaultdict(lambda: defaultdict(set))
+    for m in read_mappings():
+        if m.predicate.curie == "dcterms:hasVersion":
+            versioned[m.subject.identifier][m.object.prefix].add(m.object.identifier)
+    return {k: dict(v) for k, v in versioned.items()}
+
+
 @lru_cache(maxsize=1)
 def read_mappings() -> list[SemanticMapping]:
     """Read curated mappings as a nested dict data structure."""

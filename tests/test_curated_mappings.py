@@ -6,7 +6,12 @@ from typing import Any
 
 from bioregistry import is_valid_curie
 from bioregistry.constants import CURATED_MAPPINGS_PATH
-from bioregistry.schema_utils import SemanticMapping, read_mappings, read_metaregistry
+from bioregistry.schema_utils import (
+    SemanticMapping,
+    read_has_version_mappings,
+    read_mappings,
+    read_metaregistry,
+)
 
 
 class TestTSV(unittest.TestCase):
@@ -102,3 +107,10 @@ class TestSemanticMappings(unittest.TestCase):
             self.assertIsInstance(mapping, SemanticMapping)
             self.assertNotEqual(mapping.comment, "")
             self.assertIn(mapping.predicate_modifier, {None, "Not"})
+
+    def test_version_mappings(self) -> None:
+        """Test getting mappings that are versions."""
+        has_version_mappings = read_has_version_mappings()
+        self.assertIn("envo", has_version_mappings)
+        self.assertIn("tib", has_version_mappings["envo"])
+        self.assertIn("envo2023", has_version_mappings["envo"]["tib"])

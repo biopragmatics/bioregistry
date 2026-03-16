@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+from collections import defaultdict
 from collections.abc import Mapping
 from typing import Annotated, Any
 
@@ -400,6 +401,7 @@ class CollectionMappingResult(BaseModel):
 
     mappings: dict[str, str]  # TODO represent multi-mappings?
     misses: list[str]
+    version_mappings: dict[str, list[str]]
 
 
 @api_router.get(
@@ -418,15 +420,23 @@ def get_collection_mapped(
         raise HTTPException(status_code=404, detail=f"Collection not found: {identifier}")
 
     mapping = manager.get_registry_map(metaprefix)  # TODO raise on invalid metaprefix?
+
     mappings: dict[str, str] = {}
     misses: set[str] = set()
+    version_mappings: defaultdict[str, set[str]] = defaultdict(set)
     for prefix in collection.resources:
         if external_prefix := mapping.get(prefix):
             mappings[prefix] = external_prefix
         else:
             misses.add(prefix)
+        if external_version_mappings := manager.has_version_mappings.get(prefix):
+            version_mappings[prefix].update(external_version_mappings)
 
-    return CollectionMappingResult(mappings=mappings, misses=sorted(misses))
+    return CollectionMappingResult(
+        mappings=mappings,
+        misses=sorted(misses),
+        version_mappings={k: sorted(v) for k, v in version_mappings.items()},
+    )
 
 
 @api_router.get("/context", response_model=Mapping[str, Context], tags=["context"])
