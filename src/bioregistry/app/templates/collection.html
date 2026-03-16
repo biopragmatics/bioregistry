@@ -92,6 +92,23 @@
                         <dd><a href="{{ reference }}">{{ reference }}</a></dd>
                     {% endfor %}
                 {% endif %}
+                <dt>Download External Mappings</dt>
+                <dd>
+                    <span class="dropdown">
+                        <span class="badge badge-pill badge-light" type="button" data-toggle="dropdown"
+                                aria-expanded="false">
+                            External Mappings <i class="bi bi-caret-down-fill"></i>
+                        </span>
+                        <span class="dropdown-menu">
+                            {%- for metaprefix, target_registry in manager.metaregistry.items() %}
+                            <a class="dropdown-item"
+                               href="{{ fastapi_url_for("get_collection_mapped", identifier=entry.identifier, metaprefix=metaprefix) }}">
+                                {{ target_registry.get_short_name() }}
+                            </a>
+                            {%- endfor %}
+                        </span>
+                    </span>
+                </dd>
             </dl>
         </div>
         <table class="table table-striped" style="margin-bottom: 0;">

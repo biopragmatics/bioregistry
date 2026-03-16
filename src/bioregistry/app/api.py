@@ -397,19 +397,20 @@ def get_collection(
 
 class CollectionMappingResult(BaseModel):
     """Represent mappings from a collection's prefixes to an external registry."""
+
     mappings: dict[str, str]  # TODO represent multi-mappings?
     misses: list[str]
 
 
 @api_router.get(
-    "/collection/{identifier}/mapped/{metaprefix}",
+    "/collection/{identifier}/mapped/{metaprefix}.json",
     response_model=CollectionMappingResult,
     tags=["collection"],
 )
 def get_collection_mapped(
     manager: DependsManager,
     identifier: Annotated[str, COLLECTION_IDENTIFIER],
-    metaprefix: Annotated[str, Path(examples=['ols'])],
+    metaprefix: Annotated[str, Path(examples=["ols"])],
 ) -> CollectionMappingResult:
     """Get mappings from resources in a collection to an external registry."""
     collection = manager.collections.get(identifier)
