@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+from collections import defaultdict
 from collections.abc import Mapping
 from typing import Annotated, Any
 
@@ -343,6 +344,13 @@ def get_collections(
         raise HTTPException(400, f"Bad Accept header: {accept}")
 
 
+COLLECTION_IDENTIFIER = Path(
+    title="Collection Identifier",
+    description="The 7-digit collection identifier",
+    examples=["0000001"],
+)
+
+
 @api_router.get(
     "/collection/{identifier}",
     response_model=Collection,
@@ -360,11 +368,7 @@ def get_collections(
 )
 def get_collection(
     manager: DependsManager,
-    identifier: str = Path(
-        title="Collection Identifier",
-        description="The 7-digit collection identifier",
-        examples=["0000001"],
-    ),
+    identifier: Annotated[str, COLLECTION_IDENTIFIER],
     accept: str | None = ACCEPT_HEADER,
     format: str | None = FORMAT_QUERY,
 ) -> Response | Collection:
@@ -390,6 +394,51 @@ def get_collection(
         )
     else:
         raise HTTPException(400, f"Bad Accept header: {accept}")
+
+
+class CollectionMappingResult(BaseModel):
+    """Represent mappings from a collection's prefixes to an external registry."""
+
+    mappings: dict[str, str]  # TODO represent multi-mappings?
+    misses: list[str]
+    version_mappings: dict[str, list[str]]
+
+
+@api_router.get(
+    "/collection/{identifier}/mapped/{metaprefix}.json",
+    response_model=CollectionMappingResult,
+    tags=["collection"],
+)
+def get_collection_mapped(
+    manager: DependsManager,
+    identifier: Annotated[str, COLLECTION_IDENTIFIER],
+    metaprefix: Annotated[str, Path(examples=["ols"])],
+) -> CollectionMappingResult:
+    """Get mappings from resources in a collection to an external registry."""
+    collection = manager.collections.get(identifier)
+    if collection is None:
+        raise HTTPException(status_code=404, detail=f"Collection not found: {identifier}")
+
+    mapping = manager.get_registry_map(metaprefix)  # TODO raise on invalid metaprefix?
+
+    mappings: dict[str, str] = {}
+    misses: set[str] = set()
+    version_mappings: defaultdict[str, set[str]] = defaultdict(set)
+    for prefix in collection.resources:
+        if external_prefix := mapping.get(prefix):
+            mappings[prefix] = external_prefix
+        else:
+            misses.add(prefix)
+        if external_version_mappings := manager.has_version_mappings.get(prefix, {}).get(
+            metaprefix, set()
+        ):
+            version_mappings[prefix].update(external_version_mappings)
+
+    return CollectionMappingResult(
+        mappings=mappings,
+        misses=sorted(misses),
+        version_mappings={k: sorted(v) for k, v in version_mappings.items()},
+    )
 
 
 @api_router.get("/context", response_model=Mapping[str, Context], tags=["context"])
