@@ -90,6 +90,12 @@ class Aligner:
         self.external_registry = self.__class__.getter(**kwargs)
         self.skip_external = self.get_skip()
 
+        self.provided_by_to_bioregistry = {
+            external_prefix: internal_prefix
+            for internal_prefix, xx in self.manager.provided_by_mappings.items()
+            for external_prefix in xx.get(self.key, [])
+        }
+
         # Get the pre-curated mappings from the Bioregistry
         self.external_id_to_bioregistry_id = self.manager.get_registry_invmap(self.key)
 
@@ -110,6 +116,9 @@ class Aligner:
         for external_id, external_entry in sorted(self.external_registry.items()):
             if external_id in self.skip_external:
                 continue
+
+            if external_id in self.provided_by_to_bioregistry:
+                continue  # TODO implement alignment logic!
 
             bioregistry_id = self.external_id_to_bioregistry_id.get(external_id)
             # There's already a mapping for this external ID to a bioregistry

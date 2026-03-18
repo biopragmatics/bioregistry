@@ -55,6 +55,7 @@ from .schema_utils import (
     _registry_from_path,
     read_has_version_mappings,
     read_mismatches,
+    read_provided_by_mappings,
     write_collections,
     write_registry,
 )
@@ -145,6 +146,7 @@ class Manager:
         contexts: None | str | Path | Mapping[str, Context] = None,
         mismatches: Mapping[str, Mapping[str, set[str]]] | None = None,
         version_mappings: Mapping[str, Mapping[str, set[str]]] | None = None,
+        provided_by_mappings: Mapping[str, Mapping[str, set[str]]] | None = None,
         base_url: str | None = None,
     ) -> None:
         """Instantiate a registry manager.
@@ -194,6 +196,9 @@ class Manager:
         self.mismatches = dict(read_mismatches() if mismatches is None else mismatches)
         self.has_version_mappings = dict(
             read_has_version_mappings() if version_mappings is None else version_mappings
+        )
+        self.provided_by_mappings = dict(
+            read_provided_by_mappings() if provided_by_mappings is None else provided_by_mappings
         )
 
         canonical_for = defaultdict(list)
@@ -794,12 +799,17 @@ class Manager:
         >>> manager.get_registry_invmap("obofoundry", use_obo_preferred=True)["GO"]
         'go'
         """
-        return {
+        rv = {
             external_prefix: prefix
             for prefix, external_prefix in self._iter_registry_map(
                 metaprefix, use_obo_preferred=use_obo_preferred
             )
         }
+        for extras_dict in (self.has_version_mappings, self.provided_by_mappings):
+            for prefix, data in extras_dict.items():
+                for external_prefix in data.get(metaprefix, []):
+                    rv[external_prefix] = prefix
+        return rv
 
     def _iter_registry_map(
         self, metaprefix: str, use_obo_preferred: bool = False

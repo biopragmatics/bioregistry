@@ -321,6 +321,14 @@ SCHEMA_TERMS = [
             BRIDGEDB["systemCode"],
         ],
     ),
+    PropertyTerm(
+        "0000030",
+        "Property",
+        "provided by",
+        "Inverse of provides for",
+        domain="0000001",
+        range="0000001",
+    ),
 ]
 bioregistry_schema_extras = [
     ("0000001", DCTERMS.isPartOf, "part of", "0000002"),  # resource part of registry
