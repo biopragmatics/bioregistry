@@ -1423,3 +1423,9 @@ class TestRegistry(unittest.TestCase):
         self.assertIn("envo2023", manager.get_registry_invmap("tib"))
         # this tests the "providerOf" relation
         self.assertIn("DB-0262", manager.get_registry_invmap("uniprot"))
+
+    def test_short_name_map(self) -> None:
+        """Test the short name map."""
+        short_name_map = manager.get_registry_short_name_to_prefix("integbio")
+        self.assertIn("AAindex", short_name_map)
+        self.assertEqual("nbdc00004", short_name_map["AAindex"])
