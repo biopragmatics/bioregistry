@@ -2169,8 +2169,18 @@ class Manager:
 
         return [resource for prefix, resource in rv.items() if prefix not in prefix_set]
 
-    def get_registry_short_name_map(self, metaprefix: str) -> dict[str, str]:
-        """Get the short name map."""
+    def get_registry_short_name_to_prefix(self, metaprefix: str) -> dict[str, str]:
+        """Get a mapping from short names in an external registry to their associated prefixes in the external registry.
+
+        :param metaprefix: A metaprefix (e.g., ``integbio``
+
+        :returns: A mapping
+
+        .. note::
+
+            A given record in an external registry could have multiple short names, so
+            there might be duplicate values in this dictionary
+        """
         if metaprefix not in self.metaregistry:
             raise KeyError(
                 f"invalid metaprefix: {metaprefix}. try one of: {self.metaregistry.keys()}"

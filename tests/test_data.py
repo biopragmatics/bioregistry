@@ -1419,6 +1419,6 @@ class TestRegistry(unittest.TestCase):
 
     def test_short_name_map(self) -> None:
         """Test the short name map."""
-        short_name_map = manager.get_registry_short_name_map("integbio")
+        short_name_map = manager.get_registry_short_name_to_prefix("integbio")
         self.assertIn("AAindex", short_name_map)
         self.assertEqual("nbdc00004", short_name_map["AAindex"])
