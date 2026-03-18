@@ -8,7 +8,7 @@ from collections.abc import Sequence
 from pathlib import Path
 from typing import Any, ClassVar
 
-from bioregistry.alignment_model import Record
+from bioregistry.alignment_model import Record, make_record
 from bioregistry.constants import RAW_DIRECTORY, URI_FORMAT_KEY
 from bioregistry.external.alignment_utils import Aligner, build_getter
 from bioregistry.utils import removeprefix
@@ -59,7 +59,7 @@ def process_uniprot_raw(path: Path) -> dict[str, Record]:
 def _process_record(prefix: str, record: dict[str, Any]) -> Record | None:
     rv = {
         "name": record.pop("name"),
-        "abbreviation": record.pop("abbrev"),
+        "short_names": [record.pop("abbrev")],
         "homepage": record.pop("servers")[0],
         "keywords": [record.pop("category")],
     }
@@ -90,7 +90,7 @@ def _process_record(prefix: str, record: dict[str, Any]) -> Record | None:
             logger.debug("no annotation in %s", prefix)
     if record:
         logger.debug("forgot something: %s", record)
-    return Record.model_validate(rv)
+    return make_record(rv)
 
 
 get_uniprot = build_getter(
