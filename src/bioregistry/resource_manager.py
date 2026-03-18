@@ -2172,7 +2172,7 @@ class Manager:
     def get_registry_short_name_to_prefix(self, metaprefix: str) -> dict[str, str]:
         """Get a mapping from short names in an external registry to their associated prefixes in the external registry.
 
-        :param metaprefix: A metaprefix (e.g., ``integbio``
+        :param metaprefix: A metaprefix (e.g., ``integbio``)
 
         :returns: A mapping
 

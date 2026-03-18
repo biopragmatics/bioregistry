@@ -56,6 +56,7 @@ __all__ = [
     "get_registry_invmap",
     # Registry-level functions
     "get_registry_map",
+    "get_registry_short_name_to_prefix",
     "get_repository",
     "get_repository_to_prefix",
     "get_resource",
@@ -1057,3 +1058,23 @@ def get_repository_to_prefix() -> dict[str, str]:
             continue
         rv[repository.removeprefix("https://github.com/").casefold()] = resource.prefix
     return rv
+
+
+def get_registry_short_name_to_prefix(metaprefix: str) -> dict[str, str]:
+    """Get a mapping from short names in an external registry to their associated prefixes in the external registry.
+
+    :param metaprefix: A metaprefix (e.g., ``integbio``)
+
+    :returns: A mapping
+
+    .. note::
+
+        A given record in an external registry could have multiple short names, so
+        there might be duplicate values in this dictionary
+
+    >>> import bioregistry
+    >>> m = bioregistry.get_registry_short_name_to_prefix("integbio")
+    >>> m["AAindex"]
+    'nbdc00004'
+    """
+    return manager.get_registry_short_name_to_prefix(metaprefix)
