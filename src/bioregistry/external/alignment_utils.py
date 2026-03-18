@@ -118,7 +118,7 @@ class Aligner:
                 continue
 
             if external_id in self.provided_by_to_bioregistry:
-                continue # TODO implement alignment logic!
+                continue  # TODO implement alignment logic!
 
             bioregistry_id = self.external_id_to_bioregistry_id.get(external_id)
             # There's already a mapping for this external ID to a bioregistry
