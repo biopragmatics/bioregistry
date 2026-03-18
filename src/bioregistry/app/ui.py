@@ -49,7 +49,7 @@ from ..schema import (
     schema_status_map,
 )
 from ..schema.constants import SCHEMA_TERMS
-from ..schema.struct import filter_collections, Organization
+from ..schema.struct import Organization, filter_collections
 from ..schema_utils import (
     read_collections_contributions,
     read_context_contributions,
