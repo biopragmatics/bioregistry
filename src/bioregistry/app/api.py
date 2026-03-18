@@ -399,9 +399,10 @@ def get_collection(
 class CollectionMappingResult(BaseModel):
     """Represent mappings from a collection's prefixes to an external registry."""
 
-    mappings: dict[str, str]  # TODO represent multi-mappings?
+    mappings: dict[str, str]
     misses: list[str]
     version_mappings: dict[str, list[str]]
+    provider_mappings: dict[str, list[str]]
 
 
 @api_router.get(
@@ -424,6 +425,7 @@ def get_collection_mapped(
     mappings: dict[str, str] = {}
     misses: set[str] = set()
     version_mappings: defaultdict[str, set[str]] = defaultdict(set)
+    provider_mappings: defaultdict[str, set[str]] = defaultdict(set)
     for prefix in collection.resources:
         if external_prefix := mapping.get(prefix):
             mappings[prefix] = external_prefix
@@ -433,11 +435,16 @@ def get_collection_mapped(
             metaprefix, set()
         ):
             version_mappings[prefix].update(external_version_mappings)
+        if external_provider_mappings := manager.provided_by_mappings.get(prefix, {}).get(
+            metaprefix, set()
+        ):
+            provider_mappings[prefix].update(external_provider_mappings)
 
     return CollectionMappingResult(
         mappings=mappings,
         misses=sorted(misses),
         version_mappings={k: sorted(v) for k, v in version_mappings.items()},
+        provider_mappings={k: sorted(v) for k, v in provider_mappings.items()},
     )
 
 
