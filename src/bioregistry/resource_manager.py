@@ -2169,6 +2169,19 @@ class Manager:
 
         return [resource for prefix, resource in rv.items() if prefix not in prefix_set]
 
+    def get_registry_short_name_map(self, metaprefix: str) -> dict[str, str]:
+        """Get the short name map."""
+        if metaprefix not in self.metaregistry:
+            raise KeyError(
+                f"invalid metaprefix: {metaprefix}. try one of: {self.metaregistry.keys()}"
+            )
+        return {
+            short_name: data["prefix"]
+            for resource in self.registry.values()
+            if (data := resource.get_external(metaprefix))
+            for short_name in data.get("short_names", [])
+        }
+
 
 def _read_contributors(
     registry: dict[str, Resource],
