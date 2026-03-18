@@ -49,6 +49,7 @@ from ..schema import (
     schema_status_map,
 )
 from ..schema.constants import SCHEMA_TERMS
+from ..schema.struct import filter_collections, Organization
 from ..schema_utils import (
     read_collections_contributions,
     read_context_contributions,
@@ -99,10 +100,19 @@ def metaresources() -> str:
 @ui_blueprint.route("/collection/")
 def collections() -> str:
     """Serve the collections page."""
+    collections_ = manager.collections.values()
+    organization: Organization | None = None
+    if ror := flask.request.args.get("ror"):
+        collections_ = filter_collections(collections_, ror)
+        if not collections_:
+            raise flask.abort(404, f"no collections are tagged with ROR: {ror}")
+        organization = next(org for org in collections_[0].organizations if org.ror == ror)
     return render_template(
         "collections.html",
-        collections=manager.collections.values(),
+        collections=collections_,
         formats=FORMATS,
+        ror=ror,
+        organization=organization,
     )
 
 

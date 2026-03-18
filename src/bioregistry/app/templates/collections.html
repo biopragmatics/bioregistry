@@ -50,6 +50,9 @@
                     Make a <a href="{{ config.METAREGISTRY_REPOSITORY }}">pull request</a> directly.
                 </li>
             </ul>
+            {%- if ror and organization %}
+            <p>Filtered to collections from <strong>{{ organization.name }}</strong> (<code>ror:{{ ror }}</code>)</p>
+            {% endif %}
         </div>
         <table id="table-entries" class="table table-striped table-hover ">
             <thead>
@@ -67,12 +70,13 @@
                     <td class="text-right">{{ collection.resources | length }}</td>
                     <td>
                         <small>{{ markdown(collection.description) | safe }}</small>
-
-                        {% if collection.organizations %}
-                        {% for org in collection.organizations %}
+                        {%- if collection.organizations %}
+                        {%- for org in collection.organizations %}
+                        {%- if not organization or org.ror != organization.ror %}
                         <span class="badge bg-light text-dark">{{ org.name }}</span>
-                        {% endfor %}
-                        {% endif %}
+                        {%- endif %}
+                        {%- endfor %}
+                        {%- endif %}
                     </td>
                 </tr>
             {% endfor %}

@@ -62,6 +62,7 @@ __all__ = [
     "ResourceStatus",
     "StatusCheck",
     "deduplicate_publications",
+    "filter_collections",
     "get_json_schema",
 ]
 
@@ -3088,6 +3089,15 @@ class Collection(BaseModel):
             if fmt is not None:
                 rv[prefix] = fmt
         return rv
+
+
+def filter_collections(collections: Iterable[Collection], ror: str) -> list[Collection]:
+    """Filter collections based on a ROR."""
+    return [
+        collection_
+        for collection_ in collections
+        if any(organization.ror == ror for organization in collection_.organizations or [])
+    ]
 
 
 class Context(BaseModel):
