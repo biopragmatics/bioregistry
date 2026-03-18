@@ -1416,3 +1416,10 @@ class TestRegistry(unittest.TestCase):
                     failures, headers=["metaprefix", "metaidentifier", "count"], tablefmt="github"
                 )
             )
+
+    def test_registry_invmap(self) -> None:
+        """Test that the registry inverse map contains one to many."""
+        # this test the "hasVersion" relation
+        self.assertIn("envo2023", manager.get_registry_invmap("tib"))
+        # this tests the "providerOf" relation
+        self.assertIn("DB-0262", manager.get_registry_invmap("uniprot"))
