@@ -73,7 +73,7 @@
                         {%- if collection.organizations %}
                         {%- for org in collection.organizations %}
                         {%- if not organization or org.ror != organization.ror %}
-                        <span class="badge bg-light text-dark">{{ org.name }}</span>
+                        <a class="badge bg-light text-dark" href="{{ url_for('metaregistry_ui.collections', ror=org.ror) }}">{{ org.name }}</a>
                         {%- endif %}
                         {%- endfor %}
                         {%- endif %}
