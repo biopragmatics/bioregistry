@@ -453,6 +453,7 @@ DEFAULT_METAPREFIX_PRIORITY = [
     "integbio",
     "aberowl",
     "re3data",
+    "uniprot",
 ]
 
 
