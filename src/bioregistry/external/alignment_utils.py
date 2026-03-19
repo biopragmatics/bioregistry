@@ -305,7 +305,6 @@ class Aligner:
                 if value:
                     counter[key] += 1
 
-
         skip_keys = {k for k, count in counter.items() if count == 0}
 
         sliced_header = [k for k in self.curation_header if k not in skip_keys]
