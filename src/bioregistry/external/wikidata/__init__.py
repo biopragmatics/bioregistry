@@ -91,7 +91,7 @@ QUERY_FMT = dedent(
 )
 
 CONFIG = json.loads(CONFIG_PATH.read_text(encoding="utf-8"))
-SKIP = CONFIG["skips"]
+SKIP: dict[str, str] = CONFIG["skips"]
 
 RENAMES = {"propLabel": "name", "propDescription": "description"}
 CANONICAL_DATABASES = {
