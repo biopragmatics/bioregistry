@@ -2,15 +2,17 @@
 
 import json
 import logging
-from collections.abc import Iterable, Mapping, Sequence
+from collections.abc import Iterable, Mapping
 from pathlib import Path
 from textwrap import dedent
-from typing import Any, ClassVar
+from typing import Any
+
+import wikidata_client
 
 from bioregistry.alignment_model import Record, make_record
 from bioregistry.constants import BIOREGISTRY_PATH, URI_FORMAT_KEY
 from bioregistry.external.alignment_utils import Aligner, build_no_raw_getter
-from bioregistry.utils import query_wikidata, removeprefix
+from bioregistry.utils import removeprefix
 
 __all__ = [
     "WikidataAligner",
@@ -216,11 +218,11 @@ def _get_wikidata() -> dict[str, Record]:
     mapped = _get_mapped()
     # throw out anything that can be queried directly
     mapped.difference_update(
-        bindings["propStr"]["value"]
-        for bindings in query_wikidata(PROPERTIES_QUERY)
-        if bindings["propStr"]["value"].startswith("P")  # throw away any regular ones
+        bindings["propStr"]
+        for bindings in wikidata_client.query(PROPERTIES_QUERY)
+        if bindings["propStr"].startswith("P")  # throw away any regular ones
     )
-    raw_records = query_wikidata(_get_query(mapped))
+    raw_records = wikidata_client.query(_get_query(mapped))
 
     rv = {}
     for raw_record in raw_records:
@@ -232,7 +234,7 @@ def _get_wikidata() -> dict[str, Record]:
 
 def _process_record(bindings: Mapping[str, Any]) -> tuple[str, Record] | tuple[None, None]:
     bindings = {
-        RENAMES.get(key, key): value["value"] for key, value in bindings.items() if value["value"]
+        RENAMES.get(key, key): value for key, value in bindings.items() if value
     }
     prefix = bindings["prefix"] = removeprefix(
         bindings["prefix"], "http://www.wikidata.org/entity/"
@@ -338,12 +340,6 @@ class WikidataAligner(Aligner):
 
     key = "wikidata"
     getter = get_wikidata
-    curation_header: ClassVar[Sequence[str]] = (
-        "name",
-        "homepage",
-        "description",
-        "uri_format",
-    )
 
     def get_skip(self) -> Mapping[str, str]:
         """Get entries to skip."""

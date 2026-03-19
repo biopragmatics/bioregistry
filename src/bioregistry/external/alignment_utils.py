@@ -40,7 +40,13 @@ class Aligner:
     key: ClassVar[str]
 
     #: Header to put on the curation table, corresponding to ``get_curation_row()``
-    curation_header: ClassVar[Sequence[str]]
+    curation_header: ClassVar[Sequence[str]] = (
+        "name",
+        "homepage",
+        "description",
+        "uri_format",
+        "examples",
+    )
 
     #: The function that gets the external registry as a dictionary from the string identifier to
     #: the entries (could be anything, but a dictionary is probably best)
