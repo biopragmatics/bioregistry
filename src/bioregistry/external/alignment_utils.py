@@ -46,6 +46,7 @@ class Aligner:
         "description",
         "uri_format",
         "examples",
+        "short_names",
     )
 
     #: The function that gets the external registry as a dictionary from the string identifier to
@@ -298,11 +299,30 @@ class Aligner:
                 path.unlink()
             return
 
+        counter = dict.fromkeys(self.curation_header, 0)
+        for _, *row in rows:
+            for key, value in zip(self.curation_header, row, strict=False):
+                if value:
+                    counter[key] += 1
+
+
+        skip_keys = {k for k, count in counter.items() if count == 0}
+
+        sliced_header = [k for k in self.curation_header if k not in skip_keys]
+        sliced_rows = [
+            [
+                value
+                for column, value in zip((None, *self.curation_header), row, strict=False)
+                if column not in skip_keys
+            ]
+            for row in rows
+        ]
+
         path.parent.mkdir(exist_ok=True, parents=True)
         with path.open("w") as file:
             writer = csv.writer(file, delimiter="\t", quoting=csv.QUOTE_MINIMAL)
-            writer.writerow((self.subkey, *self.curation_header))
-            writer.writerows(rows)
+            writer.writerow((self.subkey, *sliced_header))
+            writer.writerows(sliced_rows)
 
     def get_curation_table(self, **kwargs: Any) -> str | None:
         """Get the curation table as a string, built by :mod:`tabulate`."""
