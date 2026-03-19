@@ -35,6 +35,9 @@ skip_prefixes = {
     "Reactome",  # incomprehensible URLs
     "DB-0180",  # genewiki
     "DB-0276", # not an identifier resource, just an article
+    "DB-0176", # resource almost impossible to navigate
+    # Confusing, maybe try again later
+    "DB-0193",
 }
 
 HAS_BAD_URI = {
