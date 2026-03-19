@@ -28,12 +28,15 @@ PROCESSED_PATH = DIRECTORY / "processed.json"
 
 #: resources with these UniProt prefixes don't exist anymore
 skip_prefixes = {
-    "UniPathway",  # doesn't exist anymore
-    "BRENDA",  # has bad format string contains EC, UniProt, and taxon
-    "eggNOG",  # not sure what this does
-    "PlantReactome",  # incomprehensible URLs
-    "Reactome",  # incomprehensible URLs
     "DB-0180",  # genewiki
+    "DB-0276",  # not an identifier resource, just an article
+    "DB-0176",  # resource almost impossible to navigate
+    "DB-0198",  # unclear
+    "DB-0238",  # no link in uniprot records, dead website
+    "DB-0167",  # no link in uniprot records to site, but does have corresponding dnasu prefixes
+    "DB-0169",  # no link in uniprot records, site is too hard to understand
+    # Confusing, maybe try again later
+    "DB-0193",
 }
 
 HAS_BAD_URI = {
