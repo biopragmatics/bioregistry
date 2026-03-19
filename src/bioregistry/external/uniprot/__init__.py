@@ -36,6 +36,8 @@ skip_prefixes = {
     "DB-0180",  # genewiki
     "DB-0276", # not an identifier resource, just an article
     "DB-0176", # resource almost impossible to navigate
+    "DB-0198", # unclear
+    "DB-0238", # no link in uniprot records, dead website
     # Confusing, maybe try again later
     "DB-0193",
 }
