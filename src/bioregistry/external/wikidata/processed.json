@@ -167,6 +167,22 @@
       "wikidata": "Q110246284"
     }
   },
+  "P10241": {
+    "description": "the taxon of an individual named organism (animal, plant)",
+    "examples": [
+      "Q1116374",
+      "Q133128",
+      "Q149851",
+      "Q20980826",
+      "Q26843",
+      "Q4126704",
+      "Q876500"
+    ],
+    "name": "individual of taxon",
+    "xrefs": {
+      "wikidata": "Q16521"
+    }
+  },
   "P10243": {
     "description": "identifier of a species or ecosystem in the Americas in the NatureServe Explorer database",
     "examples": [
@@ -430,19 +446,6 @@
     "name": "Invasive.org species ID",
     "pattern": "^[1-9]\\d*$",
     "uri_format": "https://www.invasive.org/browse/subinfo.cfm?sub=$1"
-  },
-  "P10718": {
-    "description": "line notation based on the SMILES but extended to allow describing compound classes",
-    "examples": [
-      "Cl*.c1ccccc1-c1ccccc1 |m:1:3.4.5.6.7.8.9|",
-      "[*]C(CC(C)C)C[*] |Sg:n:1,2,3,4,5,6::ht|",
-      "[H][C@@](COC([*])=O)(COP(O)(=O)O[C@H]1[C@H](O)[C@@H](O)[C@H](O)[C@@H](OP(O)(O)=O)[C@H]1O)OC([*])=O |$;;;;;_R1;;;;;;;;;;;;;;;;;;;;;;;;;_R2$|"
-    ],
-    "name": "CXSMILES",
-    "uri_format": "https://www.simolecule.com/cdkdepict/depict/bow/svg?smi=$1&zoom=2.0&annotate=cip",
-    "xrefs": {
-      "wikidata": "Q111662913"
-    }
   },
   "P10727": {
     "description": "Geoscience Vocabularies for Linked Data",
@@ -737,6 +740,19 @@
     "name": "Rare Plant Fact Sheets ID",
     "pattern": "^[a-z0-9]+$",
     "uri_format": "https://oregonflora.org/pages/content/$1.pdf"
+  },
+  "P10946": {
+    "description": "medical condition for which the net benefit of a medical procedure is expected to be negative",
+    "examples": [
+      "Q128581",
+      "Q18555157",
+      "Q372713",
+      "Q719426"
+    ],
+    "name": "contraindicated in case of",
+    "xrefs": {
+      "wikidata": "Q1848900"
+    }
   },
   "P10958": {
     "description": "identifier for a pediatrician in the online database Jewish Pediatricians 1933-1945",
@@ -1582,6 +1598,29 @@
     "name": "Royal Irish Academy ID",
     "pattern": "^[a-z]+(-[a-z]+)*$",
     "uri_format": "https://www.ria.ie/$1"
+  },
+  "P12105": {
+    "description": "conservation status of endemic South African plants assigned by the South African National Biodiversity Institute",
+    "examples": [
+      "Q123142197",
+      "Q123142278",
+      "Q123142311",
+      "Q123142345",
+      "Q123142353",
+      "Q123142362",
+      "Q123142372",
+      "Q123142380",
+      "Q123142397",
+      "Q123142408",
+      "Q123142425",
+      "Q123142439",
+      "Q123142448"
+    ],
+    "homepage": "http://redlist.sanbi.org/index.php",
+    "name": "Red List of South African Plants conservation status",
+    "xrefs": {
+      "wikidata": "Q122237794"
+    }
   },
   "P12113": {
     "description": "identifier for a plant species in The Vascular Plants of Iowa website",
@@ -2440,6 +2479,19 @@
     "name": "SNS Info Saúde",
     "uri_format": "https://www.sns24.gov.pt/tema/$1"
   },
+  "P12616": {
+    "description": "characterization of aspects of the shape of a plant’s leaves",
+    "examples": [
+      "Q115688086",
+      "Q25501730",
+      "Q25501925",
+      "Q97304967"
+    ],
+    "name": "leaf morphology",
+    "xrefs": {
+      "wikidata": "Q521246"
+    }
+  },
   "P12645": {
     "description": "identifier for a southern African plant featured on the PlantZAfrica website",
     "examples": [
@@ -3134,6 +3186,18 @@
       "wikidata": "Q133847597"
     }
   },
+  "P13549": {
+    "description": "Links species, habitat or biotope type with the regulation international or national that protects this species",
+    "examples": [
+      "Q124884362",
+      "Q133728693",
+      "Q133728710",
+      "Q2851527",
+      "Q706871"
+    ],
+    "homepage": "https://www.wisia.de/FsetWisia1.de.html",
+    "name": "species protection status"
+  },
   "P13641": {
     "description": "identifier for Georgian physicians in the Biographical Dictionary of Physicians of Georgia",
     "examples": [
@@ -3162,16 +3226,6 @@
     "xrefs": {
       "wikidata": "Q135260932"
     }
-  },
-  "P13696": {
-    "description": "an exemplary image of a particular aspect for this taxon. Relevant for taxonomic identification",
-    "examples": [
-      "http://commons.wikimedia.org/wiki/Special:FilePath/%E9%BB%83%E8%98%AD%20Michelia%20champaca%20-%E9%A6%99%E6%B8%AF%E8%8D%94%E6%9E%9D%E8%A7%92%E5%85%AC%E5%9C%92%20Lai%20Chi%20Kok%20Park%2C%20Hong%20Kong-%20%289216126584%29.jpg",
-      "http://commons.wikimedia.org/wiki/Special:FilePath/Bark%20of%20Mangifera%20indica.jpg",
-      "http://commons.wikimedia.org/wiki/Special:FilePath/Psidium%20guajava%20fruit.jpg"
-    ],
-    "name": "taxon aspect image",
-    "uri_format": "https://commons.wikimedia.org/wiki/File:$1"
   },
   "P13734": {
     "description": "identifier for an alien species on the Catalogue of Alien Species by the European Alien Species Information Network",
@@ -3242,15 +3296,6 @@
       "wikidata": "Q1860469"
     }
   },
-  "P13926": {
-    "description": "point in time when an archaeological object or assemblage was buried, hidden, lost, or otherwise deposited",
-    "examples": [
-      "0700-01-01T00:00:00Z",
-      "0900-01-01T00:00:00Z",
-      "1700-01-01T00:00:00Z"
-    ],
-    "name": "time of deposition"
-  },
   "P1395": {
     "description": "identifier at www.cancer.gov",
     "examples": [
@@ -3314,6 +3359,22 @@
     "name": "Accademia Nazionale dei Lincei ID",
     "uri_format": "https://www.lincei.it/it/socio/$1/"
   },
+  "P141": {
+    "description": "conservation status assigned by the International Union for Conservation of Nature",
+    "examples": [
+      "Q211005",
+      "Q219127",
+      "Q237350",
+      "Q239509",
+      "Q278113",
+      "Q719675",
+      "Q96377276"
+    ],
+    "name": "IUCN conservation status",
+    "xrefs": {
+      "wikidata": "Q48268"
+    }
+  },
   "P14111": {
     "description": "identifier of this dog breed at the official website of the Australian National Kennel Council (ANKC)",
     "examples": [
@@ -3340,6 +3401,20 @@
     "name": "BISMaL taxon ID",
     "uri_format": "https://www.godac.jamstec.go.jp/bismal/view/$1"
   },
+  "P1420": {
+    "description": "name listed as synonym of this item's taxon name",
+    "examples": [
+      "Q10414397",
+      "Q135193",
+      "Q1384486",
+      "Q19868678",
+      "Q41155921"
+    ],
+    "name": "taxon synonym",
+    "xrefs": {
+      "wikidata": "Q1040689"
+    }
+  },
   "P1421": {
     "description": "URL for a taxon in the GRIN website",
     "examples": [
@@ -3350,6 +3425,17 @@
     "name": "GRIN URL",
     "xrefs": {
       "wikidata": "Q19576476"
+    }
+  },
+  "P1425": {
+    "description": "ecoregion of the item (choose from WWF's list)",
+    "examples": [
+      "Q30622797",
+      "Q401979"
+    ],
+    "name": "ecoregion (WWF)",
+    "xrefs": {
+      "wikidata": "Q295469"
     }
   },
   "P1461": {
@@ -3424,6 +3510,38 @@
     "pattern": "^[a-z0-9_]+$",
     "uri_format": "https://www.malacards.org/card/$1"
   },
+  "P1604": {
+    "description": "level of the biocontainment precautions required to isolate dangerous biological agents",
+    "examples": [
+      "Q18396535",
+      "Q18396538",
+      "Q18396539"
+    ],
+    "name": "biosafety level",
+    "xrefs": {
+      "wikidata": "Q898943"
+    }
+  },
+  "P1605": {
+    "description": "host species for the pathogen in which it is endemic",
+    "examples": [
+      "Q185230"
+    ],
+    "name": "has natural reservoir",
+    "xrefs": {
+      "wikidata": "Q1361531"
+    }
+  },
+  "P1606": {
+    "description": "pathogen of which this species is a long-term host",
+    "examples": [
+      "Q5331908"
+    ],
+    "name": "natural reservoir of",
+    "xrefs": {
+      "wikidata": "Q1361531"
+    }
+  },
   "P1607": {
     "description": "identifier of an author in Dialnet",
     "examples": [
@@ -3479,6 +3597,16 @@
     "name": "NIST/CODATA ID",
     "uri_format": "https://physics.nist.gov/cgi-bin/cuu/Value?$1"
   },
+  "P1660": {
+    "description": "initial patient in the population of an epidemiological investigation",
+    "examples": [
+      "Q18249266"
+    ],
+    "name": "has index case",
+    "xrefs": {
+      "wikidata": "Q1639798"
+    }
+  },
   "P1668": {
     "description": "identifier of veterinary medicine",
     "examples": [
@@ -3490,6 +3618,29 @@
     "name": "ATCvet code",
     "pattern": "^Q[ABCDGHJLMNPRSV]([0-9][0-9]([A-Z]([A-Z]([0-9][0-9])?)?)?)?$",
     "uri_format": "http://www.whocc.no/atcvet/atcvet_index/?code=$1"
+  },
+  "P1672": {
+    "description": "links a taxon to natural products it produces. Note that it does not say \"this taxon is the source of\" or \"this taxon is a source of\" as this may vary. Some products may be yielded by more than one taxon.",
+    "examples": [
+      "Q12190",
+      "Q188774",
+      "Q818405",
+      "Q94787"
+    ],
+    "name": "this taxon is source of",
+    "xrefs": {
+      "wikidata": "Q901227"
+    }
+  },
+  "P1677": {
+    "description": "primary case, patient zero: initial patient in the population of an epidemiological investigation",
+    "examples": [
+      "Q17486597"
+    ],
+    "name": "index case of",
+    "xrefs": {
+      "wikidata": "Q1639798"
+    }
   },
   "P1690": {
     "description": "identifier in the ICD-10-PCS (Procedure Coding System, International Classification of Diseases, 10th revision)",
@@ -3536,6 +3687,39 @@
     ],
     "name": "Terminologia Histologica",
     "pattern": "^H\\d\\.\\d{2}\\.\\d{2}\\.\\d\\.\\d{5}$"
+  },
+  "P1703": {
+    "description": "how pollen from the male anthers is transferred to the female stigma of a flower",
+    "examples": [
+      "Q2276661"
+    ],
+    "name": "is pollinated by",
+    "xrefs": {
+      "wikidata": "Q134624"
+    }
+  },
+  "P1704": {
+    "description": "plant that this animal visits for pollen (and that it pollinates)",
+    "examples": [
+      "Q5389400"
+    ],
+    "name": "is pollinator of",
+    "xrefs": {
+      "wikidata": "Q7225605"
+    }
+  },
+  "P171": {
+    "description": "closest parent taxon of the taxon in question",
+    "examples": [
+      "Q171283",
+      "Q20643849",
+      "Q27618",
+      "Q57754693"
+    ],
+    "name": "parent taxon",
+    "xrefs": {
+      "wikidata": "Q16521"
+    }
   },
   "P1717": {
     "description": "identifier of the French national Water Information System",
@@ -3659,6 +3843,18 @@
     "pattern": "^[A-Z]{3,5}[0-9]{0,3}|$",
     "uri_format": "https://plants.sc.egov.usda.gov/plant-profile/$1"
   },
+  "P183": {
+    "description": "sole location or habitat type where the taxon lives",
+    "examples": [
+      "Q1019",
+      "Q17070",
+      "Q78980"
+    ],
+    "name": "endemic to",
+    "xrefs": {
+      "wikidata": "Q123452"
+    }
+  },
   "P1832": {
     "description": "identifier in GrassBase - The Online World Grass Flora",
     "examples": [
@@ -3670,6 +3866,17 @@
     "pattern": "^(imp|gen){1}\\d{5}$",
     "uri_format": "http://www.kew.org/data/grasses-db/www/$1"
   },
+  "P1853": {
+    "description": "blood type of the human or animal",
+    "examples": [
+      "Q19831451",
+      "Q19831453"
+    ],
+    "name": "blood type",
+    "xrefs": {
+      "wikidata": "Q47657"
+    }
+  },
   "P1895": {
     "description": "identifier for a taxon in Fauna Europaea",
     "examples": [
@@ -3680,6 +3887,103 @@
     "name": "Fauna Europaea ID",
     "pattern": "^(\\d{1,6}|)$",
     "uri_format": "http://www.eu-nomen.eu/portal/taxon.php?GUID=urn:lsid:faunaeur.org:taxname:$1"
+  },
+  "P1909": {
+    "description": "effect of a medication or procedure, that occurs next to the desired effect",
+    "examples": [
+      "Q1229994",
+      "Q1292082"
+    ],
+    "name": "side effect",
+    "xrefs": {
+      "wikidata": "Q45959"
+    }
+  },
+  "P1910": {
+    "description": "indicates that a decreased expression of the subject gene is found in the object disease",
+    "examples": [
+      "Q18558032"
+    ],
+    "name": "decreased expression in"
+  },
+  "P1911": {
+    "description": "this property should link a gene and a disease and indicate that an increased expression of the gene is found in the disease",
+    "examples": [
+      "Q18558032"
+    ],
+    "name": "increased expression in"
+  },
+  "P1912": {
+    "description": "This property should link a gene and a disease due to a deletion",
+    "examples": [
+      "Q178194"
+    ],
+    "name": "gene deletion association with",
+    "xrefs": {
+      "wikidata": "Q656732"
+    }
+  },
+  "P1913": {
+    "description": "This property should link a gene and a disease due to a duplication",
+    "examples": [
+      "Q1052687"
+    ],
+    "name": "gene duplication association with",
+    "xrefs": {
+      "wikidata": "Q746284"
+    }
+  },
+  "P1914": {
+    "description": "This property should link a gene and a disease due to an insertion",
+    "examples": [
+      "Q1472"
+    ],
+    "name": "gene insertion association with",
+    "xrefs": {
+      "wikidata": "Q1650834"
+    }
+  },
+  "P1915": {
+    "description": "This property should link a gene and a disease due to an inversion",
+    "examples": [
+      "Q2092064"
+    ],
+    "name": "gene inversion association with"
+  },
+  "P1916": {
+    "description": "disease caused or associated with the substitution of this gene",
+    "examples": [
+      "Q128581"
+    ],
+    "name": "gene substitution association with"
+  },
+  "P1917": {
+    "description": "This property should link a protein-coding gene to a disease where the encoded protein is associated with a posttranslation modification",
+    "examples": [
+      "Q18558032"
+    ],
+    "name": "posttranslational modification association with",
+    "xrefs": {
+      "wikidata": "Q898362"
+    }
+  },
+  "P1918": {
+    "description": "this property should link a gene and a disease due to altered regulation",
+    "examples": [
+      "Q11085"
+    ],
+    "name": "altered regulation leads to"
+  },
+  "P1924": {
+    "description": "disease that a vaccine is for",
+    "examples": [
+      "Q12090",
+      "Q84263196"
+    ],
+    "name": "vaccine for",
+    "xrefs": {
+      "wikidata": "Q134808"
+    }
   },
   "P1925": {
     "description": "identifier in the VIOLIN database for vaccines and related subjects",
@@ -3810,6 +4114,18 @@
     "name": "Plazi ID",
     "uri_format": "https://treatment.plazi.org/id/$1",
     "uri_format_rdf": "http://treatment.plazi.org/id/$1"
+  },
+  "P1995": {
+    "description": "main specialty relevant to this medical condition or treatment",
+    "examples": [
+      "Q161437",
+      "Q203337",
+      "Q788926"
+    ],
+    "name": "health specialty",
+    "xrefs": {
+      "wikidata": "Q44597158"
+    }
   },
   "P2006": {
     "description": "identifier for an author at ZooBank",
@@ -4174,6 +4490,43 @@
     "name": "Cell Line Ontology ID",
     "pattern": "^CLO_\\d{7}$"
   },
+  "P2175": {
+    "description": "disease that this pharmaceutical drug, procedure, or therapy is used to treat",
+    "examples": [
+      "Q18558032"
+    ],
+    "homepage": "https://rxnav.nlm.nih.gov",
+    "name": "medical condition treated"
+  },
+  "P2176": {
+    "description": "drug, procedure, or therapy that can be used to treat a medical condition",
+    "examples": [
+      "Q3011604"
+    ],
+    "homepage": "https://rxnav.nlm.nih.gov",
+    "name": "drug or therapy used for treatment",
+    "short_names": [
+      "treatment"
+    ],
+    "xrefs": {
+      "wikidata": "Q12140"
+    }
+  },
+  "P2239": {
+    "description": "actions to take to help a person in the case of exposure to this hazard or malady (accidents, injuries, harmful chemicals)",
+    "examples": [
+      "Q109132268",
+      "Q21010953",
+      "Q21010963",
+      "Q21010973",
+      "Q545991"
+    ],
+    "homepage": "http://www.cdc.gov/niosh/npg/default.html",
+    "name": "first aid measures",
+    "xrefs": {
+      "wikidata": "Q133981"
+    }
+  },
   "P2240": {
     "description": "the dose required to kill half the members of a tested population after a specified test duration (LC₅₀ → P2712)",
     "examples": [
@@ -4261,6 +4614,37 @@
       "wikidata": "Q824258"
     }
   },
+  "P2286": {
+    "description": "arterial supply of an anatomical structure",
+    "examples": [
+      "Q542166"
+    ],
+    "name": "arterial supply",
+    "xrefs": {
+      "wikidata": "Q9655"
+    }
+  },
+  "P2288": {
+    "description": "lymphatic drainage of an anatomical structure",
+    "examples": [
+      "Q6047876",
+      "Q7133679"
+    ],
+    "name": "lymphatic drainage",
+    "xrefs": {
+      "wikidata": "Q712604"
+    }
+  },
+  "P2289": {
+    "description": "vein draining the anatomical structure",
+    "examples": [
+      "Q1165173"
+    ],
+    "name": "venous drainage",
+    "xrefs": {
+      "wikidata": "Q9609"
+    }
+  },
   "P231": {
     "description": "identifier for a chemical substance or compound per Chemical Abstract Service's Registry database",
     "examples": [
@@ -4282,6 +4666,17 @@
     "name": "EC number",
     "pattern": "^(\\d{3}-){2}\\d$",
     "uri_format": "https://www.echa.europa.eu/information-on-chemicals/ec-inventory/-/dislist/details/$1"
+  },
+  "P2329": {
+    "description": "muscle memory and antagonism",
+    "examples": [
+      "Q504536",
+      "Q601016"
+    ],
+    "name": "antagonist muscle",
+    "xrefs": {
+      "wikidata": "Q570587"
+    }
   },
   "P233": {
     "description": "Simplified Molecular Input Line Entry Specification (canonical format)",
@@ -4409,6 +4804,17 @@
     "uri_format": "https://xeno-canto.org/species/$1",
     "xrefs": {
       "wikidata": "Q8043516"
+    }
+  },
+  "P2433": {
+    "description": "determines the correct form of some names of species and subdivisions of species, also subdivisions of a genus",
+    "examples": [
+      "Q1775415",
+      "Q499327"
+    ],
+    "name": "gender of a scientific name of a genus",
+    "xrefs": {
+      "wikidata": "Q162378"
     }
   },
   "P2434": {
@@ -4597,6 +5003,17 @@
       "wikidata": "Q2446987"
     }
   },
+  "P2743": {
+    "description": "links coordinate zoological names",
+    "examples": [
+      "Q251656",
+      "Q310911"
+    ],
+    "name": "this zoological name is coordinate with",
+    "xrefs": {
+      "wikidata": "Q7245144"
+    }
+  },
   "P2752": {
     "description": "identifier for a taxon names in the New Zealand Organisms Register",
     "examples": [
@@ -4607,6 +5024,19 @@
     "name": "New Zealand Organisms Register ID",
     "pattern": "^[0-9a-f]{8}-([0-9a-f]{4}-){3}[0-9a-f]{12}$",
     "uri_format": "https://www.nzor.org.nz/names/$1"
+  },
+  "P2789": {
+    "description": "item with which the item is physically connected",
+    "examples": [
+      "Q17040",
+      "Q2119531",
+      "Q2152999",
+      "Q228537",
+      "Q33767",
+      "Q673399",
+      "Q839050"
+    ],
+    "name": "connects with"
   },
   "P2794": {
     "description": "identifier in the Index Hepaticarum, a nomenclatural database",
@@ -4653,6 +5083,20 @@
     "pattern": "^\\d+(\\-\\d+)*(-\\(\\d+(\\-\\d+)*\\))?$",
     "uri_format": "http://apsa.anu.edu.au/samples/sample.php?id=$1"
   },
+  "P2827": {
+    "description": "colour of flowers of a plant species, hybrid or cultivar",
+    "examples": [
+      "Q23444",
+      "Q2722041",
+      "Q429220",
+      "Q47071",
+      "Q943"
+    ],
+    "name": "flower color",
+    "xrefs": {
+      "wikidata": "Q137296973"
+    }
+  },
   "P2833": {
     "description": "identifier for a taxon, in the ARKive database",
     "examples": [
@@ -4665,6 +5109,18 @@
     "pattern": "^[a-z]+(\\-[a-z]+)*$",
     "uri_format": "https://web.archive.org/web/*/http://www.arkive.org/wd/$1/"
   },
+  "P2839": {
+    "description": "gait of an animal",
+    "examples": [
+      "Q1118545",
+      "Q23772571",
+      "Q23772688"
+    ],
+    "name": "gait",
+    "xrefs": {
+      "wikidata": "Q2370000"
+    }
+  },
   "P2840": {
     "description": "numeric identifier for substances submitted to the National Cancer Institute (NCI) for testing and evaluation",
     "examples": [
@@ -4676,6 +5132,18 @@
     "name": "NSC number",
     "pattern": "^\\d+$",
     "uri_format": "https://dtp.cancer.gov/dtpstandard/servlet/dwindex?searchtype=NSC&chemnameboolean=and&outputformat=html&searchlist=$1&Submit=Submit"
+  },
+  "P2841": {
+    "description": "age group in which disease manifestations appear",
+    "examples": [
+      "Q21953125",
+      "Q21955204"
+    ],
+    "homepage": "http://compbio.charite.de/hpoweb/showterm?id=HP:0003674",
+    "name": "age of onset",
+    "xrefs": {
+      "wikidata": "Q4691924"
+    }
   },
   "P2870": {
     "description": "identifier for pre-miRNAs in miRBase, the reference database for microRNAs",
@@ -4772,6 +5240,30 @@
     "name": "BacDive ID",
     "pattern": "^\\d{1,6}$",
     "uri_format": "https://bacdive.dsmz.de/strain/$1"
+  },
+  "P2974": {
+    "description": "the natural environment in which an organism lives, or the physical environment that surrounds a species population",
+    "examples": [
+      "Q1029907",
+      "Q1103796",
+      "Q36133"
+    ],
+    "name": "habitat",
+    "xrefs": {
+      "wikidata": "Q52105"
+    }
+  },
+  "P2975": {
+    "description": "an organism harboring another organism or organisms on or in itself",
+    "examples": [
+      "Q15978631",
+      "Q4682649",
+      "Q830"
+    ],
+    "name": "has host",
+    "xrefs": {
+      "wikidata": "Q221673"
+    }
   },
   "P299": {
     "description": "identifier for a country in numeric format per ISO 3166-1",
@@ -4877,6 +5369,15 @@
     "xrefs": {
       "wikidata": "Q26218155"
     }
+  },
+  "P3094": {
+    "description": "this class of items develops from another class of items (biology)",
+    "examples": [
+      "Q243784",
+      "Q323438"
+    ],
+    "homepage": "http://uberon.github.io",
+    "name": "develops from"
   },
   "P3098": {
     "description": "identifier in the ClinicalTrials.gov database",
@@ -5090,6 +5591,26 @@
     "name": "NBN System Key",
     "uri_format": "https://species.nbnatlas.org/species/$1"
   },
+  "P3261": {
+    "description": "main stem of this blood vessel, lymphatic vessel or nerve",
+    "examples": [
+      "Q101004"
+    ],
+    "name": "anatomical branch of",
+    "xrefs": {
+      "wikidata": "Q46950621"
+    }
+  },
+  "P3262": {
+    "description": "branches of this blood vessel, lymphatic vessel or nerve",
+    "examples": [
+      "Q125276"
+    ],
+    "name": "has anatomical branch",
+    "xrefs": {
+      "wikidata": "Q46950621"
+    }
+  },
   "P3277": {
     "description": "identifier for a member of the Royal Academy of Dutch language and literature",
     "examples": [
@@ -5213,6 +5734,60 @@
     "pattern": "^\\d+$",
     "uri_format": "https://extranet.who.int/soinn/mod/page/view.php?id=137&inn_n=$1"
   },
+  "P3354": {
+    "description": "the presence of the genetic variant helps to predict response to a treatment",
+    "examples": [
+      "Q423111"
+    ],
+    "name": "positive therapeutic predictor for",
+    "xrefs": {
+      "wikidata": "Q179661"
+    }
+  },
+  "P3355": {
+    "description": "the presence of the genetic variant helps to predict no response or resistance to a treatment",
+    "examples": [
+      "Q4688818"
+    ],
+    "name": "negative therapeutic predictor for",
+    "xrefs": {
+      "wikidata": "Q179661"
+    }
+  },
+  "P3356": {
+    "description": "the presence of the genetic variant helps to diagnose the presence of disease, used as inclusion criteria",
+    "examples": [
+      "Q729735"
+    ],
+    "name": "positive diagnostic predictor for",
+    "xrefs": {
+      "wikidata": "Q177719"
+    }
+  },
+  "P3357": {
+    "description": "the presence of the genetic variant helps to diagnose the absence of disease, used as exclusion criteria",
+    "examples": [
+      "Q729735"
+    ],
+    "name": "negative diagnostic predictor for",
+    "xrefs": {
+      "wikidata": "Q177719"
+    }
+  },
+  "P3358": {
+    "description": "the presence of the genetic variant helps to prognose good outcome for the disease",
+    "examples": [
+      "Q282142"
+    ],
+    "name": "positive prognostic predictor for"
+  },
+  "P3359": {
+    "description": "the presence of the genetic variant helps to prognose poor outcome for the disease",
+    "examples": [
+      "Q826522"
+    ],
+    "name": "negative prognostic predictor for"
+  },
   "P3380": {
     "description": "(constructed) ID of a domestic animal species or breed in the FAO Animal Genetic resources report 2007 breed",
     "examples": [
@@ -5320,6 +5895,17 @@
     "name": "Publons publication ID",
     "uri_format": "https://publons.com/publon/$1"
   },
+  "P3432": {
+    "description": "closest parent cell line of the cell line in question",
+    "examples": [
+      "Q489618"
+    ],
+    "homepage": "https://web.expasy.org/cellosaurus/",
+    "name": "parent cell line",
+    "xrefs": {
+      "wikidata": "Q21014462"
+    }
+  },
   "P3444": {
     "description": "identifier for a species or subspecies, in the eBird database",
     "examples": [
@@ -5356,6 +5942,18 @@
     "pattern": "^\\d+$",
     "uri_format": "https://euring.org/edb/species-maps/sp$1.htm"
   },
+  "P3464": {
+    "description": "medicinal product's marketing authorization status",
+    "examples": [
+      "Q26720713",
+      "Q28881405"
+    ],
+    "homepage": "https://open.fda.gov/",
+    "name": "medicine marketing authorization",
+    "xrefs": {
+      "wikidata": "Q6770899"
+    }
+  },
   "P3465": {
     "description": "maximum frequency of audible sound for this species",
     "examples": [
@@ -5384,6 +5982,49 @@
     "pattern": "^[a-zјь]+(-[a-zјь]+)+(-2)?$",
     "uri_format": "https://www.sanu.ac.rs/clan/$1/"
   },
+  "P3489": {
+    "description": "official categorisation of safety of medicine in pregnancy",
+    "examples": [
+      "Q28123618",
+      "Q3679261"
+    ],
+    "homepage": "https://www.tga.gov.au/prescribing-medicines-pregnancy-database",
+    "name": "pregnancy category",
+    "xrefs": {
+      "wikidata": "Q1057079"
+    }
+  },
+  "P3490": {
+    "description": "the anatomic entity to which the beginning of a muscle is anchored",
+    "examples": [
+      "Q384631",
+      "Q7850869"
+    ],
+    "name": "muscle origin",
+    "xrefs": {
+      "wikidata": "Q4925174"
+    }
+  },
+  "P3491": {
+    "description": "the anatomic entity to which the end of a muscle is anchored",
+    "examples": [
+      "Q719213"
+    ],
+    "name": "muscle insertion",
+    "xrefs": {
+      "wikidata": "Q2501506"
+    }
+  },
+  "P3493": {
+    "description": "legal status for pharmaceutical drugs, e.g. general sales list for paracetamol in the UK",
+    "examples": [
+      "Q26715239"
+    ],
+    "name": "legal status (medicine)",
+    "xrefs": {
+      "wikidata": "Q26715005"
+    }
+  },
   "P351": {
     "description": "identifier for a gene per the NCBI Entrez database",
     "examples": [
@@ -5396,6 +6037,21 @@
     "uri_format_rdf": "http://purl.uniprot.org/geneid/$1",
     "xrefs": {
       "miriam": "ncbigene"
+    }
+  },
+  "P3512": {
+    "description": "method that the subject uses to move from one place to another",
+    "examples": [
+      "Q1276903",
+      "Q21907045",
+      "Q2192732",
+      "Q28166776",
+      "Q28464929",
+      "Q372949"
+    ],
+    "name": "means of locomotion",
+    "xrefs": {
+      "wikidata": "Q2633862"
     }
   },
   "P3519": {
@@ -5508,6 +6164,17 @@
       "wikidata": "Q25670"
     }
   },
+  "P3578": {
+    "description": "cell line originating from the same individual",
+    "examples": [
+      "Q28519412"
+    ],
+    "homepage": "https://web.expasy.org/cellosaurus/",
+    "name": "autologous cell line",
+    "xrefs": {
+      "wikidata": "Q21014462"
+    }
+  },
   "P3590": {
     "description": "ID in the Relations Ontology",
     "homepage": "https://github.com/oborel/obo-relations/",
@@ -5582,6 +6249,16 @@
       "wikidata": "Q6972354"
     }
   },
+  "P3648": {
+    "description": "conservation status assigned by NatureServe",
+    "examples": [
+      "Q55714070"
+    ],
+    "name": "NatureServe conservation status",
+    "xrefs": {
+      "wikidata": "Q82673"
+    }
+  },
   "P3720": {
     "description": "ID of a topic, in the British medical database GPnotebook",
     "examples": [
@@ -5593,6 +6270,16 @@
     "name": "GPnotebook ID",
     "pattern": "^-?\\d+$",
     "uri_format": "https://www.gpnotebook.co.uk/simplepage.cfm?ID=$1"
+  },
+  "P3739": {
+    "description": "placement of flowers on the stem of a flower plant",
+    "examples": [
+      "Q11917763"
+    ],
+    "name": "inflorescence",
+    "xrefs": {
+      "wikidata": "Q156428"
+    }
   },
   "P3746": {
     "description": "identifier of a taxon in the Wildflowers of Israel database",
@@ -5885,6 +6572,30 @@
       "wikidata": "Q27986619"
     }
   },
+  "P4044": {
+    "description": "disease area in which a medical intervention is applied",
+    "examples": [
+      "Q128581",
+      "Q212961",
+      "Q3658562"
+    ],
+    "homepage": "http://www.ema.europa.eu/ema/index.jsp?curl=pages/medicines/landing/epar_search.jsp&mid=WC0b01ac058001d124",
+    "name": "therapeutic area"
+  },
+  "P405": {
+    "description": "the author(s) that (optionally) may be cited with the scientific name",
+    "examples": [
+      "Q1043",
+      "Q151556",
+      "Q171969",
+      "Q22114001",
+      "Q955086"
+    ],
+    "name": "taxon author",
+    "xrefs": {
+      "wikidata": "Q113553809"
+    }
+  },
   "P4058": {
     "description": "identifier of a medical facility in France in the FINESS directory",
     "examples": [
@@ -6002,6 +6713,19 @@
     "pattern": "^[1-9]\\d*$",
     "uri_format": "https://www.patientslikeme.com/symptoms/show/$1"
   },
+  "P427": {
+    "description": "type genus or species: [in zoology:] nominal genus or species that is the name-bearing type of this nominal family or genus (or family-group ranked taxon or subgenus); type specimen that is the name-bearing type of this nominal species or subspecies",
+    "examples": [
+      "Q10856673",
+      "Q19359611",
+      "Q3715460",
+      "Q4044129"
+    ],
+    "name": "taxonomic type",
+    "xrefs": {
+      "wikidata": "Q3707858"
+    }
+  },
   "P4288": {
     "description": "identifier of a fruit (plant) variety or cultivar, in the United Kingdom National Fruit Collection",
     "examples": [
@@ -6104,6 +6828,29 @@
     "homepage": "http://braininfo.rprc.washington.edu/SearchByName.aspx",
     "name": "BrainInfo ID (hierarchical)",
     "uri_format": "http://braininfo.rprc.washington.edu/centraldirectory.aspx?type=h&ID=$1"
+  },
+  "P4425": {
+    "description": "mitochondrial DNA haplogroup of a person or organism",
+    "examples": [
+      "Q1584149",
+      "Q1584156"
+    ],
+    "name": "mtDNA haplogroup",
+    "xrefs": {
+      "wikidata": "Q42262065"
+    }
+  },
+  "P4426": {
+    "description": "Y-DNA haplogroup of a person or organism",
+    "examples": [
+      "Q4118590",
+      "Q674896",
+      "Q99292445"
+    ],
+    "name": "Y-DNA Haplogroup",
+    "xrefs": {
+      "wikidata": "Q428875"
+    }
   },
   "P4433": {
     "description": "identifier from Indian organization of butterfly biologists working on the conservation of butterflies of India. They maintain an internet-based and peer-reviewed resource devoted to Indian butterflies.",
@@ -6335,6 +7082,17 @@
     "uri_format": "https://goldbook.iupac.org/terms/view/$1",
     "uri_format_rdf": "http://dx.doi.org/10.1351/goldbook.$1"
   },
+  "P4743": {
+    "description": "subject item belongs to a specific group of domestic animals, generally given by association",
+    "examples": [
+      "Q2962944",
+      "Q3403137"
+    ],
+    "name": "animal breed",
+    "xrefs": {
+      "wikidata": "Q38829"
+    }
+  },
   "P4753": {
     "description": "identifier of a plant used as an agricultural crop in the Ecocrop database",
     "examples": [
@@ -6369,6 +7127,16 @@
     "pattern": "^\\d{2,5}(.\\d)?$",
     "uri_format": "https://mothphotographersgroup.msstate.edu/species.php?hodges=$1"
   },
+  "P4777": {
+    "description": "element that's on the two dimensional border that surrounds the subject; the limit of an entity",
+    "examples": [
+      "Q2918723",
+      "Q3088721",
+      "Q3382408",
+      "Q9629"
+    ],
+    "name": "has boundary"
+  },
   "P4798": {
     "description": "identifier for a bird species or sub-species in the BTO Birds of Britain/ BirdFacts database",
     "examples": [
@@ -6393,6 +7161,18 @@
     "name": "Fauna Europaea New ID",
     "pattern": "^[0-9a-f]{8}(-[0-9a-f]{4}){3}-[0-9a-f]{12}$",
     "uri_format": "https://fauna-eu.org/cdm_dataportal/taxon/$1"
+  },
+  "P4843": {
+    "description": "biological development of this anatomical structure",
+    "examples": [
+      "Q14905385",
+      "Q22298483",
+      "Q471817"
+    ],
+    "name": "development of anatomical structure",
+    "xrefs": {
+      "wikidata": "Q14860201"
+    }
   },
   "P4852": {
     "description": "identifier of a flavour, food additive, contaminant, toxicant or veterinary drug in the FAO/WHO JECFA database",
@@ -6633,6 +7413,71 @@
     "pattern": "^[^\\s]+$",
     "uri_format": "https://wikidata-externalid-url.toolforge.org/?p=5082&url_prefix=https://sml.snl.no/&id=$1"
   },
+  "P5131": {
+    "description": "possible medical findings of a medical condition",
+    "examples": [
+      "Q209583",
+      "Q30079248",
+      "Q5476248",
+      "Q7394928",
+      "Q7785063"
+    ],
+    "name": "possible medical findings",
+    "xrefs": {
+      "wikidata": "Q639907"
+    }
+  },
+  "P5132": {
+    "description": "medical conditions associated with the subject medical finding",
+    "examples": [
+      "Q1320276",
+      "Q1469637",
+      "Q16499",
+      "Q178061",
+      "Q18558122",
+      "Q3232575",
+      "Q735652"
+    ],
+    "name": "suggests the existence of",
+    "xrefs": {
+      "wikidata": "Q12136"
+    }
+  },
+  "P5133": {
+    "description": "evaluation or interpretation corresponding to the subject attribute or examination",
+    "examples": [
+      "Q30078856",
+      "Q44478563",
+      "Q44484223"
+    ],
+    "name": "has evaluation",
+    "xrefs": {
+      "wikidata": "Q639907"
+    }
+  },
+  "P5134": {
+    "description": "the subject finding is an evaluation or interpretation of the object attribute or test",
+    "examples": [
+      "Q1073121",
+      "Q30078800",
+      "Q6576883"
+    ],
+    "name": "evaluation of",
+    "xrefs": {
+      "wikidata": "Q44476427"
+    }
+  },
+  "P5166": {
+    "description": "cell line or xenograft established from an individual person or animal with a specific medical condition",
+    "examples": [
+      "Q19000986",
+      "Q26492839"
+    ],
+    "name": "established from medical condition",
+    "xrefs": {
+      "wikidata": "Q12136"
+    }
+  },
   "P5179": {
     "description": "identifier for a plant taxon in the FloraCatalana database",
     "examples": [
@@ -6762,6 +7607,14 @@
     "pattern": "^[1-9]\\d*$",
     "uri_format": "http://tolweb.org/$1"
   },
+  "P523": {
+    "description": "the start of a process or appearance of a life form or geological unit relative to the geologic time scale",
+    "examples": [
+      "Q1064996",
+      "Q278141"
+    ],
+    "name": "temporal range start"
+  },
   "P5231": {
     "description": "numerical identifier in the \"Chromosome numbers of the Flora of Germany\" database",
     "examples": [
@@ -6771,6 +7624,28 @@
     "name": "Chromosome numbers of the Flora of Germany database ID",
     "pattern": "^[1-9]\\d*$",
     "uri_format": "https://chromosomes.senckenberg.de/karyodb/view/index.php?table_name=view&function=details&where_field=IDChromosomeCounts&where_value=$1"
+  },
+  "P524": {
+    "description": "the end of a process such as a geological unit or extinction of a life form relative to the geologic time scale",
+    "examples": [
+      "Q278141",
+      "Q576789"
+    ],
+    "name": "temporal range end"
+  },
+  "P5248": {
+    "description": "site to which those injured are evacuated immediately after a catastrophic event or a battle",
+    "examples": [
+      "Q1278898",
+      "Q30294627",
+      "Q50573395",
+      "Q66116296",
+      "Q7894821"
+    ],
+    "name": "medical evacuation to",
+    "xrefs": {
+      "wikidata": "Q655177"
+    }
   },
   "P5257": {
     "description": "identifier for an avian taxon, in the BirdLife factsheet database",
@@ -6817,6 +7692,17 @@
     "name": "AntWeb ID",
     "pattern": "^[A-Z][a-z]+( [a-z]+){0,2}$",
     "uri_format": "https://www.antweb.org/description.do?taxonName=$1"
+  },
+  "P5304": {
+    "description": "geographical place of capture, collection or observation of the name-bearing type",
+    "examples": [
+      "Q20019224",
+      "Q34"
+    ],
+    "name": "type locality (biology)",
+    "xrefs": {
+      "wikidata": "Q2405146"
+    }
   },
   "P5325": {
     "description": "identifier of a person in the register of members of the Swedish Academy",
@@ -7294,7 +8180,7 @@
     ],
     "homepage": "http://www.chem.qmul.ac.uk/iubmb/enzyme/",
     "name": "EC enzyme number",
-    "pattern": "^\\d\\.\\d{1,2}\\.\\d{1,2}\\.\\d{1,3}$",
+    "pattern": "^\\d\\.(-|n?\\d{1,2})\\.(-|n?\\d{1,2})\\.(-|n?\\d{1,3})$",
     "uri_format": "http://enzyme.expasy.org/EC/$1",
     "uri_format_rdf": "https://purl.expasy.org/enzyme/EC/$1",
     "xrefs": {
@@ -8260,6 +9146,19 @@
     "pattern": "^[1-9]\\d*$",
     "uri_format": "https://www.hemiptera-databases.org/cgi-bin/Tingidae/tingidae.pl?db=tingides&lang=en&card=taxon&rank=species&id=$1"
   },
+  "P636": {
+    "description": "path by which a drug, fluid, poison, or other substance is taken into the body",
+    "examples": [
+      "Q21074571",
+      "Q4010888",
+      "Q432083",
+      "Q4669896"
+    ],
+    "name": "route of administration",
+    "xrefs": {
+      "wikidata": "Q621636"
+    }
+  },
   "P637": {
     "description": "identifier for a protein",
     "examples": [
@@ -8778,31 +9677,6 @@
     "uri_format": "http://purl.obolibrary.org/obo/GAZ_$1",
     "uri_format_rdf": "http://purl.obolibrary.org/obo/GAZ_$1"
   },
-  "P6800": {
-    "description": "sequenced and assembled genome for this taxon",
-    "examples": [
-      "http://rmue.reefgenomics.org/download/",
-      "http://www.fireflybase.org/firefly_data.html",
-      "https://www.ncbi.nlm.nih.gov/assembly/GCF_000001215.4",
-      "https://www.ncbi.nlm.nih.gov/genome/51"
-    ],
-    "name": "sequenced genome URL",
-    "xrefs": {
-      "wikidata": "Q87630124"
-    }
-  },
-  "P6801": {
-    "description": "number of inpatient beds",
-    "examples": [
-      "1034",
-      "3011",
-      "800"
-    ],
-    "name": "number of hospital beds",
-    "xrefs": {
-      "wikidata": "Q142259"
-    }
-  },
   "P6812": {
     "description": "identifier for an article in AntWiki",
     "examples": [
@@ -8856,6 +9730,19 @@
     "homepage": "https://www.ccdc.cam.ac.uk",
     "name": "CCDC Number",
     "uri_format": "https://identifiers.org/ccdc:$1"
+  },
+  "P6855": {
+    "description": "level of emergency treatments provided",
+    "examples": [
+      "Q1814990",
+      "Q6452715",
+      "Q64678884",
+      "Q64679036"
+    ],
+    "name": "emergency services",
+    "xrefs": {
+      "wikidata": "Q1295316"
+    }
   },
   "P686": {
     "description": "identifier in the Gene Ontology",
@@ -8942,6 +9829,17 @@
     "name": "SA Flora ID",
     "pattern": "^[A-Z][a-z_\\-]{3,}$",
     "uri_format": "http://www.flora.sa.gov.au/cgi-bin/speciesfacts_display.cgi?form=speciesfacts&name=$1"
+  },
+  "P694": {
+    "description": "previously published name on which a replacement name (avowed substitute, nomen novum) is based",
+    "examples": [
+      "Q14552217",
+      "Q21976004"
+    ],
+    "name": "replaced synonym (for nom. nov.)",
+    "xrefs": {
+      "wikidata": "Q15709329"
+    }
   },
   "P695": {
     "description": "four-digit number that identify hazardous substances and articles in the framework of international transport",
@@ -9388,6 +10286,32 @@
     "pattern": "^MX\\.[0-9]+$",
     "uri_format": "https://laji.fi/taxon/$1"
   },
+  "P7582": {
+    "description": "classification of species found in India as per legal protection status under Wildlife Protection Act 1972",
+    "examples": [
+      "Q74713579",
+      "Q74714111",
+      "Q74715033"
+    ],
+    "homepage": "http://wiienvis.nic.in/Database/ScheduleSpeciesDatabase_7969.aspx",
+    "name": "Wildlife Protection Act 1972 (India) schedule",
+    "xrefs": {
+      "wikidata": "Q3249509"
+    }
+  },
+  "P7603": {
+    "description": "appendix of a taxon according to CITES convention",
+    "examples": [
+      "Q2851523",
+      "Q2851527",
+      "Q2851528"
+    ],
+    "homepage": "https://cites.org/eng/app/appendices.php",
+    "name": "CITES Appendix",
+    "xrefs": {
+      "wikidata": "Q191836"
+    }
+  },
   "P7671": {
     "description": "identifier of an author or reviewer, in Semion",
     "examples": [
@@ -9453,18 +10377,6 @@
     "name": "Fossilworks reference ID",
     "pattern": "^\\d+$",
     "uri_format": "https://web.archive.org/web/0/http://www.fossilworks.org/cgi-bin/bridge.pl?a=displayReference&reference_no=$1"
-  },
-  "P7725": {
-    "description": "number of young born/laid at the same time by one animal",
-    "examples": [
-      "3",
-      "5",
-      "50000"
-    ],
-    "name": "litter size",
-    "xrefs": {
-      "wikidata": "Q67359273"
-    }
   },
   "P7743": {
     "description": "identifier for a taxon on the Microworld website",
@@ -9619,6 +10531,19 @@
     "homepage": "https://www.nhs.uk/conditions/",
     "name": "NHS Health A to Z ID",
     "uri_format": "https://www.nhs.uk/conditions/$1"
+  },
+  "P8026": {
+    "description": "categorization of the likelihood that a medication is associated with drug induced liver injury that was developed by the Drug-Induced Liver Injury Network (DILIN) Network and published in NCBI's LiverTox",
+    "examples": [
+      "Q83283320",
+      "Q83284515",
+      "Q83284878"
+    ],
+    "homepage": "https://www.ncbi.nlm.nih.gov/books/NBK547852/",
+    "name": "LiverTox likelihood score",
+    "xrefs": {
+      "wikidata": "Q78239405"
+    }
   },
   "P8061": {
     "description": "identifier for a subject in AGROVOC thesaurus",
@@ -9936,17 +10861,6 @@
     "pattern": "^[1-9]\\d{0,7}$",
     "uri_format": "https://eol.org/pages/$1"
   },
-  "P835": {
-    "description": "short form of the name used after a taxon this person has authored",
-    "examples": [
-      "Darwin",
-      "Linnaeus"
-    ],
-    "name": "author citation (zoology)",
-    "xrefs": {
-      "wikidata": "Q788451"
-    }
-  },
   "P8372": {
     "description": "unique academic work identifier assigned in Web of Science bibliographic database (Web of Science Core Collection only and do not include WOS: prefix)",
     "examples": [
@@ -10025,17 +10939,6 @@
     "name": "Australian Weed ID",
     "pattern": "^[^\\s\\/]+$",
     "uri_format": "https://profiles.ala.org.au/opus/weeds-australia/profile/$1"
-  },
-  "P8485": {
-    "description": "dynamic distribution map of taxon",
-    "examples": [
-      "http://commons.wikimedia.org/data/main/Data:Ecos.fws.gov/Endangered+habitat+58938/Phyllostegia+mollis.map",
-      "http://commons.wikimedia.org/data/main/Data:GAP/Peromyscus+polionotus+ammobates.map"
-    ],
-    "name": "distribution map of taxon",
-    "xrefs": {
-      "wikidata": "Q4257161"
-    }
   },
   "P850": {
     "description": "identifier in the World Register of Marine Species",
@@ -10686,6 +11589,14 @@
     "pattern": "^[1-9]\\d*$",
     "uri_format": "https://oregonflora.org/taxa/index.php?taxon=$1"
   },
+  "P944": {
+    "description": "code that governs the scientific name of this taxon",
+    "examples": [
+      "Q13011",
+      "Q14920640"
+    ],
+    "name": "code of nomenclature"
+  },
   "P9450": {
     "description": "identification number for American health care providers issued by the Centers for Medicare and Medicaid Services",
     "examples": [
@@ -11067,6 +11978,22 @@
     "name": "Monumental Trees ID",
     "uri_format": "https://www.monumentaltrees.com/en/$1/"
   },
+  "P9714": {
+    "description": "geographic area(s) where a taxon is found",
+    "examples": [
+      "Q155",
+      "Q39109",
+      "Q40430",
+      "Q717",
+      "Q750",
+      "Q800",
+      "Q97"
+    ],
+    "name": "taxon range",
+    "xrefs": {
+      "wikidata": "Q4257161"
+    }
+  },
   "P9738": {
     "description": "identifier for an author in the International Fossil Plant Names Index (IFPNI)",
     "examples": [
@@ -11211,6 +12138,23 @@
     "pattern": "^[1-9]\\d*$",
     "uri_format": "https://endemia.nc/faune/fiche$1"
   },
+  "P9888": {
+    "description": "the conservation status from the New Zealand Threat Classification System assigned by the New Zealand Department of Conservation",
+    "examples": [
+      "Q108448612",
+      "Q108448684",
+      "Q108449190",
+      "Q108449508",
+      "Q108449541",
+      "Q108449669",
+      "Q108449699"
+    ],
+    "homepage": "https://nztcs.org.nz/",
+    "name": "NZTCS conservation status",
+    "xrefs": {
+      "wikidata": "Q108448274"
+    }
+  },
   "P9889": {
     "description": "identifier for species classified under the New Zealand Threat Classification System",
     "examples": [
@@ -11291,8 +12235,5 @@
     "name": "EMBO member ID",
     "pattern": "^[a-z]+(-[a-z]+)+$",
     "uri_format": "https://people.embo.org/profile/$1"
-  },
-  "Q136696641": {
-    "name": "Q136696641"
   }
 }
