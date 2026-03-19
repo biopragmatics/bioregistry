@@ -8,11 +8,7 @@ from collections import ChainMap, defaultdict
 from collections.abc import Callable, Hashable, Iterable, Mapping, Sequence
 from datetime import datetime
 from pathlib import Path
-from typing import (
-    Any,
-    cast,
-    overload,
-)
+from typing import Any, cast, overload
 
 import click
 import requests
@@ -25,12 +21,8 @@ from .constants import (
     METAREGISTRY_YAML_PATH,
     REGISTRY_YAML_PATH,
 )
-from .version import get_version
 
 logger = logging.getLogger(__name__)
-
-#: Wikidata SPARQL endpoint. See https://www.wikidata.org/wiki/Wikidata:SPARQL_query_service#Interfacing
-WIKIDATA_ENDPOINT = "https://query.wikidata.org/bigdata/namespace/wdq/sparql"
 
 
 class OLSBrokenError(RuntimeError):
@@ -80,25 +72,6 @@ def removesuffix(s: str | None, suffix: str) -> str | None:
     if s.endswith(suffix):
         return s[: -len(suffix)]
     return s
-
-
-def query_wikidata(sparql: str) -> list[Mapping[str, Any]]:
-    """Query Wikidata's sparql service.
-
-    :param sparql: A SPARQL query string
-
-    :returns: A list of bindings
-    """
-    logger.debug("running query: %s", sparql)
-    headers = {
-        "User-Agent": f"bioregistry v{get_version()}",
-    }
-    res = requests.get(
-        WIKIDATA_ENDPOINT, params={"query": sparql, "format": "json"}, headers=headers, timeout=300
-    )
-    res.raise_for_status()
-    res_json = res.json()
-    return cast(list[Mapping[str, Any]], res_json["results"]["bindings"])
 
 
 # TODO make inherit from dict[str, str] interface

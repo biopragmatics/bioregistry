@@ -2,15 +2,17 @@
 
 import json
 import logging
-from collections.abc import Iterable, Mapping, Sequence
+from collections.abc import Iterable, Mapping
 from pathlib import Path
 from textwrap import dedent
-from typing import Any, ClassVar
+from typing import Any
+
+import wikidata_client
 
 from bioregistry.alignment_model import Record, make_record
 from bioregistry.constants import BIOREGISTRY_PATH, URI_FORMAT_KEY
 from bioregistry.external.alignment_utils import Aligner, build_no_raw_getter
-from bioregistry.utils import query_wikidata, removeprefix
+from bioregistry.utils import removeprefix
 
 __all__ = [
     "WikidataAligner",
@@ -19,8 +21,9 @@ __all__ = [
 
 logger = logging.getLogger(__name__)
 
-DIRECTORY = Path(__file__).parent.resolve()
-PROCESSED_PATH = DIRECTORY / "processed.json"
+HERE = Path(__file__).parent.resolve()
+PROCESSED_PATH = HERE / "processed.json"
+CONFIG_PATH = HERE / "config.json"
 
 PROPERTIES_QUERY = dedent(
     """\
@@ -87,54 +90,9 @@ QUERY_FMT = dedent(
     """
 )
 
-SKIP = {
-    "P3205": "is a relationship",
-    "P3781": "is a relationship",
-    "P4545": "is a relationship",
-    "P3190": "is a relationship",
-    "P4954": "is a relationship",
-    "P4000": "is a relationship",
-    "P3189": "is a relationship",
-    "P3310": "is a relationship",
-    "P3395": "is a data property",
-    "P3387": "is a data property",
-    "P3337": "is a data property",
-    "P3485": "is a data property",
-    "P3486": "is a data property",
-    "P10322": "is a data property",
-    "P10630": "is a data property",
-    "P1193": "is a data property",
-    "P1603": "is a data property",
-    "P2067": "is a data property",
-    "P2844": "is a data property",
-    "P2854": "is a data property",
-    "P3487": "is a data property",
-    "P3492": "is a data property",
-    "P4214": "is a data property",
-    "P3488": "is a data property",
-    "P4250": "is a data property",
-    "P574": "is a data property",
-    "P7770": "is a data property",
-    "P783": "is a data property",
-    "P7862": "is a data property",
-    "P8010": "is a data property",
-    "P8011": "is a data property",
-    "P8049": "is a data property",
-    "P8556": "is a data property",
-    "P9107": "is a data property",
-    "Q112586709": "should not be annotated like a property",
-    "Q111831044": "should not be annotated like a property",
-    "Q115916376": "should not be annotated like a property",
-    "P1104": "is a data property",
-    "P10676": "is a data property",
-    "P181": "is a data property",
-    "P1843": "is a data property",
-    "P225": "is a data property",
-    "P3752": "is a data property",
-    "P8558": "is a data property",
-    "P6507": "is a data property",
-    "P428": "is a data property",
-}
+CONFIG = json.loads(CONFIG_PATH.read_text(encoding="utf-8"))
+SKIP: dict[str, str] = CONFIG["skips"]
+
 RENAMES = {"propLabel": "name", "propDescription": "description"}
 CANONICAL_DATABASES = {
     "P6800": "Q87630124",  # -> NCBI Genome
@@ -216,11 +174,11 @@ def _get_wikidata() -> dict[str, Record]:
     mapped = _get_mapped()
     # throw out anything that can be queried directly
     mapped.difference_update(
-        bindings["propStr"]["value"]
-        for bindings in query_wikidata(PROPERTIES_QUERY)
-        if bindings["propStr"]["value"].startswith("P")  # throw away any regular ones
+        bindings["propStr"]
+        for bindings in wikidata_client.query(PROPERTIES_QUERY)
+        if bindings["propStr"].startswith("P")  # throw away any regular ones
     )
-    raw_records = query_wikidata(_get_query(mapped))
+    raw_records = wikidata_client.query(_get_query(mapped))
 
     rv = {}
     for raw_record in raw_records:
@@ -231,9 +189,7 @@ def _get_wikidata() -> dict[str, Record]:
 
 
 def _process_record(bindings: Mapping[str, Any]) -> tuple[str, Record] | tuple[None, None]:
-    bindings = {
-        RENAMES.get(key, key): value["value"] for key, value in bindings.items() if value["value"]
-    }
+    bindings = {RENAMES.get(key, key): value for key, value in bindings.items() if value}
     prefix = bindings["prefix"] = removeprefix(
         bindings["prefix"], "http://www.wikidata.org/entity/"
     )
@@ -338,12 +294,6 @@ class WikidataAligner(Aligner):
 
     key = "wikidata"
     getter = get_wikidata
-    curation_header: ClassVar[Sequence[str]] = (
-        "name",
-        "homepage",
-        "description",
-        "uri_format",
-    )
 
     def get_skip(self) -> Mapping[str, str]:
         """Get entries to skip."""
