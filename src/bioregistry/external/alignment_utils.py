@@ -292,6 +292,7 @@ class Aligner:
         """Write the curation table to a TSV."""
         path = METADATA_CURATION_DIRECTORY.joinpath(self.key).with_suffix(".tsv")
         rows = list(self._iter_curation_rows())
+        # TODO if there are any columns that are all empty, remove them?
         if not rows:
             if path.is_file():
                 path.unlink()
