@@ -754,6 +754,7 @@ adw:
     n2t: adw
     obofoundry: adw
     prefixcommons: adw
+    wikidata: P4024
     wikidata.entity: Q114677837
   name: Animal natural history and life history
   pattern: ^[A-Z_a-z]+$
@@ -1844,6 +1845,39 @@ ans.educationlevel:
   name: U.S. Education Level Vocabulary
   preferred_prefix: ans.educationlevel
   uri_format: http://purl.org/ASN/scheme/ASNEducationLevel/$1
+antibodypedia.gene:
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: Antibodypedia indexes experimental validation of antibodies and the
+    genes for which they are targets
+  example: '740'
+  homepage: https://www.antibodypedia.com/
+  keywords:
+  - protocols and materials databases
+  mappings:
+    uniprot: DB-0249
+  name: Antibodypedia gene
+  preferred_prefix: antibodypedia.gene
+  publications:
+  - doi: 10.1074/mcp.m800264-mcp200
+    pubmed: '18667413'
+  uri_format: https://www.antibodypedia.com/gene/$1
+antibodypedia.supplier:
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: Antibodypedia indexes experimental validation of antibodies and the
+    suppliers from which they can be purchased
+  example: '264'
+  homepage: https://www.antibodypedia.com
+  name: Antibodypedia supplier
+  preferred_prefix: antibodypedia.supplier
+  uri_format: https://www.antibodypedia.com/supplier_details.php?supplier_id=$1
 antibodyregistry:
   contact:
     email: abandrowski@ncmir.ucsd.edu
@@ -2620,6 +2654,7 @@ aro:
   - mutation
   - obo
   - ontology
+  - protein family/group databases
   license: CC-BY-4.0
   mappings:
     aberowl: ARO
@@ -2629,11 +2664,14 @@ aro:
     obofoundry: aro
     ols: aro
     ontobee: ARO
+    uniprot: DB-0282
     wikidata.entity: Q81661539
   name: Antibiotic Resistance Ontology
   pattern: ^\d{7}$
   preferred_prefix: ARO
   publications:
+  - doi: 10.1093/nar/gkac920
+    pubmed: '36263822'
   - doi: 10.1093/nar/gkz935
     pmc: PMC7145624
     pubmed: '31665441'
@@ -4648,7 +4686,8 @@ bindingdb:
     prefixcommons: bindingdb
     re3data: r3d100012074
     uniprot: DB-0127
-  name: BindingDB
+    wikidata: P12357
+  name: BindingDB ID
   pattern: ^\d+$
   preferred_prefix: bindingdb
   providers:
@@ -6317,6 +6356,43 @@ bpdb:
   pattern: ^\d+$
   preferred_prefix: bpdb
   uri_format: https://sitem.herts.ac.uk/aeru/bpdb/Reports/$1.htm
+brc.feature:
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: The Bacterial and Viral Bioinformatics Resource Center (BV-BRC) annotates
+    features onto specific genomic sequences, such as gene/protein families and their
+    functional impacts
+  example: fig|224308.179.peg.198
+  homepage: https://patricbrc.org/
+  keywords:
+  - genome annotation databases
+  mappings:
+    uniprot: DB-0165
+  name: Bacterial and Viral Bioinformatics Resource Center feature
+  preferred_prefix: brc.feature
+  publications:
+  - doi: 10.1093/nar/gkz943
+    pubmed: '31667520'
+  uri_format: https://www.bv-brc.org/view/Feature/$1
+brc.genome:
+  comment: Identifeirs are constructed with NCBI Taxonomy identifier, a dot, then
+    some other stuff
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: The Bacterial and Viral Bioinformatics Resource Center (BV-BRC) annotates
+    features onto specific genomic sequences, such as gene/protein families and their
+    functional impacts. This record represents a sample-specific genome.
+  example: '224308.179'
+  homepage: https://www.bv-brc.org
+  name: Bacterial and Viral Bioinformatics Resource Center genome
+  preferred_prefix: brc.genome
+  uri_format: https://www.bv-brc.org/view/Genome/$1
 brenda:
   contact:
     email: D.Schomburg@tu-braunschweig.de
@@ -6770,6 +6846,16 @@ bugbase.protocol:
   pattern: ^\d+$
   preferred_prefix: bugbase.protocol
   uri_format: http://bugs.sgul.ac.uk/bugsbase/tabs/protocol.php?action=view&protocol_id=$1
+bugguide:
+  description: identifier in BugGuide.net
+  example: '7646'
+  homepage: https://bugguide.net
+  mappings:
+    wikidata: P2464
+  name: BugGuide taxon ID
+  pattern: ^[1-9]\d{0,6}$
+  preferred_prefix: bugguide
+  uri_format: https://bugguide.net/node/view/$1
 building:
   description: The Building ontology has been developed to perform as the core module
     of the BIMERR Ontology Network, containing information related to building topology,
@@ -6999,6 +7085,16 @@ cameo:
       and model information
     year: 2013
   uri_format: https://www.cameo3d.org/sp/targets/target/$1
+cannabisdatabase:
+  description: identifier for a chemical compound in the Cannabis Database
+  example: '000001'
+  homepage: https://cannabisdatabase.ca/
+  mappings:
+    wikidata: P11160
+  name: Cannabis Database ID
+  pattern: ^[0-9]{6}$
+  preferred_prefix: cannabisdatabase
+  uri_format: https://cannabisdatabase.ca/compounds/CDB$1
 cao:
   contact:
     email: williams.antony@epa.gov
@@ -7329,6 +7425,32 @@ cath.domain:
   pattern: ^\w+$
   preferred_prefix: cath.domain
   uri_format: http://www.cathdb.info/domain/$1
+cath.funfam:
+  contributor:
+    email: cjmungall@lbl.gov
+    github: cmungall
+    name: Chris Mungall
+    orcid: 0000-0002-6601-2165
+  description: Functional families of proteins, which are a subcategory of superfamilies
+    in CATH
+  example: 2.60.40.10:FF:003018
+  github_request_issue: 1776
+  homepage: https://www.cathdb.info
+  keywords:
+  - family and domain databases
+  mappings:
+    uniprot: DB-0274
+  name: CATH Functional Families
+  preferred_prefix: cath.funfam
+  publications:
+  - doi: 10.1093/bioinformatics/btv398
+    pubmed: '26139634'
+  reviewer:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  uri_format: https://www.cathdb.info/version/latest/funfam/$1
 cath.superfamily:
   description: The CATH database is a hierarchical domain classification of protein
     structures in the Protein Data Bank. Protein structures are classified using a
@@ -7339,14 +7461,20 @@ cath.superfamily:
     colelction is concerned with superfamily classification.
   example: 1.10.10.200
   homepage: http://www.cathdb.info/
+  keywords:
+  - family and domain databases
   mappings:
     biocontext: CATH.SUPERFAMILY
     miriam: cath.superfamily
     n2t: cath.superfamily
+    uniprot: DB-0029
   name: CATH superfamily
   part_of: cath
   pattern: ^\d+(\.\d+(\.\d+(\.\d+)?)?)?$
   preferred_prefix: cath.superfamily
+  publications:
+  - doi: 10.1093/nar/gkx1069
+    pubmed: '29112716'
   uri_format: http://www.cathdb.info/cathnode/$1
 cattleqtldb:
   description: The Animal Quantitative Trait Loci (QTL) database (Animal QTLdb) is
@@ -7825,6 +7953,38 @@ cdao:
   repository: https://github.com/evoinfo/cdao
   uri_format: http://purl.obolibrary.org/obo/CDAO_$1
   version: '2024-01-25'
+cdcode.cmod:
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: A condensate-modulating drug
+  example: CM0001120
+  homepage: https://cd-code.org/c-mods
+  name: CD-CODE condensate-modulating drug
+  preferred_prefix: cdcode.cmod
+  uri_format: https://cd-code.org/c-mods/$1
+cdcode.condensate:
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: A molecular entity that condenses, e.g., in a disease, such as ATG
+    condensate
+  example: B5B9A610
+  homepage: https://cd-code.org/
+  keywords:
+  - miscellaneous databases
+  mappings:
+    uniprot: DB-0277
+  name: CrowDsourcing COndensate Database and Encyclopedia
+  preferred_prefix: cdcode.condensate
+  publications:
+  - doi: 10.1038/s41592-023-01831-0
+    pubmed: '37024650'
+  uri_format: https://cd-code.org/condensates/$1
 cdd:
   description: The Conserved Domain Database (CDD) is a collection of multiple sequence
     alignments and derived database search models, which represent protein domains
@@ -8355,6 +8515,7 @@ ceph:
     obofoundry: ceph
     ols: ceph
     ontobee: CEPH
+    wikidata: P9334
     wikidata.entity: Q104030182
   name: Cephalopod Ontology
   pattern: ^\d{7}$
@@ -8709,7 +8870,9 @@ chebi:
   - biochemistry
   - carbohydrate
   - chemical
+  - chemical biology
   - chemical compound
+  - chemical entity
   - chemistry
   - compound
   - dataplant
@@ -9569,6 +9732,18 @@ chemrof:
   rdf_uri_format: https://w3id.org/chemrof/$1
   repository: https://github.com/chemkg/chemrof
   uri_format: https://chemkg.github.io/chemrof/$1
+chemrxiv:
+  description: identifier of a document in ChemRxiv, a preprint server for the chemical
+    sciences launched in 2016
+  example: '12791954'
+  homepage: https://chemrxiv.org/
+  mappings:
+    wikidata: P9262
+  name: ChemRxiv ID
+  pattern: ^\d+$
+  preferred_prefix: chemrxiv
+  rdf_uri_format: http://dx.doi.org/10.26434/chemrxiv.$1.v1
+  uri_format: https://doi.org/10.26434/CHEMRXIV.$1
 chemspider:
   contact:
     email: pencehe@oneonta.edu
@@ -9618,6 +9793,15 @@ chemspider:
   - ChemSpiderID
   - Chemspider
   uri_format: http://www.chemspider.com/Chemical-Structure.$1.html
+chemsynthesis:
+  description: identifier of a chemical compound in ChemSynthesis
+  example: '1'
+  homepage: https://www.chemsynthesis.com
+  mappings:
+    wikidata: P8508
+  name: ChemSynthesis ID
+  preferred_prefix: chemsynthesis
+  uri_format: https://www.chemsynthesis.com/base/chemical-structure-$1.html
 chickenqtldb:
   description: The Animal Quantitative Trait Loci (QTL) database (Animal QTLdb) is
     designed to house publicly all available QTL and single-nucleotide polymorphism/gene
@@ -9663,11 +9847,14 @@ chictr:
   example: ChiCTR2300070727
   homepage: https://www.chictr.org.cn
   logo: https://www.chictr.org.cn/images/top.jpg
+  mappings:
+    wikidata: P8064
   name: Chinese Clinical Trial Registry
   pattern: ^ChiCTR(-[A-Z]+-)?\d+$
   preferred_prefix: chictr
   references:
   - https://www.chictr.org.cn/showproj.html?proj=187605
+  uri_format: https://www.chictr.org.cn/searchproj.html?title=&officialname=&subjectid=&regstatus=&regno=$1&secondaryid=&applier=&studyleader=&createyear=&sponsor=&secsponsor=&sourceofspends=&studyailment=&studyailmentcode=&studytype=&studystage=&studydesign=&recruitmentstatus=&gender=&agreetosign=&measure=&country=&province=&city=&institution=&institutionlevel=&intercode=&ethicalcommitteesanction=&whetherpublic=&minstudyexecutetime=&maxstudyexecutetime=&btngo=btn
 chiro:
   contact:
     email: vasilevs@ohsu.edu
@@ -9732,6 +9919,8 @@ chmo:
   homepage: https://github.com/rsc-ontologies/rsc-cmo
   keywords:
   - assay
+  - chemical biology
+  - chemical entity
   - chemistry
   - chromatography
   - dataplant
@@ -10430,7 +10619,7 @@ cl:
   rdf_uri_format: http://purl.obolibrary.org/obo/CL_$1
   repository: https://github.com/obophenotype/cell-ontology
   uri_format: http://purl.obolibrary.org/obo/CL_$1
-  version: '2025-12-17'
+  version: '2026-03-17'
 clao:
   contact:
     email: lagonzalezmo@unal.edu.co
@@ -14941,6 +15130,16 @@ dblp.author:
   preferred_prefix: dblp.author
   rdf_uri_format: https://dblp.org/pid/$1
   uri_format: https://dblp.org/pid/$1
+dblp.publication:
+  description: identifier of publications in the DBLP database
+  example: books/el/01/BurkartCMS01
+  homepage: https://dblp.org/
+  mappings:
+    wikidata: P8978
+  name: DBLP publication ID
+  preferred_prefix: dblp.publication
+  rdf_uri_format: https://dblp.org/rec/$1
+  uri_format: https://dblp.org/rec/$1
 dbmhc:
   appears_in:
   - cellosaurus
@@ -17422,6 +17621,33 @@ dmba:
   repository: https://github.com/brain-bican/developing_mouse_brain_atlas_ontology
   uri_format: https://purl.brain-bican.org/ontology/dmbao/DMBA_$1
   version: '2025-02-10'
+dnasu.clone:
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: A vector, derived from a specific gene, that can be purchased from
+    DNASU
+  example: '614'
+  homepage: https://dnasu.org
+  name: DNASU Plasmid Repository clone
+  pattern: ^\d+$
+  preferred_prefix: dnasu.clone
+  uri_format: https://dnasu.org/DNASU/GetCloneDetail.do?cloneid=$1
+dnasu.vector:
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: A specific vector technology
+  example: '2'
+  homepage: https://dnasu.org
+  name: DNASU Plasmid Repository vector
+  pattern: ^\d+$
+  preferred_prefix: dnasu.vector
+  uri_format: https://dnasu.org/DNASU/GetVectorDetail.do?vectorid=$1
 doap:
   contact:
     email: edd@usefulinc.com
@@ -23249,7 +23475,8 @@ euclinicaltrials:
     biocontext: EUCLINICALTRIALS
     miriam: euclinicaltrials
     n2t: euclinicaltrials
-  name: EU Clinical Trials
+    wikidata: P9306
+  name: EudraCT trial ID
   pattern: ^\d{4}\-\d{6}\-\d{2}$
   preferred_prefix: euclinicaltrials
   synonyms:
@@ -24056,6 +24283,7 @@ fao:
     ols: fao
     ontobee: FAO
     prefixcommons: fao
+    wikidata: P13090
     wikidata.entity: Q81661616
   name: Fungal gross anatomy
   pattern: ^\d{7}$
@@ -24809,6 +25037,17 @@ flopo:
   rdf_uri_format: http://purl.obolibrary.org/obo/FLOPO_$1
   repository: https://github.com/flora-phenotype-ontology/flopoontology
   uri_format: http://purl.obolibrary.org/obo/FLOPO_$1
+florabase:
+  description: identifier for a plant taxon, in the Government of Western Australia's
+    FloraBase database
+  example: '10798'
+  homepage: http://florabase.dec.wa.gov.au
+  mappings:
+    wikidata: P3101
+  name: FloraBase ID
+  pattern: ^\d+$
+  preferred_prefix: florabase
+  uri_format: https://florabase.dpaw.wa.gov.au/browse/profile/$1
 flowrepository:
   description: FlowRepository is a database of flow cytometry experiments where you
     can query and download data collected and annotated according to the MIFlowCyt
@@ -24870,6 +25109,15 @@ flu:
   preferred_prefix: FLU
   rdf_uri_format: http://purl.obolibrary.org/obo/FLU_$1
   uri_format: http://purl.obolibrary.org/obo/FLU_$1
+fluorophores:
+  description: chemical in the fluorescent substances database
+  example: '343'
+  homepage: https://www.fluorophores.tugraz.at
+  mappings:
+    wikidata: P13416
+  name: Fluorophores.org substance ID
+  preferred_prefix: fluorophores
+  uri_format: https://www.fluorophores.tugraz.at/substance/$1
 flybase:
   contact:
     email: vjenkins@morgan.harvard.edu
@@ -28507,7 +28755,7 @@ gno:
   synonyms:
   - gnome
   uri_format: http://purl.obolibrary.org/obo/GNO_$1
-  version: '2025-10-10'
+  version: '2026-03-14'
 gnomad:
   contact:
     email: hrehm@mgh.harvard.edu
@@ -29272,6 +29520,16 @@ google.scholar:
   pattern: ^[-_0-9A-Za-z]{12}$
   preferred_prefix: google.scholar
   uri_format: https://scholar.google.com/citations?user=$1
+googlescholar.paper:
+  description: identifier for a paper in Google Scholar
+  example: '139042526584660102'
+  homepage: https://scholar.google.com/
+  mappings:
+    wikidata: P4028
+  name: Google Scholar paper ID
+  pattern: ^[A-Za-z0-9_-]*$
+  preferred_prefix: googlescholar.paper
+  uri_format: https://scholar.google.com/scholar?cluster=$1
 gorel:
   contributor:
     email: cthoyt@gmail.com
@@ -32015,6 +32273,16 @@ horizon_discovery:
   name: Horizon Discovery cell line collection
   preferred_prefix: horizon_discovery
   uri_format: https://horizondiscovery.com/en/search?searchterm=$1
+horsetelex:
+  description: identifier for a horse on Horsetelex database
+  example: '1068'
+  homepage: https://www.horsetelex.com
+  mappings:
+    wikidata: P3165
+  name: Horsetelex ID
+  pattern: ^\d+$
+  preferred_prefix: horsetelex
+  uri_format: https://www.horsetelex.com/horses/pedigree/$1
 hoso:
   contact:
     email: paul.fabry@usherbrooke.ca
@@ -36388,6 +36656,39 @@ ipi:
       experiments'
     year: 2004
   uri_format: http://www.ebi.ac.uk/cgi-bin/dbfetch?db=IPI&id=$1&format=default
+ipni.author:
+  description: numerical identifier for a person in the International Plant Names
+    Index
+  example: 12653-1
+  homepage: https://www.ipni.org
+  mappings:
+    wikidata: P586
+  name: International Plant Names Index author
+  pattern: ^[1-9][0-9]{0,7}-[0-9]$
+  preferred_prefix: ipni.author
+  uri_format: https://www.ipni.org/a/$1
+ipni.plant:
+  description: numerical identifier for a plant name in the International Plant Names
+    Index
+  example: 298593-1
+  homepage: https://www.ipni.org/
+  mappings:
+    wikidata: P961
+  name: IPNI plant ID
+  pattern: ^[1-9]\d{0,7}-[123]$
+  preferred_prefix: ipni.plant
+  rdf_uri_format: http://ipni.org/urn:lsid:ipni.org:names:$1
+  uri_format: https://www.ipni.org/n/$1
+ipni.publication:
+  description: identifier for a publication in the International Plant Names Index
+  example: 15997-2
+  homepage: https://www.ipni.org/
+  mappings:
+    wikidata: P2008
+  name: IPNI publication ID
+  pattern: ^[1-9]\d{0,7}\-\d$
+  preferred_prefix: ipni.publication
+  uri_format: https://www.ipni.org/p/$1
 irct:
   contributor:
     email: cthoyt@gmail.com
@@ -37263,7 +37564,7 @@ jcsd:
   description: The Japan Chemical Substance Dictionary is an organic compound dictionary
     database prepared by the Japan Science and Technology Agency (JST).
   example: J55.713G
-  homepage: http://jglobal.jst.go.jp/en/
+  homepage: http://www.genome.jp/kegg
   keywords:
   - drug
   mappings:
@@ -37271,7 +37572,8 @@ jcsd:
     miriam: jcsd
     n2t: jcsd
     prefixcommons: nikkaji
-  name: Japan Chemical Substance Dictionary
+    wikidata: P2085
+  name: Nikkaji ID
   pattern: ^J\d{1,3}(\.\d{3})?(\.\d{1,3})?[A-Za-z]$
   preferred_prefix: jcsd
   providers:
@@ -38756,6 +39058,16 @@ ldp:
     zazuko: ldp
   name: Linked Data Platform Vocabulary
   preferred_prefix: ldp
+leadscope:
+  description: identifier for a chemical compound in leadscope.com
+  example: LS-114771
+  homepage: http://www.leadscope.com
+  mappings:
+    wikidata: P2083
+  name: Leadscope ID
+  pattern: ^LS-\d{1,6}$
+  preferred_prefix: leadscope
+  uri_format: https://www.leadscope.com/structure_search_results.php?ss_string=$1
 leafsnap:
   description: identifier for a tree species of the United States and Canada on the
     Leafsnap electronic field guide
@@ -44571,6 +44883,15 @@ molmovdb:
     name: Charles Tapley Hoyt
     orcid: 0000-0003-4423-4370
   uri_format: http://www.molmovdb.org/cgi-bin/morph.cgi?ID=$1
+mona:
+  description: identifier for spectra in the MassBank of North America database
+  example: FiehnLib001006
+  homepage: https://massbank.us
+  mappings:
+    wikidata: P13537
+  name: MoNA spectrum ID
+  preferred_prefix: mona
+  uri_format: https://massbank.us/spectra/display/$1
 mondo:
   contact:
     email: Sabrina@tislab.org
@@ -51357,7 +51678,7 @@ omo:
   rdf_uri_format: http://purl.obolibrary.org/obo/OMO_$1
   repository: https://github.com/information-artifact-ontology/ontology-metadata
   uri_format: http://purl.obolibrary.org/obo/OMO_$1
-  version: '2025-06-18'
+  version: '2026-03-16'
 omon:
   contributor:
     email: oga.t@northeastern.edu
@@ -52015,6 +52336,16 @@ openeduhub.context:
   preferred_prefix: openeduhub.context
   rdf_uri_format: http://w3id.org/openeduhub/vocabs/educationalContext/$1
   uri_format: http://w3id.org/openeduhub/vocabs/educationalContext/$1
+opentrials:
+  description: identifier for OpenTrials database over clinical trials
+  example: 89afb115-4059-4f4c-8da7-33290869a77d
+  homepage: https://explorer.opentrials.net
+  mappings:
+    wikidata: P6220
+  name: OpenTrials ID
+  pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
+  preferred_prefix: opentrials
+  uri_format: https://explorer.opentrials.net/trials/$1
 openwemi:
   contact:
     email: kcoyle@kcoyle.net
@@ -55489,6 +55820,21 @@ phenx:
   synonyms:
   - phenxtoolkit
   uri_format: https://www.phenxtoolkit.org/protocols/view/$1
+phibase.gene:
+  description: A gene in the Pathogen-Host Interaction Database
+  example: '6376'
+  homepage: http://www.phi-base.org/
+  keywords:
+  - miscellaneous databases
+  mappings:
+    uniprot: DB-0248
+  name: Pathogen-Host Interaction Database gene
+  pattern: ^\d+$
+  preferred_prefix: phibase.gene
+  publications:
+  - doi: 10.1093/nar/gkw1089
+    pubmed: '27915230'
+  uri_format: http://www.phi-base.org/searchFacet.htm?queryTerm=PHI:$1
 phipo:
   contact:
     email: alayne.cuzick@rothamsted.ac.uk
@@ -55951,6 +56297,25 @@ pina:
     title: Integrated network analysis platform for protein-protein interactions
     year: 2008
   uri_format: http://cbg.garvan.unsw.edu.au/pina/interactome.oneP.do?showExtend=null&ac=$1
+pir:
+  deprecated: true
+  description: The Protein Information Resource (PIR) had its final release in 2004
+    and is now a part of UniProt
+  example: B44282
+  homepage: https://proteininformationresource.org/
+  keywords:
+  - protein
+  - sequence
+  - sequence databases
+  mappings:
+    edam: '1100'
+    go: PIR
+    integbio: nbdc00167
+    ncbi: PIR
+    uniprot: DB-0078
+  name: Protein Information Resource
+  preferred_prefix: pir
+  uri_format: https://proteininformationresource.org/cgi-bin/nbrfget?uid=$1
 piroplasma:
   description: PiroplasmaDB is one of the databases that can be accessed through the
     EuPathDB (http://EuPathDB.org; formerly ApiDB) portal, covering eukaryotic pathogens
@@ -56702,9 +57067,11 @@ po:
   - earth sciences
   - ess
   - expression data
+  - genomics
   - life cycle
   - life science
   - obo
+  - omics
   - ontology
   - plant anatomy
   - structure
@@ -58722,6 +59089,16 @@ pubmed:
   - PubMed ID
   - pmid
   uri_format: https://pubmed.ncbi.nlm.nih.gov/$1/
+pubmed.health:
+  description: identifier for a physiological condition, in the PubMed Health website
+  example: PMH0001144
+  homepage: http://www.ncbi.nlm.nih.gov/pubmedhealth
+  mappings:
+    wikidata: P653
+  name: PubMed Health
+  pattern: ^PMH\d{7}$
+  preferred_prefix: pubmed.health
+  uri_format: https://www.ncbi.nlm.nih.gov/pubmedhealth/$1
 puro:
   contact:
     email: silvio.peroni@unibo.it
@@ -60076,7 +60453,7 @@ rfam:
     used by Pfam. CMs can simultaneously model RNA sequence and the structure in an
     elegant and accurate fashion.'
   example: RF00230
-  homepage: https://rfam.org
+  homepage: https://rfam.xfam.org/
   keywords:
   - bibliography/documents
   - classification
@@ -60092,7 +60469,8 @@ rfam:
     n2t: rfam
     ncbi: RFAM
     togoid: Rfam
-  name: Rfam database of RNA families
+    wikidata: P3523
+  name: Rfam ID
   pattern: ^RF\d{5}$
   preferred_prefix: rfam
   publications:
@@ -63112,7 +63490,8 @@ sdbs:
     integbio: nbdc01520
     miriam: sdbs
     n2t: sdbs
-  name: Spectral Database for Organic Compounds
+    wikidata: P5926
+  name: Spectral Database for Organic Compounds ID
   pattern: ^\d+$
   preferred_prefix: sdbs
   uri_format: https://sdbs.db.aist.go.jp/CompoundView.aspx?sdbsno=$1
@@ -65071,7 +65450,8 @@ smart:
     prefixcommons: smart
     togoid: Smart
     uniprot: DB-0097
-  name: Simple Modular Architecture Research Tool
+    wikidata: P3524
+  name: Simple Modular Architecture Research Tool ID
   pattern: ^SM\d{5}$
   preferred_prefix: smart
   providers:
@@ -67324,6 +67704,17 @@ suprabank.solvent:
   pattern: ^\d+$
   preferred_prefix: suprabank.solvent
   uri_format: https://suprabank.org/solvents/$1
+surechembl:
+  description: the chemical compound identifier for the EBI SureChEMBL 'chemical compounds
+    in patents' database
+  example: '17951640'
+  homepage: https://www.surechembl.org/
+  mappings:
+    wikidata: P2877
+  name: SureChEMBL ID
+  pattern: ^\d+$
+  preferred_prefix: surechembl
+  uri_format: https://www.surechembl.org/chemical/$1
 sustaingraph:
   description: The SustainGraph ontology is developed to track the United Nations
     Sustainable Development Goals(SDGs) at national and regional level, their evolution
@@ -74267,6 +74658,7 @@ tigrfam:
   example: TIGR00010
   homepage: http://www.tigr.org/TIGRFAMs/index.shtml
   keywords:
+  - family and domain databases
   - protein
   mappings:
     biocontext: TIGRFAM
@@ -74275,6 +74667,7 @@ tigrfam:
     n2t: tigrfam
     ncbi: TIGRFAM
     prefixcommons: tigrfams
+    uniprot: DB-0270
   name: TIGR protein families
   pattern: ^TIGR\d+$
   preferred_prefix: tigrfam
@@ -74288,6 +74681,9 @@ tigrfam:
     homepage: https://bio2rdf.org
     name: Bio2RDF
     uri_format: http://bio2rdf.org/tigrfams:$1
+  publications:
+  - doi: 10.1093/nar/gkaa1105
+    pubmed: '33270901'
   references:
   - https://ftp.ncbi.nlm.nih.gov/hmm/TIGRFAMs/license_and_availability.txt
   - https://github.com/biopragmatics/bioregistry/issues/366
@@ -76491,13 +76887,18 @@ uniprot.proteome:
   github_request_issue: 604
   homepage: https://www.uniprot.org/proteomes
   keywords:
+  - miscellaneous databases
   - proteome
   logo: https://www.uniprot.org/uniprot-logo.img.0df091.svg
   mappings:
     togoid: UniprotProteome
+    uniprot: DB-0191
   name: UniProt Proteomes
   pattern: ^UP\d{9}$
   preferred_prefix: uniprot.proteome
+  publications:
+  - doi: 10.1093/nar/gkr981
+    pubmed: '22102590'
   rdf_uri_format: http://purl.uniprot.org/proteomes/$1
   reviewer:
     email: cthoyt@gmail.com
@@ -77852,6 +78253,24 @@ vido:
     uri_format: http://purl.obolibrary.org/VIDO_$1
   repository: https://github.com/infectious-disease-ontology-extensions/ido-virus
   uri_format: http://purl.obolibrary.org/obo/VIDO_$1
+vietherb.metabolite:
+  description: identifier for a plant metabolite in the Vietherb database
+  example: '10193'
+  homepage: https://vietherb.com.vn/metabolites
+  mappings:
+    wikidata: P9933
+  name: Vietherb metabolite ID
+  preferred_prefix: vietherb.metabolite
+  uri_format: https://vietherb.com.vn/metabolites/$1
+vietherb.species:
+  description: identifier for a plant species in the Vietherb database
+  example: VH0006
+  homepage: https://vietherb.com.vn/species
+  mappings:
+    wikidata: P9932
+  name: Vietherb species ID
+  preferred_prefix: vietherb.species
+  uri_format: https://vietherb.com.vn/species/$1
 violinnet:
   appears_in:
   - oae
@@ -78684,7 +79103,7 @@ vt:
   rdf_uri_format: http://purl.obolibrary.org/obo/VT_$1
   repository: https://github.com/AnimalGenome/vertebrate-trait-ontology
   uri_format: http://purl.obolibrary.org/obo/VT_$1
-  version: '2026-03-03'
+  version: '2026-03-17'
 vto:
   contact:
     email: balhoff@renci.org
@@ -81012,6 +81431,28 @@ zinc:
   publications:
   - pubmed: '26479676'
   uri_format: http://zinc15.docking.org/substances/$1
+zobodat.person:
+  description: numerical identifier for a person in ZOBODAT, a bibliographic database
+    of mostly German-language works on zoology
+  example: '20006'
+  homepage: https://www.zobodat.at/personen.php
+  mappings:
+    wikidata: P8914
+  name: ZOBODAT person ID
+  pattern: ^\d+$
+  preferred_prefix: zobodat.person
+  uri_format: https://www.zobodat.at/personen.php?id=$1
+zobodat.taxon:
+  description: numerical identifier for a taxon in ZOBODAT, a bibliographic database
+    of mostly German-language works on zoology
+  example: '1900'
+  homepage: https://www.zobodat.at/arten.php
+  mappings:
+    wikidata: P8915
+  name: ZOBODAT taxon ID
+  pattern: ^\d+$
+  preferred_prefix: zobodat.taxon
+  uri_format: https://www.zobodat.at/arten.php?id=$1
 zp:
   contact:
     email: ybradford@zfin.org
