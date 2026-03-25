@@ -870,7 +870,7 @@ class Manager:
         """Get a well-formed URI prefix, if available."""
         entry = self.get_resource(prefix)
         if entry is not None:
-            return entry.get_uri_prefix(priority=priority, strict=strict) # type:ignore
+            return entry.get_uri_prefix(priority=priority, strict=strict)  # type:ignore
         if strict:
             raise ValueError
         return None
