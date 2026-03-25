@@ -195,11 +195,15 @@ aaindex:
     name: Bio2RDF
     uri_format: http://bio2rdf.org/aaindex:$1
   publications:
+  - pubmed: '9847231'
+  - pubmed: '9053899'
+  - pubmed: '3244698'
   - doi: 10.1093/nar/gkm998
     pmc: PMC2238890
     pubmed: '17998252'
     title: 'AAindex: amino acid index database, progress report 2008'
     year: 2007
+  - pubmed: '10592278'
   references:
   - https://github.com/biopragmatics/bioregistry/pull/1098
   reviewer:
@@ -1239,9 +1243,6 @@ agro:
   name: Agronomy Ontology
   pattern: ^\d{8}$
   preferred_prefix: AGRO
-  publications:
-  - title: 'Data-driven Agricultural Research for Development: A Need for Data Harmonization
-      Via Semantics.'
   rdf_uri_format: http://purl.obolibrary.org/obo/AGRO_$1
   references:
   - https://github.com/biopragmatics/bioregistry/pull/1098
@@ -1756,6 +1757,7 @@ amoebadb:
     name: Bio2RDF
     uri_format: http://bio2rdf.org/amoebadb:$1
   publications:
+  - pubmed: '20974635'
   - doi: 10.1093/nar/gkp941
     pmc: PMC2808945
     pubmed: '19914931'
@@ -1919,6 +1921,7 @@ antibodyregistry:
     pubmed: '36370112'
     title: 'The Antibody Registry: ten years of registering antibodies'
     year: 2023
+  - pubmed: '24032093'
   references:
   - https://github.com/biopragmatics/bioregistry/pull/1098
   uri_format: http://antibodyregistry.org/AB_$1
@@ -2468,6 +2471,7 @@ arachnoserver:
     title: ArachnoServer 2.0, an updated online resource for spider toxin sequences
       and structures
     year: 2010
+  - pubmed: '19674480'
   references:
   - https://github.com/biopragmatics/bioregistry/pull/1141
   uri_format: http://www.arachnoserver.org/toxincard.html?id=$1
@@ -2501,6 +2505,10 @@ araport:
   pattern: ^AT.G[0-9]{5}$
   preferred_prefix: araport
   publications:
+  - doi: 10.1093/pcp/pcw200
+    pubmed: '28013278'
+  - doi: 10.1111/tpj.13415
+    pubmed: '27862469'
   - doi: 10.1093/nar/gku1200
     pmc: PMC4383980
     pubmed: '25414324'
@@ -2745,6 +2753,12 @@ arrayexpress:
     pubmed: '25361974'
     title: ArrayExpress update--simplifying data submissions
     year: 2014
+  - pubmed: '21071405'
+  - pubmed: '19015125'
+  - pubmed: '17132828'
+  - pubmed: '16939801'
+  - pubmed: '15608260'
+  - pubmed: '14744115'
   - doi: 10.1093/nar/gkg091
     pmc: PMC165538
     pubmed: '12519949'
@@ -3857,8 +3871,10 @@ bcio:
   providers:
   - code: website
     uri_format: http://humanbehaviourchange.org/ontology/BCIO_$1
+  publications:
+  - doi: 10.12688/wellcomeopenres.21252.2
   uri_format: https://w3id.org/BCI-ontology#$1
-  version: '2025-12-05'
+  version: '2026-03-19'
 bco:
   appears_in:
   - fovt
@@ -4863,6 +4879,7 @@ biocyc:
     title: The MetaCyc database of metabolic pathways and enzymes and the BioCyc collection
       of pathway/genome databases
     year: 2015
+  - pubmed: '22102576'
   - doi: 10.1093/nar/gki892
     pmc: PMC1266070
     pubmed: '16246909'
@@ -8034,6 +8051,9 @@ cdd:
     pubmed: '18984618'
     title: 'CDD: specific functional annotation with the Conserved Domain Database'
     year: 2008
+  - pubmed: '17135202'
+  - pubmed: '15215404'
+  - pubmed: '12368255'
   uri_format: https://www.ncbi.nlm.nih.gov/Structure/cdd/cddsrv.cgi?uid=$1
 cdno:
   contact:
@@ -8706,6 +8726,11 @@ cgd:
       search and analysis tools with curated gene and protein information for Candida
       albicans and Candida glabrata'
     year: 2011
+  - pubmed: '19808938'
+  - pubmed: '19577928'
+  - pubmed: '19465905'
+  - pubmed: '17090582'
+  - pubmed: '16879419'
   - doi: 10.1093/nar/gki003
     pmc: PMC539957
     pubmed: '15608216'
@@ -9208,6 +9233,8 @@ chembl:
   publications:
   - doi: 10.1093/nar/gkad1004
     pubmed: '37933841'
+  - doi: 10.1021/acs.chemrestox.0c00296
+    pubmed: '33507738'
   - doi: 10.1093/nar/gky1075
     pmc: PMC6323927
     pubmed: '30398643'
@@ -9218,6 +9245,8 @@ chembl:
     pubmed: '27899562'
     title: The ChEMBL database in 2017
     year: 2016
+  - doi: 10.1093/nar/gkv352
+    pubmed: '25883136'
   - doi: 10.1093/nar/gkt1031
     pmc: PMC3965067
     pubmed: '24214965'
@@ -9798,6 +9827,7 @@ chemsynthesis:
   example: '1'
   homepage: https://www.chemsynthesis.com
   mappings:
+    re3data: r3d100010206
     wikidata: P8508
   name: ChemSynthesis ID
   preferred_prefix: chemsynthesis
@@ -12342,6 +12372,8 @@ co_367:
   name: Quinoa Ontology
   pattern: ^\d{7}$
   preferred_prefix: CO_367
+  publications:
+  - doi: 10.3390/plants10091759
   repository: https://github.com/bioversity/Crop-Ontology
   uri_format: https://cropontology.org/rdf/CO_367:$1
 co_370:
@@ -12366,6 +12398,8 @@ co_370:
   name: Apple Ontology
   pattern: ^\d{7}$
   preferred_prefix: CO_370
+  publications:
+  - doi: 10.5194/egusphere-egu21-15804
   repository: https://github.com/bioversity/Crop-Ontology
   uri_format: https://cropontology.org/rdf/CO_370:$1
 cob:
@@ -12472,6 +12506,8 @@ codata.rdmt:
     ecoportal: CODATA-RDMT
   name: CODATA Research Data Management Terminology
   preferred_prefix: codata.rdmt
+  publications:
+  - doi: 10.5281/zenodo.10626170
   references:
   - https://zenodo.org/records/10626170
   uri_format: https://terms.codata.org/rdmt/$1
@@ -14461,6 +14497,9 @@ cubedb:
   name: Cube db
   pattern: ^[A-Za-z_0-9]+$
   preferred_prefix: cubedb
+  publications:
+  - pubmed: '22139934'
+  - pubmed: '21931701'
   uri_format: http://epsf.bmad.bii.a-star.edu.sg/cube/db/data/$1/
 cutg:
   description: Codon usage in individual genes has been calculated using the nucleotide
@@ -15313,6 +15352,7 @@ dbsnp:
     pubmed: '11125122'
     title: 'dbSNP: the NCBI database of genetic variation'
     year: 2001
+  - pubmed: '10592272'
   uri_format: https://www.ncbi.nlm.nih.gov/snp/$1
 dbvar.study:
   contributor:
@@ -17137,6 +17177,10 @@ dictybase:
     pubmed: '23172289'
     title: 'DictyBase 2013: integrating multiple Dictyostelid species'
     year: 2012
+  - pubmed: '21087999'
+  - pubmed: '18974179'
+  - pubmed: '16957284'
+  - pubmed: '16381903'
   - doi: 10.1093/nar/gkh138
     pmc: PMC308872
     pubmed: '14681427'
@@ -17407,6 +17451,7 @@ dip:
     title: 'DIP, the Database of Interacting Proteins: a research tool for studying
       cellular networks of protein interactions'
     year: 2002
+  - pubmed: '1175232'
   - doi: 10.1093/nar/29.1.239
     pmc: PMC29798
     pubmed: '11125102'
@@ -19308,6 +19353,8 @@ dwc.doe:
     tib: dwcdoe
   name: Degree of Establishment Controlled Vocabulary
   preferred_prefix: dwc.doe
+  publications:
+  - doi: 10.3897/biss.3.38084
   uri_format: http://rs.tdwg.org/dwcdoe/$1
 dwc.em:
   contact:
@@ -19328,6 +19375,8 @@ dwc.em:
     tib: dwcem
   name: Establishment Means Controlled Vocabulary
   preferred_prefix: dwc.em
+  publications:
+  - doi: 10.3897/biss.3.38084
   uri_format: http://rs.tdwg.org/dwcem/$1
 dwc.pw:
   contact:
@@ -19347,6 +19396,8 @@ dwc.pw:
     tib: dwcpw
   name: Darwin Core pathway controlled vocabulary
   preferred_prefix: dwc.pw
+  publications:
+  - doi: 10.3897/biss.3.38084
   uri_format: http://rs.tdwg.org/dwcpw/$1
 eaglei:
   contributor:
@@ -19716,6 +19767,7 @@ ec:
     title: 'An update on the Enzyme Portal: an integrative approach for exploring
       enzyme knowledge'
     year: 2017
+  - pubmed: '14681451'
   - doi: 10.1093/nar/28.1.304
     pmc: PMC102465
     pubmed: '10592255'
@@ -19844,6 +19896,9 @@ echinobase:
   name: Echinobase
   pattern: ^\d+$
   preferred_prefix: echinobase
+  publications:
+  - doi: 10.1007/978-1-4939-7737-6_12
+    pubmed: '29761464'
   uri_format: https://www.echinobase.org/entry/gene/showgene.do?method=display&geneId=$1
 echobase:
   contact:
@@ -20157,6 +20212,7 @@ ecocyc:
     pubmed: '23143106'
     title: 'EcoCyc: fusing model organism databases with systems biology'
     year: 2012
+  - pubmed: '21097882'
   uri_format: https://ecocyc.org/gene?id=$1
 ecogene:
   deprecated: true
@@ -21767,6 +21823,7 @@ ena.embl:
     pubmed: '23203883'
     title: Facing growth in the European Nucleotide Archive
     year: 2012
+  - pubmed: '20972220'
   - doi: 10.1093/nar/gkh120
     pmc: PMC308854
     pubmed: '14681351'
@@ -22145,6 +22202,7 @@ ensembl:
     pubmed: '30407521'
     title: Ensembl 2019
     year: 2019
+  - pubmed: '28365736'
   - doi: 10.1093/nar/gkw1104
     pmc: PMC5210575
     pubmed: '27899575'
@@ -22472,6 +22530,7 @@ ensembl.fungi:
     pubmed: '26578574'
     title: 'Ensembl Genomes 2016: more genomes, more complexity'
     year: 2015
+  - pubmed: '19884133'
   uri_format: https://fungi.ensembl.org/id/$1
 ensembl.metazoa:
   contact:
@@ -22522,6 +22581,7 @@ ensembl.metazoa:
     pubmed: '26578574'
     title: 'Ensembl Genomes 2016: more genomes, more complexity'
     year: 2015
+  - pubmed: '19884133'
   uri_format: https://metazoa.ensembl.org/id/$1
 ensembl.plant:
   description: Ensembl Genomes consists of five sub-portals (for bacteria, protists,
@@ -23254,6 +23314,8 @@ eropmoscow:
     homepage: https://bio2rdf.org
     name: Bio2RDF
     uri_format: http://bio2rdf.org/eropmoscow:$1
+  publications:
+  - pubmed: '16381860'
   reviewer:
     email: cthoyt@gmail.com
     github: cthoyt
@@ -25373,6 +25435,9 @@ flybrain.ndb:
   name: FlyBrain Neuron Database
   pattern: ^\d+$
   preferred_prefix: flybrain.ndb
+  publications:
+  - pubmed: '21280038'
+  - pubmed: '16802334'
   uri_format: https://flybrain-ndb.virtualflybrain.org/fmi/xsl/browserecord.xsl@-lay=NDB&Accession+number.op=eq&Accession+number=$1&-find=-find.html
 flymine.chromosome:
   description: FlyMine is an integrated database of genomic, expression and protein
@@ -25491,6 +25556,7 @@ fma:
     title: 'Challenges in converting frame-based ontology into OWL: the Foundational
       Model of Anatomy case-study'
     year: 2005
+  - pubmed: '14759821'
   - doi: 10.1016/j.jbi.2003.11.007
     pubmed: '14759820'
     title: 'A reference ontology for biomedical informatics: the Foundational Model
@@ -25772,8 +25838,11 @@ fovt:
   - pato
   - ro
   - uberon
-  description: These are the terms that are improted for FOVT to describe vertebrate
-    traits.
+  description: FuTRES Ontology of Vertebrate Traits is an application ontology used
+    to convert vertebrate trait data in spreadsheet to triples. FOVT leverages the
+    BioCollections Ontology (BCO) to link observations of individual specimens to
+    their trait values. Traits are defined in the Ontology of Biological Attributes
+    (OBA).
   download_obo: http://purl.obolibrary.org/obo/fovt.obo
   download_owl: http://purl.obolibrary.org/obo/fovt.owl
   example: 0000009
@@ -25796,7 +25865,7 @@ fovt:
   rdf_uri_format: http://purl.obolibrary.org/obo/FOVT_$1
   repository: https://github.com/futres/fovt
   uri_format: http://purl.obolibrary.org/obo/FOVT_$1
-  version: '2023-05-31'
+  version: '2026-03-19'
 fplx:
   contact:
     email: benjamin_gyori@hms.harvard.edu
@@ -26466,6 +26535,8 @@ gallont:
   name: Plant Gall Ontology
   pattern: ^\d{7}$
   preferred_prefix: GALLONT
+  publications:
+  - doi: 10.3897/arphapreprints.e128953
   rdf_uri_format: http://purl.obolibrary.org/obo/GALLONT_$1
   repository: https://github.com/adeans/gallont
   uri_format: http://purl.obolibrary.org/obo/GALLONT_$1
@@ -27082,6 +27153,7 @@ genecards.gene:
     name: Bio2RDF
     uri_format: http://bio2rdf.org/genecards:$1
   publications:
+  - pubmed: '9789091'
   - doi: 10.1016/s0168-9525(97)01103-7
     pubmed: '9097728'
     title: 'GeneCards: integrating information about genes, proteins and diseases'
@@ -27238,6 +27310,7 @@ genedb:
     name: Bio2RDF
     uri_format: http://bio2rdf.org/genedb:$1
   publications:
+  - pubmed: '22116062'
   - doi: 10.1093/nar/gkh007
     pmc: PMC308742
     pubmed: '14681429'
@@ -27404,6 +27477,7 @@ genewiki:
     pubmed: '26989148'
     title: Wikidata as a semantic framework for the Gene Wiki initiative
     year: 2016
+  - pubmed: '22165947'
   - doi: 10.1093/nar/gkr925
     pmc: PMC3245148
     pubmed: '22075991'
@@ -27556,11 +27630,17 @@ geo:
     pubmed: '23193258'
     title: 'NCBI GEO: archive for functional genomics data sets--update'
     year: 2012
+  - pubmed: '21097893'
+  - pubmed: '18940857'
   - doi: 10.1038/nbt1206-1471
     pmc: PMC2270403
     pubmed: '17160034'
     title: NCBI GEO standards and services for microarray data
     year: 2006
+  - pubmed: '17099226'
+  - pubmed: '16939800'
+  - pubmed: '16888359'
+  - pubmed: '15608262'
   - doi: 10.1093/nar/30.1.207
     pmc: PMC99122
     pubmed: '11752295'
@@ -27727,6 +27807,28 @@ geosparql.rule:
     zazuko: geor
   name: GeoSPARQL Rule
   preferred_prefix: geosparql.rule
+gepris:
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: Geförderte Projekte Informationssystem (GEPRIS) is a bilingual (German/English)
+    database of funding measures administered by the Deutsche Forschungsgemeinschaft
+    (DFG).
+  example: '441958208'
+  github_request_issue: 1860
+  homepage: https://gepris.dfg.de/gepris
+  keywords:
+  - bibliometrics
+  - funding
+  - project
+  mappings:
+    wikidata.entity: Q48879895
+  name: Geförderte Projekte Informationssystem
+  pattern: ^\d+$
+  preferred_prefix: gepris
+  uri_format: https://gepris.dfg.de/gepris/projekt/$1
 gesah:
   description: The GESAH Graphic Arts Ontology is designed for the inventory, classification
     and structured description of works on paper.
@@ -28413,6 +28515,7 @@ glycomedb:
     name: Bio2RDF
     uri_format: http://bio2rdf.org/glycomedb:$1
   publications:
+  - pubmed: '25753706'
   - doi: 10.1093/nar/gkq1014
     pmc: PMC3013643
     pubmed: '21045056'
@@ -29047,6 +29150,7 @@ go:
     pubmed: '19920128'
     title: 'The Gene Ontology in 2010: extensions and refinements'
     year: 2009
+  - pubmed: '19578431'
   - doi: 10.1093/nar/gkh036
     pmc: PMC308770
     pubmed: '14681407'
@@ -29223,6 +29327,8 @@ goa:
     pubmed: '25378336'
     title: 'The GOA database: gene Ontology annotation updates for 2015'
     year: 2014
+  - pubmed: '22123736'
+  - pubmed: '19744993'
   - doi: 10.1093/nar/gkn803
     pmc: PMC2686469
     pubmed: '18957448'
@@ -29326,6 +29432,7 @@ gold:
     pubmed: '30357420'
     title: 'Genomes OnLine database (GOLD) v.7: updates and new features'
     year: 2019
+  - pubmed: '27794040'
   - doi: 10.1093/nar/gkp848
     pmc: PMC2808860
     pubmed: '19914934'
@@ -30211,6 +30318,8 @@ gsso:
   namespace_in_lui: true
   pattern: ^\d{6}$
   preferred_prefix: GSSO
+  publications:
+  - doi: 10.1093/jamia/ocaa061
   rdf_uri_format: http://purl.obolibrary.org/obo/GSSO_$1
   repository: https://github.com/Superraptor/GSSO
   uri_format: http://purl.obolibrary.org/obo/GSSO_$1
@@ -31771,6 +31880,7 @@ hmdb:
     pubmed: '23161693'
     title: HMDB 3.0--The Human Metabolome Database in 2013
     year: 2012
+  - pubmed: '18953024'
   - doi: 10.1093/nar/gkl923
     pmc: PMC1899095
     pubmed: '17202168'
@@ -31979,6 +32089,8 @@ hoip:
   name: Homeostasis imbalance process ontology
   pattern: ^\d{7}$
   preferred_prefix: hoip
+  publications:
+  - doi: 10.1101/2023.03.09.531883
   repository: https://github.com/yuki-yamagata/hoip
   reviewer:
     email: cthoyt@gmail.com
@@ -32343,6 +32455,7 @@ hovergen:
     name: Bio2RDF
     uri_format: http://bio2rdf.org/hovergen:$1
   publications:
+  - pubmed: '8036164'
   - doi: 10.1093/bioinformatics/bti325
     pubmed: '15713731'
     title: 'Tree pattern matching in phylogenetic trees: automatic search for orthologs
@@ -32421,6 +32534,8 @@ hp:
     pubmed: '37953324'
     title: 'The Human Phenotype Ontology in 2024: phenotypes around the world'
     year: 2024
+  - doi: 10.1093/nar/gkaa1043
+    pubmed: '33264411'
   - doi: 10.1093/nar/gky1105
     pmc: PMC6324074
     pubmed: '30476213'
@@ -32758,6 +32873,9 @@ hsdb:
   name: Hazardous Substances Data Bank
   pattern: ^\d+$
   preferred_prefix: hsdb
+  publications:
+  - pubmed: '8545846'
+  - pubmed: '14728459'
   uri_format: https://pubchem.ncbi.nlm.nih.gov/source/hsdb/$1
 hso:
   contact:
@@ -33055,12 +33173,15 @@ huge:
     name: Bio2RDF
     uri_format: http://bio2rdf.org/huge:$1
   publications:
+  - pubmed: '9847221'
   - doi: 10.1093/nar/gkh035
     pmc: PMC308769
     pubmed: '14681467'
     title: 'HUGE: a database for human KIAA proteins, a 2004 update integrating HUGEppi
       and ROUGE'
     year: 2004
+  - pubmed: '11752282'
+  - pubmed: '10592264'
   uri_format: https://www.kazusa.or.jp/huge/gfpage/$1
 humap:
   contact:
@@ -34216,6 +34337,7 @@ ideal:
     title: IDEAL in 2014 illustrates interaction networks composed of intrinsically
       disordered proteins and their binding partners
     year: 2013
+  - pubmed: '22067451'
   uri_format: http://idp1.force.cs.is.nagoya-u.ac.jp/IDEAL/ideal.php?id=$1
 ido:
   appears_in:
@@ -35367,11 +35489,15 @@ imgt.hla:
     pubmed: '31667505'
     title: IPD-IMGT/HLA Database
     year: 2020
+  - doi: 10.1016/j.humimm.2016.01.020
+    pubmed: '26826444'
   - doi: 10.1093/nar/gku1161
     pmc: PMC4383959
     pubmed: '25414341'
     title: 'The IPD and IMGT/HLA database: allele variant databases'
     year: 2014
+  - doi: 10.1007/978-1-4939-1115-8_5
+    pubmed: '25048120'
   - doi: 10.1093/nar/gkn662
     pmc: PMC2686596
     pubmed: '18838392'
@@ -36098,6 +36224,10 @@ insdc:
     pubmed: '12436968'
     title: Nucleotide sequence database policies
     year: 2002
+  - doi: 10.1126/science.aaf7672
+    pubmed: ''
+  - doi: 10.1038/533179a
+    pubmed: ''
   uri_format: https://www.ebi.ac.uk/ena/data/view/$1
 insdc.cds:
   description: The coding sequence or protein identifiers as maintained in INSDC.
@@ -36316,6 +36446,7 @@ intact:
     title: The MIntAct project--IntAct as a common curation platform for 11 molecular
       interaction databases
     year: 2013
+  - pubmed: '22121220'
   - doi: 10.1038/nmeth.1637
     pmc: PMC3246345
     pubmed: '21716279'
@@ -36534,6 +36665,11 @@ interpro:
     title: 'InterPro in 2019: improving coverage, classification and access to protein
       sequence annotations'
     year: 2019
+  - pubmed: '22301074'
+  - pubmed: '22096229'
+  - pubmed: '21785143'
+  - pubmed: '18836194'
+  - pubmed: '15980438'
   - doi: 10.1093/nar/gki106
     pmc: PMC540060
     pubmed: '15608177'
@@ -37920,6 +38056,7 @@ kegg:
     name: Bio2RDF
     uri_format: http://bio2rdf.org/kegg:$1
   publications:
+  - pubmed: '9287494'
   - doi: 10.1093/nar/gkae909
     pubmed: '39417505'
   - doi: 10.1093/nar/gkw1092
@@ -37927,6 +38064,9 @@ kegg:
     pubmed: '27899662'
     title: 'KEGG: new perspectives on genomes, pathways, diseases and drugs'
     year: 2016
+  - pubmed: '24214961'
+  - pubmed: '16381885'
+  - pubmed: '14681412'
   rdf_uri_format: http://www.kegg.jp/entry/$1
   synonyms:
   - KEGG
@@ -38005,6 +38145,11 @@ kegg.compound:
     pubmed: '22700311'
     title: Using the KEGG database resource
     year: 2012
+  - pubmed: '20460463'
+  - pubmed: '19327755'
+  - pubmed: '17921532'
+  - pubmed: '17400247'
+  - pubmed: '14505407'
   synonyms:
   - KEGG COMPOUND
   - KEGG.COMPOUND
@@ -38291,10 +38436,15 @@ kegg.glycan:
     name: Bio2RDF
     uri_format: http://bio2rdf.org/kegg.glycan:$1
   publications:
+  - pubmed: '19327755'
+  - pubmed: '18546491'
+  - pubmed: '16362924'
+  - pubmed: '16159923'
   - doi: 10.1093/glycob/cwj010
     pubmed: '16014746'
     title: KEGG as a glycome informatics resource
     year: 2005
+  - pubmed: '15215393'
   uri_format: https://www.kegg.jp/entry/$1
 kegg.ligand:
   comment: This database has been discontinued by KEGG. It now lives inside the compound
@@ -38367,6 +38517,8 @@ kegg.module:
   part_of: kegg
   pattern: ^([a-z]{3,5}_)?M\d{5}$
   preferred_prefix: kegg.module
+  publications:
+  - pubmed: '23384306'
   uri_format: http://www.kegg.jp/entry/$1
 kegg.orthology:
   description: KEGG Orthology (KO) consists of manually defined, generalised ortholog
@@ -38514,6 +38666,11 @@ kegg.reaction:
     pubmed: '22700311'
     title: Using the KEGG database resource
     year: 2012
+  - pubmed: '20435670'
+  - pubmed: '19477985'
+  - pubmed: '17516640'
+  - pubmed: '15600352'
+  - pubmed: '14505407'
   synonyms:
   - KEGG_REACTION
   uri_format: https://www.kegg.jp/entry/$1
@@ -38802,6 +38959,8 @@ knapsack:
   name: KNApSAcK
   pattern: ^C\d{8}$
   preferred_prefix: knapsack
+  publications:
+  - pubmed: '22123792'
   synonyms:
   - KNApSAcK
   uri_format: http://www.knapsackfamily.com/knapsack_core/information.php?word=$1
@@ -39643,6 +39802,10 @@ lipidmaps:
     name: Scholia
     uri_format: https://scholia.toolforge.org/lipidmaps/$1
   publications:
+  - doi: 10.1093/nar/gkad896
+    pubmed: '37855672'
+  - doi: 10.12688/f1000research.28022.2
+    pubmed: '33564392'
   - doi: 10.1194/jlr.r800095-jlr200
     pmc: PMC2674711
     pubmed: '19098281'
@@ -39658,10 +39821,14 @@ lipidmaps:
     pubmed: '17098933'
     title: 'LMSD: LIPID MAPS structure database'
     year: 2006
+  - doi: 10.1093/nar/gkj122
+    pubmed: '16381922'
   - doi: 10.1194/jlr.e400004-jlr200
     pubmed: '15722563'
     title: A comprehensive classification system for lipids
     year: 2005
+  - doi: ' 10.1101/2020.04.09.033894'
+    pubmed: ''
   synonyms:
   - LIPID MAPS
   - LIPID_MAPS_class
@@ -39748,6 +39915,9 @@ lncbook:
   name: LncBook
   pattern: ^HSALNG\d{7}$
   preferred_prefix: lncbook
+  publications:
+  - doi: 10.1093/nar/gky960
+    pubmed: '30329098'
   uri_format: https://ngdc.cncb.ac.cn/lncbook/gene?geneid=$1
 lncipedia:
   contact:
@@ -40161,6 +40331,9 @@ lrg:
     homepage: http://useast.ensembl.org/
     name: Locus Reference Genomic through Ensembl mirror (US east)
     uri_format: http://useast.ensembl.org/Homo_sapiens/LRG/Summary?lrg=$1
+  publications:
+  - doi: 10.1093/nar/gkt1198
+    pubmed: '24285302'
   uri_format: http://ftp.ebi.ac.uk/pub/databases/lrgex/$1.xml
 lrmi:
   contributor:
@@ -40584,6 +40757,7 @@ maizegdb.locus:
     title: 'MaizeGDB update: new tools, data and interface for the maize model organism
       database'
     year: 2015
+  - pubmed: '21565781'
   - doi: 10.1155/2008/496957
     pmc: PMC2518694
     pubmed: '18769488'
@@ -40595,6 +40769,7 @@ maizegdb.locus:
     pubmed: '17202174'
     title: MaizeGDB's new data types, resources and activities
     year: 2007
+  - pubmed: '14681441'
   synonyms:
   - MaizeGDB
   uri_format: http://www.maizegdb.org/cgi-bin/displaylocusrecord.cgi?id=$1
@@ -40982,6 +41157,7 @@ matrixdb:
     pubmed: '20852260'
     title: MatrixDB, the extracellular matrix interaction database
     year: 2010
+  - pubmed: '20213321'
   - doi: 10.1093/bioinformatics/btp025
     pmc: PMC2647840
     pubmed: '19147664'
@@ -41858,6 +42034,8 @@ mesh:
     name: Medical Subject Headings (TTL)
     uri_format: https://id.nlm.nih.gov/mesh/$1.ttl
   publications:
+  - pubmed: '20623263'
+  - pubmed: '15360776'
   - pmc: PMC197951
     pubmed: '13982385'
     title: Medical subject headings
@@ -41959,6 +42137,13 @@ metabolights:
     homepage: https://www.omicsdi.org/
     name: MataboLights through OmicsDI
     uri_format: https://www.omicsdi.org/dataset/metabolights_dataset/$1
+  publications:
+  - pubmed: '28830114'
+  - pubmed: '27010336'
+  - pubmed: '23683662'
+  - pubmed: '23630246'
+  - pubmed: '23109552'
+  - pubmed: '23060735'
   uri_format: https://www.ebi.ac.uk/metabolights/$1
 metacyc.compound:
   contact:
@@ -42014,6 +42199,11 @@ metacyc.compound:
     title: The MetaCyc database of metabolic pathways and enzymes and the BioCyc collection
       of pathway/genome databases
     year: 2011
+  - pubmed: '17965431'
+  - pubmed: '16381923'
+  - pubmed: '14681452'
+  - pubmed: '11752254'
+  - pubmed: '10592180'
   synonyms:
   - MetaCyc
   uri_format: https://metacyc.org/compound?orgid=META&id=$1
@@ -42589,6 +42779,11 @@ mge:
     pubmed: '19933762'
     title: 'ACLAME: a CLAssification of Mobile genetic Elements, update 2010'
     year: 2009
+  - pubmed: '18238785'
+  - pubmed: '18234706'
+  - pubmed: '17614261'
+  - pubmed: '17482656'
+  - pubmed: '17064288'
   - doi: 10.1093/nar/gkh084
     pmc: PMC308818
     pubmed: '14681355'
@@ -42741,6 +42936,7 @@ mgi:
     title: 'The Mouse Genome Database (MGD): from genes to mice--a community resource
       for mouse biology'
     year: 2005
+  - pubmed: '15602912'
   synonyms:
   - MGD
   - MGI
@@ -44877,6 +45073,8 @@ molmovdb:
     homepage: https://bio2rdf.org
     name: Bio2RDF
     uri_format: http://bio2rdf.org/molmovdb:$1
+  publications:
+  - pubmed: '9722650'
   reviewer:
     email: cthoyt@gmail.com
     github: cthoyt
@@ -44888,6 +45086,7 @@ mona:
   example: FiehnLib001006
   homepage: https://massbank.us
   mappings:
+    re3data: r3d100012318
     wikidata: P13537
   name: MoNA spectrum ID
   preferred_prefix: mona
@@ -44941,6 +45140,8 @@ mondo:
     name: Clinical Genome
     uri_format: https://search.clinicalgenome.org/kb/conditions/MONDO:$1
   publications:
+  - doi: 10.1093/nar/gkz997
+    pubmed: '31701156'
   - doi: 10.1093/nar/gkw1128
     pubmed: '27899636'
     title: 'The Monarch Initiative: an integrative data and analytic platform connecting
@@ -45156,7 +45357,7 @@ mp:
   rdf_uri_format: http://purl.obolibrary.org/obo/MP_$1
   repository: https://github.com/mgijax/mammalian-phenotype-ontology
   uri_format: http://purl.obolibrary.org/obo/MP_$1
-  version: '2026-02-17'
+  version: '2026-03-18'
 mpath:
   contact:
     email: pns12@hermes.cam.ac.uk
@@ -45429,6 +45630,9 @@ msigdb:
     homepage: https://biopragmatics.github.io/providers/msigdb/
     name: MMSigDB from Biopragmatics
     uri_format: https://biopragmatics.github.io/providers/msigdb/$1
+  publications:
+  - doi: 10.1073/pnas.0506580102
+    pubmed: '16199517'
   synonyms:
   - msig
   uri_format: https://www.gsea-msigdb.org/gsea/msigdb/human/geneset/$1
@@ -45617,6 +45821,24 @@ mvx:
     name: Charles Tapley Hoyt
     orcid: 0000-0003-4423-4370
   uri_format: https://phinvads.cdc.gov/vads/ViewCodeSystemConcept.action?oid=2.16.840.1.113883.12.227&code=$1
+mw.mgp:
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: The Human Metabolome Gene/Protein Database (MGP) of metabolome-related
+    genes and proteins contains data for over 7300 genes and over 15,500 proteins.
+    [from homepage]
+  example: MGP005034
+  github_request_issue: 1860
+  homepage: https://www.metabolomicsworkbench.org/databases/proteome/MGP.php
+  keywords:
+  - gene
+  - protein
+  name: Human Metabolome Gene/Protein Database
+  preferred_prefix: mw.mgp
+  uri_format: https://www.metabolomicsworkbench.org/databases/proteome/MGP_detail.php?MGP_ID=$1
 mw.project:
   description: Metabolomics Workbench stores metabolomics data for small and large
     studies on cells, tissues and organisms for the Metabolomics Consortium Data Repository
@@ -45631,6 +45853,46 @@ mw.project:
   pattern: ^PR[0-9]{6}$
   preferred_prefix: mw.project
   uri_format: http://www.metabolomicsworkbench.org/data/DRCCMetadata.php?Mode=Project&ProjectID=$1
+mw.refmet:
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: The main objective of RefMet is to provide a standardized reference
+    nomenclature for both discrete metabolite structures and metabolite species identified
+    by spectroscopic techniques in metabolomics experiments. [from homepage]
+  example: RM0108606
+  github_request_issue: 1860
+  homepage: https://www.metabolomicsworkbench.org/databases/refmet/index.php
+  keywords:
+  - chemical
+  - metabolite
+  - molecule
+  - species
+  - taxonomy
+  name: A Reference list of Metabolite names
+  preferred_prefix: mw.refmet
+  uri_format: https://www.metabolomicsworkbench.org/databases/refmet/refmet_details.php?REFMET_ID=$1
+mw.structure:
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: The Metabolomics Workbench Metabolite Database contains structures
+    and annotations of biologically relevant metabolites. As of 03/23/26, the database
+    contains 175556 entries, collected from various public sources. [from homepage]
+  example: '4884'
+  github_request_issue: 1860
+  homepage: https://www.metabolomicsworkbench.org/databases/metabolitedatabase.php
+  keywords:
+  - chemical
+  - metabolite
+  - molecule
+  name: Metabolomics Workbench Metabolite Database
+  preferred_prefix: mw.structure
+  uri_format: https://www.metabolomicsworkbench.org/data/StructureData.php?RegNo=$1
 mw.study:
   description: Metabolomics Workbench stores metabolomics data for small and large
     studies on cells, tissues and organisms for the Metabolomics Consortium Data Repository
@@ -47148,7 +47410,7 @@ ncit:
   - NCit
   - ncithesaurus
   uri_format: http://purl.obolibrary.org/obo/NCIT_$1
-  version: '2025-08-06'
+  version: '2026-03-19'
 ncro:
   contact:
     email: huang@southalabama.edu
@@ -47724,6 +47986,8 @@ nextdb:
     homepage: https://bio2rdf.org
     name: Bio2RDF
     uri_format: http://bio2rdf.org/nextdb:$1
+  publications:
+  - pubmed: '11231151'
   uri_format: http://nematode.lab.nig.ac.jp/db2/ShowCloneInfo.php?clone=$1
 nextprot:
   description: neXtProt is a resource on human proteins, and includes information
@@ -49632,6 +49896,7 @@ nucleardb:
     pubmed: '22064856'
     title: 'NucleaRDB: information system for nuclear receptors'
     year: 2011
+  - pubmed: '11125133'
   synonyms:
   - nuclearbd
   uri_format: http://www.receptors.org/nucleardb/proteins/$1
@@ -50180,6 +50445,13 @@ obo:
     title: 'The OBO Foundry: coordinated evolution of ontologies to support biomedical
       data integration'
     year: 2007
+  - pubmed: '17321117'
+  - pubmed: '16964349'
+  - pubmed: '16564748'
+  - pubmed: '16549013'
+  - pubmed: '16442850'
+  - pubmed: '16435295'
+  - pubmed: '16360342'
   rdf_uri_format: http://purl.obolibrary.org/obo/$1
   references:
   - https://github.com/biopragmatics/bioregistry/pull/913
@@ -51024,7 +51296,7 @@ ohmi:
   rdf_uri_format: http://purl.obolibrary.org/obo/OHMI_$1
   repository: https://github.com/ohmi-ontology/ohmi
   uri_format: http://purl.obolibrary.org/obo/OHMI_$1
-  version: '2026-03-15'
+  version: '2026-03-21'
 ohpi:
   contact:
     email: edong@umich.edu
@@ -51328,6 +51600,10 @@ omia:
     title: 'Online Mendelian Inheritance in Animals (OMIA): a genetic resource for
       vertebrate animals'
     year: 2024
+  - pubmed: '33156546'
+  - pubmed: '12520001'
+  - doi: 'doi: 10.25910/2amr-pv70'
+    pubmed: ''
   synonyms:
   - OMIA
   uri_format: https://omia.org/phene/omia:$1
@@ -51516,6 +51792,7 @@ omim:
     title: 'OMIM.org: Online Mendelian Inheritance in Man (OMIM®), an online catalog
       of human genes and genetic disorders'
     year: 2014
+  - pubmed: '18842627'
   - doi: 10.1093/nar/gki033
     pmc: PMC539987
     pubmed: '15608251'
@@ -52757,6 +53034,7 @@ orpha:
     title: '[Orphanet and the Dutch Steering Committee Orphan Drugs. A European and
       Dutch databank of information on rare diseases]'
     year: 2008
+  - pubmed: '12655825'
   synonyms:
   - Orphanet
   - orphanet
@@ -53422,6 +53700,8 @@ pandit:
     name: Bio2RDF
     uri_format: http://bio2rdf.org/pandit:$1
   provides: pfam
+  publications:
+  - pubmed: '16381879'
   reviewer:
     email: cthoyt@gmail.com
     github: cthoyt
@@ -53651,6 +53931,13 @@ pass2:
     homepage: https://bio2rdf.org
     name: Bio2RDF
     uri_format: http://bio2rdf.org/pass2:$1
+  publications:
+  - pubmed: '9753697'
+  - pubmed: '9730927'
+  - pubmed: '2181150'
+  - pubmed: '15059245'
+  - pubmed: '11752316'
+  - pubmed: '10089493'
   uri_format: https://caps.ncbs.res.in/pass2.8/?q=superfamily/$1
 pathbank:
   contact:
@@ -53687,6 +53974,11 @@ pathbank:
   name: PathBank
   pattern: ^(SMP|PW)\d+$
   preferred_prefix: pathbank
+  publications:
+  - doi: 10.1093/nar/gkad1041
+    pubmed: '37962386'
+  - doi: 10.1093/nar/gkz861
+    pubmed: '31602464'
   uri_format: https://pathbank.org/view/$1
 pathguide:
   contact:
@@ -53723,12 +54015,14 @@ pathguide:
     homepage: https://bio2rdf.org
     name: Bio2RDF
     uri_format: http://bio2rdf.org/pathguide:$1
+  publications:
+  - pubmed: '16381921'
   reviewer:
     email: cthoyt@gmail.com
     github: cthoyt
     name: Charles Tapley Hoyt
     orcid: 0000-0003-4423-4370
-  uri_format: http://www.pathguide.org/fullrecord.php?organisms=all&availability=all&standards=all&order=alphabetic&DBID=$1
+  uri_format: http://www.pathguide.org/fullrecord.php?DBID=$1
 pathoplant:
   description: PathoPlant® is a database on plant-pathogen interactions and components
     of signal transduction pathways related to plant pathogenesis. PathoPlant® also
@@ -54428,6 +54722,7 @@ pdb:
     pubmed: '24214988'
     title: 'SAbDab: the structural antibody database'
     year: 2013
+  - pubmed: '22110033'
   - doi: 10.1093/nar/gkr811
     pmc: PMC3245181
     pubmed: '21976737'
@@ -54581,6 +54876,7 @@ pdbsum:
     uri_format: http://bio2rdf.org/pdbsum:$1
   provides: pdb
   publications:
+  - pubmed: '9433130'
   - doi: 10.1002/pro.3289
     pmc: PMC5734310
     pubmed: '28875543'
@@ -54596,6 +54892,9 @@ pdbsum:
     pubmed: '18996896'
     title: PDBsum new things
     year: 2008
+  - pubmed: '17384425'
+  - pubmed: '15608193'
+  - pubmed: '11125097'
   reviewer:
     email: cthoyt@gmail.com
     github: cthoyt
@@ -54752,6 +55051,7 @@ peco:
     title: 'The Planteome database: an integrated resource for reference ontologies,
       plant genomics and phenomics'
     year: 2018
+  - doi: 10.3732/ajb.1200222
   rdf_uri_format: http://purl.obolibrary.org/obo/PECO_$1
   repository: https://github.com/Planteome/plant-experimental-conditions-ontology
   uri_format: https://browser.planteome.org/amigo/term/PECO:$1
@@ -55807,6 +56107,8 @@ phenx:
     pubmed: '28079902'
     title: PhenX measures for phenotyping rare genetic conditions
     year: 2017
+  - pubmed: '26132000'
+  - pubmed: '22954959'
   - doi: 10.1093/aje/kwr193
     pmc: PMC3141081
     pubmed: '21749974'
@@ -56315,6 +56617,13 @@ pir:
     uniprot: DB-0078
   name: Protein Information Resource
   preferred_prefix: pir
+  publications:
+  - pubmed: '17569631'
+  - pubmed: '12520019'
+  - pubmed: '11752247'
+  - pubmed: '11125041'
+  - pubmed: '10869023'
+  - pubmed: '10592177'
   uri_format: https://proteininformationresource.org/cgi-bin/nbrfget?uid=$1
 piroplasma:
   description: PiroplasmaDB is one of the databases that can be accessed through the
@@ -57452,6 +57761,8 @@ ppeo:
     tib: ppeo
   name: Plant Phenotype Experiment Ontology
   preferred_prefix: ppeo
+  publications:
+  - doi: 10.1111/nph.16544
   uri_format: http://purl.org/ppeo/PPEO.owl#$1
 ppo:
   contact:
@@ -57800,6 +58111,7 @@ pride:
     title: 'The PRoteomics IDEntifications (PRIDE) database and associated tools:
       status in 2013'
     year: 2012
+  - pubmed: '19906717'
   - doi: 10.1002/0471250953.bi1308s21
     pubmed: '18428683'
     title: Using the Proteomics Identifications Database (PRIDE)
@@ -57890,6 +58202,9 @@ prints:
     name: PRINTS Alt. 1
     uri_format: http://130.88.97.239/cgi-bin/dbbrowser/sprint/searchprintss.cgi?display_opts=Prints&category=None&queryform=false&regexpr=off&prints_accn=$1
   publications:
+  - pubmed: '7971946'
+  - pubmed: '7937065'
+  - pubmed: '2330366'
   - doi: 10.1093/database/bas019
     pmc: PMC3326521
     pubmed: '22508994'
@@ -58046,6 +58361,9 @@ prodom:
     name: Bio2RDF
     uri_format: http://bio2rdf.org/prodom:$1
   publications:
+  - pubmed: '9847197'
+  - pubmed: '9399865'
+  - pubmed: '9009835'
   - doi: 10.1093/nar/gki034
     pmc: PMC539988
     pubmed: '15608179'
@@ -58055,6 +58373,7 @@ prodom:
     pubmed: '12230033'
     title: 'ProDom: automated clustering of homologous domains'
     year: 2002
+  - pubmed: '10592243'
   uri_format: http://prodom.prabi.fr/prodom/current/cgi-bin/request.pl?question=DBEN&query=$1
 proglyc:
   deprecated: true
@@ -58180,11 +58499,15 @@ prosite:
     pubmed: '23161676'
     title: New and continuing developments at PROSITE
     year: 2012
+  - pubmed: '19858104'
+  - pubmed: '16845026'
   - doi: 10.1093/nar/gkj063
     pmc: PMC1347426
     pubmed: '16381852'
     title: The PROSITE database
     year: 2006
+  - pubmed: '16091411'
+  - pubmed: '12230035'
   uri_format: https://prosite.expasy.org/$1
 protclustdb:
   contact:
@@ -58548,6 +58871,8 @@ pseudogene:
     homepage: https://bio2rdf.org
     name: Bio2RDF
     uri_format: http://bio2rdf.org/pseudogene:$1
+  publications:
+  - pubmed: '17099229'
   synonyms:
   - pseudogene.org
   uri_format: https://bioregistry.io/pseudogene:$1
@@ -58752,6 +59077,7 @@ pubchem.bioassay:
     name: Bio2RDF
     uri_format: http://bio2rdf.org/pubchem.bioassay:$1
   publications:
+  - pubmed: '22140110'
   - doi: 10.1093/nar/gkl1031
     pmc: PMC1781113
     pubmed: '17170002'
@@ -58965,6 +59291,7 @@ pubchem.substance:
     name: Bio2RDF
     uri_format: http://bio2rdf.org/pubchem.substance:$1
   publications:
+  - pubmed: '22140110'
   - doi: 10.1093/nar/gkl1031
     pmc: PMC1781113
     pubmed: '17170002'
@@ -59628,6 +59955,8 @@ rbo:
   name: Radiation Biology Ontology
   pattern: ^\d{6,8}$
   preferred_prefix: RBO
+  publications:
+  - doi: 10.1080/09553002.2023.2173823
   rdf_uri_format: http://purl.obolibrary.org/obo/RBO_$1
   repository: https://github.com/Radiobiology-Informatics-Consortium/RBO
   uri_format: http://purl.obolibrary.org/obo/RBO_$1
@@ -59881,6 +60210,7 @@ reactome:
     name: Pathway Commons
     uri_format: https://apps.pathwaycommons.org/pathways?uri=http%3A%2F%2Fidentifiers.org%2Freactome%2F$1
   publications:
+  - pubmed: '29145629'
   - doi: 10.1093/nar/gki072
     pmc: PMC540026
     pubmed: '15608231'
@@ -60140,12 +60470,15 @@ refseq:
     title: 'Reference sequence (RefSeq) database at NCBI: current status, taxonomic
       expansion, and functional annotation'
     year: 2015
+  - pubmed: '22121212'
+  - pubmed: '18927115'
   - doi: 10.1093/nar/gkl842
     pmc: PMC1716718
     pubmed: '17130148'
     title: 'NCBI reference sequences (RefSeq): a curated non-redundant sequence database
       of genomes, transcripts and proteins'
     year: 2006
+  - pubmed: '10592200'
   references:
   - https://github.com/biopragmatics/bioregistry/issues/545
   synonyms:
@@ -60488,6 +60821,11 @@ rfam:
     pubmed: '25392425'
     title: 'Rfam 12.0: updates to the RNA families database'
     year: 2014
+  - pubmed: '21062808'
+  - pubmed: '18953034'
+  - pubmed: '18945806'
+  - pubmed: '15608160'
+  - pubmed: '12520045'
   uri_format: https://rfam.org/family/$1
 rfc:
   contributor:
@@ -60695,6 +61033,7 @@ rgd:
     title: 'PhenoMiner: quantitative phenotype curation at the rat genome database'
     year: 2013
   - pubmed: '23434633'
+  - pubmed: '21478484'
   - doi: 10.1371/journal.pcbi.1000582
     pmc: PMC2775909
     pubmed: '19956751'
@@ -61597,12 +61936,18 @@ rouge:
     name: Bio2RDF
     uri_format: http://bio2rdf.org/rouge:$1
   publications:
+  - pubmed: '15449545'
+  - pubmed: '15368895'
+  - pubmed: '15188409'
   - doi: 10.1093/nar/gkh035
     pmc: PMC308769
     pubmed: '14681467'
     title: 'HUGE: a database for human KIAA proteins, a 2004 update integrating HUGEppi
       and ROUGE'
     year: 2004
+  - pubmed: '14621295'
+  - pubmed: '12693553'
+  - pubmed: '12465718'
   uri_format: https://www.kazusa.or.jp/rouge/gfpage/$1
 rpcec:
   contributor:
@@ -62013,6 +62358,8 @@ s_mart_db:
     homepage: https://bio2rdf.org
     name: Bio2RDF
     uri_format: http://bio2rdf.org/s_mart_db:$1
+  publications:
+  - pubmed: '11752340'
   reviewer:
     email: cthoyt@gmail.com
     github: cthoyt
@@ -65471,6 +65818,7 @@ smart:
     title: 'SMART: identification and annotation of domains from signalling and extracellular
       protein sequences'
     year: 1999
+  - pubmed: '9600884'
   - doi: 10.1093/nar/gkaf1023
     pubmed: '41062452'
   - doi: 10.1093/nar/gkx922
@@ -65996,6 +66344,8 @@ snornabase:
     homepage: https://bio2rdf.org
     name: Bio2RDF
     uri_format: http://bio2rdf.org/snornalbmedb:$1
+  publications:
+  - pubmed: '16381836'
   uri_format: http://www-snorna.biotoul.fr/plus.php?id=$1
 snp2tfbs:
   description: SNP2TFBS is aimed at studying variations (SNPs/indels) that affect
@@ -66338,6 +66688,8 @@ spbase:
     homepage: https://bio2rdf.org
     name: Bio2RDF
     uri_format: http://bio2rdf.org/spbase:$1
+  publications:
+  - pubmed: '19010966'
   reviewer:
     email: cthoyt@gmail.com
     github: cthoyt
@@ -66763,6 +67115,7 @@ ssn:
     title: 'The Modular SSN Ontology: A Joint W3C and OGC Standard Specifying the
       Semantics of Sensors, Observations, Sampling, and Actuation'
     year: 2019
+  - doi: 10.3233/SW-180320
   - doi: 10.1016/j.websem.2018.06.003
     title: 'SOSA: A lightweight ontology for sensors, observations, samples, and actuators'
     year: 2018
@@ -67176,6 +67529,7 @@ strenda:
   - protein
   mappings:
     integbio: nbdc02138
+    re3data: r3d100012329
     uniprot: DB-0278
   name: Standards for Reporting Enzymology Data
   preferred_prefix: strenda
@@ -67322,6 +67676,10 @@ string:
     title: STRING 8--a global view on proteins and their functional interactions in
       630 organisms
     year: 2008
+  - pubmed: '17098935'
+  - pubmed: '15608232'
+  - pubmed: '12519996'
+  - pubmed: '10982861'
   uri_format: https://string-db.org/cgi/network?identifier=$1
 sty:
   contact:
@@ -67375,6 +67733,7 @@ sty:
     pubmed: '14681409'
     title: 'The Unified Medical Language System (UMLS): integrating biomedical terminology'
     year: 2004
+  - doi: 10.1002/cfg.255
   synonyms:
   - UMLSSG
   - umls.st
@@ -67472,6 +67831,7 @@ subtiwiki:
     pubmed: '26433225'
     title: SubtiWiki 2.0--an integrated database for the model organism Bacillus subtilis
     year: 2015
+  - pubmed: '22096228'
   - doi: 10.1093/database/bap012
     pmc: PMC2790307
     pubmed: '20157485'
@@ -67710,6 +68070,7 @@ surechembl:
   example: '17951640'
   homepage: https://www.surechembl.org/
   mappings:
+    re3data: r3d100011037
     wikidata: P2877
   name: SureChEMBL ID
   pattern: ^\d+$
@@ -73135,6 +73496,8 @@ synapse:
   name: Synapse Data Repository
   pattern: ^[0-9]*\.*[0-9]*$
   preferred_prefix: synapse
+  publications:
+  - pubmed: '24071850'
   synonyms:
   - syn
   uri_format: https://www.synapse.org/Synapse:syn$1
@@ -74881,6 +75244,9 @@ togovar:
   name: TogoVar
   pattern: ^tgv[0-9]+$
   preferred_prefix: togovar
+  publications:
+  - doi: 'doi: 10.1038/s41439-022-00222-9'
+    pubmed: ''
   uri_format: https://grch38.togovar.org/variant/$1
 tokue:
   deprecated: true
@@ -75238,6 +75604,8 @@ treefam:
     pubmed: '24194607'
     title: 'TreeFam v9: a new website, more species and orthology-on-the-fly'
     year: 2013
+  - pubmed: '18056084'
+  - pubmed: '16381935'
   uri_format: http://www.treefam.org/family/$1
 treehub:
   contact:
@@ -75401,6 +75769,9 @@ trnadbce:
   pattern: ^\d+$
   preferred_prefix: trnadbce
   proprietary: true
+  publications:
+  - pubmed: '21071414'
+  - pubmed: '18842632'
   reviewer:
     email: cthoyt@gmail.com
     github: cthoyt
@@ -76243,6 +76614,8 @@ unigene:
     name: Bio2RDF
     uri_format: http://bio2rdf.org/unigene:$1
   publications:
+  - pubmed: '8849440'
+  - pubmed: '7670480'
   - doi: 10.1093/nar/gkg033
     pmc: PMC165480
     pubmed: '12519941'
@@ -77150,6 +77523,8 @@ unite:
     name: Bio2RDF
     uri_format: http://bio2rdf.org/unite:$1
   publications:
+  - doi: 10.1093/nar/gky1022
+    pubmed: '30371820'
   - doi: 10.1111/j.1469-8137.2009.03160.x
     pubmed: '20409185'
     title: The UNITE database for molecular identification of fungi--recent updates
@@ -77362,8 +77737,6 @@ upheno:
   - doi: 10.1101/2024.09.18.613276
     title: 'The Unified Phenotype Ontology (uPheno): A framework for cross-species
       integrative phenomics'
-  - title: Phenotype Ontologies Traversing All The Organisms (POTATO) workshop aims
-      to reconcile logical definitions across species
   rdf_uri_format: http://purl.obolibrary.org/obo/UPHENO_$1
   repository: https://github.com/obophenotype/upheno
   uri_format: http://purl.obolibrary.org/obo/UPHENO_$1
@@ -77491,6 +77864,13 @@ utrdb:
   name: UTRdb
   pattern: ^([3-5][A-Z])\w+[^A-Z][0-9]$
   preferred_prefix: utrdb
+  publications:
+  - pubmed: '19880380'
+  - pubmed: '15608165'
+  - pubmed: '11897027'
+  - pubmed: '11752330'
+  - pubmed: '11591473'
+  - pubmed: '10592223'
   uri_format: https://utrdb.cloud.ba.infn.it/cgi-bin/utrdb/utrdb?e=$1
 vac:
   contributor:
@@ -77745,6 +78125,7 @@ vbo:
   pattern: ^\d{7}$
   preferred_prefix: VBO
   publications:
+  - doi: 10.48550/arXiv.2406.02623
   - doi: 10.1111/jvim.70133
     title: 'The Vertebrate Breed Ontology: Toward Effective Breed Data Standardization'
   rdf_uri_format: http://purl.obolibrary.org/obo/VBO_$1
@@ -78322,6 +78703,8 @@ viperdb:
     name: Bio2RDF
     uri_format: http://bio2rdf.org/viperdb:$1
   provides: pdb
+  publications:
+  - pubmed: '18981051'
   uri_format: https://viperdb.org/Info_Page.php?VDB=$1
 vipr:
   description: The Virus Pathogen Database and Analysis Resource (ViPR) supports bioinformatics
@@ -79690,6 +80073,7 @@ wikipathways:
     pubmed: '22096230'
     title: 'WikiPathways: building research communities on biological pathways'
     year: 2011
+  - pubmed: '19649250'
   - doi: 10.1371/journal.pbio.0060184
     pmc: PMC2475545
     pubmed: '18651794'
@@ -79877,6 +80261,11 @@ worfdb:
     homepage: https://bio2rdf.org
     name: Bio2RDF
     uri_format: http://bio2rdf.org/worfdb:$1
+  publications:
+  - pubmed: '15489327'
+  - pubmed: '12679813'
+  - pubmed: '12519990'
+  - pubmed: '11242119'
   uri_format: http://worfdb.dfci.harvard.edu/html/index.php?search_type=name&page=showresultrc&race_query=$1
 world2dpage:
   comment: This resource doesn't exist on the web anymore
@@ -80083,12 +80472,18 @@ wormbase:
     pubmed: '29069413'
     title: 'WormBase 2017: molting into a new stage'
     year: 2018
+  - pubmed: '27899279'
+  - pubmed: '26578572'
   - pubmed: '24194605'
+  - pubmed: '24058818'
+  - pubmed: '23160413'
+  - pubmed: '22067452'
   - doi: 10.1186/1471-2105-12-175
     pmc: PMC3213741
     pubmed: '21595960'
     title: 'Toward an interactive article: integrating journals and biological databases'
     year: 2011
+  - pubmed: '21543339'
   - doi: 10.1093/nar/gkq1116
     pmc: PMC3013707
     pubmed: '21071413'
@@ -80133,7 +80528,13 @@ wormbase:
     title: nGASP--the nematode genome annotation assessment project
     year: 2008
   - pubmed: '17991679'
+  - pubmed: '17099234'
+  - pubmed: '16988424'
+  - pubmed: '16381915'
   - pubmed: '15608221'
+  - pubmed: '15489338'
+  - pubmed: '14681445'
+  - pubmed: '12519966'
   - doi: 10.1093/nar/29.1.82
     pmc: PMC29781
     pubmed: '11125056'
@@ -81323,6 +81724,8 @@ zfin:
     name: Bio2RDF
     uri_format: http://bio2rdf.org/zfin:$1
   publications:
+  - pubmed: '9891346'
+  - pubmed: '9441953'
   - doi: 10.1093/genetics/iyac016
     pubmed: '35166825'
   - doi: 10.1093/nar/gky1090
@@ -81357,6 +81760,7 @@ zfin:
     pubmed: '12519991'
     title: 'The Zebrafish Information Network (ZFIN): the zebrafish model organism
       database'
+  - pubmed: '11125057'
   - doi: 10.1016/s0168-9525(99)01741-2
     pubmed: '10354586'
     title: Zebrafish in the Net

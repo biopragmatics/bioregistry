@@ -1546,7 +1546,9 @@ class Resource(BaseModel):
         publications = self.publications or []
         for metaprefix in self.mappings or []:
             for publication in self.get_external(metaprefix).get("publications", []):
-                publications.append(Publication.model_validate(publication))
+                publication = Publication.model_validate(publication)
+                if publication.pubmed or publication.doi or publication.pmc:
+                    publications.append(publication)
         for provider in self.providers or []:
             publications.extend(provider.publications or [])
         return deduplicate_publications(publications)
