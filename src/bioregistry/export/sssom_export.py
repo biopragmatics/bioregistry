@@ -2,7 +2,7 @@
 
 import click
 import sssom_pydantic
-from curies import Reference, ReferenceTuple
+from curies import NamableReference, Reference, ReferenceTuple
 from curies.vocabulary import exact_match, part_of, unspecified_matching_process
 from sssom_pydantic import MappingSetRecord, SemanticMapping
 
@@ -16,7 +16,7 @@ from ..constants import (
     SSSOM_PATH,
 )
 from ..parse_iri import normalize_prefix
-from ..resolve import get_appears_in, get_depends_on
+from ..resolve import get_appears_in, get_depends_on, get_name, get_resource
 from ..resource_manager import manager
 from ..schema_utils import read_mappings, read_registry
 
@@ -92,10 +92,17 @@ def _make_semantic_mapping(
     external_metaprefix: str,
     external_prefix: str,
 ) -> SemanticMapping:
+    resource = get_resource(internal_prefix, strict=True)
+    external_data = resource.get_external(external_metaprefix)
+    external_name = external_data.get("name")
     return SemanticMapping(
-        subject=Reference(prefix=INTERNAL_METAPREFIX, identifier=internal_prefix),
+        subject=NamableReference(
+            prefix=INTERNAL_METAPREFIX, identifier=internal_prefix, name=get_name(internal_prefix)
+        ),
         predicate=Reference.from_curie(predicate.curie),
-        object=Reference(prefix=external_metaprefix, identifier=external_prefix),
+        object=NamableReference(
+            prefix=external_metaprefix, identifier=external_prefix, name=external_name
+        ),
         justification=unspecified_matching_process,
     )
 
