@@ -4,6 +4,8 @@ import unittest
 from collections import Counter
 from typing import Any
 
+import sssom_pydantic
+
 from bioregistry import is_valid_curie
 from bioregistry.constants import CURATED_MAPPINGS_PATH
 from bioregistry.schema_utils import (
@@ -42,46 +44,23 @@ class TestTSV(unittest.TestCase):
 
     def test_tsv_file(self) -> None:
         """Tests all rows in TSV file are valid."""
-        with CURATED_MAPPINGS_PATH.open() as tsv_file:
-            mapping_keys = []
-            header = next(tsv_file).strip("\n").split("\t")
-            for row, line in enumerate(tsv_file, start=2):
-                with self.subTest(row=row, line=line):
-                    part = line.strip("\n").split("\t")
-                    self.assertEqual(
-                        len(header),
-                        len(part),
-                        msg="Wrong number of columns. This is usually due to the wrong amount of trailing tabs.",
-                    )
-                    data = dict(zip(header, part, strict=False))
-                    self.validate_row(data)
-                    mapping_keys.append(
-                        (
-                            data["subject_id"],
-                            data["object_id"],
-                            data["predicate_id"],
-                            data["predicate_modifier"],
-                        )
-                    )
-
-            mapping_counts = Counter(
-                (subject_id, object_id) for subject_id, object_id, _, _ in mapping_keys
+        mappings, _, _ = sssom_pydantic.read(CURATED_MAPPINGS_PATH)
+        mapping_counts = Counter((mapping.subject, mapping.object) for mapping in mappings)
+        duplicated_mappings = [
+            mapping for mapping, count in mapping_counts.most_common() if count > 1
+        ]
+        if duplicated_mappings:
+            summary = "\n".join(
+                f"- {subject_id}, {object_id}" for subject_id, object_id in duplicated_mappings
             )
-            duplicated_mappings = [
-                mapping for mapping, count in mapping_counts.most_common() if count > 1
-            ]
-            if duplicated_mappings:
-                summary = "\n".join(
-                    f"- {subject_id}, {object_id}" for subject_id, object_id in duplicated_mappings
-                )
-                self.fail(
-                    msg=f"The following subject-object pairs have multiple curations:\n\n{summary}\n\nI"
-                    f"f you meant to overwrite an existing curation, delete the old row."
-                )
-            self.assertEqual(
-                sorted(mapping_keys),
-                mapping_keys,
-                msg=f"""
+            self.fail(
+                msg=f"The following subject-object pairs have multiple curations:\n\n{summary}\n\nI"
+                f"f you meant to overwrite an existing curation, delete the old row."
+            )
+        self.assertEqual(
+            sorted(mappings),
+            mappings,
+            msg=f"""
 
     The curated mappings in src/bioregistry/data/{CURATED_MAPPINGS_PATH.name}
     were not sorted properly.
@@ -91,7 +70,7 @@ class TestTSV(unittest.TestCase):
     $ pip install tox
     $ tox -e bioregistry-lint
             """,
-            )
+        )
 
 
 class TestSemanticMappings(unittest.TestCase):

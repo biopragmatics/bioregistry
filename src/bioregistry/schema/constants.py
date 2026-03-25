@@ -370,9 +370,8 @@ def _graph(manager: Optional["bioregistry.resource_manager.Manager"] = None) -> 
     graph.namespace_manager.bind("void", VOID)
     graph.namespace_manager.bind("doap", DOAP)
     graph.namespace_manager.bind("sh", SH)
-    if manager:
-        for key, value in manager.get_internal_prefix_map().items():
-            graph.namespace_manager.bind(key, value)
+    if manager is not None:
+        manager._get_internal_converter().bind_rdflib(graph)
     return graph
 
 

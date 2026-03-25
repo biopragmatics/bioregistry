@@ -2,7 +2,6 @@
 
 from __future__ import annotations
 
-import csv
 import json
 import logging
 from collections import defaultdict
@@ -10,10 +9,10 @@ from collections.abc import Mapping
 from functools import lru_cache
 from operator import attrgetter
 from pathlib import Path
-from typing import Literal, TypeAlias
+from typing import TypeAlias
 
-from curies import Reference
-from pydantic import BaseModel, Field
+import sssom_pydantic
+from sssom_pydantic import SemanticMapping
 
 from .constants import (
     BIOREGISTRY_PATH,
@@ -35,6 +34,7 @@ __all__ = [
     "read_context_contributions",
     "read_contexts",
     "read_has_version_mappings",
+    "read_mappings",
     "read_metaregistry",
     "read_mismatches",
     "read_prefix_contacts",
@@ -48,7 +48,6 @@ __all__ = [
     "resources",
     "write_collections",
     "write_contexts",
-    "write_mappings",
     "write_metaregistry",
     "write_registry",
 ]
@@ -111,26 +110,6 @@ def add_resource(resource: Resource) -> None:
     write_registry(registry)
 
 
-class SemanticMapping(BaseModel):
-    """A model representing a SSSOM semantic mapping."""
-
-    subject: Reference = Field(..., alias="subject_id")
-    predicate_modifier: Literal["Not"] | None = Field(None)
-    predicate: Reference = Field(..., alias="predicate_id")
-    object: Reference = Field(..., alias="object_id")
-    creator: Reference = Field(..., alias="creator_id")
-    mapping_justification: Reference = Field(...)
-    comment: str | None = Field(None)
-    issue_tracker_item: int | None = Field(
-        None, description="The PR or issue associated with the change"
-    )
-    date: str = Field(
-        ...,
-        pattern="^\\d{4}-\\d{2}-\\d{2}$",
-        description="The ISO-8601 date of curation in YYYY-MM-DD",
-    )
-
-
 def read_mismatches() -> dict[str, dict[str, set[str]]]:
     """Read the mismatches subset of curated mappings as a nested dictionary data structure."""
     mismatches: defaultdict[str, defaultdict[str, set[str]]] = defaultdict(lambda: defaultdict(set))
@@ -161,16 +140,8 @@ def _read_mappings(predicate_curie: str) -> dict[str, dict[str, set[str]]]:
 @lru_cache(maxsize=1)
 def read_mappings() -> list[SemanticMapping]:
     """Read curated mappings as a nested dict data structure."""
-    return _read_semantic_mappings(CURATED_MAPPINGS_PATH)
-
-
-def _read_semantic_mappings(path: str | Path) -> list[SemanticMapping]:
-    """Read curated mappings as a nested dict data structure."""
-    with Path(path).expanduser().resolve().open() as file:
-        return [
-            SemanticMapping.model_validate({k: v for k, v in record.items() if v})
-            for record in csv.DictReader(file, delimiter="\t")
-        ]
+    mappings, _, _ = sssom_pydantic.read(CURATED_MAPPINGS_PATH)
+    return mappings
 
 
 def is_mismatch(bioregistry_prefix: str, external_metaprefix: str, external_prefix: str) -> bool:
@@ -178,42 +149,6 @@ def is_mismatch(bioregistry_prefix: str, external_metaprefix: str, external_pref
     return external_prefix in read_mismatches().get(bioregistry_prefix, {}).get(
         external_metaprefix, {}
     )
-
-
-def write_mappings(mappings: list[SemanticMapping]) -> None:
-    """Write mappings into the curated mappings file with appropriate sorting."""
-    mappings = sorted(
-        mappings,
-        key=lambda x: (x.subject, x.object, x.predicate, x.predicate_modifier),
-    )
-    header = [
-        "subject_id",
-        "predicate_modifier",
-        "predicate_id",
-        "object_id",
-        "creator_id",
-        "mapping_justification",
-        "comment",
-        "issue_tracker_item",
-        "date",
-    ]
-    with CURATED_MAPPINGS_PATH.open("w") as file:
-        writer = csv.writer(file, delimiter="\t", lineterminator="\n")
-        writer.writerow(header)
-        writer.writerows(
-            (
-                mapping.subject.curie,
-                mapping.predicate_modifier,
-                mapping.predicate.curie,
-                mapping.object.curie,
-                mapping.creator.curie,
-                mapping.mapping_justification.curie,
-                mapping.comment,
-                mapping.issue_tracker_item,
-                mapping.date,
-            )
-            for mapping in mappings
-        )
 
 
 @lru_cache(maxsize=1)

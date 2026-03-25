@@ -31,7 +31,8 @@ from ..constants import (
     SCHEMA_NT_PATH,
     SCHEMA_TURTLE_PATH,
 )
-from ..resource_manager import Manager, manager
+from ..resource_manager import Manager
+from ..resource_manager import manager as default_manager
 from ..schema import Collection, Registry, Resource
 from ..schema.constants import (
     ROR,
@@ -46,9 +47,7 @@ from ..schema.constants import (
 
 logger = logging.getLogger(__name__)
 
-NAMESPACES: dict[str, Namespace] = {
-    _ns: Namespace(_uri) for _ns, _uri in manager.get_internal_prefix_map().items()
-}
+
 NAMESPACE_WARNINGS: set[str] = set()
 
 
@@ -69,7 +68,7 @@ def export_rdf() -> None:
         ensure_ascii=False,
     )
 
-    graph = get_full_rdf(manager=manager) + schema_rdf
+    graph = get_full_rdf(manager=default_manager) + schema_rdf
     graph.serialize(RDF_TURTLE_PATH.as_posix(), format="turtle")
     graph.serialize(RDF_NT_PATH.as_posix(), format="nt", encoding="utf-8")
     # Currently getting an issue with not being able to shorten URIs
@@ -88,10 +87,20 @@ def export_rdf() -> None:
     )
 
 
+def _get_namespaces_dict(manager: Manager) -> dict[str, Namespace]:
+    return {
+        prefix: Namespace(uri_prefix)
+        for prefix, uri_prefix in manager.get_internal_prefix_map().items()
+    }
+
+
 def get_full_rdf(manager: Manager) -> rdflib.Graph:
     """Get a combine RDF graph representing the Bioregistry using :mod:`rdflib`."""
     graph = _graph(manager=manager)
     _add_schema(graph)
+
+    namespaces_dict = _get_namespaces_dict(manager)
+
     for registry in manager.metaregistry.values():
         registry.add_triples(graph)
     for collection in manager.collections.values():
@@ -100,7 +109,9 @@ def get_full_rdf(manager: Manager) -> rdflib.Graph:
         uri_prefix = resource.get_uri_prefix()
         if uri_prefix:
             graph.bind(resource.prefix, uri_prefix)
-        _add_resource(graph=graph, manager_=manager, resource=resource)
+        _add_resource(
+            graph=graph, manager=manager, resource=resource, namespaces_dict=namespaces_dict
+        )
     return graph
 
 
@@ -133,7 +144,7 @@ def resource_to_rdf_str(
 ) -> str:
     """Get a collection as an RDF string."""
     graph = _graph(manager=manager)
-    _add_resource(resource, manager_=manager, graph=graph)
+    _add_resource(resource, manager=manager, graph=graph)
     return graph.serialize(format=fmt or "turtle")
 
 
@@ -156,7 +167,15 @@ def _get_resource_function_2() -> list[tuple[str | URIRef, Callable[[Resource], 
     ]
 
 
-def _add_resource(resource: Resource, *, manager_: Manager, graph: rdflib.Graph) -> None:
+def _add_resource(
+    resource: Resource,
+    *,
+    manager: Manager,
+    graph: rdflib.Graph,
+    namespaces_dict: dict[str, rdflib.Namespace] | None = None,
+) -> None:
+    if namespaces_dict is None:
+        namespaces_dict = _get_namespaces_dict(manager)
     node = bioregistry_resource[resource.prefix]
     graph.add((node, RDF.type, bioregistry_schema["0000001"]))
     graph.add((node, RDFS.label, Literal(resource.get_name())))
@@ -194,10 +213,10 @@ def _add_resource(resource: Resource, *, manager_: Manager, graph: rdflib.Graph)
 
     # Ontological relationships
 
-    for depends_on in manager_.get_depends_on(resource.prefix) or []:
+    for depends_on in manager.get_depends_on(resource.prefix) or []:
         graph.add((node, bioregistry_schema["0000017"], bioregistry_resource[depends_on]))
 
-    for appears_in in manager_.get_appears_in(resource.prefix) or []:
+    for appears_in in manager.get_appears_in(resource.prefix) or []:
         graph.add((node, bioregistry_schema["0000018"], bioregistry_resource[appears_in]))
 
     for owner in resource.owners or []:
@@ -209,12 +228,12 @@ def _add_resource(resource: Resource, *, manager_: Manager, graph: rdflib.Graph)
             continue
         graph.add((node, bioregistry_schema["0000026"], obj))
 
-    part_of = manager_.get_part_of(resource.prefix)
+    part_of = manager.get_part_of(resource.prefix)
     if part_of:
         graph.add((node, DCTERMS.isPartOf, bioregistry_resource[part_of]))
         graph.add((bioregistry_resource[part_of], DCTERMS.hasPart, node))
 
-    provides = manager_.get_provides_for(resource.prefix)
+    provides = manager.get_provides_for(resource.prefix)
     if provides:
         graph.add((node, bioregistry_schema["0000011"], bioregistry_resource[provides]))
 
@@ -243,18 +262,18 @@ def _add_resource(resource: Resource, *, manager_: Manager, graph: rdflib.Graph)
 
     mappings = resource.get_mappings()
     for metaprefix, metaidentifier in (mappings or {}).items():
-        metaresource = manager_.metaregistry[metaprefix]
-        if metaprefix not in NAMESPACES and metaresource.bioregistry_prefix in NAMESPACES:
+        metaresource = manager.metaregistry[metaprefix]
+        if metaprefix not in namespaces_dict and metaresource.bioregistry_prefix in namespaces_dict:
             metaprefix = metaresource.bioregistry_prefix
-        if metaprefix not in NAMESPACES:
+        if metaprefix not in namespaces_dict:
             if metaprefix not in NAMESPACE_WARNINGS:
                 logger.warning(f"can not find prefix-uri pair for {metaprefix}")
                 NAMESPACE_WARNINGS.add(metaprefix)
             continue
-        graph.add((node, SKOS.exactMatch, NAMESPACES[metaprefix][metaidentifier]))
+        graph.add((node, SKOS.exactMatch, namespaces_dict[metaprefix][metaidentifier]))
         graph.add(
             (
-                NAMESPACES[metaprefix][metaidentifier],
+                namespaces_dict[metaprefix][metaidentifier],
                 DCTERMS.isPartOf,
                 bioregistry_metaresource[metaresource.prefix],
             )
@@ -263,7 +282,7 @@ def _add_resource(resource: Resource, *, manager_: Manager, graph: rdflib.Graph)
             (
                 bioregistry_metaresource[metaresource.prefix],
                 DCTERMS.hasPart,
-                NAMESPACES[metaprefix][metaidentifier],
+                namespaces_dict[metaprefix][metaidentifier],
             )
         )
 

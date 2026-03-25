@@ -14,7 +14,6 @@ from typing import (
     Generic,
     Literal,
     TypeVar,
-    cast,
     overload,
 )
 
@@ -853,12 +852,28 @@ class Manager:
             return None
         return entry.get_uri_format(priority=priority)
 
-    def get_uri_prefix(self, prefix: str, priority: Sequence[str] | None = None) -> str | None:
+    # docstr-coverage:excused `overload`
+    @overload
+    def get_uri_prefix(
+        self, prefix: str, *, priority: Sequence[str] | None = None, strict: Literal[True] = ...
+    ) -> str: ...
+
+    # docstr-coverage:excused `overload`
+    @overload
+    def get_uri_prefix(
+        self, prefix: str, *, priority: Sequence[str] | None = None, strict: Literal[False] = ...
+    ) -> str | None: ...
+
+    def get_uri_prefix(
+        self, prefix: str, *, priority: Sequence[str] | None = None, strict: bool = False
+    ) -> str | None:
         """Get a well-formed URI prefix, if available."""
         entry = self.get_resource(prefix)
-        if entry is None:
-            return None
-        return entry.get_uri_prefix(priority=priority)
+        if entry is not None:
+            return entry.get_uri_prefix(priority=priority, strict=strict)  # type:ignore
+        if strict:
+            raise ValueError
+        return None
 
     # docstr-coverage:excused `overload`
     @overload
@@ -1844,19 +1859,33 @@ class Manager:
                 return rv
         return None
 
-    def get_internal_prefix_map(self) -> Mapping[str, str]:
-        """Get an internal prefix map for RDF and SSSOM dumps."""
-        default_prefixes = {"bioregistry.schema", "bfo"}
-        rv = cast(
-            dict[str, str], {prefix: self.get_uri_prefix(prefix) for prefix in default_prefixes}
+    def _get_internal_converter(self) -> curies.Converter:
+        rr = curies.Converter()
+        rr.add_prefix(
+            "wikidata", "http://www.wikidata.org/entity/", ["wikidata.entity", "wikidata.property"]
         )
+        rr.add_prefix("edam", "http://edamontology.org/data_", ["edam.data"])
+
+        default_prefixes = {"bioregistry.schema", "bfo"}
+        for prefix in default_prefixes:
+            rr.add_prefix(prefix, self.get_uri_prefix(prefix, strict=True))
+
         for metaprefix, metaresource in self.metaregistry.items():
             uri_prefix = metaresource.get_provider_uri_prefix()
             if metaresource.bioregistry_prefix:
-                rv[metaresource.bioregistry_prefix] = uri_prefix
+                rr.add_prefix(
+                    metaresource.bioregistry_prefix,
+                    uri_prefix,
+                    [metaprefix] if metaresource.bioregistry_prefix != metaprefix else [],
+                    merge=True,
+                )
             else:
-                rv[metaprefix] = uri_prefix
-        return rv
+                rr.add_prefix(metaprefix, uri_prefix, merge=True)
+        return rr
+
+    def get_internal_prefix_map(self) -> Mapping[str, str]:
+        """Get an internal prefix map for RDF and SSSOM dumps."""
+        return self._get_internal_converter().prefix_map
 
     def is_novel(self, prefix: str) -> bool | None:
         """Check if the prefix is novel to the Bioregistry, i.e., it has no external mappings."""
