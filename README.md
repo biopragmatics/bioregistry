@@ -536,16 +536,18 @@ Talks on the Bioregistry:
 
 ### 🎁 Support
 
-The Bioregistry was primarily developed by the
+The Bioregistry is developed by the
+[Institute of Inorganic Chemistry](https://www.iac.rwth-aachen.de) at RWTH
+Aachen University and the
 [Gyori Lab for Computational Biomedicine](https://gyorilab.github.io) at
-Northeastern University, which was previously a part of the
-[Laboratory of Systems Pharmacology](https://hits.harvard.edu/the-program/laboratory-of-systems-pharmacology/about/)
-in the [Harvard Program in Therapeutic Science (HiTS)](https://hits.harvard.edu)
-at [Harvard Medical School](https://hms.harvard.edu/).
+Northeastern University.
 
 ### 💰 Funding
 
+1. NFDI4Chem (DFG Grant
+   [441958208](https://gepris.dfg.de/gepris/projekt/441958208))
+1. DALIA (BMBF Grant 16DWWQP07)
 1. Chan Zuckerberg Initiative (CZI) 2023-329850
-2. DARPA Automating Scientific Knowledge Extraction and Modeling (ASKEM)
+1. DARPA Automating Scientific Knowledge Extraction and Modeling (ASKEM)
    HR00112220036
-3. DARPA Young Faculty Award W911NF2010255 (PI: Benjamin M. Gyori).
+1. DARPA Young Faculty Award W911NF2010255 (PI: Benjamin M. Gyori).
