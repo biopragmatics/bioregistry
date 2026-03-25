@@ -49,14 +49,14 @@ BIOREGISTRY_DESCRIPTION_DEFAULT = dedent("""\
     and compact identifier (CURIE) resolver.
 """)
 BIOREGISTRY_FOOTER_DEFAULT = dedent(f"""\
-    <div class="row mt-3"><h5>Projects and Partners</h3></div>
+    <div class="row mt-3"><h5>Projects and Partners</h5></div>
     <div class="row mt-2">
         <div class="col text-center align-self-center"><a href="https://www.iac.rwth-aachen.de"><img src="/static/rwth-iac.svg" style="height: 2.3em;" /></a></div>
         <div class="col text-center align-self-center"><a href="https://nfdi4chem.de"><img src="/static/nfdi4chem.svg" style="height: 2.3em;" /></a></div>
         <div class="col text-center align-self-center"><a href="https://dalia.education/en"><img src="/static/dalia.png" style="height: 1.9em;" /></a></div>
         <div class="col text-center align-self-center"><a href="https://www.northeastern.edu"><img src="/static/northeastern.svg" style="height: 2.3em;" /></a></div>
     </div>
-    <div class="row mt-4"><h5>Funding</h3></div>
+    <div class="row mt-4"><h5>Funding</h5></div>
     <div class="row mt-1">
         <div class="col text-center align-self-center"><a href="https://www.dfg.de"><img src="/static/dfg.svg" style="height: 2.3em;" /></a></div>
         <div class="col text-center align-self-center"><a href="https://chanzuckerberg.com"><img src="/static/czi.svg" style="height: 3.5em;" /></a></div>
@@ -69,7 +69,7 @@ BIOREGISTRY_FOOTER_DEFAULT = dedent(f"""\
     <p class="small text-center text-muted">
     Developed with ❤️ by the
     <a href="https://www.iac.rwth-aachen.de">Institute of Inorganic Chemistry</a> at RWTH Aachen University
-    </br> and the
+    <br/> and the
     <a href="https://gyorilab.github.io">Gyori Lab for Computational Biomedicine</a>
     at Northeastern University.<br/>
     Point of contact: Charles Tapley Hoyt (<a href="https://github.com/cthoyt">@cthoyt</a>; RWTH Aachen)
