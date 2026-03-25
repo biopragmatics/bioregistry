@@ -2,6 +2,7 @@
 
 import unittest
 
+import curies
 import rdflib
 
 import bioregistry
@@ -161,3 +162,8 @@ class TestMetaregistry(unittest.TestCase):
                     uri_formats = resource.get_uri_formats()
                     self.assertLess(0, len(uri_formats))
                     self.assertIn(registry.provider_uri_format, uri_formats)
+
+    def test_get_converter(self) -> None:
+        """Construct a converter."""
+        internal_prefix_map = manager.get_internal_prefix_map()
+        curies.Converter.from_prefix_map(internal_prefix_map)

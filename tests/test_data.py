@@ -13,8 +13,8 @@ from typing import Any
 
 import curies
 import rdflib
+import sssom_pydantic
 from curies.w3c import NCNAME_RE
-from pystow.utils import safe_open_dict_reader
 
 import bioregistry
 from bioregistry import Resource, manager
@@ -1376,20 +1376,21 @@ class TestRegistry(unittest.TestCase):
     def test_negative_mappings(self) -> None:
         """Test that explicitly curated negative mappings are not apparent in the main JSON file."""
         registry = json.loads(BIOREGISTRY_PATH.read_text(encoding="utf-8"))
-        with safe_open_dict_reader(CURATED_MAPPINGS_PATH) as reader:
-            for record in reader:
-                if record["predicate_modifier"] != "Not":
-                    continue
-                prefix = record["subject_id"].removeprefix("bioregistry:")
-                metaprefix, value = curies.ReferenceTuple.from_curie(record["object_id"])
-                mappings = registry[prefix].get("mappings")
-                if not mappings:
-                    continue
-                vv = mappings.get(metaprefix)
-                if not vv:
-                    continue
-                with self.subTest(prefix=prefix, registry=metaprefix):
-                    self.assertNotEqual(value, vv)
+        mappings, _, _ = sssom_pydantic.read(CURATED_MAPPINGS_PATH)
+        for record in mappings:
+            if record.predicate_modifier != "Not":
+                continue
+            prefix = record.subject.identifier
+            metaprefix = record.object.prefix
+            value = record.object.identifier
+            mappings = registry[prefix].get("mappings")
+            if not mappings:
+                continue
+            vv = mappings.get(metaprefix)
+            if not vv:
+                continue
+            with self.subTest(prefix=prefix, registry=metaprefix):
+                self.assertNotEqual(value, vv)
 
     def test_depends_on(self) -> None:
         """Test depends on."""
