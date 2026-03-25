@@ -24,7 +24,7 @@
     </p>
     <p>
         See the remaining {{ config.METAREGISTRY_TITLE }} <a href="/docs">
-        <i class="fas fa-book"></i> API documentation</a> or follow some of these examples using Python:
+        <i class="bi bi-book"></i> API documentation</a> or follow some of these examples using Python:
     </p>
     <h3>Registry</h3>
     <p>
@@ -59,7 +59,7 @@ res = requests.get('{{ manager.base_url }}/api/registry/{{ resource.prefix }}').
     <h2>Python Package Usage</h2>
     <p>
         The Python source code can be found at
-        <a href="{{ config.METAREGISTRY_REPOSITORY }}"><i class="fab fa-github"></i> {{ config.METAREGISTRY_REPOSITORY_SLUG }}</a>.
+        <a href="{{ config.METAREGISTRY_REPOSITORY }}"><i class="bi bi-github"></i> {{ config.METAREGISTRY_REPOSITORY_SLUG }}</a>.
         It can be installed with <code>pip install {{ config.METAREGISTRY_PYTHON_PACKAGE }}</code> or in development mode by following
         <a href="{{ config.METAREGISTRY_REPOSITORY }}#-installation">these instructions</a>.
     </p>
@@ -115,7 +115,7 @@ $ {{ config.METAREGISTRY_PYTHON_PACKAGE }} web</code></pre>
     <p>
         If you want to mix using a custom version of the {{ config.METAREGISTRY_TITLE }} with a Docker-based deployment, please
         see the dockerfile in <a href="{{ config.METAREGISTRY_REPOSITORY }}">
-        <i class="fab fa-github"></i> {{ config.METAREGISTRY_REPOSITORY_SLUG }}</a> for inspiration.
+        <i class="bi bi-github"></i> {{ config.METAREGISTRY_REPOSITORY_SLUG }}</a> for inspiration.
     </p>
     {% endif %}
 {% endblock %}

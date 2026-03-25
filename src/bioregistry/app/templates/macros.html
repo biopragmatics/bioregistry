@@ -111,9 +111,8 @@
     {% if author.orcid %}
         &nbsp;
         <small>
-            <i class="fab fa-orcid"></i>
             <a href="https://orcid.org/{{ author.orcid }}">
-                {{ author.orcid }}
+                {{ author.orcid }} {{ orcid_img() }}
             </a>
         </small>
     {% endif %}

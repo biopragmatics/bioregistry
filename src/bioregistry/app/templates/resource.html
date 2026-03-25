@@ -57,7 +57,7 @@
             <div class="row align-items-center">
                 <div class="col-8">
                     <h5 style="margin: 0"><a href="{{ url_for("metaregistry_ui.resources") }}">Registry</a> <i
-                            class="fas fa-angle-right"></i> {{ name_pack.value }}
+                            class="bi bi-chevron-right"></i> {{ name_pack.value }}
                         <a type="button" data-toggle="modal" data-target="#name-modal">
                             <i class="bi bi-question-circle"></i>
                         </a>
@@ -397,11 +397,11 @@
                         <td><code>{{ mapping.metaprefix }}</code></td>
                         <td>
                             {% if mapping.uri %}
-                                <a href="{{ mapping.uri }}"><code>{{ mapping.xref }}</code> <i class="fas fa-link"></i></a>
+                                <a href="{{ mapping.uri }}"><code>{{ mapping.xref }}</code> <i class="bi bi-link"></i></a>
                             {% else %}
                                 <span title="{{ mapping.name }} does not resolve metaidentifiers"
                                       data-toggle="tooltip" data-placement="right"><code>{{ mapping.xref }}</code>
-                                    <i class="fas fa-info-circle"></i></span>
+                                    <i class="bi bi-info-circle"></i></span>
                             {% endif %}
                         </td>
                         {# <td>{{ resource.get_prefix_key("name", mapping.metaprefix) or "" }}</td> #}
@@ -409,7 +409,7 @@
                             <a data-toggle="tooltip" data-html="true"
                                title="Report misalignment between {{ name_pack.value }} and <code>{{ mapping.metaprefix }}:{{ mapping.xref }}</code>"
                                href="{{ config.METAREGISTRY_REPOSITORY }}/issues/new?labels=Update%2CPrefix&template=mismatch.yml&title=Remove+incorrect+mapping+from+{{ resource.prefix }}+to+%60{{ mapping.metaprefix }}%3A{{ mapping.xref }}%60&prefix={{ resource.prefix }}&metaprefix={{ mapping.metaprefix }}&external-prefix={{ mapping.xref }}">
-                                <i class="fas fa-pen"></i>
+                                <i class="bi bi-pen"></i>
                             </a>
                         </td>
                     </tr>
