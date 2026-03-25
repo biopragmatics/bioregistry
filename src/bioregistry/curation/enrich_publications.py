@@ -27,7 +27,12 @@ def _get_pubmed_csl_item(pubmed_id: str) -> dict[str, Any] | None:
 
 @lru_cache(None)
 def _get_doi_csl_item(pubmed_id: str) -> dict[str, Any] | None:
-    return get_doi_csl_item(pubmed_id)  # type:ignore
+    try:
+        rv = get_doi_csl_item(pubmed_id)  # type:ignore
+    except Exception:
+        return None
+    else:
+        return rv
 
 
 @lru_cache(None)
