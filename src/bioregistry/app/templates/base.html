@@ -46,7 +46,7 @@
             </style>
         {% endblock %}
 
-        <script src="https://kit.fontawesome.com/4c86883252.js" crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
         <title>{% block title %}{% endblock %}</title>
         <meta name="description" content="{{ config.METAREGISTRY_DESCRIPTION }}" />
         <link rel="icon" type="image/svg+xml" href="/static/logo.svg">
@@ -90,14 +90,14 @@
                     <a class="dropdown-item" href="{{ url_for("metaregistry_ui.summary") }}">Summary</a>
                     {% else %}
                     <a class="dropdown-item" target="_blank" href="https://bioregistry.io/summary">
-                        Summary <i class="fa fa-external-link" aria-hidden="true"></i>
+                        Summary <i class="bi bi-link-45deg" aria-hidden="true"></i>
                     </a>
                     {% endif %}
                     <a class="dropdown-item" target="_blank" href="{{ config.METAREGISTRY_REPOSITORY_PAGES }}/glossary/">
-                        Glossary <i class="fa fa-external-link" aria-hidden="true"></i>
+                        Glossary <i class="bi bi-link-45deg" aria-hidden="true"></i>
                     </a>
                     <a class="dropdown-item" target="_blank" href="{{ config.METAREGISTRY_REPOSITORY_PAGES }}/datamodel/">
-                        Data Model <i class="fa fa-external-link" aria-hidden="true"></i>
+                        Data Model <i class="bi bi-link-45deg" aria-hidden="true"></i>
                     </a>
                     <a class="dropdown-item" href="{{ url_for("metaregistry_ui.schema") }}">JSON and RDF Schemata</a>
                     {% if config.METAREGISTRY_FIRST_PARTY %}
@@ -105,7 +105,7 @@
                     <h6 class="dropdown-header">Maintenance</h6>
                     <a class="dropdown-item" href="{{ url_for("metaregistry_ui.sustainability") }}">Deployment and Sustainability</a>
                     <a class="dropdown-item" target="_blank" href="{{ config.METAREGISTRY_REPOSITORY_PAGES }}/health/">
-                        Health Report <i class="fa fa-external-link" aria-hidden="true"></i>
+                        Health Report <i class="bi bi-link-45deg" aria-hidden="true"></i>
                     </a>
                     {% endif %}
                     <div class="dropdown-divider"></div>
@@ -117,16 +117,16 @@
                     <div class="dropdown-divider"></div>
                     <h6 class="dropdown-header">Workshops</h6>
                     <a class="dropdown-item" target="_blank" href="https://biopragmatics.github.io/workshops/wpci2021">
-                        WPCI 2021 <i class="fa fa-external-link" aria-hidden="true"></i>
+                        WPCI 2021 <i class="bi bi-link-45deg" aria-hidden="true"></i>
                     </a>
                     <a class="dropdown-item" target="_blank" href="https://biopragmatics.github.io/workshops/wpci2022">
-                        WPCI 2022 <i class="fa fa-external-link" aria-hidden="true"></i>
+                        WPCI 2022 <i class="bi bi-link-45deg" aria-hidden="true"></i>
                     </a>
                     <a class="dropdown-item" target="_blank" href="https://biopragmatics.github.io/workshops/wpci2023">
-                        WPCI 2023 <i class="fa fa-external-link" aria-hidden="true"></i>
+                        WPCI 2023 <i class="bi bi-link-45deg" aria-hidden="true"></i>
                     </a>
                     <a class="dropdown-item" target="_blank" href="https://biopragmatics.github.io/workshops/biocuration2025">
-                        Biocuration 2025 <i class="fa fa-external-link" aria-hidden="true"></i>
+                        Biocuration 2025 <i class="bi bi-link-45deg" aria-hidden="true"></i>
                     </a>
                 </div>
             </li>
@@ -138,21 +138,21 @@
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                     <h6 class="dropdown-header">Project Info</h6>
                     <a class="dropdown-item" target="_blank" href="{{ config.METAREGISTRY_REPOSITORY }}/blob/main/docs/CONTRIBUTING.md">
-                        Contribution Guidelines <i class="fa fa-external-link" aria-hidden="true"></i>
+                        Contribution Guidelines <i class="bi bi-link-45deg" aria-hidden="true"></i>
                     </a>
                     <a class="dropdown-item" target="_blank" href="{{ config.METAREGISTRY_REPOSITORY }}/blob/main/docs/CODE_OF_CONDUCT.md">
-                        Code of Conduct <i class="fa fa-external-link" aria-hidden="true"></i>
+                        Code of Conduct <i class="bi bi-link-45deg" aria-hidden="true"></i>
                     </a>
                     <a class="dropdown-item" target="_blank" href="{{ config.METAREGISTRY_REPOSITORY }}/blob/main/docs/GOVERNANCE.md">
-                        Project Governance <i class="fa fa-external-link" aria-hidden="true"></i>
+                        Project Governance <i class="bi bi-link-45deg" aria-hidden="true"></i>
                     </a>
                     <div class="dropdown-divider"></div>
                     <h6 class="dropdown-header">Getting Started</h6>
                     <a class="dropdown-item" target="_blank" href="{{ config.METAREGISTRY_REPOSITORY }}/issues/new?labels=New%2CPrefix&template=new-prefix.yml&title=Add+prefix+%5BX%5D">
-                        Request a Prefix <i class="fa fa-external-link" aria-hidden="true"></i>
+                        Request a Prefix <i class="bi bi-link-45deg" aria-hidden="true"></i>
                     </a>
                     <a class="dropdown-item" target="_blank" href="{{ config.METAREGISTRY_REPOSITORY_PAGES }}/curation/">
-                        Good First Contributions <i class="fa fa-external-link" aria-hidden="true"></i>
+                        Good First Contributions <i class="bi bi-link-45deg" aria-hidden="true"></i>
                     </a>
                     <!--<div class="dropdown-divider"></div>-->
                 </div>

@@ -77,7 +77,7 @@ BIOREGISTRY_FOOTER_DEFAULT = dedent(f"""\
 
     <div class="text-center">
     <a class="btn btn-outline-primary btn-sm mb-1" rel="me" href="https://{INTERNAL_MASTODON_SERVER}/@{INTERNAL_MASTODON_HANDLE}" title="{INTERNAL_MASTODON_HANDLE}"> @{INTERNAL_MASTODON}</a>
-    <a class="btn btn-outline-primary btn-sm mb-1" href="{INTERNAL_REPOSITORY}"><i class="fa fa-brands fa-github"></i> Source Code</a>
+    <a class="btn btn-outline-primary btn-sm mb-1" href="{INTERNAL_REPOSITORY}"><i class="bi bi-github"></i> Source Code</a>
     </div>
 """)
 BIOREGISTRY_HEADER_DEFAULT = dedent("""\
@@ -195,8 +195,8 @@ BIOREGISTRY_DEPLOYMENT_BLOCK = dedent(f"""\
 <p>
     A Docker image is automatically built weekly following the
     <a href="{INTERNAL_REPOSITORY}/actions/workflows/update.yml">update workflow</a>
-    on GitHub Actions and pushed to the <a href="https://hub.docker.com/r/{INTERNAL_DOCKERHUB_SLUG}"><i class="fab fa-docker"></i>
-    {INTERNAL_DOCKERHUB_SLUG}</a> DockerHub repository. This image is built with the Python 3.9 alpine base image,
+    on GitHub Actions and pushed to the <a href="https://hub.docker.com/r/{INTERNAL_DOCKERHUB_SLUG}">
+    {INTERNAL_DOCKERHUB_SLUG}</a> DockerHub repository. This image is built with a Python alpine base image,
     which significantly reduces non-essential components. The final compressed image weights less than 40 MB of disk
     space and runs inside Docker with about 65 MB of memory at baseline. This could easily fit on a dedicated
     <a href="https://aws.amazon.com/ec2/instance-types/t4/">t4g.nano</a> instance on AWS that costs about

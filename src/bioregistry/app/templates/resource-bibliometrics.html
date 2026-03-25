@@ -3,18 +3,18 @@
     <div class="card-body">
         {%- if resource.contact_group_email %}
         <a class="badge badge-pill badge-light" href="{{ resource.contact_group_email }}">
-            Mailing List <i class="fas fa-address-book"></i></i></a>
+            Mailing List <i class="bi bi-envelope"></i></i></a>
         {%- endif %}
         {%- if resource.contact_page %}
         <a class="badge badge-pill badge-light" href="{{ resource.contact_page }}">
-            Contact Page <i class="fas fa-address-book"></i></i></a>
+            Contact Page <i class="bi bi-envelope"></i></i></a>
         {%- endif %}
         <dl>
             <dt>
                 Contact
                 {% if contact %}
                 <a type="button" data-toggle="modal" data-target="#contact-modal">
-                    <i class="far fa-question-circle"></i>
+                    <i class="bi bi-question-circle"></i>
                 </a>
                 {% endif %}
             </dt>

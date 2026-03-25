@@ -57,9 +57,9 @@
             <div class="row align-items-center">
                 <div class="col-8">
                     <h5 style="margin: 0"><a href="{{ url_for("metaregistry_ui.resources") }}">Registry</a> <i
-                            class="fas fa-angle-right"></i> {{ name_pack.value }}
+                            class="bi bi-chevron-right"></i> {{ name_pack.value }}
                         <a type="button" data-toggle="modal" data-target="#name-modal">
-                            <i class="far fa-question-circle"></i>
+                            <i class="bi bi-question-circle"></i>
                         </a>
                         {{ utils.render_resource_warnings(resource) }}
                     </h5>
@@ -76,7 +76,7 @@
                             {% for label, key in formats %}
                                 <a class="dropdown-item"
                                    href="{{ fastapi_url_for("get_resource", prefix=prefix) }}?format={{ key }}">
-                                    {{ label }} <i class="fas fa-download"></i>
+                                    {{ label }} <i class="bi bi-download"></i>
                                 </a>
                             {% endfor %}
                         </div>
@@ -132,7 +132,7 @@
                     <dt>
                         Alternative Prefixes
                         <a type="button" data-toggle="modal" data-target="#synonyms-modal">
-                            <i class="far fa-question-circle"></i>
+                            <i class="bi bi-question-circle"></i>
                         </a>
                     </dt>
                     <dd>
@@ -153,7 +153,7 @@
                     <dt>
                         Version
                         <a type="button" data-toggle="modal" data-target="#version-modal">
-                            <i class="far fa-question-circle"></i>
+                            <i class="bi bi-question-circle"></i>
                         </a>
                     </dt>
                     <dd>{{ version }}</dd>
@@ -163,7 +163,7 @@
                     <dt>
                         License
                         <a type="button" data-toggle="modal" data-target="#license-modal">
-                            <i class="far fa-question-circle"></i>
+                            <i class="bi bi-question-circle"></i>
                         </a>
                     </dt>
                     <dd>{{ resource_license }}</dd>
@@ -172,61 +172,61 @@
                     Links
                     {% if homepage or obo_download or owl_download or json_download or rdf_download or skos_download or jskos_download %}
                     <a type="button" data-toggle="modal" data-target="#links-modal">
-                        <i class="far fa-question-circle"></i>
+                        <i class="bi bi-question-circle"></i>
                     </a>
                     {% endif %}
                 </dt>
                 <dd>
                     {% if homepage %}
                         <a class="badge badge-pill badge-light" href="{{ homepage }}">
-                            Homepage <i class="fas fa-home"></i>
+                            Homepage <i class="bi bi-home"></i>
                         </a>
                     {% else %}
                         <span class="badge badge-pill badge-warning">Missing Homepage</span>
                     {% endif %}
                     {% if repository %}
                         <a class="badge badge-pill badge-light" href="{{ repository }}">
-                            Repository <i class="fab fa-github"></i>
+                            Repository <i class="bi bi-github"></i>
                         </a>
                     {% endif %}
                     {% if obo_download %}
                         <a class="badge badge-pill badge-light" href="{{ obo_download }}">
-                            OBO <i class="fas fa-download"></i>
+                            OBO <i class="bi bi-download"></i>
                         </a>
                     {% endif %}
                     {% if owl_download %}
                         <a class="badge badge-pill badge-light" href="{{ owl_download }}">
-                            OWL <i class="fas fa-download"></i>
+                            OWL <i class="bi bi-download"></i>
                         </a>
                     {% endif %}
                     {% if json_download %}
                         <a class="badge badge-pill badge-light" href="{{ json_download }}">
-                            OBO JSON <i class="fas fa-download"></i>
+                            OBO JSON <i class="bi bi-download"></i>
                         </a>
                     {% endif %}
                     {% if rdf_download %}
                         <a class="badge badge-pill badge-light" href="{{ rdf_download }}">
-                            RDF <i class="fas fa-download"></i>
+                            RDF <i class="bi bi-download"></i>
                         </a>
                     {% endif %}
                     {% if skos_download %}
                         <a class="badge badge-pill badge-light" href="{{ skos_download }}">
-                            SKOS <i class="fas fa-download"></i>
+                            SKOS <i class="bi bi-download"></i>
                         </a>
                     {% endif %}
                     {% if jskos_download %}
                         <a class="badge badge-pill badge-light" href="{{ jskos_download }}">
-                            JSKOS <i class="fas fa-download"></i>
+                            JSKOS <i class="bi bi-download"></i>
                         </a>
                     {% endif %}
                     {% if resource.github_request_issue %}
                         <a class="badge badge-pill badge-light" href="{{ config.METAREGISTRY_REPOSITORY }}/issues/{{ resource.github_request_issue }}">
-                            <i class="fas fa-info-circle"></i> Request Discussion
+                            <i class="bi bi-info-circle"></i> Request Discussion
                         </a>
                     {% endif %}
                     {% if mastodon %}
                         <a class="badge badge-pill badge-light" href="{{ mastodon_url }}">
-                            <i class="fab fa-mastodon"></i> @{{ mastodon }}
+                            <i class="bi bi-mastodon"></i> @{{ mastodon }}
                         </a>
                     {% endif %}
                 </dd>
@@ -362,7 +362,7 @@
         <div class="card" style="margin-top: 20px">
             <a id="mappings"></a>
             <h5 class="card-header">
-                Metaregistry <i class="fas fa-angle-right"></i> {{ name_pack.value }}
+                Metaregistry <i class="bi bi-chevron-right"></i> {{ name_pack.value }}
             </h5>
             <div class="card-body">
                 <p>
@@ -397,11 +397,11 @@
                         <td><code>{{ mapping.metaprefix }}</code></td>
                         <td>
                             {% if mapping.uri %}
-                                <a href="{{ mapping.uri }}"><code>{{ mapping.xref }}</code> <i class="fas fa-link"></i></a>
+                                <a href="{{ mapping.uri }}"><code>{{ mapping.xref }}</code> <i class="bi bi-link"></i></a>
                             {% else %}
                                 <span title="{{ mapping.name }} does not resolve metaidentifiers"
                                       data-toggle="tooltip" data-placement="right"><code>{{ mapping.xref }}</code>
-                                    <i class="fas fa-info-circle"></i></span>
+                                    <i class="bi bi-info-circle"></i></span>
                             {% endif %}
                         </td>
                         {# <td>{{ resource.get_prefix_key("name", mapping.metaprefix) or "" }}</td> #}
@@ -409,7 +409,7 @@
                             <a data-toggle="tooltip" data-html="true"
                                title="Report misalignment between {{ name_pack.value }} and <code>{{ mapping.metaprefix }}:{{ mapping.xref }}</code>"
                                href="{{ config.METAREGISTRY_REPOSITORY }}/issues/new?labels=Update%2CPrefix&template=mismatch.yml&title=Remove+incorrect+mapping+from+{{ resource.prefix }}+to+%60{{ mapping.metaprefix }}%3A{{ mapping.xref }}%60&prefix={{ resource.prefix }}&metaprefix={{ mapping.metaprefix }}&external-prefix={{ mapping.xref }}">
-                                <i class="fas fa-pen"></i>
+                                <i class="bi bi-pen"></i>
                             </a>
                         </td>
                     </tr>

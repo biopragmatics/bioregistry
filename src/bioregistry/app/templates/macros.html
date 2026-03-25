@@ -45,18 +45,18 @@
 {% macro render_resource_warnings(resource) -%}
     {% if resource.deprecated %}
         <span class="badge badge-warning" style="display: inline-block;">
-            Deprecated <i class="fas fa-exclamation-triangle"></i>
+            Deprecated <i class="bi bi-exclamation-triangle"></i>
         </span>
     {% elif resource.provides %}
         <a class="badge badge-danger" style="display: inline-block;" data-toggle="tooltip"
            href="{{ url_for("metaregistry_ui.resource", prefix=resource.provides) }}"
            title="{{ manager.get_name(resource.provides) }} ({{ resource.provides }})">
-            Provider <i class="fas fa-exclamation-triangle"></i>
+            Provider <i class="bi bi-exclamation-triangle"></i>
         </a>
     {% endif %}
     {% if resource.proprietary %}
         <span class="badge badge-warning" style="display: inline-block;">
-            Proprietary <i class="fas fa-exclamation-triangle"></i>
+            Proprietary <i class="bi bi-exclamation-triangle"></i>
         </span>
     {% endif %}
 {% endmacro %}
@@ -111,7 +111,7 @@
     {% if author.orcid %}
         &nbsp;
         <small>
-            <i class="fab fa-orcid"></i>
+            {{ orcid_img() }}
             <a href="https://orcid.org/{{ author.orcid }}">
                 {{ author.orcid }}
             </a>
@@ -120,7 +120,7 @@
     {% if author.github %}
         &nbsp;
         <small>
-            <i class="fab fa-github"></i>
+            <i class="bi bi-github"></i>
             <a href="https://github.com/{{ author.github }}">
                 {{ author.github }}
             </a>
@@ -181,4 +181,12 @@
 <pre><code class="language-python">&gt;&gt;&gt; import {{ config.METAREGISTRY_PYTHON_PACKAGE }} as br
 &gt;&gt;&gt; br.{{ func }}("{{ prefix }}")
 {% if quote %}'{{ text }}'{% else %}{{ text }}{% endif %}</code></pre>
+{% endmacro %}
+
+{% macro orcid_img() %}
+<img style="max-height: 1em" src="/static/orcid.svg" alt="ORCiD logo" />
+{% endmacro %}
+
+{% macro ror_img() %}
+<img style="max-height: 1em; margin-left: 0.3em" src="/static/ror.svg" alt="ROR logo" />
 {% endmacro %}
