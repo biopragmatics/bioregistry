@@ -23,7 +23,7 @@
                 {% if providers %}
                 &nbsp;
                 <a class="badge badge-pill badge-info" href="{{ url_for("metaregistry_ui.resolve", prefix=prefix,
-                identifier=example) }}"><i class="fas fa-share-square"></i> Resolve</a>
+                identifier=example) }}"><i class="bi bi-share"></i> Resolve</a>
                 {% endif %}
                 {% for extra_example in example_extras %}
                 <br/>
@@ -32,7 +32,7 @@
                 {% if providers %}
                 &nbsp;
                 <a class="badge badge-pill badge-info" href="{{ url_for("metaregistry_ui.resolve", prefix=prefix,
-                identifier=extra_example) }}"><i class="fas fa-share-square"></i> Resolve</a>
+                identifier=extra_example) }}"><i class="bi bi-share"></i> Resolve</a>
                 {% endif %}
                 {% endfor %}
                 {% elif has_no_terms %}
@@ -70,14 +70,14 @@
             <dd><a href="{{ rdf_uri_example }}">{{ rdf_uri_example }}</a></dd>
             {% endif %}
             {% if namespace_in_lui %}
-            <dt><i class="fas fa-info-circle"></i> MIRIAM Namespace Embedded in LUI</dt>
+            <dt><i class="bi bi-info-circle"></i> MIRIAM Namespace Embedded in LUI</dt>
             <dd>
                 The legacy MIRIAM standard for generating CURIEs with this resource
                 annotates the <code>namespaceEmbeddedInLUI</code> as true.
                 {{ get_banana_text() }}
             </dd>
             {% elif banana %}
-            <dt><i class="fas fa-info-circle"></i> Namespace Embedded in LUI</dt>
+            <dt><i class="bi bi-info-circle"></i> Namespace Embedded in LUI</dt>
             <dd>
                 This resource has been annotated by the {{ config.METAREGISTRY_TITLE }} as having a potential
                 namespace embedded in LUI.

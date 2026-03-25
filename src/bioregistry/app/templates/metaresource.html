@@ -9,7 +9,7 @@
             <div class="row align-items-center">
                 <div class="col-8">
                     <h5 style="margin: 0"><a href="{{ url_for("metaregistry_ui.metaresources") }}">Metaregistry</a> <i
-                            class="fas fa-angle-right"></i> {{ name }}</h5>
+                            class="bi bi-chevron-right"></i> {{ name }}</h5>
                 </div>
                 <div class="col-4 text-right">
                     <div class="dropdown">
@@ -22,7 +22,7 @@
                             {% for label, key in formats %}
                                 <a class="dropdown-item"
                                    href="{{ fastapi_url_for("get_metaresource", metaprefix=metaprefix) }}?format={{ key }}">
-                                    {{ label }} <i class="fas fa-download"></i>
+                                    {{ label }} <i class="bi bi-download"></i>
                                 </a>
                             {% endfor %}
                         </div>
@@ -65,7 +65,7 @@
                     {% endif %}
                     {% if entry.download %}
                         <a class="badge badge-pill badge-light" href="{{ entry.download }}">
-                            Download <i class="fas fa-download"></i>
+                            Download <i class="bi bi-download"></i>
                         </a>
                     {% else %}
                         <span class="badge badge-pill badge-light text-muted">No Download Available</span>

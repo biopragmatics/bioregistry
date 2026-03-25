@@ -22,7 +22,7 @@
                             {% for label, key in formats %}
                                 <a class="dropdown-item"
                                    href="{{ fastapi_url_for("get_context", identifier=identifier) }}?format={{ key }}">
-                                    {{ label }} <i class="fas fa-download"></i>
+                                    {{ label }} <i class="bi bi-download"></i>
                                 </a>
                             {% endfor %}
                         </div>
@@ -39,11 +39,11 @@
                 <dd>
                     <a class="badge badge-pill badge-success"
                        href="{{ config.METAREGISTRY_REPOSITORY }}/blob/main/exports/contexts/{{ identifier }}.context.jsonld">
-                        Download JSON LD <i class="fas fa-download"></i>
+                        Download JSON LD <i class="bi bi-download"></i>
                     </a>
                     <a class="badge badge-pill badge-success"
                        href="{{ config.METAREGISTRY_REPOSITORY }}/blob/main/exports/contexts/{{ identifier }}.context.ttl">
-                        Download SHACL <i class="fas fa-download"></i>
+                        Download SHACL <i class="bi bi-download"></i>
                     </a>
                 </dd>
                 <dt>Maintainers</dt>
@@ -52,8 +52,7 @@
                         {% for author in entry.maintainers %}
                             <li>
                                 <a href="{{ url_for("metaregistry_ui.contributor", orcid=author.orcid) }}">
-                                    {{ author.name }}
-                                    <i class="fab fa-orcid"></i>
+                                    {{ author.name }} {{ utils.orcid_img() }}
                                 </a>
                             </li>
                         {% endfor %}
