@@ -7,9 +7,9 @@ name: Tests
 on:
   workflow_dispatch:
   push:
-    branches: [ main ]
+    branches: [main]
   pull_request:
-    branches: [ main ]
+    branches: [main]
 
 jobs:
   lint:
@@ -17,12 +17,12 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        python-version: [ "3.13", "3.10" ]
+        python-version: ["3.14", "3.10"]
         tox-command: ["lint", "pyroma", "mypy"]
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
       - name: "Install uv"
-        uses: "astral-sh/setup-uv@v3"
+        uses: "astral-sh/setup-uv@37802adc94f370d6bfd71619e3f0bf239e1f3b78" # v7.6.0
         with:
           enable-cache: true
           cache-dependency-glob: "pyproject.toml"
@@ -43,11 +43,11 @@ jobs:
         # We only test documentation on the latest version
         # sphinx 8.0 / sphinx-rtd-theme 3.0 discontinued Python 3.9 support
         # a year early, which prompted re-thinking about this.
-        python-version: [ "3.13" ]
+        python-version: ["3.14"]
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
       - name: "Install uv"
-        uses: "astral-sh/setup-uv@v3"
+        uses: "astral-sh/setup-uv@37802adc94f370d6bfd71619e3f0bf239e1f3b78" # v7.6.0
         with:
           enable-cache: true
           cache-dependency-glob: "pyproject.toml"
@@ -65,36 +65,35 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: [ ubuntu-latest, windows-latest ]
-        python-version: [ "3.13", "3.10" ]
+        os: [ubuntu-latest, windows-latest]
+        python-version: ["3.14", "3.10"]
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
       - name: "Install uv"
-        uses: "astral-sh/setup-uv@v3"
+        uses: "astral-sh/setup-uv@37802adc94f370d6bfd71619e3f0bf239e1f3b78" # v7.6.0
         with:
           enable-cache: true
           cache-dependency-glob: "pyproject.toml"
 
       - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v3
+        uses: docker/setup-buildx-action@4d04d5d9486b7bd6fa91e7baf45bbb4f8b9deedd # v4.0.0
         if: matrix.os == 'ubuntu-latest'
-  
+
       - name: Start blazegraph and virtuoso triplestores with docker
         if: matrix.os == 'ubuntu-latest'
         run: |
           docker compose up -d
           sleep 20
-          docker compose exec virtuoso isql -U dba -P dba exec='GRANT "SPARQL_SELECT_FED" TO "SPARQL";'          
+          docker compose exec virtuoso isql -U dba -P dba exec='GRANT "SPARQL_SELECT_FED" TO "SPARQL";'
 
       - name: Test with pytest and generate coverage file
-        run:
-          uvx -p ${{ matrix.python-version }} --with tox-uv tox -e py
+        run: uvx -p ${{ matrix.python-version }} --with tox-uv tox -e py
 
       - name: Run doctests
         run: uvx -p ${{ matrix.python-version }} --with tox-uv tox -e doctests
 
       - name: Upload coverage report to codecov
-        uses: codecov/codecov-action@v4
+        uses: codecov/codecov-action@1af58845a975a7985b0beb0cbe6fbbb71a41dbad # v5.5.3
         if: success()
         with:
           file: coverage.xml

@@ -502,7 +502,7 @@ class Manager:
         >>> manager.parse_uri("https://omim.org/MIM:PS214100")
         ReferenceTuple(prefix='omim.ps', identifier='214100')
         """
-        reference = self.converter.parse_uri(uri, return_none=True)
+        reference: ReferenceTuple | None = self.converter.parse_uri(uri)
         if reference is not None:
             return self.make_preferred(reference, use_preferred=use_preferred)
         return get_failure_return_type(on_failure_return_type)

@@ -1,7 +1,7 @@
 name: Add provider for resource
 description: Add a URL for resolving identifiers in a given resource
 title: Add provider for [X]
-labels: [ Provider, New ]
+labels: [Provider, New]
 body:
   - type: markdown
     attributes:
@@ -19,7 +19,8 @@ body:
     id: uri_format
     attributes:
       label: URI Format String
-      description: A URI where any occurrence of `$1` gets replaced with the identifier
+      description:
+        A URI where any occurrence of `$1` gets replaced with the identifier
       placeholder: ex. `https://www.ebi.ac.uk/chebi/searchId.do?chebiId=$1`
     validations:
       required: true
@@ -27,7 +28,9 @@ body:
     id: orcid
     attributes:
       label: Contributor ORCID
-      description: Please provide your ORCiD identifier so we can attribute this contribution to you.
+      description:
+        Please provide your ORCiD identifier so we can attribute this
+        contribution to you.
       placeholder: ex. 0000-0003-4423-4370
     validations:
       required: true
