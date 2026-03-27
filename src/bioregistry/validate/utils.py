@@ -5,20 +5,23 @@ from __future__ import annotations
 import json
 from collections.abc import Callable, Mapping
 from pathlib import Path
-from typing import TYPE_CHECKING, Any, Literal, cast
+from typing import TYPE_CHECKING, Any, Literal, TextIO, cast
 
 import click
 from pydantic import BaseModel
 from typing_extensions import NotRequired, TypedDict, Unpack
 
 if TYPE_CHECKING:
-    from bioregistry import Context
+    from bioregistry import Context, Manager
 
 __all__ = [
     "Message",
     "click_write_messages",
+    "format_messages",
+    "tabulate_messages",
     "validate_jsonld",
     "validate_linkml",
+    "validate_prefix_map",
     "validate_ttl",
     "validate_virtuoso",
 ]
@@ -41,27 +44,36 @@ LEVEL_TO_COLOR = {
 }
 
 
+def format_messages(messages: list[Message]) -> str:
+    """Format messages as a human-readable string."""
+    return "\n".join(_spacious_message(message) for message in messages)
+
+
+def tabulate_messages(messages: list[Message], tablefmt: str = "github") -> str:
+    """Format messages into a table using :mod:`tabulate`."""
+    from tabulate import tabulate
+
+    rows = [
+        (
+            message.prefix,
+            f"`{message.uri_prefix}`" if tablefmt == "rst" else message.uri_prefix,
+            message.error,
+            message.solution or "",
+        )
+        for message in messages
+    ]
+    return (
+        tabulate(rows, headers=["prefix", "uri_prefix", "issue", "solution"], tablefmt=tablefmt)
+        + "\n"
+    )
+
+
 def click_write_messages(messages: list[Message], tablefmt: str | None) -> None:
     """Write messages."""
     if tablefmt is None:
-        for message in messages:
-            click.secho(_spacious_message(message))
+        click.secho(format_messages(messages))
     else:
-        from tabulate import tabulate
-
-        rows = [
-            (
-                message.prefix,
-                f"`{message.uri_prefix}`" if tablefmt == "rst" else message.uri_prefix,
-                message.error,
-                message.solution or "",
-            )
-            for message in messages
-        ]
-        click.echo(
-            tabulate(rows, headers=["prefix", "uri_prefix", "issue", "solution"], tablefmt=tablefmt)
-        )
-
+        click.echo(tabulate_messages(messages, tablefmt=tablefmt))
     errors = sum(message.level == "error" for message in messages)
     if errors:
         import sys
@@ -147,13 +159,17 @@ def validate_ttl(url: str, **kwargs: Unpack[ValidateKwargs]) -> list[Message]:
 def validate_virtuoso(url: str, **kwargs: Any) -> list[Message]:
     """Validate a Virtuoso SPARQL endpoint's prefix map."""
     prefix_map = get_virtuoso_prefix_map(url)
-    inputs: list[tuple[str, str, int | None]] = [(k, v, None) for k, v in prefix_map.items()]
-    return _get_all_messages(inputs, **kwargs)
+    return validate_prefix_map(prefix_map, **kwargs)
 
 
-def validate_linkml(url: str, **kwargs: Any) -> list[Message]:
+def validate_linkml(path_or_url: str | Path | TextIO, **kwargs: Any) -> list[Message]:
     """Validate a LinkML YAML configuration's prefix map."""
-    prefix_map = get_linkml_prefix_map(url)
+    prefix_map = get_linkml_prefix_map(path_or_url)
+    return validate_prefix_map(prefix_map, **kwargs)
+
+
+def validate_prefix_map(prefix_map: dict[str, str], **kwargs: Any) -> list[Message]:
+    """Validate a prefix map."""
     inputs: list[tuple[str, str, int | None]] = [(k, v, None) for k, v in prefix_map.items()]
     return _get_all_messages(inputs, **kwargs)
 
@@ -165,12 +181,13 @@ def _get_all_messages(
     use_preferred: bool = False,
     rpm: Mapping[str, str] | None = None,
     strict: bool = False,
+    manager: Manager | None = None,
 ) -> list[Message]:
     """Get messages for the given inputs."""
-    import bioregistry
+    manager = _ensure_manager(manager)
 
     if rpm is None:
-        rpm = bioregistry.manager.get_reverse_prefix_map()
+        rpm = manager.get_reverse_prefix_map()
 
     def _get_suggestions(uri_prefix: str) -> list[tuple[str, str]] | str:
         suggies = []
@@ -187,7 +204,7 @@ def _get_all_messages(
 
     messages: list[Message] = []
     for curie_prefix, uri_prefix, line_number in inputs:
-        resource = bioregistry.get_resource(curie_prefix)
+        resource = manager.get_resource(curie_prefix)
         if resource is None:
             suggestions = _get_suggestions(uri_prefix)
             if not suggestions:
@@ -273,13 +290,23 @@ def _get_message(
         return None
 
 
+def _ensure_manager(manager: Manager | None) -> Manager:
+    if manager is not None:
+        return manager
+    from .. import resource_manager
+
+    return resource_manager.manager
+
+
 def _get_checker(
-    context: str | None | Context = None, use_preferred: bool = False
+    context: str | None | Context = None,
+    use_preferred: bool = False,
+    manager: Manager | None = None,
 ) -> Callable[[str], str | None]:
-    import bioregistry
+    manager = _ensure_manager(manager)
 
     if context is not None:
-        converter = bioregistry.manager.get_converter_from_context(context)
+        converter = manager.get_converter_from_context(context)
 
         def _check(pp: str) -> str | None:
             return converter.standardize_prefix(pp, strict=False)
@@ -287,7 +314,7 @@ def _get_checker(
     else:
 
         def _check(pp: str) -> str | None:
-            return bioregistry.normalize_prefix(pp, use_preferred=use_preferred)
+            return manager.normalize_prefix(pp, use_preferred=use_preferred)
 
     return _check
 
@@ -319,20 +346,19 @@ def get_virtuoso_prefix_map(url: str) -> dict[str, str]:
     return rv
 
 
-def get_linkml_prefix_map(url: str) -> dict[str, str]:
+def get_linkml_prefix_map(path_or_url: str | Path | TextIO) -> dict[str, str]:
     """Get the prefix map from a LinkML YAML configuration.
 
-    :param url: The URL for the LinkML YAML configuration. Examples:
+    :param path_or_url: The URL for the LinkML YAML configuration. Examples:
 
         - https://github.com/HendrikBorgelt/CatCore/raw/refs/heads/main/src/catcore/schema/catcore.yaml
         - https://github.com/mapping-commons/sssom/raw/refs/heads/master/src/sssom_schema/schema/sssom_schema.yaml
 
     :returns: The prefix map defined in the LinkML configuration
     """
-    import requests
     import yaml
+    from pystow.utils import safe_open
 
-    res = requests.get(url, timeout=5)
-    res.raise_for_status()
-    data = yaml.safe_load(res.text)
+    with safe_open(path_or_url) as file:
+        data = yaml.safe_load(file)
     return cast(dict[str, str], data["prefixes"])
