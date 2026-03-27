@@ -151,9 +151,9 @@ def validate_virtuoso(url: str, **kwargs: Any) -> list[Message]:
     return _get_all_messages(inputs, **kwargs)
 
 
-def validate_linkml(url: str, **kwargs: Any) -> list[Message]:
+def validate_linkml(path_or_url: str, **kwargs: Any) -> list[Message]:
     """Validate a LinkML YAML configuration's prefix map."""
-    prefix_map = get_linkml_prefix_map(url)
+    prefix_map = get_linkml_prefix_map(path_or_url)
     inputs: list[tuple[str, str, int | None]] = [(k, v, None) for k, v in prefix_map.items()]
     return _get_all_messages(inputs, **kwargs)
 
@@ -319,20 +319,19 @@ def get_virtuoso_prefix_map(url: str) -> dict[str, str]:
     return rv
 
 
-def get_linkml_prefix_map(url: str) -> dict[str, str]:
+def get_linkml_prefix_map(path_or_url: str) -> dict[str, str]:
     """Get the prefix map from a LinkML YAML configuration.
 
-    :param url: The URL for the LinkML YAML configuration. Examples:
+    :param path_or_url: The URL for the LinkML YAML configuration. Examples:
 
         - https://github.com/HendrikBorgelt/CatCore/raw/refs/heads/main/src/catcore/schema/catcore.yaml
         - https://github.com/mapping-commons/sssom/raw/refs/heads/master/src/sssom_schema/schema/sssom_schema.yaml
 
     :returns: The prefix map defined in the LinkML configuration
     """
-    import requests
     import yaml
+    from pystow.utils import safe_open
 
-    res = requests.get(url, timeout=5)
-    res.raise_for_status()
-    data = yaml.safe_load(res.text)
+    with safe_open(path_or_url) as file:
+        data = yaml.safe_load(file)
     return cast(dict[str, str], data["prefixes"])
