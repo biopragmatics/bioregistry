@@ -12,13 +12,14 @@ from pydantic import BaseModel
 from typing_extensions import NotRequired, TypedDict, Unpack
 
 if TYPE_CHECKING:
-    from bioregistry import Context
+    from bioregistry import Context, Manager
 
 __all__ = [
     "Message",
     "click_write_messages",
     "validate_jsonld",
     "validate_linkml",
+    "validate_prefix_map",
     "validate_ttl",
     "validate_virtuoso",
 ]
@@ -147,13 +148,17 @@ def validate_ttl(url: str, **kwargs: Unpack[ValidateKwargs]) -> list[Message]:
 def validate_virtuoso(url: str, **kwargs: Any) -> list[Message]:
     """Validate a Virtuoso SPARQL endpoint's prefix map."""
     prefix_map = get_virtuoso_prefix_map(url)
-    inputs: list[tuple[str, str, int | None]] = [(k, v, None) for k, v in prefix_map.items()]
-    return _get_all_messages(inputs, **kwargs)
+    return validate_prefix_map(prefix_map, **kwargs)
 
 
 def validate_linkml(path_or_url: str, **kwargs: Any) -> list[Message]:
     """Validate a LinkML YAML configuration's prefix map."""
     prefix_map = get_linkml_prefix_map(path_or_url)
+    return validate_prefix_map(prefix_map, **kwargs)
+
+
+def validate_prefix_map(prefix_map: dict[str, str], **kwargs: Any) -> list[Message]:
+    """Validate a prefix map."""
     inputs: list[tuple[str, str, int | None]] = [(k, v, None) for k, v in prefix_map.items()]
     return _get_all_messages(inputs, **kwargs)
 
@@ -165,12 +170,13 @@ def _get_all_messages(
     use_preferred: bool = False,
     rpm: Mapping[str, str] | None = None,
     strict: bool = False,
+    manager: Manager | None = None,
 ) -> list[Message]:
     """Get messages for the given inputs."""
-    import bioregistry
+    manager = _ensure_manager(manager)
 
     if rpm is None:
-        rpm = bioregistry.manager.get_reverse_prefix_map()
+        rpm = manager.get_reverse_prefix_map()
 
     def _get_suggestions(uri_prefix: str) -> list[tuple[str, str]] | str:
         suggies = []
@@ -187,7 +193,7 @@ def _get_all_messages(
 
     messages: list[Message] = []
     for curie_prefix, uri_prefix, line_number in inputs:
-        resource = bioregistry.get_resource(curie_prefix)
+        resource = manager.get_resource(curie_prefix)
         if resource is None:
             suggestions = _get_suggestions(uri_prefix)
             if not suggestions:
@@ -273,13 +279,23 @@ def _get_message(
         return None
 
 
+def _ensure_manager(manager: Manager | None) -> Manager:
+    if manager is not None:
+        return manager
+    from .. import resource_manager
+
+    return resource_manager.manager
+
+
 def _get_checker(
-    context: str | None | Context = None, use_preferred: bool = False
+    context: str | None | Context = None,
+    use_preferred: bool = False,
+    manager: Manager | None = None,
 ) -> Callable[[str], str | None]:
-    import bioregistry
+    manager = _ensure_manager(manager)
 
     if context is not None:
-        converter = bioregistry.manager.get_converter_from_context(context)
+        converter = manager.get_converter_from_context(context)
 
         def _check(pp: str) -> str | None:
             return converter.standardize_prefix(pp, strict=False)
@@ -287,7 +303,7 @@ def _get_checker(
     else:
 
         def _check(pp: str) -> str | None:
-            return bioregistry.normalize_prefix(pp, use_preferred=use_preferred)
+            return manager.normalize_prefix(pp, use_preferred=use_preferred)
 
     return _check
 
