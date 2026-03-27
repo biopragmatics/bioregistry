@@ -5,7 +5,7 @@ from __future__ import annotations
 import json
 from collections.abc import Callable, Mapping
 from pathlib import Path
-from typing import TYPE_CHECKING, Any, Literal, cast
+from typing import TYPE_CHECKING, Any, Literal, TextIO, cast
 
 import click
 from pydantic import BaseModel
@@ -151,7 +151,7 @@ def validate_virtuoso(url: str, **kwargs: Any) -> list[Message]:
     return validate_prefix_map(prefix_map, **kwargs)
 
 
-def validate_linkml(path_or_url: str, **kwargs: Any) -> list[Message]:
+def validate_linkml(path_or_url: str | Path | TextIO, **kwargs: Any) -> list[Message]:
     """Validate a LinkML YAML configuration's prefix map."""
     prefix_map = get_linkml_prefix_map(path_or_url)
     return validate_prefix_map(prefix_map, **kwargs)
@@ -335,7 +335,7 @@ def get_virtuoso_prefix_map(url: str) -> dict[str, str]:
     return rv
 
 
-def get_linkml_prefix_map(path_or_url: str) -> dict[str, str]:
+def get_linkml_prefix_map(path_or_url: str | Path | TextIO) -> dict[str, str]:
     """Get the prefix map from a LinkML YAML configuration.
 
     :param path_or_url: The URL for the LinkML YAML configuration. Examples:
