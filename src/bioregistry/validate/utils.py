@@ -49,7 +49,7 @@ def format_messages(messages: list[Message]) -> str:
     return "\n".join(_spacious_message(message) for message in messages)
 
 
-def tabulate_messages(messages: list[Message], tablefmt: str | None) -> str:
+def tabulate_messages(messages: list[Message], tablefmt: str = "github") -> str:
     """Format messages into a table using :mod:`tabulate`."""
     from tabulate import tabulate
 
