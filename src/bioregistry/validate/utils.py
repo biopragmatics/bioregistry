@@ -17,6 +17,8 @@ if TYPE_CHECKING:
 __all__ = [
     "Message",
     "click_write_messages",
+    "format_messages",
+    "tabulate_messages",
     "validate_jsonld",
     "validate_linkml",
     "validate_prefix_map",
@@ -42,27 +44,36 @@ LEVEL_TO_COLOR = {
 }
 
 
+def format_messages(messages: list[Message]) -> str:
+    """Format messages as a human-readable string."""
+    return "\n".join(_spacious_message(message) for message in messages)
+
+
+def tabulate_messages(messages: list[Message], tablefmt: str | None) -> str:
+    """Format messages into a table using :mod:`tabulate`."""
+    from tabulate import tabulate
+
+    rows = [
+        (
+            message.prefix,
+            f"`{message.uri_prefix}`" if tablefmt == "rst" else message.uri_prefix,
+            message.error,
+            message.solution or "",
+        )
+        for message in messages
+    ]
+    return (
+        tabulate(rows, headers=["prefix", "uri_prefix", "issue", "solution"], tablefmt=tablefmt)
+        + "\n"
+    )
+
+
 def click_write_messages(messages: list[Message], tablefmt: str | None) -> None:
     """Write messages."""
     if tablefmt is None:
-        for message in messages:
-            click.secho(_spacious_message(message))
+        click.secho(format_messages(messages))
     else:
-        from tabulate import tabulate
-
-        rows = [
-            (
-                message.prefix,
-                f"`{message.uri_prefix}`" if tablefmt == "rst" else message.uri_prefix,
-                message.error,
-                message.solution or "",
-            )
-            for message in messages
-        ]
-        click.echo(
-            tabulate(rows, headers=["prefix", "uri_prefix", "issue", "solution"], tablefmt=tablefmt)
-        )
-
+        click.echo(tabulate_messages(messages, tablefmt=tablefmt))
     errors = sum(message.level == "error" for message in messages)
     if errors:
         import sys
