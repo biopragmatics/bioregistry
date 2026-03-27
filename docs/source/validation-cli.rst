@@ -107,7 +107,7 @@ while giving suggestions for fixes, when possible.
 Running the command on the file that contains the example prefixes from above gives the
 following output:
 
-.. code-block::
+.. code-block:: console
 
     $ bioregistry validate ttl --tablefmt rst https://github.com/ISE-FIZKarlsruhe/chemotion-kg/raw/4cb5c24af/processing/output_bfo_compliant.ttl
 
@@ -159,7 +159,7 @@ while giving suggestions for fixes, when possible.
 Running the command on the file that contains the example prefixes from above gives the
 following output:
 
-.. code-block::
+.. code-block:: console
 
     $ bioregistry validate linkml --tablefmt rst --use-preferred https://github.com/HendrikBorgelt/CatCore/raw/refs/heads/main/src/catcore/schema/catcore.yaml
 
@@ -178,3 +178,10 @@ SIO     `http://semanticscience.org/resource/SIO_`          non-standard CURIE p
 Note that LinkML is developed by members of the OBO Community, and therefore, its
 prefixes often skew towards OBO community preferences. Therefore, you might want to use
 the ``--use-preferred`` flag.
+
+Reference
+---------
+
+.. automodapi:: bioregistry.validate
+    :no-heading:
+    :no-main-docstr:
