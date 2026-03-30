@@ -3874,7 +3874,7 @@ bcio:
   publications:
   - doi: 10.12688/wellcomeopenres.21252.2
   uri_format: https://w3id.org/BCI-ontology#$1
-  version: '2026-03-19'
+  version: '2026-03-23'
 bco:
   appears_in:
   - fovt
@@ -21515,9 +21515,14 @@ emg:
   example: '00000005'
   homepage: https://purls.helmholtz-metadaten.de/emg
   keywords:
+  - material science
+  - miscellaneous
   - ontology
+  - physics
   license: CC-BY-4.0
   logo: https://codebase.helmholtz.cloud/em_glossary/em_glossary/-/raw/main/EMGlossary.png
+  mappings:
+    tib: emg
   name: Electron Microscopy Glossary
   pattern: ^\d{8}$
   preferred_prefix: emg
@@ -24059,9 +24064,9 @@ fabio:
   example: d4e2515
   homepage: https://github.com/sparontologies/fabio
   keywords:
-  - literature
-  - miscellaneous
+  - nfdi4ing
   - ontology
+  - other subjects
   - spar
   - subject agnostic
   mappings:
@@ -25004,15 +25009,21 @@ fix:
     github: amalik01
     name: Adnan Malik
     orcid: 0000-0001-8123-5351
+  contributor_extras:
+  - email: philip.stroemert@tib.eu
+    github: StroemPhi
+    name: Philip Strömert
+    orcid: 0000-0002-1595-3213
   description: An ontology of physico-chemical methods and properties.
   download_obo: http://purl.obolibrary.org/obo/fix.obo
-  download_owl: http://purl.obolibrary.org/obo/fix.owl
+  download_owl: https://web.archive.org/web/20251107150330/http://ontologies.berkeleybop.org/fix.owl
   example: 0000390
   homepage: https://www.ebi.ac.uk/chebi/
   keywords:
   - chemistry
   - experiment
   - experimental measurement
+  - nfdi4chem
   - obo
   - ontology
   - property
@@ -25024,6 +25035,7 @@ fix:
     obofoundry: fix
     ontobee: FIX
     prefixcommons: fix
+    tib: fix
     wikidata.entity: Q114677850
   name: Physico-chemical methods and properties
   owners:
@@ -31270,6 +31282,37 @@ hdr:
     name: Bio2RDF
     uri_format: http://bio2rdf.org/hdr:$1
   uri_format: http://research.nhgri.nih.gov/apps/homeodomain/web/index.cgi?mode=view&amp;view=proteins&amp;id=$1
+hemolytik:
+  contact:
+    email: raghava@iiitd.ac.in
+    name: Gajendra P. S. Raghava
+    orcid: 0000-0002-8902-2876
+  contributor:
+    email: khamar.he@northeastern.edu
+    github: hetvikhamar
+    name: Hetvi Khamar
+    orcid: 0009-0004-3248-9223
+  description: Identifiers correspond to hemolytic and non-hemolytic peptides for
+    therapeutic and diagnostic research
+  example: '1589'
+  github_request_issue: 1858
+  homepage: http://webs.iiitd.edu.in/raghava/hemolytik2
+  keywords:
+  - hemolytic peptides
+  name: Hemolytik
+  pattern: ^\d+$
+  preferred_prefix: hemolytik
+  publications:
+  - doi: 10.1021/acs.chemrestox.5c00322
+    pubmed: '41525503'
+    title: 'Hemolytik 2: An Updated Database of Hemolytic Peptides and Proteins.'
+    year: 2026
+  reviewer:
+    email: b.gyori@northeastern.edu
+    github: bgyori
+    name: Benjamin M. Gyori
+    orcid: 0000-0001-9439-5346
+  uri_format: http://crdd.osdd.net/raghava/hemolytik/display_sub.php?details=$1
 hemonc:
   comment: It is unclear if identifiers can be resolved on the website but a spreadsheet
     of the terminology is available via the NCI at https://evs.nci.nih.gov/ftp1/HemOnc/HemOnc_Terminology.xls
@@ -36739,7 +36782,7 @@ iofcore:
   name: Industrial Ontology Foundry (IOF) Core Ontology
   preferred_prefix: iofcore
   repository: https://github.com/iofoundry/ontology
-  uri_format: https://spec.industrialontologies.org/ontology/core/Core/$1
+  uri_format: https://spec.industrialontologies.org/ontology/$1
 ioio:
   contributor:
     email: cthoyt@gmail.com
@@ -45945,11 +45988,14 @@ mwo:
   example: 0001109
   homepage: https://github.com/ISE-FIZKarlsruhe/mwo
   keywords:
+  - material science
+  - miscellaneous
   - ontology
   license: CC0-1.0
   mappings:
     aberowl: MWO
     bioportal: MWO
+    tib: mwo
   name: NFDI MatWerk Ontology
   pattern: ^\d{7}$
   preferred_prefix: mwo
@@ -53066,8 +53112,11 @@ orphanet.ordo:
   - biomedical science
   - diagnosis
   - disease
+  - fair data spaces
   - gene
   - health science
+  - life sciences, biology
+  - medicine
   - ontology
   - phenotype
   - rare disorder
@@ -53082,6 +53131,7 @@ orphanet.ordo:
     miriam: orphanet.ordo
     n2t: orphanet.ordo
     ols: ordo
+    tib: ordo
   name: Orphanet Rare Disease Ontology
   pattern: ^C?\d+$
   preferred_prefix: orphanet.ordo
@@ -60703,9 +60753,14 @@ rex:
     github: amalik01
     name: Adnan Malik
     orcid: 0000-0001-8123-5351
+  contributor_extras:
+  - email: philip.stroemert@tib.eu
+    github: StroemPhi
+    name: Philip Strömert
+    orcid: 0000-0002-1595-3213
   description: An ontology of physico-chemical processes, i.e. physico-chemical changes
     occurring in course of time.
-  download_owl: http://purl.obolibrary.org/obo/rex.owl
+  download_owl: https://web.archive.org/web/20250616081915/http://ontologies.berkeleybop.org/rex.owl
   example: '0000512'
   homepage: https://www.ebi.ac.uk/chebi/
   keywords:
@@ -60713,6 +60768,8 @@ rex:
   - chemistry
   - enzymatic reaction
   - life science
+  - nfdi4cat
+  - nfdi4chem
   - obo
   - ontology
   - reaction data
@@ -60724,6 +60781,7 @@ rex:
     obofoundry: rex
     ontobee: REX
     prefixcommons: rex
+    tib: rex
   name: Physico-chemical process
   pattern: ^\d{7}$
   preferred_prefix: REX
