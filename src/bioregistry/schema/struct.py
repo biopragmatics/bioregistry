@@ -3015,7 +3015,7 @@ class Collection(BaseModel):
         description="A list of prefixes of resources appearing in the collection",
         min_length=1,
     )
-    authors: list[Author] = Field(
+    contributors: list[Author] = Field(
         ...,
         description="A list of authors/contributors to the collection",
         min_length=1,
@@ -3056,9 +3056,9 @@ class Collection(BaseModel):
         graph.add((node, RDFS["label"], Literal(self.name)))
         graph.add((node, DC.description, Literal(self.description)))
 
-        for author in self.authors:
-            author_node = author.add_triples(graph)
-            graph.add((node, DC.contributor, author_node))
+        for contributor in self.contributors:
+            contributor_node = contributor.add_triples(graph)
+            graph.add((node, DC.contributor, contributor_node))
 
         for maintainer in self.maintainers or []:
             maintainer_node = maintainer.add_triples(graph)

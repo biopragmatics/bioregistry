@@ -287,7 +287,7 @@ def read_collections_contributions(
     """Get a mapping from contributor/maintainer ORCID identifiers to collections."""
     rv = defaultdict(set)
     for collection_id, resource in collections.items():
-        for contributor in resource.authors or []:
+        for contributor in resource.contributors or []:
             rv[contributor.orcid].add(collection_id)
         for maintainer in resource.maintainers or []:
             rv[maintainer.orcid].add(collection_id)

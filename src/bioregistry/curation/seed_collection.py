@@ -38,7 +38,7 @@ def get_seed_collection(
         identifier=collection_id,
         name="",
         description="",
-        authors=[Author.get_charlie()],
+        contributors=[Author.get_charlie()],
         resources=sorted(resources),
     )
     return collection
