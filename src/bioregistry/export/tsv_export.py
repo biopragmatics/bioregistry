@@ -5,7 +5,7 @@ from __future__ import annotations
 from collections.abc import Sequence
 
 import click
-from pystow.utils import safe_open_dict_writer
+from pystow.utils import safe_open_writer
 
 from ..constants import (
     COLLECTIONS_TSV_PATH,
@@ -20,13 +20,16 @@ from ..uri_format import get_uri_format
 @click.command()
 def export_tsv() -> None:
     """Export TSV."""
-    with safe_open_dict_writer(COLLECTIONS_TSV_PATH, COLLECTIONS_HEADER) as writer:
+    with safe_open_writer(COLLECTIONS_TSV_PATH) as writer:
+        writer.writerow(COLLECTIONS_HEADER)
         writer.writerows(get_collections_rows())
 
-    with safe_open_dict_writer(METAREGISTRY_TSV_PATH, METAREGISTRY_HEADER) as writer:
+    with safe_open_writer(METAREGISTRY_TSV_PATH) as writer:
+        writer.writerow(METAREGISTRY_HEADER)
         writer.writerows(get_metaregistry_rows())
 
-    with safe_open_dict_writer(REGISTRY_TSV_PATH, REGISTRY_HEADER) as writer:
+    with safe_open_writer(REGISTRY_TSV_PATH) as writer:
+        writer.writerow(REGISTRY_HEADER)
         writer.writerows(get_registry_rows())
 
 
