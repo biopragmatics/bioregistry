@@ -285,12 +285,12 @@ def read_collections_contributions(
     collections: Mapping[str, Collection],
 ) -> Mapping[OrcidStr, set[str]]:
     """Get a mapping from contributor/maintainer ORCID identifiers to collections."""
-    rv = defaultdict(set)
-    for collection_id, resource in collections.items():
-        for contributor in resource.contributors or []:
-            rv[contributor.orcid].add(collection_id)
-        for maintainer in resource.maintainers or []:
-            rv[maintainer.orcid].add(collection_id)
+    rv: defaultdict[OrcidStr, set[str]] = defaultdict(set)
+    for collection in collections.values():
+        for contributor in collection.contributors or []:
+            rv[contributor.orcid].add(collection.identifier)
+        for maintainer in collection.maintainers or []:
+            rv[maintainer.orcid].add(collection.identifier)
     return dict(rv)
 
 
