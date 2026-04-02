@@ -8,7 +8,7 @@ from typing import Any, ClassVar, ParamSpec, TypeAlias
 
 import click
 from curies.w3c import NCNAME_RE
-from pystow.utils import download
+from pystow.utils import download, safe_open_writer
 from tabulate import tabulate
 
 from ..alignment_model import Record, dump_records
@@ -318,8 +318,7 @@ class Aligner:
         ]
 
         path.parent.mkdir(exist_ok=True, parents=True)
-        with path.open("w") as file:
-            writer = csv.writer(file, delimiter="\t", quoting=csv.QUOTE_MINIMAL)
+        with safe_open_writer(path, quoting=csv.QUOTE_MINIMAL) as writer:
             writer.writerow((self.subkey, *sliced_header))
             writer.writerows(sliced_rows)
 

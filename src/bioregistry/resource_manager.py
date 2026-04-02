@@ -2261,9 +2261,12 @@ def _read_contributors(
             if metaresource.contact.orcid:
                 rv[metaresource.contact.orcid] = metaresource.contact
     for collection in collections.values():
-        for author in collection.authors or []:
-            if author.orcid:
-                rv[author.orcid] = author
+        for contributor in collection.contributors or []:
+            if contributor.orcid:
+                rv[contributor.orcid] = contributor
+        for maintainer in collection.maintainers or []:
+            if maintainer.orcid:
+                rv[maintainer.orcid] = maintainer
     for context in contexts.values():
         for maintainer in context.maintainers:
             if maintainer.orcid:

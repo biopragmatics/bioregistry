@@ -2,10 +2,10 @@
 
 from __future__ import annotations
 
-import csv
 from collections.abc import Sequence
 
 import click
+from pystow.utils import safe_open_writer
 
 from ..constants import (
     COLLECTIONS_TSV_PATH,
@@ -20,18 +20,15 @@ from ..uri_format import get_uri_format
 @click.command()
 def export_tsv() -> None:
     """Export TSV."""
-    with COLLECTIONS_TSV_PATH.open("w") as file:
-        writer = csv.writer(file, delimiter="\t")
+    with safe_open_writer(COLLECTIONS_TSV_PATH) as writer:
         writer.writerow(COLLECTIONS_HEADER)
         writer.writerows(get_collections_rows())
 
-    with METAREGISTRY_TSV_PATH.open("w") as file:
-        writer = csv.writer(file, delimiter="\t")
+    with safe_open_writer(METAREGISTRY_TSV_PATH) as writer:
         writer.writerow(METAREGISTRY_HEADER)
         writer.writerows(get_metaregistry_rows())
 
-    with REGISTRY_TSV_PATH.open("w") as file:
-        writer = csv.writer(file, delimiter="\t")
+    with safe_open_writer(REGISTRY_TSV_PATH) as writer:
         writer.writerow(REGISTRY_HEADER)
         writer.writerows(get_registry_rows())
 
@@ -41,8 +38,10 @@ COLLECTIONS_HEADER = [
     "name",
     "description",
     "resources",
-    "author_names",
-    "author_orcids",
+    "contributor_names",
+    "contributor_orcids",
+    "maintainer_names",
+    "maintainer_orcids",
 ]
 METAREGISTRY_HEADER = [
     "metaprefix",
@@ -84,7 +83,7 @@ REGISTRY_HEADER = [
 ]
 
 
-def get_collections_rows() -> list[tuple[str, str, str, str, str, str]]:
+def get_collections_rows() -> list[tuple[str, str, str, str, str, str, str, str]]:
     """Get a dataframe of all collections."""
     rows = []
     for identifier, collection in read_collections().items():
@@ -94,8 +93,10 @@ def get_collections_rows() -> list[tuple[str, str, str, str, str, str]]:
                 collection.name,
                 collection.description,
                 "|".join(collection.resources),
-                "|".join(author.name for author in collection.authors),
-                "|".join(author.orcid for author in collection.authors),
+                "|".join(contributor.name for contributor in collection.contributors or []),
+                "|".join(contributor.orcid for contributor in collection.contributors or []),
+                "|".join(maintainer.name for maintainer in collection.maintainers or []),
+                "|".join(maintainer.orcid for maintainer in collection.maintainers or []),
             )
         )
     return rows

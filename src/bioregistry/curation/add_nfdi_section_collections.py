@@ -49,7 +49,7 @@ def main() -> None:
                 name=f"{organization.name} Collection",
                 description=f"A collection of ontologies, controlled vocabularies, database, and schemas relevant for {organization.name}",
                 resources=["bioregistry"],
-                authors=[Author.get_charlie()],
+                contributors=[Author.get_charlie()],
                 organizations=[organization, nfdi],
             )
             bioregistry.manager.add_collection(collection)
