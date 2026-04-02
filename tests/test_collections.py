@@ -29,9 +29,11 @@ class TestCollections(unittest.TestCase):
             with self.subTest(key=key):
                 self.assertRegex(key, "^\\d{7}$")
                 self.assertIn("name", collection)
-                self.assertIn("authors", collection)
-                self.assertIsInstance(collection["authors"], list, msg=f"Collection: {collection}")
-                for author in collection["authors"]:
+                self.assertIn("contributors", collection)
+                self.assertIsInstance(
+                    collection["contributors"], list, msg=f"Collection: {collection}"
+                )
+                for author in collection["contributors"]:
                     self.assertIn("name", author)
                     self.assertIn("orcid", author)
                     self.assertRegex(author["orcid"], self.manager.get_pattern("orcid"))
