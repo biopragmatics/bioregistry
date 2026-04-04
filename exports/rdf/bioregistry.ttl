@@ -434,8 +434,9 @@
 @prefix dc_cl: <http://purl.obolibrary.org/obo/DC_CL_> .
 @prefix dcam: <http://purl.org/dc/dcam/> .
 @prefix dcat: <http://www.w3.org/ns/dcat#> .
+@prefix dcatap: <http://data.europa.eu/r5r/> .
+@prefix dcmitype: <http://purl.org/dc/dcmitype/> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
-@prefix dctypes: <http://purl.org/dc/dcmitype/> .
 @prefix ddanat: <http://purl.obolibrary.org/obo/DDANAT_> .
 @prefix ddi: <http://rdf-vocabulary.ddialliance.org/lifecycle#> .
 @prefix ddi.aggregationmethod: <https://vocabularies.cessda.eu/vocabulary/AggregationMethod?lang=en#code_> .
@@ -511,6 +512,7 @@
 @prefix dnasu.clone: <https://dnasu.org/DNASU/GetCloneDetail.do?cloneid=> .
 @prefix dnasu.vector: <https://dnasu.org/DNASU/GetVectorDetail.do?vectorid=> .
 @prefix doap: <http://usefulinc.com/ns/doap#> .
+@prefix docbias: <https://nobias-project.eu/nobias/> .
 @prefix dockerhub.user: <https://hub.docker.com/u/> .
 @prefix doco: <http://purl.org/spar/doco/> .
 @prefix dogont: <http://elite.polito.it/ontologies/dogont.owl#> .
@@ -634,6 +636,7 @@
 @prefix eolife: <https://eol.org/pages/> .
 @prefix epd: <https://epd.expasy.org/cgi-bin/epd/query_result.pl?out_format=NICE&Entry_0=> .
 @prefix epio: <http://purl.obolibrary.org/obo/EPIO_> .
+@prefix epos: <https://www.epos-eu.org/epos-dcat-ap#> .
 @prefix epso: <http://www.case.edu/EpilepsyOntology.owl#> .
 @prefix erm: <https://nanocommons.github.io/identifiers/registry#> .
 @prefix ero: <http://purl.obolibrary.org/obo/ERO_> .
@@ -754,10 +757,10 @@
 @prefix genewiki: <http://plugins.biogps.org/cgi-bin/wp.cgi?id=> .
 @prefix geno: <http://purl.obolibrary.org/obo/GENO_> .
 @prefix genprop: <https://www.ebi.ac.uk/interpro/genomeproperties/#> .
-@prefix geo: <http://www.opengis.net/ont/geosparql#> .
 @prefix geo1: <https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=> .
 @prefix geogeo: <http://purl.obolibrary.org/obo/GEO_> .
 @prefix geonames: <https://www.geonames.org/> .
+@prefix geosparql: <http://www.opengis.net/ont/geosparql#> .
 @prefix gepris: <https://gepris.dfg.de/gepris/projekt/> .
 @prefix gesah: <http://ontology.tib.eu/gesah/> .
 @prefix gesis.kategorienschemawahlstudien: <https://vocabularies.cessda.eu/vocabulary/KategorienschemaWahlstudien?lang=en#code_> .
@@ -993,7 +996,7 @@
 @prefix interlex: <https://scicrunch.org/scicrunch/interlex/view/ilx_> .
 @prefix interpro: <https://www.ebi.ac.uk/interpro/entry/InterPro/> .
 @prefix iobc: <http://purl.jp/bio/4/id/> .
-@prefix iofcore: <https://spec.industrialontologies.org/ontology/core/Core/> .
+@prefix iofcore: <https://spec.industrialontologies.org/ontology/> .
 @prefix ioio: <http://purl.obolibrary.org/obo/IOIO_> .
 @prefix ipni.author: <https://www.ipni.org/a/> .
 @prefix ipni.plant: <https://www.ipni.org/n/> .
@@ -1385,6 +1388,7 @@
 @prefix ogms: <http://purl.obolibrary.org/obo/OGMS_> .
 @prefix ogsf: <http://purl.obolibrary.org/obo/OGSF_> .
 @prefix ohd: <http://purl.obolibrary.org/obo/OHD_> .
+@prefix ohdab: <https://database.factgrid.de/entity/> .
 @prefix ohmi: <http://purl.obolibrary.org/obo/OHMI_> .
 @prefix ohpi: <http://purl.obolibrary.org/obo/OHPI_> .
 @prefix oid: <https://oid-base.com/get/> .
@@ -2197,9 +2201,9 @@
 @prefix vita: <http://vita.mbc.nctu.edu.tw/search.php?acc=> .
 @prefix vitro: <http://vitro.mannlib.cornell.edu/ns/vitro/0.7#> .
 @prefix vivo: <http://vivoweb.org/ontology/core#> .
-@prefix vmhgene: <https://www.vmh.life/#gene/> .
-@prefix vmhmetabolite: <https://www.vmh.life/#metabolite/> .
-@prefix vmhreaction: <https://www.vmh.life/#reaction/> .
+@prefix vmh.gene: <https://www.vmh.life/#gene/> .
+@prefix vmh.metabolite: <https://www.vmh.life/#metabolite/> .
+@prefix vmh.reaction: <https://www.vmh.life/#reaction/> .
 @prefix vo: <http://purl.obolibrary.org/obo/VO_> .
 @prefix voc4cat: <https://w3id.org/nfdi4cat/voc4cat_> .
 @prefix void: <http://rdfs.org/ns/void#> .
@@ -3046,6 +3050,7 @@ bioregistry.collection:0000021 a bioregistry.schema:0000003 ;
         bioregistry:brick,
         bioregistry:cim,
         bioregistry:digitalconstruction.energy,
+        bioregistry:docbias,
         bioregistry:dogont,
         bioregistry:energymarketroles,
         bioregistry:meno,
@@ -3058,6 +3063,7 @@ bioregistry.collection:0000021 a bioregistry.schema:0000003 ;
         bioregistry:udsaes.fmi,
         bioregistry:udsaes.sms,
         bioregistry:zbw.stw ;
+    doap:maintainer orcid:0009-0009-2960-3474 ;
     foaf:logo "https://www.nfdi.de/wp-content/uploads/2023/03/01_Logo_NFDI4Energy.png"^^xsd:anyURI .
 
 bioregistry.collection:0000022 a bioregistry.schema:0000003 ;
@@ -3225,6 +3231,7 @@ bioregistry.collection:0000025 a bioregistry.schema:0000003 ;
         bioregistry:gesah,
         bioregistry:iconclass,
         bioregistry:nfdi4culture.cto,
+        bioregistry:ohdab,
         bioregistry:premis ;
     foaf:logo "https://www.nfdi.de/wp-content/uploads/2021/05/NFDI4C_Logo.png"^^xsd:anyURI .
 
@@ -10172,6 +10179,7 @@ bioregistry:datanator.metabolite a bioregistry.schema:0000001 ;
     bioregistry.schema:0000005 "OUYCCCASQSFEME-MRVPVSSYSA-N"^^xsd:string ;
     bioregistry.schema:0000006 "https://www.datanator.info/metabolite/$1"^^xsd:string ;
     bioregistry.schema:0000008 "^[A-Z\\-]+$"^^xsd:string ;
+    bioregistry.schema:0000011 bioregistry:inchikey ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000024 "https://www.datanator.info/metabolite/"^^xsd:string ;
     bioregistry.schema:0000027 datanator.metabolite:OUYCCCASQSFEME-MRVPVSSYSA-N ;
@@ -10437,6 +10445,27 @@ bioregistry:dcam a bioregistry.schema:0000001 ;
     bioregistry.schema:0000024 "http://purl.org/dc/dcam/"^^xsd:string ;
     bioregistry.schema:0000027 dcam:domainIncludes ;
     bioregistry.schema:0000029 "dcam" .
+
+bioregistry:dcatap a bioregistry.schema:0000001 ;
+    rdfs:label "DCAT AP" ;
+    dcterms:contributor orcid:0000-0003-4423-4370 ;
+    dcterms:description """DCAT-AP is a DCAT profile for sharing information about Catalogues containing Datasets and Data Services descriptions in Europe, under maintenance by the SEMIC action, Interoperable Europe.
+
+This Application Profile provides a minimal common basis within Europe to share Datasets and Data Services cross-border and cross-domain. [from homepage]"""^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    doap:GitRepository <https://github.com/SEMICeu/DCAT-AP> ;
+    dcat:keyword "data service",
+        "dataset",
+        "dcat" ;
+    foaf:homepage <https://semiceu.github.io/DCAT-AP/r5r/releases/3.0.0/> ;
+    bioregistry.schema:0000005 "applicableLegislation"^^xsd:string ;
+    bioregistry.schema:0000006 "http://data.europa.eu/r5r/$1"^^xsd:string ;
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000019 [ rdfs:label "Arthur Schiltz" ;
+            foaf:mbox "arthur.schiltz@pwc.com" ] ;
+    bioregistry.schema:0000024 "http://data.europa.eu/r5r/"^^xsd:string ;
+    bioregistry.schema:0000027 dcatap:applicableLegislation ;
+    bioregistry.schema:0000029 "dcatap" .
 
 bioregistry:ddanat a bioregistry.schema:0000001 ;
     rdfs:label "Dictyostelium discoideum anatomy" ;
@@ -12956,6 +12985,23 @@ bioregistry:epo a bioregistry.schema:0000001 ;
     bioregistry.schema:0000012 true ;
     bioregistry.schema:0000024 "http://purl.obolibrary.org/obo/EPO_"^^xsd:string ;
     bioregistry.schema:0000029 "epo" .
+
+bioregistry:epos a bioregistry.schema:0000001 ;
+    rdfs:label "EPOS-DCAT-AP" ;
+    dcterms:contributor orcid:0000-0003-4423-4370 ;
+    dcterms:description "EPOS-DCAT-AP is an extension of the DCAT Application Profile for Research Infrastructures in Environmental and the solid-Earth domains."^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    doap:GitRepository <https://github.com/epos-eu/EPOS-DCAT-AP> ;
+    dcat:keyword "dcat",
+        "earth science" ;
+    foaf:homepage <https://epos-eu.github.io/EPOS-DCAT-AP/v3/> ;
+    bioregistry.schema:0000005 "Equipment"^^xsd:string ;
+    bioregistry.schema:0000006 "https://www.epos-eu.org/epos-dcat-ap#$1"^^xsd:string ;
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000019 orcid:0000-0002-6975-1991 ;
+    bioregistry.schema:0000024 "https://www.epos-eu.org/epos-dcat-ap#"^^xsd:string ;
+    bioregistry.schema:0000027 epos:Equipment ;
+    bioregistry.schema:0000029 "epos" .
 
 bioregistry:epso a bioregistry.schema:0000001 ;
     rdfs:label "Epilepsy and Seizure Ontology" ;
@@ -20868,7 +20914,7 @@ bioregistry:mex a bioregistry.schema:0000001 ;
     bioregistry.schema:0000005 "36"^^xsd:string ;
     bioregistry.schema:0000006 "https://www.metabolome-express.org/datasetview.php?datasetid=$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
-    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000012 true ;
     bioregistry.schema:0000024 "https://www.metabolome-express.org/datasetview.php?datasetid="^^xsd:string ;
     bioregistry.schema:0000027 mex:36 ;
     bioregistry.schema:0000029 "mex" .
@@ -22335,8 +22381,11 @@ bioregistry:mwo a bioregistry.schema:0000001 ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
     doap:GitRepository <https://github.com/ISE-FIZKarlsruhe/mwo> ;
     skos:exactMatch aberowl:MWO,
-        bioportal:MWO ;
-    dcat:keyword "ontology" ;
+        bioportal:MWO,
+        tib.ts:mwo ;
+    dcat:keyword "material science",
+        "miscellaneous",
+        "ontology" ;
     foaf:homepage <https://github.com/ISE-FIZKarlsruhe/mwo> ;
     bioregistry.schema:0000005 "0001109"^^xsd:string ;
     bioregistry.schema:0000006 "http://purls.helmholtz-metadaten.de/mwo/mwo_$1"^^xsd:string ;
@@ -33371,7 +33420,7 @@ bioregistry:vmc a bioregistry.schema:0000001 ;
     bioregistry.schema:0000012 true ;
     bioregistry.schema:0000029 "vmc" .
 
-bioregistry:vmhgene a bioregistry.schema:0000001 ;
+bioregistry:vmh.gene a bioregistry.schema:0000001 ;
     rdfs:label "VMH Gene" ;
     dcterms:description "The Virtual Metabolic Human (VMH) is a resource that combines human and gut microbiota metabolism with nutrition and disease."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
@@ -33382,10 +33431,10 @@ bioregistry:vmhgene a bioregistry.schema:0000001 ;
     bioregistry.schema:0000008 "^[0-9]+\\.[0-9]+$"^^xsd:string ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000024 "https://www.vmh.life/#gene/"^^xsd:string ;
-    bioregistry.schema:0000027 vmhgene:8639.1 ;
-    bioregistry.schema:0000029 "vmhgene" .
+    bioregistry.schema:0000027 vmh.gene:8639.1 ;
+    bioregistry.schema:0000029 "vmh.gene" .
 
-bioregistry:vmhmetabolite a bioregistry.schema:0000001 ;
+bioregistry:vmh.metabolite a bioregistry.schema:0000001 ;
     rdfs:label "VMH metabolite" ;
     dcterms:description "The Virtual Metabolic Human (VMH) is a resource that combines human and gut microbiota metabolism with nutrition and disease."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
@@ -33398,10 +33447,10 @@ bioregistry:vmhmetabolite a bioregistry.schema:0000001 ;
     bioregistry.schema:0000008 "^[a-zA-Z0-9_\\(\\_\\)\\[\\]]+$"^^xsd:string ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000024 "https://www.vmh.life/#metabolite/"^^xsd:string ;
-    bioregistry.schema:0000027 vmhmetabolite:h2o ;
-    bioregistry.schema:0000029 "vmhmetabolite" .
+    bioregistry.schema:0000027 vmh.metabolite:h2o ;
+    bioregistry.schema:0000029 "vmh.metabolite" .
 
-bioregistry:vmhreaction a bioregistry.schema:0000001 ;
+bioregistry:vmh.reaction a bioregistry.schema:0000001 ;
     rdfs:label "VMH reaction" ;
     dcterms:description "The Virtual Metabolic Human (VMH) is a resource that combines human and gut microbiota metabolism with nutrition and disease."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
@@ -33414,8 +33463,8 @@ bioregistry:vmhreaction a bioregistry.schema:0000001 ;
     bioregistry.schema:0000008 "^[a-zA-Z0-9_\\(\\_\\)\\[\\]]+$"^^xsd:string ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000024 "https://www.vmh.life/#reaction/"^^xsd:string ;
-    bioregistry.schema:0000027 vmhreaction:HEX1 ;
-    bioregistry.schema:0000029 "vmhreaction" .
+    bioregistry.schema:0000027 vmh.reaction:HEX1 ;
+    bioregistry.schema:0000029 "vmh.reaction" .
 
 bioregistry:vs a bioregistry.schema:0000001 ;
     rdfs:label "SemWeb Vocab Status ontology" ;
@@ -34516,6 +34565,9 @@ orcid:0000-0001-7697-3026 rdfs:label "Eric Sid" ;
 orcid:0000-0001-7821-9684 rdfs:label "Pieter Mestdagh" ;
     foaf:mbox "pieter.mestdagh@ugent.be" .
 
+orcid:0000-0001-7922-5998 rdfs:label "Matteo Lissandrini" ;
+    foaf:mbox "matteo@cs.aau.dk" .
+
 orcid:0000-0001-7941-2961 rdfs:label "Leigh Carmody" ;
     foaf:mbox "Leigh.Carmody@jax.org" .
 
@@ -34913,6 +34965,8 @@ orcid:0000-0002-3905-1054 rdfs:label "MEDIGUE Claudine" ;
 
 orcid:0000-0002-3910-2691 rdfs:label "Joy Owango" .
 
+orcid:0000-0002-4006-8582 rdfs:label "Moritz Stüber" .
+
 orcid:0000-0002-4071-8397 rdfs:label "Zoë May Pendlington" ;
     foaf:mbox "zmp@ebi.ac.uk" .
 
@@ -35075,6 +35129,9 @@ orcid:0000-0002-6807-8731 rdfs:label "Rupert Kellner" ;
 
 orcid:0000-0002-6850-6265 rdfs:label "Guy Perrière" ;
     foaf:mbox "perriere@biomserv.univ-lyon1.fr" .
+
+orcid:0000-0002-6975-1991 rdfs:label "Rossana Paciello" ;
+    foaf:mbox "rossana.paciello@ingv.it" .
 
 orcid:0000-0002-7000-1477 rdfs:label "Joanne Kamens" ;
     foaf:mbox "joanne.kamens@addgene.org" .
@@ -35608,6 +35665,8 @@ orcid:0009-0006-6049-1392 rdfs:label "Yohann Paris" ;
     foaf:mbox "github@yohannparis.com" .
 
 orcid:0009-0007-1862-833X rdfs:label "Cody O'Donnell" .
+
+orcid:0009-0009-2960-3474 rdfs:label "Amanda Wein" .
 
 orcid:0009-0009-3816-8777 rdfs:label "Carsten Linder" ;
     foaf:mbox "info@hoelzel.de" .
@@ -45256,7 +45315,7 @@ bioregistry:dctypes a bioregistry.schema:0000001 ;
     bioregistry.schema:0000023 "dcmitype",
         "dcmitypes" ;
     bioregistry.schema:0000024 "http://purl.org/dc/dcmitype/"^^xsd:string ;
-    bioregistry.schema:0000027 dctypes:Collection ;
+    bioregistry.schema:0000027 dcmitype:Collection ;
     bioregistry.schema:0000029 "dctypes" .
 
 bioregistry:ddi.aggregationmethod a bioregistry.schema:0000001 ;
@@ -45828,6 +45887,20 @@ bioregistry:doap a bioregistry.schema:0000001 ;
     bioregistry.schema:0000027 doap:Project ;
     bioregistry.schema:0000029 "doap" .
 
+bioregistry:docbias a bioregistry.schema:0000001 ;
+    rdfs:label "Doc-Bias Ontology" ;
+    dcterms:description "Doc-Bias, an ontology to support the documentation of bias in data"^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    skos:exactMatch tib.ts:docbias ;
+    dcat:keyword "nfdi4energy" ;
+    foaf:homepage docbias: ;
+    bioregistry.schema:0000005 "associatedTo"^^xsd:string ;
+    bioregistry.schema:0000006 "https://nobias-project.eu/nobias/$1"^^xsd:string ;
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000024 "https://nobias-project.eu/nobias/"^^xsd:string ;
+    bioregistry.schema:0000027 docbias:associatedTo ;
+    bioregistry.schema:0000029 "docbias" .
+
 bioregistry:doco a bioregistry.schema:0000001 ;
     rdfs:label "Document Components Ontology" ;
     dcterms:contributor orcid:0000-0003-4423-4370 ;
@@ -46155,7 +46228,11 @@ bioregistry:emg a bioregistry.schema:0000001 ;
     dcterms:description "The Electron Microscopy (EM) Glossary is a widespread community effort to harmonize terminology in the electron and ion microscopies. It is created in a not-for profit collaboration between academic and non-university research institutions including domain and metadata experts. It provides harmonized terminology for application level semantic artifacts to source from and align with. [from homepage]"^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
     doap:GitRepository <https://codebase.helmholtz.cloud/em_glossary/em_glossary> ;
-    dcat:keyword "ontology" ;
+    skos:exactMatch tib.ts:emg ;
+    dcat:keyword "material science",
+        "miscellaneous",
+        "ontology",
+        "physics" ;
     foaf:homepage <https://purls.helmholtz-metadaten.de/emg> ;
     bioregistry.schema:0000005 "00000005"^^xsd:string ;
     bioregistry.schema:0000006 "https://purls.helmholtz-metadaten.de/emg/EMG_$1"^^xsd:string ;
@@ -46614,10 +46691,12 @@ bioregistry:fix a bioregistry.schema:0000001 ;
         biocontext:FIX,
         fairsharing:FAIRsharing.wwy1ns,
         prefixcommons:fix,
+        tib.ts:fix,
         obofoundry:fix ;
     dcat:keyword "chemistry",
         "experiment",
         "experimental measurement",
+        "nfdi4chem",
         "obo",
         "ontology",
         "property" ;
@@ -46892,7 +46971,7 @@ bioregistry:geosparql a bioregistry.schema:0000001 ;
     bioregistry.schema:0000019 [ rdfs:label "Kim Durante" ;
             foaf:mbox "kdurante@stanford.edu" ] ;
     bioregistry.schema:0000024 "http://www.opengis.net/ont/geosparql#"^^xsd:string ;
-    bioregistry.schema:0000027 geo:hasDefaultGeometry ;
+    bioregistry.schema:0000027 geosparql:hasDefaultGeometry ;
     bioregistry.schema:0000029 "geosparql" .
 
 bioregistry:gesah a bioregistry.schema:0000001 ;
@@ -47672,26 +47751,6 @@ bioregistry:inchi a bioregistry.schema:0000001 ;
     bioregistry.schema:0000027 <https://www.ebi.ac.uk/chebi/advancedSearchFT.do?searchString=InChI=1S/C2H6O/c1-2-3/h3H,2H2,1H3> ;
     bioregistry.schema:0000029 "inchi" .
 
-bioregistry:inchikey a bioregistry.schema:0000001 ;
-    rdfs:label "InChIKey" ;
-    dcterms:description "The IUPAC International Chemical Identifier (InChI, see MIR:00000383) is an identifier for chemical substances, and is derived solely from a structural representation of that substance. Since these can be quite unwieldly, particularly for web use, the InChIKey was developed. These are of a fixed length (25 character) and were created as a condensed, more web friendly, digital representation of the InChI."^^xsd:string ;
-    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch wikidata:P235,
-        wikidata:Q21445422,
-        biocontext:INCHIKEY,
-        n2t:inchikey,
-        miriam:inchikey,
-        togoid:InchiKey ;
-    dcat:keyword "compound" ;
-    foaf:homepage <http://www.chemspider.com/> ;
-    bioregistry.schema:0000005 "RYYVLZVUVIJVGH-UHFFFAOYSA-N"^^xsd:string ;
-    bioregistry.schema:0000006 "https://www.chemspider.com/search?params=$1"^^xsd:string ;
-    bioregistry.schema:0000008 "^[A-Z]{14}\\-[A-Z]{10}(\\-[A-Z])?$"^^xsd:string ;
-    bioregistry.schema:0000012 false ;
-    bioregistry.schema:0000024 "https://www.chemspider.com/search?params="^^xsd:string ;
-    bioregistry.schema:0000027 inchikey:RYYVLZVUVIJVGH-UHFFFAOYSA-N ;
-    bioregistry.schema:0000029 "inchikey" .
-
 bioregistry:infosecsos a bioregistry.schema:0000001 ;
     rdfs:label "InfoSecSoS Ontology" ;
     dcterms:description "InfoSecSoS - Ontology for Information Security Management in Systems-of-Systems"^^xsd:string ;
@@ -47767,10 +47826,10 @@ bioregistry:iofcore a bioregistry.schema:0000001 ;
         "ontology" ;
     foaf:homepage <https://oagi.org/pages/Released-Ontologies> ;
     bioregistry.schema:0000005 "hasSpecifiedOutput"^^xsd:string ;
-    bioregistry.schema:0000006 "https://spec.industrialontologies.org/ontology/core/Core/$1"^^xsd:string ;
+    bioregistry.schema:0000006 "https://spec.industrialontologies.org/ontology/$1"^^xsd:string ;
     bioregistry.schema:0000010 <https://github.com/iofoundry/ontology/raw/refs/heads/master/core/Core.rdf> ;
     bioregistry.schema:0000012 false ;
-    bioregistry.schema:0000024 "https://spec.industrialontologies.org/ontology/core/Core/"^^xsd:string ;
+    bioregistry.schema:0000024 "https://spec.industrialontologies.org/ontology/"^^xsd:string ;
     bioregistry.schema:0000027 iofcore:hasSpecifiedOutput ;
     bioregistry.schema:0000029 "iofcore" .
 
@@ -49653,6 +49712,22 @@ bioregistry:ohd a bioregistry.schema:0000001 ;
     bioregistry.schema:0000027 ohd:0000006 ;
     bioregistry.schema:0000029 "ohd" .
 
+bioregistry:ohdab a bioregistry.schema:0000001 ;
+    rdfs:label "Ontology of the historical German-language nomenclature for offices and professions" ;
+    dcterms:description "This version of the historical German-language nomenclature for offices and professions (OhdAB) was automatically generated via a script from FactGrid."^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    skos:exactMatch tib.ts:ohdab ;
+    dcat:keyword "history",
+        "nfdi4culture",
+        "social sciences" ;
+    foaf:homepage <https://database.factgrid.de> ;
+    bioregistry.schema:0000005 "Q1059224"^^xsd:string ;
+    bioregistry.schema:0000006 "https://database.factgrid.de/entity/$1"^^xsd:string ;
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000024 "https://database.factgrid.de/entity/"^^xsd:string ;
+    bioregistry.schema:0000027 ohdab:Q1059224 ;
+    bioregistry.schema:0000029 "ohdab" .
+
 bioregistry:okn.sd a bioregistry.schema:0000001 ;
     rdfs:label "The Software Description Ontology" ;
     dcterms:description "An ontology for describing software components, including their metadata (attribution, licensing, usage instructions, how to get support) and their inputs, outputs and variables. The ontology extends schema.org and codemeta vocabularies and is based on OntoSoft, which proposed a vocabulary for describing software by asking scientists questions."^^xsd:string ;
@@ -51043,7 +51118,7 @@ bioregistry:saref.wearable a bioregistry.schema:0000001 ;
     bioregistry.schema:0000029 "saref.wearable" .
 
 bioregistry:sargon a bioregistry.schema:0000001 ;
-    rdfs:label "SARGON (SmArt eneRGy dOmain oNtology)" ;
+    rdfs:label "Smart Energy Domain Ontology" ;
     dcterms:description "SARGON (SmArt eneRGy dOmain oNtology) is an open-source effort to define semantic descriptions of the smart assets in building automation and smart grid and the relationships between them. SARGON consists of an extensible dictionary of terms and concepts in and around building and smart grid, a set of relationships for linking and composing concepts together, and a flexible data model permitting seamless integration of SARGON with existing tools and databases. Through the use of powerful Semantic Web technology, SARGON can describe the broad set of Devices and custom features, assets and subsystems found across the building stock in a consistent matter."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
     skos:exactMatch tib.ts:sargon ;
@@ -55777,6 +55852,7 @@ bioregistry:tib.re a bioregistry.schema:0000001 ;
     bioregistry.schema:0000005 "Advanced_Meter"^^xsd:string ;
     bioregistry.schema:0000006 "https://www.lidcast.co.uk/ontologies/RE#$1"^^xsd:string ;
     bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000019 [ rdfs:label "Sam Tombury" ] ;
     bioregistry.schema:0000024 "https://www.lidcast.co.uk/ontologies/RE#"^^xsd:string ;
     bioregistry.schema:0000027 tib.re:Advanced_Meter ;
     bioregistry.schema:0000029 "tib.re" .
@@ -55969,7 +56045,7 @@ bioregistry:udsaes.fmi a bioregistry.schema:0000001 ;
     bioregistry.schema:0000029 "udsaes.fmi" .
 
 bioregistry:udsaes.sms a bioregistry.schema:0000001 ;
-    rdfs:label "SMS-Ontology" ;
+    rdfs:label "Systems, Models, and Simulation Ontology" ;
     dcterms:description "Ontology for representing systems, models and simulations in RDF."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
     doap:GitRepository <https://github.com/UdSAES/sms-ontology> ;
@@ -55980,6 +56056,7 @@ bioregistry:udsaes.sms a bioregistry.schema:0000001 ;
     bioregistry.schema:0000005 "CanBeApproximated"^^xsd:string ;
     bioregistry.schema:0000006 "https://purl.org/sms-ontology#$1"^^xsd:string ;
     bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000019 orcid:0000-0002-4006-8582 ;
     bioregistry.schema:0000024 "https://purl.org/sms-ontology#"^^xsd:string ;
     bioregistry.schema:0000027 udsaes.sms:CanBeApproximated ;
     bioregistry.schema:0000029 "udsaes.sms" .
@@ -61264,6 +61341,8 @@ tib.ts:dicl dcterms:isPartOf bioregistry.metaresource:tib .
 
 tib.ts:dicob dcterms:isPartOf bioregistry.metaresource:tib .
 
+tib.ts:docbias dcterms:isPartOf bioregistry.metaresource:tib .
+
 tib.ts:dogont dcterms:isPartOf bioregistry.metaresource:tib .
 
 tib.ts:dot dcterms:isPartOf bioregistry.metaresource:tib .
@@ -61298,6 +61377,8 @@ tib.ts:efo dcterms:isPartOf bioregistry.metaresource:tib .
 
 tib.ts:emdat dcterms:isPartOf bioregistry.metaresource:tib .
 
+tib.ts:emg dcterms:isPartOf bioregistry.metaresource:tib .
+
 tib.ts:emmo dcterms:isPartOf bioregistry.metaresource:tib .
 
 tib.ts:energymarketroles dcterms:isPartOf bioregistry.metaresource:tib .
@@ -61319,6 +61400,8 @@ tib.ts:fair dcterms:isPartOf bioregistry.metaresource:tib .
 tib.ts:fibo dcterms:isPartOf bioregistry.metaresource:tib .
 
 tib.ts:fiestaiot dcterms:isPartOf bioregistry.metaresource:tib .
+
+tib.ts:fix dcterms:isPartOf bioregistry.metaresource:tib .
 
 tib.ts:flopo dcterms:isPartOf bioregistry.metaresource:tib .
 
@@ -61424,6 +61507,8 @@ tib.ts:mt dcterms:isPartOf bioregistry.metaresource:tib .
 
 tib.ts:mv dcterms:isPartOf bioregistry.metaresource:tib .
 
+tib.ts:mwo dcterms:isPartOf bioregistry.metaresource:tib .
+
 tib.ts:n0 dcterms:isPartOf bioregistry.metaresource:tib .
 
 tib.ts:n4e dcterms:isPartOf bioregistry.metaresource:tib .
@@ -61444,6 +61529,8 @@ tib.ts:oeo dcterms:isPartOf bioregistry.metaresource:tib .
 
 tib.ts:ofm dcterms:isPartOf bioregistry.metaresource:tib .
 
+tib.ts:ohdab dcterms:isPartOf bioregistry.metaresource:tib .
+
 tib.ts:om dcterms:isPartOf bioregistry.metaresource:tib .
 
 tib.ts:omp dcterms:isPartOf bioregistry.metaresource:tib .
@@ -61455,6 +61542,8 @@ tib.ts:ontokin dcterms:isPartOf bioregistry.metaresource:tib .
 tib.ts:ontorxn dcterms:isPartOf bioregistry.metaresource:tib .
 
 tib.ts:openadr dcterms:isPartOf bioregistry.metaresource:tib .
+
+tib.ts:ordo dcterms:isPartOf bioregistry.metaresource:tib .
 
 tib.ts:org dcterms:isPartOf bioregistry.metaresource:tib .
 
@@ -61497,6 +61586,8 @@ tib.ts:raum dcterms:isPartOf bioregistry.metaresource:tib .
 tib.ts:re dcterms:isPartOf bioregistry.metaresource:tib .
 
 tib.ts:repr dcterms:isPartOf bioregistry.metaresource:tib .
+
+tib.ts:rex dcterms:isPartOf bioregistry.metaresource:tib .
 
 tib.ts:ro dcterms:isPartOf bioregistry.metaresource:tib .
 
@@ -63775,6 +63866,7 @@ bioregistry:bonsai a bioregistry.schema:0000001 ;
     bioregistry.schema:0000005 "Activity"^^xsd:string ;
     bioregistry.schema:0000006 "http://ontology.bonsai.uno/core#$1"^^xsd:string ;
     bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000019 orcid:0000-0001-7922-5998 ;
     bioregistry.schema:0000024 "http://ontology.bonsai.uno/core#"^^xsd:string ;
     bioregistry.schema:0000027 bonsai:Activity ;
     bioregistry.schema:0000029 "bonsai" .
@@ -64319,7 +64411,7 @@ bioregistry:dicom a bioregistry.schema:0000001 ;
     bioregistry.schema:0000029 "dicom" .
 
 bioregistry:digitalconstruction.energy a bioregistry.schema:0000001 ;
-    rdfs:label "Digital Construction Energy (dices)" ;
+    rdfs:label "Digital Construction Energy Ontology" ;
     dcterms:description "An ontology for energy systems and energy efficiency in the construction and renovation domain"^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
     skos:exactMatch tib.ts:dices ;
@@ -65178,6 +65270,26 @@ bioregistry:imgt.hla a bioregistry.schema:0000001 ;
     bioregistry.schema:0000027 <https://www.ebi.ac.uk/ipd/imgt/hla/alleles/?query=eq(name,%22A*01:01:01:01%22)> ;
     bioregistry.schema:0000029 "imgt.hla" .
 
+bioregistry:inchikey a bioregistry.schema:0000001 ;
+    rdfs:label "InChIKey" ;
+    dcterms:description "The IUPAC International Chemical Identifier (InChI, see MIR:00000383) is an identifier for chemical substances, and is derived solely from a structural representation of that substance. Since these can be quite unwieldly, particularly for web use, the InChIKey was developed. These are of a fixed length (25 character) and were created as a condensed, more web friendly, digital representation of the InChI."^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    skos:exactMatch wikidata:P235,
+        wikidata:Q21445422,
+        biocontext:INCHIKEY,
+        n2t:inchikey,
+        miriam:inchikey,
+        togoid:InchiKey ;
+    dcat:keyword "compound" ;
+    foaf:homepage <http://www.chemspider.com/> ;
+    bioregistry.schema:0000005 "RYYVLZVUVIJVGH-UHFFFAOYSA-N"^^xsd:string ;
+    bioregistry.schema:0000006 "https://www.chemspider.com/search?params=$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^[A-Z]{14}\\-[A-Z]{10}(\\-[A-Z])?$"^^xsd:string ;
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000024 "https://www.chemspider.com/search?params="^^xsd:string ;
+    bioregistry.schema:0000027 inchikey:RYYVLZVUVIJVGH-UHFFFAOYSA-N ;
+    bioregistry.schema:0000029 "inchikey" .
+
 bioregistry:insdc a bioregistry.schema:0000001 ;
     rdfs:label "Nucleotide Sequence Database" ;
     dcterms:description "The International Nucleotide Sequence Database Collaboration (INSDC) consists of a joint effort to collect and disseminate databases containing DNA and RNA sequences."^^xsd:string ;
@@ -65977,12 +66089,16 @@ It integrates a nosology (classification of rare diseases), relationships (gene-
         n2t:orphanet.ordo,
         fairsharing:FAIRsharing.pbbnwa,
         miriam:orphanet.ordo,
+        tib.ts:ordo,
         ols:ordo ;
     dcat:keyword "biomedical science",
         "diagnosis",
         "disease",
+        "fair data spaces",
         "gene",
         "health science",
+        "life sciences, biology",
+        "medicine",
         "ontology",
         "phenotype",
         "rare disorder" ;
@@ -66342,11 +66458,14 @@ bioregistry:rex a bioregistry.schema:0000001 ;
         biocontext:REX,
         fairsharing:FAIRsharing.g0a7s0,
         prefixcommons:rex,
+        tib.ts:rex,
         obofoundry:rex ;
     dcat:keyword "biochemistry",
         "chemistry",
         "enzymatic reaction",
         "life science",
+        "nfdi4cat",
+        "nfdi4chem",
         "obo",
         "ontology",
         "reaction data" ;
@@ -67546,9 +67665,9 @@ bioregistry:fabio a bioregistry.schema:0000001 ;
         fairsharing:FAIRsharing.2f3180,
         lov:fabio,
         tib.ts:fabio ;
-    dcat:keyword "literature",
-        "miscellaneous",
+    dcat:keyword "nfdi4ing",
         "ontology",
+        "other subjects",
         "spar",
         "subject agnostic" ;
     foaf:homepage <https://github.com/sparontologies/fabio> ;
@@ -68485,6 +68604,7 @@ bioregistry:snomedct a bioregistry.schema:0000001 ;
         "SNOMEDCT_US_2023_10_01",
         "SNOMEDCT_US_2023_11_01",
         "SNOMEDCT_US_2024_03_01",
+        "SNOMEDCT_US_2025_09_01",
         "SNOMED_CT",
         "SNOMED_CT_US_2018_03_01",
         "SNOWMEDCT",
@@ -73890,238 +74010,6 @@ bioregistry.metaresource:re3data a bioregistry.schema:0000002 ;
     bioregistry.schema:0000006 "https://www.re3data.org/repository/$1" ;
     bioregistry.schema:0000019 orcid:0000-0003-4221-7956 .
 
-bioregistry.metaresource:tib a bioregistry.schema:0000002 ;
-    rdfs:label "TIB Terminology Service" ;
-    dc:description "The TIB Terminology Service is an instance of the EBI OLS." ;
-    dcterms:hasPart tib.ts:abcd,
-        tib.ts:acsubtype,
-        tib.ts:acvariant,
-        tib.ts:aeon,
-        tib.ts:afo,
-        tib.ts:agro,
-        tib.ts:atomistic,
-        tib.ts:bao,
-        tib.ts:battinfo,
-        tib.ts:bau,
-        tib.ts:bco,
-        tib.ts:bdsubj,
-        tib.ts:bf,
-        tib.ts:bfo,
-        tib.ts:bk,
-        tib.ts:bo,
-        tib.ts:bont,
-        tib.ts:bot,
-        tib.ts:brick,
-        tib.ts:bto,
-        tib.ts:building,
-        tib.ts:cao,
-        tib.ts:cco,
-        tib.ts:ccrel,
-        tib.ts:cf,
-        tib.ts:cgo,
-        tib.ts:chebi,
-        tib.ts:cheminf,
-        tib.ts:chemrof,
-        tib.ts:chiro,
-        tib.ts:chmo,
-        tib.ts:cidoc,
-        tib.ts:cif,
-        tib.ts:cito,
-        tib.ts:co,
-        tib.ts:cob,
-        tib.ts:condo,
-        tib.ts:cora,
-        tib.ts:coy,
-        tib.ts:credit,
-        tib.ts:cto,
-        tib.ts:dcat3,
-        tib.ts:dcf,
-        tib.ts:dcterms,
-        tib.ts:destf,
-        tib.ts:dfgfo,
-        tib.ts:dices,
-        tib.ts:dicl,
-        tib.ts:dicob,
-        tib.ts:dogont,
-        tib.ts:dot,
-        tib.ts:dpbo,
-        tib.ts:dpv,
-        tib.ts:dr,
-        tib.ts:dsw,
-        tib.ts:duo,
-        tib.ts:dwcdoe,
-        tib.ts:dwcem,
-        tib.ts:dwcpw,
-        tib.ts:eclas,
-        tib.ts:ecso,
-        tib.ts:edam,
-        tib.ts:edcc,
-        tib.ts:educationallevel,
-        tib.ts:efo,
-        tib.ts:emdat,
-        tib.ts:emmo,
-        tib.ts:energymarketroles,
-        tib.ts:enm,
-        tib.ts:envo,
-        tib.ts:et,
-        tib.ts:ets,
-        tib.ts:euroscivoc,
-        tib.ts:fabio,
-        tib.ts:fair,
-        tib.ts:fibo,
-        tib.ts:fiestaiot,
-        tib.ts:flopo,
-        tib.ts:fmi,
-        tib.ts:format,
-        tib.ts:fto,
-        tib.ts:ftonto,
-        tib.ts:gc,
-        tib.ts:gemet,
-        tib.ts:geo,
-        tib.ts:gesah,
-        tib.ts:gfo,
-        tib.ts:gist,
-        tib.ts:gndo,
-        tib.ts:go,
-        tib.ts:gpo,
-        tib.ts:gta,
-        tib.ts:hcrt,
-        tib.ts:hfs,
-        tib.ts:hp,
-        tib.ts:hpont,
-        tib.ts:iao,
-        tib.ts:idsa,
-        tib.ts:ifc,
-        tib.ts:iirds,
-        tib.ts:iirdsmch,
-        tib.ts:iirdssft,
-        tib.ts:infosecsos,
-        tib.ts:io,
-        tib.ts:ioc,
-        tib.ts:iofcore,
-        tib.ts:isced,
-        tib.ts:kdsfffk,
-        tib.ts:kitmtxx,
-        tib.ts:kpi,
-        tib.ts:linsearch,
-        tib.ts:lis,
-        tib.ts:listdb,
-        tib.ts:m4i,
-        tib.ts:mat,
-        tib.ts:mathmoddb,
-        tib.ts:mdo,
-        tib.ts:mdv,
-        tib.ts:meth,
-        tib.ts:mi,
-        tib.ts:mmo,
-        tib.ts:mod,
-        tib.ts:modalia,
-        tib.ts:modsci,
-        tib.ts:mop,
-        tib.ts:ms,
-        tib.ts:msio,
-        tib.ts:mt,
-        tib.ts:mv,
-        tib.ts:n0,
-        tib.ts:n4e,
-        tib.ts:ncit,
-        tib.ts:nexus,
-        tib.ts:nmrcv,
-        tib.ts:obi,
-        tib.ts:oboe-core,
-        tib.ts:oefos,
-        tib.ts:oeo,
-        tib.ts:ofm,
-        tib.ts:om,
-        tib.ts:omp,
-        tib.ts:ontocompchem,
-        tib.ts:ontokin,
-        tib.ts:ontorxn,
-        tib.ts:openadr,
-        tib.ts:org,
-        tib.ts:os,
-        tib.ts:osmo,
-        tib.ts:panet,
-        tib.ts:pato,
-        tib.ts:pco,
-        tib.ts:peco,
-        tib.ts:physh,
-        tib.ts:pmat,
-        tib.ts:pmd,
-        tib.ts:po,
-        tib.ts:ppeo,
-        tib.ts:ppo,
-        tib.ts:premis3,
-        tib.ts:proco,
-        tib.ts:pror,
-        tib.ts:prov,
-        tib.ts:pso,
-        tib.ts:raum,
-        tib.ts:re,
-        tib.ts:repr,
-        tib.ts:ro,
-        tib.ts:rosetta,
-        tib.ts:rxno,
-        tib.ts:s4agri,
-        tib.ts:s4auto,
-        tib.ts:s4bldg,
-        tib.ts:s4city,
-        tib.ts:s4ehaw,
-        tib.ts:s4ener,
-        tib.ts:s4envi,
-        tib.ts:s4grid,
-        tib.ts:s4inma,
-        tib.ts:s4lift,
-        tib.ts:s4mari,
-        tib.ts:s4syst,
-        tib.ts:s4watr,
-        tib.ts:s4wear,
-        tib.ts:saref,
-        tib.ts:sargon,
-        tib.ts:sbo,
-        tib.ts:schema,
-        tib.ts:scor,
-        tib.ts:sd,
-        tib.ts:sdn,
-        tib.ts:sepio,
-        tib.ts:sh,
-        tib.ts:sio,
-        tib.ts:skos,
-        tib.ts:skosxl,
-        tib.ts:sms,
-        tib.ts:sosa,
-        tib.ts:ssn,
-        tib.ts:ssnsystem,
-        tib.ts:stato,
-        tib.ts:sto,
-        tib.ts:stw,
-        tib.ts:sustaingraph,
-        tib.ts:sweet,
-        tib.ts:swo,
-        tib.ts:t4fs,
-        tib.ts:ta,
-        tib.ts:tai,
-        tib.ts:td,
-        tib.ts:tfsco,
-        tib.ts:time,
-        tib.ts:tiva,
-        tib.ts:to,
-        tib.ts:tso,
-        tib.ts:uat,
-        tib.ts:uberon,
-        tib.ts:uo,
-        tib.ts:vann,
-        tib.ts:vibso,
-        tib.ts:vivo,
-        tib.ts:vms,
-        tib.ts:voc4cat,
-        tib.ts:vssocore,
-        tib.ts:wlmo ;
-    foaf:homepage "https://terminology.tib.eu" ;
-    bioregistry.schema:0000005 "abcd" ;
-    bioregistry.schema:0000006 "https://terminology.tib.eu/ts/ontologies/$1" ;
-    bioregistry.schema:0000019 orcid:0000-0001-5246-9351 .
-
 bioregistry:sweet a bioregistry.schema:0000001 ;
     rdfs:label "Semantic Web for Earth and Environment Technology Ontology" ;
     dcterms:contributor orcid:0000-0003-4423-4370 ;
@@ -74612,6 +74500,245 @@ bioregistry.metaresource:ontobee a bioregistry.schema:0000002 ;
     bioregistry.schema:0000006 "http://www.ontobee.org/ontology/$1" ;
     bioregistry.schema:0000007 "http://www.ontobee.org/ontology/$1?iri=http://purl.obolibrary.org/obo/$1_$2" ;
     bioregistry.schema:0000019 orcid:0000-0001-9189-9661 .
+
+bioregistry.metaresource:tib a bioregistry.schema:0000002 ;
+    rdfs:label "TIB Terminology Service" ;
+    dc:description "The TIB Terminology Service is an instance of the EBI OLS." ;
+    dcterms:hasPart tib.ts:abcd,
+        tib.ts:acsubtype,
+        tib.ts:acvariant,
+        tib.ts:aeon,
+        tib.ts:afo,
+        tib.ts:agro,
+        tib.ts:atomistic,
+        tib.ts:bao,
+        tib.ts:battinfo,
+        tib.ts:bau,
+        tib.ts:bco,
+        tib.ts:bdsubj,
+        tib.ts:bf,
+        tib.ts:bfo,
+        tib.ts:bk,
+        tib.ts:bo,
+        tib.ts:bont,
+        tib.ts:bot,
+        tib.ts:brick,
+        tib.ts:bto,
+        tib.ts:building,
+        tib.ts:cao,
+        tib.ts:cco,
+        tib.ts:ccrel,
+        tib.ts:cf,
+        tib.ts:cgo,
+        tib.ts:chebi,
+        tib.ts:cheminf,
+        tib.ts:chemrof,
+        tib.ts:chiro,
+        tib.ts:chmo,
+        tib.ts:cidoc,
+        tib.ts:cif,
+        tib.ts:cito,
+        tib.ts:co,
+        tib.ts:cob,
+        tib.ts:condo,
+        tib.ts:cora,
+        tib.ts:coy,
+        tib.ts:credit,
+        tib.ts:cto,
+        tib.ts:dcat3,
+        tib.ts:dcf,
+        tib.ts:dcterms,
+        tib.ts:destf,
+        tib.ts:dfgfo,
+        tib.ts:dices,
+        tib.ts:dicl,
+        tib.ts:dicob,
+        tib.ts:docbias,
+        tib.ts:dogont,
+        tib.ts:dot,
+        tib.ts:dpbo,
+        tib.ts:dpv,
+        tib.ts:dr,
+        tib.ts:dsw,
+        tib.ts:duo,
+        tib.ts:dwcdoe,
+        tib.ts:dwcem,
+        tib.ts:dwcpw,
+        tib.ts:eclas,
+        tib.ts:ecso,
+        tib.ts:edam,
+        tib.ts:edcc,
+        tib.ts:educationallevel,
+        tib.ts:efo,
+        tib.ts:emdat,
+        tib.ts:emg,
+        tib.ts:emmo,
+        tib.ts:energymarketroles,
+        tib.ts:enm,
+        tib.ts:envo,
+        tib.ts:et,
+        tib.ts:ets,
+        tib.ts:euroscivoc,
+        tib.ts:fabio,
+        tib.ts:fair,
+        tib.ts:fibo,
+        tib.ts:fiestaiot,
+        tib.ts:fix,
+        tib.ts:flopo,
+        tib.ts:fmi,
+        tib.ts:format,
+        tib.ts:fto,
+        tib.ts:ftonto,
+        tib.ts:gc,
+        tib.ts:gemet,
+        tib.ts:geo,
+        tib.ts:gesah,
+        tib.ts:gfo,
+        tib.ts:gist,
+        tib.ts:gndo,
+        tib.ts:go,
+        tib.ts:gpo,
+        tib.ts:gta,
+        tib.ts:hcrt,
+        tib.ts:hfs,
+        tib.ts:hp,
+        tib.ts:hpont,
+        tib.ts:iao,
+        tib.ts:idsa,
+        tib.ts:ifc,
+        tib.ts:iirds,
+        tib.ts:iirdsmch,
+        tib.ts:iirdssft,
+        tib.ts:infosecsos,
+        tib.ts:io,
+        tib.ts:ioc,
+        tib.ts:iofcore,
+        tib.ts:isced,
+        tib.ts:kdsfffk,
+        tib.ts:kitmtxx,
+        tib.ts:kpi,
+        tib.ts:linsearch,
+        tib.ts:lis,
+        tib.ts:listdb,
+        tib.ts:m4i,
+        tib.ts:mat,
+        tib.ts:mathmoddb,
+        tib.ts:mdo,
+        tib.ts:mdv,
+        tib.ts:meth,
+        tib.ts:mi,
+        tib.ts:mmo,
+        tib.ts:mod,
+        tib.ts:modalia,
+        tib.ts:modsci,
+        tib.ts:mop,
+        tib.ts:ms,
+        tib.ts:msio,
+        tib.ts:mt,
+        tib.ts:mv,
+        tib.ts:mwo,
+        tib.ts:n0,
+        tib.ts:n4e,
+        tib.ts:ncit,
+        tib.ts:nexus,
+        tib.ts:nmrcv,
+        tib.ts:obi,
+        tib.ts:oboe-core,
+        tib.ts:oefos,
+        tib.ts:oeo,
+        tib.ts:ofm,
+        tib.ts:ohdab,
+        tib.ts:om,
+        tib.ts:omp,
+        tib.ts:ontocompchem,
+        tib.ts:ontokin,
+        tib.ts:ontorxn,
+        tib.ts:openadr,
+        tib.ts:ordo,
+        tib.ts:org,
+        tib.ts:os,
+        tib.ts:osmo,
+        tib.ts:panet,
+        tib.ts:pato,
+        tib.ts:pco,
+        tib.ts:peco,
+        tib.ts:physh,
+        tib.ts:pmat,
+        tib.ts:pmd,
+        tib.ts:po,
+        tib.ts:ppeo,
+        tib.ts:ppo,
+        tib.ts:premis3,
+        tib.ts:proco,
+        tib.ts:pror,
+        tib.ts:prov,
+        tib.ts:pso,
+        tib.ts:raum,
+        tib.ts:re,
+        tib.ts:repr,
+        tib.ts:rex,
+        tib.ts:ro,
+        tib.ts:rosetta,
+        tib.ts:rxno,
+        tib.ts:s4agri,
+        tib.ts:s4auto,
+        tib.ts:s4bldg,
+        tib.ts:s4city,
+        tib.ts:s4ehaw,
+        tib.ts:s4ener,
+        tib.ts:s4envi,
+        tib.ts:s4grid,
+        tib.ts:s4inma,
+        tib.ts:s4lift,
+        tib.ts:s4mari,
+        tib.ts:s4syst,
+        tib.ts:s4watr,
+        tib.ts:s4wear,
+        tib.ts:saref,
+        tib.ts:sargon,
+        tib.ts:sbo,
+        tib.ts:schema,
+        tib.ts:scor,
+        tib.ts:sd,
+        tib.ts:sdn,
+        tib.ts:sepio,
+        tib.ts:sh,
+        tib.ts:sio,
+        tib.ts:skos,
+        tib.ts:skosxl,
+        tib.ts:sms,
+        tib.ts:sosa,
+        tib.ts:ssn,
+        tib.ts:ssnsystem,
+        tib.ts:stato,
+        tib.ts:sto,
+        tib.ts:stw,
+        tib.ts:sustaingraph,
+        tib.ts:sweet,
+        tib.ts:swo,
+        tib.ts:t4fs,
+        tib.ts:ta,
+        tib.ts:tai,
+        tib.ts:td,
+        tib.ts:tfsco,
+        tib.ts:time,
+        tib.ts:tiva,
+        tib.ts:to,
+        tib.ts:tso,
+        tib.ts:uat,
+        tib.ts:uberon,
+        tib.ts:uo,
+        tib.ts:vann,
+        tib.ts:vibso,
+        tib.ts:vivo,
+        tib.ts:vms,
+        tib.ts:voc4cat,
+        tib.ts:vssocore,
+        tib.ts:wlmo ;
+    foaf:homepage "https://terminology.tib.eu" ;
+    bioregistry.schema:0000005 "abcd" ;
+    bioregistry.schema:0000006 "https://terminology.tib.eu/ts/ontologies/$1" ;
+    bioregistry.schema:0000019 orcid:0000-0001-5246-9351 .
 
 bioregistry.metaresource:integbio a bioregistry.schema:0000002 ;
     rdfs:label "Integbio" ;
@@ -80472,6 +80599,7 @@ bioregistry.metaresource:bioregistry a bioregistry.schema:0000002 ;
         bioregistry:dc_cl,
         bioregistry:dcam,
         bioregistry:dcat,
+        bioregistry:dcatap,
         bioregistry:dcterms,
         bioregistry:dctypes,
         bioregistry:ddanat,
@@ -80556,6 +80684,7 @@ bioregistry.metaresource:bioregistry a bioregistry.schema:0000002 ;
         bioregistry:dnasu.clone,
         bioregistry:dnasu.vector,
         bioregistry:doap,
+        bioregistry:docbias,
         bioregistry:docid,
         bioregistry:dockerhub.repo,
         bioregistry:dockerhub.user,
@@ -80701,6 +80830,7 @@ bioregistry.metaresource:bioregistry a bioregistry.schema:0000002 ;
         bioregistry:epd,
         bioregistry:epio,
         bioregistry:epo,
+        bioregistry:epos,
         bioregistry:epso,
         bioregistry:erm,
         bioregistry:ero,
@@ -81594,6 +81724,7 @@ bioregistry.metaresource:bioregistry a bioregistry.schema:0000002 ;
         bioregistry:ogms,
         bioregistry:ogsf,
         bioregistry:ohd,
+        bioregistry:ohdab,
         bioregistry:ohmi,
         bioregistry:ohpi,
         bioregistry:oid,
@@ -82489,9 +82620,9 @@ bioregistry.metaresource:bioregistry a bioregistry.schema:0000002 ;
         bioregistry:vitro,
         bioregistry:vivo,
         bioregistry:vmc,
-        bioregistry:vmhgene,
-        bioregistry:vmhmetabolite,
-        bioregistry:vmhreaction,
+        bioregistry:vmh.gene,
+        bioregistry:vmh.metabolite,
+        bioregistry:vmh.reaction,
         bioregistry:vo,
         bioregistry:voc4cat,
         bioregistry:void,

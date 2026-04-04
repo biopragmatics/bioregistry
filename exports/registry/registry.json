@@ -1112,7 +1112,7 @@
     "name": "Allotrope Merged Ontology Suite",
     "preferred_prefix": "afo",
     "uri_format": "http://purl.allotrope.org/ontologies/$1",
-    "version": "2025-12-01"
+    "version": "2026-03-01"
   },
   "afpo": {
     "contact": {
@@ -7000,6 +7000,12 @@
     "uri_format": "http://www.boldsystems.org/index.php/Taxbrowser_Taxonpage?taxid=$1"
   },
   "bonsai": {
+    "contact": {
+      "email": "matteo@cs.aau.dk",
+      "github": "kuzeko",
+      "name": "Matteo Lissandrini",
+      "orcid": "0000-0001-7922-5998"
+    },
     "description": "The BONSAI ontologies provides elements of description for product footprint concepts defined in the bonsai.uno data base",
     "example": "Activity",
     "homepage": "https://github.com/BONSAMURAIS/BONSAI-ontology-RDF-framework",
@@ -11709,7 +11715,7 @@
     "rdf_uri_format": "http://purl.obolibrary.org/obo/CL_$1",
     "repository": "https://github.com/obophenotype/cell-ontology",
     "uri_format": "http://purl.obolibrary.org/obo/CL_$1",
-    "version": "2026-03-17"
+    "version": "2026-03-26"
   },
   "clao": {
     "contact": {
@@ -16069,6 +16075,7 @@
     "name": "Datanator Metabolite",
     "pattern": "^[A-Z\\-]+$",
     "preferred_prefix": "datanator.metabolite",
+    "provides": "inchikey",
     "uri_format": "https://www.datanator.info/metabolite/$1"
   },
   "datanator.reaction": {
@@ -16766,6 +16773,32 @@
     "preferred_prefix": "dcat",
     "uri_format": "http://www.w3.org/ns/dcat#$1",
     "version": "3"
+  },
+  "dcatap": {
+    "contact": {
+      "email": "arthur.schiltz@pwc.com",
+      "github": "PwC-Arthur",
+      "name": "Arthur Schiltz"
+    },
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "DCAT-AP is a DCAT profile for sharing information about Catalogues containing Datasets and Data Services descriptions in Europe, under maintenance by the SEMIC action, Interoperable Europe.\n\nThis Application Profile provides a minimal common basis within Europe to share Datasets and Data Services cross-border and cross-domain. [from homepage]",
+    "example": "applicableLegislation",
+    "github_request_issue": 1869,
+    "homepage": "https://semiceu.github.io/DCAT-AP/r5r/releases/3.0.0/",
+    "keywords": [
+      "data service",
+      "dataset",
+      "dcat"
+    ],
+    "name": "DCAT AP",
+    "preferred_prefix": "dcatap",
+    "repository": "https://github.com/SEMICeu/DCAT-AP",
+    "uri_format": "http://data.europa.eu/r5r/$1"
   },
   "dcterms": {
     "contact": {
@@ -18839,7 +18872,7 @@
     "mappings": {
       "tib": "dices"
     },
-    "name": "Digital Construction Energy (dices)",
+    "name": "Digital Construction Energy Ontology",
     "preferred_prefix": "digitalconstruction.energy",
     "uri_format": "https://w3id.org/digitalconstruction/0.5/Energy#$1"
   },
@@ -19054,7 +19087,7 @@
     "rdf_uri_format": "http://purl.obolibrary.org/obo/DISDRIV_$1",
     "repository": "https://github.com/DiseaseOntology/DiseaseDriversOntology",
     "uri_format": "http://purl.obolibrary.org/obo/DISDRIV_$1",
-    "version": "2025-03-20"
+    "version": "2026-03-27"
   },
   "diseaseclass": {
     "appears_in": [
@@ -19306,6 +19339,20 @@
     ],
     "repository": "https://github.com/ewilderj/doap",
     "uri_format": "http://usefulinc.com/ns/doap#$1"
+  },
+  "docbias": {
+    "description": "Doc-Bias, an ontology to support the documentation of bias in data",
+    "example": "associatedTo",
+    "homepage": "https://nobias-project.eu/nobias/",
+    "keywords": [
+      "nfdi4energy"
+    ],
+    "mappings": {
+      "tib": "docbias"
+    },
+    "name": "Doc-Bias Ontology",
+    "preferred_prefix": "docbias",
+    "uri_format": "https://nobias-project.eu/nobias/$1"
   },
   "docid": {
     "contact": {
@@ -22539,8 +22586,10 @@
     "example": "health_care_quality_assessment",
     "homepage": "https://bioportal.bioontology.org/ontologies/EDDA",
     "keywords": [
+      "epidemiology",
       "medicine",
-      "ontology"
+      "ontology",
+      "taxonomy"
     ],
     "mappings": {
       "aberowl": "EDDA",
@@ -25350,6 +25399,32 @@
     "rdf_uri_format": "http://purl.obolibrary.org/obo/EPO_$1",
     "uri_format": "http://purl.obolibrary.org/obo/EPO_$1"
   },
+  "epos": {
+    "contact": {
+      "email": "rossana.paciello@ingv.it",
+      "github": "rpaciello",
+      "name": "Rossana Paciello",
+      "orcid": "0000-0002-6975-1991"
+    },
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "EPOS-DCAT-AP is an extension of the DCAT Application Profile for Research Infrastructures in Environmental and the solid-Earth domains.",
+    "example": "Equipment",
+    "github_request_issue": 1869,
+    "homepage": "https://epos-eu.github.io/EPOS-DCAT-AP/v3/",
+    "keywords": [
+      "dcat",
+      "earth science"
+    ],
+    "name": "EPOS-DCAT-AP",
+    "preferred_prefix": "epos",
+    "repository": "https://github.com/epos-eu/EPOS-DCAT-AP",
+    "uri_format": "https://www.epos-eu.org/epos-dcat-ap#$1"
+  },
   "epso": {
     "contact": {
       "email": "satyasahoo@ieee.org",
@@ -26662,7 +26737,7 @@
       "FBbi"
     ],
     "uri_format": "http://purl.obolibrary.org/obo/FBbi_$1",
-    "version": "2026-01-23"
+    "version": "2026-03-30"
   },
   "fbbt": {
     "contact": {
@@ -37455,7 +37530,7 @@
     "preferred_prefix": "ictv",
     "repository": "https://github.com/EVORA-project/ictv-ontology",
     "uri_format": "http://ictv.global/id/MSL40/$1",
-    "version": "MSL40"
+    "version": "MSL41"
   },
   "ideal": {
     "contact": {
@@ -46464,6 +46539,8 @@
     "uri_format": "https://w3id.org/metpo/$1"
   },
   "mex": {
+    "comment": "content has disappeared",
+    "deprecated": true,
     "description": "A public place to process, interpret and share GC/MS metabolomics datasets.",
     "example": "36",
     "homepage": "https://www.metabolome-express.org/",
@@ -49576,7 +49653,7 @@
     "rdf_uri_format": "http://purl.obolibrary.org/obo/MP_$1",
     "repository": "https://github.com/mgijax/mammalian-phenotype-ontology",
     "uri_format": "http://purl.obolibrary.org/obo/MP_$1",
-    "version": "2026-03-18"
+    "version": "2026-03-24"
   },
   "mpath": {
     "contact": {
@@ -55941,6 +56018,22 @@
     "repository": "https://github.com/oral-health-and-disease-ontologies/ohd-ontology",
     "uri_format": "http://purl.obolibrary.org/obo/OHD_$1",
     "version": "2026-03-16"
+  },
+  "ohdab": {
+    "description": "This version of the historical German-language nomenclature for offices and professions (OhdAB) was automatically generated via a script from FactGrid.",
+    "example": "Q1059224",
+    "homepage": "https://database.factgrid.de",
+    "keywords": [
+      "history",
+      "nfdi4culture",
+      "social sciences"
+    ],
+    "mappings": {
+      "tib": "ohdab"
+    },
+    "name": "Ontology of the historical German-language nomenclature for offices and professions",
+    "preferred_prefix": "ohdab",
+    "uri_format": "https://database.factgrid.de/entity/$1"
   },
   "ohmi": {
     "contact": {
@@ -68740,7 +68833,7 @@
     "mappings": {
       "tib": "sargon"
     },
-    "name": "SARGON (SmArt eneRGy dOmain oNtology)",
+    "name": "Smart Energy Domain Ontology",
     "preferred_prefix": "sargon",
     "uri_format": "https://sargon-n5geh.netlify.app/ontology/1.0/object_properties/$1"
   },
@@ -72358,6 +72451,7 @@
       "SNOMEDCT_US_2023_10_01",
       "SNOMEDCT_US_2023_11_01",
       "SNOMEDCT_US_2024_03_01",
+      "SNOMEDCT_US_2025_09_01",
       "SNOMED_CT",
       "SNOMED_CT_US_2018_03_01",
       "SNOWMEDCT",
@@ -81933,12 +82027,17 @@
     "uri_format": "http://www.ontologies.com/Ontology3197.owl#$1"
   },
   "tib.re": {
+    "contact": {
+      "github": "sam-tombury",
+      "name": "Sam Tombury"
+    },
     "description": "An ontology of the Retail Energy Market of Great Britain created by Lidcast Data Limited.",
     "example": "Advanced_Meter",
     "homepage": "https://github.com/DataCreater/GBEnergy",
     "keywords": [
       "nfdi4energy"
     ],
+    "license": "CC-BY-SA-3.0",
     "mappings": {
       "tib": "re"
     },
@@ -83340,6 +83439,11 @@
     "uri_format": "https://purl.org/fmi-ontology#$1"
   },
   "udsaes.sms": {
+    "contact": {
+      "github": "MoritzStueber",
+      "name": "Moritz Stüber",
+      "orcid": "0000-0002-4006-8582"
+    },
     "description": "Ontology for representing systems, models and simulations in RDF.",
     "example": "CanBeApproximated",
     "homepage": "https://github.com/UdSAES/sms-ontology",
@@ -83350,7 +83454,7 @@
     "mappings": {
       "tib": "sms"
     },
-    "name": "SMS-Ontology",
+    "name": "Systems, Models, and Simulation Ontology",
     "preferred_prefix": "udsaes.sms",
     "repository": "https://github.com/UdSAES/sms-ontology",
     "uri_format": "https://purl.org/sms-ontology#$1"
@@ -86351,7 +86455,7 @@
       "https://github.com/ga4gh/vr-spec"
     ]
   },
-  "vmhgene": {
+  "vmh.gene": {
     "description": "The Virtual Metabolic Human (VMH) is a resource that combines human and gut microbiota metabolism with nutrition and disease.",
     "example": "8639.1",
     "homepage": "https://www.vmh.life/",
@@ -86360,10 +86464,10 @@
     },
     "name": "VMH Gene",
     "pattern": "^[0-9]+\\.[0-9]+$",
-    "preferred_prefix": "vmhgene",
+    "preferred_prefix": "vmh.gene",
     "uri_format": "https://www.vmh.life/#gene/$1"
   },
-  "vmhmetabolite": {
+  "vmh.metabolite": {
     "description": "The Virtual Metabolic Human (VMH) is a resource that combines human and gut microbiota metabolism with nutrition and disease.",
     "example": "h2o",
     "homepage": "https://www.vmh.life/",
@@ -86374,10 +86478,10 @@
     },
     "name": "VMH metabolite",
     "pattern": "^[a-zA-Z0-9_\\(\\_\\)\\[\\]]+$",
-    "preferred_prefix": "vmhmetabolite",
+    "preferred_prefix": "vmh.metabolite",
     "uri_format": "https://www.vmh.life/#metabolite/$1"
   },
-  "vmhreaction": {
+  "vmh.reaction": {
     "description": "The Virtual Metabolic Human (VMH) is a resource that combines human and gut microbiota metabolism with nutrition and disease.",
     "example": "HEX1",
     "homepage": "https://www.vmh.life/",
@@ -86388,7 +86492,7 @@
     },
     "name": "VMH reaction",
     "pattern": "^[a-zA-Z0-9_\\(\\_\\)\\[\\]]+$",
-    "preferred_prefix": "vmhreaction",
+    "preferred_prefix": "vmh.reaction",
     "uri_format": "https://www.vmh.life/#reaction/$1"
   },
   "vo": {
@@ -88618,7 +88722,7 @@
     "rdf_uri_format": "http://purl.obolibrary.org/obo/XLMOD_$1",
     "repository": "https://github.com/HUPO-PSI/xlmod-CV",
     "uri_format": "http://purl.obolibrary.org/obo/XLMOD_$1",
-    "version": "1.5.2"
+    "version": "1.5.3"
   },
   "xmetdb": {
     "banana": "XMETDB",
@@ -89188,7 +89292,7 @@
       "name": "Ceri Van Slyke",
       "orcid": "0000-0002-2244-7917"
     },
-    "description": "ZFA description.",
+    "description": "A structured controlled vocabulary of the anatomy and development of the Zebrafish",
     "download_json": "http://purl.obolibrary.org/obo/zfa.json",
     "download_obo": "http://purl.obolibrary.org/obo/zfa.obo",
     "download_owl": "http://purl.obolibrary.org/obo/zfa.owl",
@@ -89245,7 +89349,7 @@
       "ZFA_RETIRED"
     ],
     "uri_format": "http://purl.obolibrary.org/obo/ZFA_$1",
-    "version": "2025-09-05"
+    "version": "2026-03-30"
   },
   "zfin": {
     "description": "ZFIN serves as the zebrafish model organism database. This collection references all zebrafish biological entities in ZFIN.",
