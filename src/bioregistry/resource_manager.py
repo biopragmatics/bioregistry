@@ -2231,6 +2231,52 @@ class Manager:
             for short_name in data.get("short_names", [])
         }
 
+    def get_collection_first_party(
+        self, collection: str | Collection, skip_org_rors: set[str] | None = None
+    ) -> dict[str, bool]:
+        """Get a mapping from prefix to first-party or not.
+
+        A prefix is first party if:
+
+        1. One of the maintainers of the collection is also a contact or contact extra
+        2. One of the organizations of the collection is also an organization of the record
+        """
+        if isinstance(collection, str):
+            collection = self.collections[collection]
+        calls: dict[str, bool] = {}
+        for prefix in collection.resources:
+            resource = self.get_resource(prefix, strict=True)
+            owners = resource.owners or []
+            if skip_org_rors is not None:
+                owners = [o for o in owners if o.ror not in skip_org_rors]
+            if any(
+                owner.ror == resource_owner.ror
+                for owner in collection.organizations or []
+                for resource_owner in owners
+                if owner.ror is not None and resource_owner.ror is not None
+            ):
+                calls[prefix] = True
+            elif (
+                resource.contact is not None
+                and resource.contact.orcid is not None
+                and any(
+                    resource.contact.orcid == maintainer.orcid
+                    for maintainer in collection.maintainers or []
+                    if maintainer.orcid is not None
+                )
+            ):
+                calls[prefix] = True
+            elif any(
+                contact.orcid == maintainer.orcid
+                for maintainer in collection.maintainers or []
+                for contact in resource.contact_extras or []
+                if contact.orcid is not None and maintainer.orcid is not None
+            ):
+                calls[prefix] = True
+            else:
+                calls[prefix] = False
+        return calls
+
 
 def _read_contributors(
     registry: dict[str, Resource],

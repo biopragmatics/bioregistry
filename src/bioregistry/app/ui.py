@@ -32,7 +32,7 @@ from .utils import (
     serialize_model,
 )
 from .. import version
-from ..constants import INTERNAL_LABEL, INTERNAL_METAPREFIX, NDEX_UUID
+from ..constants import INTERNAL_LABEL, INTERNAL_METAPREFIX, NDEX_UUID, NFDI_ROR
 from ..export.rdf_export import (
     collection_to_rdf_str,
     metaresource_to_rdf_str,
@@ -266,12 +266,14 @@ def collection(identifier: str) -> str | flask.Response:
     if accept != "text/html":
         return serialize_model(entry, collection_to_rdf_str, negotiate=True)
     indirect = manager.get_collection_indirect_dependencies(entry)
+    first_party = manager.get_collection_first_party(entry, skip_org_rors={NFDI_ROR})
     return render_template(
         "collection.html",
         identifier=identifier,
         entry=entry,
         resources={prefix: manager.get_resource(prefix) for prefix in entry.resources},
         indirect=indirect,
+        first_party=first_party,
         formats=[
             *FORMATS,
             ("Context (JSON-LD)", "context"),
