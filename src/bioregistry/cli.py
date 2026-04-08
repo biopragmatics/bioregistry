@@ -121,5 +121,19 @@ def update(ctx: click.Context) -> None:
         click.secho(str(e), fg="red")
 
 
+@main.group()
+def curate() -> None:
+    """Curation workflows."""
+
+
+@curate.command()
+@click.argument("url")
+def linkml(url: str) -> None:
+    """Import from LinkML."""
+    from .curation.add_linkml import import_from_linkml
+
+    import_from_linkml(url)
+
+
 if __name__ == "__main__":
     main()
