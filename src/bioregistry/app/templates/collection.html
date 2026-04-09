@@ -121,13 +121,13 @@
             {%- set resource = resources[annotated_prefix.prefix] %}
             <tr>
                 <td>
-                    <code>{{ annotated_prefix.prefix }}</code>
+                    <code>{{ resource.prefix }}</code>
                 </td>
                 <td>
                     <a href="{{ url_for('metaregistry_ui.resource', prefix=resource.prefix) }}">
                         {{ resource.get_name() }} {{ utils.render_resource_warnings(resource) }}
                     </a>
-                    {%- if first_party[annotated_prefix.prefix] %}
+                    {%- if first_party[resource.prefix] %}
                     <span class="badge badge-primary"><i class="bi bi-check-circle-fill"></i> First Party</span>
                     {%- endif %}
 
