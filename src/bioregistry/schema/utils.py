@@ -26,11 +26,25 @@ def sanitize_dict(d: dict[str, Any]) -> dict[str, Any]:
     return rv
 
 
-def sanitize_model(base_model: BaseModel, exclude_unset:bool=True, exclude_none: bool=True, **kwargs: Any) -> Mapping[str, Any]:
+def sanitize_model(
+    base_model: BaseModel, exclude_unset: bool = True, exclude_none: bool = True, **kwargs: Any
+) -> Mapping[str, Any]:
     """Sanitize a single Pydantic model."""
-    return sanitize_dict(base_model.model_dump(exclude_none=exclude_none, exclude_unset=exclude_unset, **kwargs))
+    return sanitize_dict(
+        base_model.model_dump(exclude_none=exclude_none, exclude_unset=exclude_unset, **kwargs)
+    )
 
 
-def sanitize_mapping(mapping: Mapping[str, BaseModel], exclude_unset:bool=True, exclude_none: bool=True, **kwargs: Any) -> dict[str, Mapping[str, Any]]:
+def sanitize_mapping(
+    mapping: Mapping[str, BaseModel],
+    exclude_unset: bool = True,
+    exclude_none: bool = True,
+    **kwargs: Any,
+) -> dict[str, Mapping[str, Any]]:
     """Sanitize a dictionary whose values are Pydantic models."""
-    return {key: sanitize_model(base_model, exclude_unset=exclude_unset, exclude_none=exclude_none, **kwargs) for key, base_model in mapping.items()}
+    return {
+        key: sanitize_model(
+            base_model, exclude_unset=exclude_unset, exclude_none=exclude_none, **kwargs
+        )
+        for key, base_model in mapping.items()
+    }
