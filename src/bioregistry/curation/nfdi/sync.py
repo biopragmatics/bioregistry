@@ -17,6 +17,7 @@ KEYWORD_TO_COLLECTION = {v: k for k, v in get_collection_mappings("tib.collectio
 
 
 def _import_tib() -> None:
+    tqdm.write("\n\nImporting Collections from TIB OLS\n\n")
     counter: Counter[str] = Counter()
 
     tib_to_internal = bioregistry.get_registry_invmap("tib")
@@ -58,8 +59,8 @@ def _import_bartoc() -> None:
 @click.command()
 def main() -> None:
     """Populate collections based on keywords from the TIB terminology service."""
-    # _import_tib()
     _import_bartoc()
+    _import_tib()
 
 
 if __name__ == "__main__":
