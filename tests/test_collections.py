@@ -6,11 +6,12 @@ from collections import Counter
 
 import rdflib
 
+import bioregistry
 from bioregistry import manager
 from bioregistry.constants import NFDI_ROR
 from bioregistry.export.rdf_export import collection_to_rdf_str
 from bioregistry.schema import Collection
-from bioregistry.schema_utils import _collection_resource_key
+from bioregistry.schema_utils import _lint_collection_resources
 
 logger = logging.getLogger(__name__)
 
@@ -47,8 +48,14 @@ class TestCollections(unittest.TestCase):
                 }
                 self.assertEqual(set(), duplicates, msg="Duplicates found")
                 self.assertEqual(
-                    sorted(collection.resources, key=_collection_resource_key), collection.resources
+                    _lint_collection_resources(collection.resources), collection.resources
                 )
+
+                for mapping in collection.mappings or []:
+                    self.assertTrue(
+                        bioregistry.is_valid_curie(mapping.curie),
+                        msg=f"invalid mapping: {mapping.curie}",
+                    )
 
     def test_get_collection(self) -> None:
         """Test getting a collection."""

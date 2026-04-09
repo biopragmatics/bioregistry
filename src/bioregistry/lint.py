@@ -14,7 +14,7 @@ def lint() -> None:
 
     from .constants import CURATED_MAPPINGS_PATH, CURATED_PAPERS_PATH
     from .schema_utils import (
-        _collection_resource_key,
+        _lint_collection_resources,
         read_collections,
         read_contexts,
         read_mappings,
@@ -57,7 +57,7 @@ def lint() -> None:
     write_registry(registry)
     collections = read_collections()
     for collection in collections.values():
-        collection.resources = sorted(set(collection.resources), key=_collection_resource_key)
+        collection.resources = _lint_collection_resources(collection.resources)
     write_collections(collections)
     write_metaregistry(read_metaregistry())
     write_contexts(read_contexts())
