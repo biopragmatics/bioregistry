@@ -57,7 +57,7 @@ def lint() -> None:
     write_registry(registry)
     collections = read_collections()
     for collection in collections.values():
-        collection.resources = sorted(set(collection.resources), key=_collection_resource_key)
+        collection.resources = sorted(collection.resources, key=_collection_resource_key)
     write_collections(collections)
     write_metaregistry(read_metaregistry())
     write_contexts(read_contexts())
