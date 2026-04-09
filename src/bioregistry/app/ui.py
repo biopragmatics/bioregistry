@@ -6,7 +6,7 @@ import datetime
 import itertools as itt
 import json
 import platform
-from collections import defaultdict
+from collections import Counter, defaultdict
 from collections.abc import Iterable
 from operator import attrgetter
 from pathlib import Path
@@ -703,4 +703,8 @@ def show_nfdi() -> str:
     nfdi_collections = [
         c for c in manager.collections.values() if c.has_organization_with_ror(NFDI_ROR)
     ]
-    return render_template("nfdi.html", collections=nfdi_collections)
+
+    # who is used more than once?
+    counter = Counter(prefix for c in nfdi_collections for prefix in c.get_prefixes())
+
+    return render_template("nfdi.html", collections=nfdi_collections, prefix_counter=counter)
