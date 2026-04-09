@@ -21,6 +21,7 @@ from ..export.rdf_export import (
 )
 from ..resource_manager import Manager
 from ..schema import Attributable, Collection, Context, Registry, Resource, sanitize_mapping
+from ..schema.struct import OlsConfig
 from ..schema_utils import (
     read_collections_contributions,
     read_prefix_contacts,
@@ -170,6 +171,30 @@ def get_resource(
         )
     else:
         raise UnhandledFormat(format)
+
+
+@api_router.get(
+    "/download/ols/{prefix}.json",
+    response_model=OlsConfig,
+    tags=["resource"],
+    response_model_exclude_none=True,
+    response_model_exclude_unset=True,
+)
+def get_resource_ols_config(
+    manager: DependsManager,
+    prefix: str = Path(
+        title="Prefix", description="The internal prefix for the entry", examples=["doid"]
+    ),
+) -> OlsConfig:
+    """Get OLS configuration for a resource."""
+    resource = manager.get_resource(prefix)
+    if resource is None:
+        raise HTTPException(status_code=404, detail=f"Prefix not found: {prefix}")
+    try:
+        ols_config = resource.get_ols_config()
+    except ValueError as e:
+        raise HTTPException(status_code=400, detail=str(e)) from None
+    return ols_config
 
 
 @api_router.get(
@@ -446,6 +471,39 @@ def get_collection_mapped(
         version_mappings={k: sorted(v) for k, v in version_mappings.items()},
         provider_mappings={k: sorted(v) for k, v in provider_mappings.items()},
     )
+
+
+class OlsCollectionResult(BaseModel):
+    """Represent mappings from an external registry."""
+
+    configurations: list[OlsConfig]
+    missing: list[str]
+
+
+@api_router.get(
+    "/collection/{identifier}/ols.json",
+    response_model=OlsCollectionResult,
+    tags=["collection"],
+)
+def get_collection_ols_configurations(
+    manager: DependsManager,
+    identifier: Annotated[str, COLLECTION_IDENTIFIER],
+) -> OlsCollectionResult:
+    collection = manager.collections.get(identifier)
+    if collection is None:
+        raise HTTPException(status_code=404, detail=f"Collection not found: {identifier}")
+
+    rv = []
+    missing = []
+    for prefix in collection.get_prefixes():
+        resource = manager.get_resource(prefix, strict=True)
+        try:
+            conf = resource.get_ols_config()
+        except ValueError:
+            missing.append(prefix)
+        else:
+            rv.append(conf)
+    return OlsCollectionResult(configurations=rv, missing=missing)
 
 
 @api_router.get("/context", response_model=Mapping[str, Context], tags=["context"])
