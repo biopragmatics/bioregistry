@@ -50,6 +50,9 @@ def import_from_linkml(url: str) -> None:
     bioregistry.manager.write_registry()
 
 
+GITHUB_URL_PREFIX = "https://github.com/"
+
+
 def _fix_github(url: str) -> str:
     """Fix copy-pasted GitHub URLs.
 
@@ -58,15 +61,23 @@ def _fix_github(url: str) -> str:
     ... )
     'https://github.com/ghga-de/ghga-metadata-schema/raw/refs/heads/main/src/schema/submission.yaml'
     """
-    if url.startswith("https://github.com/") and "/blob/" in url:
+    if url.startswith(GITHUB_URL_PREFIX) and "/blob/" in url:
         url = url.split("#")[0]  # strip off any anchors
         url = url.replace("/blob/", "/raw/refs/heads/")
     return url
 
 
 def _extract_repository(url: str) -> str | None:
-    if url.startswith("https://github.com/"):
-        raise NotImplementedError
+    """Extract a GitHub repository URL from a file URL.
+
+     >>> _extract_repository(
+    ...     "https://github.com/ghga-de/ghga-metadata-schema/blob/main/src/schema/submission.yaml"
+    ... )
+    'https://github.com/ghga-de/ghga-metadata-schema'
+    """
+    if url.startswith(GITHUB_URL_PREFIX):
+        parts = url[len(GITHUB_URL_PREFIX) :].split("/")
+        return GITHUB_URL_PREFIX + "/".join(parts[:2])
     return None
 
 
