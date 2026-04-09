@@ -19,20 +19,20 @@
     <table class="table table-striped">
         <thead>
         <tr>
-            <th>Identifier</th>
+            <th>Collection</th>
             <th>Name</th>
             <th>{{ title }} Collection</th>
         </tr>
         </thead>
         <tbody>
-        {%- for internal_id, external_id in mappings.items() %}
+        {%- for collection_id, external_id in mappings.items() %}
         <tr>
             <td>
-                <a href="{{ url_for('metaregistry_ui.collection', identifier=internal_id) }}">
-                    {{ internal_id }}
+                <a href="{{ url_for('metaregistry_ui.collection', identifier=collection_id) }}">
+                    {{ collection_id }}
                 </a>
             </td>
-            <td>{{ collections[internal_id].name }}</td>
+            <td>{{ collections[collection_id].name }}</td>
             <td>
                 <a href="{{ url_for('metaregistry_ui.resolve', prefix=external_prefix, identifier=external_id) }}">
                     {{ external_id }}
@@ -88,5 +88,57 @@
 {{ external_mapping_card("TIB", "tib.collection", tib_collection_mappings) }}
 
 {{ external_mapping_card("BARTOC", "bartoc", bartoc_collection_mappings) }}
+
+<div class="card mt-4">
+    <div class="card-header">
+        TIB OLS Opportunities
+    </div>
+    <div class="card-body">
+        <p>
+            There are {{ tib_opportunities | length }} ontologies appearing in NFDI collections
+            that have concrete download links in {{ config.METAREGISTRY_TITLE }}, but are not
+            yet indexed in the TIB OLS.
+            <a class="badge badge-pill badge-light"
+               href="{{ fastapi_url_for('get_ols_configurations', prefixes=tib_opportunities | join(',')) }}">
+                Download All OLS Configurations <i class="bi bi-cloud-arrow-down-fill"></i>
+            </a>
+        </p>
+
+    </div>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>Collection</th>
+            <th>Name</th>
+            <th># Ontologies</th>
+            <th>Example</th>
+            <th>OLS Config.</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for collection_id, prefixes in collection_to_tib_opportunities.items() %}
+        <tr>
+            <td>
+                <a href="{{ url_for('metaregistry_ui.collection', identifier=collection_id) }}">
+                    {{ collection_id }}
+                </a>
+            </td>
+            <td>{{ collections[collection_id].name }}</td>
+            <td align="right">{{ prefixes | length }}</td>
+            <td>
+                <a href="{{ url_for('metaregistry_ui.resource', prefix=prefixes[0]) }}">
+                    {{ manager.get_name(prefixes[0]) }} (<code>{{ prefixes[0] }}</code>)
+                </a>
+            </td>
+            <td align="center">
+                <a href="{{ fastapi_url_for('get_ols_configurations', prefixes=prefixes | join(',')) }}">
+                    <i class="bi bi-cloud-arrow-down-fill"></i>
+                </a>
+            </td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
 
 {%- endblock %}

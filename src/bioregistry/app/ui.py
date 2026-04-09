@@ -708,9 +708,22 @@ def show_nfdi() -> str:
     }
     tib_collection_mappings = get_collection_mappings("tib.collection")
     bartoc_collection_mappings = get_collection_mappings("bartoc")
+    collection_to_tib_opportunities = defaultdict(list)
+    tib_opportunities = set()
+    for collection_ in nfdi_collections.values():
+        for prefix in collection_.get_prefixes():
+            if prefix == "bioregistry":
+                continue
+            resource_ = manager.get_resource(prefix, strict=True)
+            if not resource_.get_mapped_prefix("tib") and resource_.has_download():
+                collection_to_tib_opportunities[collection_.identifier].append(prefix)
+                tib_opportunities.add(prefix)
+
     return render_template(
         "nfdi.html",
         collections=nfdi_collections,
         tib_collection_mappings=tib_collection_mappings,
         bartoc_collection_mappings=bartoc_collection_mappings,
+        collection_to_tib_opportunities=collection_to_tib_opportunities,
+        tib_opportunities=tib_opportunities,
     )

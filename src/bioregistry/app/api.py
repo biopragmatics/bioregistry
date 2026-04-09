@@ -184,7 +184,7 @@ def get_resource(
 @api_router.get(
     "/registry/{prefix}/ols.json",
     response_model=OlsConfig,
-    tags=["resource"],
+    tags=["resource", "ols"],
     response_model_exclude_none=True,
     response_model_exclude_unset=True,
 )
@@ -481,7 +481,7 @@ def get_collection_mapped(
     )
 
 
-class CollectionOLSConfigurations(BaseModel):
+class OLSConfigurations(BaseModel):
     """Represent mappings from an external registry."""
 
     configurations: list[OlsConfig]
@@ -489,21 +489,38 @@ class CollectionOLSConfigurations(BaseModel):
 
 
 @api_router.get(
+    "/ols/{prefixes}",
+    response_model=OLSConfigurations,
+    tags=["ols"],
+)
+def get_ols_configurations(
+    manager: DependsManager,
+    prefixes: Annotated[str, Path(..., examples=["cl,doid,mondo"])],
+) -> OLSConfigurations:
+    """Get OLS configurations for multiple prefixes given as a query parameter."""
+    return _get_multiple_ols_configurations(prefixes.split(","), manager)
+
+
+@api_router.get(
     "/collection/{identifier}/ols.json",
-    response_model=CollectionOLSConfigurations,
-    tags=["collection"],
+    response_model=OLSConfigurations,
+    tags=["collection", "ols"],
 )
 def get_collection_ols_configurations(
     manager: DependsManager,
     identifier: Annotated[str, COLLECTION_IDENTIFIER],
-) -> CollectionOLSConfigurations:
+) -> OLSConfigurations:
     """Get OLS configurations for all ontologies in a collection with sufficient metadata."""
     collection = manager.collections.get(identifier)
     if collection is None:
         raise HTTPException(status_code=404, detail=f"Collection not found: {identifier}")
+    return _get_multiple_ols_configurations(collection.get_prefixes(), manager)
+
+
+def _get_multiple_ols_configurations(prefixes: list[str], manager: Manager) -> OLSConfigurations:
     configurations = []
     missing = []
-    for prefix in collection.get_prefixes():
+    for prefix in prefixes:
         resource = manager.get_resource(prefix, strict=True)
         try:
             configuration = resource.get_ols_config()
@@ -511,7 +528,7 @@ def get_collection_ols_configurations(
             missing.append(prefix)
         else:
             configurations.append(configuration)
-    return CollectionOLSConfigurations(configurations=configurations, missing=missing)
+    return OLSConfigurations(configurations=configurations, missing=missing)
 
 
 @api_router.get("/context", response_model=Mapping[str, Context], tags=["context"])
