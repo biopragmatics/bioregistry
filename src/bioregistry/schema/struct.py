@@ -2447,14 +2447,15 @@ class Resource(BaseModel):
 
     def has_download(self) -> bool:
         """Check if this resource can be downloaded."""
-        return any(
-            (
-                self.get_download_obo(),
-                self.get_download_owl(),
-                self.get_download_obograph(),
-                self.get_download_rdf(),
-            )
-        )
+        return any(self._downloads())
+
+    def _downloads(self) -> list[str | None]:
+        return [
+            self.get_download_obo(),
+            self.get_download_owl(),
+            self.get_download_obograph(),
+            self.get_download_rdf(get_format=False),
+        ]
 
     def get_license(self) -> str | None:
         """Get the license for the resource."""
@@ -2538,6 +2539,109 @@ class Resource(BaseModel):
         if license_url:
             rv["license"] = license_url
         return rv
+
+    def get_ols_config(self, ontology_purl: str | None = None) -> OlsConfig:
+        """Get a JSON configuration usable in the OLS."""
+        creators = []
+        if contact := self.get_contact():
+            creators.append(contact.name)
+            if self.contact_extras:
+                creators.extend(ce.name for ce in self.contact_extras if ce.name)
+        else:
+            creators = [
+                "Converted to OWL by Charles Tapley Hoyt (cthoyt@gmail.com), "
+                "no primary contact information is available."
+            ]
+
+        description = ""
+        if description_ := self.get_description():
+            description += description_
+        if license_ := self.get_license():
+            description += f" Licensed under {license_}."
+
+        for url in self._downloads():
+            if url is not None:
+                ontology_purl = url
+                break
+        else:
+            raise ValueError("no OWL nor OBO download available")
+
+        values = {
+            # as per https://github.com/EBISPOT/ols4/pull/896#discussion_r2126144218
+            "id": self.prefix,
+            "reasoner": "none",
+            "oboSlims": False,
+            # typo on purpose, since OLS has a typo
+            "is_foundary": self.get_obofoundry_prefix() is not None,
+            "ontology_purl": ontology_purl,
+            ######################################################################
+            # The remainder are ontology metadata, which could be part of the    #
+            # ontology itself.                                                   #
+            #                                                                    #
+            # See https://github.com/OBOFoundry/OBOFoundry.github.io/issues/1365 #
+            ######################################################################
+            # Property: dcterms:creator
+            "creator": creators,
+            # http://purl.org/vocab/vann/preferredNamespacePrefix
+            "preferredPrefix": self.get_preferred_prefix() or self.prefix,
+            # Property: dcterms:title
+            "title": self.get_name(),
+            # Property: dcterms:description
+            "description": description,
+            # TODO figure out why there's dupicate on `uri` and `homepage`
+            "uri": self.get_homepage(),
+            # Property:  foaf:homepage
+            "homepage": self.get_homepage(),
+            # Property: http://usefulinc.com/ns/doap#mailing-list
+            "mailing_list": self.get_mailing_list() or self.get_contact_email(),
+            # TODO add to OMO
+            "label_property": "https://www.w3.org/2000/01/rdf-schema#label",
+            # TODO add to OMO
+            "definition_property": [
+                "http://purl.org/dc/terms/description",
+            ],
+            # TODO add to OMO
+            "synonym_property": [
+                "http://www.geneontology.org/formats/oboInOwl#hasExactSynonym",
+                "http://www.geneontology.org/formats/oboInOwl#hasNarrowSynonym",
+                "http://www.geneontology.org/formats/oboInOwl#hasBroadSynonym",
+                "http://www.geneontology.org/formats/oboInOwl#hasCloseSynonym",
+            ],
+            # See https://github.com/information-artifact-ontology/ontology-metadata/pull/193
+            "hierarchical_property": [
+                "https://www.w3.org/2000/01/rdf-schema#subClassOf",
+            ],
+            "hidden_property": [],
+            # http://purl.org/vocab/vann/preferredNamespaceUri
+            "base_uri": [
+                self.get_rdf_uri_prefix() or self.get_uri_prefix(),
+            ],
+            # TODO root terms IAO_0000700 (preferred_root_term)
+        }
+        return OlsConfig.model_validate(values)
+
+
+class OlsConfig(BaseModel):
+    """A configuration for the Ontology Lookup Service (OLS)."""
+
+    id: str
+    reasoner: str
+    oboSlims: bool  # noqa:N815
+    is_foundary: bool
+    ontology_purl: str
+    creator: list[str]
+    preferredPrefix: str  # noqa:N815
+    title: str
+    description: str
+    uri: str | None
+    homepage: str | None
+    mailing_list: str | None
+    label_property: str
+    definition_property: list[str]
+    synonym_property: list[str]
+    hierarchical_property: list[str]
+    hidden_property: list[str]
+    base_uri: list[str]
 
 
 SchemaStatus = Literal["required", "required*", "present", "present*", "missing"]

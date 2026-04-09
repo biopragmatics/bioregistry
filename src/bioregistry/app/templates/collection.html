@@ -90,13 +90,15 @@
                         <dd><a href="{{ reference }}">{{ reference }}</a></dd>
                     {% endfor %}
                 {% endif %}
+
                 {%- if entry.mappings %}
                 <dt>Related Collections</dt>
                 {%- for mapping in entry.mappings %}
                 <dd><a href="{{ url_for('metaregistry_ui.resolve', prefix=mapping.prefix, identifier=mapping.identifier) }}"><code>{{ mapping.curie }}</code></a></dd>
                 {%- endfor %}
                 {%- endif %}
-                <dt>Download External Mappings</dt>
+
+                <dt>Downloads</dt>
                 <dd>
                     <span class="dropdown">
                         <span class="badge badge-pill badge-light" type="button" data-toggle="dropdown"
@@ -112,6 +114,10 @@
                             {%- endfor %}
                         </span>
                     </span>
+                    <a class="badge badge-pill badge-light"
+                       href="{{ fastapi_url_for('get_collection_ols_configurations', identifier=entry.identifier) }}">
+                        OLS Configurations
+                    </a>
                 </dd>
             </dl>
         </div>
