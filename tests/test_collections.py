@@ -51,8 +51,11 @@ class TestCollections(unittest.TestCase):
                     sorted(collection.resources, key=_collection_resource_key), collection.resources
                 )
 
-                for mapping in collection.mappings:
-                    self.assertTrue(bioregistry.is_valid_curie(mapping.curie))
+                for mapping in collection.mappings or []:
+                    self.assertTrue(
+                        bioregistry.is_valid_curie(mapping.curie),
+                        msg=f"invalid mapping: {mapping.curie}",
+                    )
 
     def test_get_collection(self) -> None:
         """Test getting a collection."""

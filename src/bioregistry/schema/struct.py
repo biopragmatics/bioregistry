@@ -26,7 +26,6 @@ from typing import (
 )
 
 import click
-
 from curies import Reference
 from curies.w3c import NCNAME_RE
 from pydantic import BaseModel, EmailStr, Field, PrivateAttr
