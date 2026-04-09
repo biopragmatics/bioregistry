@@ -134,7 +134,7 @@
                     {%- endif %}
                 </td>
                 <td>
-                    {%- set license = resources[prefix].get_license() %}
+                    {%- set license = resource.get_license() %}
                     {%- if not license %}
                     {%- elif license.startswith("http") %}
                     <a href="{{ license }}">Custom</a>
