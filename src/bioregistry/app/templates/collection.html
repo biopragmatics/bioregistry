@@ -62,26 +62,36 @@
                 </dd>
                 {%- endfor %}
                 {%- endif %}
+
+                {%- if entry.contributors %}
                 <dt>Contributors</dt>
-                    {%- for author in entry.authors %}
-                    <dd style="margin-bottom: 0;">
-                        <a href="{{ url_for('metaregistry_ui.contributor', orcid=author.orcid) }}">
-                            {{ author.name }} {{ utils.orcid_img() }}
-                        </a>
-                    </dd>
-                    {%- endfor %}
-                    {%- if entry.organizations %}
-                    {%- for organization in entry.organizations %}
-                    <dd style="margin-bottom: 0;">
-                        <a href="{{ organization.link }}">
-                            {{ organization.name }}
-                            {%- if organization.ror -%}
-                            {{ utils.ror_img() }}
-                            {%- endif %}
-                        </a>
-                    </dd>
-                    {%- endfor %}
-                    {%- endif %}
+                {%- for contributor in entry.contributors %}
+                <dd style="margin-bottom: 0;">
+                    {% if contributor.orcid %}
+                    <a href="{{ url_for('metaregistry_ui.contributor', orcid=contributor.orcid) }}">
+                        {{ contributor.name }} {{ utils.orcid_img() }}
+                    </a>
+                    {% else %}
+                    {{ contributor.name }}
+                    {% endif %}
+                </dd>
+                {%- endfor %}
+                {%- endif %}
+
+                {%- if entry.organizations %}
+                <dt>Organizations</dt>
+                {%- for organization in entry.organizations %}
+                <dd style="margin-bottom: 0;">
+                    <a href="{{ organization.link }}">
+                        {{ organization.name }}
+                        {%- if organization.ror -%}
+                        {{ utils.ror_img() }}
+                        {%- endif %}
+                    </a>
+                </dd>
+                {%- endfor %}
+                {%- endif %}
+
                 <dt>Size</dt>
                 <dd>{{ entry.resources | length }}</dd>
                 {% if entry.references %}
@@ -90,7 +100,15 @@
                         <dd><a href="{{ reference }}">{{ reference }}</a></dd>
                     {% endfor %}
                 {% endif %}
-                <dt>Download External Mappings</dt>
+
+                {%- if entry.mappings %}
+                <dt>Related Collections</dt>
+                {%- for mapping in entry.mappings %}
+                <dd><a href="{{ url_for('metaregistry_ui.resolve', prefix=mapping.prefix, identifier=mapping.identifier) }}"><code>{{ mapping.curie }}</code></a></dd>
+                {%- endfor %}
+                {%- endif %}
+
+                <dt>Downloads</dt>
                 <dd>
                     <span class="dropdown">
                         <span class="badge badge-pill badge-light" type="button" data-toggle="dropdown"
@@ -106,6 +124,10 @@
                             {%- endfor %}
                         </span>
                     </span>
+                    <a class="badge badge-pill badge-light"
+                       href="{{ fastapi_url_for('get_collection_ols_configurations', identifier=entry.identifier) }}">
+                        OLS Configurations
+                    </a>
                 </dd>
             </dl>
         </div>

@@ -79,6 +79,12 @@
                                     {{ label }} <i class="bi bi-download"></i>
                                 </a>
                             {% endfor %}
+                            {%- if resource.has_download() %}
+                            <a class="dropdown-item"
+                               href="{{ fastapi_url_for('get_resource_ols_config', prefix=prefix) }}">
+                                    OLS Configuration <i class="bi bi-download"></i>
+                            </a>
+                            {%- endif %}
                         </div>
                     </div>
                     <a class="btn btn-sm btn-outline-dark" style="margin-right: 0.5em"

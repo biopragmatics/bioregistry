@@ -1,19 +1,11 @@
 """Export components of the bioregistry to YAML."""
 
-import json
+from typing import TYPE_CHECKING
 
 import click
-import yaml
 
-from ..constants import (
-    COLLECTIONS_YAML_PATH,
-    METAREGISTRY_YAML_PATH,
-    REGISTRY_JSON_PATH,
-    REGISTRY_YAML_PATH,
-)
-from ..resource_manager import Manager
-from ..schema import sanitize_mapping
-from ..utils import get_hexdigests
+if TYPE_CHECKING:
+    from ..resource_manager import Manager
 
 __all__ = ["export_yaml", "export_yaml_helper"]
 
@@ -26,6 +18,22 @@ def export_yaml() -> None:
 
 def export_yaml_helper(manager_: Manager | None = None, output: bool = True) -> None:
     """Help export the bioregistry to YAML."""
+    import json
+
+    import yaml
+
+    from ..constants import (
+        COLLECTIONS_YAML_PATH,
+        METAREGISTRY_YAML_PATH,
+        REGISTRY_JSON_PATH,
+        REGISTRY_YAML_PATH,
+    )
+    from ..resource_manager import Manager
+    from ..schema import sanitize_mapping
+    from ..utils import get_hexdigests, registry_yaml_dumper
+
+    registry_yaml_dumper()
+
     pre_digests = get_hexdigests()
 
     if manager_ is None:

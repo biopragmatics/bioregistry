@@ -76,6 +76,22 @@
           "default": null,
           "description": "The GitHub handle enables contacting the researcher on GitHub: the *de facto* version control in the computer sciences and life sciences.",
           "title": "GitHub handle"
+        },
+        "wikidata": {
+          "anyOf": [
+            {
+              "pattern": "^Q\\d+$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "examples": [
+            "Q47475003"
+          ],
+          "title": "Wikidata identifier"
         }
       },
       "required": [
@@ -123,6 +139,22 @@
           "default": null,
           "description": "The GitHub handle enables contacting the researcher on GitHub: the *de facto* version control in the computer sciences and life sciences.",
           "title": "GitHub handle"
+        },
+        "wikidata": {
+          "anyOf": [
+            {
+              "pattern": "^Q\\d+$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "examples": [
+            "Q47475003"
+          ],
+          "title": "Wikidata identifier"
         }
       },
       "required": [
@@ -170,7 +202,7 @@
         "contributors": {
           "description": "A list of authors/contributors to the collection",
           "items": {
-            "$ref": "#/$defs/Author"
+            "$ref": "#/$defs/Attributable"
           },
           "minItems": 1,
           "title": "Contributors",
@@ -265,6 +297,21 @@
           ],
           "default": null,
           "title": "Keywords"
+        },
+        "mappings": {
+          "anyOf": [
+            {
+              "items": {
+                "$ref": "#/$defs/Reference"
+              },
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Mappings"
         }
       },
       "required": [
@@ -656,6 +703,27 @@
         }
       },
       "title": "Publication",
+      "type": "object"
+    },
+    "Reference": {
+      "description": "A reference to an entity in a given identifier space.\n\nThis class uses Pydantic to make it easier to build other\nmore complex data types with Pydantic that also uses a first-\nclass notion of parsed reference (instead of merely stringified\nCURIEs). Instances of this class can also be hashed because of the\n\"frozen\" configuration from Pydantic (see\nhttps://docs.pydantic.dev/latest/usage/model_config/ for more details).\n\nA reference can be constructed several ways:\n\n>>> Reference(prefix=\"chebi\", identifier=\"1234\")\nReference(prefix='chebi', identifier='1234')\n\n>>> Reference.from_curie(\"chebi:1234\")\nReference(prefix='chebi', identifier='1234')\n\nA reference can also be constructued using Pydantic's parsing utilities,\nbut keep in mind if you're using Pydantic v1 or Pydantic v2.\n\nA reference can be formatted as a CURIE string with\nthe ``curie`` attribute\n\n>>> Reference.from_curie(\"chebi:1234\").curie\n'chebi:1234'\n\nReferences can't be sliced like reference tuples, but they can still\nbe accessed through attributes\n\n>>> t = Reference.from_curie(\"chebi:1234\")\n>>> t.prefix\n'chebi'\n>>> t.identifier\n'1234'\n\nIf you need a performance gain, you can get a :class:`ReferenceTuple`\nusing the ``pair`` attribute:\n\n>>> reference = Reference.from_curie(\"chebi:1234\")\n>>> reference.pair\nReferenceTuple(prefix='chebi', identifier='1234')",
+      "properties": {
+        "prefix": {
+          "description": "The prefix used in a compact URI (CURIE).",
+          "title": "Prefix",
+          "type": "string"
+        },
+        "identifier": {
+          "description": "The local unique identifier used in a compact URI (CURIE).",
+          "title": "Identifier",
+          "type": "string"
+        }
+      },
+      "required": [
+        "prefix",
+        "identifier"
+      ],
+      "title": "Reference",
       "type": "object"
     },
     "Registry": {
