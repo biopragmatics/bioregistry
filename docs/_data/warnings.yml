@@ -108,7 +108,7 @@ wrong_patterns:
   name: Decentralized Identifier
   prefix: did
 - correct: ^10.\d{2,9}/.*$
-  homepage: http://dx.doi.org/
+  homepage: https://www.doi.org/
   miriam: ^(doi\:)?10\.\d+/.*$
   name: Digital Object Identifier
   prefix: doi
@@ -175,7 +175,7 @@ wrong_patterns:
 - correct: ^[a-zA-Z0-9-_]+(/[a-zA-Z0-9-_]+)?$
   homepage: https://github.com/
   miriam: ^[a-zA-Z0-9-_]+/[a-zA-Z0-9-_]+$
-  name: GitHub account
+  name: github
   prefix: github
 - correct: ^.*/.*$
   homepage: https://gitlab.com/
@@ -193,9 +193,9 @@ wrong_patterns:
   name: Gene Ontology
   prefix: go
 - correct: ^\d{7}$
-  homepage: http://geneontology.org/gorefs
+  homepage: http://www.geneontology.org
   miriam: ^GO_REF:\d{7}$
-  name: Gene Ontology Database references
+  name: Gene Ontology Reference
   prefix: go.ref
 - correct: ^[A-Z]{2,4}\d+([A-Z])?([0-9])?$
   homepage: https://www.google.com/patents/
@@ -293,9 +293,9 @@ wrong_patterns:
   name: Model Card Report Ontology
   prefix: mcro
 - correct: ^(CN)?\d{2,7}$
-  homepage: https://www.ncbi.nlm.nih.gov/medgen
+  homepage: https://www.ncbi.nlm.nih.gov/medgen/
   miriam: ^[CN]*\d{4,7}$
-  name: Human Medical Genetics
+  name: MedGen
   prefix: medgen
 - correct: ^\d+\w?$
   homepage: https://mediadive.dsmz.de/media
@@ -303,7 +303,7 @@ wrong_patterns:
   name: MediaDive Medium
   prefix: mediadive.medium
 - correct: ^[SCTAGMNUIX]{1,2}\d{2}\.([AB]\d{2}|\d{3})$
-  homepage: https://www.ebi.ac.uk/merops/
+  homepage: https://www.ebi.ac.uk/merops
   miriam: ^I\d{2}\.\d{3}$
   name: MEROPS Entry
   prefix: merops.entry
@@ -383,7 +383,7 @@ wrong_patterns:
   name: Universal Spectrum Identifier
   prefix: mzspec
 - correct: ^\d+$
-  homepage: https://nanbyodata.jp
+  homepage: https://nanbyodata.jp/
   miriam: ^NANDO:[0-9]+$
   name: Nanbyo Disease Ontology
   prefix: nando
@@ -443,7 +443,7 @@ wrong_patterns:
   name: Online Mendelian Inheritance in Man
   prefix: omim
 - correct: ^\d+$
-  homepage: https://sites.google.com/site/semanticsofbiologicalprocesses/projects/the-ontology-of-physics-for-biology-opb
+  homepage: http://bioportal.bioontology.org/ontologies/OPB
   miriam: ^OPB_\d+$
   name: Ontology of Physics for Biology
   prefix: opb
@@ -483,7 +483,7 @@ wrong_patterns:
   name: 'NCI Pathway Interaction Database: Pathway'
   prefix: pid.pathway
 - correct: ^PMC\d+(\.\d+)?$
-  homepage: https://www.ncbi.nlm.nih.gov/pmc/
+  homepage: http://europepmc.org/
   miriam: ^PMC\d+$
   name: PubMed Central
   prefix: pmc
@@ -518,12 +518,12 @@ wrong_patterns:
   name: Pathway ontology
   prefix: pw
 - correct: ^R-[A-Z]{3}-\d+(-\d+)?(\.\d+)?$
-  homepage: http://www.reactome.org/
+  homepage: https://www.reactome.org/
   miriam: ^(R-[A-Z]{3}-\d+(-\d+)?(\.\d+)?)|(REACT_\d+(\.\d+)?)$
   name: Reactome
   prefix: reactome
 - correct: ^(((AC|AP|NC|NG|NM|NP|NR|NT|NW|WP|XM|XP|XR|YP|ZP)_\d+)|(NZ_[A-Z]{2,4}\d+))(\.\d+)?$
-  homepage: http://www.ncbi.nlm.nih.gov/RefSeq/
+  homepage: https://www.ncbi.nlm.nih.gov/projects/RefSeq/
   miriam: ^(((WP|AC|AP|NC|NG|NM|NP|NR|NT|NW|XM|XP|XR|YP|ZP)_\d+)|(NZ\_[A-Z]{2,4}\d+))(\.\d+)?$
   name: Reference Sequence Collection
   prefix: refseq
@@ -548,7 +548,7 @@ wrong_patterns:
   name: Semanticscience Integrated Ontology
   prefix: sio
 - correct: ^\d+$
-  homepage: https://www.swisslipids.org/#/
+  homepage: http://www.swisslipids.org/#/
   miriam: ^SLM:\d+$
   name: SwissLipid
   prefix: slm
@@ -583,9 +583,9 @@ wrong_patterns:
   name: TAIR Gene
   prefix: tair.gene
 - correct: ^\d+$
-  homepage: http://www.arabidopsis.org/
+  homepage: http://arabidopsis.org/
   miriam: ^\d{7}$
-  name: The Arabidopsis Information Resource
+  name: TAIR Locus
   prefix: tair.locus
 - correct: ^\d{10}$
   homepage: http://arabidopsis.org/index.jsp
@@ -613,9 +613,9 @@ wrong_patterns:
   name: Variation Ontology
   prefix: vario
 - correct: ^\d{1,9}$
-  homepage: http://vertebrate.genenames.org/data/gene-symbol-report/#!/
+  homepage: https://vertebrate.genenames.org
   miriam: ^((VGNC|vgnc):)?\d{1,9}$
-  name: Vertebrate Gene Nomenclature Committee
+  name: Vertebrate Gene Nomenclature Committee Database
   prefix: vgnc
 - correct: ^(Q|P|E|L)\d+$
   homepage: https://www.wikidata.org/
@@ -623,12 +623,12 @@ wrong_patterns:
   name: Wikidata
   prefix: wikidata
 - correct: ^\S+$
-  homepage: http://en.wikipedia.org/
+  homepage: http://en.wikipedia.org/wiki/Main_Page
   miriam: ^[A-Za-z-0-9_]+$
   name: Wikipedia
   prefix: wikipedia.en
 - correct: ^(CE[0-9]{5}|WB[A-Z][a-z]+\d+)$
-  homepage: http://www.wormbase.org
+  homepage: https://www.wormbase.org/
   miriam: ^WB[A-Z][a-z]+\d+$
   name: WormBase
   prefix: wormbase

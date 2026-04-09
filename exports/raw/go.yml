@@ -2563,28 +2563,22 @@
       type_id: BET:0000000
 - database: TAIR
   name: The Arabidopsis Information Resource
-  rdf_uri_prefix: http://identifiers.org/tair.locus/
+  rdf_uri_prefix: https://registry.identifiers.org/registry/tair.name
   generic_urls:
     - http://www.arabidopsis.org/
   entity_types:
-    - type_name: gene
-      type_id: SO:0000704
-      id_syntax: gene:[0-9]{7,12}
-      url_syntax: http://arabidopsis.org/servlets/TairObject?accession=[example_id]
-      example_id: TAIR:gene:2062713
-      example_url: http://arabidopsis.org/servlets/TairObject?accession=gene:2062713
     - type_name: communication
       type_id: BET:0000000
       id_syntax: Communication:[0-9]{7,12}
-      url_syntax: http://arabidopsis.org/servlets/TairObject?type=communication&id=[example_id]
+      url_syntax: https://www.arabidopsis.org/communication?key=[example_id]
       example_id: TAIR:Communication:1345790
-      example_url: http://arabidopsis.org/servlets/TairObject?type=communication&id=1345790
-    - type_name: primary transcript
-      type_id: SO:0000185
-      id_syntax: locus:[0-9]{7,12}
-      url_syntax: http://arabidopsis.org/servlets/TairObject?accession=[example_id]
-      example_id: TAIR:locus:2146653
-      example_url: http://arabidopsis.org/servlets/TairObject?accession=locus:2146653
+      example_url: https://www.arabidopsis.org/communication?key=1345790
+    - type_name: analysisreference
+      type_id: BET:0000000
+      id_syntax: analysisreference:[0-9]{7,12}
+      url_syntax: https://www.arabidopsis.org/analysisreference?key=[example_id]
+      example_id: TAIR:AnalysisReference:501780126
+      example_url: https://www.arabidopsis.org/analysisreference?key=501780126
 - database: NCBITaxon
   name: NCBI Taxonomy
   synonyms:
