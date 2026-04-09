@@ -16,6 +16,7 @@ from ...alignment_model import License, Record, make_record
 __all__ = [
     "BartocAligner",
     "get_bartoc",
+    "get_bartoc_registries",
 ]
 
 logger = logging.getLogger(__name__)
@@ -94,7 +95,7 @@ def _process_bartoc_record(prefix: str, record: dict[str, Any]) -> Record:
     return make_record(rv)
 
 
-def get_part_of_map() -> dict[str, set[str]]:
+def get_bartoc_registries() -> dict[str, set[str]]:
     """Get a mapping from registries to their parts.
 
     :returns: A mapping from BARTOC ID for a registry to BARTOC ID for an entry in the registry.
@@ -123,4 +124,4 @@ class BartocAligner(Aligner):
 
 
 if __name__ == "__main__":
-    get_part_of_map()
+    BartocAligner.cli()
