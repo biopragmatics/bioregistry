@@ -3004,6 +3004,10 @@ class CollectionAnnotation(BaseModel):
     prefix: str
     comment: str | None = None
 
+    def is_empty(self) -> bool:
+        """Check if the collection annotation is empty."""
+        return self.comment is None
+
 
 class Collection(BaseModel):
     """A collection of resources."""

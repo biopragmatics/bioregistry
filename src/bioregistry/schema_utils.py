@@ -182,7 +182,7 @@ def write_collections(collections: Mapping[str, Collection], *, path: Path | Non
     """Write the collections."""
     values = [v for _, v in sorted(collections.items())]
     for collection in values:
-        collection.resources = sorted(collection.resources, key=_collection_resource_key)
+        collection.resources = _lint_collection_resources(collection.resources)
     with open(path or COLLECTIONS_PATH, encoding="utf-8", mode="w") as file:
         json.dump(
             {
@@ -196,6 +196,19 @@ def write_collections(collections: Mapping[str, Collection], *, path: Path | Non
             sort_keys=True,
             ensure_ascii=False,
         )
+
+
+def _lint_collection_resources(
+    rrrr: list[str | CollectionAnnotation],
+) -> list[CollectionAnnotation]:
+    xx = {}
+    for resource in rrrr:
+        if isinstance(resource, CollectionAnnotation):
+            xx[resource.prefix] = resource
+        else:
+            xx[resource] = resource
+
+    return sorted(xx.values(), key=_collection_resource_key)
 
 
 def _collection_resource_key(x: str | CollectionAnnotation) -> str:
