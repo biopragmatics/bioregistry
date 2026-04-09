@@ -29,6 +29,7 @@ __all__ = [
     "SemanticMapping",
     "add_collection",
     "add_resource",
+    "get_collection_mappings",
     "is_mismatch",
     "read_collections",
     "read_collections_contributions",
@@ -158,6 +159,16 @@ def read_collections() -> Mapping[str, Collection]:
     return _collections_from_path(COLLECTIONS_PATH)
 
 
+def get_collection_mappings(external_prefix: str) -> dict[str, str]:
+    """Get a mapping from internal collection IDs to external ones in the given prefix."""
+    return {
+        collection.identifier: mapping.identifier
+        for collection in read_collections().values()
+        for mapping in collection.mappings or []
+        if mapping.prefix == external_prefix
+    }
+
+
 def _collections_from_path(path: str | Path) -> dict[str, Collection]:
     with open(path, encoding="utf-8") as file:
         data = json.load(file)
@@ -171,7 +182,7 @@ def write_collections(collections: Mapping[str, Collection], *, path: Path | Non
     """Write the collections."""
     values = [v for _, v in sorted(collections.items())]
     for collection in values:
-        collection.resources = sorted(collection.resources, key=_collection_resource_key)
+        collection.resources = _lint_collection_resources(collection.resources)
     with open(path or COLLECTIONS_PATH, encoding="utf-8", mode="w") as file:
         json.dump(
             {
@@ -185,6 +196,18 @@ def write_collections(collections: Mapping[str, Collection], *, path: Path | Non
             sort_keys=True,
             ensure_ascii=False,
         )
+
+
+def _lint_collection_resources(
+    annotations: list[str | CollectionAnnotation],
+) -> list[str | CollectionAnnotation]:
+    prefix_to_annotation: dict[str, str | CollectionAnnotation] = {}
+    for annotation in annotations:
+        if isinstance(annotation, CollectionAnnotation):
+            prefix_to_annotation[annotation.prefix] = annotation
+        else:
+            prefix_to_annotation[annotation] = annotation
+    return sorted(prefix_to_annotation.values(), key=_collection_resource_key)
 
 
 def _collection_resource_key(x: str | CollectionAnnotation) -> str:

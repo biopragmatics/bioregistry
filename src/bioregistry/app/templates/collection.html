@@ -90,6 +90,12 @@
                         <dd><a href="{{ reference }}">{{ reference }}</a></dd>
                     {% endfor %}
                 {% endif %}
+                {%- if entry.mappings %}
+                <dt>Related Collections</dt>
+                {%- for mapping in entry.mappings %}
+                <dd><a href="{{ url_for('metaregistry_ui.resolve', prefix=mapping.prefix, identifier=mapping.identifier) }}"><code>{{ mapping.curie }}</code></a></dd>
+                {%- endfor %}
+                {%- endif %}
                 <dt>Download External Mappings</dt>
                 <dd>
                     <span class="dropdown">

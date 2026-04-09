@@ -3,6 +3,48 @@
 
 {%- block title %}NFDI Dashboard{% endblock %}
 
+{%- macro external_mapping_card(title, external_prefix, mappings) %}
+<div class="card mt-4">
+    <div class="card-header">{{ title }} Collection Mapping</div>
+    <div class="card-body">
+        {%- if external_prefix == "tib.collection" %}
+        Import of TIB OLS collections was implemented in
+        <a href="https://github.com/biopragmatics/bioregistry/pull/1762">#1762</a>.
+        The data can be synced by running <code>python -m bioregistry.curation.nfdi_collections</code>.
+        {%- else %}
+        Import of BARTOC collections is planned in
+        <a href="https://github.com/biopragmatics/bioregistry/issues/1817">#1817</a>.
+        {%- endif %}
+    </div>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>Identifier</th>
+            <th>Name</th>
+            <th>{{ title }} Collection</th>
+        </tr>
+        </thead>
+        <tbody>
+        {%- for internal_id, external_id in mappings.items() %}
+        <tr>
+            <td>
+                <a href="{{ url_for('metaregistry_ui.collection', identifier=internal_id) }}">
+                    {{ internal_id }}
+                </a>
+            </td>
+            <td>{{ collections[internal_id].name }}</td>
+            <td>
+                <a href="{{ url_for('metaregistry_ui.resolve', prefix=external_prefix, identifier=external_id) }}">
+                    {{ external_id }}
+                </a>
+            </td>
+        </tr>
+        {%- endfor %}
+        </tbody>
+    </table>
+</div>
+{%- endmacro %}
+
 {%- block container %}
 <div class="card">
     <div class="card-header">
@@ -12,7 +54,7 @@
         <div class="card-text">
             <p>Consortia whose collections don't yet have a maintainer:</p>
             <ol>
-                {%- for collection in collections %}
+                {%- for collection in collections.values() %}
                 {%- if not collection.maintainers %}
                 <li>
                     <a href="{{ url_for('.collection', identifier=collection.identifier) }}">
@@ -42,4 +84,9 @@
 
     </div>
 </div>
+
+{{ external_mapping_card("TIB", "tib.collection", tib_collection_mappings) }}
+
+{{ external_mapping_card("BARTOC", "bartoc", bartoc_collection_mappings) }}
+
 {%- endblock %}

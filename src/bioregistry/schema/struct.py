@@ -26,6 +26,7 @@ from typing import (
 )
 
 import click
+from curies import Reference
 from curies.w3c import NCNAME_RE
 from pydantic import BaseModel, EmailStr, Field, PrivateAttr
 from pydantic.json_schema import models_json_schema
@@ -3003,6 +3004,10 @@ class CollectionAnnotation(BaseModel):
     prefix: str
     comment: str | None = None
 
+    def is_empty(self) -> bool:
+        """Check if the collection annotation is empty."""
+        return self.comment is None
+
 
 class Collection(BaseModel):
     """A collection of resources."""
@@ -3041,6 +3046,7 @@ class Collection(BaseModel):
     context: str | None = Field(default=None, description="The JSON-LD context's name")
     references: list[str] | None = Field(default=None, description="URL references")
     keywords: list[str] | None = None
+    mappings: list[Reference] | None = None
 
     def add_triples(self, graph: rdflib.Graph) -> None:
         """Add triples to an RDF graph for this collection.
