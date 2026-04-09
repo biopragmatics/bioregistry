@@ -451,13 +451,13 @@ class AnnotatedURL(BaseModel):
 DEFAULT_METAPREFIX_PRIORITY = [
     "obofoundry",
     "ols",
+    "miriam",
     "wikidata",
     "go",
     "ncbi",
     "bioportal",
     "agroportal",
     "ecoportal",
-    "miriam",
     "n2t",
     "cellosaurus",
     "cropoct",
@@ -1384,8 +1384,7 @@ class Resource(BaseModel):
         """Return the repository, if available."""
         if self.repository:
             return self.repository
-        metaprefixes: Sequence[str] = ("obofoundry", "fairsharing")
-        return self._get_prefix_key_str("repository", metaprefixes)
+        return self._get_prefix_key_str("repository", DEFAULT_METAPREFIX_PRIORITY)
 
     def get_contact(self) -> Attributable | None:
         """Get the contact, if available.
@@ -1495,7 +1494,7 @@ class Resource(BaseModel):
         """Get an example identifier, if it's available."""
         if self.example is not None:
             return self.example
-        for metaprefix in ["miriam", "ncbi", "n2t", "prefixcommons", "wikidata"]:
+        for metaprefix in DEFAULT_METAPREFIX_PRIORITY:
             if examples := self.get_external(metaprefix).get("examples", []):
                 return cast(str, examples[0])
         if strict:
@@ -1554,7 +1553,7 @@ class Resource(BaseModel):
         """
         if self.deprecated is not None:
             return self.deprecated
-        for key in ("obofoundry", "ols", "miriam"):
+        for key in DEFAULT_METAPREFIX_PRIORITY:
             if self.get_external(key).get("status") in {"deprecated", "inactive"}:
                 return True
         return False
@@ -2160,7 +2159,7 @@ class Resource(BaseModel):
         provider_uris = {provider.uri_format for provider in providers}
         rv.extend(providers)
 
-        for metaprefix in ["miriam", "prefixcommons"]:
+        for metaprefix in DEFAULT_METAPREFIX_PRIORITY:
             for provider_raw in self.get_external(metaprefix).get("providers") or []:
                 provider = Provider.model_validate(provider_raw)
                 if provider.code in provider_codes or provider.uri_format in provider_uris:
@@ -2475,7 +2474,7 @@ class Resource(BaseModel):
         """Get the license for the resource."""
         if self.license:
             return self.license
-        for metaprefix in ("obofoundry", "ols", "bioportal"):
+        for metaprefix in DEFAULT_METAPREFIX_PRIORITY:
             match self.get_external(metaprefix).get("license"):
                 case str() as license_str:
                     if license_value := standardize_license(license_str):
