@@ -32,7 +32,7 @@ from .utils import (
     serialize_model,
 )
 from .. import version
-from ..constants import INTERNAL_LABEL, INTERNAL_METAPREFIX, NDEX_UUID
+from ..constants import INTERNAL_LABEL, INTERNAL_METAPREFIX, NDEX_UUID, NFDI_ROR
 from ..export.rdf_export import (
     collection_to_rdf_str,
     metaresource_to_rdf_str,
@@ -690,3 +690,13 @@ def highlights_owners() -> str:
 def apidocs() -> werkzeug.Response:
     """Render api documentation page."""
     return redirect("/docs")
+
+
+@ui_blueprint.route("/nfdi")
+@ui_blueprint.route("/nfdi/")
+def show_nfdi() -> str:
+    """Render the NFDI dashboard page."""
+    nfdi_collections = [
+        c for c in manager.collections.values() if c.has_organization_with_ror(NFDI_ROR)
+    ]
+    return render_template("nfdi.html", collections=nfdi_collections)

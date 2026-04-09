@@ -3094,13 +3094,15 @@ class Collection(BaseModel):
                 rv[prefix] = fmt
         return rv
 
+    def has_organization_with_ror(self, ror: str) -> bool:
+        """Check if there is an organization with a given ROR."""
+        return any(organization.ror == ror for organization in self.organizations or [])
+
 
 def filter_collections(collections: Iterable[Collection], ror: str) -> list[Collection]:
     """Filter collections based on a ROR."""
     return [
-        collection_
-        for collection_ in collections
-        if any(organization.ror == ror for organization in collection_.organizations or [])
+        collection_ for collection_ in collections if collection_.has_organization_with_ror(ror)
     ]
 
 
