@@ -199,16 +199,15 @@ def write_collections(collections: Mapping[str, Collection], *, path: Path | Non
 
 
 def _lint_collection_resources(
-    rrrr: list[str | CollectionAnnotation],
-) -> list[CollectionAnnotation]:
-    xx = {}
-    for resource in rrrr:
-        if isinstance(resource, CollectionAnnotation):
-            xx[resource.prefix] = resource
+    annotations: list[str | CollectionAnnotation],
+) -> list[str | CollectionAnnotation]:
+    prefix_to_annotation: dict[str, str | CollectionAnnotation] = {}
+    for annotation in annotations:
+        if isinstance(annotation, CollectionAnnotation):
+            prefix_to_annotation[annotation.prefix] = annotation
         else:
-            xx[resource] = resource
-
-    return sorted(xx.values(), key=_collection_resource_key)
+            prefix_to_annotation[annotation] = annotation
+    return sorted(prefix_to_annotation.values(), key=_collection_resource_key)
 
 
 def _collection_resource_key(x: str | CollectionAnnotation) -> str:
