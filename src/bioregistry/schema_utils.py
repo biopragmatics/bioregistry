@@ -22,6 +22,7 @@ from .constants import (
     METAREGISTRY_PATH,
 )
 from .schema import Collection, Context, Registry, Resource
+from .schema.struct import CollectionAnnotation
 
 __all__ = [
     "OrcidStr",
@@ -170,7 +171,7 @@ def write_collections(collections: Mapping[str, Collection], *, path: Path | Non
     """Write the collections."""
     values = [v for _, v in sorted(collections.items())]
     for collection in values:
-        collection.resources = sorted(set(collection.resources))
+        collection.resources = sorted(collection.resources, key=_collection_resource_key)
     with open(path or COLLECTIONS_PATH, encoding="utf-8", mode="w") as file:
         json.dump(
             {
@@ -184,6 +185,13 @@ def write_collections(collections: Mapping[str, Collection], *, path: Path | Non
             sort_keys=True,
             ensure_ascii=False,
         )
+
+
+def _collection_resource_key(x: str | CollectionAnnotation) -> str:
+    if isinstance(x, str):
+        return x
+    else:
+        return x.prefix
 
 
 def add_collection(collection: Collection, *, path: Path | None = None) -> None:

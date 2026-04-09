@@ -154,7 +154,14 @@
         "resources": {
           "description": "A list of prefixes of resources appearing in the collection",
           "items": {
-            "type": "string"
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "$ref": "#/$defs/CollectionAnnotation"
+              }
+            ]
           },
           "minItems": 1,
           "title": "Resources",
@@ -268,6 +275,32 @@
         "contributors"
       ],
       "title": "Collection",
+      "type": "object"
+    },
+    "CollectionAnnotation": {
+      "description": "Collection annotation.",
+      "properties": {
+        "prefix": {
+          "title": "Prefix",
+          "type": "string"
+        },
+        "comment": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Comment"
+        }
+      },
+      "required": [
+        "prefix"
+      ],
+      "title": "CollectionAnnotation",
       "type": "object"
     },
     "Context": {

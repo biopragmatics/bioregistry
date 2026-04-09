@@ -426,7 +426,7 @@ def get_collection_mapped(
     misses: set[str] = set()
     version_mappings: defaultdict[str, set[str]] = defaultdict(set)
     provider_mappings: defaultdict[str, set[str]] = defaultdict(set)
-    for prefix in collection.resources:
+    for prefix in collection.get_prefixes():
         if external_prefix := mapping.get(prefix):
             mappings[prefix] = external_prefix
         else:

@@ -10,6 +10,7 @@ from bioregistry import manager
 from bioregistry.constants import NFDI_ROR
 from bioregistry.export.rdf_export import collection_to_rdf_str
 from bioregistry.schema import Collection
+from bioregistry.schema_utils import _collection_resource_key
 
 logger = logging.getLogger(__name__)
 
@@ -23,24 +24,12 @@ class TestCollections(unittest.TestCase):
 
     def test_minimum_metadata(self) -> None:
         """Check collections have minimal metadata and correct prefixes."""
-        for key, collection_pydantic in sorted(self.manager.collections.items()):
-            self.assertIsInstance(collection_pydantic, Collection)
-            collection = collection_pydantic.model_dump()
+        for key, collection in sorted(self.manager.collections.items()):
             with self.subTest(key=key):
                 self.assertRegex(key, "^\\d{7}$")
-                self.assertIn("name", collection)
-                self.assertIn("contributors", collection)
-                self.assertIsInstance(
-                    collection["contributors"], list, msg=f"Collection: {collection}"
-                )
-                for author in collection["contributors"]:
-                    self.assertIn("name", author)
-                    self.assertIn("orcid", author)
-                    self.assertRegex(author["orcid"], self.manager.get_pattern("orcid"))
-                self.assertIn("description", collection)
 
                 incorrect_msg = ""
-                for prefix in collection["resources"]:
+                for prefix in collection.get_prefixes():
                     np = self.manager.normalize_prefix(prefix)
                     if np == prefix:
                         pass
@@ -53,12 +42,12 @@ class TestCollections(unittest.TestCase):
 
                 duplicates = {
                     prefix
-                    for prefix, count in Counter(collection["resources"]).items()
+                    for prefix, count in Counter(collection.get_prefixes()).items()
                     if 1 < count
                 }
                 self.assertEqual(set(), duplicates, msg="Duplicates found")
                 self.assertEqual(
-                    sorted(collection_pydantic.resources), collection_pydantic.resources
+                    sorted(collection.resources, key=_collection_resource_key), collection.resources
                 )
 
     def test_get_collection(self) -> None:

@@ -60,7 +60,7 @@ dependencies = [
     "more_click>=0.1.2",
     "pydantic[email]>=2.0",
     "curies>=0.13.0",
-    "sssom-pydantic",
+    "sssom-pydantic>=0.4.0",
 ]
 
 [dependency-groups]
@@ -72,6 +72,7 @@ tests = [
     "scikit-learn",
 ]
 typing = [
+    "mypy",
     "types-PyYAML",
     "types-Markdown",
     "types-tabulate",
@@ -85,6 +86,11 @@ typing = [
     "matplotlib-stubs",
     "pandas-stubs",
     "fastapi[all]",
+]
+dev = [
+    { include-group = "tests" },
+    { include-group = "typing" },
+    "pydantic",
 ]
 
 [project.optional-dependencies]
