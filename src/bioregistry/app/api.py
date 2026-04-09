@@ -6,14 +6,12 @@ from collections import defaultdict
 from collections.abc import Mapping
 from typing import Annotated, Any
 
-import curies
 import yaml
 from curies import Reference
 from curies.mapping_service.utils import handle_header
 from fastapi import APIRouter, Body, Depends, Header, HTTPException, Path, Query, Request
 from fastapi.responses import JSONResponse, Response
 from pydantic import BaseModel, Field
-from yaml.representer import SafeRepresenter
 
 from .utils import FORMAT_MAP, _autocomplete, _search
 from ..export.rdf_export import (
@@ -35,6 +33,8 @@ from ..schema_utils import (
 __all__ = [
     "api_router",
 ]
+
+from ..utils import registry_yaml_dumper
 
 api_router = APIRouter(prefix="/api")
 
@@ -81,11 +81,7 @@ class YAMLResponse(Response):
         ).encode("utf-8")
 
 
-def _reference_representer(dumper: SafeRepresenter, data: curies.Prefix) -> yaml.ScalarNode:
-    return dumper.represent_str(str(data))
-
-
-yaml.add_representer(curies.Prefix, _reference_representer, Dumper=yaml.SafeDumper)
+registry_yaml_dumper()
 
 ACCEPT_HEADER = Header(default=None)
 FORMAT_QUERY = Query(

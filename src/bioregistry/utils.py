@@ -12,6 +12,7 @@ from typing import Any, cast, overload
 
 import click
 import requests
+import yaml
 from pystow.utils import get_hashes
 
 from .alignment_model import Record, Status
@@ -276,3 +277,18 @@ def get_ec_url(identifier: str, *, ep: str = "class") -> str:
         return f"{base}?c={x[0]}"
     else:
         raise ValueError
+
+
+def registry_yaml_dumper() -> None:
+    """Register YAML dumper."""
+    import curies
+    import yaml
+
+    def _safe(dumper: yaml.SafeDumper, data: curies.Prefix) -> yaml.Node:
+        return dumper.represent_str(str(data))
+
+    def _unsafe(dumper: yaml.Dumper, data: curies.Prefix) -> yaml.Node:
+        return dumper.represent_str(str(data))
+
+    yaml.add_representer(curies.Prefix, _unsafe, Dumper=yaml.Dumper)
+    yaml.add_representer(curies.Prefix, _safe, Dumper=yaml.SafeDumper)

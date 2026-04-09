@@ -146,8 +146,8 @@ from .schema_utils import (
     read_registry,
     registries,
     resources,
+    write_collections,
     write_contexts,
-write_collections,
     write_registry,
 )
 from .uri_format import (
@@ -296,7 +296,7 @@ __all__ = [
     "registries",
     "resources",
     "standardize_identifier",
+    "write_collections",
     "write_contexts",
     "write_registry",
-    "write_collections",
 ]
