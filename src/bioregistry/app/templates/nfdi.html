@@ -52,7 +52,7 @@
     </div>
     <div class="card-body">
         <div class="card-text">
-            <p>Consortia with maintainer:</p>
+            <p>Consortia whose collection has a maintainer:</p>
             <ol>
                 {%- for collection in collections.values() %}
                 {%- if collection.maintainers %}
@@ -102,6 +102,44 @@
             </ol>
         </div>
     </div>
+</div>
+
+<div class="card mt-4">
+    <div class="card-header">
+       Curation Tasks
+    </div>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>Prefix</th>
+            <th>Name</th>
+            <th>Ontologies Missing License</th>
+            <th>Ontologies Missing Domain</th>
+            <th>Ontologies Missing Download</th>
+        </tr>
+        </thead>
+        <tbody>
+        {%- for collection in collections.values() %}
+        {%- set n_total = collection.resources | length %}
+        {%- set n_license = collection_to_license_needs_curation[collection.identifier] | length %}
+        {%- set n_domain = collection_to_domain_needs_curation[collection.identifier] | length %}
+        {%- set n_download = collection_to_download_need_curation[collection.identifier] | length %}
+        {%- if n_license or n_domain or n_download %}
+        <tr>
+            <td>
+                <a href="{{ url_for('metaregistry_ui.collection', identifier=collection.identifier) }}">
+                    {{ collection.identifier }}
+                </a>
+            </td>
+            <td>{{ collection.name }}</td>
+            <td align="right">{{ n_license }} ({{ (0.5 + 100 * n_license / n_total) | int }}%)</td>
+            <td align="right">{{ n_domain }} ({{ (0.5 + 100 * n_domain / n_total) | int }}%)</td>
+            <td align="right">{{ n_download }} ({{ (0.5 + 100 * n_download / n_total) | int }}%)</td>
+        </tr>
+        {%- endif %}
+        {%- endfor %}
+        </tbody>
+    </table>
 </div>
 
 <div class="card mt-4">

@@ -709,6 +709,9 @@ def show_nfdi() -> str:
     tib_collection_mappings = get_collection_mappings("tib.collection")
     bartoc_collection_mappings = get_collection_mappings("bartoc")
     collection_to_tib_opportunities = defaultdict(list)
+    collection_to_license_needs_curation = defaultdict(list)
+    collection_to_domain_needs_curation = defaultdict(list)
+    collection_to_download_need_curation = defaultdict(list)
     tib_opportunities = set()
     for collection_ in nfdi_collections.values():
         for prefix in collection_.get_prefixes():
@@ -718,6 +721,12 @@ def show_nfdi() -> str:
             if not resource_.get_mapped_prefix("tib") and resource_.has_download():
                 collection_to_tib_opportunities[collection_.identifier].append(prefix)
                 tib_opportunities.add(prefix)
+            if not resource_.get_license():
+                collection_to_license_needs_curation[collection_.identifier].append(resource)
+            if not resource_.domain:
+                collection_to_domain_needs_curation[collection_.identifier].append(resource)
+            if not resource_.has_download():
+                collection_to_download_need_curation[collection_.identifier].append(resource)
 
     # who is used more than once?
     counter = Counter(prefix for c in nfdi_collections.values() for prefix in c.get_prefixes())
@@ -730,4 +739,7 @@ def show_nfdi() -> str:
         collection_to_tib_opportunities=collection_to_tib_opportunities,
         tib_opportunities=tib_opportunities,
         prefix_counter=counter,
+        collection_to_license_needs_curation=collection_to_license_needs_curation,
+        collection_to_domain_needs_curation=collection_to_domain_needs_curation,
+        collection_to_download_need_curation=collection_to_download_need_curation,
     )
