@@ -2244,7 +2244,7 @@ class Manager:
         if isinstance(collection, str):
             collection = self.collections[collection]
         calls: dict[str, bool] = {}
-        for prefix in collection.resources:
+        for prefix in collection.get_prefixes():
             resource = self.get_resource(prefix, strict=True)
             owners = resource.owners or []
             if skip_org_rors is not None:
