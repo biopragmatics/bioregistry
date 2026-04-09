@@ -271,7 +271,9 @@ def collection(identifier: str) -> str | flask.Response:
         "collection.html",
         identifier=identifier,
         entry=entry,
-        resources={prefix: manager.get_resource(prefix) for prefix in entry.resources},
+        resources={
+            prefix: manager.get_resource(prefix, strict=True) for prefix in entry.get_prefixes()
+        },
         indirect=indirect,
         first_party=first_party,
         formats=[

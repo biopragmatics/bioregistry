@@ -49,9 +49,9 @@ def get_collection_prefixes(
 
 def get_collection_prefixes(identifier: str, *, strict: bool = False) -> list[str] | None:
     """Get collection prefixes."""
-    rv = manager.collections.get(identifier)
-    if rv is not None:
-        return rv.resources
+    collection = manager.collections.get(identifier)
+    if collection is not None:
+        return collection.get_prefixes()
     if strict:
         raise KeyError(f"no collection exists: {identifier}. try: {set(manager.collections)}")
     return None
@@ -73,7 +73,7 @@ def get_collection_resources(identifier: str, *, strict: bool = False) -> list[R
     """Get collection resources."""
     rv = manager.collections.get(identifier)
     if rv is not None:
-        return [manager.registry[r] for r in rv.resources]
+        return [manager.get_resource(prefix, strict=True) for prefix in rv.get_prefixes()]
     if strict:
         raise KeyError(f"no collection exists: {identifier}. try: {set(manager.collections)}")
     return None

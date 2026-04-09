@@ -216,7 +216,7 @@ class Manager:
 
         in_collection = defaultdict(list)
         for cid, collection in self.collections.items():
-            for prefix in collection.resources:
+            for prefix in collection.get_prefixes():
                 in_collection[prefix].append(cid)
         self.in_collection = dict(in_collection)
 
@@ -381,11 +381,11 @@ class Manager:
 
     # docstr-coverage:excused `overload`
     @overload
-    def get_resource(self, prefix: str, *, strict: Literal[True] = True) -> Resource: ...
+    def get_resource(self, prefix: str, *, strict: Literal[True] = ...) -> Resource: ...
 
     # docstr-coverage:excused `overload`
     @overload
-    def get_resource(self, prefix: str, *, strict: Literal[False] = False) -> Resource | None: ...
+    def get_resource(self, prefix: str, *, strict: Literal[False] = ...) -> Resource | None: ...
 
     def get_resource(self, prefix: str, *, strict: bool = False) -> Resource | None:
         """Get the Bioregistry entry for the given prefix.
@@ -2191,7 +2191,7 @@ class Manager:
         """Get all the "depends on" recursively for a collection."""
         if isinstance(collection, str):
             collection = self.collections[collection]
-        return self.get_indirect_dependencies(collection.resources)
+        return self.get_indirect_dependencies(collection.get_prefixes())
 
     def get_indirect_dependencies(self, prefixes: list[str]) -> list[Resource]:
         """Get all the "depends on" recursively for a list of prefixes."""
