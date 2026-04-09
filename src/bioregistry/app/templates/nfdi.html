@@ -3,6 +3,38 @@
 
 {%- block title %}NFDI Dashboard{% endblock %}
 
+{%- macro external_mapping_card(title, external_prefix, mappings) %}
+<div class="card mt-4">
+    <div class="card-header">{{ title }} Collection Mapping</div>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>Identifier</th>
+            <th>Name</th>
+            <th>{{ title }} Collection</th>
+        </tr>
+        </thead>
+        <tbody>
+        {%- for internal_id, external_id in mappings.items() %}
+        <tr>
+            <td>
+                <a href="{{ url_for('metaregistry_ui.collection', identifier=internal_id) }}">
+                    {{ internal_id }}
+                </a>
+            </td>
+            <td>{{ collections[internal_id].name }}</td>
+            <td>
+                <a href="{{ url_for('metaregistry_ui.resolve', prefix=external_prefix, identifier=external_id) }}">
+                    {{ external_id }}
+                </a>
+            </td>
+        </tr>
+        {%- endfor %}
+        </tbody>
+    </table>
+</div>
+{%- endmacro %}
+
 {%- block container %}
 <div class="card">
     <div class="card-header">
@@ -43,33 +75,8 @@
     </div>
 </div>
 
-<div class="card mt-4">
-    <div class="card-header">TIB Collection Mapping</div>
-    <table class="table table-striped">
-        <thead>
-        <tr>
-            <th>Identifier</th>
-            <th>Name</th>
-            <th>TIB Collection</th>
-        </tr>
-        </thead>
-        <tbody>
-        {%- for internal_id, tib_id in tib_collection_mappings.items() %}
-        <tr>
-            <td>
-                <a href="{{ url_for('metaregistry_ui.collection', identifier=internal_id) }}">
-                    {{ internal_id }}
-                </a>
-            </td>
-            <td>{{ collections[internal_id].name }}</td>
-            <td>
-                <a href="{{ url_for('metaregistry_ui.resolve', prefix='tib.collection', identifier=tib_id) }}">
-                    {{ tib_id }}
-                </a>
-            </td>
-        </tr>
-        {%- endfor %}
-        </tbody>
-    </table>
-</div>
+{{ external_mapping_card("TIB", "tib.collection", tib_collection_mappings) }}
+
+{{ external_mapping_card("BARTOC", "bartoc", bartoc_collection_mappings) }}
+
 {%- endblock %}

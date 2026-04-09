@@ -707,8 +707,10 @@ def show_nfdi() -> str:
         if c.has_organization_with_ror(NFDI_ROR)
     }
     tib_collection_mappings = get_collection_mappings("tib.collection")
+    bartoc_collection_mappings = get_collection_mappings("bartoc")
     return render_template(
         "nfdi.html",
         collections=nfdi_collections,
         tib_collection_mappings=tib_collection_mappings,
+        bartoc_collection_mappings=bartoc_collection_mappings,
     )
