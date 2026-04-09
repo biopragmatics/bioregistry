@@ -28,6 +28,7 @@ def export_yaml_helper(manager_: Manager | None = None, output: bool = True) -> 
         REGISTRY_JSON_PATH,
         REGISTRY_YAML_PATH,
     )
+    from ..resource_manager import Manager
     from ..schema import sanitize_mapping
     from ..utils import get_hexdigests, registry_yaml_dumper
 
