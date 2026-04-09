@@ -114,6 +114,7 @@
             <tr>
                 <th scope="col">Prefix</th>
                 <th scope="col">Name</th>
+                <th scope="col">License</th>
             </tr>
             </thead>
             <tbody>
@@ -126,6 +127,15 @@
                     <a href="{{ url_for('metaregistry_ui.resource', prefix=prefix) }}">
                         {{ resources[prefix].get_name() }} {{ utils.render_resource_warnings(resources[prefix]) }}
                     </a>
+                </td>
+                <td>
+                    {%- set license = resources[prefix].get_license() %}
+                    {%- if not license %}
+                    {%- elif license.startswith("http") %}
+                    <a href="{{ license }}">Custom</a>
+                    {%- else %}
+                    {{ license }}
+                    {%- endif %}
                 </td>
             </tr>
             {% endfor %}
@@ -152,7 +162,7 @@
                     <code>{{ indirect_resource.prefix }}</code>
                 </td>
                 <td>
-                    <a href="{{ url_for('metaregistry_ui.resource', prefix=prefix) }}">
+                    <a href="{{ url_for('metaregistry_ui.resource', prefix=indirect_resource) }}">
                         {{ indirect_resource.get_name() }} {{ utils.render_resource_warnings(indirect_resource) }}
                     </a>
                 </td>
