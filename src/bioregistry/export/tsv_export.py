@@ -93,10 +93,26 @@ def get_collections_rows() -> list[tuple[str, str, str, str, str, str, str, str]
                 collection.name,
                 collection.description,
                 "|".join(collection.get_prefixes()),
-                "|".join(contributor.name for contributor in collection.contributors or []),
-                "|".join(contributor.orcid for contributor in collection.contributors or []),
-                "|".join(maintainer.name for maintainer in collection.maintainers or []),
-                "|".join(maintainer.orcid for maintainer in collection.maintainers or []),
+                "|".join(
+                    contributor.name
+                    for contributor in collection.contributors or []
+                    if contributor.orcid
+                ),
+                "|".join(
+                    contributor.orcid
+                    for contributor in collection.contributors or []
+                    if contributor.orcid
+                ),
+                "|".join(
+                    maintainer.name
+                    for maintainer in collection.maintainers or []
+                    if maintainer.orcid
+                ),
+                "|".join(
+                    maintainer.orcid
+                    for maintainer in collection.maintainers or []
+                    if maintainer.orcid
+                ),
             )
         )
     return rows

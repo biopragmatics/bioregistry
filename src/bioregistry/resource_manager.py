@@ -2302,14 +2302,17 @@ def _read_contributors(
             contact = resource.get_contact()
             if contact and contact.orcid:
                 rv[contact.orcid] = contact
+            for contact_extra in resource.contact_extras or []:
+                if contact_extra.orcid is not None:
+                    rv[contact_extra.orcid] = contact_extra
     for metaresource in metaregistry.values():
         if not direct_only:
             if metaresource.contact.orcid:
                 rv[metaresource.contact.orcid] = metaresource.contact
     for collection in collections.values():
-        for contributor in collection.contributors or []:
-            if contributor.orcid:
-                rv[contributor.orcid] = contributor
+        for collection_contributor in collection.contributors or []:
+            if collection_contributor.orcid:
+                rv[collection_contributor.orcid] = collection_contributor
         for maintainer in collection.maintainers or []:
             if maintainer.orcid:
                 rv[maintainer.orcid] = maintainer
