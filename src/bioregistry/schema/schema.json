@@ -76,6 +76,22 @@
           "default": null,
           "description": "The GitHub handle enables contacting the researcher on GitHub: the *de facto* version control in the computer sciences and life sciences.",
           "title": "GitHub handle"
+        },
+        "wikidata": {
+          "anyOf": [
+            {
+              "pattern": "^Q\\d+$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "examples": [
+            "Q47475003"
+          ],
+          "title": "Wikidata identifier"
         }
       },
       "required": [
@@ -123,6 +139,22 @@
           "default": null,
           "description": "The GitHub handle enables contacting the researcher on GitHub: the *de facto* version control in the computer sciences and life sciences.",
           "title": "GitHub handle"
+        },
+        "wikidata": {
+          "anyOf": [
+            {
+              "pattern": "^Q\\d+$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "examples": [
+            "Q47475003"
+          ],
+          "title": "Wikidata identifier"
         }
       },
       "required": [
@@ -170,7 +202,7 @@
         "contributors": {
           "description": "A list of authors/contributors to the collection",
           "items": {
-            "$ref": "#/$defs/Author"
+            "$ref": "#/$defs/Attributable"
           },
           "minItems": 1,
           "title": "Contributors",

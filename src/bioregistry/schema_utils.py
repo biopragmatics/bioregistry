@@ -319,9 +319,11 @@ def read_collections_contributions(
     rv: defaultdict[OrcidStr, set[str]] = defaultdict(set)
     for collection in collections.values():
         for contributor in collection.contributors or []:
-            rv[contributor.orcid].add(collection.identifier)
+            if contributor.orcid:
+                rv[contributor.orcid].add(collection.identifier)
         for maintainer in collection.maintainers or []:
-            rv[maintainer.orcid].add(collection.identifier)
+            if maintainer.orcid:
+                rv[maintainer.orcid].add(collection.identifier)
     return dict(rv)
 
 

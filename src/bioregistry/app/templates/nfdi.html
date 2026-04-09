@@ -52,6 +52,24 @@
     </div>
     <div class="card-body">
         <div class="card-text">
+            <p>Consortia with maintainer:</p>
+            <ol>
+                {%- for collection in collections.values() %}
+                {%- if collection.maintainers %}
+                <li>
+                    <a href="{{ url_for('.collection', identifier=collection.identifier) }}">
+                        {{ collection.name.removesuffix(" Collection").removesuffix(" Resoures") }}
+                    </a>
+                    ({{ collection.resources|length }})
+                    <ul>
+                        {% for maintainer in collection.maintainers %}
+                        <li>{{ maintainer.name }}</li>
+                        {% endfor %}
+                    </ul>
+                </li>
+                {%- endif %}
+                {%- endfor %}
+            </ol>
             <p>Consortia whose collections don't yet have a maintainer:</p>
             <ol>
                 {%- for collection in collections.values() %}
@@ -67,15 +85,17 @@
             </ol>
             <p>Consortia whose collections haven't been populated:</p>
             <ol>
-                {%- for collection in collections %}
+                {%- for collection in collections.values() %}
                 {%- if collection.resources|length == 1 %}
                 <li>
                     <a href="{{ url_for('.collection', identifier=collection.identifier) }}">
                         {{ collection.name.removesuffix(" Collection").removesuffix(" Resoures") }}
                     </a>
-                    {% for maintainer in collection.maintainer %}
+                    {%- if collection.maintainers %}
+                    {%- for maintainer in collection.maintainers %}
                     ({{ maintainer.name }})
-                    {% endfor %}
+                    {%- endfor %}
+                    {%- endif %}
                 </li>
                 {%- endif %}
                 {%- endfor %}
