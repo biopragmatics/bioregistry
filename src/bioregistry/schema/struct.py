@@ -3002,7 +3002,6 @@ class CollectionAnnotation(BaseModel):
 
     prefix: str
     comment: str | None = None
-    usages: str | None = None
 
 
 class Collection(BaseModel):
