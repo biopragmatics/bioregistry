@@ -8,17 +8,11 @@ from tqdm import tqdm
 
 import bioregistry
 from bioregistry.external.ols.tib import get_tib_ts
+from bioregistry.schema_utils import get_collection_mappings
 
-#: A mapping from lowercased keyword to Bioregistry collection
-KEYWORD_TO_COLLECTION = {
-    "nfdi4cat": "0000011",
-    "nfdi4chem": "0000014",
-    "nfdi4ing": "0000022",
-    "nfdi4culture": "0000025",
-    "nfdi4energy": "0000021",
-    "dataplant": "0000023",  # nfdi4plant
-    "fairmat": "0000024",
-}
+# Add additional mappings in collections.json's `mappings` field, e.g., with
+# `tib.collection` as a prefix for TIB OLS collections
+KEYWORD_TO_COLLECTION = {v: k for k, v in get_collection_mappings("tib.collection").items()}
 
 
 @click.command()

@@ -51,6 +51,7 @@ from ..schema import (
 from ..schema.constants import SCHEMA_TERMS
 from ..schema.struct import Collection, Organization, filter_collections
 from ..schema_utils import (
+    get_collection_mappings,
     read_collections_contributions,
     read_context_contributions,
     read_prefix_contacts,
@@ -700,7 +701,14 @@ def apidocs() -> werkzeug.Response:
 @ui_blueprint.route("/nfdi/")
 def show_nfdi() -> str:
     """Render the NFDI dashboard page."""
-    nfdi_collections = [
-        c for c in manager.collections.values() if c.has_organization_with_ror(NFDI_ROR)
-    ]
-    return render_template("nfdi.html", collections=nfdi_collections)
+    nfdi_collections = {
+        c.identifier: c
+        for c in manager.collections.values()
+        if c.has_organization_with_ror(NFDI_ROR)
+    }
+    tib_collection_mappings = get_collection_mappings("tib.collection")
+    return render_template(
+        "nfdi.html",
+        collections=nfdi_collections,
+        tib_collection_mappings=tib_collection_mappings,
+    )

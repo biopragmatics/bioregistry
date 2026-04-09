@@ -12,7 +12,7 @@
         <div class="card-text">
             <p>Consortia whose collections don't yet have a maintainer:</p>
             <ol>
-                {%- for collection in collections %}
+                {%- for collection in collections.values() %}
                 {%- if not collection.maintainers %}
                 <li>
                     <a href="{{ url_for('.collection', identifier=collection.identifier) }}">
@@ -41,5 +41,35 @@
         </div>
 
     </div>
+</div>
+
+<div class="card mt-4">
+    <div class="card-header">TIB Collection Mapping</div>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>Identifier</th>
+            <th>Name</th>
+            <th>TIB Collection</th>
+        </tr>
+        </thead>
+        <tbody>
+        {%- for internal_id, tib_id in tib_collection_mappings.items() %}
+        <tr>
+            <td>
+                <a href="{{ url_for('metaregistry_ui.collection', identifier=internal_id) }}">
+                    {{ internal_id }}
+                </a>
+            </td>
+            <td>{{ collections[internal_id].name }}</td>
+            <td>
+                <a href="{{ url_for('metaregistry_ui.resolve', prefix='tib.collection', identifier=tib_id) }}">
+                    {{ tib_id }}
+                </a>
+            </td>
+        </tr>
+        {%- endfor %}
+        </tbody>
+    </table>
 </div>
 {%- endblock %}

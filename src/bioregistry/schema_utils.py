@@ -29,6 +29,7 @@ __all__ = [
     "SemanticMapping",
     "add_collection",
     "add_resource",
+    "get_collection_mappings",
     "is_mismatch",
     "read_collections",
     "read_collections_contributions",
@@ -156,6 +157,16 @@ def is_mismatch(bioregistry_prefix: str, external_metaprefix: str, external_pref
 def read_collections() -> Mapping[str, Collection]:
     """Read the manually curated collections."""
     return _collections_from_path(COLLECTIONS_PATH)
+
+
+def get_collection_mappings(external_prefix: str) -> dict[str, str]:
+    """Get a mapping from internal collection IDs to external ones in the given prefix."""
+    return {
+        collection.identifier: mapping.identifier
+        for collection in read_collections().values()
+        for mapping in collection.mappings or []
+        if mapping.prefix == external_prefix
+    }
 
 
 def _collections_from_path(path: str | Path) -> dict[str, Collection]:
