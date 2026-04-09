@@ -6,6 +6,16 @@
 {%- macro external_mapping_card(title, external_prefix, mappings) %}
 <div class="card mt-4">
     <div class="card-header">{{ title }} Collection Mapping</div>
+    <div class="card-body">
+        {%- if external_prefix == "tib.collection" %}
+        Import of TIB OLS collections was implemented in
+        <a href="https://github.com/biopragmatics/bioregistry/pull/1762">#1762</a>.
+        The data can be synced by running <code>python -m bioregistry.curation.nfdi_collections</code>.
+        {%- else %}
+        Import of BARTOC collections is planned in
+        <a href="https://github.com/biopragmatics/bioregistry/issues/1817">#1817</a>.
+        {%- endif %}
+    </div>
     <table class="table table-striped">
         <thead>
         <tr>
