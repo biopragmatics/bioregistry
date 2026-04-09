@@ -720,7 +720,7 @@ def show_nfdi() -> str:
                 tib_opportunities.add(prefix)
 
     # who is used more than once?
-    counter = Counter(prefix for c in nfdi_collections for prefix in c.get_prefixes())
+    counter = Counter(prefix for c in nfdi_collections.values() for prefix in c.get_prefixes())
 
     return render_template(
         "nfdi.html",

@@ -104,10 +104,9 @@
     </div>
 </div>
 
-
-<div class="card">
+<div class="card mt-4">
     <div class="card-header">
-       Resource Used By Multiple Consortia
+       Resource used by more than two consortia
     </div>
 
     <table class="table table-striped">
@@ -120,7 +119,7 @@
         </thead>
         <tbody>
         {%- for prefix, count in prefix_counter.most_common() %}
-        {%- if count > 1 and prefix != 'bioregistry' %}
+        {%- if count > 2 and prefix != 'bioregistry' %}
         <tr>
             <td>{{ prefix }}</td>
             <td>{{ manager.get_name(prefix) }}</td>
