@@ -53,13 +53,4 @@ def main(keywords: list[str]) -> None:
 
 
 if __name__ == "__main__":
-    main(
-        [
-            "education",
-            "education level",
-            "education science",
-            "educational resource",
-            "open educational resources",
-            "discipline",
-        ]
-    )
+    main()

@@ -3,6 +3,7 @@
 from collections import Counter
 
 import click
+import requests
 from tabulate import tabulate
 from tqdm import tqdm
 
@@ -14,10 +15,10 @@ from bioregistry.schema_utils import get_collection_mappings
 # `tib.collection` as a prefix for TIB OLS collections
 KEYWORD_TO_COLLECTION = {v: k for k, v in get_collection_mappings("tib.collection").items()}
 
+BARTOC_TO_COLLECTION = {v: k for k, v in get_collection_mappings("bartoc").items()}
 
-@click.command()
-def main() -> None:
-    """Populate collections based on keywords from the TIB terminology service."""
+
+def _import_tib() -> None:
     counter: Counter[str] = Counter()
 
     tib_to_internal = bioregistry.get_registry_invmap("tib")
@@ -36,6 +37,17 @@ def main() -> None:
 
     bioregistry.manager.write_collections()
     tqdm.write(tabulate(counter.most_common(), headers=["unmapped keyword", "count"]))
+
+
+def _import_bartoc():
+    requests.get(URL)
+
+
+@click.command()
+def main() -> None:
+    """Populate collections based on keywords from the TIB terminology service."""
+    # _import_tib()
+    _import_bartoc()
 
 
 if __name__ == "__main__":

@@ -2,6 +2,7 @@
 
 import json
 import logging
+from collections import defaultdict
 from collections.abc import Sequence
 from pathlib import Path
 from typing import Any, ClassVar
@@ -24,6 +25,8 @@ RAW_PATH = RAW_DIRECTORY.joinpath("bartoc.jsonl")
 PROCESSED_PATH = HERE / "processed.json"
 URL = "https://bartoc.org/data/dumps/latest.ndjson"
 
+URI_PREFIX = "http://bartoc.org/en/node/"
+
 
 def process_bartoc(path: Path) -> dict[str, Record]:
     """Process BARTOC."""
@@ -31,7 +34,7 @@ def process_bartoc(path: Path) -> dict[str, Record]:
     with path.open() as file:
         for line in file:
             data = json.loads(line)
-            prefix = data["uri"][len("http://bartoc.org/en/node/") :]
+            prefix = data["uri"][len(URI_PREFIX) :]
             rv[prefix] = _process_bartoc_record(prefix, data)
     return rv
 
@@ -39,7 +42,6 @@ def process_bartoc(path: Path) -> dict[str, Record]:
 get_bartoc = build_getter(
     processed_path=PROCESSED_PATH, raw_path=RAW_PATH, url=URL, func=process_bartoc
 )
-
 
 URI_FORMAT_SKIPS: dict[str, str] = {}
 
@@ -92,6 +94,25 @@ def _process_bartoc_record(prefix: str, record: dict[str, Any]) -> Record:
     return make_record(rv)
 
 
+def get_part_of_map() -> dict[str, set[str]]:
+    """Get a mapping from registries to their parts.
+
+    :returns: A mapping from BARTOC ID for a registry to BARTOC ID for an entry in the registry.
+
+    For example, the `NFDI4Objects Terminologies <http://bartoc.org/en/node/18961>`_
+    list will be a key of ``18961`` and have values listed on this search
+    page: https://bartoc.org/vocabularies/?sort=relevance&order=desc&limit=10&filter=in%3Ahttp%3A%2F%2Fbartoc.org%2Fen%2Fnode%2F18961
+    """
+    rv: defaultdict[str, set[str]] = defaultdict(set)
+    with RAW_PATH.open() as file:
+        for line in file:
+            data = json.loads(line)
+            identifier = data["uri"].removeprefix(URI_PREFIX)
+            for part in data.get("partOf", []):
+                rv[part["uri"].removeprefix(URI_PREFIX)].add(identifier)
+    return dict(rv)
+
+
 class BartocAligner(Aligner):
     """Aligner for BARTOC."""
 
@@ -102,4 +123,4 @@ class BartocAligner(Aligner):
 
 
 if __name__ == "__main__":
-    BartocAligner.cli()
+    get_part_of_map()
