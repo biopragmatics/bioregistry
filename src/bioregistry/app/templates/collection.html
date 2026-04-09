@@ -117,15 +117,23 @@
             </tr>
             </thead>
             <tbody>
-            {% for prefix in entry.resources %}
+            {%- for annotated_prefix in entry.get_annotated_prefixes() %}
+            {%- set resource = resources[annotated_prefix.prefix] %}
             <tr>
                 <td>
-                    <code>{{ prefix }}</code>
+                    <code>{{ annotated_prefix.prefix }}</code>
                 </td>
                 <td>
-                    <a href="{{ url_for('metaregistry_ui.resource', prefix=prefix) }}">
-                        {{ resources[prefix].get_name() }} {{ utils.render_resource_warnings(resources[prefix]) }}
+                    <a href="{{ url_for('metaregistry_ui.resource', prefix=resource.prefix) }}">
+                        {{ resource.get_name() }} {{ utils.render_resource_warnings(resource) }}
                     </a>
+                    {%- if first_party[annotated_prefix.prefix] %}
+                    <span class="badge badge-primary"><i class="bi bi-check-circle-fill"></i> First Party</span>
+                    {%- endif %}
+
+                    {%- if annotated_prefix.usages %}
+                    <br><small>Usages: {{ annotated_prefix.usages}}</small>
+                    {%- endif %}
                 </td>
             </tr>
             {% endfor %}

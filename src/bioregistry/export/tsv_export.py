@@ -92,7 +92,7 @@ def get_collections_rows() -> list[tuple[str, str, str, str, str, str, str, str]
                 identifier,
                 collection.name,
                 collection.description,
-                "|".join(collection.resources),
+                "|".join(collection.get_prefixes()),
                 "|".join(contributor.name for contributor in collection.contributors or []),
                 "|".join(contributor.orcid for contributor in collection.contributors or []),
                 "|".join(maintainer.name for maintainer in collection.maintainers or []),

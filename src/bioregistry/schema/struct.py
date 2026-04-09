@@ -2997,6 +2997,14 @@ class Registry(BaseModel):
         )
 
 
+class CollectionAnnotation(BaseModel):
+    """Collection annotation."""
+
+    prefix: str
+    comment: str | None = None
+    usages: str | None = None
+
+
 class Collection(BaseModel):
     """A collection of resources."""
 
@@ -3010,7 +3018,7 @@ class Collection(BaseModel):
         description="A description of the collection",
         min_length=30,
     )
-    resources: list[str] = Field(
+    resources: list[str | CollectionAnnotation] = Field(
         ...,
         description="A list of prefixes of resources appearing in the collection",
         min_length=1,
@@ -3070,7 +3078,7 @@ class Collection(BaseModel):
         for keyword in self.keywords or []:
             graph.add((node, SDO.keywords, Literal(keyword)))
 
-        for resource in self.resources:
+        for resource in self.get_prefixes():
             graph.add((node, DCTERMS.hasPart, bioregistry_resource[resource]))
 
     def as_context_jsonld_str(self) -> str:
@@ -3083,12 +3091,34 @@ class Collection(BaseModel):
             "@context": self.as_prefix_map(),
         }
 
+    def get_prefixes(self) -> list[str]:
+        """Get prefixes."""
+        rv = []
+        for resource in self.resources:
+            match resource:
+                case CollectionAnnotation():
+                    rv.append(resource.prefix)
+                case str():
+                    rv.append(resource)
+        return rv
+
+    def get_annotated_prefixes(self) -> list[CollectionAnnotation]:
+        """Get annotated prefixes."""
+        rv = []
+        for resource in self.resources:
+            match resource:
+                case CollectionAnnotation():
+                    rv.append(resource)
+                case str():
+                    rv.append(CollectionAnnotation(prefix=resource))
+        return rv
+
     def as_prefix_map(self) -> Mapping[str, str]:
         """Get the prefix map for a given collection."""
         from ..uri_format import get_uri_prefix
 
         rv = {}
-        for prefix in self.resources:
+        for prefix in self.get_prefixes():
             fmt = get_uri_prefix(prefix)
             if fmt is not None:
                 rv[prefix] = fmt
