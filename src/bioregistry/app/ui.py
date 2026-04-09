@@ -6,7 +6,7 @@ import datetime
 import itertools as itt
 import json
 import platform
-from collections import defaultdict
+from collections import Counter, defaultdict
 from collections.abc import Iterable
 from operator import attrgetter
 from pathlib import Path
@@ -719,6 +719,9 @@ def show_nfdi() -> str:
                 collection_to_tib_opportunities[collection_.identifier].append(prefix)
                 tib_opportunities.add(prefix)
 
+    # who is used more than once?
+    counter = Counter(prefix for c in nfdi_collections.values() for prefix in c.get_prefixes())
+
     return render_template(
         "nfdi.html",
         collections=nfdi_collections,
@@ -726,4 +729,5 @@ def show_nfdi() -> str:
         bartoc_collection_mappings=bartoc_collection_mappings,
         collection_to_tib_opportunities=collection_to_tib_opportunities,
         tib_opportunities=tib_opportunities,
+        prefix_counter=counter,
     )

@@ -101,8 +101,34 @@
                 {%- endfor %}
             </ol>
         </div>
-
     </div>
+</div>
+
+<div class="card mt-4">
+    <div class="card-header">
+       Resource used by more than two consortia
+    </div>
+
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>Prefix</th>
+            <th>Name</th>
+            <th># Consortia</th>
+        </tr>
+        </thead>
+        <tbody>
+        {%- for prefix, count in prefix_counter.most_common() %}
+        {%- if count > 2 and prefix != 'bioregistry' %}
+        <tr>
+            <td>{{ prefix }}</td>
+            <td>{{ manager.get_name(prefix) }}</td>
+            <td align="right">{{ count }}</td>
+        </tr>
+        {%- endif %}
+        {%- endfor %}
+        </tbody>
+    </table>
 </div>
 
 {{ external_mapping_card("TIB", "tib.collection", tib_collection_mappings) }}
