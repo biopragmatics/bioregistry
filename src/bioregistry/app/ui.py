@@ -266,6 +266,7 @@ def collection(identifier: str) -> str | flask.Response:
     if accept != "text/html":
         return serialize_model(entry, collection_to_rdf_str, negotiate=True)
     indirect = manager.get_collection_indirect_dependencies(entry)
+    first_party = manager.get_collection_first_party(entry, skip_org_rors={NFDI_ROR})
     return render_template(
         "collection.html",
         identifier=identifier,
@@ -274,6 +275,7 @@ def collection(identifier: str) -> str | flask.Response:
             prefix: manager.get_resource(prefix, strict=True) for prefix in entry.get_prefixes()
         },
         indirect=indirect,
+        first_party=first_party,
         formats=[
             *FORMATS,
             ("Context (JSON-LD)", "context"),
