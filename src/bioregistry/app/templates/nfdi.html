@@ -1,0 +1,45 @@
+{%- extends "base.html" %}
+{%- import "macros.html" as utils %}
+
+{%- block title %}NFDI Dashboard{% endblock %}
+
+{%- block container %}
+<div class="card">
+    <div class="card-header">
+        NFDI Dashboard
+    </div>
+    <div class="card-body">
+        <div class="card-text">
+            <p>Consortia whose collections don't yet have a maintainer:</p>
+            <ol>
+                {%- for collection in collections %}
+                {%- if not collection.maintainers %}
+                <li>
+                    <a href="{{ url_for('.collection', identifier=collection.identifier) }}">
+                        {{ collection.name.removesuffix(" Collection").removesuffix(" Resoures") }}
+                    </a>
+                    ({{ collection.resources|length }})
+                </li>
+                {%- endif %}
+                {%- endfor %}
+            </ol>
+            <p>Consortia whose collections haven't been populated:</p>
+            <ol>
+                {%- for collection in collections %}
+                {%- if collection.resources|length == 1 %}
+                <li>
+                    <a href="{{ url_for('.collection', identifier=collection.identifier) }}">
+                        {{ collection.name.removesuffix(" Collection").removesuffix(" Resoures") }}
+                    </a>
+                    {% for maintainer in collection.maintainer %}
+                    ({{ maintainer.name }})
+                    {% endfor %}
+                </li>
+                {%- endif %}
+                {%- endfor %}
+            </ol>
+        </div>
+
+    </div>
+</div>
+{%- endblock %}
