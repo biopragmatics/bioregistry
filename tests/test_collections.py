@@ -6,6 +6,7 @@ from collections import Counter
 
 import rdflib
 
+import bioregistry
 from bioregistry import manager
 from bioregistry.constants import NFDI_ROR
 from bioregistry.export.rdf_export import collection_to_rdf_str
@@ -49,6 +50,9 @@ class TestCollections(unittest.TestCase):
                 self.assertEqual(
                     sorted(collection.resources, key=_collection_resource_key), collection.resources
                 )
+
+                for mapping in collection.mappings:
+                    self.assertTrue(bioregistry.is_valid_curie(mapping.curie))
 
     def test_get_collection(self) -> None:
         """Test getting a collection."""
