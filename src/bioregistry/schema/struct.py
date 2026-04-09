@@ -258,9 +258,23 @@ class Attributable(BaseModel):
         ),
     )
 
+    wikidata: str | None = Field(
+        default=None,
+        title="Wikidata identifier",
+        pattern="^Q\\d+$",
+        examples=["Q47475003"],
+    )
+
     def get_score(self) -> int:
         """Get a score."""
-        return sum((3 * (self.orcid is not None), self.email is not None, self.github is not None))
+        return sum(
+            (
+                3 * (self.orcid is not None),
+                self.email is not None,
+                self.github is not None,
+                self.wikidata is not None,
+            )
+        )
 
     def add_triples(self, graph: rdflib.Graph) -> rdflib.term.Node:
         """Add triples to an RDF graph for this author.
@@ -3022,7 +3036,7 @@ class Collection(BaseModel):
         description="A list of prefixes of resources appearing in the collection",
         min_length=1,
     )
-    contributors: list[Author] = Field(
+    contributors: list[Attributable] = Field(
         ...,
         description="A list of authors/contributors to the collection",
         min_length=1,
