@@ -186,13 +186,24 @@ class TestRegistry(unittest.TestCase):
             name = bioregistry.get_name(prefix)
             if name is None:
                 continue  # checking that there's a name happens in test_names()
+
+            other_names: set[str] = {
+                other_name
+                for metaprefix in entry.mappings or {}
+                if (other_name := entry.get_external(metaprefix).get("name"))
+                and other_name.casefold() != name.casefold()
+            }
             if prefix == name.lower() and name.upper() == name:
                 with self.subTest(prefix=prefix):
-                    self.fail(msg=f"{prefix} acronym ({name}) is not expanded")
+                    self.fail(
+                        msg=f"{prefix} acronym ({name}) is not expanded.\ntry one of: {sorted(other_names)}"
+                    )
 
             if "." in prefix and prefix.split(".")[0] == name.lower():
                 with self.subTest(prefix=prefix):
-                    self.fail(msg=f"{prefix} acronym ({name}) is not expanded")
+                    self.fail(
+                        msg=f"{prefix} acronym ({name}) is not expanded.\ntry one of: {sorted(other_names)}"
+                    )
 
     def test_get_name(self) -> None:
         """Test getting the name."""
