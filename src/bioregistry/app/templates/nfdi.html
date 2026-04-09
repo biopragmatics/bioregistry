@@ -10,36 +10,66 @@
     </div>
     <div class="card-body">
         <div class="card-text">
-            <p>Consortia whose collections don't yet have a maintainer:</p>
-            <ol>
-                {%- for collection in collections %}
-                {%- if not collection.maintainers %}
-                <li>
-                    <a href="{{ url_for('.collection', identifier=collection.identifier) }}">
-                        {{ collection.name.removesuffix(" Collection").removesuffix(" Resoures") }}
-                    </a>
-                    ({{ collection.resources|length }})
-                </li>
-                {%- endif %}
-                {%- endfor %}
-            </ol>
-            <p>Consortia whose collections haven't been populated:</p>
-            <ol>
-                {%- for collection in collections %}
-                {%- if collection.resources|length == 1 %}
-                <li>
-                    <a href="{{ url_for('.collection', identifier=collection.identifier) }}">
-                        {{ collection.name.removesuffix(" Collection").removesuffix(" Resoures") }}
-                    </a>
-                    {% for maintainer in collection.maintainer %}
-                    ({{ maintainer.name }})
-                    {% endfor %}
-                </li>
-                {%- endif %}
-                {%- endfor %}
-            </ol>
+            Consortia whose collections don't yet have a maintainer:
         </div>
-
     </div>
+
+    <ol>
+    {%- for collection in collections %}
+    {%- if not collection.maintainers %}
+    <li>
+        <a href="{{ url_for('.collection', identifier=collection.identifier) }}">
+            {{ collection.name.removesuffix(" Collection").removesuffix(" Resoures") }}
+        </a>
+        ({{ collection.resources|length }})
+    </li>
+    {%- endif %}
+    {%- endfor %}
+    </ol>
+
+    <div class="card-body">
+        Consortia whose collections haven't been populated:
+    </div>
+    <ol>
+    {%- for collection in collections %}
+    {%- if collection.resources|length == 1 %}
+    <li>
+        <a href="{{ url_for('.collection', identifier=collection.identifier) }}">
+            {{ collection.name.removesuffix(" Collection").removesuffix(" Resoures") }}
+        </a>
+        {% for maintainer in collection.maintainer %}
+        ({{ maintainer.name }})
+        {% endfor %}
+    </li>
+    {%- endif %}
+    {%- endfor %}
+    </ol>
+
+    <div class="card-body">
+        Resource Used By Multiple Consortia
+    </div>
+
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>Prefix</th>
+            <th>Name</th>
+            <th># Consortia</th>
+        </tr>
+        </thead>
+        <tbody>
+        {%- for prefix, count in prefix_counter.most_common() %}
+        {%- if count > 1 and prefix != 'bioregistry' %}
+        <tr>
+            <td>{{ prefix }}</td>
+            <td>{{ manager.get_name(prefix) }}</td>
+            <td align="right">{{ count }}</td>
+        </tr>
+        {%- endif %}
+        {%- endfor %}
+        </tbody>
+    </table>
+
+
 </div>
 {%- endblock %}
