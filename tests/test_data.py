@@ -173,7 +173,7 @@ class TestRegistry(unittest.TestCase):
             name: prefixes for name, prefixes in name_to_prefix.items() if len(prefixes) > 1
         }
         if name_to_prefix_rasterized:
-            self.fail(msg=f"There are duplicate names:\n{name_to_prefix}")
+            self.fail(msg=f"There are duplicate names:\n{name_to_prefix_rasterized}")
 
     def test_name_expansions(self) -> None:
         """Test that default names are not capital acronyms."""
@@ -317,6 +317,9 @@ class TestRegistry(unittest.TestCase):
             if not uri_format:
                 continue
             with self.subTest(prefix=prefix):
+                self.assertEqual(
+                    uri_format.strip(), uri_format, msg=f"{prefix} URI format has spaces"
+                )
                 self.assertTrue(
                     any(
                         uri_format.startswith(protocol + "://")
