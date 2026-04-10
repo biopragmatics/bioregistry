@@ -1111,6 +1111,7 @@ class TestRegistry(unittest.TestCase):
                                     publication.doi is not None,
                                     publication.pubmed is not None,
                                     publication.pmc is not None,
+                                    publication.arxiv is not None,
                                 )
                             ),
                         )
