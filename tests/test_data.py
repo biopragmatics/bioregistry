@@ -317,7 +317,9 @@ class TestRegistry(unittest.TestCase):
             if not uri_format:
                 continue
             with self.subTest(prefix=prefix):
-                self.assertEqual(uri_format.strip(), uri_format, msg=f"{prefix} URI format has spaces")
+                self.assertEqual(
+                    uri_format.strip(), uri_format, msg=f"{prefix} URI format has spaces"
+                )
                 self.assertTrue(
                     any(
                         uri_format.startswith(protocol + "://")
