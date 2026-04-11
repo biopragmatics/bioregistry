@@ -46159,6 +46159,11 @@ mwo:
     bioportal: MWO
     tib: mwo
   name: NFDI MatWerk Ontology
+  owners:
+  - name: NFDI-MatWerk
+    partnered: false
+    ror: 01d2qgg03
+    wikidata: Q108542607
   pattern: ^\d{7}$
   preferred_prefix: mwo
   repository: https://github.com/ISE-FIZKarlsruhe/mwo
@@ -57476,6 +57481,7 @@ pmdco:
     seamless traceability of data generation. Overall, PMDco is a crucial step towards
     a unified and comprehensive understanding of the MSE domain. PMDco at GitHub:
     https://github.com/materialdigital/core-ontology Documentation: https://materialdigital.github.io/core-ontology/docs/'
+  download_owl: https://github.com/materialdigital/core-ontology/raw/refs/heads/main/pmdco.owl
   example: '0000000'
   homepage: https://materialdigital.github.io/core-ontology/
   keywords:
@@ -57483,9 +57489,12 @@ pmdco:
   - material science
   - mechanical engineering, energy technology
   - nfdi4ing
+  - ontology
+  license: CC-BY-4.0
   mappings:
     tib: pmd
   name: Platform Material Digital Core Ontology
+  pattern: ^\d+$
   preferred_prefix: pmdco
   repository: https://github.com/materialdigital/core-ontology
   uri_format: https://w3id.org/pmd/co/PMD_$1
@@ -58406,6 +58415,150 @@ pride.project:
     name: PRIDE Project through OmicsDI
     uri_format: https://www.omicsdi.org/dataset/pride/$1
   uri_format: https://www.ebi.ac.uk/pride/archive/projects/$1
+prima:
+  contact:
+    email: a.ihsan@fz-juelich.de
+    github: az-ihsan
+    name: Ahmad Zainul Ihsan
+    orcid: 0000-0002-1008-4530
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: This is the Provenance Information for Materials Science (PRIMA) Ontology,
+    version 3.0, aligned with PMDco v3 and based on BFO (Basic Formal Ontology). This
+    complete module imports all PRIMA modules (core, data-analysis-lifecycle, dataset,
+    experiment, and computational) in their v3.0 versions. [from  https://purls.helmholtz-metadaten.de/prima/complete]
+  example: dataset#RawData
+  homepage: https://materials-data-science-and-informatics.github.io/MDMC-NEP-top-level-ontology/
+  keywords:
+  - materials science
+  license: CC-BY-3.0
+  name: Provenance Information for Materials Science Ontology
+  preferred_prefix: prima
+  repository: https://github.com/materials-data-science-and-informatics/MDMC-NEP-top-level-ontology
+  uri_format: https://purls.helmholtz-metadaten.de/prima/$1
+prima.computational:
+  contact:
+    email: a.ihsan@fz-juelich.de
+    github: az-ihsan
+    name: Ahmad Zainul Ihsan
+    orcid: 0000-0002-1008-4530
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: This is the computational workflow module of the Provenance Information
+    for Materials Science (PRIMA) Ontology, version 3.0, aligned with PMDco v3 and
+    based on BFO (Basic Formal Ontology). [from homepage]
+  example: Model
+  homepage: https://purls.helmholtz-metadaten.de/prima/computational
+  keywords:
+  - materials science
+  license: CC-BY-3.0
+  name: Provenance Information for Materials Science Ontology - Computational Module
+  part_of: prima
+  preferred_prefix: prima.computational
+  repository: https://github.com/materials-data-science-and-informatics/MDMC-NEP-top-level-ontology
+  uri_format: https://purls.helmholtz-metadaten.de/prima/computational#$1
+prima.core:
+  contact:
+    email: a.ihsan@fz-juelich.de
+    github: az-ihsan
+    name: Ahmad Zainul Ihsan
+    orcid: 0000-0002-1008-4530
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: This is the core module of the Provenance Information for Materials
+    Science (PRIMA) Ontology, version 3.0, aligned with PMDco v3 and based on BFO
+    (Basic Formal Ontology). [from homepage]
+  example: RelatedPerson
+  homepage: https://purls.helmholtz-metadaten.de/prima/core
+  keywords:
+  - materials science
+  license: CC-BY-3.0
+  name: Provenance Information for Materials Science Ontology - Core Module
+  part_of: prima
+  preferred_prefix: prima.core
+  repository: https://github.com/materials-data-science-and-informatics/MDMC-NEP-top-level-ontology
+  uri_format: https://purls.helmholtz-metadaten.de/prima/core#$1
+prima.dal:
+  contact:
+    email: a.ihsan@fz-juelich.de
+    github: az-ihsan
+    name: Ahmad Zainul Ihsan
+    orcid: 0000-0002-1008-4530
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: This is the data analysis lifecycle module of the Provenance Information
+    for Materials Science (PRIMA) Ontology, version 3.0, aligned with PMDco v3 and
+    based on BFO (Basic Formal Ontology). [from homepage]
+  example: DataProcessing
+  homepage: https://purls.helmholtz-metadaten.de/prima/dal
+  keywords:
+  - materials science
+  license: CC-BY-3.0
+  name: Provenance Information for Materials Science Ontology - Data Analysis Lifecycle
+    Module
+  part_of: prima
+  preferred_prefix: prima.dal
+  repository: https://github.com/materials-data-science-and-informatics/MDMC-NEP-top-level-ontology
+  uri_format: https://purls.helmholtz-metadaten.de/prima/dal#$1
+prima.dataset:
+  contact:
+    email: a.ihsan@fz-juelich.de
+    github: az-ihsan
+    name: Ahmad Zainul Ihsan
+    orcid: 0000-0002-1008-4530
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: This is the dataset module of the Provenance Information for Materials
+    Science (PRIMA) Ontology, version 3.0, aligned with PMDco v3 and based on BFO
+    (Basic Formal Ontology). [from homepage]
+  example: RawData
+  homepage: https://purls.helmholtz-metadaten.de/prima/dataset#
+  keywords:
+  - materials science
+  license: CC-BY-3.0
+  name: Provenance Information for Materials Science Ontology - Dataset Module
+  part_of: prima
+  preferred_prefix: prima.dataset
+  repository: https://github.com/materials-data-science-and-informatics/MDMC-NEP-top-level-ontology
+  uri_format: https://purls.helmholtz-metadaten.de/prima/dataset#$1
+prima.experiment:
+  contact:
+    email: a.ihsan@fz-juelich.de
+    github: az-ihsan
+    name: Ahmad Zainul Ihsan
+    orcid: 0000-0002-1008-4530
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: This is the experiment module of the Provenance Information for Materials
+    Science (PRIMA) Ontology, version 3.0, aligned with PMDco v3 and based on BFO
+    (Basic Formal Ontology). [from homepage]
+  example: InstrumentScientist
+  homepage: https://purls.helmholtz-metadaten.de/prima/experiment
+  keywords:
+  - materials science
+  license: CC-BY-3.0
+  name: Provenance Information for Materials Science Ontology - Experiment Module
+  part_of: prima
+  preferred_prefix: prima.experiment
+  uri_format: https://purls.helmholtz-metadaten.de/prima/experiment#$1
 prints:
   contact:
     email: teresa.k.attwood@manchester.ac.uk
@@ -65853,6 +66006,10 @@ skm:
   preferred_prefix: skm
   uri_format: https://skm.nib.si/api/pss/reactions?reaction_id=$1&return_field=summary
 skos:
+  contact:
+    email: alimanfoo@googlemail.com
+    github: alimanfoo
+    name: Alistair Miles
   contributor:
     email: cthoyt@gmail.com
     github: cthoyt
@@ -65865,7 +66022,7 @@ skos:
   download_owl: http://aber-owl.net/media/ontologies/skos/1/skos.owl
   download_rdf: http://www.w3.org/TR/skos-reference/skos.rdf
   example: prefLabel
-  homepage: https://www.w3.org/2004/02/skos/
+  homepage: https://www.w3.org/TR/skos-reference
   keywords:
   - computer science
   - miscellaneous
@@ -76821,6 +76978,7 @@ unesco.thesaurus:
     of education, culture, natural sciences, social and human sciences, communication
     and information. Continuously enriched and updated, its multidisciplinary terminology
     reflects the evolution of UNESCO's programmes and activities. [from homepage]
+  download_rdf: https://vocabularies.unesco.org/exports/thesaurus/latest/unesco-thesaurus.ttl
   example: '585'
   homepage: http://vocabularies.unesco.org/thesaurus
   keywords:
@@ -78846,7 +79004,7 @@ viaf:
   keywords:
   - centrally registered identifier
   - subject agnostic
-  license: http://www.opendatacommons.org/licenses/by/1.0
+  license: ODC-By-1.0
   mappings:
     bartoc: '2053'
     fairsharing: FAIRsharing.a15ac6
