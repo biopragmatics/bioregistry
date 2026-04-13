@@ -50,10 +50,24 @@ def _import_bartoc() -> None:
             if prefix:
                 bioregistry.add_to_collection(collection_id, prefix)
             else:
-                rows.append((resource_bartoc_id, bartoc_data[resource_bartoc_id].get("name")))
-                continue
+                rows.append(
+                    (
+                        resource_bartoc_id,
+                        f"https://bartoc.org/node/{resource_bartoc_id}",
+                        bartoc_data[resource_bartoc_id].get("short_names"),
+                        bartoc_data[resource_bartoc_id].get("name"),
+                        bartoc_data[resource_bartoc_id].get("homepage"),
+                        bartoc_data[resource_bartoc_id].get("uri_format"),
+                    )
+                )
     bioregistry.manager.write_collections()
-    tqdm.write(tabulate(rows, headers=["unmapped BARTOC ID", "name"]))
+    tqdm.write(
+        tabulate(
+            rows,
+            headers=["bartoc", "bartoc link", "prefix", "name", "homepage", "uri_format"],
+            showindex=False,
+        )
+    )
 
 
 @click.command()
