@@ -368,13 +368,18 @@
         <div class="card" style="margin-top: 20px">
             <a id="mappings"></a>
             <h5 class="card-header">
-                Metaregistry <i class="bi bi-chevron-right"></i> {{ name_pack.value }}
+                Mappings to External Registries
             </h5>
             <div class="card-body">
                 <p class="mb-0">
-                    The metaregistry provides mappings between the {{ config.METAREGISTRY_TITLE }} and other registries. There are
-                    {{ mappings | length }} mappings to external registries for this resource with
+                    Mappings from records in {{ config.METAREGISTRY_TITLE }} to external registries
+                    comprises the <i>metaregistry</i>.
+                    {% if mappings | length == 1 %}
+                    This resource has 1 mapping to an external registry.
+                    {% else %}
+                    This resource has {{ mappings | length }} mappings to external registries with
                     {{ mappings | map(attribute='xref') | unique | list | length }} unique external prefixes.
+                    {% endif %}
                 </p>
             </div>
             <table class="table table-hover table-striped mb-0">
