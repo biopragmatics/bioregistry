@@ -55,7 +55,7 @@
                 {%- if entry.maintainers %}
                 <dt>Maintainers</dt>
                 {%- for maintainer in entry.maintainers %}
-                <dd style="margin-bottom: 0;">
+                <dd {% if not loop.last %}class="mb-0"{% endif %}>
                      <a href="{{ url_for('metaregistry_ui.contributor', orcid=maintainer.orcid) }}">
                         {{ maintainer.name }} {{ utils.orcid_img() }}
                     </a>
@@ -66,14 +66,14 @@
                 {%- if entry.contributors %}
                 <dt>Contributors</dt>
                 {%- for contributor in entry.contributors %}
-                <dd style="margin-bottom: 0;">
-                    {% if contributor.orcid %}
+                <dd {% if not loop.last %}class="mb-0"{% endif %}>
+                    {%- if contributor.orcid %}
                     <a href="{{ url_for('metaregistry_ui.contributor', orcid=contributor.orcid) }}">
                         {{ contributor.name }} {{ utils.orcid_img() }}
                     </a>
-                    {% else %}
+                    {%- else %}
                     {{ contributor.name }}
-                    {% endif %}
+                    {%- endif %}
                 </dd>
                 {%- endfor %}
                 {%- endif %}
@@ -81,7 +81,7 @@
                 {%- if entry.organizations %}
                 <dt>Organizations</dt>
                 {%- for organization in entry.organizations %}
-                <dd style="margin-bottom: 0;">
+                <dd {% if not loop.last %}class="mb-0"{% endif %}>
                     <a href="{{ organization.link }}">
                         {{ organization.name }}
                         {%- if organization.ror -%}
@@ -94,17 +94,17 @@
 
                 <dt>Size</dt>
                 <dd>{{ entry.resources | length }}</dd>
-                {% if entry.references %}
-                    <dt>References</dt>
-                    {% for reference in entry.references %}
-                        <dd><a href="{{ reference }}">{{ reference }}</a></dd>
-                    {% endfor %}
-                {% endif %}
+                {%- if entry.references %}
+                <dt>References</dt>
+                {%- for reference in entry.references %}
+                <dd><a href="{{ reference }}">{{ reference }}</a></dd>
+                {%- endfor %}
+                {%- endif %}
 
                 {%- if entry.mappings %}
                 <dt>Related Collections</dt>
                 {%- for mapping in entry.mappings %}
-                <dd><a href="{{ url_for('metaregistry_ui.resolve', prefix=mapping.prefix, identifier=mapping.identifier) }}"><code>{{ mapping.curie }}</code></a></dd>
+                <dd {% if not loop.last %}class="mb-0"{% endif %}><a href="{{ url_for('metaregistry_ui.resolve', prefix=mapping.prefix, identifier=mapping.identifier) }}"><code>{{ mapping.curie }}</code></a></dd>
                 {%- endfor %}
                 {%- endif %}
 
@@ -137,6 +137,7 @@
                 <th scope="col">Prefix</th>
                 <th scope="col">Name</th>
                 <th scope="col">License</th>
+                <th scope="col">Download</th>
             </tr>
             </thead>
             <tbody>
@@ -164,6 +165,11 @@
                     <a href="{{ license }}">Custom</a>
                     {%- else %}
                     {{ license }}
+                    {%- endif %}
+                </td>
+                <td align="center">
+                    {%- if resource.has_download() %}
+                    <a href="{{ resource.get_download() }}"><i class="bi bi-download"></i></a>
                     {%- endif %}
                 </td>
             </tr>
