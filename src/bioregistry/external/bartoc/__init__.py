@@ -44,7 +44,16 @@ get_bartoc = build_getter(
     processed_path=PROCESSED_PATH, raw_path=RAW_PATH, url=URL, func=process_bartoc
 )
 
-URI_FORMAT_SKIPS: dict[str, str] = {}
+URI_FORMAT_SKIPS: dict[str, str] = {
+   "18653": "all LIDO records are overlapping",
+   "18654": "all LIDO records are overlapping",
+   "18655": "all LIDO records are overlapping",
+   "18656": "all LIDO records are overlapping",
+   "18657": "all LIDO records are overlapping",
+   "18658": "all LIDO records are overlapping",
+   "18659": "all LIDO records are overlapping",
+   "18660": "all LIDO records are overlapping",
+}
 
 
 def _process_bartoc_record(prefix: str, record: dict[str, Any]) -> Record:
