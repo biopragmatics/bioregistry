@@ -45,14 +45,14 @@ get_bartoc = build_getter(
 )
 
 URI_FORMAT_SKIPS: dict[str, str] = {
-   "18653": "all LIDO records are overlapping",
-   "18654": "all LIDO records are overlapping",
-   "18655": "all LIDO records are overlapping",
-   "18656": "all LIDO records are overlapping",
-   "18657": "all LIDO records are overlapping",
-   "18658": "all LIDO records are overlapping",
-   "18659": "all LIDO records are overlapping",
-   "18660": "all LIDO records are overlapping",
+    "18653": "all LIDO records are overlapping",
+    "18654": "all LIDO records are overlapping",
+    "18655": "all LIDO records are overlapping",
+    "18656": "all LIDO records are overlapping",
+    "18657": "all LIDO records are overlapping",
+    "18658": "all LIDO records are overlapping",
+    "18659": "all LIDO records are overlapping",
+    "18660": "all LIDO records are overlapping",
 }
 
 
