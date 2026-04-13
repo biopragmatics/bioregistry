@@ -55,7 +55,7 @@
             <p>Consortia whose collection has a maintainer:</p>
             <ol>
                 {%- for collection in collections.values() %}
-                {%- if collection.maintainers %}
+                {%- if collection.maintainers and (collection.resources|length > 1) %}
                 <li>
                     <a href="{{ url_for('.collection', identifier=collection.identifier) }}">
                         {{ collection.name.removesuffix(" Collection").removesuffix(" Resoures") }}
@@ -70,10 +70,28 @@
                 {%- endif %}
                 {%- endfor %}
             </ol>
-            <p>Consortia whose collections don't yet have a maintainer:</p>
+
+            <p>Consortia whose collection has a maintainer but haven't been filled out</p>
             <ol>
                 {%- for collection in collections.values() %}
-                {%- if not collection.maintainers %}
+                {%- if collection.maintainers and (collection.resources|length == 1) %}
+                <li>
+                    <a href="{{ url_for('.collection', identifier=collection.identifier) }}">
+                        {{ collection.name.removesuffix(" Collection").removesuffix(" Resoures") }}
+                    </a>
+                    <ul>
+                        {% for maintainer in collection.maintainers %}
+                        <li>{{ maintainer.name }} {{ utils.orcid_img() }}</li>
+                        {% endfor %}
+                    </ul>
+                </li>
+                {%- endif %}
+                {%- endfor %}
+            </ol>
+            <p>Consortia whose collections don't yet have a maintainer but have been ported:</p>
+            <ol>
+                {%- for collection in collections.values() %}
+                {%- if not collection.maintainers and (collection.resources|length > 1) %}
                 <li>
                     <a href="{{ url_for('.collection', identifier=collection.identifier) }}">
                         {{ collection.name.removesuffix(" Collection").removesuffix(" Resoures") }}
@@ -83,17 +101,14 @@
                 {%- endif %}
                 {%- endfor %}
             </ol>
-            <p>Consortia whose collections haven't been populated:</p>
+            <p>Consortia whose collections don't yet have a maintainer and haven't been ported:</p>
             <ol>
                 {%- for collection in collections.values() %}
-                {%- if collection.resources|length == 1 %}
+                {%- if not collection.maintainers and (collection.resources|length == 1) %}
                 <li>
                     <a href="{{ url_for('.collection', identifier=collection.identifier) }}">
                         {{ collection.name.removesuffix(" Collection").removesuffix(" Resoures") }}
                     </a>
-                    {%- if collection.maintainers %}
-                    ({%- for maintainer in collection.maintainers -%}{{ maintainer.name }} {{ utils.orcid_img() }}{% if not loop.last %}, {% endif -%}{%- endfor -%})
-                    {%- endif %}
                 </li>
                 {%- endif %}
                 {%- endfor %}
