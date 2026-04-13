@@ -20,7 +20,7 @@
         <thead>
         <tr>
             <th>Collection</th>
-            <th>Name</th>
+            <th>Consortium</th>
             <th>{{ title }} Collection</th>
         </tr>
         </thead>
@@ -32,7 +32,7 @@
                     {{ collection_id }}
                 </a>
             </td>
-            <td>{{ collections[collection_id].name }}</td>
+            <td>{{ collections[collection_id].name.removesuffix(" Collection") }}</td>
             <td>
                 <a href="{{ url_for('metaregistry_ui.resolve', prefix=external_prefix, identifier=external_id) }}">
                     {{ external_id }}
@@ -123,10 +123,10 @@
         <thead>
         <tr>
             <th>Collection</th>
-            <th>Collection Name</th>
-            <th>Ontologies Missing License</th>
-            <th>Ontologies Missing Domain</th>
-            <th>Ontologies Missing Download</th>
+            <th>Consortium</th>
+            <th>Resources Missing License</th>
+            <th>Resources Missing Domain</th>
+            <th>Resources Missing Download</th>
         </tr>
         </thead>
         <tbody>
@@ -142,7 +142,7 @@
                     {{ collection.identifier }}
                 </a>
             </td>
-            <td>{{ collection.name }}</td>
+            <td>{{ collection.name.removesuffix(" Collection") }}</td>
             <td align="right">{% if n_license %}{{ n_license }} ({{ (0.5 + 100 * n_license / n_total) | int }}%){% endif %}</td>
             <td align="right">{% if n_domain %}{{ n_domain }} ({{ (0.5 + 100 * n_domain / n_total) | int }}%){% endif %}</td>
             <td align="right">{% if n_download %}{{ n_download }} ({{ (0.5 + 100 * n_download / n_total) | int }}%){% endif %}</td>
@@ -190,7 +190,7 @@
     </div>
     <div class="card-body">
         <p class="mb-0">
-            There are {{ tib_opportunities | length }} ontologies appearing in NFDI collections
+            There are {{ tib_opportunities | length }} fesources appearing in NFDI collections
             that have concrete download links in {{ config.METAREGISTRY_TITLE }}, but are not
             yet indexed in the TIB OLS.
             <a class="badge badge-pill badge-light"
@@ -203,8 +203,8 @@
         <thead>
         <tr>
             <th>Collection</th>
-            <th>Name</th>
-            <th># Ontologies</th>
+            <th>Consortium</th>
+            <th># Resources</th>
             <th>Example</th>
             <th>OLS Config.</th>
         </tr>
@@ -217,7 +217,7 @@
                     {{ collection_id }}
                 </a>
             </td>
-            <td>{{ collections[collection_id].name }}</td>
+            <td>{{ collections[collection_id].name.removesuffix(" Collection") }}</td>
             <td align="right">{{ prefixes | length }}</td>
             <td>
                 <a href="{{ url_for('metaregistry_ui.resource', prefix=prefixes[0]) }}">

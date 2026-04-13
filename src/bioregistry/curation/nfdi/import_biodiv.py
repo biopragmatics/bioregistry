@@ -1,13 +1,10 @@
 """Import the NFDI4Biodiversity collection from https://biodivportal.gfbio.org."""
 
-import json
-from pathlib import Path
-
 import click
-from ontoportal_client import BioDivPortal
 from tabulate import tabulate
 
 import bioregistry
+from bioregistry.external.bioportal import get_biodivportal
 
 COLLECTION_IDENTIFIER = "0000040"
 
@@ -15,13 +12,7 @@ COLLECTION_IDENTIFIER = "0000040"
 @click.command()
 def import_biodiv() -> None:
     """Import biodiversity."""
-    path = Path(__file__).parent.joinpath("data.json")
-    if not path.is_file():
-        client = BioDivPortal()
-        ontologies = client.get_ontologies()
-        path.write_text(json.dumps(ontologies, indent=2))
-    else:
-        ontologies = json.loads(path.read_text())
+    ontologies = get_biodivportal()
 
     rows = []
     for ontology in ontologies:
