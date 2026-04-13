@@ -63,7 +63,7 @@
                     ({{ collection.resources|length }})
                     <ul>
                         {% for maintainer in collection.maintainers %}
-                        <li>{{ maintainer.name }}</li>
+                        <li>{{ maintainer.name }} {{ utils.orcid_img() }}</li>
                         {% endfor %}
                     </ul>
                 </li>
@@ -92,9 +92,7 @@
                         {{ collection.name.removesuffix(" Collection").removesuffix(" Resoures") }}
                     </a>
                     {%- if collection.maintainers %}
-                    {%- for maintainer in collection.maintainers %}
-                    ({{ maintainer.name }})
-                    {%- endfor %}
+                    ({%- for maintainer in collection.maintainers -%}{{ maintainer.name }} {{ utils.orcid_img() }}{% if not loop.last %}, {% endif -%}{%- endfor -%})
                     {%- endif %}
                 </li>
                 {%- endif %}
