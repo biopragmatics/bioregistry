@@ -29,6 +29,7 @@ def import_biodiv() -> None:
         else:
             rows.append((acronym, name, f"https://biodivportal.gfbio.org/ontologies/{acronym}"))
     click.echo(tabulate(rows, headers="keys"))
+    bioregistry.manager.write_collections()
 
 
 if __name__ == '__main__':
