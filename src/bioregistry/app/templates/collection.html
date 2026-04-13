@@ -137,6 +137,7 @@
                 <th scope="col">Prefix</th>
                 <th scope="col">Name</th>
                 <th scope="col">License</th>
+                <th scope="col">Download</th>
             </tr>
             </thead>
             <tbody>
@@ -164,6 +165,11 @@
                     <a href="{{ license }}">Custom</a>
                     {%- else %}
                     {{ license }}
+                    {%- endif %}
+                </td>
+                <td align="center">
+                    {%- if resource.has_download() %}
+                    <a href="{{ resource.get_download() }}"><i class="bi bi-download"></i></a>
                     {%- endif %}
                 </td>
             </tr>

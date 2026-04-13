@@ -371,13 +371,13 @@
                 Metaregistry <i class="bi bi-chevron-right"></i> {{ name_pack.value }}
             </h5>
             <div class="card-body">
-                <p>
+                <p class="mb-0">
                     The metaregistry provides mappings between the {{ config.METAREGISTRY_TITLE }} and other registries. There are
                     {{ mappings | length }} mappings to external registries for this resource with
                     {{ mappings | map(attribute='xref') | unique | list | length }} unique external prefixes.
                 </p>
             </div>
-            <table class="table table-hover table-striped">
+            <table class="table table-hover table-striped mb-0">
                 <thead class="table-">
                 <tr>
                     <th scope="col">Registry Name</th>
@@ -459,20 +459,18 @@
                         resolvable URIs and semantic web-flavored URIs.
                     </li>
                 </ol>-->
-                {% if providers %}
-                <p>
+                <p class="mb-0">
+                {%- if providers %}
                     The local unique identifier <code>{{ example }}</code> is used to demonstrate the providers
                     available for {{ name_pack.value }}. Some providers may use a different example, which is displayed in the table below.
                     A guide for curating additional providers can be found
                     <a href="{{ config.METAREGISTRY_REPOSITORY_PAGES }}/curation/providers">here</a>.
-                </p>
-                {% else %}
-                <p>
+                {%- else %}
                     This resource does not have any providers. Please consider contributing one after
                     reading the
                     <a href="{{ config.METAREGISTRY_REPOSITORY_PAGES }}/curation/providers">curation guide</a>.
+                {%- endif %}
                 </p>
-                {% endif %}
             </div>
             {% if providers %}{{ utils.render_provider_table(prefix=prefix, identifier=example, providers=providers) }}{% endif %}
         </div>
@@ -480,7 +478,7 @@
         {% set extra_providers = resource.get_extra_providers(filter_known_inactive=True) %}
         {% if extra_providers %}
             <div class="card" style="margin-top: 20px">
-                <a id="mappings"></a>
+                <a id="extra-providers"></a>
                 <h5 class="card-header">Extra Providers</h5>
                 <div class="card-body">
                     <p>
@@ -488,7 +486,7 @@
                         These are typically inherited from Identifiers.org or Prefix Commons, and need extra curation.
                     </p>
                 </div>
-                <table class="table table-hover table-striped">
+                <table class="table table-hover table-striped mb-0">
                     <thead class="table-">
                     <tr>
                         <th scope="col">Code</th>

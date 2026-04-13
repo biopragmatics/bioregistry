@@ -63,7 +63,7 @@
 
 {% macro render_provider_table(prefix, identifier, providers) -%}
     {% if providers %}
-        <table class="table table-hover table-striped">
+        <table class="table table-hover table-striped mb-0">
             <thead class="table-">
             <tr>
                 <th scope="col">Name</th>
@@ -183,10 +183,10 @@
 {% if quote %}'{{ text }}'{% else %}{{ text }}{% endif %}</code></pre>
 {% endmacro %}
 
-{% macro orcid_img() %}
+{%- macro orcid_img() -%}
 <img style="max-height: 1em" src="/static/orcid.svg" alt="ORCiD logo" />
-{% endmacro %}
+{%- endmacro %}
 
-{% macro ror_img() %}
+{%- macro ror_img() %}
 <img style="max-height: 1em; margin-left: 0.3em" src="/static/ror.svg" alt="ROR logo" />
-{% endmacro %}
+{%- endmacro %}
