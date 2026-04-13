@@ -10,7 +10,7 @@ from bioregistry.external.bartoc import get_bartoc_registries
 from bioregistry.schema_utils import get_collection_mappings
 
 
-@click.command
+@click.command()
 def import_bartoc() -> None:
     """Import BARTOC collections."""
     rows = []
