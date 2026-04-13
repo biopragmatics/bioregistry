@@ -337,18 +337,18 @@
                 {% endif %}
                 {% if depends_on %}
                     <dt>
-                        Depends On ({{ depends_on | length }}) ({{ utils.link_code_curie(config.METAREGISTRY_SCHEMA_PREFIX, "0000017") }})
+                        Depends On ({{ depends_on | length }})
                     </dt>
                     <dd>{{ get_tooltips(manager, depends_on) }}</dd>
                 {% endif %}
                 {% if appears_in %}
                     <dt>
-                        Appears In ({{ appears_in | length }}) ({{ utils.link_code_curie(config.METAREGISTRY_SCHEMA_PREFIX, "0000018") }})
+                        Appears In ({{ appears_in | length }})
                     </dt>
                     <dd>{{ get_tooltips(manager, appears_in) }}</dd>
                 {% endif %}
                 {% if in_collections %}
-                    <dt>In Collection</dt>
+                    <dt>In Collection ({{ in_collections | length }})</dt>
                     <dd>
                     {% for collection_id in in_collections %}
                     <a href="{{ url_for("metaregistry_ui.collection", identifier=collection_id) }}"
@@ -486,7 +486,7 @@
                 <a id="extra-providers"></a>
                 <h5 class="card-header">Extra Providers</h5>
                 <div class="card-body">
-                    <p>
+                    <p class="mb-0">
                         Additional providers curated in the {{ config.METAREGISTRY_TITLE }} are listed here.
                         These are typically inherited from Identifiers.org or Prefix Commons, and need extra curation.
                     </p>
@@ -494,16 +494,16 @@
                 <table class="table table-hover table-striped mb-0">
                     <thead class="table-">
                     <tr>
-                        <th scope="col">Code</th>
-                        <th scope="col">Name</th>
+                        <th scope="col">Provider Name</th>
+                        <th scope="col">Provider Code</th>
                         <th scope="col">URL</th>
                     </tr>
                     </thead>
                     <tbody>
                     {% for provider in extra_providers %}
                         <tr>
-                            <td><code>{{ provider.code }}</code></td>
                             <td>{{ provider.name }}</td>
+                            <td><code>{{ provider.code }}</code></td>
                             {% set example_id = provider.example if provider.example else example %}
                             {% set url = provider.resolve(example_id) %}
                             <td><a href="{{ url }}">{{ url }}</a></td>
