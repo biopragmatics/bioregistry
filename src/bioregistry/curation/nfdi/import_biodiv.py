@@ -12,17 +12,17 @@ COLLECTION_IDENTIFIER = "0000040"
 @click.command()
 def import_biodiv() -> None:
     """Import biodiversity."""
-    ontologies = get_biodivportal()
+    records = get_biodivportal()
 
     rows = []
-    for ontology in ontologies:
-        name = ontology["name"]
-        acronym = ontology["acronym"]
+    for acronym, record in records.items():
         if norm_id := bioregistry.normalize_prefix(acronym):
             bioregistry.add_to_collection(COLLECTION_IDENTIFIER, norm_id)
         else:
-            rows.append((acronym, name, f"https://biodivportal.gfbio.org/ontologies/{acronym}"))
-    click.echo(tabulate(rows, headers="keys"))
+            rows.append(
+                (acronym, record["name"], f"https://biodivportal.gfbio.org/ontologies/{acronym}")
+            )
+    click.echo(tabulate(rows, headers=["prefix", "name", "homepae"]))
     bioregistry.manager.write_collections()
 
 

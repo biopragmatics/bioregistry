@@ -262,6 +262,6 @@ def get_biodivportal(
 
 if __name__ == "__main__":
     print("BioDivPortal has", len(get_biodivportal(force_download=False, force_process=True)))  # noqa:T201
-    # print("EcoPortal has", len(get_ecoportal(force_download=False, force_process=True)))
-    # print("AgroPortal has", len(get_agroportal(force_download=False, force_process=True)))
-    # print("BioPortal has", len(get_bioportal(force_download=False, force_process=True)))
+    print("EcoPortal has", len(get_ecoportal(force_download=False, force_process=True)))  # noqa:T201
+    print("AgroPortal has", len(get_agroportal(force_download=False, force_process=True)))  # noqa:T201
+    print("BioPortal has", len(get_bioportal(force_download=False, force_process=True)))  # noqa:T201
