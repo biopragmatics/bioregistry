@@ -45,6 +45,32 @@
 </div>
 {%- endmacro %}
 
+{%- macro render_nfdi_collection(collection, show_length=True) %}
+<a href="{{ url_for('.collection', identifier=collection.identifier) }}">
+    {{ collection.name.removesuffix(" Collection").removesuffix(" Resources") }}
+</a>
+
+{%- if show_length %}
+({{ collection.resources|length }})
+{%- endif %}
+
+<ul>
+    {%- if collection.references %}
+    {%- for reference in collection.references %}
+    {%- if reference.startswith("https://go.rocket.chat") %}
+    <li><a href="{{ reference }}">🚀 Join RocketChat Discussion</a></li>
+    {%- endif %}
+    {%- endfor %}
+    {%- endif %}
+
+    {% if collection.maintainers %}
+    {% for maintainer in collection.maintainers %}
+    <li>{{ maintainer.name }} {{ utils.orcid_img() }}</li>
+    {% endfor %}
+    {% endif %}
+</ul>
+{%- endmacro %}
+
 {%- block container %}
 <div class="card">
     <div class="card-header">
@@ -56,17 +82,7 @@
             <ol>
                 {%- for collection in collections.values() %}
                 {%- if collection.maintainers and (collection.resources|length > 1) %}
-                <li>
-                    <a href="{{ url_for('.collection', identifier=collection.identifier) }}">
-                        {{ collection.name.removesuffix(" Collection").removesuffix(" Resoures") }}
-                    </a>
-                    ({{ collection.resources|length }})
-                    <ul>
-                        {% for maintainer in collection.maintainers %}
-                        <li>{{ maintainer.name }} {{ utils.orcid_img() }}</li>
-                        {% endfor %}
-                    </ul>
-                </li>
+                <li>{{ render_nfdi_collection(collection, show_length=True) }}</li>
                 {%- endif %}
                 {%- endfor %}
             </ol>
@@ -75,16 +91,7 @@
             <ol>
                 {%- for collection in collections.values() %}
                 {%- if collection.maintainers and (collection.resources|length == 1) %}
-                <li>
-                    <a href="{{ url_for('.collection', identifier=collection.identifier) }}">
-                        {{ collection.name.removesuffix(" Collection").removesuffix(" Resoures") }}
-                    </a>
-                    <ul>
-                        {% for maintainer in collection.maintainers %}
-                        <li>{{ maintainer.name }} {{ utils.orcid_img() }}</li>
-                        {% endfor %}
-                    </ul>
-                </li>
+                <li>{{ render_nfdi_collection(collection, show_length=False) }}</li>
                 {%- endif %}
                 {%- endfor %}
             </ol>
@@ -92,12 +99,7 @@
             <ol>
                 {%- for collection in collections.values() %}
                 {%- if not collection.maintainers and (collection.resources|length > 1) %}
-                <li>
-                    <a href="{{ url_for('.collection', identifier=collection.identifier) }}">
-                        {{ collection.name.removesuffix(" Collection").removesuffix(" Resoures") }}
-                    </a>
-                    ({{ collection.resources|length }})
-                </li>
+                <li>{{ render_nfdi_collection(collection, show_length=True) }}</li>
                 {%- endif %}
                 {%- endfor %}
             </ol>
@@ -105,11 +107,7 @@
             <ol>
                 {%- for collection in collections.values() %}
                 {%- if not collection.maintainers and (collection.resources|length == 1) %}
-                <li>
-                    <a href="{{ url_for('.collection', identifier=collection.identifier) }}">
-                        {{ collection.name.removesuffix(" Collection").removesuffix(" Resoures") }}
-                    </a>
-                </li>
+                <li>{{ render_nfdi_collection(collection, show_length=False) }}</li>
                 {%- endif %}
                 {%- endfor %}
             </ol>
@@ -119,7 +117,7 @@
 
 <div class="card mt-4">
     <div class="card-header">
-       Curation Tasks
+        Curation Tasks
     </div>
     <table class="table table-striped">
         <thead>
@@ -157,7 +155,7 @@
 
 <div class="card mt-4">
     <div class="card-header">
-       Resource used by more than two consortia
+        Resource used by more than two consortia
     </div>
 
     <table class="table table-striped">
