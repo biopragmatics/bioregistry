@@ -1,12 +1,13 @@
 """Import BARTOC collections."""
 
-import bioregistry
 import click
+from tabulate import tabulate
+from tqdm import tqdm
+
+import bioregistry
 from bioregistry.external import get_bartoc
 from bioregistry.external.bartoc import get_bartoc_registries
 from bioregistry.schema_utils import get_collection_mappings
-from tabulate import tabulate
-from tqdm import tqdm
 
 
 @click.command
@@ -43,5 +44,5 @@ def import_bartoc() -> None:
     )
 
 
-if __name__ == '__main__':
-    main()
+if __name__ == "__main__":
+    import_bartoc()

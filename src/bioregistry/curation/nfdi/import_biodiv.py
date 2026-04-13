@@ -1,7 +1,10 @@
-from ontoportal_client import BioDivPortal
-import click
-from pathlib import Path
+"""Import the NFDI4Biodiversity collection from https://biodivportal.gfbio.org."""
+
 import json
+from pathlib import Path
+
+import click
+from ontoportal_client import BioDivPortal
 from tabulate import tabulate
 
 import bioregistry
@@ -32,5 +35,5 @@ def import_biodiv() -> None:
     bioregistry.manager.write_collections()
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     import_biodiv()

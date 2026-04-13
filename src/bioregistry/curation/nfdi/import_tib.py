@@ -2,12 +2,13 @@
 
 from collections import Counter
 
+import click
+from tabulate import tabulate
+from tqdm import tqdm
+
 import bioregistry
 from bioregistry.external import get_tib_ts
 from bioregistry.schema_utils import get_collection_mappings
-from tabulate import tabulate
-from tqdm import tqdm
-import click
 
 # Add additional mappings in collections.json's `mappings` field, e.g., with
 # `tib.collection` as a prefix for TIB OLS collections
@@ -37,5 +38,6 @@ def import_tib() -> None:
     bioregistry.manager.write_collections()
     tqdm.write(tabulate(counter.most_common(), headers=["unmapped TIB keyword", "count"]))
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     import_tib()
