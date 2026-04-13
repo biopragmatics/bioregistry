@@ -2476,6 +2476,13 @@ class Resource(BaseModel):
             self.get_download_rdf(get_format=False),
         ]
 
+    def get_download(self) -> str | None:
+        """Get a download link."""
+        for url in self._downloads():
+            if url is not None:
+                return url
+        return None
+
     def get_license(self) -> str | None:
         """Get the license for the resource."""
         if self.license:
@@ -2578,11 +2585,8 @@ class Resource(BaseModel):
         if license_ := self.get_license():
             description += f" Licensed under {license_}."
 
-        for url in self._downloads():
-            if url is not None:
-                ontology_purl = url
-                break
-        else:
+        ontology_purl = self.get_download()
+        if not ontology_purl:
             raise ValueError("no OWL nor OBO download available")
 
         values = {

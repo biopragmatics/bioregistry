@@ -3624,6 +3624,10 @@
       "https://data.agroportal.eu/ontologies/PPD-RSV",
       "https://data.agroportal.eu/ontologies/PPD-SOL",
       "https://data.agroportal.eu/ontologies/PPD-STF",
+      "https://data.agroportal.eu/ontologies/PPD-CKP",
+      "https://data.agroportal.eu/ontologies/PPD-FBB",
+      "https://data.agroportal.eu/ontologies/PPD-SFL",
+      "https://data.agroportal.eu/ontologies/PPD-SOY",
       "https://data.agroportal.eu/ontologies/PPD-HMP",
       "https://data.agroportal.eu/ontologies/PPD-OSR"
     ]
@@ -4545,7 +4549,7 @@
       "email": "Eero.Hyvonen@tkk.fI",
       "name": "Eero Hyvönen"
     },
-    "description": "The Agriculture and Forestry Ontology (AFO) is based on the Agriforest thesaurus maintained by the Viikki Campus Library, University of Helsinki. The combination of AFO and the Finnish General Upper Ontology YSO has been created in the FinnONTO project by the Viikki Science Library in cooperation with the Semantic Computing Research Group. The ontology was created by aligning the Agriculture and Forestry Ontology with the Finnish General Upper Ontology (YSO) using the top ontology and other modelling principles of YSO. This way the equivalent and differing concepts and their links to more general concepts could be explicitly described. This combination of ontologies can be used for describing resources especially in domain of agriculture, forestry, veterinary medicine, food science, environmental science and biology.",
+    "description": "The Agriculture and Forestry Ontology (AFO) is based on the Agriforest thesaurus maintained by the Viikki Campus Library, University of Helsinki. The combination of AFO and the Finnish General Upper Ontology YSO has been created in the FinnONTO project by the Viikki Science Library in cooperation with the Semantic Computing Research Group. The ontology was created by aligning the Agriculture and Forestry Ontology with the Finnish General Upper Ontology (YSO) using the top ontology and other modelling principles of YSO. This way the equivalent and differing concepts and their links to more general concepts could be explicitly described. This combination of ontologies can be used for describing resources especially in domain of agriculture, forestry, veterinary medicine, food science, environmental science and biology., AFO soveltuu erityisesti luonnonvara- ja ympäristöalojen (mm. maatalous,\nmetsäala, elintarvikeala, ympäristöala , riistanhoito, kalatalous ja\nbiologia) aineistojen kuvailuun. AFO perustuu Agriforest-asiasanastoon, jota\nylläpiti Helsingin yliopistoon kuuluva Viikin kampuskirjasto vuoteen 2014\nsaakka.\n\nAlla on eritelty ontologian sisältämät käsitteet ja kokoelmat tyypeittäin. \nKäsitteiden kokonaislukumäärään sisältyvät AFO-käsitteiden ja \nkokoelmakäsitteiden lisäksi myös YSOn käsitteet, koska AFO on linkitetty YSOon \nja YSO täydentää sitä mm. ylähierarkian osalta. Varsinaisten AFO-käsitteiden \nlukumäärä on esitetty erillisenä lukuna. Kokonaisuuteen sisältyy myös kokoelmia. \nNäillä on tietty erityistehtävänsä (ryhmittelevät käsitteet ja koostekäsitteet) \neikä niitä ole tarkoitettu käytettäväksi kuvailussa tai tiedonhaussa. \nSen sijaan termien lukumäärätieto koskee vain AFOa eli näissä luvuissa ei ole \nYSOn termejä mukana. Jokaisella ontologian käsitteellä on päätermi ja \nsen lisäksi mahdollisesti myös korvattuja termejä eli ohjaustermejä.\n\nAFO-ontologia on alunperin kehitetty Aalto- ja Helsingin yliopiston johtamassa FinnONTO (2003-2012) -hankkeessa.",
     "exampleIdentifier": "http://www.yso.fi/onto/afo/p3758",
     "hasDomain": [
       "https://data.agroportal.eu/categories/AG-ENG",
@@ -4554,6 +4558,7 @@
       "https://data.agroportal.eu/categories/FOREST",
       "https://data.agroportal.eu/categories/NAT-RES"
     ],
+    "homepage": "https://www.kiwi.fi/display/AFO/",
     "license": "CC-BY-4.0",
     "links": {
       "@context": {
@@ -18894,83 +18899,6 @@
     ],
     "repository": "https://git.wur.nl/FoodInformatics/i-know-foo/-/tree/main/ECOCROP%20Ontology",
     "summaryOnly": true,
-    "viewingRestriction": "public"
-  },
-  {
-    "@id": "https://data.agroportal.eu/ontologies/PPD-CKP",
-    "@type": "http://data.bioontology.org/metadata/Ontology",
-    "acronym": "PPD-CKP",
-    "administeredBy": [
-      "https://data.agroportal.eu/users/croussey",
-      "https://data.agroportal.eu/users/CarmenCorre"
-    ],
-    "contact": {
-      "email": "catherine.roussey@inrae.fr",
-      "name": "Catherine ROUSSEY"
-    },
-    "description": "PPD-CKP is the rdf graph of the BBCH phenological scale adapted to chickpea. The rdf graph modeling of the BBCH genrale scale and the Terres Inovia scale of chickpea, created during the STAR project. The alignements represent the point of view of the French technical institut Terres Inovia. If you want to modify the alignements or one of the Terres Inovia scales please contact Frédérique SALVI f.salvi@terresinovia.fr, The rdf graph modeling of the BBCH genrale scale and the Terres Inovia scale of chickpea",
-    "group": [
-      "https://data.agroportal.eu/groups/INRAE"
-    ],
-    "hasDomain": [
-      "https://data.agroportal.eu/categories/AGRO",
-      "https://data.agroportal.eu/categories/BIO",
-      "https://data.agroportal.eu/categories/BOTA",
-      "https://data.agroportal.eu/categories/PHENO",
-      "https://data.agroportal.eu/categories/PHYSIO",
-      "https://data.agroportal.eu/categories/PLANT-PHY"
-    ],
-    "license": "https://creativecommons.org/licenses/by-nd/4.0",
-    "links": {
-      "@context": {
-        "agents": "http://xmlns.com/foaf/0.1/Agent",
-        "analytics": "http://data.bioontology.org/metadata/Analytics",
-        "categories": "http://data.bioontology.org/metadata/Category",
-        "classes": "http://www.w3.org/2002/07/owl#Class",
-        "collections": "http://www.w3.org/2004/02/skos/core#Collection",
-        "download": "http://data.bioontology.org/metadata/Ontology",
-        "groups": "http://data.bioontology.org/metadata/Group",
-        "instances": "http://data.bioontology.org/metadata/Instance",
-        "latest_submission": "http://data.bioontology.org/metadata/OntologySubmission",
-        "mappings": "metadata/Mapping",
-        "metrics": "http://data.bioontology.org/metadata/Metrics",
-        "notes": "http://data.bioontology.org/metadata/Note",
-        "projects": "http://data.bioontology.org/metadata/Project",
-        "properties": "http://data.bioontology.org/metadata/Property",
-        "reviews": "http://data.bioontology.org/metadata/Review",
-        "roots": "http://www.w3.org/2002/07/owl#Class",
-        "schemes": "http://www.w3.org/2004/02/skos/core#ConceptScheme",
-        "single_class": "http://www.w3.org/2002/07/owl#Class",
-        "submissions": "http://data.bioontology.org/metadata/OntologySubmission",
-        "ui": "http://data.bioontology.org/metadata/Ontology",
-        "views": "http://data.bioontology.org/metadata/Ontology",
-        "xl_labels": "http://www.w3.org/2008/05/skos-xl#Label"
-      },
-      "agents": "https://data.agroportal.eu/ontologies/PPD-CKP/agents",
-      "analytics": "https://data.agroportal.eu/ontologies/PPD-CKP/analytics",
-      "categories": "https://data.agroportal.eu/ontologies/PPD-CKP/categories",
-      "classes": "https://data.agroportal.eu/ontologies/PPD-CKP/classes",
-      "collections": "https://data.agroportal.eu/ontologies/PPD-CKP/collections",
-      "download": "https://data.agroportal.eu/ontologies/PPD-CKP/download",
-      "groups": "https://data.agroportal.eu/ontologies/PPD-CKP/groups",
-      "instances": "https://data.agroportal.eu/ontologies/PPD-CKP/instances",
-      "latest_submission": "https://data.agroportal.eu/ontologies/PPD-CKP/latest_submission",
-      "mappings": "https://data.agroportal.eu/ontologies/PPD-CKP/mappings",
-      "metrics": "https://data.agroportal.eu/ontologies/PPD-CKP/metrics",
-      "notes": "https://data.agroportal.eu/ontologies/PPD-CKP/notes",
-      "projects": "https://data.agroportal.eu/ontologies/PPD-CKP/projects",
-      "properties": "https://data.agroportal.eu/ontologies/PPD-CKP/properties",
-      "reviews": "https://data.agroportal.eu/ontologies/PPD-CKP/reviews",
-      "roots": "https://data.agroportal.eu/ontologies/PPD-CKP/classes/roots",
-      "schemes": "https://data.agroportal.eu/ontologies/PPD-CKP/schemes",
-      "single_class": "https://data.agroportal.eu/ontologies/PPD-CKP/classes/{class_id}",
-      "submissions": "https://data.agroportal.eu/ontologies/PPD-CKP/submissions",
-      "ui": "http://agroportal.eu/ontologies/PPD-CKP",
-      "views": "https://data.agroportal.eu/ontologies/PPD-CKP/views",
-      "xl_labels": "https://data.agroportal.eu/ontologies/PPD-CKP/skos_xl_labels"
-    },
-    "name": "Phenological scale for chickpea",
-    "ontologyType": "https://data.agroportal.eu/ontology_types/ONTOLOGY",
     "viewingRestriction": "public"
   },
   {

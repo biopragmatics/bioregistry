@@ -455,7 +455,7 @@ class TestRegistry(unittest.TestCase):
                     )
                 example = entry.get_example()
                 if example is None:
-                    raise self.fail()
+                    raise self.fail(msg=f"{prefix} is missing an example local identifier")
                 self.assertEqual(entry.standardize_identifier(example), example)
 
                 pattern = entry.get_pattern_re()
