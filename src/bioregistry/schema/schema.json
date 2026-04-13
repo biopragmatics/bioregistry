@@ -675,6 +675,19 @@
           "description": "The PubMed Central identifier for the article",
           "title": "PMC"
         },
+        "arxiv": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "The arXiv identifier for the article",
+          "title": "arXiv"
+        },
         "title": {
           "anyOf": [
             {
@@ -1750,7 +1763,8 @@
                 "ptm",
                 "bibliometrics",
                 "experiment",
-                "genetic code"
+                "genetic code",
+                "mathematics"
               ],
               "type": "string"
             },
@@ -1801,7 +1815,8 @@
             "ptm",
             "bibliometrics",
             "experiment",
-            "genetic code"
+            "genetic code",
+            "mathematics"
           ],
           "title": "Domain"
         },
