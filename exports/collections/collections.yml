@@ -1188,6 +1188,19 @@
     maintaining this collection.
   identifier: '0000023'
   logo: https://www.nfdi.de/wp-content/uploads/2021/05/DataPLANT_logo_square_bg_transparent.svg
+  maintainers:
+  - email: k.dumschott@fz-juelich.de
+    github: kdumschott
+    name: Kathryn Dumschott
+    orcid: 0000-0002-9905-4011
+  - email: a.kranz@fz-juelich.de
+    github: AngelaKranz
+    name: Angela Kranz
+    orcid: 0000-0002-8000-0400
+  - email: h.doerpholz@fz-juelich.de
+    github: Hannah-Doerpholz
+    name: Hannah Dörpholz
+    orcid: 0000-0002-0476-9699
   mappings:
   - identifier: dataplant
     prefix: tib.collection
@@ -1204,6 +1217,8 @@
   - bao
   - bco
   - bfo
+  - bioportal.bof
+  - bioportal.geospecies
   - bto
   - chebi
   - chmo
@@ -1212,12 +1227,15 @@
   - edam
   - efo
   - envo
+  - eo
   - flopo
+  - gaz
   - go
   - mmo
   - mod
   - ms
   - msio
+  - ncbitaxon
   - ncit
   - obi
   - omp
@@ -1232,7 +1250,6 @@
   - stato
   - swo
   - to
-  - uberon
   - uo
 '0000024':
   contributors:
@@ -1281,6 +1298,11 @@
     maintaining this collection.
   identifier: '0000025'
   logo: https://www.nfdi.de/wp-content/uploads/2021/05/NFDI4C_Logo.png
+  maintainers:
+  - email: tabea.tietz@fiz-karlsruhe.de
+    github: tabeatietz
+    name: Tabea Tietz
+    orcid: 0000-0002-1648-1684
   mappings:
   - identifier: nfdi4culture
     prefix: tib.collection
@@ -1293,13 +1315,32 @@
     ror: 05qj6w324
     wikidata: Q61658497
   resources:
-  - bot
+  - bfo
   - cidoc.crm
-  - gesah
+  - dbo
+  - dcat
+  - dcterms
+  - doap
+  - fabio
+  - foaf
+  - frapo
+  - geonames
+  - gnd
+  - iao
   - iconclass
+  - lido
+  - modsci
   - nfdi4culture.cto
-  - ohdab
-  - premis
+  - obi
+  - okn.sd
+  - org
+  - schema
+  - skos
+  - swo
+  - vcard
+  - viaf
+  - vivo
+  - wikidata
 '0000026':
   contributors:
   - name: NFDI Section Metadata WG Ontology Harmonization and Mapping
@@ -1332,6 +1373,11 @@
     for maintaining this collection.
   identifier: '0000027'
   logo: https://www.nfdi.de/wp-content/uploads/2021/12/MaRDI_Logo_rgba.png
+  maintainers:
+  - email: bjoern.schembera@mathematik.uni-stuttgart.de
+    github: bjschembera
+    name: ' Björn Schembera'
+    orcid: 0000-0003-2860-6621
   name: MaRDI Collection
   organizations:
   - name: MaRDI
@@ -1341,7 +1387,14 @@
     ror: 05qj6w324
     wikidata: Q61658497
   resources:
-  - bioregistry
+  - amv
+  - codemeta
+  - mathalgodb
+  - mathmoddb
+  - msc
+  - physh
+  - qudt
+  - tib.bk
 0000028:
   contributors:
   - name: NFDI Section Metadata WG Ontology Harmonization and Mapping
@@ -1362,7 +1415,8 @@
     ror: 05qj6w324
     wikidata: Q61658497
   resources:
-  - bioregistry
+  - jel
+  - zbw.stw
 0000029:
   contributors:
   - name: NFDI Section Metadata WG Ontology Harmonization and Mapping
@@ -1383,7 +1437,8 @@
     ror: 05qj6w324
     wikidata: Q61658497
   resources:
-  - bioregistry
+  - nfdi.core
+  - schema
 '0000030':
   contributors:
   - name: NFDI Section Metadata WG Ontology Harmonization and Mapping
@@ -1404,7 +1459,32 @@
     ror: 05qj6w324
     wikidata: Q61658497
   resources:
-  - bioregistry
+  - bco
+  - chebi
+  - dcat
+  - dcterms
+  - envo
+  - flopo
+  - foaf
+  - gaz
+  - geonames
+  - geosparql
+  - legacy.ao
+  - ncbitaxon
+  - oboe
+  - pato
+  - po
+  - prov
+  - schema
+  - skos
+  - sosa
+  - ssn
+  - sweet
+  - t4fs
+  - tdwg.abcd
+  - to
+  - vcard
+  - wlmo
 '0000031':
   contributors:
   - name: NFDI Section Metadata WG Ontology Harmonization and Mapping
@@ -1480,7 +1560,29 @@
     ror: 05qj6w324
     wikidata: Q61658497
   resources:
-  - bioregistry
+  - bco
+  - chebi
+  - dcat
+  - dcterms
+  - envo
+  - flopo
+  - foaf
+  - gaz
+  - geonames
+  - legacy.ao
+  - ncbitaxon
+  - oboe
+  - pato
+  - po
+  - prov
+  - schema
+  - skos
+  - sosa
+  - ssn
+  - sweet
+  - tdwg.abcd
+  - to
+  - wlmo
 '0000034':
   contributors:
   - email: cthoyt@gmail.com
@@ -1591,19 +1693,52 @@
     ror: 05qj6w324
     wikidata: Q61658497
   resources:
+  - amh.material
   - bibo
   - bioregistry
   - cidoc.crm
+  - dai.thesauri
+  - datacite.contributor
+  - datacite.date
+  - datacite.description
+  - datacite.identifier
+  - datacite.name
+  - datacite.relation
+  - datacite.resource
+  - fish.aoe
+  - fish.as
+  - fish.bm
+  - fish.event
+  - fish.mc
+  - fish.mt
   - geonames
+  - geosparql
+  - getty.att
   - getty.tgn
+  - getty.ulan
   - gnd
+  - hessische.systematik
   - iconclass
+  - kenom.material
+  - lado
+  - lido.actor
+  - lido.event
+  - lido.identifier
+  - lido.recordmetadatadate
+  - lido.recordtype
+  - lido.repositoryset
+  - lido.resourcerepresentation
+  - lido.termmaterialstech
+  - lv
+  - oeai.ctp
+  - oeai.material
   - orcid
   - ror
   - skos
   - time
   - unesco.thesaurus
   - viaf
+  - whg
   - wikidata
 '0000037':
   contributors:
@@ -1616,6 +1751,11 @@
     appropriate for maintaining this collection.
   identifier: '0000037'
   logo: https://www.nfdi.de/wp-content/uploads/2023/08/Logo_for_memory_RGB.png
+  maintainers:
+  - email: tabea.tietz@fiz-karlsruhe.de
+    github: tabeatietz
+    name: Tabea Tietz
+    orcid: 0000-0002-1648-1684
   name: NFDI4Memory Collection
   organizations:
   - name: NFDI4Memory
@@ -1625,7 +1765,27 @@
     ror: 05qj6w324
     wikidata: Q61658497
   resources:
-  - bioregistry
+  - cidoc.crm
+  - edm
+  - factgrid
+  - geonames
+  - getty.att
+  - getty.cona
+  - getty.ia
+  - getty.tgn
+  - getty.ulan
+  - gnd
+  - gov.object
+  - hisco
+  - iconclass
+  - kldb
+  - lido
+  - nfdi.core
+  - nfdi4culture.cto
+  - ohdab
+  - ontome
+  - tadirah
+  - wikidata
 0000038:
   contributors:
   - name: NFDI Section Metadata WG Ontology Harmonization and Mapping
@@ -1646,7 +1806,20 @@
     ror: 05qj6w324
     wikidata: Q61658497
   resources:
-  - bioregistry
+  - bibframe
+  - cessda.topicclassification
+  - cidoc.crm
+  - geonames
+  - getty.att
+  - getty.cona
+  - getty.ia
+  - getty.tgn
+  - getty.ulan
+  - gnd
+  - iconclass
+  - lido
+  - ontolex
+  - ontome
 0000039:
   contributors:
   - name: NFDI Section Metadata WG Ontology Harmonization and Mapping
@@ -1688,7 +1861,19 @@
     ror: 05qj6w324
     wikidata: Q61658497
   resources:
-  - bioregistry
+  - bco
+  - chebi
+  - envo
+  - flopo
+  - geonames
+  - itis
+  - ncbitaxon
+  - oboe
+  - pato
+  - po
+  - qudt
+  - sweet
+  - to
 '0000041':
   contributors:
   - name: NFDI Section Metadata WG Ontology Harmonization and Mapping

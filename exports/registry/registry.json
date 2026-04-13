@@ -1936,6 +1936,16 @@
     },
     "uri_format": "http://www.alzgene.org/geneoverview.asp?geneid=$1"
   },
+  "amh.material": {
+    "description": "Classification scheme for material terms used at the Archaeological Museum Hamburg – City Museum Harburg/Helms Museum (AMH).",
+    "example": "daae3565-dc29-4de6-af13-f7db239f95b7",
+    "homepage": "http://uri.gbv.de/terminology/amh_material/",
+    "mappings": {
+      "bartoc": "20336"
+    },
+    "name": "Archäologisches Museum Hamburg – Stadtmuseum Harburg/Helms-Museum: Material terms",
+    "preferred_prefix": "amh.material"
+  },
   "amoebadb": {
     "contact": {
       "email": "oharb@upenn.edu",
@@ -2067,6 +2077,42 @@
     "repository": "https://github.com/EBISPOT/amphx_ontology",
     "uri_format": "http://purl.obolibrary.org/obo/AMPHX_$1",
     "version": "2020-12-18"
+  },
+  "amv": {
+    "contact": {
+      "github": "biswanathdutta",
+      "name": "Biswanath Dutta"
+    },
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "Algorithm Metadata Vocabulary is a vocabulary for capturing and storing the metadata about the algorithms (a procedure or a set of rules that is followed step-by-step to solve a problem, especially by a computer). There are uncountable algorithms present in every area (e.g., Computer Science, Mathematics), which makes it hard for specialists, academicians, application engineers, and so forth to discover, distinguish, select, and reuse them. [from repository]",
+    "download_owl": "https://github.com/biswanathdutta/amv/raw/refs/heads/main/AMV_Ontology_9June2022.owl",
+    "example": "InformationResource",
+    "homepage": "https://github.com/biswanathdutta/AMV",
+    "keywords": [
+      "metadata",
+      "ontology"
+    ],
+    "license": "CC0-1.0",
+    "mappings": {
+      "bartoc": "20331",
+      "lov": "amv"
+    },
+    "name": "Algorithm Metadata Vocabulary",
+    "preferred_prefix": "amv",
+    "publications": [
+      {
+        "arxiv": "2106.03567",
+        "title": "AMV : Algorithm Metadata Vocabulary",
+        "year": 2021
+      }
+    ],
+    "repository": "https://github.com/biswanathdutta/AMV",
+    "uri_format": "https://w3id.org/amv#$1"
   },
   "ans.educationlevel": {
     "contact": {
@@ -6116,6 +6162,60 @@
       }
     ],
     "uri_format": "http://bioportal.bioontology.org/ontologies/$1"
+  },
+  "bioportal.bof": {
+    "contact": {
+      "email": "francolamping@gmail.com",
+      "name": "Franco"
+    },
+    "description": "An ontology of biodiversity of INPA",
+    "example": "ClimaticCondition",
+    "homepage": "https://bioportal.bioontology.org/ontologies/BOF",
+    "keywords": [
+      "ontology"
+    ],
+    "mappings": {
+      "bioportal": "BOF"
+    },
+    "name": "Biodiversity Ontology",
+    "preferred_prefix": "bioportal.bof",
+    "uri_format": "http://www.owl-ontologies.com/BiodiversityOntologyFull.owl#$1"
+  },
+  "bioportal.geospecies": {
+    "contact": {
+      "email": "pdevries@wisc.edu",
+      "name": "Peter J. DeVries"
+    },
+    "description": "This ontology was designed to help integrate species concepts with species occurrences, gene sequences, images, references and geographical information. See also Taxonconcept.org",
+    "download_owl": "http://rdf.geospecies.org/ont/geospecies.owl",
+    "example": "DarwinPoint",
+    "homepage": "http://lod.geospecies.org/",
+    "keywords": [
+      "ontology"
+    ],
+    "mappings": {
+      "bioportal": "GEOSPECIES"
+    },
+    "name": "GeoSpecies Ontology",
+    "preferred_prefix": "bioportal.geospecies",
+    "uri_format": "http://rdf.geospecies.org/ont/geospecies#$1"
+  },
+  "bioportal.pae": {
+    "contact": {
+      "email": "jaiswalp@science.oregonstate.edu",
+      "name": "Pankaj Jaiswal"
+    },
+    "deprecated": true,
+    "description": "REPLACED BY: Plant Ontology (PO). A controlled vocabulary of plant morphological and anatomical structures representing organs, tissues, cell types, and their biological relationships based on spatial and developmental organization. Note that this has been subsumed into the PO. This file is created by filtering plant_ontology_assert.obo to contain only terms from the plant anatomical entity branch of the PO. For more information, please see: http://palea.cgrb.oregonstate.edu/viewsvn/Poc/tags/live/",
+    "homepage": "http://www.plantontology.org",
+    "keywords": [
+      "ontology"
+    ],
+    "mappings": {
+      "bioportal": "PAE"
+    },
+    "name": "Plant Anatomy",
+    "preferred_prefix": "bioportal.pae"
   },
   "bioproject": {
     "contact": {
@@ -11184,6 +11284,10 @@
     "name": "CIDOC Conceptual Reference Model",
     "pattern": "^[A-Z]{1,2}[0-9]+i?(_[A-Za-z_]+)?$",
     "preferred_prefix": "cidoc.crm",
+    "references": [
+      "https://erlangen-crm.org/current/",
+      "https://erlangen-crm.org"
+    ],
     "uri_format": "http://www.cidoc-crm.org/cidoc-crm/$1"
   },
   "cienciavitae": {
@@ -12361,7 +12465,7 @@
     "rdf_uri_format": "http://purl.obolibrary.org/obo/CMO_$1",
     "repository": "https://github.com/rat-genome-database/CMO-Clinical-Measurement-Ontology",
     "uri_format": "http://purl.obolibrary.org/obo/CMO_$1",
-    "version": "2.269"
+    "version": "2.270"
   },
   "cmpo": {
     "contact": {
@@ -13628,6 +13732,28 @@
       "https://www.ebi.ac.uk/arrayexpress/files/A-GEOD-8060/A-GEOD-8060.adf.txt",
       "https://www.ebi.ac.uk/arrayexpress/files/A-GEHB-1/A-GEHB-1.adf.txt"
     ]
+  },
+  "codemeta": {
+    "contact": {
+      "email": "jones@nceas.ucsb.edu",
+      "github": "mbjones",
+      "name": "Matthew B Jones",
+      "orcid": "0000-0003-0077-4738"
+    },
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "An extension of Schema.org to annotate metadata on software projects",
+    "example": "buildInstructions",
+    "homepage": "https://codemeta.github.io/terms",
+    "license": "Apache-2.0",
+    "name": "CodeMeta",
+    "preferred_prefix": "codemeta",
+    "repository": "https://github.com/codemeta/codemeta",
+    "uri_format": "https://codemeta.github.io/terms/#$1"
   },
   "coexistence": {
     "contributor": {
@@ -15862,6 +15988,10 @@
     "description": "A thesaurus of terms useful for digital archaeology",
     "example": "_fe65f286",
     "homepage": "http://thesauri.dainst.org/en.html",
+    "license": "CC-BY-4.0",
+    "mappings": {
+      "bartoc": "20411"
+    },
     "name": "German Archaeological Institute Thesaurus",
     "preferred_prefix": "dai.thesauri",
     "uri_format": "http://thesauri.dainst.org/en/concepts/$1"
@@ -16056,6 +16186,90 @@
     "preferred_prefix": "DataCite",
     "repository": "https://github.com/sparontologies/datacite",
     "uri_format": "http://purl.org/spar/datacite/$1"
+  },
+  "datacite.contributor": {
+    "description": "The type of contributor of the resource.",
+    "example": "ContactPerson",
+    "homepage": "https://datacite-metadata-schema.readthedocs.io/en/4.6/appendices/appendix-1/contributorType/",
+    "license": "CC-BY-4.0",
+    "mappings": {
+      "bartoc": "20720"
+    },
+    "name": "DataCite Contributor Type",
+    "preferred_prefix": "datacite.contributor",
+    "uri_format": "http://uri.gbv.de/terminology/datacite-contributortype/$1"
+  },
+  "datacite.date": {
+    "description": "The type of date, if possible, following the RKMS‐ISO8601 standard.",
+    "example": "Copyrighted",
+    "homepage": "https://datacite-metadata-schema.readthedocs.io/en/4.6/appendices/appendix-1/dateType/",
+    "license": "CC-BY-4.0",
+    "mappings": {
+      "bartoc": "20722"
+    },
+    "name": "DataCite Date Type",
+    "preferred_prefix": "datacite.date",
+    "uri_format": "http://uri.gbv.de/terminology/datacite-datetype/$1"
+  },
+  "datacite.description": {
+    "description": "The type of the Description.",
+    "example": "Methods",
+    "homepage": "https://datacite-metadata-schema.readthedocs.io/en/4.6/appendices/appendix-1/descriptionType/",
+    "license": "CC-BY-4.0",
+    "mappings": {
+      "bartoc": "20726"
+    },
+    "name": "DataCite Description Type",
+    "preferred_prefix": "datacite.description",
+    "uri_format": "http://uri.gbv.de/terminology/datacite-descriptiontype/$1"
+  },
+  "datacite.identifier": {
+    "description": "The type of the related Identifier or of the Identifier for the related item.",
+    "example": "EISSN",
+    "homepage": "https://datacite-metadata-schema.readthedocs.io/en/4.6/appendices/appendix-1/relatedIdentifierType/",
+    "license": "CC-BY-4.0",
+    "mappings": {
+      "bartoc": "20724"
+    },
+    "name": "DataCite Related Identifier Type",
+    "preferred_prefix": "datacite.identifier",
+    "uri_format": "http://uri.gbv.de/terminology/datacite-relatedidentifiertype/$1"
+  },
+  "datacite.name": {
+    "description": "The type of name.",
+    "example": "Organizational",
+    "homepage": "https://datacite-metadata-schema.readthedocs.io/en/4.6/properties/creator/#a-nametype",
+    "license": "CC BY-SA 4.0",
+    "mappings": {
+      "bartoc": "20828"
+    },
+    "name": "DataCite Name Type",
+    "preferred_prefix": "datacite.name",
+    "uri_format": "http://uri.gbv.de/terminology/datacite-nametype/$1"
+  },
+  "datacite.relation": {
+    "description": "Description of the relationship of the resource being registered (A) and the related resource (B).",
+    "example": "HasPart",
+    "homepage": "https://datacite-metadata-schema.readthedocs.io/en/4.6/appendices/appendix-1/relationType/",
+    "license": "CC-BY-4.0",
+    "mappings": {
+      "bartoc": "20725"
+    },
+    "name": "DataCite Relation Type",
+    "preferred_prefix": "datacite.relation",
+    "uri_format": "http://uri.gbv.de/terminology/datacite-relationtype/$1"
+  },
+  "datacite.resource": {
+    "description": "The general type of a resource, a related resource or a related item.",
+    "example": "DataPaper",
+    "homepage": "https://datacite-metadata-schema.readthedocs.io/en/4.6/appendices/appendix-1/resourceTypeGeneral/",
+    "license": "CC-BY-4.0",
+    "mappings": {
+      "bartoc": "20723"
+    },
+    "name": "DataCite Resource Type (General)",
+    "preferred_prefix": "datacite.resource",
+    "uri_format": "http://uri.gbv.de/terminology/datacite-resourcetypegeneral/$1"
   },
   "datacommons": {
     "contributor": {
@@ -22653,6 +22867,7 @@
       "ontology"
     ],
     "mappings": {
+      "bartoc": "17946",
       "lov": "edm"
     },
     "name": "Europeana Data Model vocabulary",
@@ -23377,7 +23592,7 @@
       "EMAPA_RETIRED"
     ],
     "uri_format": "http://purl.obolibrary.org/obo/EMAPA_$1",
-    "version": "2026-04-01"
+    "version": "2026-04-08"
   },
   "emaps": {
     "contact": {
@@ -26743,7 +26958,7 @@
       "omo",
       "ro"
     ],
-    "description": "A structured controlled vocabulary of sample preparation, visualization and imaging methods used in biomedical research.",
+    "description": "An ontology for the description of sample preparation, visualization, and imaging methods used in biomedical research.",
     "download_obo": "http://purl.obolibrary.org/obo/fbbi.obo",
     "download_owl": "http://purl.obolibrary.org/obo/fbbi.owl",
     "example": "00000268",
@@ -27339,6 +27554,78 @@
     "name": "FINDEX Raum",
     "preferred_prefix": "findex.raum",
     "uri_format": "https://terminology.fraunhofer.de/voc/raum#$1"
+  },
+  "fish.aoe": {
+    "description": "Physical evidence, usually portable, resulting from past human activity or environmental remains that can be recovered from archaeological fieldwork. English Heritage takes a leading role in setting standards for recording the built and buried heritage. By setting standards that can be adopted by everyone, we can make sure that all records are consistent. In other words, if everyone uses the same words to describe the same monument, archaeological object, building material, etc, then anyone using this common language can easily index, retrieve and understand these records. With this aim in mind, English Heritage is continually developing new thesauri to provide structure and guidelines for the standardisation of terms to be used when creating new records of the past. Now, in our drive to disseminate these standards and promote their wider use, we are making available seven separate online thesauri. A tailor-made suite of programs has been developed, which uses a database to create a series of web pages for any chosen thesaurus. These can be easily accessed using a frames-capable browser and regularly updated as new terms are submitted and approved by our Data Standards Unit.\n\nNational cultural heritage thesauri and vocabularies have acted as standards for use by both national organizations and local authority Historic Environment Records but until now have lacked the persistent Linked Open Data (LOD) URIs that would allow them to act as vocabulary hubs for the Web of Data. The AHRC funded SENESCHAL project aims to make such vocabularies available online as Semantic Web resources. SENESCHAL will start with major vocabularies as exemplars and project partners will continue to make other vocabularies available. Other organizations are welcome to make use of the data and services which will be open licensed.\n\nRESTful web services will be developed for the project to make the vocabulary resources programmatically accessible and searchable. These will include the provision to ‘feed back’ new terms (concepts) suggested by users.",
+    "example": "95054",
+    "homepage": "https://heritagedata.org/live/schemes/mda_obj.html",
+    "license": "CC-BY-3.0",
+    "mappings": {
+      "bartoc": "49"
+    },
+    "name": "Forum on Information Standards in Heritage - Archaeological Objects Thesaurus",
+    "preferred_prefix": "fish.aoe",
+    "uri_format": "http://purl.org/heritagedata/schemes/mda_obj/concepts/$1"
+  },
+  "fish.as": {
+    "description": "Used for recording the techniques, recovery methods and materials associated with the archaeological sciences. English Heritage takes a leading role in setting standards for recording the built and buried heritage. By setting standards that can be adopted by everyone, we can make sure that all records are consistent. In other words, if everyone uses the same words to describe the same monument, archaeological object, building material, etc, then anyone using this common language can easily index, retrieve and understand these records. With this aim in mind, English Heritage is continually developing new thesauri to provide structure and guidelines for the standardisation of terms to be used when creating new records of the past. Now, in our drive to disseminate these standards and promote their wider use, we are making available seven separate online thesauri. A tailor-made suite of programs has been developed, which uses a database to create a series of web pages for any chosen thesaurus. These can be easily accessed using a frames-capable browser and regularly updated as new terms are submitted and approved by our Data Standards Unit.\n\nNational cultural heritage thesauri and vocabularies have acted as standards for use by both national organizations and local authority Historic Environment Records but until now have lacked the persistent Linked Open Data (LOD) URIs that would allow them to act as vocabulary hubs for the Web of Data. The AHRC funded SENESCHAL project aims to make such vocabularies available online as Semantic Web resources. SENESCHAL will start with major vocabularies as exemplars and project partners will continue to make other vocabularies available. Other organizations are welcome to make use of the data and services which will be open licensed.\n\nRESTful web services will be developed for the project to make the vocabulary resources programmatically accessible and searchable. These will include the provision to ‘feed back’ new terms (concepts) suggested by users.",
+    "example": "142105",
+    "homepage": "http://www.heritagedata.org/blog/vocabularies-provided/",
+    "license": "CC-BY-3.0",
+    "mappings": {
+      "bartoc": "51"
+    },
+    "name": "Forum on Information Standards in Heritage - Archaeological Sciences Thesaurus",
+    "preferred_prefix": "fish.as",
+    "uri_format": "http://purl.org/heritagedata/schemes/560/concepts/$1"
+  },
+  "fish.bm": {
+    "description": "Construction materials for monuments relating to the built and buried heritage. English Heritage takes a leading role in setting standards for recording the built and buried heritage. By setting standards that can be adopted by everyone, we can make sure that all records are consistent. In other words, if everyone uses the same words to describe the same monument, archaeological object, building material, etc, then anyone using this common language can easily index, retrieve and understand these records. With this aim in mind, English Heritage is continually developing new thesauri to provide structure and guidelines for the standardisation of terms to be used when creating new records of the past. Now, in our drive to disseminate these standards and promote their wider use, we are making available seven separate online thesauri. A tailor-made suite of programs has been developed, which uses a database to create a series of web pages for any chosen thesaurus. These can be easily accessed using a frames-capable browser and regularly updated as new terms are submitted and approved by our Data Standards Unit.\n\n National cultural heritage thesauri and vocabularies have acted as standards for use by both national organizations and local authority Historic Environment Records but until now have lacked the persistent Linked Open Data (LOD) URIs that would allow them to act as vocabulary hubs for the Web of Data. The AHRC funded SENESCHAL project aims to make such vocabularies available online as Semantic Web resources. SENESCHAL will start with major vocabularies as exemplars and project partners will continue to make other vocabularies available. Other organizations are welcome to make use of the data and services which will be open licensed.\n\n RESTful web services will be developed for the project to make the vocabulary resources programmatically accessible and searchable. These will include the provision to ‘feed back’ new terms (concepts) suggested by users.",
+    "example": "97712",
+    "homepage": "http://www.heritagedata.org/blog/vocabularies-provided/",
+    "license": "CC-BY-3.0",
+    "mappings": {
+      "bartoc": "56"
+    },
+    "name": "Forum on Information Standards in Heritage - Building Materials Thesaurus",
+    "preferred_prefix": "fish.bm",
+    "uri_format": "http://purl.org/heritagedata/schemes/eh_tbm/concepts/$1"
+  },
+  "fish.event": {
+    "description": "A development of the ALGAO events wordlist. The thesaurus is an indexing tool to be used for recording archaeological and architectural investigative, data collection exercises; from intrusive interventions into the resource to non damaging survey events. The Event Types Thesaurus includes 128 terms. Of these, there are 83 preferred terms, 37 non-preferred terms and 8 non-index terms. The terms are divided into two classes: INTRUSIVE EVENT and NON INTRUSIVE EVENT. The former covering events that have a physical impact upon the archaeological resource and the latter covering events that record the resource but do not have a physical impact upon it. In order to ease retrieval the terms sit in hierarchies under a number of non index grouping terms, for example ARCHAEOLOGICAL INTERVENTION, ENVIRONMENTAL INTERVENTION, HERITAGE ASSESSMENT and REMOTE SENSING etc.\n\nEnglish Heritage takes a leading role in setting standards for recording the built and buried heritage. By setting standards that can be adopted by everyone, we can make sure that all records are consistent. In other words, if everyone uses the same words to describe the same monument, archaeological object, building material, etc, then anyone using this common language can easily index, retrieve and understand these records. With this aim in mind, English Heritage is continually developing new thesauri to provide structure and guidelines for the standardisation of terms to be used when creating new records of the past. Now, in our drive to disseminate these standards and promote their wider use, we are making available seven separate online thesauri. A tailor-made suite of programs has been developed, which uses a database to create a series of web pages for any chosen thesaurus. These can be easily accessed using a frames-capable browser and regularly updated as new terms are submitted and approved by our Data Standards Unit.\n\nNational cultural heritage thesauri and vocabularies have acted as standards for use by both national organizations and local authority Historic Environment Records but until now have lacked the persistent Linked Open Data (LOD) URIs that would allow them to act as vocabulary hubs for the Web of Data. The AHRC funded SENESCHAL project aims to make such vocabularies available online as Semantic Web resources. SENESCHAL will start with major vocabularies as exemplars and project partners will continue to make other vocabularies available. Other organizations are welcome to make use of the data and services which will be open licensed.\n\nRESTful web services will be developed for the project to make the vocabulary resources programmatically accessible and searchable. These will include the provision to ‘feed back’ new terms (concepts) suggested by users.",
+    "example": "147298",
+    "homepage": "http://www.heritagedata.org/blog/vocabularies-provided/",
+    "license": "CC-BY-3.0",
+    "mappings": {
+      "bartoc": "54"
+    },
+    "name": "Forum on Information Standards in Heritage - Event Types Thesaurus",
+    "preferred_prefix": "fish.event",
+    "uri_format": "http://purl.org/heritagedata/schemes/agl_et/concepts/$1"
+  },
+  "fish.mc": {
+    "description": "Craft types which survive as wrecks for the RCHME's maritime record and can be used to describe types of ship. English Heritage takes a leading role in setting standards for recording the built and buried heritage. By setting standards that can be adopted by everyone, we can make sure that all records are consistent. In other words, if everyone uses the same words to describe the same monument, archaeological object, building material, etc, then anyone using this common language can easily index, retrieve and understand these records. With this aim in mind, English Heritage is continually developing new thesauri to provide structure and guidelines for the standardisation of terms to be used when creating new records of the past. Now, in our drive to disseminate these standards and promote their wider use, we are making available seven separate online thesauri. A tailor-made suite of programs has been developed, which uses a database to create a series of web pages for any chosen thesaurus. These can be easily accessed using a frames-capable browser and regularly updated as new terms are submitted and approved by our Data Standards Unit.\n\n National cultural heritage thesauri and vocabularies have acted as standards for use by both national organizations and local authority Historic Environment Records but until now have lacked the persistent Linked Open Data (LOD) URIs that would allow them to act as vocabulary hubs for the Web of Data. The AHRC funded SENESCHAL project aims to make such vocabularies available online as Semantic Web resources. SENESCHAL will start with major vocabularies as exemplars and project partners will continue to make other vocabularies available. Other organizations are welcome to make use of the data and services which will be open licensed.\n\n RESTful web services will be developed for the project to make the vocabulary resources programmatically accessible and searchable. These will include the provision to ‘feed back’ new terms (concepts) suggested by users.",
+    "example": "100394",
+    "homepage": "http://www.heritagedata.org/blog/vocabularies-provided/",
+    "license": "CC-BY-3.0",
+    "mappings": {
+      "bartoc": "57"
+    },
+    "name": "Forum on Information Standards in Heritage - Maritime Craft Types Thesaurus",
+    "preferred_prefix": "fish.mc",
+    "uri_format": "http://purl.org/heritagedata/schemes/eh_tmc/concepts/$1"
+  },
+  "fish.mt": {
+    "description": "Types of monuments relating to the built and buried heritage in England. English Heritage takes a leading role in setting standards for recording the built and buried heritage. By setting standards that can be adopted by everyone, we can make sure that all records are consistent. In other words, if everyone uses the same words to describe the same monument, archaeological object, building material, etc, then anyone using this common language can easily index, retrieve and understand these records. With this aim in mind, English Heritage is continually developing new thesauri to provide structure and guidelines for the standardisation of terms to be used when creating new records of the past. Now, in our drive to disseminate these standards and promote their wider use, we are making available seven separate online thesauri. A tailor-made suite of programs has been developed, which uses a database to create a series of web pages for any chosen thesaurus. These can be easily accessed using a frames-capable browser and regularly updated as new terms are submitted and approved by our Data Standards Unit.\n\nNational cultural heritage thesauri and vocabularies have acted as standards for use by both national organizations and local authority Historic Environment Records but until now have lacked the persistent Linked Open Data (LOD) URIs that would allow them to act as vocabulary hubs for the Web of Data. The AHRC funded SENESCHAL project aims to make such vocabularies available online as Semantic Web resources. SENESCHAL will start with major vocabularies as exemplars and project partners will continue to make other vocabularies available. Other organizations are welcome to make use of the data and services which will be open licensed.\n\nRESTful web services will be developed for the project to make the vocabulary resources programmatically accessible and searchable. These will include the provision to ‘feed back’ new terms (concepts) suggested by users.",
+    "example": "68707",
+    "homepage": "http://www.heritagedata.org/blog/vocabularies-provided/",
+    "license": "CC-BY-3.0",
+    "mappings": {
+      "bartoc": "59"
+    },
+    "name": "Forum on Information Standards in Heritage - Thesaurus of Monument Types",
+    "preferred_prefix": "fish.mt",
+    "uri_format": "http://purl.org/heritagedata/schemes/eh_tmt2/concepts/$1"
   },
   "fishbase.species": {
     "contributor": {
@@ -30513,7 +30800,7 @@
     "description": "The OGC GeoSPARQL standard supports representing and querying geospatial data on the Semantic Web. GeoSPARQL defines a vocabulary for representing geospatial data in RDF, and it defines an extension to the SPARQL query language for processing geospatial data. In addition, GeoSPARQL is designed to accommodate systems based on qualitative spatial reasoning and systems based on quantitative spatial computations.",
     "download_owl": "http://aber-owl.net/media/ontologies/GEOSPARQL/1/geosparql.owl",
     "example": "hasDefaultGeometry",
-    "homepage": "https://opengeospatial.github.io/ogc-geosparql/geosparql11/index.html",
+    "homepage": "http://www.opengis.net/ont/geosparql",
     "keywords": [
       "earth sciences",
       "ess",
@@ -30524,6 +30811,7 @@
     "license": "https://www.ogc.org/license",
     "mappings": {
       "aberowl": "GEOSPARQL",
+      "bartoc": "17990",
       "bioportal": "GEOSPARQL",
       "tib": "geo",
       "zazuko": "geo"
@@ -30738,6 +31026,9 @@
     "example": "300011154",
     "homepage": "http://vocab.getty.edu/ontology",
     "license": "ODC-By-1.0",
+    "mappings": {
+      "bartoc": "75"
+    },
     "name": "Art and Architecture Thesaurus",
     "preferred_prefix": "getty.att",
     "providers": [
@@ -30763,6 +31054,9 @@
     "example": "700054086",
     "homepage": "https://www.getty.edu/research/tools/vocabularies/cona/",
     "license": "ODC-By-1.0",
+    "mappings": {
+      "bartoc": "94"
+    },
     "name": "Cultural Objects Names Authority",
     "preferred_prefix": "getty.cona",
     "uri_format": "http://vocab.getty.edu/page/cona/$1"
@@ -30861,6 +31155,9 @@
     "example": "500202846",
     "homepage": "http://vocab.getty.edu/ulan/",
     "license": "ODC-By-1.0",
+    "mappings": {
+      "bartoc": "118"
+    },
     "name": "Union List of Artist Names",
     "preferred_prefix": "getty.ulan",
     "uri_format": "http://vocab.getty.edu/ulan/$1"
@@ -32548,6 +32845,54 @@
       }
     ],
     "uri_format": "http://purl.obolibrary.org/obo/GOREL_$1"
+  },
+  "gov.object": {
+    "description": "Over the years, GOV has developed into a tool for genealogists, historians and other researchers that allows uniform access to a wide range of location-related data, especially to information that is important for the work of family researchers.:\n\n- Geographical location of the place (coordinates or display on a map)\n- Various key numbers (zip code, municipality code, etc.)\n- Foreign or historic names\n- Historical affiliation (administrative, ecclesiastical, etc.) based on current affiliations\n\nChurches, church districts, towns, counties, regions, etc. can be found in the GOV. Internally, an entry is generally referred to as a GOV object. [from homepage]",
+    "example": "379741",
+    "homepage": "https://gov.genealogy.net/",
+    "mappings": {
+      "bartoc": "20435"
+    },
+    "name": "Historic Geo Information System Object",
+    "pattern": "^\\d+$",
+    "preferred_prefix": "gov.object",
+    "uri_format": "https://gov.genealogy.net/item/show/object_$1"
+  },
+  "gov.ontology": {
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "Ontology used in the Historic Geo Information System",
+    "download_owl": "http://gov.genealogy.net/ontology.owl",
+    "example": "Type",
+    "homepage": "http://gov.genealogy.net",
+    "keywords": [
+      "ontology"
+    ],
+    "name": "Historic Geo Information System Ontology",
+    "preferred_prefix": "gov.ontology",
+    "uri_format": "http://gov.genealogy.net/ontology.owl#$1"
+  },
+  "gov.types": {
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "Types used in the Historic Geo Information System",
+    "download_owl": "http://gov.genealogy.net/types.owl",
+    "example": "group_27",
+    "homepage": "http://gov.genealogy.net/",
+    "keywords": [
+      "ontology"
+    ],
+    "name": "Historic Geo Information System Types",
+    "preferred_prefix": "gov.types",
+    "uri_format": "http://gov.genealogy.net/types.owl#$1"
   },
   "gpcrdb": {
     "description": "The G protein-coupled receptor database (GPCRDB) collects, large amounts of heterogeneous data on GPCRs. It contains experimental data on sequences, ligand-binding constants, mutations and oligomers, and derived data such as multiple sequence alignments and homology models.",
@@ -34391,6 +34736,18 @@
     "pattern": "^\\d+$",
     "preferred_prefix": "hesa"
   },
+  "hessische.systematik": {
+    "description": "These so-called. 'Hessian system' is a system of cultural and historical museums. It consists of 18 main groups. Each main group has subgroups (previously up to 12), and each subgroup names are led by concrete objects example, belong to this subgroup.",
+    "example": "1.353",
+    "homepage": "https://museumsverband-hessen.de/de/veroeffentlichungen/arbeitshilfen-und-handreichungen",
+    "license": "CC BY-NC-SA 3.0",
+    "mappings": {
+      "bartoc": "489"
+    },
+    "name": "Nomenclature for inventorying cultural history collections in museums",
+    "preferred_prefix": "hessische.systematik",
+    "uri_format": "http://digicult.vocnet.org/sachgruppe/$1"
+  },
   "hgmd": {
     "description": "The Human Gene Mutation Database (HGMD) collates data on germ-line mutations in nuclear genes associated with human inherited disease. It includes information on single base-pair substitutions in coding, regulatory and splicing-relevant regions; micro-deletions and micro-insertions; indels; triplet repeat expansions as well as gross deletions; insertions; duplications; and complex rearrangements. Each mutation entry is unique, and includes cDNA reference sequences for most genes, splice junction sequences, disease-associated and functional polymorphisms, as well as links to data present in publicly available online locus-specific mutation databases.",
     "example": "CALM1",
@@ -34849,6 +35206,16 @@
     "name": "Human Induced Pluripotent Stem Cells Initiative",
     "preferred_prefix": "hipsci",
     "uri_format": "https://www.hipsci.org/#/lines/$1"
+  },
+  "hisco": {
+    "description": "Starting in the 1950s the International Labour Office has developed an International Standard Classification of Occupations (isco) allowing classification of occupational activities worldwide. Naturally, this system is not intended to deal with historical information. In recent years, a group of historians and sociologists have started to build upon the 1968 version of isco to create a classification scheme for occupational titles in the 19th and early 20th centuries, called hisco (...). It is tailored to cope with historical changes in the production process, and allows storage of information on product and status that could not be accommodated in isco. Large historical databases from which the hisco-data are taken and the international association of historians working on censuses have already agreed to adopt it, an many individual researchers are expected to do so as well.\n\nAltogether, the HISCO scheme was originally based on the coding of the 1,000 most frequent male and female occupational titles in datasets from eight different countries: Belgium, Britain, Canada, France, Germany, the Netherlands, Norway and Sweden. The occupational data which were employed to develop the scheme span the period 1690-1970, but are mostly from the nineteenth century. They contain titles declared by or recorded for people of all ages in parish and civil registration documents. The data used to create HISCO encompass the largest country in western Europe, the world’s first industrial nation, the two most influential of the Scandinavian territories, and a newly-settled region of French-Canada. This, and an emphasis on variations within economies in sampling design, ensures that they provide a good mix of agricultural, industrial and commercial activities, of old and new technologies, of traditional and modern forms of organization. Moreover, the inclusion of two French-speaking populations, and a further region in which the official language was French, provides an effective test of the HISCO scheme’s sensitivity to the relationship between language and meaning. Nevertheless, the scheme is currently limited in coverage to the Northern European and Atlantic economies. Future development of the scheme will broaden its scope. To this end, the coding of new data into HISCO is being undertaken in several other countries.\n\nThe History of Work Information System has a coding section that helps users code their data in HISCO, and thus both make it comparable to other datasets, and make it of use to other scholars. The Provenance file lists all contributors to the HISCO-database.",
+    "example": "MinorGroup",
+    "homepage": "https://historyofwork.iisg.nl/",
+    "mappings": {
+      "bartoc": "18800"
+    },
+    "name": "Historical International Standard Classification of Occupations",
+    "preferred_prefix": "hisco"
   },
   "hivreagentprogram": {
     "description": "Cell line collections (Providers)",
@@ -36546,6 +36913,7 @@
     "logo": "https://avatars0.githubusercontent.com/u/13591168?v=3&s=200",
     "mappings": {
       "aberowl": "IAO",
+      "bartoc": "583",
       "biocontext": "IAO",
       "bioportal": "IAO",
       "fairsharing": "FAIRsharing.gq1xtx",
@@ -41433,6 +41801,20 @@
       "orcid": "0000-0001-9439-5346"
     }
   },
+  "jel": {
+    "description": "The JEL Classification Codes Guide is now available online. Additionally, you may download an xml file of JEL Codes. JEL Codes are 3-digit, but EconLit searches require the use the four digit codes consisting of the 3-digit JEL code plus a 0. The EconLit subject descriptors are the same as the Journal of Economic Literature (JEL) classification codes.",
+    "example": "L14",
+    "homepage": "http://www.aeaweb.org/jel/jel_class_system.php",
+    "mappings": {
+      "bartoc": "485"
+    },
+    "name": "Journal of Economic Literature Classification System",
+    "pattern": "^\\w\\d{1,2}$",
+    "preferred_prefix": "jel",
+    "references": [
+      "https://www.aeaweb.org/econlit/classificationTree.xml"
+    ]
+  },
   "jgi.proposal": {
     "contact": {
       "email": "sewilson@lbl.gov",
@@ -42460,6 +42842,17 @@
     ],
     "uri_format": "https://www.kegg.jp/entry/$1"
   },
+  "kenom.material": {
+    "description": "Classification of materials used in KENOM portal.",
+    "example": "4e8b1c94-97f5-44bd-bd5b-0dc3f84e5417",
+    "homepage": "http://uri.gbv.de/terminology/kenom_material",
+    "mappings": {
+      "bartoc": "20533"
+    },
+    "name": "KENOM Material",
+    "preferred_prefix": "kenom.material",
+    "uri_format": "http://uri.gbv.de/terminology/kenom_material/$1"
+  },
   "kerafast": {
     "description": "Cell line collections (Providers)",
     "example": "EJH014",
@@ -42755,6 +43148,17 @@
     "preferred_prefix": "kit.mtxx",
     "uri_format": "https://purls.helmholtz-metadaten.de/vp/kitmtxx-41732562-vp/$1"
   },
+  "kldb": {
+    "description": "The German classification of occupations was last revised in 2020. In large parts compatible with the International Standard Classification of Occupations (ISCO).",
+    "example": "11",
+    "homepage": "https://statistik.arbeitsagentur.de/DE/Navigation/Grundlagen/Klassifikationen/Klassifikation-der-Berufe/Klassifikation-der-Berufe-Nav.html",
+    "mappings": {
+      "bartoc": "20452"
+    },
+    "name": "German classification of occupations",
+    "pattern": "^\\d+$",
+    "preferred_prefix": "kldb"
+  },
   "knapsack": {
     "description": "KNApSAcK provides information on metabolites and the\ntaxonomic class with which they are associated.",
     "example": "C00000001",
@@ -42881,6 +43285,19 @@
     "repository": "https://github.com/OpenLHS/LABO",
     "uri_format": "http://purl.obolibrary.org/obo/LABO_$1",
     "version": "2021-06-08"
+  },
+  "lado": {
+    "description": "A linked ontology for archaeological data.",
+    "download_rdf": "https://wissit.pages.gitlab.rlp.net/lado/ontology.ttl",
+    "example": "KilnRegion",
+    "homepage": "https://wissit.pages.gitlab.rlp.net/lado/index-en.html",
+    "license": "CC-BY-4.0",
+    "mappings": {
+      "bartoc": "20470"
+    },
+    "name": "Linked Archaeological Data Ontology",
+    "preferred_prefix": "lado",
+    "uri_format": "http://archaeology.link/ontology#$1"
   },
   "langual": {
     "contributor": {
@@ -43080,6 +43497,30 @@
     "preferred_prefix": "leafsnap",
     "uri_format": "http://leafsnap.com/species/$1/"
   },
+  "legacy.ao": {
+    "contact": {
+      "email": "paolo.ciccarese@gmail.com",
+      "name": "Paolo Ciccarese"
+    },
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "The Annotation Ontology specification is currently used as input for the activities of the http://www.w3.org/community/openannotation/'>W3C Open Annotation Community Group that works towards a common, RDF-based, specification for annotating digital resources. The Group effort starts by working towards a reconciliation of two proposals that have emerged over the past two years: the http://code.google.com/p/annotation-ontology/'>Annotation Ontology and the http://www.openannotation.org/spec/beta/'>Open Annotation Model. Initially, editors of these proposals will closely collaborate to devise a common draft specification that addresses requirements and use cases that were identified in the course of their respective efforts. The goal is to make this draft available for public feedback and experimentation in the second quarter of 2012. The final deliverable of the Open Annotation Community Group will be a specification, published under an appropriate open license, that is informed by the existing proposals, the common draft specification, and the community feedback. [from homepage]",
+    "download_owl": "https://github.com/annotation-ontology/annotation-ontology/raw/refs/heads/master/ao.owl",
+    "example": "annotatesResource",
+    "homepage": "https://code.google.com/archive/p/annotation-ontology/",
+    "keywords": [
+      "ontology"
+    ],
+    "license": "CC-BY-3.0",
+    "name": "Annotation Ontology",
+    "preferred_prefix": "legacy.ao",
+    "repository": "https://github.com/annotation-ontology/annotation-ontology",
+    "uri_format": "http://purl.org/ao/$1"
+  },
   "lei": {
     "description": "Established by the Financial Stability Board in June 2014, the Global Legal Entity Identifier Foundation (GLEIF) is tasked to support the implementation and use of the Legal Entity Identifier (LEI). The foundation is backed and overseen by the LEI Regulatory Oversight Committee, representing public authorities from around the globe that have come together to jointly drive forward transparency within the global financial markets. GLEIF is a supra-national not-for-profit organization headquartered in Basel, Switzerland.",
     "example": "HWUPKR0MPOU8FGXBT394",
@@ -43236,6 +43677,117 @@
     "pattern": "^[A-Za-z0-9\\-\\/]+$",
     "preferred_prefix": "licebase",
     "uri_format": "https://licebase.org/?q=$1"
+  },
+  "lido": {
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "The LIDO Terminology is committed to the Linked Open Data paradigm by making each LIDO Term referenceable through a Uniform Resource Identifier (URI). It is recommended best practice to use the URI from the terminology.lido-schema.org/ namespace to indicate the type of a LIDO element or attribute. The primary objective of this practice is to support data providers in adapting or mapping their data structures to LIDO, thus facilitating the processing of LIDO data for service providers, increasing the interoperability of LIDO data, and supporting information retrieval across different collections. [from homepage]",
+    "example": "lido00165",
+    "homepage": "http://terminology.lido-schema.org",
+    "license": "CC-BY-4.0",
+    "name": "Lightweight Information Describing Objects",
+    "preferred_prefix": "lido",
+    "uri_format": "http://terminology.lido-schema.org/$1"
+  },
+  "lido.actor": {
+    "description": "Indicates if the actor is an individual, a group of individuals, a family or an organization, such as a legal body, a corporation, or a firm.",
+    "example": "group_of_persons",
+    "homepage": "http://terminology.lido-schema.org/actor_type",
+    "license": "CC-BY-4.0",
+    "mappings": {
+      "bartoc": "18653"
+    },
+    "name": "LIDO Terminology Actor Type",
+    "preferred_prefix": "lido.actor",
+    "uri_format": "http://terminology.lido-schema.org/actor_type/$1"
+  },
+  "lido.event": {
+    "description": "The nature of the event associated with an object/work.",
+    "example": "beginning_of_existence",
+    "homepage": "http://terminology.lido-schema.org/eventType",
+    "license": "CC-BY-4.0",
+    "mappings": {
+      "bartoc": "18654"
+    },
+    "name": "LIDO Terminology Event Type",
+    "preferred_prefix": "lido.event",
+    "uri_format": "http://terminology.lido-schema.org/eventType/$1"
+  },
+  "lido.identifier": {
+    "description": "The type attribute of the LIDO Identifier Complex Type element qualifies the type of identifier used. Identifiers are assigned codes that are used to reference the resource being identified. Their scope may be either locally or globally unique and within that scope enable establishing comparison of equality. This vocabulary provides values for the type attribute of the following LIDO identifier elements: Published Object Identifier, LIDO Metadata Record-ID, Actor Identifier, Concept Identifier, Description/Descriptive Note Identifier, Event Identifier, Legal Body ID, Object Identifier, Place Identifier, Record Info ID, Record ID, Resource Identification Number.",
+    "example": "iri",
+    "homepage": "http://terminology.lido-schema.org/identifier_type",
+    "license": "CC-BY-4.0",
+    "mappings": {
+      "bartoc": "18655"
+    },
+    "name": "LIDO Terminology Identifier Type",
+    "preferred_prefix": "lido.identifier",
+    "uri_format": "http://terminology.lido-schema.org/identifier_type/$1"
+  },
+  "lido.recordmetadatadate": {
+    "description": "The Record Metadata Date Type-Vocabulary is a set of controlled terms recommended to use as values for the type attribute of the LIDO Record Metadata Date element.\nThe type attribute indicates the point in time either for the creation or modification date of the containing LIDO Record Info Set.",
+    "example": "created",
+    "homepage": "http://terminology.lido-schema.org/recordMetadataDate_type",
+    "license": "CC BY-SA 3.0",
+    "mappings": {
+      "bartoc": "18656"
+    },
+    "name": "LIDO Terminology Record Metadata Date Type",
+    "preferred_prefix": "lido.recordmetadatadate",
+    "uri_format": "http://terminology.lido-schema.org/recordMetadataDate_type/$1"
+  },
+  "lido.recordtype": {
+    "description": "The choice of the Record Type should take into account both the form or function of a document, an object or work of art, and the goal of the cataloging approach with respect to the logical arrangement of the whole and its parts.",
+    "example": "component",
+    "homepage": "http://terminology.lido-schema.org/recordType",
+    "license": "CC-BY-4.0",
+    "mappings": {
+      "bartoc": "18657"
+    },
+    "name": "LIDO Terminology Record Type",
+    "preferred_prefix": "lido.recordtype",
+    "uri_format": "http://terminology.lido-schema.org/recordType/$1"
+  },
+  "lido.repositoryset": {
+    "description": "The LIDO Repository/Location Set Type-Vocabulary is a structured controlled list of terms recommended to use as values for the Repository/Location Set element.\nThe type attribute indicates the kind of repository or location as the current or a former one.",
+    "example": "current_repository_or_location",
+    "homepage": "http://terminology.lido-schema.org/repositorySet_type",
+    "license": "CC-BY-4.0",
+    "mappings": {
+      "bartoc": "18658"
+    },
+    "name": "LIDO Terminology Repository Set Type",
+    "preferred_prefix": "lido.repositoryset",
+    "uri_format": "http://terminology.lido-schema.org/repositorySet_type/$1"
+  },
+  "lido.resourcerepresentation": {
+    "description": "The type attribute of the LIDO Resource Representation element qualifies the digital representation of a resource offered by the data provider for online presentation.\n\nIt is intended to support online services with respect to the reuse of digital resources that are referenced in the LIDO record. The controlled type vocabulary allows data providers to indicate which variant of a digital resource is described in an instance of the LIDO Resource Representation element. The vocabulary shall support common reuse scenarios such as presenting the digital resource in a search result list, in a detail view, or as downloadable media file. It may also be exploited for retrieval functions such as filtering search results by digital media types.\n\nThe top-level terms are defined to distinguish between the best available variant of a digital resource the data provider can offer for online presentation (provided_representation), the variant a data provider has selected for preview purposes (preview_representation), and the image possibly provided as replacement for the digital resource (placeholder). The definitions of the subordinate terms additionally cover the digital media type. It is highly recommended to use one of the more specific terms, provided_3D, provided_audio, provided_image, provided_text or provided_video, to qualify the media type of the best available variant (or variants in case of equivalent quality), and correspondingly, preview_3D, preview_audio, preview_image, preview_text or preview_video, to distinguish the type of the preview variant (or variants in case of equivalent quality).\n\nNote that these terms do not imply any statement about the quality or format of a digital media file. Therefore, it is recommended to describe the media file in more detail by using the respective LIDO elements and attributes defined for the LIDO Resource Set. As a general recommendation, at a minimum the media file format should be specified by the LIDO formatResource attribute.\n\nDo not confuse the IANA Media Types, formerly known as MIME types, as used for the attribute formatResource with the media type defined as an attribute value for the LIDO Resource Representation element. While the former refers to the type and subtype of the actual media file (e.g., audio/mpeg, image/png, or text/html), the latter differentiates the digital resources by their intended use and generic kind of medium (e.g., provided_audio, preview_image, or provided_text).\n\nThe use of the LIDO Resource Measurement Set may depend on specific use cases of an online service. It is recommended that partners in a data exchange or aggregation context reach an agreement about this.\nThe vocabulary for the type attribute of the LIDO Resource Representation element does not provide terms to designate variants of digital resources with respect to data exchange in the long term preservation context. The vocabulary may be extended, if necessary.",
+    "example": "placeholder",
+    "homepage": "http://terminology.lido-schema.org/resourceRepresentation_type",
+    "license": "CC-BY-4.0",
+    "mappings": {
+      "bartoc": "18659"
+    },
+    "name": "LIDO Terminology Resource Representation Type",
+    "preferred_prefix": "lido.resourcerepresentation",
+    "uri_format": "http://terminology.lido-schema.org/resourceRepresentation_type/$1"
+  },
+  "lido.termmaterialstech": {
+    "description": "The LIDO Term Materials/Techniques Type-Vocabulary is a controlled list of terms recommended to use as values for the type attribute of in the LIDO Term Materials/Techniques element.\nThe type attribute qualifies whether the indexing term refers to material or technique, or the particular kind of materials or techniques used to create or modify an object/work.",
+    "example": "material",
+    "homepage": "http://terminology.lido-schema.org/termMaterialsTech_type",
+    "license": "CC-BY-4.0",
+    "mappings": {
+      "bartoc": "18660"
+    },
+    "name": "LIDO Terminology Term Materials Tech Type",
+    "preferred_prefix": "lido.termmaterialstech",
+    "uri_format": "http://terminology.lido-schema.org/termMaterialsTech_type/$1"
   },
   "lifestylefactors": {
     "contact": {
@@ -44412,6 +44964,23 @@
     "preferred_prefix": "lter",
     "uri_format": "https://vocab.lternet.edu/vocab/vocab/index.php?tema=$1"
   },
+  "lv": {
+    "description": "Under this name space new properties and classes needed for the service lobid ('linking open bibliographic data') are defined . Already existing properties and classes which are (re)used in lobid aren't documented here [from TTL]",
+    "download_rdf": "https://raw.githubusercontent.com/hbz/lobid-vocabs/master/lobid-vocab.ttl",
+    "example": "ArchivedWebPage",
+    "homepage": "http://purl.org/lobid/lv",
+    "keywords": [
+      "catalogs"
+    ],
+    "license": "CC0-1.0",
+    "mappings": {
+      "bartoc": "18070",
+      "lov": "lv"
+    },
+    "name": "lobid vocab",
+    "preferred_prefix": "lv",
+    "uri_format": "http://purl.org/lobid/lv#$1"
+  },
   "lw": {
     "description": "The LifeWatch Metadata Catalogues plays a crucial role in managing metadata for digital objects, including Datasets, Services, Workflows and Virtual Research Environments. This catalogue serves as the central repository, ensuring that resources are accessible and reusable by stakeholders.",
     "example": "6e3b1371-59d7-481a-9db4-cd0d0de98436",
@@ -45048,8 +45617,39 @@
     "rdf_uri_format": "http://purl.obolibrary.org/obo/MAT_$1",
     "uri_format": "http://purl.obolibrary.org/obo/MAT_$1"
   },
+  "mathalgodb": {
+    "contact": {
+      "github": "gramian",
+      "name": "Christian Himpe",
+      "orcid": "0000-0003-2194-6754"
+    },
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "This vocabulary and grammar defines which types of objects are admissible to the MathAlgoDB - the algorithm knowledge graph - and by which properties they can relate. All in all five classes, \"problem\", \"algorithm\", \"benchmark\", \"software\", \"publication\", are defined, as well as a minimal but intuitively intelligible number of properties. As opposed to the more liberal WikiData, MathAlgoDB relies on the strict adherence to the ontology to provide a reliable machine-readable database of (numerical) algorithm knowledge. [from homepage]",
+    "download_rdf": "https://mathalgodb.mardi4nfdi.de/static/widoco/v1/ontology.ttl",
+    "example": "algorithm",
+    "homepage": "https://mathalgodb.mardi4nfdi.de/static/widoco/v1/index-en.9634daaec9f8.html",
+    "license": "CC-BY-4.0",
+    "name": "Algorithm Knowledge Graph Ontology",
+    "owners": [
+      {
+        "name": "MaRDI",
+        "partnered": false,
+        "ror": "04ncnzm65",
+        "wikidata": "Q108327788"
+      }
+    ],
+    "preferred_prefix": "mathalgodb",
+    "rdf_uri_format": "https://mardi4nfdi.de/mathalgodb/0.1#$1",
+    "uri_format": "https://mardi4nfdi.de/mathalgodb/0.1#$1"
+  },
   "mathmoddb": {
-    "description": "This is the MathModDB Ontology for documenting mathematical models.",
+    "description": "MathModDB is a database of mathematical models developed by the Mathematical Research Data Initiative (MaRDI). MathModDB defines a data model with classes (Mathematical Model, Mathematical Formulation, Research Field, Research Problem, Quantity [Kind], Computational Task, Publication), object properties/relations, data properties and annotation properties as an ontology. This ontology is populated with individuals/data from various fields of applied mathematics, making it a knowledge graph. [from homepage]",
+    "download_rdf": "https://mardi4nfdi.github.io/MathModDB/ontology.ttl",
     "example": "ComputationalTask",
     "homepage": "https://github.com/mardi4nfdi/MathModDB",
     "keywords": [
@@ -45058,10 +45658,19 @@
       "mathematics",
       "nfdi4ing"
     ],
+    "license": "CC-BY-4.0",
     "mappings": {
       "tib": "mathmoddb"
     },
-    "name": "MathModDB Ontology",
+    "name": "MathModDB Ontology and Knowledge Graph for Mathematical Models",
+    "owners": [
+      {
+        "name": "MaRDI",
+        "partnered": false,
+        "ror": "04ncnzm65",
+        "wikidata": "Q108327788"
+      }
+    ],
     "preferred_prefix": "mathmoddb",
     "repository": "https://github.com/mardi4nfdi/MathModDB",
     "uri_format": "https://mardi4nfdi.de/mathmoddb#$1"
@@ -48631,7 +49240,7 @@
     "rdf_uri_format": "http://purl.obolibrary.org/obo/MMO_$1",
     "repository": "https://github.com/rat-genome-database/MMO-Measurement-Method-Ontology",
     "uri_format": "http://purl.obolibrary.org/obo/MMO_$1",
-    "version": "2.173"
+    "version": "2.174"
   },
   "mmp.cat": {
     "description": "MarCat is a gene (protein) catalogue of uncultivable and cultivable marine genes and proteins derived from metagenomics samples.",
@@ -49526,7 +50135,7 @@
     "rdf_uri_format": "http://purl.obolibrary.org/obo/MONDO_$1",
     "repository": "https://github.com/monarch-initiative/mondo",
     "uri_format": "http://purl.obolibrary.org/obo/MONDO_$1",
-    "version": "2026-03-03"
+    "version": "2026-04-07"
   },
   "mondo.issue": {
     "contributor": {
@@ -49993,6 +50602,28 @@
     "uri_format": "http://purl.obolibrary.org/obo/MS_$1",
     "version": "4.1.243"
   },
+  "msc": {
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "A hierarchical classifications of subjects in mathematics",
+    "example": "01A60",
+    "homepage": "https://mathscinet.ams.org/mathscinet/msc/msc2020.html",
+    "license": "CC BY-NC-SA 3.0",
+    "mappings": {
+      "bartoc": "474"
+    },
+    "name": "Mathematics Subject Classification",
+    "pattern": "^[0-9]{2}(-XX|-[0-9]{2}|[A-Z](xx|[0-9]{2}))$",
+    "preferred_prefix": "msc",
+    "references": [
+      "https://mathscinet.ams.org/mathscinet/msc/pdfs/classifications2020.pdf"
+    ],
+    "uri_format": "https://mathscinet.ams.org/mathscinet/msc/msc2020.html?t=$1"
+  },
   "msigdb": {
     "contact": {
       "email": "jmesirov@ucsd.edu",
@@ -50076,6 +50707,7 @@
       "omics",
       "ontology"
     ],
+    "license": "CC-BY-3.0",
     "mappings": {
       "fairsharing": "FAIRsharing.4c7f91",
       "ols": "msio",
@@ -50091,7 +50723,7 @@
         "year": 2007
       }
     ],
-    "repository": "https://github.com/MSI-Metabolomics-Standards-Initiative/MSIO",
+    "repository": "https://github.com/ISA-tools/MSIO",
     "uri_format": "http://purl.obolibrary.org/obo/MSIO_$1",
     "version": "1.0.1"
   },
@@ -54807,7 +55439,7 @@
     "rdf_uri_format": "http://purl.obolibrary.org/obo/OAE_$1",
     "repository": "https://github.com/OAE-ontology/OAE",
     "uri_format": "http://purl.obolibrary.org/obo/OAE_$1",
-    "version": "1.2.47"
+    "version": "1.2.54"
   },
   "oarcs": {
     "contact": {
@@ -55654,6 +56286,30 @@
     "preferred_prefix": "odrl",
     "uri_format": "http://www.w3.org/ns/odrl/2/$1"
   },
+  "oeai.ctp": {
+    "description": "Subset of OeAI Thesaurus focusing on cultural time periods",
+    "example": "concept23310",
+    "homepage": "https://vocabs.acdh.oeaw.ac.at/oeai-cp/",
+    "license": "CC-BY-4.0",
+    "mappings": {
+      "bartoc": "20832"
+    },
+    "name": "OeAI Thesaurus - Cultural Time Periods",
+    "preferred_prefix": "oeai.ctp",
+    "uri_format": "https://vocabs.acdh.oeaw.ac.at/oeai-cultural-periods/$1"
+  },
+  "oeai.material": {
+    "description": "Subset of the OeAI Thesaurus for materials.",
+    "example": "concept23831",
+    "homepage": "https://vocabs.acdh.oeaw.ac.at/oeai-materials/",
+    "license": "CC-BY-4.0",
+    "mappings": {
+      "bartoc": "20831"
+    },
+    "name": "OeAI Thesaurus - Materials",
+    "preferred_prefix": "oeai.material",
+    "uri_format": "https://vocabs.acdh.oeaw.ac.at/oeai-materials/$1"
+  },
   "oecd.template": {
     "comment": "The identifiers have two numbers separated by a dot. The first one corresponds to the template number which can be found on the homepage. The second number referes to the row within the corresponding spreadsheet.",
     "contributor": {
@@ -56085,15 +56741,16 @@
     "version": "2026-03-16"
   },
   "ohdab": {
-    "description": "This version of the historical German-language nomenclature for offices and professions (OhdAB) was automatically generated via a script from FactGrid.",
+    "description": "Based on the classification of occupations (KldB) by the Federal Employment Agency and the Federal Statistical Office from 2010. This in turn is based on the International Standard Classification of Occupations (ISCO) by the International Labor Office (ILO 2008). The KldB was revised and expanded in parts at the Historical Data Center in Halle, making it usable for the classification of historical occupations. More than 44,000 historical occupations are taxonomically classified in the OhdAB and can be sorted into occupational areas, main occupational groups, or variously differentiated occupational groups.",
     "example": "Q1059224",
-    "homepage": "https://database.factgrid.de",
+    "homepage": "https://www.geschichte.uni-halle.de/struktur/hist-data/ontologie/",
     "keywords": [
       "history",
       "nfdi4culture",
       "social sciences"
     ],
     "mappings": {
+      "bartoc": "20437",
       "tib": "ohdab"
     },
     "name": "Ontology of the historical German-language nomenclature for offices and professions",
@@ -57070,7 +57727,7 @@
     "rdf_uri_format": "http://purl.obolibrary.org/obo/OMRSE_$1",
     "repository": "https://github.com/mcwdsi/OMRSE",
     "uri_format": "http://purl.obolibrary.org/obo/OMRSE_$1",
-    "version": "2026-03-05"
+    "version": "2026-04-07"
   },
   "omx.dataset": {
     "contributor": {
@@ -57379,6 +58036,91 @@
     ],
     "repository": "https://github.com/panovp/ontodm-core",
     "uri_format": "http://www.ontodm.com/OntoDM-core/OntoDM_$1"
+  },
+  "ontolex": {
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "The aim of lemon is to provide rich linguistic grounding for ontologies. Rich linguistic grounding includes the representation of morphological and syntactic properties of lexical entries as well as the syntax-semantics interface, i.e. the meaning of these lexical entries with respect to an ontology or vocabulary. [homepage]",
+    "example": "Word",
+    "homepage": "https://www.w3.org/2016/05/ontolex/",
+    "keywords": [
+      "support",
+      "tag"
+    ],
+    "mappings": {
+      "lov": "ontolex"
+    },
+    "name": "Lexicon Model for Ontologies",
+    "preferred_prefix": "ontolex",
+    "uri_format": "http://www.w3.org/ns/lemon/ontolex#$1"
+  },
+  "ontome": {
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "Ontology Management Environment (OntoME) is a web-based environment for curating a collaborative ontology based on CIDOC-CRM.",
+    "example": "c786",
+    "example_extras": [
+      "p969"
+    ],
+    "homepage": "https://ontome.net",
+    "license": "CC-BY-4.0",
+    "name": "Ontology Management Environment",
+    "pattern": "^(c|p)\\d+$",
+    "preferred_prefix": "ontome",
+    "uri_format": "https://ontome.net/ontology/$1"
+  },
+  "ontome.namespace": {
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "Namespace in the Ontology Management Environment",
+    "example": "79",
+    "homepage": "https://ontome.net/namespace",
+    "name": "Ontology Management Environment Namespace",
+    "pattern": "^\\d+$",
+    "preferred_prefix": "ontome.namespace",
+    "uri_format": "https://ontome.net/namespace/$1"
+  },
+  "ontome.profile": {
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "Profile in the Ontology Management Environment",
+    "example": "191",
+    "homepage": "https://ontome.net/profile",
+    "name": "Ontology Management Environment Profile",
+    "pattern": "^\\d+$",
+    "preferred_prefix": "ontome.profile",
+    "uri_format": "https://ontome.net/profile/$1"
+  },
+  "ontome.project": {
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "Project in the Ontology Management Environment",
+    "example": "105",
+    "homepage": "https://ontome.net/project",
+    "name": "Ontology Management Environment Project",
+    "pattern": "^\\d+$",
+    "preferred_prefix": "ontome.project",
+    "uri_format": "https://ontome.net/project/$1"
   },
   "ontoneo": {
     "contact": {
@@ -61777,6 +62519,7 @@
   },
   "physh": {
     "description": "PhySH (Physics Subject Headings) is a physics classification scheme developed by the American Physical Society to organize journals, meetings, and other content by topic. The development of PhySH is motivated by the lack of a fully open, high quality classification scheme for physics. It is intended initially to meet the specific goals of the APS for our journal, meeting, and other content. A longer term goal is to make it available for use by the broader community. (...) Right now, the main use of PhySH is to classify manuscripts within the APS peer-review process and, ultimately, published journal articles. The assigned concepts will be used for ensuring articles are routed to the most appropriate handling editor who is knowledgeable in that area. They also help editors in finding similar articles previously submitted and in finding suitable referees.\n\nAs one might expect with something so new, the refinement of PhySH is still very much underway. The facets and disciplines have been identified and almost 3,000 concepts have been added to PhySH through an iterative process that is still ongoing. Many APS journal editors are involved in this process, primarily by lending their expertise in the various subfields in physics. The assignment of concepts to the various facets can be rather subjective. Thus, we expect to make many adjustments to PhySH as we receive feedback from the community (especially authors using PhySH to classify their submissions) and as we incorporate PhySH into the APS journal websites. As we iteratively refine PhySH over the coming months, the rate of new concept additions, concept reassignments within facets, and new relationships among concepts should abate significantly.",
+    "download_rdf": "https://raw.githubusercontent.com/physh-org/PhySH/master/physh.ttl",
     "example": "0003fc3f-1522-4fca-bf3f-bcef0dcec405",
     "homepage": "https://physh.aps.org/",
     "keywords": [
@@ -61791,6 +62534,7 @@
     "name": "Physics Subject Headings",
     "pattern": "^[0-9a-z-]+$",
     "preferred_prefix": "physh",
+    "repository": "https://github.com/physh-org/PhySH",
     "uri_format": "https://doi.org/10.29172/$1"
   },
   "phytozome.locus": {
@@ -63275,14 +64019,18 @@
   "ppeo": {
     "contact": {
       "email": "cyril.pommier@inrae.fr",
-      "name": "Cyril Pommier"
+      "github": "cpommier",
+      "name": "Cyril Pommier",
+      "orcid": "0000-0002-9040-8733"
     },
     "description": "The Plant Phenotyping Experiment Ontology (PPEO) is an implementation of the Minimal Information About Plant Phenotyping Experiment. It lists and organises all the informations necessary to describe and reuse a phenotyping dataset following FAIR principles (Findable Interoperable Accessible Reusable). It has been initiated with experts from Elixir, Emphasis, Bioversity International - CGIAR and RDA.",
+    "download_owl": "https://github.com/MIAPPE/MIAPPE-ontology/raw/refs/heads/master/PPEO.owl",
     "example": "GPS_location",
     "homepage": "http://purl.org/ppeo",
     "keywords": [
       "dataplant",
-      "life sciences, biology"
+      "life sciences, biology",
+      "ontology"
     ],
     "license": "CC-BY-4.0",
     "mappings": {
@@ -65587,6 +66335,7 @@
       "unit",
       "units"
     ],
+    "license": "CC-BY-4.0",
     "mappings": {
       "aberowl": "QUDT",
       "bartoc": "18206",
@@ -68303,7 +69052,7 @@
     "rdf_uri_format": "http://purl.obolibrary.org/obo/RS_$1",
     "repository": "https://github.com/rat-genome-database/RS-Rat-Strain-Ontology",
     "uri_format": "http://purl.obolibrary.org/obo/RS_$1",
-    "version": "6.271"
+    "version": "6.272"
   },
   "rtecs": {
     "contact": {
@@ -81121,6 +81870,17 @@
     "uri_format": "http://purl.obolibrary.org/obo/T4FS_$1",
     "version": "2025-02-09"
   },
+  "tadirah": {
+    "description": "This taxonomy of digital research activities in the humanities has been developed for use by community-driven sites and projects that aim to structure information relevant to digital humanities and make it more easily discoverable. The taxonomy is expected to be particularly useful to endeavors aiming to collect information on digital humanities tools, methods, projects, or readings.",
+    "example": "aggregating",
+    "homepage": "https://github.com/dhtaxonomy/TaDiRAH",
+    "license": "CC0-1.0",
+    "mappings": {
+      "bartoc": "704"
+    },
+    "name": "Taxonomy of Digital Research Activities in the Humanities",
+    "preferred_prefix": "tadirah"
+  },
   "tads": {
     "contact": {
       "email": "dsonensh@odu.edu",
@@ -82004,9 +82764,9 @@
     "uri_format": "https://www.thermofisher.com/antibody/product/$1"
   },
   "tib.bk": {
-    "description": "The (Dutch) Basic Classification  (nl Nederlandse basisclassificatie), BK or NBC  is a hierarchical classification system developed by Dutch libraries specifically for scientific works. The classification system was introduced at the end of the 1980s under the direction of the Royal Library of the Netherlands and has been in use since 1990. Since then it has been continually revised. The BK is mainly used in the Netherlands and in the Common Library Network (GBV).",
+    "description": "German decimal classification system based on the Dutch Basic Classification (NBC)",
     "example": "0",
-    "homepage": "http://bartoc.org/en/node/18785",
+    "homepage": "https://wiki.k10plus.de/display/K10PLUS/Basisklassifikation",
     "keywords": [
       "digital planning and construction",
       "earth sciences",
@@ -82015,10 +82775,13 @@
       "fid move",
       "nfdi4ing"
     ],
+    "license": "CC0-1.0",
     "mappings": {
+      "bartoc": "18785",
       "tib": "bk"
     },
-    "name": "Basisklassifikation",
+    "name": "Basic Classification",
+    "pattern": "^(0|1-2|3-4|5|7-8|[0-9]{2}(\\.[0-9]{2})?)$",
     "preferred_prefix": "tib.bk",
     "uri_format": "http://uri.gbv.de/terminology/bk/$1"
   },
@@ -87621,6 +88384,19 @@
     "preferred_prefix": "wgs84",
     "uri_format": "http://www.w3.org/2003/01/geo/wgs84_pos#$1"
   },
+  "whg": {
+    "description": "World Historical Gazetteer (WHG) is providing a collection of content and services that permit world historians, their students, and the general public to do spatial and temporal reasoning and visualization in a data rich environment at global and trans-regional scales.",
+    "example": "12492249",
+    "homepage": "https://whgazetteer.org/",
+    "license": "CC BY-NC 4.0",
+    "mappings": {
+      "bartoc": "20423"
+    },
+    "name": "World Historical Gazetteer",
+    "pattern": "^[0-9]+$",
+    "preferred_prefix": "whg",
+    "uri_format": "https://whgazetteer.org/places/$1/portal"
+  },
   "who.va": {
     "contributor": {
       "email": "b.gyori@northeastern.edu",
@@ -88832,7 +89608,7 @@
     "rdf_uri_format": "http://purl.obolibrary.org/obo/XCO_$1",
     "repository": "https://github.com/rat-genome-database/XCO-experimental-condition-ontology",
     "uri_format": "http://purl.obolibrary.org/obo/XCO_$1",
-    "version": "4.230"
+    "version": "4.231"
   },
   "xenbase": {
     "contact": {
