@@ -237,19 +237,19 @@
                     {% endif %}
                 </dd>
 
-                {% set publications = resource.get_publications() %}
-                {% if publications %}
-                    <dt>Publications</dt>
-                    {%- for publication in publications %}
-                    <dd>{{ utils.render_publication(publication) }}</dd>
-                    {%- endfor %}
-                {% endif %}
-                {% if resource.references %}
-                    <dt>References</dt>
-                    {%- for reference in resource.references %}
-                    <dd>{{ utils.render_reference(reference) }}</dd>
-                    {%- endfor %}
-                {% endif %}
+                {%- set publications = resource.get_publications() %}
+                {%- if publications %}
+                <dt>Publications</dt>
+                {%- for publication in publications %}
+                <dd {% if not loop.last %}class="mb-0"{% endif %}>{{ utils.render_publication(publication) }}</dd>
+                {%- endfor %}
+                {%- endif %}
+                {%- if resource.references %}
+                <dt>References</dt>
+                {%- for reference in resource.references %}
+                <dd {% if not loop.last %}class="mb-0"{% endif %}>{{ utils.render_reference(reference) }}</dd>
+                {%- endfor %}
+                {%- endif %}
             </dl>
         </div>
     </div>
