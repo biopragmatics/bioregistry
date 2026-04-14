@@ -204,6 +204,9 @@ class Organization(BaseModel):
         title="Wikidata identifier",
         description="Wikidata identifier for a record about the organization",
     )
+    gnd: str | None = Field(
+        default=None, title="Gemeinsame Normdatei (Integrated Authority File) identifier"
+    )
     name: str = Field(..., description="Name of the organization")
     partnered: bool = Field(
         False, description="Has this organization made a specific connection with Bioregistry?"
@@ -216,6 +219,8 @@ class Organization(BaseModel):
             return "ror", self.ror
         elif self.wikidata:
             return "wikidata", self.wikidata
+        elif self.gnd:
+            return "gnd", self.gnd
         raise ValueError
 
     @property
@@ -225,6 +230,8 @@ class Organization(BaseModel):
             return f"https://ror.org/{self.ror}"
         elif self.wikidata:
             return f"https://scholia.toolforge.org/{self.wikidata}"
+        elif self.gnd:
+            return f"https://d-nb.info/gnd/{self.gnd}"
         else:
             raise ValueError
 
