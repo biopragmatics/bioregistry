@@ -39,7 +39,8 @@ from bioregistry.constants import (
     MIRIAM_NAMESPACE_IN_LUI,
     ORCID_FIELD,
     URI_FORMAT_KEY,
-    _dedent, WIKIDATA_FIELD,
+    WIKIDATA_FIELD,
+    _dedent,
 )
 from bioregistry.license_standardizer import standardize_license
 from bioregistry.utils import curie_to_str, deduplicate, removeprefix, removesuffix
