@@ -798,15 +798,39 @@
           "title": "Bibtex"
         },
         "availability": {
-          "$ref": "#/$defs/RegistrySchema",
+          "anyOf": [
+            {
+              "$ref": "#/$defs/RegistrySchema"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
           "description": "A structured description of the metadata that the registry collects"
         },
         "qualities": {
-          "$ref": "#/$defs/RegistryQualities",
+          "anyOf": [
+            {
+              "$ref": "#/$defs/RegistryQualities"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
           "description": "A structured description of the registry's qualities"
         },
         "governance": {
-          "$ref": "#/$defs/RegistryGovernance",
+          "anyOf": [
+            {
+              "$ref": "#/$defs/RegistryGovernance"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
           "description": "A structured description of the governance for the registry"
         },
         "download": {
@@ -937,9 +961,6 @@
         "description",
         "homepage",
         "example",
-        "availability",
-        "qualities",
-        "governance",
         "contact"
       ],
       "title": "Registry",
