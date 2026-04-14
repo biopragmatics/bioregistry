@@ -1,11 +1,12 @@
 """Tests for the metaregistry."""
 
 import unittest
+from typing import ClassVar
 
 import rdflib
 
 import bioregistry
-from bioregistry import manager
+from bioregistry import Manager, manager
 from bioregistry.export.rdf_export import metaresource_to_rdf_str
 from bioregistry.schema import Registry
 
@@ -13,9 +14,12 @@ from bioregistry.schema import Registry
 class TestMetaregistry(unittest.TestCase):
     """Tests for the metaregistry."""
 
-    def setUp(self) -> None:
+    manager: ClassVar[Manager]
+
+    @classmethod
+    def setUpClass(cls) -> None:
         """Set up the test case."""
-        self.manager = bioregistry.manager
+        cls.manager = Manager()
 
     def test_minimum_metadata(self) -> None:
         """Test the metaregistry entries have a minimum amount of data."""
