@@ -1,7 +1,7 @@
 """Tests for identifiers.org."""
 
 import unittest
-from collections.abc import Mapping
+from typing import ClassVar
 
 import requests
 
@@ -20,13 +20,17 @@ from bioregistry.version import VERSION
 class TestIdentifiersOrg(unittest.TestCase):
     """Tests for identifiers.org."""
 
-    def setUp(self) -> None:
+    session: ClassVar[requests.Session]
+    registry: ClassVar[dict[str, Resource]]
+
+    @classmethod
+    def setUpClass(cls) -> None:
         """Prepare a session that has a user agent."""
-        self.session = requests.Session()
-        self.session.headers = {
+        cls.session = requests.Session()
+        cls.session.headers = {
             "User-Agent": f"bioregistry/{VERSION}",
         }
-        self.entries: Mapping[str, Resource] = {
+        cls.registry = {
             prefix: entry
             for prefix, entry in bioregistry.read_registry().items()
             if entry.get_miriam_prefix()
@@ -47,7 +51,7 @@ class TestIdentifiersOrg(unittest.TestCase):
 
     def test_standardize_identifier(self) -> None:
         """Test that standardization makes patterns valid."""
-        for prefix, entry in self.entries.items():
+        for prefix, entry in self.registry.items():
             if prefix in MIRIAM_BLACKLIST:
                 continue
             if not entry.miriam:
@@ -83,7 +87,7 @@ class TestIdentifiersOrg(unittest.TestCase):
 
     def test_url_banana(self) -> None:
         """Test that entries curated with a new banana are resolved properly."""
-        for prefix, entry in self.entries.items():
+        for prefix, entry in self.registry.items():
             banana = entry.get_banana()
             if banana is None:
                 continue
@@ -113,7 +117,7 @@ class TestIdentifiersOrg(unittest.TestCase):
             This test takes up to 5 minutes since it makes a lot of web requests, and is
             therefore skipped by default.
         """
-        for prefix, entry in self.entries.items():
+        for prefix, entry in self.registry.items():
             miriam_prefix = entry.get_identifiers_org_prefix()
             if miriam_prefix is None or prefix in IDOT_BROKEN:
                 continue

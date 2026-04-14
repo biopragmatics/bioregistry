@@ -9,7 +9,7 @@ import unittest
 from collections import Counter, defaultdict
 from collections.abc import Mapping
 from textwrap import dedent
-from typing import Any
+from typing import Any, ClassVar
 
 import curies
 import rdflib
@@ -30,10 +30,10 @@ from bioregistry.export.rdf_export import resource_to_rdf_str
 from bioregistry.external import GETTERS
 from bioregistry.license_standardizer import REVERSE_LICENSES, standardize_license
 from bioregistry.resource_manager import MetaresourceAnnotatedValue
-from bioregistry.schema import Attributable, Publication, get_json_schema
+from bioregistry.schema import Attributable, Publication, Registry, get_json_schema
 from bioregistry.schema.struct import SCHEMA_PATH
 from bioregistry.schema_utils import is_mismatch, read_status_contributions
-from bioregistry.utils import _norm
+from bioregistry.utils import _norm, norm
 
 logger = logging.getLogger(__name__)
 
@@ -41,10 +41,14 @@ logger = logging.getLogger(__name__)
 class TestRegistry(unittest.TestCase):
     """Tests for the registry."""
 
-    def setUp(self) -> None:
+    registry: ClassVar[Mapping[str, Resource]]
+    metaregistry: ClassVar[Mapping[str, Registry]]
+
+    @classmethod
+    def setUpClass(cls) -> None:
         """Set up the test case."""
-        self.registry = bioregistry.read_registry()
-        self.metaregistry = bioregistry.read_metaregistry()
+        cls.registry = bioregistry.read_registry()
+        cls.metaregistry = bioregistry.read_metaregistry()
 
     def test_schema(self) -> None:
         """Test the schema is up-to-date."""
@@ -267,8 +271,7 @@ class TestRegistry(unittest.TestCase):
 
     def test_email(self) -> None:
         """Test that the email getter returns valid email addresses."""
-        for prefix in self.registry:
-            resource = bioregistry.get_resource(prefix)
+        for prefix, resource in self.registry.items():
             self.assertIsNotNone(resource)
             email = resource.get_contact_email()
             if email is None or EMAIL_RE.match(email):
@@ -292,11 +295,10 @@ class TestRegistry(unittest.TestCase):
         For example, "Amazon Standard Identification Number (ASIN)" is a problematic
         name for prefix "asin".
         """
-        for prefix in self.registry:
+        for prefix, resource in self.registry.items():
             if bioregistry.is_deprecated(prefix):
                 continue
-            entry = bioregistry.get_resource(prefix)
-            if entry.name is not None:
+            if resource.name is not None:
                 continue
             name = bioregistry.get_name(prefix)
             if name is None:
@@ -645,7 +647,7 @@ class TestRegistry(unittest.TestCase):
             "https://scholia.toolforge.org/ncbi-gene/", ncbigene_record.uri_prefix_synonyms
         )
 
-        # Test that all of the CTD gene stuff is rolled into NCBIGene because CTD gene provides for NCBI gene
+        # Test that the CTD gene stuff is rolled into NCBIGene because CTD gene provides for NCBI gene
         self.assertIn("ctd.gene", ncbigene_record.prefix_synonyms)
         self.assertIn("ctd.gene:", ncbigene_record.uri_prefix_synonyms)
         self.assertIn("http://identifiers.org/ctd.gene:", ncbigene_record.uri_prefix_synonyms)
@@ -1033,8 +1035,9 @@ class TestRegistry(unittest.TestCase):
         """Test mismatches all use canonical prefixes."""
         for prefix in bioregistry.read_mismatches():
             with self.subTest(prefix=prefix):
-                self.assertTrue(
-                    prefix in set(self.registry),
+                self.assertIn(
+                    prefix,
+                    self.registry,
                     msg=f"curated_mappings.sssom.tsv has invalid prefix: {prefix}",
                 )
 
@@ -1445,3 +1448,17 @@ class TestRegistry(unittest.TestCase):
         short_name_map = manager.get_registry_short_name_to_prefix("integbio")
         self.assertIn("AAindex", short_name_map)
         self.assertEqual("nbdc00004", short_name_map["AAindex"])
+
+    def test_unique_keys(self) -> None:
+        """Test that all prefixes are norm-unique."""
+        for a, b in itt.pairwise(sorted(self.registry, key=norm)):
+            with self.subTest(a=a, b=b):
+                self.assertNotEqual(norm(a), norm(b))
+
+    def test_synonyms(self) -> None:
+        """Test that there are no synonyms that conflict with keys."""
+        norm_prefixes = {norm(prefix) for prefix in self.registry}
+        for key, entry in self.registry.items():
+            for synonym in entry.synonyms or []:
+                with self.subTest(key=key, synonym=synonym):
+                    self.assertNotIn(synonym, norm_prefixes - {norm(key)})
