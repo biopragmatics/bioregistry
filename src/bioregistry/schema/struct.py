@@ -479,6 +479,7 @@ DEFAULT_METAPREFIX_PRIORITY = [
     "aberowl",
     "re3data",
     "uniprot",
+    "biodivportal",
 ]
 
 
@@ -1225,6 +1226,7 @@ class Resource(BaseModel):
             "tib",
             "integbio",
             "cellosaurus",
+            "biodivportal",
         )
         rv = self._get_prefix_key_str("description", metaprefixes, provenance=False)
         if rv is not None:
