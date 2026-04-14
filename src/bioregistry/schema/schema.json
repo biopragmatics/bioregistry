@@ -54,6 +54,7 @@
         "email": {
           "anyOf": [
             {
+              "format": "email",
               "type": "string"
             },
             {
@@ -117,6 +118,7 @@
         "email": {
           "anyOf": [
             {
+              "format": "email",
               "type": "string"
             },
             {
@@ -491,6 +493,7 @@
         "wikidata": {
           "anyOf": [
             {
+              "pattern": "^Q\\d+$",
               "type": "string"
             },
             {
@@ -498,7 +501,9 @@
             }
           ],
           "default": null,
-          "description": "Wikidata identifier for a record about the organization",
+          "examples": [
+            "Q47475003"
+          ],
           "title": "Wikidata identifier"
         },
         "gnd": {
@@ -2549,8 +2554,9 @@
           "type": "string"
         },
         "contributor": {
+          "description": "The Open Researcher and Contributor Identifier (ORCiD) provides researchers with an open, unambiguous identifier for connecting various digital assets (e.g., publications, reviews) across the semantic web. An account can be made in seconds at https://orcid.org.",
           "pattern": "^\\d{4}-\\d{4}-\\d{4}-\\d{3}(\\d|X)$",
-          "title": "Contributor",
+          "title": "Open Researcher and Contributor Identifier",
           "type": "string"
         },
         "notes": {
