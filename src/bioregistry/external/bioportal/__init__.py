@@ -30,11 +30,11 @@ from bioregistry.utils import removeprefix
 
 __all__ = [
     "get_agroportal",
+    "get_biodivportal",
     "get_bioportal",
     "get_ecoportal",
 ]
 
-BIOPORTAL_BASE_URL = "https://data.bioontology.org"
 DIRECTORY = Path(__file__).parent.resolve()
 
 
@@ -231,7 +231,20 @@ def get_agroportal(
     return client.download(force_download=force_download, force_process=force_process)
 
 
+@adapter
+def get_biodivportal(
+    force_download: bool = False, force_process: bool = False, *, api_key: str | None = None
+) -> dict[str, Record]:
+    """Get the BiodivPortal registry."""
+    client = OntoPortalClient(
+        metaprefix="biodivportal",
+        client=ontoportal_client.BioPortalClient(api_key=api_key),
+    )
+    return client.download(force_download=force_download, force_process=force_process)
+
+
 if __name__ == "__main__":
+    print("BiodivPortal has", len(get_biodivportal(force_download=False, force_process=True)))  # noqa:T201
     print("EcoPortal has", len(get_ecoportal(force_download=False, force_process=True)))  # noqa:T201
     print("AgroPortal has", len(get_agroportal(force_download=False, force_process=True)))  # noqa:T201
     print("BioPortal has", len(get_bioportal(force_download=False, force_process=True)))  # noqa:T201

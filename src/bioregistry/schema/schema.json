@@ -1802,7 +1802,8 @@
                 "bibliometrics",
                 "experiment",
                 "genetic code",
-                "mathematics"
+                "mathematics",
+                "registry"
               ],
               "type": "string"
             },
@@ -1854,7 +1855,8 @@
             "bibliometrics",
             "experiment",
             "genetic code",
-            "mathematics"
+            "mathematics",
+            "registry"
           ],
           "title": "Domain"
         },
@@ -2510,6 +2512,19 @@
           ],
           "default": null,
           "title": "Tib"
+        },
+        "biodivportal": {
+          "anyOf": [
+            {
+              "additionalProperties": true,
+              "type": "object"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Biodivportal"
         }
       },
       "required": [

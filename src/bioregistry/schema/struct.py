@@ -134,6 +134,7 @@ Domain: TypeAlias = Literal[
     "experiment",
     "genetic code",
     "mathematics",
+    "registry",
 ]
 
 
@@ -452,6 +453,7 @@ DEFAULT_METAPREFIX_PRIORITY = [
     "aberowl",
     "re3data",
     "uniprot",
+    "biodivportal",
 ]
 
 
@@ -845,6 +847,8 @@ class Resource(BaseModel):
     pathguide: Mapping[str, Any] | None = Field(default=None)
     #: External data from TIB Terminology Service
     tib: Mapping[str, Any] | None = Field(default=None)
+    #: External data from BiodivPortal
+    biodivportal: Mapping[str, Any] | None = Field(default=None)
 
     # Cached compiled pattern for identifiers
     _compiled_pattern: re.Pattern[str] | None = PrivateAttr(None)
@@ -1196,6 +1200,7 @@ class Resource(BaseModel):
             "tib",
             "integbio",
             "cellosaurus",
+            "biodivportal",
         )
         rv = self._get_prefix_key_str("description", metaprefixes, provenance=False)
         if rv is not None:
