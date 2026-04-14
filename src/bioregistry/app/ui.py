@@ -734,12 +734,13 @@ def show_nfdi() -> str:
     # first party
     first_party = defaultdict(list)
     for collection_ in nfdi_collections.values():
-        for prefix, call in manager.get_collection_first_party(collection_, skip_org_rors={NFDI_ROR}).items():
+        for prefix, call in manager.get_collection_first_party(
+            collection_, skip_org_rors={NFDI_ROR}
+        ).items():
             if call:
                 first_party[prefix].append(collection_)
     first_party_list = [
-        (manager.registry[prefix], consortia)
-        for prefix, consortia in sorted(first_party.items())
+        (manager.registry[prefix], consortia) for prefix, consortia in sorted(first_party.items())
     ]
 
     return render_template(

@@ -78,7 +78,7 @@ def _get_governance_df() -> pd.DataFrame:
     rows = []
     keep_metaprefixes = set(count_mappings())
     for registry in sorted(read_metaregistry().values(), key=_sort_key):
-        if registry.prefix not in keep_metaprefixes:
+        if registry.prefix not in keep_metaprefixes or registry.governance is None:
             continue
         rows.append(
             (
@@ -125,7 +125,11 @@ def _get_metadata_df() -> pd.DataFrame:
     rows = []
     keep_metaprefixes = set(count_mappings())
     for registry in sorted(read_metaregistry().values(), key=_sort_key):
-        if registry.prefix not in keep_metaprefixes:
+        if (
+            registry.prefix not in keep_metaprefixes
+            or registry.availability is None
+            or registry.qualities is None
+        ):
             continue
         rows.append(
             (
