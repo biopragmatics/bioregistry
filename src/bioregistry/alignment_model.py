@@ -6,18 +6,20 @@ import datetime
 import enum
 import json
 from pathlib import Path
-from typing import Any
+from typing import Annotated, Any
 
 from curies import NamableReference
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, EmailStr, Field
+
+from .constants import ORCID_FIELD
 
 
 class Person(BaseModel):
     """Represents the fields for a person."""
 
     name: str | None = None
-    orcid: str | None = None
-    email: str | None = None
+    orcid: Annotated[str | None, ORCID_FIELD] = None
+    email: EmailStr | None = None
     github: str | None = None
 
 
