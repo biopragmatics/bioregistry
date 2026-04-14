@@ -10,7 +10,7 @@ from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Any, cast
 
-import pystow
+import ontoportal_client
 import requests
 from tqdm import tqdm
 from tqdm.contrib.concurrent import thread_map
@@ -35,8 +35,6 @@ __all__ = [
 ]
 
 BIOPORTAL_BASE_URL = "https://data.bioontology.org"
-ECOPORTAL_BASE_URL = "http://ecoportal.lifewatch.eu:8080"
-AGROPORTAL_BASE_URL = "http://data.agroportal.lirmm.fr"
 DIRECTORY = Path(__file__).parent.resolve()
 
 
@@ -45,8 +43,7 @@ class OntoPortalClient:
     """A client for an OntoPortal site, like BioPortal."""
 
     metaprefix: str
-    base_url: str
-    api_key: str | None = None
+    client: ontoportal_client.OntoPortalClient
     raw_path: Path = field(init=False)
     processed_path: Path = field(init=False)
     max_workers: int = 2
@@ -54,22 +51,6 @@ class OntoPortalClient:
     def __post_init__(self) -> None:
         self.raw_path = RAW_DIRECTORY.joinpath(self.metaprefix).with_suffix(".json")
         self.processed_path = DIRECTORY.joinpath(self.metaprefix).with_suffix(".json")
-
-    def query(self, url: str, **params: Any) -> requests.Response:
-        """Query the given endpoint on the OntoPortal site.
-
-        :param url: URL to query
-        :param params: Kwargs to give as params to :func:`requests.get`
-
-        :returns: The response from :func:`requests.get`
-
-        The rate limit is 15 queries per second. See:
-        https://www.bioontology.org/wiki/Annotator_Optimizing_and_Troublehooting
-        """
-        if self.api_key is None:
-            self.api_key = pystow.get_config(self.metaprefix, "api_key", raise_on_missing=True)
-        params.setdefault("apikey", self.api_key)
-        return requests.get(url, params=params, timeout=30)
 
     def download(
         self, force_download: bool = False, force_process: bool = False
@@ -93,9 +74,7 @@ class OntoPortalClient:
         if self.raw_path.exists() and not force:
             return cast(list[dict[str, Any]], json.loads(self.raw_path.read_text()))
 
-        # see https://data.bioontology.org/documentation#Ontology
-        res = self.query(self.base_url + "/ontologies", summaryOnly=False, notes=True)
-        records = res.json()
+        records = self.client.get_ontologies(summary_only=False, notes=True)
         records = thread_map(
             self._preprocess,
             records,
@@ -111,14 +90,11 @@ class OntoPortalClient:
     def _preprocess(self, record: dict[str, Any]) -> dict[str, Any]:
         record.pop("@context", None)
         prefix = record["acronym"]
-        url = f"{self.base_url}/ontologies/{prefix}/latest_submission"
-        res = self.query(url, display="all")
-        if res.status_code != 200:
-            tqdm.write(
-                f"{self.metaprefix}:{prefix} had issue getting submission details: {res.text}"
-            )
+        try:
+            res_json = self.client.get_latest_submission(prefix, display="all")
+        except requests.exceptions.HTTPError as e:
+            tqdm.write(f"{self.metaprefix}:{prefix} had issue getting submission details: {e}")
             return record
-        res_json = res.json()
 
         publications = res_json.get("publication")
         if isinstance(publications, str):
@@ -219,40 +195,40 @@ def _handle_publications(ll: list[str]) -> list[Publication]:
     return rv
 
 
-bioportal_client = OntoPortalClient(
-    metaprefix="bioportal",
-    base_url=BIOPORTAL_BASE_URL,
-)
-
-
 @adapter
-def get_bioportal(force_download: bool = False, force_process: bool = False) -> dict[str, Record]:
+def get_bioportal(
+    force_download: bool = False, force_process: bool = False, *, api_key: str | None = None
+) -> dict[str, Record]:
     """Get the BioPortal registry."""
-    return bioportal_client.download(force_download=force_download, force_process=force_process)
-
-
-ecoportal_client = OntoPortalClient(
-    metaprefix="ecoportal",
-    base_url=ECOPORTAL_BASE_URL,
-)
+    client = OntoPortalClient(
+        metaprefix="bioportal",
+        client=ontoportal_client.BioPortalClient(api_key=api_key),
+    )
+    return client.download(force_download=force_download, force_process=force_process)
 
 
 @adapter
-def get_ecoportal(force_download: bool = False, force_process: bool = False) -> dict[str, Record]:
+def get_ecoportal(
+    force_download: bool = False, force_process: bool = False, *, api_key: str | None = None
+) -> dict[str, Record]:
     """Get the EcoPortal registry."""
-    return ecoportal_client.download(force_download=force_download, force_process=force_process)
-
-
-agroportal_client = OntoPortalClient(
-    metaprefix="agroportal",
-    base_url=AGROPORTAL_BASE_URL,
-)
+    client = OntoPortalClient(
+        metaprefix="ecoportal",
+        client=ontoportal_client.EcoPortalClient(api_key=api_key),
+    )
+    return client.download(force_download=force_download, force_process=force_process)
 
 
 @adapter
-def get_agroportal(force_download: bool = False, force_process: bool = False) -> dict[str, Record]:
+def get_agroportal(
+    force_download: bool = False, force_process: bool = False, *, api_key: str | None = None
+) -> dict[str, Record]:
     """Get the AgroPortal registry."""
-    return agroportal_client.download(force_download=force_download, force_process=force_process)
+    client = OntoPortalClient(
+        metaprefix="agroportal",
+        client=ontoportal_client.AgroPortalClient(api_key=api_key),
+    )
+    return client.download(force_download=force_download, force_process=force_process)
 
 
 if __name__ == "__main__":
