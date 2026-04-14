@@ -5,7 +5,7 @@ from tabulate import tabulate
 
 import bioregistry
 from bioregistry.external.bioportal import get_biodivportal
-from bioregistry.external.bioportal.biodivportal import BioDivPortalAligner
+from bioregistry.external.bioportal.bioportal import BioDivPortalAligner, AgroPortalAligner
 
 COLLECTION_IDENTIFIER = "0000040"
 
@@ -14,6 +14,7 @@ COLLECTION_IDENTIFIER = "0000040"
 def import_biodiv() -> None:
     """Import biodiversity."""
     BioDivPortalAligner.align(force_download=False)
+    AgroPortalAligner.align(force_download=False) # meaningful overlap
     records = get_biodivportal(force_download=False)
     biodivportal_to_internal = bioregistry.get_registry_invmap("biodivportal")
     rows = []
