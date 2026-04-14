@@ -872,6 +872,8 @@ class Resource(BaseModel):
     pathguide: Mapping[str, Any] | None = Field(default=None)
     #: External data from TIB Terminology Service
     tib: Mapping[str, Any] | None = Field(default=None)
+    #: External data from BiodivPortal
+    biodivportal: Mapping[str, Any] | None = Field(default=None)
 
     # Cached compiled pattern for identifiers
     _compiled_pattern: re.Pattern[str] | None = PrivateAttr(None)
@@ -2931,14 +2933,14 @@ class Registry(BaseModel):
     bibtex: str | None = Field(
         default=None, description="Citation key used in BibTex for this registry."
     )
-    availability: RegistrySchema = Field(
-        ..., description="A structured description of the metadata that the registry collects"
+    availability: RegistrySchema | None = Field(
+        None, description="A structured description of the metadata that the registry collects"
     )
-    qualities: RegistryQualities = Field(
-        ..., description="A structured description of the registry's qualities"
+    qualities: RegistryQualities | None = Field(
+        None, description="A structured description of the registry's qualities"
     )
-    governance: RegistryGovernance = Field(
-        ..., description="A structured description of the governance for the registry"
+    governance: RegistryGovernance | None = Field(
+        None, description="A structured description of the governance for the registry"
     )
     download: str | None = Field(
         default=None, description="A download link for the data contained in the registry"

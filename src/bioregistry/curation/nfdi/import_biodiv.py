@@ -20,7 +20,12 @@ def import_biodiv() -> None:
             bioregistry.add_to_collection(COLLECTION_IDENTIFIER, norm_id)
         else:
             rows.append(
-                (acronym, record["name"], f"https://biodivportal.gfbio.org/ontologies/{acronym}")
+                (
+                    acronym,
+                    record["name"],
+                    f"https://biodivportal.gfbio.org/ontologies/{acronym}",
+                    record.get("extras", {}).get("example_uri"),
+                )
             )
     click.echo(tabulate(rows, headers=["prefix", "name", "homepae"]))
     bioregistry.manager.write_collections()

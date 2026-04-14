@@ -256,12 +256,12 @@ biodivportal_client = OntoPortalClient(
 def get_biodivportal(
     force_download: bool = False, force_process: bool = False
 ) -> dict[str, Record]:
-    """Get the BioDivPortal registry."""
+    """Get the BiodivPortal registry."""
     return biodivportal_client.download(force_download=force_download, force_process=force_process)
 
 
 if __name__ == "__main__":
-    print("BioDivPortal has", len(get_biodivportal(force_download=False, force_process=True)))  # noqa:T201
+    print("BiodivPortal has", len(get_biodivportal(force_download=False, force_process=True)))  # noqa:T201
     print("EcoPortal has", len(get_ecoportal(force_download=False, force_process=True)))  # noqa:T201
     print("AgroPortal has", len(get_agroportal(force_download=False, force_process=True)))  # noqa:T201
     print("BioPortal has", len(get_bioportal(force_download=False, force_process=True)))  # noqa:T201
