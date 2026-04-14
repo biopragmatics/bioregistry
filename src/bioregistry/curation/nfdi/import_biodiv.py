@@ -27,10 +27,12 @@ def import_biodiv(add: bool) -> None:
         else:
             if add:
                 prefix_part = acronym.lower().replace("_", "").replace("-", "")
-                bioregistry.add_resource(bioregistry.Resource(
-                    prefix=f"gfbio.{prefix_part}",
-                    mappings={"biodivportal": acronym},
-                ))
+                bioregistry.add_resource(
+                    bioregistry.Resource(
+                        prefix=f"gfbio.{prefix_part}",
+                        mappings={"biodivportal": acronym},
+                    )
+                )
             rows.append(
                 (
                     acronym,
