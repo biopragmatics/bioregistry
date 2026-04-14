@@ -2904,14 +2904,14 @@ class Registry(BaseModel):
     bibtex: str | None = Field(
         default=None, description="Citation key used in BibTex for this registry."
     )
-    availability: RegistrySchema = Field(
-        ..., description="A structured description of the metadata that the registry collects"
+    availability: RegistrySchema | None = Field(
+        None, description="A structured description of the metadata that the registry collects"
     )
-    qualities: RegistryQualities = Field(
-        ..., description="A structured description of the registry's qualities"
+    qualities: RegistryQualities | None = Field(
+        None, description="A structured description of the registry's qualities"
     )
-    governance: RegistryGovernance = Field(
-        ..., description="A structured description of the governance for the registry"
+    governance: RegistryGovernance | None = Field(
+        None, description="A structured description of the governance for the registry"
     )
     download: str | None = Field(
         default=None, description="A download link for the data contained in the registry"
@@ -2947,8 +2947,10 @@ class Registry(BaseModel):
         default=None, description="A short name for the resource, e.g., for use in charts"
     )
 
-    def score(self) -> int:
+    def score(self) -> int | None:
         """Calculate a metadata score/goodness for this registry."""
+        if self.availability is None or self.qualities is None:
+            return None
         return (
             (
                 int(self.provider_uri_format is not None)
@@ -3092,8 +3094,10 @@ class Registry(BaseModel):
         """Check if the registry is a prefix provider."""
         return self.provider_uri_format is not None
 
-    def get_quality_score(self) -> int:
+    def get_quality_score(self) -> int | None:
         """Get the quality score for this registry."""
+        if self.qualities is None or self.availability is None:
+            return None
         return self.qualities.score() + sum(
             [self.availability.search, self.is_prefix_provider, self.has_permissive_license]
         )
