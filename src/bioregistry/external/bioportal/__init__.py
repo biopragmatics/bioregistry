@@ -11,14 +11,7 @@ from pathlib import Path
 from typing import Any, cast
 
 import ontoportal_client
-import pystow
 import requests
-from ontoportal_client.constants import (
-    AGROPORTAL_BASE_URL,
-    BIODIVPORTAL_BASE_URL,
-    BIOPORTAL_BASE_URL,
-    ECOPORTAL_BASE_URL,
-)
 from tqdm import tqdm
 from tqdm.contrib.concurrent import thread_map
 
@@ -50,22 +43,14 @@ class OntoPortalClient:
     """A client for an OntoPortal site, like BioPortal."""
 
     metaprefix: str
-    base_url: str
-    api_key: str | None = None
+    client: ontoportal_client.OntoPortalClient
     raw_path: Path = field(init=False)
     processed_path: Path = field(init=False)
-    client: ontoportal_client.OntoPortalClient = field(init=False)
     max_workers: int = 2
 
     def __post_init__(self) -> None:
         self.raw_path = RAW_DIRECTORY.joinpath(self.metaprefix).with_suffix(".json")
         self.processed_path = DIRECTORY.joinpath(self.metaprefix).with_suffix(".json")
-        self.api_key = pystow.get_config(
-            self.metaprefix, "api_key", passthrough=self.api_key, raise_on_missing=True
-        )
-        self.client = ontoportal_client.OntoPortalClient(
-            base_url=self.base_url, api_key=self.api_key
-        )
 
     def download(
         self, force_download: bool = False, force_process: bool = False
@@ -210,54 +195,52 @@ def _handle_publications(ll: list[str]) -> list[Publication]:
     return rv
 
 
-bioportal_client = OntoPortalClient(
-    metaprefix="bioportal",
-    base_url=BIOPORTAL_BASE_URL,
-)
-
-
 @adapter
-def get_bioportal(force_download: bool = False, force_process: bool = False) -> dict[str, Record]:
+def get_bioportal(
+    force_download: bool = False, force_process: bool = False, *, api_key: str | None = None
+) -> dict[str, Record]:
     """Get the BioPortal registry."""
-    return bioportal_client.download(force_download=force_download, force_process=force_process)
-
-
-ecoportal_client = OntoPortalClient(
-    metaprefix="ecoportal",
-    base_url=ECOPORTAL_BASE_URL,
-)
+    client = OntoPortalClient(
+        metaprefix="bioportal",
+        client=ontoportal_client.BioPortalClient(api_key=api_key),
+    )
+    return client.download(force_download=force_download, force_process=force_process)
 
 
 @adapter
-def get_ecoportal(force_download: bool = False, force_process: bool = False) -> dict[str, Record]:
+def get_ecoportal(
+    force_download: bool = False, force_process: bool = False, *, api_key: str | None = None
+) -> dict[str, Record]:
     """Get the EcoPortal registry."""
-    return ecoportal_client.download(force_download=force_download, force_process=force_process)
-
-
-agroportal_client = OntoPortalClient(
-    metaprefix="agroportal",
-    base_url=AGROPORTAL_BASE_URL,
-)
+    client = OntoPortalClient(
+        metaprefix="ecoportal",
+        client=ontoportal_client.EcoPortalClient(api_key=api_key),
+    )
+    return client.download(force_download=force_download, force_process=force_process)
 
 
 @adapter
-def get_agroportal(force_download: bool = False, force_process: bool = False) -> dict[str, Record]:
+def get_agroportal(
+    force_download: bool = False, force_process: bool = False, *, api_key: str | None = None
+) -> dict[str, Record]:
     """Get the AgroPortal registry."""
-    return agroportal_client.download(force_download=force_download, force_process=force_process)
-
-
-biodivportal_client = OntoPortalClient(
-    metaprefix="biodivportal",
-    base_url=BIODIVPORTAL_BASE_URL,
-)
+    client = OntoPortalClient(
+        metaprefix="agroportal",
+        client=ontoportal_client.AgroPortalClient(api_key=api_key),
+    )
+    return client.download(force_download=force_download, force_process=force_process)
 
 
 @adapter
 def get_biodivportal(
-    force_download: bool = False, force_process: bool = False
+    force_download: bool = False, force_process: bool = False, *, api_key: str | None = None
 ) -> dict[str, Record]:
     """Get the BiodivPortal registry."""
-    return biodivportal_client.download(force_download=force_download, force_process=force_process)
+    client = OntoPortalClient(
+        metaprefix="biodivportal",
+        client=ontoportal_client.BioPortalClient(api_key=api_key),
+    )
+    return client.download(force_download=force_download, force_process=force_process)
 
 
 if __name__ == "__main__":
