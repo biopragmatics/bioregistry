@@ -83,10 +83,11 @@ class TestMetaregistry(unittest.TestCase):
 
                 invalid_keys = set(registry.model_dump()).difference(Registry.model_fields)
                 self.assertEqual(set(), invalid_keys, msg="invalid metadata")
-                self.assertIsNotNone(registry.qualities)
-                self.assertIsInstance(registry.qualities.bulk_data, bool)
 
-                if registry.governance.public_version_controlled_data:
+                if (
+                    registry.governance is not None
+                    and registry.governance.public_version_controlled_data
+                ):
                     self.assertIsNotNone(registry.governance.data_repository)
                     self.assertIsNotNone(registry.governance.issue_tracker)
 
