@@ -5,6 +5,7 @@ from tabulate import tabulate
 
 import bioregistry
 from bioregistry.external.bioportal import get_biodivportal
+from bioregistry.external.bioportal.biodivportal import BioDivPortalAligner
 
 COLLECTION_IDENTIFIER = "0000040"
 
@@ -12,11 +13,14 @@ COLLECTION_IDENTIFIER = "0000040"
 @click.command()
 def import_biodiv() -> None:
     """Import biodiversity."""
-    records = get_biodivportal()
-
+    BioDivPortalAligner.align(force_download=False)
+    records = get_biodivportal(force_download=False)
+    biodivportal_to_internal = bioregistry.get_registry_invmap("biodivportal")
     rows = []
     for acronym, record in records.items():
-        if norm_id := bioregistry.normalize_prefix(acronym):
+        if acronym in biodivportal_to_internal:
+            bioregistry.add_to_collection(COLLECTION_IDENTIFIER, biodivportal_to_internal[acronym])
+        elif norm_id := bioregistry.normalize_prefix(acronym):
             bioregistry.add_to_collection(COLLECTION_IDENTIFIER, norm_id)
         else:
             rows.append(
