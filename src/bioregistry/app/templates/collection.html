@@ -82,12 +82,7 @@
                 <dt>Organizations</dt>
                 {%- for organization in entry.organizations %}
                 <dd {% if not loop.last %}class="mb-0"{% endif %}>
-                    <a href="{{ organization.link }}">
-                        {{ organization.name }}
-                        {%- if organization.ror -%}
-                        {{ utils.ror_img() }}
-                        {%- endif %}
-                    </a>
+                    {{ utils.link_organization(organization) }}
                 </dd>
                 {%- endfor %}
                 {%- endif %}
