@@ -11,7 +11,8 @@ COLLECTION_IDENTIFIER = "0000040"
 
 
 @click.command()
-def import_biodiv() -> None:
+@click.option("--add", is_flag=True)
+def import_biodiv(add: bool) -> None:
     """Import biodiversity."""
     BioDivPortalAligner.align(force_download=False)
     AgroPortalAligner.align(force_download=False)  # meaningful overlap
@@ -24,6 +25,12 @@ def import_biodiv() -> None:
         elif norm_id := bioregistry.normalize_prefix(acronym):
             bioregistry.add_to_collection(COLLECTION_IDENTIFIER, norm_id)
         else:
+            if add:
+                prefix_part = acronym.lower().replace("_", "").replace("-", "")
+                bioregistry.add_resource(bioregistry.Resource(
+                    prefix=f"gfbio.{prefix_part}",
+                    mappings={"biodivportal": acronym},
+                ))
             rows.append(
                 (
                     acronym,
@@ -41,6 +48,9 @@ def import_biodiv() -> None:
         )
     )
     bioregistry.manager.write_collections()
+    if add:
+        BioDivPortalAligner.align(force_download=False)
+        bioregistry.manager.write_registry()
 
 
 if __name__ == "__main__":
