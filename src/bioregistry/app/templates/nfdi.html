@@ -190,7 +190,7 @@
     </div>
     <div class="card-body">
         <p class="mb-0">
-            There are {{ tib_opportunities | length }} fesources appearing in NFDI collections
+            There are {{ tib_opportunities | length }} resources appearing in NFDI collections
             that have concrete download links in {{ config.METAREGISTRY_TITLE }}, but are not
             yet indexed in the TIB OLS.
             <a class="badge badge-pill badge-light"
@@ -231,6 +231,44 @@
             </td>
         </tr>
         {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+<div class="card mt-4">
+    <div class="card-header">
+        First Party Resources
+    </div>
+    <div class="card-body">
+        <p class="mb-0">
+            The following resources are made by the consortium.
+        </p>
+    </div>
+
+    <table class="table table-striped mb-0" style="margin-bottom: 0;">
+        <thead>
+        <tr>
+            <th scope="col">Prefix</th>
+            <th scope="col">Name</th>
+            <th scope="col">Consortia</th>
+        </tr>
+        </thead>
+        <tbody>
+        {%- for resource, consortia in first_party %}
+        <tr>
+            <td>
+                {{ utils.render_prefix(resource.prefix) }}
+            </td>
+            <td>{{ resource.get_name() }}</td>
+            <td>
+                {%- for consortium in consortia %}
+                <a href="{{ url_for('metaregistry_ui.collection', identifier=consortium.identifier) }}">
+                    {{ consortium.name.removesuffix(" Collection") }}
+                </a>
+                {%- endfor %}
+            </td>
+        </tr>
+        {%- endfor %}
         </tbody>
     </table>
 </div>

@@ -731,6 +731,17 @@ def show_nfdi() -> str:
     # who is used more than once?
     counter = Counter(prefix for c in nfdi_collections.values() for prefix in c.get_prefixes())
 
+    # first party
+    first_party = defaultdict(list)
+    for collection_ in nfdi_collections.values():
+        for prefix, call in manager.get_collection_first_party(collection_, skip_org_rors={NFDI_ROR}).items():
+            if call:
+                first_party[prefix].append(collection_)
+    first_party_list = [
+        (manager.registry[prefix], consortia)
+        for prefix, consortia in sorted(first_party.items())
+    ]
+
     return render_template(
         "nfdi.html",
         collections=nfdi_collections,
@@ -742,4 +753,5 @@ def show_nfdi() -> str:
         collection_to_license_needs_curation=collection_to_license_needs_curation,
         collection_to_domain_needs_curation=collection_to_domain_needs_curation,
         collection_to_download_need_curation=collection_to_download_need_curation,
+        first_party=first_party_list,
     )
