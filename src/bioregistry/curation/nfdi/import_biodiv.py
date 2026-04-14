@@ -32,7 +32,7 @@ def import_biodiv() -> None:
                     record.get("extras", {}).get("example_uri"),
                 )
             )
-    click.echo(tabulate(rows, headers=["prefix", "name", "homepae"]))
+    click.echo(tabulate(rows, headers=["prefix", "name", "homepage", "example"], showindex=True, tablefmt="github"))
     bioregistry.manager.write_collections()
 
 
