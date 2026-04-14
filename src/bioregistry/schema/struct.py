@@ -7,7 +7,6 @@ import json
 import logging
 import pathlib
 import re
-import textwrap
 import typing
 from collections.abc import Callable, Iterable, Mapping, Sequence
 from dataclasses import dataclass
@@ -15,6 +14,7 @@ from functools import lru_cache
 from operator import attrgetter
 from typing import (
     TYPE_CHECKING,
+    Annotated,
     Any,
     ClassVar,
     Generic,
@@ -37,9 +37,10 @@ from bioregistry.constants import (
     BIOREGISTRY_REMOTE_URL,
     DOCS,
     MIRIAM_NAMESPACE_IN_LUI,
-    ORCID_PATTERN,
-    PATTERN_KEY,
+    ORCID_FIELD,
     URI_FORMAT_KEY,
+    WIKIDATA_FIELD,
+    _dedent,
 )
 from bioregistry.license_standardizer import standardize_license
 from bioregistry.utils import curie_to_str, deduplicate, removeprefix, removesuffix
@@ -155,19 +156,6 @@ def _yield_protocol_variations(u: str) -> Iterable[str]:
         yield u
 
 
-def _dedent(s: str) -> str:
-    return textwrap.dedent(s).replace("\n", " ").replace("  ", " ").strip()
-
-
-ORCID_DESCRIPTION = _dedent(
-    """\
-The Open Researcher and Contributor Identifier (ORCiD) provides
-researchers with an open, unambiguous identifier for connecting
-various digital assets (e.g., publications, reviews) across the
-semantic web. An account can be made in seconds at https://orcid.org.
-"""
-)
-
 URI_FORMAT_PATHS = [
     ("miriam", URI_FORMAT_KEY),
     ("n2t", URI_FORMAT_KEY),
@@ -199,11 +187,7 @@ class Organization(BaseModel):
         title="Research Organization Registry identifier",
         description="ROR identifier for a record about the organization",
     )
-    wikidata: str | None = Field(
-        default=None,
-        title="Wikidata identifier",
-        description="Wikidata identifier for a record about the organization",
-    )
+    wikidata: Annotated[str | None, WIKIDATA_FIELD] = None
     gnd: str | None = Field(
         default=None, title="Gemeinsame Normdatei (Integrated Authority File) identifier"
     )
@@ -241,18 +225,11 @@ class Attributable(BaseModel):
 
     name: str = Field(..., description="The full name of the researcher")
 
-    orcid: str | None = Field(
-        default=None,
-        title="Open Researcher and Contributor Identifier",
-        description=ORCID_DESCRIPTION,
-        **{PATTERN_KEY: ORCID_PATTERN},  # type:ignore
-    )
-
-    email: str | None = Field(
+    orcid: Annotated[str | None, ORCID_FIELD] = None
+    email: EmailStr | None = Field(
         default=None,
         title="Email address",
         description="The email address specific to the researcher.",
-        # regex=EMAIL_RE_STR,
     )
 
     #: The GitHub handle for the author
@@ -267,12 +244,7 @@ class Attributable(BaseModel):
         ),
     )
 
-    wikidata: str | None = Field(
-        default=None,
-        title="Wikidata identifier",
-        pattern="^Q\\d+$",
-        examples=["Q47475003"],
-    )
+    wikidata: Annotated[str | None, WIKIDATA_FIELD] = None
 
     def get_score(self) -> int:
         """Get a score."""
@@ -312,12 +284,7 @@ class Author(Attributable):
 
     #: This field is redefined on top of :class:`Attributable` to make
     #: it required. Otherwise, it has the same semantics.
-    orcid: str = Field(
-        ...,
-        title="Open Researcher and Contributor Identifier",
-        description=ORCID_DESCRIPTION,
-        **{PATTERN_KEY: ORCID_PATTERN},  # type:ignore
-    )
+    orcid: Annotated[str, ORCID_FIELD]
 
     @classmethod
     def get_charlie(cls) -> Self:
@@ -398,7 +365,7 @@ class StatusCheck(BaseModel):
 
     value: ResourceStatus
     date: str = Field(pattern="^\\d{4}-\\d{2}-\\d{2}$")
-    contributor: str = Field(..., pattern=ORCID_PATTERN)
+    contributor: Annotated[str, ORCID_FIELD]
     notes: str | None = None
 
 
