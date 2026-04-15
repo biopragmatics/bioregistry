@@ -2628,6 +2628,9 @@ class Resource(BaseModel):
         if self.owners:
             return self.owners
         rv = []
+        for metaprefix in ["miriam"]:
+            for org in self.get_external(metaprefix).get("owners", []):
+                rv.append(Organization.model_validate(org))
         return rv
 
 

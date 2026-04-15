@@ -23,6 +23,13 @@ class Person(BaseModel):
     github: str | None = None
 
 
+class Organization(BaseModel):
+    """Represents a organization."""
+
+    name: str
+    ror: str
+
+
 class License(BaseModel):
     """Represents the fields for a license."""
 
@@ -120,6 +127,7 @@ class Record(BaseModel):
     xrefs: dict[str, str] | None = None
     prefix_synonyms: list[str] | None = None
     providers: list[Provider] | None = None
+    owners: list[Organization] | None = None
     extras: dict[str, Any] | None = Field(None, description="Extras specific to the resource.")
 
 

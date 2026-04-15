@@ -6,7 +6,7 @@ from operator import itemgetter
 from pathlib import Path
 from typing import Any, ClassVar
 
-from bioregistry.alignment_model import Provider, Record, Status, make_record
+from bioregistry.alignment_model import Organization, Provider, Record, Status, make_record
 from bioregistry.constants import MIRIAM_NAMESPACE_IN_LUI, RAW_DIRECTORY, URI_FORMAT_KEY
 from bioregistry.external.alignment_utils import Aligner, build_getter
 
@@ -105,6 +105,9 @@ def _process(record: dict[str, Any]) -> Record:
     if URI_FORMAT_KEY in primary and prefix != "kegg.pathway":
         # special case for kegg... this is hacky but needs to be done now
         rv[URI_FORMAT_KEY] = primary[URI_FORMAT_KEY]
+
+    if organization := primary.get("organization"):
+        rv["owners"] = [Organization.model_validate(organization)]
 
     extras = []
     for provider in rest:
