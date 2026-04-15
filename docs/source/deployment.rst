@@ -106,9 +106,9 @@ best represent the Bioregistry project. The following table includes the keys th
 can put in a configuration JSON file, an explanation of the keys, and suggestions on how
 to replace them.
 
-==================================== =================================================
+==================================== ==================================================
 Key                                  Description
-==================================== =================================================
+==================================== ==================================================
 ``METAREGISTRY_TITLE``               The title on the home page, defaults to
                                      "Bioregistry".
 ``METAREGISTRY_HEADER``              The header text on the home page. Can include
