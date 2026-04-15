@@ -33,9 +33,10 @@
             </dd>
             {%- endfor %}
 
-            {%- if resource.owners %}
-            <dt>Identifier Space Owner{% if resource.owners | length > 1 %}s{% endif %}</dt>
-            {%- for owner in resource.owners %}
+            {%- set owners = resource.get_owners() %}
+            {%- if owners %}
+            <dt>Identifier Space Owner{% if owners | length > 1 %}s{% endif %}</dt>
+            {%- for owner in owners %}
             <dd {% if not loop.last %}class="mb-0"{% endif %}>
                 {{ utils.link_organization(owner) }}
                 {% if owner.partnered %}
