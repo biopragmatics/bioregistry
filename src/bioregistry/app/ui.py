@@ -682,7 +682,7 @@ def highlights_owners() -> str:
     owner_to_resources = defaultdict(list)
     owners = {}
     for resource in manager.registry.values():
-        for owner in resource.owners or []:
+        for owner in resource.get_owners():
             owners[owner.pair] = owner
             owner_to_resources[owner.pair].append(resource)
     return render_template(

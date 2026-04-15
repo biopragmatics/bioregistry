@@ -401,6 +401,7 @@ class Provider(BaseModel):
         None,
         description="Tracks the status of the provider. If this isn't set, assume that the provider is still active. See discussion in in https://github.com/biopragmatics/bioregistry/issues/1387.",
     )
+    organization: Organization | None = None
 
     def resolve(self, identifier: str) -> str:
         """Resolve the identifier into a URI.
@@ -2621,6 +2622,13 @@ class Resource(BaseModel):
             # TODO root terms IAO_0000700 (preferred_root_term)
         }
         return OlsConfig.model_validate(values)
+
+    def get_owners(self) -> list[Organization]:
+        """Get owners."""
+        if self.owners:
+            return self.owners
+        rv = []
+        return rv
 
 
 class OlsConfig(BaseModel):

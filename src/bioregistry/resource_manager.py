@@ -1305,7 +1305,7 @@ class Manager:
             contributor=resource.contributor,
             contributor_extras=resource.contributor_extras,
             reviewer=resource.reviewer,
-            owners=resource.owners,
+            owners=resource.get_owners() or None,
             mastodon=resource.get_mastodon(),
             github_request_issue=resource.github_request_issue,
             # Ontology Relations
@@ -2246,7 +2246,7 @@ class Manager:
         calls: dict[str, bool] = {}
         for prefix in collection.get_prefixes():
             resource = self.get_resource(prefix, strict=True)
-            owners = resource.owners or []
+            owners = resource.get_owners()
             if skip_org_rors is not None:
                 owners = [o for o in owners if o.ror not in skip_org_rors]
             if any(
