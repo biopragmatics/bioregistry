@@ -141,10 +141,12 @@ def _preprocess_resource(resource: dict[str, Any]) -> dict[str, Any]:
         "description": resource["description"],
     }
     if ror := resource["institution"].get("rorId"):
-        rv["organization"] = {
-            "ror": ror,
-            "name": resource["institution"]["name"],
-        }
+        ror = ror.removeprefix("https://ror.org/").removeprefix("http://ror.org/")
+        if not ror.startswith("https://") and not ror.startswith("http://"):
+            rv["organization"] = {
+                "ror": ror,
+                "name": resource["institution"]["name"],
+            }
     uri_format = resource["urlPattern"].replace("{$id}", "$1")
     if uri_format not in SKIP_URI_FORMATS:
         rv[URI_FORMAT_KEY] = uri_format
