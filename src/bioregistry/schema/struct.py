@@ -183,11 +183,7 @@ class MetaprefixAnnotatedValue(Generic[X]):
 class Organization(BaseModel):
     """Model for organizations."""
 
-    ror: str | None = Field(
-        default=None,
-        title="Research Organization Registry identifier",
-        description="ROR identifier for a record about the organization",
-    )
+    ror: Annotated[str | None, ROR_FIELD] = None
     wikidata: Annotated[str | None, WIKIDATA_FIELD] = None
     gnd: str | None = Field(
         default=None, title="Gemeinsame Normdatei (Integrated Authority File) identifier"

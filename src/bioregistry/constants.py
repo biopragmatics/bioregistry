@@ -266,3 +266,9 @@ WIKIDATA_FIELD = Field(
     pattern="^Q\\d+$",
     examples=["Q47475003"],
 )
+
+ROR_FIELD = Field(
+    title="Research Organization Registry identifier",
+    pattern="^0[a-hj-km-np-tv-z|0-9]{6}[0-9]{2}$",
+    examples=["03yrm5c26"],
+)
