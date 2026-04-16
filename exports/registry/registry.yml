@@ -300,7 +300,9 @@ abcd:
   homepage: https://web.expasy.org/abcd/
   keywords:
   - protocols and materials databases
+  license: CC-BY-4.0
   mappings:
+    biodivportal: ABCD
     cellosaurus: ABCD
     uniprot: DB-0236
     wikidata.entity: Q110998933
@@ -314,6 +316,7 @@ abcd:
     year: 2020
   references:
   - https://github.com/biopragmatics/bioregistry/pull/1098
+  repository: https://github.com/tdwg/abcd
   uri_format: https://web.expasy.org/abcd/ABCD_$1
 abm:
   contributor_extras:
@@ -1387,6 +1390,37 @@ agsd:
     name: Charles Tapley Hoyt
     orcid: 0000-0003-4423-4370
   uri_format: http://www.genomesize.com/result_species.php?id=$1
+ahol:
+  contact:
+    email: jerome.bugeon@inrae.fr
+    name: Jerome Bugeon
+  description: 'The AHOL ontology (Animal Health Ontology for Livestock) was built
+    collaboratively within a network of experts in the livestock health field, in
+    order to describe production diseases. Its structure is based on the type of disease:
+    communicable, non communicable, genetic, metabolic, physical or psychological.
+    The properties of each disease are related to associated symptoms (the expression
+    of a phenotypical character), the affected organism (livestock, poultry, mammals,
+    fishes) or the one causing the disease (virus, bacteria, fungus, parasite).'
+  download_owl: http://aber-owl.net/media/ontologies/AHOL/1/ahol.owl
+  example: '0005114'
+  homepage: http://www.atol-ontology.com/
+  keywords:
+  - animal husbandry
+  - disease
+  - fisheries science
+  - livestock
+  - ontology
+  - phenotype
+  license: CC-BY-4.0
+  mappings:
+    aberowl: AHOL
+    agroportal: AHOL
+    biodivportal: AHOL
+    fairsharing: FAIRsharing.ZkwSlo
+  name: Animal Health Ontology for Livestock
+  pattern: ^\d+$
+  preferred_prefix: ahol
+  uri_format: https://opendata.inrae.fr/AHOL/AHOL_$1
 aio:
   contact:
     email: MJoachimiak@lbl.gov
@@ -1467,6 +1501,7 @@ aism:
   license: CC-BY-4.0
   mappings:
     aberowl: AISM
+    biodivportal: AISM
     bioportal: AISM
     obofoundry: aism
     ols: aism
@@ -2462,6 +2497,68 @@ apollosv:
   repository: https://github.com/ApolloDev/apollo-sv
   uri_format: http://purl.obolibrary.org/obo/APOLLO_SV_$1
   version: '2026-03-13'
+apto:
+  contact:
+    email: filipivgp2011@gmail.com
+    name: Filipi Miranda Soares
+  description: 'The Agriculture Product Types Ontology (APTO) is an ontology of types,
+    meaning it does not contain individuals and is intended as a classification system
+    for agricultural commodities price index databases in Brazil. This ontology contains
+    labels and comments in both Portuguese and English. There are two main modules:
+    :Organism and :Product_type. The :Organism class contains subclasses that represent
+    the taxonomy of species related to the production of given product types. It imports
+    taxonomic information from the Global Biodiversity Information Facility (GBIF)
+    Backbone Taxonomy via API. The :Product_type class has six main subclasses organized
+    into major groups: :Inorganic_compound :Animal_product :Plant_product :Raw_product
+    :Processed_product :By-product The :Animal_product and :Plant_product classes
+    include subclasses indicating the type of processing the product has undergone.
+    These subclasses are also children of :Raw_product, :Processed_product, and :By-product.
+    Object Properties APTO defines nine object properties: :has_ingredient and :is_ingredient_of
+    (inverse properties): Indicate that a product type is used in the manufacturing
+    of a processed product type (e.g., :Cow_cheese :has_ingredient :Cow_milk). :derives_from
+    and :derives_in (inverse properties, imported from the Relations Ontology (RO)):
+    Indicate that a product type originates from another product type (e.g., :Cocoa_almond
+    :derives_from :Cocoa). :member_of_taxon (imported from the Biological Collections
+    Ontology (BCO)): Indicates that an organismal entity belongs to a taxon (e.g.,
+    :Pacu :member_of_taxon :Piaractus_mesopotamicus). :produced_by and :produces (inverse
+    properties, imported from RO): Indicate that an organismal entity produces a given
+    type of product. For example, :Assai :produced_by :Assai_palm, and :Assai_palm
+    :member_of_taxon :Euterpe_oleracea. If only the final product is listed in commodity
+    databases and the rest of the organism holds no commercial value, the product
+    is linked directly to the taxon (e.g., :Pineapple :produced_by :Ananas_comosus).
+    :residue_of: Indicates that a by-product is the residue of manufacturing another
+    product (e.g., :Whey :residue_of :Cheese). :is_a_hybrid_of: Specific to the :Organism
+    subclasses, indicating a hybrid of two species (e.g., :Citrus_aurantium :is_a_hybrid_of
+    ( :Citrus_reticulata and :Citrus_maxima ))., meaning it does not contain individuals
+    and is intended as a classification system for agricultural commodities price
+    index databases in Brazil. This ontology contains labels and comments in both
+    Portuguese and English. There are two main modules: :Organism and :Product_type.
+    The :Organism class contains subclasses that represent the taxonomy of species
+    related to the production of given product types. It imports taxonomic information
+    from the Global Biodiversity Information Facility (GBIF) Backbone Taxonomy via
+    API. The :Product_type class has six main subclasses organized into major groups:
+    :Inorganic_compound :Animal_product :Plant_product :Raw_product :Processed_product
+    :By-product The :Animal_product and :Plant_product classes include subclasses
+    indicating the type of processing the product has undergone.'
+  download_owl: https://github.com/AlmesCore/APTO/raw/refs/heads/main/apto.ttl
+  example: PT0582
+  homepage: https://almescore.github.io/APTO/
+  keywords:
+  - ontology
+  license: CC-BY-4.0
+  mappings:
+    agroportal: APTO
+    biodivportal: APTO
+  name: Agriculture Product Types Ontology
+  preferred_prefix: APTO
+  publications:
+  - doi: 10.5281/zenodo.13499357
+  - doi: 10.3724/2096-7004.di.2025.0020
+  - doi: 10.1109/ACCESS.2025.3595447
+  references:
+  - https://zenodo.org/records/15008549
+  repository: https://github.com/AlmesCore/APTO/tree/main
+  uri_format: https://w3id.org/APTO/$1
 arachnoserver:
   contact:
     email: glenn.king@imb.uq.edu.au
@@ -3421,6 +3518,7 @@ atol:
   mappings:
     aberowl: ATOL
     agroportal: ATOL
+    biodivportal: ATOL
     bioportal: ATOL
     fairsharing: FAIRsharing.wsfk5z
   name: Animal Trait Ontology for Livestock
@@ -3960,6 +4058,7 @@ bco:
     aberowl: BCO
     agroportal: BCO
     biocontext: BCO
+    biodivportal: BCO
     bioportal: BCO
     ecoportal: BCO
     fairsharing: FAIRsharing.8ktkqy
@@ -4310,6 +4409,7 @@ bfo:
     agroportal: BFO
     bartoc: '216'
     biocontext: BFO
+    biodivportal: BFO
     bioportal: BFO
     fairsharing: FAIRsharing.wcpd6f
     go: BFO
@@ -4955,6 +5055,31 @@ biodeep:
   pattern: ^\d{11}$
   preferred_prefix: biodeep
   uri_format: https://query.biodeep.cn/metabolite/$1
+biodivthes:
+  contact:
+    email: contact-terminologietal@inist.fr
+    name: Biodiversity Thesaurus contact
+  description: This bilingual thesaurus organizes the key concepts of biodiversity
+    sciences, in their basic and applied ecological components. It uses polyhierarchy
+    and includes 818 reciprocal associative relationships. The 1654 French and English
+    descriptors (designating 827 concepts) are enriched with a large number of synonyms
+    (1860) and hidden variants (7020) in both languages. Concepts are grouped into
+    82 collections, by semantic categories, thematic fields and EBV classes (Essential
+    Biodiversity Variables). Definitions are given with their sources. This resource
+    is aligned with the international thesauri AGROVOC, GEMET (GEneral Multilingual
+    Environmental Thesaurus) and EnvThes (Environmental Thesaurus), as well as with
+    the ontology ENVO (Environment Ontology).
+  example: K33QZ1W4-D
+  homepage: https://loterre.istex.fr/BLH/en/
+  license: CC-BY-4.0
+  mappings:
+    aberowl: BIODIVTHES
+    agroportal: BIODIVTHES
+    biodivportal: BIODIVTHES
+    ecoportal: BIODIVTHES
+  name: Biodiversity Thesaurus
+  preferred_prefix: biodivthes
+  uri_format: http://data.loterre.fr/ark:/67375/BLH-$1
 biodolphin:
   contact:
     email: andrew.mcshan@chemistry.gatech.edu
@@ -5151,7 +5276,7 @@ biolink:
     orcid: 0000-0002-6601-2165
   description: A high level datamodel of biological entities (genes, diseases, phenotypes,
     pathways, individuals, substances, etc) and their associations.
-  download_owl: http://aber-owl.net/media/ontologies/BIOLINK/75/biolink.owl
+  download_owl: http://aber-owl.net/media/ontologies/BIOLINK/76/biolink.owl
   download_rdf: https://w3id.org/biolink/biolink-model.owl.ttl
   example: Gene
   homepage: https://biolink.github.io/biolink-model/
@@ -6389,6 +6514,22 @@ bodc.unit:
   synonyms:
   - nvs.P06
   uri_format: http://vocab.nerc.ac.uk/collection/P06/current/$1
+bohlmann:
+  contact:
+    email: d.fichtmueller@bgbm.org
+    name: David Fichtmueller
+  description: An ontology listing the natural substances that occur in the plant
+    family of Compositae (Asteraceae)., An ontology listing the natural substances
+    that occur in the plant family of Compositae (Asteraceae)
+  example: Compositae
+  homepage: http://terminologies.gfbio.org/terms/BOHLMANN
+  license: CC0-1.0
+  mappings:
+    agroportal: BOHLMANN
+    biodivportal: BOHLMANN
+  name: Bohlmann Ontology
+  preferred_prefix: bohlmann
+  uri_format: http://terminologies.gfbio.org/terms/BOHLMANN/$1
 bold.taxonomy:
   contact:
     email: phebert@uoguelph.ca
@@ -6813,6 +6954,7 @@ bspo:
   mappings:
     aberowl: BSPO
     biocontext: BSPO
+    biodivportal: BSPO
     bioportal: BSPO
     fairsharing: FAIRsharing.newa3z
     obofoundry: bspo
@@ -7323,6 +7465,7 @@ caro:
   mappings:
     aberowl: CARO
     biocontext: CARO
+    biodivportal: CARO
     bioportal: CARO
     fairsharing: FAIRsharing.3kcgmr
     go: CARO
@@ -7989,6 +8132,51 @@ cco:
       and integrated analysis of the cell cycle process'
     year: 2009
   uri_format: https://www.ebi.ac.uk/ols4/ontologies/cco/terms?obo_id=CCO:$1
+ccon:
+  contact:
+    email: souza.a@outlook.com
+    name: Adriano Souza
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: 'The ontology of Cerrado wood plant dynamics was created in order to
+    represent the set of concepts about the dynamics, that is, changes over time of
+    the wood vegetation structure, of Cerrado. Ccon describes the main parameters
+    used to measure the changes, such as mortality rate and recruitment rate.
+
+
+    The Ccon is an OWL2 ontology according to the W3C recommendations [6], developed
+    to represent the scientific knowledge about vegetation ecology focused to describe
+    the dynamics of wood plants in the Brazilian Cerrado Domain. This ontology will
+    be part of the GeoLinked Data Ontology network to enrich the web of data with
+    geospatial information of the Cerrado Biome, especially with regard the wood plant
+    dynamics. It aims to store data and collect information about biodiversity, composition
+    and wood plant dynamics, to manage, integrate and query data about Cerrado plant
+    community, and search for changes in Cerrado species populations over time. An
+    interesting example can be the possibility of data integration from different
+    scientific studies over different locations. Once the data available on line of
+    studies carried out in different places can be integrated, geolocated, linked
+    with qualitative models and, finally, inferences can be performed. [from homepage]'
+  download_owl: http://aber-owl.net/media/ontologies/CCON/8/ccon.owl
+  example: CampoCerrado
+  homepage: https://cerrado.linkeddata.es/ecology/ccon/
+  keywords:
+  - biodiversity
+  - ecosystem
+  - ecosystem science
+  - ontology
+  - plant ecology
+  - population dynamics
+  license: CC BY-NC-SA 2.0
+  mappings:
+    aberowl: CCON
+    agroportal: CCON
+    fairsharing: FAIRsharing.pzxjh
+  name: Cerrado Concepts Ontology
+  preferred_prefix: ccon
+  uri_format: http://cerrado.linkeddata.es/ecology/ccon#$1
 ccrid:
   contributor:
     email: cthoyt@gmail.com
@@ -9038,6 +9226,7 @@ chebi:
     aberowl: CHEBI
     bartoc: '558'
     biocontext: CHEBI
+    biodivportal: CHEBI
     bioportal: CHEBI
     cellosaurus: ChEBI
     cheminf: '000407'
@@ -10724,6 +10913,7 @@ cl:
     aberowl: CL
     agroportal: CL
     biocontext: CL
+    biodivportal: CL
     bioportal: CL
     cellosaurus: CL
     fairsharing: FAIRsharing.j9y503
@@ -11366,7 +11556,7 @@ cmo:
   rdf_uri_format: http://purl.obolibrary.org/obo/CMO_$1
   repository: https://github.com/rat-genome-database/CMO-Clinical-Measurement-Ontology
   uri_format: http://purl.obolibrary.org/obo/CMO_$1
-  version: '2.270'
+  version: '2.271'
 cmpo:
   contact:
     email: jupp@ebi.ac.uk
@@ -12544,6 +12734,7 @@ cob:
   license: CC0-1.0
   mappings:
     aberowl: COB
+    biodivportal: COB
     bioportal: COB
     obofoundry: cob
     ols: cob
@@ -12628,6 +12819,7 @@ codata.rdmt:
   homepage: https://vocabs.ardc.edu.au/viewById/685
   license: CC-BY-4.0
   mappings:
+    biodivportal: CODATA-RDMT
     ecoportal: CODATA-RDMT
   name: CODATA Research Data Management Terminology
   preferred_prefix: codata.rdmt
@@ -13020,6 +13212,7 @@ colao:
   license: CC-BY-4.0
   mappings:
     aberowl: COLAO
+    biodivportal: COLAO
     bioportal: COLAO
     obofoundry: colao
     ols: colao
@@ -15724,9 +15917,11 @@ dcat:
   - ess
   - ontology
   - w3c rec
+  license: CC-BY-4.0
   mappings:
     aberowl: DCAT
     biocontext: dcat
+    biodivportal: DCAT
     biolink: dcat
     bioportal: DCAT
     lov: dcat
@@ -17138,6 +17333,9 @@ devtox:
     orcid: 0000-0003-4423-4370
   uri_format: https://www.devtox.org/nomenclature/ml_manus.php?mno=$1
 dfg.fo:
+  contact:
+    email: Susanne.Arndt@tib.eu
+    name: Susanne Arndt
   description: DFG Fachsystematik Ontology / DFG Classification of Subject Areas Ontology
     (DFGFO) encodes the DFG Classification of Subject Areas into an ontology, where
     each subject number are is enconded into a Class with subclass statements following
@@ -17155,7 +17353,9 @@ dfg.fo:
   - nfdi4ing
   - open educational resource
   - open educational resources
+  license: CC-BY-4.0
   mappings:
+    biodivportal: DFGFO
     tib: dfgfo
   name: DFG Classification of Subject Areas Ontology - 2020-2024
   preferred_prefix: dfg.fo
@@ -20320,6 +20520,7 @@ eco:
     aberowl: ECO
     bartoc: '1028'
     biocontext: ECO
+    biodivportal: ECO
     bioportal: ECO
     fairsharing: FAIRsharing.wvpgwn
     go: ECO
@@ -20795,6 +20996,7 @@ edam:
     aberowl: EDAM
     agroportal: EDAM
     biocontext: EDAM
+    biodivportal: EDAM
     bioportal: EDAM
     fairsharing: FAIRsharing.a6r7zs
     miriam: edam
@@ -23033,6 +23235,7 @@ envo:
     agroportal: ENVO
     bartoc: '562'
     biocontext: ENVO
+    biodivportal: ENVO
     bioportal: ENVO
     fairsharing: FAIRsharing.azqskx
     miriam: envo
@@ -23100,6 +23303,7 @@ envthes:
   mappings:
     aberowl: ENVTHES
     bartoc: '20684'
+    biodivportal: ENVTHES
     bioportal: ENVTHES
     ecoportal: ENVTHES
     fairsharing: FAIRsharing.dS2o69
@@ -23219,6 +23423,7 @@ eol:
   mappings:
     aberowl: EOL
     agroportal: EOL
+    biodivportal: EOL
     bioportal: EOL
     fairsharing: FAIRsharing.w7bw2y
   name: Environment Ontology for Livestock
@@ -25629,6 +25834,7 @@ flopo:
     aberowl: FLOPO
     agroportal: FLOPO
     biocontext: FLOPO
+    biodivportal: FLOPO
     bioportal: FLOPO
     fairsharing: FAIRsharing.ny9vnm
     obofoundry: flopo
@@ -27958,7 +28164,7 @@ genepio:
   rdf_uri_format: http://purl.obolibrary.org/obo/GENEPIO_$1
   repository: https://github.com/GenEpiO/genepio
   uri_format: http://purl.obolibrary.org/obo/GENEPIO_$1
-  version: '2024-12-18'
+  version: '2026-04-13'
 genetree:
   contact:
     email: flicek@ebi.ac.uk
@@ -28282,6 +28488,7 @@ geonames:
   logo: https://www.geonames.org/img/globe.gif
   mappings:
     bartoc: '1674'
+    biodivportal: GEONAMES
     fairsharing: FAIRsharing.6dba71
     re3data: r3d100010245
   name: GeoNames
@@ -28737,7 +28944,51 @@ gexo:
     title: Finding gene regulatory network candidates using the gene expression knowledge
       base
     year: 2014
+gfbio.biobank:
+  comment: this resource has problematic URIs
+  contact:
+    email: dvelotto@uni-bremen.de
+    name: Domenico Velotto
+  description: The ontology used by the Metabarcoding team of the AMMOD project. The
+    taxonomic list is extracted from the metabarcoding processed data file provided
+    by Amelie Kirse.
+  example: BioBank_acrotrichis
+  homepage: https://biodivportal.gfbio.org/ontologies/BIOBANK
+  mappings:
+    biodivportal: BIOBANK
+  name: AMMOD Metabarcoding Ontology
+  preferred_prefix: gfbio.biobank
+  uri_format: http://terminologies.gfbio.org/terms/$1
+gfbio.biol:
+  contact:
+    email: mohamed-el-amine.boukerfa@inrae.fr
+    name: LOV_migration
+  description: An RDF vocabulary for the taxonomy of all forms of life
+  example: division
+  homepage: https://biodivportal.gfbio.org/ontologies/BIOL
+  keywords:
+  - taxon rank
+  mappings:
+    biodivportal: BIOL
+  name: Biological Taxonomy Vocabulary 0.2 (Core)
+  preferred_prefix: gfbio.biol
+  uri_format: http://purl.org/NET/biol/ns#$1
+gfbio.botany:
+  contact:
+    email: admin@admin.com
+    name: admin
+  description: This is a specialist botanical variant of the Biological Taxonomy Vocabulary.
+  example: hasTaxonomy
+  homepage: https://biodivportal.gfbio.org/ontologies/BOTANY
+  mappings:
+    biodivportal: BOTANY
+  name: Biological Taxonomy Vocabulary 0.2 (Botany)
+  preferred_prefix: gfbio.botany
+  uri_format: http://purl.org/NET/biol/botany#$1
 gfbio.ets:
+  contact:
+    email: florian.dirk.schneider@gmail.com
+    name: Florian Schneider
   description: The Ecological Trait-data Standard defines terms for the use in datasets
     containing quantitative and qualitative functional traits.
   example: BiodiversityExploratories
@@ -28747,11 +28998,65 @@ gfbio.ets:
   - ess
   - fair data spaces
   - life sciences, biology
+  license: CC-BY-4.0
   mappings:
+    biodivportal: ETS
     tib: ets
   name: Ecological Trait-data Standard
   preferred_prefix: gfbio.ets
+  publications:
+  - doi: 10.1111/2041-210X.13288
+  repository: https://github.com/EcologicalTraitData/ETS
   uri_format: http://terminologies.gfbio.org/terms/ETS/$1
+gfbio.iho:
+  contact:
+    email: d.fichtmueller@bgbm.org
+    name: David Fichtmueller
+  description: A hierarchy of the world oceans, seas and sea regions, based on the
+    publication "Limits of Oceans & Seas, Special Publication No. 23" (1953) by the
+    International Hydrographic Organization (IHO), extracted from the Shape Files
+    (version 2 [2017]) available on http://www.marineregions.org and provided by Flanders
+    Marine Institute (VLIZ).
+  example: connectedTo
+  homepage: https://biodivportal.gfbio.org/ontologies/IHO
+  mappings:
+    biodivportal: IHO
+  name: IHO World Seas
+  preferred_prefix: gfbio.iho
+  uri_format: http://terminologies.gfbio.org/terms/IHO/$1
+gfbio.kingdom:
+  contact:
+    email: triebel@snsb.de
+    name: Dagmar Triebel
+  description: A controlled vocabulary (Terminology) for biological taxa "Higher Classification
+    - Kingdom (=Regnum)". Based on GBIF and CoL.
+  example: Archaea
+  homepage: https://terminologies.gfbio.org/terminology/KINGDOM
+  license: CC0-1.0
+  mappings:
+    biodivportal: KINGDOM
+  name: Kingdom Ontology
+  preferred_prefix: gfbio.kingdom
+  uri_format: http://terminologies.gfbio.org/terms/KINGDOM/$1
+gfbio.top:
+  contact:
+    email: eric.garnier@cefe.cnrs.fr
+    name: Eric Garnier
+  description: 'The Thesaurus Of Plant characteristics (TOP), aims to harmonize and
+    formalize concepts for plant characteristics widely used in ecology. TOP concentrates
+    on two types of plant characteristics: traits and environmental associations.
+    Characteristics are modelled as the ‘Quality’ of an ‘Entity’ used in the context
+    of Open Biological Ontologies. Whenever possible, the Entities and Qualities are
+    taken from existing terminology standards, mainly the Plant Ontology (PO) and
+    Phenotypic Quality Ontology (PATO) ontologies. TOP provides names, definitions,
+    units, synonyms and related terms for about 850 plant characteristics.'
+  example: Thesaurustrait
+  homepage: https://top-thesaurus.cefe.cnrs.fr
+  mappings:
+    biodivportal: TOP
+  name: Thesaurus of Plant Characteristics
+  preferred_prefix: gfbio.top
+  uri_format: http://top-thesaurus.org/trait#$1
 gfo:
   contact:
     email: heinrich.herre@imise.uni-leipzig.de
@@ -33954,6 +34259,37 @@ hydra:
     zazuko: hydra
   name: The Hydra Core Vocabulary
   preferred_prefix: hydra
+iadopt:
+  description: The I-ADOPT Framework is an ontology designed to facilitate interoperability
+    between existing variable description models (including ontologies, taxonomy,
+    and structured controlled vocabularies). One of the challenges in representing
+    semantic descriptions of variables is getting people to agree about what they
+    mean when describing the components that define the variables. The I-ADOPT ontology
+    addresses this by providing core components and their relations that can be applied
+    to define machine-interpretable variable descriptions that re-use FAIR vocabulary
+    terms. This first version of the ontology has been developed by a core group of
+    terminology experts and users from the Research Data Alliance (RDA) InteroperAble
+    Descriptions of Observable Property Terminology (I-ADOPT) Working Group.
+  download_owl: http://aber-owl.net/media/ontologies/I-ADOPT/6/i-adopt.owl
+  download_rdf: https://github.com/i-adopt/ontology/raw/refs/heads/main/ontology/i-adopt.ttl
+  example: Property
+  homepage: https://w3id.org/iadopt/ont
+  keywords:
+  - biology
+  - environment
+  - ontology
+  license: CC-BY-4.0
+  mappings:
+    aberowl: I-ADOPT
+    biodivportal: I-ADOPT
+    ecoportal: I-ADOPT
+    lov: iadopt
+  name: I-ADOPT Framework ontology
+  preferred_prefix: iadopt
+  publications:
+  - doi: 10.15497/RDA00071/2
+  repository: https://github.com/i-adopt/ontology
+  uri_format: https://w3id.org/iadopt/ont/$1
 iana.mediatype:
   contact:
     email: alexey.melnikov@isode.com
@@ -34078,7 +34414,7 @@ iao:
   rdf_uri_format: http://purl.obolibrary.org/obo/IAO_$1
   repository: https://github.com/information-artifact-ontology/IAO
   uri_format: http://purl.obolibrary.org/obo/IAO_$1
-  version: '2022-11-07'
+  version: '2026-03-30'
 iao.issue:
   contributor:
     email: cthoyt@gmail.com
@@ -36561,6 +36897,34 @@ inaturalist.user:
   pattern: ^[1-9]\d*$
   preferred_prefix: inaturalist.user
   uri_format: https://www.inaturalist.org/users/$1
+inbio:
+  contact:
+    email: alsayed.algergawy@uni-jena.de
+    name: Alsayed Algergawy
+  depends_on:
+  - ccon
+  description: 'The Invasion Biology Ontology (INBIO) contains terms and concepts
+    relevant in the field of invasion biology, which is a research area dealing with
+    the translocation, establishment, spread, impact and management of species outside
+    of their native ranges, where they are called non-native or alien species. This
+    first version of the ontology covers terms and concepts needed to describe twelve
+    major invasion hypotheses building the hierarchical hypothesis network (see also
+    Jeschke JM, Heger T (Eds) (2018) Invasion Biology: Hypotheses and Evidence. CABI,
+    Wallingford, UK).'
+  download_owl: https://github.com/fusion-jena/INBIO/raw/refs/heads/main/ontology/INBIO-1.2.0.owl
+  example: '000130'
+  homepage: https://fusion-jena.github.io/INBIO/index-en.html
+  keywords:
+  - ontology
+  license: CC BY-NC-SA 4.0
+  mappings:
+    aberowl: INBIO
+    biodivportal: INBIO
+    ecoportal: INBIO
+  name: Invasion Biology Ontology
+  preferred_prefix: inbio
+  repository: https://github.com/fusion-jena/inbio
+  uri_format: https://w3id.org/inbio#_$1
 inchi:
   contact:
     email: jmg11@cam.ac.uk
@@ -37950,6 +38314,9 @@ isni:
     uri_format: http://www.isni.org/$1
   uri_format: http://www.isni.org/isni/$1
 iso.3166:
+  contact:
+    email: d.fichtmueller@bgbm.org
+    name: David Fichtmueller
   contributor:
     email: cthoyt@gmail.com
     github: cthoyt
@@ -37959,6 +38326,7 @@ iso.3166:
   example: '554'
   homepage: https://www.iso.org/iso-3166-country-codes.html
   mappings:
+    biodivportal: ISOCOUNTRIES
     wikidata: P299
   name: ISO 3166-1 Country Code
   pattern: ^\d+$
@@ -40092,6 +40460,7 @@ lepao:
   license: CC-BY-4.0
   mappings:
     aberowl: LEPAO
+    biodivportal: LEPAO
     bioportal: LEPAO
     obofoundry: lepao
     ols: lepao
@@ -41274,6 +41643,7 @@ lpt:
     aberowl: LPT
     agroportal: LPT
     biocontext: LPT
+    biodivportal: LPT
     bioportal: LPT
     fairsharing: FAIRsharing.g78mbm
   name: Livestock Product Trait Ontology
@@ -45406,7 +45776,7 @@ mmo:
   rdf_uri_format: http://purl.obolibrary.org/obo/MMO_$1
   repository: https://github.com/rat-genome-database/MMO-Measurement-Method-Ontology
   uri_format: http://purl.obolibrary.org/obo/MMO_$1
-  version: '2.174'
+  version: '2.175'
 mmp.cat:
   description: MarCat is a gene (protein) catalogue of uncultivable and cultivable
     marine genes and proteins derived from metagenomics samples.
@@ -48267,6 +48637,7 @@ ncbitaxon:
     agroportal: TAX
     bartoc: '509'
     biocontext: TAXONOMY
+    biodivportal: TAXON
     bioportal: NCBITAXON
     cellosaurus: NCBI_TaxID
     edam: '1179'
@@ -49186,6 +49557,8 @@ nfdi.core:
   keywords:
   - ontology
   license: CC0-1.0
+  mappings:
+    biodivportal: NFDICORE
   name: NFDI Core Ontology
   pattern: ^\d+$
   preferred_prefix: nfdi.core
@@ -51177,6 +51550,7 @@ oba:
     aberowl: OBA
     agroportal: OBA
     biocontext: OBA
+    biodivportal: OBA
     bioportal: OBA
     fairsharing: FAIRsharing.mp0rwf
     obofoundry: oba
@@ -51536,6 +51910,7 @@ oboe:
   mappings:
     aberowl: OBOE
     agroportal: OBOE
+    biodivportal: OBOE
     bioportal: OBOE
     ecoportal: OBOE
     fairsharing: FAIRsharing.5970hq
@@ -51862,6 +52237,34 @@ odc.tbi:
   pattern: ^[0-9]*$
   preferred_prefix: odc.tbi
   uri_format: https://odc-tbi.org/data/$1
+odm2.methodtype:
+  contact:
+    email: jeff.horsburgh@usu.edu
+    name: Jeff Horsburgh
+  description: A vocabulary for describing types of Methods associated with creating
+    observations. MethodTypes correspond with ActionTypes in ODM2. An Action must
+    be performed using an appropriate MethodType - e.g., a specimen collection Action
+    should be associated with a specimen collection method.
+  example: cruise
+  homepage: http://vocabulary.odm2.org/methodtype/
+  mappings:
+    biodivportal: METHODTYPE
+  name: Method Type Vocabulary
+  preferred_prefix: odm2.methodtype
+  uri_format: http://vocabulary.odm2.org/methodtype/$1
+odm2.specimentype:
+  contact:
+    email: jeff.horsburgh@usu.edu
+    name: Jeff Horsburgh
+  description: A vocabulary for describing the type of a physical Specimen.
+  download_rdf: http://vocabulary.odm2.org/api/v1/specimentype/?format=skos
+  example: standardReferenceSpecimen
+  homepage: http://vocabulary.odm2.org/specimentype/
+  mappings:
+    biodivportal: SPECIMENTYPE
+  name: Specimen Type Vocabulary
+  preferred_prefix: odm2.specimentype
+  uri_format: http://vocabulary.odm2.org/specimentype/$1
 odor:
   description: OdorDB stores information related to odorous compounds, specifically
     identifying those that have been shown to interact with olfactory receptors
@@ -52493,6 +52896,22 @@ oidc:
     zazuko: oidc
   name: Solid OpenID Connect vocabulary
   preferred_prefix: oidc
+oim:
+  contact:
+    email: rpalma@man.poznan.pl
+    name: Raul Palma
+  description: The Ocean Information Model (OIM) is the common vocabulary in ILIAD
+    project providing the basis for semantic interoperability across smart ocean solutions.,
+    The ILIAD Ocean profile is a master profile importing all modules of ILIAD OIM
+  example: crossDomain
+  homepage: http://github.com/ILIAD-ocean-twin/OIM
+  license: CC-BY-4.0
+  mappings:
+    biodivportal: OIM
+  name: Ocean Information Model
+  preferred_prefix: oim
+  repository: http://github.com/ILIAD-ocean-twin/OIM
+  uri_format: https://w3id.org/iliad/oim/$1
 okn.sd:
   contact:
     github: dgarijo
@@ -52575,6 +52994,7 @@ om:
   mappings:
     aberowl: OM
     agroportal: OM
+    biodivportal: OM
     bioportal: OM
     ols: om
     ontobee: OM
@@ -55383,6 +55803,7 @@ pato:
     aberowl: PATO
     agroportal: PATO
     biocontext: PATO
+    biodivportal: PATO
     bioportal: PATO
     fairsharing: FAIRsharing.ezwdhz
     go: PATO
@@ -55724,6 +56145,7 @@ pco:
     aberowl: PCO
     agroportal: PCO
     biocontext: PCO
+    biodivportal: PCO
     bioportal: PCO
     ecoportal: PCO
     fairsharing: FAIRsharing.vq28qp
@@ -58631,6 +59053,7 @@ po:
     aberowl: PO
     agroportal: PO
     biocontext: PO
+    biodivportal: PO
     bioportal: PO
     cellosaurus: PO
     edam: '1180'
@@ -60113,6 +60536,9 @@ protonet.proteincard:
     year: 2006
   uri_format: http://www.protonet.cs.huji.ac.il/requested/protein_card.php?protein_id=$1
 prov:
+  contact:
+    email: public-prov-comments@w3.org
+    name: Provenance Working Group
   contributor:
     email: cthoyt@gmail.com
     github: cthoyt
@@ -60121,25 +60547,33 @@ prov:
   description: The namespace name http://www.w3.org/ns/prov# is intended for use with
     the PROV family of documents that support the interchange of provenance on the
     web.
-  download_owl: http://aber-owl.net/media/ontologies/PROV/1/prov.owl
+  download_owl: http://aber-owl.net/media/ontologies/PROVO/124/provo.owl
   example: Activity
   homepage: https://www.w3.org/ns/prov
   keywords:
+  - data management
   - ess
+  - metadata standardization
   - nfdi4chem
   - nfdi4ing
   - ontology
+  - resource metadata
+  - subject agnostic
   - w3c rec
   mappings:
-    aberowl: PROV
+    aberowl: PROVO
     biocontext: prov
+    biodivportal: PROV-O
     biolink: prov
+    fairsharing: FAIRsharing.2rm2b3
     lov: prov
     ols: prov
     tib: prov
     zazuko: prov
   name: PROV Namespace
   preferred_prefix: prov
+  synonyms:
+  - prov-o
   uri_format: http://www.w3.org/ns/prov#$1
 pscdb:
   contact:
@@ -61052,8 +61486,8 @@ qualo:
   uri_format: https://w3id.org/qualo/id/$1
 qudt:
   contact:
-    email: noreply@bioontology.org
-    name: Unknown
+    email: info@qudt.org
+    name: QUDT.org
   contributor:
     email: cthoyt@gmail.com
     github: cthoyt
@@ -61077,6 +61511,7 @@ qudt:
   mappings:
     aberowl: QUDT
     bartoc: '18206'
+    biodivportal: QUDT
     biolink: qud
     bioportal: QUDT
     fairsharing: FAIRsharing.d3pqw7
@@ -63162,6 +63597,7 @@ ro:
     aberowl: RO
     agroportal: RO
     biocontext: RO
+    biodivportal: RO
     biolink: RO
     fairsharing: FAIRsharing.9w8ea0
     go: RO
@@ -63579,7 +64015,7 @@ rs:
   rdf_uri_format: http://purl.obolibrary.org/obo/RS_$1
   repository: https://github.com/rat-genome-database/RS-Rat-Strain-Ontology
   uri_format: http://purl.obolibrary.org/obo/RS_$1
-  version: '6.272'
+  version: '6.273'
 rtecs:
   contact:
     email: vep1@cdc.gov
@@ -64737,8 +65173,8 @@ schem:
   uri_format: https://biopragmatics.github.io/providers/schem/$1
 schema:
   contact:
-    email: johardi@stanford.edu
-    name: Josef Hardi
+    email: public-schemaorg@w3.org
+    name: the W3C Schema.org Community Group
   contributor:
     email: cthoyt@gmail.com
     github: cthoyt
@@ -64759,6 +65195,7 @@ schema:
   mappings:
     aberowl: SCHEMAORG
     bartoc: '18250'
+    biodivportal: SCHEMAORG
     biolink: schema
     bioportal: SCHEMA
     lov: sdo
@@ -66435,6 +66872,172 @@ shsh:
     zazuko: shsh
   name: SHACL in SHACL
   preferred_prefix: shsh
+si:
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: Ontology, part of the SI Reference Point, covering measurement units
+    (SI base units and SI units with special names) and prefixes.
+  download_owl: https://github.com/TheBIPM/SI_Digital_Framework/raw/refs/heads/main/knowledge_graphs/SI_Reference_Point/si.ttl
+  example: hasDefinitionNote
+  homepage: https://si-digital-framework.org/SI
+  keywords:
+  - ontology
+  - unit
+  - units
+  license: CC-BY-3.0-IGO
+  logo: https://si-digital-framework.org/img/logo-si.jpg
+  name: International System of Units Reference Point
+  owners:
+  - name: International Bureau of Weights and Measures
+    partnered: false
+    ror: 055vkyj43
+  preferred_prefix: si
+  repository: https://github.com/TheBIPM/SI_Digital_Framework
+  uri_format: http://si-digital-framework.org/SI#$1
+si.constants:
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: Ontology, part of the SI reference point, covering the seven underpinning
+    constants of the SI
+  download_owl: https://github.com/TheBIPM/SI_Digital_Framework/raw/refs/heads/main/knowledge_graphs/SI_Reference_Point/constants.ttl
+  example: ElementaryCharge
+  homepage: https://si-digital-framework.org/constants/
+  keywords:
+  - ontology
+  license: CC-BY-3.0-IGO
+  logo: https://si-digital-framework.org/img/logo-si.jpg
+  name: International System of Units - Constants
+  owners:
+  - name: International Bureau of Weights and Measures
+    partnered: false
+    ror: 055vkyj43
+  preferred_prefix: si.constants
+  repository: https://github.com/TheBIPM/SI_Digital_Framework
+  uri_format: https://si-digital-framework.org/constants/$1
+si.decisions:
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: Ontology, part of the SI Reference Point, covering measurement units
+    (SI base units and SI units with special names) and prefixes.
+  download_owl: https://github.com/TheBIPM/SI_Digital_Framework/raw/refs/heads/main/knowledge_graphs/SI_Reference_Point/decisions.ttl
+  example: SI-A-2.2.6
+  homepage: https://si-digital-framework.org/SI/decisions/
+  keywords:
+  - ontology
+  license: CC-BY-3.0-IGO
+  logo: https://si-digital-framework.org/img/logo-si.jpg
+  name: International System of Units - Decisions
+  owners:
+  - name: International Bureau of Weights and Measures
+    partnered: false
+    ror: 055vkyj43
+  preferred_prefix: si.decisions
+  repository: https://github.com/TheBIPM/SI_Digital_Framework
+  uri_format: https://si-digital-framework.org/SI/decisions/$1
+si.kcdb:
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: Service Categories (KCDB) This service shows the related service categories
+    (KCDB) by quantity.
+  example: RI/DOS-15.3.15
+  homepage: https://si-digital-framework.org/sc-quantities
+  license: CC-BY-3.0-IGO
+  logo: https://si-digital-framework.org/img/logo-si.jpg
+  name: International System of Units - Service Categories
+  owners:
+  - name: International Bureau of Weights and Measures
+    partnered: false
+    ror: 055vkyj43
+  preferred_prefix: si.kcdb
+  uri_format: https://si-digital-framework.org/kcdb-sc/$1
+si.prefixes:
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: Ontology, part of the SI Reference Point, covering prefixes for the
+    SI measurement units.
+  download_owl: https://github.com/TheBIPM/SI_Digital_Framework/raw/refs/heads/main/knowledge_graphs/SI_Reference_Point/prefixes.ttl
+  example: yocto
+  homepage: https://si-digital-framework.org/SI/prefixes
+  keywords:
+  - ontology
+  - unit
+  - units
+  license: CC-BY-3.0-IGO
+  logo: https://si-digital-framework.org/img/logo-si.jpg
+  name: International System of Units Prefixes
+  owners:
+  - name: International Bureau of Weights and Measures
+    partnered: false
+    ror: 055vkyj43
+  preferred_prefix: si.prefixes
+  repository: https://github.com/TheBIPM/SI_Digital_Framework
+  synonyms:
+  - si.prefix
+  uri_format: https://si-digital-framework.org/SI/prefixes/$1
+si.quantities:
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: Ontology, part of the SI reference point, covering quantities
+  download_owl: https://github.com/TheBIPM/SI_Digital_Framework/raw/refs/heads/main/knowledge_graphs/quantities/quantities.ttl
+  example: ACTI
+  homepage: https://si-digital-framework.org/quantities
+  keywords:
+  - ontology
+  license: CC-BY-3.0-IGO
+  logo: https://si-digital-framework.org/img/logo-si.jpg
+  name: International System of Units - Quantities
+  owners:
+  - name: International Bureau of Weights and Measures
+    partnered: false
+    ror: 055vkyj43
+  preferred_prefix: si.quantities
+  repository: https://github.com/TheBIPM/SI_Digital_Framework
+  uri_format: https://si-digital-framework.org/quantities/$1
+si.units:
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: Ontology, part of the SI Reference Point, covering measurement units
+    (SI base units and SI units with special names) and prefixes.
+  download_owl: https://github.com/TheBIPM/SI_Digital_Framework/raw/refs/heads/main/knowledge_graphs/SI_Reference_Point/units.ttl
+  example: ampere
+  homepage: https://si-digital-framework.org/SI/units
+  keywords:
+  - ontology
+  - unit
+  - units
+  license: CC-BY-3.0-IGO
+  logo: https://si-digital-framework.org/img/logo-si.jpg
+  name: International System of Units
+  owners:
+  - name: International Bureau of Weights and Measures
+    partnered: false
+    ror: 055vkyj43
+  preferred_prefix: si.units
+  repository: https://github.com/TheBIPM/SI_Digital_Framework
+  synonyms:
+  - si.unit
+  uri_format: https://si-digital-framework.org/SI/units/$1
 sibo:
   contact:
     email: cjmungall@lbl.gov
@@ -67960,6 +68563,7 @@ sosa:
   license: http://www.w3.org/Consortium/Legal/2015/copyright-software-and-document
   mappings:
     agroportal: SOSA
+    biodivportal: SOSA
     lov: sosa
     tib: sosa
     zazuko: sosa
@@ -69328,6 +69932,40 @@ sulo:
   rdf_uri_format: https://w3id.org/sulo/$1
   repository: https://github.com/aidava-dev/sulo
   uri_format: https://w3id.org/sulo/$1
+sumso:
+  contact:
+    email: ga.ubbiali@gmail.com
+    name: Giorgio A. Ubbiali
+  description: 'The Sustainable Meat Systems Ontology (SuMSO) is a domain ontology
+    addressing meat systems sustainability. It extends Sustainability Core Ontology
+    (SCO) and Basic Formal Ontology (BFO). Currently, SuMSO provides a representation
+    of the core architectural features of a sustainable meat system, focusing on cow-derived
+    meat as an initial use case. SuMSO deals with meat in a broad sense: it contemplates
+    the liaisons with other cow-derived materials, such as leather and bones., SuMSO
+    is a domain of ontology, representing meat systems sustainability. Currently,
+    this resource provides the core ontological module of SuMSO that deals with the
+    essential architectural features of a sustainable meat system. This ontological
+    module addresses meat in a broad, genuine sense focusing on cow-derived meat as
+    a starting use-case example. It does not address features related to fish, insects,
+    novel meats, and plant-based meats. The SuMSO core ontological module aims to
+    be the starting basis on which to extend SuMSO to more comprehensively represent
+    meat systems sustainability., representing meat systems sustainability.
+
+
+    Currently'
+  download_rdf: https://github.com/gioUbbiali/Sustainable-Meat-Systems-Ontology/raw/refs/heads/main/sumso.ttl
+  example: '0000015'
+  homepage: https://www.w3id.org/sumso/repo
+  license: CC-BY-4.0
+  mappings:
+    agroportal: SUMSO
+    biodivportal: SUMSO
+    ecoportal: SUMSO
+  name: Sustainable Meat Systems Ontology
+  pattern: ^\d{7}$
+  preferred_prefix: sumso
+  repository: https://github.com/gioUbbiali/Sustainable-Meat-Systems-Ontology
+  uri_format: https://w3id.org/sumso#SuMSO_$1
 supfam:
   contact:
     email: pandura@mrc-lmb.cam.ac.uk
@@ -69534,6 +70172,9 @@ swan:
   - https://www.hcklab.org/swan-project.html
   repository: https://github.com/pav-ontology/swan-ontology
 sweet:
+  contact:
+    email: esip-semanticweb@lists.esipfed.org
+    name: ESIP Semantic Team
   contributor:
     email: cthoyt@gmail.com
     github: cthoyt
@@ -69563,6 +70204,7 @@ sweet:
   mappings:
     aberowl: SWEET
     bartoc: '20510'
+    biodivportal: SWEET
     bioportal: SWEET
     fairsharing: FAIRsharing.jh4xht
     tib: sweet
@@ -74722,6 +75364,7 @@ swo:
   mappings:
     aberowl: SWO
     biocontext: SWO
+    biodivportal: SWO
     bioportal: SWO
     fairsharing: FAIRsharing.sp3szt
     obofoundry: swo
@@ -75487,6 +76130,34 @@ tarbase:
       targets'
     year: 2005
   uri_format: http://diana.imis.athena-innovation.gr/DianaTools/index.php?r=tarbase/index&mirnas=$1
+taxonconcept:
+  contact:
+    email: admin@admin.com
+    name: admin
+  description: This ontology and the related TaxonConcept data set mints identifiers
+    that are tied to a specific species concept which can have several names and classifications.,
+    Version 0.976 This is an ontology for dealing with data related to species including
+    observations, specimens, images etc. Traditionally species have been identified
+    by the combination of a genus and specific epithet, for example Puma concolor.
+    However these names change frequently as new information moves a given species
+    into a different genus etc. Most of the time the species concept itself is unchanged.
+    This leads a lot of confusion and difficulty connecting data relating to a given
+    species concept together. This ontology and the related TaxonConcept data set
+    avoids this by minting identifiers that are tied to a specific species concept
+    which can have several names and classifications. The RDF descriptions of each
+    species concept provides some guide as to what is the best species concept for
+    a given specimen or observation, and links together data sets containing additional
+    information about that concept. Since some of these related data sets entail specific
+    names or classifications they are loosely linked using skos:closeMatch etc. Depending
+    on your particular needs, you might want to merge these in your own knowledge
+    base as sameAs or simply merge those properties that you think are appropriate.
+  example: hasAcceptedName
+  homepage: http://lod.taxonconcept.org
+  mappings:
+    biodivportal: TXN
+  name: TaxonConcept Ontology
+  preferred_prefix: taxonconcept
+  uri_format: http://lod.taxonconcept.org/ontology/txn.owl#$1
 taxrank:
   contact:
     email: balhoff@renci.org
@@ -75502,6 +76173,7 @@ taxrank:
   - life science
   - obo
   - ontology
+  - taxon rank
   - taxonomic classification
   - taxonomy
   license: CC0-1.0
@@ -75509,6 +76181,7 @@ taxrank:
     aberowl: TAXRANK
     agroportal: TAXRANK
     biocontext: TAXRANK
+    biodivportal: TAXRANK
     bioportal: TAXRANK
     fairsharing: FAIRsharing.p1sejz
     obofoundry: taxrank
@@ -75706,6 +76379,7 @@ tdwg.taxonrank:
   homepage: https://github.com/tdwg/ontology
   keywords:
   - ontology
+  - taxon rank
   name: TDWG Taxon Rank LSID Ontology
   preferred_prefix: tdwg.taxonrank
   repository: https://github.com/tdwg/ontology
@@ -75959,6 +76633,9 @@ thermofisher:
   preferred_prefix: thermofisher
   uri_format: https://www.thermofisher.com/antibody/product/$1
 tib.bk:
+  contact:
+    email: coli-conc@gbv.de
+    name: coli-conc
   description: German decimal classification system based on the Dutch Basic Classification
     (NBC)
   example: '0'
@@ -75973,10 +76650,13 @@ tib.bk:
   license: CC0-1.0
   mappings:
     bartoc: '18785'
+    biodivportal: BK
     tib: bk
   name: Basic Classification
   pattern: ^(0|1-2|3-4|5|7-8|[0-9]{2}(\.[0-9]{2})?)$
   preferred_prefix: tib.bk
+  synonyms:
+  - bk
   uri_format: http://uri.gbv.de/terminology/bk/$1
 tib.bo:
   description: This file contains the Base Ontology of oneM2M as specified in TS-0012
@@ -76606,6 +77286,7 @@ to:
     aberowl: TO
     agroportal: TO
     biocontext: TO
+    biodivportal: TO
     bioportal: PTO
     fairsharing: FAIRsharing.w69t6r
     obofoundry: to
@@ -77532,6 +78213,7 @@ uberon:
   mappings:
     aberowl: UBERON
     biocontext: UBERON
+    biodivportal: UBERON
     bioportal: UBERON
     cellosaurus: UBERON
     fairsharing: FAIRsharing.4c0b6b
@@ -77968,6 +78650,9 @@ umls.aui:
   synonyms:
   - UMLS_ICD9CM_2005_AUI
 unesco.thesaurus:
+  contact:
+    email: vocabularies@unesco.org
+    name: UNESCO
   contributor:
     email: cthoyt@gmail.com
     github: cthoyt
@@ -77990,10 +78675,13 @@ unesco.thesaurus:
   license: CC-BY-3.0-IGO
   mappings:
     bartoc: '40'
+    biodivportal: UNESCOTHES
     fairsharing: FAIRsharing.81dc5f
   name: UNESCO Thesaurus
   pattern: ^\d+$
   preferred_prefix: unesco.thesaurus
+  synonyms:
+  - UNESCOTHES
   uri_format: http://vocabularies.unesco.org/thesaurus/concept$1
 unicarbdb:
   contact:
@@ -79575,6 +80263,7 @@ vbo:
   mappings:
     aberowl: VBO
     agroportal: VBO
+    biodivportal: VBO
     bioportal: VBO
     cellosaurus: VBO
     obofoundry: vbo
@@ -79826,7 +80515,7 @@ venom:
   appears_in:
   - vbo
   contact:
-    email: DBrodbelt@RVC.AC.UK
+    email: DBrodbelt@rvc.ac.uk
     name: David Brodbelt
     orcid: 0000-0001-5628-4194
   contributor:
@@ -80630,6 +81319,30 @@ vo:
   repository: https://github.com/vaccineontology/VO
   uri_format: http://purl.obolibrary.org/obo/VO_$1
   version: '2026-03-06'
+voaf:
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: VOAF is a vocabulary specification providing elements allowing the
+    description of vocabularies (RDFS vocabularies or OWL ontologies) used in the
+    Linked Data Cloud. In particular it provides properties expressing the different
+    ways such vocabularies can rely on, extend, specify, annotate or otherwise link
+    to each other. It relies itself on Dublin Core and voiD. The name of the vocabulary
+    makes an explicit reference to FOAF because VOAF can be used to define networks
+    of vocabularies in a way similar to the one FOAF is used to define networks of
+    people. [from homepage]
+  download_rdf: https://lov.linkeddata.es/vocommons/voaf/v2.3/voaf_v2.3.rdf
+  example: Vocabulary
+  homepage: http://purl.org/vocommons/voaf
+  keywords:
+  - metadata
+  mappings:
+    lov: voaf
+  name: Vocabulary of a Friend
+  preferred_prefix: voaf
+  uri_format: http://purl.org/vocommons/voaf#$1
 voc4cat:
   comment: The most current version of a concept can be accessed so * https://w3id.org/nfdi4cat/voc4cat_0000123
     other/older versions from releases like so * https://w3id.org/nfdi4cat/voc4cat/v2023-08-17/voc4cat_0000123.
@@ -80925,6 +81638,7 @@ vt:
     aberowl: VT
     agroportal: VT
     biocontext: VT
+    biodivportal: VT
     bioportal: VT
     fairsharing: FAIRsharing.10gr18
     obofoundry: vt
@@ -82348,7 +83062,7 @@ xco:
   rdf_uri_format: http://purl.obolibrary.org/obo/XCO_$1
   repository: https://github.com/rat-genome-database/XCO-experimental-condition-ontology
   uri_format: http://purl.obolibrary.org/obo/XCO_$1
-  version: '4.231'
+  version: '4.232'
 xenbase:
   contact:
     email: troy_pells@yahoo.ca

@@ -1,3 +1,5 @@
+{% import "macros.html" as utils %}
+
 <div class="card" style="margin-top: 20px">
     <h5 class="card-header">Contacts</h5>
     <div class="card-body">
@@ -31,11 +33,12 @@
             </dd>
             {%- endfor %}
 
-            {% if resource.owners %}
-            <dt>Identifier Space Owner{% if resource.owners | length > 1 %}s{% endif %}</dt>
-            {% for owner in resource.owners %}
-            <dd>
-                <a href="{{ owner.link }}">{{ owner.name }}</a>
+            {%- set owners = resource.get_owners() %}
+            {%- if owners %}
+            <dt>Identifier Space Owner{% if owners | length > 1 %}s{% endif %}</dt>
+            {%- for owner in owners %}
+            <dd {% if not loop.last %}class="mb-0"{% endif %}>
+                {{ utils.link_organization(owner) }}
                 {% if owner.partnered %}
                 <a href="{{ config.METAREGISTRY_REPOSITORY }}/blob/main/docs/GOVERNANCE.md#partners"
                    class="badge badge-pill badge-info" data-toggle="tooltip"
@@ -44,8 +47,8 @@
                 </a>
                 {% endif %}
             </dd>
-            {% endfor %}
-            {% endif %}
+            {%- endfor %}
+            {%- endif %}
             {% if resource.contributor or resource.contributor_extras %}
             <dt>Contributors</dt>
             {% if resource.contributor %}
@@ -55,7 +58,7 @@
             </dd>
             {% endif %}
             {% for contributor in resource.contributor_extras or [] %}
-            <dd>
+            <dd {% if not loop.last %}class="mb-0"{% endif %}>
                 <span class="badge badge-info">contributor</span> {{ utils.render_author(contributor,
                 link=url_for('metaregistry_ui.contributor', orcid=contributor.orcid)) }}
             </dd>
@@ -69,7 +72,7 @@
                 orcid=resource.reviewer.orcid)) }}
             </dd>
             {%- for reviewer in resource.reviewer_extras or [] %}
-            <dd>
+            <dd {% if not loop.last %}class="mb-0"{% endif %}>
                 {{ utils.render_author(reviewer, link=url_for('metaregistry_ui.contributor', orcid=reviewer.orcid)) }}
             </dd>
             {%- endfor %}

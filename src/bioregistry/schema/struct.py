@@ -7,7 +7,6 @@ import json
 import logging
 import pathlib
 import re
-import textwrap
 import typing
 from collections.abc import Callable, Iterable, Mapping, Sequence
 from dataclasses import dataclass
@@ -15,6 +14,7 @@ from functools import lru_cache
 from operator import attrgetter
 from typing import (
     TYPE_CHECKING,
+    Annotated,
     Any,
     ClassVar,
     Generic,
@@ -37,9 +37,10 @@ from bioregistry.constants import (
     BIOREGISTRY_REMOTE_URL,
     DOCS,
     MIRIAM_NAMESPACE_IN_LUI,
-    ORCID_PATTERN,
-    PATTERN_KEY,
+    ORCID_FIELD,
     URI_FORMAT_KEY,
+    WIKIDATA_FIELD,
+    _dedent,
 )
 from bioregistry.license_standardizer import standardize_license
 from bioregistry.utils import curie_to_str, deduplicate, removeprefix, removesuffix
@@ -133,6 +134,7 @@ Domain: TypeAlias = Literal[
     "experiment",
     "genetic code",
     "mathematics",
+    "registry",
 ]
 
 
@@ -154,19 +156,6 @@ def _yield_protocol_variations(u: str) -> Iterable[str]:
     else:
         yield u
 
-
-def _dedent(s: str) -> str:
-    return textwrap.dedent(s).replace("\n", " ").replace("  ", " ").strip()
-
-
-ORCID_DESCRIPTION = _dedent(
-    """\
-The Open Researcher and Contributor Identifier (ORCiD) provides
-researchers with an open, unambiguous identifier for connecting
-various digital assets (e.g., publications, reviews) across the
-semantic web. An account can be made in seconds at https://orcid.org.
-"""
-)
 
 URI_FORMAT_PATHS = [
     ("miriam", URI_FORMAT_KEY),
@@ -199,10 +188,9 @@ class Organization(BaseModel):
         title="Research Organization Registry identifier",
         description="ROR identifier for a record about the organization",
     )
-    wikidata: str | None = Field(
-        default=None,
-        title="Wikidata identifier",
-        description="Wikidata identifier for a record about the organization",
+    wikidata: Annotated[str | None, WIKIDATA_FIELD] = None
+    gnd: str | None = Field(
+        default=None, title="Gemeinsame Normdatei (Integrated Authority File) identifier"
     )
     name: str = Field(..., description="Name of the organization")
     partnered: bool = Field(
@@ -216,6 +204,8 @@ class Organization(BaseModel):
             return "ror", self.ror
         elif self.wikidata:
             return "wikidata", self.wikidata
+        elif self.gnd:
+            return "gnd", self.gnd
         raise ValueError
 
     @property
@@ -225,6 +215,8 @@ class Organization(BaseModel):
             return f"https://ror.org/{self.ror}"
         elif self.wikidata:
             return f"https://scholia.toolforge.org/{self.wikidata}"
+        elif self.gnd:
+            return f"https://d-nb.info/gnd/{self.gnd}"
         else:
             raise ValueError
 
@@ -234,18 +226,11 @@ class Attributable(BaseModel):
 
     name: str = Field(..., description="The full name of the researcher")
 
-    orcid: str | None = Field(
-        default=None,
-        title="Open Researcher and Contributor Identifier",
-        description=ORCID_DESCRIPTION,
-        **{PATTERN_KEY: ORCID_PATTERN},  # type:ignore
-    )
-
-    email: str | None = Field(
+    orcid: Annotated[str | None, ORCID_FIELD] = None
+    email: EmailStr | None = Field(
         default=None,
         title="Email address",
         description="The email address specific to the researcher.",
-        # regex=EMAIL_RE_STR,
     )
 
     #: The GitHub handle for the author
@@ -260,12 +245,7 @@ class Attributable(BaseModel):
         ),
     )
 
-    wikidata: str | None = Field(
-        default=None,
-        title="Wikidata identifier",
-        pattern="^Q\\d+$",
-        examples=["Q47475003"],
-    )
+    wikidata: Annotated[str | None, WIKIDATA_FIELD] = None
 
     def get_score(self) -> int:
         """Get a score."""
@@ -305,12 +285,7 @@ class Author(Attributable):
 
     #: This field is redefined on top of :class:`Attributable` to make
     #: it required. Otherwise, it has the same semantics.
-    orcid: str = Field(
-        ...,
-        title="Open Researcher and Contributor Identifier",
-        description=ORCID_DESCRIPTION,
-        **{PATTERN_KEY: ORCID_PATTERN},  # type:ignore
-    )
+    orcid: Annotated[str, ORCID_FIELD]
 
     @classmethod
     def get_charlie(cls) -> Self:
@@ -391,7 +366,7 @@ class StatusCheck(BaseModel):
 
     value: ResourceStatus
     date: str = Field(pattern="^\\d{4}-\\d{2}-\\d{2}$")
-    contributor: str = Field(..., pattern=ORCID_PATTERN)
+    contributor: Annotated[str, ORCID_FIELD]
     notes: str | None = None
 
 
@@ -426,6 +401,7 @@ class Provider(BaseModel):
         None,
         description="Tracks the status of the provider. If this isn't set, assume that the provider is still active. See discussion in in https://github.com/biopragmatics/bioregistry/issues/1387.",
     )
+    organization: Organization | None = None
 
     def resolve(self, identifier: str) -> str:
         """Resolve the identifier into a URI.
@@ -478,6 +454,7 @@ DEFAULT_METAPREFIX_PRIORITY = [
     "aberowl",
     "re3data",
     "uniprot",
+    "biodivportal",
 ]
 
 
@@ -871,6 +848,8 @@ class Resource(BaseModel):
     pathguide: Mapping[str, Any] | None = Field(default=None)
     #: External data from TIB Terminology Service
     tib: Mapping[str, Any] | None = Field(default=None)
+    #: External data from BiodivPortal
+    biodivportal: Mapping[str, Any] | None = Field(default=None)
 
     # Cached compiled pattern for identifiers
     _compiled_pattern: re.Pattern[str] | None = PrivateAttr(None)
@@ -1222,6 +1201,7 @@ class Resource(BaseModel):
             "tib",
             "integbio",
             "cellosaurus",
+            "biodivportal",
         )
         rv = self._get_prefix_key_str("description", metaprefixes, provenance=False)
         if rv is not None:
@@ -2643,6 +2623,16 @@ class Resource(BaseModel):
         }
         return OlsConfig.model_validate(values)
 
+    def get_owners(self) -> list[Organization]:
+        """Get owners."""
+        if self.owners:
+            return self.owners
+        rv = []
+        for metaprefix in ["miriam"]:
+            for org in self.get_external(metaprefix).get("owners", []):
+                rv.append(Organization.model_validate(org))
+        return rv
+
 
 class OlsConfig(BaseModel):
     """A configuration for the Ontology Lookup Service (OLS)."""
@@ -2930,14 +2920,14 @@ class Registry(BaseModel):
     bibtex: str | None = Field(
         default=None, description="Citation key used in BibTex for this registry."
     )
-    availability: RegistrySchema = Field(
-        ..., description="A structured description of the metadata that the registry collects"
+    availability: RegistrySchema | None = Field(
+        None, description="A structured description of the metadata that the registry collects"
     )
-    qualities: RegistryQualities = Field(
-        ..., description="A structured description of the registry's qualities"
+    qualities: RegistryQualities | None = Field(
+        None, description="A structured description of the registry's qualities"
     )
-    governance: RegistryGovernance = Field(
-        ..., description="A structured description of the governance for the registry"
+    governance: RegistryGovernance | None = Field(
+        None, description="A structured description of the governance for the registry"
     )
     download: str | None = Field(
         default=None, description="A download link for the data contained in the registry"
@@ -2973,8 +2963,10 @@ class Registry(BaseModel):
         default=None, description="A short name for the resource, e.g., for use in charts"
     )
 
-    def score(self) -> int:
+    def score(self) -> int | None:
         """Calculate a metadata score/goodness for this registry."""
+        if self.availability is None or self.qualities is None:
+            return None
         return (
             (
                 int(self.provider_uri_format is not None)
@@ -3118,8 +3110,10 @@ class Registry(BaseModel):
         """Check if the registry is a prefix provider."""
         return self.provider_uri_format is not None
 
-    def get_quality_score(self) -> int:
+    def get_quality_score(self) -> int | None:
         """Get the quality score for this registry."""
+        if self.qualities is None or self.availability is None:
+            return None
         return self.qualities.score() + sum(
             [self.availability.search, self.is_prefix_provider, self.has_permissive_license]
         )

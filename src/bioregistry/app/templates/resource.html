@@ -96,14 +96,14 @@
             </div>
         </div>
         <div class="card-body">
-            {% if description %}
-                <p>
-                {% if resource.get_logo() %}
-                <img style="max-height: 70px; float: right;" src="{{ resource.get_logo() }}" alt="Logo for {{ name_pack.value }}"/>
-                {% endif %}
-                {{ description }}
-                </p>
-            {% endif %}
+            {%- if resource.get_logo() %}
+            <img style="max-height: 70px; float: right;" src="{{ resource.get_logo() }}" alt="Logo for {{ name_pack.value }}"/>
+            {%- endif %}
+            {%- if resource.description %}
+            {{ resource.get_description(use_markdown=True) }}
+            {%- elif resource.get_description() %}
+            <p>{{ resource.get_description() }}</p>
+            {%- endif %}
             {% if provides %}
                 <p>
                     This resource is a <span class="badge badge-danger">provider</span>. This means that

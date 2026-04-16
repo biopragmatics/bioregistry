@@ -219,7 +219,7 @@ def _add_resource(
     for appears_in in manager.get_appears_in(resource.prefix) or []:
         graph.add((node, bioregistry_schema["0000018"], bioregistry_resource[appears_in]))
 
-    for owner in resource.owners or []:
+    for owner in resource.get_owners():
         if owner.ror:
             obj = ROR[owner.ror]
         elif owner.wikidata:

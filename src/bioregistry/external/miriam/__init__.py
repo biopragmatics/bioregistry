@@ -6,7 +6,7 @@ from operator import itemgetter
 from pathlib import Path
 from typing import Any, ClassVar
 
-from bioregistry.alignment_model import Provider, Record, Status, make_record
+from bioregistry.alignment_model import Organization, Provider, Record, Status, make_record
 from bioregistry.constants import MIRIAM_NAMESPACE_IN_LUI, RAW_DIRECTORY, URI_FORMAT_KEY
 from bioregistry.external.alignment_utils import Aligner, build_getter
 
@@ -106,6 +106,9 @@ def _process(record: dict[str, Any]) -> Record:
         # special case for kegg... this is hacky but needs to be done now
         rv[URI_FORMAT_KEY] = primary[URI_FORMAT_KEY]
 
+    if organization := primary.get("organization"):
+        rv["owners"] = [Organization.model_validate(organization)]
+
     extras = []
     for provider in rest:
         code = provider["code"]
@@ -137,6 +140,11 @@ def _preprocess_resource(resource: dict[str, Any]) -> dict[str, Any]:
         "name": resource["name"],
         "description": resource["description"],
     }
+    if ror := resource["institution"].get("rorId"):
+        rv["organization"] = {
+            "ror": ror,
+            "name": resource["institution"]["name"],
+        }
     uri_format = resource["urlPattern"].replace("{$id}", "$1")
     if uri_format not in SKIP_URI_FORMATS:
         rv[URI_FORMAT_KEY] = uri_format
