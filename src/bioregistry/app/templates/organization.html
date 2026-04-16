@@ -1,0 +1,66 @@
+{%- extends "base.html" %}
+{%- import "macros.html" as utils %}
+
+{%- block title %}{{ config.METAREGISTRY_TITLE }} - {{ organization.name }}{% endblock %}
+
+{%- block container %}
+<div class="card">
+    <div class="card-header">
+        <h5 style="margin: 0"><a href="{{ url_for('metaregistry_ui.show_organizations') }}">Organizations</a>
+            <i class="bi bi-chevron-right"></i> {{ organization.name }}</h5>
+    </div>
+    <div class="card-body">
+        <dl>
+            <dt>Name</dt>
+            <dd>{{ organization.name }}</dd>
+            {%- if organization.ror %}
+            <dt>ROR</dt>
+            <dd>{{ organization.ror }}</dd>
+            {%- endif %}
+            {%- if organization.gnd %}
+            <dt>GND</dt>
+            <dd>{{ organization.gnd }}</dd>
+            {%- endif %}
+            {%- if organization.wikidata %}
+            <dt>Wikidata</dt>
+            <dd>{{ organization.wikidata }}</dd>
+            {%- endif %}
+        </dl>
+    </div>
+</div>
+
+{%- if resources %}
+<div class="card mt-4">
+    <h5 class="card-header">Resources</h5>
+    <div class="card-body">Resources owned by this organization:</div>
+    {{ utils.resource_table(resources) }}
+</div>
+{%- endif %}
+
+{%- if collections %}
+<div class="card mt-4">
+    <h5 class="card-header">Collections</h5>
+    <div class="card-body">Collections owned by this organization:</div>
+    <table class="table table-striped mb-0">
+        <thead>
+        <tr>
+            <th>Identifier</th>
+            <th>Name</th>
+        </tr>
+        </thead>
+        <tbody>
+        {%- for collection in collections %}
+        <tr>
+            <td>
+                <a href="{{ url_for('metaregistry_ui.collection', identifier=collection.identifier) }}">
+                    {{ collection.identifier }}
+                </a>
+            </td>
+            <td>{{ collection.name }}</td>
+        </tr>
+        {%- endfor %}
+        </tbody>
+    </table>
+</div>
+{%- endif %}
+{%- endblock %}
