@@ -23,7 +23,7 @@
 {% endmacro %}
 
 {%- macro link_organization(organization) %}
-<a href="{{ organization.link }}">{{ organization.name }}</a>
+<a href="{{ url_for('.show_organization', curie=organization.reference.curie) }}">{{ organization.name }}</a>
 {%- if organization.ror -%}<a class="mr-1 ml-1" href="{{ url_for('metaregistry_ui.resolve', prefix='ror', identifier=organization.ror) }}">{{ ror_img() }}</a>{%- endif -%}
 {%- if organization.gnd -%}<a class="mr-1 ml-1" href="{{ url_for('metaregistry_ui.resolve', prefix='gnd', identifier=organization.gnd) }}">{{ gnd_img() }}</a>{%- endif -%}
 {%- if organization.wikidata -%}<a class="mr-1 ml-1" href="{{ url_for('metaregistry_ui.resolve', prefix='wikidata', identifier=organization.wikidata) }}">{{ wikidata_img() }}</a>{%- endif -%}
@@ -203,5 +203,5 @@
 {%- endmacro %}
 
 {%- macro wikidata_img() -%}
-<img style="max-height: 1em" src="/static/wikidata.svg" alt="GND logo" />
+<img style="max-height: 1em" src="/static/wikidata.svg" alt="Wikidata logo" />
 {%- endmacro %}

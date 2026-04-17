@@ -5,10 +5,8 @@
 
 {% block container %}
     <div class="card">
-        <h5 class="card-header">
-            Partners
-        </h5>
-        <table class="table">
+        <h5 class="card-header">Organizations</h5>
+        <table class="table table-striped mb-0">
             <thead>
             <tr>
                 <th>CURIE</th>
@@ -19,12 +17,12 @@
             <tbody>
             {% for curie, resources in owner_to_resources|dictsort %}
                 <tr>
-                    <td>{{ utils.code_curie(*curie) }}</td>
-                    <td><a href="{{ owners[curie].link }}">{{ owners[curie].name }}</a></td>
+                    <td><a href="{{ url_for('.show_organization', curie=curie) }}">{{ curie }}</a></td>
+                    <td>{{ owners[curie].name }}</td>
                     <td>
-                        {% for resource in resources %}
-                            {{ utils.render_prefix(resource.prefix, classes="badge badge-pill badge-primary") }}
-                        {% endfor %}
+                        {%- for resource in resources %}
+                        {{ utils.render_prefix(resource.prefix, classes="badge badge-pill badge-primary") }}
+                        {%- endfor %}
                     </td>
                 </tr>
             {% endfor %}

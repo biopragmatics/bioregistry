@@ -13,6 +13,7 @@ from pathlib import Path
 
 import flask
 import werkzeug
+from curies import Reference
 from flask import (
     Blueprint,
     abort,
@@ -676,17 +677,39 @@ def get_keyword(keyword: str) -> str:
     return render_template("keyword.html", keyword=keyword, resources=resources_)
 
 
-@ui_blueprint.route("/highlights/owners")
-def highlights_owners() -> str:
+@ui_blueprint.route("/organization/")
+def show_organizations() -> str:
     """Render the partners highlights page."""
     owner_to_resources = defaultdict(list)
     owners = {}
-    for resource in manager.registry.values():
-        for owner in resource.get_owners():
-            owners[owner.pair] = owner
-            owner_to_resources[owner.pair].append(resource)
+    for resource_ in manager.registry.values():
+        for owner in resource_.get_owners():
+            curie = owner.reference.curie
+            owners[curie] = owner
+            owner_to_resources[curie].append(resource_)
     return render_template(
-        "highlights/owners.html", owners=owners, owner_to_resources=owner_to_resources
+        "organizations.html", owners=owners, owner_to_resources=owner_to_resources
+    )
+
+
+@ui_blueprint.route("/organization/<curie>")
+def show_organization(curie: str) -> str:
+    """Show an organization."""
+    reference_ = Reference.from_curie(curie)
+    resources_ = [
+        resource_
+        for resource_ in manager.registry.values()
+        if resource_.has_organization(reference_)
+    ]
+    if not resources_:
+        raise flask.abort(404)
+    organization = next(o for o in resources_[0].get_owners() if o.matches_reference(reference_))
+    collections_ = [c for c in manager.collections.values() if c.has_organization(reference_)]
+    return render_template(
+        "organization.html",
+        organization=organization,
+        resources=resources_,
+        collections=collections_,
     )
 
 

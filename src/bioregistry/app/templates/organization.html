@@ -33,7 +33,16 @@
 <div class="card mt-4">
     <h5 class="card-header">Resources</h5>
     <div class="card-body">Resources owned by this organization:</div>
-    {{ utils.resource_table(resources) }}
+    <table class="table table-striped table-hover mb-0">
+        <tbody>
+        {%- for resource in resources %}
+        <tr>
+            <td>{{ utils.render_prefix(resource.prefix) }}</td>
+            <td>{{ resource.get_name() }}</td>
+        </tr>
+        {%- endfor %}
+        </tbody>
+    </table>
 </div>
 {%- endif %}
 
