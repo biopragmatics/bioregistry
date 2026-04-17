@@ -10,6 +10,7 @@ from collections import Counter, defaultdict
 from collections.abc import Iterable
 from operator import attrgetter
 from pathlib import Path
+from typing import cast
 
 import flask
 import werkzeug
@@ -701,10 +702,19 @@ def show_organization(curie: str) -> str:
         for resource_ in manager.registry.values()
         if resource_.has_organization(reference_)
     ]
-    if not resources_:
-        raise flask.abort(404)
-    organization = next(o for o in resources_[0].get_owners() if o.matches_reference(reference_))
     collections_ = [c for c in manager.collections.values() if c.has_organization(reference_)]
+    if not resources_ and not collections_:
+        raise flask.abort(404)
+    elif resources_:
+        organization = next(
+            o for o in resources_[0].get_owners() if o.matches_reference(reference_)
+        )
+    else:
+        organization = next(
+            o
+            for o in cast(list[Organization], collections_[0].organizations)
+            if o.matches_reference(reference_)
+        )
     return render_template(
         "organization.html",
         organization=organization,
