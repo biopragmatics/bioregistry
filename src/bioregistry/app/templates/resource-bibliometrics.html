@@ -3,14 +3,6 @@
 <div class="card" style="margin-top: 20px">
     <h5 class="card-header">Contacts</h5>
     <div class="card-body">
-        {%- if resource.contact_group_email %}
-        <a class="badge badge-pill badge-light" href="{{ resource.contact_group_email }}">
-            Mailing List <i class="bi bi-envelope"></i></i></a>
-        {%- endif %}
-        {%- if resource.contact_page %}
-        <a class="badge badge-pill badge-light" href="{{ resource.contact_page }}">
-            Contact Page <i class="bi bi-envelope"></i></i></a>
-        {%- endif %}
         <dl>
             <dt>
                 Contact
@@ -32,6 +24,22 @@
                 {{ utils.render_author(secondary_contact, link=none) }}
             </dd>
             {%- endfor %}
+
+            {%- if resource.contact_group_email or resource.contact_page %}
+            <dt>Group Contact</dt>
+            <dd>
+                {%- if resource.contact_group_email %}
+                <a class="badge badge-pill badge-light" href="mailto:{{ resource.contact_group_email }}">
+                    Mailing List <i class="bi bi-envelope"></i>
+                </a>
+                {%- endif %}
+                {%- if resource.contact_page %}
+                <a class="badge badge-pill badge-light" href="{{ resource.contact_page }}">
+                    Contact Page <i class="bi bi-envelope"></i>
+                </a>
+                {%- endif %}
+            </dd>
+            {%- endif %}
 
             {%- set owners = resource.get_owners() %}
             {%- if owners %}

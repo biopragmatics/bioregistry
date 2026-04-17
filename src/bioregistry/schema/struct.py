@@ -38,6 +38,7 @@ from bioregistry.constants import (
     DOCS,
     MIRIAM_NAMESPACE_IN_LUI,
     ORCID_FIELD,
+    ROR_FIELD,
     URI_FORMAT_KEY,
     WIKIDATA_FIELD,
     _dedent,
@@ -183,11 +184,7 @@ class MetaprefixAnnotatedValue(Generic[X]):
 class Organization(BaseModel):
     """Model for organizations."""
 
-    ror: str | None = Field(
-        default=None,
-        title="Research Organization Registry identifier",
-        description="ROR identifier for a record about the organization",
-    )
+    ror: Annotated[str | None, ROR_FIELD] = None
     wikidata: Annotated[str | None, WIKIDATA_FIELD] = None
     gnd: str | None = Field(
         default=None, title="Gemeinsame Normdatei (Integrated Authority File) identifier"
@@ -198,15 +195,27 @@ class Organization(BaseModel):
     )
 
     @property
-    def pair(self) -> tuple[str, str]:
+    def reference(self) -> Reference:
         """Get a CURIE pair."""
         if self.ror:
-            return "ror", self.ror
+            return Reference(prefix="ror", identifier=self.ror)
         elif self.wikidata:
-            return "wikidata", self.wikidata
+            return Reference(prefix="wikidata", identifier=self.wikidata)
         elif self.gnd:
-            return "gnd", self.gnd
+            return Reference(prefix="gnd", identifier=self.gnd)
         raise ValueError
+
+    def matches_reference(self, reference: Reference) -> bool:
+        """Check if this organization matches the reference."""
+        match reference.prefix:
+            case "ror":
+                return self.ror == reference.identifier
+            case "gnd":
+                return self.gnd == reference.identifier
+            case "wikidata":
+                return self.wikidata == reference.identifier
+            case _:
+                return False
 
     @property
     def link(self) -> str:
@@ -2633,6 +2642,14 @@ class Resource(BaseModel):
                 rv.append(Organization.model_validate(org))
         return rv
 
+    def has_organization_with_ror(self, ror: str) -> bool:
+        """Check if this resource has an organization with the given ROR."""
+        return any(owner.ror is not None and owner.ror == ror for owner in self.get_owners())
+
+    def has_organization(self, reference: Reference) -> bool:
+        """Check if this resource has an organization with the given ROR."""
+        return any(owner.matches_reference(reference) for owner in self.get_owners())
+
 
 class OlsConfig(BaseModel):
     """A configuration for the Ontology Lookup Service (OLS)."""
@@ -3253,6 +3270,12 @@ class Collection(BaseModel):
     def has_organization_with_ror(self, ror: str) -> bool:
         """Check if there is an organization with a given ROR."""
         return any(organization.ror == ror for organization in self.organizations or [])
+
+    def has_organization(self, reference: Reference) -> bool:
+        """Check if there is an organization with a given ROR."""
+        return any(
+            organization.matches_reference(reference) for organization in self.organizations or []
+        )
 
 
 def filter_collections(collections: Iterable[Collection], ror: str) -> list[Collection]:

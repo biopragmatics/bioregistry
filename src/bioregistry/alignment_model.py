@@ -11,7 +11,7 @@ from typing import Annotated, Any
 from curies import NamableReference
 from pydantic import BaseModel, EmailStr, Field
 
-from .constants import ORCID_FIELD
+from .constants import ORCID_FIELD, ROR_FIELD
 
 
 class Person(BaseModel):
@@ -27,7 +27,7 @@ class Organization(BaseModel):
     """Represents a organization."""
 
     name: str
-    ror: str
+    ror: Annotated[str, ROR_FIELD]
 
 
 class License(BaseModel):
