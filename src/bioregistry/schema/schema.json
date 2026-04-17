@@ -480,6 +480,7 @@
         "ror": {
           "anyOf": [
             {
+              "pattern": "^0[a-hj-km-np-tv-z|0-9]{6}[0-9]{2}$",
               "type": "string"
             },
             {
@@ -487,7 +488,9 @@
             }
           ],
           "default": null,
-          "description": "ROR identifier for a record about the organization",
+          "examples": [
+            "03yrm5c26"
+          ],
           "title": "Research Organization Registry identifier"
         },
         "wikidata": {
