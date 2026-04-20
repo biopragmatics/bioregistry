@@ -1,16 +1,15 @@
 """Download registry information from OntoBee."""
 
-import json
 import textwrap
 from collections.abc import Sequence
 from pathlib import Path
 from typing import Any, ClassVar
 
 from bs4 import BeautifulSoup
-from pystow.utils import download
 
+from bioregistry.alignment_model import Record, make_record
 from bioregistry.constants import RAW_DIRECTORY
-from bioregistry.external.alignment_utils import Aligner, load_processed
+from bioregistry.external.alignment_utils import Aligner, build_getter
 
 __all__ = [
     "OntobeeAligner",
@@ -23,19 +22,15 @@ PROCESSED_PATH = DIRECTORY / "processed.json"
 
 URL = "http://www.ontobee.org/"
 LEGEND = {
-    "F": "Foundry",
-    "L": "Library",
-    "N": "Not Specified/No",
+    "F": ["obo", "ontology"],  # "Foundry",
+    "L": ["obo", "ontology"],  # "Library",
+    "N": ["ontology"],  # "Not Specified/No",
 }
 
 
-def get_ontobee(force_download: bool = False) -> dict[str, dict[str, Any]]:
-    """Get the OntoBee registry."""
-    if PROCESSED_PATH.exists() and not force_download:
-        return load_processed(PROCESSED_PATH)
-
-    download(url=URL, path=RAW_PATH, force=True)
-    with RAW_PATH.open() as f:
+def parse_ontobee(path: Path) -> dict[str, Record]:
+    """Parse OntoBee."""
+    with path.open() as f:
         soup = BeautifulSoup(f, "html.parser")
 
     ontology_list = soup.find(id="ontologyList")
@@ -49,16 +44,22 @@ def get_ontobee(force_download: bool = False) -> dict[str, dict[str, Any]]:
     for row in table_body.find_all("tr"):  # type:ignore
         cells = row.find_all("td")
         prefix = cells[1].text
-        rv[prefix] = {
-            "name": cells[2].text,
-            "library": LEGEND[cells[3].text.upper()],
-            # "link": cells[1].find("a").attrs["href"],
-        }
-
-    with PROCESSED_PATH.open("w") as file:
-        json.dump(rv, file, indent=2, sort_keys=True)
-
+        rv[prefix] = make_record(
+            {
+                "name": cells[2].text,
+                "keywords": LEGEND[cells[3].text.upper()],
+                # "link": cells[1].find("a").attrs["href"],
+            }
+        )
     return rv
+
+
+get_ontobee = build_getter(
+    processed_path=PROCESSED_PATH,
+    raw_path=RAW_PATH,
+    url=URL,
+    func=parse_ontobee,
+)
 
 
 class OntobeeAligner(Aligner):
@@ -71,8 +72,8 @@ class OntobeeAligner(Aligner):
     def get_curation_row(self, external_id: str, external_entry: dict[str, Any]) -> Sequence[str]:
         """Return the relevant fields from an OntoBee entry for pretty-printing."""
         return [
-            textwrap.shorten(external_entry["name"], 50),
-            external_entry.get("url", ""),
+            textwrap.shorten(external_entry["name"] or "", 50),
+            external_entry.get("uri_format") or "",
         ]
 
 

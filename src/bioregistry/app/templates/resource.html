@@ -57,9 +57,9 @@
             <div class="row align-items-center">
                 <div class="col-8">
                     <h5 style="margin: 0"><a href="{{ url_for("metaregistry_ui.resources") }}">Registry</a> <i
-                            class="fas fa-angle-right"></i> {{ name_pack.value }}
+                            class="bi bi-chevron-right"></i> {{ name_pack.value }}
                         <a type="button" data-toggle="modal" data-target="#name-modal">
-                            <i class="far fa-question-circle"></i>
+                            <i class="bi bi-question-circle"></i>
                         </a>
                         {{ utils.render_resource_warnings(resource) }}
                     </h5>
@@ -76,9 +76,15 @@
                             {% for label, key in formats %}
                                 <a class="dropdown-item"
                                    href="{{ fastapi_url_for("get_resource", prefix=prefix) }}?format={{ key }}">
-                                    {{ label }} <i class="fas fa-download"></i>
+                                    {{ label }} <i class="bi bi-download"></i>
                                 </a>
                             {% endfor %}
+                            {%- if resource.has_download() %}
+                            <a class="dropdown-item"
+                               href="{{ fastapi_url_for('get_resource_ols_config', prefix=prefix) }}">
+                                    OLS Configuration <i class="bi bi-download"></i>
+                            </a>
+                            {%- endif %}
                         </div>
                     </div>
                     <a class="btn btn-sm btn-outline-dark" style="margin-right: 0.5em"
@@ -90,14 +96,14 @@
             </div>
         </div>
         <div class="card-body">
-            {% if description %}
-                <p>
-                {% if resource.get_logo() %}
-                <img style="max-height: 70px; float: right;" src="{{ resource.get_logo() }}" alt="Logo for {{ name_pack.value }}"/>
-                {% endif %}
-                {{ description }}
-                </p>
-            {% endif %}
+            {%- if resource.get_logo() %}
+            <img style="max-height: 70px; float: right;" src="{{ resource.get_logo() }}" alt="Logo for {{ name_pack.value }}"/>
+            {%- endif %}
+            {%- if resource.description %}
+            {{ resource.get_description(use_markdown=True) }}
+            {%- elif resource.get_description() %}
+            <p>{{ resource.get_description() }}</p>
+            {%- endif %}
             {% if provides %}
                 <p>
                     This resource is a <span class="badge badge-danger">provider</span>. This means that
@@ -132,7 +138,7 @@
                     <dt>
                         Alternative Prefixes
                         <a type="button" data-toggle="modal" data-target="#synonyms-modal">
-                            <i class="far fa-question-circle"></i>
+                            <i class="bi bi-question-circle"></i>
                         </a>
                     </dt>
                     <dd>
@@ -153,7 +159,7 @@
                     <dt>
                         Version
                         <a type="button" data-toggle="modal" data-target="#version-modal">
-                            <i class="far fa-question-circle"></i>
+                            <i class="bi bi-question-circle"></i>
                         </a>
                     </dt>
                     <dd>{{ version }}</dd>
@@ -163,7 +169,7 @@
                     <dt>
                         License
                         <a type="button" data-toggle="modal" data-target="#license-modal">
-                            <i class="far fa-question-circle"></i>
+                            <i class="bi bi-question-circle"></i>
                         </a>
                     </dt>
                     <dd>{{ resource_license }}</dd>
@@ -172,78 +178,78 @@
                     Links
                     {% if homepage or obo_download or owl_download or json_download or rdf_download or skos_download or jskos_download %}
                     <a type="button" data-toggle="modal" data-target="#links-modal">
-                        <i class="far fa-question-circle"></i>
+                        <i class="bi bi-question-circle"></i>
                     </a>
                     {% endif %}
                 </dt>
                 <dd>
                     {% if homepage %}
                         <a class="badge badge-pill badge-light" href="{{ homepage }}">
-                            Homepage <i class="fas fa-home"></i>
+                            Homepage <i class="bi bi-home"></i>
                         </a>
                     {% else %}
                         <span class="badge badge-pill badge-warning">Missing Homepage</span>
                     {% endif %}
                     {% if repository %}
                         <a class="badge badge-pill badge-light" href="{{ repository }}">
-                            Repository <i class="fab fa-github"></i>
+                            Repository <i class="bi bi-github"></i>
                         </a>
                     {% endif %}
                     {% if obo_download %}
                         <a class="badge badge-pill badge-light" href="{{ obo_download }}">
-                            OBO <i class="fas fa-download"></i>
+                            OBO <i class="bi bi-download"></i>
                         </a>
                     {% endif %}
                     {% if owl_download %}
                         <a class="badge badge-pill badge-light" href="{{ owl_download }}">
-                            OWL <i class="fas fa-download"></i>
+                            OWL <i class="bi bi-download"></i>
                         </a>
                     {% endif %}
                     {% if json_download %}
                         <a class="badge badge-pill badge-light" href="{{ json_download }}">
-                            OBO JSON <i class="fas fa-download"></i>
+                            OBO JSON <i class="bi bi-download"></i>
                         </a>
                     {% endif %}
                     {% if rdf_download %}
                         <a class="badge badge-pill badge-light" href="{{ rdf_download }}">
-                            RDF <i class="fas fa-download"></i>
+                            RDF <i class="bi bi-download"></i>
                         </a>
                     {% endif %}
                     {% if skos_download %}
                         <a class="badge badge-pill badge-light" href="{{ skos_download }}">
-                            SKOS <i class="fas fa-download"></i>
+                            SKOS <i class="bi bi-download"></i>
                         </a>
                     {% endif %}
                     {% if jskos_download %}
                         <a class="badge badge-pill badge-light" href="{{ jskos_download }}">
-                            JSKOS <i class="fas fa-download"></i>
+                            JSKOS <i class="bi bi-download"></i>
                         </a>
                     {% endif %}
                     {% if resource.github_request_issue %}
                         <a class="badge badge-pill badge-light" href="{{ config.METAREGISTRY_REPOSITORY }}/issues/{{ resource.github_request_issue }}">
-                            <i class="fas fa-info-circle"></i> Request Discussion
+                            <i class="bi bi-info-circle"></i> Request Discussion
                         </a>
                     {% endif %}
                     {% if mastodon %}
                         <a class="badge badge-pill badge-light" href="{{ mastodon_url }}">
-                            <i class="fab fa-mastodon"></i> @{{ mastodon }}
+                            <i class="bi bi-mastodon"></i> @{{ mastodon }}
                         </a>
                     {% endif %}
                 </dd>
 
-                {% set publications = resource.get_publications() %}
-                {% if publications %}
-                    <dt>Publications</dt>
-                    {%- for publication in publications %}
-                    <dd>{{ utils.render_publication(publication) }}</dd>
-                    {%- endfor %}
-                {% endif %}
-                {% if resource.references %}
-                    <dt>References</dt>
-                    {%- for reference in resource.references %}
-                    <dd>{{ utils.render_reference(reference) }}</dd>
-                    {%- endfor %}
-                {% endif %}
+                {%- set publications = resource.get_publications() %}
+                {%- if publications %}
+                <dt>Publications</dt>
+                {%- for publication in publications %}
+                <dd {% if not loop.last %}class="mb-0"{% endif %}>{{ utils.render_publication(publication) }}</dd>
+                {%- endfor %}
+                {%- endif %}
+                {%- if resource.references %}
+                <dt>References</dt>
+                {%- for reference in resource.references %}
+                <dd {% if not loop.last %}class="mb-0"{% endif %}>{{ utils.render_reference(reference) }}</dd>
+                {%- endfor %}
+                {%- endif %}
             </dl>
         </div>
     </div>
@@ -331,18 +337,18 @@
                 {% endif %}
                 {% if depends_on %}
                     <dt>
-                        Depends On ({{ depends_on | length }}) ({{ utils.link_code_curie(config.METAREGISTRY_SCHEMA_PREFIX, "0000017") }})
+                        Depends On ({{ depends_on | length }})
                     </dt>
                     <dd>{{ get_tooltips(manager, depends_on) }}</dd>
                 {% endif %}
                 {% if appears_in %}
                     <dt>
-                        Appears In ({{ appears_in | length }}) ({{ utils.link_code_curie(config.METAREGISTRY_SCHEMA_PREFIX, "0000018") }})
+                        Appears In ({{ appears_in | length }})
                     </dt>
                     <dd>{{ get_tooltips(manager, appears_in) }}</dd>
                 {% endif %}
                 {% if in_collections %}
-                    <dt>In Collection</dt>
+                    <dt>In Collection ({{ in_collections | length }})</dt>
                     <dd>
                     {% for collection_id in in_collections %}
                     <a href="{{ url_for("metaregistry_ui.collection", identifier=collection_id) }}"
@@ -362,16 +368,21 @@
         <div class="card" style="margin-top: 20px">
             <a id="mappings"></a>
             <h5 class="card-header">
-                Metaregistry <i class="fas fa-angle-right"></i> {{ name_pack.value }}
+                Mappings to External Registries
             </h5>
             <div class="card-body">
-                <p>
-                    The metaregistry provides mappings between the {{ config.METAREGISTRY_TITLE }} and other registries. There are
-                    {{ mappings | length }} mappings to external registries for this resource with
+                <p class="mb-0">
+                    Mappings from records in {{ config.METAREGISTRY_TITLE }} to external registries
+                    comprises the <i>metaregistry</i>.
+                    {% if mappings | length == 1 %}
+                    This resource has 1 mapping to an external registry.
+                    {% else %}
+                    This resource has {{ mappings | length }} mappings to external registries with
                     {{ mappings | map(attribute='xref') | unique | list | length }} unique external prefixes.
+                    {% endif %}
                 </p>
             </div>
-            <table class="table table-hover table-striped">
+            <table class="table table-hover table-striped mb-0">
                 <thead class="table-">
                 <tr>
                     <th scope="col">Registry Name</th>
@@ -397,11 +408,11 @@
                         <td><code>{{ mapping.metaprefix }}</code></td>
                         <td>
                             {% if mapping.uri %}
-                                <a href="{{ mapping.uri }}"><code>{{ mapping.xref }}</code> <i class="fas fa-link"></i></a>
+                                <a href="{{ mapping.uri }}"><code>{{ mapping.xref }}</code> <i class="bi bi-link"></i></a>
                             {% else %}
                                 <span title="{{ mapping.name }} does not resolve metaidentifiers"
                                       data-toggle="tooltip" data-placement="right"><code>{{ mapping.xref }}</code>
-                                    <i class="fas fa-info-circle"></i></span>
+                                    <i class="bi bi-info-circle"></i></span>
                             {% endif %}
                         </td>
                         {# <td>{{ resource.get_prefix_key("name", mapping.metaprefix) or "" }}</td> #}
@@ -409,7 +420,7 @@
                             <a data-toggle="tooltip" data-html="true"
                                title="Report misalignment between {{ name_pack.value }} and <code>{{ mapping.metaprefix }}:{{ mapping.xref }}</code>"
                                href="{{ config.METAREGISTRY_REPOSITORY }}/issues/new?labels=Update%2CPrefix&template=mismatch.yml&title=Remove+incorrect+mapping+from+{{ resource.prefix }}+to+%60{{ mapping.metaprefix }}%3A{{ mapping.xref }}%60&prefix={{ resource.prefix }}&metaprefix={{ mapping.metaprefix }}&external-prefix={{ mapping.xref }}">
-                                <i class="fas fa-pen"></i>
+                                <i class="bi bi-pen"></i>
                             </a>
                         </td>
                     </tr>
@@ -453,20 +464,18 @@
                         resolvable URIs and semantic web-flavored URIs.
                     </li>
                 </ol>-->
-                {% if providers %}
-                <p>
+                <p class="mb-0">
+                {%- if providers %}
                     The local unique identifier <code>{{ example }}</code> is used to demonstrate the providers
                     available for {{ name_pack.value }}. Some providers may use a different example, which is displayed in the table below.
                     A guide for curating additional providers can be found
                     <a href="{{ config.METAREGISTRY_REPOSITORY_PAGES }}/curation/providers">here</a>.
-                </p>
-                {% else %}
-                <p>
+                {%- else %}
                     This resource does not have any providers. Please consider contributing one after
                     reading the
                     <a href="{{ config.METAREGISTRY_REPOSITORY_PAGES }}/curation/providers">curation guide</a>.
+                {%- endif %}
                 </p>
-                {% endif %}
             </div>
             {% if providers %}{{ utils.render_provider_table(prefix=prefix, identifier=example, providers=providers) }}{% endif %}
         </div>
@@ -474,27 +483,27 @@
         {% set extra_providers = resource.get_extra_providers(filter_known_inactive=True) %}
         {% if extra_providers %}
             <div class="card" style="margin-top: 20px">
-                <a id="mappings"></a>
+                <a id="extra-providers"></a>
                 <h5 class="card-header">Extra Providers</h5>
                 <div class="card-body">
-                    <p>
+                    <p class="mb-0">
                         Additional providers curated in the {{ config.METAREGISTRY_TITLE }} are listed here.
                         These are typically inherited from Identifiers.org or Prefix Commons, and need extra curation.
                     </p>
                 </div>
-                <table class="table table-hover table-striped">
+                <table class="table table-hover table-striped mb-0">
                     <thead class="table-">
                     <tr>
-                        <th scope="col">Code</th>
-                        <th scope="col">Name</th>
+                        <th scope="col">Provider Name</th>
+                        <th scope="col">Provider Code</th>
                         <th scope="col">URL</th>
                     </tr>
                     </thead>
                     <tbody>
                     {% for provider in extra_providers %}
                         <tr>
-                            <td><code>{{ provider.code }}</code></td>
                             <td>{{ provider.name }}</td>
+                            <td><code>{{ provider.code }}</code></td>
                             {% set example_id = provider.example if provider.example else example %}
                             {% set url = provider.resolve(example_id) %}
                             <td><a href="{{ url }}">{{ url }}</a></td>

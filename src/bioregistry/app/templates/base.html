@@ -1,56 +1,76 @@
 <!doctype html>
 <html lang="en">
 <head>
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-SPV2J3MLNE"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-
-      gtag('config', 'G-SPV2J3MLNE');
-    </script>
     {% block head %}
-        <!-- Required meta tags -->
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>{% block title %}{% endblock %}</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="{{ config.METAREGISTRY_DESCRIPTION }}" />
+    <link rel="icon" type="image/svg+xml" href="/static/logo.svg">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
 
-        <!-- see tutorial https://rknight.me/blog/setting-up-mastodon-author-tags/ -->
-        <meta name="fediverse:creator" content="@{{ config.METAREGISTRY_MASTODON }}" />
+    <!-- see tutorial https://rknight.me/blog/setting-up-mastodon-author-tags/ -->
+    <meta name="fediverse:creator" content="@{{ config.METAREGISTRY_MASTODON }}" />
 
-        {% block styles %}
-            <!-- Bootstrap CSS -->
-            {{ bootstrap.load_css() }}
-            <style>
-                html, body {
-                    height: 100%;
-                }
+    {%- block styles %}
+    <!-- Bootstrap CSS -->
+    {{ bootstrap.load_css() }}
+    <style>
+        html, body {
+            height: 100%;
+        }
 
-                body {
-                    display: flex;
-                    flex-flow: column;
-                }
+        body {
+            display: flex;
+            flex-flow: column;
+        }
 
-                .footer {
-                    margin-top: auto;
-                    padding-top: 2em;
-                    padding-bottom: 2em;
-                    background-color: #f5f5f5;
-                }
-                dl {
-                    margin-bottom: 0;
-                }
-                dl dd:last-child {
-                    margin-bottom: 0;
-                }
-            </style>
-        {% endblock %}
+        .footer {
+            margin-top: auto;
+            padding-top: 2em;
+            padding-bottom: 2em;
+            background-color: #f5f5f5;
+        }
 
-        <script src="https://kit.fontawesome.com/4c86883252.js" crossorigin="anonymous"></script>
-        <title>{% block title %}{% endblock %}</title>
-        <meta name="description" content="{{ config.METAREGISTRY_DESCRIPTION }}" />
-        <link rel="icon" type="image/svg+xml" href="/static/logo.svg">
-    {% endblock %}
+        dl {
+            margin-bottom: 0;
+        }
+
+        .schema-list-item > p:last-child {
+            margin-bottom: 0;
+        }
+    </style>
+    {%- endblock %}
+
+    {%- if config.METAREGISTRY_GOOGLE_ANALYTICS %}
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id={{ config.METAREGISTRY_GOOGLE_ANALYTICS }}"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', '{{ config.METAREGISTRY_GOOGLE_ANALYTICS }}');
+    </script>
+    {%- endif %}
+
+    {%- if config.METAREGISTRY_MATOMO %}
+    <!-- Matomo -->
+    <script>
+        var _paq = window._paq = window._paq || [];
+        /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+        _paq.push(['trackPageView']);
+        _paq.push(['enableLinkTracking']);
+        (function() {
+          var u="https://{{ config.METAREGISTRY_MATOMO }}/";
+          _paq.push(['setTrackerUrl', u+'matomo.php']);
+          _paq.push(['setSiteId', '1']);
+          var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+          g.async=true; g.src='https://cdn.matomo.cloud/{{ config.METAREGISTRY_MATOMO }}/matomo.js'; s.parentNode.insertBefore(g,s);
+        })();
+    </script>
+    <!-- End Matomo Code -->
+    {%- endif %}
+    {%- endblock %}
 </head>
 <body {% block bodyattr %}{% endblock %}>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -90,14 +110,14 @@
                     <a class="dropdown-item" href="{{ url_for("metaregistry_ui.summary") }}">Summary</a>
                     {% else %}
                     <a class="dropdown-item" target="_blank" href="https://bioregistry.io/summary">
-                        Summary <i class="fa fa-external-link" aria-hidden="true"></i>
+                        Summary <i class="bi bi-link-45deg" aria-hidden="true"></i>
                     </a>
                     {% endif %}
                     <a class="dropdown-item" target="_blank" href="{{ config.METAREGISTRY_REPOSITORY_PAGES }}/glossary/">
-                        Glossary <i class="fa fa-external-link" aria-hidden="true"></i>
+                        Glossary <i class="bi bi-link-45deg" aria-hidden="true"></i>
                     </a>
                     <a class="dropdown-item" target="_blank" href="{{ config.METAREGISTRY_REPOSITORY_PAGES }}/datamodel/">
-                        Data Model <i class="fa fa-external-link" aria-hidden="true"></i>
+                        Data Model <i class="bi bi-link-45deg" aria-hidden="true"></i>
                     </a>
                     <a class="dropdown-item" href="{{ url_for("metaregistry_ui.schema") }}">JSON and RDF Schemata</a>
                     {% if config.METAREGISTRY_FIRST_PARTY %}
@@ -105,7 +125,7 @@
                     <h6 class="dropdown-header">Maintenance</h6>
                     <a class="dropdown-item" href="{{ url_for("metaregistry_ui.sustainability") }}">Deployment and Sustainability</a>
                     <a class="dropdown-item" target="_blank" href="{{ config.METAREGISTRY_REPOSITORY_PAGES }}/health/">
-                        Health Report <i class="fa fa-external-link" aria-hidden="true"></i>
+                        Health Report <i class="bi bi-link-45deg" aria-hidden="true"></i>
                     </a>
                     {% endif %}
                     <div class="dropdown-divider"></div>
@@ -117,16 +137,16 @@
                     <div class="dropdown-divider"></div>
                     <h6 class="dropdown-header">Workshops</h6>
                     <a class="dropdown-item" target="_blank" href="https://biopragmatics.github.io/workshops/wpci2021">
-                        WPCI 2021 <i class="fa fa-external-link" aria-hidden="true"></i>
+                        WPCI 2021 <i class="bi bi-link-45deg" aria-hidden="true"></i>
                     </a>
                     <a class="dropdown-item" target="_blank" href="https://biopragmatics.github.io/workshops/wpci2022">
-                        WPCI 2022 <i class="fa fa-external-link" aria-hidden="true"></i>
+                        WPCI 2022 <i class="bi bi-link-45deg" aria-hidden="true"></i>
                     </a>
                     <a class="dropdown-item" target="_blank" href="https://biopragmatics.github.io/workshops/wpci2023">
-                        WPCI 2023 <i class="fa fa-external-link" aria-hidden="true"></i>
+                        WPCI 2023 <i class="bi bi-link-45deg" aria-hidden="true"></i>
                     </a>
                     <a class="dropdown-item" target="_blank" href="https://biopragmatics.github.io/workshops/biocuration2025">
-                        Biocuration 2025 <i class="fa fa-external-link" aria-hidden="true"></i>
+                        Biocuration 2025 <i class="bi bi-link-45deg" aria-hidden="true"></i>
                     </a>
                 </div>
             </li>
@@ -138,21 +158,21 @@
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                     <h6 class="dropdown-header">Project Info</h6>
                     <a class="dropdown-item" target="_blank" href="{{ config.METAREGISTRY_REPOSITORY }}/blob/main/docs/CONTRIBUTING.md">
-                        Contribution Guidelines <i class="fa fa-external-link" aria-hidden="true"></i>
+                        Contribution Guidelines <i class="bi bi-link-45deg" aria-hidden="true"></i>
                     </a>
                     <a class="dropdown-item" target="_blank" href="{{ config.METAREGISTRY_REPOSITORY }}/blob/main/docs/CODE_OF_CONDUCT.md">
-                        Code of Conduct <i class="fa fa-external-link" aria-hidden="true"></i>
+                        Code of Conduct <i class="bi bi-link-45deg" aria-hidden="true"></i>
                     </a>
                     <a class="dropdown-item" target="_blank" href="{{ config.METAREGISTRY_REPOSITORY }}/blob/main/docs/GOVERNANCE.md">
-                        Project Governance <i class="fa fa-external-link" aria-hidden="true"></i>
+                        Project Governance <i class="bi bi-link-45deg" aria-hidden="true"></i>
                     </a>
                     <div class="dropdown-divider"></div>
                     <h6 class="dropdown-header">Getting Started</h6>
                     <a class="dropdown-item" target="_blank" href="{{ config.METAREGISTRY_REPOSITORY }}/issues/new?labels=New%2CPrefix&template=new-prefix.yml&title=Add+prefix+%5BX%5D">
-                        Request a Prefix <i class="fa fa-external-link" aria-hidden="true"></i>
+                        Request a Prefix <i class="bi bi-link-45deg" aria-hidden="true"></i>
                     </a>
                     <a class="dropdown-item" target="_blank" href="{{ config.METAREGISTRY_REPOSITORY_PAGES }}/curation/">
-                        Good First Contributions <i class="fa fa-external-link" aria-hidden="true"></i>
+                        Good First Contributions <i class="bi bi-link-45deg" aria-hidden="true"></i>
                     </a>
                     <!--<div class="dropdown-divider"></div>-->
                 </div>

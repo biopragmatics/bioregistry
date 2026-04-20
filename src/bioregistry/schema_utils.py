@@ -2,7 +2,6 @@
 
 from __future__ import annotations
 
-import csv
 import json
 import logging
 from collections import defaultdict
@@ -10,10 +9,10 @@ from collections.abc import Mapping
 from functools import lru_cache
 from operator import attrgetter
 from pathlib import Path
-from typing import Literal, TypeAlias
+from typing import TypeAlias
 
-from curies import Reference
-from pydantic import BaseModel, Field
+import sssom_pydantic
+from sssom_pydantic import SemanticMapping
 
 from .constants import (
     BIOREGISTRY_PATH,
@@ -23,22 +22,27 @@ from .constants import (
     METAREGISTRY_PATH,
 )
 from .schema import Collection, Context, Registry, Resource
+from .schema.struct import CollectionAnnotation
 
 __all__ = [
     "OrcidStr",
     "SemanticMapping",
     "add_collection",
     "add_resource",
+    "get_collection_mappings",
     "is_mismatch",
     "read_collections",
     "read_collections_contributions",
     "read_context_contributions",
     "read_contexts",
+    "read_has_version_mappings",
+    "read_mappings",
     "read_metaregistry",
     "read_mismatches",
     "read_prefix_contacts",
     "read_prefix_contributions",
     "read_prefix_reviews",
+    "read_provided_by_mappings",
     "read_registry",
     "read_registry_contributions",
     "read_status_contributions",
@@ -46,7 +50,6 @@ __all__ = [
     "resources",
     "write_collections",
     "write_contexts",
-    "write_mappings",
     "write_metaregistry",
     "write_registry",
 ]
@@ -109,26 +112,6 @@ def add_resource(resource: Resource) -> None:
     write_registry(registry)
 
 
-class SemanticMapping(BaseModel):
-    """A model representing a SSSOM semantic mapping."""
-
-    subject: Reference = Field(..., alias="subject_id")
-    predicate_modifier: Literal["Not"] | None = Field(None)
-    predicate: Reference = Field(..., alias="predicate_id")
-    object: Reference = Field(..., alias="object_id")
-    creator: Reference = Field(..., alias="creator_id")
-    mapping_justification: Reference = Field(...)
-    comment: str | None = Field(None)
-    issue_tracker_item: int | None = Field(
-        None, description="The PR or issue associated with the change"
-    )
-    date: str = Field(
-        ...,
-        pattern="^\\d{4}-\\d{2}-\\d{2}$",
-        description="The ISO-8601 date of curation in YYYY-MM-DD",
-    )
-
-
 def read_mismatches() -> dict[str, dict[str, set[str]]]:
     """Read the mismatches subset of curated mappings as a nested dictionary data structure."""
     mismatches: defaultdict[str, defaultdict[str, set[str]]] = defaultdict(lambda: defaultdict(set))
@@ -138,19 +121,29 @@ def read_mismatches() -> dict[str, dict[str, set[str]]]:
     return {k: dict(v) for k, v in mismatches.items()}
 
 
+def read_has_version_mappings() -> dict[str, dict[str, set[str]]]:
+    """Read the version mapping subset of curated mappings as a nested dictionary data structure."""
+    return _read_mappings("dcterms:hasVersion")
+
+
+def read_provided_by_mappings() -> dict[str, dict[str, set[str]]]:
+    """Read the provider mapping subset of curated mappings as a nested dictionary data structure."""
+    return _read_mappings("bioregistry.schema:0000030")
+
+
+def _read_mappings(predicate_curie: str) -> dict[str, dict[str, set[str]]]:
+    rv: defaultdict[str, defaultdict[str, set[str]]] = defaultdict(lambda: defaultdict(set))
+    for m in read_mappings():
+        if m.predicate.curie == predicate_curie:
+            rv[m.subject.identifier][m.object.prefix].add(m.object.identifier)
+    return {k: dict(v) for k, v in rv.items()}
+
+
 @lru_cache(maxsize=1)
 def read_mappings() -> list[SemanticMapping]:
     """Read curated mappings as a nested dict data structure."""
-    return _read_semantic_mappings(CURATED_MAPPINGS_PATH)
-
-
-def _read_semantic_mappings(path: str | Path) -> list[SemanticMapping]:
-    """Read curated mappings as a nested dict data structure."""
-    with Path(path).expanduser().resolve().open() as file:
-        return [
-            SemanticMapping.model_validate({k: v for k, v in record.items() if v})
-            for record in csv.DictReader(file, delimiter="\t")
-        ]
+    mappings, _, _ = sssom_pydantic.read(CURATED_MAPPINGS_PATH)
+    return mappings
 
 
 def is_mismatch(bioregistry_prefix: str, external_metaprefix: str, external_prefix: str) -> bool:
@@ -160,46 +153,20 @@ def is_mismatch(bioregistry_prefix: str, external_metaprefix: str, external_pref
     )
 
 
-def write_mappings(mappings: list[SemanticMapping]) -> None:
-    """Write mappings into the curated mappings file with appropriate sorting."""
-    mappings = sorted(
-        mappings,
-        key=lambda x: (x.subject, x.object, x.predicate, x.predicate_modifier),
-    )
-    header = [
-        "subject_id",
-        "predicate_modifier",
-        "predicate_id",
-        "object_id",
-        "creator_id",
-        "mapping_justification",
-        "comment",
-        "issue_tracker_item",
-        "date",
-    ]
-    with CURATED_MAPPINGS_PATH.open("w") as file:
-        writer = csv.writer(file, delimiter="\t", lineterminator="\n")
-        writer.writerow(header)
-        writer.writerows(
-            (
-                mapping.subject.curie,
-                mapping.predicate_modifier,
-                mapping.predicate.curie,
-                mapping.object.curie,
-                mapping.creator.curie,
-                mapping.mapping_justification.curie,
-                mapping.comment,
-                mapping.issue_tracker_item,
-                mapping.date,
-            )
-            for mapping in mappings
-        )
-
-
 @lru_cache(maxsize=1)
 def read_collections() -> Mapping[str, Collection]:
     """Read the manually curated collections."""
     return _collections_from_path(COLLECTIONS_PATH)
+
+
+def get_collection_mappings(external_prefix: str) -> dict[str, str]:
+    """Get a mapping from internal collection IDs to external ones in the given prefix."""
+    return {
+        collection.identifier: mapping.identifier
+        for collection in read_collections().values()
+        for mapping in collection.mappings or []
+        if mapping.prefix == external_prefix
+    }
 
 
 def _collections_from_path(path: str | Path) -> dict[str, Collection]:
@@ -215,7 +182,7 @@ def write_collections(collections: Mapping[str, Collection], *, path: Path | Non
     """Write the collections."""
     values = [v for _, v in sorted(collections.items())]
     for collection in values:
-        collection.resources = sorted(set(collection.resources))
+        collection.resources = _lint_collection_resources(collection.resources)
     with open(path or COLLECTIONS_PATH, encoding="utf-8", mode="w") as file:
         json.dump(
             {
@@ -229,6 +196,25 @@ def write_collections(collections: Mapping[str, Collection], *, path: Path | Non
             sort_keys=True,
             ensure_ascii=False,
         )
+
+
+def _lint_collection_resources(
+    annotations: list[str | CollectionAnnotation],
+) -> list[str | CollectionAnnotation]:
+    prefix_to_annotation: dict[str, str | CollectionAnnotation] = {}
+    for annotation in annotations:
+        if isinstance(annotation, CollectionAnnotation):
+            prefix_to_annotation[annotation.prefix] = annotation
+        else:
+            prefix_to_annotation[annotation] = annotation
+    return sorted(prefix_to_annotation.values(), key=_collection_resource_key)
+
+
+def _collection_resource_key(x: str | CollectionAnnotation) -> str:
+    if isinstance(x, str):
+        return x
+    else:
+        return x.prefix
 
 
 def add_collection(collection: Collection, *, path: Path | None = None) -> None:
@@ -329,11 +315,15 @@ def read_prefix_contacts(registry: Mapping[str, Resource]) -> Mapping[OrcidStr, 
 def read_collections_contributions(
     collections: Mapping[str, Collection],
 ) -> Mapping[OrcidStr, set[str]]:
-    """Get a mapping from contributor ORCID identifiers to collections."""
-    rv = defaultdict(set)
-    for collection_id, resource in collections.items():
-        for author in resource.authors or []:
-            rv[author.orcid].add(collection_id)
+    """Get a mapping from contributor/maintainer ORCID identifiers to collections."""
+    rv: defaultdict[OrcidStr, set[str]] = defaultdict(set)
+    for collection in collections.values():
+        for contributor in collection.contributors or []:
+            if contributor.orcid:
+                rv[contributor.orcid].add(collection.identifier)
+        for maintainer in collection.maintainers or []:
+            if maintainer.orcid:
+                rv[maintainer.orcid].add(collection.identifier)
     return dict(rv)
 
 

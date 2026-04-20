@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+from collections import defaultdict
 from collections.abc import Mapping
 from typing import Annotated, Any
 
@@ -20,6 +21,7 @@ from ..export.rdf_export import (
 )
 from ..resource_manager import Manager
 from ..schema import Attributable, Collection, Context, Registry, Resource, sanitize_mapping
+from ..schema.struct import OlsConfig
 from ..schema_utils import (
     read_collections_contributions,
     read_prefix_contacts,
@@ -31,6 +33,8 @@ from ..schema_utils import (
 __all__ = [
     "api_router",
 ]
+
+from ..utils import registry_yaml_dumper
 
 api_router = APIRouter(prefix="/api")
 
@@ -58,19 +62,26 @@ class YAMLResponse(Response):
 
     media_type = "application/yaml"
 
-    def render(self, content: Any) -> bytes:
+    def render(self, content: BaseModel | Mapping[str, BaseModel]) -> bytes:
         """Render content as YAML."""
+        data: dict[str, Any]
         if isinstance(content, BaseModel):
-            content = content.model_dump(
+            data = content.model_dump(
                 exclude_none=True,
                 exclude_unset=True,
             )
+        elif isinstance(content, dict):
+            data = sanitize_mapping(content)
+        else:
+            raise TypeError
         return yaml.safe_dump(
-            content,
+            data,
             allow_unicode=True,
             indent=2,
         ).encode("utf-8")
 
+
+registry_yaml_dumper()
 
 ACCEPT_HEADER = Header(default=None)
 FORMAT_QUERY = Query(
@@ -117,7 +128,7 @@ def get_resources(
     if accept == "application/json":
         return manager.registry
     elif accept == "application/yaml":
-        return YAMLResponse(sanitize_mapping(manager.registry))
+        return YAMLResponse(manager.registry)
     elif accept in RDF_MEDIA_TYPES:
         raise NotImplementedError
     else:
@@ -167,6 +178,30 @@ def get_resource(
 
 
 @api_router.get(
+    "/registry/{prefix}/ols.json",
+    response_model=OlsConfig,
+    tags=["resource", "ols"],
+    response_model_exclude_none=True,
+    response_model_exclude_unset=True,
+)
+def get_resource_ols_config(
+    manager: DependsManager,
+    prefix: str = Path(
+        title="Prefix", description="The internal prefix for the entry", examples=["doid"]
+    ),
+) -> OlsConfig:
+    """Get OLS configuration for a resource."""
+    resource = manager.get_resource(prefix)
+    if resource is None:
+        raise HTTPException(status_code=404, detail=f"Prefix not found: {prefix}")
+    try:
+        ols_config = resource.get_ols_config()
+    except ValueError as e:
+        raise HTTPException(status_code=400, detail=str(e)) from None
+    return ols_config
+
+
+@api_router.get(
     "/metaregistry",
     response_model=Mapping[str, Registry],
     tags=["metaresource"],
@@ -182,7 +217,7 @@ def get_metaresources(
     if accept == "application/json":
         return manager.metaregistry
     elif accept == "application/yaml":
-        return YAMLResponse(sanitize_mapping(manager.metaregistry))
+        return YAMLResponse(manager.metaregistry)
     elif accept in RDF_MEDIA_TYPES:
         raise NotImplementedError
     else:
@@ -331,11 +366,18 @@ def get_collections(
     if accept == "application/json":
         return manager.collections
     elif accept == "application/yaml":
-        return YAMLResponse(sanitize_mapping(manager.collections))
+        return YAMLResponse(manager.collections)
     elif accept in RDF_MEDIA_TYPES:
         raise NotImplementedError
     else:
         raise HTTPException(400, f"Bad Accept header: {accept}")
+
+
+COLLECTION_IDENTIFIER = Path(
+    title="Collection Identifier",
+    description="The 7-digit collection identifier",
+    examples=["0000001"],
+)
 
 
 @api_router.get(
@@ -355,11 +397,7 @@ def get_collections(
 )
 def get_collection(
     manager: DependsManager,
-    identifier: str = Path(
-        title="Collection Identifier",
-        description="The 7-digit collection identifier",
-        examples=["0000001"],
-    ),
+    identifier: Annotated[str, COLLECTION_IDENTIFIER],
     accept: str | None = ACCEPT_HEADER,
     format: str | None = FORMAT_QUERY,
 ) -> Response | Collection:
@@ -387,6 +425,108 @@ def get_collection(
         raise HTTPException(400, f"Bad Accept header: {accept}")
 
 
+class CollectionMappingResult(BaseModel):
+    """Represent mappings from a collection's prefixes to an external registry."""
+
+    mappings: dict[str, str]
+    misses: list[str]
+    version_mappings: dict[str, list[str]]
+    provider_mappings: dict[str, list[str]]
+
+
+@api_router.get(
+    "/collection/{identifier}/mapped/{metaprefix}.json",
+    response_model=CollectionMappingResult,
+    tags=["collection"],
+)
+def get_collection_mapped(
+    manager: DependsManager,
+    identifier: Annotated[str, COLLECTION_IDENTIFIER],
+    metaprefix: Annotated[str, Path(examples=["ols"])],
+) -> CollectionMappingResult:
+    """Get mappings from resources in a collection to an external registry."""
+    collection = manager.collections.get(identifier)
+    if collection is None:
+        raise HTTPException(status_code=404, detail=f"Collection not found: {identifier}")
+
+    mapping = manager.get_registry_map(metaprefix)  # TODO raise on invalid metaprefix?
+
+    mappings: dict[str, str] = {}
+    misses: set[str] = set()
+    version_mappings: defaultdict[str, set[str]] = defaultdict(set)
+    provider_mappings: defaultdict[str, set[str]] = defaultdict(set)
+    for prefix in collection.get_prefixes():
+        if external_prefix := mapping.get(prefix):
+            mappings[prefix] = external_prefix
+        else:
+            misses.add(prefix)
+        if external_version_mappings := manager.has_version_mappings.get(prefix, {}).get(
+            metaprefix, set()
+        ):
+            version_mappings[prefix].update(external_version_mappings)
+        if external_provider_mappings := manager.provided_by_mappings.get(prefix, {}).get(
+            metaprefix, set()
+        ):
+            provider_mappings[prefix].update(external_provider_mappings)
+
+    return CollectionMappingResult(
+        mappings=mappings,
+        misses=sorted(misses),
+        version_mappings={k: sorted(v) for k, v in version_mappings.items()},
+        provider_mappings={k: sorted(v) for k, v in provider_mappings.items()},
+    )
+
+
+class OLSConfigurations(BaseModel):
+    """Represent mappings from an external registry."""
+
+    configurations: list[OlsConfig]
+    missing: list[str]
+
+
+@api_router.get(
+    "/ols/{prefixes}",
+    response_model=OLSConfigurations,
+    tags=["ols"],
+)
+def get_ols_configurations(
+    manager: DependsManager,
+    prefixes: Annotated[str, Path(..., examples=["cl,doid,mondo"])],
+) -> OLSConfigurations:
+    """Get OLS configurations for multiple prefixes given as a query parameter."""
+    return _get_multiple_ols_configurations(prefixes.split(","), manager)
+
+
+@api_router.get(
+    "/collection/{identifier}/ols.json",
+    response_model=OLSConfigurations,
+    tags=["collection", "ols"],
+)
+def get_collection_ols_configurations(
+    manager: DependsManager,
+    identifier: Annotated[str, COLLECTION_IDENTIFIER],
+) -> OLSConfigurations:
+    """Get OLS configurations for all ontologies in a collection with sufficient metadata."""
+    collection = manager.collections.get(identifier)
+    if collection is None:
+        raise HTTPException(status_code=404, detail=f"Collection not found: {identifier}")
+    return _get_multiple_ols_configurations(collection.get_prefixes(), manager)
+
+
+def _get_multiple_ols_configurations(prefixes: list[str], manager: Manager) -> OLSConfigurations:
+    configurations = []
+    missing = []
+    for prefix in prefixes:
+        resource = manager.get_resource(prefix, strict=True)
+        try:
+            configuration = resource.get_ols_config()
+        except ValueError:
+            missing.append(prefix)
+        else:
+            configurations.append(configuration)
+    return OLSConfigurations(configurations=configurations, missing=missing)
+
+
 @api_router.get("/context", response_model=Mapping[str, Context], tags=["context"])
 def get_contexts(
     manager: DependsManager,
@@ -398,7 +538,7 @@ def get_contexts(
     if accept == "application/json":
         return manager.contexts
     elif accept == "application/yaml":
-        return YAMLResponse(sanitize_mapping(manager.contexts))
+        return YAMLResponse(manager.contexts)
     else:
         raise HTTPException(400, f"Bad Accept header: {accept}")
 
@@ -427,7 +567,7 @@ def get_contributors(
     if accept == "application/json":
         return contributors
     elif accept == "application/yaml":
-        return YAMLResponse(sanitize_mapping(contributors))
+        return YAMLResponse(contributors)
     else:
         raise HTTPException(400, f"Bad Accept header: {accept}")
 

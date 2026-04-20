@@ -10,8 +10,11 @@ __all__ = [
 @click.command()
 def lint() -> None:
     """Run the lint commands."""
-    from .constants import CURATED_PAPERS_PATH
+    import sssom_pydantic
+
+    from .constants import CURATED_MAPPINGS_PATH, CURATED_PAPERS_PATH
     from .schema_utils import (
+        _lint_collection_resources,
         read_collections,
         read_contexts,
         read_mappings,
@@ -19,7 +22,6 @@ def lint() -> None:
         read_registry,
         write_collections,
         write_contexts,
-        write_mappings,
         write_metaregistry,
         write_registry,
     )
@@ -55,11 +57,12 @@ def lint() -> None:
     write_registry(registry)
     collections = read_collections()
     for collection in collections.values():
-        collection.resources = sorted(set(collection.resources))
+        collection.resources = _lint_collection_resources(collection.resources)
     write_collections(collections)
     write_metaregistry(read_metaregistry())
     write_contexts(read_contexts())
-    write_mappings(read_mappings())
+
+    sssom_pydantic.lint(CURATED_MAPPINGS_PATH)
 
     df = pd.read_csv(CURATED_PAPERS_PATH, sep="\t")
     df["pr_added"] = df["pr_added"].map(lambda x: str(int(x)) if pd.notna(x) else None)

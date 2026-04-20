@@ -8,16 +8,14 @@
 
 from __future__ import annotations
 
-import json
 import logging
 from collections.abc import Mapping, Sequence
 from pathlib import Path
 from typing import Any, ClassVar
 
-from pystow.utils import download
-
+from bioregistry.alignment_model import License, Provider, Publication, Record, make_record
 from bioregistry.constants import RAW_DIRECTORY
-from bioregistry.external.alignment_utils import Aligner, load_processed
+from bioregistry.external.alignment_utils import Aligner, build_getter
 from bioregistry.license_standardizer import standardize_license
 
 __all__ = [
@@ -94,27 +92,33 @@ SKIP_URI_FORMATS = {
     "http://arabidopsis.org/servlets/TairObject?accession=$1",
     "http://www.gramene.org/db/ontology/search?id=$1",
 }
+BIO2RDF_DESC = (
+    "Bio2RDF is an open-source project that uses Semantic Web technologies to "
+    "build and provide the largest network of Linked Data for the Life Sciences. Bio2RDF "
+    "defines a set of simple conventions to create RDF(S) compatible Linked Data from a diverse "
+    "set of heterogeneously formatted sources obtained from multiple data providers."
+)
 
 
-def get_prefixcommons(
-    force_download: bool = False, force_process: bool = False
-) -> dict[str, dict[str, Any]]:
-    """Get the Life Science Registry."""
-    if PROCESSED_PATH.exists() and not (force_download or force_process):
-        return load_processed(PROCESSED_PATH)
-
-    download(url=URL, path=RAW_PATH, force=force_download)
+def parse_prefixcommons(path: Path) -> dict[str, Record]:
+    """Parse Prefix Commons raw data."""
     rows = {}
-    with RAW_PATH.open() as file:
+    with path.open() as file:
         lines = iter(file)
         next(lines)  # throw away header
         for line in lines:
             prefix, data = _process_row(line)
             if prefix and data:
-                rows[prefix] = data
-
-    PROCESSED_PATH.write_text(json.dumps(rows, sort_keys=True, indent=2))
+                rows[prefix] = make_record(data)
     return rows
+
+
+get_prefixcommons = build_getter(
+    processed_path=PROCESSED_PATH,
+    raw_path=RAW_PATH,
+    url=URL,
+    func=parse_prefixcommons,
+)
 
 
 def _process_row(line: str) -> tuple[str, dict[str, Any]] | tuple[None, None]:
@@ -126,14 +130,27 @@ def _process_row(line: str) -> tuple[str, dict[str, Any]] | tuple[None, None]:
         for key, value in zip(COLUMNS, cells_processed, strict=False)
         if key and value and key in KEEP
     }
-    for key in ["name", "description", "example", "pattern"]:
+
+    if example := rv.pop("example", None):
+        rv["examples"] = [example]
+    else:
+        return None, None
+
+    for key in ["name", "description"]:
         if not rv.get(key):
             return None, None
 
-    for key in ["keywords", "pubmed_ids"]:
-        values = rv.get(key)
-        if values:
-            rv[key] = [value.strip() for value in values.split(",")]
+    if pubmed_ids := rv.pop("pubmed_ids", None):
+        rv["publications"] = [
+            Publication(pubmed=pubmed_id.strip()) for pubmed_id in pubmed_ids.split(",")
+        ]
+
+    if keywords := rv.get("keywords"):
+        rv["keywords"] = [value.strip() for value in keywords.split(",")]
+
+    for metaprefix in ["miriam", "bioportal"]:
+        if metavalue := rv.pop(metaprefix, None):
+            rv.setdefault("xrefs", {})[metaprefix] = metavalue
 
     synonyms = rv.pop("synonyms", None)
     if not synonyms:
@@ -148,11 +165,11 @@ def _process_row(line: str) -> tuple[str, dict[str, Any]] | tuple[None, None]:
             if synonym.lower() != prefix.lower() and " " not in synonym
         ]
         if synonyms_it:
-            rv["synonyms"] = synonyms_it
+            rv["prefix_synonyms"] = synonyms_it
 
     license_url = rv.pop("license_url", None)
     if license_url:
-        rv["license"] = standardize_license(license_url)
+        rv["license"] = License(url=license_url, name=standardize_license(license_url))
 
     uri_format = rv.pop("uri_format", None)
     if uri_format:
@@ -164,19 +181,34 @@ def _process_row(line: str) -> tuple[str, dict[str, Any]] | tuple[None, None]:
     if uri_rdf_formats:
         if len(uri_rdf_formats) > 1:
             logger.warning("got multiple RDF formats for %s", prefix)
-        rv["rdf_uri_format"] = uri_rdf_formats[0]
+        rv["uri_format_rdf"] = uri_rdf_formats[0]
 
+    rv["providers"] = [
+        Provider(
+            code="bio2rdf",
+            name="Bio2RDF",
+            homepage="https://bio2rdf.org",
+            uri_format=f"http://bio2rdf.org/{prefix}:$1",
+            description=BIO2RDF_DESC,
+        )
+    ]
     alt_uri_formats_clean = _get_uri_formats(rv, "alternate_uri_formats")
     if alt_uri_formats_clean:
-        rv["alt_uri_formats"] = alt_uri_formats_clean
+        rv.setdefault("extras", {})["alt_uri_formats"] = alt_uri_formats_clean
+    # TODO properly get this into providers, but will probably require
+    #  a lot of curation
+    #  for uri_format in _get_uri_formats(rv, "alternate_uri_formats"):
+    #      rv['providers'].append(Provider(uri_format=uri_format))
 
     pattern = rv.get("pattern")
-    if pattern:
+    if isinstance(pattern, str):
         if not pattern.startswith("^"):
             pattern = f"^{pattern}"
         if not pattern.endswith("$"):
             pattern = f"{pattern}$"
         rv["pattern"] = pattern
+    elif pattern:
+        pass
 
     return prefix, rv
 
@@ -285,7 +317,7 @@ class PrefixCommonsAligner(Aligner):
         "name",
         "synonyms",
         "description",
-        "example",
+        "examples",
         "pattern",
         "uri_format",
     )
@@ -295,17 +327,6 @@ class PrefixCommonsAligner(Aligner):
     def get_skip(self) -> Mapping[str, str]:
         """Get skip prefixes."""
         return {**SKIP, **PROVIDERS}
-
-    def get_curation_row(self, external_id: str, external_entry: dict[str, Any]) -> Sequence[str]:
-        """Prepare curation rows for unaligned Prefix Commons registry entries."""
-        return [
-            external_entry["name"],
-            ", ".join(external_entry.get("synonyms", [])),
-            external_entry.get("description", "").replace('"', ""),
-            external_entry.get("example", ""),
-            external_entry.get("pattern", ""),
-            external_entry.get("uri_format", ""),
-        ]
 
 
 if __name__ == "__main__":

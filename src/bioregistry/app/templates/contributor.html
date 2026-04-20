@@ -19,7 +19,7 @@
                 <div class="col-8">
                     <h5 style="margin: 0">
                         <a href="{{ url_for('metaregistry_ui.contributors') }}">Contributors</a>
-                        <i class="fas fa-angle-right"></i> {{ contributor.name }}
+                        <i class="bi bi-chevron-right"></i> {{ contributor.name }}
                     </h5>
                 </div>
                 <div class="col-4 text-right">
@@ -33,7 +33,7 @@
                             {% for label, key in formats %}
                                 <a class="dropdown-item"
                                    href="{{ fastapi_url_for('get_contributor', orcid=contributor.orcid) }}?format={{ key }}">
-                                    {{ label }} <i class="fas fa-download"></i>
+                                    {{ label }} <i class="bi bi-download"></i>
                                 </a>
                             {% endfor %}
                         </div>
@@ -48,7 +48,7 @@
                 <dt>ORCID</dt>
                 <dd>
                     <a href="https://orcid.org/{{ contributor.orcid }}">
-                        {{ contributor.orcid }} <i class="fab fa-orcid"></i>
+                        {{ contributor.orcid }} {{ utils.orcid_img() }}
                     </a>
                 </dd>
                 {#

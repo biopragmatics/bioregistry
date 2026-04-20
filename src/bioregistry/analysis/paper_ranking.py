@@ -24,6 +24,7 @@ import logging
 import textwrap
 from collections import defaultdict
 from pathlib import Path
+from time import sleep
 from typing import TYPE_CHECKING, NamedTuple, TypeAlias, cast
 
 import click
@@ -163,9 +164,9 @@ def _fill_abstracts(
         pubmed_to_article = _get_articles_dict(df)
 
     df["abstract"] = df["pubmed"].map(
-        lambda pubmed: article.get_abstract()
-        if (article := pubmed_to_article.get(pubmed))
-        else None,
+        lambda pubmed: (
+            article.get_abstract() if (article := pubmed_to_article.get(pubmed)) else None
+        ),
         na_action="ignore",
     )
 
@@ -213,6 +214,7 @@ def _search(
         ):
             if pubmed_id not in pubmed_ids_to_filter:
                 pubmed_to_terms[pubmed_id].append(term)
+            sleep(1)
     return dict(pubmed_to_terms)
 
 

@@ -102,9 +102,7 @@ def parse_iri(
 
     :raises TypeError: if an invalid on_failure_return_type is given
     """
-    rv: ReferenceTuple | None = get_default_converter().parse_uri(
-        iri, return_none=True, strict=strict
-    )  # type:ignore[call-overload]
+    rv: ReferenceTuple | None = get_default_converter().parse_uri(iri, strict=strict)  # type:ignore[call-overload]
     if rv is None:
         return get_failure_return_type(on_failure_return_type)
     # don't invoke the manager until it's needed

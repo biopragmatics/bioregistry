@@ -8,27 +8,33 @@ import json
 import math
 from dataclasses import dataclass, field
 from pathlib import Path
-from typing import Any
+from typing import Any, cast
 
-import pystow
+import ontoportal_client
 import requests
 from tqdm import tqdm
 from tqdm.contrib.concurrent import thread_map
 
+from bioregistry.alignment_model import (
+    License,
+    Publication,
+    Record,
+    dump_records,
+    load_processed,
+    make_record,
+)
 from bioregistry.constants import EMAIL_RE, RAW_DIRECTORY
-from bioregistry.external.alignment_utils import load_processed
+from bioregistry.external.alignment_utils import adapter
 from bioregistry.license_standardizer import standardize_license
 from bioregistry.utils import removeprefix
 
 __all__ = [
     "get_agroportal",
+    "get_biodivportal",
     "get_bioportal",
     "get_ecoportal",
 ]
 
-BIOPORTAL_BASE_URL = "https://data.bioontology.org"
-ECOPORTAL_BASE_URL = "http://ecoportal.lifewatch.eu:8080"
-AGROPORTAL_BASE_URL = "http://data.agroportal.lirmm.fr"
 DIRECTORY = Path(__file__).parent.resolve()
 
 
@@ -37,8 +43,7 @@ class OntoPortalClient:
     """A client for an OntoPortal site, like BioPortal."""
 
     metaprefix: str
-    base_url: str
-    api_key: str | None = None
+    client: ontoportal_client.OntoPortalClient
     raw_path: Path = field(init=False)
     processed_path: Path = field(init=False)
     max_workers: int = 2
@@ -47,31 +52,30 @@ class OntoPortalClient:
         self.raw_path = RAW_DIRECTORY.joinpath(self.metaprefix).with_suffix(".json")
         self.processed_path = DIRECTORY.joinpath(self.metaprefix).with_suffix(".json")
 
-    def query(self, url: str, **params: Any) -> requests.Response:
-        """Query the given endpoint on the OntoPortal site.
-
-        :param url: URL to query
-        :param params: Kwargs to give as params to :func:`requests.get`
-
-        :returns: The response from :func:`requests.get`
-
-        The rate limit is 15 queries per second. See:
-        https://www.bioontology.org/wiki/Annotator_Optimizing_and_Troublehooting
-        """
-        if self.api_key is None:
-            self.api_key = pystow.get_config(self.metaprefix, "api_key", raise_on_missing=True)
-        params.setdefault("apikey", self.api_key)
-        return requests.get(url, params=params, timeout=30)
-
-    def download(self, force_download: bool = False) -> dict[str, dict[str, Any]]:
+    def download(
+        self, force_download: bool = False, force_process: bool = False
+    ) -> dict[str, Record]:
         """Get the full dump of the OntoPortal site's registry."""
-        if self.processed_path.exists() and not force_download:
+        if self.processed_path.exists() and not force_download and not force_process:
             return load_processed(self.processed_path)
 
-        # see https://data.bioontology.org/documentation#Ontology
-        res = self.query(self.base_url + "/ontologies", summaryOnly=False, notes=True)
-        records = res.json()
-        records = thread_map(  # type:ignore
+        records = self._get_records(force=force_download)
+
+        rv = dict(
+            thread_map(  # type:ignore
+                self.process, records, disable=True, description=f"Processing {self.metaprefix}"
+            )
+        )
+
+        dump_records(rv, self.processed_path)
+        return rv
+
+    def _get_records(self, force: bool = False) -> list[dict[str, Any]]:
+        if self.raw_path.exists() and not force:
+            return cast(list[dict[str, Any]], json.loads(self.raw_path.read_text()))
+
+        records = self.client.get_ontologies(summary_only=False, notes=True)
+        records = thread_map(
             self._preprocess,
             records,
             unit="ontology",
@@ -81,26 +85,16 @@ class OntoPortalClient:
         with self.raw_path.open("w") as file:
             json.dump(records, file, indent=2, sort_keys=True, ensure_ascii=False)
 
-        records = thread_map(  # type:ignore
-            self.process, records, disable=True, description=f"Processing {self.metaprefix}"
-        )
-        rv = {result["prefix"]: result for result in records}
-
-        with self.processed_path.open("w") as file:
-            json.dump(rv, file, indent=2, sort_keys=True, ensure_ascii=False)
-        return rv
+        return records
 
     def _preprocess(self, record: dict[str, Any]) -> dict[str, Any]:
         record.pop("@context", None)
         prefix = record["acronym"]
-        url = f"{self.base_url}/ontologies/{prefix}/latest_submission"
-        res = self.query(url, display="all")
-        if res.status_code != 200:
-            tqdm.write(
-                f"{self.metaprefix}:{prefix} had issue getting submission details: {res.text}"
-            )
+        try:
+            res_json = self.client.get_latest_submission(prefix, display="all")
+        except requests.exceptions.HTTPError as e:
+            tqdm.write(f"{self.metaprefix}:{prefix} had issue getting submission details: {e}")
             return record
-        res_json = res.json()
 
         publications = res_json.get("publication")
         if isinstance(publications, str):
@@ -155,58 +149,102 @@ class OntoPortalClient:
 
         return {k: v for k, v in record.items() if v}
 
-    def process(self, entry: dict[str, Any]) -> dict[str, Any]:
+    def process(self, entry: dict[str, Any]) -> tuple[str, Record]:
         """Process a record from the OntoPortal site's API."""
         prefix = entry["acronym"]
         rv = {
-            "prefix": prefix,
             "name": entry["name"].strip(),
             "description": entry.get("description"),
             "contact": entry.get("contact"),
             "homepage": entry.get("homepage"),
             "version": entry.get("version"),
-            "publications": entry.get("publications"),
             "repository": entry.get("repository"),
-            "example_uri": entry.get("exampleIdentifier"),
-            "license": entry.get("license"),
         }
-        return {k: v for k, v in rv.items() if v}
+        if license_name := entry.get("license"):
+            rv["license"] = License(name=license_name)
+        if publications := entry.pop("publications", None):
+            rv["publications"] = _handle_publications(publications)
+        if example_uri := entry.get("exampleIdentifier"):
+            rv.setdefault("extras", {})["example_uri"] = example_uri
+
+        return prefix, make_record(rv)
 
 
-bioportal_client = OntoPortalClient(
-    metaprefix="bioportal",
-    base_url=BIOPORTAL_BASE_URL,
-)
+def _handle_publications(ll: list[str]) -> list[Publication]:
+    # TODO this should get upstreamed somewhere, since it's such a common pattern
+    rv = []
+    for url in ll:
+        if url.startswith("https://doi.org/"):
+            rv.append(Publication(doi=url.removeprefix("https://doi.org/")))
+        elif url.startswith("http://doi.org/"):
+            rv.append(Publication(doi=url.removeprefix("http://doi.org/")))
+        elif url.startswith("https://dx.doi.org/"):
+            rv.append(Publication(doi=url.removeprefix("https://dx.doi.org/")))
+        elif url.startswith("http://www.ncbi.nlm.nih.gov/pubmed/"):
+            rv.append(Publication(pubmed=url.removeprefix("http://www.ncbi.nlm.nih.gov/pubmed/")))
+        elif url.startswith("https://www.ncbi.nlm.nih.gov/pubmed/"):
+            rv.append(Publication(pubmed=url.removeprefix("https://www.ncbi.nlm.nih.gov/pubmed/")))
+        elif url.startswith("https://zenodo.org/records/"):
+            rv.append(Publication(zenodo=url.removeprefix("https://zenodo.org/records/")))
+        elif url.startswith("https://arxiv.org/abs/"):
+            rv.append(Publication(arxiv=url.removeprefix("https://arxiv.org/abs/")))
+        else:
+            # TODO look back for PMC
+            # tqdm.write(f'publication URL: {url}')
+            rv.append(Publication(url=url))
+    return rv
 
 
-def get_bioportal(force_download: bool = False) -> dict[str, dict[str, Any]]:
+@adapter
+def get_bioportal(
+    force_download: bool = False, force_process: bool = False, *, api_key: str | None = None
+) -> dict[str, Record]:
     """Get the BioPortal registry."""
-    return bioportal_client.download(force_download=force_download)
+    client = OntoPortalClient(
+        metaprefix="bioportal",
+        client=ontoportal_client.BioPortalClient(api_key=api_key),
+    )
+    return client.download(force_download=force_download, force_process=force_process)
 
 
-ecoportal_client = OntoPortalClient(
-    metaprefix="ecoportal",
-    base_url=ECOPORTAL_BASE_URL,
-)
-
-
-def get_ecoportal(force_download: bool = False) -> dict[str, dict[str, Any]]:
+@adapter
+def get_ecoportal(
+    force_download: bool = False, force_process: bool = False, *, api_key: str | None = None
+) -> dict[str, Record]:
     """Get the EcoPortal registry."""
-    return ecoportal_client.download(force_download=force_download)
+    client = OntoPortalClient(
+        metaprefix="ecoportal",
+        client=ontoportal_client.EcoPortalClient(api_key=api_key),
+    )
+    return client.download(force_download=force_download, force_process=force_process)
 
 
-agroportal_client = OntoPortalClient(
-    metaprefix="agroportal",
-    base_url=AGROPORTAL_BASE_URL,
-)
-
-
-def get_agroportal(force_download: bool = False) -> dict[str, dict[str, Any]]:
+@adapter
+def get_agroportal(
+    force_download: bool = False, force_process: bool = False, *, api_key: str | None = None
+) -> dict[str, Record]:
     """Get the AgroPortal registry."""
-    return agroportal_client.download(force_download=force_download)
+    client = OntoPortalClient(
+        metaprefix="agroportal",
+        client=ontoportal_client.AgroPortalClient(api_key=api_key),
+    )
+    return client.download(force_download=force_download, force_process=force_process)
+
+
+@adapter
+def get_biodivportal(
+    force_download: bool = False, force_process: bool = False, *, api_key: str | None = None
+) -> dict[str, Record]:
+    """Get the BiodivPortal registry."""
+    client = OntoPortalClient(
+        metaprefix="biodivportal",
+        client=ontoportal_client.BioPortalClient(api_key=api_key),
+    )
+    return client.download(force_download=force_download, force_process=force_process)
 
 
 if __name__ == "__main__":
-    print("EcoPortal has", len(get_ecoportal(force_download=True)))  # noqa:T201
-    print("AgroPortal has", len(get_agroportal(force_download=True)))  # noqa:T201
-    print("BioPortal has", len(get_bioportal(force_download=True)))  # noqa:T201
+    print("BiodivPortal has", len(get_biodivportal(force_download=False, force_process=True)))  # noqa:T201
+    print("EcoPortal has", len(get_ecoportal(force_download=False, force_process=True)))  # noqa:T201
+    print("AgroPortal has", len(get_agroportal(force_download=False, force_process=True)))  # noqa:T201
+    print("BioPortal has", len(get_bioportal(force_download=False, force_process=True)))  # noqa:T201

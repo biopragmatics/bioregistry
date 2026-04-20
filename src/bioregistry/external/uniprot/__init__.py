@@ -8,10 +8,9 @@ from collections.abc import Sequence
 from pathlib import Path
 from typing import Any, ClassVar
 
-import requests
-
+from bioregistry.alignment_model import Record, make_record
 from bioregistry.constants import RAW_DIRECTORY, URI_FORMAT_KEY
-from bioregistry.external.alignment_utils import Aligner, load_processed
+from bioregistry.external.alignment_utils import Aligner, build_getter
 from bioregistry.utils import removeprefix
 
 __all__ = [
@@ -29,12 +28,15 @@ PROCESSED_PATH = DIRECTORY / "processed.json"
 
 #: resources with these UniProt prefixes don't exist anymore
 skip_prefixes = {
-    "UniPathway",  # doesn't exist anymore
-    "BRENDA",  # has bad format string contains EC, UniProt, and taxon
-    "eggNOG",  # not sure what this does
-    "PlantReactome",  # incomprehensible URLs
-    "Reactome",  # incomprehensible URLs
     "DB-0180",  # genewiki
+    "DB-0276",  # not an identifier resource, just an article
+    "DB-0176",  # resource almost impossible to navigate
+    "DB-0198",  # unclear
+    "DB-0238",  # no link in uniprot records, dead website
+    "DB-0167",  # no link in uniprot records to site, but does have corresponding dnasu prefixes
+    "DB-0169",  # no link in uniprot records, site is too hard to understand
+    # Confusing, maybe try again later
+    "DB-0193",
 }
 
 HAS_BAD_URI = {
@@ -43,57 +45,41 @@ HAS_BAD_URI = {
 }
 
 
-def get_uniprot(*, force_download: bool = True) -> dict[str, dict[str, str]]:
-    """Get the UniProt registry."""
-    if PROCESSED_PATH.is_file() and not force_download:
-        return load_processed(PROCESSED_PATH)
-
-    RAW_PATH.write_text(
-        json.dumps(
-            requests.get(URL, timeout=30).json(), indent=2, sort_keys=True, ensure_ascii=False
-        )
-    )
+def process_uniprot_raw(path: Path) -> dict[str, Record]:
+    """Process UniProt raw JSON."""
     rv = {}
-    for record in json.loads(RAW_PATH.read_text())["results"]:
-        processed_record = _process_record(record)
-        if processed_record is None:
-            continue
-        prefix = processed_record.pop("prefix")
+    for record in json.loads(path.read_text())["results"]:
+        prefix = record.pop("id")
         if prefix in skip_prefixes:
             continue
+        processed_record = _process_record(prefix, record)
+        if processed_record is None:
+            continue
         rv[prefix] = processed_record
-
-    with PROCESSED_PATH.open("w") as file:
-        json.dump(rv, file, indent=2, sort_keys=True)
     return rv
 
 
-def _process_record(record: dict[str, Any]) -> dict[str, Any] | None:
-    prefix = record.pop("id")
+def _process_record(prefix: str, record: dict[str, Any]) -> Record | None:
     rv = {
-        "prefix": prefix,
         "name": record.pop("name"),
-        "abbreviation": record.pop("abbrev"),
+        "short_names": [record.pop("abbrev")],
         "homepage": record.pop("servers")[0],
-        "category": record.pop("category"),
+        "keywords": [record.pop("category")],
     }
     publication = {}
-    doi: str | None = record.pop("doiId", None)
-    if doi is not None:
+    if doi := record.pop("doiId", None):
         doi = doi.lower().rstrip(".")
         doi = removeprefix(doi, "doi:")
         doi = removeprefix(doi, "https://doi.org/")
         if "/" in doi:
             publication["doi"] = doi
-    pubmed = record.pop("pubMedId", None)
-    if pubmed:
+    if pubmed := record.pop("pubMedId", None):
         publication["pubmed"] = str(pubmed)
     if publication:
         rv["publications"] = [publication]
 
     del record["linkType"]
     del record["statistics"]
-    rv = {k: v for k, v in rv.items() if k and v}
 
     value = record.pop("dbUrl")
     if "%s" in value and "%u" in value:
@@ -104,10 +90,18 @@ def _process_record(record: dict[str, Any]) -> dict[str, Any] | None:
         if "$1" in value and prefix not in HAS_BAD_URI:
             rv[URI_FORMAT_KEY] = value
         else:
-            logger.debug("no annotation in %s", rv["prefix"])
+            logger.debug("no annotation in %s", prefix)
     if record:
         logger.debug("forgot something: %s", record)
-    return rv
+    return make_record(rv)
+
+
+get_uniprot = build_getter(
+    processed_path=PROCESSED_PATH,
+    raw_path=RAW_PATH,
+    url=URL,
+    func=process_uniprot_raw,
+)
 
 
 class UniProtAligner(Aligner):
@@ -116,7 +110,7 @@ class UniProtAligner(Aligner):
     key = "uniprot"
     alt_key_match = "abbreviation"
     getter = get_uniprot
-    curation_header: ClassVar[Sequence[str]] = ("abbreviation", "name", URI_FORMAT_KEY, "category")
+    curation_header: ClassVar[Sequence[str]] = ("abbreviation", "name", URI_FORMAT_KEY, "keywords")
 
 
 if __name__ == "__main__":

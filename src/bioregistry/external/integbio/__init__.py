@@ -2,17 +2,18 @@
 
 from __future__ import annotations
 
-import json
 import logging
 from collections.abc import Sequence
 from pathlib import Path
-from typing import Any, ClassVar
+from typing import Any, ClassVar, cast
 
 import pandas as pd
 import requests
 from bs4 import BeautifulSoup
 
-from bioregistry.external.alignment_utils import Aligner
+from bioregistry.alignment_model import Publication, Record, Status, make_record
+from bioregistry.constants import RAW_DIRECTORY
+from bioregistry.external.alignment_utils import Aligner, build_getter
 
 __all__ = [
     "IntegbioAligner",
@@ -23,6 +24,7 @@ logger = logging.getLogger(__name__)
 
 DIRECTORY = Path(__file__).parent.resolve()
 PROCESSED_PATH = DIRECTORY / "processed.json"
+RAW_PATH = RAW_DIRECTORY / "integbio.csv.zip"
 
 SKIP = [
     "Link(s) to Downloadable data",
@@ -43,6 +45,7 @@ SKIP = [
     "Country/Region",
     "J-GLOBAL ID",  # about institutions?
     "Contact information of database",  # nice idea, but curation is bad so effectively unusable
+    "maintainer",  # TODO use this
 ]
 
 
@@ -73,7 +76,7 @@ def get_url() -> str:
     raise ValueError(f"unable to find Integbio download link on {base}")
 
 
-def _parse_references(s: str) -> list[str]:
+def _parse_references(s: str) -> list[Publication]:
     rv = []
     for part in s.strip().split("||"):
         ref = _parse_reference(part.strip())
@@ -82,12 +85,12 @@ def _parse_references(s: str) -> list[str]:
     return rv
 
 
-def _parse_reference(part: str) -> str | None:
-    if "\\" in part:  # it's pubmed followed by equvalent DOI
-        pubmed, _doi = part.split("\\")
-        return pubmed
+def _parse_reference(part: str) -> Publication | None:
+    if "\\" in part:  # it's pubmed followed by equivalent DOI
+        pubmed, doi = part.split("\\")
+        return Publication(pubmed=pubmed, doi=doi)
     if part.isnumeric():  # it's pubmed
-        return part
+        return Publication(pubmed=part)
     if part == "etc.":
         return None
     logger.debug(f"IntegBio unhandled reference part: {part}")
@@ -109,55 +112,85 @@ def _parse_fairsharing_url(s: str) -> str | None:
     return None
 
 
-def get_integbio(*, force_download: bool = False) -> dict[str, dict[str, Any]]:
-    """Get the integbio resource."""
-    url = get_url()
-    df = pd.read_csv(url)
-    df.rename(
-        columns={
-            "Database ID": "prefix",
-            "Database name": "name",
-            "Alternative name": "alt_name",
-            "Database description": "description",
-            "URL": "homepage",
-            "Link to FAIRsharing": "fairsharing",
-            "Reference(s) - PubMed ID/DOI": "references",
-            "Language(s)": "languages",
-            "Database maintenance site": "maintainer",
-            "Tag - Target": "target_keywords",
-            "Tag - Information type": "information_keywords",
-            "Operational status": "status",
-        },
-        inplace=True,
-    )
+REMAPPING = {
+    "Database ID": "prefix",
+    "Database name": "name",
+    "Alternative name": "alt_name",
+    "Database description": "description",
+    "URL": "homepage",
+    "Link to FAIRsharing": "fairsharing",
+    "Reference(s) - PubMed ID/DOI": "publications",
+    "Language(s)": "languages",
+    "Database maintenance site": "maintainer",
+    "Tag - Target": "target_keywords",
+    "Tag - Information type": "information_keywords",
+    "Operational status": "status",
+}
+
+
+def process_integbio(path: Path) -> dict[str, Record]:
+    """Process the raw data."""
+    df = pd.read_csv(path)
+    df.rename(columns=REMAPPING, inplace=True)
     for key in SKIP:
-        del df[key]  # type:ignore[operator]
+        del df[key]
 
-    df["fairsharing"] = df["fairsharing"].map(_parse_fairsharing_url, na_action="ignore")
     df = df[df["languages"] != "ja"]  # skip only japanese language database for now
-    del df["languages"]  # type:ignore[operator]
+    del df["languages"]
     # df["languages"] = df["languages"].map(_strip_split, na_action="ignore")
-    df["target_keywords"] = df["target_keywords"].map(_strip_split, na_action="ignore")
-    df["information_keywords"] = df["information_keywords"].map(_strip_split, na_action="ignore")
-    df["pubmeds"] = df["references"].map(_parse_references, na_action="ignore")
     df["description"] = df["description"].map(lambda s: s.replace("\r\n", "\n"), na_action="ignore")
+    df["status"] = df["status"].str.lower()
 
-    del df["references"]  # type:ignore[operator]
     # TODO ground database maintenance with ROR?
-    rv: dict[str, dict[str, Any]] = {}
-    for _, row in df.iterrows():
-        rv[row["prefix"].lower()] = {k: v for k, v in row.items() if isinstance(v, str | list)}  # type:ignore
-    PROCESSED_PATH.write_text(json.dumps(rv, indent=True, ensure_ascii=False, sort_keys=True))
+    rv: dict[str, Record] = {
+        cast(str, row.pop("prefix")).lower(): _process(row) for _, row in df.iterrows()
+    }
     return rv
+
+
+get_integbio = build_getter(
+    processed_path=PROCESSED_PATH, raw_path=RAW_PATH, url=get_url, func=process_integbio
+)
+
+
+def _process(series: pd.Series) -> Record:
+    row: dict[str, Any] = {cast(str, k): v for k, v in series.to_dict().items() if pd.notna(v)}
+    if pd.notna(fairsharing_url := row.pop("fairsharing", None)) and (
+        fairsharing := _parse_fairsharing_url(fairsharing_url)
+    ):
+        row["xrefs"] = {"fairsharing": fairsharing}
+    if pd.notna(publications := row.pop("publications", None)):
+        row["publications"] = _parse_references(publications)
+
+    for keyword_key in ["target_keywords", "information_keywords"]:
+        if pd.notna(target_keywords := row.pop(keyword_key, None)):
+            if "keywords" not in row:
+                row["keywords"] = []
+            row["keywords"].extend(_strip_split(target_keywords))
+
+    if pd.notna(status := row.pop("status", None)):
+        match status:
+            case "Active" | "active":
+                row["status"] = Status.active
+            case "Closed" | "closed" | "inactive":
+                row["status"] = Status.inactive
+            case _:
+                raise ValueError(f"unhandled status: {status}")
+
+    if pd.notna(alt_name := row.pop("alt_name", None)):
+        row["short_names"] = [row.pop("name")]
+        row["name"] = alt_name
+
+    return make_record(row)
 
 
 class IntegbioAligner(Aligner):
     """Aligner for the Integbio."""
 
     key = "integbio"
-    alt_key_match = "name"
+    alt_key_match = "short_names"
     getter = get_integbio
-    curation_header: ClassVar[Sequence[str]] = ("name", "alt_name", "homepage")
+    curation_header: ClassVar[Sequence[str]] = ("name", "homepage")
 
 
 if __name__ == "__main__":

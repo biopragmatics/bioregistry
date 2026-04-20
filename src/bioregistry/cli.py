@@ -79,8 +79,6 @@ def align(
         skip.add("bioportal")
     if skip_agroportal or skip_slow:
         skip.add("agroportal")
-    # Temporary fix to avoid issue with duplicate URI prefix
-    skip.add("wikidata")
     for aligner_cls in aligner_resolver:
         if aligner_cls.key in skip:
             continue
@@ -121,6 +119,20 @@ def update(ctx: click.Context) -> None:
     except Exception as e:
         click.secho("Error uploading to ndex", fg="red")
         click.secho(str(e), fg="red")
+
+
+@main.group()
+def curate() -> None:
+    """Curation workflows."""
+
+
+@curate.command()
+@click.argument("url")
+def linkml(url: str) -> None:
+    """Import from LinkML."""
+    from .curation.add_linkml import import_from_linkml
+
+    import_from_linkml(url)
 
 
 if __name__ == "__main__":

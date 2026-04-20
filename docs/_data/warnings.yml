@@ -175,7 +175,7 @@ wrong_patterns:
 - correct: ^[a-zA-Z0-9-_]+(/[a-zA-Z0-9-_]+)?$
   homepage: https://github.com/
   miriam: ^[a-zA-Z0-9-_]+/[a-zA-Z0-9-_]+$
-  name: GitHub username
+  name: github
   prefix: github
 - correct: ^.*/.*$
   homepage: https://gitlab.com/
@@ -195,7 +195,7 @@ wrong_patterns:
 - correct: ^\d{7}$
   homepage: http://www.geneontology.org
   miriam: ^GO_REF:\d{7}$
-  name: Gene Ontology Database references
+  name: Gene Ontology Reference
   prefix: go.ref
 - correct: ^[A-Z]{2,4}\d+([A-Z])?([0-9])?$
   homepage: https://www.google.com/patents/
@@ -278,7 +278,7 @@ wrong_patterns:
   name: Locus Reference Genomic
   prefix: lrg
 - correct: ^\d+$
-  homepage: https://github.com/obophenotype/mouse-anatomy-ontology
+  homepage: https://github.com/obophenotype/adult-mouse-anatomy-ontology
   miriam: ^MA:\d+$
   name: Mouse adult gross anatomy
   prefix: ma
@@ -295,7 +295,7 @@ wrong_patterns:
 - correct: ^(CN)?\d{2,7}$
   homepage: https://www.ncbi.nlm.nih.gov/medgen/
   miriam: ^[CN]*\d{4,7}$
-  name: Human Medical Genetics
+  name: MedGen
   prefix: medgen
 - correct: ^\d+\w?$
   homepage: https://mediadive.dsmz.de/media
@@ -472,6 +472,11 @@ wrong_patterns:
   miriam: ^PATO:\d{7}$
   name: Phenotype And Trait Ontology
   prefix: pato
+- correct: ^\w{1,3}$
+  homepage: https://www.ebi.ac.uk/pdbe-srv/pdbechem/
+  miriam: ^(\w{5}|\w{1,3})$
+  name: Chemical Component Dictionary
+  prefix: pdb-ccd
 - correct: ^\b[0-9a-f]{8}\b-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-\b[0-9a-f]{12}\b$
   homepage: https://www.ndexbio.org/index.html#/networkset/8a2d7ee9-1513-11e9-bb6a-0ac135e8bacf
   miriam: ^\w+$
@@ -580,7 +585,7 @@ wrong_patterns:
 - correct: ^\d+$
   homepage: http://arabidopsis.org/
   miriam: ^\d{7}$
-  name: The Arabidopsis Information Resource
+  name: TAIR Locus
   prefix: tair.locus
 - correct: ^\d{10}$
   homepage: http://arabidopsis.org/index.jsp
@@ -610,7 +615,7 @@ wrong_patterns:
 - correct: ^\d{1,9}$
   homepage: https://vertebrate.genenames.org
   miriam: ^((VGNC|vgnc):)?\d{1,9}$
-  name: Vertebrate Gene Nomenclature Committee
+  name: Vertebrate Gene Nomenclature Committee Database
   prefix: vgnc
 - correct: ^(Q|P|E|L)\d+$
   homepage: https://www.wikidata.org/

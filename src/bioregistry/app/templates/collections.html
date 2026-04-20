@@ -19,7 +19,7 @@
                             {% for label, key in formats %}
                                 <a class="dropdown-item"
                                    href="{{ fastapi_url_for("get_collections") }}?format={{ key }}">
-                                    {{ label }} <i class="fas fa-download"></i>
+                                    {{ label }} <i class="bi bi-download"></i>
                                 </a>
                             {% endfor %}
                         </div>
@@ -50,8 +50,11 @@
                     Make a <a href="{{ config.METAREGISTRY_REPOSITORY }}">pull request</a> directly.
                 </li>
             </ul>
+            {%- if ror and organization %}
+            <p>Filtered to collections from <strong>{{ organization.name }}</strong> (<code>ror:{{ ror }}</code>)</p>
+            {% endif %}
         </div>
-        <table id="table-entries" class="table table-striped table-hover ">
+        <table id="table-entries" class="table table-striped table-hover mb-0">
             <thead>
             <tr>
                 <th scope="col">Name</th>
@@ -59,13 +62,22 @@
                 <th scope="col">Description</th>
             </tr>
             </thead>
-            {% for identifier, row in rows %}
+            {% for collection in collections %}
                 <tr>
                     <td>
-                        <a href="{{ url_for('metaregistry_ui.collection', identifier=identifier) }}">{{ row.name }}</a>
+                        <a href="{{ url_for('metaregistry_ui.collection', identifier=collection.identifier) }}">{{ collection.name }}</a>
                     </td>
-                    <td class="text-right">{{ row.resources | length }}</td>
-                    <td><small>{{ markdown(row.description) | safe }}</small></td>
+                    <td class="text-right">{{ collection.resources | length }}</td>
+                    <td>
+                        <small>{{ markdown(collection.description) | safe }}</small>
+                        {%- if collection.organizations %}
+                        {%- for org in collection.organizations %}
+                        {%- if not organization or org.ror != organization.ror %}
+                        <a class="badge bg-light text-dark" href="{{ url_for('metaregistry_ui.collections', ror=org.ror) }}">{{ org.name }}</a>
+                        {%- endif %}
+                        {%- endfor %}
+                        {%- endif %}
+                    </td>
                 </tr>
             {% endfor %}
         </table>

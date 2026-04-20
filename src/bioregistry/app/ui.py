@@ -6,13 +6,15 @@ import datetime
 import itertools as itt
 import json
 import platform
-from collections import defaultdict
+from collections import Counter, defaultdict
 from collections.abc import Iterable
 from operator import attrgetter
 from pathlib import Path
+from typing import cast
 
 import flask
 import werkzeug
+from curies import Reference
 from flask import (
     Blueprint,
     abort,
@@ -32,7 +34,7 @@ from .utils import (
     serialize_model,
 )
 from .. import version
-from ..constants import INTERNAL_LABEL, INTERNAL_METAPREFIX, NDEX_UUID
+from ..constants import INTERNAL_LABEL, INTERNAL_METAPREFIX, NDEX_UUID, NFDI_ROR
 from ..export.rdf_export import (
     collection_to_rdf_str,
     metaresource_to_rdf_str,
@@ -49,7 +51,9 @@ from ..schema import (
     schema_status_map,
 )
 from ..schema.constants import SCHEMA_TERMS
+from ..schema.struct import Collection, Organization, filter_collections
 from ..schema_utils import (
+    get_collection_mappings,
     read_collections_contributions,
     read_context_contributions,
     read_prefix_contacts,
@@ -99,10 +103,19 @@ def metaresources() -> str:
 @ui_blueprint.route("/collection/")
 def collections() -> str:
     """Serve the collections page."""
+    collections_: list[Collection] = list(manager.collections.values())
+    organization: Organization | None = None
+    if ror := flask.request.args.get("ror"):
+        collections_ = filter_collections(collections_, ror)
+        if not collections_:
+            raise flask.abort(404, f"no collections are tagged with ROR: {ror}")
+        organization = next(org for org in collections_[0].organizations or [] if org.ror == ror)
     return render_template(
         "collections.html",
-        rows=manager.collections.items(),
+        collections=collections_,
         formats=FORMATS,
+        ror=ror,
+        organization=organization,
     )
 
 
@@ -255,12 +268,17 @@ def collection(identifier: str) -> str | flask.Response:
     accept = get_accept_media_type()
     if accept != "text/html":
         return serialize_model(entry, collection_to_rdf_str, negotiate=True)
-
+    indirect = manager.get_collection_indirect_dependencies(entry)
+    first_party = manager.get_collection_first_party(entry, skip_org_rors={NFDI_ROR})
     return render_template(
         "collection.html",
         identifier=identifier,
         entry=entry,
-        resources={prefix: manager.get_resource(prefix) for prefix in entry.resources},
+        resources={
+            prefix: manager.get_resource(prefix, strict=True) for prefix in entry.get_prefixes()
+        },
+        indirect=indirect,
+        first_party=first_party,
         formats=[
             *FORMATS,
             ("Context (JSON-LD)", "context"),
@@ -300,7 +318,7 @@ def context(identifier: str) -> str:
 class ResponseWrapperError(ValueError):
     """An exception that helps with code reuse that returns multiple value types."""
 
-    def __init__(self, response: str | werkzeug.Response, code: int | None = None):
+    def __init__(self, response: str | werkzeug.Response, code: int | None = None) -> None:
         """Instantiate this "exception", which is a tricky way of writing a macro."""
         self.response = response
         self.code = code
@@ -439,7 +457,7 @@ def metaresolve(
     """
     if metaprefix not in manager.metaregistry:
         return abort(404, f"invalid metaprefix: {metaprefix}")
-    prefix = manager.lookup_from(metaprefix, metaidentifier, normalize=True)
+    prefix = manager.lookup_from(metaprefix, metaidentifier)
     if prefix is None:
         return abort(
             404,
@@ -629,14 +647,9 @@ def json_schema() -> werkzeug.Response:
 
 
 @ui_blueprint.route("/highlights/twitter")
-def highlights_twitter() -> str:
-    """Render the twitter highlights page."""
-    twitters = defaultdict(list)
-    for resource in manager.registry.values():
-        twitter = resource.get_twitter()
-        if twitter:
-            twitters[twitter].append(resource)
-    return render_template("highlights/twitter.html", twitters=twitters)
+def highlights_twitter() -> flask.Response:
+    """Render a HTTP 410 Gone (forever) for twitter content, which is no longer supported."""
+    return flask.Response("twitter content is no longer tracked", status=410)
 
 
 @ui_blueprint.route("/highlights/relations")
@@ -665,17 +678,48 @@ def get_keyword(keyword: str) -> str:
     return render_template("keyword.html", keyword=keyword, resources=resources_)
 
 
-@ui_blueprint.route("/highlights/owners")
-def highlights_owners() -> str:
+@ui_blueprint.route("/organization/")
+def show_organizations() -> str:
     """Render the partners highlights page."""
     owner_to_resources = defaultdict(list)
     owners = {}
-    for resource in manager.registry.values():
-        for owner in resource.owners or []:
-            owners[owner.pair] = owner
-            owner_to_resources[owner.pair].append(resource)
+    for resource_ in manager.registry.values():
+        for owner in resource_.get_owners():
+            curie = owner.reference.curie
+            owners[curie] = owner
+            owner_to_resources[curie].append(resource_)
     return render_template(
-        "highlights/owners.html", owners=owners, owner_to_resources=owner_to_resources
+        "organizations.html", owners=owners, owner_to_resources=owner_to_resources
+    )
+
+
+@ui_blueprint.route("/organization/<curie>")
+def show_organization(curie: str) -> str:
+    """Show an organization."""
+    reference_ = Reference.from_curie(curie)
+    resources_ = [
+        resource_
+        for resource_ in manager.registry.values()
+        if resource_.has_organization(reference_)
+    ]
+    collections_ = [c for c in manager.collections.values() if c.has_organization(reference_)]
+    if not resources_ and not collections_:
+        raise flask.abort(404)
+    elif resources_:
+        organization = next(
+            o for o in resources_[0].get_owners() if o.matches_reference(reference_)
+        )
+    else:
+        organization = next(
+            o
+            for o in cast(list[Organization], collections_[0].organizations)
+            if o.matches_reference(reference_)
+        )
+    return render_template(
+        "organization.html",
+        organization=organization,
+        resources=resources_,
+        collections=collections_,
     )
 
 
@@ -684,3 +728,64 @@ def highlights_owners() -> str:
 def apidocs() -> werkzeug.Response:
     """Render api documentation page."""
     return redirect("/docs")
+
+
+@ui_blueprint.route("/nfdi")
+@ui_blueprint.route("/nfdi/")
+def show_nfdi() -> str:
+    """Render the NFDI dashboard page."""
+    nfdi_collections = {
+        c.identifier: c
+        for c in manager.collections.values()
+        if c.has_organization_with_ror(NFDI_ROR)
+    }
+    tib_collection_mappings = get_collection_mappings("tib.collection")
+    bartoc_collection_mappings = get_collection_mappings("bartoc")
+    collection_to_tib_opportunities = defaultdict(list)
+    collection_to_license_needs_curation = defaultdict(list)
+    collection_to_domain_needs_curation = defaultdict(list)
+    collection_to_download_need_curation = defaultdict(list)
+    tib_opportunities = set()
+    for collection_ in nfdi_collections.values():
+        for prefix in collection_.get_prefixes():
+            if prefix == "bioregistry":
+                continue
+            resource_ = manager.get_resource(prefix, strict=True)
+            if not resource_.get_mapped_prefix("tib") and resource_.has_download():
+                collection_to_tib_opportunities[collection_.identifier].append(prefix)
+                tib_opportunities.add(prefix)
+            if not resource_.get_license():
+                collection_to_license_needs_curation[collection_.identifier].append(resource)
+            if not resource_.domain:
+                collection_to_domain_needs_curation[collection_.identifier].append(resource)
+            if not resource_.has_download():
+                collection_to_download_need_curation[collection_.identifier].append(resource)
+
+    # who is used more than once?
+    counter = Counter(prefix for c in nfdi_collections.values() for prefix in c.get_prefixes())
+
+    # first party
+    first_party = defaultdict(list)
+    for collection_ in nfdi_collections.values():
+        for prefix, call in manager.get_collection_first_party(
+            collection_, skip_org_rors={NFDI_ROR}
+        ).items():
+            if call:
+                first_party[prefix].append(collection_)
+    first_party_list = [
+        (manager.registry[prefix], consortia) for prefix, consortia in sorted(first_party.items())
+    ]
+
+    return render_template(
+        "nfdi.html",
+        collections=nfdi_collections,
+        tib_collection_mappings=tib_collection_mappings,
+        bartoc_collection_mappings=bartoc_collection_mappings,
+        collection_to_tib_opportunities=collection_to_tib_opportunities,
+        tib_opportunities=tib_opportunities,
+        prefix_counter=counter,
+        collection_to_license_needs_curation=collection_to_license_needs_curation,
+        collection_to_domain_needs_curation=collection_to_domain_needs_curation,
+        collection_to_download_need_curation=collection_to_download_need_curation,
+        first_party=first_party_list,
+    )

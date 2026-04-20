@@ -1,21 +1,20 @@
 """Download TogoID."""
 
-import json
 from collections.abc import Iterable, Sequence
 from pathlib import Path
-from typing import Any, ClassVar, cast
+from typing import ClassVar, cast
 
 import requests
 import yaml
 
+from bioregistry.alignment_model import Record, dump_records, load_processed
 from bioregistry.constants import RAW_DIRECTORY, URI_FORMAT_KEY
-from bioregistry.external.alignment_utils import Aligner, load_processed
+from bioregistry.external.alignment_utils import Aligner, adapter
 
 __all__ = [
     "TogoIDAligner",
     "get_togoid",
 ]
-
 
 DIRECTORY = Path(__file__).parent.resolve()
 RAW_PATH = RAW_DIRECTORY / "togoid.json"
@@ -57,18 +56,40 @@ def _get_descriptions() -> dict[str, str]:
     }
 
 
-def _get_dataset() -> dict[str, dict[str, Any]]:
-    data = yaml.safe_load(requests.get(DATASET_URL, timeout=15).text)
+@adapter
+def get_togoid(*, force_download: bool = False, force_process: bool = False) -> dict[str, Record]:
+    """Get the TogoID data."""
+    if PROCESSED_PATH.exists() and not force_download and not force_process:
+        return load_processed(PROCESSED_PATH)
+
+    key_to_prefix = _get_ontology()
+    key_to_description = _get_descriptions()
+
+    res = requests.get(DATASET_URL, timeout=15)
+    data = yaml.safe_load(res.text)
     rv = {}
-    for prefix, record in data.items():
+    for key, record in data.items():
+        prefix = key_to_prefix[key]
         name = record.get("label")
         if not name:
             continue
+
         rr = {
             "name": name,
             "pattern": record["regex"].replace("<id>", ""),
-            URI_FORMAT_KEY: record["prefix"] + "$1",  # this is right, they named it weird
         }
+
+        match record.pop("prefix", None):  # this is right, they named it weird
+            case str() as uri_prefix_:
+                rr[URI_FORMAT_KEY] = uri_prefix_ + "$1"
+            case list() as uri_prefix_dict:
+                # TODO handle multiple?
+                rr[URI_FORMAT_KEY] = uri_prefix_dict[0]["uri"] + "$1"
+            case None:
+                pass
+            case _ as v:
+                raise TypeError(f"unhandled: {v}")
+
         examples_lists = record.get("examples", [])
         if examples_lists:
             rr["examples"] = examples_lists[0]
@@ -77,30 +98,15 @@ def _get_dataset() -> dict[str, dict[str, Any]]:
             rr["keywords"] = [category]
         integbio_catalog_id = record.get("catalog")
         if integbio_catalog_id and integbio_catalog_id != "FIXME":
-            rr["catalog"] = integbio_catalog_id
-        rv[prefix] = rr
-    return rv
+            rr["xrefs"] = {"integbio": integbio_catalog_id}
 
+        description = key_to_description.get(key)
+        if description:
+            rr["description"] = description
 
-def get_togoid(
-    *, force_download: bool = False, force_refresh: bool = False
-) -> dict[str, dict[str, Any]]:
-    """Get the TogoID data."""
-    if PROCESSED_PATH.exists() and not force_refresh:
-        return load_processed(PROCESSED_PATH)
+        rv[prefix] = Record.model_validate(rr)
 
-    key_to_prefix = _get_ontology()
-    key_to_description = _get_descriptions()
-    records = _get_dataset()
-    rv = {
-        key_to_prefix[key]: record
-        | {"prefix": key_to_prefix[key]}
-        | ({"description": key_to_description.get(key)} if key in key_to_description else {})
-        for key, record in records.items()
-    }
-
-    with PROCESSED_PATH.open("w") as file:
-        json.dump(rv, file, indent=2, sort_keys=True)
+    dump_records(rv, PROCESSED_PATH)
     return rv
 
 

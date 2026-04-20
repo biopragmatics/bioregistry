@@ -1,5 +1,5 @@
 '0000001':
-  authors:
+  contributors:
   - email: cthoyt@gmail.com
     github: cthoyt
     name: Charles Tapley Hoyt
@@ -31,12 +31,12 @@
   - ssbd.dataset
   - ssbd.project
 '0000002':
-  authors:
+  context: semweb
+  contributors:
   - email: cthoyt@gmail.com
     github: cthoyt
     name: Charles Tapley Hoyt
     orcid: 0000-0003-4423-4370
-  context: semweb
   description: Resources used in the semantic web, drawing from lists in [BioContext](https://github.com/prefixcommons/biocontext/blob/master/registry/semweb_context.yaml)
     and [LinkML](https://github.com/linkml/prefixmaps/blob/main/src/prefixmaps/data/linked_data.curated.yaml)
     as well as W3C recommendations.
@@ -73,7 +73,7 @@
   - void
   - xsd
 '0000003':
-  authors:
+  contributors:
   - email: cthoyt@gmail.com
     github: cthoyt
     name: Charles Tapley Hoyt
@@ -108,7 +108,7 @@
   - webelements
   - ymdb
 '0000004':
-  authors:
+  contributors:
   - email: cthoyt@gmail.com
     github: cthoyt
     name: Charles Tapley Hoyt
@@ -127,7 +127,7 @@
   - icd9cm
   - icdo
 '0000005':
-  authors:
+  contributors:
   - email: cthoyt@gmail.com
     github: cthoyt
     name: Charles Tapley Hoyt
@@ -142,12 +142,12 @@
   - mba
   - pba
 '0000006':
-  authors:
+  context: spar
+  contributors:
   - email: cthoyt@gmail.com
     github: cthoyt
     name: Charles Tapley Hoyt
     orcid: 0000-0003-4423-4370
-  context: spar
   description: The [Semantic Publishing and Referencing (SPAR) Ontologies](http://www.sparontologies.net/ontologies)
     are a suite of orthogonal and complementary OWL 2 ontologies that enable all aspects
     of the publishing process to be described in machine-readable metadata statements,
@@ -170,7 +170,7 @@
   - pwo
   - scoro
 '0000007':
-  authors:
+  contributors:
   - email: cthoyt@gmail.com
     github: cthoyt
     name: Charles Tapley Hoyt
@@ -184,7 +184,7 @@
   - pmc
   - pubmed
 0000008:
-  authors:
+  contributors:
   - email: cthoyt@gmail.com
     github: cthoyt
     name: Charles Tapley Hoyt
@@ -213,7 +213,7 @@
   - trans
   - vo
 0000009:
-  authors:
+  contributors:
   - email: cthoyt@gmail.com
     github: cthoyt
     name: Charles Tapley Hoyt
@@ -277,7 +277,7 @@
   - ucum
   - unii
 '0000010':
-  authors:
+  contributors:
   - email: cthoyt@gmail.com
     github: cthoyt
     name: Charles Tapley Hoyt
@@ -361,7 +361,7 @@
   - wormbase
   - zfin
 '0000011':
-  authors:
+  contributors:
   - email: hendrik.borgelt@tu-dortmund.de
     github: HendrikBorgelt
     name: ' Hendrik Borgelt'
@@ -370,15 +370,12 @@
     github: cthoyt
     name: Charles Tapley Hoyt
     orcid: 0000-0003-4423-4370
-  description: 'A collection of ontologies relevant for chemistry.
+  description: 'A collection of ontologies, controlled vocabularies, and schemas relevant
+    for the NDFI4Cat Consortium.
 
 
-    The NFDI program deploys a [custom instance](https://terminology.tib.eu/ts/ontologies?collection=NFDI4CAT&and=false&page=1)
-    of the Ontology Lookup Service (OLS) that provides the ontologies in this list.
-
-
-    A further analysis of the metadata landscape of the ontologies in this list can
-    be found [here](https://github.com/nfdi4cat/Ontology-Overview-of-NFDI4Cat).
+    This collection was originally based on the metadata landscape of the ontologies
+    in this list can be found [here](https://github.com/nfdi4cat/Ontology-Overview-of-NFDI4Cat).
 
 
     OntoCompChem and OntoKin appear on the NFDI4Cat list but have not yet been registered
@@ -386,12 +383,31 @@
     do not meet minimum Bioregistry metadata standards. These might be added in the
     future if additional metadata can be found.'
   identifier: '0000011'
+  logo: https://www.nfdi.de/wp-content/uploads/2021/06/Logo_Ohne-BG.png
+  maintainers:
+  - email: hendrik.borgelt@tu-dortmund.de
+    github: HendrikBorgelt
+    name: ' Hendrik Borgelt'
+    orcid: 0000-0001-5886-7860
+  - email: alexander.behr@tu-dortmund.de
+    github: Amberlamps
+    name: Alexander Behr
+    orcid: 0000-0003-4620-8248
+  - email: david.linke@catalysis.de
+    github: dalito
+    name: David Linke
+    orcid: 0000-0002-5898-1820
+  mappings:
+  - identifier: nfdi4cat
+    prefix: tib.collection
   name: NDFI4Cat Collection
   organizations:
   - name: NFDI4Cat
-    partnered: false
     ror: 01k9z4a50
     wikidata: Q98380342
+  - name: NFDI
+    ror: 05qj6w324
+    wikidata: Q61658497
   references:
   - https://nfdi4cat.org/services/ontologie-sammlung/
   - https://terminology.tib.eu/ts/ontologies?collection=NFDI4CAT&and=false&page=1
@@ -413,10 +429,10 @@
   - m4i
   - mop
   - ms
-  - nfdi4chem.ontocape
-  - nfdi4chem.osmo
   - obi
   - om
+  - ontocape
+  - osmo
   - rex
   - rxno
   - sbo
@@ -424,7 +440,7 @@
   - worldavatar.compchem
   - worldavatar.kin
 '0000012':
-  authors:
+  contributors:
   - email: cthoyt@gmail.com
     github: cthoyt
     name: Charles Tapley Hoyt
@@ -458,7 +474,7 @@
   - tctr
   - uminctr
 '0000013':
-  authors:
+  contributors:
   - email: cthoyt@gmail.com
     github: cthoyt
     name: Charles Tapley Hoyt
@@ -474,11 +490,15 @@
   - pypi
   - rubygems
 '0000014':
-  authors:
+  contributors:
   - email: philip.stroemert@tib.eu
     github: StroemPhi
     name: ' Philip Strömert'
     orcid: 0000-0002-1595-3213
+  - email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
   description: 'A collection of ontologies relevant within the [NFDI4Chem project](https://www.nfdi4chem.de/)
     that is mostly based on the overview paper [Ontologies4Chem: the landscape of
     ontologies in chemistry](https://doi.org/10.1515/pac-2021-2007).
@@ -492,12 +512,25 @@
     as well as those ontologies, which where indexed in the NFDI4Chem TS for interoperability
     research purposes (e.g. PROV-O, SOSA, and OBOE).'
   identifier: '0000014'
+  keywords:
+  - chemistry
+  logo: https://nfdi4chem.de/wp-content/themes/wptheme/assets/img/logo.svg
+  maintainers:
+  - email: philip.stroemert@tib.eu
+    github: StroemPhi
+    name: ' Philip Strömert'
+    orcid: 0000-0002-1595-3213
+  mappings:
+  - identifier: nfdi4chem
+    prefix: tib.collection
   name: NFDI4Chem Collection
   organizations:
   - name: NFDI4Chem
-    partnered: false
     ror: 05wwzbv21
     wikidata: Q96678459
+  - name: NFDI
+    ror: 05qj6w324
+    wikidata: Q61658497
   references:
   - https://terminology.nfdi4chem.de/ts/
   - https://doi.org/10.1515/pac-2021-2007
@@ -505,7 +538,8 @@
   - afo
   - bfo
   - bto
-  - chebi
+  - comment: Used in YMDB, HMDB, PubChem, MassBank, KNApSAcK, UM-BBD, GMD, SMID-DB
+    prefix: chebi
   - cheminf
   - chemrof
   - chiro
@@ -554,7 +588,7 @@
   - worldavatar.kin
   - worldavatar.os
 '0000015':
-  authors:
+  contributors:
   - email: cthoyt@gmail.com
     github: cthoyt
     name: Charles Tapley Hoyt
@@ -577,7 +611,7 @@
   - endlessforms.unit
   - gdo
 '0000016':
-  authors:
+  contributors:
   - email: robert.j.allaway@gmail.com
     github: allaway
     name: Robert Allaway
@@ -791,7 +825,7 @@
   - zfin
   - zinc
 '0000017':
-  authors:
+  contributors:
   - email: cthoyt@gmail.com
     github: cthoyt
     name: Charles Tapley Hoyt
@@ -834,7 +868,7 @@
   - wdrs
   - wikidata
 0000018:
-  authors:
+  contributors:
   - email: cthoyt@gmail.com
     github: cthoyt
     name: Charles Tapley Hoyt
@@ -891,7 +925,7 @@
   - unesco.thesaurus
   - vivo
 0000019:
-  authors:
+  contributors:
   - email: cthoyt@gmail.com
     github: cthoyt
     name: Charles Tapley Hoyt
@@ -912,7 +946,7 @@
   - getty.ulan
   - iconclass
 '0000020':
-  authors:
+  contributors:
   - email: cthoyt@gmail.com
     github: cthoyt
     name: Charles Tapley Hoyt
@@ -923,12 +957,20 @@
     by NFDI Section Metadata for ontologies and controlled vocabularies used by members
     of the consortium.'
   identifier: '0000020'
+  logo: https://www.nfdi.de/wp-content/uploads/2025/01/KonsortSWD-NFDI4society-300.png
+  maintainers:
+  - email: noemi.betancort@suub.uni-bremen.de
+    github: nbetancort
+    name: Noemi Betancort
+    orcid: 0000-0002-0156-3556
   name: KonsortSWD
   organizations:
   - name: KonsortSWD
-    partnered: false
     ror: 020tty630
     wikidata: Q98380340
+  - name: NFDI
+    ror: 05qj6w324
+    wikidata: Q61658497
   resources:
   - cessda
   - cessda.cdcpublishernames
@@ -968,23 +1010,37 @@
   - gesis.rexgroups
   - gesis.variables-relations
 '0000021':
-  authors:
+  contributors:
   - email: cthoyt@gmail.com
     github: cthoyt
     name: Charles Tapley Hoyt
     orcid: 0000-0003-4423-4370
   description: Prefixes for ontologies relevant for the NFDI4Energy
   identifier: '0000021'
-  name: NFDI4Energy Resources
+  logo: https://www.nfdi.de/wp-content/uploads/2023/03/01_Logo_NFDI4Energy.png
+  maintainers:
+  - github: amanda-wein
+    name: Amanda Wein
+    orcid: 0009-0009-2960-3474
+  mappings:
+  - identifier: nfdi4energy
+    prefix: tib.collection
+  name: NFDI4Energy Collection
   organizations:
   - name: NFDI4Energy
-    partnered: false
     ror: 0238fds33
     wikidata: Q113499626
+  - name: NFDI
+    ror: 05qj6w324
+    wikidata: Q61658497
+  references:
+  - https://go.rocket.chat/invite?host=all-chat.nfdi.de&path=invite%2FdQaz52
   resources:
   - bonsai
   - brick
+  - cim
   - digitalconstruction.energy
+  - docbias
   - dogont
   - energymarketroles
   - meno
@@ -998,19 +1054,38 @@
   - udsaes.sms
   - zbw.stw
 '0000022':
-  authors:
-  - email: cthoyt@gmail.com
-    github: cthoyt
-    name: Charles Tapley Hoyt
-    orcid: 0000-0003-4423-4370
-  description: Prefixes for ontologies relevant for the NFDI4Ing
+  contributors:
+  - name: NFDI Section Metadata WG Ontology Harmonization and Mapping
+    wikidata: Q139055838
+  description: A collection of ontologies, controlled vocabularies, and schemas relevant
+    for engineering and the [NFDI4Ing Consortium](https://nfdi4ing.de). Ontologies
+    are chronologically imported from corresponding the [TIB Terminology Service collection](https://service.tib.eu/terminology/collections/nfdi4ing).
   identifier: '0000022'
-  name: NFDI4Ing Resources
+  logo: https://www.nfdi.de/wp-content/uploads/2025/03/NFDI4ING_Wort-Bildmarke_no-disclaimer_POS_RGB.png
+  maintainers:
+  - github: doigl
+    name: Dorothea Iglezakis
+    orcid: 0000-0002-8524-0569
+  - github: Zack-83
+    name: Giacomo Lanza
+    orcid: 0000-0002-2239-3955
+  - github: SArndt-TIB
+    name: Susanne Arndt
+    orcid: 0000-0002-1019-9151
+  mappings:
+  - identifier: nfdi4ing
+    prefix: tib.collection
+  name: NFDI4Ing Collection
   organizations:
-  - name: NFDI4ING
-    partnered: false
+  - gnd: '1227971389'
+    name: NFDI4ING
     ror: 00enhv193
     wikidata: Q98380344
+  - name: NFDI
+    ror: 05qj6w324
+    wikidata: Q61658497
+  references:
+  - https://go.rocket.chat/invite?host=all-chat.nfdi.de&path=invite%2F4kTQmd
   resources:
   - afo
   - atomistic
@@ -1035,6 +1110,7 @@
   - duo
   - edam
   - emmo
+  - fabio
   - fair
   - fidbaudigital.subject
   - fiesta.iot
@@ -1065,6 +1141,7 @@
   - physh
   - pmdco
   - polymat
+  - pror
   - prov
   - rosetta
   - saref
@@ -1080,6 +1157,7 @@
   - saref.wearable
   - sepio
   - sh
+  - si
   - sio
   - sosa
   - ssn
@@ -1112,25 +1190,48 @@
   - woc.ontology
   - wot.td
 '0000023':
-  authors:
-  - email: cthoyt@gmail.com
-    github: cthoyt
-    name: Charles Tapley Hoyt
-    orcid: 0000-0003-4423-4370
-  description: Prefixes for ontologies relevant for the DataPLANT (i.e. the NFDI consortium
-    for plants)
+  contributors:
+  - name: NFDI Section Metadata WG Ontology Harmonization and Mapping
+    wikidata: Q139055838
+  description: A placeholder collection of ontologies, controlled vocabularies, and
+    schemas relevant for the DataPLANT Consortium seeded from corresponding the [TIB
+    OLS collection](https://service.tib.eu/terminology/collections/dataplant). The
+    [NFDI Section Metadata WG Ontology Harmonization and Mapping](https://github.com/nfdi-de/section-metadata-wg-onto/)
+    is in the process of identifying DataPLANT Consortium members appropriate for
+    maintaining this collection.
   identifier: '0000023'
-  name: DataPLANT Resources
+  logo: https://www.nfdi.de/wp-content/uploads/2021/05/DataPLANT_logo_square_bg_transparent.svg
+  maintainers:
+  - email: k.dumschott@fz-juelich.de
+    github: kdumschott
+    name: Kathryn Dumschott
+    orcid: 0000-0002-9905-4011
+  - email: a.kranz@fz-juelich.de
+    github: AngelaKranz
+    name: Angela Kranz
+    orcid: 0000-0002-8000-0400
+  - email: h.doerpholz@fz-juelich.de
+    github: Hannah-Doerpholz
+    name: Hannah Dörpholz
+    orcid: 0000-0002-0476-9699
+  mappings:
+  - identifier: dataplant
+    prefix: tib.collection
+  name: DataPLANT Collection
   organizations:
   - name: DataPLANT
-    partnered: false
     ror: 01v7r4v08
     wikidata: Q98380336
+  - name: NFDI
+    ror: 05qj6w324
+    wikidata: Q61658497
   resources:
   - agro
   - bao
   - bco
   - bfo
+  - bioportal.bof
+  - bioportal.geospecies
   - bto
   - chebi
   - chmo
@@ -1139,12 +1240,15 @@
   - edam
   - efo
   - envo
+  - eo
   - flopo
+  - gaz
   - go
   - mmo
   - mod
   - ms
   - msio
+  - ncbitaxon
   - ncit
   - obi
   - omp
@@ -1159,232 +1263,379 @@
   - stato
   - swo
   - to
-  - uberon
   - uo
 '0000024':
-  authors:
-  - email: cthoyt@gmail.com
-    github: cthoyt
-    name: Charles Tapley Hoyt
-    orcid: 0000-0003-4423-4370
-  description: Prefixes for ontologies relevant for [FAIRmat](https://www.nfdi.de/consortia-fairmat).
+  contributors:
+  - name: NFDI Section Metadata WG Ontology Harmonization and Mapping
+    wikidata: Q139055838
+  description: A placeholder collection of ontologies, controlled vocabularies, and
+    schemas relevant for the FAIRmat Consortium seeded from corresponding the [TIB
+    OLS collection](https://service.tib.eu/terminology/collections/fairmat). The [NFDI
+    Section Metadata WG Ontology Harmonization and Mapping](https://github.com/nfdi-de/section-metadata-wg-onto/)
+    is in the process of identifying FAIRmat Consortium members appropriate for maintaining
+    this collection.
   identifier: '0000024'
-  name: FAIRmat Resources
+  logo: https://www.nfdi.de/wp-content/uploads/2025/02/aktuelles_logo_02.25.png
+  mappings:
+  - identifier: fairmat
+    prefix: tib.collection
+  name: FAIRmat Collection
   organizations:
   - name: FAIRmat
-    partnered: false
     ror: 034pbpe12
     wikidata: Q108542373
+  - name: NFDI
+    ror: 05qj6w324
+    wikidata: Q61658497
+  references:
+  - https://go.rocket.chat/invite?host=all-chat.nfdi.de&path=invite%2FboyT2y
   resources:
   - bfo
   - nexus
   - tfsco
   - voc4cat
 '0000025':
-  authors:
+  contributors:
+  - name: NFDI Section Metadata WG Ontology Harmonization and Mapping
+    wikidata: Q139055838
   - email: cthoyt@gmail.com
     github: cthoyt
     name: Charles Tapley Hoyt
     orcid: 0000-0003-4423-4370
-  - email: null
-    github: epoz
+  - github: epoz
     name: Etienne Posthumus
     orcid: 0000-0002-0006-7542
-  description: Prefixes for ontologies relevant for NFDI4Culture.
+  description: A placeholder collection of ontologies, controlled vocabularies, and
+    schemas relevant for the NFDI4Culture Consortium seeded from corresponding the
+    [TIB OLS collection](https://service.tib.eu/terminology/collections/nfdi4culture).
+    The [NFDI Section Metadata WG Ontology Harmonization and Mapping](https://github.com/nfdi-de/section-metadata-wg-onto/)
+    is in the process of identifying NFDI4Culture Consortium members appropriate for
+    maintaining this collection.
   identifier: '0000025'
-  name: NFDI4Culture Resources
+  logo: https://www.nfdi.de/wp-content/uploads/2021/05/NFDI4C_Logo.png
+  maintainers:
+  - email: tabea.tietz@fiz-karlsruhe.de
+    github: tabeatietz
+    name: Tabea Tietz
+    orcid: 0000-0002-1648-1684
+  mappings:
+  - identifier: nfdi4culture
+    prefix: tib.collection
+  name: NFDI4Culture Collection
   organizations:
   - name: NFDI4Culture
-    partnered: false
     ror: 001jhv750
     wikidata: Q98276929
+  - name: NFDI
+    ror: 05qj6w324
+    wikidata: Q61658497
   resources:
-  - bot
+  - bfo
   - cidoc.crm
-  - gesah
+  - dbo
+  - dcat
+  - dcterms
+  - doap
+  - fabio
+  - foaf
+  - frapo
+  - geonames
+  - gnd
+  - iao
   - iconclass
+  - lido
+  - modsci
   - nfdi4culture.cto
-  - premis
+  - obi
+  - okn.sd
+  - org
+  - schema
+  - skos
+  - swo
+  - vcard
+  - viaf
+  - vivo
+  - wikidata
 '0000026':
-  authors:
-  - email: cthoyt@gmail.com
-    github: cthoyt
-    name: Charles Tapley Hoyt
-    orcid: 0000-0003-4423-4370
-  description: Prefixes for ontologies relevant for DAPHNE4NFDI.
+  contributors:
+  - name: NFDI Section Metadata WG Ontology Harmonization and Mapping
+    wikidata: Q139055838
+  description: A placeholder collection of ontologies, controlled vocabularies, and
+    schemas relevant for the DAPHNE4NFDI Consortium created by the [NFDI Section Metadata
+    WG Ontology Harmonization and Mapping](https://github.com/nfdi-de/section-metadata-wg-onto/).
+    The working group is in the process of identifying DAPHNE4NFDI Consortium members
+    appropriate for maintaining this collection.
   identifier: '0000026'
-  name: DAPHNE4NFDI Resources
+  logo: https://www.nfdi.de/wp-content/uploads/2022/05/DAPHNE4NFDI_logo.png
+  name: DAPHNE4NFDI Collection
   organizations:
   - name: DAPHNE4NFDI
-    partnered: false
     ror: 03xrvbe74
     wikidata: Q108542327
+  - name: NFDI
+    ror: 05qj6w324
+    wikidata: Q61658497
+  references:
+  - https://go.rocket.chat/invite?host=all-chat.nfdi.de&path=invite%2FZvh5e3
   resources:
   - emg
 '0000027':
-  authors:
-  - email: cthoyt@gmail.com
-    github: cthoyt
-    name: Charles Tapley Hoyt
-    orcid: 0000-0003-4423-4370
-  description: A collection of ontologies, controlled vocabularies, database, and
-    schemas relevant for MaRDI
+  contributors:
+  - name: NFDI Section Metadata WG Ontology Harmonization and Mapping
+    wikidata: Q139055838
+  description: A placeholder collection of ontologies, controlled vocabularies, and
+    schemas relevant for the MaRDI Consortium created by the [NFDI Section Metadata
+    WG Ontology Harmonization and Mapping](https://github.com/nfdi-de/section-metadata-wg-onto/).
+    The working group is in the process of identifying MaRDI Consortium members appropriate
+    for maintaining this collection.
   identifier: '0000027'
+  logo: https://www.nfdi.de/wp-content/uploads/2021/12/MaRDI_Logo_rgba.png
+  maintainers:
+  - email: bjoern.schembera@mathematik.uni-stuttgart.de
+    github: bjschembera
+    name: ' Björn Schembera'
+    orcid: 0000-0003-2860-6621
   name: MaRDI Collection
   organizations:
   - name: MaRDI
-    partnered: false
     ror: 04ncnzm65
     wikidata: Q108327788
   - name: NFDI
-    partnered: false
     ror: 05qj6w324
     wikidata: Q61658497
   resources:
-  - bioregistry
+  - amv
+  - codemeta
+  - mathalgodb
+  - mathmoddb
+  - msc
+  - physh
+  - qudt
+  - tib.bk
 0000028:
-  authors:
-  - email: cthoyt@gmail.com
-    github: cthoyt
-    name: Charles Tapley Hoyt
-    orcid: 0000-0003-4423-4370
-  description: A collection of ontologies, controlled vocabularies, database, and
-    schemas relevant for BERD@NFDI
+  contributors:
+  - name: NFDI Section Metadata WG Ontology Harmonization and Mapping
+    wikidata: Q139055838
+  description: A placeholder collection of ontologies, controlled vocabularies, and
+    schemas relevant for the BERD@NFDI Consortium created by the [NFDI Section Metadata
+    WG Ontology Harmonization and Mapping](https://github.com/nfdi-de/section-metadata-wg-onto/).
+    The working group is in the process of identifying BERD@NFDI Consortium members
+    appropriate for maintaining this collection.
   identifier: 0000028
+  logo: https://www.nfdi.de/wp-content/uploads/2021/12/Logo_BERD-NFDI_transparent_gruen-schwarz_400px.png
   name: BERD@NFDI Collection
   organizations:
   - name: BERD@NFDI
-    partnered: false
     ror: 02cxb1m07
     wikidata: Q108542181
   - name: NFDI
-    partnered: false
     ror: 05qj6w324
     wikidata: Q61658497
+  references:
+  - https://go.rocket.chat/invite?host=all-chat.nfdi.de&path=invite%2FjxNRaY
   resources:
-  - bioregistry
+  - jel
+  - zbw.stw
 0000029:
-  authors:
-  - email: cthoyt@gmail.com
-    github: cthoyt
-    name: Charles Tapley Hoyt
-    orcid: 0000-0003-4423-4370
-  description: A collection of ontologies, controlled vocabularies, database, and
-    schemas relevant for NFDI4DataScience
+  contributors:
+  - name: NFDI Section Metadata WG Ontology Harmonization and Mapping
+    wikidata: Q139055838
+  description: A placeholder collection of ontologies, controlled vocabularies, and
+    schemas relevant for the NFDI4DataScience Consortium created by the [NFDI Section
+    Metadata WG Ontology Harmonization and Mapping](https://github.com/nfdi-de/section-metadata-wg-onto/).
+    The working group is in the process of identifying NFDI4DataScience Consortium
+    members appropriate for maintaining this collection.
   identifier: 0000029
+  logo: https://www.nfdi.de/wp-content/uploads/2022/06/NFDI4DS_Logo.png
   name: NFDI4DataScience Collection
   organizations:
   - name: NFDI4DataScience
-    partnered: false
     ror: 00bb4nn95
     wikidata: Q108542422
   - name: NFDI
-    partnered: false
     ror: 05qj6w324
     wikidata: Q61658497
+  references:
+  - https://go.rocket.chat/invite?host=all-chat.nfdi.de&path=invite%2FNTuvAb
   resources:
-  - bioregistry
+  - nfdi.core
+  - schema
 '0000030':
-  authors:
-  - email: cthoyt@gmail.com
-    github: cthoyt
-    name: Charles Tapley Hoyt
-    orcid: 0000-0003-4423-4370
-  description: A collection of ontologies, controlled vocabularies, database, and
-    schemas relevant for NFDI4Earth
+  contributors:
+  - name: NFDI Section Metadata WG Ontology Harmonization and Mapping
+    wikidata: Q139055838
+  description: A placeholder collection of ontologies, controlled vocabularies, and
+    schemas relevant for the NFDI4Earth Consortium created by the [NFDI Section Metadata
+    WG Ontology Harmonization and Mapping](https://github.com/nfdi-de/section-metadata-wg-onto/).
+    The working group is in the process of identifying NFDI4Earth Consortium members
+    appropriate for maintaining this collection.
   identifier: '0000030'
+  logo: https://www.nfdi.de/wp-content/uploads/2021/12/NFDI4Earth_logo.png
+  maintainers:
+  - github: aurioldegbelo
+    name: Auriol Degbelo
+    orcid: 0000-0001-5087-8776
   name: NFDI4Earth Collection
   organizations:
   - name: NFDI4Earth
-    partnered: false
     ror: 01f5dqg10
     wikidata: Q108542504
   - name: NFDI
-    partnered: false
     ror: 05qj6w324
     wikidata: Q61658497
+  references:
+  - https://go.rocket.chat/invite?host=all-chat.nfdi.de&path=invite%2FXJ89uS
   resources:
-  - bioregistry
+  - bco
+  - chebi
+  - dcat
+  - dcterms
+  - envo
+  - flopo
+  - foaf
+  - gaz
+  - geonames
+  - geosparql
+  - legacy.ao
+  - n4e
+  - ncbitaxon
+  - oboe
+  - pato
+  - po
+  - prov
+  - schema
+  - skos
+  - sosa
+  - ssn
+  - sweet
+  - t4fs
+  - tdwg.abcd
+  - to
+  - vcard
+  - wlmo
 '0000031':
-  authors:
-  - email: cthoyt@gmail.com
-    github: cthoyt
-    name: Charles Tapley Hoyt
-    orcid: 0000-0003-4423-4370
-  description: A collection of ontologies, controlled vocabularies, database, and
-    schemas relevant for NFDI-MatWerk
+  contributors:
+  - name: NFDI Section Metadata WG Ontology Harmonization and Mapping
+    wikidata: Q139055838
+  description: A collection of ontologies, controlled vocabularies, and schemas relevant
+    for the NFDI-MatWerk Consortium created in cooperation with the [NFDI Section
+    Metadata WG Ontology Harmonization and Mapping](https://github.com/nfdi-de/section-metadata-wg-onto/).
   identifier: '0000031'
+  logo: https://www.nfdi.de/wp-content/uploads/2022/03/Logo_NFDI-MatWerk-1000px.png
+  maintainers:
+  - email: norouzi.iut@gmail.com
+    github: ebrahimnorouzi
+    name: Ebrahim Nourouzi
+    orcid: 0000-0002-2691-6995
+  - email: Heike.Fliegl@fiz-karlsruhe.de
+    github: heikef
+    name: Heike Fliegl
+    orcid: 0000-0002-7541-115X
   name: NFDI-MatWerk Collection
   organizations:
   - name: NFDI-MatWerk
-    partnered: false
     ror: 01d2qgg03
     wikidata: Q108542607
   - name: NFDI
-    partnered: false
     ror: 05qj6w324
     wikidata: Q61658497
   resources:
-  - bioregistry
+  - bfo
+  - chebi
+  - mwo
+  - nfdi.core
+  - pmdco
+  - comment: used by JL MDMC, NEP, EOSC-Pillar
+    prefix: prima
 '0000032':
-  authors:
-  - email: cthoyt@gmail.com
-    github: cthoyt
-    name: Charles Tapley Hoyt
-    orcid: 0000-0003-4423-4370
-  description: A collection of ontologies, controlled vocabularies, database, and
-    schemas relevant for PUNCH4NFDI
+  contributors:
+  - name: NFDI Section Metadata WG Ontology Harmonization and Mapping
+    wikidata: Q139055838
+  description: A placeholder collection of ontologies, controlled vocabularies, and
+    schemas relevant for the PUNCH4NFDI Consortium created by the [NFDI Section Metadata
+    WG Ontology Harmonization and Mapping](https://github.com/nfdi-de/section-metadata-wg-onto/).
+    The working group is in the process of identifying PUNCH4NFDI Consortium members
+    appropriate for maintaining this collection.
   identifier: '0000032'
+  logo: https://www.nfdi.de/wp-content/uploads/2021/12/PUNCH4NFDI-Logo_RGB.png
   name: PUNCH4NFDI Collection
   organizations:
   - name: PUNCH4NFDI
-    partnered: false
     ror: 03f6sdf65
     wikidata: Q108542637
   - name: NFDI
-    partnered: false
     ror: 05qj6w324
     wikidata: Q61658497
+  references:
+  - https://go.rocket.chat/invite?host=all-chat.nfdi.de&path=invite%2FLMmoLA
   resources:
   - bioregistry
 '0000033':
-  authors:
+  contributors:
+  - name: NFDI Section Metadata WG Ontology Harmonization and Mapping
+    wikidata: Q139055838
+  description: A placeholder collection of ontologies, controlled vocabularies, and
+    schemas relevant for the FAIRagro Consortium created by the [NFDI Section Metadata
+    WG Ontology Harmonization and Mapping](https://github.com/nfdi-de/section-metadata-wg-onto/).
+    The working group is in the process of identifying FAIRagro Consortium members
+    appropriate for maintaining this collection.
+  identifier: '0000033'
+  logo: https://www.nfdi.de/wp-content/uploads/2023/08/Fairagro_Logo_mittelachsig_Verklauf_cmyk.png
+  name: FAIRagro Collection
+  organizations:
+  - name: FAIRagro
+    ror: 00r0qs524
+    wikidata: Q113486316
+  - name: NFDI
+    ror: 05qj6w324
+    wikidata: Q61658497
+  references:
+  - https://go.rocket.chat/invite?host=all-chat.nfdi.de&path=invite%2FP8mt5a
+  resources:
+  - bco
+  - chebi
+  - dcat
+  - dcterms
+  - envo
+  - flopo
+  - foaf
+  - gaz
+  - geonames
+  - legacy.ao
+  - ncbitaxon
+  - oboe
+  - pato
+  - po
+  - prov
+  - schema
+  - skos
+  - sosa
+  - ssn
+  - sweet
+  - tdwg.abcd
+  - to
+  - wlmo
+'0000034':
+  contributors:
   - email: cthoyt@gmail.com
     github: cthoyt
     name: Charles Tapley Hoyt
     orcid: 0000-0003-4423-4370
   description: A collection of ontologies, controlled vocabularies, database, and
-    schemas relevant for FAIRagro
-  identifier: '0000033'
-  name: FAIRagro Collection
-  organizations:
-  - name: FAIRagro
-    partnered: false
-    ror: 00r0qs524
-    wikidata: Q113486316
-  - name: NFDI
-    partnered: false
-    ror: 05qj6w324
-    wikidata: Q61658497
-  resources:
-  - bioregistry
-'0000034':
-  authors:
+    schemas relevant for NFDI4BIOIMAGE
+  identifier: '0000034'
+  logo: https://www.nfdi.de/wp-content/uploads/2023/10/1_NDFI_Logo-4c.png
+  maintainers:
   - email: damien@gerbi-gmb.de
     github: gouttegd
     name: Damien Goutte-Gattat
     orcid: 0000-0002-6095-8718
-  description: A collection of ontologies, controlled vocabularies, database, and
-    schemas relevant for NFDI4BIOIMAGE
-  identifier: '0000034'
   name: NFDI4BIOIMAGE Collection
   organizations:
   - name: NFDI4BIOIMAGE
-    partnered: false
     ror: 01vnkaz16
     wikidata: Q113500855
   - name: NFDI
-    partnered: false
     ror: 05qj6w324
     wikidata: Q61658497
   resources:
@@ -1411,170 +1662,421 @@
   - uberon
   - uo
 '0000035':
-  authors:
-  - email: cthoyt@gmail.com
-    github: cthoyt
-    name: Charles Tapley Hoyt
-    orcid: 0000-0003-4423-4370
-  description: A collection of ontologies, controlled vocabularies, database, and
-    schemas relevant for NFDIxCS
+  contributors:
+  - name: NFDI Section Metadata WG Ontology Harmonization and Mapping
+    wikidata: Q139055838
+  description: A placeholder collection of ontologies, controlled vocabularies, and
+    schemas relevant for the NFDIxCS Consortium created by the [NFDI Section Metadata
+    WG Ontology Harmonization and Mapping](https://github.com/nfdi-de/section-metadata-wg-onto/).
+    The working group is in the process of identifying NFDIxCS Consortium members
+    appropriate for maintaining this collection.
   identifier: '0000035'
+  logo: https://nfdixcs.org/fileadmin/PR/NFDIxCS/NFDIxCS_Logo2024_deepblue_crop.png
   name: NFDIxCS Collection
   organizations:
   - name: NFDIxCS
-    partnered: false
     ror: 0033j3009
     wikidata: Q113501071
   - name: NFDI
-    partnered: false
     ror: 05qj6w324
     wikidata: Q61658497
+  references:
+  - https://go.rocket.chat/invite?host=all-chat.nfdi.de&path=invite%2FWgaGQB
   resources:
   - bioregistry
 '0000036':
-  authors:
-  - email: cthoyt@gmail.com
-    github: cthoyt
-    name: Charles Tapley Hoyt
-    orcid: 0000-0003-4423-4370
-  description: A collection of ontologies, controlled vocabularies, database, and
-    schemas relevant for NFDI4Objects
+  contributors:
+  - name: NFDI Section Metadata WG Ontology Harmonization and Mapping
+    wikidata: Q139055838
+  description: 'A collection of ontologies, controlled vocabularies, and schemas relevant
+    for the NFDI4Objects Consortium imported from the consortium''s official BARTOC
+    record [https://bartoc.org/en/node/18961](https://bartoc.org/en/node/18961).
+
+
+    Note: this collection is a subset of the BARTOC collection until all ontologies
+    and controlled vocabularies in the BARTOC collection are also curated in the Semantic
+    Farm.'
   identifier: '0000036'
+  logo: https://www.nfdi.de/wp-content/uploads/2023/12/nfdi4objects_logo_digital_kurztitel.png
+  maintainers:
+  - email: voss@gbv.de
+    github: nichtich
+    name: Jakob Voß
+    orcid: 0000-0002-7613-4123
+  - email: anja.gerber@klassik-stiftung.de
+    github: anja-gerber
+    name: Anja Gerber
+    orcid: 0000-0003-2576-1511
+  - email: florian.thiery@leiza.de
+    github: florianthiery
+    name: Florian Thiery
+    orcid: 0000-0002-3246-3531
+  - email: kristina.fischer@leiza.de
+    github: KristinaYFischer
+    name: Kristina Fischer
+    orcid: 0009-0005-3991-1025
+  mappings:
+  - identifier: '18961'
+    prefix: bartoc
   name: NFDI4Objects Collection
   organizations:
   - name: NFDI4Objects
-    partnered: false
     ror: 01xptp363
     wikidata: Q98229157
   - name: NFDI
-    partnered: false
     ror: 05qj6w324
     wikidata: Q61658497
   resources:
+  - amh.material
+  - bibo
   - bioregistry
+  - cidoc.crm
+  - dai.thesauri
+  - datacite.contributor
+  - datacite.date
+  - datacite.description
+  - datacite.identifier
+  - datacite.name
+  - datacite.relation
+  - datacite.resource
+  - fish.aoe
+  - fish.as
+  - fish.bm
+  - fish.event
+  - fish.mc
+  - fish.mt
+  - geonames
+  - geosparql
+  - getty.att
+  - getty.tgn
+  - getty.ulan
+  - gnd
+  - hessische.systematik
+  - iconclass
+  - kenom.material
+  - lado
+  - lido.actor
+  - lido.event
+  - lido.identifier
+  - lido.recordmetadatadate
+  - lido.recordtype
+  - lido.repositoryset
+  - lido.resourcerepresentation
+  - lido.termmaterialstech
+  - lv
+  - oeai.ctp
+  - oeai.material
+  - orcid
+  - ror
+  - skos
+  - time
+  - unesco.thesaurus
+  - viaf
+  - whg
+  - wikidata
 '0000037':
-  authors:
-  - email: cthoyt@gmail.com
-    github: cthoyt
-    name: Charles Tapley Hoyt
-    orcid: 0000-0003-4423-4370
-  description: A collection of ontologies, controlled vocabularies, database, and
-    schemas relevant for NFDI4Memory
+  contributors:
+  - name: NFDI Section Metadata WG Ontology Harmonization and Mapping
+    wikidata: Q139055838
+  description: A placeholder collection of ontologies, controlled vocabularies, and
+    schemas relevant for the NFDI4Memory Consortium created by the [NFDI Section Metadata
+    WG Ontology Harmonization and Mapping](https://github.com/nfdi-de/section-metadata-wg-onto/).
+    The working group is in the process of identifying NFDI4Memory Consortium members
+    appropriate for maintaining this collection.
   identifier: '0000037'
+  logo: https://www.nfdi.de/wp-content/uploads/2023/08/Logo_for_memory_RGB.png
+  maintainers:
+  - email: tabea.tietz@fiz-karlsruhe.de
+    github: tabeatietz
+    name: Tabea Tietz
+    orcid: 0000-0002-1648-1684
   name: NFDI4Memory Collection
   organizations:
   - name: NFDI4Memory
-    partnered: false
     ror: 0310v3480
     wikidata: Q98231721
   - name: NFDI
-    partnered: false
     ror: 05qj6w324
     wikidata: Q61658497
   resources:
-  - bioregistry
+  - cidoc.crm
+  - edm
+  - factgrid
+  - geonames
+  - getty.att
+  - getty.cona
+  - getty.ia
+  - getty.tgn
+  - getty.ulan
+  - gnd
+  - gov.object
+  - hisco
+  - iconclass
+  - kldb
+  - lido
+  - nfdi.core
+  - nfdi4culture.cto
+  - ohdab
+  - ontome
+  - tadirah
+  - wikidata
 0000038:
-  authors:
-  - email: cthoyt@gmail.com
-    github: cthoyt
-    name: Charles Tapley Hoyt
-    orcid: 0000-0003-4423-4370
-  description: A collection of ontologies, controlled vocabularies, database, and
-    schemas relevant for Text+
+  contributors:
+  - name: NFDI Section Metadata WG Ontology Harmonization and Mapping
+    wikidata: Q139055838
+  description: A placeholder collection of ontologies, controlled vocabularies, and
+    schemas relevant for the Text+ Consortium created by the [NFDI Section Metadata
+    WG Ontology Harmonization and Mapping](https://github.com/nfdi-de/section-metadata-wg-onto/).
+    The working group is in the process of identifying Text+ Consortium members appropriate
+    for maintaining this collection.
   identifier: 0000038
+  logo: https://www.nfdi.de/wp-content/uploads/2023/12/textplus_logo_RGB.png
   name: Text+ Collection
   organizations:
   - name: Text+
-    partnered: false
     ror: 04dy2xw62
     wikidata: Q98271443
   - name: NFDI
-    partnered: false
     ror: 05qj6w324
     wikidata: Q61658497
+  references:
+  - https://go.rocket.chat/invite?host=all-chat.nfdi.de&path=invite%2FaKbtMN
   resources:
-  - bioregistry
+  - bibframe
+  - cessda.topicclassification
+  - cidoc.crm
+  - geonames
+  - getty.att
+  - getty.cona
+  - getty.ia
+  - getty.tgn
+  - getty.ulan
+  - gnd
+  - iconclass
+  - lido
+  - ontolex
+  - ontome
 0000039:
-  authors:
-  - email: cthoyt@gmail.com
-    github: cthoyt
-    name: Charles Tapley Hoyt
-    orcid: 0000-0003-4423-4370
-  description: A collection of ontologies, controlled vocabularies, database, and
-    schemas relevant for GHGA
+  contributors:
+  - name: NFDI Section Metadata WG Ontology Harmonization and Mapping
+    wikidata: Q139055838
+  description: A placeholder collection of ontologies, controlled vocabularies, and
+    schemas relevant for the GHGA Consortium created by the [NFDI Section Metadata
+    WG Ontology Harmonization and Mapping](https://github.com/nfdi-de/section-metadata-wg-onto/).
+    The working group is in the process of identifying GHGA Consortium members appropriate
+    for maintaining this collection.
   identifier: 0000039
+  logo: https://www.nfdi.de/wp-content/uploads/2022/10/Logo-GHGA.png
+  maintainers:
+  - github: mauerk
+    name: Karoline Mauer
+    orcid: 0000-0002-9454-7941
   name: GHGA Collection
   organizations:
   - name: GHGA
-    partnered: false
     ror: 05nfk7108
     wikidata: Q98380337
   - name: NFDI
-    partnered: false
     ror: 05qj6w324
     wikidata: Q61658497
+  references:
+  - https://go.rocket.chat/invite?host=all-chat.nfdi.de&path=invite%2FCHzcLh
   resources:
-  - bioregistry
+  - biolink
+  - cob
+  - duo
+  - edam
+  - efo
+  - genepio
+  - ghga
+  - gsso
+  - hancestro
+  - linkml
+  - ncit
+  - sio
 '0000040':
-  authors:
-  - email: cthoyt@gmail.com
-    github: cthoyt
-    name: Charles Tapley Hoyt
-    orcid: 0000-0003-4423-4370
-  description: A collection of ontologies, controlled vocabularies, database, and
-    schemas relevant for NFDI4Biodiversity
+  contributors:
+  - name: NFDI Section Metadata WG Ontology Harmonization and Mapping
+    wikidata: Q139055838
+  description: A placeholder collection of ontologies, controlled vocabularies, and
+    schemas relevant for the NFDI4Biodiversity Consortium created by the [NFDI Section
+    Metadata WG Ontology Harmonization and Mapping](https://github.com/nfdi-de/section-metadata-wg-onto/).
+    The working group is in the process of identifying NFDI4Biodiversity Consortium
+    members appropriate for maintaining this collection.
   identifier: '0000040'
+  logo: https://www.nfdi.de/wp-content/uploads/2023/03/NFDI_4_Biodiversity___Logo_Positiv_Kopie.png
+  maintainers:
+  - github: naouelkaram
+    name: Naouel Karam
+    orcid: 0000-0002-6762-6417
+  - email: schaefermeier@infai.org
+    github: RalphBln
+    name: Ralph Schäfermeier
+    orcid: 0000-0002-4349-6726
   name: NFDI4Biodiversity Collection
   organizations:
   - name: NFDI4Biodiversity
-    partnered: false
     ror: 03fqpzb44
     wikidata: Q98380341
   - name: NFDI
-    partnered: false
     ror: 05qj6w324
     wikidata: Q61658497
+  references:
+  - https://go.rocket.chat/invite?host=all-chat.nfdi.de&path=invite%2FEWutLP
   resources:
-  - bioregistry
+  - abcd
+  - ahol
+  - aism
+  - apto
+  - atol
+  - bco
+  - bfo
+  - biodivthes
+  - bohlmann
+  - bspo
+  - caro
+  - chebi
+  - cl
+  - cob
+  - codata.rdmt
+  - colao
+  - dcat
+  - dfg.fo
+  - eco
+  - edam
+  - envo
+  - envthes
+  - eol
+  - flopo
+  - geonames
+  - gfbio.biobank
+  - gfbio.biol
+  - gfbio.botany
+  - gfbio.ets
+  - gfbio.iho
+  - gfbio.kingdom
+  - gfbio.top
+  - iadopt
+  - inbio
+  - iso.3166
+  - itis
+  - lepao
+  - lpt
+  - ncbitaxon
+  - nfdi.core
+  - oba
+  - oboe
+  - odm2.methodtype
+  - odm2.specimentype
+  - oim
+  - om
+  - pato
+  - pco
+  - po
+  - prov
+  - qudt
+  - ro
+  - schema
+  - sosa
+  - sumso
+  - sweet
+  - swo
+  - taxonconcept
+  - taxrank
+  - tib.bk
+  - to
+  - uberon
+  - unesco.thesaurus
+  - vbo
+  - vt
 '0000041':
-  authors:
-  - email: cthoyt@gmail.com
-    github: cthoyt
-    name: Charles Tapley Hoyt
-    orcid: 0000-0003-4423-4370
-  description: A collection of ontologies, controlled vocabularies, database, and
-    schemas relevant for NFDI4Health
+  contributors:
+  - name: NFDI Section Metadata WG Ontology Harmonization and Mapping
+    wikidata: Q139055838
+  description: A placeholder collection of ontologies, controlled vocabularies, and
+    schemas relevant for the NFDI4Health Consortium created by the [NFDI Section Metadata
+    WG Ontology Harmonization and Mapping](https://github.com/nfdi-de/section-metadata-wg-onto/).
+    The working group is in the process of identifying NFDI4Health Consortium members
+    appropriate for maintaining this collection.
   identifier: '0000041'
+  logo: https://www.nfdi.de/wp-content/uploads/2021/05/nfdi_4_health_Logo.png
+  maintainers:
+  - email: matthias.loebe@imise.uni-leipzig.de
+    github: beanformer
+    name: Matthias Löbe
+    orcid: 0000-0002-2344-0426
   name: NFDI4Health Collection
   organizations:
   - name: NFDI4Health
-    partnered: false
     ror: 0305k8y39
     wikidata: Q98380343
   - name: NFDI
-    partnered: false
     ror: 05qj6w324
     wikidata: Q61658497
+  references:
+  - https://go.rocket.chat/invite?host=all-chat.nfdi.de&path=invite%2FDFD2Ba
   resources:
   - bioregistry
 '0000042':
-  authors:
-  - email: cthoyt@gmail.com
-    github: cthoyt
-    name: Charles Tapley Hoyt
-    orcid: 0000-0003-4423-4370
-  description: A collection of ontologies, controlled vocabularies, database, and
-    schemas relevant for NFDI4Microbiota
+  contributors:
+  - name: NFDI Section Metadata WG Ontology Harmonization and Mapping
+    wikidata: Q139055838
+  description: A placeholder collection of ontologies, controlled vocabularies, and
+    schemas relevant for the NFDI4Microbiota Consortium created by the [NFDI Section
+    Metadata WG Ontology Harmonization and Mapping](https://github.com/nfdi-de/section-metadata-wg-onto/).
+    The working group is in the process of identifying NFDI4Microbiota Consortium
+    members appropriate for maintaining this collection.
   identifier: '0000042'
+  logo: https://www.nfdi.de/wp-content/uploads/2021/12/nfdi4microbiota_Logo_.png
+  maintainers:
+  - github: anandhi-iyappan
+    name: Anandhi Iyappan
+    orcid: 0000-0002-5571-4962
+  - github: nacnoriko
+    name: Noriko Cassman
+    orcid: 0000-0003-1655-0931
+  - github: magelm
+    name: Maja Magel
+    orcid: 0009-0004-2517-0791
   name: NFDI4Microbiota Collection
   organizations:
   - name: NFDI4Microbiota
-    partnered: false
     ror: 03a4sp974
     wikidata: Q99534506
   - name: NFDI
-    partnered: false
     ror: 05qj6w324
     wikidata: Q61658497
+  references:
+  - https://go.rocket.chat/invite?host=all-chat.nfdi.de&path=invite%2F32bEDW
+  resources:
+  - bioregistry
+'0000043':
+  contributors:
+  - name: NFDI Section Metadata WG Ontology Harmonization and Mapping
+    wikidata: Q139055838
+  description: A placeholder collection of ontologies, controlled vocabularies, and
+    schemas relevant for the NFDI4Immuno Consortium created by the [NFDI Section Metadata
+    WG Ontology Harmonization and Mapping](https://github.com/nfdi-de/section-metadata-wg-onto/).
+    The working group is in the process of identifying NFDI4Immuno Consortium members
+    appropriate for maintaining this collection.
+  identifier: '0000043'
+  logo: https://www.nfdi.de/wp-content/uploads/2025/12/logo25_plus-text-hori_light_transparent.png
+  maintainers:
+  - github: ustervbo
+    name: Ulrik Stervbo
+    orcid: 0000-0002-2831-8868
+  - github: FederalGobbo
+    name: Sebastian Böhm
+    orcid: 0009-0006-4599-6309
+  name: NFDI4Immuno Collection
+  organizations:
+  - name: NFDI4Immuno
+    ror: 01k8bwd50
+    wikidata: Q113543313
+  - name: NFDI
+    ror: 05qj6w324
+    wikidata: Q61658497
+  references:
+  - https://go.rocket.chat/invite?host=all-chat.nfdi.de&path=invite%2FBzRWeP
   resources:
   - bioregistry

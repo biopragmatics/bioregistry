@@ -49,14 +49,14 @@ BIOREGISTRY_DESCRIPTION_DEFAULT = dedent("""\
     and compact identifier (CURIE) resolver.
 """)
 BIOREGISTRY_FOOTER_DEFAULT = dedent(f"""\
-    <div class="row mt-3"><h5>Projects and Partners</h3></div>
+    <div class="row mt-3"><h5>Projects and Partners</h5></div>
     <div class="row mt-2">
         <div class="col text-center align-self-center"><a href="https://www.iac.rwth-aachen.de"><img src="/static/rwth-iac.svg" style="height: 2.3em;" /></a></div>
         <div class="col text-center align-self-center"><a href="https://nfdi4chem.de"><img src="/static/nfdi4chem.svg" style="height: 2.3em;" /></a></div>
         <div class="col text-center align-self-center"><a href="https://dalia.education/en"><img src="/static/dalia.png" style="height: 1.9em;" /></a></div>
         <div class="col text-center align-self-center"><a href="https://www.northeastern.edu"><img src="/static/northeastern.svg" style="height: 2.3em;" /></a></div>
     </div>
-    <div class="row mt-4"><h5>Funding</h3></div>
+    <div class="row mt-4"><h5>Funding</h5></div>
     <div class="row mt-1">
         <div class="col text-center align-self-center"><a href="https://www.dfg.de"><img src="/static/dfg.svg" style="height: 2.3em;" /></a></div>
         <div class="col text-center align-self-center"><a href="https://chanzuckerberg.com"><img src="/static/czi.svg" style="height: 3.5em;" /></a></div>
@@ -69,7 +69,7 @@ BIOREGISTRY_FOOTER_DEFAULT = dedent(f"""\
     <p class="small text-center text-muted">
     Developed with ❤️ by the
     <a href="https://www.iac.rwth-aachen.de">Institute of Inorganic Chemistry</a> at RWTH Aachen University
-    </br> and the
+    <br/> and the
     <a href="https://gyorilab.github.io">Gyori Lab for Computational Biomedicine</a>
     at Northeastern University.<br/>
     Point of contact: Charles Tapley Hoyt (<a href="https://github.com/cthoyt">@cthoyt</a>; RWTH Aachen)
@@ -77,7 +77,7 @@ BIOREGISTRY_FOOTER_DEFAULT = dedent(f"""\
 
     <div class="text-center">
     <a class="btn btn-outline-primary btn-sm mb-1" rel="me" href="https://{INTERNAL_MASTODON_SERVER}/@{INTERNAL_MASTODON_HANDLE}" title="{INTERNAL_MASTODON_HANDLE}"> @{INTERNAL_MASTODON}</a>
-    <a class="btn btn-outline-primary btn-sm mb-1" href="{INTERNAL_REPOSITORY}"><i class="fa fa-brands fa-github"></i> Source Code</a>
+    <a class="btn btn-outline-primary btn-sm mb-1" href="{INTERNAL_REPOSITORY}"><i class="bi bi-github"></i> Source Code</a>
     </div>
 """)
 BIOREGISTRY_HEADER_DEFAULT = dedent("""\
@@ -195,8 +195,8 @@ BIOREGISTRY_DEPLOYMENT_BLOCK = dedent(f"""\
 <p>
     A Docker image is automatically built weekly following the
     <a href="{INTERNAL_REPOSITORY}/actions/workflows/update.yml">update workflow</a>
-    on GitHub Actions and pushed to the <a href="https://hub.docker.com/r/{INTERNAL_DOCKERHUB_SLUG}"><i class="fab fa-docker"></i>
-    {INTERNAL_DOCKERHUB_SLUG}</a> DockerHub repository. This image is built with the Python 3.9 alpine base image,
+    on GitHub Actions and pushed to the <a href="https://hub.docker.com/r/{INTERNAL_DOCKERHUB_SLUG}">
+    {INTERNAL_DOCKERHUB_SLUG}</a> DockerHub repository. This image is built with a Python alpine base image,
     which significantly reduces non-essential components. The final compressed image weights less than 40 MB of disk
     space and runs inside Docker with about 65 MB of memory at baseline. This could easily fit on a dedicated
     <a href="https://aws.amazon.com/ec2/instance-types/t4/">t4g.nano</a> instance on AWS that costs about
@@ -294,8 +294,8 @@ def get_app(
     :param return_flask: Set to true to get internal flask app
     :param analytics: Should analytics be enabled?
     :param import_name: The import name for the flask app
-    :param flask_kwargs: Remaining keyword arguments to pass to the flask app
-        (don't pass ``import_name`` as a key here)
+    :param flask_kwargs: Remaining keyword arguments to pass to the flask app (don't
+        pass ``import_name`` as a key here)
 
     :returns: An instantiated WSGI application
 
@@ -345,14 +345,7 @@ def get_app(
     fast_api.include_router(_get_sparql_router(app))
     fast_api.mount("/", WSGIMiddleware(app))  # type:ignore
 
-    # yes, this isn't very secure. just for testing now.
-    key = "-".join([KEY_A, KEY_B, KEY_C, KEY_D, KEY_E])
-    analytics_api_key = conf.get("ANALYTICS_API_KEY") or pystow.get_config(
-        "bioregistry",
-        "analytics_api_key",
-        passthrough=key,
-    )
-    if analytics_api_key and analytics:
+    if analytics and (analytics_api_key := conf.get("ANALYTICS_API_KEY")):
         from api_analytics.fastapi import Analytics
 
         fast_api.add_middleware(Analytics, api_key=analytics_api_key)  # Add middleware
@@ -399,6 +392,23 @@ def _prepare_config(
     config.setdefault("METAREGISTRY_SCHEMA_PREFIX", SCHEMA_CURIE_PREFIX)
     config.setdefault("METAREGISTRY_SCHEMA_URI_PREFIX", SCHEMA_URI_PREFIX)
     config.setdefault("METAREGISTRY_RESOURCES_SUBHEADER", RESOURCES_SUBHEADER_DEFAULT)
+    config.setdefault("METAREGISTRY_GOOGLE_ANALYTICS", "G-SPV2J3MLNE")
+    config.setdefault("METAREGISTRY_MATOMO", "")
+
+    # yes, this isn't very secure. just for testing now.
+    key = "-".join([KEY_A, KEY_B, KEY_C, KEY_D, KEY_E])
+
+    # setdefault works by not overriding if the value is there,
+    # so set ANALYTICS_API_KEY with an empty string as value to
+    # disable this
+    config.setdefault(
+        "ANALYTICS_API_KEY",
+        pystow.get_config(
+            "bioregistry",
+            "analytics_api_key",
+            passthrough=key,
+        ),
+    )
 
     # key for updating on non-first party
     config.setdefault("METAREGISTRY_TITLE", BIOREGISTRY_TITLE_DEFAULT)

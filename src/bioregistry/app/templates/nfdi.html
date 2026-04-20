@@ -1,0 +1,276 @@
+{%- extends "base.html" %}
+{%- import "macros.html" as utils %}
+
+{%- block title %}NFDI Dashboard{% endblock %}
+
+{%- macro external_mapping_card(title, external_prefix, mappings) %}
+<div class="card mt-4">
+    <div class="card-header">{{ title }} Collection Mapping</div>
+    <div class="card-body">
+        {%- if external_prefix == "tib.collection" %}
+        Import of TIB OLS collections was implemented in
+        <a href="https://github.com/biopragmatics/bioregistry/pull/1762">#1762</a>.
+        {%- else %}
+        Import of BARTOC collections was implemented in
+        <a href="https://github.com/biopragmatics/bioregistry/issues/1888">#1888</a>.
+        {%- endif %}
+        The data can be synced by running <code>python -m bioregistry.curation.nfdi.sync</code>.
+    </div>
+    <table class="table table-striped mb-0">
+        <thead>
+        <tr>
+            <th>Collection</th>
+            <th>Consortium</th>
+            <th>{{ title }} Collection</th>
+        </tr>
+        </thead>
+        <tbody>
+        {%- for collection_id, external_id in mappings.items() %}
+        <tr>
+            <td>
+                <a href="{{ url_for('metaregistry_ui.collection', identifier=collection_id) }}">
+                    {{ collection_id }}
+                </a>
+            </td>
+            <td>{{ collections[collection_id].name.removesuffix(" Collection") }}</td>
+            <td>
+                <a href="{{ url_for('metaregistry_ui.resolve', prefix=external_prefix, identifier=external_id) }}">
+                    {{ external_id }}
+                </a>
+            </td>
+        </tr>
+        {%- endfor %}
+        </tbody>
+    </table>
+</div>
+{%- endmacro %}
+
+{%- macro render_nfdi_collection(collection, show_length=True) %}
+<a href="{{ url_for('.collection', identifier=collection.identifier) }}">
+    {{ collection.name.removesuffix(" Collection").removesuffix(" Resources") }}
+</a>
+
+{%- if show_length %}
+({{ collection.resources|length }})
+{%- endif %}
+
+<ul>
+    {%- if collection.references %}
+    {%- for reference in collection.references %}
+    {%- if reference.startswith("https://go.rocket.chat") %}
+    <li><a href="{{ reference }}">🚀 Join RocketChat Discussion</a></li>
+    {%- endif %}
+    {%- endfor %}
+    {%- endif %}
+
+    {% if collection.maintainers %}
+    {% for maintainer in collection.maintainers %}
+    <li>{{ maintainer.name }} {{ utils.orcid_img() }}</li>
+    {% endfor %}
+    {% endif %}
+</ul>
+{%- endmacro %}
+
+{%- block container %}
+<div class="card">
+    <div class="card-header">
+        NFDI Dashboard
+    </div>
+    <div class="card-body">
+        <div class="card-text">
+            <p>Consortia whose collection has a maintainer:</p>
+            <ol>
+                {%- for collection in collections.values() %}
+                {%- if collection.maintainers and (collection.resources|length > 1) %}
+                <li>{{ render_nfdi_collection(collection, show_length=True) }}</li>
+                {%- endif %}
+                {%- endfor %}
+            </ol>
+
+            <p>Consortia whose collection has a maintainer but haven't been filled out</p>
+            <ol>
+                {%- for collection in collections.values() %}
+                {%- if collection.maintainers and (collection.resources|length == 1) %}
+                <li>{{ render_nfdi_collection(collection, show_length=False) }}</li>
+                {%- endif %}
+                {%- endfor %}
+            </ol>
+            <p>Consortia whose collections don't yet have a maintainer but have been ported:</p>
+            <ol>
+                {%- for collection in collections.values() %}
+                {%- if not collection.maintainers and (collection.resources|length > 1) %}
+                <li>{{ render_nfdi_collection(collection, show_length=True) }}</li>
+                {%- endif %}
+                {%- endfor %}
+            </ol>
+            <p>Consortia whose collections don't yet have a maintainer and haven't been ported:</p>
+            <ol class="mb-0">
+                {%- for collection in collections.values() %}
+                {%- if not collection.maintainers and (collection.resources|length == 1) %}
+                <li>{{ render_nfdi_collection(collection, show_length=False) }}</li>
+                {%- endif %}
+                {%- endfor %}
+            </ol>
+        </div>
+    </div>
+</div>
+
+<div class="card mt-4">
+    <div class="card-header">
+        Curation Tasks
+    </div>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>Collection</th>
+            <th>Consortium</th>
+            <th>Resources Missing License</th>
+            <th>Resources Missing Domain</th>
+            <th>Resources Missing Download</th>
+        </tr>
+        </thead>
+        <tbody>
+        {%- for collection in collections.values() %}
+        {%- set n_total = collection.resources | length %}
+        {%- set n_license = collection_to_license_needs_curation[collection.identifier] | length %}
+        {%- set n_domain = collection_to_domain_needs_curation[collection.identifier] | length %}
+        {%- set n_download = collection_to_download_need_curation[collection.identifier] | length %}
+        {%- if n_license or n_domain or n_download %}
+        <tr>
+            <td>
+                <a href="{{ url_for('metaregistry_ui.collection', identifier=collection.identifier) }}">
+                    {{ collection.identifier }}
+                </a>
+            </td>
+            <td>{{ collection.name.removesuffix(" Collection") }}</td>
+            <td align="right">{% if n_license %}{{ n_license }} ({{ (0.5 + 100 * n_license / n_total) | int }}%){% endif %}</td>
+            <td align="right">{% if n_domain %}{{ n_domain }} ({{ (0.5 + 100 * n_domain / n_total) | int }}%){% endif %}</td>
+            <td align="right">{% if n_download %}{{ n_download }} ({{ (0.5 + 100 * n_download / n_total) | int }}%){% endif %}</td>
+        </tr>
+        {%- endif %}
+        {%- endfor %}
+        </tbody>
+    </table>
+</div>
+
+<div class="card mt-4">
+    <div class="card-header">
+        Resource used by more than two consortia
+    </div>
+
+    <table class="table table-striped mb-0">
+        <thead>
+        <tr>
+            <th>Prefix</th>
+            <th>Name</th>
+            <th># Consortia</th>
+        </tr>
+        </thead>
+        <tbody>
+        {%- for prefix, count in prefix_counter.most_common() %}
+        {%- if count > 2 and prefix != 'bioregistry' %}
+        <tr>
+            <td>{{ utils.render_prefix(prefix) }}</td>
+            <td>{{ manager.get_name(prefix) }}</td>
+            <td align="right">{{ count }}</td>
+        </tr>
+        {%- endif %}
+        {%- endfor %}
+        </tbody>
+    </table>
+</div>
+
+{{ external_mapping_card("TIB", "tib.collection", tib_collection_mappings) }}
+
+{{ external_mapping_card("BARTOC", "bartoc", bartoc_collection_mappings) }}
+
+<div class="card mt-4">
+    <div class="card-header">
+        TIB OLS Opportunities
+    </div>
+    <div class="card-body">
+        <p class="mb-0">
+            There are {{ tib_opportunities | length }} resources appearing in NFDI collections
+            that have concrete download links in {{ config.METAREGISTRY_TITLE }}, but are not
+            yet indexed in the TIB OLS.
+            <a class="badge badge-pill badge-light"
+               href="{{ fastapi_url_for('get_ols_configurations', prefixes=tib_opportunities | join(',')) }}">
+                Download All OLS Configurations <i class="bi bi-cloud-arrow-down-fill"></i>
+            </a>
+        </p>
+    </div>
+    <table class="table table-striped mb-0">
+        <thead>
+        <tr>
+            <th>Collection</th>
+            <th>Consortium</th>
+            <th># Resources</th>
+            <th>Example</th>
+            <th>OLS Config.</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for collection_id, prefixes in collection_to_tib_opportunities.items() %}
+        <tr>
+            <td>
+                <a href="{{ url_for('metaregistry_ui.collection', identifier=collection_id) }}">
+                    {{ collection_id }}
+                </a>
+            </td>
+            <td>{{ collections[collection_id].name.removesuffix(" Collection") }}</td>
+            <td align="right">{{ prefixes | length }}</td>
+            <td>
+                <a href="{{ url_for('metaregistry_ui.resource', prefix=prefixes[0]) }}">
+                    {{ manager.get_name(prefixes[0]) }} (<code>{{ prefixes[0] }}</code>)
+                </a>
+            </td>
+            <td align="center">
+                <a href="{{ fastapi_url_for('get_ols_configurations', prefixes=prefixes | join(',')) }}">
+                    <i class="bi bi-cloud-arrow-down-fill"></i>
+                </a>
+            </td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+<div class="card mt-4">
+    <div class="card-header">
+        First Party Resources
+    </div>
+    <div class="card-body">
+        <p class="mb-0">
+            The following resources are made by the consortium.
+        </p>
+    </div>
+
+    <table class="table table-striped mb-0" style="margin-bottom: 0;">
+        <thead>
+        <tr>
+            <th scope="col">Prefix</th>
+            <th scope="col">Name</th>
+            <th scope="col">Consortia</th>
+        </tr>
+        </thead>
+        <tbody>
+        {%- for resource, consortia in first_party %}
+        <tr>
+            <td>
+                {{ utils.render_prefix(resource.prefix) }}
+            </td>
+            <td>{{ resource.get_name() }}</td>
+            <td>
+                {%- for consortium in consortia %}
+                <a href="{{ url_for('metaregistry_ui.collection', identifier=consortium.identifier) }}">
+                    {{ consortium.name.removesuffix(" Collection") }}
+                </a>
+                {%- endfor %}
+            </td>
+        </tr>
+        {%- endfor %}
+        </tbody>
+    </table>
+</div>
+
+{%- endblock %}

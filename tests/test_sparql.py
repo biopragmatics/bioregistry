@@ -2,7 +2,7 @@
 
 import csv
 import unittest
-from xml import etree
+from xml.etree import ElementTree
 
 import requests
 
@@ -15,16 +15,28 @@ LOCAL_VIRTUOSO = "http://localhost:8890/sparql"
 
 
 def _handle_res_xml(res: requests.Response) -> set[tuple[str, str]]:
-    root = etree.ElementTree.fromstring(res.text)
-    results = root.find("{http://www.w3.org/2005/sparql-results#}results")
+    root = ElementTree.fromstring(res.text)
+    results: ElementTree.Element | None = root.find(
+        "{http://www.w3.org/2005/sparql-results#}results"
+    )
+    if results is None:
+        return set()
     rv = set()
     for result in results:
-        parsed_result = {
-            binding.attrib["name"]: binding.find("{http://www.w3.org/2005/sparql-results#}uri").text
-            for binding in result
-        }
+        parsed_result = _parse_result(result)
         rv.add((parsed_result["s"], parsed_result["o"]))
     return rv
+
+
+def _parse_result(result: ElementTree.Element) -> dict[str, str]:
+    parsed_result = {}
+    for binding in result:
+        name = binding.attrib["name"]
+        url = binding.find("{http://www.w3.org/2005/sparql-results#}uri")
+        if url is None or url.text is None:
+            continue
+        parsed_result[name] = url.text
+    return parsed_result
 
 
 def _handle_res_json(res: requests.Response) -> set[tuple[str, str]]:
@@ -46,7 +58,7 @@ HANDLERS = {
 }
 
 
-def get(endpoint: str, sparql: str, accept) -> set[tuple[str, str]]:
+def get(endpoint: str, sparql: str, accept: str) -> set[tuple[str, str]]:
     """Get a response from a given SPARQL query."""
     res = requests.get(
         endpoint,
@@ -94,7 +106,7 @@ SELECT DISTINCT ?s ?o WHERE {{
 class TestSPARQL(unittest.TestCase):
     """Tests for federated SPARQL queries to the Bioregistry mapping service."""
 
-    def assert_endpoint(self, endpoint: str, query: str, *, accept: str):
+    def assert_endpoint(self, endpoint: str, query: str, *, accept: str) -> None:
         """Assert the endpoint returns favorable results."""
         records = get(endpoint, query, accept=accept)
         self.assertIn(
@@ -105,7 +117,7 @@ class TestSPARQL(unittest.TestCase):
     @unittest.skipUnless(
         sparql_service_available(LOCAL_BLAZEGRAPH), reason="No local BlazeGraph is running"
     )
-    def test_federate_blazegraph(self):
+    def test_federate_blazegraph(self) -> None:
         """Test federating on a Blazegraph triplestore.
 
         To run blazegraph locally with ``docker compose up`` or:
@@ -122,7 +134,7 @@ class TestSPARQL(unittest.TestCase):
     @unittest.skipUnless(
         sparql_service_available(LOCAL_VIRTUOSO), reason="No local Virtuoso is running"
     )
-    def test_federate_virtuoso(self):
+    def test_federate_virtuoso(self) -> None:
         """Test federating on a OpenLink Virtuoso triplestore.
 
         To run Virtuoso locally:

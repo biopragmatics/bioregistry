@@ -39,7 +39,7 @@ def _collection_prefix_maps() -> None:
         if name is None:
             continue
         path_stub = EXPORT_CONTEXTS.joinpath(name)
-        subconverter = converter.get_subconverter(collection.resources)
+        subconverter = converter.get_subconverter(collection.get_prefixes())
         curies.write_jsonld_context(subconverter, path_stub.with_suffix(".context.jsonld"))
         curies.write_shacl(subconverter, path_stub.with_suffix(".context.ttl"))
 

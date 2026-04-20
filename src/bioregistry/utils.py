@@ -8,28 +8,22 @@ from collections import ChainMap, defaultdict
 from collections.abc import Callable, Hashable, Iterable, Mapping, Sequence
 from datetime import datetime
 from pathlib import Path
-from typing import (
-    Any,
-    cast,
-    overload,
-)
+from typing import Any, cast, overload
 
 import click
 import requests
+import yaml
 from pystow.utils import get_hashes
 
+from .alignment_model import Record, Status
 from .constants import (
     BIOREGISTRY_PATH,
     COLLECTIONS_YAML_PATH,
     METAREGISTRY_YAML_PATH,
     REGISTRY_YAML_PATH,
 )
-from .version import get_version
 
 logger = logging.getLogger(__name__)
-
-#: Wikidata SPARQL endpoint. See https://www.wikidata.org/wiki/Wikidata:SPARQL_query_service#Interfacing
-WIKIDATA_ENDPOINT = "https://query.wikidata.org/bigdata/namespace/wdq/sparql"
 
 
 class OLSBrokenError(RuntimeError):
@@ -79,25 +73,6 @@ def removesuffix(s: str | None, suffix: str) -> str | None:
     if s.endswith(suffix):
         return s[: -len(suffix)]
     return s
-
-
-def query_wikidata(sparql: str) -> list[Mapping[str, Any]]:
-    """Query Wikidata's sparql service.
-
-    :param sparql: A SPARQL query string
-
-    :returns: A list of bindings
-    """
-    logger.debug("running query: %s", sparql)
-    headers = {
-        "User-Agent": f"bioregistry v{get_version()}",
-    }
-    res = requests.get(
-        WIKIDATA_ENDPOINT, params={"query": sparql, "format": "json"}, headers=headers, timeout=300
-    )
-    res.raise_for_status()
-    res_json = res.json()
-    return cast(list[Mapping[str, Any]], res_json["results"]["bindings"])
 
 
 # TODO make inherit from dict[str, str] interface
@@ -182,10 +157,9 @@ def get_ols_descendants(
     ontology: str,
     uri: str,
     *,
-    force_download: bool = False,
     get_identifier: IdentifierGetter | None = None,
     clean: IdentifierCleaner | None = None,
-) -> dict[str, dict[str, Any]]:
+) -> dict[str, Record]:
     """Get descendants in the OLS."""
     url = f"https://www.ebi.ac.uk/ols/api/ontologies/{ontology}/terms/{uri}/descendants?size=1000"
     res = requests.get(url, timeout=15)
@@ -204,7 +178,7 @@ def _process_ols(
     terms: list[dict[str, Any]],
     clean: IdentifierCleaner | None = None,
     get_identifier: IdentifierGetter | None = None,
-) -> dict[str, dict[str, Any]]:
+) -> dict[str, Record]:
     if clean is None:
         clean = _clean
     if get_identifier is None:
@@ -213,11 +187,12 @@ def _process_ols(
     for term in terms:
         identifier = get_identifier(term, ontology)
         description = term.get("description")
-        rv[identifier] = {
-            "name": clean(term["label"]),
-            "description": description and description[0],
-            "obsolete": term.get("is_obsolete", False),
-        }
+        status = Status.deprecated if term.get("is_obsolete") else None
+        rv[identifier] = Record(
+            name=clean(term["label"]),
+            description=description[0] if description else None,
+            status=status,
+        )
     return rv
 
 
@@ -302,3 +277,18 @@ def get_ec_url(identifier: str, *, ep: str = "class") -> str:
         return f"{base}?c={x[0]}"
     else:
         raise ValueError
+
+
+def registry_yaml_dumper() -> None:
+    """Register YAML dumper."""
+    import curies
+    import yaml
+
+    def _safe(dumper: yaml.SafeDumper, data: curies.Prefix) -> yaml.Node:
+        return dumper.represent_str(str(data))
+
+    def _unsafe(dumper: yaml.Dumper, data: curies.Prefix) -> yaml.Node:
+        return dumper.represent_str(str(data))
+
+    yaml.add_representer(curies.Prefix, _unsafe, Dumper=yaml.Dumper)
+    yaml.add_representer(curies.Prefix, _safe, Dumper=yaml.SafeDumper)

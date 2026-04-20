@@ -8,7 +8,7 @@ from bioregistry import get_obofoundry_prefix
 class TestOBO(unittest.TestCase):
     """Tests for OBO Foundry data."""
 
-    def test_prefix(self):
+    def test_prefix(self) -> None:
         """Test looking up stylized prefixes."""
         for expected, query in [
             ("FBbt", "fbbt"),

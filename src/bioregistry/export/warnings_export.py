@@ -13,7 +13,6 @@ import click
 import yaml
 from tqdm import tqdm
 
-import bioregistry
 from bioregistry import parse_iri
 
 from ..constants import DOCS_DATA, EXTERNAL
@@ -74,17 +73,20 @@ def export_warnings() -> None:
     """Make warnings list."""
     # unparsable = get_unparsable_uris()
     missing_wikidata_database = _g(
-        lambda prefix: get_external(prefix, "wikidata").get("database") is None
-        and not has_no_terms(prefix)
+        lambda prefix: (
+            get_external(prefix, "wikidata").get("database") is None and not has_no_terms(prefix)
+        )
     )
     missing_pattern = _g(lambda prefix: get_pattern(prefix) is None and not has_no_terms(prefix))
     missing_format_url = _g(
         lambda prefix: get_uri_format(prefix) is None and not has_no_terms(prefix)
     )
     missing_example = _g(
-        lambda prefix: get_example(prefix) is None
-        and not has_no_terms(prefix)
-        and get_provides_for(prefix) is None
+        lambda prefix: (
+            get_example(prefix) is None
+            and not has_no_terms(prefix)
+            and get_provides_for(prefix) is None
+        )
     )
 
     prefix_xrefs = [
@@ -155,10 +157,7 @@ def export_warnings() -> None:
                 "wrong_patterns": miriam_pattern_wrong,
                 "embedding_rewrites": miriam_embedding_rewrites,
                 "prefix_rewrites": miriam_prefix_rewrites,
-                "license_conflict": [
-                    {"prefix": prefix, "obo": obo, "ols": ols}
-                    for prefix, _override, obo, ols in bioregistry.get_license_conflicts()
-                ],
+                "license_conflict": [],
             },
             file,
         )

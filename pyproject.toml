@@ -10,7 +10,7 @@ markers = [
 
 [project]
 name = "bioregistry"
-version = "0.13.18-dev"
+version = "0.13.43-dev"
 description = "Integrated registry of biological databases and nomenclatures"
 readme = "README.md"
 authors = [
@@ -26,7 +26,6 @@ classifiers = [
     "Development Status :: 4 - Beta",
     "Environment :: Console",
     "Intended Audience :: Developers",
-    "License :: OSI Approved :: MIT License",
     "Operating System :: OS Independent",
     "Framework :: Pytest",
     "Framework :: tox",
@@ -36,6 +35,7 @@ classifiers = [
     "Programming Language :: Python :: 3.11",
     "Programming Language :: Python :: 3.12",
     "Programming Language :: Python :: 3.13",
+    "Programming Language :: Python :: 3.14",
     "Programming Language :: Python :: 3 :: Only",
 ]
 keywords = [
@@ -50,20 +50,22 @@ keywords = [
 # License Information. This can be any valid SPDX identifiers that can be resolved
 # with URLs like https://spdx.org/licenses/MIT
 # See https://packaging.python.org/en/latest/guides/writing-pyproject-toml/#license
-license = { file = "LICENSE" }
+license = "MIT"
+license-files = ["LICENSE"]
 
 requires-python = ">=3.10"
 dependencies = [
     "requests",
     "tqdm",
-    "pystow>=0.7.7",
+    "pystow>=0.8.2",
     "click",
     "more_click>=0.1.2",
     "pydantic[email]>=2.0",
-    "curies>=0.12.2",
+    "curies>=0.13.0",
+    "sssom-pydantic>=0.4.0",
 ]
 
-[project.optional-dependencies]
+[dependency-groups]
 tests = [
     "pytest",
     "coverage",
@@ -71,6 +73,29 @@ tests = [
     "httpx",
     "scikit-learn",
 ]
+typing = [
+    "mypy",
+    "types-PyYAML",
+    "types-Markdown",
+    "types-tabulate",
+    "types-requests",
+    "types-python-dateutil",
+    "types-Flask",
+    "types-WTForms",
+    "types-tqdm",
+    "types-beautifulsoup4",
+    "types-Markdown",
+    "matplotlib-stubs",
+    "pandas-stubs",
+    "fastapi[all]",
+]
+dev = [
+    { include-group = "tests" },
+    { include-group = "typing" },
+    "pydantic",
+]
+
+[project.optional-dependencies]
 docs = [
     "sphinx>=8",
     "sphinx-rtd-theme>=3.0",
@@ -88,7 +113,9 @@ align = [
     "defusedxml",
     "class-resolver",
     "fairsharing-client>=0.1.0",
-    "pandas",
+    "pandas<3.0",
+    "wikidata-client",
+    "ontoportal-client>=0.0.9",
 ]
 export = [
     "pyyaml",
@@ -100,12 +127,12 @@ charts = [
     "matplotlib",
     "matplotlib_venn",
     "seaborn",
-    "pandas",
+    "pandas<3.0",
     "jinja2",
 ]
 health = [
     "click_default_group",
-    "pandas",
+    "pandas<3.0",
     "tabulate",
     "pyyaml",
     "jinja2",
@@ -126,13 +153,13 @@ web = [
     "api-analytics[fastapi]",
 ]
 paper-ranking = [
-    "pandas",
+    "pandas<3.0",
     "scikit-learn",
     "tabulate",
     "pubmed-downloader>=0.0.12",
 ]
 mapping-checking = [
-    "pandas",
+    "pandas<3.0",
     "sentence_transformers",
 ]
 
@@ -254,7 +281,7 @@ known-first-party = [
 docstring-code-format = true
 
 [tool.bumpversion]
-current_version = "0.13.18-dev"
+current_version = "0.13.43-dev"
 parse = "(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+)(?:-(?P<release>[0-9A-Za-z-]+(?:\\.[0-9A-Za-z-]+)*))?(?:\\+(?P<build>[0-9A-Za-z-]+(?:\\.[0-9A-Za-z-]+)*))?"
 serialize = [
     "{major}.{minor}.{patch}-{release}+{build}",
