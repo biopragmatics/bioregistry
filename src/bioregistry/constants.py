@@ -99,6 +99,10 @@ TABLES_METADATA_TSV_PATH = EXPORT_TABLES.joinpath("comparison_metadata.tsv")
 TABLES_METADATA_LATEX_PATH = EXPORT_TABLES.joinpath("comparison_metadata.tex")
 TABLES_SUMMARY_LATEX_PATH = EXPORT_TABLES.joinpath("summary.tex")
 
+GEO_DIRECTORY = EXPORT_DIRECTORY.joinpath("geography")
+MAP_SVG_PATH = GEO_DIRECTORY.joinpath("map.svg")
+MAP_TSV_PATH = GEO_DIRECTORY.joinpath("map.tsv")
+
 EXPORT_ANALYSES = EXPORT_DIRECTORY.joinpath("analyses")
 
 BENCHMARKS = EXPORT_DIRECTORY.joinpath("benchmarks")

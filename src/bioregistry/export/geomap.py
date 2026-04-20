@@ -1,11 +1,19 @@
 """Create a map of where resources are curated."""
 
+from __future__ import annotations
+
 from collections import Counter
 from collections.abc import Iterable
+from typing import TYPE_CHECKING
 
 import bioregistry
 from bioregistry import Resource
-from bioregistry.constants import EXPORT_DIRECTORY
+from bioregistry.constants import MAP_SVG_PATH, MAP_TSV_PATH
+
+if TYPE_CHECKING:
+    import geopandas
+
+URL = "https://naciscdn.org/naturalearth/110m/cultural/ne_110m_admin_0_countries.zip"
 
 
 def get_country_counter(resources: Iterable[Resource]) -> Counter[str]:
@@ -14,7 +22,7 @@ def get_country_counter(resources: Iterable[Resource]) -> Counter[str]:
 
     ror_to_countries = get_organization_to_country()
     return Counter(
-        country_code
+        str(country_code)
         for resource in resources
         for owner in resource.get_owners()
         if owner.ror
@@ -22,33 +30,33 @@ def get_country_counter(resources: Iterable[Resource]) -> Counter[str]:
     )
 
 
+def get_df() -> geopandas.GeoDataFrame:
+    """Get GeoPandas world dataframe."""
+    import geopandas as gpd
+    import pystow
+
+    path = pystow.ensure("geopandas", url=URL)
+    world = gpd.read_file(path)
+    return world
+
+
 def main() -> None:
     """Do it."""
-    import geopandas as gpd
     import matplotlib.pyplot as plt
     import pandas as pd
-    import pystow
 
     counter = get_country_counter(bioregistry.resources())
 
-    pystow.ensure(
-        "isb",
-        url="https://naciscdn.org/naturalearth/110m/cultural/ne_110m_admin_0_countries.zip",
-    )
-    path = pystow.join("isb", "ne_110m_admin_0_countries", name="ne_110m_admin_0_countries.shp")
-    world = gpd.read_file(path)
+    world = get_df()
 
-    long_names = dict(world[["FIPS_10", "FORMAL_EN"]].values)
-    # print(long_names)
-    # print(world.to_markdown())
+    long_names = dict(world[["ISO_A2_EH", "SOVEREIGNT"]].values)
 
     world = world[world["ADMIN"] != "Antarctica"]
 
-    # Change the projection to Plate Carrée (central longitude at 0 degrees)
-    world = world.to_crs("+proj=robin")  # Use Miller cylindrical projection
+    world = world.to_crs(epsg=3395)
 
     # Create a column to distinguish the highlighted countries
-    world["highlight"] = world["FIPS_10"].apply(lambda x: 1 if counter.get(x) else 0)
+    world["highlight"] = world["ISO_A2_EH"].apply(lambda x: 1 if counter.get(x) else 0)
 
     # Plot the world map
     _fig, ax = plt.subplots(1, 1, figsize=(10, 8))
@@ -58,13 +66,13 @@ def main() -> None:
     # Add title and display the map
     ax.axis("off")
     plt.tight_layout()
-    plt.savefig(EXPORT_DIRECTORY.joinpath("countries.svg"), dpi=500)
+    plt.savefig(MAP_SVG_PATH)
 
     df = pd.DataFrame(
-        [(code, long_names[code], count) for code, count in counter.most_common()],
+        [(code, long_names.get(code), count) for code, count in counter.most_common()],
         columns=["code", "name", "n_resources"],
     )
-    df.to_csv(EXPORT_DIRECTORY.joinpath("countries.tsv"), sep="\t", index=False)
+    df.to_csv(MAP_TSV_PATH, sep="\t", index=False)
 
 
 if __name__ == "__main__":
