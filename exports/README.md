@@ -23,6 +23,7 @@ basis using GitHub Actions as a continuous integration server.
 | [`contexts`](contexts)         | Fit-for-purpose exports of JSON-LD contexts constructed from the Bioregistry                     |
 | [`alignment`](alignment)       | Curation sheets for aligning the metaregistry                                                    |
 | [`raw`](raw)                   | Raw data from select external registries                                                         |
+| [`geography`](geography)       | Geographical summary of the countries whose institutions are owners of records                   |
 
 ## PURLs
 
