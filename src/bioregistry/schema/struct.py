@@ -1168,19 +1168,53 @@ class Resource(BaseModel):
 
     # docstr-coverage:excused `overload`
     @overload
-    def get_name(self, *, provenance: Literal[False] = ...) -> None | str: ...
+    def get_name(
+        self,
+        *,
+        provenance: Literal[False] = ...,
+        strict: Literal[False] = ...,
+    ) -> None | str: ...
 
     # docstr-coverage:excused `overload`
     @overload
     def get_name(
-        self, *, provenance: Literal[True] = ...
+        self,
+        *,
+        provenance: Literal[True] = ...,
+        strict: Literal[False] = ...,
     ) -> None | MetaprefixAnnotatedValue[str]: ...
 
-    def get_name(self, *, provenance: bool = False) -> None | str | MetaprefixAnnotatedValue[str]:
+    # docstr-coverage:excused `overload`
+    @overload
+    def get_name(
+        self,
+        *,
+        provenance: Literal[False] = ...,
+        strict: Literal[True] = ...,
+    ) -> str: ...
+
+    # docstr-coverage:excused `overload`
+    @overload
+    def get_name(
+        self,
+        *,
+        provenance: Literal[True] = ...,
+        strict: Literal[True] = ...,
+    ) -> MetaprefixAnnotatedValue[str]: ...
+
+    def get_name(
+        self, *, provenance: bool = False, strict: bool = False
+    ) -> None | str | MetaprefixAnnotatedValue[str]:
         """Get the name for the given prefix, if it's available."""
         if provenance:
-            return self._get_prefix_key_str("name", DEFAULT_METAPREFIX_PRIORITY, provenance=True)
-        return self._get_prefix_key_str("name", DEFAULT_METAPREFIX_PRIORITY, provenance=False)
+            rv = self._get_prefix_key_str("name", DEFAULT_METAPREFIX_PRIORITY, provenance=True)
+        else:
+            rv = self._get_prefix_key_str("name", DEFAULT_METAPREFIX_PRIORITY, provenance=False)  # type:ignore
+        if rv is not None:
+            return rv
+        if strict:
+            raise ValueError
+        return None
 
     def get_description(self, use_markdown: bool = False) -> str | None:
         """Get the description for the given prefix, if available."""
