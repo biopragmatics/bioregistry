@@ -77,12 +77,12 @@ logger = logging.getLogger(__name__)
 
 # docstr-coverage:excused `overload`
 @overload
-def get_resource(prefix: str, *, strict: Literal[True] = True) -> Resource: ...
+def get_resource(prefix: str, *, strict: Literal[True] = ...) -> Resource: ...
 
 
 # docstr-coverage:excused `overload`
 @overload
-def get_resource(prefix: str, *, strict: Literal[False] = False) -> Resource | None: ...
+def get_resource(prefix: str, *, strict: Literal[False] = ...) -> Resource | None: ...
 
 
 def get_resource(prefix: str, *, strict: bool = False) -> Resource | None:
