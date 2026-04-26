@@ -903,25 +903,25 @@ class Manager:
     # docstr-coverage:excused `overload`
     @overload
     def get_name(
-        self, prefix: str, *, provenance: Literal[False] = False, strict: Literal[True] = True
+        self, prefix: str, *, provenance: Literal[False] = False, strict: Literal[True] = ...
     ) -> str: ...
 
     # docstr-coverage:excused `overload`
     @overload
     def get_name(
-        self, prefix: str, *, provenance: Literal[True] = True, strict: Literal[True] = True
+        self, prefix: str, *, provenance: Literal[True] = True, strict: Literal[True] = ...
     ) -> MetaresourceAnnotatedValue[str]: ...
 
     # docstr-coverage:excused `overload`
     @overload
     def get_name(
-        self, prefix: str, *, provenance: Literal[False] = False, strict: Literal[False] = False
+        self, prefix: str, *, provenance: Literal[False] = False, strict: Literal[False] = ...
     ) -> str | None: ...
 
     # docstr-coverage:excused `overload`
     @overload
     def get_name(
-        self, prefix: str, *, provenance: Literal[True] = True, strict: Literal[False] = False
+        self, prefix: str, *, provenance: Literal[True] = True, strict: Literal[False] = ...
     ) -> MetaresourceAnnotatedValue[str] | None: ...
 
     def get_name(

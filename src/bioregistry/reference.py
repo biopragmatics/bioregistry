@@ -18,13 +18,15 @@ __all__ = [
 ]
 
 
-def _normalize_values(values: dict[str, str] | str) -> dict[str, str]:
+def _normalize_values(values: dict[str, str] | str | curies.Reference) -> dict[str, str]:
     """Validate the identifier."""
     if isinstance(values, str):
         prefix_, _, identifier_ = values.partition(":")
         if not identifier_:
             raise ValueError("not formatted as a CURIE")
         values = {"prefix": prefix_, "identifier": identifier_}
+    elif isinstance(values, curies.Reference):
+        values = {"prefix": values.prefix, "identifier": values.identifier}
     prefix, identifier = values.get("prefix"), values.get("identifier")
     if prefix is None or identifier is None:
         raise RuntimeError(f"missing prefix/identifier from values: {values}")
@@ -42,13 +44,15 @@ def _normalize_values(values: dict[str, str] | str) -> dict[str, str]:
     return values
 
 
-def _standardize_values(values: dict[str, str] | str) -> dict[str, str]:
+def _standardize_values(values: dict[str, str] | str | curies.Reference) -> dict[str, str]:
     """Validate the identifier."""
     if isinstance(values, str):
         prefix_, _, identifier_ = values.partition(":")
         if not identifier_:
             raise ValueError("not formatted as a CURIE")
         values = {"prefix": prefix_, "identifier": identifier_}
+    elif isinstance(values, curies.Reference):
+        values = {"prefix": values.prefix, "identifier": values.identifier}
     prefix, identifier = values.get("prefix"), values.get("identifier")
     if prefix is None or identifier is None:
         raise RuntimeError(f"missing prefix/identifier from values: {values}")
@@ -98,7 +102,7 @@ class NormalizedReference(curies.Reference):
     """
 
     @model_validator(mode="before")
-    def validate_identifier(cls, values: dict[str, str] | str) -> dict[str, str]:  # noqa
+    def validate_identifier(cls, values: dict[str, str] | str | curies.Reference) -> dict[str, str]:  # noqa
         """Validate the identifier."""
         return _normalize_values(values)
 
@@ -170,7 +174,7 @@ class StandardReference(curies.Reference):
     """
 
     @model_validator(mode="before")
-    def validate_identifier(cls, values: dict[str, str] | str) -> dict[str, str]:  # noqa
+    def validate_identifier(cls, values: dict[str, str] | str | curies.Reference) -> dict[str, str]:  # noqa
         """Validate the identifier."""
         return _standardize_values(values)
 
