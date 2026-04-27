@@ -399,11 +399,15 @@ class Manager:
         """
         norm_prefix = self.normalize_prefix(prefix)
         if norm_prefix is None:
+            if strict:
+                raise ValueError(f'prefix "{prefix}" could not be normalized')
             return None
         rv = self.registry.get(norm_prefix)
-        if rv is None and strict:
+        if rv is not None:
+            return rv
+        if strict:
             raise ValueError(f"could not a resource for {prefix}")
-        return rv
+        return None
 
     # docstr-coverage:excused `overload`
     @overload

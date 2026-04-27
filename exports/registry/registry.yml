@@ -1415,7 +1415,7 @@ ahol:
     fishes) or the one causing the disease (virus, bacteria, fungus, parasite).'
   download_owl: http://aber-owl.net/media/ontologies/AHOL/1/ahol.owl
   example: '0005114'
-  homepage: http://www.atol-ontology.com/
+  homepage: http://147.99.156.182/ontologies/visualisation/ontologie/
   keywords:
   - animal husbandry
   - disease
@@ -1428,6 +1428,7 @@ ahol:
     aberowl: AHOL
     agroportal: AHOL
     biodivportal: AHOL
+    bioportal: AHOL
     fairsharing: FAIRsharing.ZkwSlo
   name: Animal Health Ontology for Livestock
   pattern: ^\d+$
@@ -2463,7 +2464,7 @@ apo:
   - https://github.com/biopragmatics/bioregistry/pull/1098
   repository: https://github.com/obophenotype/ascomycete-phenotype-ontology
   uri_format: http://purl.obolibrary.org/obo/APO_$1
-  version: '2026-03-14'
+  version: '2026-04-20'
 apollosv:
   appears_in:
   - scdo
@@ -5177,11 +5178,14 @@ biodivthes:
     the ontology ENVO (Environment Ontology).
   example: K33QZ1W4-D
   homepage: https://loterre.istex.fr/BLH/en/
+  keywords:
+  - ontology
   license: CC-BY-4.0
   mappings:
     aberowl: BIODIVTHES
     agroportal: BIODIVTHES
     biodivportal: BIODIVTHES
+    bioportal: BIODIVTHES
     ecoportal: BIODIVTHES
   name: Biodiversity Thesaurus
   preferred_prefix: biodivthes
@@ -8369,6 +8373,7 @@ ccon:
   mappings:
     aberowl: CCON
     agroportal: CCON
+    bioportal: CCON
     fairsharing: FAIRsharing.pzxjh
   name: Cerrado Concepts Ontology
   preferred_prefix: ccon
@@ -11839,7 +11844,7 @@ cmo:
   rdf_uri_format: http://purl.obolibrary.org/obo/CMO_$1
   repository: https://github.com/rat-genome-database/CMO-Clinical-Measurement-Ontology
   uri_format: http://purl.obolibrary.org/obo/CMO_$1
-  version: '2.271'
+  version: '2.272'
 cmpo:
   contact:
     email: jupp@ebi.ac.uk
@@ -13211,10 +13216,12 @@ cog.cluster:
   homepage: https://www.ncbi.nlm.nih.gov/research/cog/
   keywords:
   - genome
+  - ontology
   - ortholog
   - protein
   mappings:
     biolink: COG
+    bioportal: COG
     go: COG_Cluster
     miriam: cog
     prefixcommons: cog
@@ -16342,7 +16349,82 @@ dcatap:
   name: DCAT AP
   preferred_prefix: dcatap
   repository: https://github.com/SEMICeu/DCAT-AP
+  synonyms:
+  - dcat_ap
   uri_format: http://data.europa.eu/r5r/$1
+dcatap_linkml:
+  contact:
+    email: hendrik.borgelt@tu-dortmund.de
+    github: HendrikBorgelt
+    name: Hendrik Borgelt
+    orcid: 0000-0001-5886-7860
+  contributor:
+    email: hendrik.borgelt@tu-dortmund.de
+    github: HendrikBorgelt
+    name: Hendrik Borgelt
+    orcid: 0000-0001-5886-7860
+  description: The DCAT-AP conversion to a LinkML Schema is the intended point of
+    truth for the DCAT-AP+ schema, but could be used alternatively as a LinkML representation
+    of DCAT-AP for other Projects. It is a port of DCAT-AP to the LinkML world that
+    is as faithful to the original as possible. This Persistent Identifier does not
+    only provide the SHACL Shape, but could also be used as described [here](https://github.com/perma-id/w3id.org/tree/cecbc2e5f40d928f05ed5306d24fc60db0e7bb21/nfdi-de/dcat-ap-plus).
+    DCAT-AP+ is a [LinkML](https://linkml.io/)-based extension of the [DCAT Application
+    Profile 3.0](https://semiceu.github.io/DCAT-AP/releases/3.0.0/) that adds a provenance
+    layer for describing how a dataset was generated and what it is about, using the
+    [Starting Point Terms of PROV-O](https://www.w3.org/TR/prov-o/#description-starting-point-terms),
+    the [QUDT ontology](https://www.qudt.org/), and [Dublin Core Terms](http://purl.org/dc/terms/).
+  example: DataGeneratingActivity
+  github_request_issue: 1868
+  homepage: https://nfdi-de.github.io/dcat-ap-plus/latest/
+  keywords:
+  - dcat
+  - dcatap
+  - linmkl
+  license: MIT
+  name: DCAT-AP conversion to LinkML Schema
+  preferred_prefix: dcatap_linkml
+  repository: https://github.com/nfdi-de/dcat-ap-plus
+  reviewer:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  uri_format: https://w3id.org/nfdi-de/dcat-ap-linkml/$1
+dcatap_plus:
+  contact:
+    email: hendrik.borgelt@tu-dortmund.de
+    github: HendrikBorgelt
+    name: Hendrik Borgelt
+    orcid: 0000-0001-5886-7860
+  contributor:
+    email: hendrik.borgelt@tu-dortmund.de
+    github: HendrikBorgelt
+    name: Hendrik Borgelt
+    orcid: 0000-0001-5886-7860
+  description: DCAT-AP+ is a [LinkML](https://linkml.io/)-based extension of the [DCAT
+    Application Profile 3.0](https://semiceu.github.io/DCAT-AP/releases/3.0.0/) that
+    adds a provenance layer for describing how a dataset was generated and what it
+    is about, using the [Starting Point Terms of PROV-O](https://www.w3.org/TR/prov-o/#description-starting-point-terms),
+    the [QUDT ontology](https://www.qudt.org/), and [Dublin Core Terms](http://purl.org/dc/terms/).
+    DCAT-AP+ is domain-agnostic. It provides a generic set of classes and properties
+    that any domain can import and specialize into its own application profile. [ChemDCAT-AP](https://github.com/nfdi-de/chem-dcat-ap)
+    is the first such domain profile, built for chemistry and catalysis research data.
+  example: EvaluatedActivity
+  github_request_issue: 1922
+  homepage: https://nfdi-de.github.io/dcat-ap-plus/latest/
+  keywords:
+  - dcat
+  - dcat ap
+  license: MIT
+  name: DCAT-AP Plus
+  preferred_prefix: dcatap_plus
+  repository: https://github.com/nfdi-de/dcat-ap-plus
+  reviewer:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  uri_format: http://w3id.org/nfdi-de/dcat-ap-plus/latest/class/$1
 dcterms:
   contact:
     email: futo@stanford.edu
@@ -22308,7 +22390,7 @@ emapa:
   synonyms:
   - EMAPA_RETIRED
   uri_format: http://purl.obolibrary.org/obo/EMAPA_$1
-  version: '2026-04-08'
+  version: '2026-04-24'
 emaps:
   contact:
     email: Terry.Hayamizu@jax.org
@@ -26816,7 +26898,7 @@ fma:
   - FMAID
   - FMA_RETIRED
   uri_format: https://www.ebi.ac.uk/ols4/ontologies/fma/terms?obo_id=FMA:$1
-  version: 5.0.0
+  version: 5.1.0
 foaf:
   contact:
     email: rafael.goncalves@stanford.edu
@@ -27616,6 +27698,47 @@ fypo:
   repository: https://github.com/pombase/fypo
   uri_format: http://purl.obolibrary.org/obo/FYPO_$1
   version: '2026-04-02'
+g2p:
+  contact:
+    email: seh@ebi.ac.uk
+    github: sarahhunt
+    name: Sarah E. Hunt
+    orcid: 0000-0002-8350-1235
+  contributor:
+    email: khamar.he@northeastern.edu
+    github: hetvikhamar
+    name: Hetvi Khamar
+    orcid: 0009-0004-3248-9223
+  description: Identifiers correspond to gene-disease models for assisting in the
+    identification of causative variants and accelerating the diagnosis of genetic
+    disorders
+  example: G2P02419
+  github_request_issue: 1889
+  homepage: https://www.ebi.ac.uk/gene2phenotype
+  keywords:
+  - clinical diagnostics
+  - disease genetics
+  - genomic variant filtering
+  name: Gene2Phenotype
+  pattern: ^G2P\d{5}$
+  preferred_prefix: g2p
+  publications:
+  - doi: 10.1016/j.jmb.2026.169768
+    pubmed: '41903835'
+    title: 'Gene2Phenotype: A Database of Structured Human Monogenic Diseases and
+      Pathomechanisms.'
+    year: 2026
+  - doi: 10.1186/s13073-024-01398-1
+    pmc: PMC11539801
+    pubmed: '39506859'
+    title: Curating genomic disease-gene relationships with Gene2Phenotype (G2P)
+    year: 2024
+  reviewer:
+    email: b.gyori@northeastern.edu
+    github: bgyori
+    name: Benjamin M. Gyori
+    orcid: 0000-0001-9439-5346
+  uri_format: https://www.ebi.ac.uk/gene2phenotype/lgd/$1
 ga4ghdos:
   description: Assists in resolving data across cloud resources.
   example: dg.4503/01b048d0-e128-4cb0-94e9-b2d2cab7563d
@@ -30246,6 +30369,28 @@ gmelin:
   proprietary: true
   references:
   - https://en.wikipedia.org/wiki/Gmelin_database
+gmho:
+  description: 'The GALENOS Mental Health Ontology (GMHO) is being developed to represent
+    the full range of concepts relevant to mental health. It forms a core component
+    of the Global Alliance for Living Evidence on aNxiety, depressiOn and pSychosis
+    (GALENOS) project, which aims to build a living evidence base for anxiety, depression,
+    and psychosis.
+
+    The GMHO is designed to structure and organise evidence drawn from multiple living
+    systematic reviews, supporting the creation of a structured data repository that
+    enables clearer synthesis, integration, and retrieval of research findings. Its
+    upper-level framework is intentionally designed for reuse, providing a general
+    foundation for organising evidence across the broader mental health domain.'
+  download_owl: https://galenos.org.uk/ontologies/gmho.owl
+  example: 0000268
+  homepage: https://github.com/galenos-project/mental-health-ontology
+  keywords:
+  - ontology
+  mappings:
+    ols: gmho
+  name: GALENOS Mental Health Ontology
+  preferred_prefix: gmho
+  repository: https://github.com/galenos-project/mental-health-ontology
 gnd:
   description: The Gemeinsame Normdatei (Integrated Authority File) or GND is an international
     authority file for person names, subject headings and corporate bodies. It is
@@ -34953,6 +35098,9 @@ hydra:
   name: The Hydra Core Vocabulary
   preferred_prefix: hydra
 iadopt:
+  contact:
+    email: barbara.magagna@gmail.com
+    name: Barbara Magagna
   description: The I-ADOPT Framework is an ontology designed to facilitate interoperability
     between existing variable description models (including ontologies, taxonomy,
     and structured controlled vocabularies). One of the challenges in representing
@@ -34966,7 +35114,7 @@ iadopt:
   download_owl: http://aber-owl.net/media/ontologies/I-ADOPT/6/i-adopt.owl
   download_rdf: https://github.com/i-adopt/ontology/raw/refs/heads/main/ontology/i-adopt.ttl
   example: Property
-  homepage: https://w3id.org/iadopt/ont
+  homepage: https://www.rd-alliance.org/group/interoperable-descriptions-observable-property-terminology-wg-i-adopt-wg/wiki/i-adopt-0
   keywords:
   - biology
   - environment
@@ -34975,9 +35123,10 @@ iadopt:
   mappings:
     aberowl: I-ADOPT
     biodivportal: I-ADOPT
+    bioportal: I-ADOPT
     ecoportal: I-ADOPT
     lov: iadopt
-  name: I-ADOPT Framework ontology
+  name: I-ADOPT Framework Ontology
   preferred_prefix: iadopt
   publications:
   - doi: 10.15497/RDA00071/2
@@ -37640,6 +37789,7 @@ inbio:
   mappings:
     aberowl: INBIO
     biodivportal: INBIO
+    bioportal: INBIO
     ecoportal: INBIO
   name: Invasion Biology Ontology
   preferred_prefix: inbio
@@ -39088,6 +39238,20 @@ iso.3166:
   pattern: ^\d+$
   preferred_prefix: iso.3166
   uri_format: https://data.who.int/countries/$1
+iso.3166-2:
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: Two letter country codes assigned by ISO
+  example: TG
+  homepage: https://www.iso.org/iso-3166-country-codes.html
+  mappings:
+    hl7: 2.16.2
+  name: ISO 3166-2 Country Code
+  pattern: ^[A-Z]{2}$
+  preferred_prefix: iso.3166-2
 iso.639-3:
   contributor:
     email: cthoyt@gmail.com
@@ -42724,9 +42888,6 @@ m4i:
   mastodon: nfdi4ing@nfdi.social
   name: Metadata4Ing
   owners:
-  - name: Nationale Forschungsdateninfrastruktur
-    partnered: false
-    ror: 05qj6w324
   - gnd: '1227971389'
     name: NFDI4ING
     partnered: false
@@ -46676,7 +46837,7 @@ mmo:
   rdf_uri_format: http://purl.obolibrary.org/obo/MMO_$1
   repository: https://github.com/rat-genome-database/MMO-Measurement-Method-Ontology
   uri_format: http://purl.obolibrary.org/obo/MMO_$1
-  version: '2.175'
+  version: '2.176'
 mmp.cat:
   description: MarCat is a gene (protein) catalogue of uncultivable and cultivable
     marine genes and proteins derived from metagenomics samples.
@@ -47050,7 +47211,7 @@ mod:
   synonyms:
   - PSI-MOD
   uri_format: http://purl.obolibrary.org/obo/MOD_$1
-  version: 1.032.4
+  version: 1.033.0
 modalia:
   contact:
     email: abdelmoneim.desouki@tu-darmstadt.de
@@ -47707,7 +47868,7 @@ mp:
   rdf_uri_format: http://purl.obolibrary.org/obo/MP_$1
   repository: https://github.com/mgijax/mammalian-phenotype-ontology
   uri_format: http://purl.obolibrary.org/obo/MP_$1
-  version: '2026-03-24'
+  version: '2026-04-22'
 mpath:
   contact:
     email: pns12@hermes.cam.ac.uk
@@ -47941,7 +48102,7 @@ ms:
   rdf_uri_format: http://purl.obolibrary.org/obo/MS_$1
   repository: https://github.com/HUPO-PSI/psi-ms-CV
   uri_format: http://purl.obolibrary.org/obo/MS_$1
-  version: 4.1.243
+  version: 4.1.246
 msc:
   contributor:
     email: cthoyt@gmail.com
@@ -49737,6 +49898,7 @@ ncit:
   example: C138986
   example_extras:
   - A14
+  - NHC0
   - P320
   - R123
   homepage: https://github.com/ncit-obo-org/ncit-obo-edition
@@ -49778,7 +49940,7 @@ ncit:
   - name: National Cancer Institute
     partnered: false
     ror: 040gcmg81
-  pattern: ^[CRPA]\d+$
+  pattern: ^(C|R|P|A|NHC)\d+$
   preferred_prefix: NCIT
   providers:
   - code: ''
@@ -50603,22 +50765,38 @@ nfdi4culture.id:
   rdf_uri_format: https://nfdi4culture.de/id/$1
   uri_format: https://nfdi4culture.de/id/$1
 nfdi4dso:
+  contact:
+    email: genet-asefa.gesese@fiz-kalrsruhe.de
+    github: GenetAsefa
+    name: Genet Asefa Gesese
+    orcid: 0000-0003-3807-7145
   contributor:
     email: cthoyt@gmail.com
     github: cthoyt
     name: Charles Tapley Hoyt
     orcid: 0000-0003-4423-4370
-  description: The NFDI4DS ontology (nfdi4dso) is an ontology describing various resources
-    all resources (datasets, data providers, persons, projects and other entities)
-    within the domain of NFDI4DataScience. nfdi4dso is a module that builds upon the
-    NFDIcore Ontology (https://ise-fizkarlsruhe.github.io/nfdicore/2.0.0/) and maintains
-    alignment with the Basic Formal Ontology (BFO). [from homepage]
+  description: The NFDI4DataScience ontology (nfdi4dso) is an ontology describing
+    various resources all resources (datasets, data providers, persons, projects and
+    other entities) within the domain of NFDI4DataScience. nfdi4dso is a module that
+    builds upon the [NFDIcore Ontology](https://ise-fizkarlsruhe.github.io/nfdicore/2.0.0/)
+    and maintains alignment with the Basic Formal Ontology (BFO). [adapted from homepage]
   download_rdf: https://ise-fizkarlsruhe.github.io/NFDI4DS-Ontology/ontology.ttl
   example: City
-  homepage: https://nfdi.fiz-karlsruhe.de/nfdi4dso/
-  name: NFDI4DS Ontology
+  homepage: https://nfdi.fiz-karlsruhe.de/nfdi4dso
+  logo: https://raw.githubusercontent.com/ISE-FIZKarlsruhe/NFDI4DS-Ontology/Documentation/resources/nfdi4dso_logo.png
+  name: NFDI4DataScience Ontology
+  owners:
+  - name: NFDI4DataScience
+    partnered: false
+    ror: 00bb4nn95
+    wikidata: Q108542422
   preferred_prefix: nfdi4dso
+  publications:
+  - arxiv: '2408.08698'
+    title: 'NFDI4DSO: Towards a BFO Compliant Ontology for Data Science'
+    year: 2024
   rdf_uri_format: https://nfdi.fiz-karlsruhe.de/nfdi4dso/$1
+  repository: https://github.com/ISE-FIZKarlsruhe/NFDI4DS-Ontology
   uri_format: https://nfdi.fiz-karlsruhe.de/nfdi4dso/$1
 nfportal.tool:
   contact:
@@ -55756,7 +55934,7 @@ orphanet.ordo:
   synonyms:
   - ordo
   uri_format: http://www.orpha.net/ORDO/Orphanet_$1
-  version: '4.7'
+  version: '4.8'
 orth:
   contact:
     email: jfernand@um.es
@@ -56420,8 +56598,8 @@ pandit:
   uri_format: http://www.ebi.ac.uk/goldman-srv/pandit/pandit.cgi?action=browse&fam=$1
 panet:
   contact:
-    email: mriyayi@hotmail.com
-    name: Daniel Iyayi
+    email: steve.collins@diamond.ac.uk
+    name: Steve Collins
   description: The ExPaNDS Photon and Neutron Experimental Techniques (PaNET) ontology
     provides a taxonomy and thesaurus of photon and neutron (PaN) experimental techniques.
     Based mainly on accelerator-based light sources and neutron facilities, the primary
@@ -56439,6 +56617,7 @@ panet:
   - ontology
   - photon science
   - physics
+  - subject agnostic
   - x-ray diffraction
   license: CC-BY-4.0
   logo: https://api.fairsharing.org/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBb29JIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--48e885a666df21f8c07a09a1bafea0a67972697b/panet_logo.png?disposition=inline
@@ -61743,6 +61922,7 @@ prov:
     biocontext: prov
     biodivportal: PROV-O
     biolink: prov
+    bioportal: PROVO
     fairsharing: FAIRsharing.2rm2b3
     lov: prov
     ols: prov
@@ -62652,6 +62832,33 @@ qb:
   preferred_prefix: qb
   repository: https://github.com/UKGovLD/publishing-statistical-data
   uri_format: http://purl.org/linked-data/cube#$1
+qsproteome:
+  appears_in:
+  - complexportal
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: The Quaternary Structural Proteome Repository for Organized and Transparent
+    Evaluation Of Modeling Efforts (QSPROTEOME), mints identifiers for protein structures,
+    e.g., generated by AlphaFold3.
+  example: QS210728
+  homepage: https://qsproteome.org
+  keywords:
+  - protein complex
+  - protein structure
+  license: https://qsproteome.org/terms
+  name: Quaternary Structural Proteome Repository
+  preferred_prefix: qsproteome
+  publications:
+  - doi: 10.1093/nar/gkaf1099
+    pmc: PMC12807603
+    pubmed: '41163446'
+    title: 'QSProteome: a community-driven interactive platform for large-scale exploration
+      and evaluation of predicted protein complex structures'
+    year: 2025
+  uri_format: https://qsproteome.org/entry/$1
 qtldb:
   description: The Animal Quantitative Trait Loci (QTL) database (Animal QTLdb) is
     designed to house publicly all available QTL and single-nucleotide polymorphism/gene
@@ -65283,7 +65490,7 @@ rs:
   rdf_uri_format: http://purl.obolibrary.org/obo/RS_$1
   repository: https://github.com/rat-genome-database/RS-Rat-Strain-Ontology
   uri_format: http://purl.obolibrary.org/obo/RS_$1
-  version: '6.273'
+  version: '6.274'
 rtecs:
   contact:
     email: vep1@cdc.gov
@@ -70729,7 +70936,7 @@ stato:
   rdf_uri_format: http://purl.obolibrary.org/obo/STATO_$1
   repository: https://github.com/ISA-tools/stato
   uri_format: http://purl.obolibrary.org/obo/STATO_$1
-  version: '2025-02-23'
+  version: '2026-04-20'
 stitch:
   contact:
     email: bork@embl.de
@@ -77894,6 +78101,30 @@ tgd:
   pattern: ^TTHERM\_\d+$
   preferred_prefix: tgd
   uri_format: http://ciliate.org/index.php/feature/details/$1
+tgemo:
+  contact:
+    github: ppavlidis
+    name: Paul Pavlidis
+    orcid: 0000-0002-0426-5028
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: Terms for genes, experimental factors, and cell lines used by the [Gemma
+    platform](https://gemma.msl.ubc.ca/home.html) for differential gene expression
+    analysis.
+  download_owl: https://github.com/PavlidisLab/TGEMO/raw/refs/heads/master/TGEMO.OWL
+  example: '00166'
+  homepage: http://gemma.msl.ubc.ca/ont/TGEMO
+  keywords:
+  - ontology
+  license: CC-BY-NC-4.0
+  name: Temporal Gemma Ontology
+  pattern: ^\d+$
+  preferred_prefix: tgemo
+  repository: https://github.com/PavlidisLab/TGEMO
+  uri_format: http://gemma.msl.ubc.ca/ont/TGEMO_$1
 tgma:
   contact:
     email: topalis@imbb.forth.gr
@@ -79870,6 +80101,37 @@ udsaes.sms:
   preferred_prefix: udsaes.sms
   repository: https://github.com/UdSAES/sms-ontology
   uri_format: https://purl.org/sms-ontology#$1
+ukbiobank.category:
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: A category for fields appearing in the data of the UK BioBank
+  example: '100034'
+  homepage: https://biobank.ndph.ox.ac.uk
+  name: UK BioBank Category
+  pattern: ^\d+$
+  preferred_prefix: ukbiobank.category
+  uri_format: https://biobank.ndph.ox.ac.uk/showcase/label.cgi?id=$1
+ukbiobank.field:
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: A field appearing in the data of the UK BioBank, like 'time spent outdoors
+    in the summer'
+  example: '1050'
+  homepage: https://biobank.ndph.ox.ac.uk
+  name: UK BioBank Data Field
+  pattern: ^\d+$
+  preferred_prefix: ukbiobank.field
+  providers:
+  - code: ctsu
+    name: Alternate address at CTSU
+    uri_format: https://biobank.ctsu.ox.ac.uk/crystal/field.cgi?id=$1
+  uri_format: https://biobank.ndph.ox.ac.uk/crystal/field.cgi?id=$1
 ukprn:
   comment: Added because of appearance in ROR
   contributor:
@@ -83167,7 +83429,7 @@ vt:
   rdf_uri_format: http://purl.obolibrary.org/obo/VT_$1
   repository: https://github.com/AnimalGenome/vertebrate-trait-ontology
   uri_format: http://purl.obolibrary.org/obo/VT_$1
-  version: '2026-04-14'
+  version: '2026-04-22'
 vto:
   contact:
     email: balhoff@renci.org
@@ -84584,7 +84846,7 @@ xco:
   rdf_uri_format: http://purl.obolibrary.org/obo/XCO_$1
   repository: https://github.com/rat-genome-database/XCO-experimental-condition-ontology
   uri_format: http://purl.obolibrary.org/obo/XCO_$1
-  version: '4.232'
+  version: '4.233'
 xenbase:
   contact:
     email: troy_pells@yahoo.ca
