@@ -2526,10 +2526,12 @@ class Resource(BaseModel):
 
     def get_license_url(self) -> str | None:
         """Get a license URL."""
-        spdx_id = self.get_license()
-        if spdx_id is None:
+        license_value = self.get_license()
+        if license_value is None:
             return None
-        return f"{BIOREGISTRY_REMOTE_URL}/spdx:{spdx_id}"
+        if license_value.startswith("http://") or license_value.startswith("https://"):
+            return license_value
+        return f"{BIOREGISTRY_REMOTE_URL}/spdx:{license_value}"
 
     def get_version(self) -> str | None:
         """Get the version for the resource."""
