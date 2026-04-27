@@ -436,7 +436,7 @@ SELECT ?s ?o WHERE {
 
 def _get_sparql_router(app: Flask) -> APIRouter:
     sparql_graph = MappingServiceGraph(converter=app.manager.converter)
-    sparql_processor = MappingServiceSPARQLProcessor(graph=sparql_graph)
+    sparql_processor = MappingServiceSPARQLProcessor(graph=sparql_graph)  # type:ignore[no-untyped-call]
     sparql_router: APIRouter = SparqlRouter(
         path="/sparql",
         title=f"{app.config['METAREGISTRY_TITLE']} SPARQL Service",
