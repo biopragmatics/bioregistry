@@ -1078,7 +1078,7 @@ class TestRegistry(unittest.TestCase):
     def assert_publication_identifiers(self, publication: Publication) -> None:
         """Test identifiers follow pre-set rules."""
         if publication.doi:
-            # DOIs are case insensitive, so standardize to lowercase in bioregistry
+            # DOIs are case-insensitive, so standardize to lowercase in bioregistry
             self.assertEqual(publication.doi.lower(), publication.doi)
             self.assertRegex(publication.doi, r"^10.\d{2,9}/.*$")
         if publication.pubmed:
@@ -1099,17 +1099,19 @@ class TestRegistry(unittest.TestCase):
                     for reference in resource.references:
                         self.assertNotIn("doi", reference, msg=msg_fmt.format("DOI"))
                         self.assertNotIn("pubmed", reference, msg=msg_fmt.format("PubMed"))
-                        self.assertNotIn("pmc", reference, msg_fmt.format("PMC"))
-                        self.assertNotIn("arxiv", reference)
+                        self.assertNotIn("pmc", reference, msg=msg_fmt.format("PMC"))
+                        self.assertNotIn("arxiv", reference, msg=msg_fmt.format("arXiv"))
+                        self.assertNotIn("biorxiv", reference, msg=msg_fmt.format("bioRxiv"))
                 if resource.publications:
                     for publication in resource.publications:
-                        self.assertIsNotNone(
-                            publication.title,
-                            msg=f"Manually curated publication {publication} is missing a title. Please run the "
-                            "publication clean-up script `python -m bioregistry.curation.enrich_publications` "
-                            "to automatically retrieve the title or `python -m bioregistry.curation.clean_publications`"
-                            " to prune it.",
-                        )
+                        if publication.title is None:
+                            raise self.fail(
+                                f"Manually curated publication {publication} is missing a title. Please run the "
+                                "publication clean-up script `python -m bioregistry.curation.enrich_publications` "
+                                "to automatically retrieve the title or `python -m bioregistry.curation.clean_publications`"
+                                " to prune it.",
+                            )
+                        self.assertEqual(publication.title.strip(), publication.title)
                         self.assertLessEqual(
                             1,
                             sum(
