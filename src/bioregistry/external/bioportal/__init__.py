@@ -238,7 +238,7 @@ def get_biodivportal(
     """Get the BiodivPortal registry."""
     client = OntoPortalClient(
         metaprefix="biodivportal",
-        client=ontoportal_client.BioPortalClient(api_key=api_key),
+        client=ontoportal_client.BioDivPortal(api_key=api_key),
     )
     return client.download(force_download=force_download, force_process=force_process)
 
