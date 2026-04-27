@@ -4591,7 +4591,7 @@
         ]
     },
     {
-        "pattern": "^[CRPA]\\d+$",
+        "pattern": "^(C|R|P|A|NHC)\\d+$",
         "prefix": "NCIT",
         "prefix_synonyms": [
             "NCI",
@@ -7454,12 +7454,14 @@
             "http://bioregistry.io/ZFA_RETIRED:",
             "http://bioregistry.io/zfa:",
             "http://www.ebi.ac.uk/ols/ontologies/zfa/terms?iri=http://purl.obolibrary.org/obo/ZFA_",
+            "http://zfin.org/action/ontology/term/ZFA:",
             "https://bio2rdf.org/zfa:",
             "https://bioregistry.io/ZFA:",
             "https://bioregistry.io/ZFA_RETIRED:",
             "https://bioregistry.io/zfa:",
             "https://purl.obolibrary.org/obo/ZFA_",
-            "https://www.ebi.ac.uk/ols/ontologies/zfa/terms?iri=http://purl.obolibrary.org/obo/ZFA_"
+            "https://www.ebi.ac.uk/ols/ontologies/zfa/terms?iri=http://purl.obolibrary.org/obo/ZFA_",
+            "https://zfin.org/action/ontology/term/ZFA:"
         ]
     },
     {
@@ -13945,13 +13947,41 @@
     {
         "prefix": "dcatap",
         "prefix_synonyms": [
-            "DCATAP"
+            "DCATAP",
+            "DCAT_AP",
+            "dcat_ap"
         ],
         "uri_prefix": "http://data.europa.eu/r5r/",
         "uri_prefix_synonyms": [
+            "http://bioregistry.io/dcat_ap:",
             "http://bioregistry.io/dcatap:",
+            "https://bioregistry.io/dcat_ap:",
             "https://bioregistry.io/dcatap:",
             "https://data.europa.eu/r5r/"
+        ]
+    },
+    {
+        "prefix": "dcatap_linkml",
+        "prefix_synonyms": [
+            "DCATAP_LINKML"
+        ],
+        "uri_prefix": "https://w3id.org/nfdi-de/dcat-ap-linkml/",
+        "uri_prefix_synonyms": [
+            "http://bioregistry.io/dcatap_linkml:",
+            "http://w3id.org/nfdi-de/dcat-ap-linkml/",
+            "https://bioregistry.io/dcatap_linkml:"
+        ]
+    },
+    {
+        "prefix": "dcatap_plus",
+        "prefix_synonyms": [
+            "DCATAP_PLUS"
+        ],
+        "uri_prefix": "http://w3id.org/nfdi-de/dcat-ap-plus/latest/class/",
+        "uri_prefix_synonyms": [
+            "http://bioregistry.io/dcatap_plus:",
+            "https://bioregistry.io/dcatap_plus:",
+            "https://w3id.org/nfdi-de/dcat-ap-plus/latest/class/"
         ]
     },
     {
@@ -17980,6 +18010,19 @@
             "http://bioregistry.io/fungorum:",
             "https://bioregistry.io/fungorum:",
             "https://www.indexfungorum.org/names/NamesRecord.asp?RecordID="
+        ]
+    },
+    {
+        "pattern": "^G2P\\d{5}$",
+        "prefix": "g2p",
+        "prefix_synonyms": [
+            "G2P"
+        ],
+        "uri_prefix": "https://www.ebi.ac.uk/gene2phenotype/lgd/",
+        "uri_prefix_synonyms": [
+            "http://bioregistry.io/g2p:",
+            "http://www.ebi.ac.uk/gene2phenotype/lgd/",
+            "https://bioregistry.io/g2p:"
         ]
     },
     {
@@ -31861,6 +31904,18 @@
         ]
     },
     {
+        "prefix": "qsproteome",
+        "prefix_synonyms": [
+            "QSPROTEOME"
+        ],
+        "uri_prefix": "https://qsproteome.org/entry/",
+        "uri_prefix_synonyms": [
+            "http://bioregistry.io/qsproteome:",
+            "http://qsproteome.org/entry/",
+            "https://bioregistry.io/qsproteome:"
+        ]
+    },
+    {
         "pattern": "^\\d+$",
         "prefix": "qtldb",
         "prefix_synonyms": [
@@ -37972,6 +38027,19 @@
         ]
     },
     {
+        "pattern": "^\\d+$",
+        "prefix": "tgemo",
+        "prefix_synonyms": [
+            "TGEMO"
+        ],
+        "uri_prefix": "http://gemma.msl.ubc.ca/ont/TGEMO_",
+        "uri_prefix_synonyms": [
+            "http://bioregistry.io/tgemo:",
+            "https://bioregistry.io/tgemo:",
+            "https://gemma.msl.ubc.ca/ont/TGEMO_"
+        ]
+    },
+    {
         "pattern": "^\\d+[a-d]?$",
         "prefix": "theiler",
         "prefix_synonyms": [
@@ -38803,6 +38871,34 @@
             "http://bioregistry.io/udsaes.sms:",
             "http://purl.org/sms-ontology#",
             "https://bioregistry.io/udsaes.sms:"
+        ]
+    },
+    {
+        "pattern": "^\\d+$",
+        "prefix": "ukbiobank.category",
+        "prefix_synonyms": [
+            "UKBIOBANK.CATEGORY"
+        ],
+        "uri_prefix": "https://biobank.ndph.ox.ac.uk/showcase/label.cgi?id=",
+        "uri_prefix_synonyms": [
+            "http://biobank.ndph.ox.ac.uk/showcase/label.cgi?id=",
+            "http://bioregistry.io/ukbiobank.category:",
+            "https://bioregistry.io/ukbiobank.category:"
+        ]
+    },
+    {
+        "pattern": "^\\d+$",
+        "prefix": "ukbiobank.field",
+        "prefix_synonyms": [
+            "UKBIOBANK.FIELD"
+        ],
+        "uri_prefix": "https://biobank.ndph.ox.ac.uk/crystal/field.cgi?id=",
+        "uri_prefix_synonyms": [
+            "http://biobank.ctsu.ox.ac.uk/crystal/field.cgi?id=",
+            "http://biobank.ndph.ox.ac.uk/crystal/field.cgi?id=",
+            "http://bioregistry.io/ukbiobank.field:",
+            "https://biobank.ctsu.ox.ac.uk/crystal/field.cgi?id=",
+            "https://bioregistry.io/ukbiobank.field:"
         ]
     },
     {
