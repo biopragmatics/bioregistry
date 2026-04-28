@@ -4094,8 +4094,8 @@
     ],
     "homepage": "https://fdc.nal.usda.gov/index.html",
     "name": "USDA NDB number",
-    "pattern": "^\\d{5}$",
-    "uri_format": "https://fdc.nal.usda.gov/fdc-app.html#/?query=$1",
+    "pattern": "^\\d+$",
+    "uri_format": "https://fdc.nal.usda.gov/food-search?query=$1",
     "xrefs": {
       "wikidata": "Q7866379"
     }
@@ -5561,17 +5561,6 @@
     "name": "Saxon Academy of Sciences member ID",
     "pattern": "^[a-z]+$",
     "uri_format": "https://www.saw-leipzig.de/de/mitglieder/$1"
-  },
-  "P3413": {
-    "description": "identifier in the members' database of the Leopoldina – German Academy of Sciences",
-    "examples": [
-      "1536",
-      "266"
-    ],
-    "homepage": "http://www.leopoldina.org/de/mitglieder/mitglieder-seit-1652/",
-    "name": "Leopoldina member ID (superseded)",
-    "pattern": "^[1-9]\\d{0,3}$",
-    "uri_format": "https://web.archive.org/web/https://www.leopoldina.org/mitglieder/mitgliederverzeichnis/mitglieder/member/Member/show/$1/"
   },
   "P3420": {
     "description": "identifier for a taxon in Calflora",
@@ -10751,7 +10740,7 @@
     ],
     "homepage": "https://www.jstor.org/",
     "name": "JSTOR article ID",
-    "pattern": "^(\\d{2}.\\d{4,5}\\/[a-z\\d.-]+)|(arion|booksireland|genus|healhumarigh|jj|lindbergia|mammalianspecies|vermjenvilaw|westhistquar|wilsonq)[\\d.]+|[1-9]\\d{0,8}|j\\.[a-z\\d]{9}(\\.\\d{1,2})?$",
+    "pattern": "^(\\d{2}\\.\\d{4,5}\\/[a-z\\d.\\-_]+)|(arion|booksireland|community|e|genus|healhumarigh|i|j|jj|lindbergia|mammalianspecies|resrep|vermjenvilaw|westhistquar|wilsonq|yeatsannual)[\\d.]+|[1-9]\\d{0,8}|j\\.[a-z\\d]{9,10}(\\.\\d{1,2})?$",
     "uri_format": "https://www.jstor.org/stable/$1",
     "xrefs": {
       "wikidata": "Q19832971"

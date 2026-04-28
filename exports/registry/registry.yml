@@ -20,6 +20,9 @@ _3dmet:
     prefixcommons: 3dmet
     wikidata: P2796
   name: 3D Metabolites
+  owners:
+  - name: National Institute of Agrobiological Sciences
+    ror: 01786mp71
   pattern: ^B\d{5}$
   preferred_prefix: _3dmet
   providers:
@@ -495,6 +498,9 @@ aceview.worm:
     n2t: aceview.worm
     prefixcommons: aceview.worm
   name: Aceview Worm
+  owners:
+  - name: National Center for Biotechnology Information
+    ror: 02meqm098
   pattern: ^[a-z0-9-]+$
   preferred_prefix: aceview.worm
   providers:
@@ -599,6 +605,9 @@ addgene:
     re3data: r3d100010741
     rrid: Addgene
   name: Addgene Plasmid Repository
+  owners:
+  - name: Addgene
+    ror: 01nn1pw54
   pattern: ^[0-9]{5}(-[a-zA-Z0-9-]{0,7})?$|^[0-9]{10}$
   preferred_prefix: addgene
   providers:
@@ -1106,6 +1115,9 @@ agricola:
     prefixcommons: agricola
     wikidata.entity: Q4651693
   name: Agricultural Online Access
+  owners:
+  - name: National Agricultural Library, United States Department of Agriculture
+    ror: 00z6b1508
   pattern: ^(IND|GUA)\d+$
   preferred_prefix: agricola
   providers:
@@ -1403,7 +1415,7 @@ ahol:
     fishes) or the one causing the disease (virus, bacteria, fungus, parasite).'
   download_owl: http://aber-owl.net/media/ontologies/AHOL/1/ahol.owl
   example: '0005114'
-  homepage: http://www.atol-ontology.com/
+  homepage: http://147.99.156.182/ontologies/visualisation/ontologie/
   keywords:
   - animal husbandry
   - disease
@@ -1416,6 +1428,7 @@ ahol:
     aberowl: AHOL
     agroportal: AHOL
     biodivportal: AHOL
+    bioportal: AHOL
     fairsharing: FAIRsharing.ZkwSlo
   name: Animal Health Ontology for Livestock
   pattern: ^\d+$
@@ -1622,6 +1635,21 @@ allergome:
   references:
   - https://github.com/biopragmatics/bioregistry/pull/1098
   uri_format: http://www.allergome.org/script/dettaglio.php?id_molecule=$1
+allotrope.equipment:
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: The equipment component of the Allotrope ontology suite
+  example: '0000001'
+  homepage: https://www.allotrope.org/
+  license: CC-BY-4.0
+  name: Allotrope equipment
+  part_of: afo
+  pattern: ^\d+$
+  preferred_prefix: allotrope.equipment
+  uri_format: http://purl.allotrope.org/ontologies/equipment#AFE_$1
 allotrope.process:
   contributor:
     email: cthoyt@gmail.com
@@ -1631,6 +1659,7 @@ allotrope.process:
   description: The process component of the Allotrope ontology suite
   example: '0001263'
   homepage: https://www.allotrope.org/
+  license: CC-BY-4.0
   name: Allotrope process
   part_of: afo
   pattern: ^\d+$
@@ -1645,6 +1674,7 @@ allotrope.quality:
   description: The quality component of the Allotrope ontology suite
   example: '0000236'
   homepage: https://www.allotrope.org/
+  license: CC-BY-4.0
   name: Allotrope quality
   part_of: afo
   pattern: ^\d+$
@@ -1659,6 +1689,7 @@ allotrope.result:
   description: The result component of the Allotrope ontology suite
   example: '0001055'
   homepage: https://www.allotrope.org/
+  license: CC-BY-4.0
   name: Allotrope result
   part_of: afo
   pattern: ^\d+$
@@ -1673,6 +1704,7 @@ allotrope.role:
   description: The role component of the Allotrope ontology suite
   example: 0000248
   homepage: https://www.allotrope.org/
+  license: CC-BY-4.0
   name: Allotrope role
   part_of: afo
   pattern: ^\d+$
@@ -2062,6 +2094,9 @@ antweb:
     prefixcommons: antweb
     wikidata: P5299
   name: AntWeb
+  owners:
+  - name: California Academy of Sciences, Goldengate Park, San Francisco
+    ror: 02wb73912
   pattern: ^casent\d+(\-D\d+)?$
   preferred_prefix: antweb
   providers:
@@ -2429,7 +2464,7 @@ apo:
   - https://github.com/biopragmatics/bioregistry/pull/1098
   repository: https://github.com/obophenotype/ascomycete-phenotype-ontology
   uri_format: http://purl.obolibrary.org/obo/APO_$1
-  version: '2026-03-14'
+  version: '2026-04-20'
 apollosv:
   appears_in:
   - scdo
@@ -2647,6 +2682,9 @@ araport:
     pathguide: '768'
     uniprot: DB-0221
   name: Arabidopsis Information Portal
+  owners:
+  - name: Phoenix Bioinformatics
+    ror: 0018yg518
   pattern: ^AT.G[0-9]{5}$
   preferred_prefix: araport
   publications:
@@ -2775,6 +2813,9 @@ ark:
   mastodon: arks_org@fosstodon.org
   name: Archival Resource Key
   namespace_in_lui: true
+  owners:
+  - name: California Digital Library, University of California Office of the President
+    ror: 03yrm5c26
   pattern: ^/*[0-9A-Za-z]+(?:/[\w/.=*+@\$-]*)?(?:\?.*)?$
   preferred_prefix: ark
   references:
@@ -2871,6 +2912,9 @@ arrayexpress:
     re3data: r3d100010222
     wikidata.entity: Q106638376
   name: ArrayExpress
+  owners:
+  - name: European Bioinformatics Institute
+    ror: 02catss52
   pattern: ^[AEP]-\w{4}-\d+$
   preferred_prefix: arrayexpress
   providers:
@@ -2926,6 +2970,9 @@ arrayexpress.platform:
     miriam: arrayexpress.platform
     n2t: arrayexpress.platform
   name: ArrayExpress Platform
+  owners:
+  - name: European Bioinformatics Institute
+    ror: 02catss52
   pattern: ^[AEP]-\w{4}-\d+$
   preferred_prefix: arrayexpress.platform
   uri_format: https://www.ebi.ac.uk/arrayexpress/arrays/$1
@@ -2992,6 +3039,9 @@ arxiv:
     wikidata: P818
     wikidata.entity: Q118398
   name: arXiv
+  owners:
+  - name: Cornell University
+    ror: 05bnh6r87
   pattern: ^(\w+(\-\w+)?(\.\w+)?\/?)?\d{4,7}(\.\d+(v\d+)?)?$
   preferred_prefix: arxiv
   providers:
@@ -3043,6 +3093,9 @@ asap:
     prefixcommons: asap
     re3data: r3d100010666
   name: A Systematic Annotation Package for Community Analysis of Genomes
+  owners:
+  - name: University of Wisconsin-Madison
+    ror: 01y2jtd41
   pattern: ^[A-Za-z0-9-]+$
   preferred_prefix: asap
   providers:
@@ -3117,6 +3170,9 @@ asin:
     n2t: asin
     wikidata.entity: Q1753278
   name: Amazon Standard Identification Number
+  owners:
+  - name: Amazon
+    ror: 04mv4n011
   pattern: ^[0-9]{10}$
   preferred_prefix: asin
   references:
@@ -3397,6 +3453,9 @@ atcc:
     ncbi: ATCC
     prefixcommons: atcc
   name: American Type Culture Collection
+  owners:
+  - name: American Type Culture Collection
+    ror: 03thhhv76
   pattern: ^([a-zA-Z]+-)?\d+(\.\d)?$
   preferred_prefix: atcc
   providers:
@@ -3554,6 +3613,9 @@ autdb:
     miriam: autdb
     n2t: autdb
   name: AutDB
+  owners:
+  - name: MindSpec Inc., Fairfax, Virginia
+    ror: 033p51247
   pattern: ^[A-Z]+[A-Z-0-9]{2,}$
   preferred_prefix: autdb
   uri_format: http://autism.mindspec.org/GeneDetail/$1
@@ -3631,6 +3693,9 @@ bacdive:
     re3data: r3d100013060
     wikidata: P2946
   name: BacDive
+  owners:
+  - name: Leibniz-Institut DSMZ-Deutsche Sammlung von Mikroorganismen und Zellkulturen
+    ror: 02tyer376
   pattern: ^[0-9]+$
   preferred_prefix: bacdive
   publications:
@@ -4124,6 +4189,9 @@ bdgp.est:
     ncbi: BDGP_EST
     prefixcommons: flybase.est
   name: Berkeley Drosophila Genome Project EST database
+  owners:
+  - name: National Center for Biotechnology Information
+    ror: 02meqm098
   pattern: ^\w+(\.)?(\d+)?$
   preferred_prefix: bdgp.est
   providers:
@@ -4155,6 +4223,9 @@ bdgp.insertion:
     n2t: bdgp.insertion
     prefixcommons: bdgp
   name: BDGP insertion DB
+  owners:
+  - name: Baylor College of Medicine
+    ror: 02pttbw34
   pattern: ^\w+$
   preferred_prefix: bdgp.insertion
   providers:
@@ -4239,6 +4310,9 @@ beetlebase:
     prefixcommons: beetlebase
     re3data: r3d100010921
   name: BeetleBase
+  owners:
+  - name: Kansas State University
+    ror: 05p1j8758
   pattern: ^TC\d+$
   preferred_prefix: beetlebase
   providers:
@@ -4442,6 +4516,9 @@ bgee.family:
     miriam: bgee.family
     n2t: bgee.family
   name: Bgee family
+  owners:
+  - name: SIB Swiss Institute of Bioinformatics
+    ror: 002n09z45
   pattern: ^(ENSFM|ENSGTV:)\d+$
   preferred_prefix: bgee.family
   references:
@@ -4472,6 +4549,9 @@ bgee.gene:
     n2t: bgee.gene
     prefixcommons: bgee
   name: Bgee gene
+  owners:
+  - name: SIB Swiss Institute of Bioinformatics
+    ror: 002n09z45
   pattern: ^[A-Za-z0-9]+$
   preferred_prefix: bgee.gene
   providers:
@@ -4504,6 +4584,9 @@ bgee.organ:
     miriam: bgee.organ
     n2t: bgee.organ
   name: Bgee organ
+  owners:
+  - name: SIB Swiss Institute of Bioinformatics
+    ror: 002n09z45
   pattern: ^(XAO|ZFA|EHDAA|EMAPA|EV|MA)\:\d+$
   preferred_prefix: bgee.organ
   references:
@@ -4526,6 +4609,9 @@ bgee.stage:
     miriam: bgee.stage
     n2t: bgee.stage
   name: Bgee stage
+  owners:
+  - name: SIB Swiss Institute of Bioinformatics
+    ror: 002n09z45
   pattern: ^(FBvd|XtroDO|HsapDO|MmusDO)\:\d+$
   preferred_prefix: bgee.stage
   references:
@@ -4656,6 +4742,9 @@ bigg.compartment:
     miriam: bigg.compartment
     n2t: bigg.compartment
   name: BiGG Compartment
+  owners:
+  - name: University of California, San Diego
+    ror: 0168r3w48
   pattern: ^c|cm|cx|e|f|g|h|i|im|l|m|mm|n|p|r|s|u|um|v|w|x|y$
   preferred_prefix: bigg.compartment
   uri_format: http://bigg.ucsd.edu/compartments/$1
@@ -4691,6 +4780,9 @@ bigg.metabolite:
     miriam: bigg.metabolite
     n2t: bigg.metabolite
   name: BiGG Metabolite
+  owners:
+  - name: University of California, San Diego
+    ror: 0168r3w48
   pattern: ^[a-z_A-Z0-9]+(\[[c|cm|cx|e|f|g|h|i|im|l|m|mm|n|p|r|s|u|um|v|w|x|y]\])?$
   preferred_prefix: bigg.metabolite
   uri_format: http://bigg.ucsd.edu/models/universal/metabolites/$1
@@ -4722,6 +4814,9 @@ bigg.model:
     miriam: bigg.model
     n2t: bigg.model
   name: BiGG Model
+  owners:
+  - name: University of California, San Diego
+    ror: 0168r3w48
   pattern: ^[a-z_A-Z0-9]+$
   preferred_prefix: bigg.model
   uri_format: http://bigg.ucsd.edu/models/$1
@@ -4752,6 +4847,9 @@ bigg.reaction:
     miriam: bigg.reaction
     n2t: bigg.reaction
   name: BiGG Reaction
+  owners:
+  - name: University of California, San Diego
+    ror: 0168r3w48
   pattern: ^[a-z_A-Z0-9]+$
   preferred_prefix: bigg.reaction
   uri_format: http://bigg.ucsd.edu/models/universal/reactions/$1
@@ -4856,6 +4954,9 @@ bindingdb:
     uniprot: DB-0127
     wikidata: P12357
   name: BindingDB
+  owners:
+  - name: University of California, San Diego
+    ror: 0168r3w48
   pattern: ^\d+$
   preferred_prefix: bindingdb
   providers:
@@ -4924,6 +5025,9 @@ biocatalogue.service:
     n2t: biocatalogue.service
     prefixcommons: biocatalogue
   name: BioCatalogue Service
+  owners:
+  - name: European Bioinformatics Institute
+    ror: 02catss52
   pattern: ^\d+$
   preferred_prefix: biocatalogue.service
   providers:
@@ -5007,6 +5111,9 @@ biocyc:
     prefixcommons: biocyc
     uniprot: DB-0005
   name: BioCyc
+  owners:
+  - name: SRI International
+    ror: 05s570m15
   pattern: ^[A-Z-0-9]+(\:)?[A-Za-z0-9+_.%-:]+$
   preferred_prefix: biocyc
   providers:
@@ -5071,11 +5178,14 @@ biodivthes:
     the ontology ENVO (Environment Ontology).
   example: K33QZ1W4-D
   homepage: https://loterre.istex.fr/BLH/en/
+  keywords:
+  - ontology
   license: CC-BY-4.0
   mappings:
     aberowl: BIODIVTHES
     agroportal: BIODIVTHES
     biodivportal: BIODIVTHES
+    bioportal: BIODIVTHES
     ecoportal: BIODIVTHES
   name: Biodiversity Thesaurus
   preferred_prefix: biodivthes
@@ -5176,6 +5286,9 @@ biogrid:
     re3data: r3d100010350
     uniprot: DB-0184
   name: BioGRID
+  owners:
+  - name: Ontario Cancer Institute
+    ror: 029n6xw55
   pattern: ^\d+$
   preferred_prefix: biogrid
   providers:
@@ -5246,6 +5359,9 @@ biokc:
   mappings:
     miriam: biokc
   name: BioKC
+  owners:
+  - name: University of Luxembourg
+    ror: 036x5ad56
   pattern: ^bkc[0-9]*$
   preferred_prefix: biokc
   uri_format: https://biokb.lcsb.uni.lu/fact/$1
@@ -5407,6 +5523,9 @@ biomodels.db:
     n2t: biomodels.db
     prefixcommons: biomodels
   name: BioModels Database
+  owners:
+  - name: European Bioinformatics Institute
+    ror: 02catss52
   pattern: ^((BIOMD|MODEL)\d{10})|(BMID\d{12})$
   preferred_prefix: biomodels.db
   providers:
@@ -5568,6 +5687,9 @@ biomodels.vocabulary:
     miriam: biomodels.vocabulary
     n2t: biomodels.vocabulary
   name: SBML RDF Vocabulary
+  owners:
+  - name: European Bioinformatics Institute
+    ror: 02catss52
   pattern: ^[A-Za-z]+$
   preferred_prefix: biomodels.vocabulary
   uri_format: http://biomodels.net/rdf/vocabulary.rdf#$1
@@ -5584,6 +5706,9 @@ bionumbers:
     n2t: bionumbers
     prefixcommons: bionumbers
   name: BioNumbers
+  owners:
+  - name: Weizmann Institute
+    ror: 0316ej306
   pattern: ^\d+$
   preferred_prefix: bionumbers
   providers:
@@ -5754,6 +5879,9 @@ bioproject:
     re3data: r3d100013330
     togoid: Bioproject
   name: BioProject
+  owners:
+  - name: National Center for Biotechnology Information
+    ror: 02meqm098
   pattern: ^PRJ[DEN][A-Z]\d+$
   preferred_prefix: bioproject
   publications:
@@ -5784,6 +5912,10 @@ bioregistry:
     wikidata.entity: Q109302681
   mastodon: bioregistry@fosstodon.org
   name: Bioregistry
+  owners:
+  - name: RWTH Aachen University
+    partnered: true
+    ror: 04xfq0f34
   pattern: ^[A-Za-z_][A-Za-z0-9\.\-_]*$
   preferred_prefix: bioregistry
   publications:
@@ -5916,6 +6048,9 @@ biosample:
     rrid: SAMN
     togoid: Biosample
   name: BioSample
+  owners:
+  - name: European Bioinformatics Institute
+    ror: 02catss52
   pattern: ^SAM[NED](\w)?\d+$
   preferred_prefix: biosample
   providers:
@@ -5989,6 +6124,9 @@ biosimulations:
     miriam: biosimulations
     re3data: r3d100013361
   name: biosimulations
+  owners:
+  - name: Icahn School of Medicine at Mount Sinai
+    ror: 04a9tmd77
   pattern: ^[a-zA-Z0-9_-]{3,}$
   preferred_prefix: biosimulations
   uri_format: https://biosimulations.org/projects/$1
@@ -6004,6 +6142,9 @@ biosimulators:
     miriam: biosimulators
     re3data: r3d100013432
   name: BioSimulators
+  owners:
+  - name: Icahn School of Medicine at Mount Sinai
+    ror: 04a9tmd77
   pattern: ^[a-zA-Z0-9-_]+$
   preferred_prefix: biosimulators
   uri_format: https://biosimulators.org/simulators/$1
@@ -6028,6 +6169,9 @@ biostudies:
     n2t: biostudies
     re3data: r3d100012627
   name: BioStudies database
+  owners:
+  - name: European Bioinformatics Institute
+    ror: 02catss52
   pattern: ^S-[A-Z]{4}[\-\_A-Z\d]+$
   preferred_prefix: biostudies
   publications:
@@ -6078,6 +6222,9 @@ biosystems:
     prefixcommons: biosystems
     re3data: r3d100011033
   name: BioSystems
+  owners:
+  - name: National Center for Biotechnology Information
+    ror: 02meqm098
   pattern: ^\d+$
   preferred_prefix: biosystems
   providers:
@@ -6107,22 +6254,33 @@ biotools:
     and workflows for biological and biomedical research.
   example: bioregistry
   homepage: https://bio.tools/
-  license: CC
+  license: CC-BY-4.0
   mappings:
     biocontext: BIOTOOLS
     miriam: biotools
     n2t: biotools
     re3data: r3d100013668
   name: BioTools
+  owners:
+  - name: Technical University of Denmark
+    partnered: false
+    ror: 04qtj9h94
   pattern: ^[-A-Za-z0-9\_]*$
   preferred_prefix: biotools
   publications:
+  - doi: 10.1186/s13059-019-1772-6
+    pmc: PMC6691543
+    pubmed: '31405382'
+    title: The bio.tools registry of software tools and data resources for the life
+      sciences
+    year: 2019
   - doi: 10.1093/nar/gkv1116
     pmc: PMC4702812
     pubmed: '26538599'
     title: 'Tools and data services registry: a community effort to document bioinformatics
       resources'
     year: 2015
+  repository: https://github.com/bio-tools/biotoolsregistry
   uri_format: https://bio.tools/$1
 biotop:
   contact:
@@ -6261,6 +6419,9 @@ bitbucket:
     miriam: bitbucket
     re3data: r3d100013478
   name: Bitbucket
+  owners:
+  - name: Atlassian
+    ror: 00y7n3708
   pattern: ^[0-9A-Za-z-_\.]+/[0-9A-Za-z-_\.]+$
   preferred_prefix: bitbucket
   uri_format: https://bitbucket.org/$1
@@ -6422,6 +6583,9 @@ bmrb.entry:
     re3data: r3d100010191
     uniprot: DB-0256
   name: Biological Magnetic Resonance Data Bank
+  owners:
+  - name: University of Wisconsin-Madison
+    ror: 01y2jtd41
   pattern: ^(bmr|bmse|bmst)?[0-9]{1,6}$
   preferred_prefix: bmrb.entry
   publications:
@@ -6893,6 +7057,9 @@ broad:
     miriam: broad
     n2t: broad
   name: Broad Fungal Genome Initiative
+  owners:
+  - name: Broad Institute of MIT and Harvard, Cambridge, Massachuchetts
+    ror: 05a0ya142
   pattern: ^S\d+$
   preferred_prefix: broad
   uri_format: https://www.broadinstitute.org/annotation/genome/magnaporthe_grisea/GeneDetails.html?sp=$1
@@ -7098,6 +7265,9 @@ bugbase.expt:
     miriam: bugbase.expt
     n2t: bugbase.expt
   name: BugBase Expt
+  owners:
+  - name: St George's, University of London
+    ror: 040f08y74
   pattern: ^\d+$
   preferred_prefix: bugbase.expt
   uri_format: http://bugs.sgul.ac.uk/bugsbase/tabs/experiment.php?action=view&expt_id=$1
@@ -7114,6 +7284,9 @@ bugbase.protocol:
     miriam: bugbase.protocol
     n2t: bugbase.protocol
   name: BugBase Protocol
+  owners:
+  - name: St George's, University of London
+    ror: 040f08y74
   pattern: ^\d+$
   preferred_prefix: bugbase.protocol
   uri_format: http://bugs.sgul.ac.uk/bugsbase/tabs/protocol.php?action=view&protocol_id=$1
@@ -7346,6 +7519,9 @@ cameo:
     miriam: cameo
     n2t: cameo
   name: Continuous Automated Model Evaluation
+  owners:
+  - name: SIB Swiss Institute of Bioinformatics
+    ror: 002n09z45
   pattern: ^[0-9\-_]+$
   preferred_prefix: cameo
   publications:
@@ -7613,6 +7789,9 @@ cath:
     prefixcommons: cath
     re3data: r3d100012629
   name: CATH Protein Structural Domain Superfamily
+  owners:
+  - name: University College London
+    ror: 02jx3x895
   pattern: ^[1-6]\.[0-9]+\.[0-9]+\.[0-9]+$
   preferred_prefix: cath
   providers:
@@ -7694,6 +7873,9 @@ cath.domain:
     miriam: cath.domain
     n2t: cath.domain
   name: CATH domain
+  owners:
+  - name: Institute of Structural and Molecular Biology, University College London
+    ror: 05wsetc54
   pattern: ^\w+$
   preferred_prefix: cath.domain
   uri_format: http://www.cathdb.info/domain/$1
@@ -7741,6 +7923,9 @@ cath.superfamily:
     n2t: cath.superfamily
     uniprot: DB-0029
   name: CATH superfamily
+  owners:
+  - name: Institute of Structural and Molecular Biology, University College London
+    ror: 05wsetc54
   part_of: cath
   pattern: ^\d+(\.\d+(\.\d+(\.\d+)?)?)?$
   preferred_prefix: cath.superfamily
@@ -7802,6 +7987,9 @@ cazy:
     re3data: r3d100012321
     uniprot: DB-0136
   name: Carbohydrate Active EnZYmes
+  owners:
+  - name: Architecture et Fonction des Macromolécules Biologiques
+    ror: 04jm8zw14
   pattern: ^(GT|GH|PL|CE|CBM)\d+(\_\d+)?$
   preferred_prefix: cazy
   providers:
@@ -7860,6 +8048,9 @@ cbioportal:
     miriam: cbioportal
     n2t: cbioportal
   name: The cBioPortal for Cancer Genomics
+  owners:
+  - name: Memorial Sloan Kettering Cancer Center
+    ror: 02yrq0923
   pattern: ^[a-z0-9\_]+$
   preferred_prefix: cbioportal
   publications:
@@ -7933,6 +8124,9 @@ ccdc:
   mappings:
     miriam: ccdc
   name: CCDC Number
+  owners:
+  - name: Cambridge Crystallographic Data Centre
+    ror: 00zbfm828
   pattern: ^\d{6,7}$
   preferred_prefix: ccdc
   uri_format: https://www.ccdc.cam.ac.uk/services/structures?pid=ccdc:$1&sid=IDORG
@@ -7966,6 +8160,9 @@ ccds:
     togoid: Ccds
     uniprot: DB-0187
   name: Consensus CDS
+  owners:
+  - name: National Center for Biotechnology Information
+    ror: 02meqm098
   pattern: ^CCDS\d+(\.\d+)?$
   preferred_prefix: ccds
   providers:
@@ -8112,6 +8309,9 @@ cco:
     prefixcommons: cco
   name: Cell Cycle Ontology
   namespace_in_lui: true
+  owners:
+  - name: European Bioinformatics Institute
+    ror: 02catss52
   pattern: ^\w+$
   preferred_prefix: cco
   providers:
@@ -8173,6 +8373,7 @@ ccon:
   mappings:
     aberowl: CCON
     agroportal: CCON
+    bioportal: CCON
     fairsharing: FAIRsharing.pzxjh
   name: Cerrado Concepts Ontology
   preferred_prefix: ccon
@@ -8327,6 +8528,9 @@ cdd:
     prefixcommons: cdd
     uniprot: DB-0214
   name: Conserved Domain Database
+  owners:
+  - name: National Library of Medicine, Maryland
+    ror: 0060t0j89
   pattern: ^(cd)?\d{5}$
   preferred_prefix: cdd
   providers:
@@ -8449,6 +8653,9 @@ cdpd:
     miriam: cdpd
     n2t: cdpd
   name: Canadian Drug Product Database
+  owners:
+  - name: Health Canada, Ottawa, Ontario
+    ror: 05p8nb362
   pattern: ^\d+$
   preferred_prefix: cdpd
   uri_format: https://health-products.canada.ca/dpd-bdpp/info?lang=eng&code=$1
@@ -8637,6 +8844,9 @@ cellosaurus:
     wikidata.entity: Q21014462
   mastodon: cellosaurus@fediscience.org
   name: Cellosaurus
+  owners:
+  - name: SIB Swiss Institute of Bioinformatics
+    ror: 002n09z45
   pattern: ^[A-Z0-9]{4}$
   preferred_prefix: cellosaurus
   providers:
@@ -9002,6 +9212,9 @@ cgd:
     re3data: r3d100010617
     uniprot: DB-0126
   name: Candida Genome Database
+  owners:
+  - name: Stanford University
+    ror: 00f54p054
   pattern: ^CAL\d{7}$
   preferred_prefix: cgd
   providers:
@@ -9149,6 +9362,9 @@ charprot:
     miriam: charprot
     n2t: charprot
   name: CharProt
+  owners:
+  - name: J. Craig Venter Institute, Maryland
+    ror: 049r1ts75
   pattern: ^CH_\d+$
   preferred_prefix: charprot
   uri_format: http://www.jcvi.org/charprotdb/index.cgi/view/$1
@@ -9247,6 +9463,9 @@ chebi:
     wikidata.entity: Q902623
   name: Chemical Entities of Biological Interest
   namespace_in_lui: true
+  owners:
+  - name: European Bioinformatics Institute
+    ror: 02catss52
   pattern: ^\d+$
   preferred_prefix: CHEBI
   providers:
@@ -9521,6 +9740,9 @@ chembl:
     re3data: r3d100010539
     uniprot: DB-0174
   name: ChEMBL
+  owners:
+  - name: European Bioinformatics Institute
+    ror: 02catss52
   pattern: ^CHEMBL\d+$
   preferred_prefix: chembl
   providers:
@@ -9621,6 +9843,9 @@ chembl.compound:
     togoid: ChemblCompound
     wikidata: P592
   name: ChEMBL Compound
+  owners:
+  - name: European Bioinformatics Institute
+    ror: 02catss52
   pattern: ^CHEMBL\d+$
   preferred_prefix: chembl.compound
   rdf_uri_format: http://rdf.ebi.ac.uk/resource/chembl/molecule/$1
@@ -9682,6 +9907,9 @@ chembl.target:
     n2t: chembl.target
     togoid: ChemblTarget
   name: ChEMBL target
+  owners:
+  - name: European Bioinformatics Institute
+    ror: 02catss52
   pattern: ^CHEMBL\d+$
   preferred_prefix: chembl.target
   synonyms:
@@ -9727,6 +9955,9 @@ chemdb:
     n2t: chemdb
     prefixcommons: chemdb
   name: ChemDB
+  owners:
+  - name: University of California, Irvine
+    ror: 04gyf1771
   pattern: ^\d+$
   preferred_prefix: chemdb
   providers:
@@ -9866,6 +10097,9 @@ chemidplus:
     n2t: chemidplus
     prefixcommons: chemidplus
   name: ChemIDplus
+  owners:
+  - name: National Library of Medicine, Maryland
+    ror: 0060t0j89
   pattern: ^\d+\-\d+\-\d+$
   preferred_prefix: chemidplus
   providers:
@@ -9926,6 +10160,9 @@ cheminf:
     wikidata.entity: Q55118298
   name: Chemical Information Ontology
   namespace_in_lui: true
+  owners:
+  - name: European Bioinformatics Institute
+    ror: 02catss52
   pattern: ^\d{6}$
   preferred_prefix: CHEMINF
   providers:
@@ -10106,6 +10343,9 @@ chemspider:
     re3data: r3d100010205
     wikidata: P661
   name: ChemSpider
+  owners:
+  - name: Royal Society of Chemistry, Cambridge
+    ror: 025sbr097
   pattern: ^\d+$
   preferred_prefix: chemspider
   providers:
@@ -10640,6 +10880,9 @@ civic.aid:
   mappings:
     miriam: civic.aid
   name: CIViC Assertion
+  owners:
+  - name: Washington University in St. Louis
+    ror: 01yc7t268
   pattern: ^[0-9]+$
   preferred_prefix: civic.aid
   synonyms:
@@ -10662,6 +10905,9 @@ civic.did:
   mappings:
     miriam: civic.did
   name: CIViC Disease
+  owners:
+  - name: Washington University in St. Louis
+    ror: 01yc7t268
   pattern: ^[0-9]+$
   preferred_prefix: civic.did
   synonyms:
@@ -10692,6 +10938,9 @@ civic.eid:
   mappings:
     miriam: civic.eid
   name: CIViC Evidence
+  owners:
+  - name: Washington University in St. Louis
+    ror: 01yc7t268
   pattern: ^[0-9]+$
   preferred_prefix: civic.eid
   synonyms:
@@ -10725,6 +10974,9 @@ civic.gid:
     miriam: civic.gid
     wikidata: P11277
   name: CIViC gene
+  owners:
+  - name: Washington University in St. Louis
+    ror: 01yc7t268
   pattern: ^[0-9]+$
   preferred_prefix: civic.gid
   synonyms:
@@ -10752,6 +11004,9 @@ civic.mpid:
   mappings:
     miriam: civic.mpid
   name: CIViC Molecular Profile
+  owners:
+  - name: Washington University in St. Louis
+    ror: 01yc7t268
   pattern: ^[0-9]+$
   preferred_prefix: civic.mpid
   synonyms:
@@ -10777,6 +11032,9 @@ civic.sid:
   mappings:
     miriam: civic.sid
   name: CIViC Source
+  owners:
+  - name: Washington University in St. Louis
+    ror: 01yc7t268
   pattern: ^[0-9]+$
   preferred_prefix: civic.sid
   synonyms:
@@ -10801,6 +11059,9 @@ civic.tid:
   mappings:
     miriam: civic.tid
   name: CIViC Therapy
+  owners:
+  - name: Washington University in St. Louis
+    ror: 01yc7t268
   pattern: ^[0-9]+$
   preferred_prefix: civic.tid
   synonyms:
@@ -10824,6 +11085,9 @@ civic.vgid:
   mappings:
     miriam: civic.vgid
   name: CIViC Variant Group
+  owners:
+  - name: Washington University in St. Louis
+    ror: 01yc7t268
   pattern: ^[0-9]+$
   preferred_prefix: civic.vgid
   synonyms:
@@ -10853,6 +11117,9 @@ civic.vid:
     miriam: civic.vid
     wikidata: P3329
   name: CIViC variant
+  owners:
+  - name: Washington University in St. Louis
+    ror: 01yc7t268
   pattern: ^[0-9]+$
   preferred_prefix: civic.vid
   synonyms:
@@ -11055,6 +11322,9 @@ clb:
   mappings:
     miriam: clb
   name: ChecklistBank
+  owners:
+  - name: Global Biodiversity Information Facility
+    ror: 05fjyn938
   pattern: ^[0-9]+(LR)?$
   preferred_prefix: clb
   uri_format: https://www.checklistbank.org/dataset/$1
@@ -11071,6 +11341,9 @@ cldb:
     miriam: cldb
     n2t: cldb
   name: Cell Line Database
+  owners:
+  - name: Ospedale San Martino
+    ror: 04d7es448
   pattern: ^(cl|tum)\d+$
   preferred_prefix: cldb
   synonyms:
@@ -11212,6 +11485,9 @@ clinvar.record:
     miriam: clinvar.record
     n2t: clinvar.record
   name: ClinVar Record
+  owners:
+  - name: National Center for Biotechnology Information
+    ror: 02meqm098
   pattern: ^RCV\d+(\.\d+)?$
   preferred_prefix: clinvar.record
   uri_format: http://www.ncbi.nlm.nih.gov/clinvar/$1
@@ -11231,6 +11507,9 @@ clinvar.submission:
     miriam: clinvar.submission
     n2t: clinvar.submission
   name: ClinVar Submission
+  owners:
+  - name: National Center for Biotechnology Information
+    ror: 02meqm098
   pattern: ^SCV\d+(\.\d+)?$
   preferred_prefix: clinvar.submission
   uri_format: http://www.ncbi.nlm.nih.gov/clinvar?term=$1
@@ -11248,6 +11527,9 @@ clinvar.submitter:
   mappings:
     miriam: clinvar.submitter
   name: ClinVar Submitter
+  owners:
+  - name: National Center for Biotechnology Information
+    ror: 02meqm098
   pattern: ^\d+$
   preferred_prefix: clinvar.submitter
   uri_format: https://www.ncbi.nlm.nih.gov/clinvar/submitters/$1
@@ -11285,6 +11567,9 @@ clinvar.variation:
     togoid: Clinvar
     wikidata: P1929
   name: ClinVar Variation
+  owners:
+  - name: National Center for Biotechnology Information
+    ror: 02meqm098
   pattern: ^\d+$
   preferred_prefix: clinvar.variation
   publications:
@@ -11368,6 +11653,9 @@ clo:
     wikidata: P2158
     wikidata.entity: Q21039006
   name: Cell Line Ontology
+  owners:
+  - name: University of Michigan–Ann Arbor
+    ror: 00jmfr291
   pattern: ^\d{7}$
   preferred_prefix: CLO
   providers:
@@ -11556,7 +11844,7 @@ cmo:
   rdf_uri_format: http://purl.obolibrary.org/obo/CMO_$1
   repository: https://github.com/rat-genome-database/CMO-Clinical-Measurement-Ontology
   uri_format: http://purl.obolibrary.org/obo/CMO_$1
-  version: '2.271'
+  version: '2.272'
 cmpo:
   contact:
     email: jupp@ebi.ac.uk
@@ -12928,15 +13216,20 @@ cog.cluster:
   homepage: https://www.ncbi.nlm.nih.gov/research/cog/
   keywords:
   - genome
+  - ontology
   - ortholog
   - protein
   mappings:
     biolink: COG
+    bioportal: COG
     go: COG_Cluster
     miriam: cog
     prefixcommons: cog
     togoid: Cog
   name: Cluster of orthologous genes
+  owners:
+  - name: National Center for Biotechnology Information
+    ror: 02meqm098
   pattern: ^COG\d+$
   preferred_prefix: cog.cluster
   providers:
@@ -13155,6 +13448,9 @@ col:
     miriam: col
     wikidata.entity: Q38840
   name: Catalogue of Life
+  owners:
+  - name: Global Biodiversity Information Facility
+    ror: 05fjyn938
   pattern: ^[23456789BCDFGHJKLMNPQRSTVWXYZ]{1,6}$
   preferred_prefix: col
   providers:
@@ -13276,6 +13572,9 @@ combine.specifications:
     miriam: combine.specifications
     n2t: combine.specifications
   name: COMBINE specifications
+  owners:
+  - name: European Bioinformatics Institute
+    ror: 02catss52
   pattern: ^\w+(\-|\.|\w)*$
   preferred_prefix: combine.specifications
   uri_format: https://github.com/combine-org/combine-specifications/blob/main/specifications/$1.md
@@ -13380,6 +13679,9 @@ complexportal:
     uniprot: DB-0228
     wikidata: P7718
   name: Complex Portal
+  owners:
+  - name: European Bioinformatics Institute
+    ror: 02catss52
   pattern: ^CPX-[0-9]+$
   preferred_prefix: complexportal
   providers:
@@ -13423,6 +13725,9 @@ comptox:
     n2t: comptox
     wikidata: P3117
   name: DSSTox substance
+  owners:
+  - name: Environmental Protection Agency
+    ror: 03tns0030
   pattern: ^DTXSID\d+$
   preferred_prefix: comptox
   uri_format: https://comptox.epa.gov/dashboard/$1
@@ -13712,6 +14017,9 @@ coriell:
     miriam: coriell
     n2t: coriell
   name: Coriell Cell Repositories
+  owners:
+  - name: Coriell Institute for Medical Research, New Jersey
+    ror: 04npwsp41
   pattern: ^[A-Z]{2}\d+$
   preferred_prefix: coriell
   uri_format: http://ccr.coriell.org/Sections/Search/Sample_Detail.aspx?Ref=$1
@@ -13748,6 +14056,9 @@ corrdb:
     miriam: corrdb
     re3data: r3d100011496
   name: CorrDB
+  owners:
+  - name: Iowa State University
+    ror: 04rswrd78
   pattern: ^[0-9]+$
   preferred_prefix: corrdb
   uri_format: https://www.animalgenome.org/CorrDB/q/?id=CorrID:$1
@@ -13835,6 +14146,9 @@ cosmic.gene:
     n2t: cosmic
     prefixcommons: cosmic
   name: COSMIC Gene
+  owners:
+  - name: Wellcome Trust Sanger Institute
+    ror: 05cy4wa09
   pattern: ^[A-Z0-9][A-Z0-9-]*$
   preferred_prefix: cosmic.gene
   providers:
@@ -13891,6 +14205,9 @@ covid19:
     bioportal: COVID19
     miriam: covid19
   name: SARS-CoV-2
+  owners:
+  - name: University of Tromsø - The Arctic University of Norway
+    ror: 00wge5k78
   pattern: ^\w+_COVID19_[-\w]+$
   preferred_prefix: covid19
   uri_format: https://covid19.sfb.uit.no/api/records/$1
@@ -14008,6 +14325,9 @@ cpc:
     miriam: cpc
     n2t: cpc
   name: Cooperative Patent Classification
+  owners:
+  - name: Espace, European Patent Office
+    ror: 016vvkz13
   pattern: ^([A-H,Y]|[A-H, Y]\d{2}|[A-H, Y]\d{2}[A-Z]|[A-H, Y]\d{2}[A-Z]\d{1,3}|[A-H,
     Y]\d{2}[A-Z]\d{1,3}(\/)?\d{2,})$
   preferred_prefix: cpc
@@ -14303,6 +14623,9 @@ crop2ml:
   mappings:
     miriam: crop2ml
   name: CropMRepository
+  owners:
+  - name: National Research Institute for Agriculture, Food and Environment
+    ror: 003vg9w96
   pattern: ^[0-9]{9}$
   preferred_prefix: crop2ml
   uri_format: http://www.crop2ml.org/cropmdb/$1
@@ -14397,6 +14720,9 @@ csa:
     n2t: csa
     prefixcommons: csa
   name: Catalytic Site Atlas
+  owners:
+  - name: European Bioinformatics Institute
+    ror: 02catss52
   pattern: ^[0-9][A-Za-z0-9]{3}$
   preferred_prefix: csa
   providers:
@@ -14437,6 +14763,9 @@ csd:
     miriam: csd
     re3data: r3d100010197
   name: Cambridge Structural Database
+  owners:
+  - name: Cambridge Crystallographic Data Centre
+    ror: 00zbfm828
   pattern: ^[A-Z]{6}(\d{2})?$
   preferred_prefix: csd
   publications:
@@ -14504,6 +14833,9 @@ cst.antibody:
     n2t: cst.ab
     prefixcommons: cst
   name: Cell Signaling Technology Antibody
+  owners:
+  - name: Cell Signaling Technology, Inc.
+    ror: 03k4zc121
   pattern: ^\d+$
   preferred_prefix: cst.antibody
   providers:
@@ -14531,6 +14863,9 @@ cst.pathway:
     n2t: cst
     pathguide: '193'
   name: Cell Signaling Technology Pathways
+  owners:
+  - name: Cell Signaling Technology, Inc.
+    ror: 03k4zc121
   pattern: ^[A-Za-z0-9_-]+$
   preferred_prefix: cst.pathway
   synonyms:
@@ -14550,6 +14885,10 @@ cstr:
     fairsharing: FAIRsharing.f0d465
     miriam: cstr
   name: Common Science and Technology Resources
+  owners:
+  - name: Computer Network Information Center, Chinese Academy of Sciences, Beijing,
+      China.
+    ror: 01s0wyf50
   pattern: ^\w{5}\.\d{2}\..*$
   preferred_prefix: cstr
   uri_format: https://cstr.cn/$1
@@ -14643,6 +14982,9 @@ ctd.chemical:
     miriam: ctd.chemical
     n2t: ctd.chemical
   name: CTD Chemical
+  owners:
+  - name: The Mount Desert Island Biological Laboratory
+    ror: 04dw1bf40
   pattern: ^[CD]\d+$
   preferred_prefix: ctd.chemical
   provides: mesh
@@ -14662,6 +15004,9 @@ ctd.disease:
     miriam: ctd.disease
     n2t: ctd.disease
   name: CTD Disease
+  owners:
+  - name: The Mount Desert Island Biological Laboratory
+    ror: 04dw1bf40
   pattern: ^D\d+$
   preferred_prefix: ctd.disease
   provides: mesh
@@ -14688,6 +15033,9 @@ ctd.gene:
     n2t: ctd.gene
     uniprot: DB-0140
   name: CTD Gene
+  owners:
+  - name: The Mount Desert Island Biological Laboratory
+    ror: 04dw1bf40
   pattern: ^\d+$
   preferred_prefix: ctd.gene
   provides: ncbigene
@@ -14832,6 +15180,9 @@ cubedb:
     miriam: cubedb
     n2t: cubedb
   name: Cube db
+  owners:
+  - name: BII Bioinformatics Institute
+    ror: 044w3nw43
   pattern: ^[A-Za-z_0-9]+$
   preferred_prefix: cubedb
   publications:
@@ -14939,6 +15290,9 @@ d1id:
     miriam: d1id
     n2t: d1id
   name: DataONE
+  owners:
+  - name: DataONE, Albuquerque, NM
+    ror: 00hr5y405
   pattern: ^\S+$
   preferred_prefix: d1id
   uri_format: https://cn.dataone.org/cn/v2/resolve/%7B$1%7D
@@ -14973,6 +15327,9 @@ dailymed:
     n2t: dailymed
     prefixcommons: dailymed
   name: DailyMed
+  owners:
+  - name: National Library of Medicine, Maryland
+    ror: 0060t0j89
   pattern: ^[A-Za-z0-9-]+$
   preferred_prefix: dailymed
   providers:
@@ -15056,6 +15413,9 @@ dandi:
     miriam: dandi
     re3data: r3d100013638
   name: Distributed Archives for Neurophysiology Data Integration
+  owners:
+  - name: Massachusetts Institute of Technology
+    ror: 042nb2s44
   pattern: ^\d{6}(\/\d+\.\d+\.\d+)?$
   preferred_prefix: dandi
   uri_format: https://dandiarchive.org/dandiset/$1
@@ -15268,6 +15628,9 @@ datanator.gene:
   mappings:
     miriam: datanator.gene
   name: Datanator Gene
+  owners:
+  - name: Icahn School of Medicine at Mount Sinai
+    ror: 04a9tmd77
   pattern: ^K[0-9]+$
   preferred_prefix: datanator.gene
   uri_format: https://www.datanator.info/gene/$1
@@ -15286,6 +15649,9 @@ datanator.metabolite:
   mappings:
     miriam: datanator.metabolite
   name: Datanator Metabolite
+  owners:
+  - name: Icahn School of Medicine at Mount Sinai
+    ror: 04a9tmd77
   pattern: ^[A-Z\-]+$
   preferred_prefix: datanator.metabolite
   provides: inchikey
@@ -15305,6 +15671,9 @@ datanator.reaction:
   mappings:
     miriam: datanator.reaction
   name: Datanator Reaction
+  owners:
+  - name: Icahn School of Medicine at Mount Sinai
+    ror: 04a9tmd77
   pattern: ^.*?--%3E.*?$
   preferred_prefix: datanator.reaction
   uri_format: https://datanator.info/reaction/$1
@@ -15325,6 +15694,9 @@ datf:
     pathguide: '518'
     prefixcommons: datf
   name: Database of Arabidopsis Transcription Factors
+  owners:
+  - name: Peking University
+    ror: 02v51f717
   pattern: ^AT[1-5]G\d{5}(\.\d+)?$
   preferred_prefix: datf
   providers:
@@ -15432,6 +15804,9 @@ dbd:
     pathguide: '496'
     prefixcommons: dbd
   name: Transcription Factor Database
+  owners:
+  - name: MRC Laboratory of Molecular Biology, Cambridge
+    ror: 00tw3jy02
   pattern: ^\d+$
   preferred_prefix: dbd
   providers:
@@ -15469,6 +15844,9 @@ dbest:
     prefixcommons: dbest
     re3data: r3d100010648
   name: dbEST
+  owners:
+  - name: National Center for Biotechnology Information
+    ror: 02meqm098
   pattern: ^([A-Z]+)?\d+(\.\d+)?$
   preferred_prefix: dbest
   providers:
@@ -15515,6 +15893,9 @@ dbg2introns:
     n2t: dbg2introns
     prefixcommons: mgiid
   name: DBG2 Introns
+  owners:
+  - name: University of Calgary
+    ror: 03yjb2x39
   pattern: ^\w{1,2}\.(\w{1,2}\.)?[A-Za-z0-9]+$
   preferred_prefix: dbg2introns
   providers:
@@ -15558,6 +15939,9 @@ dbgap:
     miriam: dbgap
     n2t: dbgap
   name: Database of Genotypes and Phenotypes
+  owners:
+  - name: National Center for Biotechnology Information
+    ror: 02meqm098
   pattern: ^phs[0-9]{6}(.v\d+.p\d+)?$
   preferred_prefix: dbgap
   publications:
@@ -15691,6 +16075,9 @@ dbprobe:
     ncbi: dbProbe
     prefixcommons: dbprobe
   name: dbProbe
+  owners:
+  - name: National Center for Biotechnology Information
+    ror: 02meqm098
   pattern: ^\d+$
   preferred_prefix: dbprobe
   providers:
@@ -15736,6 +16123,9 @@ dbsnp:
     uniprot: DB-0013
     wikidata: P6861
   name: dbSNP
+  owners:
+  - name: National Center for Biotechnology Information
+    ror: 02meqm098
   pattern: ^rs\d+$
   preferred_prefix: dbsnp
   providers:
@@ -15959,7 +16349,82 @@ dcatap:
   name: DCAT AP
   preferred_prefix: dcatap
   repository: https://github.com/SEMICeu/DCAT-AP
+  synonyms:
+  - dcat_ap
   uri_format: http://data.europa.eu/r5r/$1
+dcatap_linkml:
+  contact:
+    email: hendrik.borgelt@tu-dortmund.de
+    github: HendrikBorgelt
+    name: Hendrik Borgelt
+    orcid: 0000-0001-5886-7860
+  contributor:
+    email: hendrik.borgelt@tu-dortmund.de
+    github: HendrikBorgelt
+    name: Hendrik Borgelt
+    orcid: 0000-0001-5886-7860
+  description: The DCAT-AP conversion to a LinkML Schema is the intended point of
+    truth for the DCAT-AP+ schema, but could be used alternatively as a LinkML representation
+    of DCAT-AP for other Projects. It is a port of DCAT-AP to the LinkML world that
+    is as faithful to the original as possible. This Persistent Identifier does not
+    only provide the SHACL Shape, but could also be used as described [here](https://github.com/perma-id/w3id.org/tree/cecbc2e5f40d928f05ed5306d24fc60db0e7bb21/nfdi-de/dcat-ap-plus).
+    DCAT-AP+ is a [LinkML](https://linkml.io/)-based extension of the [DCAT Application
+    Profile 3.0](https://semiceu.github.io/DCAT-AP/releases/3.0.0/) that adds a provenance
+    layer for describing how a dataset was generated and what it is about, using the
+    [Starting Point Terms of PROV-O](https://www.w3.org/TR/prov-o/#description-starting-point-terms),
+    the [QUDT ontology](https://www.qudt.org/), and [Dublin Core Terms](http://purl.org/dc/terms/).
+  example: DataGeneratingActivity
+  github_request_issue: 1868
+  homepage: https://nfdi-de.github.io/dcat-ap-plus/latest/
+  keywords:
+  - dcat
+  - dcatap
+  - linmkl
+  license: MIT
+  name: DCAT-AP conversion to LinkML Schema
+  preferred_prefix: dcatap_linkml
+  repository: https://github.com/nfdi-de/dcat-ap-plus
+  reviewer:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  uri_format: https://w3id.org/nfdi-de/dcat-ap-linkml/$1
+dcatap_plus:
+  contact:
+    email: hendrik.borgelt@tu-dortmund.de
+    github: HendrikBorgelt
+    name: Hendrik Borgelt
+    orcid: 0000-0001-5886-7860
+  contributor:
+    email: hendrik.borgelt@tu-dortmund.de
+    github: HendrikBorgelt
+    name: Hendrik Borgelt
+    orcid: 0000-0001-5886-7860
+  description: DCAT-AP+ is a [LinkML](https://linkml.io/)-based extension of the [DCAT
+    Application Profile 3.0](https://semiceu.github.io/DCAT-AP/releases/3.0.0/) that
+    adds a provenance layer for describing how a dataset was generated and what it
+    is about, using the [Starting Point Terms of PROV-O](https://www.w3.org/TR/prov-o/#description-starting-point-terms),
+    the [QUDT ontology](https://www.qudt.org/), and [Dublin Core Terms](http://purl.org/dc/terms/).
+    DCAT-AP+ is domain-agnostic. It provides a generic set of classes and properties
+    that any domain can import and specialize into its own application profile. [ChemDCAT-AP](https://github.com/nfdi-de/chem-dcat-ap)
+    is the first such domain profile, built for chemistry and catalysis research data.
+  example: EvaluatedActivity
+  github_request_issue: 1922
+  homepage: https://nfdi-de.github.io/dcat-ap-plus/latest/
+  keywords:
+  - dcat
+  - dcat ap
+  license: MIT
+  name: DCAT-AP Plus
+  preferred_prefix: dcatap_plus
+  repository: https://github.com/nfdi-de/dcat-ap-plus
+  reviewer:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  uri_format: http://w3id.org/nfdi-de/dcat-ap-plus/latest/class/$1
 dcterms:
   contact:
     email: futo@stanford.edu
@@ -17218,6 +17683,9 @@ depod:
     re3data: r3d100011936
     uniprot: DB-0190
   name: Human Dephosphorylation Database
+  owners:
+  - name: EMBL, Heidelberg
+    ror: 03mstc592
   pattern: ^[A-Z0-9]+$
   preferred_prefix: depod
   provides: hgnc.symbol
@@ -17296,6 +17764,9 @@ dev.ga4ghdos:
     miriam: dev.ga4ghdos
     n2t: dev.ga4ghdos
   name: Development Data Object Service
+  owners:
+  - name: University of California, San Diego
+    ror: 0168r3w48
   pattern: ^[a-zA-Z0-9\-:#\.]+$
   preferred_prefix: dev.ga4ghdos
   uri_format: https://dos-gdc.ucsc-cgp-dev.org/ga4gh/dos/v1/dataobjects/$1
@@ -17878,6 +18349,9 @@ dip:
     re3data: r3d100010670
     uniprot: DB-0016
   name: Database of Interacting Proteins
+  owners:
+  - name: UCLA
+    ror: 046rm7j60
   pattern: ^DIP(\:)?\-\d{1,}[ENXS]$
   preferred_prefix: dip
   providers:
@@ -18016,6 +18490,9 @@ disprot:
     re3data: r3d100010561
     uniprot: DB-0017
   name: DisProt
+  owners:
+  - name: University of Padua
+    ror: 00240q980
   pattern: ^DP\d{5}$
   preferred_prefix: disprot
   providers:
@@ -18063,6 +18540,9 @@ disprot.region:
   mappings:
     miriam: disprot.region
   name: DisProt region
+  owners:
+  - name: University of Padua
+    ror: 00240q980
   part_of: disprot
   pattern: ^DP\d{5}r\d{3}$
   preferred_prefix: disprot.region
@@ -18448,6 +18928,9 @@ doid:
     wikidata.entity: Q5282129
   name: Human Disease Ontology
   namespace_in_lui: true
+  owners:
+  - name: European Bioinformatics Institute
+    ror: 02catss52
   pattern: ^\d+$
   preferred_prefix: DOID
   providers:
@@ -18619,6 +19102,9 @@ dome:
   mappings:
     miriam: dome
   name: DOME Registry
+  owners:
+  - name: University of Padua
+    ror: 00240q980
   pattern: ^[a-z0-9]{10}$
   preferred_prefix: dome
   publications:
@@ -18700,6 +19186,9 @@ doqcs.model:
     n2t: doqcs.model
     prefixcommons: doqcs.model
   name: 'Database of Quantitative Cellular Signaling: Model'
+  owners:
+  - name: National Centre for Biological Sciences, Bangalore
+    ror: 03gf8rp76
   pattern: ^\d+$
   preferred_prefix: doqcs.model
   providers:
@@ -18741,6 +19230,9 @@ doqcs.pathway:
     n2t: doqcs.pathway
     prefixcommons: doqcs.pathway
   name: 'Database of Quantitative Cellular Signaling: Pathway'
+  owners:
+  - name: National Centre for Biological Sciences, Bangalore
+    ror: 03gf8rp76
   pattern: ^\d+$
   preferred_prefix: doqcs.pathway
   providers:
@@ -18975,6 +19467,9 @@ dragondb.allele:
     miriam: dragondb.allele
     n2t: dragondb.allele
   name: DragonDB Allele
+  owners:
+  - name: University of British Columbia, Vancouver
+    ror: 03rmrcq20
   pattern: ^\w+$
   preferred_prefix: dragondb.allele
   uri_format: http://antirrhinum.net/cgi-bin/ace/generic/tree/DragonDB?name=$1&amp;class=Allele
@@ -18990,6 +19485,9 @@ dragondb.dna:
     miriam: dragondb.dna
     n2t: dragondb.dna
   name: DragonDB DNA
+  owners:
+  - name: University of British Columbia, Vancouver
+    ror: 03rmrcq20
   pattern: ^\d\w+$
   preferred_prefix: dragondb.dna
   uri_format: http://antirrhinum.net/cgi-bin/ace/generic/tree/DragonDB?name=$1;class=DNA
@@ -19005,6 +19503,9 @@ dragondb.locus:
     miriam: dragondb.locus
     n2t: dragondb.locus
   name: DragonDB Locus
+  owners:
+  - name: University of British Columbia, Vancouver
+    ror: 03rmrcq20
   pattern: ^\w+$
   preferred_prefix: dragondb.locus
   uri_format: http://antirrhinum.net/cgi-bin/ace/generic/tree/DragonDB?name=$1&amp;class=Locus
@@ -19020,6 +19521,9 @@ dragondb.protein:
     miriam: dragondb.protein
     n2t: dragondb.protein
   name: DragonDB Protein
+  owners:
+  - name: University of British Columbia, Vancouver
+    ror: 03rmrcq20
   pattern: ^\w+$
   preferred_prefix: dragondb.protein
   uri_format: http://antirrhinum.net/cgi-bin/ace/generic/tree/DragonDB?name=$1;class=Peptide
@@ -19256,6 +19760,9 @@ drsanv0:
   mappings:
     miriam: drs.anv0
   name: AnVIL DRS
+  owners:
+  - name: National Human Genome Research Institute
+    ror: 00baak391
   pattern: ^v2_[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$
   preferred_prefix: drsanv0
   uri_format: https://data.terra.bio/ga4gh/drs/v1/objects/$1
@@ -19513,6 +20020,9 @@ drugcentral:
     uniprot: DB-0239
     wikidata: P11198
   name: Drug Central
+  owners:
+  - name: University of New Mexico
+    ror: 05fs6jp91
   pattern: ^\d+$
   preferred_prefix: drugcentral
   publications:
@@ -21328,7 +21838,7 @@ efo:
     year: 2010
   repository: https://github.com/EBISPOT/efo
   uri_format: http://www.ebi.ac.uk/efo/EFO_$1
-  version: 3.88.0
+  version: 3.89.0
 ega:
   description: The European Genome-phenome Archive (EGA) is a global network for permanent
     archiving and sharing of personally identifiable genetic, phenotypic, and clinical
@@ -21407,6 +21917,9 @@ ega.study:
     miriam: ega.study
     n2t: ega.study
   name: European Genome-phenome Archive Study
+  owners:
+  - name: European Bioinformatics Institute
+    ror: 02catss52
   pattern: ^EGAS\d{11}$
   preferred_prefix: ega.study
   uri_format: https://www.ebi.ac.uk/ega/studies/$1
@@ -21434,6 +21947,9 @@ eggnog:
     prefixcommons: eggnog
     uniprot: DB-0152
   name: eggNOG
+  owners:
+  - name: EMBL, Heidelberg
+    ror: 03mstc592
   pattern: ^\w+$
   preferred_prefix: eggnog
   providers:
@@ -21874,7 +22390,7 @@ emapa:
   synonyms:
   - EMAPA_RETIRED
   uri_format: http://purl.obolibrary.org/obo/EMAPA_$1
-  version: '2026-04-08'
+  version: '2026-04-24'
 emaps:
   contact:
     email: Terry.Hayamizu@jax.org
@@ -22937,6 +23453,9 @@ ensembl.bacteria:
     re3data: r3d100011195
     uniprot: DB-0147
   name: Ensembl Bacteria
+  owners:
+  - name: European Bioinformatics Institute
+    ror: 02catss52
   pattern: ^((EB\w+)|([A-Z0-9]+\_[A-Z0-9]+))$
   preferred_prefix: ensembl.bacteria
   providers:
@@ -22991,6 +23510,9 @@ ensembl.fungi:
     re3data: r3d100011196
     uniprot: DB-0148
   name: Ensembl Fungi
+  owners:
+  - name: European Bioinformatics Institute
+    ror: 02catss52
   pattern: ^[A-Z-a-z0-9]+$
   preferred_prefix: ensembl.fungi
   providers:
@@ -23041,6 +23563,9 @@ ensembl.metazoa:
     re3data: r3d100011198
     uniprot: DB-0149
   name: Ensembl Metazoa
+  owners:
+  - name: European Bioinformatics Institute
+    ror: 02catss52
   pattern: ^\w+(\.)?\d+$
   preferred_prefix: ensembl.metazoa
   providers:
@@ -23080,6 +23605,9 @@ ensembl.plant:
     n2t: ensembl.plant
     prefixcommons: ensembl.plant
   name: Ensembl Plants
+  owners:
+  - name: European Bioinformatics Institute
+    ror: 02catss52
   pattern: ^\w+(\.\d+)?(\.\d+)?$
   preferred_prefix: ensembl.plant
   providers:
@@ -23107,6 +23635,9 @@ ensembl.protist:
     n2t: ensembl.protist
     prefixcommons: ensembl.protist
   name: Ensembl Protists
+  owners:
+  - name: European Bioinformatics Institute
+    ror: 02catss52
   pattern: ^\w+$
   preferred_prefix: ensembl.protist
   providers:
@@ -23534,6 +24065,9 @@ epd:
     n2t: epd
     ncbi: EPD
   name: Eukaryotic Promoter Database
+  owners:
+  - name: SIB Swiss Institute of Bioinformatics
+    ror: 002n09z45
   pattern: ^[A-Z-_0-9]+$
   preferred_prefix: epd
   publications:
@@ -23739,6 +24273,9 @@ erm:
     miriam: erm
     n2t: erm
   name: European Registry of Materials
+  owners:
+  - name: Maastricht University
+    ror: 02jz4aj89
   pattern: ^ERM[0-9]{8}$
   preferred_prefix: erm
   providers:
@@ -23868,6 +24405,9 @@ erv:
     miriam: erv
     n2t: erv
   name: Human Endogenous Retrovirus Database
+  owners:
+  - name: Institute of Molecular Genetics, Academy of Sciences of the Czech Republic
+    ror: 045syc608
   pattern: ^[A-Za-z0-9\-\_]+$
   preferred_prefix: erv
   uri_format: https://herv.img.cas.cz/s/$1
@@ -23999,6 +24539,9 @@ eu89h:
     miriam: eu89h
     n2t: eu89h
   name: JRC Data Catalogue
+  owners:
+  - name: European Commission, Joint Research Centre (JRC)
+    ror: 02ptz5951
   pattern: ^[a-z0-9\-_]+$
   preferred_prefix: eu89h
   uri_format: http://data.europa.eu/89h/$1
@@ -24050,6 +24593,9 @@ euclinicaltrials:
     n2t: euclinicaltrials
     wikidata: P9306
   name: EU Clinical Trials
+  owners:
+  - name: European Medicines Agency
+    ror: 01z0wsw92
   pattern: ^\d{4}\-\d{6}\-\d{2}$
   preferred_prefix: euclinicaltrials
   synonyms:
@@ -24629,6 +25175,9 @@ facebase:
     n2t: facebase
     re3data: r3d100013263
   name: FaceBase Data Repository
+  owners:
+  - name: University of Southern California
+    ror: 03taz7m60
   pattern: ^FB\d{8}$
   preferred_prefix: facebase
   publications:
@@ -24678,6 +25227,20 @@ fair:
   name: FAIR Vocabulary
   preferred_prefix: fair
   uri_format: https://w3id.org/fair/principles/terms/$1
+fairmdlipids:
+  description: FAIRMD Lipids Databank is a community-driven catalogue containing atomistic
+    molecular dynamics (MD) simulations of biologically relevant lipid membranes emerging
+    from the NMRlipids open collaboration. It improves the Findability, Accessibility,
+    Interoperability, and Reuse (FAIR) of MD simulation data using an overlay databank
+    structure.
+  example: lipid/CHOL
+  homepage: https://www.uib.no
+  mappings:
+    miriam: fairmd.lipids
+  name: FAIRMD Lipids
+  pattern: ^(?:lipid/(?:CHOL|\d+)|simulations/\d+|experiment/(?:OP|FF)/(?:unpublished/[A-Za-z0-9_-]+|10\.\d{4,9}/[A-Za-z0-9._/-]+)/\d+)$
+  preferred_prefix: fairmdlipids
+  uri_format: https://lipids.fairmd.org/$1
 fairsharing:
   description: The web-based FAIRSharing catalogues aim to centralize bioscience data
     policies, reporting standards and links to other related portals. This collection
@@ -25165,6 +25728,9 @@ fbol:
     n2t: fbol
     ncbi: FBOL
   name: Fungal Barcode
+  owners:
+  - name: CBS-KNAW  Fungal Biodiversity Centre, Utrecht
+    ror: 030a5r161
   pattern: ^\d+$
   preferred_prefix: fbol
   uri_format: http://www.fungalbarcoding.org/BioloMICS.aspx?Table=Fungal barcodes&Rec=$1&Fields=All&ExactMatch=T
@@ -26279,6 +26845,9 @@ fma:
     wikidata.entity: Q1406710
   name: Foundational Model of Anatomy
   namespace_in_lui: true
+  owners:
+  - name: European Bioinformatics Institute
+    ror: 02catss52
   pattern: ^\d+$
   preferred_prefix: FMA
   providers:
@@ -26329,7 +26898,7 @@ fma:
   - FMAID
   - FMA_RETIRED
   uri_format: https://www.ebi.ac.uk/ols4/ontologies/fma/terms?obo_id=FMA:$1
-  version: 5.0.0
+  version: 5.1.0
 foaf:
   contact:
     email: rafael.goncalves@stanford.edu
@@ -26352,6 +26921,7 @@ foaf:
   keywords:
   - ontology
   - people
+  license: CC-BY-1.0
   mappings:
     aberowl: foaf
     biocontext: foaf
@@ -26431,6 +27001,9 @@ foodb.compound:
     re3data: r3d100012152
     wikidata: P8117
   name: FooDB compound
+  owners:
+  - name: University of Alberta
+    ror: 0160cpw27
   pattern: ^FDB\d+$
   preferred_prefix: foodb.compound
   synonyms:
@@ -26523,6 +27096,9 @@ foodon:
     wikidata.entity: Q55118395
   name: The Food Ontology
   namespace_in_lui: true
+  owners:
+  - name: European Bioinformatics Institute
+    ror: 02catss52
   pattern: ^[0-9]{8}$
   preferred_prefix: FOODON
   publications:
@@ -26648,6 +27224,9 @@ fplx:
     miriam: fplx
     n2t: fplx
   name: FamPlex
+  owners:
+  - name: Harvard University
+    ror: 03vek6s52
   pattern: ^[a-zA-Z0-9][A-Za-z0-9_]+$
   preferred_prefix: fplx
   publications:
@@ -26919,6 +27498,9 @@ funderregistry:
   mappings:
     miriam: funderregistry
   name: FunderRegistry
+  owners:
+  - name: Crossref
+    ror: 02twcfp32
   pattern: ^\d+$
   preferred_prefix: funderregistry
   providers:
@@ -27116,6 +27698,47 @@ fypo:
   repository: https://github.com/pombase/fypo
   uri_format: http://purl.obolibrary.org/obo/FYPO_$1
   version: '2026-04-02'
+g2p:
+  contact:
+    email: seh@ebi.ac.uk
+    github: sarahhunt
+    name: Sarah E. Hunt
+    orcid: 0000-0002-8350-1235
+  contributor:
+    email: khamar.he@northeastern.edu
+    github: hetvikhamar
+    name: Hetvi Khamar
+    orcid: 0009-0004-3248-9223
+  description: Identifiers correspond to gene-disease models for assisting in the
+    identification of causative variants and accelerating the diagnosis of genetic
+    disorders
+  example: G2P02419
+  github_request_issue: 1889
+  homepage: https://www.ebi.ac.uk/gene2phenotype
+  keywords:
+  - clinical diagnostics
+  - disease genetics
+  - genomic variant filtering
+  name: Gene2Phenotype
+  pattern: ^G2P\d{5}$
+  preferred_prefix: g2p
+  publications:
+  - doi: 10.1016/j.jmb.2026.169768
+    pubmed: '41903835'
+    title: 'Gene2Phenotype: A Database of Structured Human Monogenic Diseases and
+      Pathomechanisms.'
+    year: 2026
+  - doi: 10.1186/s13073-024-01398-1
+    pmc: PMC11539801
+    pubmed: '39506859'
+    title: Curating genomic disease-gene relationships with Gene2Phenotype (G2P)
+    year: 2024
+  reviewer:
+    email: b.gyori@northeastern.edu
+    github: bgyori
+    name: Benjamin M. Gyori
+    orcid: 0000-0001-9439-5346
+  uri_format: https://www.ebi.ac.uk/gene2phenotype/lgd/$1
 ga4ghdos:
   description: Assists in resolving data across cloud resources.
   example: dg.4503/01b048d0-e128-4cb0-94e9-b2d2cab7563d
@@ -27125,6 +27748,9 @@ ga4ghdos:
     miriam: ga4ghdos
     n2t: ga4ghdos
   name: Data Object Service
+  owners:
+  - name: University of California, San Diego
+    ror: 0168r3w48
   pattern: ^[a-zA-Z0-9\-:#/\.]+$
   preferred_prefix: ga4ghdos
   uri_format: https://dataguids.org/ga4gh/dos/v1/dataobjects/$1
@@ -27152,6 +27778,9 @@ gabi:
     ncbi: GABI
     prefixcommons: gabi
   name: GABI
+  owners:
+  - name: Max Planck Institute of Molecular Plant Physiology, Berlin
+    ror: 03ate3e03
   pattern: ^\w+$
   preferred_prefix: gabi
   providers:
@@ -27171,6 +27800,37 @@ gabi:
     title: 'GabiPD: the GABI primary database--a plant integrative ''omics'' database'
     year: 2008
   uri_format: http://www.gabipd.org/database/cgi-bin/GreenCards.pl.cgi?BioObjectId=$1&Mode=ShowBioObject
+gaid:
+  appears_in:
+  - uberon
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  deprecated: true
+  description: Gemina (Genomic Metadata for Infections Agents) is a web interface
+    and database for storing genomic sequence of pathogens and epidemiological information
+    for the infectious diseases they cause.
+  download_obo: https://sourceforge.net/projects/gemina/files/gemina%20ontologies/gemina_ontologies_2008-01-25/gemina_anatomy.obo/download
+  example: '0000000'
+  keywords:
+  - ontology
+  license: CC0-1.0
+  name: Genomic Metadata for Infections Agents - anatomy
+  pattern: ^\d+$
+  preferred_prefix: gaid
+  publications:
+  - doi: 10.1093/nar/gkp832
+    pmc: PMC2808878
+    pubmed: '19850722'
+    title: GeMInA, Genomic Metadata for Infectious Agents, a geospatial surveillance
+      pathogen database
+    year: 2009
+  references:
+  - https://github.com/obophenotype/uberon/issues/3527
+  synonyms:
+  - TIGR.AOID
 gaidet:
   contact:
     email: serhii.nazarovets@gmail.com
@@ -27357,6 +28017,9 @@ gateway:
   mappings:
     miriam: gateway
   name: Health Data Research Innovation Gateway
+  owners:
+  - name: Health Data Research UK
+    ror: 04rtjaj74
   pattern: ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
   preferred_prefix: gateway
   uri_format: https://web.www.healthdatagateway.org/dataset/$1
@@ -28233,6 +28896,9 @@ genewiki:
     miriam: genewiki
     n2t: genewiki
   name: Gene Wiki
+  owners:
+  - name: Wikimedia Foundation, San Francisco, California
+    ror: 032q98j12
   pattern: ^\d+$
   preferred_prefix: genewiki
   provides: ncbigene
@@ -28313,6 +28979,9 @@ genpept:
     miriam: genpept
     n2t: genpept
   name: GenPept
+  owners:
+  - name: National Center for Biotechnology Information
+    ror: 02meqm098
   pattern: ^\w{3}\d{5}(\.\d+)?$
   preferred_prefix: genpept
   uri_format: https://www.ncbi.nlm.nih.gov/protein/$1?report=genpept
@@ -28378,6 +29047,9 @@ geo:
     prefixcommons: geo
     re3data: r3d100010283
   name: Gene Expression Omnibus
+  owners:
+  - name: National Center for Biotechnology Information
+    ror: 02meqm098
   pattern: ^G(PL|SM|SE|DS)\d+$
   preferred_prefix: geo
   providers:
@@ -29095,6 +29767,30 @@ gfo:
     name: Alternate 1
     uri_format: http://www.onto-med.de/ontologies/gfo-basic.owl#$1
   uri_format: http://www.onto-med.de/ontologies/gfo.owl#$1
+ghga:
+  contributor:
+    github: mauerk
+    name: Karoline Mauer
+    orcid: 0000-0002-9454-7941
+  description: The submission-centric metadata schema for the German Human Genome-Phenome
+    Archive (GHGA).
+  example: Attribute
+  github_request_issue: 1913
+  homepage: https://w3id.org/GHGA-Submission-Metadata-Schema
+  keywords:
+  - database
+  - genomics
+  - phenomics
+  name: GHGA Metadata Schema
+  preferred_prefix: GHGA
+  repository: https://github.com/ghga-de/ghga-metadata-schema
+  reviewer:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  uri_format: https://w3id.org/GHGA/$1
+  version: 2.2.0
 ghr:
   contributor:
     email: cthoyt@gmail.com
@@ -29377,6 +30073,9 @@ glycomedb:
     prefixcommons: glycomedb
     re3data: r3d100011527
   name: GlycomeDB
+  owners:
+  - name: DKFZ TP3, Heidelberg
+    ror: 04cdgtt98
   pattern: ^\w+$
   preferred_prefix: glycomedb
   providers:
@@ -29425,6 +30124,9 @@ glyconavi:
     integbio: nbdc01174
     miriam: glyconavi
   name: GlycoNAVI
+  owners:
+  - name: The Noguchi Institute
+    ror: 02vg5vv12
   pattern: ^GN_[A-Za-z0-9_:]+$
   preferred_prefix: glyconavi
   uri_format: https://glyconavi.org/hub/?id=$1
@@ -29439,6 +30141,9 @@ glycopost:
   mappings:
     miriam: glycopost
   name: GlycoPOST
+  owners:
+  - name: Niigata University
+    ror: 04ww21r56
   pattern: ^GPST[0-9]{6}$
   preferred_prefix: glycopost
   uri_format: https://glycopost.glycosmos.org/entry/$1
@@ -29506,6 +30211,9 @@ glytoucan:
     re3data: r3d100012388
     togoid: Glytoucan
   name: GlyTouCan
+  owners:
+  - name: Soka University, Hachioji, Tokyo
+    ror: 003qdfg20
   pattern: ^G[0-9]{5}[A-Z]{2}$
   preferred_prefix: glytoucan
   providers:
@@ -29546,6 +30254,9 @@ gmd:
     n2t: gmd
     re3data: r3d100011046
   name: Golm Metabolome Database
+  owners:
+  - name: Max Planck Institute of Molecular Plant Physiology, Potsdam
+    ror: 01fbde567
   pattern: ^([0-9a-fA-F]){8}(-([0-9a-fA-F]){4}){3}-([0-9a-fA-F]){12}$
   preferred_prefix: gmd
   publications:
@@ -29569,6 +30280,9 @@ gmd.analyte:
     miriam: gmd.analyte
     n2t: gmd.analyte
   name: Golm Metabolome Database Analyte
+  owners:
+  - name: Max Planck Institute of Molecular Plant Physiology, Potsdam
+    ror: 01fbde567
   pattern: ^([0-9a-fA-F]){8}(-([0-9a-fA-F]){4}){3}-([0-9a-fA-F]){12}$
   preferred_prefix: gmd.analyte
   uri_format: http://gmd.mpimp-golm.mpg.de/Analytes/$1
@@ -29585,6 +30299,9 @@ gmd.gcms:
     miriam: gmd.gcms
     n2t: gmd.gcms
   name: Golm Metabolome Database GC-MS spectra
+  owners:
+  - name: Max Planck Institute of Molecular Plant Physiology, Potsdam
+    ror: 01fbde567
   pattern: ^([0-9a-fA-F]){8}(-([0-9a-fA-F]){4}){3}-([0-9a-fA-F]){12}$
   preferred_prefix: gmd.gcms
   uri_format: http://gmd.mpimp-golm.mpg.de/Spectrums/$1
@@ -29602,6 +30319,9 @@ gmd.profile:
     miriam: gmd.profile
     n2t: gmd.profile
   name: Golm Metabolome Database Profile
+  owners:
+  - name: Max Planck Institute of Molecular Plant Physiology, Potsdam
+    ror: 01fbde567
   pattern: ^([0-9a-fA-F]){8}(-([0-9a-fA-F]){4}){3}-([0-9a-fA-F]){12}$
   preferred_prefix: gmd.profile
   uri_format: http://gmd.mpimp-golm.mpg.de/profile/default.aspx?XemlId=$1
@@ -29619,6 +30339,9 @@ gmd.ref:
     miriam: gmd.ref
     n2t: gmd.ref
   name: Golm Metabolome Database Reference Substance
+  owners:
+  - name: Max Planck Institute of Molecular Plant Physiology, Potsdam
+    ror: 01fbde567
   pattern: ^([0-9a-fA-F]){8}(-([0-9a-fA-F]){4}){3}-([0-9a-fA-F]){12}$
   preferred_prefix: gmd.ref
   uri_format: http://gmd.mpimp-golm.mpg.de/ReferenceSubstances/$1
@@ -29646,6 +30369,28 @@ gmelin:
   proprietary: true
   references:
   - https://en.wikipedia.org/wiki/Gmelin_database
+gmho:
+  description: 'The GALENOS Mental Health Ontology (GMHO) is being developed to represent
+    the full range of concepts relevant to mental health. It forms a core component
+    of the Global Alliance for Living Evidence on aNxiety, depressiOn and pSychosis
+    (GALENOS) project, which aims to build a living evidence base for anxiety, depression,
+    and psychosis.
+
+    The GMHO is designed to structure and organise evidence drawn from multiple living
+    systematic reviews, supporting the creation of a structured data repository that
+    enables clearer synthesis, integration, and retrieval of research findings. Its
+    upper-level framework is intentionally designed for reuse, providing a general
+    foundation for organising evidence across the broader mental health domain.'
+  download_owl: https://galenos.org.uk/ontologies/gmho.owl
+  example: 0000268
+  homepage: https://github.com/galenos-project/mental-health-ontology
+  keywords:
+  - ontology
+  mappings:
+    ols: gmho
+  name: GALENOS Mental Health Ontology
+  preferred_prefix: gmho
+  repository: https://github.com/galenos-project/mental-health-ontology
 gnd:
   description: The Gemeinsame Normdatei (Integrated Authority File) or GND is an international
     authority file for person names, subject headings and corporate bodies. It is
@@ -30184,6 +30929,9 @@ goa:
     ncbi: GOA
     prefixcommons: goa
   name: Gene Ontology Annotation Database
+  owners:
+  - name: European Bioinformatics Institute
+    ror: 02catss52
   pattern: ^(([A-N,R-Z][0-9][A-Z][A-Z, 0-9][A-Z, 0-9][0-9])|([O,P,Q][0-9][A-Z, 0-9][A-Z,
     0-9][A-Z, 0-9][0-9]))|(URS[0-9A-F]{10}(_[0-9]+){0,1})|(EBI-[0-9]+)$
   preferred_prefix: goa
@@ -30354,6 +31102,10 @@ gold.genome:
     miriam: gold.genome
     n2t: gold.genome
   name: GOLD genome
+  owners:
+  - name: Department of Energy Joint Genome Institute, Microbial Genomics and Metagenomics
+      Program, California
+    ror: 04xm1d337
   pattern: ^(Gi|Gc)\d+$
   preferred_prefix: gold.genome
   provides: gold
@@ -30375,6 +31127,10 @@ gold.meta:
     miriam: gold.meta
     n2t: gold.meta
   name: GOLD metadata
+  owners:
+  - name: Department of Energy Joint Genome Institute, Microbial Genomics and Metagenomics
+      Program, California
+    ror: 04xm1d337
   pattern: ^Gm\d+$
   preferred_prefix: gold.meta
   uri_format: http://genomesonline.org/cgi-bin/GOLD/bin/GOLDCards.cgi?goldstamp=$1
@@ -30479,6 +31235,9 @@ google.patent:
     miriam: google.patent
     n2t: google.patent
   name: Google Patents
+  owners:
+  - name: Google Incorporated
+    ror: 024bc3e07
   pattern: ^[A-Z]{2,4}\d+([A-Z])?([0-9])?$
   preferred_prefix: google.patent
   synonyms:
@@ -30626,6 +31385,9 @@ gpcrdb:
     prefixcommons: gpcrdb
     uniprot: DB-0038
   name: G protein-coupled receptor database
+  owners:
+  - name: Radboud University Nijmegen Medical Centre, Nijmegen
+    ror: 05wg1m734
   pattern: ^\w+$
   preferred_prefix: gpcrdb
   providers:
@@ -30850,6 +31612,9 @@ gramene.gene:
     miriam: gramene.gene
     n2t: gramene.gene
   name: Gramene Gene
+  owners:
+  - name: Cold Spring Harbor Laboratory
+    ror: 02qz8b764
   pattern: ^GR\:\d+$
   preferred_prefix: gramene.gene
   synonyms:
@@ -30887,6 +31652,9 @@ gramene.growthstage:
     wikidata.entity: Q114677888
   name: Gramene Growth Stage Ontology
   namespace_in_lui: true
+  owners:
+  - name: Cold Spring Harbor Laboratory
+    ror: 02qz8b764
   pattern: ^\d{7}$
   preferred_prefix: GRO
   providers:
@@ -30919,6 +31687,9 @@ gramene.protein:
     miriam: gramene.protein
     n2t: gramene.protein
   name: Gramene protein
+  owners:
+  - name: Cold Spring Harbor Laboratory
+    ror: 02qz8b764
   pattern: ^\d+$
   preferred_prefix: gramene.protein
   synonyms:
@@ -30939,6 +31710,9 @@ gramene.qtl:
     miriam: gramene.qtl
     n2t: gramene.qtl
   name: Gramene QTL
+  owners:
+  - name: Cold Spring Harbor Laboratory
+    ror: 02qz8b764
   pattern: ^\w+$
   preferred_prefix: gramene.qtl
   synonyms:
@@ -30975,6 +31749,9 @@ gramene.taxonomy:
     miriam: gramene.taxonomy
     n2t: gramene.taxonomy
   name: Gramene Taxonomy
+  owners:
+  - name: Cold Spring Harbor Laboratory
+    ror: 02qz8b764
   pattern: ^\d+$
   preferred_prefix: gramene.taxonomy
   uri_format: https://archive.gramene.org/db/ontology/search?id=GR_tax:$1
@@ -31076,6 +31853,9 @@ grid:
     miriam: grid
     n2t: grid
   name: Global Research Identifier Database
+  owners:
+  - name: Digital Science & Research Ltd, London
+    ror: 02ktfc112
   pattern: ^grid\.[0-9]+\.[a-f0-9]{1,2}$
   preferred_prefix: grid
   uri_format: https://www.grid.ac/institutes/$1
@@ -31171,6 +31951,9 @@ grsdb:
     n2t: grsdb
     prefixcommons: grsdb
   name: G-Rich Sequences Database
+  owners:
+  - name: Ramapo College
+    ror: 03s2x9d90
   pattern: ^\d+$
   preferred_prefix: grsdb
   providers:
@@ -31250,6 +32033,9 @@ gsso:
     wikidata.entity: Q97063846
   name: Gender, Sex, and Sexual Orientation Ontology
   namespace_in_lui: true
+  owners:
+  - name: University of Cincinnati
+    ror: 01e3m7079
   pattern: ^\d{6}$
   preferred_prefix: GSSO
   publications:
@@ -31414,6 +32200,9 @@ gtr.lab:
   mappings:
     miriam: gtrl
   name: Genetic Testing Registry Labs
+  owners:
+  - name: National Center for Biotechnology Information
+    ror: 02meqm098
   pattern: ^\d+$
   preferred_prefix: gtr.lab
   uri_format: https://www.ncbi.nlm.nih.gov/gtr/labs/$1
@@ -31428,6 +32217,9 @@ gtr.test:
   mappings:
     miriam: gtr
   name: Genetic Testing Registry Tests
+  owners:
+  - name: National Center for Biotechnology Information
+    ror: 02meqm098
   pattern: ^\d+$
   preferred_prefix: gtr.test
   uri_format: https://www.ncbi.nlm.nih.gov/gtr/tests/$1
@@ -31804,6 +32596,9 @@ hamap:
     prefixcommons: hamap
     uniprot: DB-0041
   name: High-quality Automated and Manual Annotation of microbial Proteomes
+  owners:
+  - name: SIB Swiss Institute of Bioinformatics
+    ror: 002n09z45
   pattern: ^MF_\d+$
   preferred_prefix: hamap
   providers:
@@ -32132,6 +32927,10 @@ hcvdb:
     n2t: hcvdb
     prefixcommons: hcv
   name: Hepatitis C Virus Database Project
+  owners:
+  - name: Institut de Biologie et Chimie des Protéines, CNRS, University of Lyon ,
+      Lyon-Gerland
+    ror: 0019x5d05
   pattern: ^M\d{5}$
   preferred_prefix: hcvdb
   providers:
@@ -32351,6 +33150,9 @@ hgmd:
     miriam: hgmd
     n2t: hgmd
   name: Human Gene Mutation Database
+  owners:
+  - name: Cardiff University, Cardiff
+    ror: 03kk7td41
   pattern: ^[A-Z_0-9]+$
   preferred_prefix: hgmd
   uri_format: http://www.hgmd.cf.ac.uk/ac/gene.php?gene=$1
@@ -32399,6 +33201,9 @@ hgnc:
     uniprot: DB-0042
     wikidata: P354
   name: HUGO Gene Nomenclature Committee
+  owners:
+  - name: European Bioinformatics Institute
+    ror: 02catss52
   pattern: ^\d{1,5}$
   preferred_prefix: hgnc
   providers:
@@ -32493,6 +33298,9 @@ hgnc.genefamily:
     miriam: hgnc.genefamily
     n2t: hgnc.genefamily
   name: HGNC gene family
+  owners:
+  - name: European Bioinformatics Institute
+    ror: 02catss52
   pattern: ^\d+$
   preferred_prefix: hgnc.genefamily
   synonyms:
@@ -32526,6 +33334,9 @@ hgnc.genegroup:
     miriam: hgnc.genegroup
     ols: hgnc.genegroup
   name: HGNC Gene Group
+  owners:
+  - name: European Bioinformatics Institute
+    ror: 02catss52
   pattern: ^\d+$
   preferred_prefix: hgnc.genegroup
   uri_format: https://www.genenames.org/data/genegroup/#!/group/$1
@@ -32547,6 +33358,9 @@ hgnc.symbol:
     togoid: HgncSymbol
     wikidata: P353
   name: HGNC Symbol
+  owners:
+  - name: European Bioinformatics Institute
+    ror: 02catss52
   pattern: ^[A-Za-z-0-9_]+(\@)?$
   preferred_prefix: hgnc.symbol
   providers:
@@ -32877,6 +33691,9 @@ hmdb:
     togoid: Hmdb
     wikidata: P2057
   name: Human Metabolome Database
+  owners:
+  - name: University of Alberta
+    ror: 0160cpw27
   pattern: ^HMDB\d+$
   preferred_prefix: hmdb
   providers:
@@ -33063,6 +33880,9 @@ hogenom:
     prefixcommons: hogenom
     uniprot: DB-0044
   name: Database of Complete Genome Homologous Genes Families
+  owners:
+  - name: Laboratoire de Biométrie et Biologie Evolutive, CNRS, Lyon
+    ror: 03skt0t88
   pattern: ^[A-Z][A-Z0-9_]+\.PE\d+$
   preferred_prefix: hogenom
   providers:
@@ -33347,6 +34167,9 @@ homologene:
     togoid: Homologene
     wikidata: P593
   name: HomoloGene
+  owners:
+  - name: National Center for Biotechnology Information
+    ror: 02meqm098
   pattern: ^\d+$
   preferred_prefix: homologene
   providers:
@@ -33731,6 +34554,9 @@ hpm.peptide:
     miriam: hpm.peptide
     n2t: hpm.peptide
   name: Human Proteome Map Peptide
+  owners:
+  - name: Institute of Bioinformatics, International Tech Park, Bangalore
+    ror: 04hqfvm50
   pattern: ^\d+$
   preferred_prefix: hpm.peptide
   uri_format: http://www.humanproteomemap.org/spectrum.php?pep_id=$1
@@ -33752,6 +34578,9 @@ hpm.protein:
     n2t: hpm.protein
     ncbi: HPM
   name: Human Proteome Map Protein
+  owners:
+  - name: Institute of Bioinformatics, International Tech Park, Bangalore
+    ror: 04hqfvm50
   pattern: ^\d+$
   preferred_prefix: hpm.protein
   uri_format: http://www.humanproteomemap.org/protein.php?hpm_id=$1
@@ -33779,6 +34608,9 @@ hprd:
     prefixcommons: hprd
     re3data: r3d100010978
   name: Human Protein Reference Database
+  owners:
+  - name: Institute of Bioinformatics, International Tech Park, Bangalore
+    ror: 04hqfvm50
   pattern: ^\d+$
   preferred_prefix: hprd
   providers:
@@ -33809,6 +34641,9 @@ hpscreg:
     n2t: hpscreg
     re3data: r3d100012863
   name: Human Pluripotent Stem Cell Registry
+  owners:
+  - name: Fraunhofer Institute for Biomedical Engineering
+    ror: 05tpsgh61
   pattern: ^[A-Z]{2,6}(e|i)[A-Za-z0-9]{3}-[A-Z]{1,2}(-[A-Za-z0-9]{1,2})?$
   preferred_prefix: hpscreg
   publications:
@@ -34189,6 +35024,9 @@ huge:
     prefixcommons: huge
     uniprot: DB-0049
   name: Human Unidentified Gene-Encoded
+  owners:
+  - name: Kazusa DNA Research Institute, Chiba
+    ror: 04pnjx786
   pattern: ^KIAA\d{4}$
   preferred_prefix: huge
   providers:
@@ -34260,6 +35098,9 @@ hydra:
   name: The Hydra Core Vocabulary
   preferred_prefix: hydra
 iadopt:
+  contact:
+    email: barbara.magagna@gmail.com
+    name: Barbara Magagna
   description: The I-ADOPT Framework is an ontology designed to facilitate interoperability
     between existing variable description models (including ontologies, taxonomy,
     and structured controlled vocabularies). One of the challenges in representing
@@ -34273,7 +35114,7 @@ iadopt:
   download_owl: http://aber-owl.net/media/ontologies/I-ADOPT/6/i-adopt.owl
   download_rdf: https://github.com/i-adopt/ontology/raw/refs/heads/main/ontology/i-adopt.ttl
   example: Property
-  homepage: https://w3id.org/iadopt/ont
+  homepage: https://www.rd-alliance.org/group/interoperable-descriptions-observable-property-terminology-wg-i-adopt-wg/wiki/i-adopt-0
   keywords:
   - biology
   - environment
@@ -34282,9 +35123,10 @@ iadopt:
   mappings:
     aberowl: I-ADOPT
     biodivportal: I-ADOPT
+    bioportal: I-ADOPT
     ecoportal: I-ADOPT
     lov: iadopt
-  name: I-ADOPT Framework ontology
+  name: I-ADOPT Framework Ontology
   preferred_prefix: iadopt
   publications:
   - doi: 10.15497/RDA00071/2
@@ -34388,6 +35230,9 @@ iao:
     tib: iao
     wikidata.entity: Q55118415
   name: Information Artifact Ontology
+  owners:
+  - name: University of Pennsylvania
+    ror: 00b30xv10
   pattern: ^\d{7}$
   preferred_prefix: IAO
   providers:
@@ -34866,6 +35711,9 @@ icdc:
   mappings:
     miriam: icdc
   name: Integrated Canine Data Commons
+  owners:
+  - name: National Cancer Institute
+    ror: 040gcmg81
   pattern: ^\d{6}$
   preferred_prefix: icdc
   uri_format: https://caninecommons.cancer.gov/#/study/$1
@@ -35391,6 +36239,9 @@ ideal:
     pathguide: '701'
     uniprot: DB-0251
   name: Intrinsically Disordered proteins with Extensive Annotations and Literature
+  owners:
+  - name: Nagoya University
+    ror: 04chrp450
   pattern: ^IID\d+$
   preferred_prefix: ideal
   publications:
@@ -35441,6 +36292,9 @@ ido:
     ols: ido
     ontobee: IDO
   name: Infectious Disease Ontology
+  owners:
+  - name: European Bioinformatics Institute
+    ror: 02catss52
   pattern: ^\d{7}$
   preferred_prefix: IDO
   providers:
@@ -35622,6 +36476,9 @@ idoo:
     miriam: idoo
     n2t: idoo
   name: Identifiers.org Ontology
+  owners:
+  - name: European Bioinformatics Institute
+    ror: 02catss52
   pattern: ^[0-9a-zA-Z]+$
   preferred_prefix: idoo
   uri_format: http://registry.api.hq.identifiers.org/semanticApi/getRegistryOntology#$1
@@ -35635,6 +36492,9 @@ idot:
     miriam: idot
     n2t: idot
   name: Identifiers.org Terms
+  owners:
+  - name: European Bioinformatics Institute
+    ror: 02catss52
   pattern: ^[A-Za-z]+$
   preferred_prefix: idot
   uri_format: https://biomodels.net/vocab/idot.rdf#$1
@@ -35692,6 +36552,9 @@ idr:
     miriam: idr
     re3data: r3d100012435
   name: Image Data Resource
+  owners:
+  - name: University of Dundee
+    ror: 03h2bxq36
   pattern: ^[0-9]{4}$
   preferred_prefix: idr
   publications:
@@ -36441,6 +37304,9 @@ img.gene:
     n2t: img.gene
     prefixcommons: img.gene
   name: Integrated Microbial Genomes Gene
+  owners:
+  - name: Lawrence Berkeley National Laboratory
+    ror: 02jbv0t02
   pattern: ^\d+$
   preferred_prefix: img.gene
   providers:
@@ -36482,6 +37348,9 @@ img.taxon:
     n2t: img.taxon
     prefixcommons: img.taxon
   name: Integrated Microbial Genomes Taxon
+  owners:
+  - name: Lawrence Berkeley National Laboratory
+    ror: 02jbv0t02
   pattern: ^\d+$
   preferred_prefix: img.taxon
   providers:
@@ -36920,6 +37789,7 @@ inbio:
   mappings:
     aberowl: INBIO
     biodivportal: INBIO
+    bioportal: INBIO
     ecoportal: INBIO
   name: Invasion Biology Ontology
   preferred_prefix: inbio
@@ -36953,6 +37823,9 @@ inchi:
     wikidata: P234
     wikidata.entity: Q203250
   name: InChI
+  owners:
+  - name: European Bioinformatics Institute
+    ror: 02catss52
   pattern: ^InChI\=1S?\/[A-Za-z0-9\.]+(\+[0-9]+)?(\/[cnpqbtmsih][A-Za-z0-9\-\+\(\)\,\/\?\;\.]+)*$
   preferred_prefix: inchi
   providers:
@@ -37004,6 +37877,9 @@ inchikey:
     wikidata: P235
     wikidata.entity: Q21445422
   name: InChIKey
+  owners:
+  - name: Royal Society of Chemistry, Cambridge
+    ror: 025sbr097
   pattern: ^[A-Z]{14}\-[A-Z]{10}(\-[A-Z])?$
   preferred_prefix: inchikey
   providers:
@@ -37265,6 +38141,9 @@ insdc:
     prefixcommons: insdc
     togoid: Insdc
   name: Nucleotide Sequence Database
+  owners:
+  - name: European Bioinformatics Institute
+    ror: 02catss52
   pattern: ^([A-Z]\d{5}|[A-Z]{2}\d{6}|[A-Z]{4,6}\d{8,10}|[A-J][A-Z]{2}\d{5})(\.\d+)?$
   preferred_prefix: insdc
   providers:
@@ -37358,6 +38237,9 @@ insdc.gca:
     miriam: insdc.gca
     n2t: insdc.gca
   name: Genome assembly database - INSDC accessions
+  owners:
+  - name: National Center for Biotechnology Information
+    ror: 02meqm098
   pattern: ^GCA_[0-9]{9}(\.[0-9]+)?$
   preferred_prefix: insdc.gca
   providers:
@@ -37377,6 +38259,9 @@ insdc.gcf:
   mappings:
     miriam: refseq.gcf
   name: Genome assembly database - RefSeq accessions
+  owners:
+  - name: National Center for Biotechnology Information
+    ror: 02meqm098
   pattern: ^GCF_[0-9]{9}(\.[0-9]+)?$
   preferred_prefix: insdc.gcf
   synonyms:
@@ -37425,6 +38310,9 @@ insdc.sra:
     n2t: insdc.sra
     re3data: r3d100010775
   name: Sequence Read Archive
+  owners:
+  - name: National Center for Biotechnology Information
+    ror: 02meqm098
   pattern: ^[SED]R[APRSXZ]\d+$
   preferred_prefix: insdc.sra
   providers:
@@ -37573,6 +38461,9 @@ intact.molecule:
     miriam: intact.molecule
     n2t: intact.molecule
   name: IntAct Molecule
+  owners:
+  - name: European Bioinformatics Institute
+    ror: 02catss52
   pattern: ^EBI\-[0-9]+$
   preferred_prefix: intact.molecule
   publications:
@@ -37667,6 +38558,9 @@ interlex:
     miriam: ilx
     wikidata: P696
   name: InterLex
+  owners:
+  - name: University of California, San Diego
+    ror: 0168r3w48
   pattern: ^[0-9]+$
   preferred_prefix: interlex
   publications:
@@ -37720,6 +38614,9 @@ interpro:
     wikidata: P2926
     wikidata.entity: Q114677890
   name: InterPro
+  owners:
+  - name: European Bioinformatics Institute
+    ror: 02catss52
   pattern: ^IPR\d{6}$
   preferred_prefix: interpro
   providers:
@@ -37960,6 +38857,9 @@ ird.segment:
     n2t: ird.segment
     prefixcommons: ird.segment
   name: IRD Segment Sequence
+  owners:
+  - name: Southwestern Medical Center, University of Texas, Dallas
+    ror: 05byvp690
   pattern: ^\w+(\_)?\d+(\.\d+)?$
   preferred_prefix: ird.segment
   providers:
@@ -38107,6 +39007,9 @@ isbn:
     n2t: isbn
     prefixcommons: isbn
   name: International Standard Book Number
+  owners:
+  - name: OCLC Online Computer Library Center, Inc. Ohio
+    ror: 02nv42w72
   pattern: ^(ISBN)?(-13|-10)?[:]?[ ]?(\d{2,3}[ -]?)?\d{1,5}[ -]?\d{1,7}[ -]?\d{1,6}[
     -]?(\d|X)$
   preferred_prefix: isbn
@@ -38258,6 +39161,9 @@ isfinder:
     ncbi: ISFinder
     prefixcommons: isfinder
   name: ISFinder
+  owners:
+  - name: Laboratoire de Microbiologie et Génétique Moléculaires, CNRS, Toulouse
+    ror: 04rrj3a80
   pattern: ^IS\w+(\-\d)?$
   preferred_prefix: isfinder
   providers:
@@ -38332,6 +39238,20 @@ iso.3166:
   pattern: ^\d+$
   preferred_prefix: iso.3166
   uri_format: https://data.who.int/countries/$1
+iso.3166-2:
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: Two letter country codes assigned by ISO
+  example: TG
+  homepage: https://www.iso.org/iso-3166-country-codes.html
+  mappings:
+    hl7: 2.16.2
+  name: ISO 3166-2 Country Code
+  pattern: ^[A-Z]{2}$
+  preferred_prefix: iso.3166-2
 iso.639-3:
   contributor:
     email: cthoyt@gmail.com
@@ -38614,6 +39534,9 @@ iuphar.ligand:
     togoid: IupharLigand
     wikidata: P595
   name: Guide to Pharmacology Ligand
+  owners:
+  - name: Centre for Cardiovascular Science, University of Edinburgh, Edinburgh
+    ror: 002g4nt27
   pattern: ^\d+$
   preferred_prefix: iuphar.ligand
   synonyms:
@@ -38645,6 +39568,9 @@ iuphar.receptor:
     uniprot: DB-0182
     wikidata: P5458
   name: Guide to Pharmacology Target
+  owners:
+  - name: Centre for Cardiovascular Science, University of Edinburgh, Edinburgh
+    ror: 002g4nt27
   pattern: ^\d+$
   preferred_prefix: iuphar.receptor
   publications:
@@ -38717,6 +39643,9 @@ jaxmice:
     n2t: jaxmice
     rrid: IMSR_JAX
   name: Jackson Laboratories Mouse Strain
+  owners:
+  - name: The Jackson Laboratory
+    ror: 021sy4w91
   pattern: ^\d{6}$
   preferred_prefix: jaxmice
   synonyms:
@@ -38743,6 +39672,9 @@ jcggdb:
     miriam: jcggdb
     n2t: jcggdb
   name: Japan Consortium for Glycobiology and Glycotechnology Database
+  owners:
+  - name: RIKEN Advanced Science Institute
+    ror: 030vbmf58
   pattern: ^JCGG-STR\d{6}$
   preferred_prefix: jcggdb
   uri_format: http://jcggdb.jp/idb/jcggdb/$1
@@ -38762,6 +39694,9 @@ jcm:
     ncbi: JCM
     prefixcommons: jcm
   name: Japan Collection of Microorganisms
+  owners:
+  - name: RIKEN BioResource Center, Ibaraki
+    ror: 00s05em53
   pattern: ^\d+$
   preferred_prefix: jcm
   providers:
@@ -38810,6 +39745,9 @@ jcsd:
     prefixcommons: nikkaji
     wikidata: P2085
   name: Japan Chemical Substance Dictionary
+  owners:
+  - name: Japan Science and Technology Agency
+    ror: 00097mb19
   pattern: ^J\d{1,3}(\.\d{3})?(\.\d{1,3})?[A-Za-z]$
   preferred_prefix: jcsd
   providers:
@@ -38945,6 +39883,9 @@ jstor:
     miriam: jstor
     n2t: jstor
   name: Journal Storage
+  owners:
+  - name: Ithaka Harbors, Inc., New York
+    ror: 018xens77
   pattern: ^\d+$
   preferred_prefix: jstor
   uri_format: http://www.jstor.org/stable/$1
@@ -38968,6 +39909,9 @@ jws:
     n2t: jws
     prefixcommons: jws
   name: JWS Online
+  owners:
+  - name: University of Amsterdam
+    ror: 04dkp9463
   pattern: ^\w+$
   preferred_prefix: jws
   providers:
@@ -39006,6 +39950,9 @@ kaggle:
     n2t: kaggle
     re3data: r3d100012705
   name: Kaggle
+  owners:
+  - name: Google Incorporated
+    ror: 024bc3e07
   pattern: ^[0-9a-zA-Z\-]+\/[0-9a-zA-Z\-]+$
   preferred_prefix: kaggle
   uri_format: https://www.kaggle.com/$1
@@ -40093,6 +41040,9 @@ knapsack:
     n2t: knapsack
     wikidata: P2064
   name: KNApSAcK
+  owners:
+  - name: Nara Institute of Science and Technology
+    ror: 05bhada84
   pattern: ^C\d{8}$
   preferred_prefix: knapsack
   publications:
@@ -40530,6 +41480,9 @@ lgic:
     n2t: lgic
     prefixcommons: lgicdb
   name: Ligand-Gated Ion Channel database
+  owners:
+  - name: European Bioinformatics Institute
+    ror: 02catss52
   pattern: ^\w+$
   preferred_prefix: lgic
   providers:
@@ -40797,6 +41750,9 @@ ligandbook:
     miriam: ligandbook
     n2t: ligandbook
   name: LigandBook
+  owners:
+  - name: Institut de Chimie des Substances Naturelles
+    ror: 02st4q439
   pattern: ^[0-9]+$
   preferred_prefix: ligandbook
   uri_format: https://ligandbook.org/package/$1
@@ -40863,6 +41819,9 @@ ligandexpo:
     pathguide: '154'
     prefixcommons: ligandexpo
   name: Ligand Expo
+  owners:
+  - name: Rutgers, The State University of New Jersey
+    ror: 05vt9qd57
   pattern: ^(\w){3}$
   preferred_prefix: ligandexpo
   providers:
@@ -41674,6 +42633,9 @@ lrg:
     n2t: lrg
     togoid: Lrg
   name: Locus Reference Genomic
+  owners:
+  - name: European Bioinformatics Institute
+    ror: 02catss52
   pattern: ^\d+$
   preferred_prefix: lrg
   providers:
@@ -41926,9 +42888,11 @@ m4i:
   mastodon: nfdi4ing@nfdi.social
   name: Metadata4Ing
   owners:
-  - name: Nationale Forschungsdateninfrastruktur
+  - gnd: '1227971389'
+    name: NFDI4ING
     partnered: false
-    ror: 05qj6w324
+    ror: 00enhv193
+    wikidata: Q98380344
   pattern: ^[A-Za-z_0-9]*$
   preferred_prefix: m4i
   repository: https://git.rwth-aachen.de/nfdi4ing/metadata4ing/metadata4ing
@@ -41975,6 +42939,9 @@ ma:
     wikidata.entity: Q81661674
   name: Mouse adult gross anatomy
   namespace_in_lui: true
+  owners:
+  - name: The Jackson Laboratory
+    ror: 021sy4w91
   pattern: ^\d+$
   preferred_prefix: MA
   providers:
@@ -42022,6 +42989,9 @@ macie:
     n2t: macie
     prefixcommons: macie
   name: Mechanism, Annotation and Classification in Enzymes
+  owners:
+  - name: European Bioinformatics Institute
+    ror: 02catss52
   pattern: ^M\d{4}$
   preferred_prefix: macie
   providers:
@@ -42061,6 +43031,9 @@ maggot:
   mappings:
     miriam: maggot
   name: Maggot
+  owners:
+  - name: National Research Institute for Agriculture, Food and Environment
+    ror: 003vg9w96
   pattern: ^[A-Za-z0-9]+$
   preferred_prefix: maggot
   uri_format: https://pmb-bordeaux.fr/maggot/metadata/$1
@@ -42378,6 +43351,9 @@ massive:
     n2t: massive
     uniprot: DB-0241
   name: MassIVE
+  owners:
+  - name: European Bioinformatics Institute
+    ror: 02catss52
   pattern: ^MSV\d+$
   preferred_prefix: massive
   providers:
@@ -42599,6 +43575,10 @@ matrixdb.association:
     miriam: matrixdb.association
     n2t: matrixdb.association
   name: MatrixDB Association
+  owners:
+  - name: Institut de Biologie et Chimie des Protéines, CNRS, University of Lyon ,
+      Lyon-Gerland
+    ror: 0019x5d05
   pattern: ^([A-N,R-Z][0-9][A-Z][A-Z, 0-9][A-Z, 0-9][0-9])_.*|([O,P,Q][0-9][A-Z, 0-9][A-Z,
     0-9][A-Z, 0-9][0-9]_.*)|(GAG_.*)|(MULT_.*)|(PFRAG_.*)|(LIP_.*)|(CAT_.*)$
   preferred_prefix: matrixdb.association
@@ -42835,6 +43815,9 @@ mcro:
     ontobee: MCRO
   name: Model Card Report Ontology
   namespace_in_lui: true
+  owners:
+  - name: European Bioinformatics Institute
+    ror: 02catss52
   pattern: ^\d{7}$
   preferred_prefix: MCRO
   publications:
@@ -42993,6 +43976,9 @@ medgen:
     ncbi: MedGen
     togoid: Medgen
   name: MedGen
+  owners:
+  - name: National Center for Biotechnology Information
+    ror: 02meqm098
   pattern: ^(CN)?\d{2,7}$
   preferred_prefix: medgen
   references:
@@ -43071,6 +44057,9 @@ mediadive.medium:
   mappings:
     miriam: mediadive.medium
   name: MediaDive Medium
+  owners:
+  - name: Leibniz-Institut DSMZ-Deutsche Sammlung von Mikroorganismen und Zellkulturen
+    ror: 02tyer376
   pattern: ^\d+\w?$
   preferred_prefix: mediadive.medium
   reviewer:
@@ -43132,6 +44121,9 @@ medlineplus:
     miriam: medlineplus
     n2t: medlineplus
   name: MedlinePlus
+  owners:
+  - name: National Center for Biotechnology Information
+    ror: 02meqm098
   pattern: ^\d+$
   preferred_prefix: medlineplus
   providers:
@@ -43254,6 +44246,9 @@ merops.entry:
     prefixcommons: merops
     uniprot: DB-0059
   name: MEROPS Entry
+  owners:
+  - name: Wellcome Trust Sanger Institute
+    ror: 05cy4wa09
   pattern: ^[SCTAGMNUIX]{1,2}\d{2}\.([AB]\d{2}|\d{3})$
   preferred_prefix: merops.entry
   providers:
@@ -43328,6 +44323,9 @@ merops.family:
     miriam: merops.family
     n2t: merops.family
   name: MEROPS Family
+  owners:
+  - name: Wellcome Trust Sanger Institute
+    ror: 05cy4wa09
   pattern: ^[SCTAGMNU]\d+$
   preferred_prefix: merops.family
   publications:
@@ -43411,6 +44409,9 @@ mesh:
     wikidata: P486
     wikidata.entity: Q199897
   name: Medical Subject Headings
+  owners:
+  - name: National Library of Medicine, Maryland
+    ror: 0060t0j89
   pattern: ^(C|D|Q)\d+$
   preferred_prefix: mesh
   providers:
@@ -43554,6 +44555,9 @@ metabolights:
     re3data: r3d100011556
     wikidata: P3890
   name: MetaboLights Compound
+  owners:
+  - name: European Bioinformatics Institute
+    ror: 02catss52
   pattern: ^MTBL[CS]\d+$
   preferred_prefix: metabolights
   providers:
@@ -43603,6 +44607,9 @@ metacyc.compound:
     pathguide: '10'
     re3data: r3d100011294
   name: MetaCyc Compound
+  owners:
+  - name: SRI International
+    ror: 05s570m15
   pattern: ^[A-Za-z0-9+_.%-:]+$
   preferred_prefix: metacyc.compound
   publications:
@@ -43696,6 +44703,9 @@ metacyc.reaction:
     miriam: metacyc.reaction
     n2t: metacyc.reaction
   name: MetaCyc Reaction
+  owners:
+  - name: SRI International
+    ror: 05s570m15
   pattern: ^[A-Za-z0-9+_.%-:]+$
   preferred_prefix: metacyc.reaction
   uri_format: https://metacyc.org/META/NEW-IMAGE?type=REACTION&object=$1
@@ -43857,6 +44867,9 @@ metlin:
     n2t: metlin
     re3data: r3d100012311
   name: Metabolite and Tandem Mass Spectrometry Database
+  owners:
+  - name: Scripps Research Institute, San Diego
+    ror: 02dxx6824
   pattern: ^\d{4}$
   preferred_prefix: metlin
   uri_format: http://metlin.scripps.edu/metabo_info.php?molid=$1
@@ -43953,6 +44966,9 @@ mex:
     miriam: mex
     n2t: mex
   name: Metabolome Express
+  owners:
+  - name: Centre of Excellence in Plant Energy Biology
+    ror: 01a1mq059
   pattern: ^\d+$
   preferred_prefix: mex
   providers:
@@ -44281,6 +45297,9 @@ mgi:
     wikidata: P671
   name: Mouse Genome Informatics
   namespace_in_lui: true
+  owners:
+  - name: The Jackson Laboratory
+    ror: 021sy4w91
   pattern: ^\d+$
   preferred_prefix: MGI
   providers:
@@ -44380,6 +45399,9 @@ mgnify.analysis:
   mappings:
     miriam: mgnify.analysis
   name: MGnify Analysis
+  owners:
+  - name: European Bioinformatics Institute
+    ror: 02catss52
   pattern: ^MGYA\d+$
   preferred_prefix: mgnify.analysis
   uri_format: https://www.ebi.ac.uk/metagenomics/analyses/$1
@@ -44397,6 +45419,9 @@ mgnify.proj:
     miriam: mgnify.proj
     n2t: mgnify.proj
   name: MGnify Project
+  owners:
+  - name: European Bioinformatics Institute
+    ror: 02catss52
   pattern: ^[A-Z]+[0-9]+$
   preferred_prefix: mgnify.proj
   uri_format: https://www.ebi.ac.uk/metagenomics/projects/$1
@@ -44413,6 +45438,9 @@ mgnify.samp:
     miriam: mgnify.samp
     n2t: mgnify.samp
   name: MGnify Sample
+  owners:
+  - name: European Bioinformatics Institute
+    ror: 02catss52
   pattern: ^[A-Z]+[0-9]+$
   preferred_prefix: mgnify.samp
   uri_format: https://www.ebi.ac.uk/metagenomics/samples/$1
@@ -44430,6 +45458,9 @@ mgnifygenome:
   mappings:
     miriam: mgnify.genome
   name: MGnify Genome
+  owners:
+  - name: European Bioinformatics Institute
+    ror: 02catss52
   pattern: ^MGYG\d{9}(\.\d+)?$
   preferred_prefix: mgnifygenome
   uri_format: https://www.ebi.ac.uk/metagenomics/genomes/$1
@@ -44447,6 +45478,9 @@ mgnifyprotein:
   mappings:
     miriam: mgnify.protein
   name: MGnify Protein
+  owners:
+  - name: European Bioinformatics Institute
+    ror: 02catss52
   pattern: ^MGYP\d{12}$
   preferred_prefix: mgnifyprotein
   uri_format: https://www.ebi.ac.uk/metagenomics/proteins/$1
@@ -44464,6 +45498,9 @@ mgnifystudy:
   mappings:
     miriam: mgnify.study
   name: MGnify Study
+  owners:
+  - name: European Bioinformatics Institute
+    ror: 02catss52
   pattern: ^MGYS\d{8}$
   preferred_prefix: mgnifystudy
   uri_format: https://www.ebi.ac.uk/metagenomics/studies/$1
@@ -44510,6 +45547,9 @@ mi:
     wikidata.entity: Q81661689
   name: Molecular Interactions Controlled Vocabulary
   namespace_in_lui: true
+  owners:
+  - name: European Bioinformatics Institute
+    ror: 02catss52
   pattern: ^\d{4}$
   preferred_prefix: MI
   providers:
@@ -44822,6 +45862,9 @@ minid:
     miriam: minid
     n2t: minid
   name: Minimal Viable Identifier
+  owners:
+  - name: University of Southern California
+    ror: 03taz7m60
   pattern: ^[A-Za-z0-9]+$
   preferred_prefix: minid
   publications:
@@ -44843,6 +45886,9 @@ minid.test:
   mappings:
     miriam: minid.test
   name: MINID Test
+  owners:
+  - name: University of Southern California
+    ror: 03taz7m60
   part_of: minid
   pattern: ^[A-Za-z0-9]+$
   preferred_prefix: minid.test
@@ -44872,6 +45918,9 @@ mint:
     re3data: r3d100010414
     uniprot: DB-0158
   name: Molecular Interaction Database
+  owners:
+  - name: European Bioinformatics Institute
+    ror: 02catss52
   pattern: ^\d{1,7}$
   preferred_prefix: mint
   providers:
@@ -44963,6 +46012,9 @@ mir:
     n2t: mir
   name: Identifiers.org Registry
   namespace_in_lui: true
+  owners:
+  - name: European Bioinformatics Institute
+    ror: 02catss52
   pattern: ^\d{8}$
   preferred_prefix: mir
   uri_format: https://registry.identifiers.org/registry?query=MIR:$1
@@ -45226,6 +46278,9 @@ miriam:
     edam: '1162'
     miriam: identifiers.namespace
   name: Identifiers.org namespace
+  owners:
+  - name: European Bioinformatics Institute
+    ror: 02catss52
   pattern: ^[0-9a-z_:\.-]+$
   preferred_prefix: miriam
   publications:
@@ -45283,6 +46338,9 @@ miriam.resource:
     n2t: miriam.resource
     prefixcommons: miriam.resource
   name: MIRIAM Legacy Registry Identifier
+  owners:
+  - name: European Bioinformatics Institute
+    ror: 02catss52
   pattern: ^001\d{5}$
   preferred_prefix: miriam.resource
   providers:
@@ -45676,6 +46734,9 @@ mmdb:
     pathguide: '508'
     prefixcommons: mmdb
   name: Molecular Modeling Database
+  owners:
+  - name: National Library of Medicine, Maryland
+    ror: 0060t0j89
   pattern: ^\d{1,5}$
   preferred_prefix: mmdb
   providers:
@@ -45776,7 +46837,7 @@ mmo:
   rdf_uri_format: http://purl.obolibrary.org/obo/MMO_$1
   repository: https://github.com/rat-genome-database/MMO-Measurement-Method-Ontology
   uri_format: http://purl.obolibrary.org/obo/MMO_$1
-  version: '2.175'
+  version: '2.176'
 mmp.cat:
   description: MarCat is a gene (protein) catalogue of uncultivable and cultivable
     marine genes and proteins derived from metagenomics samples.
@@ -45855,6 +46916,9 @@ mmrrc:
     re3data: r3d100013715
     rrid: MMRRC
   name: Mutant Mouse Resource and Research Centers
+  owners:
+  - name: University of North Carolina
+    ror: 02t0qr014
   pattern: ^\d+$
   preferred_prefix: mmrrc
   publications:
@@ -46007,6 +47071,9 @@ mobidb:
     pathguide: '623'
     uniprot: DB-0183
   name: MobiDB
+  owners:
+  - name: University of Padua
+    ror: 00240q980
   pattern: ^[OPQ][0-9][A-Z0-9]{3}[0-9]|[A-NR-Z][0-9]([A-Z][A-Z0-9]{2}[0-9]){1,2}$
   preferred_prefix: mobidb
   provides: uniprot
@@ -46118,6 +47185,9 @@ mod:
     wikidata.entity: Q81661700
   name: Protein modification
   namespace_in_lui: true
+  owners:
+  - name: European Bioinformatics Institute
+    ror: 02catss52
   pattern: ^\d{5}$
   preferred_prefix: MOD
   providers:
@@ -46141,7 +47211,7 @@ mod:
   synonyms:
   - PSI-MOD
   uri_format: http://purl.obolibrary.org/obo/MOD_$1
-  version: 1.032.4
+  version: 1.033.0
 modalia:
   contact:
     email: abdelmoneim.desouki@tu-darmstadt.de
@@ -46305,6 +47375,9 @@ molbase:
     miriam: molbase
     n2t: molbase
   name: Molbase
+  owners:
+  - name: Chinese Academy of Sciences
+    ror: 034t30j35
   pattern: ^(\d{1,7}\-\d{2}\-\d)|([A-Za-z0-9\+\-\_]+)$
   preferred_prefix: molbase
   uri_format: http://www.molbase.com/en/index.php?app=search&search_keyword=$1
@@ -46471,6 +47544,9 @@ molmedb:
   mappings:
     miriam: molmedb
   name: MolMeDB
+  owners:
+  - name: Palacký University, Olomouc
+    ror: 04qxnmv42
   pattern: ^[Mm]{2}[0-9]{5,}(\.[0-9]+)?$
   preferred_prefix: molmedb
   uri_format: https://molmedb.upol.cz/mol/$1
@@ -46651,6 +47727,9 @@ morpheus:
   mappings:
     miriam: morpheus
   name: Morpheus model repository
+  owners:
+  - name: TU Dresden
+    ror: 042aqky30
   pattern: ^M[0-9]{4,}$
   preferred_prefix: morpheus
   uri_format: https://morpheus.gitlab.io/models/$1
@@ -46789,7 +47868,7 @@ mp:
   rdf_uri_format: http://purl.obolibrary.org/obo/MP_$1
   repository: https://github.com/mgijax/mammalian-phenotype-ontology
   uri_format: http://purl.obolibrary.org/obo/MP_$1
-  version: '2026-03-24'
+  version: '2026-04-22'
 mpath:
   contact:
     email: pns12@hermes.cam.ac.uk
@@ -46873,6 +47952,9 @@ mpid:
     pathguide: '559'
     prefixcommons: mpi
   name: Microbial Protein Interaction Database
+  owners:
+  - name: European Bioinformatics Institute
+    ror: 02catss52
   pattern: ^\d+$
   preferred_prefix: mpid
   providers:
@@ -47020,7 +48102,7 @@ ms:
   rdf_uri_format: http://purl.obolibrary.org/obo/MS_$1
   repository: https://github.com/HUPO-PSI/psi-ms-CV
   uri_format: http://purl.obolibrary.org/obo/MS_$1
-  version: 4.1.243
+  version: 4.1.246
 msc:
   contributor:
     email: cthoyt@gmail.com
@@ -47302,6 +48384,9 @@ mw.project:
     miriam: mw.project
     n2t: mw.project
   name: Metabolomics Workbench Project
+  owners:
+  - name: University of California, San Diego
+    ror: 0168r3w48
   pattern: ^PR[0-9]{6}$
   preferred_prefix: mw.project
   uri_format: http://www.metabolomicsworkbench.org/data/DRCCMetadata.php?Mode=Project&ProjectID=$1
@@ -47356,6 +48441,9 @@ mw.study:
     miriam: mw.study
     n2t: mw.study
   name: Metabolomics Workbench Study
+  owners:
+  - name: University of California, San Diego
+    ror: 0168r3w48
   pattern: ^ST[0-9]{6}$
   preferred_prefix: mw.study
   providers:
@@ -47599,6 +48687,9 @@ mycobank:
     prefixcommons: mycobank
     re3data: r3d100011222
   name: MycoBank
+  owners:
+  - name: CBS-KNAW  Fungal Biodiversity Centre, Utrecht
+    ror: 030a5r161
   pattern: ^\d+$
   preferred_prefix: mycobank
   providers:
@@ -47650,6 +48741,9 @@ mzspec:
     n2t: mzspec
   name: Universal Spectrum Identifier
   namespace_in_lui: true
+  owners:
+  - name: Institute for Systems Biology
+    ror: 02tpgw303
   pattern: ^.+$
   preferred_prefix: mzspec
   providers:
@@ -47699,9 +48793,15 @@ n4e:
   keywords:
   - earth sciences
   - ess
+  license: CC0-1.0
   mappings:
     tib: n4e
   name: NFDI4Earth Ontology
+  owners:
+  - name: NFDI4Earth
+    partnered: false
+    ror: 01f5dqg10
+    wikidata: Q108542504
   preferred_prefix: n4e
   uri_format: http://nfdi4earth.de/ontology/$1
 namerxn:
@@ -47776,6 +48876,10 @@ napdi:
     miriam: napdi
     n2t: napdi
   name: Natural Product-Drug Interaction Research Data Repository
+  owners:
+  - name: National Center for Complementary and Integrative Health, National Institutes
+      of Health, Washington D.C.
+    ror: 00190t495
   pattern: ^[0-9]+$
   preferred_prefix: napdi
   publications:
@@ -48107,6 +49211,9 @@ nbn:
     miriam: nbn
     n2t: nbn
   name: National Bibliography Number
+  owners:
+  - name: Deutsche Nationalbibliothek, Frankfurt
+    ror: 01n7gem85
   pattern: ^(urn|URN):(nbn|NBN)(:[A-Za-z_0-9]+)*.+$
   preferred_prefix: nbn
   uri_format: http://nbn-resolving.org/$1
@@ -48180,6 +49287,9 @@ nbrc:
     ncbi: NBRC
     prefixcommons: nbrc
   name: NITE Biological Research Center Catalogue
+  owners:
+  - name: National Institute of Technology Evaluation, Tokyo
+    ror: 044jdke57
   pattern: ^\d+$
   preferred_prefix: nbrc
   providers:
@@ -48287,6 +49397,9 @@ ncbi.assembly:
     miriam: assembly
     re3data: r3d100012688
   name: Assembly
+  owners:
+  - name: National Center for Biotechnology Information
+    ror: 02meqm098
   pattern: ^[a-zA-Z0-9_\.]+$
   preferred_prefix: ncbi.assembly
   uri_format: https://www.ncbi.nlm.nih.gov/datasets/genome/$1
@@ -48377,6 +49490,9 @@ ncbidrs:
   mappings:
     miriam: ncbidrs
   name: NCBI Data Repository Service
+  owners:
+  - name: National Center for Biotechnology Information
+    ror: 02meqm098
   pattern: ^[0-9a-fA-F]{32}$
   preferred_prefix: ncbidrs
   uri_format: https://locate.be-md.ncbi.nlm.nih.gov/ga4gh/drs/v1/objects/$1
@@ -48782,6 +49898,7 @@ ncit:
   example: C138986
   example_extras:
   - A14
+  - NHC0
   - P320
   - R123
   homepage: https://github.com/ncit-obo-org/ncit-obo-edition
@@ -48823,7 +49940,7 @@ ncit:
   - name: National Cancer Institute
     partnered: false
     ror: 040gcmg81
-  pattern: ^[CRPA]\d+$
+  pattern: ^(C|R|P|A|NHC)\d+$
   preferred_prefix: NCIT
   providers:
   - code: ''
@@ -49399,6 +50516,9 @@ neurovault.collection:
     miriam: neurovault.collection
     n2t: neurovault.collection
   name: NeuroVault Collection
+  owners:
+  - name: Stanford University
+    ror: 00f54p054
   pattern: ^[1-9][0-9]*$
   preferred_prefix: neurovault.collection
   uri_format: https://neurovault.org/collections/$1
@@ -49412,6 +50532,9 @@ neurovault.image:
     miriam: neurovault.image
     n2t: neurovault.image
   name: NeuroVault Image
+  owners:
+  - name: Stanford University
+    ror: 00f54p054
   pattern: ^[1-9][0-9]*$
   preferred_prefix: neurovault.image
   uri_format: https://neurovault.org/images/$1
@@ -49476,6 +50599,9 @@ nextprot:
     n2t: nextprot
     wikidata.entity: Q6983890
   name: nextProt
+  owners:
+  - name: SIB Swiss Institute of Bioinformatics
+    ror: 002n09z45
   pattern: ^NX_\w+$
   preferred_prefix: nextprot
   publications:
@@ -49639,22 +50765,38 @@ nfdi4culture.id:
   rdf_uri_format: https://nfdi4culture.de/id/$1
   uri_format: https://nfdi4culture.de/id/$1
 nfdi4dso:
+  contact:
+    email: genet-asefa.gesese@fiz-kalrsruhe.de
+    github: GenetAsefa
+    name: Genet Asefa Gesese
+    orcid: 0000-0003-3807-7145
   contributor:
     email: cthoyt@gmail.com
     github: cthoyt
     name: Charles Tapley Hoyt
     orcid: 0000-0003-4423-4370
-  description: The NFDI4DS ontology (nfdi4dso) is an ontology describing various resources
-    all resources (datasets, data providers, persons, projects and other entities)
-    within the domain of NFDI4DataScience. nfdi4dso is a module that builds upon the
-    NFDIcore Ontology (https://ise-fizkarlsruhe.github.io/nfdicore/2.0.0/) and maintains
-    alignment with the Basic Formal Ontology (BFO). [from homepage]
+  description: The NFDI4DataScience ontology (nfdi4dso) is an ontology describing
+    various resources all resources (datasets, data providers, persons, projects and
+    other entities) within the domain of NFDI4DataScience. nfdi4dso is a module that
+    builds upon the [NFDIcore Ontology](https://ise-fizkarlsruhe.github.io/nfdicore/2.0.0/)
+    and maintains alignment with the Basic Formal Ontology (BFO). [adapted from homepage]
   download_rdf: https://ise-fizkarlsruhe.github.io/NFDI4DS-Ontology/ontology.ttl
   example: City
-  homepage: https://nfdi.fiz-karlsruhe.de/nfdi4dso/
-  name: NFDI4DS Ontology
+  homepage: https://nfdi.fiz-karlsruhe.de/nfdi4dso
+  logo: https://raw.githubusercontent.com/ISE-FIZKarlsruhe/NFDI4DS-Ontology/Documentation/resources/nfdi4dso_logo.png
+  name: NFDI4DataScience Ontology
+  owners:
+  - name: NFDI4DataScience
+    partnered: false
+    ror: 00bb4nn95
+    wikidata: Q108542422
   preferred_prefix: nfdi4dso
+  publications:
+  - arxiv: '2408.08698'
+    title: 'NFDI4DSO: Towards a BFO Compliant Ontology for Data Science'
+    year: 2024
   rdf_uri_format: https://nfdi.fiz-karlsruhe.de/nfdi4dso/$1
+  repository: https://github.com/ISE-FIZKarlsruhe/NFDI4DS-Ontology
   uri_format: https://nfdi.fiz-karlsruhe.de/nfdi4dso/$1
 nfportal.tool:
   contact:
@@ -49736,6 +50878,9 @@ ngl:
     miriam: ngl
     n2t: ngl
   name: NASA GeneLab
+  owners:
+  - name: NASA's Ames Research Center
+    ror: 02acart68
   pattern: ^GLDS-\d+$
   preferred_prefix: ngl
   uri_format: https://genelab-data.ndc.nasa.gov/genelab/accession/$1
@@ -49765,6 +50910,9 @@ niaest:
     ncbi: niaEST
     prefixcommons: niaest
   name: NIAEST
+  owners:
+  - name: National Institute on Aging, NIH
+    ror: 049v75w11
   pattern: ^\w\d{4}\w\d{2}(\-[35])?$
   preferred_prefix: niaest
   providers:
@@ -50553,6 +51701,9 @@ nmdc:
     miriam: nmdc
     wikidata.entity: Q107698738
   name: National Microbiome Data Collaborative
+  owners:
+  - name: Lawrence Berkeley National Laboratory
+    ror: 02jbv0t02
   pattern: ^.{2,}$
   preferred_prefix: nmdc
   providers:
@@ -50645,6 +51796,9 @@ nmr:
     wikidata.entity: Q114677901
   name: NMR-instrument specific component of metabolomics investigations
   namespace_in_lui: true
+  owners:
+  - name: European Bioinformatics Institute
+    ror: 02catss52
   pattern: ^\d+$
   preferred_prefix: NMR
   providers:
@@ -50689,6 +51843,9 @@ nmrshiftdb2:
     re3data: r3d100010316
     wikidata: P9405
   name: NMRShiftDB structure
+  owners:
+  - name: University of Cologne
+    ror: 00rcxh774
   pattern: ^[0-9]+$
   preferred_prefix: nmrshiftdb2
   publications:
@@ -50862,6 +52019,9 @@ noncodev3:
     n2t: noncodev3
     prefixcommons: noncode
   name: NONCODE v3
+  owners:
+  - name: Chinese Academy of Sciences
+    ror: 034t30j35
   pattern: ^\d+$
   preferred_prefix: noncodev3
   providers:
@@ -50895,6 +52055,9 @@ noncodev4.gene:
     miriam: noncodev4.gene
     n2t: noncodev4.gene
   name: NONCODE v4 Gene
+  owners:
+  - name: Chinese Academy of Sciences
+    ror: 034t30j35
   pattern: ^NONHSAG\d{5}$
   preferred_prefix: noncodev4.gene
   uri_format: http://www.bioinfo.org/NONCODEv4/show_gene.php?id=$1
@@ -50912,6 +52075,9 @@ noncodev4.rna:
     miriam: noncodev4.rna
     n2t: noncodev4.rna
   name: NONCODE v4 Transcript
+  owners:
+  - name: Chinese Academy of Sciences
+    ror: 034t30j35
   pattern: ^NONHSAT\d{6}$
   preferred_prefix: noncodev4.rna
   uri_format: http://www.bioinfo.org/NONCODEv4/show_rna.php?id=$1
@@ -51337,6 +52503,9 @@ nucleotide:
     integbio: nbdc00600
     miriam: nucleotide
   name: Nucleotide
+  owners:
+  - name: National Center for Biotechnology Information
+    ror: 02meqm098
   pattern: ^[a-zA-Z0-9_\.]+$
   preferred_prefix: nucleotide
   uri_format: https://www.ncbi.nlm.nih.gov/nuccore/$1
@@ -51483,7 +52652,7 @@ oae:
   rdf_uri_format: http://purl.obolibrary.org/obo/OAE_$1
   repository: https://github.com/OAE-ontology/OAE
   uri_format: http://purl.obolibrary.org/obo/OAE_$1
-  version: 1.2.54
+  version: '2026-04-15'
 oarcs:
   contact:
     email: mjyoder@illinois.edu
@@ -51665,6 +52834,9 @@ obcs:
     wikidata.entity: Q55118544
   name: Ontology of Biological and Clinical Statistics
   namespace_in_lui: true
+  owners:
+  - name: European Bioinformatics Institute
+    ror: 02catss52
   pattern: ^\d{7}$
   preferred_prefix: OBCS
   publications:
@@ -52023,6 +53195,9 @@ occ:
     miriam: occ
     n2t: occ
   name: OpenCitations Corpus
+  owners:
+  - name: OpenCitations
+    ror: 00wb4mk85
   pattern: ^[a-z][a-z]/[0-9]+$
   preferred_prefix: occ
   uri_format: https://w3id.org/oc/corpus/$1
@@ -52105,6 +53280,9 @@ oci:
     miriam: oci
     n2t: oci
   name: Open Citation Identifier
+  owners:
+  - name: OpenCitations
+    ror: 00wb4mk85
   pattern: ^0[1-9]+0[0-9]+-0[1-9]+0[0-9]+$
   preferred_prefix: oci
   uri_format: https://opencitations.net/index/ci/$1
@@ -52133,6 +53311,9 @@ oclc:
     miriam: oclc
     n2t: oclc
   name: Online Computer Library Center WorldCat
+  owners:
+  - name: OCLC Online Computer Library Center, Inc. Ohio
+    ror: 02nv42w72
   pattern: ^[0-9]+$
   preferred_prefix: oclc
   uri_format: https://www.worldcat.org/oclc/$1
@@ -52149,6 +53330,9 @@ odam:
   mappings:
     miriam: odam
   name: Open Data for Access and Mining
+  owners:
+  - name: National Research Institute for Agriculture, Food and Environment
+    ror: 003vg9w96
   pattern: ^[A-Za-z0-9]+$
   preferred_prefix: odam
   uri_format: http://pmb-bordeaux.fr/getdata/json/$1/datapackage?links=1
@@ -52184,6 +53368,9 @@ odc.sci:
     miriam: odc.sci
     re3data: r3d100014071
   name: Open Data Commons for Spinal Cord Injury
+  owners:
+  - name: University of California, San Diego
+    ror: 0168r3w48
   pattern: ^[0-9]*$
   preferred_prefix: odc.sci
   publications:
@@ -52234,6 +53421,9 @@ odc.tbi:
   mappings:
     miriam: odc.tbi
   name: Open Data Commons for Traumatic Brain Injury
+  owners:
+  - name: University of California, San Diego
+    ror: 0168r3w48
   pattern: ^[0-9]*$
   preferred_prefix: odc.tbi
   uri_format: https://odc-tbi.org/data/$1
@@ -52698,7 +53888,7 @@ ohd:
     and treatment of dental maladies.
   download_owl: http://purl.obolibrary.org/obo/ohd.owl
   example: '0000006'
-  homepage: https://purl.obolibrary.org/obo/ohd/home
+  homepage: https://purl.obolibrary.org/obo/ohd
   keywords:
   - dentistry
   - medicine
@@ -53018,6 +54208,9 @@ oma.grp:
     miriam: oma.grp
     n2t: oma.grp
   name: OMA Group
+  owners:
+  - name: ETH Zurich
+    ror: 05a28rw58
   pattern: ^[A-Z]+$
   preferred_prefix: oma.grp
   uri_format: https://omabrowser.org/cgi-bin/gateway.pl?f=DisplayGroup&p1=$1
@@ -53031,6 +54224,9 @@ oma.hog:
   mappings:
     miriam: oma.hog
   name: OMA HOGs
+  owners:
+  - name: ETH Zurich
+    ror: 05a28rw58
   pattern: ^[0-9]{7}(\.[0-9a-z.]+)?(_[0-9]+)?$
   preferred_prefix: oma.hog
   uri_format: https://omabrowser.org/oma/hog/HOG:$1
@@ -53051,6 +54247,9 @@ oma.protein:
     n2t: oma.protein
     togoid: OmaProtein
   name: OMA Protein
+  owners:
+  - name: ETH Zurich
+    ror: 05a28rw58
   pattern: ^[A-Z0-9]{5}\d+$
   preferred_prefix: oma.protein
   uri_format: https://omabrowser.org/oma/vps/$1
@@ -53203,6 +54402,9 @@ omid:
   mappings:
     miriam: omid
   name: OpenCitations Meta Identifier
+  owners:
+  - name: OpenCitations
+    ror: 00wb4mk85
   pattern: ^[a-z][a-z]/06[1-9]*0[1-9][0-9]*$
   preferred_prefix: omid
   uri_format: https://w3id.org/oc/meta/$1
@@ -53250,6 +54452,9 @@ omim:
     wikidata: P492
     wikidata.entity: Q7187
   name: Online Mendelian Inheritance in Man
+  owners:
+  - name: Johns Hopkins University, Baltimore, Maryland
+    ror: 00za53h95
   pattern: ^\d+$
   preferred_prefix: omim
   providers:
@@ -53407,6 +54612,9 @@ omit:
     ontobee: OMIT
     wikidata.entity: Q81661752
   name: Ontology for MicroRNA Target
+  owners:
+  - name: European Bioinformatics Institute
+    ror: 02catss52
   pattern: ^\d{7}$
   preferred_prefix: OMIT
   publications:
@@ -54291,6 +55499,9 @@ opl:
     ontobee: OPL
   name: Ontology for Parasite LifeCycle
   namespace_in_lui: true
+  owners:
+  - name: European Bioinformatics Institute
+    ror: 02catss52
   pattern: ^\d{7}$
   preferred_prefix: OPL
   publications:
@@ -54431,6 +55642,9 @@ orcid:
     wikidata.entity: Q51044
   mastodon: ORCID_Org@scicomm.xyz
   name: Open Researcher and Contributor
+  owners:
+  - name: ORCID Inc, Bethesda, Mayrland
+    ror: 04fa4r544
   pattern: ^\d{4}-\d{4}-\d{4}-\d{3}(\d|X)$
   preferred_prefix: orcid
   providers:
@@ -54623,6 +55837,9 @@ orpha:
     wikidata: P1550
     wikidata.entity: Q929833
   name: Orphanet
+  owners:
+  - name: Inserm, Hôpital Broussais, Paris
+    ror: 02vjkv261
   pattern: ^C?\d+$
   preferred_prefix: ORPHA
   providers:
@@ -54698,6 +55915,9 @@ orphanet.ordo:
     ols: ordo
     tib: ordo
   name: Orphanet Rare Disease Ontology
+  owners:
+  - name: European Bioinformatics Institute
+    ror: 02catss52
   pattern: ^C?\d+$
   preferred_prefix: orphanet.ordo
   providers:
@@ -54714,7 +55934,7 @@ orphanet.ordo:
   synonyms:
   - ordo
   uri_format: http://www.orpha.net/ORDO/Orphanet_$1
-  version: '4.7'
+  version: '4.8'
 orth:
   contact:
     email: jfernand@um.es
@@ -54836,6 +56056,10 @@ oryzabase.gene:
     miriam: oryzabase.gene
     n2t: oryzabase.gene
   name: Oryzabase Gene
+  owners:
+  - name: Genetic Strains Research Center, National Institute of Genetics, Mishima,
+      Shizuoka
+    ror: 02xg1m795
   pattern: ^\d+$
   preferred_prefix: oryzabase.gene
   uri_format: http://www.shigen.nig.ac.jp/rice/oryzabaseV4/gene/detail/$1
@@ -54853,6 +56077,10 @@ oryzabase.mutant:
     miriam: oryzabase.mutant
     n2t: oryzabase.mutant
   name: Oryzabase Mutant
+  owners:
+  - name: Genetic Strains Research Center, National Institute of Genetics, Mishima,
+      Shizuoka
+    ror: 02xg1m795
   pattern: ^\d+$
   preferred_prefix: oryzabase.mutant
   uri_format: http://www.shigen.nig.ac.jp/rice/oryzabaseV4/strain/inducedMutationLine/detail/$1
@@ -54865,6 +56093,10 @@ oryzabase.reference:
     miriam: oryzabase.reference
     n2t: oryzabase.reference
   name: Oryzabase Reference
+  owners:
+  - name: Genetic Strains Research Center, National Institute of Genetics, Mishima,
+      Shizuoka
+    ror: 02xg1m795
   pattern: ^\d+$
   preferred_prefix: oryzabase.reference
   uri_format: https://shigen.nig.ac.jp/rice/oryzabase/reference/detail/$1
@@ -54882,6 +56114,10 @@ oryzabase.stage:
     miriam: oryzabase.stage
     n2t: oryzabase.stage
   name: Oryzabase Stage
+  owners:
+  - name: Genetic Strains Research Center, National Institute of Genetics, Mishima,
+      Shizuoka
+    ror: 02xg1m795
   pattern: ^\d+$
   preferred_prefix: oryzabase.stage
   uri_format: http://www.shigen.nig.ac.jp/rice/oryzabaseV4/devstageineachorgan/detail/$1
@@ -54899,6 +56135,10 @@ oryzabase.strain:
     miriam: oryzabase.strain
     n2t: oryzabase.strain
   name: Oryzabase Strain
+  owners:
+  - name: Genetic Strains Research Center, National Institute of Genetics, Mishima,
+      Shizuoka
+    ror: 02xg1m795
   pattern: ^\d+$
   preferred_prefix: oryzabase.strain
   uri_format: http://www.shigen.nig.ac.jp/rice/oryzabaseV4/strain/wildCore/detail/$1
@@ -55304,6 +56544,9 @@ paleodb:
     n2t: paleodb
     prefixcommons: paleodb
   name: Paleobiology Database
+  owners:
+  - name: Macquarie University, Sydney
+    ror: 01sf06y89
   pattern: ^\d+$
   preferred_prefix: paleodb
   providers:
@@ -55355,8 +56598,8 @@ pandit:
   uri_format: http://www.ebi.ac.uk/goldman-srv/pandit/pandit.cgi?action=browse&fam=$1
 panet:
   contact:
-    email: mriyayi@hotmail.com
-    name: Daniel Iyayi
+    email: steve.collins@diamond.ac.uk
+    name: Steve Collins
   description: The ExPaNDS Photon and Neutron Experimental Techniques (PaNET) ontology
     provides a taxonomy and thesaurus of photon and neutron (PaN) experimental techniques.
     Based mainly on accelerator-based light sources and neutron facilities, the primary
@@ -55374,8 +56617,10 @@ panet:
   - ontology
   - photon science
   - physics
+  - subject agnostic
   - x-ray diffraction
   license: CC-BY-4.0
+  logo: https://api.fairsharing.org/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBb29JIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--48e885a666df21f8c07a09a1bafea0a67972697b/panet_logo.png?disposition=inline
   mappings:
     aberowl: PANET
     bioportal: PANET
@@ -55443,6 +56688,9 @@ panther.family:
     prefixcommons: panther
     uniprot: DB-0069
   name: PANTHER Family
+  owners:
+  - name: Keck School of Medicine, University of Southern California
+    ror: 01rq8ck58
   pattern: ^PTHR\d{5}(\:SF\d{1,3})?$
   preferred_prefix: panther.family
   providers:
@@ -55486,6 +56734,9 @@ panther.node:
     miriam: panther.node
     n2t: panther.node
   name: PANTHER Node
+  owners:
+  - name: Keck School of Medicine, University of Southern California
+    ror: 01rq8ck58
   pattern: ^PTN\d{9}$
   preferred_prefix: panther.node
   uri_format: http://www.pantree.org/node/annotationNode.jsp?id=$1
@@ -55504,6 +56755,9 @@ panther.pathway:
     miriam: panther.pathway
     n2t: panther.pathway
   name: PANTHER Pathway
+  owners:
+  - name: Keck School of Medicine, University of Southern California
+    ror: 01rq8ck58
   pattern: ^P\d{5}$
   preferred_prefix: panther.pathway
   uri_format: http://www.pantherdb.org/pathway/pathwayDiagram.jsp?catAccession=$1
@@ -55525,6 +56779,9 @@ panther.pthcmp:
     miriam: panther.pthcmp
     n2t: panther.pthcmp
   name: PANTHER Pathway Component
+  owners:
+  - name: Keck School of Medicine, University of Southern California
+    ror: 01rq8ck58
   pattern: ^(G|P|U|C|S)\d{5}$
   preferred_prefix: panther.pthcmp
   uri_format: http://www.pantherdb.org/pathway/pathCatDetail.do?clsAccession=$1
@@ -55565,6 +56822,9 @@ pass2:
     n2t: pass2
     prefixcommons: pass2
   name: Protein Alignment organised as Structural Superfamily
+  owners:
+  - name: National Centre for Biological Sciences, Bangalore
+    ror: 03gf8rp76
   pattern: ^\d+$
   preferred_prefix: pass2
   providers:
@@ -55729,6 +56989,9 @@ pathwaycommons:
     re3data: r3d100012731
     uniprot: DB-0253
   name: Pathway Commons
+  owners:
+  - name: Memorial Sloan Kettering Cancer Center
+    ror: 02yrq0923
   pattern: ^\d+$
   preferred_prefix: pathwaycommons
   providers:
@@ -56435,6 +57698,9 @@ pdb-ccd:
     prefixcommons: ccd
     togoid: PdbCcd
   name: Chemical Component Dictionary
+  owners:
+  - name: European Bioinformatics Institute
+    ror: 02catss52
   pattern: ^\w{1,3}$
   preferred_prefix: pdb-ccd
   providers:
@@ -56474,6 +57740,9 @@ pdb.ligand:
     prefixcommons: pdbligand
     wikidata: P3636
   name: PDB ligand
+  owners:
+  - name: Rutgers, The State University of New Jersey
+    ror: 05vt9qd57
   pattern: ^[A-Za-z0-9]+$
   preferred_prefix: pdb.ligand
   providers:
@@ -56719,6 +57988,9 @@ ped:
   mappings:
     miriam: ped
   name: Protein Ensemble Database
+  owners:
+  - name: University of Padua
+    ror: 00240q980
   pattern: ^PED\d{5}$
   preferred_prefix: ped
   publications:
@@ -56736,6 +58008,9 @@ ped.ensemble:
   mappings:
     miriam: ped.ensemble
   name: Protein Ensemble Database ensemble
+  owners:
+  - name: University of Padua
+    ror: 00240q980
   part_of: ped
   pattern: ^PED\d{5}e\d{3}$
   preferred_prefix: ped.ensemble
@@ -56767,6 +58042,9 @@ pennsieve:
   mappings:
     miriam: ps
   name: Pennsieve
+  owners:
+  - name: University of Pennsylvania
+    ror: 00b30xv10
   pattern: ^N:package:[a-z0-9]{8}-[a-z0-9]{4}-[a-z0-9]{4}-[a-z0-9]{4}-[a-z0-9]{12}$
   preferred_prefix: pennsieve
   uri_format: https://discover.pennsieve.io/package/$1
@@ -56848,6 +58126,9 @@ peptideatlas.dataset:
     miriam: peptideatlas.dataset
     n2t: peptideatlas.dataset
   name: PeptideAtlas Dataset
+  owners:
+  - name: Institute for Systems Biology
+    ror: 02tpgw303
   pattern: ^PASS\d{5}$
   preferred_prefix: peptideatlas.dataset
   uri_format: http://www.peptideatlas.org/PASS/$1
@@ -56879,6 +58160,9 @@ peptideatlas.peptide:
     re3data: r3d100010889
     uniprot: DB-0071
   name: PeptideAtlas Peptide
+  owners:
+  - name: Institute for Systems Biology
+    ror: 02tpgw303
   pattern: ^PAp[0-9]{8}$
   preferred_prefix: peptideatlas.peptide
   providers:
@@ -57023,6 +58307,9 @@ pfam:
     uniprot: DB-0073
     wikidata: P3519
   name: Pfam protein family
+  owners:
+  - name: European Bioinformatics Institute
+    ror: 02catss52
   pattern: ^PF\d{5}$
   preferred_prefix: pfam
   providers:
@@ -57202,6 +58489,9 @@ pgs:
   mappings:
     miriam: pgs
   name: Polygenic Score Catalog
+  owners:
+  - name: The University of Cambridge
+    ror: 013meh722
   pattern: ^PGS[0-9]{6}$
   preferred_prefix: pgs
   uri_format: https://www.pgscatalog.org/pgs/$1
@@ -57223,6 +58513,9 @@ pgx:
     n2t: pgx
     re3data: r3d100012820
   name: Progenetix
+  owners:
+  - name: University of Zurich
+    ror: 02crff812
   pattern: ^\w{3,15}[-_]\w[\w.-]{3,128}$
   preferred_prefix: pgx
   publications:
@@ -57894,6 +59187,9 @@ phosphosite.protein:
     miriam: phosphosite.protein
     n2t: phosphosite.protein
   name: PhosphoSite Protein
+  owners:
+  - name: Cell Signaling Technology, Inc.
+    ror: 03k4zc121
   pattern: ^\d{5}$
   preferred_prefix: phosphosite.protein
   uri_format: http://www.phosphosite.org/proteinAction.do?id=$1
@@ -57909,6 +59205,9 @@ phosphosite.residue:
     miriam: phosphosite.residue
     n2t: phosphosite.residue
   name: PhosphoSite Residue
+  owners:
+  - name: Cell Signaling Technology, Inc.
+    ror: 03k4zc121
   pattern: ^\d+$
   preferred_prefix: phosphosite.residue
   uri_format: http://www.phosphosite.org/siteAction.do?id=$1
@@ -57982,6 +59281,9 @@ phylomedb:
     prefixcommons: phylomedb
     uniprot: DB-0144
   name: PhylomeDB
+  owners:
+  - name: Centre for Genomic Regulation
+    ror: 03wyzt892
   pattern: ^\w+$
   preferred_prefix: phylomedb
   providers:
@@ -58237,6 +59539,9 @@ pina:
     n2t: pina
     pathguide: '348'
   name: Protein Interaction Network Analysis
+  owners:
+  - name: Garvan Institute of Medical Research, Sydney
+    ror: 01b3dvp57
   pattern: ^([A-N,R-Z][0-9][A-Z][A-Z, 0-9][A-Z, 0-9][0-9])|([O,P,Q][0-9][A-Z, 0-9][A-Z,
     0-9][A-Z, 0-9][0-9])$
   preferred_prefix: pina
@@ -58324,6 +59629,9 @@ pirsf:
     prefixcommons: pirsf
     uniprot: DB-0079
   name: PIR Superfamily Classification System
+  owners:
+  - name: Georgetown University Medical Center
+    ror: 00hjz7x27
   pattern: ^PIRSF\d{6}$
   preferred_prefix: pirsf
   providers:
@@ -58353,6 +59661,9 @@ pkdb:
   mappings:
     miriam: pkdb
   name: PK-DB
+  owners:
+  - name: Humboldt University of Berlin
+    ror: 01hcx6992
   pattern: ^PKDB[0-9]{5}$
   preferred_prefix: pkdb
   publications:
@@ -58496,6 +59807,9 @@ planttfdb:
     prefixcommons: planttfdb
     re3data: r3d100011301
   name: Plant Transcription Factor Database
+  owners:
+  - name: Peking University
+    ror: 02v51f717
   pattern: ^[A-Z][a-z]{2}_([A-Za-z]{3}[0-9]{6})|([A-Za-z0-9\._\-#]*)$
   preferred_prefix: planttfdb
   providers:
@@ -58965,6 +60279,9 @@ pmr.exposure:
     bioportal: PMR
     miriam: pmr
   name: Physiome Model Repository
+  owners:
+  - name: University of Auckland
+    ror: 03b94tp07
   pattern: ^[a-z0-9]{32,32}$
   preferred_prefix: pmr.exposure
   publications:
@@ -59008,6 +60325,9 @@ pmr.workspace:
   mappings:
     miriam: pmr.workspace
   name: Physiome Model Repository workspace
+  owners:
+  - name: University of Auckland
+    ror: 03b94tp07
   pattern: ^[a-zA-Z0-9_\-]+(/.*?)?$
   preferred_prefix: pmr.workspace
   uri_format: https://models.physiomeproject.org/workspace/$1
@@ -59183,6 +60503,9 @@ polbase:
     miriam: polbase
     n2t: polbase
   name: PolBase
+  owners:
+  - name: New England Biolabs, Ipswich, Massachusetts
+    ror: 04ywg3445
   pattern: ^[A-Za-z-0-9]+$
   preferred_prefix: polbase
   publications:
@@ -59735,6 +61058,9 @@ pride:
     re3data: r3d100010137
     uniprot: DB-0130
   name: Proteomics Identification Database Ontology
+  owners:
+  - name: European Bioinformatics Institute
+    ror: 02catss52
   pattern: ^\d{7}$
   preferred_prefix: pride
   providers:
@@ -59816,6 +61142,9 @@ pride.project:
     miriam: pride.project
     n2t: pride.project
   name: PRIDE Project
+  owners:
+  - name: European Bioinformatics Institute
+    ror: 02catss52
   pattern: ^P(X|R|A)D\d{6}$
   preferred_prefix: pride.project
   providers:
@@ -59998,6 +61327,9 @@ prints:
     prefixcommons: sprint
     uniprot: DB-0082
   name: PRINTS
+  owners:
+  - name: University of Manchester
+    ror: 027m9bs27
   pattern: ^PR\d{5}$
   preferred_prefix: prints
   providers:
@@ -60090,6 +61422,9 @@ probonto:
     n2t: probonto
     ols: probonto
   name: Probability Distribution Ontology
+  owners:
+  - name: European Bioinformatics Institute
+    ror: 02catss52
   pattern: ^(c|k)\d{7}$
   preferred_prefix: probonto
   publications:
@@ -60162,6 +61497,9 @@ prodom:
     n2t: prodom
     prefixcommons: prodom
   name: ProDom
+  owners:
+  - name: Laboratoire des Interactions Plantes-Microorganismes, INRA/CNRS
+    ror: 02gwt2810
   pattern: ^PD\d+$
   preferred_prefix: prodom
   providers:
@@ -60204,6 +61542,10 @@ proglyc:
     miriam: proglyc
     n2t: proglyc
   name: ProGlycProt
+  owners:
+  - name: Institute of Microbial Technology, Council of Scientific and Industrial
+      Research (CSIR),  Chandigarh
+    ror: 055rjs771
   pattern: ^[A-Z]C\d{1,3}$
   preferred_prefix: proglyc
   uri_format: http://www.proglycprot.org/detail.aspx?ProId=$1
@@ -60291,6 +61633,9 @@ prosite:
     uniprot: DB-0084
     wikidata: P4355
   name: PROSITE
+  owners:
+  - name: SIB Swiss Institute of Bioinformatics
+    ror: 002n09z45
   pattern: ^PS\d{5}$
   preferred_prefix: prosite
   providers:
@@ -60342,6 +61687,9 @@ protclustdb:
     n2t: protclustdb
     prefixcommons: protclustdb
   name: ProtClustDB
+  owners:
+  - name: National Center for Biotechnology Information
+    ror: 02meqm098
   pattern: ^\w+$
   preferred_prefix: protclustdb
   providers:
@@ -60428,6 +61776,9 @@ proteomicsdb.peptide:
     miriam: proteomicsdb.peptide
     n2t: proteomicsdb.peptide
   name: ProteomicsDB Peptide
+  owners:
+  - name: Center for Integrated Protein Science, Munich
+    ror: 032hzb643
   pattern: ^\d+$
   preferred_prefix: proteomicsdb.peptide
   uri_format: https://www.proteomicsdb.org/#human/proteinDetails/$1
@@ -60477,6 +61828,9 @@ protonet.cluster:
     n2t: protonet.cluster
     prefixcommons: protonet.cluster
   name: ProtoNet Cluster
+  owners:
+  - name: Hebrew University, Jerusalem
+    ror: 03qxff017
   pattern: ^\d+$
   preferred_prefix: protonet.cluster
   providers:
@@ -60516,6 +61870,9 @@ protonet.proteincard:
     n2t: protonet.proteincard
     prefixcommons: protonet.proteincard
   name: ProtoNet ProteinCard
+  owners:
+  - name: Hebrew University, Jerusalem
+    ror: 03qxff017
   pattern: ^\d+$
   preferred_prefix: protonet.proteincard
   providers:
@@ -60565,6 +61922,7 @@ prov:
     biocontext: prov
     biodivportal: PROV-O
     biolink: prov
+    bioportal: PROVO
     fairsharing: FAIRsharing.2rm2b3
     lov: prov
     ols: prov
@@ -60713,6 +62071,9 @@ pseudomonas:
     miriam: pseudomonas
     n2t: pseudomonas
   name: Pseudomonas Genome Database
+  owners:
+  - name: Simon Fraser University, British Columbia
+    ror: 0213rcc28
   pattern: ^P\w+$
   preferred_prefix: pseudomonas
   uri_format: http://www.pseudomonas.com/feature/show/?locus_tag=$1
@@ -60733,6 +62094,9 @@ psipar:
     miriam: psipar
     n2t: psipar
   name: Protein Affinity Reagents
+  owners:
+  - name: European Bioinformatics Institute
+    ror: 02catss52
   pattern: ^\d+$
   preferred_prefix: psipar
   uri_format: https://www.ebi.ac.uk/ontology-lookup/?termId=PAR:$1
@@ -60892,6 +62256,9 @@ pubchem.bioassay:
     n2t: pubchem.bioassay
     prefixcommons: pubchem.bioassay
   name: PubChem-bioassay
+  owners:
+  - name: National Center for Biotechnology Information
+    ror: 02meqm098
   pattern: ^\d+$
   preferred_prefix: pubchem.bioassay
   providers:
@@ -60990,6 +62357,9 @@ pubchem.compound:
     togoid: PubchemCompound
     wikidata: P662
   name: PubChem compound
+  owners:
+  - name: National Center for Biotechnology Information
+    ror: 02meqm098
   pattern: ^\d+$
   preferred_prefix: pubchem.compound
   providers:
@@ -61106,6 +62476,9 @@ pubchem.substance:
     togoid: PubchemSubstance
     wikidata: P2153
   name: PubChem-substance
+  owners:
+  - name: National Center for Biotechnology Information
+    ror: 02meqm098
   pattern: ^\d+$
   preferred_prefix: pubchem.substance
   providers:
@@ -61186,6 +62559,9 @@ pubmed:
     wikidata: P698
     wikidata.entity: Q2082879
   name: PubMed
+  owners:
+  - name: National Center for Biotechnology Information
+    ror: 02meqm098
   pattern: ^\d+$
   preferred_prefix: pubmed
   providers:
@@ -61327,6 +62703,9 @@ pw:
     wikidata.entity: Q28864280
   name: Pathway ontology
   namespace_in_lui: true
+  owners:
+  - name: European Bioinformatics Institute
+    ror: 02catss52
   pattern: ^\d{7}$
   preferred_prefix: PW
   providers:
@@ -61409,6 +62788,9 @@ px:
     miriam: px
     n2t: px
   name: ProteomeXchange
+  owners:
+  - name: Institute for Systems Biology
+    ror: 02tpgw303
   pattern: ^(R)?PXD\d{6}$
   preferred_prefix: px
   uri_format: http://proteomecentral.proteomexchange.org/cgi/GetDataset?ID=$1
@@ -61450,6 +62832,33 @@ qb:
   preferred_prefix: qb
   repository: https://github.com/UKGovLD/publishing-statistical-data
   uri_format: http://purl.org/linked-data/cube#$1
+qsproteome:
+  appears_in:
+  - complexportal
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: The Quaternary Structural Proteome Repository for Organized and Transparent
+    Evaluation Of Modeling Efforts (QSPROTEOME), mints identifiers for protein structures,
+    e.g., generated by AlphaFold3.
+  example: QS210728
+  homepage: https://qsproteome.org
+  keywords:
+  - protein complex
+  - protein structure
+  license: https://qsproteome.org/terms
+  name: Quaternary Structural Proteome Repository
+  preferred_prefix: qsproteome
+  publications:
+  - doi: 10.1093/nar/gkaf1099
+    pmc: PMC12807603
+    pubmed: '41163446'
+    title: 'QSProteome: a community-driven interactive platform for large-scale exploration
+      and evaluation of predicted protein complex structures'
+    year: 2025
+  uri_format: https://qsproteome.org/entry/$1
 qtldb:
   description: The Animal Quantitative Trait Loci (QTL) database (Animal QTLdb) is
     designed to house publicly all available QTL and single-nucleotide polymorphism/gene
@@ -61459,6 +62868,9 @@ qtldb:
   mappings:
     miriam: qtldb
   name: Animal Genome QTL
+  owners:
+  - name: Iowa State University
+    ror: 04rswrd78
   pattern: ^\d+$
   preferred_prefix: qtldb
   uri_format: https://www.animalgenome.org/QTLdb/q?id=QTL_ID:$1
@@ -61635,6 +63047,9 @@ raid:
     fairsharing: FAIRsharing.dc702a
     miriam: raid
   name: Research Activity Identifier
+  owners:
+  - name: Australian Research Data Commons
+    ror: 038sjwq14
   pattern: ^102?\.\d+\/.+$
   preferred_prefix: raid
   uri_format: https://raid.org/$1
@@ -61651,6 +63066,9 @@ rapdb.locus:
   mappings:
     miriam: rapdb.locus
   name: RAP-DB Locus
+  owners:
+  - name: The National Agriculture and Food Research Organization (NARO)
+    ror: 023v4bd62
   pattern: ^Os\S+g\d{7}$
   preferred_prefix: rapdb.locus
   synonyms:
@@ -61675,6 +63093,9 @@ rapdb.transcript:
     ncbi: RAP-DB
     prefixcommons: rapdb
   name: RAP-DB Transcript
+  owners:
+  - name: The National Agriculture and Food Research Organization (NARO)
+    ror: 023v4bd62
   pattern: ^Os\S+t\d{7}-\d{2}$
   preferred_prefix: rapdb.transcript
   providers:
@@ -61738,6 +63159,9 @@ rbk:
     miriam: rbk
     n2t: rbk
   name: Rebuilding a Kidney
+  owners:
+  - name: National Institute Of Diabetes and Digestive and Kidney Diseases (NIDDK)
+    ror: 00adh9b73
   pattern: ^[-0-9a-zA-Z]+(@[-0-9a-zA-Z]+)?$
   preferred_prefix: rbk
   publications:
@@ -61969,6 +63393,9 @@ re3data:
     bartoc: '822'
     miriam: re3data
   name: re3data
+  owners:
+  - name: DataCite
+    ror: 04wxnsj81
   pattern: ^r3d\d{9,9}$
   preferred_prefix: re3data
   uri_format: https://www.re3data.org/repository/$1
@@ -62115,6 +63542,9 @@ rebase:
     uniprot: DB-0089
     wikidata: P4866
   name: Restriction Enzyme Database
+  owners:
+  - name: New England Biolabs, Ipswich, Massachusetts
+    ror: 04ywg3445
   pattern: ^\d+$
   preferred_prefix: rebase
   providers:
@@ -62276,6 +63706,9 @@ refseq:
     re3data: r3d100010285
     uniprot: DB-0117
   name: Reference Sequence Collection
+  owners:
+  - name: National Center for Biotechnology Information
+    ror: 02meqm098
   pattern: ^(((AC|AP|NC|NG|NM|NP|NR|NT|NW|WP|XM|XP|XR|YP|ZP)_\d+)|(NZ_[A-Z]{2,4}\d+))(\.\d+)?$
   preferred_prefix: refseq
   providers:
@@ -62363,6 +63796,9 @@ repeatsdb.protein:
   mappings:
     miriam: repeatsdb.protein
   name: RepeatsDB Protein
+  owners:
+  - name: University of Padua
+    ror: 00240q980
   pattern: ^[OPQopq][0-9][A-Za-z0-9]{3}[0-9]|[A-Na-nR-Zr-z][0-9]([A-Za-z][A-Za-z0-9]{2}[0-9]){1,2}$
   preferred_prefix: repeatsdb.protein
   provides: uniprot
@@ -62375,6 +63811,9 @@ repeatsdb.structure:
   mappings:
     miriam: repeatsdb.structure
   name: RepeatsDB Structure
+  owners:
+  - name: University of Padua
+    ror: 00240q980
   pattern: ^[0-9][A-Za-z0-9]{3}[A-Za-z0-9][A-Za-z0-9]?[0-9]?[0-9]?$
   preferred_prefix: repeatsdb.structure
   uri_format: https://repeatsdb.org/structure/$1
@@ -62484,6 +63923,9 @@ resid:
     prefixcommons: resid
     wikidata.entity: Q114677910
   name: Protein covalent bond
+  owners:
+  - name: Georgetown University Medical Center
+    ror: 00hjz7x27
   pattern: ^AA\d{4}$
   preferred_prefix: RESID
   providers:
@@ -62643,6 +64085,9 @@ rfam:
     togoid: Rfam
     wikidata: P3523
   name: RNA family database
+  owners:
+  - name: European Bioinformatics Institute
+    ror: 02catss52
   pattern: ^RF\d{5}$
   preferred_prefix: rfam
   publications:
@@ -62756,6 +64201,9 @@ rgd:
     uniprot: DB-0091
     wikidata: P3853
   name: Rat Genome Database
+  owners:
+  - name: Medical College of Wisconsin
+    ror: 00qqv6244
   pattern: ^\d{4,}$
   preferred_prefix: rgd
   providers:
@@ -62905,6 +64353,9 @@ rgd.qtl:
     miriam: rgd.qtl
     n2t: rgd.qtl
   name: Rat Genome Database qTL
+  owners:
+  - name: Medical College of Wisconsin
+    ror: 00qqv6244
   pattern: ^\d+$
   preferred_prefix: rgd.qtl
   uri_format: http://rgd.mcw.edu/rgdweb/report/qtl/main.html?id=$1
@@ -62921,6 +64372,9 @@ rgd.strain:
     miriam: rgd.strain
     n2t: rgd.strain
   name: Rat Genome Database strain
+  owners:
+  - name: Medical College of Wisconsin
+    ror: 00qqv6244
   pattern: ^\d+$
   preferred_prefix: rgd.strain
   uri_format: http://rgd.mcw.edu/rgdweb/report/strain/main.html?id=$1
@@ -62964,6 +64418,9 @@ rhea:
     togoid: Rhea
     wikidata.entity: Q24265951
   name: Rhea reaction
+  owners:
+  - name: SIB Swiss Institute of Bioinformatics
+    ror: 002n09z45
   pattern: ^\d{5}$
   preferred_prefix: rhea
   providers:
@@ -63250,6 +64707,9 @@ rism:
   mappings:
     miriam: rism
   name: RISM Online
+  owners:
+  - name: RISM Digital Center
+    ror: 01kk1vy78
   pattern: ^[a-z]+/[0-9]+$
   preferred_prefix: rism
   uri_format: https://rism.online/$1
@@ -63315,6 +64775,9 @@ rnacentral:
     togoid: Rnacentral
     wikidata: P8697
   name: RNACentral
+  owners:
+  - name: European Bioinformatics Institute
+    ror: 02catss52
   pattern: ^URS[0-9A-F]{10}(\_\d+)?$
   preferred_prefix: rnacentral
   publications:
@@ -63612,6 +65075,9 @@ ro:
     wikidata.entity: Q28729320
   name: Relation Ontology
   namespace_in_lui: true
+  owners:
+  - name: European Bioinformatics Institute
+    ror: 02catss52
   pattern: ^(HOM)?\d{7}$
   preferred_prefix: RO
   providers:
@@ -63722,6 +65188,9 @@ ror:
     wikidata.entity: Q110235640
   mastodon: ResearchOrgs@mastodon.social
   name: Research Organization Registry
+  owners:
+  - name: California Digital Library, University of California Office of the President
+    ror: 03yrm5c26
   pattern: ^0[a-hj-km-np-tv-z|0-9]{6}[0-9]{2}$
   preferred_prefix: ror
   repository: https://github.com/ror-community
@@ -63765,6 +65234,9 @@ rouge:
     prefixcommons: rouge
     uniprot: DB-0092
   name: Rodent Unidentified Gene-Encoded Large Proteins
+  owners:
+  - name: Kazusa DNA Research Institute, Chiba
+    ror: 04pnjx786
   pattern: ^m\w+$
   preferred_prefix: rouge
   providers:
@@ -63853,6 +65325,9 @@ rrid:
     n2t: rrid
   name: Research Resource Identification
   namespace_in_lui: true
+  owners:
+  - name: University of California, San Diego
+    ror: 0168r3w48
   pattern: ^[a-zA-Z]+.+$
   preferred_prefix: rrid
   publications:
@@ -64015,7 +65490,7 @@ rs:
   rdf_uri_format: http://purl.obolibrary.org/obo/RS_$1
   repository: https://github.com/rat-genome-database/RS-Rat-Strain-Ontology
   uri_format: http://purl.obolibrary.org/obo/RS_$1
-  version: '6.273'
+  version: '6.274'
 rtecs:
   contact:
     email: vep1@cdc.gov
@@ -64076,6 +65551,9 @@ runbiosimulations:
   mappings:
     miriam: runbiosimulations
   name: runBioSimulations
+  owners:
+  - name: Icahn School of Medicine at Mount Sinai
+    ror: 04a9tmd77
   pattern: ^[0-9a-z]{24,24}$
   preferred_prefix: runbiosimulations
   uri_format: https://run.biosimulations.org/simulations/$1
@@ -64222,6 +65700,9 @@ sabiork.compound:
     miriam: sabiork.compound
     n2t: sabiork.compound
   name: SABIO-RK Compound
+  owners:
+  - name: Heidelberg Institute for Theoretical Studies  (HITS gGmbH)
+    ror: 01f7bcy98
   pattern: ^\d+$
   preferred_prefix: sabiork.compound
   uri_format: http://sabiork.h-its.org/newSearch?q=$1
@@ -64245,6 +65726,9 @@ sabiork.ec:
     n2t: sabiork.ec
     prefixcommons: sabiork.ec
   name: SABIO-RK EC Record
+  owners:
+  - name: Heidelberg Institute for Theoretical Studies  (HITS gGmbH)
+    ror: 01f7bcy98
   pattern: ^((\d+)|(\d+\.\d+)|(\d+\.\d+\.\d+)|(\d+\.\d+\.\d+\.\d+))$
   preferred_prefix: sabiork.ec
   providers:
@@ -64286,6 +65770,9 @@ sabiork.kineticrecord:
     n2t: sabiork.kineticrecord
     prefixcommons: sabiork.kinetic
   name: SABIO-RK Kinetic Record
+  owners:
+  - name: Heidelberg Institute for Theoretical Studies  (HITS gGmbH)
+    ror: 01f7bcy98
   pattern: ^\d+$
   preferred_prefix: sabiork.kineticrecord
   providers:
@@ -64332,6 +65819,9 @@ sabiork.reaction:
     re3data: r3d100011052
     uniprot: DB-0177
   name: SABIO-RK Reaction
+  owners:
+  - name: Heidelberg Institute for Theoretical Studies  (HITS gGmbH)
+    ror: 01f7bcy98
   pattern: ^\d+$
   preferred_prefix: sabiork.reaction
   providers:
@@ -64938,6 +66428,9 @@ sasbdb:
     re3data: r3d100012273
     uniprot: DB-0258
   name: Small Angle Scattering Biological Data Bank
+  owners:
+  - name: European Molecular Biology Lab Hamburg Outstation
+    ror: 050589e39
   pattern: ^[Ss][Aa][Ss][A-Za-z0-9]{3}[0-9]$
   preferred_prefix: sasbdb
   publications:
@@ -64999,6 +66492,9 @@ sbo:
     wikidata.entity: Q2377160
   name: Systems Biology Ontology
   namespace_in_lui: true
+  owners:
+  - name: European Bioinformatics Institute
+    ror: 02catss52
   pattern: ^\d{7}$
   preferred_prefix: SBO
   providers:
@@ -65315,6 +66811,9 @@ scop:
     n2t: scop
     prefixcommons: scop
   name: Structural Classification of Proteins - Unique Identifier
+  owners:
+  - name: University of California, Berkeley
+    ror: 01an7q238
   pattern: ^\d+$
   preferred_prefix: scop
   providers:
@@ -65684,6 +67183,9 @@ sdbs:
     n2t: sdbs
     wikidata: P5926
   name: Spectral Database for Organic Compounds
+  owners:
+  - name: National Institute of Advanced Industrial Science and Technology (AIST)
+    ror: 01703db54
   pattern: ^\d+$
   preferred_prefix: sdbs
   uri_format: https://sdbs.db.aist.go.jp/CompoundView.aspx?sdbsno=$1
@@ -65797,6 +67299,9 @@ sdy:
   mappings:
     miriam: sdy
   name: Immunology Database and Analysis Portal (ImmPort)
+  owners:
+  - name: AccessClinicalData@NIAID
+    ror: 043z4tv69
   pattern: ^[sS][dD][yY]\d+$
   preferred_prefix: sdy
   uri_format: https://immport.org/shared/study/$1
@@ -65837,6 +67342,9 @@ seed.compound:
     miriam: seed.compound
     n2t: seed.compound
   name: SEED Compound
+  owners:
+  - name: Argonne National Laboratory
+    ror: 05gvnxz63
   pattern: ^cpd\d+$
   preferred_prefix: seed.compound
   repository: https://github.com/TheSEED
@@ -65854,6 +67362,9 @@ seed.reaction:
     miriam: seed.reaction
     n2t: seed.reaction
   name: SEED Reactions
+  owners:
+  - name: Argonne National Laboratory
+    ror: 05gvnxz63
   pattern: ^rxn\d+$
   preferred_prefix: seed.reaction
   uri_format: http://modelseed.org/biochem/reactions/$1
@@ -66224,6 +67735,9 @@ sgd:
     uniprot: DB-0095
     wikidata: P3406
   name: Saccharomyces Genome Database
+  owners:
+  - name: Stanford University
+    ror: 00f54p054
   pattern: ^((S\d+$)|(Y[A-Z]{2}\d{3}[a-zA-Z](\-[A-Z])?))$
   preferred_prefix: sgd
   providers:
@@ -67144,6 +68658,9 @@ signaling-gateway:
     pathguide: '87'
     prefixcommons: signaling-gateway
   name: Signaling Gateway
+  owners:
+  - name: University of California, San Diego
+    ror: 0168r3w48
   pattern: ^A\d{6}$
   preferred_prefix: signaling-gateway
   providers:
@@ -67194,6 +68711,9 @@ signor:
     prefixcommons: signor
     uniprot: DB-0206
   name: Signaling Network Open Resource
+  owners:
+  - name: University of Rome Tor Vergata
+    ror: 02p77k626
   pattern: ^SIGNOR\-[A-Z]+\d+$
   preferred_prefix: signor
   providers:
@@ -67327,6 +68847,9 @@ sio:
     tib: sio
     togoid: Sio
   name: Semanticscience Integrated Ontology
+  owners:
+  - name: European Bioinformatics Institute
+    ror: 02catss52
   pattern: ^\d{6}$
   preferred_prefix: SIO
   publications:
@@ -67546,6 +69069,9 @@ sitex:
     n2t: sitex
     prefixcommons: sitex
   name: SitEx
+  owners:
+  - name: Novosibirsk State University, Novosibirsk
+    ror: 04t2ss102
   pattern: ^\d+$
   preferred_prefix: sitex
   providers:
@@ -67593,6 +69119,9 @@ skm:
   mappings:
     miriam: skm
   name: Stress Knowledge Map
+  owners:
+  - name: National Institute of Biology
+    ror: 03s5t0r17
   pattern: ^rx[0-9]{5}$
   preferred_prefix: skm
   uri_format: https://skm.nib.si/api/pss/reactions?reaction_id=$1&return_field=summary
@@ -67745,6 +69274,9 @@ slm:
     wikidata: P8691
   name: SwissLipid
   namespace_in_lui: true
+  owners:
+  - name: SIB Swiss Institute of Bioinformatics
+    ror: 002n09z45
   pattern: ^\d+$
   preferred_prefix: SLM
   publications:
@@ -67817,6 +69349,9 @@ smart:
     uniprot: DB-0097
     wikidata: P3524
   name: Simple Modular Architecture Research Tool
+  owners:
+  - name: EMBL, Heidelberg
+    ror: 03mstc592
   pattern: ^SM\d{5}$
   preferred_prefix: smart
   providers:
@@ -68122,6 +69657,9 @@ smpdb:
     pathguide: '311'
     prefixcommons: smpdb
   name: Small Molecule Pathway Database
+  owners:
+  - name: University of Alberta
+    ror: 0160cpw27
   pattern: ^SMP\d+$
   preferred_prefix: smpdb
   providers:
@@ -68374,6 +69912,9 @@ snp2tfbs:
   mappings:
     miriam: snp2tfbs
   name: SNP to Transcription Factor Binding Sites
+  owners:
+  - name: SIB Swiss Institute of Bioinformatics
+    ror: 002n09z45
   pattern: ^rs[0-9]+$
   preferred_prefix: snp2tfbs
   provides: dbsnp
@@ -68660,6 +70201,9 @@ sparcdrs:
   mappings:
     miriam: sparc.drs
   name: SPARC DRS
+  owners:
+  - name: University of California, San Diego
+    ror: 0168r3w48
   pattern: ^(?:[a-zA-Z]+\/)?[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$
   preferred_prefix: sparcdrs
   uri_format: https://services.scicrunch.io/sparc/drs/v1/package/$1
@@ -68935,6 +70479,9 @@ splash:
     miriam: splash
     n2t: splash
   name: Spectra Hash Code
+  owners:
+  - name: University of California, Davis, California
+    ror: 05rrcem69
   pattern: ^splash\d[A-Z-a-z0-9]-[A-Za-z0-9]+-[A-Za-z0-9]+$
   preferred_prefix: splash
   publications:
@@ -68988,6 +70535,9 @@ spp:
     miriam: spp
     re3data: r3d100013650
   name: Signaling Pathways Project
+  owners:
+  - name: Baylor College of Medicine
+    ror: 02pttbw34
   pattern: ^10.\w{4}/\w{10}$
   preferred_prefix: spp
   publications:
@@ -69373,6 +70923,9 @@ stato:
     wikidata.entity: Q83428681
   name: The Statistical Methods Ontology
   namespace_in_lui: true
+  owners:
+  - name: European Bioinformatics Institute
+    ror: 02catss52
   pattern: ^\d{7}$
   preferred_prefix: STATO
   publications:
@@ -69383,7 +70936,7 @@ stato:
   rdf_uri_format: http://purl.obolibrary.org/obo/STATO_$1
   repository: https://github.com/ISA-tools/stato
   uri_format: http://purl.obolibrary.org/obo/STATO_$1
-  version: '2025-02-23'
+  version: '2026-04-20'
 stitch:
   contact:
     email: bork@embl.de
@@ -69406,6 +70959,9 @@ stitch:
     prefixcommons: stitch
     re3data: r3d100012165
   name: Search Tool for Interactions of Chemicals
+  owners:
+  - name: EMBL, Heidelberg
+    ror: 03mstc592
   pattern: ^\w{14}$
   preferred_prefix: stitch
   providers:
@@ -69635,6 +71191,9 @@ string:
     re3data: r3d100010604
     uniprot: DB-0141
   name: Search Tool for Retrieval of Interacting Genes/Proteins
+  owners:
+  - name: EMBL, Heidelberg
+    ror: 03mstc592
   pattern: ^([A-N,R-Z][0-9][A-Z][A-Z, 0-9][A-Z, 0-9][0-9])|([O,P,Q][0-9][A-Z, 0-9][A-Z,
     0-9][A-Z, 0-9][0-9])|([0-9][A-Za-z0-9]{3})$
   preferred_prefix: string
@@ -69785,6 +71344,9 @@ subtilist:
     ncbi: SubtiList
     prefixcommons: subtilist
   name: SubtiList
+  owners:
+  - name: Pasteur Institute, Paris
+    ror: 0495fxg12
   pattern: ^BG\d+$
   preferred_prefix: subtilist
   providers:
@@ -69989,6 +71551,9 @@ supfam:
     prefixcommons: superfamily
     uniprot: DB-0155
   name: SUPERFAMILY
+  owners:
+  - name: MRC Laboratory of Molecular Biology, Cambridge
+    ror: 00tw3jy02
   pattern: ^\w+$
   preferred_prefix: supfam
   providers:
@@ -70200,7 +71765,7 @@ sweet:
   - geology
   - nfdi4ing
   - ontology
-  license: CC_MARK
+  license: CC0-1.0
   mappings:
     aberowl: SWEET
     bartoc: '20510'
@@ -75247,6 +76812,9 @@ swh:
     n2t: swh
   name: Software Heritage
   namespace_in_lui: true
+  owners:
+  - name: INRIA
+    ror: 02kvxyf05
   pattern: ^[1-9]:(cnt|dir|rel|rev|snp):[0-9a-f]+(;(origin|visit|anchor|path|lines)=\S+)*$
   preferred_prefix: swh
   uri_format: https://archive.softwareheritage.org/browse/swh:$1
@@ -75319,6 +76887,9 @@ swissregulon:
     miriam: swissregulon
     n2t: swissregulon
   name: SwissRegulon
+  owners:
+  - name: SIB Swiss Institute of Bioinformatics
+    ror: 002n09z45
   pattern: ^[A-Za-z0-9]+$
   preferred_prefix: swissregulon
   publications:
@@ -75713,6 +77284,9 @@ t3db:
     prefixcommons: t3db
     re3data: r3d100012189
   name: Toxin and Toxin Target Database
+  owners:
+  - name: University of Alberta
+    ror: 0160cpw27
   pattern: ^T3D\d+$
   preferred_prefix: t3db
   providers:
@@ -75957,6 +77531,9 @@ tair.locus:
     ncbi: TAIR
     prefixcommons: tair.locus
   name: TAIR Locus
+  owners:
+  - name: Phoenix Bioinformatics
+    ror: 0018yg518
   pattern: ^\d+$
   preferred_prefix: tair.locus
   providers:
@@ -76321,6 +77898,40 @@ tcdb:
   synonyms:
   - TC
   uri_format: http://www.tcdb.org/search/result.php?tc=$1
+tcia.collection:
+  contributor:
+    email: robert.allaway@sagebionetworks.org
+    github: allaway
+    name: Robert Allaway
+    orcid: 0000-0003-3573-3565
+  description: The Cancer Imaging Archive (TCIA) is a publicly accessible service
+    that de-identifies and hosts a large archive of medical images of cancer, organized
+    into collections typically grouped by disease type, imaging modality, or research
+    focus. Supporting data such as patient outcomes, treatment details, genomics,
+    and expert image analyses are provided alongside the images when available.
+  example: vestibular-schwannoma-seg
+  github_request_issue: 1914
+  homepage: https://www.cancerimagingarchive.net/browse-collections/
+  keywords:
+  - cancer
+  - project
+  license: CC-BY-4.0
+  name: The Cancer Imaging Archive
+  pattern: ^[A-Za-z0-9][A-Za-z0-9_\-\.]*[A-Za-z0-9]$
+  preferred_prefix: tcia.collection
+  publications:
+  - doi: 10.1007/s10278-013-9622-7
+    pmc: PMC3824915
+    pubmed: '23884657'
+    title: 'The Cancer Imaging Archive (TCIA): Maintaining and Operating a Public
+      Information Repository'
+    year: 2013
+  reviewer:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  uri_format: https://www.cancerimagingarchive.net/collection/$1
 tctr:
   contributor:
     email: cthoyt@gmail.com
@@ -76490,6 +78101,30 @@ tgd:
   pattern: ^TTHERM\_\d+$
   preferred_prefix: tgd
   uri_format: http://ciliate.org/index.php/feature/details/$1
+tgemo:
+  contact:
+    github: ppavlidis
+    name: Paul Pavlidis
+    orcid: 0000-0002-0426-5028
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: Terms for genes, experimental factors, and cell lines used by the [Gemma
+    platform](https://gemma.msl.ubc.ca/home.html) for differential gene expression
+    analysis.
+  download_owl: https://github.com/PavlidisLab/TGEMO/raw/refs/heads/master/TGEMO.OWL
+  example: '00166'
+  homepage: http://gemma.msl.ubc.ca/ont/TGEMO
+  keywords:
+  - ontology
+  license: CC-BY-NC-4.0
+  name: Temporal Gemma Ontology
+  pattern: ^\d+$
+  preferred_prefix: tgemo
+  repository: https://github.com/PavlidisLab/TGEMO
+  uri_format: http://gemma.msl.ubc.ca/ont/TGEMO_$1
 tgma:
   contact:
     email: topalis@imbb.forth.gr
@@ -77415,6 +79050,9 @@ tol:
     wikidata: P5221
     wikidata.entity: Q2300489
   name: Tree of Life Web Project
+  owners:
+  - name: University of Arizona
+    ror: 03m2x1q45
   pattern: ^\d+$
   preferred_prefix: tol
   synonyms:
@@ -77438,6 +79076,9 @@ topdb:
     n2t: topdb
     prefixcommons: topdb
   name: Topology Data Bank of Transmembrane Proteins
+  owners:
+  - name: Institute of Enzymology, Hungarian Academy of Sciences, Budapest
+    ror: 04t4pws42
   pattern: ^[A-Z0-9]+$
   preferred_prefix: topdb
   providers:
@@ -77720,6 +79361,9 @@ treefam:
     n2t: treefam
     prefixcommons: treefam
   name: TreeFam
+  owners:
+  - name: Beijing Genomics Institute
+    ror: 045pn2j94
   pattern: ^\w{1,2}\d+$
   preferred_prefix: treefam
   providers:
@@ -77872,6 +79516,9 @@ tritrypdb:
     n2t: tritrypdb
     re3data: r3d100011479
   name: TriTrypDB
+  owners:
+  - name: Wellcome Trust Sanger Institute
+    ror: 05cy4wa09
   pattern: ^\w+(\.)?\w+(\.)?\w+$
   preferred_prefix: tritrypdb
   publications:
@@ -78229,6 +79876,9 @@ uberon:
     wikidata.entity: Q7876491
   name: Uber Anatomy Ontology
   namespace_in_lui: true
+  owners:
+  - name: European Bioinformatics Institute
+    ror: 02catss52
   pattern: ^\d+$
   preferred_prefix: UBERON
   providers:
@@ -78284,6 +79934,9 @@ ubio.namebank:
     miriam: ubio.namebank
     n2t: ubio.namebank
   name: uBio NameBank
+  owners:
+  - name: Marine Biological Laboratory, Woods Hole, Massachusetts
+    ror: 046dg4z72
   pattern: ^\d+$
   preferred_prefix: ubio.namebank
   uri_format: http://www.ubio.org/browser/details.php?namebankID=$1
@@ -78448,6 +80101,37 @@ udsaes.sms:
   preferred_prefix: udsaes.sms
   repository: https://github.com/UdSAES/sms-ontology
   uri_format: https://purl.org/sms-ontology#$1
+ukbiobank.category:
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: A category for fields appearing in the data of the UK BioBank
+  example: '100034'
+  homepage: https://biobank.ndph.ox.ac.uk
+  name: UK BioBank Category
+  pattern: ^\d+$
+  preferred_prefix: ukbiobank.category
+  uri_format: https://biobank.ndph.ox.ac.uk/showcase/label.cgi?id=$1
+ukbiobank.field:
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: A field appearing in the data of the UK BioBank, like 'time spent outdoors
+    in the summer'
+  example: '1050'
+  homepage: https://biobank.ndph.ox.ac.uk
+  name: UK BioBank Data Field
+  pattern: ^\d+$
+  preferred_prefix: ukbiobank.field
+  providers:
+  - code: ctsu
+    name: Alternate address at CTSU
+    uri_format: https://biobank.ctsu.ox.ac.uk/crystal/field.cgi?id=$1
+  uri_format: https://biobank.ndph.ox.ac.uk/crystal/field.cgi?id=$1
 ukprn:
   comment: Added because of appearance in ROR
   contributor:
@@ -78481,6 +80165,9 @@ umbbd.compound:
     n2t: umbbd.compound
     wikidata: P8121
   name: UM-BBD compound
+  owners:
+  - name: ETH Zurich
+    ror: 05a28rw58
   pattern: ^c\d+$
   preferred_prefix: umbbd.compound
   synonyms:
@@ -78500,6 +80187,9 @@ umbbd.enzyme:
     miriam: umbbd.enzyme
     n2t: umbbd.enzyme
   name: EAWAG Biocatalysis/Biodegradation Database enzyme
+  owners:
+  - name: ETH Zurich
+    ror: 05a28rw58
   pattern: ^e\d+$
   preferred_prefix: umbbd.enzyme
   synonyms:
@@ -78519,6 +80209,9 @@ umbbd.pathway:
     miriam: umbbd.pathway
     n2t: umbbd.pathway
   name: EAWAG Biocatalysis/Biodegradation Database pathway
+  owners:
+  - name: ETH Zurich
+    ror: 05a28rw58
   pattern: ^\w+$
   preferred_prefix: umbbd.pathway
   providers:
@@ -78545,6 +80238,9 @@ umbbd.reaction:
     n2t: umbbd.reaction
     wikidata.entity: Q24188985
   name: EAWAG Biocatalysis/Biodegradation Database reaction
+  owners:
+  - name: ETH Zurich
+    ror: 05a28rw58
   pattern: ^r\d+$
   preferred_prefix: umbbd.reaction
   synonyms:
@@ -78567,6 +80263,9 @@ umbbd.rule:
     miriam: umbbd.rule
     n2t: umbbd.rule
   name: EAWAG Biocatalysis/Biodegradation Database rule
+  owners:
+  - name: ETH Zurich
+    ror: 05a28rw58
   pattern: ^bt\d+$
   preferred_prefix: umbbd.rule
   synonyms:
@@ -78749,6 +80448,9 @@ unigene:
     prefixcommons: unigene
     re3data: r3d100010774
   name: UniGene
+  owners:
+  - name: National Center for Biotechnology Information
+    ror: 02meqm098
   pattern: ^\d+$
   preferred_prefix: unigene
   providers:
@@ -78785,6 +80487,9 @@ unii:
     n2t: unii
     wikidata: P652
   name: Unique Ingredient Identifier
+  owners:
+  - name: United States Food and Drug Administration
+    ror: 034xvzb47
   pattern: ^[A-Z0-9]+$
   preferred_prefix: unii
   uri_format: https://precision.fda.gov/uniisearch/srs/unii/$1
@@ -79508,6 +81213,9 @@ uniprot.tissue:
     miriam: tissuelist
     n2t: tissuelist
   name: Tissue List
+  owners:
+  - name: SIB Swiss Institute of Bioinformatics
+    ror: 002n09z45
   pattern: ^TS-\d{4}$
   preferred_prefix: uniprot.tissue
   uri_format: https://www.uniprot.org/tissues/$1
@@ -79621,6 +81329,9 @@ unists:
     ncbi: UniSTS
     prefixcommons: unists
   name: UniSTS
+  owners:
+  - name: National Center for Biotechnology Information
+    ror: 02meqm098
   pattern: ^\d+$
   preferred_prefix: unists
   providers:
@@ -79762,6 +81473,9 @@ uo:
     wikidata.entity: Q81661826
   name: Units of measurement ontology
   namespace_in_lui: true
+  owners:
+  - name: European Bioinformatics Institute
+    ror: 02catss52
   pattern: ^\d{7}$
   preferred_prefix: UO
   providers:
@@ -79988,6 +81702,9 @@ uspto:
     miriam: uspto
     n2t: uspto
   name: United States Patent and Trademark Office
+  owners:
+  - name: United States Patent and Trademark Office
+    ror: 0114yjq47
   pattern: ^(\d{1,2},?\d{3},?\d{3}|(PP|RE|AI|RX)\d{2},?\d{3}|(D|T|H|X)\d{3},?\d{3})$
   preferred_prefix: uspto
   references:
@@ -80011,6 +81728,9 @@ utrdb:
     integbio: nbdc00730
     miriam: utrdb
   name: UTRdb
+  owners:
+  - name: University of Bari Aldo Moro
+    ror: 027ynra39
   pattern: ^([3-5][A-Z])\w+[^A-Z][0-9]$
   preferred_prefix: utrdb
   publications:
@@ -80059,6 +81779,9 @@ validatordb:
     miriam: validatordb
     n2t: validatordb
   name: ValidatorDB
+  owners:
+  - name: Central European Institute of Technology
+    ror: 01p7k1986
   pattern: ^[A-Za-z0-9\/]+$
   preferred_prefix: validatordb
   provides: pdb
@@ -80280,7 +82003,7 @@ vbo:
   rdf_uri_format: http://purl.obolibrary.org/obo/VBO_$1
   repository: https://github.com/monarch-initiative/vertebrate-breed-ontology
   uri_format: http://purl.obolibrary.org/obo/VBO_$1
-  version: '2025-11-07'
+  version: '2026-04-15'
 vbo.issue:
   contributor:
     email: cthoyt@gmail.com
@@ -80361,6 +82084,9 @@ vcell:
   mappings:
     miriam: vcell
   name: VCell Published Models
+  owners:
+  - name: University of Connecticut Health Center
+    ror: 02kzs4y22
   pattern: ^\d{5,}$
   preferred_prefix: vcell
   uri_format: https://vcell.org/biomodel-$1
@@ -80416,6 +82142,9 @@ vectorbase:
     prefixcommons: vectorbase
     re3data: r3d100010880
   name: VectorBase
+  owners:
+  - name: European Bioinformatics Institute
+    ror: 02catss52
   pattern: ^\D{4}\d{6}(\-\D{2})?$
   preferred_prefix: vectorbase
   providers:
@@ -80508,6 +82237,9 @@ vegbank:
     miriam: vegbank
     re3data: r3d100010153
   name: VegBank
+  owners:
+  - name: National Center for Ecological Analysis and Synthesis
+    ror: 0146z4r19
   pattern: ^VB\.[A-Za-z][A-Za-z]\..*$
   preferred_prefix: vegbank
   uri_format: http://vegbank.org/cite/$1
@@ -80544,6 +82276,9 @@ vfb:
     n2t: vfb
     re3data: r3d100011373
   name: Virtual Fly Brain
+  owners:
+  - name: The University of Cambridge
+    ror: 013meh722
   pattern: ^[0-9a-zA-Z]{8}$
   preferred_prefix: vfb
   publications:
@@ -80614,6 +82349,9 @@ vgnc:
     togoid: Vgnc
     uniprot: DB-0226
   name: Vertebrate Gene Nomenclature Committee Database
+  owners:
+  - name: European Bioinformatics Institute
+    ror: 02catss52
   pattern: ^\d{1,9}$
   preferred_prefix: vgnc
   publications:
@@ -80702,6 +82440,9 @@ viaf:
     wikidata: P214
     wikidata.entity: Q19832964
   name: Virtual International Authority File
+  owners:
+  - name: OCLC Online Computer Library Center, Inc. Ohio
+    ror: 02nv42w72
   pattern: ^\d+$
   preferred_prefix: viaf
   providers:
@@ -80874,6 +82615,9 @@ vipr:
     ncbi: ViPR
     re3data: r3d100011931
   name: ViPR Strain
+  owners:
+  - name: J. Craig Venter Institute, Maryland
+    ror: 049r1ts75
   pattern: ^[A-Za-z 0-9]+$
   preferred_prefix: vipr
   publications:
@@ -80924,6 +82668,9 @@ viralzone:
     re3data: r3d100013314
     wikidata.entity: Q15674507
   name: ViralZone
+  owners:
+  - name: SIB Swiss Institute of Bioinformatics
+    ror: 002n09z45
   pattern: ^\d+$
   preferred_prefix: viralzone
   providers:
@@ -81042,6 +82789,10 @@ virsirna:
     miriam: virsirna
     n2t: virsirna
   name: VIRsiRNA
+  owners:
+  - name: Institute of Microbial Technology, Council of Scientific and Industrial
+      Research (CSIR),  Chandigarh
+    ror: 055rjs771
   pattern: ^virsi\d+$
   preferred_prefix: virsirna
   uri_format: http://crdd.osdd.net/servers/virsirnadb/record.php?details=$1
@@ -81192,6 +82943,9 @@ vmh.gene:
   mappings:
     miriam: vmhgene
   name: VMH Gene
+  owners:
+  - name: National University of Ireland, Galway
+    ror: 03bea9k73
   pattern: ^[0-9]+\.[0-9]+$
   preferred_prefix: vmh.gene
   uri_format: https://www.vmh.life/#gene/$1
@@ -81205,6 +82959,9 @@ vmh.metabolite:
     miriam: vmhmetabolite
     n2t: vmhmetabolite
   name: VMH metabolite
+  owners:
+  - name: National University of Ireland, Galway
+    ror: 03bea9k73
   pattern: ^[a-zA-Z0-9_\(\_\)\[\]]+$
   preferred_prefix: vmh.metabolite
   uri_format: https://www.vmh.life/#metabolite/$1
@@ -81218,6 +82975,9 @@ vmh.reaction:
     miriam: vmhreaction
     n2t: vmhreaction
   name: VMH reaction
+  owners:
+  - name: National University of Ireland, Galway
+    ror: 03bea9k73
   pattern: ^[a-zA-Z0-9_\(\_\)\[\]]+$
   preferred_prefix: vmh.reaction
   uri_format: https://www.vmh.life/#reaction/$1
@@ -81669,7 +83429,7 @@ vt:
   rdf_uri_format: http://purl.obolibrary.org/obo/VT_$1
   repository: https://github.com/AnimalGenome/vertebrate-trait-ontology
   uri_format: http://purl.obolibrary.org/obo/VT_$1
-  version: '2026-04-01'
+  version: '2026-04-22'
 vto:
   contact:
     email: balhoff@renci.org
@@ -81741,6 +83501,9 @@ wb.rnai:
     miriam: wb.rnai
     n2t: wb.rnai
   name: WormBase RNAi
+  owners:
+  - name: European Bioinformatics Institute
+    ror: 02catss52
   pattern: ^WBRNAi\d{8}$
   preferred_prefix: wb.rnai
   uri_format: https://www.wormbase.org/species/c_elegans/rnai/$1
@@ -81857,7 +83620,7 @@ wbls:
   synonyms:
   - WBls
   uri_format: http://purl.obolibrary.org/obo/WBls_$1
-  version: '2025-08-12'
+  version: '2026-04-16'
 wbphenotype:
   contact:
     email: cgrove@caltech.edu
@@ -81915,7 +83678,7 @@ wbphenotype:
   synonyms:
   - WBPhenotype
   uri_format: http://purl.obolibrary.org/obo/WBPhenotype_$1
-  version: '2025-08-12'
+  version: '2026-04-15'
 wdr:
   contributor:
     email: cthoyt@gmail.com
@@ -82080,6 +83843,9 @@ wikidata:
     n2t: wikidata
     wikidata.entity: Q2013
   name: Wikidata
+  owners:
+  - name: Wikimedia Foundation, San Francisco, California
+    ror: 032q98j12
   pattern: ^(Q|P|E|L)\d+$
   preferred_prefix: wikidata
   providers:
@@ -82222,6 +83988,9 @@ wikipathways:
     wikidata.entity: Q7999828
   mastodon: wikipathways@fosstodon.org
   name: WikiPathways
+  owners:
+  - name: Maastricht University
+    ror: 02jz4aj89
   pattern: ^WP\d{1,5}(\_r\d+)?$
   preferred_prefix: wikipathways
   providers:
@@ -82352,6 +84121,9 @@ wikipedia.en:
     n2t: wikipedia.en
     prefixcommons: wikipedia
   name: Wikipedia
+  owners:
+  - name: Wikimedia Foundation, San Francisco, California
+    ror: 032q98j12
   pattern: ^\S+$
   preferred_prefix: wikipedia.en
   providers:
@@ -82447,6 +84219,9 @@ worfdb:
     ncbi: WorfDB
     prefixcommons: worfdb
   name: Worfdb
+  owners:
+  - name: Center for Cancer Systems Biology, Harvard Medical School, Massachusetts
+    ror: 05r3dyn47
   pattern: ^\w+(\.\d+)?$
   preferred_prefix: worfdb
   providers:
@@ -82637,6 +84412,9 @@ wormbase:
     uniprot: DB-0110
     wikidata: P3860
   name: WormBase
+  owners:
+  - name: European Bioinformatics Institute
+    ror: 02catss52
   pattern: ^(CE[0-9]{5}|WB[A-Z][a-z]+\d+)$
   preferred_prefix: WormBase
   providers:
@@ -82758,6 +84536,9 @@ wormpep:
     n2t: wormpep
     prefixcommons: wormpep
   name: Wormpep
+  owners:
+  - name: Cold Spring Harbor Laboratory
+    ror: 02qz8b764
   pattern: ^CE\d{5}$
   preferred_prefix: wormpep
   providers:
@@ -82792,6 +84573,9 @@ worms:
     wikidata: P850
     wikidata.entity: Q604063
   name: World Register of Marine Species
+  owners:
+  - name: Flanders Marine Institute, Ostend
+    ror: 0496vr396
   pattern: ^\d+$
   preferred_prefix: worms
   publications:
@@ -83062,7 +84846,7 @@ xco:
   rdf_uri_format: http://purl.obolibrary.org/obo/XCO_$1
   repository: https://github.com/rat-genome-database/XCO-experimental-condition-ontology
   uri_format: http://purl.obolibrary.org/obo/XCO_$1
-  version: '4.232'
+  version: '4.233'
 xenbase:
   contact:
     email: troy_pells@yahoo.ca
@@ -83092,6 +84876,9 @@ xenbase:
     re3data: r3d100011331
     uniprot: DB-0129
   name: Xenbase
+  owners:
+  - name: University of Calgary
+    ror: 03yjb2x39
   pattern: ^XB\-\w+\-\d+$
   preferred_prefix: xenbase
   providers:
@@ -83392,6 +85179,9 @@ ydpm:
     n2t: ydpm
     prefixcommons: ydpm
   name: Yeast Deletion and the Mitochondrial Proteomics Project
+  owners:
+  - name: Stanford University School of Medicine, Stanford, California
+    ror: 03mtd9a03
   pattern: ^Y[A-Z]{2}\d+[CW]$
   preferred_prefix: ydpm
   providers:
@@ -83419,6 +85209,9 @@ yeastintron:
     miriam: yeastintron
     n2t: yeastintron
   name: Yeast Intron Database v4.3
+  owners:
+  - name: University of California, Santa Cruz
+    ror: 03s65by71
   pattern: ^[A-Z0-9]+$
   preferred_prefix: yeastintron
   uri_format: http://intron.ucsc.edu/cgi-bin/yeast4.3/intronreports.pl?outputformat=full&amp;orfName=$1
@@ -83543,6 +85336,9 @@ yid:
     miriam: yid
     n2t: yid
   name: Yeast Intron Database v3
+  owners:
+  - name: University of California, Santa Cruz
+    ror: 03s65by71
   pattern: ^[A-Z0-9]+$
   preferred_prefix: yid
   uri_format: http://metarray.ucsc.edu/cgi-bin/intron/yirIntrondb?orfName=$1
@@ -83827,6 +85623,7 @@ zfa:
     biocontext: ZFA
     bioportal: ZFA
     fairsharing: FAIRsharing.s3r6sk
+    go: ZFA
     obofoundry: zfa
     ols: zfa
     ontobee: ZFA
