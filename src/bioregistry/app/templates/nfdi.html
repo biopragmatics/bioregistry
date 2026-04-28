@@ -59,6 +59,8 @@
     {%- for reference in collection.references %}
     {%- if reference.startswith("https://go.rocket.chat") %}
     <li><a href="{{ reference }}">🚀 Join RocketChat Discussion</a></li>
+    {%- elif reference.startswith("https://discord.com") %}
+    <li><a href="{{ reference }}"><i class="bi bi-discord"></i> Join Discord Discussion</a></li>
     {%- endif %}
     {%- endfor %}
     {%- endif %}
@@ -92,14 +94,6 @@
                 {%- for collection in collections.values() %}
                 {%- if collection.maintainers and (collection.resources|length == 1) %}
                 <li>{{ render_nfdi_collection(collection, show_length=False) }}</li>
-                {%- endif %}
-                {%- endfor %}
-            </ol>
-            <p>Consortia whose collections don't yet have a maintainer but have been ported:</p>
-            <ol>
-                {%- for collection in collections.values() %}
-                {%- if not collection.maintainers and (collection.resources|length > 1) %}
-                <li>{{ render_nfdi_collection(collection, show_length=True) }}</li>
                 {%- endif %}
                 {%- endfor %}
             </ol>
