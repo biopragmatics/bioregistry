@@ -59,6 +59,8 @@
     {%- for reference in collection.references %}
     {%- if reference.startswith("https://go.rocket.chat") %}
     <li><a href="{{ reference }}">🚀 Join RocketChat Discussion</a></li>
+    {%- elif reference.startswith("https://discord.com") %}
+    <li><a href="{{ reference }}"><i class="bi bi-discord"></i> Join Discord Discussion</a></li>
     {%- endif %}
     {%- endfor %}
     {%- endif %}
