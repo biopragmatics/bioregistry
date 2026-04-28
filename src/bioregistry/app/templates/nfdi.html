@@ -97,14 +97,6 @@
                 {%- endif %}
                 {%- endfor %}
             </ol>
-            <p>Consortia whose collections don't yet have a maintainer and haven't been ported:</p>
-            <ol class="mb-0">
-                {%- for collection in collections.values() %}
-                {%- if not collection.maintainers and (collection.resources|length == 1) %}
-                <li>{{ render_nfdi_collection(collection, show_length=False) }}</li>
-                {%- endif %}
-                {%- endfor %}
-            </ol>
         </div>
     </div>
 </div>
