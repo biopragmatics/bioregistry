@@ -6,6 +6,7 @@ This folder contains various task-specific curation guides.
 - [Curating new publications and references](curation/publications)
 - [Semi-automated curation workflow for new prefixes, providers, and publications](curation/literature)
 - [Mapping to External Registries](curation/mappings)
+- [Curating organizations](curation/organizations)
 
 ## How to add new guides
 

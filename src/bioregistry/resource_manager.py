@@ -399,11 +399,15 @@ class Manager:
         """
         norm_prefix = self.normalize_prefix(prefix)
         if norm_prefix is None:
+            if strict:
+                raise ValueError(f'prefix "{prefix}" could not be normalized')
             return None
         rv = self.registry.get(norm_prefix)
-        if rv is None and strict:
+        if rv is not None:
+            return rv
+        if strict:
             raise ValueError(f"could not a resource for {prefix}")
-        return rv
+        return None
 
     # docstr-coverage:excused `overload`
     @overload
@@ -855,13 +859,13 @@ class Manager:
     # docstr-coverage:excused `overload`
     @overload
     def get_uri_prefix(
-        self, prefix: str, *, priority: Sequence[str] | None = None, strict: Literal[True] = ...
+        self, prefix: str, *, priority: Sequence[str] | None = ..., strict: Literal[True] = ...
     ) -> str: ...
 
     # docstr-coverage:excused `overload`
     @overload
     def get_uri_prefix(
-        self, prefix: str, *, priority: Sequence[str] | None = None, strict: Literal[False] = ...
+        self, prefix: str, *, priority: Sequence[str] | None = ..., strict: Literal[False] = ...
     ) -> str | None: ...
 
     def get_uri_prefix(
@@ -903,25 +907,25 @@ class Manager:
     # docstr-coverage:excused `overload`
     @overload
     def get_name(
-        self, prefix: str, *, provenance: Literal[False] = False, strict: Literal[True] = True
+        self, prefix: str, *, provenance: Literal[False] = False, strict: Literal[True] = ...
     ) -> str: ...
 
     # docstr-coverage:excused `overload`
     @overload
     def get_name(
-        self, prefix: str, *, provenance: Literal[True] = True, strict: Literal[True] = True
+        self, prefix: str, *, provenance: Literal[True] = True, strict: Literal[True] = ...
     ) -> MetaresourceAnnotatedValue[str]: ...
 
     # docstr-coverage:excused `overload`
     @overload
     def get_name(
-        self, prefix: str, *, provenance: Literal[False] = False, strict: Literal[False] = False
+        self, prefix: str, *, provenance: Literal[False] = False, strict: Literal[False] = ...
     ) -> str | None: ...
 
     # docstr-coverage:excused `overload`
     @overload
     def get_name(
-        self, prefix: str, *, provenance: Literal[True] = True, strict: Literal[False] = False
+        self, prefix: str, *, provenance: Literal[True] = True, strict: Literal[False] = ...
     ) -> MetaresourceAnnotatedValue[str] | None: ...
 
     def get_name(
@@ -1305,7 +1309,7 @@ class Manager:
             contributor=resource.contributor,
             contributor_extras=resource.contributor_extras,
             reviewer=resource.reviewer,
-            owners=resource.owners,
+            owners=resource.get_owners() or None,
             mastodon=resource.get_mastodon(),
             github_request_issue=resource.github_request_issue,
             # Ontology Relations
@@ -2246,7 +2250,7 @@ class Manager:
         calls: dict[str, bool] = {}
         for prefix in collection.get_prefixes():
             resource = self.get_resource(prefix, strict=True)
-            owners = resource.owners or []
+            owners = resource.get_owners()
             if skip_org_rors is not None:
                 owners = [o for o in owners if o.ror not in skip_org_rors]
             if any(

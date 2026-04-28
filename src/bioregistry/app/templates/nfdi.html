@@ -16,11 +16,11 @@
         {%- endif %}
         The data can be synced by running <code>python -m bioregistry.curation.nfdi.sync</code>.
     </div>
-    <table class="table table-striped">
+    <table class="table table-striped mb-0">
         <thead>
         <tr>
             <th>Collection</th>
-            <th>Name</th>
+            <th>Consortium</th>
             <th>{{ title }} Collection</th>
         </tr>
         </thead>
@@ -32,7 +32,7 @@
                     {{ collection_id }}
                 </a>
             </td>
-            <td>{{ collections[collection_id].name }}</td>
+            <td>{{ collections[collection_id].name.removesuffix(" Collection") }}</td>
             <td>
                 <a href="{{ url_for('metaregistry_ui.resolve', prefix=external_prefix, identifier=external_id) }}">
                     {{ external_id }}
@@ -104,7 +104,7 @@
                 {%- endfor %}
             </ol>
             <p>Consortia whose collections don't yet have a maintainer and haven't been ported:</p>
-            <ol>
+            <ol class="mb-0">
                 {%- for collection in collections.values() %}
                 {%- if not collection.maintainers and (collection.resources|length == 1) %}
                 <li>{{ render_nfdi_collection(collection, show_length=False) }}</li>
@@ -122,11 +122,11 @@
     <table class="table table-striped">
         <thead>
         <tr>
-            <th>Prefix</th>
-            <th>Name</th>
-            <th>Ontologies Missing License</th>
-            <th>Ontologies Missing Domain</th>
-            <th>Ontologies Missing Download</th>
+            <th>Collection</th>
+            <th>Consortium</th>
+            <th>Resources Missing License</th>
+            <th>Resources Missing Domain</th>
+            <th>Resources Missing Download</th>
         </tr>
         </thead>
         <tbody>
@@ -142,10 +142,10 @@
                     {{ collection.identifier }}
                 </a>
             </td>
-            <td>{{ collection.name }}</td>
-            <td align="right">{{ n_license }} ({{ (0.5 + 100 * n_license / n_total) | int }}%)</td>
-            <td align="right">{{ n_domain }} ({{ (0.5 + 100 * n_domain / n_total) | int }}%)</td>
-            <td align="right">{{ n_download }} ({{ (0.5 + 100 * n_download / n_total) | int }}%)</td>
+            <td>{{ collection.name.removesuffix(" Collection") }}</td>
+            <td align="right">{% if n_license %}{{ n_license }} ({{ (0.5 + 100 * n_license / n_total) | int }}%){% endif %}</td>
+            <td align="right">{% if n_domain %}{{ n_domain }} ({{ (0.5 + 100 * n_domain / n_total) | int }}%){% endif %}</td>
+            <td align="right">{% if n_download %}{{ n_download }} ({{ (0.5 + 100 * n_download / n_total) | int }}%){% endif %}</td>
         </tr>
         {%- endif %}
         {%- endfor %}
@@ -158,7 +158,7 @@
         Resource used by more than two consortia
     </div>
 
-    <table class="table table-striped">
+    <table class="table table-striped mb-0">
         <thead>
         <tr>
             <th>Prefix</th>
@@ -170,7 +170,7 @@
         {%- for prefix, count in prefix_counter.most_common() %}
         {%- if count > 2 and prefix != 'bioregistry' %}
         <tr>
-            <td>{{ prefix }}</td>
+            <td>{{ utils.render_prefix(prefix) }}</td>
             <td>{{ manager.get_name(prefix) }}</td>
             <td align="right">{{ count }}</td>
         </tr>
@@ -189,8 +189,8 @@
         TIB OLS Opportunities
     </div>
     <div class="card-body">
-        <p>
-            There are {{ tib_opportunities | length }} ontologies appearing in NFDI collections
+        <p class="mb-0">
+            There are {{ tib_opportunities | length }} resources appearing in NFDI collections
             that have concrete download links in {{ config.METAREGISTRY_TITLE }}, but are not
             yet indexed in the TIB OLS.
             <a class="badge badge-pill badge-light"
@@ -198,14 +198,13 @@
                 Download All OLS Configurations <i class="bi bi-cloud-arrow-down-fill"></i>
             </a>
         </p>
-
     </div>
-    <table class="table table-striped">
+    <table class="table table-striped mb-0">
         <thead>
         <tr>
             <th>Collection</th>
-            <th>Name</th>
-            <th># Ontologies</th>
+            <th>Consortium</th>
+            <th># Resources</th>
             <th>Example</th>
             <th>OLS Config.</th>
         </tr>
@@ -218,7 +217,7 @@
                     {{ collection_id }}
                 </a>
             </td>
-            <td>{{ collections[collection_id].name }}</td>
+            <td>{{ collections[collection_id].name.removesuffix(" Collection") }}</td>
             <td align="right">{{ prefixes | length }}</td>
             <td>
                 <a href="{{ url_for('metaregistry_ui.resource', prefix=prefixes[0]) }}">
@@ -232,6 +231,44 @@
             </td>
         </tr>
         {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+<div class="card mt-4">
+    <div class="card-header">
+        First Party Resources
+    </div>
+    <div class="card-body">
+        <p class="mb-0">
+            The following resources are made by the consortium.
+        </p>
+    </div>
+
+    <table class="table table-striped mb-0" style="margin-bottom: 0;">
+        <thead>
+        <tr>
+            <th scope="col">Prefix</th>
+            <th scope="col">Name</th>
+            <th scope="col">Consortia</th>
+        </tr>
+        </thead>
+        <tbody>
+        {%- for resource, consortia in first_party %}
+        <tr>
+            <td>
+                {{ utils.render_prefix(resource.prefix) }}
+            </td>
+            <td>{{ resource.get_name() }}</td>
+            <td>
+                {%- for consortium in consortia %}
+                <a href="{{ url_for('metaregistry_ui.collection', identifier=consortium.identifier) }}">
+                    {{ consortium.name.removesuffix(" Collection") }}
+                </a>
+                {%- endfor %}
+            </td>
+        </tr>
+        {%- endfor %}
         </tbody>
     </table>
 </div>

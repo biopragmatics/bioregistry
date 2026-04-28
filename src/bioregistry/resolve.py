@@ -11,7 +11,7 @@ from typing import Any, Literal, overload
 import curies
 
 from .resource_manager import MetaresourceAnnotatedValue, manager
-from .schema import AnnotatedURL, Attributable, Collection, Resource
+from .schema import AnnotatedURL, Attributable, Collection, Organization, Resource
 
 __all__ = [
     "add_resource",
@@ -44,6 +44,7 @@ __all__ = [
     "get_obo_context_prefix_map",
     "get_obo_download",
     "get_obo_health_url",
+    "get_organizations",
     "get_owl_download",
     "get_part_of",
     "get_parts_collections",
@@ -76,12 +77,12 @@ logger = logging.getLogger(__name__)
 
 # docstr-coverage:excused `overload`
 @overload
-def get_resource(prefix: str, *, strict: Literal[True] = True) -> Resource: ...
+def get_resource(prefix: str, *, strict: Literal[True] = ...) -> Resource: ...
 
 
 # docstr-coverage:excused `overload`
 @overload
-def get_resource(prefix: str, *, strict: Literal[False] = False) -> Resource | None: ...
+def get_resource(prefix: str, *, strict: Literal[False] = ...) -> Resource | None: ...
 
 
 def get_resource(prefix: str, *, strict: bool = False) -> Resource | None:
@@ -1078,3 +1079,11 @@ def get_registry_short_name_to_prefix(metaprefix: str) -> dict[str, str]:
     'nbdc00004'
     """
     return manager.get_registry_short_name_to_prefix(metaprefix)
+
+
+def get_organizations(prefix: str) -> list[Organization] | None:
+    """Get organizations for the prefix."""
+    resource = manager.get_resource(prefix)
+    if resource is None:
+        return None
+    return resource.get_owners()

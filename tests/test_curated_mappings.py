@@ -76,13 +76,9 @@ class TestTSV(unittest.TestCase):
 class TestSemanticMappings(unittest.TestCase):
     """Tests to make sure semantic mappings are read correctly from TSV."""
 
-    def setUp(self) -> None:
-        """Set up the test case."""
-        self.mappings = read_mappings()
-
     def test_semantic_mappings(self) -> None:
         """Test semantic mapping validity."""
-        for mapping in self.mappings:
+        for mapping in read_mappings():
             self.assertIsInstance(mapping, SemanticMapping)
             self.assertNotEqual(mapping.comment, "")
             self.assertIn(mapping.predicate_modifier, {None, "Not"})

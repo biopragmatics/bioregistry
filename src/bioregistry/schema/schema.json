@@ -54,6 +54,7 @@
         "email": {
           "anyOf": [
             {
+              "format": "email",
               "type": "string"
             },
             {
@@ -117,6 +118,7 @@
         "email": {
           "anyOf": [
             {
+              "format": "email",
               "type": "string"
             },
             {
@@ -478,6 +480,7 @@
         "ror": {
           "anyOf": [
             {
+              "pattern": "^0[a-hj-km-np-tv-z|0-9]{6}[0-9]{2}$",
               "type": "string"
             },
             {
@@ -485,10 +488,28 @@
             }
           ],
           "default": null,
-          "description": "ROR identifier for a record about the organization",
+          "examples": [
+            "03yrm5c26"
+          ],
           "title": "Research Organization Registry identifier"
         },
         "wikidata": {
+          "anyOf": [
+            {
+              "pattern": "^Q\\d+$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "examples": [
+            "Q47475003"
+          ],
+          "title": "Wikidata identifier"
+        },
+        "gnd": {
           "anyOf": [
             {
               "type": "string"
@@ -498,8 +519,7 @@
             }
           ],
           "default": null,
-          "description": "Wikidata identifier for a record about the organization",
-          "title": "Wikidata identifier"
+          "title": "Gemeinsame Normdatei (Integrated Authority File) identifier"
         },
         "name": {
           "description": "Name of the organization",
@@ -624,6 +644,17 @@
           ],
           "default": null,
           "description": "Tracks the status of the provider. If this isn't set, assume that the provider is still active. See discussion in in https://github.com/biopragmatics/bioregistry/issues/1387."
+        },
+        "organization": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Organization"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
         }
       },
       "required": [
@@ -719,7 +750,7 @@
       "type": "object"
     },
     "Reference": {
-      "description": "A reference to an entity in a given identifier space.\n\nThis class uses Pydantic to make it easier to build other\nmore complex data types with Pydantic that also uses a first-\nclass notion of parsed reference (instead of merely stringified\nCURIEs). Instances of this class can also be hashed because of the\n\"frozen\" configuration from Pydantic (see\nhttps://docs.pydantic.dev/latest/usage/model_config/ for more details).\n\nA reference can be constructed several ways:\n\n>>> Reference(prefix=\"chebi\", identifier=\"1234\")\nReference(prefix='chebi', identifier='1234')\n\n>>> Reference.from_curie(\"chebi:1234\")\nReference(prefix='chebi', identifier='1234')\n\nA reference can also be constructued using Pydantic's parsing utilities,\nbut keep in mind if you're using Pydantic v1 or Pydantic v2.\n\nA reference can be formatted as a CURIE string with\nthe ``curie`` attribute\n\n>>> Reference.from_curie(\"chebi:1234\").curie\n'chebi:1234'\n\nReferences can't be sliced like reference tuples, but they can still\nbe accessed through attributes\n\n>>> t = Reference.from_curie(\"chebi:1234\")\n>>> t.prefix\n'chebi'\n>>> t.identifier\n'1234'\n\nIf you need a performance gain, you can get a :class:`ReferenceTuple`\nusing the ``pair`` attribute:\n\n>>> reference = Reference.from_curie(\"chebi:1234\")\n>>> reference.pair\nReferenceTuple(prefix='chebi', identifier='1234')",
+      "description": "A reference to an entity in a given identifier space.\n\nThis class uses Pydantic to make it easier to build other more complex data types\nwith Pydantic that also uses a first- class notion of parsed reference (instead of\nmerely stringified CURIEs). Instances of this class can also be hashed because of\nthe \"frozen\" configuration from Pydantic (see\nhttps://docs.pydantic.dev/latest/usage/model_config/ for more details).\n\nA reference can be constructed several ways:\n\n>>> Reference(prefix=\"chebi\", identifier=\"1234\")\nReference(prefix='chebi', identifier='1234')\n\n>>> Reference.from_curie(\"chebi:1234\")\nReference(prefix='chebi', identifier='1234')\n\nA reference can also be constructued using Pydantic's parsing utilities, but keep in\nmind if you're using Pydantic v1 or Pydantic v2.\n\nA reference can be formatted as a CURIE string with the ``curie`` attribute\n\n>>> Reference.from_curie(\"chebi:1234\").curie\n'chebi:1234'\n\nReferences can't be sliced like reference tuples, but they can still be accessed\nthrough attributes\n\n>>> t = Reference.from_curie(\"chebi:1234\")\n>>> t.prefix\n'chebi'\n>>> t.identifier\n'1234'\n\nIf you need a performance gain, you can get a :class:`ReferenceTuple` using the\n``pair`` attribute:\n\n>>> reference = Reference.from_curie(\"chebi:1234\")\n>>> reference.pair\nReferenceTuple(prefix='chebi', identifier='1234')",
       "properties": {
         "prefix": {
           "description": "The prefix used in a compact URI (CURIE).",
@@ -781,15 +812,39 @@
           "title": "Bibtex"
         },
         "availability": {
-          "$ref": "#/$defs/RegistrySchema",
+          "anyOf": [
+            {
+              "$ref": "#/$defs/RegistrySchema"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
           "description": "A structured description of the metadata that the registry collects"
         },
         "qualities": {
-          "$ref": "#/$defs/RegistryQualities",
+          "anyOf": [
+            {
+              "$ref": "#/$defs/RegistryQualities"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
           "description": "A structured description of the registry's qualities"
         },
         "governance": {
-          "$ref": "#/$defs/RegistryGovernance",
+          "anyOf": [
+            {
+              "$ref": "#/$defs/RegistryGovernance"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
           "description": "A structured description of the governance for the registry"
         },
         "download": {
@@ -920,9 +975,6 @@
         "description",
         "homepage",
         "example",
-        "availability",
-        "qualities",
-        "governance",
         "contact"
       ],
       "title": "Registry",
@@ -1764,7 +1816,8 @@
                 "bibliometrics",
                 "experiment",
                 "genetic code",
-                "mathematics"
+                "mathematics",
+                "registry"
               ],
               "type": "string"
             },
@@ -1816,7 +1869,8 @@
             "bibliometrics",
             "experiment",
             "genetic code",
-            "mathematics"
+            "mathematics",
+            "registry"
           ],
           "title": "Domain"
         },
@@ -2472,6 +2526,19 @@
           ],
           "default": null,
           "title": "Tib"
+        },
+        "biodivportal": {
+          "anyOf": [
+            {
+              "additionalProperties": true,
+              "type": "object"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Biodivportal"
         }
       },
       "required": [
@@ -2501,8 +2568,9 @@
           "type": "string"
         },
         "contributor": {
+          "description": "The Open Researcher and Contributor Identifier (ORCiD) provides researchers with an open, unambiguous identifier for connecting various digital assets (e.g., publications, reviews) across the semantic web. An account can be made in seconds at https://orcid.org.",
           "pattern": "^\\d{4}-\\d{4}-\\d{4}-\\d{3}(\\d|X)$",
-          "title": "Contributor",
+          "title": "Open Researcher and Contributor Identifier",
           "type": "string"
         },
         "notes": {

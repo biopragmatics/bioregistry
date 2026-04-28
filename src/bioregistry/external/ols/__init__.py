@@ -164,7 +164,7 @@ def _get_contact(ols_id: str, config: dict[str, Any]) -> Person | None:
     if not mailing_list:
         return None
     name, email = parseaddr(mailing_list)
-    if email.startswith("//"):
+    if not email or email.startswith("//"):
         logger.debug("[%s] invalid email address: %s", ols_id, mailing_list)
         return None
     return Person(email=email, name=name or None)
