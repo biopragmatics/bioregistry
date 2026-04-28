@@ -45,60 +45,48 @@
 </div>
 {%- endmacro %}
 
-{%- macro render_nfdi_collection(collection, show_length=True) %}
-<a href="{{ url_for('.collection', identifier=collection.identifier) }}">
-    {{ collection.name.removesuffix(" Collection").removesuffix(" Resources") }}
-</a>
-
-{%- if show_length %}
-({{ collection.resources|length }})
-{%- endif %}
-
-<ul>
-    {%- if collection.references %}
-    {%- for reference in collection.references %}
-    {%- if reference.startswith("https://go.rocket.chat") %}
-    <li><a href="{{ reference }}">🚀 Join RocketChat Discussion</a></li>
-    {%- elif reference.startswith("https://discord.com") %}
-    <li><a href="{{ reference }}"><i class="bi bi-discord"></i> Join Discord Discussion</a></li>
-    {%- endif %}
-    {%- endfor %}
-    {%- endif %}
-
-    {% if collection.maintainers %}
-    {% for maintainer in collection.maintainers %}
-    <li>{{ maintainer.name }} {{ utils.orcid_img() }}</li>
-    {% endfor %}
-    {% endif %}
-</ul>
+{%- macro render_nfdi_collection(collection) %}
+{%- set collection_short_name = collection.name.removesuffix(" Collection").removesuffix(" Resources") %}
+{%- set collection_missing_resources = (collection.get_prefixes() == ["bioregistry"]) %}
+{# <a href="{{ url_for('.collection', identifier=collection.identifier) }}"></a> #}
+<div class="col-sm-12 col-md-6 col-lg-2 mb-2 d-flex pr-1 pl-1">
+    <div class="card h-100 visible w-100{% if collection_missing_resources %} border-danger{% endif %}">
+        <div style="height: 80px; overflow: visible; display: flex; align-items: center; justify-content: center; position: relative; z-index: 1;">
+            <img class="card-img-top" src="{{ collection.logo }}"
+            style="max-height: 80px; width: 100%; object-fit: cover; object-position: center;">
+        </div>
+        <ul class="list-group list-group-flush">
+            {% if collection.maintainers %}
+            {% for maintainer in collection.maintainers %}
+            <li class="list-group-item p-1"><small>{{ maintainer.name }}</small></li>
+            {% endfor %}
+            {% endif %}
+            {%- if collection.references %}
+            {%- for reference in collection.references %}
+            {%- if reference.startswith("https://go.rocket.chat") %}
+            <li class="list-group-item p-1"><small><a href="{{ reference }}">🚀 RocketChat</a></small></li>
+            {%- elif reference.startswith("https://discord.com") %}
+            <li class="list-group-item p-1"><small><a href="{{ reference }}"><i class="bi bi-discord"></i> Discord</a></small></li>
+            {%- endif %}
+            {%- endfor %}
+            {%- endif %}
+        </ul>
+        <div class="card-footer text-muted">
+            <small>{% if collection_missing_resources %}
+                No
+            {% else %}
+                {{ collection.resources|length }}
+                {% endif %} Resources</small>
+        </div>
+    </div>
+</div>
 {%- endmacro %}
 
 {%- block container %}
-<div class="card">
-    <div class="card-header">
-        NFDI Dashboard
-    </div>
-    <div class="card-body">
-        <div class="card-text">
-            <p>Consortia whose collection has a maintainer:</p>
-            <ol>
-                {%- for collection in collections.values() %}
-                {%- if collection.maintainers and (collection.resources|length > 1) %}
-                <li>{{ render_nfdi_collection(collection, show_length=True) }}</li>
-                {%- endif %}
-                {%- endfor %}
-            </ol>
-
-            <p>Consortia whose collection has a maintainer but haven't been filled out</p>
-            <ol>
-                {%- for collection in collections.values() %}
-                {%- if collection.maintainers and (collection.resources|length == 1) %}
-                <li>{{ render_nfdi_collection(collection, show_length=False) }}</li>
-                {%- endif %}
-                {%- endfor %}
-            </ol>
-        </div>
-    </div>
+<div class="row">
+    {%- for collection in sort_collections(collections.values()) %}
+    {{ render_nfdi_collection(collection) }}
+    {%- endfor %}
 </div>
 
 <div class="card mt-4">

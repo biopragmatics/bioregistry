@@ -788,4 +788,18 @@ def show_nfdi() -> str:
         collection_to_domain_needs_curation=collection_to_domain_needs_curation,
         collection_to_download_need_curation=collection_to_download_need_curation,
         first_party=first_party_list,
+        sort_collections=_sort_collections,
     )
+
+
+def _sort_collections(c: list[Collection]) -> list[Collection]:
+    return sorted(c, key=_collections_key, reverse=True)
+
+
+def _collections_key(c: Collection) -> tuple[int, int]:
+    rv = len(c.maintainers or [])
+    rv += sum(
+        r.startswith("https://discord") or r.startswith("https://go.rocket")
+        for r in c.references or []
+    )
+    return rv, len(c.resources)
