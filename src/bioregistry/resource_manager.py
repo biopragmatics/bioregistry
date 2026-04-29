@@ -2281,6 +2281,8 @@ class Manager:
                 calls[prefix] = False
         return calls
 
+    def lookup_uri_prefix(self, uri_prefix: str) -> list[Resource]:
+        raise NotImplementedError
 
 def _read_contributors(
     registry: dict[str, Resource],

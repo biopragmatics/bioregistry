@@ -737,3 +737,22 @@ def search(
 ) -> JSONResponse:
     """Search for a prefix."""
     return JSONResponse(_search(manager, q))
+
+
+class ReverseURILookupResults(BaseModel):
+    query: str
+    resources: list[Resource]
+
+
+@api_router.get("/uri-search", tags=["search"])
+def reverse_uri_lookup(
+    manager: DependsManager,
+    uri_prefix: Annotated[str, Query(description="A URI prefix for lookup")]
+) -> ReverseURILookupResults:
+    return ReverseURILookupResults(
+        query=uri_prefix,
+        resources=[
+            manager.rasterized_resource(resource)
+            for resource in manager.lookup_uri_prefix(uri_prefix)
+        ],
+    )
