@@ -2281,8 +2281,26 @@ class Manager:
                 calls[prefix] = False
         return calls
 
-    def lookup_uri_prefix(self, uri_prefix: str) -> list[Resource]:
-        raise NotImplementedError
+    def lookup_uri_prefix(self, query: str) -> list[Resource]:
+        """Search for resources whose URI prefix begins with the given string.
+
+        :param query: A query string to check URI prefixes against
+        :return: A list of prefixes whose URI prefixes start with
+            the given URI prefix
+
+        >>> from bioregistry import manager
+        >>> resources = manager.lookup_uri_prefix(
+        ...     "http://purl.allotrope.org/ontologies/equipment#AFE_"
+        ... )
+        >>> resources[0].prefix
+        'allotrope.equipment
+        """
+        return [
+            resource
+            for resource in self.registry.values()
+            if any(uri_prefix.startswith(query) for uri_prefix in resource.get_uri_prefixes())
+        ]
+
 
 def _read_contributors(
     registry: dict[str, Resource],

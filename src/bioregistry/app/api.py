@@ -747,7 +747,7 @@ class ReverseURILookupResults(BaseModel):
 @api_router.get("/uri-search", tags=["search"])
 def reverse_uri_lookup(
     manager: DependsManager,
-    uri_prefix: Annotated[str, Query(description="A URI prefix for lookup")]
+    uri_prefix: Annotated[str, Query(description="A URI prefix for lookup")],
 ) -> ReverseURILookupResults:
     return ReverseURILookupResults(
         query=uri_prefix,
