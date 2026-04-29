@@ -57,8 +57,14 @@
     {% elif resource.provides %}
         <a class="badge badge-danger" style="display: inline-block;" data-toggle="tooltip"
            href="{{ url_for("metaregistry_ui.resource", prefix=resource.provides) }}"
-           title="{{ manager.get_name(resource.provides) }} ({{ resource.provides }})">
+           title="You should use {{ manager.get_name(resource.provides) }} ({{ resource.provides }}) instead">
             Provider <i class="bi bi-exclamation-triangle"></i>
+        </a>
+    {% elif resource.has_canonical %}
+        <a class="badge badge-danger" style="display: inline-block;" data-toggle="tooltip"
+           href="{{ url_for("metaregistry_ui.resource", prefix=resource.has_canonical) }}"
+           title="You should use {{ manager.get_name(resource.has_canonical) }} ({{ resource.has_canonical }}) instead">
+            Not Canonical <i class="bi bi-exclamation-triangle"></i>
         </a>
     {% endif %}
     {% if resource.proprietary %}
