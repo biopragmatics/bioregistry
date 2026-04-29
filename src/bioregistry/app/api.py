@@ -13,7 +13,7 @@ from fastapi import APIRouter, Body, Depends, Header, HTTPException, Path, Query
 from fastapi.responses import JSONResponse, Response
 from pydantic import BaseModel, Field
 
-from .utils import FORMAT_MAP, _autocomplete, _search
+from .utils import FORMAT_MAP, AutocompleteResult, PrefixSearchResult, _autocomplete, _search
 from ..export.rdf_export import (
     collection_to_rdf_str,
     metaresource_to_rdf_str,
@@ -721,34 +721,37 @@ def generate_context_json_ld(
     )
 
 
-@api_router.get("/autocomplete", tags=["search"])
+@api_router.get("/autocomplete", tags=["search"], response_model_exclude_none=True)
 def autocomplete(
     manager: DependsManager,
     q: Annotated[str, Query(description="A query for the prefix")],
-) -> JSONResponse:
+) -> AutocompleteResult:
     """Complete a resolution query."""
-    return JSONResponse(_autocomplete(manager, q))
+    return _autocomplete(manager, q)
 
 
-@api_router.get("/search", tags=["search"])
+@api_router.get("/search", tags=["search"], response_model_exclude_none=True)
 def search(
     manager: DependsManager,
     q: Annotated[str, Query(description="A query for the prefix")],
-) -> JSONResponse:
+) -> list[PrefixSearchResult]:
     """Search for a prefix."""
-    return JSONResponse(_search(manager, q))
+    return _search(manager, q)
 
 
 class ReverseURILookupResults(BaseModel):
+    """Results from reverse URI lookup."""
+
     query: str
     resources: list[Resource]
 
 
-@api_router.get("/uri-search", tags=["search"])
+@api_router.get("/reverse", tags=["search"])
 def reverse_uri_lookup(
     manager: DependsManager,
     uri_prefix: Annotated[str, Query(description="A URI prefix for lookup")],
 ) -> ReverseURILookupResults:
+    """Lookup a URI, inspired by https://prefix.cc/reverse."""
     return ReverseURILookupResults(
         query=uri_prefix,
         resources=[
