@@ -129,6 +129,10 @@ class NormalizedNamableReference(NormalizedReference, curies.NamableReference):
     NormalizedNamedReference(prefix='go', identifier='0032571', name='response to vitamin K')
     """
 
+    def without_name(self) -> NormalizedReference:
+        """Return this reference without a name."""
+        return NormalizedReference(prefix=self.prefix, identifier=self.identifier)
+
 
 class NormalizedNamedReference(NormalizedNamableReference, curies.NamedReference):
     """Extends :class:`curies.NamedReference` to normalize the prefix against the Bioregistry.
@@ -200,6 +204,10 @@ class StandardNamableReference(StandardReference, curies.NamableReference):
     >>> StandardNamableReference(prefix="GOBP", identifier="0032571", name="response to vitamin K")
     StandardNamableReference(prefix='GO', identifier='0032571', name='response to vitamin K')
     """
+
+    def without_name(self) -> StandardNamableReference:
+        """Return this reference without a name."""
+        return StandardNamableReference(prefix=self.prefix, identifier=self.identifier)
 
 
 class StandardNamedReference(StandardNamableReference, curies.NamedReference):
