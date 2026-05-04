@@ -300,7 +300,6 @@ REVERSE_LICENSES: Mapping[str | None, list[str]] = {
         CC_BY_NC_SA_4,
         "CC-BY-NC-SA 4.0",
         "CC BY-NC-SA 4.0",
-        "CC-BY-NC-SA-4.0",
         "http://creativecommons.org/licenses/by-nc-sa/4.0",
         "https://creativecommons.org/licenses/by-nc-sa/4.0",
     ],
@@ -323,7 +322,6 @@ REVERSE_LICENSES: Mapping[str | None, list[str]] = {
     ],
     CC_BY_NC_4: [
         CC_BY_NC_4,
-        "CC-BY-NC-4.0",
         "CC BY-NC 4.0",
         "http://creativecommons.org/licenses/by-nc/4.0",
         "https://creativecommons.org/licenses/by-nc/4.0",
