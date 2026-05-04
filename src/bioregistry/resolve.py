@@ -35,6 +35,7 @@ __all__ = [
     "get_homepage",
     "get_jskos_download",
     "get_json_download",
+    "get_jsonld_context_download",
     "get_keywords",
     "get_logo",
     "get_mailing_list",
@@ -853,6 +854,14 @@ def get_jskos_download(prefix: str) -> str | None:
     if entry is None:
         return None
     return entry.get_download_jskos()
+
+
+def get_jsonld_context_download(prefix: str) -> str | None:
+    """Get the download link for the JSON-LD context file."""
+    entry = get_resource(prefix)
+    if entry is None:
+        return None
+    return entry.get_download_jsonld_context()
 
 
 def get_provides_for(prefix: str) -> str | None:

@@ -621,6 +621,18 @@ class Resource(BaseModel):
         title="JSKOS Download URL",
         description="The URL to download the resource as an JSKOS JSON file.",
     )
+    download_jsonld_context: str | None = Field(
+        default=None,
+        title="JSON-LD Context Download URL",
+        description=_dedent(
+            """\
+    The URL to download the JSON-LD context file for the resource.
+    A JSON-LD context provides term-to-IRI mappings and type coercion rules
+    that enable compact JSON-LD serialization of instance data.
+    More information about this format can be found at https://www.w3.org/TR/json-ld11/.
+    """
+        ),
+    )
     banana: str | None = Field(
         default=None,
         description=_dedent(
@@ -2445,6 +2457,17 @@ class Resource(BaseModel):
     def get_download_jskos(self) -> str | None:
         """Get the download link for the latest JSKOS JSON file."""
         return self.download_jskos
+
+    def get_download_jsonld_context(self) -> str | None:
+        """Get the download link for the JSON-LD context file.
+
+        :returns: A URL for a JSON-LD context file download, if available.
+
+        >>> from bioregistry import get_resource
+        >>> get_resource("gx").get_download_jsonld_context()
+        'https://registry.lab.gaia-x.eu/development/context/development'
+        """
+        return self.download_jsonld_context
 
     def get_download_owl(self) -> str | None:
         """Get the download link for the latest OWL file.

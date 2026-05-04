@@ -175,6 +175,7 @@ def resource(prefix: str) -> str | werkzeug.Response | tuple[str, int]:
         rdf_download=_resource.get_download_rdf(),
         skos_download=_resource.get_download_skos(),
         jskos_download=_resource.get_download_jskos(),
+        jsonld_context_download=_resource.get_download_jsonld_context(),
         namespace_in_lui=_resource.get_namespace_in_lui(),
         deprecated=manager.is_deprecated(prefix),
         contact=_resource.get_contact(),
