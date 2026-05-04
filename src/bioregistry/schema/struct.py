@@ -2531,6 +2531,12 @@ class Resource(BaseModel):
             return None
         if license_value.startswith("http://") or license_value.startswith("https://"):
             return license_value
+        if license_value in {"CC0", "CC0-1.0"}:
+            return "https://creativecommons.org/publicdomain/zero/1.0/"
+        if license_value == "CC-BY-4.0":
+            return "https://creativecommons.org/licenses/by/4.0/"
+        if license_value == "CC-BY-3.0":
+            return "https://creativecommons.org/licenses/by/3.0/"
         return f"{BIOREGISTRY_REMOTE_URL}/spdx:{license_value}"
 
     def get_version(self) -> str | None:

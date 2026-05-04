@@ -7,15 +7,33 @@ like SPDX for storing synonyms.
 from __future__ import annotations
 
 from collections.abc import Mapping
+from functools import lru_cache
+from typing import cast
+
+from tqdm import tqdm
 
 __all__ = [
     "LICENSES",
     "REVERSE_LICENSES",
+    "get_spdx_ids",
     "standardize_license",
 ]
 
 
-def standardize_license(license_str: str | None) -> str | None:
+@lru_cache
+def get_spdx_ids() -> set[str]:
+    """Get SPDX IDs via PyOBO."""
+    try:
+        import pyobo
+    except ImportError:
+        return set()
+    return cast(set[str], pyobo.get_ids("spdx"))
+
+
+SEEN: set[str] = set()
+
+
+def standardize_license(license_str: str | None, *, passthrough: bool = True) -> str | None:
     """Standardize a license string."""
     if license_str is None or not license_str.strip():
         return None
@@ -24,7 +42,21 @@ def standardize_license(license_str: str | None) -> str | None:
         return None
     if license_str.lower() in UNSPECIFIED:
         return None
-    return LICENSES.get(license_str, license_str)
+    if license_str in get_spdx_ids():
+        return license_str
+    if (
+        license_str not in LICENSES
+        and not license_str.startswith("http")
+        and license_str not in SEEN
+    ):
+        SEEN.add(license_str)
+        tqdm.write(f"unknown license: {license_str}")
+
+    if license_str in LICENSES:
+        return LICENSES[license_str]
+    if passthrough:
+        return license_str
+    return None
 
 
 UNSPECIFIED = {
@@ -34,21 +66,22 @@ UNSPECIFIED = {
     "copyright",
 }
 
-#: https://creativecommons.org/licenses/by/3.0/
-CC_BY_4 = "CC BY 4.0"
+#: https://creativecommons.org/licenses/by/4.0/
+CC_BY_4 = "CC-BY-4.0"
 #: https://creativecommons.org/licenses/by-sa/4.0/
-CC_BY_SA_4 = "CC BY-SA 4.0"
+CC_BY_SA_4 = "CC-BY-SA-4.0"
 #: https://creativecommons.org/licenses/by-nd/4.0/
-CC_BY_ND_4 = "CC BY-ND 4.0"
+CC_BY_ND_4 = "CC-BY-ND-4.0"
 #: https://creativecommons.org/licenses/by-nc-sa/4.0/
-CC_BY_NC_SA_4 = "CC BY-NC-SA 4.0"
+CC_BY_NC_SA_4 = "CC-BY-NC-SA-4.0"
 #: http://creativecommons.org/licenses/by-nc/4.0
-CC_BY_NC_4 = "CC BY-NC 4.0"
+CC_BY_NC_4 = "CC-BY-NC-4.0"
 #: http://creativecommons.org/licenses/by-nc-sa/2.5
-CC_BY_NC_SA_25 = "CC BY-NC-SA 2.5"
+CC_BY_NC_SA_25 = "CC-BY-NC-SA-2.5"
 
 CC_BY_UNSPECIFIED = "CC-BY"
-CC_BY_SA_UNSPECIFIED = "CC BY-SA"
+CC_BY_SA_UNSPECIFIED = "CC-BY-SA"
+CC_BY_NC_UNSPECIFIED = "CC-BY-NC"
 
 ##########################
 # PUBLIC DOMAIN LICENSES #
@@ -58,35 +91,38 @@ CC_BY_SA_UNSPECIFIED = "CC BY-SA"
 CC_0 = "CC0 1.0"
 
 #: https://creativecommons.org/publicdomain/mark/1.0/
-CC_MARK = "CC_MARK"
+CC_MARK = "CC-PDM-1.0"
 
 ###################
 # LEGACY LICENSES #
 ###################
 
 #: https://creativecommons.org/licenses/by/3.0/
-CC_BY_3 = "CC BY 3.0"
+CC_BY_3 = "CC-BY-3.0"
 #: http://creativecommons.org/licenses/by-nd/3.0
-CC_BY_ND_3 = "CC BY-ND 3.0"
+CC_BY_ND_3 = "CC-BY-ND-3.0"
 #: http://creativecommons.org/licenses/by-nc-sa/3.0
-CC_BY_NC_SA_3 = "CC BY-NC-SA 3.0"
+CC_BY_NC_SA_3 = "CC-BY-NC-SA-3.0"
 #: http://creativecommons.org/licenses/by-nc-nd/3.0
-CC_BY_NC_ND_3 = "CC BY-NC-ND 3.0"
+CC_BY_NC_ND_3 = "CC-BY-NC-ND-3.0"
+#: http://creativecommons.org/licenses/by-nc-nd/4.0
+CC_BY_NC_ND_4 = "CC-BY-NC-ND-4.0"
+
 #: http://creativecommons.org/licenses/by-sa/3.0
-CC_BY_SA_3 = "CC BY-SA 3.0"
+CC_BY_SA_3 = "CC-BY-SA-3.0"
 #: http://creativecommons.org/licenses/by-nc/3.0
-CC_BY_NC_3 = "CC BY-NC 3.0"
+CC_BY_NC_3 = "CC-BY-NC-3.0"
 
 #: https://creativecommons.org/licenses/by/2.0/
-CC_BY_2 = "CC BY 2.0"
+CC_BY_2 = "CC-BY-2.0"
 #: https://creativecommons.org/licenses/by-nc-sa/2.0/
-CC_BY_NC_SA_2 = "CC BY-NC-SA 2.0"
+CC_BY_NC_SA_2 = "CC-BY-NC-SA-2.0"
 
 #: https://creativecommons.org/licenses/by-sa/2.0/
-CC_BY_SA_2 = "CC BY-SA 2.0"
+CC_BY_SA_2 = "CC-BY-SA-2.0"
 
 #: https://creativecommons.org/licenses/by/1.0/
-CC_BY_1 = "CC BY 1.0"
+CC_BY_1 = "CC-BY-1.0"
 
 #: https://opensource.org/licenses/W3C
 W3C = "W3C"
@@ -94,7 +130,7 @@ W3C = "W3C"
 CC_BY_3_IGO = "CC-BY-3.0-IGO"
 
 #: https://creativecommons.org/licenses/by/2.5/
-CC_BY_25 = "CC BY 2.5"
+CC_BY_25 = "CC-BY-2.5"
 
 #: A mapping from SPDX identifiers to external
 REVERSE_LICENSES: Mapping[str | None, list[str]] = {
@@ -107,6 +143,7 @@ REVERSE_LICENSES: Mapping[str | None, list[str]] = {
     ],
     CC_BY_NC_SA_25: [
         CC_BY_NC_SA_25,
+        "CC BY-NC-SA 2.5",
         "http://creativecommons.org/licenses/by-nc-sa/2.5/deed.en",
     ],
     "CC-BY-3.0-IGO": [
@@ -122,9 +159,10 @@ REVERSE_LICENSES: Mapping[str | None, list[str]] = {
         "https://spdx.org/licenses/W3C.html",
         "https://spdx.org/licenses/W3C",
     ],
-    "CC-BY-4.0": [
+    CC_BY_4: [
         "CC-BY-4.0",
         "CC-BY 4.0",
+        "CC BY-4.0",
         "CC BY 4.0",  # correct
         "https://spdx.org/licenses/CC-BY-4.0",
         "https://spdx.org/licenses/CC-BY-4.0.html",
@@ -191,6 +229,11 @@ REVERSE_LICENSES: Mapping[str | None, list[str]] = {
         "https://creativecommons.org/publicdomain/mark/1.0",
     ],
     CC_BY_SA_4: [
+        "CC BY-SA 4.0",
+        "CC BY SA 4.0",
+        "CC BY 4.0-SA",
+        "CC-BY-SA 4.0",
+        "CC-BY-SA-4.0",
         "http://creativecommons.org/licenses/by-sa/4.0",
         "https://creativecommons.org/licenses/by-sa/4.0",
     ],
@@ -211,7 +254,7 @@ REVERSE_LICENSES: Mapping[str | None, list[str]] = {
     CC_BY_SA_2: [
         "https://creativecommons.org/licenses/by-sa/2.0/",
     ],
-    "Artistic License 2.0": [
+    "Artistic-2.0": [
         "Artistic License 2.0",
         "http://opensource.org/licenses/Artistic-2.0",
         "https://opensource.org/licenses/Artistic-2.0",
@@ -223,9 +266,11 @@ REVERSE_LICENSES: Mapping[str | None, list[str]] = {
         "hpo",
         "https://hpo.jax.org/app/license",
     ],
-    "Apache 2.0 License": [
+    "Apache-2.0": [
         "Apache 2.0 License",
+        "Apache License 2.0",
         "LICENSE-2.0",
+        "Apache-2.0",
         "www.apache.org/licenses/LICENSE-2.0",
         "http://www.apache.org/licenses/LICENSE-2.0",
         "https://www.apache.org/licenses/LICENSE-2.0",
@@ -240,7 +285,9 @@ REVERSE_LICENSES: Mapping[str | None, list[str]] = {
         "https://www.gnu.org/licenses/gpl-3.0.en",
         "https://www.gnu.org/licenses/gpl-3.0",
     ],
-    "ODBL": [
+    "ODbL-1.0": [
+        "ODBL",
+        "ODbL-1.0",
         "http://opendatacommons.org/licenses/odbl/1.0",
         "https://opendatacommons.org/licenses/odbl/1.0",
     ],
@@ -252,20 +299,22 @@ REVERSE_LICENSES: Mapping[str | None, list[str]] = {
     CC_BY_NC_SA_4: [
         CC_BY_NC_SA_4,
         "CC-BY-NC-SA 4.0",
-        "CC-BY-NC-SA-4.0",
+        "CC BY-NC-SA 4.0",
         "http://creativecommons.org/licenses/by-nc-sa/4.0",
         "https://creativecommons.org/licenses/by-nc-sa/4.0",
     ],
     CC_BY_SA_3: [
         CC_BY_SA_3,
+        "CC BY-SA 3.0",
         "http://creativecommons.org/licenses/by-sa/3.0",
         "https://creativecommons.org/licenses/by-sa/3.0",
     ],
     CC_BY_NC_ND_3: [
-        CC_BY_SA_3,
+        CC_BY_NC_ND_3,
         "http://creativecommons.org/licenses/by-nc-nd/3.0",
         "https://creativecommons.org/licenses/by-nc-nd/3.0",
     ],
+    CC_BY_NC_ND_4: [CC_BY_NC_ND_4, "CC BY NC-ND 4.0"],
     CC_BY_NC_3: [
         CC_BY_NC_3,
         "http://creativecommons.org/licenses/by-nc/3.0",
@@ -273,9 +322,23 @@ REVERSE_LICENSES: Mapping[str | None, list[str]] = {
     ],
     CC_BY_NC_4: [
         CC_BY_NC_4,
+        "CC BY-NC 4.0",
         "http://creativecommons.org/licenses/by-nc/4.0",
         "https://creativecommons.org/licenses/by-nc/4.0",
     ],
+    CC_BY_NC_UNSPECIFIED: [CC_BY_NC_UNSPECIFIED],
+    "CC-BY-ND-3.0-IGO": [
+        "CC BY-ND 3.0 IGO",
+        "CC-BY-ND-3.0-IGO",
+    ],
+}
+
+NONSTANDARD = {
+    "hpo",
+    "CC-BY-ND-3.0-IGO",
+    CC_BY_SA_UNSPECIFIED,
+    CC_BY_UNSPECIFIED,
+    CC_BY_NC_UNSPECIFIED,
 }
 
 LICENSES: Mapping[str, str | None] = {_v: _k for _k, _vs in REVERSE_LICENSES.items() for _v in _vs}
