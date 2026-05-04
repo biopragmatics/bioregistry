@@ -8,6 +8,7 @@ from __future__ import annotations
 
 from collections.abc import Mapping
 from functools import lru_cache
+from typing import cast
 
 from tqdm import tqdm
 
@@ -26,13 +27,13 @@ def get_spdx_ids() -> set[str]:
         import pyobo
     except ImportError:
         return set()
-    return pyobo.get_ids("spdx")
+    return cast(set[str], pyobo.get_ids("spdx"))
 
 
-SEEN = set()
+SEEN: set[str] = set()
 
 
-def standardize_license(license_str: str | None) -> str | None:
+def standardize_license(license_str: str | None, *, passthrough: bool = True) -> str | None:
     """Standardize a license string."""
     if license_str is None or not license_str.strip():
         return None
@@ -50,7 +51,12 @@ def standardize_license(license_str: str | None) -> str | None:
     ):
         SEEN.add(license_str)
         tqdm.write(f"unknown license: {license_str}")
-    return LICENSES.get(license_str, license_str)
+
+    if license_str in LICENSES:
+        return LICENSES[license_str]
+    if passthrough:
+        return license_str
+    return None
 
 
 UNSPECIFIED = {
@@ -137,6 +143,7 @@ REVERSE_LICENSES: Mapping[str | None, list[str]] = {
     ],
     CC_BY_NC_SA_25: [
         CC_BY_NC_SA_25,
+        "CC BY-NC-SA 2.5",
         "http://creativecommons.org/licenses/by-nc-sa/2.5/deed.en",
     ],
     "CC-BY-3.0-IGO": [
@@ -261,6 +268,7 @@ REVERSE_LICENSES: Mapping[str | None, list[str]] = {
     ],
     "Apache-2.0": [
         "Apache 2.0 License",
+        "Apache License 2.0",
         "LICENSE-2.0",
         "Apache-2.0",
         "www.apache.org/licenses/LICENSE-2.0",
@@ -298,6 +306,7 @@ REVERSE_LICENSES: Mapping[str | None, list[str]] = {
     ],
     CC_BY_SA_3: [
         CC_BY_SA_3,
+        "CC BY-SA 3.0",
         "http://creativecommons.org/licenses/by-sa/3.0",
         "https://creativecommons.org/licenses/by-sa/3.0",
     ],
