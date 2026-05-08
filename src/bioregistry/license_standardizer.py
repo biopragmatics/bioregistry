@@ -391,6 +391,9 @@ REVERSE_LICENSES: Mapping[str | None, list[str]] = {
         "GFDL-1.3",
         "GNU Free Documentation License Version 1.3",
     ],
+    "public-domain": [
+        "Public Domain",
+    ]
 }
 
 NONSTANDARD = {
@@ -400,6 +403,7 @@ NONSTANDARD = {
     CC_BY_UNSPECIFIED,
     CC_BY_NC_UNSPECIFIED,
     CC_UNSPECIFIED,
+    "public-domain",
 }
 
 LICENSES: Mapping[str, str | None] = {_v: _k for _k, _vs in REVERSE_LICENSES.items() for _v in _vs}
