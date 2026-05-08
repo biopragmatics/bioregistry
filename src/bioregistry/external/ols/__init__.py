@@ -185,7 +185,7 @@ UNKNOWN_LICENSE_STRINGS = {
 def _get_license(ols_id: str, config: dict[str, Any]) -> License | None:
     license_dict = config.get("license")
     if not license_dict:
-        tqdm.write(f"[{ols_id}] no license")
+        logger.debug(f"[{ols_id}] no license")
         return None
 
     url = license_dict["url"]
@@ -198,7 +198,6 @@ def _get_license(ols_id: str, config: dict[str, Any]) -> License | None:
     if spdx_id := standardize_license(license_dict["label"], passthrough=False):
         return License(spdx=spdx_id, url=url)
 
-    tqdm.write(f"[{ols_id}] could not process license: {license_dict}")
     return None
 
 
