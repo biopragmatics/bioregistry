@@ -108,6 +108,20 @@
     "name": "Agronomy Ontology",
     "tracker": "https://github.com/AgriculturalSemantics/agro/issues/"
   },
+  "amv": {
+    "description": "AMV v1.0 was first published on June 16, 2021. This is the revised version dated on February 6, 2023.",
+    "extras": {
+      "version.iri": "https://w3id.org/amv/1.0"
+    },
+    "homepage": "https://www.isibang.ac.in/ns/amv/",
+    "keywords": [
+      "NFDIxCS",
+      "computer science"
+    ],
+    "name": "AMV:Algorithm Metadata Vocabulary",
+    "tracker": "https://github.com/biswanathdutta/amv/issues",
+    "uri_format": "https://w3id.org/amv#$1"
+  },
   "bao": {
     "artifacts": [
       {
@@ -208,6 +222,9 @@
   },
   "bf": {
     "description": "The Bibframe vocabulary consists of RDF classes and properties used for the description of items cataloged principally by libraries, but may also be used to describe items cataloged by museums and archives. Classes include the three core classes - Work, Instance, and Item - in addition to many more classes to support description. Properties describe characteristics of the resource being described as well as relationships among resources. For example: one Work might be a \"translation of\" another Work; an Instance may be an \"instance of\" a particular Bibframe Work. Other properties describe attributes of Works and Instances. For example: the Bibframe property \"subject\" expresses an important attribute of a Work (what the Work is about), and the property \"extent\" (e.g. number of pages) expresses an attribute of an Instance.",
+    "extras": {
+      "version.iri": "http://id.loc.gov/ontologies/bibframe-3-0-1/"
+    },
     "homepage": "https://www.loc.gov/bibframe/",
     "keywords": [
       "Miscellaneous",
@@ -249,7 +266,8 @@
       "NFDI4CAT",
       "Foundational Ontologies",
       "DataPLANT",
-      "FAIRmat"
+      "FAIRmat",
+      "NFDIxCS"
     ],
     "name": "Basic Formal Ontology",
     "tracker": "https://github.com/BFO-ontology/BFO/issues"
@@ -472,7 +490,7 @@
     ],
     "description": "ChEBI (Chemical Entities of Biological Interest) is a free dictionary of small molecular entities, including distinct atoms, molecules, ions, radicals, and complexes. These entities can be natural or synthetic, used in or affecting biological processes. The term \"small\" excludes genome-encoded entities like nucleic acids and proteins. ChEBI also includes classes of molecular entities and their parts, such as substituent groups or atoms.",
     "extras": {
-      "version.iri": "http://purl.obolibrary.org/obo/chebi/250/chebi.owl"
+      "version.iri": "http://purl.obolibrary.org/obo/chebi/252/chebi.owl"
     },
     "homepage": "http://www.ebi.ac.uk/chebi",
     "keywords": [
@@ -619,7 +637,7 @@
     },
     "homepage": "http://www.sparontologies.net/ontologies/cito",
     "keywords": [
-      "Miscellaneous"
+      "NFDIxCS"
     ],
     "name": "CiTO, the Citation Typing Ontology",
     "tracker": "https://github.com/SPAROntologies/cito/issues",
@@ -650,7 +668,7 @@
     ],
     "description": "COB brings together key terms from a wide range of OBO projects to improve interoperability.",
     "extras": {
-      "version.iri": "http://purl.obolibrary.org/obo/cob/releases/2025-12-12/cob.owl"
+      "version.iri": "http://purl.obolibrary.org/obo/cob/releases/2025-12-15/cob.owl"
     },
     "homepage": "https://obofoundry.org/COB/",
     "keywords": [
@@ -734,6 +752,16 @@
     "tracker": "https://github.com/biopragmatics/obo-db-ingest/issues",
     "uri_format": "https://credit.niso.org/contributor-roles/$1"
   },
+  "cso": {
+    "description": "The Computer Science Ontology (CSO) is a large-scale ontology of research areas that was automatically generated using the Klink-2 algorithm (cf. http://people.kmi.open.ac.uk/francesco/wp-content/uploads/2015/09/ISWC2015_Klink-2.pdf) on the Rexplore dataset (cf. http://oro.open.ac.uk/39160/1/iswc2013_osborne.pdf), which consists of about 16 million publications, mainly in the field of Computer Science. The Klink-2 algorithm combines semantic technologies, machine learning, and knowledge from external sources to automatically generate a fully populated ontology of research areas. Some relationships were also revised manually by experts during the preparation of two ontology-assisted surveys in the field of Semantic Web and Software Architecture. The main root of CSO is Computer Science, however, the ontology includes also a few secondary roots, such as Linguistics, Geometry, Semantics, and so on.",
+    "homepage": "https://cso.kmi.open.ac.uk/home",
+    "keywords": [
+      "NFDIxCS",
+      "computer science"
+    ],
+    "name": "Computer Science Ontology",
+    "uri_format": "https://cso.kmi.open.ac.uk/topics/$1"
+  },
   "cto": {
     "artifacts": [
       {
@@ -754,6 +782,32 @@
     "name": "NFDI4Culture Ontology",
     "tracker": "https://github.com/ISE-FIZKarlsruhe/nfdi4culture/issues",
     "uri_format": "https://nfdi4culture.de/ontology/CTO_$1"
+  },
+  "datacite": {
+    "description": "The DataCite Ontology is an ontology written in OWL 2 DL to enable the metadata properties of the [DataCite Metadata Kernel Specification version 3.1](https://www.datacite.org/sites/default/files/document/DataCite-MetadataSchema_V31_Final_8-24-2015_0.pdf) to be described in RDF.  \n\nThis version of the DataCite Ontology has been completely revised and significantly expanded to permit accurate mapping of this new version of the DataCite Metadata Kernel Specification to RDF.",
+    "extras": {
+      "version.iri": "http://purl.org/spar/datacite/2025-09-22"
+    },
+    "homepage": "https://sparontologies.github.io/datacite/current/datacite.html",
+    "keywords": [
+      "NFDIxCS"
+    ],
+    "name": "The DataCite Ontology",
+    "uri_format": "http://purl.org/spar/datacite/$1"
+  },
+  "dblp": {
+    "description": "The dblp RDF schema is an ontology that models the semantic contents of the dblp computer science bibliography.",
+    "extras": {
+      "version.iri": "https://dblp.org/rdf/schema-2024-06-14"
+    },
+    "homepage": "https://dblp.org/rdf/docu/",
+    "keywords": [
+      "NFDIxCS",
+      "computer science",
+      "other subjects"
+    ],
+    "name": "dblp RDF schema",
+    "uri_format": "https://dblp.org/rdf/schema#$1"
   },
   "dcat3": {
     "artifacts": [
@@ -793,7 +847,8 @@
       "NFDI4ING",
       "Digital Planning and Construction",
       "FID BAUdigital",
-      "ESS"
+      "ESS",
+      "NFDIxCS"
     ],
     "name": "DCMI Metadata Terms",
     "uri_format": "http://purl.org/dc/terms/$1"
@@ -914,6 +969,22 @@
     ],
     "name": "Digital Construction Occupancy",
     "uri_format": "https://w3id.org/digitalconstruction/0.5/Occupancy#$1"
+  },
+  "doap": {
+    "artifacts": [
+      {
+        "type": "rdf",
+        "url": "https://raw.githubusercontent.com/ewilderj/doap/refs/heads/master/schema/doap.rdf"
+      }
+    ],
+    "description": "The Description of a Project (DOAP) vocabulary, described using W3C RDF Schema and the Web Ontology Language.",
+    "homepage": "https://github.com/ewilderj/doap/wiki",
+    "keywords": [
+      "NFDIxCS"
+    ],
+    "name": "Description of a Project (DOAP) vocabulary",
+    "tracker": "https://github.com/ewilderj/doap/issues",
+    "uri_format": "http://usefulinc.com/ns/doap#$1"
   },
   "docbias": {
     "artifacts": [
@@ -1190,7 +1261,7 @@
     },
     "description": "The Experimental Factor Ontology (EFO) provides a systematic description of many experimental variables available in EBI databases, and for projects such as the NHGRI-EBI GWAS catalog. It combines parts of several biological ontologies, such as UBERON anatomy, ChEBI chemical compounds, Cell Ontology and the Monarch Disease Ontology (MONDO). The scope of EFO is to support the annotation, analysis and visualization of data handled by many groups at the EBI and as the core ontology for Open Targets.",
     "extras": {
-      "version.iri": "http://www.ebi.ac.uk/efo/releases/v3.88.0/efo.owl"
+      "version.iri": "http://www.ebi.ac.uk/efo/releases/v3.89.0/efo.owl"
     },
     "homepage": "https://www.ebi.ac.uk/efo/",
     "keywords": [
@@ -1417,6 +1488,7 @@
     "homepage": "https://sparontologies.github.io/fabio/current/fabio.html",
     "keywords": [
       "NFDI4ING",
+      "NFDIxCS",
       "other subjects"
     ],
     "name": "FaBiO, the FRBR-aligned Bibliographic Ontology",
@@ -1483,6 +1555,9 @@
   },
   "fix": {
     "description": "An ontology of physico-chemical methods and properties.",
+    "extras": {
+      "version.iri": "http://purl.obolibrary.org/obo/fix/releases/2020-04-13/fix.owl"
+    },
     "keywords": [
       "NFDI4CHEM",
       "chemistry"
@@ -1613,7 +1688,7 @@
       "earth sciences"
     ],
     "license": {
-      "name": "https://www.ogc.org/license"
+      "name": "http://purl.org/NET/rdflicense/:APACHE2.0"
     },
     "name": "GeoSPARQL Ontology",
     "uri_format": "http://www.opengis.net/ont/geosparql#$1"
@@ -1659,7 +1734,7 @@
   "gist": {
     "description": "gist is a minimalist upper ontology created by Semantic Arts.",
     "extras": {
-      "version.iri": "https://w3id.org/semanticarts/ontology/gistCore14.0.0"
+      "version.iri": "https://w3id.org/semanticarts/ontology/gistCore14.1.0"
     },
     "homepage": "https://www.semanticarts.com/gist/",
     "keywords": [
@@ -1705,7 +1780,7 @@
     },
     "description": "The Gene Ontology (GO) provides a framework and set of concepts for describing the functions of gene products from all organisms.",
     "extras": {
-      "version.iri": "http://purl.obolibrary.org/obo/go/releases/2026-01-23/go.owl"
+      "version.iri": "http://purl.obolibrary.org/obo/go/releases/2026-03-25/go.owl"
     },
     "homepage": "http://geneontology.org/",
     "keywords": [
@@ -1750,6 +1825,19 @@
     ],
     "name": "Global Trade Alerts Ontology",
     "uri_format": "https://schema.coypu.org/gta#$1"
+  },
+  "gufo": {
+    "description": "The objective of gUFO is to provide a lightweight implementation of the Unified Foundational Ontology (UFO) [1-5] suitable for Semantic Web OWL 2 DL applications.\n Intended users are those implementing UFO-based lightweight ontologies that reuse gUFO by specializing and instantiating its elements. There are three implications of the use of the term lightweight. First of all, we have employed little expressive means in an effort to retain computational properties for the resulting OWL ontology. Second, we have selected a subset of UFO-A [1, 2] and UFO-B [3] to include here. In particular, there is minimalistic support for UFO-B (only that which is necessary to establish the participation of objects in events and to capture historical dependence between events). Third, a lightweight ontology, differently from a reference ontology, is designed with the purpose of providing an implementation artifact to structure a knowledge base (or knowledge graph). This has driven a number of pragmatic implementation choices which are discussed in comments annotated to the various elements of this implementation. The 'g' in gUFO stands for gentle. At the same time, 'gufo' is the Italian word for 'owl'. For background information on the reference ontology on which this implementation is based, see: 1. G. Guizzardi, G. Wagner, J. P. A. Almeida, R. S. S. Guizzardi, “Towards ontological foundations for conceptual modeling: The unified foundational ontology (UFO) story,” Applied Ontology (Online), vol. 10, p. 259–271, 2015. <http://dx.doi.org/10.3233/ao-150157>, 2. G. Guizzardi, Ontological Foundations for Structural Conceptual Models, PhD Thesis, University of Twente, The Netherlands, 2005. <https://research.utwente.nl/en/publications/ontological-foundations-for-structural-conceptual-models>, 3. G. Guizzardi, G. Wagner, R. A. Falbo, R. S. S. Guizzardi, and J. P. A. Almeida, “Towards Ontological Foundations for the Conceptual Modeling of Events,” in Proc. 32th International Conference, ER 2013, 2013, p. 327–341. <https://doi.org/10.1007/978-3-642-41924-9_27>, 4. G. Guizzardi, C. M. Fonseca, A. B. Benevides, J. P. A. Almeida, D. Porello, T. P. Sales, “Endurant Types in Ontology-Driven Conceptual Modeling: Towards OntoUML 2.0,” in Conceptual Modeling – 37th International Conference, ER 2018, 2018, p. 136–150. <https://doi.org/10.1007/978-3-030-00847-5_12>, 5. C. M. Fonseca, D. Porello, G. Guizzardi, J. P. A. Almeida, and N. Guarino, “Relations in ontology-driven conceptual modeling,” in 38th International Conference on Conceptual Modeling (ER 2019), LNCS, 2019. v. 11788, 2019, p. 1–15. <http://dx.doi.org/10.1007/978-3-030-33223-5_4>.",
+    "extras": {
+      "version.iri": "http://purl.org/nemo/gufo#/1.0.0"
+    },
+    "homepage": "https://nemo-ufes.github.io/gufo/",
+    "keywords": [
+      "NFDIxCS"
+    ],
+    "name": "gUFO: A Lightweight Implementation of the Unified Foundational Ontology (UFO)",
+    "tracker": "https://github.com/nemo-ufes/gufo/issues",
+    "uri_format": "http://purl.org/nemo/gufo#$1"
   },
   "hcrt": {
     "artifacts": [
@@ -1840,13 +1928,14 @@
     ],
     "description": "The Information Artifact Ontology (IAO) is an ontology of information entities, originally driven by work by the OBI digital entity and realizable information entity branch.",
     "extras": {
-      "version.iri": "http://purl.obolibrary.org/obo/iao/2022-11-07/iao.owl"
+      "version.iri": "http://purl.obolibrary.org/obo/iao/2026-03-30/iao.owl"
     },
     "homepage": "https://github.com/information-artifact-ontology/IAO/",
     "keywords": [
       "NFDI4ING",
       "NFDI4CHEM",
-      "FAIR Data Spaces"
+      "FAIR Data Spaces",
+      "NFDIxCS"
     ],
     "name": "Information Artifact Ontology (IAO)",
     "tracker": "https://github.com/information-artifact-ontology/IAO/issues"
@@ -1953,6 +2042,7 @@
     "homepage": "https://zenodo.org/record/6621882",
     "keywords": [
       "NFDI4ING",
+      "NFDIxCS",
       "engineering"
     ],
     "name": "InfoSecSoS Ontology",
@@ -2007,6 +2097,23 @@
     "name": "Industrial Ontology Foundry (IOF) Core Ontology",
     "tracker": "https://github.com/iofoundry/ontology/issues",
     "uri_format": "https://spec.industrialontologies.org/ontology/$1"
+  },
+  "iotlite": {
+    "artifacts": [
+      {
+        "type": "rdf",
+        "url": "http://iot.ee.surrey.ac.uk/fiware/ontologies/iot-lite/iot-lite.rdf"
+      }
+    ],
+    "description": "This ontology describes IoT concepts into three classes. Objects, system or resources and services. The devices are also splitted into, although not restricted to, three classes: sensing devices actuating devices and tag devices. The services are described with an availability or access control and a coverage. This coverage represents the area covered by the IoT device. The figure below depicts the concepts of the ontology and the main relationships between them.\nIoT Lite Ontology is created to be used with a common taxonomy to describe the Units and QuantityKind that IoT devices can meassure. This taxonomy represent individuals in the ontology and is based in well-known taxonomies as: qu and qudt.",
+    "homepage": "http://purl.oclc.org/NET/UNIS/fiware/iot-lite",
+    "keywords": [
+      "NFDIxCS",
+      "computer science"
+    ],
+    "name": "IoT-Lite Ontology",
+    "tracker": "https://github.com/telsaleh/iot-lite/issues",
+    "uri_format": "http://purl.oclc.org/NET/UNIS/fiware/iot-lite#$1"
   },
   "isced": {
     "description": "The International Standard Classification of Education (ISCED) is a framework for assembling, compiling and analysing cross-nationally comparable statistics on education. ISCED Fields of Education and Training classifies education programmes and related qualifications by fields of study: A field is the `broad domain, branch or area of content covered by an education programme or qualification'. The International Standard Classification of Education is maintained by DG EMPL and published by the Publications Office of the European Union on the EU Vocabularies website.",
@@ -2156,6 +2263,25 @@
     "tracker": "https://github.com/oeg-upm/bimerr-material-properties/issues",
     "uri_format": "http://bimerr.iot.linkeddata.es/def/material-properties#$1"
   },
+  "mathalgodb": {
+    "artifacts": [
+      {
+        "type": "rdf",
+        "url": "https://github.com/MaRDI4NFDI/MathAlgoDB/raw/refs/heads/main/MathAlgoDB_Ontology.ttl"
+      }
+    ],
+    "description": "This vocabulary and grammar defines which types of objects are admissible to the MathAlgoDB - the algorithm knowledge graph - and by which properties they can relate. All in all five classes, 'problem', 'algorithm', 'benchmark', 'software', 'publication', are defined, as well as a minimal but intuitively intelligible number of properties. As opposed to the more liberal WikiData, MathAlgoDB relies on the strict adherence to the ontology to provide a reliable machine-readable database of (numerical) algorithm knowledge.",
+    "extras": {
+      "version.iri": "https://mardi4nfdi.de/mathalgodb/0.1"
+    },
+    "keywords": [
+      "MaRDI",
+      "mathematics"
+    ],
+    "name": "Algorithm Knowledge Graph Ontology",
+    "tracker": "https://github.com/MaRDI4NFDI/MathAlgoDB/issues",
+    "uri_format": "https://mardi4nfdi.de/mathalgodb/0.1#$1"
+  },
   "mathmoddb": {
     "artifacts": [
       {
@@ -2166,6 +2292,8 @@
     "description": "This is the MathModDB Ontology for documenting mathematical models.",
     "keywords": [
       "NFDI4ING",
+      "MaRDI",
+      "NFDIxCS",
       "computer science",
       "mathematics",
       "engineering"
@@ -2246,7 +2374,7 @@
     ],
     "description": "A representation of the variety of methods used to make clinical and phenotype measurements.",
     "extras": {
-      "version.iri": "http://purl.obolibrary.org/obo/mmo/2.173/mmo.owl"
+      "version.iri": "http://purl.obolibrary.org/obo/mmo/releases/2026-05-06/mmo.owl"
     },
     "homepage": "https://github.com/rat-genome-database/MMO-Measurement-Method-Ontology/",
     "keywords": [
@@ -2264,7 +2392,7 @@
     ],
     "description": "PSI-MOD is an ontology consisting of terms that describe protein chemical modifications, logically linked by an is_a relationship in such a way as to form a direct acyclic graph (DAG). The PSI-MOD ontology has more than 45 top-level nodes, and provides alternative hierarchical paths for classifying protein modifications either by the molecular structure of the modification, or by the amino acid residue that is modified.",
     "extras": {
-      "version.iri": "http://purl.obolibrary.org/obo/mod/1.032.4/mod.owl"
+      "version.iri": "http://purl.obolibrary.org/obo/mod/1.033.0/mod.owl"
     },
     "homepage": "http://www.psidev.info/MOD",
     "keywords": [
@@ -2345,7 +2473,7 @@
     ],
     "description": "A structured controlled vocabulary for the annotation of experiments concerned with proteomics mass spectrometry.",
     "extras": {
-      "version.iri": "http://purl.obolibrary.org/obo/ms/4.1.243/ms.owl"
+      "version.iri": "http://purl.obolibrary.org/obo/ms/4.1.246/ms.owl"
     },
     "homepage": "http://www.psidev.info/groups/controlled-vocabularies",
     "keywords": [
@@ -2410,11 +2538,11 @@
   "mwo": {
     "description": "The MatWerk ontology represents research data and related activities of the MSE community. A first version of the ontology will be simplified, focusing on (i) community structure: researchers, research projects, universities, and institutions; (ii) infrastructure: software, workflows, ontologies, schemas, APIs, instruments, facilities, educational resources; and (iii) data: repositories, databases, scientific publications, published datasets and reference data.",
     "extras": {
-      "version.iri": "http://purls.helmholtz-metadaten.de/mwo/2.0.0"
+      "version.iri": "http://purls.helmholtz-metadaten.de/mwo/mwo.owl/3.0.1"
     },
     "homepage": "https://nfdi-matwerk.pages.rwth-aachen.de/ta-oms/mwo/docs/index.html",
     "keywords": [
-      "Miscellaneous",
+      "NFDI4ING",
       "material science"
     ],
     "name": "The MatWerk ontology",
@@ -2440,7 +2568,7 @@
   "n4e": {
     "description": "The ontology and metadata schema for the NFDI4Earth Knowledge Hub. See serializations of this schema as an OWL ontology here:\n  - [RDF/XML](https://nfdi4earth.pages.rwth-aachen.de/knowledgehub/nfdi4earth-kh-schema/ontology.owl.xml)\n  - [RDF/Turtle](https://nfdi4earth.pages.rwth-aachen.de/knowledgehub/nfdi4earth-kh-schema/ontology.owl.ttl)\n  - [RDF/JSON-LD](https://nfdi4earth.pages.rwth-aachen.de/knowledgehub/nfdi4earth-kh-schema/ontology.owl.jsonld)\n  - [RDF/N-Triples](https://nfdi4earth.pages.rwth-aachen.de/knowledgehub/nfdi4earth-kh-schema/ontology.owl.nt)\n",
     "extras": {
-      "version.iri": "https://nfdi4earth.pages.rwth-aachen.de/knowledgehub/nfdi4earth-kh-schema/ontology-v0.38.3.owl.xml"
+      "version.iri": "https://nfdi4earth.pages.rwth-aachen.de/knowledgehub/nfdi4earth-kh-schema/ontology-v0.38.4.owl.xml"
     },
     "homepage": "https://nfdi4earth.de/ontology/",
     "keywords": [
@@ -2538,7 +2666,7 @@
     ],
     "description": "An ontology for representing biomedical investigations, including study designs, the collection and preparation of the targets of investigation, assays, instrumentation and reagents used, as well as the data generated and the types of analysis performed on the data to reach conclusions, and their documentation.",
     "extras": {
-      "version.iri": "http://purl.obolibrary.org/obo/obi/2025-12-18/obi.owl"
+      "version.iri": "http://purl.obolibrary.org/obo/obi/2026-03-19/obi.owl"
     },
     "homepage": "http://obi-ontology.org",
     "keywords": [
@@ -3135,7 +3263,7 @@
     },
     "description": "An ontology for describing the phenology of individual plants and populations of plants, and for integrating plant phenological data across sources and scales.",
     "extras": {
-      "version.iri": "http://purl.obolibrary.org/obo/ppo/releases/2025-06-16/ppo.owl"
+      "version.iri": "http://purl.obolibrary.org/obo/ppo/releases/2026-05-06/ppo.owl"
     },
     "homepage": "https://github.com/PlantPhenoOntology/PPO/",
     "keywords": [
@@ -3300,6 +3428,9 @@
   },
   "rex": {
     "description": "REX is an ontology of physico-chemical processes, i.e. physico-chemical changes occurring in course of time. REX includes both microscopic processes (involving molecular entities or subatomic particles) and macroscopic processes. Some biochemical processes from Gene Ontology (GO Biological process) can be described as instances of REX.",
+    "extras": {
+      "version.iri": "http://purl.obolibrary.org/obo/rex/releases/2017-11-19/rex.owl"
+    },
     "keywords": [
       "NFDI4CHEM",
       "NFDI4CAT",
@@ -3639,7 +3770,8 @@
     "homepage": "https://schema.org/",
     "keywords": [
       "FAIR Data Spaces",
-      "ESS"
+      "ESS",
+      "NFDIxCS"
     ],
     "name": "Schema.org Vocabulary",
     "tracker": "https://github.com/schemaorg/schemaorg",
@@ -3753,7 +3885,7 @@
     ],
     "description": "The Semanticscience Integrated Ontology (SIO) provides a simple, integrated ontology of types and relations for rich description of objects, processes and their attributes.",
     "extras": {
-      "version.iri": "http://semanticscience.org/ontology/sio/v1.59/sio-release.owl"
+      "version.iri": "http://semanticscience.org/ontology/sio/v1.61/sio-release.owl"
     },
     "homepage": "https://github.com/MaastrichtU-IDS/semanticscience",
     "keywords": [
@@ -3795,6 +3927,17 @@
     ],
     "name": "SKOS XL Vocabulary",
     "uri_format": "http://www.w3.org/2008/05/skos-xl#$1"
+  },
+  "sms": {
+    "description": "Ontology for representing systems, models and simulations in RDF.",
+    "homepage": "https://github.com/UdSAES/sms-ontology",
+    "keywords": [
+      "NFDI4Energy",
+      "mechanical engineering, energy technology"
+    ],
+    "name": "SMS-Ontology",
+    "tracker": "https://github.com/UdSAES/sms-ontology/issues",
+    "uri_format": "https://purl.org/sms-ontology#$1"
   },
   "sosa": {
     "contact": {
@@ -3864,7 +4007,7 @@
     },
     "description": "STATO is the statistical methods ontology. It contains concepts and properties related to statistical methods, probability distributions and other concepts related to statistical analysis, including relationships to study designs and plots.",
     "extras": {
-      "version.iri": "http://purl.obolibrary.org/obo/stato/releases/2025-02-23/stato.owl"
+      "version.iri": "http://purl.obolibrary.org/obo/stato/releases/2026-04-20/stato.owl"
     },
     "homepage": "https://stato-ontology.org/",
     "keywords": [
@@ -3952,6 +4095,7 @@
       "NFDI4ING",
       "NFDI4CHEM",
       "DataPLANT",
+      "NFDIxCS",
       "computer science"
     ],
     "name": "The Software Ontology (SWO)",
@@ -4155,7 +4299,7 @@
     ],
     "description": "Uberon is an integrated cross-species anatomy ontology representing a variety of entities classified according to traditional anatomical criteria such as structure, function and developmental lineage. The ontology includes comprehensive relationships to taxon-specific anatomical ontologies, allowing integration of functional, phenotype and expression data.",
     "extras": {
-      "version.iri": "http://purl.obolibrary.org/obo/uberon/releases/2025-12-04/uberon.owl"
+      "version.iri": "http://purl.obolibrary.org/obo/uberon/releases/2026-04-01/uberon.owl"
     },
     "homepage": "http://obophenotype.github.io/uberon/",
     "keywords": [

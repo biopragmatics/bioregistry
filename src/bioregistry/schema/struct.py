@@ -464,6 +464,7 @@ DEFAULT_METAPREFIX_PRIORITY = [
     "re3data",
     "uniprot",
     "biodivportal",
+    "tib",
 ]
 
 
@@ -2421,7 +2422,7 @@ class Resource(BaseModel):
                 return self.download_rdf.url
             else:
                 return self.download_rdf
-        return self._get_download("ols", "rdf")
+        return self._get_download("ols", "rdf") or self._get_download("tib", "rdf")
 
     # docstr-coverage:excused `overload`
     @overload
@@ -2479,6 +2480,7 @@ class Resource(BaseModel):
             or self._get_download("ols", "owl")
             or self._get_download("cropoct", "owl")
             or self._get_download("aberowl", "owl")
+            or self._get_download("tib", "owl")
         )
 
     def _get_download(self, metaprefix: str, artifact_type: str) -> str | None:
