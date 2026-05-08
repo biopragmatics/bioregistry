@@ -400,7 +400,7 @@
   mappings:
   - identifier: nfdi4cat
     prefix: tib.collection
-  name: NDFI4Cat Collection
+  name: NFDI4Cat Collection
   organizations:
   - name: NFDI4Cat
     ror: 01k9z4a50
@@ -574,11 +574,6 @@
   - sosa
   - ssn
   - ssn.system
-  - suprabank.additive
-  - suprabank.buffer
-  - suprabank.interaction
-  - suprabank.molecule
-  - suprabank.solvent
   - swo
   - time
   - uo
@@ -1134,6 +1129,7 @@
   - mathmoddb
   - mobivoc
   - modsci
+  - mwo
   - oeo
   - okn.sd
   - om
@@ -1261,6 +1257,7 @@
   - stato
   - swo
   - to
+  - uberon
   - uo
 '0000024':
   contributors:
@@ -1274,6 +1271,11 @@
     this collection.
   identifier: '0000024'
   logo: https://www.nfdi.de/wp-content/uploads/2025/02/aktuelles_logo_02.25.png
+  maintainers:
+  - email: markus.kuehbach@physik.hu-berlin.de
+    github: mkuehbach
+    name: Markus Kühbach
+    orcid: 0000-0002-7117-5196
   mappings:
   - identifier: fairmat
     prefix: tib.collection
@@ -1287,6 +1289,7 @@
     wikidata: Q61658497
   references:
   - https://go.rocket.chat/invite?host=all-chat.nfdi.de&path=invite%2FboyT2y
+  - https://discord.com/channels/1201445470485106719/1498656792937500785
   resources:
   - bfo
   - nexus
@@ -1329,6 +1332,7 @@
     wikidata: Q61658497
   resources:
   - bfo
+  - bot
   - cidoc.crm
   - dbo
   - dcat
@@ -1338,6 +1342,7 @@
   - foaf
   - frapo
   - geonames
+  - gesah
   - gnd
   - iao
   - iconclass
@@ -1345,8 +1350,10 @@
   - modsci
   - nfdi4culture.cto
   - obi
+  - ohdab
   - okn.sd
   - org
+  - premis
   - schema
   - skos
   - swo
@@ -1365,6 +1372,15 @@
     appropriate for maintaining this collection.
   identifier: '0000026'
   logo: https://www.nfdi.de/wp-content/uploads/2022/05/DAPHNE4NFDI_logo.png
+  maintainers:
+  - email: heike.goerzig@helmholtz-berlin.de
+    github: hgoerzig
+    name: Heike Görzig
+    orcid: 0000-0001-9121-8643
+  - email: rolf.krahl@helmholtz-berlin.de
+    github: RKrahl
+    name: Rolf Krahl
+    orcid: 0000-0002-1266-3819
   name: DAPHNE4NFDI Collection
   organizations:
   - name: DAPHNE4NFDI
@@ -1568,9 +1584,15 @@
     schemas relevant for the PUNCH4NFDI Consortium created by the [NFDI Section Metadata
     WG Ontology Harmonization and Mapping](https://github.com/nfdi-de/section-metadata-wg-onto/).
     The working group is in the process of identifying PUNCH4NFDI Consortium members
-    appropriate for maintaining this collection.
+    appropriate for maintaining this collection. PUNCH4NFDI is notable in that its
+    sub-disciplines (e.g., astronomy, high energy physics, nuclear physics, etc.)
+    have a large variety in data and metadata needs.
   identifier: '0000032'
   logo: https://www.nfdi.de/wp-content/uploads/2021/12/PUNCH4NFDI-Logo_RGB.png
+  maintainers:
+  - github: harenk
+    name: Harry Enke
+    orcid: 0000-0002-2366-8316
   name: PUNCH4NFDI Collection
   organizations:
   - name: PUNCH4NFDI
@@ -1683,17 +1705,17 @@
   contributors:
   - name: NFDI Section Metadata WG Ontology Harmonization and Mapping
     wikidata: Q139055838
-  description: A placeholder collection of ontologies, controlled vocabularies, and
-    schemas relevant for the NFDIxCS Consortium created by the [NFDI Section Metadata
-    WG Ontology Harmonization and Mapping](https://github.com/nfdi-de/section-metadata-wg-onto/).
-    The working group is in the process of identifying NFDIxCS Consortium members
-    appropriate for maintaining this collection.
+  description: A collection of ontologies, controlled vocabularies, and schemas relevant
+    for the NFDIxCS Consortium.
   identifier: '0000035'
   logo: https://nfdixcs.org/fileadmin/PR/NFDIxCS/NFDIxCS_Logo2024_deepblue_crop.png
   maintainers:
   - email: huch@in.tum.de
     name: Fabian Huch
     orcid: 0000-0002-9418-1580
+  mappings:
+  - identifier: nfdixcs
+    prefix: tib.collection
   name: NFDIxCS Collection
   organizations:
   - name: NFDIxCS
@@ -1705,7 +1727,24 @@
   references:
   - https://go.rocket.chat/invite?host=all-chat.nfdi.de&path=invite%2FWgaGQB
   resources:
-  - bioregistry
+  - amv
+  - bfo
+  - cito
+  - cso
+  - datacite
+  - dblp.schema
+  - dcterms
+  - doap
+  - fabio
+  - gufo
+  - hpc
+  - iao
+  - infosecsos
+  - iotlite
+  - mathmoddb
+  - schema
+  - seon
+  - swo
 '0000036':
   contributors:
   - name: NFDI Section Metadata WG Ontology Harmonization and Mapping
@@ -2043,7 +2082,44 @@
   references:
   - https://go.rocket.chat/invite?host=all-chat.nfdi.de&path=invite%2FDFD2Ba
   resources:
-  - bioregistry
+  - agrovoc
+  - ahol
+  - atc
+  - atol
+  - bao
+  - chebi
+  - clo
+  - cmpo
+  - datacite
+  - dbsnp
+  - dcterms
+  - doid
+  - efo
+  - foodex2
+  - foodon
+  - go
+  - hgnc
+  - hp
+  - iao
+  - icd10
+  - icd11
+  - icdo
+  - loinc
+  - meddra
+  - mesh
+  - mgi
+  - mirbase
+  - ncbigene
+  - ncbitaxon
+  - ncit
+  - orpha
+  - rgd
+  - snomedct
+  - spdx
+  - uberon
+  - ucum
+  - umls
+  - uniprot
 '0000042':
   contributors:
   - name: NFDI Section Metadata WG Ontology Harmonization and Mapping

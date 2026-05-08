@@ -302,6 +302,7 @@ abcd:
   example: AD834
   homepage: https://web.expasy.org/abcd/
   keywords:
+  - ontology
   - protocols and materials databases
   license: CC-BY-4.0
   mappings:
@@ -445,11 +446,13 @@ ac.subtype:
     the type of a media item to a level more specific than the Dublin Core Type Vocabulary,
     http://purl.org/dc/dcmitype/. This controlled vocabulary provides values for ac:subtype
     and ac:subtypeLiteral.
+  download_rdf: http://rs.tdwg.org/acsubtype.ttl
   example: Animation
   homepage: http://rs.tdwg.org/ac/doc/subtype/
   keywords:
   - fair data spaces
   - life sciences, biology
+  - ontology
   license: CC-BY-4.0
   mappings:
     ecoportal: ACSUBTYPE
@@ -464,11 +467,13 @@ ac.variant:
   description: Audubon Core uses the terms ac:variant and ac:variantLiteral to provide
     information about the size, extent, and availability of the Service Access Point
     of a media item. This controlled vocabulary provides values for those terms.
+  download_rdf: http://rs.tdwg.org/acvariant.ttl
   example: v001
   homepage: http://rs.tdwg.org/acvariant.htm
   keywords:
   - fair data spaces
   - life sciences, biology
+  - ontology
   license: CC-BY-4.0
   mappings:
     ecoportal: ACVARIANT
@@ -959,6 +964,7 @@ afo:
     name: Allotrope Foundation
   description: Allotrope Merged Ontology Suite
   download_owl: http://aber-owl.net/media/ontologies/AFO/44/afo.owl
+  download_rdf: https://purl.allotrope.org/voc/afo/merged/REC/2025/03/merged-without-qudt-and-inferred.ttl
   example: result#AFR_10001055
   homepage: https://www.allotrope.org/
   keywords:
@@ -1308,6 +1314,7 @@ agrovoc:
   - forest management
   - knowledge and information systems
   - nutritional science
+  - ontology
   - water management
   license: CC-BY-4.0
   mappings:
@@ -1597,7 +1604,7 @@ allergome:
   - protein family/group databases
   - sequence
   - taxonomy
-  license: CC BY-NC-SA 2.5
+  license: CC-BY-NC-SA-2.5
   mappings:
     biocontext: ALLERGOME
     integbio: nbdc01708
@@ -1921,12 +1928,15 @@ amv:
   example: InformationResource
   homepage: https://github.com/biswanathdutta/AMV
   keywords:
+  - computer science
   - metadata
+  - nfdixcs
   - ontology
   license: CC0-1.0
   mappings:
     bartoc: '20331'
     lov: amv
+    tib: amv
   name: Algorithm Metadata Vocabulary
   preferred_prefix: amv
   publications:
@@ -2084,7 +2094,7 @@ antweb:
   - classification
   - image/movie
   - organism
-  license: CC BY-NC-ND 3.0
+  license: CC-BY-SA-3.0
   mappings:
     biocontext: ANTWEB
     integbio: nbdc01710
@@ -2801,7 +2811,7 @@ ark:
   keywords:
   - data retrieval
   - subject agnostic
-  license: CC BY-NC 4.0
+  license: CC-BY-NC-4.0
   logo: https://api.fairsharing.org/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBaThDIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--c69281eac0647c6b7a664f0932bee0d5fd27781d/gold_boat_arka.png?disposition=inline
   mappings:
     bartoc: '20715'
@@ -3586,6 +3596,7 @@ atol:
   uri_format: http://opendata.inra.fr/ATOL/ATOL_$1
 atomistic:
   description: An EMMO-based domain ontology for atomistic and electronic modelling.
+  download_rdf: https://raw.githubusercontent.com/emmo-repo/domain-atomistic/master/atomistic.ttl
   example: 08fd7117-66ac-5b6d-b65e-34a826675877
   homepage: https://github.com/emmo-repo/domain-atomistic
   keywords:
@@ -3849,7 +3860,7 @@ bao:
   - protein
   - reagent
   - target
-  license: CC BY-SA 4.0
+  license: CC-BY-SA-4.0
   mappings:
     aberowl: BAO
     biocontext: BAO
@@ -3931,7 +3942,7 @@ bartoc:
     Knowledge Organization (ISKO).'
   example: '241'
   homepage: https://bartoc.org
-  license: PDDL 1.0
+  license: PDDL-1.0
   mappings:
     wikidata: P2689
   name: Basic Register of Thesauri, Ontologies & Classifications
@@ -3948,6 +3959,7 @@ bartoc:
   uri_format: https://bartoc.org/en/node/$1
 battinfo:
   description: A battery interface domain ontology based on EMMO.
+  download_rdf: https://raw.githubusercontent.com/BIG-MAP/BattINFO/master/battinfo.ttl
   example: 74ed2670_657d_4f0b_b0a6_3f13bc2e9c17
   homepage: https://big-map.github.io/BattINFO/index.html
   keywords:
@@ -4473,6 +4485,7 @@ bfo:
   - nfdi4cat
   - nfdi4chem
   - nfdi4ing
+  - nfdixcs
   - obo
   - ontology
   - subject agnostic
@@ -5579,7 +5592,7 @@ biomodels.kisao:
   - computer science
   - obo
   - ontology
-  license: Artistic License 2.0
+  license: Artistic-2.0
   logo: https://upload.wikimedia.org/wikipedia/commons/6/63/KiSAO_logo.svg
   mappings:
     aberowl: KISAO
@@ -6687,6 +6700,8 @@ bohlmann:
     that occur in the plant family of Compositae (Asteraceae)
   example: Compositae
   homepage: http://terminologies.gfbio.org/terms/BOHLMANN
+  keywords:
+  - ontology
   license: CC0-1.0
   mappings:
     agroportal: BOHLMANN
@@ -6742,6 +6757,7 @@ bonsai:
     orcid: 0000-0001-7922-5998
   description: The BONSAI ontologies provides elements of description for product
     footprint concepts defined in the bonsai.uno data base
+  download_rdf: https://raw.githubusercontent.com/BONSAMURAIS/ontology/master/core/ontology_v0.2.ttl
   example: Activity
   homepage: https://github.com/BONSAMURAIS/BONSAI-ontology-RDF-framework
   keywords:
@@ -6757,6 +6773,7 @@ bonsai:
 bot:
   description: The Building Topology Ontology (BOT) is a minimal ontology for describing
     the core topological concepts of a building.
+  download_rdf: https://w3c-lbd-cg.github.io/bot/bot.ttl
   example: Building
   homepage: https://w3c-lbd-cg.github.io/bot/
   keywords:
@@ -8369,7 +8386,7 @@ ccon:
   - ontology
   - plant ecology
   - population dynamics
-  license: CC BY-NC-SA 2.0
+  license: CC-BY-NC-SA-2.0
   mappings:
     aberowl: CCON
     agroportal: CCON
@@ -9937,6 +9954,7 @@ chembl.tissue:
   preferred_prefix: chembl.tissue
   references:
   - https://chembl.blogspot.com/2018/03/chembl-tissues-increasing-depth-breadth.html
+  uri_format: https://www.ebi.ac.uk/chembl/explore/tissue/$1
 chemdb:
   contact:
     email: pfbaldi@uci.edu
@@ -10286,6 +10304,7 @@ chemrof:
   description: A data model for managing information about chemical entities, ranging
     from atoms through molecules to complex mixtures.
   download_owl: https://raw.githubusercontent.com/chemkg/chemrof/main/schema/owl/chemrof.owl.ttl
+  download_rdf: https://w3id.org/chemrof/chemrof.owl.ttl
   example: FullySpecifiedAtom
   homepage: https://chemkg.github.io/chemrof/
   keywords:
@@ -10548,7 +10567,7 @@ chr:
   homepage: https://github.com/monarch-initiative/monochrom
   keywords:
   - ontology
-  license: BSD-3
+  license: BSD-3-Clause
   mappings:
     aberowl: CHR
     biocontext: CHR
@@ -10638,6 +10657,7 @@ cidoc.crm:
     of data from multiple sources in a software and schema agnostic fashion. [from
     homepage]
   download_owl: http://aber-owl.net/media/ontologies/CIDOC-CRM/2/cidoc-crm.owl
+  download_rdf: https://gitlab.isl.ics.forth.gr/cidoc-crm/cidoc_crm_rdf/-/raw/master/7.1.1/CIDOC_CRM_v7.1.1.rdf
   example: E1
   homepage: https://cidoc-crm.org
   keywords:
@@ -10829,9 +10849,10 @@ cito:
   keywords:
   - citation
   - knowledge and information systems
-  - miscellaneous
+  - nfdixcs
   - ontology
   - spar
+  license: CC-BY-4.0
   mappings:
     fairsharing: FAIRsharing.b220d4
     lov: cito
@@ -13105,6 +13126,8 @@ codata.rdmt:
     \ develop and improve this important reference resource."
   example: aggregated-data
   homepage: https://vocabs.ardc.edu.au/viewById/685
+  keywords:
+  - ontology
   license: CC-BY-4.0
   mappings:
     biodivportal: CODATA-RDMT
@@ -13763,6 +13786,7 @@ compulyeast:
   uri_format: http://compluyeast2dpage.dacya.ucm.es/cgi-bin/2d/2d.cgi?ac=$1
 condo:
   description: The COnCEPT upper-level Design Ontology (COnDO).
+  download_rdf: https://raw.githubusercontent.com/OntoRep/COnCEPT/master/COnDO.ttl
   example: AestheticFunction
   homepage: https://github.com/OntoRep/COnCEPT
   keywords:
@@ -13916,11 +13940,13 @@ cora:
     is, the set of allowed models of the SUO-KIF implementation is a proper subset
     of the allowed models by the OWL implementation. Concept definitions in natural
     language and othe clarifications can be found in the  IEEE 1872-2015 standard.
+  download_owl: https://raw.githubusercontent.com/srfiorini/IEEE1872-owl/master/cora.owl
   example: -bare#CollectiveRoboticSystem
   homepage: https://github.com/srfiorini/IEEE1872-owl
   keywords:
   - engineering
   - nfdi4ing
+  - ontology
   mappings:
     tib: cora
   name: Core Ontology for Robotics and Automation
@@ -14238,6 +14264,7 @@ covoc:
 coypu:
   description: Ontology to describe companies and their supply network, employees,
     products, production materials, industries, events and relations.
+  download_rdf: https://gitlab.com/coypu-project/coy-ontology/-/raw/main/ontology/global/coy.ttl
   example: AbductionOrForcedDisappearance
   homepage: https://gitlab.com/coypu-project/coy-ontology
   keywords:
@@ -14251,6 +14278,7 @@ coypu:
 coypu.emdat:
   description: Crisis and hazard related taxonomy developed by CRED for disaster preparedness
     and humanitarian actions at national and international level.
+  download_rdf: https://gitlab.com/coypu-project/coy-ontology/-/raw/main/ontology/events/em-dat.ttl
   example: Air
   homepage: https://schema.coypu.org/em-dat/1.0
   keywords:
@@ -14265,6 +14293,7 @@ coypu.emdat:
 coypu.gta:
   description: An ontology for modeling global trade alerts, mainly inspired by the
     Global Trade Alerts repository.
+  download_rdf: https://gitlab.com/coypu-project/coy-ontology/-/raw/main/ontology/events/gta.ttl
   example: AffectedCommercialFlow
   homepage: https://schema.coypu.org/gta/1.0
   keywords:
@@ -14277,6 +14306,7 @@ coypu.gta:
   uri_format: https://schema.coypu.org/gta#$1
 coypu.ta:
   description: An ontology for modeling trade agreements
+  download_rdf: https://gitlab.com/coypu-project/coy-ontology/-/raw/main/ontology/events/rta.ttl
   example: CustomsUnion
   homepage: https://schema.coypu.org/ta/1.0
   keywords:
@@ -14289,6 +14319,7 @@ coypu.ta:
   uri_format: https://schema.coypu.org/ta#$1
 coypu.tiva:
   description: An ontology for modeling international trade flows.
+  download_rdf: https://gitlab.com/coypu-project/coy-ontology/-/raw/main/ontology/indicators/valueandtradeflows.ttl
   example: hasExport
   homepage: https://gitlab.com/coypu-project/coy-ontology/
   keywords:
@@ -14583,7 +14614,7 @@ cro:
   - contributor roles
   - obo
   - ontology
-  license: CC BY 2.0
+  license: CC-BY-2.0
   mappings:
     aberowl: CRO
     biocontext: CRO
@@ -14780,6 +14811,35 @@ csd:
       and rising'
     year: 2002
   uri_format: https://www.ccdc.cam.ac.uk/services/structures?pid=csd:$1&sid=IDORG
+cso:
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: The Computer Science Ontology (CSO) is a large-scale ontology of research
+    areas that was automatically generated using the Klink-2 algorithm (cf. http://people.kmi.open.ac.uk/francesco/wp-content/uploads/2015/09/ISWC2015_Klink-2.pdf)
+    on the Rexplore dataset (cf. http://oro.open.ac.uk/39160/1/iswc2013_osborne.pdf),
+    which consists of about 16 million publications, mainly in the field of Computer
+    Science. The Klink-2 algorithm combines semantic technologies, machine learning,
+    and knowledge from external sources to automatically generate a fully populated
+    ontology of research areas. Some relationships were also revised manually by experts
+    during the preparation of two ontology-assisted surveys in the field of Semantic
+    Web and Software Architecture. The main root of CSO is Computer Science, however,
+    the ontology includes also a few secondary roots, such as Linguistics, Geometry,
+    Semantics, and so on.
+  download_owl: https://cso.kmi.open.ac.uk/download/version-3.5/CSO.3.5.owl.zip
+  example: image_subtraction
+  homepage: https://cso.kmi.open.ac.uk/home
+  keywords:
+  - computer science
+  - nfdixcs
+  - ontology
+  mappings:
+    tib: cso
+  name: Computer Science Ontology
+  preferred_prefix: cso
+  uri_format: https://cso.kmi.open.ac.uk/topics/$1
 csp:
   contact:
     email: af8d@nih.gov
@@ -15513,12 +15573,15 @@ datacite:
   example: AgentIdentifierScheme
   homepage: http://www.sparontologies.net/ontologies/datacite
   keywords:
+  - nfdixcs
   - ontology
   - subject agnostic
   mappings:
     aberowl: DATACITE
+    bartoc: '17907'
     bioportal: DATACITE
     fairsharing: FAIRsharing.c06f1e
+    tib: datacite
   name: DataCite Ontology
   preferred_prefix: DataCite
   repository: https://github.com/sparontologies/datacite
@@ -15568,7 +15631,7 @@ datacite.name:
   description: The type of name.
   example: Organizational
   homepage: https://datacite-metadata-schema.readthedocs.io/en/4.6/properties/creator/#a-nametype
-  license: CC BY-SA 4.0
+  license: CC-BY-SA-4.0
   mappings:
     bartoc: '20828'
   name: DataCite Name Type
@@ -15977,6 +16040,22 @@ dblp.publication:
   preferred_prefix: dblp.publication
   rdf_uri_format: https://dblp.org/rec/$1
   uri_format: https://dblp.org/rec/$1
+dblp.schema:
+  description: This ontology describes the RDF representation of the contents of the
+    dblp computer science bibliography.
+  download_rdf: https://dblp.org/rdf/schema.ttl
+  example: Article
+  homepage: https://dblp.org/rdf/docu/
+  keywords:
+  - bibliometrics
+  - computer science
+  - nfdixcs
+  - other subjects
+  mappings:
+    tib: dblp
+  name: DBLP Schema
+  preferred_prefix: dblp.schema
+  uri_format: https://dblp.org/rdf/schema#$1
 dbmhc:
   appears_in:
   - cellosaurus
@@ -16448,6 +16527,7 @@ dcterms:
   - metadata
   - metadata standardization
   - nfdi4ing
+  - nfdixcs
   - ontology
   - resource metadata
   - subject agnostic
@@ -17125,7 +17205,7 @@ ddinter.drug:
   - chemistry
   - drugs
   - relationships
-  license: CC BY-NC-SA 4.0
+  license: CC-BY-NC-SA-4.0
   name: Curated Drug-Drug Interactions Database - Drug
   pattern: ^DDInter\d+$
   preferred_prefix: ddinter.drug
@@ -17158,7 +17238,7 @@ ddinter.interaction:
   - drug-drug interactions
   - drugs
   - relationships
-  license: CC BY-NC-SA 4.0
+  license: CC-BY-NC-SA-4.0
   name: Curated Drug-Drug Interactions Database - Interaction
   pattern: ^\d+$
   preferred_prefix: ddinter.interaction
@@ -17743,6 +17823,7 @@ dermo:
   uri_format: http://purl.obolibrary.org/obo/DERMO_$1
 destatis.subject:
   description: A vocabulary of university course subjects
+  download_rdf: https://raw.githubusercontent.com/VIVO-DE/destatis_faecherklassifikation/master/faecherklassifikation.rdf
   example: '01'
   homepage: https://github.com/VIVO-DE/destatis_faecherklassifikation
   keywords:
@@ -17812,6 +17893,7 @@ dfg.fo:
     each subject number are is enconded into a Class with subclass statements following
     the DFG Classification of Subject Areas hierarchy. Labels are provide German and
     English.
+  download_rdf: https://raw.githubusercontent.com/tibonto/DFG-Fachsystematik-Ontology/refs/tags/2020-2025-06-01/dfgfo.ttl
   example: 101-01
   homepage: https://github.com/tibonto/DFG-Fachsystematik-Ontology
   keywords:
@@ -17822,6 +17904,7 @@ dfg.fo:
   - fid baudigital
   - fid move
   - nfdi4ing
+  - ontology
   - open educational resource
   - open educational resources
   license: CC-BY-4.0
@@ -18223,6 +18306,7 @@ dideo:
 digitalconstruction.energy:
   description: An ontology for energy systems and energy efficiency in the construction
     and renovation domain
+  download_rdf: https://digitalconstruction.github.io/Energy/v/0.5/energy.ttl
   example: EnergyProperty
   homepage: https://digitalconstruction.github.io/v/0.5/index.html
   keywords:
@@ -18239,6 +18323,7 @@ digitalconstruction.energy:
 digitalconstruction.lifecycle:
   description: An ontology to represent the enhancement of building data throughout
     the construction lifecycle stages
+  download_rdf: https://digitalconstruction.github.io/Lifecycle/v/0.5/lifecycle.ttl
   example: BLCS_Framework
   homepage: https://digitalconstruction.github.io/Lifecycle/v/0.5/
   keywords:
@@ -18256,6 +18341,7 @@ digitalconstruction.occupancy:
     construction and renovation projects that concern the comfort, safety and health
     of occupants, including visual and thermal comfort, indoor air quality and building
     acoustics, as well as related sensor observations.
+  download_rdf: https://digitalconstruction.github.io/Occupancy/v/0.5/occupancy.ttl
   example: AcousticComfort
   homepage: https://digitalconstruction.github.io/Occupancy/v/0.5/
   keywords:
@@ -18641,11 +18727,14 @@ doap:
   homepage: https://github.com/ewilderj/doap/wiki
   keywords:
   - metadata
+  - nfdixcs
   - rdf
   - semantic web
   - society
+  license: Apache-2.0
   mappings:
     lov: doap
+    tib: doap
     zazuko: doap
   name: Description of a Project
   preferred_prefix: doap
@@ -18655,6 +18744,7 @@ doap:
   uri_format: http://usefulinc.com/ns/doap#$1
 docbias:
   description: Doc-Bias, an ontology to support the documentation of bias in data
+  download_rdf: https://raw.githubusercontent.com/tibonto/Doc-BIAS/refs/heads/main/docbias-schema.ttl
   example: associatedTo
   homepage: https://nobias-project.eu/nobias/
   keywords:
@@ -18755,6 +18845,7 @@ doco:
 dogont:
   description: The DogOnt ontology supports device/network independent description
     of houses, including both controllable and architectural elements.
+  download_owl: https://raw.githubusercontent.com/iot-ontologies/dogont/master/dogont.owl
   example: AccelerationStateValue
   homepage: http://iot-ontologies.github.io/dogont/
   keywords:
@@ -18763,6 +18854,7 @@ dogont:
   - iot
   - nfdi4energy
   - nfdi4ing
+  - ontology
   mappings:
     lov: dogont
     tib: dogont
@@ -20164,6 +20256,7 @@ dsw:
     DwC class namespace from dwctype: to dwc: to follow class proposal, removed references
     to TDWG TaxonConcept ontology; deprecated terms that now have equivalent terms
     in Darwin Core., Change from version 1.0 to 1.0.1 Add CC0 license.'
+  download_owl: https://raw.githubusercontent.com/darwin-sw/dsw/master/dsw.owl
   example: DriedSpecimen
   homepage: https://github.com/darwin-sw/dsw
   keywords:
@@ -20171,6 +20264,7 @@ dsw:
   - ess
   - fair data spaces
   - life sciences, biology
+  - ontology
   license: CC0-1.0
   mappings:
     agroportal: DSW
@@ -20320,11 +20414,13 @@ dwc.doe:
     degree to which an Organism survives, reproduces, and expands its range at the
     given place and time. The Degree of Establishment Controlled Vocabulary provides
     term that should be used as values for dwc:degreeOfEstablishment and dwciri:degreeOfEstablishment
+  download_rdf: http://rs.tdwg.org/dwcdoe.ttl
   example: d001
   homepage: https://dwc.tdwg.org/doe/
   keywords:
   - fair data spaces
   - life sciences, biology
+  - ontology
   license: CC-BY-4.0
   mappings:
     ecoportal: DWCDOE
@@ -20343,11 +20439,13 @@ dwc.em:
     through the direct or indirect activity of modern humans. The Establishment Means
     Controlled Vocabulary provides terms that should be used as values for dwc:establishmentMeans
     and dwciri:establishmentMeans.
+  download_rdf: http://rs.tdwg.org/dwcem.ttl
   example: e001
   homepage: http://rs.tdwg.org/dwc/doc/em/
   keywords:
   - fair data spaces
   - life sciences, biology
+  - ontology
   license: CC-BY-4.0
   mappings:
     ecoportal: DWCEM
@@ -20365,11 +20463,13 @@ dwc.pw:
     by which an Organism came to be in a given place at a given time. The Pathway
     Controlled Vocabulary provides terms that should be used as values for dwc:pathway
     and dwciri:pathway.
+  download_rdf: http://rs.tdwg.org/dwcpw.ttl
   example: p001
   homepage: http://rs.tdwg.org/dwc/doc/pw/
   keywords:
   - fair data spaces
   - life sciences, biology
+  - ontology
   license: CC-BY-4.0
   mappings:
     ecoportal: DWCPW
@@ -21501,7 +21601,7 @@ edam:
   - obo
   - omics
   - ontology
-  license: CC BY-SA 4.0
+  license: CC-BY-SA-4.0
   mappings:
     aberowl: EDAM
     agroportal: EDAM
@@ -21727,6 +21827,7 @@ edm.fibo:
     applications and the ways that those things can relate to one another. In this
     way, FIBO can give meaning to any data (e.g., spreadsheets, relational databases,
     XML documents) that describe the business of finance
+  download_rdf: https://raw.githubusercontent.com/edmcouncil/fibo/refs/heads/master/AboutFIBOProd.rdf
   example: BE/MetadataBE/BEDomain
   homepage: https://github.com/edmcouncil/fibo
   keywords:
@@ -22254,7 +22355,7 @@ elsst:
   keywords:
   - economics
   - social science
-  license: CC-BY-SA 4.0
+  license: CC-BY-SA-4.0
   logo: https://api.fairsharing.org/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBaFFDIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--ee784912b873e09e9d907ebf15f37fb26c0ce50d/Screenshot%20from%202022-11-22%2021-00-34.png?disposition=inline
   mappings:
     bartoc: '14'
@@ -22569,6 +22670,7 @@ emmo:
     philosophy and information and communication technologies. It has been instigated
     by materials science to provide a framework for knowledge capture that is consistent
     with scientific principles and methodologies. (from GitHub)
+  download_owl: https://emmo-repo.github.io/versions/1.0.0-beta4/emmo-inferred.owl
   download_rdf: https://raw.githubusercontent.com/emmo-repo/EMMO/master/emmo.ttl
   example: 03212fd7_abfd_4828_9c8e_62c293052d4b
   homepage: https://emmo-repo.github.io
@@ -22578,6 +22680,7 @@ emmo:
   - material science
   - nfdi4cat
   - nfdi4ing
+  - ontology
   - philosophy
   - physics
   license: CC-BY-4.0
@@ -22757,7 +22860,7 @@ ena.embl:
   - repository
   - sequence
   - sequence databases
-  license: Apache License 2.0
+  license: Apache-2.0
   logo: https://www.ebi.ac.uk/ena/browser/assets/ENA_Logo_tagline.svg
   mappings:
     biocontext: ENA.EMBL
@@ -23030,6 +23133,7 @@ energymarketroles:
     roles of energy agents. Additionally, it includes the consumer role, as it is
     reused in most of Smart Grid scenarios. This ontology module reuses the knowledge
     of the 'Actor' ontology module.
+  download_rdf: https://innoweb.mondragon.edu/ontologies/dabgeo/common-domain/energymarketroles/1.0/ontology.ttl
   homepage: https://innoweb.mondragon.edu/ontologies/dabgeo/common-domain/energymarketroles/1.0/
   keywords:
   - nfdi4energy
@@ -23817,6 +23921,7 @@ envthes:
     in Europe (eLTER). It provides described and semantically well defined terms for
     later analysis and it serves as harmonized specification of parameters in the
     observation and measurement of ecosystem processes.
+  download_rdf: https://raw.githubusercontent.com/LTER-Europe/EnvThes/main/EnvThes.ttl
   example: 03733596-c643-4c14-a7bc-3048591a3f2d
   homepage: https://vocabs.lter-europe.net/envthes/
   keywords:
@@ -24312,7 +24417,7 @@ ero:
   - ontology
   - reagent
   - study design
-  license: CC BY 2.0
+  license: CC-BY-2.0
   mappings:
     aberowl: ERO
     biocontext: ERO
@@ -24756,6 +24861,7 @@ euroscivoc:
   keywords:
   - computer science
   - educational resources
+  - ontology
   license: CC-BY-4.0
   mappings:
     bartoc: '20394'
@@ -24815,6 +24921,7 @@ eurovoc:
   - geography
   - international relations
   - linguistics
+  - ontology
   - political science
   - public finance
   - social policy
@@ -25119,6 +25226,7 @@ fabio:
   homepage: https://github.com/sparontologies/fabio
   keywords:
   - nfdi4ing
+  - nfdixcs
   - ontology
   - other subjects
   - spar
@@ -25983,11 +26091,13 @@ fiesta.iot:
     the ontology, we leverage a number of core concepts from various mainstream ontologies
     and taxonomies, such as Semantic Sensor Network (SSN), M3-lite (a lite version
     of M3 ontology), WGS84, IoT-lite, Time, and DUL ontology.
+  download_owl: https://raw.githubusercontent.com/fiesta-iot/ontology/master/fiesta-iot.owl
   homepage: https://github.com/fiesta-iot/ontology
   keywords:
   - engineering
   - iot
   - nfdi4ing
+  - ontology
   mappings:
     lov: fiesta-iot
     tib: fiestaiot
@@ -26001,6 +26111,7 @@ fiesta.iot:
 findex.bau:
   description: SKOS Model of FINDEX Bau by Fraunhofer-Informationszentrum Raum und
     Bau IRB
+  download_owl: https://gitlab.com/fid-bau/terminologie/findex-bau/-/raw/0.0.6/TS/findex-bau-skos.owl
   example: B10000000000_3
   homepage: https://gitlab.com/fid-bau/terminologie
   keywords:
@@ -26008,6 +26119,7 @@ findex.bau:
   - digital planning and construction
   - fid baudigital
   - nfdi4ing
+  - ontology
   mappings:
     tib: bau
   name: FINDEX Bau as a SKOS Thesaurus - Facetted Indexing System for Civil Engineering
@@ -26017,6 +26129,7 @@ findex.bau:
 findex.raum:
   description: SKOS-Modellierung des Thesaurus FINDEX Raum des Fraunhofer-Informationszentrums
     Raum und Bau IRB
+  download_owl: https://gitlab.com/fid-bau/terminologie/findex-raum/-/raw/0.0.7/TS/findex-raum-skos.owl
   example: R00000000000_3
   homepage: https://terminology.fraunhofer.de/findex-thesauri
   keywords:
@@ -26025,6 +26138,7 @@ findex.raum:
   - earth sciences
   - fid baudigital
   - nfdi4ing
+  - ontology
   mappings:
     tib: raum
   name: FINDEX Raum
@@ -27034,6 +27148,8 @@ foodex2:
     These codes may be used within FSA data.
   example: A0TMC
   homepage: https://data.food.gov.uk/codes/_foodtype
+  keywords:
+  - ontology
   mappings:
     agroportal: FOODEX2
   name: Food Classification and Description System (from FSA Food Type identifiers)
@@ -27379,12 +27495,14 @@ ftonto:
     which check if the webservice execution was performed successfully and effects
     which describe the changed state of the domain after performing a service. [from
     homepage]
+  download_owl: https://gitlab.rlp.net/iot-lab-uni-trier/ftonto/-/raw/master/mason.owl
   example: ADXL345_Pi_1_AccSensor_1_Result_2019-02-26_14_53_54.97
   homepage: https://wi2.pages.gitlab.rlp.net/iot-lab/ftonto-web-doku/
   keywords:
   - coypu
   - engineering
   - nfdi4ing
+  - ontology
   mappings:
     tib: ftonto
   name: Fischertechnik Ontology
@@ -28250,6 +28368,7 @@ gemet.concept:
   - ecology
   - environmental science
   - ess
+  - ontology
   license: CC-BY-4.0
   mappings:
     agroportal: GEMET
@@ -29215,6 +29334,7 @@ geosparql:
     geospatial data. In addition, GeoSPARQL is designed to accommodate systems based
     on qualitative spatial reasoning and systems based on quantitative spatial computations.
   download_owl: http://aber-owl.net/media/ontologies/GEOSPARQL/1/geosparql.owl
+  download_rdf: https://opengeospatial.github.io/ogc-geosparql/geosparql11/geo.ttl
   example: hasDefaultGeometry
   homepage: http://www.opengis.net/ont/geosparql
   keywords:
@@ -29223,7 +29343,7 @@ geosparql:
   - fair data spaces
   - nfdi4ing
   - ontology
-  license: https://www.ogc.org/license
+  license: http://purl.org/NET/rdflicense/:APACHE2.0
   mappings:
     aberowl: GEOSPARQL
     bartoc: '17990'
@@ -29274,6 +29394,7 @@ gepris:
 gesah:
   description: The GESAH Graphic Arts Ontology is designed for the inventory, classification
     and structured description of works on paper.
+  download_rdf: https://raw.githubusercontent.com/tibonto/gesah/main/gesah.ttl
   example: applies_to
   homepage: https://sah.tib.eu/
   keywords:
@@ -29321,7 +29442,7 @@ gesis.rexconcepts:
   example: '33'
   homepage: https://vocabularies.cessda.eu/vocabulary/rexconcepts
   license: CC-BY-4.0
-  name: Central concepts of R|EX research
+  name: Central concepts of REX research
   owners:
   - name: GESIS - Leibniz-Institute for the Social Sciences
     partnered: false
@@ -29345,7 +29466,7 @@ gesis.rexdatatype:
   example: 01a
   homepage: https://vocabularies.cessda.eu/vocabulary/rexdatatype
   license: CC-BY-4.0
-  name: Data types in R|EX research
+  name: Data types in REX research
   owners:
   - name: GESIS - Leibniz-Institute for the Social Sciences
     partnered: false
@@ -29371,7 +29492,7 @@ gesis.rexgroups:
   example: v1
   homepage: https://vocabularies.cessda.eu/vocabulary/rexgroups
   license: CC-BY-4.0
-  name: Diversification criteria of R|EX research
+  name: Diversification criteria of REX research
   owners:
   - name: GESIS - Leibniz-Institute for the Social Sciences
     partnered: false
@@ -29626,6 +29747,8 @@ gfbio.biobank:
     by Amelie Kirse.
   example: BioBank_acrotrichis
   homepage: https://biodivportal.gfbio.org/ontologies/BIOBANK
+  keywords:
+  - ontology
   mappings:
     biodivportal: BIOBANK
   name: AMMOD Metabarcoding Ontology
@@ -29639,6 +29762,7 @@ gfbio.biol:
   example: division
   homepage: https://biodivportal.gfbio.org/ontologies/BIOL
   keywords:
+  - ontology
   - taxon rank
   mappings:
     biodivportal: BIOL
@@ -29652,6 +29776,8 @@ gfbio.botany:
   description: This is a specialist botanical variant of the Biological Taxonomy Vocabulary.
   example: hasTaxonomy
   homepage: https://biodivportal.gfbio.org/ontologies/BOTANY
+  keywords:
+  - ontology
   mappings:
     biodivportal: BOTANY
   name: Biological Taxonomy Vocabulary 0.2 (Botany)
@@ -29663,6 +29789,7 @@ gfbio.ets:
     name: Florian Schneider
   description: The Ecological Trait-data Standard defines terms for the use in datasets
     containing quantitative and qualitative functional traits.
+  download_owl: https://terminologies.gfbio.org/terms/ets/pages/ets.owl
   example: BiodiversityExploratories
   homepage: https://terminologies.gfbio.org/terms/ets/pages/index.html
   keywords:
@@ -29670,6 +29797,7 @@ gfbio.ets:
   - ess
   - fair data spaces
   - life sciences, biology
+  - ontology
   license: CC-BY-4.0
   mappings:
     biodivportal: ETS
@@ -29691,6 +29819,8 @@ gfbio.iho:
     Marine Institute (VLIZ).
   example: connectedTo
   homepage: https://biodivportal.gfbio.org/ontologies/IHO
+  keywords:
+  - ontology
   mappings:
     biodivportal: IHO
   name: IHO World Seas
@@ -29704,6 +29834,8 @@ gfbio.kingdom:
     - Kingdom (=Regnum)". Based on GBIF and CoL.
   example: Archaea
   homepage: https://terminologies.gfbio.org/terminology/KINGDOM
+  keywords:
+  - ontology
   license: CC0-1.0
   mappings:
     biodivportal: KINGDOM
@@ -29724,6 +29856,8 @@ gfbio.top:
     units, synonyms and related terms for about 850 plant characteristics.'
   example: Thesaurustrait
   homepage: https://top-thesaurus.cefe.cnrs.fr
+  keywords:
+  - ontology
   mappings:
     biodivportal: TOP
   name: Thesaurus of Plant Characteristics
@@ -30420,6 +30554,7 @@ gndo:
     offers a broad range of elements to describe authorities. The GND originates from
     the German library community and aims to solve the name ambiguity problem in the
     library world.
+  download_rdf: https://d-nb.info/standards/elementset/gnd.rdf
   example: AdministrativeUnit
   homepage: http://d-nb.info/standards/elementset/gnd#
   keywords:
@@ -31175,7 +31310,7 @@ goldbook:
   - C00778
   - CT07136
   homepage: https://goldbook.iupac.org
-  license: CC BY 4.0-SA
+  license: CC-BY-SA-4.0
   mappings:
     bartoc: '1884'
     wikidata: P4732
@@ -32021,7 +32156,7 @@ gsso:
   keywords:
   - obo
   - ontology
-  license: Apache 2.0 License
+  license: Apache-2.0
   mappings:
     aberowl: GSSO
     bartoc: '20833'
@@ -32272,11 +32407,14 @@ gufo:
   keywords:
   - events
   - general & upper
+  - nfdixcs
   - ontology
   - upper level
   license: CC-BY-4.0
   mappings:
+    bartoc: '19064'
     lov: gufo
+    tib: gufo
   name: Unified Foundational Ontology
   preferred_prefix: gufo
   publications:
@@ -32430,6 +32568,45 @@ gwascentral.study:
       of genome-wide association studies'
     year: 2014
   uri_format: https://www.gwascentral.org/study/$1
+gx:
+  contact:
+    email: carlo.van-driesten@bmw.de
+    github: jdsika
+    name: Carlo van Driesten
+    orcid: 0009-0005-7051-5020
+  contributor:
+    email: carlo.van-driesten@bmw.de
+    github: jdsika
+    name: Carlo van Driesten
+    orcid: 0009-0005-7051-5020
+  description: The Gaia-X ontology defines classes and properties for describing participants,
+    service offerings, resources, and compliance credentials within the Gaia-X federated
+    data infrastructure ecosystem. It provides machine-readable SHACL shapes and JSON-LD
+    contexts for verifiable credentials in conformity with the Gaia-X Trust Framework.
+  download_owl: https://registry.lab.gaia-x.eu/development/owl/development
+  download_rdf: https://registry.lab.gaia-x.eu/development/shapes/development
+  example: LegalPerson
+  github_request_issue: 1939
+  homepage: https://w3id.org/gaia-x/
+  keywords:
+  - cloud
+  - compliance
+  - data infrastructure
+  - gaia-x
+  - ontology
+  - trust framework
+  - verifiable credentials
+  license: EPL-2.0
+  name: Gaia-X Trust Framework Ontology
+  preferred_prefix: gx
+  rdf_uri_format: https://w3id.org/gaia-x/development#$1
+  repository: https://gitlab.com/gaia-x/technical-committee/service-characteristics-working-group/service-characteristics
+  reviewer:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  uri_format: https://docs.gaia-x.eu/ontology/development/classes/$1
 gxa.expt:
   description: The Gene Expression Atlas (GXA) is a semantically enriched database
     of meta-analysis based summary statistics over a curated subset of ArrayExpress
@@ -33120,7 +33297,7 @@ hessische.systematik:
     to this subgroup.
   example: '1.353'
   homepage: https://museumsverband-hessen.de/de/veroeffentlichungen/arbeitshilfen-und-handreichungen
-  license: CC BY-NC-SA 3.0
+  license: CC-BY-NC-SA-3.0
   mappings:
     bartoc: '489'
   name: Nomenclature for inventorying cultural history collections in museums
@@ -34210,7 +34387,7 @@ homosaurus:
   example: queerNewspapers
   github_request_issue: 1310
   homepage: http://homosaurus.org
-  license: CC BY NC-ND 4.0
+  license: CC-BY-NC-ND-4.0
   name: Homosaurus
   preferred_prefix: homosaurus
   providers:
@@ -34537,6 +34714,23 @@ hpath:
   synonyms:
   - MC
   uri_format: http://purl.obolibrary.org/obo/MC_$1
+hpc:
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: The HPC Ontology describes software, hardware, and artifacts in the
+    domain of High-Performance Computing. It can be used to annotate training datasets
+    and machine learning models used in HPC software analyses and optimizations. The
+    goal is to make datasets and AI models FAIR.
+  download_rdf: https://hpc-fair.github.io/ontology/ontology.ttl
+  example: AssignStatement
+  homepage: https://hpc-fair.github.io/ontology/
+  license: CC-BY-4.0
+  name: High-Performance Computing Ontology
+  preferred_prefix: hpc
+  uri_format: https://hpc-fair.github.io/ontology#$1
 hpm.peptide:
   description: The Human Proteome Map (HPM) portal integrates the peptide sequencing
     result from the draft map of the human proteome project. The project was based
@@ -35208,6 +35402,7 @@ iao:
   - fair data spaces
   - nfdi4chem
   - nfdi4ing
+  - nfdixcs
   - obo
   - ontology
   - study design
@@ -35449,7 +35644,7 @@ icd10cm:
   - medicine
   - morbidity
   - ontology
-  license: CC BY-ND 3.0 IGO
+  license: CC-BY-ND-3.0-IGO
   mappings:
     aberowl: ICD10CM
     bioportal: ICD10CM
@@ -35641,7 +35836,7 @@ icd9:
   - E950
   - V15.01
   homepage: https://www.cdc.gov/nchs/icd/icd9.htm
-  license: CC BY-ND 3.0 IGO
+  license: CC-BY-ND-3.0-IGO
   mappings:
     biolink: ICD9
     hl7: 2.16.840.1.113883.6.42
@@ -35680,7 +35875,7 @@ icd9cm:
   - morbidity
   - ontology
   - preclinical studies
-  license: CC BY-ND 3.0 IGO
+  license: CC-BY-ND-3.0-IGO
   mappings:
     aberowl: ICD9CM
     bioportal: ICD9CM
@@ -35728,7 +35923,7 @@ icdo:
     Diseases and Related Health Problems for tumor diseases
   example: 9861/3
   homepage: https://www.who.int/classifications/icd/adaptations/oncology/en/
-  license: CC BY-ND 3.0 IGO
+  license: CC-BY-ND-3.0-IGO
   mappings:
     bartoc: '445'
     hl7: 2.16.840.1.113883.6.43
@@ -36123,7 +36318,7 @@ iconclass:
   homepage: https://iconclass.org
   keywords:
   - ontology
-  license: ODBL
+  license: ODbL-1.0
   mappings:
     bartoc: '459'
     wikidata.entity: Q1502787
@@ -36154,7 +36349,7 @@ icpd.project:
   example: PPJ_100024
   github_request_issue: 1570
   homepage: https://ibdc.dbtindia.gov.in/icpd
-  license: CC BY-NC-SA 4.0
+  license: CC-BY-NC-SA-4.0
   logo: https://ibdc.dbtindia.gov.in/icpd/static/image/ICPD-log.jpg
   name: Indian Crop Phenome Database Project
   pattern: ^PPJ_\d+$
@@ -36188,7 +36383,7 @@ icpd.study:
   example: PST_100013
   github_request_issue: 1570
   homepage: https://ibdc.dbtindia.gov.in/icpd
-  license: CC BY-NC-SA 4.0
+  license: CC-BY-NC-SA-4.0
   logo: https://ibdc.dbtindia.gov.in/icpd/static/image/ICPD-log.jpg
   name: Indian Crop Phenome Database Study
   pattern: ^PST_\d+$
@@ -37137,6 +37332,7 @@ ihw:
 iirds.core:
   description: An ontology encoding the core metadata based on the Intelligent Information
     Request and Delivery (iiRDS) standard
+  download_rdf: https://raw.githubusercontent.com/iirds-consortium/models/main/iirds-core.rdf
   example: Action
   homepage: https://github.com/iirds-consortium/models
   keywords:
@@ -37152,6 +37348,7 @@ iirds.core:
 iirds.mch:
   description: An ontology encoding machinery based on the Intelligent Information
     Request and Delivery (iiRDS) standard
+  download_rdf: https://raw.githubusercontent.com/iirds-consortium/models/main/iirds-machinery.rdf
   example: ConsumableSupply
   homepage: https://github.com/iirds-consortium/models
   keywords:
@@ -37167,6 +37364,7 @@ iirds.mch:
 iirds.sft:
   description: An ontology encoding software based on the Intelligent Information
     Request and Delivery (iiRDS) standard
+  download_rdf: https://raw.githubusercontent.com/iirds-consortium/models/main/iirds-software.rdf
   example: iirdsSoftwareDomainEntity
   homepage: https://github.com/iirds-consortium/models
   keywords:
@@ -37785,7 +37983,7 @@ inbio:
   homepage: https://fusion-jena.github.io/INBIO/index-en.html
   keywords:
   - ontology
-  license: CC BY-NC-SA 4.0
+  license: CC-BY-NC-SA-4.0
   mappings:
     aberowl: INBIO
     biodivportal: INBIO
@@ -37938,11 +38136,13 @@ informall:
   uri_format: http://research.bmh.manchester.ac.uk/informall/allergenic-food/?FoodId=$1
 infosecsos:
   description: InfoSecSoS - Ontology for Information Security Management in Systems-of-Systems
+  download_rdf: https://raw.githubusercontent.com/rmbelmont/InfoSecSoS_Ontology/main/InfoSecSoS.rdf
   example: Accept
   homepage: https://zenodo.org/record/6621882
   keywords:
   - engineering
   - nfdi4ing
+  - nfdixcs
   mappings:
     tib: infosecsos
   name: InfoSecSoS Ontology
@@ -38747,6 +38947,30 @@ ioio:
   preferred_prefix: ioio
   repository: https://github.com/OpenLHS/IOIO
   uri_format: http://purl.obolibrary.org/obo/IOIO_$1
+iotlite:
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: The IoT lite Ontology is a lightweight ontology to represent Internet
+    of Things resources, entities and services. The lightweight allow the representation
+    and use of IoT platforms without consuming excessive processing time when querying
+    the ontology. However it is also a meta ontology that can be extended in order
+    to represent IoT concepts in a more detail way in different domains.
+  download_rdf: http://iot.ee.surrey.ac.uk/fiware/ontologies/iot-lite/iot-lite.rdf
+  example: exposedBy
+  homepage: http://purl.oclc.org/NET/UNIS/fiware/iot-lite
+  keywords:
+  - computer science
+  - nfdixcs
+  license: CC-BY-3.0
+  mappings:
+    bartoc: '18015'
+    tib: iotlite
+  name: IoT lite Ontology
+  preferred_prefix: iotlite
+  uri_format: http://purl.oclc.org/NET/UNIS/fiware/iot-lite#$1
 ipi:
   deprecated: true
   description: IPI provides a top level guide to the main databases that describe
@@ -39231,6 +39455,8 @@ iso.3166:
   description: An identifier for a country in numeric format per ISO 3166-1
   example: '554'
   homepage: https://www.iso.org/iso-3166-country-codes.html
+  keywords:
+  - ontology
   mappings:
     biodivportal: ISOCOUNTRIES
     wikidata: P299
@@ -40052,6 +40278,7 @@ kdbirp:
 kdsf.ffk:
   description: Klassifikation für interdisziplinäre Forschungsfelder im Rahmen des
     Kerndatensatz Forschung
+  download_rdf: https://raw.githubusercontent.com/KDSF-FFK/kdsf-ffk/main/FFK.ttl
   example: ErdeUndKosmos
   example_extras:
   - '111'
@@ -40062,7 +40289,7 @@ kdsf.ffk:
   - fid baudigital
   - fid move
   - nfdi4ing
-  license: CC BY-SA 4.0
+  license: CC-BY-SA-4.0
   mappings:
     bartoc: '20288'
     tib: kdsfffk
@@ -40885,6 +41112,7 @@ kim.hcrt:
     name: Charles Tapley Hoyt
     orcid: 0000-0003-4423-4370
   description: A controlled vocbualry of higher education resource types
+  download_rdf: https://raw.githubusercontent.com/dini-ag-kim/hcrt/master/hcrt.ttl
   example: simulation
   homepage: https://w3id.org/kim/hcrt/scheme.html
   keywords:
@@ -41001,6 +41229,7 @@ kim.schulfaecher:
 kit.mtxx:
   description: Objects of this class contain a self-bound collection of mass bearing
     particles.
+  download_rdf: https://gitlab.com/linked-tribological-data/vocabulary-materials-tribology-lab-at-kit/-/raw/main/SKOS_Vocabulary_Materials%20Tribology%20Lab%20at%20KIT.ttl
   example: 002_xxx_xxx-a228d7e065dc45b4b5ab48876aab7228-vp
   homepage: https://gitlab.com/linked-tribological-data/vocabulary-materials-tribology-lab-at-kit
   keywords:
@@ -41054,6 +41283,7 @@ kpio:
   description: The Key Performance Indicator module aims to model the metrics defined
     at the beginning of building renovation activities to monitor the conformance
     with typical requirements related to energy efficient buildings.
+  download_rdf: https://bimerr.iot.linkeddata.es/def/key-performance-indicator/ontology.ttl
   example: Goal
   homepage: http://bimerr.iot.linkeddata.es/def/key-performance-indicator
   keywords:
@@ -41597,7 +41827,7 @@ lido.recordmetadatadate:
     date of the containing LIDO Record Info Set.'
   example: created
   homepage: http://terminology.lido-schema.org/recordMetadataDate_type
-  license: CC BY-SA 3.0
+  license: CC-BY-SA-3.0
   mappings:
     bartoc: '18656'
   name: LIDO Terminology Record Metadata Date Type
@@ -43145,7 +43375,7 @@ mamo:
   - obo
   - ontology
   - systems biology
-  license: Artistic License 2.0
+  license: Artistic-2.0
   mappings:
     aberowl: MAMO
     biocontext: MAMO
@@ -43453,7 +43683,12 @@ mathalgodb:
   download_rdf: https://mathalgodb.mardi4nfdi.de/static/widoco/v1/ontology.ttl
   example: algorithm
   homepage: https://mathalgodb.mardi4nfdi.de/static/widoco/v1/index-en.9634daaec9f8.html
+  keywords:
+  - mardi
+  - mathematics
   license: CC-BY-4.0
+  mappings:
+    tib: mathalgodb
   name: Algorithm Knowledge Graph Ontology
   owners:
   - name: MaRDI
@@ -43471,14 +43706,18 @@ mathmoddb:
     data properties and annotation properties as an ontology. This ontology is populated
     with individuals/data from various fields of applied mathematics, making it a
     knowledge graph. [from homepage]
+  download_owl: https://mardi4nfdi.github.io/MathModDB/ontology.owl
   download_rdf: https://mardi4nfdi.github.io/MathModDB/ontology.ttl
   example: ComputationalTask
   homepage: https://github.com/mardi4nfdi/MathModDB
   keywords:
   - computer science
   - engineering
+  - mardi
   - mathematics
   - nfdi4ing
+  - nfdixcs
+  - ontology
   license: CC-BY-4.0
   mappings:
     tib: mathmoddb
@@ -44545,7 +44784,7 @@ metabolights:
   - chemical structure
   - metabolite
   - method
-  license: Apache License 2.0
+  license: Apache-2.0
   mappings:
     biocontext: METABOLIGHTS
     cellosaurus: MetaboLights
@@ -45692,7 +45931,7 @@ micro:
   - obo
   - ontology
   - phenotype
-  license: CC BY 2.0
+  license: CC-BY-2.0
   mappings:
     aberowl: MICRO
     biocontext: MICRO
@@ -47128,6 +47367,7 @@ mobio:
   uri_format: http://purl.obolibrary.org/obo/MOBIO_$1
 mobivoc:
   description: MobiVoc is an open vocabulary for future-oriented mobility solutions.
+  download_rdf: https://raw.githubusercontent.com/vocol/mobivoc/develop/diagrams/mobivoc_v1.1.4.ttl
   example: AccessCondition
   homepage: https://www.mobivoc.org/
   keywords:
@@ -47336,6 +47576,7 @@ modsci:
     OpenResearch.org (for the categorization of the information about scientific events,
     research projects, scientific papers, publishers, and journals).'
   download_owl: http://aber-owl.net/media/ontologies/ModSci/2/modsci.owl
+  download_rdf: https://saidfathalla.github.io/Science-knowledge-graph-ontologies/doc/ModSci_doc/ontology.ttl
   example: AcidbaseChemistry
   homepage: https://saidfathalla.github.io/Science-knowledge-graph-ontologies/doc/ModSci_doc/index-en.html
   keywords:
@@ -48112,7 +48353,7 @@ msc:
   description: A hierarchical classifications of subjects in mathematics
   example: 01A60
   homepage: https://mathscinet.ams.org/mathscinet/msc/msc2020.html
-  license: CC BY-NC-SA 3.0
+  license: CC-BY-NC-SA-3.0
   mappings:
     bartoc: '474'
   name: Mathematics Subject Classification
@@ -48486,7 +48727,7 @@ mwo:
   homepage: https://github.com/ISE-FIZKarlsruhe/mwo
   keywords:
   - material science
-  - miscellaneous
+  - nfdi4ing
   - ontology
   license: CC0-1.0
   mappings:
@@ -50376,7 +50617,7 @@ neurolex:
   - classification
   - neuroscience
   - ontology
-  license: CC BY-4.0
+  license: CC-BY-4.0
   mappings:
     biocontext: NEUROLEX
     miriam: neurolex
@@ -50652,10 +50893,12 @@ nextprot.family:
   uri_format: https://www.nextprot.org/term/FA-$1
 nexus:
   description: 'NeXusOntology: Machine-readable ontology of the NeXus definitions'
+  download_owl: https://github.com/nexusformat/NeXusOntology/raw/refs/heads/main/ontology/NeXusOntology.owl
   example: version
   homepage: https://github.com/nexusformat/NeXusOntology
   keywords:
   - fairmat
+  - ontology
   - physics
   mappings:
     tib: nexus
@@ -50723,6 +50966,7 @@ nfdi4culture.cto:
   description: The NFDI4Culture Ontology (CTO) is a domain-specific ontology module
     developed within the Task Area 5 of the NFDI4Culture initiative. (from homepage)
   download_owl: https://github.com/ISE-FIZKarlsruhe/nfdi4culture/raw/refs/heads/main/cto.owl
+  download_rdf: https://raw.githubusercontent.com/ISE-FIZKarlsruhe/nfdi4culture/refs/heads/main/cto-full.ttl
   example: '0001003'
   homepage: https://nfdi4culture.de/ontology/
   keywords:
@@ -50997,7 +51241,7 @@ nif.ext:
     standard ontology and identifier management practices had been developed.
   example: '7123'
   homepage: https://github.com/SciCrunch/NIF-Ontology
-  license: CC BY-4.0
+  license: CC-BY-4.0
   name: 'NIF Standard Ontology: External'
   pattern: ^\d+$
   preferred_prefix: nif.ext
@@ -51058,7 +51302,7 @@ nif.std:
   - disease
   - neuroscience
   - ontology
-  license: CC BY-4.0
+  license: CC-BY-4.0
   mappings:
     aberowl: NIFSTD
     bioportal: NIFSTD
@@ -51317,7 +51561,7 @@ nlx.br:
   - anatomy
   - brain regions
   - neuroscience
-  license: CC BY-4.0
+  license: CC-BY-4.0
   name: 'NIF Standard Ontology: Brain Regions'
   pattern: ^\d+$
   preferred_prefix: nlx.br
@@ -51349,7 +51593,7 @@ nlx.cell:
   - cell types
   - cells
   - neuroscience
-  license: CC BY-4.0
+  license: CC-BY-4.0
   name: 'NIF Standard Ontology: Cell Types'
   pattern: ^\d+$
   preferred_prefix: nlx.cell
@@ -51378,7 +51622,7 @@ nlx.chem:
   homepage: https://github.com/SciCrunch/NIF-Ontology
   keywords:
   - chemistry
-  license: CC BY-4.0
+  license: CC-BY-4.0
   name: 'NIF Standard Ontology: Chemical'
   pattern: ^\d+$
   preferred_prefix: nlx.chem
@@ -51438,7 +51682,7 @@ nlx.func:
   homepage: https://github.com/SciCrunch/NIF-Ontology
   keywords:
   - neuroscience
-  license: CC BY-4.0
+  license: CC-BY-4.0
   name: 'NIF Standard Ontology: Cognitive Function'
   pattern: ^\d+$
   preferred_prefix: nlx.func
@@ -51469,7 +51713,7 @@ nlx.inv:
   keywords:
   - data analysis
   - funding agencies
-  license: CC BY-4.0
+  license: CC-BY-4.0
   name: 'NIF Standard Ontology: Investigations'
   pattern: ^\d+$
   preferred_prefix: nlx.inv
@@ -51503,7 +51747,7 @@ nlx.mol:
   - chemistry
   - neuroscience
   - proteins
-  license: CC BY-4.0
+  license: CC-BY-4.0
   name: 'NIF Standard Ontology: Molecules'
   pattern: ^\d+$
   preferred_prefix: nlx.mol
@@ -51535,7 +51779,7 @@ nlx.oen:
   homepage: https://github.com/SciCrunch/NIF-Ontology
   keywords:
   - neuroscience
-  license: CC BY-4.0
+  license: CC-BY-4.0
   name: 'NIF Standard Ontology: OEN Terms in Neurolex'
   pattern: ^\d+$
   preferred_prefix: nlx.oen
@@ -51564,7 +51808,7 @@ nlx.org:
   homepage: https://github.com/SciCrunch/NIF-Ontology
   keywords:
   - taxonomy
-  license: CC BY-4.0
+  license: CC-BY-4.0
   name: 'NIF Standard Ontology: Organisms'
   pattern: ^\d+$
   preferred_prefix: nlx.org
@@ -51595,7 +51839,7 @@ nlx.qual:
   keywords:
   - dispositions
   - qualities
-  license: CC BY-4.0
+  license: CC-BY-4.0
   name: 'NIF Standard Ontology: Qualities'
   pattern: ^\d+$
   preferred_prefix: nlx.qual
@@ -51626,7 +51870,7 @@ nlx.res:
   homepage: https://github.com/SciCrunch/NIF-Ontology
   keywords:
   - software and information systems
-  license: CC BY-4.0
+  license: CC-BY-4.0
   name: 'NIF Standard Ontology: Digital Resources'
   pattern: ^\d+$
   preferred_prefix: nlx.res
@@ -51656,7 +51900,7 @@ nlx.sub:
   homepage: https://github.com/SciCrunch/NIF-Ontology
   keywords:
   - cellular components
-  license: CC BY-4.0
+  license: CC-BY-4.0
   mappings:
     go: NIF_Subcellular
   name: 'NIF Standard Ontology: Subcellular Entities'
@@ -53437,6 +53681,8 @@ odm2.methodtype:
     should be associated with a specimen collection method.
   example: cruise
   homepage: http://vocabulary.odm2.org/methodtype/
+  keywords:
+  - ontology
   mappings:
     biodivportal: METHODTYPE
   name: Method Type Vocabulary
@@ -53450,6 +53696,8 @@ odm2.specimentype:
   download_rdf: http://vocabulary.odm2.org/api/v1/specimentype/?format=skos
   example: standardReferenceSpecimen
   homepage: http://vocabulary.odm2.org/specimentype/
+  keywords:
+  - ontology
   mappings:
     biodivportal: SPECIMENTYPE
   name: Specimen Type Vocabulary
@@ -53552,6 +53800,7 @@ oefos:
     order serves as a description of the fields of activities and research projects
     and/or for the coverage of the main scientific activities of a statistical unit
     in the research and development surveys. (Current revision status: August 2017)'
+  download_rdf: https://vocabs-downloads.acdh.oeaw.ac.at/vocabs-main/GeneralConcepts/OeFOS/oefos_disciplines.ttl
   example: '509015'
   homepage: https://vocabs.dariah.eu/oefos/en/
   keywords:
@@ -53928,6 +54177,7 @@ ohdab:
     More than 44,000 historical occupations are taxonomically classified in the OhdAB
     and can be sorted into occupational areas, main occupational groups, or variously
     differentiated occupational groups.
+  download_rdf: https://raw.githubusercontent.com/ts4nfdi/Wikibase-ts-convert/refs/heads/main/ohdab/OhdAB.ttl
   example: Q1059224
   homepage: https://www.geschichte.uni-halle.de/struktur/hist-data/ontologie/
   keywords:
@@ -54095,6 +54345,8 @@ oim:
     The ILIAD Ocean profile is a master profile importing all modules of ILIAD OIM
   example: crossDomain
   homepage: http://github.com/ILIAD-ocean-twin/OIM
+  keywords:
+  - ontology
   license: CC-BY-4.0
   mappings:
     biodivportal: OIM
@@ -54112,6 +54364,7 @@ okn.sd:
     outputs and variables. The ontology extends schema.org and codemeta vocabularies
     and is based on OntoSoft, which proposed a vocabulary for describing software
     by asking scientists questions.
+  download_rdf: https://knowledgecaptureanddiscovery.github.io/SoftwareDescriptionOntology/release/1.9.0/ontology.ttl
   example: CatalogIdentifier
   homepage: https://knowledgecaptureanddiscovery.github.io/SoftwareDescriptionOntology/release/1.9.0/index-en.html
   keywords:
@@ -55378,11 +55631,13 @@ opb:
 openadr:
   description: This ontology describes the openADR protocol based on the documentation
     provided by the openADR Profile B
+  download_owl: https://raw.githubusercontent.com/albaizq/OpenADRontology/master/ontology/openADRontology.owl
   example: BidEnergySetpointSignal
   homepage: https://albaizq.github.io/OpenADRontology/OnToology/ontology/openADRontology.owl/documentation/index-en.html
   keywords:
   - engineering
   - nfdi4energy
+  - ontology
   mappings:
     tib: openadr
   name: OpenADR ontology
@@ -55720,6 +55975,7 @@ ordb:
 org:
   description: Vocabulary for describing organizational structures, specializable
     to a broad variety of types of organization.
+  download_rdf: http://www.w3.org/ns/org.rdf
   example: ChangeEvent
   homepage: http://www.w3.org/TR/vocab-org/
   keywords:
@@ -55815,6 +56071,8 @@ orpha:
     patients with rare diseases.
   download_owl: http://www.orphadata.org/data/ORDO/ordo_orphanet.owl
   example: '85163'
+  example_extras:
+  - '478'
   homepage: https://www.orpha.net
   keywords:
   - bibliography/documents
@@ -55832,6 +56090,7 @@ orpha:
     integbio: nbdc01422
     miriam: orphanet
     n2t: orphanet
+    ols: ordo
     prefixcommons: orphanet
     uniprot: DB-0068
     wikidata: P1550
@@ -55867,6 +56126,7 @@ orpha:
   - Orphanet
   - orphanet
   uri_format: http://www.orpha.net/ORDO/Orphanet_$1
+  version: '4.8'
 orphanet.ordo:
   banana: Orphanet
   banana_peel: _
@@ -55912,7 +56172,6 @@ orphanet.ordo:
     fairsharing: FAIRsharing.pbbnwa
     miriam: orphanet.ordo
     n2t: orphanet.ordo
-    ols: ordo
     tib: ordo
   name: Orphanet Rare Disease Ontology
   owners:
@@ -55934,7 +56193,6 @@ orphanet.ordo:
   synonyms:
   - ordo
   uri_format: http://www.orpha.net/ORDO/Orphanet_$1
-  version: '4.8'
 orth:
   contact:
     email: jfernand@um.es
@@ -56200,6 +56458,7 @@ osmo:
     a larger effort in ontology engineering driven by the European Materials Modelling
     Council, with the European Materials and Modelling Ontology (EMMO) as its core.
     (from https://nfdi4cat.org/services/ontologie-sammlung/)
+  download_rdf: https://gitlab.com/vimmp-semantics/vimmp-ontologies/-/raw/alignment-with-emmo-2022/osmo/osmo.ttl
   example: application_case
   homepage: https://zenodo.org/record/5237774#.YXq72hxCRGo
   keywords:
@@ -57476,7 +57735,7 @@ pdb:
   - repository
   - rna
   - structure
-  license: CC
+  license: CC0-1.0
   logo: https://cdn.rcsb.org/wwpdb/img/core/wwpdb-logo.png
   mappings:
     biocontext: PDB
@@ -60201,6 +60460,7 @@ pmdco:
     a unified and comprehensive understanding of the MSE domain. PMDco at GitHub:
     https://github.com/materialdigital/core-ontology Documentation: https://materialdigital.github.io/core-ontology/docs/'
   download_owl: https://github.com/materialdigital/core-ontology/raw/refs/heads/main/pmdco.owl
+  download_rdf: https://materialdigital.github.io/core-ontology/ontology.ttl
   example: '0000000'
   homepage: https://materialdigital.github.io/core-ontology/
   keywords:
@@ -61012,11 +61272,13 @@ premis:
     orcid: 0000-0003-4423-4370
   description: Ontology for PREMIS 3, the international standard for metadata to support
     the preservation of digital objects and ensure their long-term usability.
+  download_owl: https://raw.githubusercontent.com/lcnetdev/PREMIS/master/premis3.owl
   example: Agent
   homepage: https://id.loc.gov/ontologies/premis-3-0-0.html
   keywords:
   - catalogs
   - nfdi4culture
+  - ontology
   mappings:
     lov: premis
     tib: premis3
@@ -61392,7 +61654,7 @@ probesanddrugs:
     DrugCentral or DrugBank) are utilized for compounds' biological annotation.
   example: PD000596
   homepage: https://www.probes-drugs.org
-  license: CC BY-SA 4.0
+  license: CC-BY-SA-4.0
   mappings:
     wikidata: P11199
   name: Probes and Drugs
@@ -61594,6 +61856,7 @@ pror:
     orcid: 0000-0002-8021-5524
   description: 'PRO Research: An ontology for describing RDM-Policies in a structured
     way'
+  download_rdf: http://w3id.org/nfdi4ing/pro-research/ontology.ttl
   example: isReferencedByPolicy
   homepage: http://w3id.org/nfdi4ing/pro-research
   keywords:
@@ -65197,11 +65460,13 @@ ror:
   uri_format: https://ror.org/$1
 rosetta:
   description: The ROSETTA ontology of industrial robotics devices and robotic skills.
+  download_owl: https://raw.githubusercontent.com/jacekmalec/Rosetta_ontology/master/rosetta.owl
   example: canBePerformedBy
   homepage: https://github.com/jacekmalec/Rosetta_ontology
   keywords:
   - engineering
   - nfdi4ing
+  - ontology
   mappings:
     tib: rosetta
   name: The ROSETTA ontology of industrial robotics devices and robotic skills.
@@ -65888,7 +66153,7 @@ sage.socialsciencethesaurus:
     events, methods, theories or laws.'
   example: -LHR8P7WS-K
   homepage: https://loterre.istex.fr/N9J/en/
-  license: CC BY-NC-SA 4.0
+  license: CC-BY-NC-SA-4.0
   name: SAGE Social Science Thesaurus
   preferred_prefix: sage.socialsciencethesaurus
   uri_format: http://data.loterre.fr/ark:/67375/N9J$1
@@ -65992,6 +66257,7 @@ saref:
   - industry
   - iot
   - nfdi4ing
+  - ontology
   - services
   license: https://forge.etsi.org/etsi-software-license
   mappings:
@@ -66378,11 +66644,13 @@ sargon:
     use of powerful Semantic Web technology, SARGON can describe the broad set of
     Devices and custom features, assets and subsystems found across the building stock
     in a consistent matter.
+  download_owl: https://sargon-n5geh.netlify.app/ontologies/Sargon.owl
   example: AC-DC
   homepage: https://sargon-n5geh.netlify.app/
   keywords:
   - engineering
   - nfdi4energy
+  - ontology
   mappings:
     tib: sargon
   name: Smart Energy Domain Ontology
@@ -66474,7 +66742,7 @@ sbo:
   - ontology
   - pathway
   - systems biology
-  license: Artistic License 2.0
+  license: Artistic-2.0
   logo: https://upload.wikimedia.org/wikipedia/commons/f/fd/SBO_logo.png
   mappings:
     aberowl: SBO
@@ -66687,6 +66955,7 @@ schema:
   - catalogs
   - ess
   - fair data spaces
+  - nfdixcs
   - ontology
   mappings:
     aberowl: SCHEMAORG
@@ -66993,6 +67262,7 @@ scor:
   description: The Supply Chain Operation Reference (SCOR) is a cross-industry approach
     to lay the groundwork for more efficient and effective information exchange in
     supply networks.
+  download_rdf: https://raw.githubusercontent.com/vocol/scor/master/scor.ttl
   example: ActiviateOrArchiveContract
   homepage: https://github.com/vocol/scor
   keywords:
@@ -67562,6 +67832,26 @@ seo:
   name: Scientific Event Ontology
   preferred_prefix: seo
   uri_format: https://w3id.org/seo#$1
+seon:
+  comment: The URI format actually shouldn't have a http:// in front of it based on
+    the OWL file, but this is the only example of an ontology so far that does this
+    as of May 2026
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: SEON provides a well-grounded network of software engineering reference
+    ontologies, and mechanisms for deriving and incorporating new integrated domain
+    ontologies into the network. [from homepage]
+  download_owl: https://dev.nemo.inf.ufes.br/seon/SEON.owl
+  example: stereotype
+  homepage: https://dev.nemo.inf.ufes.br/seon/
+  keywords:
+  - ontology
+  name: Software Engineering Ontology Network
+  preferred_prefix: seon
+  uri_format: http://dev.nemo.inf.ufes.br/seon/SEON.owl#$1
 sep:
   contact:
     email: psidev-gps-dev@lists.sourceforge.net
@@ -68130,6 +68420,7 @@ sh:
     orcid: 0000-0003-4423-4370
   description: A language for validating RDF graphs against a set of conditions
   download_owl: https://triplydb.com/w3c/sh/download.trig.gz
+  download_rdf: https://www.w3.org/ns/shacl.rdf
   example: NodeShape
   homepage: https://www.w3.org/TR/shacl/
   keywords:
@@ -68387,15 +68678,25 @@ shsh:
   name: SHACL in SHACL
   preferred_prefix: shsh
 si:
+  contact:
+    email: cristhian.paredes@bipm.org
+    github: Crparedes
+    name: Cristhian Paredes
+    orcid: 0000-0001-7049-9597
   contributor:
     email: cthoyt@gmail.com
     github: cthoyt
     name: Charles Tapley Hoyt
     orcid: 0000-0003-4423-4370
+  contributor_extras:
+  - email: giacomo.lanza@ptb.de
+    github: Zack-83
+    name: Giacomo Lanza
+    orcid: 0000-0002-2239-3955
   description: Ontology, part of the SI Reference Point, covering measurement units
     (SI base units and SI units with special names) and prefixes.
   download_owl: https://github.com/TheBIPM/SI_Digital_Framework/raw/refs/heads/main/knowledge_graphs/SI_Reference_Point/si.ttl
-  example: hasDefinitionNote
+  example: MeasurementUnit
   homepage: https://si-digital-framework.org/SI
   keywords:
   - ontology
@@ -68412,11 +68713,21 @@ si:
   repository: https://github.com/TheBIPM/SI_Digital_Framework
   uri_format: http://si-digital-framework.org/SI#$1
 si.constants:
+  contact:
+    email: cristhian.paredes@bipm.org
+    github: Crparedes
+    name: Cristhian Paredes
+    orcid: 0000-0001-7049-9597
   contributor:
     email: cthoyt@gmail.com
     github: cthoyt
     name: Charles Tapley Hoyt
     orcid: 0000-0003-4423-4370
+  contributor_extras:
+  - email: giacomo.lanza@ptb.de
+    github: Zack-83
+    name: Giacomo Lanza
+    orcid: 0000-0002-2239-3955
   description: Ontology, part of the SI reference point, covering the seven underpinning
     constants of the SI
   download_owl: https://github.com/TheBIPM/SI_Digital_Framework/raw/refs/heads/main/knowledge_graphs/SI_Reference_Point/constants.ttl
@@ -68435,13 +68746,23 @@ si.constants:
   repository: https://github.com/TheBIPM/SI_Digital_Framework
   uri_format: https://si-digital-framework.org/constants/$1
 si.decisions:
+  contact:
+    email: cristhian.paredes@bipm.org
+    github: Crparedes
+    name: Cristhian Paredes
+    orcid: 0000-0001-7049-9597
   contributor:
     email: cthoyt@gmail.com
     github: cthoyt
     name: Charles Tapley Hoyt
     orcid: 0000-0003-4423-4370
-  description: Ontology, part of the SI Reference Point, covering measurement units
-    (SI base units and SI units with special names) and prefixes.
+  contributor_extras:
+  - email: giacomo.lanza@ptb.de
+    github: Zack-83
+    name: Giacomo Lanza
+    orcid: 0000-0002-2239-3955
+  description: Ontology, part of the SI Reference Point, covering the historical decisions
+    of the BIPM concerning measurement units.
   download_owl: https://github.com/TheBIPM/SI_Digital_Framework/raw/refs/heads/main/knowledge_graphs/SI_Reference_Point/decisions.ttl
   example: SI-A-2.2.6
   homepage: https://si-digital-framework.org/SI/decisions/
@@ -68458,13 +68779,23 @@ si.decisions:
   repository: https://github.com/TheBIPM/SI_Digital_Framework
   uri_format: https://si-digital-framework.org/SI/decisions/$1
 si.kcdb:
+  contact:
+    email: cristhian.paredes@bipm.org
+    github: Crparedes
+    name: Cristhian Paredes
+    orcid: 0000-0001-7049-9597
   contributor:
     email: cthoyt@gmail.com
     github: cthoyt
     name: Charles Tapley Hoyt
     orcid: 0000-0003-4423-4370
-  description: Service Categories (KCDB) This service shows the related service categories
-    (KCDB) by quantity.
+  contributor_extras:
+  - email: giacomo.lanza@ptb.de
+    github: Zack-83
+    name: Giacomo Lanza
+    orcid: 0000-0002-2239-3955
+  description: Service Categories (KCDB). This service shows the related service categories
+    for the Key Comparisons DataBase (KCDB) by quantity.
   example: RI/DOS-15.3.15
   homepage: https://si-digital-framework.org/sc-quantities
   license: CC-BY-3.0-IGO
@@ -68477,6 +68808,11 @@ si.kcdb:
   preferred_prefix: si.kcdb
   uri_format: https://si-digital-framework.org/kcdb-sc/$1
 si.prefixes:
+  contact:
+    email: cristhian.paredes@bipm.org
+    github: Crparedes
+    name: Cristhian Paredes
+    orcid: 0000-0001-7049-9597
   contributor:
     email: cthoyt@gmail.com
     github: cthoyt
@@ -68504,12 +68840,22 @@ si.prefixes:
   - si.prefix
   uri_format: https://si-digital-framework.org/SI/prefixes/$1
 si.quantities:
+  contact:
+    email: cristhian.paredes@bipm.org
+    github: Crparedes
+    name: Cristhian Paredes
+    orcid: 0000-0001-7049-9597
   contributor:
     email: cthoyt@gmail.com
     github: cthoyt
     name: Charles Tapley Hoyt
     orcid: 0000-0003-4423-4370
-  description: Ontology, part of the SI reference point, covering quantities
+  contributor_extras:
+  - email: giacomo.lanza@ptb.de
+    github: Zack-83
+    name: Giacomo Lanza
+    orcid: 0000-0002-2239-3955
+  description: Ontology, part of the SI reference point, covering kinds of quantities.
   download_owl: https://github.com/TheBIPM/SI_Digital_Framework/raw/refs/heads/main/knowledge_graphs/quantities/quantities.ttl
   example: ACTI
   homepage: https://si-digital-framework.org/quantities
@@ -68526,13 +68872,23 @@ si.quantities:
   repository: https://github.com/TheBIPM/SI_Digital_Framework
   uri_format: https://si-digital-framework.org/quantities/$1
 si.units:
+  contact:
+    email: cristhian.paredes@bipm.org
+    github: Crparedes
+    name: Cristhian Paredes
+    orcid: 0000-0001-7049-9597
   contributor:
     email: cthoyt@gmail.com
     github: cthoyt
     name: Charles Tapley Hoyt
     orcid: 0000-0003-4423-4370
+  contributor_extras:
+  - email: giacomo.lanza@ptb.de
+    github: Zack-83
+    name: Giacomo Lanza
+    orcid: 0000-0002-2239-3955
   description: Ontology, part of the SI Reference Point, covering measurement units
-    (SI base units and SI units with special names) and prefixes.
+    (SI base units and SI units with special names).
   download_owl: https://github.com/TheBIPM/SI_Digital_Framework/raw/refs/heads/main/knowledge_graphs/SI_Reference_Point/units.ttl
   example: ampere
   homepage: https://si-digital-framework.org/SI/units
@@ -68999,6 +69355,8 @@ siren:
     the US FDA's Bureau of Foods
   example: F11903
   homepage: https://www.langual.org/langual_indexed_datasets.asp
+  keywords:
+  - ontology
   mappings:
     agroportal: SIREN
   name: Scientific Information Retrieval and Exchange Network
@@ -69190,6 +69548,7 @@ skosxl:
     defines an extension for the Simple Knowledge Organization System, providing additional
     support for describing and linking lexical entities.This document provides a brief
     description of the SKOS-XL vocabulary.
+  download_rdf: https://www.w3.org/2009/08/skos-reference/skos-xl.rdf
   example: literalForm
   homepage: http://www.w3.org/2008/05/skos-xl#
   keywords:
@@ -69337,7 +69696,7 @@ smart:
   - family and domain databases
   - protein
   - structure
-  license: CC BY-NC-ND 3.0
+  license: CC-BY-SA-3.0
   mappings:
     biocontext: SMART
     go: SMART
@@ -70101,6 +70460,7 @@ sosa:
   - iot
   - nfdi4chem
   - nfdi4ing
+  - ontology
   license: http://www.w3.org/Consortium/Legal/2015/copyright-software-and-document
   mappings:
     agroportal: SOSA
@@ -71518,6 +71878,8 @@ sumso:
   download_rdf: https://github.com/gioUbbiali/Sustainable-Meat-Systems-Ontology/raw/refs/heads/main/sumso.ttl
   example: '0000015'
   homepage: https://www.w3id.org/sumso/repo
+  keywords:
+  - ontology
   license: CC-BY-4.0
   mappings:
     agroportal: SUMSO
@@ -71702,6 +72064,7 @@ sustaingraph:
     accross time and inter-connectedness with existing and emerging policies and directives
     at European Union (EU) and global level. It is described using W3C RDF Schema
     and the Web Ontology Language.
+  download_rdf: https://netmode.gitlab.io/sustaingraph-ontology/ontology.ttl
   example: 6T
   homepage: https://netmode.gitlab.io/sustaingraph-ontology/
   keywords:
@@ -71754,6 +72117,7 @@ sweet:
     Jurisdiction, Environmental, Research).
   download_obo: https://raw.githubusercontent.com/EnvironmentOntology/envo/master/src/envo/sources/sweetrealm.obo
   download_owl: http://aber-owl.net/media/ontologies/SWEET/2/sweet.owl
+  download_rdf: https://raw.githubusercontent.com/ESIPFed/sweet/master/src/sweetAll.ttl
   example: realmGeol/GeologicFeature
   homepage: http://sweetontology.net/
   keywords:
@@ -76929,6 +77293,7 @@ swo:
   - license
   - nfdi4chem
   - nfdi4ing
+  - nfdixcs
   - obo
   - ontology
   license: CC-BY-4.0
@@ -76944,7 +77309,7 @@ swo:
     prefixcommons: swo
     tib: swo
     wikidata.entity: Q113014439
-  name: Software ontology
+  name: Software Ontology
   pattern: ^\d{7,8}$
   preferred_prefix: SWO
   providers:
@@ -77730,6 +78095,8 @@ taxonconcept:
     base as sameAs or simply merge those properties that you think are appropriate.
   example: hasAcceptedName
   homepage: http://lod.taxonconcept.org
+  keywords:
+  - ontology
   mappings:
     biodivportal: TXN
   name: TaxonConcept Ontology
@@ -77951,18 +78318,21 @@ tctr:
   uri_format: https://www.thaiclinicaltrials.org/show/$1
 tdwg.abcd:
   description: The base ontology of the ABCD Standard.
+  download_owl: https://raw.githubusercontent.com/tdwg/abcd/master/ontology/abcd_concepts.owl
   example: Accession
   homepage: https://www.tdwg.org/standards/abcd/
   keywords:
   - ess
   - fair data spaces
   - life sciences, biology
+  - ontology
   mappings:
     tib: abcd
   name: Access to Biological Collection Data Schema
   preferred_prefix: tdwg.abcd
 tdwg.format:
   description: Controlled vocabulary for the Dublin Core term format
+  download_rdf: http://rs.tdwg.org/format.ttl
   example: e001
   homepage: http://rs.tdwg.org/format.htm
   keywords:
@@ -77991,6 +78361,7 @@ tdwg.taxonrank:
   keywords:
   - ontology
   - taxon rank
+  license: CC-BY-4.0
   name: TDWG Taxon Rank LSID Ontology
   preferred_prefix: tdwg.taxonrank
   repository: https://github.com/tdwg/ontology
@@ -77998,6 +78369,7 @@ tdwg.taxonrank:
 tdwg.vms:
   description: 'The TDWG Vocabulary Maintenance Standard consists of a single document:
     the Vocabulary Maintenance Specification.'
+  download_rdf: https://raw.githubusercontent.com/tdwg/vocab/master/vms/maintenance-specification.ttl
   homepage: https://www.tdwg.org/standards/vms/
   keywords:
   - fair data spaces
@@ -78282,6 +78654,7 @@ tib.bk:
   - fid baudigital
   - fid move
   - nfdi4ing
+  - ontology
   license: CC0-1.0
   mappings:
     bartoc: '18785'
@@ -78295,11 +78668,13 @@ tib.bk:
   uri_format: http://uri.gbv.de/terminology/bk/$1
 tib.bo:
   description: This file contains the Base Ontology of oneM2M as specified in TS-0012
+  download_owl: https://git.onem2m.org/MAS/BaseOntology/-/raw/master/base_ontology.owl
   example: AreaNetwork
   homepage: https://git.onem2m.org/MAS/BaseOntology
   keywords:
   - engineering
   - nfdi4ing
+  - ontology
   mappings:
     tib: bo
   name: Base Ontology
@@ -78309,6 +78684,7 @@ tib.cgo:
   description: This ontology describes concepts related to greenhouses. It mainly
     describes Dutch greenhouses, but can also be applied to greenhouses outside of
     The Netherlands. The ontology describes multiple aspects of the domain of greenhouses.
+  download_rdf: https://ontology.tno.nl/ddings/Greenhouse_ontology_v1.3.ttl
   example: AbioticStressTrait
   homepage: https://gitlab.com/ddings/common-greenhouse-ontology
   keywords:
@@ -78354,6 +78730,7 @@ tib.dot:
     made by using the dot:StructuralDamage or dot:Defect classes. In addition to the
     topology, damage documentation that is commonly created during inspections and
     damage assessment can be linked to the damages as well as to the damaged components.
+  download_rdf: https://alhakam.github.io/dot/ontology.ttl
   example: Causation
   homepage: https://alhakam.github.io/dot
   keywords:
@@ -78367,6 +78744,7 @@ tib.dot:
 tib.dr:
   description: Holistic Ontology for semiconductor manufacturing and development,
     products and systems containing semiconductors and connected supply chains.
+  download_rdf: https://raw.githubusercontent.com/tibonto/dr/master/DigitalReference.ttl
   example: Application
   homepage: https://github.com/tibonto/dr
   keywords:
@@ -78381,6 +78759,7 @@ tib.dr:
   uri_format: http://www.w3id.org/ecsel-dr-SO#$1
 tib.fto:
   description: Modular Ontology Modeling for Food Supply Chains.
+  download_rdf: https://raw.githubusercontent.com/Data-Semantics-Laboratory/Modular-Ontology-Modeling-for-Food-Supply-Chains/master/food-traceability-schema.ttl
   example: Agent
   homepage: https://github.com/Data-Semantics-Laboratory/Modular-Ontology-Modeling-for-Food-Supply-Chains
   keywords:
@@ -78393,6 +78772,7 @@ tib.fto:
   uri_format: http://dase.cs.ksu.edu/ontology/food-traceability#$1
 tib.gpo:
   description: Ontology to model processes
+  download_rdf: https://raw.githubusercontent.com/General-Process-Ontology/ontology/master/GPO.ttl
   example: 01cd2578_8730_4ac9_a555_9112728ea939
   homepage: https://github.com/General-Process-Ontology/ontology
   keywords:
@@ -78410,6 +78790,7 @@ tib.hpont:
     the relevant information of Heat Pumps. The HPOnt has been developed as part of
     the REACT project which has received funding from the European Union’s Horizon
     2020 research and innovation programme under grant agreement no. 824395.
+  download_rdf: https://react2020.github.io/REACT-ONTOLOGY/HPOnt/ontology/ontology.ttl
   example: HeatPumpOperatingMode
   homepage: https://react2020.github.io/REACT-ONTOLOGY/HPOnt/index-en.html
   keywords:
@@ -78464,6 +78845,7 @@ tib.ioc:
     arise. Thus, the extension and refinement of the developed construction process
     ontology strongly depends on the integration of further areas of the construction
     value chain and the connection of further domain ontologies.
+  download_rdf: https://internet-of-construction.github.io/IoC-Process-Ontology/ontology.ttl
   example: Actor
   homepage: https://ip.pages.rwth-aachen.de/ioc/core/
   keywords:
@@ -78478,6 +78860,7 @@ tib.ioc:
   uri_format: http://w3id.org/ioc#$1
 tib.linsearch:
   description: Fächer für die LinSearch-Fachzuordnung
+  download_rdf: https://raw.githubusercontent.com/TIBHannover/annif_automated_indexing_at_tib/main/vocab/LinSearch/linsearch20230105.ttl
   example: arc
   homepage: https://github.com/TIBHannover/annif_automated_indexing_at_tib
   keywords:
@@ -78505,6 +78888,7 @@ tib.lis:
 tib.mat:
   description: The material properties ontology provides the vocabulary to describe
     the composition of building elements.
+  download_rdf: https://bimerr.iot.linkeddata.es/def/material-properties/ontology.ttl
   example: Accesories
   homepage: https://bimerr.iot.linkeddata.es/def/material-properties/
   keywords:
@@ -78523,10 +78907,12 @@ tib.mdo:
     and the schemas of materials databases, we can create MDO-enabled query interfaces.
     The querying can occur, for instance, via MDO-based query expansion, MDO-based
     mediation or through MDO-enabled data warehouses.
+  download_owl: https://liusemweb.github.io/mdo/full/1.0/mdo-full.owl
   homepage: https://liusemweb.github.io/mdo/full/1.0/index.html#namespaces
   keywords:
   - material science
   - nfdi4ing
+  - ontology
   mappings:
     tib: mdo
   name: Materials Design Ontology - Full
@@ -78568,6 +78954,7 @@ tib.meth:
     categories for 'Physical property measurements' and the 'Bioanalytical method',
     these are placeholders and only include a few examples that are relevant to analytical
     methods in geo- or cosmochemistry.
+  download_rdf: https://raw.githubusercontent.com/SArndt-TIB/Vocabulary/refs/heads/master/geochemistry/GeochemAnalyticalMethod.ttl
   example: acceleratormassspectrometry
   homepage: https://amds-ldeo.github.io/Vocabulary/geochemistry/html/GeochemAnalyticalMethod.html
   keywords:
@@ -78689,6 +79076,7 @@ tib.n0:
     \nThe figure above shows an example of use of the Audio Commons ontology to represent\
     \ a sound from the Freesound database. For simplicity only the classes `ac:AudioClip`,\
     \ `ac:AudioFile`, and `ac:AudioCategory` are used in this case."
+  download_rdf: https://raw.githubusercontent.com/AudioCommons/ac-ontology/master/aco.ttl
   example: AnalogSignal
   homepage: http://www.audiocommons.org/ac-ontology/aco.html
   keywords:
@@ -78701,11 +79089,13 @@ tib.n0:
   uri_format: https://w3id.org/ac-ontology/aco#$1
 tib.ofm:
   description: Ontology for manufacturing and logistics
+  download_owl: https://raw.githubusercontent.com/enegri/OFM/master/OFM.owl
   example: Anthropomorphic_Robot
   homepage: https://github.com/enegri/OFM
   keywords:
   - engineering
   - nfdi4ing
+  - ontology
   mappings:
     tib: ofm
   name: Ontology for manufacturing and logistics
@@ -78718,10 +79108,12 @@ tib.re:
     name: Sam Tombury
   description: An ontology of the Retail Energy Market of Great Britain created by
     Lidcast Data Limited.
+  download_owl: https://raw.githubusercontent.com/DataCreater/GBEnergy/refs/heads/main/RetailEnergy0.0.1.owl
   example: Advanced_Meter
   homepage: https://github.com/DataCreater/GBEnergy
   keywords:
   - nfdi4energy
+  - ontology
   license: CC-BY-SA-3.0
   mappings:
     tib: re
@@ -78732,6 +79124,7 @@ tib.re:
 tib.sto:
   description: An ontology to describe standards related to Industry 4.0 and Smart
     Manufacturing
+  download_rdf: https://i40-tools.github.io/I40KG/docs/serializations/ontology.ttl
   example: AiiClassification
   homepage: https://i40-tools.github.io/I40KG/docs/index.html
   keywords:
@@ -78765,6 +79158,7 @@ tib.tso:
     structure. It has a strong alignment to other ontologies within the W3C community
     and aims to provide the means to link information at data level within the AEC
     industry.
+  download_rdf: https://raw.githubusercontent.com/RWTH-E3D/tso/master/tubes.ttl
   example: AutomationSystem
   homepage: https://rwth-e3d.github.io/tso/index.html
   keywords:
@@ -78837,6 +79231,7 @@ time:
     and clock, or using another temporal reference system such as unix-time, geologic
     time, or different calendars.
   download_owl: http://aber-owl.net/media/ontologies/TIME/2/time.owl
+  download_rdf: https://raw.githubusercontent.com/w3c/sdw/gh-pages/time/rdf/time.ttl
   example: DateTimeDescription
   github_request_issue: 505
   homepage: https://www.w3.org/TR/owl-time/
@@ -79306,7 +79701,7 @@ treebase:
   - organism
   - sequence
   - taxonomy
-  license: BSD
+  license: BSD-3-Clause
   mappings:
     biocontext: TREEBASE
     integbio: nbdc01882
@@ -79428,6 +79823,7 @@ tribain:
     in natural-language). Using the EXPO2 (ontology of scientific experiments) as
     basis, gives tribAIn a generic background about scientific experimental design,
     methodology and results representation.
+  download_rdf: https://raw.githubusercontent.com/snow0815/tribAIn/refs/heads/master/tribAin.ttl
   example: 100Cr6
   homepage: https://github.com/snow0815/tribAIn
   keywords:
@@ -79768,6 +80164,7 @@ uat:
     open-source thesaurus which will be of immediate value to both research and research
     support, and provide a mechanism for reviewing, discussing and evaluating the
     continuous evolution of terminology in these fields.
+  download_rdf: https://raw.githubusercontent.com/astrothesaurus/UAT/master/UAT.rdf
   example: '0'
   homepage: http://astrothesaurus.org/
   keywords:
@@ -79775,7 +80172,7 @@ uat:
   - ess
   - nfdi4ing
   - physics
-  license: CC BY-SA 3.0
+  license: CC-BY-SA-3.0
   logo: https://api.fairsharing.org/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBbXNGIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--c891d240862cdbcf96ccc7422197c97d663d82c9/Screenshot%20From%202024-11-20%2013-15-32.png?disposition=inline
   mappings:
     bartoc: '820'
@@ -80369,6 +80766,7 @@ unesco.thesaurus:
   - communication science
   - culture
   - education science
+  - ontology
   - political science
   - subject agnostic
   license: CC-BY-3.0-IGO
@@ -81844,6 +82242,7 @@ vann:
     orcid: 0000-0003-4423-4370
   description: This document describes a vocabulary for annotating descriptions of
     vocabularies with examples and usage notes.
+  download_rdf: https://vocab.org/vann/vann-vocab-20100607.rdf
   example: usageNote
   homepage: https://vocab.org/vann/
   keywords:
@@ -82475,12 +82874,14 @@ vibso:
   description: The Vibration Spectroscopy Ontology defines technical terms with which
     research data produced in vibrational spectroscopy experiments can be semantically
     enriched, made machine readable and FAIR.
+  download_owl: https://raw.githubusercontent.com/NFDI4Chem/VibrationalSpectroscopyOntology/main/vibso.owl
   example: 0000008
   github_request_issue: 1278
   homepage: https://nfdi4chem.github.io/VibrationalSpectroscopyOntology/
   keywords:
   - chemistry
   - nfdi4chem
+  - ontology
   license: CC-BY-4.0
   mappings:
     tib: vibso
@@ -82814,7 +83215,7 @@ virushostdb:
   - interaction/pathway
   - organism
   - virus
-  license: CC BY-NC-SA 4.0
+  license: CC-BY-NC-SA-4.0
   mappings:
     integbio: nbdc02395
     prefixcommons: virushostdb
@@ -82914,7 +83315,7 @@ vivo:
   - ontology
   - resource metadata
   - study design
-  license: unlicense
+  license: Unlicense
   mappings:
     aberowl: VIVO
     biocontext: VIVO
@@ -83300,7 +83701,7 @@ vsmo:
   homepage: https://code.google.com/archive/p/vector-surveillance-and-management-ontology/
   keywords:
   - ontology
-  license: New BSD License
+  license: BSD-3-Clause
   name: Ontology for vector surveillance and management
   preferred_prefix: vsmo
   publications:
@@ -83356,6 +83757,7 @@ vso:
 vssocore:
   description: This ontology describes the car's attributes, branches and signals
     defined in the Vehicle Signal Specification.
+  download_rdf: https://raw.githubusercontent.com/w3c/vsso/gh-pages/spec/vsso-core.ttl
   example: VehicleProperty
   homepage: https://www.w3.org/TR/2022/WD-vsso-core-20220303/
   keywords:
@@ -83769,7 +84171,7 @@ whg:
     at global and trans-regional scales.
   example: '12492249'
   homepage: https://whgazetteer.org/
-  license: CC BY-NC 4.0
+  license: CC-BY-NC-4.0
   mappings:
     bartoc: '20423'
   name: World Historical Gazetteer
@@ -84162,7 +84564,7 @@ wiktionary:
   example: pharmacist
   github_request_issue: 1310
   homepage: https://wiktionary.org
-  license: CC BY SA 4.0
+  license: CC-BY-SA-4.0
   name: Wiktionary
   preferred_prefix: wiktionary
   uri_format: https://en.wiktionary.org/wiki/$1
@@ -84175,11 +84577,13 @@ wlmo:
     audiovisual digital recordings. It encodes the semantics of the Wildlife Monitoring
     Ontology and at the same time provides the datamodel behind the wildlive.senckenberg.de
     platform.
+  download_owl: https://wildlive.senckenberg.de/wlmo/current/ontology.owl
   example: Annotation
   homepage: https://wildlive.senckenberg.de/wlmo/current/
   keywords:
   - earth sciences
   - ess
+  - ontology
   license: CC-BY-4.0
   mappings:
     ecoportal: WLMO
@@ -84189,11 +84593,13 @@ wlmo:
   uri_format: https://wildlive.senckenberg.de/wlmo/$1
 woc.ontology:
   description: An ontology that represents object-oriented programming languages
+  download_owl: https://raw.githubusercontent.com/codeontology/parser/master/ontology/CodeOntology.owl
   example: AccessModifier
   homepage: http://codeontology.org/
   keywords:
   - engineering
   - nfdi4ing
+  - ontology
   mappings:
     tib: co
   name: Code Ontology
@@ -84329,11 +84735,13 @@ worldavatar.kin:
   uri_format: http://www.theworldavatar.com/ontology/ontokin/OntoKin.owl#$1
 worldavatar.os:
   description: OntoSpecies is an ontology developed for representing chemical species.
+  download_owl: https://raw.githubusercontent.com/TheWorldAvatar/ontology/refs/heads/main/ontology/ontospecies/OntoSpecies.owl
   example: Charge
   homepage: https://doi.org/10.17863/CAM.97235.2
   keywords:
   - chemistry
   - nfdi4chem
+  - ontology
   mappings:
     tib: os
   name: OntoSpecies - Chemical Species Ontology for Data Integration and Knowledge
@@ -84672,6 +85080,7 @@ wot.security:
 wot.td:
   description: This ontology aims to model the Web of Things domain according to the
     W3C Interest Group (http://w3c.github.io/wot/)
+  download_rdf: https://akswnc7.informatik.uni-leipzig.de/dstreitmatter/archivo/w3.org/2019--wot--td/2021.09.22-190316/2019--wot--td_type=parsed.ttl
   example: description
   homepage: https://akswnc7.informatik.uni-leipzig.de/dstreitmatter/archivo/w3.org/2019--wot--td/2021.09.22-190316/2019--wot--td_type=pyLodeDoc.html
   keywords:
