@@ -83,6 +83,7 @@ CC_BY_UNSPECIFIED = "CC-BY"
 CC_BY_SA_UNSPECIFIED = "CC-BY-SA"
 CC_BY_NC_UNSPECIFIED = "CC-BY-NC"
 CC_UNSPECIFIED = "CC"
+APACHE_UNSPECIFIED = "Apache"
 
 ##########################
 # PUBLIC DOMAIN LICENSES #
@@ -393,7 +394,12 @@ REVERSE_LICENSES: Mapping[str | None, list[str]] = {
     ],
     "public-domain": [
         "Public Domain",
-    ]
+    ],
+    APACHE_UNSPECIFIED: [
+        APACHE_UNSPECIFIED,
+        "Apache License",
+        "http://www.apache.org/licenses/",
+    ],
 }
 
 NONSTANDARD = {
@@ -403,6 +409,7 @@ NONSTANDARD = {
     CC_BY_UNSPECIFIED,
     CC_BY_NC_UNSPECIFIED,
     CC_UNSPECIFIED,
+    APACHE_UNSPECIFIED,
     "public-domain",
 }
 
