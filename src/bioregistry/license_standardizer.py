@@ -179,6 +179,10 @@ REVERSE_LICENSES: Mapping[str | None, list[str]] = {
         "https://www.w3.org/Consortium/Legal/2015/doc-license",
         "https://www.w3.org/Consortium/Legal/2015/copyright-software-and-document",
     ],
+    "W3C-2023": [
+        "https://www.w3.org/copyright/document-license-2023/",
+        "https://www.w3.org/copyright/document-license-2023",
+    ],
     "CC-BY-1.0": [
         "CC-BY-1.0",
         "CC BY 1.0",
@@ -394,6 +398,8 @@ REVERSE_LICENSES: Mapping[str | None, list[str]] = {
     ],
     "public-domain": [
         "Public Domain",
+        "public domain",
+        "public-domain",
     ],
     APACHE_UNSPECIFIED: [
         APACHE_UNSPECIFIED,
@@ -411,6 +417,7 @@ NONSTANDARD = {
     CC_UNSPECIFIED,
     APACHE_UNSPECIFIED,
     "public-domain",
+    "W3C-2023",
 }
 
 LICENSES: Mapping[str, str | None] = {_v: _k for _k, _vs in REVERSE_LICENSES.items() for _v in _vs}
