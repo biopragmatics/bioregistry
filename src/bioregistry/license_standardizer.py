@@ -311,6 +311,7 @@ REVERSE_LICENSES: Mapping[str | None, list[str]] = {
         "https://www.apache.org/licenses/LICENSE-2.0",
         "http://www.apache.org/licenses/LICENSE-2.0/",
         "https://www.apache.org/licenses/LICENSE-2.0/",
+        "http://purl.org/NET/rdflicense/:APACHE2.0",
     ],
     "GPL-3.0": [
         "GPL-3.0",
