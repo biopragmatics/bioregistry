@@ -380,6 +380,7 @@ REVERSE_LICENSES: Mapping[str | None, list[str]] = {
     ],
     CC_UNSPECIFIED: [
         "CC_UNSPECIFIED",
+        "CC",
         "https://creativecommons.org/licenses/",
         "creative commons",
         "Creative Commons Attribution License",
