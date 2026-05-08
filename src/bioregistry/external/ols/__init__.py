@@ -15,7 +15,6 @@ from typing import Any, ClassVar
 
 import requests
 from pydantic import BaseModel
-from tqdm import tqdm
 
 from bioregistry.alignment_model import (
     Artifact,
