@@ -47,23 +47,15 @@
                     </a>
                 </dd>
                 <dt>Maintainers</dt>
-                <dd>
-                    <ul>
-                        {% for author in entry.maintainers %}
-                            <li>
-                                <a href="{{ url_for("metaregistry_ui.contributor", orcid=author.orcid) }}">
-                                    {{ author.name }} {{ utils.orcid_img() }}
-                                </a>
-                            </li>
-                        {% endfor %}
-                        {% if entry.maintainers|length < 2 %}
-                            <li>{{ config.METAREGISTRY_TITLE }} Review Team (until this record has two maintainers, see
-                                <a href="{{ config.METAREGISTRY_REPOSITORY }}/tree/main/exports/contexts#prescriptive-contexts">here</a>
-                                for more information on governance)
-                            </li>
-                        {% endif %}
-                    </ul>
+                {%- for author in entry.maintainers %}
+                <dd {% if not loop.last %}class="mb-0"{% endif %}>{{ utils.render_author(author) }}</dd>
+                {%- endfor %}
+                {%- if entry.maintainers|length < 2 %}
+                <dd>{{ config.METAREGISTRY_TITLE }} Review Team (until this record has two maintainers, see
+                    <a href="{{ config.METAREGISTRY_REPOSITORY }}/tree/main/exports/contexts#prescriptive-contexts">here</a>
+                    for more information on governance)
                 </dd>
+                {%- endif %}
                 <dt>Properties</dt>
                 <dd>
                     <span class="badge badge-pill badge-{% if entry.include_synonyms %}success{% else %}light{% endif %}"
