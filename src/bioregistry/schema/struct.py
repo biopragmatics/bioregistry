@@ -464,7 +464,12 @@ DEFAULT_METAPREFIX_PRIORITY = [
     "re3data",
     "uniprot",
     "biodivportal",
+    "tib",
 ]
+
+
+def _get_prioritized_metaprefixes(pr: list[str]) -> list[str]:
+    return [*pr, *(x for x in DEFAULT_METAPREFIX_PRIORITY if x not in pr)]
 
 
 class Resource(BaseModel):
@@ -1399,8 +1404,17 @@ class Resource(BaseModel):
         for metaprefix in self.mappings or []:
             if kk := self.get_external(metaprefix).get("keywords"):
                 keywords.extend(kk)
-        if self.get_download_obo() or self.get_download_owl() or self.bioportal:
+        if (
+            self.get_download_obo()
+            or self.get_download_owl()
+            or self.get_download_obograph()
+            or self.bioportal
+            or self.agroportal
+            or self.biodivportal
+            or self.ecoportal
+        ):
             keywords.append("ontology")
+        # TODO remove plurals?
         return sorted(
             {
                 keyword.lower().replace("’", "'")  # noqa:RUF001
@@ -2394,17 +2408,19 @@ class Resource(BaseModel):
         """
         if self.download_obo:
             return self.download_obo
-        return (
-            self._get_download("obofoundry", "obo")
-            or self._get_download("ols", "obo")
-            or self._get_download("aberowl", "obo")
-        )
+        for metaprefix in _get_prioritized_metaprefixes(["obofoundry", "ols", "aberowl"]):
+            if download_obo_url := self._get_download(metaprefix, "obo"):
+                return download_obo_url
+        return None
 
     def get_download_obograph(self) -> str | None:
         """Get the download link for the latest OBOGraph JSON file."""
         if self.download_json:
             return self.download_json
-        return self._get_download("obofoundry", "obograph_json")
+        for metaprefix in _get_prioritized_metaprefixes(["obofoundry"]):
+            if download_obo_graph_json_url := self._get_download(metaprefix, "obograph_json"):
+                return download_obo_graph_json_url
+        return None
 
     # docstr-coverage:excused `overload`
     @overload
@@ -2421,7 +2437,10 @@ class Resource(BaseModel):
                 return self.download_rdf.url
             else:
                 return self.download_rdf
-        return self._get_download("ols", "rdf")
+        for metaprefix in _get_prioritized_metaprefixes(["ols", "tib"]):
+            if download_url := self._get_download(metaprefix, "rdf"):
+                return download_url
+        return None
 
     # docstr-coverage:excused `overload`
     @overload
@@ -2473,13 +2492,14 @@ class Resource(BaseModel):
         """
         if self.download_owl:
             return self.download_owl
-        return (
-            self._get_download("obofoundry", "owl")
-            or self.get_external("ols").get("version.iri")
-            or self._get_download("ols", "owl")
-            or self._get_download("cropoct", "owl")
-            or self._get_download("aberowl", "owl")
-        )
+        for metaprefix in _get_prioritized_metaprefixes(
+            ["obofoundry", "ols", "cropoct", "aberowl", "tib"]
+        ):
+            if download_owl_url := self._get_download(metaprefix, "owl"):
+                return download_owl_url
+        if download_version_iri := self.get_external("ols").get("version.iri"):
+            return cast(str, download_version_iri)
+        return None
 
     def _get_download(self, metaprefix: str, artifact_type: str) -> str | None:
         for artifact in self.get_external(metaprefix).get("artifacts", []):
@@ -2679,7 +2699,7 @@ class Resource(BaseModel):
         if self.owners:
             return self.owners
         rv = []
-        for metaprefix in ["miriam"]:
+        for metaprefix in _get_prioritized_metaprefixes(["miriam"]):
             for org in self.get_external(metaprefix).get("owners", []):
                 rv.append(Organization.model_validate(org))
         return rv
