@@ -169,19 +169,22 @@ REVERSE_LICENSES: Mapping[str | None, list[str]] = {
     ],
     "W3C": [
         W3C,
-        "http://www.opensource.org/licenses/W3C",
+        "W3C Software and Document license - 2002 version",
+        "http://www.w3.org/Consortium/Legal/2002/copyright-software-20021231.html",
         "https://spdx.org/licenses/W3C.html",
         "https://spdx.org/licenses/W3C",
     ],
     "W3C-20150513": [
         "W3C-20150513",
         "W3C Software and Document Notice and License",
+        "http://www.opensource.org/licenses/W3C",
         "https://www.w3.org/Consortium/Legal/2015/doc-license",
         "https://www.w3.org/Consortium/Legal/2015/copyright-software-and-document",
     ],
     "W3C-2023": [
         "https://www.w3.org/copyright/document-license-2023/",
         "https://www.w3.org/copyright/document-license-2023",
+        "W3C Software and Document license - 2023 version",
     ],
     "CC-BY-1.0": [
         "CC-BY-1.0",
