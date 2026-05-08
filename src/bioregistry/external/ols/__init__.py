@@ -172,14 +172,24 @@ def _get_contact(ols_id: str, config: dict[str, Any]) -> Person | None:
     return Person(email=email, name=name or None)
 
 
+UNKNOWN_LICENSE_STRINGS = {
+    "unspecified",
+    "unkown",
+    "unknown",
+    "public on github",
+    "Public",
+    "freely available",
+}
+
+
 def _get_license(ols_id: str, config: dict[str, Any]) -> License | None:
     license_dict = config.get("license")
     if not license_dict:
-        tqdm.write(f"no license for {ols_id}")
+        tqdm.write(f"[{ols_id}] no license")
         return None
 
     url = license_dict["url"]
-    if url is None and license_dict["label"] in {"unspecified", "unkown", "unknown"}:
+    if url is None and license_dict["label"] in UNKNOWN_LICENSE_STRINGS:
         return None
 
     if spdx_id := standardize_license(url, passthrough=False):
@@ -188,7 +198,7 @@ def _get_license(ols_id: str, config: dict[str, Any]) -> License | None:
     if spdx_id := standardize_license(license_dict["label"], passthrough=False):
         return License(spdx=spdx_id, url=url)
 
-    tqdm.write(f"could not process: {license_dict}")
+    tqdm.write(f"[{ols_id}] could not process license: {license_dict}")
     return None
 
 

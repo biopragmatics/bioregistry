@@ -82,6 +82,7 @@ CC_BY_NC_SA_25 = "CC-BY-NC-SA-2.5"
 CC_BY_UNSPECIFIED = "CC-BY"
 CC_BY_SA_UNSPECIFIED = "CC-BY-SA"
 CC_BY_NC_UNSPECIFIED = "CC-BY-NC"
+CC_UNSPECIFIED = "CC"
 
 ##########################
 # PUBLIC DOMAIN LICENSES #
@@ -157,10 +158,12 @@ REVERSE_LICENSES: Mapping[str | None, list[str]] = {
         "BSD-3-Clause",
         "BSD-3",
         "The 3-Clause BSD License",
+        "https://github.com/BrickSchema/brick/blob/master/LICENSE",
     ],
     "PDDL-1.0": [
         "PDDL-1.0",
         "pddl 1.0",
+        "Open Data Commons Public Domain Dedication and License (PDDL) v1.0",
         "http://www.opendatacommons.org/licenses/pddl/1.0/",
     ],
     "W3C": [
@@ -172,11 +175,13 @@ REVERSE_LICENSES: Mapping[str | None, list[str]] = {
     "W3C-20150513": [
         "W3C-20150513",
         "W3C Software and Document Notice and License",
+        "https://www.w3.org/Consortium/Legal/2015/doc-license",
         "https://www.w3.org/Consortium/Legal/2015/copyright-software-and-document",
     ],
     "CC-BY-1.0": [
         "CC-BY-1.0",
         "CC BY 1.0",
+        "Attribution 1.0 Generic (CC BY 1.0)",
         "http://creativecommons.org/licenses/by/1.0/",
     ],
     CC_BY_4: [
@@ -184,6 +189,7 @@ REVERSE_LICENSES: Mapping[str | None, list[str]] = {
         "CC-BY 4.0",
         "CC BY-4.0",
         "CC BY 4.0",  # correct
+        "Creative Commons BY 4.0",
         "https://spdx.org/licenses/CC-BY-4.0",
         "https://spdx.org/licenses/CC-BY-4.0.html",
         "https://creativecommons.org/licenses/by/4.0",
@@ -191,11 +197,14 @@ REVERSE_LICENSES: Mapping[str | None, list[str]] = {
         "https://creativecommons.org/licenses/by/4.0/",
         "http://creativecommons.org/licenses/by/4.0/",
         "http://creativecommons.org/licenses/by/4.0/legalcode",
+        "https://creativecommons.org/licenses/by/4.0/legalcode",
         "url: http://creativecommons.org/licenses/by/4.0",
         "SWO is provided under a Creative Commons Attribution 4.0 International"
         " (CC BY 4.0) license (https://creativecommons.org/licenses/by/4.0/).",
         "http://purl.org/NET/rdflicense/cc-by4.0",
+        "CC-BY 4.0 License",
         "ATTRIBUTION 4.0 INTERNATIONAL (CC BY 4.0)",
+        "https://github.com/Onto-Med/GFO/blob/main/LICENSE",
     ],
     "CC-BY-3.0": [
         "CC-BY-3.0",
@@ -334,6 +343,7 @@ REVERSE_LICENSES: Mapping[str | None, list[str]] = {
         "CC BY-SA 3.0",
         "http://creativecommons.org/licenses/by-sa/3.0",
         "https://creativecommons.org/licenses/by-sa/3.0",
+        "Creative Commons Attribution-ShareAlike 3.0 Unported License",
     ],
     CC_BY_NC_ND_3: [
         CC_BY_NC_ND_3,
@@ -362,6 +372,23 @@ REVERSE_LICENSES: Mapping[str | None, list[str]] = {
         "CC BY-ND 3.0 IGO",
         "CC-BY-ND-3.0-IGO",
     ],
+    "MIT": [
+        "https://opensource.org/license/mit",
+        "MIT",
+        "MIT License",
+        "MIT license",
+    ],
+    CC_UNSPECIFIED: [
+        "CC_UNSPECIFIED",
+        "https://creativecommons.org/licenses/",
+        "creative commons",
+        "Creative Commons Attribution License",
+    ],
+    "GPL-3.0-only": ["GPL-3.0-only", "GNU General Public License v3.0"],
+    "GFDL-1.3": [
+        "GFDL-1.3",
+        "GNU Free Documentation License Version 1.3",
+    ],
 }
 
 NONSTANDARD = {
@@ -370,6 +397,7 @@ NONSTANDARD = {
     CC_BY_SA_UNSPECIFIED,
     CC_BY_UNSPECIFIED,
     CC_BY_NC_UNSPECIFIED,
+    CC_UNSPECIFIED,
 }
 
 LICENSES: Mapping[str, str | None] = {_v: _k for _k, _vs in REVERSE_LICENSES.items() for _v in _vs}
