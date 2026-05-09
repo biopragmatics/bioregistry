@@ -3,10 +3,12 @@
 from __future__ import annotations
 
 import json
-from collections.abc import Callable, Mapping, Sequence
+from collections import defaultdict
+from collections.abc import Callable, Sequence
 from functools import partial
-from typing import Any, cast
+from typing import cast
 
+import curies
 import werkzeug
 import yaml
 from flask import (
@@ -71,22 +73,53 @@ def _normalize_prefix_or_404(
     return norm_prefix
 
 
-def _search(manager_: Manager, q: str) -> list[tuple[str, str]]:
-    q_norm = _norm(q)
-    results = [
-        (prefix, lookup if _norm(prefix) != lookup else "")
-        for lookup, prefix in manager_.synonyms.items()
-        if q_norm in lookup
+class PrefixLookup(BaseModel):
+    """A prefix lookup."""
+
+    lookup: str
+    position: int
+    complete: bool
+
+
+class PrefixSearchResult(BaseModel):
+    """Results from searching for a prefix."""
+
+    prefix: str
+    lookups: list[PrefixLookup]
+
+
+def _search(manager_: Manager, query: str) -> list[PrefixSearchResult]:
+    query = _norm(query)
+    prefix_to_lookups = defaultdict(list)
+    for lookup, prefix in manager_.synonyms.items():
+        if query in lookup:
+            start = lookup.find(query)
+            prefix_to_lookups[prefix].append(
+                PrefixLookup(lookup=lookup, position=start, complete=query == lookup)
+            )
+    return [
+        PrefixSearchResult(prefix=prefix, lookups=lookups)
+        for prefix, lookups in prefix_to_lookups.items()
     ]
-    return sorted(results)
 
 
-def _autocomplete(manager_: Manager, q: str, url_prefix: str | None = None) -> Mapping[str, Any]:
+class AutocompleteResult(BaseModel):
+    """Results from autocomplete."""
+
+    query: str
+    success: bool
+    reason: str
+    results: curies.Reference | list[PrefixSearchResult]
+    url: str | None = None
+    pattern: str | None = None
+
+
+def _autocomplete(manager_: Manager, q: str, base_url: str | None = None) -> AutocompleteResult:
     r"""Run the autocomplete algorithm.
 
     :param manager_: A manager
     :param q: The query string
-    :param url_prefix:
+    :param base_url:
         The explicit URL prefix. If not used, relative paths are generated. Introduced to
         solve https://github.com/biopragmatics/bioregistry/issues/596.
     :return: A dictionary with the autocomplete results.
@@ -102,6 +135,9 @@ def _autocomplete(manager_: Manager, q: str, url_prefix: str | None = None) -> M
     >>> _autocomplete(manager, "chebi")
     {'query': 'chebi', 'results': [('chebi', ''), ('chebi', 'chebiid'), ('goche', 'gochebi')], 'success': True, 'reason': 'matched prefix', 'url': '/chebi'}
 
+    >>> _autocomplete(manager, "http://purl.allotrope.org/ontologies/equipment#AFE_")
+    {'query': 'http://purl.allotrope.org/ontologies/equipment#AFE_', 'results': [('allotrope.equiment', '')], 'success': True, 'reason': 'matched prefix', 'url': '/allotrope.equiment'}
+
     Not matching the pattern:
 
     >>> _autocomplete(manager, "chebi:NOPE")
@@ -112,59 +148,62 @@ def _autocomplete(manager_: Manager, q: str, url_prefix: str | None = None) -> M
     >>> _autocomplete(manager, "chebi:1234")
     {'query': 'chebi:1234', 'prefix': 'chebi', 'pattern': '^\\d+$', 'identifier': '1234', 'success': True, 'reason': 'passed validation', 'url': '/chebi:1234'}
     """
-    if url_prefix is None:
-        url_prefix = ""
-    url_prefix = url_prefix.rstrip().rstrip("/")
+    if base_url is None:
+        base_url = ""
+    base_url = base_url.rstrip().rstrip("/")
+
+    if q.startswith("https://") or q.startswith("http://"):
+        raise NotImplementedError
 
     if ":" not in q:
         url: str | None
         if q in manager_.registry:
             reason = "matched prefix"
-            url = f"{url_prefix}/{q}"
+            url = f"{base_url}/{q}"
         else:
             reason = "searched prefix"
             url = None
-        return {
-            "query": q,
-            "results": _search(manager_, q),
-            "success": True,
-            "reason": reason,
-            "url": url,
-        }
+        return AutocompleteResult(
+            query=q,
+            success=True,
+            reason=reason,
+            url=url,
+            results=_search(manager_, q),
+        )
+
     prefix, identifier = q.split(":", 1)
     resource = manager_.get_resource(prefix)
     if resource is None:
-        return {
-            "query": q,
-            "prefix": prefix,
-            "identifier": identifier,
-            "success": False,
-            "reason": "bad prefix",
-        }
+        return AutocompleteResult(
+            query=q,
+            success=False,
+            reason="bad prefix",
+            results=curies.Reference(prefix=prefix, identifier=identifier),
+        )
     pattern = manager_.get_pattern(prefix)
     if pattern is None:
         success = True
         reason = "no pattern"
         norm_id = resource.standardize_identifier(identifier)
-        url = f"{url_prefix}/{resource.get_curie(norm_id)}"
+        url = f"{base_url}/{resource.get_curie(norm_id)}"
     elif resource.is_standardizable_identifier(identifier):
         success = True
         reason = "passed validation"
         norm_id = resource.standardize_identifier(identifier)
-        url = f"{url_prefix}/{resource.get_curie(norm_id)}"
+        url = f"{base_url}/{resource.get_curie(norm_id)}"
     else:
         success = False
         reason = "failed validation"
         url = None
-    return {
-        "query": q,
-        "prefix": prefix,
-        "pattern": pattern,
-        "identifier": identifier,
-        "success": success,
-        "reason": reason,
-        "url": url,
-    }
+
+    return AutocompleteResult(
+        query=q,
+        success=success,
+        reason=reason,
+        url=url,
+        results=curies.Reference(prefix=prefix, identifier=identifier),
+        pattern=pattern,
+    )
 
 
 def serialize(

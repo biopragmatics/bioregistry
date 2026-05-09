@@ -192,6 +192,7 @@ def _get_all_messages(
     def _get_suggestions(uri_prefix: str) -> list[tuple[str, str]] | str:
         suggies = []
         for x, y in rpm.items():
+            # TODO incorporate more principled URI prefix search here
             if x.startswith(uri_prefix):
                 suggies.append((x, y))
             if x == uri_prefix:

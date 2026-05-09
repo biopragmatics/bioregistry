@@ -285,3 +285,21 @@ class TestResourceManager(unittest.TestCase):
 
         self.assertIsNotNone(manager.get_resource(test_prefix))
         self.assertIsNotNone(manager.get_resource(test_synonym))
+
+    def test_search_uri_prefix(self) -> None:
+        """Test searching URI prefixes."""
+        results = self.manager.lookup_uri_prefix(
+            "http://purl.allotrope.org/ontologies/equipment#AFE_"
+        )
+        self.assertEqual(1, len(results))
+        self.assertEqual("allotrope.equipment", results[0].prefix)
+
+        results = self.manager.lookup_uri_prefix(
+            "http://purl.obolibrary.org/obo",
+        )
+        self.assertLess(200, len(results))
+        prefixes = {r.prefix for r in results}
+        # check the top-level one makes it
+        self.assertIn("obo", prefixes)
+        # check a sub-URI-prefix makes it
+        self.assertIn("go", prefixes)
