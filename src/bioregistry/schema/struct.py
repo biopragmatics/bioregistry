@@ -56,6 +56,7 @@ __all__ = [
     "Author",
     "Collection",
     "Context",
+    "OlsConfig",
     "Organization",
     "Provider",
     "Publication",

@@ -1,0 +1,128 @@
+"""UI endpoint for the resolver."""
+
+from __future__ import annotations
+
+from typing import cast
+
+import werkzeug
+from flask import current_app, redirect, render_template, request, url_for
+
+from .base import ui_blueprint
+from .resource import resource as resource_route
+from ..constants import MIMETYPE_TO_RDFLIB_FORMAT
+from ..proxies import manager
+from ..utils import ResponseWrapperError, get_accept_media_type, get_provider_graph
+from ...schema.struct import Resource
+
+__all__ = ["resolve"]
+
+
+#: this is a hack to make it work when the LUID starts with a slash for
+#: ARK, since ARK doesn't actually require a slash. Will break
+#: if there are other LUIDs that actually require a slash in front
+ark_hacked_route = ui_blueprint.route("/<prefix>:/<path:identifier>")
+
+
+@ui_blueprint.route("/<prefix>")
+@ui_blueprint.route("/<prefix>:<path:identifier>")
+@ark_hacked_route
+def resolve(
+    prefix: str, identifier: str | None = None
+) -> str | werkzeug.Response | tuple[str | werkzeug.Response, int]:
+    """Resolve a CURIE.
+
+    The following things can make a CURIE unable to resolve:
+
+    1. The prefix is not registered
+    2. The prefix has a validation pattern and the identifier does not match it
+    3. There are no providers available for the URL
+    """
+    try:
+        resource, identifier = _clean_reference(prefix, identifier)
+    except ResponseWrapperError as rw:
+        return rw.get_value()
+
+    accept = get_accept_media_type()
+    if accept in MIMETYPE_TO_RDFLIB_FORMAT:
+        providers = manager.get_providers(resource.prefix, identifier)
+        graph = get_provider_graph(manager, resource.prefix, identifier, providers)
+        return cast(
+            werkzeug.Response,
+            current_app.response_class(
+                graph.serialize(format=MIMETYPE_TO_RDFLIB_FORMAT[accept]), mimetype=accept
+            ),
+        )
+    elif accept == "application/json":
+        raise NotImplementedError
+    elif accept == "application/yaml":
+        raise NotImplementedError
+    elif accept != "text/html":
+        raise ValueError(f"invalid accept type: {accept}")  # TODO make proper HTML error
+
+    url = manager.get_iri(
+        resource.prefix,
+        identifier,
+        use_bioregistry_io=False,
+        provider=request.args.get("provider"),
+    )
+    if not url:
+        return (
+            render_template(
+                "resolve_errors/missing_providers.html",
+                prefix=resource.prefix,
+                identifier=identifier,
+            ),
+            404,
+        )
+    try:
+        # TODO remove any garbage characters?
+        return redirect(url)
+    except ValueError:  # headers could not be constructed
+        return (
+            render_template(
+                "resolve_errors/disallowed_identifier.html",
+                prefix=resource.prefix,
+                identifier=identifier,
+            ),
+            404,
+        )
+
+
+def _clean_reference(prefix: str, identifier: str | None = None) -> tuple[Resource, str]:
+    if ":" in prefix:
+        # A colon might appear in the prefix if there are multiple colons
+        # in the CURIE, since Flask/Werkzeug parses from right to left.
+        # This block reorganizes the parts of the CURIE based on that assumption
+        prefix, middle = prefix.split(":", 1)
+        if identifier:
+            identifier = f"{middle}:{identifier}"
+        else:
+            identifier = middle  # not sure how this could happen, though
+
+    resource = manager.get_resource(prefix)
+    if resource is None:
+        raise ResponseWrapperError(
+            render_template(
+                "resolve_errors/missing_prefix.html", prefix=prefix, identifier=identifier
+            ),
+            404,
+        )
+    if identifier is None:
+        raise ResponseWrapperError(
+            redirect(url_for("." + resource_route.__name__, prefix=resource.prefix))
+        )
+
+    identifier = resource.standardize_identifier(identifier)
+    pattern = resource.get_pattern()
+    if pattern and not resource.is_valid_identifier(identifier):
+        raise ResponseWrapperError(
+            render_template(
+                "resolve_errors/invalid_identifier.html",
+                prefix=prefix,
+                identifier=identifier,
+                pattern=pattern,
+            ),
+            404,
+        )
+
+    return resource, identifier

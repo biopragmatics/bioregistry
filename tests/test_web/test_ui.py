@@ -164,6 +164,24 @@ class TestUI(unittest.TestCase):
                     res = client.get(endpoint)
                     self.assertEqual(404, res.status_code)
 
+        with self.app.test_client() as client:
+            res = client.get(endpoint, headers={"Accept": "nope/nope"})
+            self.assertEqual(404, res.status_code)
+
+    def test_resolve_content_negotiation(self) -> None:
+        """Test resolve turtle via content negotiation."""
+        with self.app.test_client() as client:
+            graph = rdflib.Graph()
+            res = client.get("/GO:1234567", headers={"Accept": "text/turtle"})
+            graph.parse(data=res.text, format="turtle")
+            self.assertIn(rdflib.URIRef("https://bioregistry.io/go:1234567"), graph.all_nodes())
+
+        with self.app.test_client() as client:
+            graph = rdflib.Graph()
+            res = client.get("/GO:1234567?format=turtle")
+            graph.parse(data=res.text, format="turtle")
+            self.assertIn(rdflib.URIRef("https://bioregistry.io/go:1234567"), graph.all_nodes())
+
     def test_banana_redirects(self) -> None:
         """Test banana redirects."""
         with self.app.test_client() as client:

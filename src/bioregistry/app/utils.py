@@ -5,8 +5,9 @@ from __future__ import annotations
 import json
 from collections.abc import Callable, Mapping, Sequence
 from functools import partial
-from typing import Any, cast
+from typing import Any, TypeAlias, cast
 
+import rdflib
 import werkzeug
 import yaml
 from flask import (
@@ -19,7 +20,9 @@ from flask import (
     url_for,
 )
 from pydantic import BaseModel
+from rdflib import RDFS
 
+from .constants import KEY_TO_MIMETYPE
 from .proxies import manager
 from ..resource_manager import Manager
 from ..utils import _norm
@@ -167,9 +170,12 @@ def _autocomplete(manager_: Manager, q: str, url_prefix: str | None = None) -> M
     }
 
 
+Serializer: TypeAlias = Callable[[BaseModel], str]
+
+
 def serialize(
     data: BaseModel,
-    serializers: Sequence[tuple[str, str, Callable[[BaseModel], str]]] | None = None,
+    serializers: Sequence[tuple[str, str, Serializer]] | None = None,
     negotiate: bool = False,
 ) -> Response:
     """Serialize either as JSON or YAML."""
@@ -177,11 +183,11 @@ def serialize(
         accept = get_accept_media_type()
     else:
         arg = request.args.get("format", "json")
-        if arg not in FORMAT_MAP:
+        if arg not in KEY_TO_MIMETYPE:
             return abort(
-                400, f"unhandled value for `format`: {arg}. Use one of: {sorted(FORMAT_MAP)}"
+                400, f"unhandled value for `format`: {arg}. Use one of: {sorted(KEY_TO_MIMETYPE)}"
             )
-        accept = FORMAT_MAP[arg]
+        accept = KEY_TO_MIMETYPE[arg]
 
     if accept == "application/json":
         return cast(
@@ -231,27 +237,44 @@ def get_accept_media_type() -> str:
     """Get accept type."""
     fmt = request.args.get("format")
     if fmt is not None:
-        rv = FORMAT_MAP.get(fmt)
-        if rv:
-            return rv
-        return abort(400, f"bad query parameter format={fmt}. Should be one of {list(FORMAT_MAP)}")
+        if fmt not in KEY_TO_MIMETYPE:
+            raise abort(
+                400, f"bad query parameter format={fmt}. Should be one of {list(KEY_TO_MIMETYPE)}"
+            )
+        return KEY_TO_MIMETYPE[fmt]
 
     # If accept is specifically set to one of the special quanties, then use it.
     accept = str(request.accept_mimetypes)
-    if accept in FORMAT_MAP.values():
+    if accept in KEY_TO_MIMETYPE.values():
         return accept
 
     # Otherwise, return HTML
     return "text/html"
 
 
-FORMAT_MAP = {
-    "json": "application/json",
-    "yml": "application/yaml",
-    "yaml": "application/yaml",
-    "turtle": "text/turtle",
-    "jsonld": "application/ld+json",
-    "json-ld": "application/ld+json",
-    "rdf": "application/rdf+xml",
-    "n3": "text/n3",
-}
+def get_provider_graph(
+    manager: Manager, prefix: str, identifier: str, providers: dict[str, str]
+) -> rdflib.Graph:
+    """Get the provider graph."""
+    graph = rdflib.Graph()
+    node_str = f"{manager.base_url}/{prefix}:{identifier}"
+    node = rdflib.URIRef(node_str)
+    for _key, provider in providers.items():
+        if provider != node_str:
+            graph.add((node, RDFS.seeAlso, rdflib.URIRef(provider)))
+    return graph
+
+
+class ResponseWrapperError(ValueError):
+    """An exception that helps with code reuse that returns multiple value types."""
+
+    def __init__(self, response: str | werkzeug.Response, code: int | None = None) -> None:
+        """Instantiate this "exception", which is a tricky way of writing a macro."""
+        self.response = response
+        self.code = code
+
+    def get_value(self) -> tuple[str | werkzeug.Response, int] | str | werkzeug.Response:
+        """Get either the response, or a pair of response + code if a code is available."""
+        if self.code is not None:
+            return self.response, self.code
+        return self.response
