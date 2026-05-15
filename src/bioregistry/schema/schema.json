@@ -1684,6 +1684,19 @@
           "description": "The URL to download the resource as an JSKOS JSON file.",
           "title": "JSKOS Download URL"
         },
+        "download_jsonld_context": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "The URL to download the JSON-LD context file for the resource. A JSON-LD context provides term-to-IRI mappings and type coercion rules that enable compact JSON-LD serialization of instance data. More information about this format can be found at https://www.w3.org/TR/json-ld11/.",
+          "title": "JSON-LD Context Download URL"
+        },
         "banana": {
           "anyOf": [
             {

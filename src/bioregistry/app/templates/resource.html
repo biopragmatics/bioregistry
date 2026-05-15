@@ -176,7 +176,7 @@
                 {% endif %}
                 <dt>
                     Links
-                    {% if homepage or obo_download or owl_download or json_download or rdf_download or skos_download or jskos_download %}
+                    {% if homepage or obo_download or owl_download or json_download or rdf_download or skos_download or jskos_download or jsonld_context_download %}
                     <a type="button" data-toggle="modal" data-target="#links-modal">
                         <i class="bi bi-question-circle"></i>
                     </a>
@@ -223,6 +223,11 @@
                     {% if jskos_download %}
                         <a class="badge badge-pill badge-light" href="{{ jskos_download }}">
                             JSKOS <i class="bi bi-download"></i>
+                        </a>
+                    {% endif %}
+                    {% if jsonld_context_download %}
+                        <a class="badge badge-pill badge-light" href="{{ jsonld_context_download }}">
+                            JSON-LD Context <i class="bi bi-download"></i>
                         </a>
                     {% endif %}
                     {% if resource.github_request_issue %}
@@ -634,6 +639,10 @@
                     {% if rdf_download %}
                         <p>Get the RDF download link:</p>
                         {{ utils.code_example(prefix, "get_rdf_download", rdf_download) }}
+                    {% endif %}
+                    {% if jsonld_context_download %}
+                        <p>Get the JSON-LD context download link:</p>
+                        {{ utils.code_example(prefix, "get_jsonld_context_download", jsonld_context_download) }}
                     {% endif %}
                 </div>
             </div>
