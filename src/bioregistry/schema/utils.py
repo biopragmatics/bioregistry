@@ -8,13 +8,12 @@ from typing import Any
 from pydantic import BaseModel
 
 __all__ = [
-    "sanitize_dict",
     "sanitize_mapping",
     "sanitize_model",
 ]
 
 
-def sanitize_dict(d: dict[str, Any]) -> dict[str, Any]:
+def _sanitize_dict(d: dict[str, Any]) -> dict[str, Any]:
     """Remove all keys that have none values from a dict."""
     rv = {}
     for key, value in d.items():
@@ -30,7 +29,7 @@ def sanitize_model(
     base_model: BaseModel, exclude_unset: bool = True, exclude_none: bool = True, **kwargs: Any
 ) -> Mapping[str, Any]:
     """Sanitize a single Pydantic model."""
-    return sanitize_dict(
+    return _sanitize_dict(
         base_model.model_dump(exclude_none=exclude_none, exclude_unset=exclude_unset, **kwargs)
     )
 
