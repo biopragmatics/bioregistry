@@ -216,9 +216,10 @@ def reference(
 ) -> str | werkzeug.Response | tuple[str | werkzeug.Response, int]:
     """Serve a reference page."""
     try:
-        _resource, identifier = _clean_reference(prefix, identifier)
+        _resource, reference_ = _clean_reference(prefix, identifier)
     except ResponseWrapperError as rw:
         return rw.get_value()
+    identifier = reference_.identifier
     return render_template(
         "reference.html",
         prefix=_resource.prefix,

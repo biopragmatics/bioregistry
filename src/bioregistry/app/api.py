@@ -15,6 +15,7 @@ from pydantic import BaseModel, Field
 from .constants import KEY_TO_MIMETYPE, MIMETYPE_SYNONYM_TO_CANONICAL, MIMETYPE_TO_RDFLIB_FORMAT
 from .responses import TurtleResponse, YAMLResponse
 from .utils import (
+    IdentifierResponse,
     _autocomplete,
     _search,
     get_provider_graph,
@@ -24,6 +25,7 @@ from ..export.rdf_export import (
     metaresource_to_rdf_str,
     resource_to_rdf_str,
 )
+from ..reference import NormalizedReference
 from ..resource_manager import Manager
 from ..schema import Attributable, Collection, Context, Registry, Resource
 from ..schema.struct import OlsConfig
@@ -516,13 +518,6 @@ def get_contributor(
     )
 
 
-class IdentifierResponse(BaseModel):
-    """A response for looking up a reference."""
-
-    query: Reference
-    providers: Mapping[str, str]
-
-
 @api_router.get(
     "/reference/{prefix}:{identifier:path}", response_model=IdentifierResponse, tags=["reference"]
 )
@@ -549,7 +544,7 @@ def get_reference(
     if not providers:
         raise HTTPException(404, f"no providers available for {resource.get_curie(identifier)}")
 
-    reference = Reference(prefix=prefix, identifier=identifier)
+    reference = NormalizedReference(prefix=prefix, identifier=identifier)
 
     if format == "json" or format is None:
         return IdentifierResponse(query=reference, providers=providers)
@@ -557,9 +552,7 @@ def get_reference(
         x = IdentifierResponse(query=reference, providers=providers)
         return YAMLResponse(x)
     elif format == "turtle":
-        return TurtleResponse(
-            get_provider_graph(manager, reference.prefix, reference.identifier, providers)
-        )
+        return TurtleResponse(get_provider_graph(manager, reference, providers))
     else:
         raise HTTPException(404, f"invalid format: {format}")
 
