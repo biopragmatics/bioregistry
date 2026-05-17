@@ -567,10 +567,21 @@
           "comment": "Used in YMDB, HMDB, PubChem, MassBank, KNApSAcK, UM-BBD, GMD, SMID-DB",
           "prefix": "chebi"
         },
-        "cheminf",
+        {
+          "prefix": "cheminf",
+          "tags": [
+            "production"
+          ]
+        },
         "chemrof",
         "chiro",
-        "chmo",
+        {
+          "prefix": "chmo",
+          "tags": [
+            "collaborative",
+            "production"
+          ]
+        },
         "duo",
         "edam",
         "efo",
@@ -595,7 +606,12 @@
         "reproduceme",
         "rex",
         "ro",
-        "rxno",
+        {
+          "prefix": "rxno",
+          "tags": [
+            "collaborative"
+          ]
+        },
         "sepio",
         "sio",
         "sosa",
@@ -607,7 +623,8 @@
         {
           "prefix": "vibso",
           "tags": [
-            "internal"
+            "internal",
+            "collaborative"
           ]
         },
         "voc4cat",
@@ -620,6 +637,16 @@
           "code": "internal",
           "description": "ontologies created by the NFDI4Chem consortium",
           "name": "Internal"
+        },
+        {
+          "code": "collaborative",
+          "description": "External, but curated by the consortium",
+          "name": "Collaborative"
+        },
+        {
+          "code": "production",
+          "description": "Used in production within services of the consortium",
+          "name": "In Production"
         }
       ]
     },
