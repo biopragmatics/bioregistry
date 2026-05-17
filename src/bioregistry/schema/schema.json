@@ -314,6 +314,21 @@
           ],
           "default": null,
           "title": "Mappings"
+        },
+        "tags": {
+          "anyOf": [
+            {
+              "items": {
+                "$ref": "#/$defs/Tag"
+              },
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Tags"
         }
       },
       "required": [
@@ -344,6 +359,21 @@
           ],
           "default": null,
           "title": "Comment"
+        },
+        "tags": {
+          "anyOf": [
+            {
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Tags"
         }
       },
       "required": [
@@ -2594,6 +2624,37 @@
         "contributor"
       ],
       "title": "StatusCheck",
+      "type": "object"
+    },
+    "Tag": {
+      "description": "A tag for a collection.",
+      "properties": {
+        "code": {
+          "title": "Code",
+          "type": "string"
+        },
+        "name": {
+          "title": "Name",
+          "type": "string"
+        },
+        "description": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Description"
+        }
+      },
+      "required": [
+        "code",
+        "name"
+      ],
+      "title": "Tag",
       "type": "object"
     }
   },
