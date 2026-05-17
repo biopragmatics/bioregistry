@@ -51,9 +51,9 @@ def resolve(
         return rw.get_value()
 
     identifier = reference.identifier
+    provider = request.args.get("provider")
 
     accept = get_accept_media_type()
-    provider = request.args.get("provider")
     if accept != "text/html":
         if provider:
             flask.abort(400, f"can't use `provider` query parameter with request for {accept}")
