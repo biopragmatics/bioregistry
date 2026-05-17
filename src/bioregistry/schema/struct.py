@@ -3205,7 +3205,10 @@ class CollectionAnnotation(BaseModel):
 
     prefix: str
     comment: str | None = None
-    tags: list[str] | None = None
+    tags: Annotated[
+        list[str] | None,
+        Field(description="References to tag codes that are defined locally within a collection"),
+    ] = None
 
     def is_empty(self) -> bool:
         """Check if the collection annotation is empty."""
