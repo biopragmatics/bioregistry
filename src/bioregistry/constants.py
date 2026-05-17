@@ -28,6 +28,8 @@ __all__ = [
     "INTERNAL_PIP",
     "INTERNAL_REPOSITORY",
     "METAREGISTRY_PATH",
+    "NDEX_UUID",
+    "NFDI_ROR",
     "RAW_DIRECTORY",
     "FailureReturnType",
     "MaybeCURIE",
