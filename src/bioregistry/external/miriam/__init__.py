@@ -144,7 +144,7 @@ def _preprocess_resource(resource: dict[str, Any]) -> dict[str, Any]:
         ror = ror.removeprefix("https://ror.org/").removeprefix("http://ror.org/")
         if not ror.startswith("https://") and not ror.startswith("http://"):
             rv["organization"] = {
-                "ror": ror,
+                "ror": ror.strip(),
                 "name": resource["institution"]["name"],
             }
     uri_format = resource["urlPattern"].replace("{$id}", "$1")

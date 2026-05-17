@@ -81,6 +81,7 @@ class OntoPortalClient:
             unit="ontology",
             max_workers=self.max_workers,
             desc=f"Preprocessing {self.metaprefix}",
+            leave=False,
         )
         with self.raw_path.open("w") as file:
             json.dump(records, file, indent=2, sort_keys=True, ensure_ascii=False)
