@@ -3,14 +3,22 @@
 from __future__ import annotations
 
 import curies
+import flask
 import werkzeug
 from flask import Response, redirect, render_template, request, url_for
 
 from .base import ui_blueprint
 from .resource import resource as resource_route
+from ..constants import MIMETYPE_TO_RDFLIB_FORMAT
 from ..proxies import manager
 from ..utils import (
+    IdentifierResponse,
     ResponseWrapperError,
+    flask_jsonify_pydantic,
+    flask_response_rdf,
+    flask_yamlify_pydantic,
+    get_accept_media_type,
+    get_provider_graph,
 )
 from ...schema.struct import Resource
 
@@ -44,6 +52,25 @@ def resolve(
 
     identifier = reference.identifier
     provider = request.args.get("provider")
+
+    accept = get_accept_media_type()
+    if accept != "text/html":
+        if provider:
+            flask.abort(400, f"can't use `provider` query parameter with request for {accept}")
+
+        providers = manager.get_providers(resource.prefix, reference.identifier)
+        if not providers:
+            raise flask.abort(404, f"no providers available for {reference.curie}")
+
+        if accept in MIMETYPE_TO_RDFLIB_FORMAT:
+            graph = get_provider_graph(manager, reference, providers)
+            return flask_response_rdf(graph, mimetype=accept)
+        elif accept == "application/json":
+            return flask_jsonify_pydantic(IdentifierResponse(query=reference, providers=providers))
+        elif accept == "application/yaml":
+            return flask_yamlify_pydantic(IdentifierResponse(query=reference, providers=providers))
+        else:
+            raise flask.abort(404, f"invalid accept type: {accept}")
 
     url = manager.get_iri(
         resource.prefix, reference.identifier, use_bioregistry_io=False, provider=provider
