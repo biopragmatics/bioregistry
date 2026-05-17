@@ -156,13 +156,32 @@ class TestUI(unittest.TestCase):
                     res = client.get(f"/{query}")
                     self.assertEqual(404, res.status_code)
 
-    def test_resolve_failures(self) -> None:
-        """Test resolve failures."""
+    def test_resolve_missing_prefix(self) -> None:
+        """Test resolving a missing prefix."""
         with self.app.test_client() as client:
-            for endpoint in ["chebi:ddd", "xxx:yyy", "gmelin:1"]:
-                with self.subTest(endpoint=endpoint):
-                    res = client.get(endpoint)
-                    self.assertEqual(404, res.status_code)
+            res = client.get("/nope:nope")
+            self.assertEqual(404, res.status_code)
+            self.assertIn("Unknown Prefix", res.text)
+
+    def test_resolve_invalid_identifier(self) -> None:
+        """Test resolving an invalid LUID."""
+        with self.app.test_client() as client:
+            res = client.get("/chebi:ABCD")
+            self.assertEqual(404, res.status_code)
+            self.assertIn("Invalid Identifier", res.text)
+
+    def test_resolve_no_provider(self) -> None:
+        """Test resolving an invalid LUID."""
+        with self.app.test_client() as client:
+            res = client.get("/gmelin:1234")
+            self.assertEqual(404, res.status_code)
+            self.assertIn("Missing Provider", res.text)
+
+        # different mesage when asking for non HTML
+        with self.app.test_client() as client:
+            res = client.get("/gmelin:1234", headers={"Accept": "application/json"})
+            self.assertEqual(404, res.status_code)
+            self.assertIn("no providers available for", res.text)
 
     def test_banana_redirects(self) -> None:
         """Test banana redirects."""
@@ -172,8 +191,8 @@ class TestUI(unittest.TestCase):
                 ("agrovoc", "2842", "http://aims.fao.org/aos/agrovoc/c_2842"),
                 # Related to https://github.com/biopragmatics/bioregistry/issues/93,
                 # the app route is not greedy, so it parses on the rightmost colon.
-                # ("go", "0032571", "http://amigo.geneontology.org/amigo/term/GO:0032571"),
-                # ("go", "GO:0032571", "http://amigo.geneontology.org/amigo/term/GO:0032571"),
+                ("go", "0032571", "http://purl.obolibrary.org/obo/GO_0032571"),
+                ("go", "GO:0032571", "http://purl.obolibrary.org/obo/GO_0032571"),
             ]:
                 with self.subTest(prefix=prefix, identifier=identifier):
                     res = client.get(f"/{prefix}:{identifier}", follow_redirects=False)

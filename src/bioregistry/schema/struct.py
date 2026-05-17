@@ -56,6 +56,7 @@ __all__ = [
     "Author",
     "Collection",
     "Context",
+    "OlsConfig",
     "Organization",
     "Provider",
     "Publication",
@@ -2216,7 +2217,7 @@ class Resource(BaseModel):
             rv = [v for v in rv if not v.is_known_inactive()]
         return rv
 
-    def get_curie(self, identifier: str, use_preferred: bool = False) -> str:
+    def get_curie(self, identifier: str, *, use_preferred: bool = False) -> str:
         """Get a CURIE for a local unique identifier in this resource's semantic space.
 
         :param identifier: A local unique identifier in this resource's semantic space

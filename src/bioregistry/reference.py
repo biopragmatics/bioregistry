@@ -18,6 +18,10 @@ __all__ = [
 ]
 
 
+class MissingPartError(RuntimeError):
+    """Thrown when missing a prefix or identifier."""
+
+
 def _normalize_values(values: dict[str, str] | str | curies.Reference) -> dict[str, str]:
     """Validate the identifier."""
     if isinstance(values, str):
@@ -29,7 +33,7 @@ def _normalize_values(values: dict[str, str] | str | curies.Reference) -> dict[s
         values = {"prefix": values.prefix, "identifier": values.identifier}
     prefix, identifier = values.get("prefix"), values.get("identifier")
     if prefix is None or identifier is None:
-        raise RuntimeError(f"missing prefix/identifier from values: {values}")
+        raise MissingPartError(f"missing prefix/identifier from values: {values}")
     resource = bioregistry.get_resource(prefix)
     if resource is None:
         raise ExpansionError(f"Unknown prefix: {prefix}")
