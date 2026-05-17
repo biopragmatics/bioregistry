@@ -3205,10 +3205,19 @@ class CollectionAnnotation(BaseModel):
 
     prefix: str
     comment: str | None = None
+    tags: list[str] | None = None
 
     def is_empty(self) -> bool:
         """Check if the collection annotation is empty."""
         return self.comment is None
+
+
+class Tag(BaseModel):
+    """A tag for a collection."""
+
+    code: str
+    name: str
+    description: str | None = None
 
 
 class Collection(BaseModel):
@@ -3249,6 +3258,7 @@ class Collection(BaseModel):
     references: list[str] | None = Field(default=None, description="URL references")
     keywords: list[str] | None = None
     mappings: list[Reference] | None = None
+    tags: list[Tag] | None = None
 
     def add_triples(self, graph: rdflib.Graph) -> None:
         """Add triples to an RDF graph for this collection.

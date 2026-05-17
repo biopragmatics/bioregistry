@@ -144,6 +144,11 @@
                     {%- if annotated_prefix.comment %}
                     <br><small>{{ annotated_prefix.comment}}</small>
                     {%- endif %}
+                    {%- if annotated_prefix.tags %}
+                    {%- for tag in annotated_prefix.tags %}
+                    <span>{{ tag }}</span>
+                    {%- endfor %}
+                    {%- endif %}
                 </td>
                 <td>
                     {%- set license = resource.get_license() %}
