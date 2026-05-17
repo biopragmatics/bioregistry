@@ -131,26 +131,29 @@
             {%- for annotated_prefix in entry.get_annotated_prefixes() %}
             {%- set resource = resources[annotated_prefix.prefix] %}
             <tr>
-                <td>
+                <td class="align-middle">
                     <code>{{ resource.prefix }}</code>
                 </td>
-                <td>
+                <td class="align-middle">
                     <a href="{{ url_for('metaregistry_ui.resource', prefix=resource.prefix) }}">
                         {{ resource.get_name() }} {{ utils.render_resource_warnings(resource) }}
                     </a>
-                    {%- if first_party[resource.prefix] %}
-                    <span class="badge badge-primary">First Party <i class="bi bi-check-circle-fill"></i></span>
-                    {%- endif %}
                     {%- if annotated_prefix.comment %}
                     <br><small>{{ annotated_prefix.comment}}</small>
                     {%- endif %}
+                    {% if first_party[resource.prefix] or annotated_prefix.tags %}
+                    <br>
+                    {%- if first_party[resource.prefix] %}
+                    <span class="badge badge-primary">First Party <i class="bi bi-check-circle-fill"></i></span>
+                    {%- endif %}
                     {%- if annotated_prefix.tags %}
                     {%- for tag in annotated_prefix.tags %}
-                    <span class="badge badge-primary" {% if tags[tag].description %}title="{{ tags[tag].description }}"{% endif %}>{{ tags[tag].name }}</span>
+                    <span class="badge badge-secondary" {% if tags[tag].description %}title="{{ tags[tag].description }}"{% endif %}>{{ tags[tag].name }}</span>
                     {%- endfor %}
                     {%- endif %}
+                    {%- endif %}
                 </td>
-                <td>
+                <td class="align-middle">
                     {%- set license = resource.get_license() %}
                     {%- if not license %}
                     {%- elif license.startswith("http") %}
@@ -159,7 +162,7 @@
                     {{ license }}
                     {%- endif %}
                 </td>
-                <td align="center">
+                <td align="center" class="align-middle">
                     {%- if resource.has_download() %}
                     <a href="{{ resource.get_download() }}"><i class="bi bi-download"></i></a>
                     {%- endif %}
