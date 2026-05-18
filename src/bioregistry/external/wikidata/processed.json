@@ -3212,6 +3212,23 @@
     "name": "EASIN ID",
     "uri_format": "https://easin.jrc.ec.europa.eu/spexplorer/species/factsheet/$1"
   },
+  "P13790": {
+    "description": "unique EU identifier for companies and branches",
+    "examples": [
+      "CYDRCOR.HE139104",
+      "DEX1517R.HRB395KI",
+      "DEX1517R.VR1503KI",
+      "DKCVR.11845118",
+      "ELGEMI.077700527000",
+      "MTROC.C22796"
+    ],
+    "homepage": "https://eur-lex.europa.eu/eli/reg_impl/2021/1042/oj#d1e4707-10-1",
+    "name": "European Unique Identifier",
+    "pattern": "^(ATBRA\\.\\d{6}\\-[01]{3}|BEKBOBCE\\.[01]\\d{3}\\.\\d{3}\\.\\d{3}|BGCOMREG\\.\\d{9}|CYDRCOR\\.(AE|HE)\\d{1,10}|CZVROR\\.\\d{8}|DE[A-Z][1-9]\\d{3}[RV]?(_[A-Z][1-9]\\d{3}[RV]?)?\\.(G[ns]R|HR[AB]|[PV]R)\\d+[A-Z]*|DKCVR\\.\\d{8}|EEARIREG\\.\\d{8}|ELGEMI\\.\\d{12}|ES[0-5]\\d{4}\\.\\d{9}|FIFPRO\\.\\d{7}\\-\\d|FR\\d{4}\\.\\d{9}|HRSR\\.\\d{9}|HUOCCSZ\\.\\d{2}\\-\\d{2}\\-\\d{6}|IECRO\\.\\d{6,7}|ISREI\\.[4-7]\\d[01]\\d{3}\\-\\d{3}[09]|ITRI\\.\\d{11}|LIFL\\.FL\\-\\d{4}\\.\\d{3}\\.\\d{3}-\\d|LTJAR\\.\\d{9}|LURCSL\\.B\\d{1,6}|LVUR\\.(\\d{9}|\\d{11})|MTROC\\.C\\d{1,6}|NLNHR\\.\\d{8}|NOFOR\\.\\d{9}|PLKRS\\.\\d{10}|PTIRNMJ\\.\\d{9}|ROONRC\\.[CFJ](\\d{1,2}/\\d{1,6}/\\d{4}|\\d{13})|SEBOLREG\\.\\d{10}|SIPRS\\.\\d{7}0{3}|SKORSR\\.\\d{1,18})$",
+    "xrefs": {
+      "wikidata": "Q131149706"
+    }
+  },
   "P13797": {
     "description": "identifier for a person, place, or thing on Dimensions.com",
     "examples": [
@@ -5811,6 +5828,20 @@
     "name": "BOLD Systems taxon ID",
     "uri_format": "https://bench.boldsystems.org/index.php/TaxBrowser_TaxonPage?taxid=$1"
   },
+  "P3608": {
+    "description": "VAT number assigned in the EU",
+    "examples": [
+      "ATU16274500",
+      "BG200356710",
+      "FI15243611"
+    ],
+    "homepage": "http://ec.europa.eu/taxation_customs/vies",
+    "name": "EU VAT number",
+    "uri_format": "https://wikidata-externalid-url.toolforge.org/index.php?url=https%3A%2F%2Fec.europa.eu%2Ftaxation_customs%2Fvies%2Frest-api%2Fms%2F%251%2Fvat%2F%252&exp=(%5BA-Z%5D%5BA-Z%5D)(.*)&id=$1",
+    "xrefs": {
+      "wikidata": "Q2319042"
+    }
+  },
   "P3636": {
     "description": "identifier for small molecules and ligands in the Protein Data Bank (PDB)",
     "examples": [
@@ -7401,6 +7432,20 @@
     "pattern": "^[1-9]\\d*$",
     "uri_format": "http://www.whonamedit.com/doctor.cfm/$1.html"
   },
+  "P5437": {
+    "description": "identifier for an area of government activity, in the European Union's EuroVoc thesaurus",
+    "examples": [
+      "4189",
+      "4704",
+      "637",
+      "833"
+    ],
+    "homepage": "https://publications.europa.eu/en/web/eu-vocabularies/th-dataset/-/resource/dataset/eurovoc",
+    "name": "EuroVoc ID",
+    "pattern": "^([1-9]\\d*|[0-9a-z_]+)$",
+    "uri_format": "https://op.europa.eu/en/web/eu-vocabularies/concept/-/resource?uri=http://eurovoc.europa.eu/$1",
+    "uri_format_rdf": "http://eurovoc.europa.eu/$1"
+  },
   "P5458": {
     "description": "target identifier of the Guide to Pharmacology database",
     "examples": [
@@ -7609,6 +7654,39 @@
     "name": "Invasive Species Compendium Datasheet ID",
     "pattern": "^[1-9]\\d{0,7}$",
     "uri_format": "https://www.cabi.org/isc/datasheet/$1"
+  },
+  "P5755": {
+    "description": "Record Control Number for project/org/person under EU Framework Programmes",
+    "examples": [
+      "100079",
+      "194942",
+      "1959498",
+      "206017",
+      "2349130",
+      "93855"
+    ],
+    "homepage": "https://data.europa.eu/euodp/data/dataset/cordisfp7projects",
+    "name": "EU RCN",
+    "pattern": "^\\d+$",
+    "uri_format": "https://cordis.europa.eu/project/rcn/$1_en.html"
+  },
+  "P5785": {
+    "description": "ID of organization participating in EU programmes",
+    "examples": [
+      "919612769",
+      "951347774",
+      "965342449",
+      "997893806",
+      "999932164",
+      "999989103"
+    ],
+    "homepage": "https://data.europa.eu/euodp/data/dataset/cordisfp7projects",
+    "name": "EU Participant Identification Code",
+    "pattern": "^\\d+$",
+    "uri_format": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/how-to-participate/org-details/$1",
+    "xrefs": {
+      "wikidata": "Q131439257"
+    }
   },
   "P5806": {
     "description": "identifier in the SNOMED CT catalogue codes for diseases, symptoms and procedures",
