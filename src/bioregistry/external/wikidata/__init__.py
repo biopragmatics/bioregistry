@@ -189,7 +189,11 @@ def _get_wikidata() -> dict[str, Record]:
 
 
 def _process_record(bindings: Mapping[str, Any]) -> tuple[str, Record] | tuple[None, None]:
-    bindings = {RENAMES.get(key, key): value.replace(" ", " ") for key, value in bindings.items() if value}
+    bindings = {
+        RENAMES.get(key, key): value.replace(" ", " ")  # noqa:RUF001
+        for key, value in bindings.items()
+        if value
+    }
     prefix = bindings["prefix"] = removeprefix(
         bindings["prefix"], "http://www.wikidata.org/entity/"
     )
