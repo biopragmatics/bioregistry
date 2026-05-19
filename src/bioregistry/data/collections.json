@@ -2540,7 +2540,7 @@
           "orcid": "0000-0003-4423-4370"
         }
       ],
-      "description": "PID4NFDI is a Base4NFDI service that maintains documentation about select PID systems. This collection reflects their [PID Providers](https://pid.services.base4nfdi.de/get-pid/providers/) page.\n\nNotes\n\n- Crossref and DataCite are both providers as part of the DOI system and therefore do not have their own entries.\n- ePIC is built on the Handle system\n- PIDINST is built on the DOI system through DataCite / ePIC",
+      "description": "[PID4NFDI](https://pid.services.base4nfdi.de) is a Base4NFDI service that provides documentation about a small number of well-known identifier schemes (e.g., DOI) and services for registering identifiers within them (e.g., DataCite). This collection reflects their [PID Providers](https://pid.services.base4nfdi.de/get-pid/providers/) page. This comes with the following caveats:\n\n- Crossref and DataCite are services that mint DOIs. Since DOIs are the identifier space, only `doi` appears in this collection.\n- ePIC is a service that mints Handle system. Since Handles are the identifier space, only `hdl` appears in this collection\n- PIDINST is an abstraction on top of DataCite / ePIC, which is covered by `doi` and `hdl` as described above",
       "identifier": "0000044",
       "name": "PID4NFDI Prefixes",
       "resources": [
