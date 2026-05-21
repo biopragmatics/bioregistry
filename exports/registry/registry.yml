@@ -5406,7 +5406,7 @@ biolink:
     orcid: 0000-0002-6601-2165
   description: A high level datamodel of biological entities (genes, diseases, phenotypes,
     pathways, individuals, substances, etc) and their associations.
-  download_owl: http://aber-owl.net/media/ontologies/BIOLINK/77/biolink.owl
+  download_owl: http://aber-owl.net/media/ontologies/BIOLINK/79/biolink.owl
   download_rdf: https://w3id.org/biolink/biolink-model.owl.ttl
   example: Gene
   homepage: https://biolink.github.io/biolink-model/
@@ -11873,7 +11873,7 @@ cmo:
   rdf_uri_format: http://purl.obolibrary.org/obo/CMO_$1
   repository: https://github.com/rat-genome-database/CMO-Clinical-Measurement-Ontology
   uri_format: http://purl.obolibrary.org/obo/CMO_$1
-  version: '2026-05-06'
+  version: '2026-05-09'
 cmpo:
   contact:
     email: jupp@ebi.ac.uk
@@ -12210,7 +12210,7 @@ co_326:
     in coconut breeding", IPGRI (1996).
   download_owl: http://cropontology.org/rdf/CO_326.owl
   example: '0000254'
-  homepage: https://cropontology.org/term/CO_326:ROOT
+  homepage: http://www.cropontology.org/
   keywords:
   - ontology
   license: CC-BY-4.0
@@ -12852,7 +12852,7 @@ co_357:
     protocol and (iii) a scale, the unit of measurement or scoring scale.'
   download_owl: http://cropontology.org/rdf/CO_357.owl
   example: '1000290'
-  homepage: http://cropontology.org/term/CO_357:ROOT
+  homepage: http://www.cropontology.org/
   keywords:
   - botany
   - life science
@@ -12948,7 +12948,7 @@ co_365:
   description: to add
   download_owl: http://cropontology.org/rdf/CO_365.owl
   example: '0000205'
-  homepage: http://www.cropontology.org
+  homepage: http://www.cropontology.org/
   keywords:
   - ontology
   license: CC-BY-4.0
@@ -12970,7 +12970,7 @@ co_366:
     databases.
   download_owl: http://cropontology.org/rdf/CO_366.owl
   example: '0000072'
-  homepage: http://www.cropontology.org
+  homepage: http://www.cropontology.org/
   keywords:
   - ontology
   license: CC-BY-4.0
@@ -12992,7 +12992,7 @@ co_367:
     http://germinate.quinoadb.org. Quinoa Phenotyping Consortium Creation Date 23.05.2021
   download_owl: http://cropontology.org/rdf/CO_367.owl
   example: '0000004'
-  homepage: https://cropontology.org/term/CO_367:ROOT
+  homepage: http://www.cropontology.org/
   keywords:
   - ontology
   license: CC-BY-4.0
@@ -14014,11 +14014,35 @@ cordis.article:
     is the European Commission's primary source of results from the projects funded
     by the EU's framework programmes for research and innovation (FP1 to Horizon 2020).
   example: '436605'
-  homepage: https://cordis.europa.eu/
-  name: CORDIS Article
+  homepage: https://cordis.europa.eu
+  name: CORDIS article
   pattern: ^\d+$
   preferred_prefix: cordis.article
   uri_format: https://cordis.europa.eu/article/id/$1
+cordis.basis:
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: A CORDIS funding scheme
+  example: H2020-EU.2.3.
+  homepage: https://cordis.europa.eu
+  name: CORDIS Legal Basis
+  preferred_prefix: cordis.basis
+  uri_format: https://cordis.europa.eu/programme/id/$1
+cordis.organization:
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: An organization in the CORDIS database
+  example: '952669496'
+  homepage: https://cordis.europa.eu
+  name: CORDIS organization
+  pattern: ^\d+$
+  preferred_prefix: cordis.organization
 cordis.project:
   contributor:
     email: benjamin_gyori@hms.harvard.edu
@@ -14040,6 +14064,18 @@ cordis.project:
     name: Charles Tapley Hoyt
     orcid: 0000-0003-4423-4370
   uri_format: https://cordis.europa.eu/project/id/$1
+cordis.topic:
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: A topic in the CORDIS database
+  example: H2020-TWINN-2015
+  homepage: https://cordis.europa.eu
+  name: CORDIS topic
+  preferred_prefix: cordis.topic
+  uri_format: https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/$1
 coriell:
   description: The Coriell Cell Repositories provide essential research reagents to
     the scientific community by establishing, verifying, maintaining, and distributing
@@ -14829,31 +14865,31 @@ csd:
     year: 2002
   uri_format: https://www.ccdc.cam.ac.uk/services/structures?pid=csd:$1&sid=IDORG
 cso:
+  contact:
+    email: cameron@rockefeller.edu
+    name: Cameron Coffran
   contributor:
     email: cthoyt@gmail.com
     github: cthoyt
     name: Charles Tapley Hoyt
     orcid: 0000-0003-4423-4370
-  description: The Computer Science Ontology (CSO) is a large-scale ontology of research
-    areas that was automatically generated using the Klink-2 algorithm (cf. http://people.kmi.open.ac.uk/francesco/wp-content/uploads/2015/09/ISWC2015_Klink-2.pdf)
-    on the Rexplore dataset (cf. http://oro.open.ac.uk/39160/1/iswc2013_osborne.pdf),
-    which consists of about 16 million publications, mainly in the field of Computer
-    Science. The Klink-2 algorithm combines semantic technologies, machine learning,
-    and knowledge from external sources to automatically generate a fully populated
-    ontology of research areas. Some relationships were also revised manually by experts
-    during the preparation of two ontology-assisted surveys in the field of Semantic
-    Web and Software Architecture. The main root of CSO is Computer Science, however,
-    the ontology includes also a few secondary roots, such as Linguistics, Geometry,
-    Semantics, and so on.
+  description: Ontology to describe general clinical studies.
   download_owl: https://cso.kmi.open.ac.uk/download/version-3.5/CSO.3.5.owl.zip
   example: image_subtraction
   homepage: https://cso.kmi.open.ac.uk/home
   keywords:
+  - clinical studies
   - computer science
+  - hospital
+  - medical informatics
+  - monitoring
   - nfdixcs
   - ontology
   license: CC-BY-4.0
   mappings:
+    aberowl: CSO
+    bioportal: CSO
+    fairsharing: FAIRsharing.y4z3tx
     tib: cso
   name: Computer Science Ontology
   preferred_prefix: cso
@@ -15587,7 +15623,7 @@ datacite:
     Schema Specification (i.e., a list of metadata properties for the accurate and
     consistent identification of a resource for citation and retrieval purposes) to
     be described in RDF.
-  download_owl: http://aber-owl.net/media/ontologies/DATACITE/3/datacite.owl
+  download_owl: http://aber-owl.net/media/ontologies/DATACITE/4/datacite.owl
   example: AgentIdentifierScheme
   homepage: http://www.sparontologies.net/ontologies/datacite
   keywords:
@@ -21218,7 +21254,7 @@ eco:
   rdf_uri_format: http://purl.obolibrary.org/obo/ECO_$1
   repository: https://github.com/evidenceontology/evidenceontology
   uri_format: http://purl.obolibrary.org/obo/ECO_$1
-  version: '2026-04-05'
+  version: '2026-05-15'
 ecocore:
   contact:
     email: p.buttigieg@gmail.com
@@ -21968,7 +22004,7 @@ efo:
     year: 2010
   repository: https://github.com/EBISPOT/efo
   uri_format: http://www.ebi.ac.uk/efo/EFO_$1
-  version: 3.89.0
+  version: 3.90.0
 ega:
   description: The European Genome-phenome Archive (EGA) is a global network for permanent
     archiving and sharing of personally identifiable genetic, phenotypic, and clinical
@@ -22520,7 +22556,7 @@ emapa:
   synonyms:
   - EMAPA_RETIRED
   uri_format: http://purl.obolibrary.org/obo/EMAPA_$1
-  version: '2026-05-05'
+  version: '2026-05-12'
 emaps:
   contact:
     email: Terry.Hayamizu@jax.org
@@ -24663,6 +24699,16 @@ eu.publication:
   name: European Union Publications Office dataset
   preferred_prefix: eu.publication
   uri_format: http://publications.europa.eu/resource/dataset/$1
+eu.rcn:
+  description: Record Control Number for project/org/person under EU Framework Programmes
+  example: '100079'
+  homepage: https://data.europa.eu/euodp/data/dataset/cordisfp7projects
+  mappings:
+    wikidata: P5755
+  name: Record Control Number
+  pattern: ^\d+$
+  preferred_prefix: eu.rcn
+  uri_format: https://cordis.europa.eu/project/rcn/$1_en.html
 eu89h:
   description: The JRC Data Catalogue gives access to the multidisciplinary data produced
     and maintained by the Joint Research Centre, the European Commission's in-house
@@ -24773,6 +24819,15 @@ eugenes:
     name: Charles Tapley Hoyt
     orcid: 0000-0003-4423-4370
   uri_format: http://eugenes.org:7072/.bin/fbidq.html?$1
+euid:
+  description: unique EU identifier for companies and branches
+  example: CYDRCOR.HE139104
+  homepage: https://eur-lex.europa.eu/eli/reg_impl/2021/1042/oj#d1e4707-10-1
+  mappings:
+    wikidata: P13790
+  name: European Unique Identifier
+  pattern: ^(ATBRA\.\d{6}\-[01]{3}|BEKBOBCE\.[01]\d{3}\.\d{3}\.\d{3}|BGCOMREG\.\d{9}|CYDRCOR\.(AE|HE)\d{1,10}|CZVROR\.\d{8}|DE[A-Z][1-9]\d{3}[RV]?(_[A-Z][1-9]\d{3}[RV]?)?\.(G[ns]R|HR[AB]|[PV]R)\d+[A-Z]*|DKCVR\.\d{8}|EEARIREG\.\d{8}|ELGEMI\.\d{12}|ES[0-5]\d{4}\.\d{9}|FIFPRO\.\d{7}\-\d|FR\d{4}\.\d{9}|HRSR\.\d{9}|HUOCCSZ\.\d{2}\-\d{2}\-\d{6}|IECRO\.\d{6,7}|ISREI\.[4-7]\d[01]\d{3}\-\d{3}[09]|ITRI\.\d{11}|LIFL\.FL\-\d{4}\.\d{3}\.\d{3}-\d|LTJAR\.\d{9}|LURCSL\.B\d{1,6}|LVUR\.(\d{9}|\d{11})|MTROC\.C\d{1,6}|NLNHR\.\d{8}|NOFOR\.\d{9}|PLKRS\.\d{10}|PTIRNMJ\.\d{9}|ROONRC\.[CFJ](\d{1,2}/\d{1,6}/\d{4}|\d{13})|SEBOLREG\.\d{10}|SIPRS\.\d{7}0{3}|SKORSR\.\d{1,18})$
+  preferred_prefix: euid
 eupath:
   appears_in:
   - scdo
@@ -24868,6 +24923,8 @@ europe.pic:
   description: An identifier for an organization
   example: '881104060'
   homepage: https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/how-to-participate/participant-register-search?isExactMatch=true&type=ORGANISATION&order=DESC&pageNumber=1&pageSize=50&sortBy=lastModified
+  mappings:
+    wikidata: P5785
   name: European Commission Participant Identification Code (PIC)
   pattern: ^\d{9}$
   preferred_prefix: europe.pic
@@ -24966,6 +25023,7 @@ eurovoc:
     bartoc: '15'
     ecoportal: EUROVOC
     fairsharing: FAIRsharing.d0a681
+    wikidata: P5437
   name: EuroVoc
   pattern: ^\d+$
   preferred_prefix: eurovoc
@@ -25036,7 +25094,7 @@ evorao:
     resources and services to enhance pandemic preparedness and response. While initially
     focused on virology, EVORAO is designed to be extensible and also supports metadata
     harmonization for other pathogens. [from repository]
-  download_owl: http://aber-owl.net/media/ontologies/EVORAO/23/evorao.owl
+  download_owl: http://aber-owl.net/media/ontologies/EVORAO/25/evorao.owl
   download_rdf: https://raw.githubusercontent.com/EVORA-project/evora-ontology/refs/heads/main/models/owl/evora_ontology.owl.ttl
   example: AlternateName
   homepage: https://github.com/EVORA-project/evora-ontology
@@ -26483,8 +26541,8 @@ fix:
     name: Philip Strömert
     orcid: 0000-0002-1595-3213
   description: An ontology of physico-chemical methods and properties.
-  download_obo: http://purl.obolibrary.org/obo/fix.obo
-  download_owl: https://web.archive.org/web/20251107150330/http://ontologies.berkeleybop.org/fix.owl
+  download_obo: https://github.com/cmungall/fix/raw/refs/heads/main/fix.obo
+  download_owl: https://github.com/cmungall/fix/raw/refs/heads/main/fix.owl
   example: 0000390
   homepage: https://www.ebi.ac.uk/chebi/
   keywords:
@@ -26523,6 +26581,7 @@ fix:
     name: Bio2RDF
     uri_format: http://bio2rdf.org/fix:$1
   rdf_uri_format: http://purl.obolibrary.org/obo/FIX_$1
+  repository: https://github.com/cmungall/fix
   uri_format: http://purl.obolibrary.org/obo/FIX_$1
 flopo:
   appears_in:
@@ -26540,6 +26599,7 @@ flopo:
   - biodiversity
   - botany
   - dataplant
+  - ess
   - horticulture
   - life sciences, biology
   - obo
@@ -37785,6 +37845,22 @@ imgt.primerdb:
     name: Bio2RDF
     uri_format: http://bio2rdf.org/imgt.primerdb:$1
   uri_format: http://imgt.org/IMGTPrimerDB/Check_PrDB.pl?numacc0=$1&origin=view&source=PrList
+immport:
+  description: ImmPort is a scientific data resource funded by the National Institutes
+    of Health (NIH) to preserve and share immunology research and clinical trials
+    data generated by NIH researchers and external organizations. ImmPort uses FAIR
+    principles to maximize reuse of deposited data for advancement of biomedical sciences.
+  example: sdy998
+  homepage: https://www.immport.org/home
+  mappings:
+    miriam: immport
+  name: Immunology Database and Analysis Portal
+  owners:
+  - name: National Institute of Allergy and Infectious Diseases.
+    ror: 043z4tv69
+  pattern: ^[sS][dD][yY]\d+$
+  preferred_prefix: immport
+  uri_format: https://immport.org/shared/study/$1
 imotdb:
   comment: This resource doesn't exist on the web anymore
   deprecated: true
@@ -43426,7 +43502,8 @@ mamo:
   description: The Mathematical Modelling Ontology (MAMO) is a classification of the
     types of mathematical models used mostly in the life sciences, their variables,
     relationships and other relevant features.
-  download_owl: http://purl.obolibrary.org/obo/mamo.owl
+  download_obo: https://github.com/cmungall/mamo/raw/refs/heads/main/mamo.obo
+  download_owl: https://github.com/cmungall/mamo/raw/refs/heads/main/mamo.owl
   download_rdf: https://raw.githubusercontent.com/EBISPOT/mamo/main/mamo.rdf
   example: '0000026'
   homepage: http://sourceforge.net/p/mamo-ontology/wiki/Home/
@@ -43452,7 +43529,7 @@ mamo:
   pattern: ^\d{7}$
   preferred_prefix: MAMO
   rdf_uri_format: http://purl.obolibrary.org/obo/MAMO_$1
-  repository: http://sourceforge.net/p/mamo-ontology
+  repository: https://github.com/cmungall/mamo
   uri_format: http://bioportal.bioontology.org/ontologies/MAMO/?p=classes&conceptid=http://identifiers.org/mamo/MAMO_$1
   version: '2023-02-03'
 mampol:
@@ -47893,6 +47970,34 @@ molmovdb:
     name: Charles Tapley Hoyt
     orcid: 0000-0003-4423-4370
   uri_format: http://www.molmovdb.org/cgi-bin/morph.cgi?ID=$1
+molsim:
+  contact:
+    email: f.musyaffa@fz-juelich.de
+    name: Fathoni A. Musyaffa
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: The primary goal of this ontology is to standardize the representation
+    of molecular simulation data, processes, and methodologies across disparate simulation
+    platforms, engines (e.g., GROMACS, AMBER, NAMD), and analysis tools, while ensuring
+    these terms are interoperable with existing life sciences ontologies
+  download_obo: https://github.com/CPCLab/molsim-ontology/raw/refs/heads/main/molsim.obo
+  download_owl: https://github.com/CPCLab/molsim-ontology/raw/refs/heads/main/molsim.owl
+  example: '000000'
+  homepage: https://github.com/CPCLab/molsim-ontology
+  keywords:
+  - ontology
+  license: CC-BY-NC-SA-4.0
+  mappings:
+    aberowl: MOLSIM
+    bioportal: MOLSIM
+  name: Molecular Simulation Ontology
+  pattern: ^\d+$
+  preferred_prefix: MOLSIM
+  repository: https://github.com/CPCLab/molsim-ontology
+  uri_format: http://purl.obolibrary.org/obo/MOLSIM_$1
 mona:
   description: identifier for spectra in the MassBank of North America database
   example: FiehnLib001006
@@ -48172,7 +48277,7 @@ mp:
   rdf_uri_format: http://purl.obolibrary.org/obo/MP_$1
   repository: https://github.com/mgijax/mammalian-phenotype-ontology
   uri_format: http://purl.obolibrary.org/obo/MP_$1
-  version: '2026-04-22'
+  version: '2026-05-19'
 mpath:
   contact:
     email: pns12@hermes.cam.ac.uk
@@ -50155,7 +50260,7 @@ ncbitaxon:
   - taxonomy
   - uniprot.taxonomy
   uri_format: http://purl.obolibrary.org/obo/NCBITaxon_$1
-  version: '2026-05-05'
+  version: '2026-05-13'
 nci.drug:
   description: identifier of an entry in the NCI Drug Dictionary
   example: beta-carotene
@@ -52818,6 +52923,19 @@ nucleotide:
   pattern: ^[a-zA-Z0-9_\.]+$
   preferred_prefix: nucleotide
   uri_format: https://www.ncbi.nlm.nih.gov/nuccore/$1
+nuts:
+  description: code for a region per NUTS (Nomenclature des unités territoriales statistiques),
+    a geocode standard for referencing the administrative divisions of countries for
+    statistical purposes
+  example: BE1
+  homepage: http://data.europa.eu/nuts
+  mappings:
+    wikidata: P605
+  name: Nomenclature des unités territoriales statistiques
+  pattern: ^[A-Z]{2}[A-Z0-9]{0,3}$
+  preferred_prefix: nuts
+  rdf_uri_format: http://data.europa.eu/nuts/code/$1
+  uri_format: https://op.europa.eu/en/web/eu-vocabularies/concept/-/resource?uri=http://data.europa.eu/nuts/code/$1
 nvs:
   contributor:
     email: cthoyt@gmail.com
@@ -52949,6 +53067,8 @@ oae:
     name: Bio2RDF
     uri_format: http://bio2rdf.org/oae:$1
   publications:
+  - pubmed: '41526409'
+    title: The Ontology of Adverse Events in 2025
   - doi: 10.1186/2041-1480-5-29
     pmc: PMC4120740
     pubmed: '25093068'
@@ -53053,7 +53173,7 @@ oba:
   rdf_uri_format: http://purl.obolibrary.org/obo/OBA_$1
   repository: https://github.com/obophenotype/bio-attribute-ontology
   uri_format: http://purl.obolibrary.org/obo/OBA_$1
-  version: '2025-10-29'
+  version: '2026-05-15'
 oban:
   contributor:
     email: cthoyt@gmail.com
@@ -53266,7 +53386,7 @@ obi:
   rdf_uri_format: http://purl.obolibrary.org/obo/OBI_$1
   repository: https://github.com/obi-ontology/obi
   uri_format: http://purl.obolibrary.org/obo/OBI_$1
-  version: '2026-03-19'
+  version: '2026-05-08'
 obib:
   contact:
     email: jmwhorton@uams.edu
@@ -54294,7 +54414,7 @@ ohmi:
   rdf_uri_format: http://purl.obolibrary.org/obo/OHMI_$1
   repository: https://github.com/ohmi-ontology/ohmi
   uri_format: http://purl.obolibrary.org/obo/OHMI_$1
-  version: '2026-03-21'
+  version: '2026-05-14'
 ohpi:
   contact:
     email: edong@umich.edu
@@ -56927,9 +57047,9 @@ pandit:
   uri_format: http://www.ebi.ac.uk/goldman-srv/pandit/pandit.cgi?action=browse&fam=$1
 panet:
   contact:
-    github: kara-mela
-    name: Melanie Nentwich
-    orcid: 0000-0002-5850-4469
+    github: paulmillar
+    name: Paul Millar
+    orcid: 0000-0002-3957-1279
   description: The ExPaNDS Photon and Neutron Experimental Techniques (PaNET) ontology
     provides a taxonomy and thesaurus of photon and neutron (PaN) experimental techniques.
     Based mainly on accelerator-based light sources and neutron facilities, the primary
@@ -56963,6 +57083,10 @@ panet:
   - doi: 10.5281/zenodo.4806026
     title: ExPaNDS ontologies v1.0
     year: 2021
+  - doi: 10.1107/s1600577525005272
+    title: 'Towards a new vision of PaNET: enhancing reasoning capabilities for better
+      photon and neutron data discovery'
+    year: 2025
   rdf_uri_format: http://purl.org/pan-science/PaNET/PaNET$1
   repository: https://github.com/pan-ontologies/PaNET
   uri_format: http://purl.org/pan-science/PaNET/PaNET$1
@@ -59809,6 +59933,25 @@ pid.pathway:
   synonyms:
   - pid
   uri_format: http://pid.nci.nih.gov/search/pathway_landing.shtml?what=graphic&jpg=on&pathway_id=$1
+pida:
+  contact:
+    github: saidfathalla
+    name: Said Fathalla
+    orcid: 0000-0002-2818-5890
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: An Apache-based persistent URL (PURL) service
+  example: seo
+  homepage: https://purls.helmholtz-metadaten.de
+  license: MIT
+  logo: https://github.com/Materials-Data-Science-and-Informatics/Logos/raw/main/Pida/Pida_Logo_Text.png
+  name: Persistent IDentifiers for Semantic Artifacts
+  preferred_prefix: pida
+  repository: https://github.com/Materials-Data-Science-and-Informatics/PIDA
+  uri_format: https://purls.helmholtz-metadaten.de/$1
 pigqtldb:
   description: The Animal Quantitative Trait Loci (QTL) database (Animal QTLdb) is
     designed to house publicly all available QTL and single-nucleotide polymorphism/gene
@@ -61467,7 +61610,7 @@ pride:
     year: 2005
   repository: https://github.com/PRIDE-Utilities/pride-ontology
   uri_format: http://purl.obolibrary.org/obo/PRIDE_$1
-  version: '2026-03-05'
+  version: '2026-04-28'
 pride.project:
   description: The PRIDE PRoteomics IDEntifications database is a centralized, standards
     compliant, public data repository that provides protein and peptide identifications
@@ -63089,7 +63232,7 @@ pw:
   rdf_uri_format: http://purl.obolibrary.org/obo/PW_$1
   repository: https://github.com/rat-genome-database/PW-Pathway-Ontology
   uri_format: http://purl.obolibrary.org/obo/PW_$1
-  version: '2026-05-06'
+  version: '2026-05-16'
 pwo:
   contact:
     email: silvio.peroni@unibo.it
@@ -64324,6 +64467,7 @@ rex:
     orcid: 0000-0002-1595-3213
   description: An ontology of physico-chemical processes, i.e. physico-chemical changes
     occurring in course of time.
+  download_obo: https://github.com/cmungall/rex/raw/refs/heads/main/rex.obo
   download_owl: https://web.archive.org/web/20250616081915/http://ontologies.berkeleybop.org/rex.owl
   example: '0000512'
   homepage: https://www.ebi.ac.uk/chebi/
@@ -64360,6 +64504,7 @@ rex:
     name: Bio2RDF
     uri_format: http://bio2rdf.org/rex:$1
   rdf_uri_format: http://purl.obolibrary.org/obo/REX_$1
+  repository: https://github.com/cmungall/rex
   uri_format: http://purl.obolibrary.org/obo/REX_$1
 rexo:
   contact:
@@ -65835,7 +65980,7 @@ rs:
   rdf_uri_format: http://purl.obolibrary.org/obo/RS_$1
   repository: https://github.com/rat-genome-database/RS-Rat-Strain-Ontology
   uri_format: http://purl.obolibrary.org/obo/RS_$1
-  version: '6.275'
+  version: '2026-05-16'
 rtecs:
   contact:
     email: vep1@cdc.gov
@@ -67322,7 +67467,7 @@ scopus:
   - scopus.author
   uri_format: https://www.scopus.com/authid/detail.uri?authorId=$1
 scopus.affiliation:
-  description: identifier for an organisation in author affiliations per Scopus
+  description: identifier for an organisation in author affiliations per Scopus
   example: '60025709'
   homepage: http://info.sciencedirect.com/scopus/scopus-in-detail/tools/affiliationidentifier
   mappings:
@@ -67656,21 +67801,17 @@ sdmx:
   name: SDMX-RDF vocabulary
   preferred_prefix: sdmx
 sdy:
+  deprecated: true
   description: ImmPort is a scientific data resource funded by the National Institutes
     of Health (NIH) to preserve and share immunology research and clinical trials
     data generated by NIH researchers and external organizations. ImmPort uses FAIR
     principles to maximize reuse of deposited data for advancement of biomedical sciences.
   example: sdy998
-  homepage: https://docs.immport.org/home/team/
   mappings:
     miriam: sdy
   name: Immunology Database and Analysis Portal (ImmPort)
-  owners:
-  - name: AccessClinicalData@NIAID
-    ror: 043z4tv69
   pattern: ^[sS][dD][yY]\d+$
   preferred_prefix: sdy
-  uri_format: https://immport.org/shared/study/$1
 sedml.format:
   description: Data format that can be used in conjunction with the Simulation Experimental
     Description Markup Language (SED-ML).
@@ -67879,12 +68020,12 @@ semapv:
   uri_format: https://w3id.org/semapv/vocab/$1
   version: '2025-01-06'
 semion:
-  description: identifier of an author or reviewer, in Semion
+  deprecated: true
+  description: Identifier of an author or reviewer in the Semion database (now defunct)
   example: '22132778'
-  homepage: https://www.semion.io
   mappings:
     wikidata: P7671
-  name: Semion author ID (archived)
+  name: Semion author
   pattern: ^\d+$
   preferred_prefix: semion
   uri_format: https://web.archive.org/web/1/https://www.semion.io/Author/$1
@@ -80291,6 +80432,10 @@ txpo:
   uri_format: http://purl.obolibrary.org/obo/TXPO_$1
   version: '2022-12-07'
 uat:
+  contact:
+    email: daniel.chivvis@cfa.harvard.edu
+    name: Daniel Chivvis
+    orcid: 0000-0001-6656-160X
   description: The Unified Astronomy Thesaurus (UAT) is an open, interoperable and
     community-supported thesaurus being developed to unify the existing divergent
     and isolated Astronomy & Astrophysics thesauri into a single high-quality, freely-available
@@ -82460,6 +82605,17 @@ vario:
     year: 2013
   rdf_uri_format: http://purl.obolibrary.org/obo/VariO_$1
   uri_format: http://purl.obolibrary.org/obo/VariO_$1
+vat:
+  description: An identifier for an organization
+  example: ESS0811001G
+  homepage: http://ec.europa.eu/taxation_customs/vies
+  mappings:
+    wikidata: P3608
+  name: Value Added Tax identification number
+  preferred_prefix: vat
+  references:
+  - https://en.wikipedia.org/wiki/VAT_identification_number
+  uri_format: https://wikidata-externalid-url.toolforge.org/index.php?url=https%3A%2F%2Fec.europa.eu%2Ftaxation_customs%2Fvies%2Frest-api%2Fms%2F%251%2Fvat%2F%252&exp=(%5BA-Z%5D%5BA-Z%5D)(.*)&id=$1
 vbase2:
   description: The database VBASE2 provides germ-line sequences of human and mouse
     immunoglobulin variable (V) genes.
@@ -82775,7 +82931,7 @@ vegbank:
   owners:
   - name: National Center for Ecological Analysis and Synthesis
     ror: 0146z4r19
-  pattern: ^VB\.[A-Za-z][A-Za-z]\..*$
+  pattern: ^((VB\.)?(?i:ds|cc|ob|pc|to|py)\..*|doi:10\.82902\/.*)$
   preferred_prefix: vegbank
   uri_format: https://vegbank.org/cite/$1
 venom:
@@ -82898,7 +83054,7 @@ vgnc:
   uri_format: https://vertebrate.genenames.org/data/gene-symbol-report/#!/vgnc_id/$1
 vhog:
   contact:
-    email: bgee@isb-sib.ch
+    email: Bgee@sib.swiss
     name: Bgee team
   deprecated: true
   description: vHOG is a multi-species anatomical ontology for the vertebrate lineage,
@@ -82909,7 +83065,7 @@ vhog:
   download_obo: ftp://ftp.bgee.org/general/ontologies/vHOG.obo
   download_owl: http://purl.obolibrary.org/obo/vhog.owl
   example: '0000411'
-  homepage: http://bgee.unil.ch
+  homepage: http://www.bgee.org
   keywords:
   - anatomy
   - development
@@ -83527,7 +83683,7 @@ vo:
     name: Yongqunh He
     orcid: 0000-0001-9189-9661
   description: The Vaccine Ontology (VO) is a community-based biomedical ontology
-    in the domain of vaccine and vaccination. VO aims to standardize vaccine types
+    in the domain of vaccines and vaccination. VO aims to standardize vaccine types
     and annotations, integrate various vaccine data, and support computer-assisted
     reasoning. The VO supports basic vaccine R&D and clinical vaccine usage. VO is
     being developed as a community-based ontology with support and collaborations
@@ -83615,7 +83771,7 @@ vo:
   rdf_uri_format: http://purl.obolibrary.org/obo/VO_$1
   repository: https://github.com/vaccineontology/VO
   uri_format: http://purl.obolibrary.org/obo/VO_$1
-  version: '2026-03-06'
+  version: '2026-05-07'
 voaf:
   contributor:
     email: cthoyt@gmail.com
@@ -85397,7 +85553,7 @@ xco:
   rdf_uri_format: http://purl.obolibrary.org/obo/XCO_$1
   repository: https://github.com/rat-genome-database/XCO-experimental-condition-ontology
   uri_format: http://purl.obolibrary.org/obo/XCO_$1
-  version: '2026-05-06'
+  version: '2026-05-16'
 xenbase:
   contact:
     email: troy_pells@yahoo.ca
