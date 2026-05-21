@@ -24,8 +24,12 @@ def show_nfdi() -> str:
         for c in manager.collections.values()
         if c.has_organization_with_ror(NFDI_ROR)
     }
-    tib_collection_mappings = get_collection_mappings("tib.collection")
-    bartoc_collection_mappings = get_collection_mappings("bartoc")
+
+    def _filter(d: dict[str, str]) -> dict[str, str]:
+        return {k: v for k, v in d.items() if k in nfdi_collections}
+
+    tib_collection_mappings = _filter(get_collection_mappings("tib.collection"))
+    bartoc_collection_mappings = _filter(get_collection_mappings("bartoc"))
     collection_to_tib_opportunities = defaultdict(list)
     collection_to_license_needs_curation = defaultdict(list)
     collection_to_domain_needs_curation = defaultdict(list)
