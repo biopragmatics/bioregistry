@@ -28,6 +28,8 @@ __all__ = [
     "INTERNAL_PIP",
     "INTERNAL_REPOSITORY",
     "METAREGISTRY_PATH",
+    "NDEX_UUID",
+    "NFDI_ROR",
     "RAW_DIRECTORY",
     "FailureReturnType",
     "MaybeCURIE",
@@ -265,4 +267,10 @@ WIKIDATA_FIELD = Field(
     title="Wikidata identifier",
     pattern="^Q\\d+$",
     examples=["Q47475003"],
+)
+
+ROR_FIELD = Field(
+    title="Research Organization Registry identifier",
+    pattern="^0[a-hj-km-np-tv-z|0-9]{6}[0-9]{2}$",
+    examples=["03yrm5c26"],
 )

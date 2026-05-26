@@ -81,6 +81,7 @@ class OntoPortalClient:
             unit="ontology",
             max_workers=self.max_workers,
             desc=f"Preprocessing {self.metaprefix}",
+            leave=False,
         )
         with self.raw_path.open("w") as file:
             json.dump(records, file, indent=2, sort_keys=True, ensure_ascii=False)
@@ -238,7 +239,7 @@ def get_biodivportal(
     """Get the BiodivPortal registry."""
     client = OntoPortalClient(
         metaprefix="biodivportal",
-        client=ontoportal_client.BioPortalClient(api_key=api_key),
+        client=ontoportal_client.BioDivPortal(api_key=api_key),
     )
     return client.download(force_download=force_download, force_process=force_process)
 

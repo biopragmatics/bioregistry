@@ -38,6 +38,7 @@ from bioregistry.constants import (
     DOCS,
     MIRIAM_NAMESPACE_IN_LUI,
     ORCID_FIELD,
+    ROR_FIELD,
     URI_FORMAT_KEY,
     WIKIDATA_FIELD,
     _dedent,
@@ -55,6 +56,7 @@ __all__ = [
     "Author",
     "Collection",
     "Context",
+    "OlsConfig",
     "Organization",
     "Provider",
     "Publication",
@@ -135,6 +137,7 @@ Domain: TypeAlias = Literal[
     "genetic code",
     "mathematics",
     "registry",
+    "equipment",
 ]
 
 
@@ -183,11 +186,7 @@ class MetaprefixAnnotatedValue(Generic[X]):
 class Organization(BaseModel):
     """Model for organizations."""
 
-    ror: str | None = Field(
-        default=None,
-        title="Research Organization Registry identifier",
-        description="ROR identifier for a record about the organization",
-    )
+    ror: Annotated[str | None, ROR_FIELD] = None
     wikidata: Annotated[str | None, WIKIDATA_FIELD] = None
     gnd: str | None = Field(
         default=None, title="Gemeinsame Normdatei (Integrated Authority File) identifier"
@@ -198,15 +197,27 @@ class Organization(BaseModel):
     )
 
     @property
-    def pair(self) -> tuple[str, str]:
+    def reference(self) -> Reference:
         """Get a CURIE pair."""
         if self.ror:
-            return "ror", self.ror
+            return Reference(prefix="ror", identifier=self.ror)
         elif self.wikidata:
-            return "wikidata", self.wikidata
+            return Reference(prefix="wikidata", identifier=self.wikidata)
         elif self.gnd:
-            return "gnd", self.gnd
+            return Reference(prefix="gnd", identifier=self.gnd)
         raise ValueError
+
+    def matches_reference(self, reference: Reference) -> bool:
+        """Check if this organization matches the reference."""
+        match reference.prefix:
+            case "ror":
+                return self.ror == reference.identifier
+            case "gnd":
+                return self.gnd == reference.identifier
+            case "wikidata":
+                return self.wikidata == reference.identifier
+            case _:
+                return False
 
     @property
     def link(self) -> str:
@@ -455,7 +466,12 @@ DEFAULT_METAPREFIX_PRIORITY = [
     "re3data",
     "uniprot",
     "biodivportal",
+    "tib",
 ]
+
+
+def _get_prioritized_metaprefixes(pr: list[str]) -> list[str]:
+    return [*pr, *(x for x in DEFAULT_METAPREFIX_PRIORITY if x not in pr)]
 
 
 class Resource(BaseModel):
@@ -1159,19 +1175,53 @@ class Resource(BaseModel):
 
     # docstr-coverage:excused `overload`
     @overload
-    def get_name(self, *, provenance: Literal[False] = ...) -> None | str: ...
+    def get_name(
+        self,
+        *,
+        provenance: Literal[False] = ...,
+        strict: Literal[False] = ...,
+    ) -> None | str: ...
 
     # docstr-coverage:excused `overload`
     @overload
     def get_name(
-        self, *, provenance: Literal[True] = ...
+        self,
+        *,
+        provenance: Literal[True] = ...,
+        strict: Literal[False] = ...,
     ) -> None | MetaprefixAnnotatedValue[str]: ...
 
-    def get_name(self, *, provenance: bool = False) -> None | str | MetaprefixAnnotatedValue[str]:
+    # docstr-coverage:excused `overload`
+    @overload
+    def get_name(
+        self,
+        *,
+        provenance: Literal[False] = ...,
+        strict: Literal[True] = ...,
+    ) -> str: ...
+
+    # docstr-coverage:excused `overload`
+    @overload
+    def get_name(
+        self,
+        *,
+        provenance: Literal[True] = ...,
+        strict: Literal[True] = ...,
+    ) -> MetaprefixAnnotatedValue[str]: ...
+
+    def get_name(
+        self, *, provenance: bool = False, strict: bool = False
+    ) -> None | str | MetaprefixAnnotatedValue[str]:
         """Get the name for the given prefix, if it's available."""
         if provenance:
-            return self._get_prefix_key_str("name", DEFAULT_METAPREFIX_PRIORITY, provenance=True)
-        return self._get_prefix_key_str("name", DEFAULT_METAPREFIX_PRIORITY, provenance=False)
+            rv = self._get_prefix_key_str("name", DEFAULT_METAPREFIX_PRIORITY, provenance=True)
+        else:
+            rv = self._get_prefix_key_str("name", DEFAULT_METAPREFIX_PRIORITY, provenance=False)  # type:ignore
+        if rv is not None:
+            return rv
+        if strict:
+            raise ValueError
+        return None
 
     def get_description(self, use_markdown: bool = False) -> str | None:
         """Get the description for the given prefix, if available."""
@@ -1356,8 +1406,17 @@ class Resource(BaseModel):
         for metaprefix in self.mappings or []:
             if kk := self.get_external(metaprefix).get("keywords"):
                 keywords.extend(kk)
-        if self.get_download_obo() or self.get_download_owl() or self.bioportal:
+        if (
+            self.get_download_obo()
+            or self.get_download_owl()
+            or self.get_download_obograph()
+            or self.bioportal
+            or self.agroportal
+            or self.biodivportal
+            or self.ecoportal
+        ):
             keywords.append("ontology")
+        # TODO remove plurals?
         return sorted(
             {
                 keyword.lower().replace("’", "'")  # noqa:RUF001
@@ -2158,7 +2217,7 @@ class Resource(BaseModel):
             rv = [v for v in rv if not v.is_known_inactive()]
         return rv
 
-    def get_curie(self, identifier: str, use_preferred: bool = False) -> str:
+    def get_curie(self, identifier: str, *, use_preferred: bool = False) -> str:
         """Get a CURIE for a local unique identifier in this resource's semantic space.
 
         :param identifier: A local unique identifier in this resource's semantic space
@@ -2351,17 +2410,19 @@ class Resource(BaseModel):
         """
         if self.download_obo:
             return self.download_obo
-        return (
-            self._get_download("obofoundry", "obo")
-            or self._get_download("ols", "obo")
-            or self._get_download("aberowl", "obo")
-        )
+        for metaprefix in _get_prioritized_metaprefixes(["obofoundry", "ols", "aberowl"]):
+            if download_obo_url := self._get_download(metaprefix, "obo"):
+                return download_obo_url
+        return None
 
     def get_download_obograph(self) -> str | None:
         """Get the download link for the latest OBOGraph JSON file."""
         if self.download_json:
             return self.download_json
-        return self._get_download("obofoundry", "obograph_json")
+        for metaprefix in _get_prioritized_metaprefixes(["obofoundry"]):
+            if download_obo_graph_json_url := self._get_download(metaprefix, "obograph_json"):
+                return download_obo_graph_json_url
+        return None
 
     # docstr-coverage:excused `overload`
     @overload
@@ -2378,7 +2439,10 @@ class Resource(BaseModel):
                 return self.download_rdf.url
             else:
                 return self.download_rdf
-        return self._get_download("ols", "rdf")
+        for metaprefix in _get_prioritized_metaprefixes(["ols", "tib"]):
+            if download_url := self._get_download(metaprefix, "rdf"):
+                return download_url
+        return None
 
     # docstr-coverage:excused `overload`
     @overload
@@ -2430,13 +2494,14 @@ class Resource(BaseModel):
         """
         if self.download_owl:
             return self.download_owl
-        return (
-            self._get_download("obofoundry", "owl")
-            or self.get_external("ols").get("version.iri")
-            or self._get_download("ols", "owl")
-            or self._get_download("cropoct", "owl")
-            or self._get_download("aberowl", "owl")
-        )
+        for metaprefix in _get_prioritized_metaprefixes(
+            ["obofoundry", "ols", "cropoct", "aberowl", "tib"]
+        ):
+            if download_owl_url := self._get_download(metaprefix, "owl"):
+                return download_owl_url
+        if download_version_iri := self.get_external("ols").get("version.iri"):
+            return cast(str, download_version_iri)
+        return None
 
     def _get_download(self, metaprefix: str, artifact_type: str) -> str | None:
         for artifact in self.get_external(metaprefix).get("artifacts", []):
@@ -2483,10 +2548,18 @@ class Resource(BaseModel):
 
     def get_license_url(self) -> str | None:
         """Get a license URL."""
-        spdx_id = self.get_license()
-        if spdx_id is None:
+        license_value = self.get_license()
+        if license_value is None:
             return None
-        return f"{BIOREGISTRY_REMOTE_URL}/spdx:{spdx_id}"
+        if license_value.startswith("http://") or license_value.startswith("https://"):
+            return license_value
+        if license_value in {"CC0", "CC0-1.0"}:
+            return "https://creativecommons.org/publicdomain/zero/1.0/"
+        if license_value == "CC-BY-4.0":
+            return "https://creativecommons.org/licenses/by/4.0/"
+        if license_value == "CC-BY-3.0":
+            return "https://creativecommons.org/licenses/by/3.0/"
+        return f"{BIOREGISTRY_REMOTE_URL}/spdx:{license_value}"
 
     def get_version(self) -> str | None:
         """Get the version for the resource."""
@@ -2628,10 +2701,18 @@ class Resource(BaseModel):
         if self.owners:
             return self.owners
         rv = []
-        for metaprefix in ["miriam"]:
+        for metaprefix in _get_prioritized_metaprefixes(["miriam"]):
             for org in self.get_external(metaprefix).get("owners", []):
                 rv.append(Organization.model_validate(org))
         return rv
+
+    def has_organization_with_ror(self, ror: str) -> bool:
+        """Check if this resource has an organization with the given ROR."""
+        return any(owner.ror is not None and owner.ror == ror for owner in self.get_owners())
+
+    def has_organization(self, reference: Reference) -> bool:
+        """Check if this resource has an organization with the given ROR."""
+        return any(owner.matches_reference(reference) for owner in self.get_owners())
 
 
 class OlsConfig(BaseModel):
@@ -3253,6 +3334,12 @@ class Collection(BaseModel):
     def has_organization_with_ror(self, ror: str) -> bool:
         """Check if there is an organization with a given ROR."""
         return any(organization.ror == ror for organization in self.organizations or [])
+
+    def has_organization(self, reference: Reference) -> bool:
+        """Check if there is an organization with a given ROR."""
+        return any(
+            organization.matches_reference(reference) for organization in self.organizations or []
+        )
 
 
 def filter_collections(collections: Iterable[Collection], ror: str) -> list[Collection]:
