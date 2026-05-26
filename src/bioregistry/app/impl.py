@@ -5,7 +5,7 @@ from __future__ import annotations
 import json
 from pathlib import Path
 from textwrap import dedent
-from typing import Any, Literal, cast, overload
+from typing import TYPE_CHECKING, Any, Literal, cast, overload
 
 import pystow
 from a2wsgi import WSGIMiddleware
@@ -37,6 +37,9 @@ from ..constants import (
 )
 from ..resource_manager import Manager
 from ..utils import curie_to_str
+
+if TYPE_CHECKING:
+    from rdflib.plugins.sparql.processor import SPARQLProcessor
 
 __all__ = [
     "get_app",
@@ -342,7 +345,7 @@ def get_app(
     )
     fast_api.manager = manager  # type:ignore
     fast_api.include_router(api_router)
-    fast_api.include_router(_get_sparql_router(app))
+    fast_api.include_router(_get_sparql_router(app, manager))
     fast_api.mount("/", WSGIMiddleware(app))  # type:ignore
 
     if analytics and (analytics_api_key := conf.get("ANALYTICS_API_KEY")):
@@ -434,9 +437,9 @@ SELECT ?s ?o WHERE {
 """.rstrip()
 
 
-def _get_sparql_router(app: Flask) -> APIRouter:
-    sparql_graph = MappingServiceGraph(converter=app.manager.converter)
-    sparql_processor = MappingServiceSPARQLProcessor(graph=sparql_graph)
+def _get_sparql_router(app: Flask, manager: Manager) -> APIRouter:
+    sparql_graph = MappingServiceGraph(converter=manager.converter)
+    sparql_processor: SPARQLProcessor = MappingServiceSPARQLProcessor(graph=sparql_graph)  # type:ignore [no-untyped-call]
     sparql_router: APIRouter = SparqlRouter(
         path="/sparql",
         title=f"{app.config['METAREGISTRY_TITLE']} SPARQL Service",
@@ -445,7 +448,7 @@ def _get_sparql_router(app: Flask) -> APIRouter:
         example_query=example_query,
         graph=sparql_graph,
         processor=sparql_processor,
-        public_url=f"{app.manager.base_url}/sparql",
+        public_url=f"{manager.base_url}/sparql",
     )
     return sparql_router
 

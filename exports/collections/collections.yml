@@ -285,10 +285,12 @@
   description: 'The [Global Biodata Coalition](https://globalbiodata.org) released
     a [curated list](https://globalbiodata.org/scientific-activities/global-core-biodata-resources/)
     of 37 life sciences databases in December 2022 that they consider as having significant
-    importance (see criteria [here](https://doi.org/10.5281/zenodo.5845116)). While
-    it''s not a primary goal of the Bioregistry to cover life science databases (other
-    resources like Wikidata and [FAIRsharing](https://fairsharing.org) already do
-    an excellent job of this), many notable databases induce one or more semantic
+    importance (see criteria [here](https://doi.org/10.5281/zenodo.5845116)).
+
+
+    While it''s not a primary goal of the Bioregistry to cover life science databases
+    (other resources like Wikidata and [FAIRsharing](https://fairsharing.org) already
+    do an excellent job of this), many notable databases induce one or more semantic
     spaces that are relevant for curation and prefix assignment in the Bioregistry.
     Therefore, a large number of the resources in this list correspond 1-to-1 with
     prefixes in the Bioregistry, a small number (e.g., Orphanet, CIViC, PharmGKB)
@@ -400,7 +402,7 @@
   mappings:
   - identifier: nfdi4cat
     prefix: tib.collection
-  name: NDFI4Cat Collection
+  name: NFDI4Cat Collection
   organizations:
   - name: NFDI4Cat
     ror: 01k9z4a50
@@ -560,6 +562,7 @@
   - nmr
   - obi
   - oboe
+  - oboe.standard
   - om
   - ontorxn
   - pato
@@ -574,11 +577,6 @@
   - sosa
   - ssn
   - ssn.system
-  - suprabank.additive
-  - suprabank.buffer
-  - suprabank.interaction
-  - suprabank.molecule
-  - suprabank.solvent
   - swo
   - time
   - uo
@@ -1059,7 +1057,7 @@
     wikidata: Q139055838
   description: A collection of ontologies, controlled vocabularies, and schemas relevant
     for engineering and the [NFDI4Ing Consortium](https://nfdi4ing.de). Ontologies
-    are chronologically imported from corresponding the [TIB Terminology Service collection](https://service.tib.eu/terminology/collections/nfdi4ing).
+    are chronologically imported from the corresponding [TIB Terminology Service collection](https://service.tib.eu/terminology/collections/nfdi4ing).
   identifier: '0000022'
   logo: https://www.nfdi.de/wp-content/uploads/2025/03/NFDI4ING_Wort-Bildmarke_no-disclaimer_POS_RGB.png
   maintainers:
@@ -1134,6 +1132,7 @@
   - mathmoddb
   - mobivoc
   - modsci
+  - mwo
   - oeo
   - okn.sd
   - om
@@ -1193,12 +1192,10 @@
   contributors:
   - name: NFDI Section Metadata WG Ontology Harmonization and Mapping
     wikidata: Q139055838
-  description: A placeholder collection of ontologies, controlled vocabularies, and
-    schemas relevant for the DataPLANT Consortium seeded from corresponding the [TIB
-    OLS collection](https://service.tib.eu/terminology/collections/dataplant). The
-    [NFDI Section Metadata WG Ontology Harmonization and Mapping](https://github.com/nfdi-de/section-metadata-wg-onto/)
-    is in the process of identifying DataPLANT Consortium members appropriate for
-    maintaining this collection.
+  description: A collection of ontologies, controlled vocabularies, and schemas relevant
+    for the DataPLANT Consortium seeded from corresponding the [TIB OLS collection](https://service.tib.eu/terminology/collections/dataplant).
+    See also a [recent review](https://doi.org/10.3389/fpls.2023.1279694) on ontologies
+    for plant research data.
   identifier: '0000023'
   logo: https://www.nfdi.de/wp-content/uploads/2021/05/DataPLANT_logo_square_bg_transparent.svg
   maintainers:
@@ -1263,19 +1260,21 @@
   - stato
   - swo
   - to
+  - uberon
   - uo
 '0000024':
   contributors:
   - name: NFDI Section Metadata WG Ontology Harmonization and Mapping
     wikidata: Q139055838
-  description: A placeholder collection of ontologies, controlled vocabularies, and
-    schemas relevant for the FAIRmat Consortium seeded from corresponding the [TIB
-    OLS collection](https://service.tib.eu/terminology/collections/fairmat). The [NFDI
-    Section Metadata WG Ontology Harmonization and Mapping](https://github.com/nfdi-de/section-metadata-wg-onto/)
-    is in the process of identifying FAIRmat Consortium members appropriate for maintaining
-    this collection.
+  description: A collection of ontologies, controlled vocabularies, and schemas relevant
+    for the FAIRmat Consortium seeded from corresponding the [TIB OLS collection](https://service.tib.eu/terminology/collections/fairmat).
   identifier: '0000024'
   logo: https://www.nfdi.de/wp-content/uploads/2025/02/aktuelles_logo_02.25.png
+  maintainers:
+  - email: markus.kuehbach@physik.hu-berlin.de
+    github: mkuehbach
+    name: Markus Kühbach
+    orcid: 0000-0002-7117-5196
   mappings:
   - identifier: fairmat
     prefix: tib.collection
@@ -1289,6 +1288,7 @@
     wikidata: Q61658497
   references:
   - https://go.rocket.chat/invite?host=all-chat.nfdi.de&path=invite%2FboyT2y
+  - https://discord.com/channels/1201445470485106719/1498656792937500785
   resources:
   - bfo
   - nexus
@@ -1305,12 +1305,9 @@
   - github: epoz
     name: Etienne Posthumus
     orcid: 0000-0002-0006-7542
-  description: A placeholder collection of ontologies, controlled vocabularies, and
+  description: 'A placeholder collection of ontologies, controlled vocabularies, and
     schemas relevant for the NFDI4Culture Consortium seeded from corresponding the
-    [TIB OLS collection](https://service.tib.eu/terminology/collections/nfdi4culture).
-    The [NFDI Section Metadata WG Ontology Harmonization and Mapping](https://github.com/nfdi-de/section-metadata-wg-onto/)
-    is in the process of identifying NFDI4Culture Consortium members appropriate for
-    maintaining this collection.
+    [TIB OLS collection](https://service.tib.eu/terminology/collections/nfdi4culture). '
   identifier: '0000025'
   logo: https://www.nfdi.de/wp-content/uploads/2021/05/NFDI4C_Logo.png
   maintainers:
@@ -1331,6 +1328,7 @@
     wikidata: Q61658497
   resources:
   - bfo
+  - bot
   - cidoc.crm
   - dbo
   - dcat
@@ -1340,6 +1338,7 @@
   - foaf
   - frapo
   - geonames
+  - gesah
   - gnd
   - iao
   - iconclass
@@ -1347,8 +1346,10 @@
   - modsci
   - nfdi4culture.cto
   - obi
+  - ohdab
   - okn.sd
   - org
+  - premis
   - schema
   - skos
   - swo
@@ -1367,6 +1368,18 @@
     appropriate for maintaining this collection.
   identifier: '0000026'
   logo: https://www.nfdi.de/wp-content/uploads/2022/05/DAPHNE4NFDI_logo.png
+  maintainers:
+  - email: heike.goerzig@helmholtz-berlin.de
+    github: hgoerzig
+    name: Heike Görzig
+    orcid: 0000-0001-9121-8643
+  - email: rolf.krahl@helmholtz-berlin.de
+    github: RKrahl
+    name: Rolf Krahl
+    orcid: 0000-0002-1266-3819
+  - github: paulmillar
+    name: Paul Millar
+    orcid: 0000-0002-3957-1279
   name: DAPHNE4NFDI Collection
   organizations:
   - name: DAPHNE4NFDI
@@ -1378,7 +1391,8 @@
   references:
   - https://go.rocket.chat/invite?host=all-chat.nfdi.de&path=invite%2FZvh5e3
   resources:
-  - emg
+  - nexus
+  - panet
 '0000027':
   contributors:
   - name: NFDI Section Metadata WG Ontology Harmonization and Mapping
@@ -1395,6 +1409,9 @@
     github: bjschembera
     name: ' Björn Schembera'
     orcid: 0000-0003-2860-6621
+  mappings:
+  - identifier: mardi
+    prefix: tib.collection
   name: MaRDI Collection
   organizations:
   - name: MaRDI
@@ -1416,13 +1433,19 @@
   contributors:
   - name: NFDI Section Metadata WG Ontology Harmonization and Mapping
     wikidata: Q139055838
-  description: A placeholder collection of ontologies, controlled vocabularies, and
-    schemas relevant for the BERD@NFDI Consortium created by the [NFDI Section Metadata
-    WG Ontology Harmonization and Mapping](https://github.com/nfdi-de/section-metadata-wg-onto/).
-    The working group is in the process of identifying BERD@NFDI Consortium members
-    appropriate for maintaining this collection.
+  description: A collection of ontologies, controlled vocabularies, and schemas relevant
+    for the BERD@NFDI Consortium created by the [NFDI Section Metadata WG Ontology
+    Harmonization and Mapping](https://github.com/nfdi-de/section-metadata-wg-onto/).
   identifier: 0000028
   logo: https://www.nfdi.de/wp-content/uploads/2021/12/Logo_BERD-NFDI_transparent_gruen-schwarz_400px.png
+  maintainers:
+  - email: f.limani@zbw.eu
+    github: fidanLimani
+    name: Fidan Limani
+    orcid: 0000-0002-5835-2784
+  - github: draatiflatif
+    name: Atif Latif
+    orcid: 0000-0003-3085-3031
   name: BERD@NFDI Collection
   organizations:
   - name: BERD@NFDI
@@ -1434,6 +1457,7 @@
   references:
   - https://go.rocket.chat/invite?host=all-chat.nfdi.de&path=invite%2FjxNRaY
   resources:
+  - dfg.fo
   - jel
   - zbw.stw
 0000029:
@@ -1443,10 +1467,13 @@
   description: A placeholder collection of ontologies, controlled vocabularies, and
     schemas relevant for the NFDI4DataScience Consortium created by the [NFDI Section
     Metadata WG Ontology Harmonization and Mapping](https://github.com/nfdi-de/section-metadata-wg-onto/).
-    The working group is in the process of identifying NFDI4DataScience Consortium
-    members appropriate for maintaining this collection.
   identifier: 0000029
   logo: https://www.nfdi.de/wp-content/uploads/2022/06/NFDI4DS_Logo.png
+  maintainers:
+  - email: Benjamin.Zapilko@gesis.org
+    github: BenZapilko
+    name: Benjamin Zapilko
+    orcid: 0000-0001-9495-040X
   name: NFDI4DataScience Collection
   organizations:
   - name: NFDI4DataScience
@@ -1459,16 +1486,15 @@
   - https://go.rocket.chat/invite?host=all-chat.nfdi.de&path=invite%2FNTuvAb
   resources:
   - nfdi.core
+  - nfdi4dso
   - schema
 '0000030':
   contributors:
   - name: NFDI Section Metadata WG Ontology Harmonization and Mapping
     wikidata: Q139055838
-  description: A placeholder collection of ontologies, controlled vocabularies, and
-    schemas relevant for the NFDI4Earth Consortium created by the [NFDI Section Metadata
-    WG Ontology Harmonization and Mapping](https://github.com/nfdi-de/section-metadata-wg-onto/).
-    The working group is in the process of identifying NFDI4Earth Consortium members
-    appropriate for maintaining this collection.
+  description: A collection of ontologies, controlled vocabularies, and schemas relevant
+    for the NFDI4Earth Consortium created by the [NFDI Section Metadata WG Ontology
+    Harmonization and Mapping](https://github.com/nfdi-de/section-metadata-wg-onto/).
   identifier: '0000030'
   logo: https://www.nfdi.de/wp-content/uploads/2021/12/NFDI4Earth_logo.png
   maintainers:
@@ -1555,9 +1581,15 @@
     schemas relevant for the PUNCH4NFDI Consortium created by the [NFDI Section Metadata
     WG Ontology Harmonization and Mapping](https://github.com/nfdi-de/section-metadata-wg-onto/).
     The working group is in the process of identifying PUNCH4NFDI Consortium members
-    appropriate for maintaining this collection.
+    appropriate for maintaining this collection. PUNCH4NFDI is notable in that its
+    sub-disciplines (e.g., astronomy, high energy physics, nuclear physics, etc.)
+    have a large variety in data and metadata needs.
   identifier: '0000032'
   logo: https://www.nfdi.de/wp-content/uploads/2021/12/PUNCH4NFDI-Logo_RGB.png
+  maintainers:
+  - github: harenk
+    name: Harry Enke
+    orcid: 0000-0002-2366-8316
   name: PUNCH4NFDI Collection
   organizations:
   - name: PUNCH4NFDI
@@ -1581,6 +1613,11 @@
     appropriate for maintaining this collection.
   identifier: '0000033'
   logo: https://www.nfdi.de/wp-content/uploads/2023/08/Fairagro_Logo_mittelachsig_Verklauf_cmyk.png
+  maintainers:
+  - email: schneiderg@zbmed.de
+    github: ga-schneider
+    name: Gabriel Schneider
+    orcid: 0000-0001-6573-3115
   name: FAIRagro Collection
   organizations:
   - name: FAIRagro
@@ -1665,13 +1702,17 @@
   contributors:
   - name: NFDI Section Metadata WG Ontology Harmonization and Mapping
     wikidata: Q139055838
-  description: A placeholder collection of ontologies, controlled vocabularies, and
-    schemas relevant for the NFDIxCS Consortium created by the [NFDI Section Metadata
-    WG Ontology Harmonization and Mapping](https://github.com/nfdi-de/section-metadata-wg-onto/).
-    The working group is in the process of identifying NFDIxCS Consortium members
-    appropriate for maintaining this collection.
+  description: A collection of ontologies, controlled vocabularies, and schemas relevant
+    for the NFDIxCS Consortium.
   identifier: '0000035'
   logo: https://nfdixcs.org/fileadmin/PR/NFDIxCS/NFDIxCS_Logo2024_deepblue_crop.png
+  maintainers:
+  - email: huch@in.tum.de
+    name: Fabian Huch
+    orcid: 0000-0002-9418-1580
+  mappings:
+  - identifier: nfdixcs
+    prefix: tib.collection
   name: NFDIxCS Collection
   organizations:
   - name: NFDIxCS
@@ -1683,7 +1724,24 @@
   references:
   - https://go.rocket.chat/invite?host=all-chat.nfdi.de&path=invite%2FWgaGQB
   resources:
-  - bioregistry
+  - amv
+  - bfo
+  - cito
+  - cso
+  - datacite
+  - dblp.schema
+  - dcterms
+  - doap
+  - fabio
+  - gufo
+  - hpc
+  - iao
+  - infosecsos
+  - iotlite
+  - mathmoddb
+  - schema
+  - seon
+  - swo
 '0000036':
   contributors:
   - name: NFDI Section Metadata WG Ontology Harmonization and Mapping
@@ -1831,6 +1889,10 @@
     for maintaining this collection.
   identifier: 0000038
   logo: https://www.nfdi.de/wp-content/uploads/2023/12/textplus_logo_RGB.png
+  maintainers:
+  - github: ttrippel
+    name: Thorsten Trippel
+    orcid: 0000-0002-7211-7393
   name: Text+ Collection
   organizations:
   - name: Text+
@@ -1856,6 +1918,7 @@
   - lido
   - ontolex
   - ontome
+  - tadirah
 0000039:
   contributors:
   - name: NFDI Section Metadata WG Ontology Harmonization and Mapping
@@ -2016,7 +2079,44 @@
   references:
   - https://go.rocket.chat/invite?host=all-chat.nfdi.de&path=invite%2FDFD2Ba
   resources:
-  - bioregistry
+  - agrovoc
+  - ahol
+  - atc
+  - atol
+  - bao
+  - chebi
+  - clo
+  - cmpo
+  - datacite
+  - dbsnp
+  - dcterms
+  - doid
+  - efo
+  - foodex2
+  - foodon
+  - go
+  - hgnc
+  - hp
+  - iao
+  - icd10
+  - icd11
+  - icdo
+  - loinc
+  - meddra
+  - mesh
+  - mgi
+  - mirbase
+  - ncbigene
+  - ncbitaxon
+  - ncit
+  - orpha
+  - rgd
+  - snomedct
+  - spdx
+  - uberon
+  - ucum
+  - umls
+  - uniprot
 '0000042':
   contributors:
   - name: NFDI Section Metadata WG Ontology Harmonization and Mapping
@@ -2080,3 +2180,117 @@
   - https://go.rocket.chat/invite?host=all-chat.nfdi.de&path=invite%2FBzRWeP
   resources:
   - bioregistry
+'0000044':
+  contributors:
+  - email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: '[PID4NFDI](https://pid.services.base4nfdi.de) is a Base4NFDI service
+    that provides documentation about a small number of well-known identifier schemes
+    (e.g., DOI) and services for registering identifiers within them (e.g., DataCite).
+    This collection reflects their [PID Providers](https://pid.services.base4nfdi.de/get-pid/providers/)
+    page. This comes with the following caveats:
+
+
+    - Crossref and DataCite are services that mint DOIs. Since DOIs are the identifier
+    space, only `doi` appears in this collection.
+
+    - ePIC is a service that mints Handle system. Since Handles are the identifier
+    space, only `hdl` appears in this collection
+
+    - PIDINST is an abstraction on top of DataCite / ePIC, which is covered by `doi`
+    and `hdl` as described above'
+  identifier: '0000044'
+  name: PID4NFDI Providers
+  resources:
+  - ark
+  - doi
+  - factgrid
+  - gnd
+  - hdl
+  - igsn
+  - orcid
+  - pida
+  - raid
+  - ror
+  - swh
+  - wikidata
+'0000045':
+  contributors:
+  - github: anganske
+    name: Anette Ganske
+    orcid: 0000-0003-1043-4964
+  - github: kraftalin
+    name: Angelina Kraft
+    orcid: 0000-0002-6454-335X
+  - email: markus.stocker@tib.eu
+    github: markusstocker
+    name: Markus Stocker
+    orcid: 0000-0001-5492-3212
+  description: 'The Earth System Sciences (ESS) collection contains terminologies
+    (ontologies and vocabularies) for describing Earth System Sciences (e.g., `bodc.cf`,
+    `envo`), data and structures (e.g., `prov-o`), physical units (e.g., `time`),
+    as well as measurements and observations (e.g., `tib.meth`).
+
+
+    It was developed by the [BITS project](https://projects.tib.eu/bits/home) (BluePrints
+    for the Integration of Terminology Services in Earth System Sciences), which was
+    funded by the Deutsche Forschungsgemeinschaft ([project number 508107981](https://gepris.dfg.de/gepris/projekt/508107981),
+    July 2023 – June 2026). The ESS collection''s terminologies were firstly chosen
+    by the three project partners [TIB – Leibniz Information Centre for Science and
+    Technology](https://www.tib.eu/en/), the [German Climate Computing Center (DKRZ)](https://www.dkrz.de/en/dkrz-partner-for-climate-research?set_language=en),
+    and the [Senckenberg - Leibniz Institution for Biodiversity and Earth System Research
+    (SGN)](https://www.senckenberg.de/en/about-us/senckenberg-society-nature-research/)
+    in close cooperation with [NFDI4Earth](https://www.nfdi4earth.de/) and the [Helmholtz
+    Metadata Collaboration](https://helmholtz-metadaten.de/).'
+  identifier: '0000045'
+  logo: https://private-user-images.githubusercontent.com/58422600/595255823-95fb77d4-c775-4d1f-8d1d-aacbda324bb7.png?jwt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3NzkyNjMyMDEsIm5iZiI6MTc3OTI2MjkwMSwicGF0aCI6Ii81ODQyMjYwMC81OTUyNTU4MjMtOTVmYjc3ZDQtYzc3NS00ZDFmLThkMWQtYWFjYmRhMzI0YmI3LnBuZz9YLUFtei1BbGdvcml0aG09QVdTNC1ITUFDLVNIQTI1NiZYLUFtei1DcmVkZW50aWFsPUFLSUFWQ09EWUxTQTUzUFFLNFpBJTJGMjAyNjA1MjAlMkZ1cy1lYXN0LTElMkZzMyUyRmF3czRfcmVxdWVzdCZYLUFtei1EYXRlPTIwMjYwNTIwVDA3NDE0MVomWC1BbXotRXhwaXJlcz0zMDAmWC1BbXotU2lnbmF0dXJlPTg5YzM4MzEwNGViOWNhNTYzMmM4MjVmY2FkY2UzZWIxZTdjMjY1Mjc3MzNmODUxZTZhNDI4NmZlZDc1MmViOGQmWC1BbXotU2lnbmVkSGVhZGVycz1ob3N0JnJlc3BvbnNlLWNvbnRlbnQtdHlwZT1pbWFnZSUyRnBuZyJ9.9V4j3O3ppguT7s4TmyLNAJQwULkh2oGzIrRcP7N0SYg
+  mappings:
+  - identifier: ess
+    prefix: tib.collection
+  name: Earth System Sciences Collection
+  resources:
+  - bco
+  - bodc.cf
+  - bodc.sdn
+  - chebi
+  - dcat
+  - dcterms
+  - dfg.fo
+  - dpvocab
+  - dsw
+  - duo
+  - ecso
+  - edam
+  - efo
+  - envo
+  - envthes
+  - flopo
+  - gemet.concept
+  - geosparql
+  - gfbio.ets
+  - gndo
+  - n4e
+  - oboe
+  - om
+  - pato
+  - po
+  - prov
+  - sbo
+  - schema
+  - sio
+  - sosa
+  - ssn
+  - stato
+  - sweet
+  - t4fs
+  - tdwg.abcd
+  - tib.bk
+  - tib.cgo
+  - tib.meth
+  - time
+  - to
+  - uat
+  - uo
+  - wlmo

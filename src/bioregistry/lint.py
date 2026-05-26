@@ -49,6 +49,9 @@ def lint() -> None:
 
         if resource.publications:
             resource.publications = sorted(resource.publications)
+            for publication in resource.publications:
+                if publication.doi:
+                    publication.doi = publication.doi.lower()
 
         for provider in resource.providers or []:
             if provider.publications:
