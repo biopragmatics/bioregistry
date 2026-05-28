@@ -62,7 +62,11 @@ dependencies = [
     "more_click>=0.1.2",
     "pydantic[email]>=2.0",
     "curies>=0.13.9",
-    "sssom-pydantic>=0.4.0",
+    "sssom-pydantic>=0.5.10",
+    #
+    "urllib3>=2.7.0",
+    "python-multipart>=0.0.27",
+    "idna>=3.15",
 ]
 
 [dependency-groups]
@@ -145,6 +149,7 @@ web = [
     "flask>=3.0.0",
     "werkzeug>=3.0.0",
     "fastapi",
+    "starlette>=1.0.1",
     "uvicorn",
     "bootstrap-flask",
     "markdown",
