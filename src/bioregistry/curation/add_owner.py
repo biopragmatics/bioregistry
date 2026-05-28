@@ -7,6 +7,9 @@ import ror_downloader
 from tabulate import tabulate
 
 import bioregistry
+from bioregistry import Organization
+
+SKIP_PREFIXES = {"worldavatar.os"}
 
 
 def main() -> None:
@@ -17,8 +20,8 @@ def main() -> None:
         for domain in organization.domains
     }
     rows = []
-    for resource in bioregistry.resources():
-        if resource.get_owners():
+    for resource in bioregistry.manager.registry.values():
+        if resource.get_owners() or resource.prefix in SKIP_PREFIXES:
             continue
         homepage = resource.get_homepage()
         if not homepage or "www.w3.org" in homepage:
@@ -28,10 +31,18 @@ def main() -> None:
         if not domain:
             continue
 
-        if org := domain_to_organization.get(domain):
-            rows.append((resource.prefix, domain, org.id, org.get_preferred_label()))
-        elif org := domain_to_organization.get(domain.removeprefix("www.")):
-            rows.append((resource.prefix, domain, org.id, org.get_preferred_label()))
+        org = domain_to_organization.get(domain)
+        if not org:
+            org = domain_to_organization.get(domain.removeprefix("www."))
+        if not org:
+            continue
+        rows.append((resource.prefix, domain, org.id, org.get_preferred_label()))
+        resource.owners = [
+            Organization(
+                name=org.get_preferred_label(), ror=org.id.removeprefix("https://ror.org/")
+            )
+        ]
+    bioregistry.manager.write_registry()
 
     click.echo(tabulate(rows, tablefmt="github"))
 

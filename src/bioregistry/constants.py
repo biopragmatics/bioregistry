@@ -276,3 +276,5 @@ ROR_FIELD = Field(
     pattern="^0[a-hj-km-np-tv-z|0-9]{6}[0-9]{2}$",
     examples=["03yrm5c26"],
 )
+
+GND_FIELD = Field(title="Gemeinsame Normdatei (Integrated Authority File) identifier")

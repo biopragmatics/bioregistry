@@ -36,6 +36,7 @@ from bioregistry import constants as brc
 from bioregistry.constants import (
     BIOREGISTRY_REMOTE_URL,
     DOCS,
+    GND_FIELD,
     MIRIAM_NAMESPACE_IN_LUI,
     ORCID_FIELD,
     ROR_FIELD,
@@ -186,13 +187,12 @@ class Organization(BaseModel):
 
     ror: Annotated[str | None, ROR_FIELD] = None
     wikidata: Annotated[str | None, WIKIDATA_FIELD] = None
-    gnd: str | None = Field(
-        default=None, title="Gemeinsame Normdatei (Integrated Authority File) identifier"
-    )
-    name: str = Field(..., description="Name of the organization")
-    partnered: bool = Field(
-        False, description="Has this organization made a specific connection with Bioregistry?"
-    )
+    gnd: Annotated[str | None, GND_FIELD] = None
+    name: Annotated[str, Field(..., description="Name of the organization")]
+    partnered: Annotated[
+        bool,
+        Field(description="Has this organization made a specific connection with Bioregistry?"),
+    ] = False
 
     @property
     def reference(self) -> Reference:
