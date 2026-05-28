@@ -19,7 +19,7 @@ def main() -> None:
         if resource.get_owners():
             continue
         homepage = resource.get_homepage()
-        if "www.w3.org" in homepage:
+        if not homepage or "www.w3.org" in homepage:
             continue
 
         domain = urlparse(homepage).netloc
