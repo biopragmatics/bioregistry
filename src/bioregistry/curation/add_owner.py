@@ -1,14 +1,14 @@
 """Add owner."""
 
-import bioregistry
-import ror_downloader
-
 from urllib.parse import urlparse
 
-from tabulate import tabulate
+import ror_downloader
+
+import bioregistry
 
 
-def main():
+def main() -> None:
+    """Add organization."""
     domain_to_organization = {
         domain: organization
         for organization in ror_downloader.get_organizations()[1]
@@ -32,7 +32,5 @@ def main():
             rows.append((resource.prefix, domain, org.id, org.get_preferred_label()))
 
 
-    print(tabulate(rows, tablefmt="github"))
-
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()
