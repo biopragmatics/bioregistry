@@ -2,7 +2,9 @@
 
 from urllib.parse import urlparse
 
+import click
 import ror_downloader
+from tabulate import tabulate
 
 import bioregistry
 
@@ -30,6 +32,8 @@ def main() -> None:
             rows.append((resource.prefix, domain, org.id, org.get_preferred_label()))
         elif org := domain_to_organization.get(domain.removeprefix("www.")):
             rows.append((resource.prefix, domain, org.id, org.get_preferred_label()))
+
+    click.echo(tabulate(rows, tablefmt="github"))
 
 
 if __name__ == "__main__":
