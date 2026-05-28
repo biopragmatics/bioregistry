@@ -139,7 +139,8 @@
                         {{ resource.get_name() }} {{ utils.render_resource_warnings(resource) }}
                     </a>
                     {%- if first_party[resource.prefix] %}
-                    <span class="badge badge-primary">First Party <i class="bi bi-check-circle-fill"></i></span>
+                    <span class="badge badge-primary" title="This resource is maintained by the same people/organizations that maintain this collection">
+                        First Party <i class="bi bi-check-circle-fill"></i></span>
                     {%- endif %}
                     {%- if annotated_prefix.comment %}
                     <br><small>{{ annotated_prefix.comment}}</small>
