@@ -6022,7 +6022,7 @@
       "orcid": "0000-0002-6601-2165"
     },
     "description": "A high level datamodel of biological entities (genes, diseases, phenotypes, pathways, individuals, substances, etc) and their associations.",
-    "download_owl": "http://aber-owl.net/media/ontologies/BIOLINK/79/biolink.owl",
+    "download_owl": "http://aber-owl.net/media/ontologies/BIOLINK/80/biolink.owl",
     "download_rdf": "https://w3id.org/biolink/biolink-model.owl.ttl",
     "example": "Gene",
     "homepage": "https://biolink.github.io/biolink-model/",
@@ -13889,7 +13889,7 @@
       "cropoct": "CO_341",
       "fairsharing": "FAIRsharing.ehe3yp"
     },
-    "name": "Pigeon Pea Ontology",
+    "name": "Pigeonpea Ontology",
     "pattern": "^\\d{7}$",
     "preferred_prefix": "CO_341",
     "repository": "https://github.com/bioversity/Crop-Ontology",
@@ -21100,6 +21100,12 @@
       }
     ],
     "publications": [
+      {
+        "doi": "10.1093/nar/gkaf1213",
+        "pubmed": "41296549",
+        "title": "The DO-KB knowledgebase 2026 update: expanding programmatic and language access",
+        "year": 2026
+      },
       {
         "doi": "10.1093/nar/gkad1051",
         "pubmed": "37953304",
@@ -48075,6 +48081,20 @@
     "uri_format": "https://mardi4nfdi.de/mathalgodb/0.1#$1"
   },
   "mathmoddb": {
+    "contact": {
+      "email": "bjoern.schembera@mathematik.uni-stuttgart.de",
+      "github": "bjschembera",
+      "name": " Björn Schembera",
+      "orcid": "0000-0003-2860-6621"
+    },
+    "contributor_extras": [
+      {
+        "email": "bjoern.schembera@mathematik.uni-stuttgart.de",
+        "github": "bjschembera",
+        "name": " Björn Schembera",
+        "orcid": "0000-0003-2860-6621"
+      }
+    ],
     "description": "MathModDB is a database of mathematical models developed by the Mathematical Research Data Initiative (MaRDI). MathModDB defines a data model with classes (Mathematical Model, Mathematical Formulation, Research Field, Research Problem, Quantity [Kind], Computational Task, Publication), object properties/relations, data properties and annotation properties as an ontology. This ontology is populated with individuals/data from various fields of applied mathematics, making it a knowledge graph. [from homepage]",
     "download_owl": "https://mardi4nfdi.github.io/MathModDB/ontology.owl",
     "download_rdf": "https://mardi4nfdi.github.io/MathModDB/ontology.ttl",
@@ -66824,6 +66844,46 @@
     "preferred_prefix": "pmr.workspace",
     "uri_format": "https://models.physiomeproject.org/workspace/$1"
   },
+  "pneumowiki": {
+    "contact": {
+      "email": "ulrike.maeder@uni-greifswald.de",
+      "name": "Ulrike Mäder",
+      "orcid": "0000-0003-2873-0999"
+    },
+    "contributor": {
+      "email": "khamar.he@northeastern.edu",
+      "github": "hetvikhamar",
+      "name": "Hetvi Khamar",
+      "orcid": "0009-0004-3248-9223"
+    },
+    "description": "Identifiers correspond to pangenome IDs for linking orthologous genes across Streptococcus pneumoniae strains for comparative genomics analysis",
+    "example": "PNEUPAN000001000",
+    "github_request_issue": 1920,
+    "homepage": "https://pneumowiki.med.uni-greifswald.de",
+    "keywords": [
+      "orthologous genes",
+      "pangenome",
+      "streptococcus pneumoniae"
+    ],
+    "name": "PneumoWiki",
+    "pattern": "^PNEUPAN\\d{9}$",
+    "preferred_prefix": "pneumowiki",
+    "publications": [
+      {
+        "doi": "10.1128/spectrum.02957-25",
+        "pubmed": "41860230",
+        "title": "PneumoWiki: a pan-genome-based database for the pathogen Streptococcus pneumoniae.",
+        "year": 2026
+      }
+    ],
+    "reviewer": {
+      "email": "b.gyori@northeastern.edu",
+      "github": "bgyori",
+      "name": "Benjamin M. Gyori",
+      "orcid": "0000-0001-9439-5346"
+    },
+    "uri_format": "https://pneumowiki.med.uni-greifswald.de/$1"
+  },
   "po": {
     "appears_in": [
       "agro",
@@ -68377,6 +68437,53 @@
       }
     ],
     "uri_format": "https://prosite.expasy.org/$1"
+  },
+  "prospero": {
+    "contact": {
+      "email": "alison.booth@york.ac.uk",
+      "name": "Alison Booth",
+      "orcid": "0000-0001-7138-6295"
+    },
+    "contributor": {
+      "email": "khamar.he@northeastern.edu",
+      "github": "hetvikhamar",
+      "name": "Hetvi Khamar",
+      "orcid": "0009-0004-3248-9223"
+    },
+    "description": "Identifiers correspond to systematic review protocols for the purpose of promoting transparency and reducing duplication in health research in the PROSPERO registry, an international prospective register of systematic reviews.",
+    "example": "CRD420261321518",
+    "github_request_issue": 1916,
+    "homepage": "https://www.crd.york.ac.uk",
+    "keywords": [
+      "health research",
+      "protocol registration",
+      "systematic reviews"
+    ],
+    "name": "PROSPERO",
+    "pattern": "^CRD\\d{12}$",
+    "preferred_prefix": "prospero",
+    "publications": [
+      {
+        "doi": "10.1186/2046-4053-2-4",
+        "pmc": "PMC3563608",
+        "pubmed": "23320413",
+        "title": "PROSPERO at one year: an evaluation of its utility",
+        "year": 2013
+      },
+      {
+        "doi": "10.1016/s0140-6736(10)60903-8",
+        "pubmed": "20630580",
+        "title": "An international registry of systematic-review protocols",
+        "year": 2011
+      }
+    ],
+    "reviewer": {
+      "email": "b.gyori@northeastern.edu",
+      "github": "bgyori",
+      "name": "Benjamin M. Gyori",
+      "orcid": "0000-0001-9439-5346"
+    },
+    "uri_format": "https://www.crd.york.ac.uk/PROSPERO/view/$1"
   },
   "protclustdb": {
     "contact": {
@@ -69957,6 +70064,102 @@
       }
     ],
     "uri_format": "https://rapdb.dna.affrc.go.jp/viewer/gene_detail/irgsp1?name=$1"
+  },
+  "raras": {
+    "comment": "Identifiers resolve via content negotiation (303 to HTML, Turtle/JSON-LD for machines) at https://raras.org/id/$1 — e.g. https://raras.org/id/D00166. The vocabulary is published at https://raras.org/ontology and dataset metadata at https://raras.org/.well-known/void (VOID + DCAT). SPARQL 1.1 endpoint: https://raras.org/api/sparql. Group contact email: hello@raras.org",
+    "contact": {
+      "email": "dimas@raras.org",
+      "github": "dimas-timmers",
+      "name": "Dimas Timmers",
+      "orcid": "0009-0008-4030-3176"
+    },
+    "contributor": {
+      "email": "dimas@raras.org",
+      "github": "dimas-timmers",
+      "name": "Dimas Timmers",
+      "orcid": "0009-0008-4030-3176"
+    },
+    "description": "Raras is an open, FAIR-compliant knowledge graph of rare diseases — the largest in Latin America — integrating Orphanet, the Human Phenotype Ontology (HPO), OMIM, MONDO, ClinVar, Open Targets, PubMed and ClinicalTrials.gov with Brazilian public-health (SUS) data. It mints stable RARAS identifiers for diseases, reference centers, protocols, associations, communities and medications, each resolvable as Linked Data (SPARQL, RDF, GraphQL, GA4GH Beacon/Phenopackets) with a dereferenceable vocabulary and VOID/DCAT metadata.",
+    "example": "D00166",
+    "github_request_issue": 1966,
+    "homepage": "https://raras.org",
+    "keywords": [
+      "disease",
+      "knowledge graph",
+      "medicine",
+      "rare disease"
+    ],
+    "license": "CC-BY-4.0",
+    "name": "Raras Brazilian Rare Disease Knowledge Graph",
+    "pattern": "^[DCPAGMST]\\d{5,6}$",
+    "preferred_prefix": "raras",
+    "publications": [
+      {
+        "doi": "10.5281/zenodo.20318261",
+        "title": "Raras — Brazilian Rare Disease Knowledge Graph",
+        "year": 2026
+      }
+    ],
+    "rdf_uri_format": "https://raras.org/id/$1",
+    "reviewer": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "uri_format": "https://raras.org/id/$1"
+  },
+  "raras.class": {
+    "contact": {
+      "email": "dimas@raras.org",
+      "github": "dimas-timmers",
+      "name": "Dimas Timmers",
+      "orcid": "0009-0008-4030-3176"
+    },
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "Classes of the Raras rare disease knowledge graph",
+    "download_owl": "https://raras.org/ontology",
+    "example": "Disease",
+    "github_request_issue": 1966,
+    "homepage": "https://raras.org",
+    "keywords": [
+      "ontology"
+    ],
+    "license": "CC0-1.0",
+    "name": "Raras Class",
+    "preferred_prefix": "raras.class",
+    "uri_format": "https://raras.org/class/$1"
+  },
+  "raras.property": {
+    "contact": {
+      "email": "dimas@raras.org",
+      "github": "dimas-timmers",
+      "name": "Dimas Timmers",
+      "orcid": "0009-0008-4030-3176"
+    },
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "Properties of the Raras rare disease knowledge graph",
+    "download_owl": "https://raras.org/ontology",
+    "example": "paperCount",
+    "github_request_issue": 1966,
+    "homepage": "https://raras.org",
+    "keywords": [
+      "ontology"
+    ],
+    "license": "CC0-1.0",
+    "name": "Raras Property",
+    "preferred_prefix": "raras.property",
+    "uri_format": "https://raras.org/property/$1"
   },
   "ratmap": {
     "comment": "This resource doesn't exist on the web anymore",
@@ -73079,7 +73282,7 @@
       "orcid": "0000-0002-0381-3766"
     },
     "description": "An ontology representing knowledge about salmon, features of their habitats, salmon stakeholders, and related entities. This ontology is considered to be in the early stages of development, though it is based upon considerable previous work. Contributions of all kinds are welcome and encouraged, including alignments, updates to existing terms, and new terms.",
-    "download_owl": "http://aber-owl.net/media/ontologies/SALMON/2/salmon.owl",
+    "download_owl": "http://aber-owl.net/media/ontologies/SALMON/4/salmon.owl",
     "example": "00000674",
     "homepage": "https://github.com/DataONEorg/sem-prov-ontologies/tree/main/salmon",
     "keywords": [
@@ -76693,9 +76896,9 @@
         "ror": "03s5t0r17"
       }
     ],
-    "pattern": "^rx[0-9]{5}$",
+    "pattern": "^(rx|fc)[0-9]{5}$",
     "preferred_prefix": "skm",
-    "uri_format": "https://skm.nib.si/api/pss/reactions?reaction_id=$1&return_field=summary"
+    "uri_format": "https://skm.nib.si/search/identifiers/$1"
   },
   "skos": {
     "contact": {
