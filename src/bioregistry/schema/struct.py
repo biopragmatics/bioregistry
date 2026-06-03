@@ -137,6 +137,7 @@ Domain: TypeAlias = Literal[
     "genetic code",
     "mathematics",
     "registry",
+    "social science",
     "equipment",
 ]
 
