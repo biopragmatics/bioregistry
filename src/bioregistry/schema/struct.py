@@ -439,7 +439,7 @@ class AnnotatedURL(BaseModel):
     """A URL annotated with its file type and data schema."""
 
     url: str
-    rdf_format: RDFFormat = Field(default="ttl", title="RDF Format")
+    rdf_format: Annotated[RDFFormat, Field(title="RDF Format")]
 
 
 DEFAULT_METAPREFIX_PRIORITY = [

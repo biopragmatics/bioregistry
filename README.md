@@ -544,6 +544,7 @@ Northeastern University.
 
 ### 💰 Funding
 
+1. [Catalaix](https://catalaix.com) flex fund
 1. NFDI4Chem (DFG Grant
    [441958208](https://gepris.dfg.de/gepris/projekt/441958208))
 1. DALIA (BMBF Grant 16DWWQP07)
