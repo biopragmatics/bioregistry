@@ -6072,8 +6072,16 @@
     "uri_format": "http://purl.org/dc/dcam/$1"
   },
   "17907": {
+    "description": "The DataCite Ontology is an ontology written in OWL 2 DL to enable the metadata properties of the [DataCite Metadata Kernel Specification version 3.1](https://www.datacite.org/sites/default/files/document/DataCite-MetadataSchema_V31_Final_8-24-2015_0.pdf) to be described in RDF. This version of the DataCite Ontology has been completely revised and significantly expanded to permit accurate mapping of this new version of the DataCite Metadata Kernel Specification to RDF.",
     "homepage": "http://purl.org/spar/datacite",
+    "license": {
+      "spdx": "CC-BY-4.0",
+      "url": "http://creativecommons.org/licenses/by/4.0/"
+    },
     "name": "The DataCite Ontology",
+    "short_names": [
+      "datacite"
+    ],
     "uri_format": "http://purl.org/spar/datacite/$1"
   },
   "17908": {
@@ -6138,8 +6146,12 @@
     "uri_format": "http://onto.dm2e.eu/schemas/dm2e/$1"
   },
   "17919": {
+    "description": "DOAP is a project to create an XML/RDF vocabulary to describe software projects, and in particular open source projects.\n\nIn addition to developing an RDF schema and examples, the DOAP project aims to provide tool support in all the popular programming languages.",
     "homepage": "https://github.com/ewilderj/doap/wiki",
     "name": "Description of a Project vocabulary",
+    "short_names": [
+      "DOAP"
+    ],
     "uri_format": "http://usefulinc.com/ns/doap#$1"
   },
   "1792": {
@@ -6358,8 +6370,12 @@
     "uri_format": "http://def.seegrid.csiro.au/isotc211/iso19115/2003/metadata#$1"
   },
   "17959": {
-    "homepage": "https://github.com/SPAROntologies/fabio",
-    "name": "FRBR-aligned Bibliographic Ontology",
+    "description": "The FRBR-aligned Bibliographic Ontology (FaBiO) is an ontology for describing entities that are published or potentially publishable (e.g., journal articles, conference papers, books), and that contain or are referred to by bibliographic references.",
+    "homepage": "https://www.sparontologies.net/ontologies/fabio",
+    "name": "FaBiO, the FRBR-aligned Bibliographic Ontology",
+    "short_names": [
+      "fabio"
+    ],
     "uri_format": "http://purl.org/spar/fabio/$1"
   },
   "1796": {
@@ -6730,11 +6746,10 @@
   "18015": {
     "description": "The IoT lite Ontology is a lightweight ontology to represent Internet of Things resources, entities and services. The lightweight allow the representation and use of IoT platforms without consuming excessive processing time when querying the ontology. However it is also a meta ontology that can be extended in order to represent IoT concepts in a more detail way in different domains.",
     "homepage": "http://purl.oclc.org/NET/UNIS/fiware/iot-lite",
-    "license": {
-      "spdx": "CC-BY-3.0",
-      "url": "http://creativecommons.org/licenses/by/3.0/"
-    },
-    "name": "IoT lite Ontology",
+    "name": "IoT-lite Ontology",
+    "short_names": [
+      "iot-lite"
+    ],
     "uri_format": "http://purl.oclc.org/NET/UNIS/fiware/iot-lite#$1"
   },
   "18016": {
@@ -7875,11 +7890,13 @@
     "name": "Shelf Classification General Linguistics and Literary Studies"
   },
   "18250": {
+    "description": "A structured data vocabulary (schema) for the web. It was created by major search engines like Google, Bing, Yahoo!, and Yandex to help webmasters provide search engines with clear, structured information about their websites' content.",
     "homepage": "http://schema.org/",
     "name": "Schema.org vocabulary",
     "short_names": [
       "schema"
-    ]
+    ],
+    "uri_format": "https://schema.org/$1"
   },
   "18251": {
     "homepage": "http://lod.taxonconcept.org/ontology/sci_people.owl",
@@ -9934,11 +9951,11 @@
   "18600": {
     "description": "DBLP is the most comprehensive computer science bibliography including information about authors, conferences, series, and journals",
     "homepage": "http://dblp.org/",
-    "license": {
-      "spdx": "http://www.opendatacommons.org/licenses/by/1.0",
-      "url": "http://www.opendatacommons.org/licenses/by/1.0/"
-    },
     "name": "Digital Bibliography & Library Project",
+    "short_names": [
+      "DBLP"
+    ],
+    "uri_format": "https://dblp.org/rdf/schema#$1",
     "xrefs": {
       "wikidata": "Q1224715"
     }
@@ -12846,14 +12863,11 @@
   "19064": {
     "description": "The objective of gUFO is to provide a lightweight implementation of the Unified Foundational Ontology (UFO) [1-5] suitable for Semantic Web OWL 2 DL applications. \n\nIntended users are those implementing UFO-based lightweight ontologies that reuse gUFO by specializing and instantiating its elements.\n\nThere are three implications of the use of the term lightweight. First of all, we have employed little expressive means in an effort to retain computational properties for the resulting OWL ontology. Second, we have selected a subset of UFO-A [1, 2] and UFO-B [3] to include here. In particular, there is minimalistic support for UFO-B (only that which is necessary to establish the participation of objects in events and to capture historical dependence between events). Third, a lightweight ontology, differently from a reference ontology, is designed with the purpose of providing an implementation artifact to structure a knowledge base (or knowledge graph). This has driven a number of pragmatic implementation choices which are discussed in comments annotated to the various elements of this implementation. \n\nThe 'g' in gUFO stands for gentle. At the same time, \\\"gufo\\\" is the Italian word for \\\"owl\\\".\n\nFor background information on the reference ontology on which this implementation is based, see: \n\n1. G. Guizzardi, G. Wagner, J. P. A. Almeida, R. S. S. Guizzardi, “Towards ontological foundations for conceptual modeling: The unified foundational ontology (UFO) story,” Applied Ontology (Online), vol. 10, p. 259–271, 2015. <http://dx.doi.org/10.3233/ao-150157>\n2. G. Guizzardi, Ontological Foundations for Structural Conceptual Models,\nPhD Thesis, University of Twente, The Netherlands, 2005. <https://research.utwente.nl/en/publications/ontological-foundations-for-structural-conceptual-models>\n3. G. Guizzardi, G. Wagner, R. A. Falbo, R. S. S. Guizzardi, and J. P. A. Almeida, “Towards Ontological Foundations for the Conceptual Modeling of Events,” in Proc. 32th International Conference, ER 2013, 2013, p. 327–341. <https://doi.org/10.1007/978-3-642-41924-9_27>\n4. G. Guizzardi, C. M. Fonseca, A. B. Benevides, J. P. A. Almeida, D. Porello, T. P. Sales, “Endurant Types in Ontology-Driven Conceptual Modeling: Towards OntoUML 2.0,” in Conceptual Modeling – 37th International Conference, ER 2018, 2018, p. 136–150. <https://doi.org/10.1007/978-3-030-00847-5_12>\n5. C. M. Fonseca, D. Porello, G. Guizzardi, J. P. A. Almeida, and N. Guarino, “Relations in ontology-driven conceptual modeling,” in 38th International Conference on Conceptual Modeling (ER 2019), LNCS, 2019. v. 11788, 2019, p. 1–15. <http://dx.doi.org/10.1007/978-3-030-33223-5_4>\n\nCite this work as: \n\nJ. P. A. Almeida, G. Guizzardi, T. P. Sales, R. A. Falbo, \\\"gUFO: A Lightweight Implementation of the Unified Foundational Ontology (UFO)\\\", 2019, http://purl.org/nemo/doc/gufo\n\nThis work is distributed under Creative Commons Attribution License CC BY 4.0 <https://creativecommons.org/licenses/by/4.0/legalcode>.\n\nFor the source repository, see: <https://github.com/nemo-ufes/gufo>",
     "homepage": "https://nemo-ufes.github.io/gufo/",
-    "license": {
-      "spdx": "CC-BY-4.0",
-      "url": "http://creativecommons.org/licenses/by/4.0/"
-    },
     "name": "gUFO: A Lightweight Implementation of the Unified Foundational Ontology (UFO)",
     "short_names": [
       "gUFO"
-    ]
+    ],
+    "uri_format": "http://purl.org/nemo/gufo#$1"
   },
   "1907": {
     "description": "Library Systematics Last update: 29.07.2014",
@@ -15737,14 +15751,11 @@
   "20331": {
     "description": "Algorithm Metadata Vocabulary is a vocabulary for capturing and storing the metadata about the algorithms (a procedure or a set of rules that is followed step-by-step to solve a problem, especially by a computer). There are uncountable algorithms present in every area (e.g., Computer Science, Mathematics), which makes it hard for specialists, academicians, application engineers, and so forth to discover, distinguish, select, and reuse them. The snag faced by the researchers in the current time is the failure of getting relevant results when searching for algorithms in any search engine. AMV is represented as a semantic model and produced OWL file, which can be directly used by anyone interested to create and publish algorithm metadata as a knowledge graph, or to provide metadata service through SPARQL endpoint. The vocabulary may also be used to annotate the literature (e.g., research article, monographs, dissertation, technical reports) providing the algorithms.",
     "homepage": "https://www.isibang.ac.in/ns/amv/",
-    "license": {
-      "spdx": "CC0-1.0",
-      "url": "http://creativecommons.org/publicdomain/zero/1.0/"
-    },
     "name": "Algorithm Metadata Vocabulary",
     "short_names": [
       "AMV"
-    ]
+    ],
+    "uri_format": "https://w3id.org/amv#$1"
   },
   "20332": {
     "description": "The purpose of CODO ontology to represent and reason information related to COVID-19 cases and patient information. The cases, such as active, recovered, deceased, migrated, etc. on a daily basis across the geo-location (district, state (province), and country), available resources and requirements. The patient and related information, such as nationality, symptom, suspected level of the disease, travel history, inter-personal relationships between patients, suspected transmission reason, tracking of patient test results, diagnosis, treatment facility, clinical facility, etc. The ontology has been produced by evaluating various COVID-19 resources, such as datasets, literature, services, etc.",
@@ -17358,6 +17369,9 @@
     "homepage": "https://spdx.org/licenses/",
     "name": "SPDX License List",
     "pattern": "^.+$",
+    "short_names": [
+      "spdx"
+    ],
     "uri_format": "https://spdx.org/licenses/$1"
   },
   "20515": {
@@ -20875,11 +20889,10 @@
   "21008": {
     "description": "MathModDB is a database of mathematical models developed by the Mathematical Research Data Initiative (MaRDI). MathModDB defines a data model with classes (Mathematical Model, Mathematical Formulation, Research Field, Research Problem, Quantity [Kind], Computational Task, Publication), object properties/relations, data properties and annotation properties as an ontology. This ontology is populated with individuals/data from various fields of applied mathematics, making it a knowledge graph.",
     "homepage": "https://portal.mardi4nfdi.de/wiki/MathModDB",
-    "license": {
-      "spdx": "CC-BY-4.0",
-      "url": "http://creativecommons.org/licenses/by/4.0/"
-    },
     "name": "MathModDB Ontology and Knowledge Graph for Mathematical Models",
+    "short_names": [
+      "MathModDB"
+    ],
     "uri_format": "https://mardi4nfdi.de/mathmoddb#$1"
   },
   "21009": {
@@ -21698,6 +21711,31 @@
     "homepage": "https://www.heritage.go.kr/heri/cul/culDivView1.do?pageNo=1_4_0_0",
     "name": "National Heritage Classification"
   },
+  "21139": {
+    "description": "The Computer Science Ontology (CSO) is a large-scale ontology of research areas that was automatically generated using the Klink-2 algorithm (cf. http://people.kmi.open.ac.uk/francesco/wp-content/uploads/2015/09/ISWC2015_Klink-2.pdf) on the Rexplore dataset (cf. http://oro.open.ac.uk/39160/1/iswc2013_osborne.pdf), which consists of about 16 million publications, mainly in the field of Computer Science. The Klink-2 algorithm combines semantic technologies, machine learning, and knowledge from external sources to automatically generate a fully populated ontology of research areas. Some relationships were also revised manually by experts during the preparation of two ontology-assisted surveys in the field of Semantic Web and Software Architecture. The main root of CSO is Computer Science, however, the ontology includes also a few secondary roots, such as Linguistics, Geometry, Semantics, and so on.",
+    "homepage": "https://cso.kmi.open.ac.uk/",
+    "name": "Computer Science Ontology",
+    "short_names": [
+      "CSO"
+    ],
+    "uri_format": "http://cso.kmi.open.ac.uk/schema/cso#$1"
+  },
+  "21140": {
+    "description": "InfoSecSoS - Ontology for Information Security Management in Systems-of-Systems",
+    "name": "Ontology for Information Security Management in Systems-of-Systems",
+    "short_names": [
+      "InfoSecSoS"
+    ],
+    "uri_format": "http://www.labesc.unirio.br/InfoSecSoS#$1"
+  },
+  "21141": {
+    "description": "The Software Ontology (SWO) is a resource for describing software tools, their types, tasks, versions, provenance and associated data. It contains detailed information on licensing and formats as well as software applications themselves, mainly (but not limited) to the bioinformatics community.",
+    "homepage": "https://www.ebi.ac.uk/ols4/ontologies/swo/",
+    "name": "The Software Ontology",
+    "short_names": [
+      "SWO"
+    ]
+  },
   "212": {
     "description": "The Canadian Immigration and Citizenship Indexing Terms is a bilingual standardized vocabulary developed to facilitate the indexing and retrieval of resources available from Citizenship and Immigration Canada (CIC). In addition to the indexing and searching functions, the Indexing Terms is meant to clarify terminology and provide a standard, common language for use within the fields of citizenship and immigration. The Canadian Immigration and Citizenship Indexing Terms is meant to be used as a source of standardized terminology for the production of indexes to information resources in all media. The standardization of the external form and the meaning of index terms will result in a consistent representation of a particular concept or subject within the index.",
     "name": "Canadian Immigration and Citizenship Indexing Terms"
@@ -21719,6 +21757,10 @@
   "216": {
     "description": "BFO grows out of a philosophical orientation which overlaps with that of DOLCE and SUMO. Unlike these, however, it is narrowly focused on the task of providing a genuine upper ontology which can be used in support of domain ontologies developed for scientific research, as for example in biomedicine within the framework of the OBO Foundry. Thus BFO does not contain physical, chemical, biological or other terms which would properly fall within the special sciences domains.\n\nThe BFO project was initiated in 2002. The theory behind BFO was developed initially by Barry Smith and Pierre Grenon and presented in a series of publications listed here. Since then important contributions to BFO have been made by many people, including: Werner Ceusters, Chris Mungall, Fabian Neuhaus, Holger Stenzhorn, Alan Ruttenberg, Mathias Brochausen, Bjoern Peters, Kerry Trentelman, and by more than hundred other members of the BFO Discussion Group. Its development has been carried out under the auspices of the project Forms of Life sponsored by the Volkswagen Foundation.",
     "homepage": "http://www.ifomis.org/bfo/",
+    "name": "Basic Formal Ontology",
+    "short_names": [
+      "BFO"
+    ],
     "uri_format": "http://purl.obolibrary.org/obo/BFO_$1",
     "xrefs": {
       "wikidata": "Q4866972"
@@ -24416,7 +24458,10 @@
   "583": {
     "description": "The Information Artifact Ontology (IAO) is a new ontology of information entities, originally driven by work by the OBI digital entity and realizable information entity branch.\n\nAn information artifact is, loosely, a dependent continuant or its bearer that is created as the result of one or more intentional processes. Examples: uniprot, the english language, the contents of this document or a printout of it, the temperature measurements from a weather balloon.",
     "homepage": "http://code.google.com/p/information-artifact-ontology/",
-    "name": "Information Artifact Ontology"
+    "name": "Information Artifact Ontology",
+    "short_names": [
+      "IAO"
+    ]
   },
   "584": {
     "description": "ICECI is a free practical tool for classifying the circumstances in which injuries occur. Thus, it can be used in surveillance and research to support injury and trauma prevention and control efforts throughout the world. Using this tool, one can code the key factors that may be involved in causing injuries. Consequently, injuries can be both counted and described to yield useful information for setting priorities, making policy decisions, and guiding prevention.\n\nPurpose/Definition: To enable classifying external causes of injuries. It is designed to help researchers and prevention practitioners to describe, measure and monitor the occurrence of injuries and to investigate their circumstances of occurrence using an internally agreed classification. Criteria underlying the classification are: a separate coding axis for each main concept, usefulness for injury prevention, useability in may types of settings (many parts of the world; emergency departments and other places where data are collected), comparability and complementarity with the ICD-10.",
@@ -24948,11 +24993,11 @@
   "721": {
     "description": "CiTO, the Citation Typing Ontology, is an ontology written in OWL 2 DL to enable characterization of the nature or type of citations, both factually and rhetorically, and to permit these descriptions to be published on the Web. The citations characterized may be either direct and explicit (as in the reference list of a journal article), indirect (e.g. a citation to a more recent paper by the same research group on the same topic), or implicit (e.g. as in artistic quotations or parodies, or in cases of plagiarism). CiTO contains the object property cito:cites and its sub-properties, and its inverse property cito:isCitedBy, from the original Citation Typing Ontology, CiTO v1.6. Upon the creation of version 2.0 of CiTO, a number of new sub-properties of cito:cites were added, and the inverse properties of all the sub-properties of cito:cites were created, all of which are sub-properties of cito:isCitedBy. The ontology has also been integrated with the SWAN Discourse Relationships Ontology by making cito:cites a sub-property of http://purl.org/swan/2.0/discourse-relationships/refersTo. Restrictions of domain and range present in the previous version of CiTO were removed from the object properties when creating CiTO v 2.0, permitting its independent use in other contexts, in addition to conventional bibliographic citations.",
     "homepage": "http://purl.org/spar/cito/",
-    "license": {
-      "spdx": "CC-BY-3.0",
-      "url": "http://creativecommons.org/licenses/by/3.0/"
-    },
-    "name": "Citation Typing Ontology"
+    "name": "CiTO, the Citation Typing Ontology",
+    "short_names": [
+      "CiTO"
+    ],
+    "uri_format": "http://purl.org/spar/cito/$1"
   },
   "722": {
     "description": "Project development of a multilingual thesaurus managed by Flora software: French, English, Spanish, German, Italian 3330 descriptors and 954 non-descriptors are distributed in 39 semantic fields.",
@@ -24980,12 +25025,13 @@
     }
   },
   "725": {
+    "description": "This document is an up-to-date, authoritative specification of all metadata terms maintained by the Dublin Core Metadata Initiative. Included are the fifteen terms of the Dublin Core Metadata Element Set, which have also been published as IETF RFC 5013 [RFC5013], ANSI/NISO Standard Z39.85-2007 [NISOZ3985], and ISO Standard 15836:2009 [ISO15836].",
     "homepage": "http://purl.org/dc/terms/",
-    "license": {
-      "spdx": "CC-BY-3.0",
-      "url": "http://creativecommons.org/licenses/by/3.0/"
-    },
     "name": "DCMI Metadata Terms",
+    "short_names": [
+      "dcterms"
+    ],
+    "uri_format": "http://purl.org/dc/terms/$1",
     "xrefs": {
       "wikidata": "Q624610"
     }

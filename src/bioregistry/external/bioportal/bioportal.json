@@ -1002,7 +1002,7 @@
       "name": "CC0-1.0"
     },
     "name": "Biolink Model",
-    "version": "4.4.1"
+    "version": "4.4.2"
   },
   "BIOMO": {
     "contact": {
@@ -1739,7 +1739,7 @@
       "name": "CC-BY-4.0"
     },
     "name": "Chemical Methods Ontology",
-    "version": "2025-10-21"
+    "version": "2026-05-28"
   },
   "CHO": {
     "contact": {
@@ -1915,7 +1915,7 @@
         "url": "http://www.ncbi.nlm.nih.gov/pmc/articles/PMC3361058/"
       }
     ],
-    "version": "2026-05-09"
+    "version": "2026-05-30"
   },
   "CMPO": {
     "contact": {
@@ -2542,9 +2542,9 @@
       "email": "justindegarbo@gmail.com",
       "name": "Justin DeGarbo"
     },
-    "description": "A formal vocabulary for representing body-based therapeutic experience in computational systems. The Cathexis Somatic Ontology (CSO) defines 29 anatomical zones, 20 sensation qualities, 7 primary affect systems, 19 brain regions, 8 functional networks, 5 ecological context layers, and 16 territories of human experience. Designed for digital mental health platforms, AI agent integration via Model Context Protocol (MCP), and clinical research. Grounded in constructed emotion theory (Barrett), predictive processing (Friston), primary affect systems (Panksepp), somatic markers (Damasio), neuropsychoanalysis (Solms), and distributed brain networks (Pessoa)., A formal vocabulary and relational schema for encoding body-based therapeutic experience computationally. Defines entity classes for anatomical zones, sensation qualities, neurobiological organization patterns (territories), therapeutic change mechanisms, brain regions, ecological layers, and intervention architectures, organized within a Markov blanket framework.",
+    "description": "A formal vocabulary for representing body-based therapeutic experience in computational systems. The Cathexis Somatic Ontology (CSO) defines 29 anatomical zones, 20 sensation qualities, 7 primary affect systems, 19 brain regions, 11 functional networks, 5 ecological context layers, and 16 territories of human experience. Designed for digital mental health platforms, AI agent integration via Model Context Protocol (MCP), and clinical research. Grounded in constructed emotion theory (Barrett), predictive processing (Friston), primary affect systems (Panksepp), somatic markers (Damasio), neuropsychoanalysis (Solms), the entangled brain (Pessoa), and memory systems and reconsolidation (Kandel)., A formal vocabulary and relational schema for encoding body-based therapeutic experience computationally. Defines entity classes for anatomical zones, sensation qualities, neurobiological organization patterns (territories), therapeutic change mechanisms, brain regions, ecological layers, and intervention architectures, organized within a Markov blanket framework.",
     "license": {
-      "name": "CC-BY-4.0"
+      "name": "CC-BY-NC-SA-4.0"
     },
     "name": "Cathexis Somatic Ontology",
     "version": "1.1"
@@ -2995,7 +2995,7 @@
         "url": "https://disease-ontology.org/community/publications"
       }
     ],
-    "version": "2026-04-30"
+    "version": "2026-05-30"
   },
   "DOREMUS-KEYS": {
     "contact": {
@@ -4844,7 +4844,7 @@
     "description": "Provides structured controlled vocabularies for the annotation of gene products with respect to their molecular function, cellular component, and biological role. The Gene Ontology consists of three Vocabularies.",
     "homepage": "http://www.geneontology.org",
     "name": "Gene Ontology",
-    "version": "2026-03-25"
+    "version": "2026-05-19"
   },
   "GO-EXT": {
     "contact": {
@@ -4872,7 +4872,7 @@
         "url": "http://www.geneontology.org/page/publications"
       }
     ],
-    "version": "2026-03-25"
+    "version": "2026-05-19"
   },
   "GOLDTERMS": {
     "contact": {
@@ -7373,13 +7373,13 @@
       "email": "mam@lbl.gov",
       "name": "Mark Andrew Miller"
     },
-    "description": "An ontology of ecophysiological traits of microbes, including tolerated and preferred growth conditions, Microbial ecophysiological trait and phenotype ontology, METPO provides standardized terms for the phenotypic traits, growth conditions, metabolic capabilities, and morphology of bacteria and archaea. It integrates heterogeneous microbial trait resources (BactoTraits, BacDive, Madin et al.) and supports knowledge-graph and literature-mining workflows in projects such as KG-Microbe. METPO follows OBO Foundry conventions and reuses terms from PATO, GO, CHEBI, NCBITaxon, and related ontologies where possible.",
+    "description": "An ontology of ecophysiological traits of microbes, including tolerated and preferred growth conditions, Microbial ecophysiological trait and phenotype ontology, METPO provides standardized terms for the phenotypic traits, growth conditions, metabolic capabilities, and morphology of bacteria and archaea. It integrates heterogeneous microbial trait resources (BactoTraits, BacDive, Madin et al.) and supports knowledge-graph and literature-mining workflows in projects such as KG-Microbe. METPO follows OBO Foundry conventions and reuses terms from PATO, GO, CHEBI, NCBITaxon, and related ontologies where possible., METPO provides terms for microbial ecophysiological traits and phenotypes: growth preferences (temperature, pH, salinity, oxygen), metabolism, and cell morphology of bacteria and archaea. Its primary purpose is to harmonize terminology across major microbial trait databases (BacDive, BactoTraits, Madin bacteria_archaea_traits, MetaTraits) for use in NMDC and KG-Microbe. METPO uses OBO-style annotation patterns (IAO textual definitions, oboInOwl synonyms) and cites terms from OMP, MicrO, ECOCORE, and PATO as definition sources.",
     "homepage": "https://github.com/berkeleybop/metpo",
     "license": {
       "name": "CC-BY-4.0"
     },
     "name": "METPO",
-    "version": "2026-05-19"
+    "version": "2026-06-05"
   },
   "MF": {
     "contact": {
@@ -7474,6 +7474,14 @@
     },
     "name": "MHC Restriction Ontology",
     "version": "2026-02-10"
+  },
+  "MHIO": {
+    "contact": {
+      "email": "nmartink@kean.edu",
+      "name": "Navya Kollapally"
+    },
+    "description": "Digital mental health tools have expanded quickly, but many still struggle to understand the way people actually talk about their emotions online. Clinical vocabularies like SNOMED CT, ICD-10, DSM-5, and the Mental Functioning Ontology were created for medical settings, so they often miss the casual phrases and slang people use on platforms such as Reddit. Someone might say, “I feel burnt out,” “I’m mentally cooked,” or “I disappeared for a week.” These expressions rarely match any formal clinical term, even though they describe real emotional experiences. In MHIO, we extract slang terms as concepts from social-media language using graph clustering and map them to a clinical equivalent.",
+    "name": "Mental Health Interface Ontology"
   },
   "MHMO": {
     "contact": {
@@ -7767,7 +7775,7 @@
         "url": "https://mondo.monarchinitiative.org/pages/resources/"
       }
     ],
-    "version": "2026-05-05"
+    "version": "2026-06-02"
   },
   "MONO": {
     "contact": {
@@ -7831,7 +7839,7 @@
     "description": "Standard terms for annotating mammalian phenotypic data.",
     "homepage": "http://www.informatics.jax.org/searches/MP_form.shtml",
     "name": "Mammalian Phenotype Ontology",
-    "version": "2026-04-22"
+    "version": "2026-05-19"
   },
   "MPATH": {
     "contact": {
@@ -8082,7 +8090,7 @@
       "name": "CC-BY-4.0"
     },
     "name": "National Cancer Institute Thesaurus",
-    "version": "26.04d"
+    "version": "26.05d"
   },
   "NCOD": {
     "contact": {
@@ -8441,7 +8449,7 @@
       "email": "mamillerpa@gmail.com",
       "name": "Mark Miller"
     },
-    "description": "The NMDC Ontology (NMDCO) is used by the National Microbiome Data Collaborative (NMDC, https://microbiomedata.org) to annotate multi-omic microbiome metadata. It merges a number of ontologies relevant to the NMDC (such as the plant and environment ontologies) into a single ontology. The ontology can be download from Github at https://github.com/microbiomedata/nmdc-ontology.",
+    "description": "NO LONGER MAINTAINED. The source repository (github.com/microbiomedata/nmdc-ontology) has been archived and this BioPortal entry is not updated. NMDC no longer publishes a standalone ontology; it loads external ontologies into its data infrastructure (NMDC MongoDB, used by nmdc-server). The NMDC Ontology (NMDCO) is used by the National Microbiome Data Collaborative (NMDC, https://microbiomedata.org) to annotate multi-omic microbiome metadata. It merges a number of ontologies relevant to the NMDC (such as the plant and environment ontologies) into a single ontology. The ontology can be download from Github at https://github.com/microbiomedata/nmdc-ontology.",
     "homepage": "https://github.com/microbiomedata/nmdc-ontology",
     "name": "NMDC Ontology",
     "version": "2024-03-15"
@@ -9890,12 +9898,12 @@
       "email": "wdduncan@gmail.com",
       "name": "Bill Duncan"
     },
-    "description": "The Pain Ontology contains terms for representing pain as defined by the International Association For the Study of Pain (IASP), meaning that pain is both an unpleasant physical sensation and unpleasant emotional experience. It includes terms and axioms to represent the multidimensional aspect of pain, such as temporality (e.g, acute, chronic), qualitative (e.g., sharp, throbbing), extent (e.g., local, widespread), biological mechanism (e.g., nociceptive, neuropathic), and specific anatomical locations (e.g., back, knee).",
+    "description": "The Pain Ontology contains terms for representing pain as defined by the International Association For the Study of Pain (IASP), meaning that pain is both an unpleasant physical sensation and unpleasant emotional experience. It includes terms and axioms to represent the multidimensional aspect of pain, such as temporality (e.g, acute, chronic), qualitative (e.g., sharp, throbbing), extent (e.g., local, widespread), biological mechanism (e.g., nociceptive, neuropathic), and specific anatomical locations (e.g., back, knee)., such as temporality (e.g.",
     "license": {
       "name": "CC-BY-4.0"
     },
     "name": "The Pain Ontology",
-    "version": "2026-04-13"
+    "version": "2026-06-05"
   },
   "PAINO": {
     "contact": {
@@ -11387,7 +11395,7 @@
         "pubmed": "23603846"
       }
     ],
-    "version": "2026-05-16"
+    "version": "2026-05-30"
   },
   "RSA": {
     "contact": {
@@ -12841,7 +12849,7 @@
       "email": "sabanoor8867@gmail.com",
       "name": "Saba Noor"
     },
-    "description": "VEMO (Veterinary Epidemiology Metadata Ontology) is a metadata ontology for describing veterinary epidemiological datasets. It provides a structured framework for documenting dataset metadata, including general information (title, creators, format), data description (spatial/temporal scope, resolution, subject unit), and data quality metrics. VEMO extends established vocabularies (DCAT, PROV-O, DQV, FOAF, SKOS) via rdfs:subClassOf relationships, ensuring full interoperability with existing Linked Open Data standards. Developed to support the DECIDE project, VEMO enables researchers to assess dataset fitness-for-purpose in animal health surveillance and disease monitoring contexts., A lightweight application ontology that aligns a veterinary epidemiology metadata template to existing vocabularies (DCAT, DCTERMS, SKOS, OBO/OBI). Version 0.2 includes full DQV integration with proper Dimensions, Metrics, and Quality Measurements. Complete coverage of Appendix 1-3 metadata requirements.",
+    "description": "VEMO (Veterinary Epidemiology Metadata Ontology) is a metadata ontology for describing veterinary epidemiological datasets. It provides a structured framework for documenting dataset metadata, including general information (title, creators, format), data description (spatial/temporal scope, resolution, subject unit), and data quality metrics. VEMO extends established vocabularies (DCAT, PROV-O, DQV, FOAF, SKOS) via rdfs:subClassOf relationships, ensuring full interoperability with existing Linked Open Data standards. Developed to support the DECIDE project, VEMO enables researchers to assess dataset fitness-for-purpose in animal health surveillance and disease monitoring contexts., A lightweight application ontology that aligns a veterinary epidemiology metadata template to existing vocabularies (DCAT, DCTERMS, SKOS, OBO/OBI). Version 0.2 includes full DQV integration with proper Dimensions, Metrics, and Quality Measurements. Complete coverage of Appendix 1-3 metadata requirements. , and Quality Measurements. Complete coverage of Appendix 1-3 metadata requirements.",
     "homepage": "https://github.com/Bovi-analytics/Veterinary-Epidemiology-Metadata-Ontology",
     "name": "Veterinary Epidemiology Metadata Ontology",
     "publications": [
@@ -12878,7 +12886,7 @@
       "name": "CC-BY-4.0"
     },
     "name": "vfb_drivers",
-    "version": "2026-05-18"
+    "version": "2026-06-01"
   },
   "VHOG": {
     "contact": {
@@ -13337,7 +13345,7 @@
         "url": "http://www.ncbi.nlm.nih.gov/pmc/articles/PMC3361058/"
       }
     ],
-    "version": "2026-05-16"
+    "version": "2026-05-30"
   },
   "XEO": {
     "contact": {
@@ -13430,7 +13438,7 @@
         "url": "http://www.jbiomedsem.com/content/5/1/12"
       }
     ],
-    "version": "2026-03-31"
+    "version": "2026-06-02"
   },
   "ZFS": {
     "contact": {
@@ -13442,7 +13450,7 @@
       "name": "CC-BY-3.0"
     },
     "name": "Zebrafish Developmental Stages",
-    "version": "2026-03-31"
+    "version": "2026-06-02"
   },
   "ZONMW-ADMIN-MD": {
     "contact": {
