@@ -561,24 +561,56 @@
       ],
       "resources": [
         "afo",
-        "bfo",
+        {
+          "prefix": "bfo",
+          "tags": [
+            "production"
+          ]
+        },
         "bto",
         {
           "comment": "Used in YMDB, HMDB, PubChem, MassBank, KNApSAcK, UM-BBD, GMD, SMID-DB",
           "prefix": "chebi"
         },
-        "cheminf",
+        {
+          "prefix": "cheminf",
+          "tags": [
+            "production"
+          ]
+        },
         "chemrof",
         "chiro",
-        "chmo",
+        {
+          "prefix": "chmo",
+          "tags": [
+            "collaborative",
+            "production"
+          ]
+        },
+        {
+          "prefix": "dcat",
+          "tags": [
+            "production"
+          ]
+        },
         "duo",
         "edam",
         "efo",
         "enm",
         "envo",
         "fair",
-        "fix",
-        "gainesville.core",
+        {
+          "prefix": "fix",
+          "tags": [
+            "research"
+          ]
+        },
+        {
+          "prefix": "gainesville.core",
+          "tags": [
+            "research"
+          ]
+        },
         "iao",
         "mod",
         "mop",
@@ -592,11 +624,26 @@
         "ontorxn",
         "pato",
         "proco",
-        "prov",
+        {
+          "prefix": "prov",
+          "tags": [
+            "production"
+          ]
+        },
         "reproduceme",
-        "rex",
+        {
+          "prefix": "rex",
+          "tags": [
+            "research"
+          ]
+        },
         "ro",
-        "rxno",
+        {
+          "prefix": "rxno",
+          "tags": [
+            "collaborative"
+          ]
+        },
         "sepio",
         "sio",
         "sosa",
@@ -605,11 +652,33 @@
         "swo",
         "time",
         "uo",
-        "vibso",
+        {
+          "prefix": "vibso",
+          "tags": [
+            "collaborative"
+          ]
+        },
         "voc4cat",
         "worldavatar.compchem",
         "worldavatar.kin",
         "worldavatar.os"
+      ],
+      "tags": [
+        {
+          "code": "collaborative",
+          "description": "External, but curated by the consortium",
+          "name": "Collaborative"
+        },
+        {
+          "code": "production",
+          "description": "Used in production within services of the consortium",
+          "name": "In Production"
+        },
+        {
+          "code": "research",
+          "description": "not in any associated services of the consortium of the collection, but indexed to compare with the ones used, or to learn from, or to maybe build mappings",
+          "name": "Research"
+        }
       ]
     },
     {

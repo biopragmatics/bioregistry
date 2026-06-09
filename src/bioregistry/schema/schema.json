@@ -314,6 +314,22 @@
           ],
           "default": null,
           "title": "Mappings"
+        },
+        "tags": {
+          "anyOf": [
+            {
+              "items": {
+                "$ref": "#/$defs/Tag"
+              },
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Tags are defined locally in each collection and can be used to give additional context to why the resource was included, how it's used, etc. Try to avoid using tags to describe information that's already available, such as whether a resource is an ontology or whether it's first-party to the collection maintainer(s). Tagging was added in https://github.com/biopragmatics/bioregistry/pull/1958.",
+          "title": "Tags"
         }
       },
       "required": [
@@ -344,6 +360,22 @@
           ],
           "default": null,
           "title": "Comment"
+        },
+        "tags": {
+          "anyOf": [
+            {
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "References to tag codes that are defined locally within a collection",
+          "title": "Tags"
         }
       },
       "required": [
@@ -2607,6 +2639,37 @@
         "contributor"
       ],
       "title": "StatusCheck",
+      "type": "object"
+    },
+    "Tag": {
+      "description": "A tag for a collection.",
+      "properties": {
+        "code": {
+          "title": "Code",
+          "type": "string"
+        },
+        "name": {
+          "title": "Name",
+          "type": "string"
+        },
+        "description": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Description"
+        }
+      },
+      "required": [
+        "code",
+        "name"
+      ],
+      "title": "Tag",
       "type": "object"
     }
   },

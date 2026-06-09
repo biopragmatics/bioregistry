@@ -3208,10 +3208,22 @@ class CollectionAnnotation(BaseModel):
 
     prefix: str
     comment: str | None = None
+    tags: Annotated[
+        list[str] | None,
+        Field(description="References to tag codes that are defined locally within a collection"),
+    ] = None
 
     def is_empty(self) -> bool:
         """Check if the collection annotation is empty."""
         return self.comment is None
+
+
+class Tag(BaseModel):
+    """A tag for a collection."""
+
+    code: str
+    name: str
+    description: str | None = None
 
 
 class Collection(BaseModel):
@@ -3252,6 +3264,12 @@ class Collection(BaseModel):
     references: list[str] | None = Field(default=None, description="URL references")
     keywords: list[str] | None = None
     mappings: list[Reference] | None = None
+    tags: Annotated[
+        list[Tag] | None,
+        Field(
+            description="Tags are defined locally in each collection and can be used to give additional context to why the resource was included, how it's used, etc. Try to avoid using tags to describe information that's already available, such as whether a resource is an ontology or whether it's first-party to the collection maintainer(s). Tagging was added in https://github.com/biopragmatics/bioregistry/pull/1958."
+        ),
+    ] = None
 
     def add_triples(self, graph: rdflib.Graph) -> None:
         """Add triples to an RDF graph for this collection.
