@@ -389,6 +389,7 @@ class Provider(BaseModel):
     name: str | None = Field(None, description="Name of the provider")
     description: str | None = Field(None, description="Description of the provider")
     homepage: str | None = Field(None, description="Homepage of the provider")
+    contact: Attributable | None = None
     uri_format: str = Field(
         ...,
         title="URI Format",
