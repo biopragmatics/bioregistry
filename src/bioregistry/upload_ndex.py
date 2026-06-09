@@ -18,7 +18,7 @@ if TYPE_CHECKING:
 
 
 @click.command()
-@verbose_option  # type:ignore
+@verbose_option
 def main() -> None:
     """Upload the Bioregistry KG to NDEx."""
     try:
@@ -102,7 +102,7 @@ def upload() -> None:
         )
         if collection.description:
             cx.add_node_attribute(source, "description", collection.description, type="string")
-        for prefix in collection.resources:
+        for prefix in collection.get_prefixes():
             cx.add_edge(
                 source=source,
                 target=resource_nodes[prefix],

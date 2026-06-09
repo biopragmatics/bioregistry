@@ -9,7 +9,7 @@
             <div class="row align-items-center">
                 <div class="col-8">
                     <h5 style="margin: 0"><a href="{{ url_for("metaregistry_ui.metaresources") }}">Metaregistry</a> <i
-                            class="fas fa-angle-right"></i> {{ name }}</h5>
+                            class="bi bi-chevron-right"></i> {{ name }}</h5>
                 </div>
                 <div class="col-4 text-right">
                     <div class="dropdown">
@@ -22,7 +22,7 @@
                             {% for label, key in formats %}
                                 <a class="dropdown-item"
                                    href="{{ fastapi_url_for("get_metaresource", metaprefix=metaprefix) }}?format={{ key }}">
-                                    {{ label }} <i class="fas fa-download"></i>
+                                    {{ label }} <i class="bi bi-download"></i>
                                 </a>
                             {% endfor %}
                         </div>
@@ -39,10 +39,10 @@
                 <dt>Metaprefix</dt>
                 <dd><code>{{ metaprefix }}</code></dd>
                 {% if entry.bioregistry_prefix and metaprefix != entry.bioregistry_prefix %}
-                <dt>Bioregistry Prefix</dt>
+                <dt>{{ config.METAREGISTRY_TITLE }} Prefix</dt>
                 <dd>
                     For this registry, the metaprefix (i.e., the key for the registry)
-                    is not the same as the Bioregistry prefix. Follow this link for additional
+                    is not the same as the {{ config.METAREGISTRY_TITLE }} prefix. Follow this link for additional
                     information.
                 </dd>
                 <dd>{{ utils.render_prefix(entry.bioregistry_prefix) }}</dd>
@@ -51,33 +51,33 @@
                 <dd>
                     {% if homepage %}
                         <a class="badge badge-pill badge-light" href="{{ homepage }}">
-                            Homepage <i class="fas fa-home"></i>
+                            Homepage <i class="bi bi-home"></i>
                         </a>
                     {% else %}
                         <span class="badge badge-pill badge-warning">Missing Homepage</span>
                     {% endif %}
                     {% if entry.governance.issue_tracker %}
                         <a class="badge badge-pill badge-light" href="{{ entry.governance.issue_tracker }}">
-                            Issue Tracker <i class="fas fa-check"></i>
+                            Issue Tracker <i class="bi bi-check-circle"></i>
                         </a>
                     {% else %}
                         <span class="badge badge-pill badge-light text-muted">No Issue Tracker</span>
                     {% endif %}
                     {% if entry.download %}
                         <a class="badge badge-pill badge-light" href="{{ entry.download }}">
-                            Download <i class="fas fa-download"></i>
+                            Download <i class="bi bi-download"></i>
                         </a>
                     {% else %}
                         <span class="badge badge-pill badge-light text-muted">No Download Available</span>
                     {% endif %}
 
                     <a class="badge badge-pill badge-light"
-                       title="Download a JSON file containing mappings from Bioregistry prefixes to {{ entry.get_short_name() }} prefixes."
+                       title="Download a JSON file containing mappings from {{ config.METAREGISTRY_TITLE }} prefixes to {{ entry.get_short_name() }} prefixes."
                        href="{{ fastapi_url_for("get_metaresource_mappings", metaprefix=entry.prefix) }}">
                         Download Prefix Mappings
                     </a>
                     <a class="badge badge-pill badge-light"
-                       title="Download a slimmed version of the Bioregistry for records mapped to {{ entry.get_short_name() }}."
+                       title="Download a slimmed version of the {{ config.METAREGISTRY_TITLE }} for records mapped to {{ entry.get_short_name() }}."
                        href="{{ fastapi_url_for("get_external_registry_slim", metaprefix=entry.prefix) }}">
                         Download Slim Registry
                     </a>

@@ -142,6 +142,38 @@ $ pip install --editable .
 Build the docs locally with `tox -e docs` then view by opening
 `docs/build/html/index.html`.
 
+<details>
+  <summary>See the instructions to run the tests</summary>
+
+Having [`tox`](https://tox.wiki/en/latest/installation.html) installed is
+required to run the tests. Optionally to run all tests you will need to start
+the Bioregistry, a Virtuoso endpoint, and a Blazegraph endpoint using
+`docker compose`:
+
+```shell
+$ docker compose up
+```
+
+The first time you deploy the docker compose stack, you will need to run an
+additional command from another terminal, in this repository root folder, to
+enable federated query in Virtuoso:
+
+```shell
+$ docker compose exec virtuoso isql -U dba -P dba exec='GRANT "SPARQL_SELECT_FED" TO "SPARQL";'
+```
+
+After cloning the repository and installing the dependencies, the unit tests in
+the `tests/` folder can be run reproducibly with:
+
+```shell
+$ tox
+```
+
+Additionally, these tests are automatically re-run with each commit in a
+[GitHub Action](https://github.com/biopragmatics/bioregistry/actions/workflows/tests.yml).
+
+</details>
+
 ## 💪 Usage
 
 ### Normalizing Prefixes
@@ -504,16 +536,19 @@ Talks on the Bioregistry:
 
 ### 🎁 Support
 
-The Bioregistry was primarily developed by the
+The Bioregistry is developed by the
+[Institute of Inorganic Chemistry](https://www.iac.rwth-aachen.de) at RWTH
+Aachen University and the
 [Gyori Lab for Computational Biomedicine](https://gyorilab.github.io) at
-Northeastern University, which was previously a part of the
-[Laboratory of Systems Pharmacology](https://hits.harvard.edu/the-program/laboratory-of-systems-pharmacology/about/)
-in the [Harvard Program in Therapeutic Science (HiTS)](https://hits.harvard.edu)
-at [Harvard Medical School](https://hms.harvard.edu/).
+Northeastern University.
 
 ### 💰 Funding
 
+1. [Catalaix](https://catalaix.com) flex fund
+1. NFDI4Chem (DFG Grant
+   [441958208](https://gepris.dfg.de/gepris/projekt/441958208))
+1. DALIA (BMBF Grant 16DWWQP07)
 1. Chan Zuckerberg Initiative (CZI) 2023-329850
-2. DARPA Automating Scientific Knowledge Extraction and Modeling (ASKEM)
+1. DARPA Automating Scientific Knowledge Extraction and Modeling (ASKEM)
    HR00112220036
-3. DARPA Young Faculty Award W911NF2010255 (PI: Benjamin M. Gyori).
+1. DARPA Young Faculty Award W911NF2010255 (PI: Benjamin M. Gyori).

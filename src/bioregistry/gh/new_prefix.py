@@ -276,8 +276,8 @@ def make_title(prefixes: Sequence[str]) -> str:
 @click.option(
     "--issue", type=int, help="Specific issue to process rather than finding all relevant ones"
 )
-@force_option  # type:ignore
-@verbose_option  # type:ignore
+@force_option
+@verbose_option
 def main(dry: bool, github: bool, force: bool, issue: int | None = None) -> None:
     """Run the automatic curator."""
     click.echo(

@@ -2,7 +2,8 @@
 
 This script does the following:
 
-1. Search GitHub for ODK configurations in order to identify repositories containing ontologies
+1. Search GitHub for ODK configurations in order to identify repositories containing
+   ontologies
 2. Filter out known false positives and low quality repositories
 3. Map repositories back to the Bioregistry, when possible
 4. Otherwise, make stub entries in the Bioregistry for new prefixes

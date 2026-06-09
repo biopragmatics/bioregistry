@@ -23,9 +23,7 @@ from rdflib import (
 )
 from rdflib.term import _is_valid_uri
 
-import bioregistry
-from bioregistry import Manager
-from bioregistry.constants import (
+from ..constants import (
     RDF_JSONLD_PATH,
     RDF_NT_PATH,
     RDF_TURTLE_PATH,
@@ -33,7 +31,10 @@ from bioregistry.constants import (
     SCHEMA_NT_PATH,
     SCHEMA_TURTLE_PATH,
 )
-from bioregistry.schema.constants import (
+from ..resource_manager import Manager
+from ..resource_manager import manager as default_manager
+from ..schema import Collection, Registry, Resource
+from ..schema.constants import (
     ROR,
     WIKIDATA,
     _add_schema,
@@ -43,21 +44,16 @@ from bioregistry.schema.constants import (
     bioregistry_schema,
     get_schema_rdf,
 )
-from bioregistry.schema.struct import Collection, Registry, Resource
 
 logger = logging.getLogger(__name__)
 
-NAMESPACES = {
-    _ns: Namespace(_uri) for _ns, _uri in bioregistry.manager.get_internal_prefix_map().items()
-}
-NAMESPACE_WARNINGS = set()
+
+NAMESPACE_WARNINGS: set[str] = set()
 
 
 @click.command()
 def export_rdf() -> None:
     """Export RDF."""
-    from bioregistry import manager
-
     schema_rdf = get_schema_rdf()
     schema_rdf.serialize(SCHEMA_TURTLE_PATH.as_posix(), format="turtle")
     schema_rdf.serialize(SCHEMA_NT_PATH.as_posix(), format="nt", encoding="utf-8")
@@ -72,7 +68,7 @@ def export_rdf() -> None:
         ensure_ascii=False,
     )
 
-    graph = get_full_rdf(manager=manager) + schema_rdf
+    graph = get_full_rdf(manager=default_manager) + schema_rdf
     graph.serialize(RDF_TURTLE_PATH.as_posix(), format="turtle")
     graph.serialize(RDF_NT_PATH.as_posix(), format="nt", encoding="utf-8")
     # Currently getting an issue with not being able to shorten URIs
@@ -91,10 +87,20 @@ def export_rdf() -> None:
     )
 
 
+def _get_namespaces_dict(manager: Manager) -> dict[str, Namespace]:
+    return {
+        prefix: Namespace(uri_prefix)
+        for prefix, uri_prefix in manager.get_internal_prefix_map().items()
+    }
+
+
 def get_full_rdf(manager: Manager) -> rdflib.Graph:
     """Get a combine RDF graph representing the Bioregistry using :mod:`rdflib`."""
     graph = _graph(manager=manager)
     _add_schema(graph)
+
+    namespaces_dict = _get_namespaces_dict(manager)
+
     for registry in manager.metaregistry.values():
         registry.add_triples(graph)
     for collection in manager.collections.values():
@@ -103,7 +109,9 @@ def get_full_rdf(manager: Manager) -> rdflib.Graph:
         uri_prefix = resource.get_uri_prefix()
         if uri_prefix:
             graph.bind(resource.prefix, uri_prefix)
-        _add_resource(graph=graph, manager=manager, resource=resource)
+        _add_resource(
+            graph=graph, manager=manager, resource=resource, namespaces_dict=namespaces_dict
+        )
     return graph
 
 
@@ -159,7 +167,15 @@ def _get_resource_function_2() -> list[tuple[str | URIRef, Callable[[Resource], 
     ]
 
 
-def _add_resource(resource: Resource, *, manager: Manager, graph: rdflib.Graph) -> None:
+def _add_resource(
+    resource: Resource,
+    *,
+    manager: Manager,
+    graph: rdflib.Graph,
+    namespaces_dict: dict[str, rdflib.Namespace] | None = None,
+) -> None:
+    if namespaces_dict is None:
+        namespaces_dict = _get_namespaces_dict(manager)
     node = bioregistry_resource[resource.prefix]
     graph.add((node, RDF.type, bioregistry_schema["0000001"]))
     graph.add((node, RDFS.label, Literal(resource.get_name())))
@@ -203,7 +219,7 @@ def _add_resource(resource: Resource, *, manager: Manager, graph: rdflib.Graph) 
     for appears_in in manager.get_appears_in(resource.prefix) or []:
         graph.add((node, bioregistry_schema["0000018"], bioregistry_resource[appears_in]))
 
-    for owner in resource.owners or []:
+    for owner in resource.get_owners():
         if owner.ror:
             obj = ROR[owner.ror]
         elif owner.wikidata:
@@ -247,17 +263,17 @@ def _add_resource(resource: Resource, *, manager: Manager, graph: rdflib.Graph) 
     mappings = resource.get_mappings()
     for metaprefix, metaidentifier in (mappings or {}).items():
         metaresource = manager.metaregistry[metaprefix]
-        if metaprefix not in NAMESPACES and metaresource.bioregistry_prefix in NAMESPACES:
+        if metaprefix not in namespaces_dict and metaresource.bioregistry_prefix in namespaces_dict:
             metaprefix = metaresource.bioregistry_prefix
-        if metaprefix not in NAMESPACES:
+        if metaprefix not in namespaces_dict:
             if metaprefix not in NAMESPACE_WARNINGS:
                 logger.warning(f"can not find prefix-uri pair for {metaprefix}")
                 NAMESPACE_WARNINGS.add(metaprefix)
             continue
-        graph.add((node, SKOS.exactMatch, NAMESPACES[metaprefix][metaidentifier]))
+        graph.add((node, SKOS.exactMatch, namespaces_dict[metaprefix][metaidentifier]))
         graph.add(
             (
-                NAMESPACES[metaprefix][metaidentifier],
+                namespaces_dict[metaprefix][metaidentifier],
                 DCTERMS.isPartOf,
                 bioregistry_metaresource[metaresource.prefix],
             )
@@ -266,7 +282,7 @@ def _add_resource(resource: Resource, *, manager: Manager, graph: rdflib.Graph) 
             (
                 bioregistry_metaresource[metaresource.prefix],
                 DCTERMS.hasPart,
-                NAMESPACES[metaprefix][metaidentifier],
+                namespaces_dict[metaprefix][metaidentifier],
             )
         )
 

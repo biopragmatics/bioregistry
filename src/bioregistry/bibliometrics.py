@@ -8,7 +8,7 @@ from collections.abc import Iterable
 from typing import TYPE_CHECKING
 
 from .resource_manager import manager
-from .schema.struct import Publication, deduplicate_publications
+from .schema import Publication, deduplicate_publications
 
 if TYPE_CHECKING:
     import pandas

@@ -3,18 +3,17 @@
 import json
 from collections.abc import Sequence
 from pathlib import Path
-from typing import Any, ClassVar
+from typing import ClassVar
 
-import requests
-
+from bioregistry.alignment_model import Record
 from bioregistry.constants import URI_FORMAT_KEY
-from bioregistry.external.alignment_utils import Aligner, load_processed
+from bioregistry.external.alignment_utils import Aligner, build_getter, cleanup_json
 
 __all__ = [
     "ZazukoAligner",
     "get_zazuko",
+    "parse_zazuko_raw",
 ]
-
 
 DIRECTORY = Path(__file__).parent.resolve()
 RAW_PATH = DIRECTORY / "raw.json"
@@ -22,18 +21,22 @@ PROCESSED_PATH = DIRECTORY / "processed.json"
 URL = "https://prefix.zazuko.com/api/v1/prefixes"
 
 
-def get_zazuko(*, force_download: bool = False) -> dict[str, dict[str, Any]]:
-    """Get the Zazuko context map."""
-    if PROCESSED_PATH.exists() and not force_download:
-        return load_processed(PROCESSED_PATH)
-
-    data = requests.get(URL, timeout=15).json()
+def parse_zazuko_raw(path: Path) -> dict[str, Record]:
+    """Parse Zazuko raw JSON data."""
+    data = json.loads(path.read_text())
     rv = {
-        prefix: {URI_FORMAT_KEY: f"{uri_prefix.strip()}$1"} for prefix, uri_prefix in data.items()
+        prefix: Record(uri_format=f"{uri_prefix.strip()}$1") for prefix, uri_prefix in data.items()
     }
-    with PROCESSED_PATH.open("w") as file:
-        json.dump(rv, file, indent=2, sort_keys=True)
     return rv
+
+
+get_zazuko = build_getter(
+    processed_path=PROCESSED_PATH,
+    raw_path=RAW_PATH,
+    url=URL,
+    func=parse_zazuko_raw,
+    cleanup=cleanup_json,
+)
 
 
 class ZazukoAligner(Aligner):

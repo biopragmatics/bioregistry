@@ -19,9 +19,9 @@
     - type_name: gene
       type_id: SO:0000704
       id_syntax: A[Tt][MmCc0-5][Gg][0-9]{5}(\.[0-9]{1})?
-      url_syntax: http://arabidopsis.org/servlets/TairObject?type=locus&name=[example_id]
+      url_syntax: https://www.arabidopsis.org/locus?name=[example_id]
       example_id: AGI_LocusCode:At2g17950
-      example_url: https://www.arabidopsis.org/servlets/TairObject?type=locus&name=At2g17950
+      example_url: https://www.arabidopsis.org/locus?name=At2g17950
 - database: AGRICOLA_ID
   name: AGRICultural OnLine Access
   generic_urls:
@@ -378,9 +378,9 @@
   entity_types:
     - type_name: entity
       type_id: BET:0000000
-      url_syntax: http://www.ncbi.nlm.nih.gov/COG/grace/shokog.cgi?fun=[example_id]
+      url_syntax: https://www.ncbi.nlm.nih.gov/research/cog/cogcategory/[example_id]
       example_id: COG_Function:H
-      example_url: http://www.ncbi.nlm.nih.gov/COG/grace/shokog.cgi?fun=H
+      example_url: https://www.ncbi.nlm.nih.gov/research/cog/cogcategory/H
 - database: COG_Pathway
   name: NCBI COG pathway
   generic_urls:
@@ -388,9 +388,9 @@
   entity_types:
     - type_name: entity
       type_id: BET:0000000
-      url_syntax: http://www.ncbi.nlm.nih.gov/COG/new/release/coglist.cgi?pathw=[example_id]
+      url_syntax: https://www.ncbi.nlm.nih.gov/research/cog/pathway/[example_id]
       example_id: COG_Pathway:14
-      example_url: http://www.ncbi.nlm.nih.gov/COG/new/release/coglist.cgi?pathw=14
+      example_url: https://www.ncbi.nlm.nih.gov/research/cog/pathway/14
 - database: CollecTF
   name: Database of transcription factor binding sites (TFBS) in the Bacteria domain
   generic_urls:
@@ -533,6 +533,7 @@
       example_url: http://dx.doi.org/10.1016/S0963-9969(99)00021-6
 - database: EC
   name: Enzyme Commission
+  rdf_uri_prefix: http://purl.uniprot.org/enzyme/
   generic_urls:
     - http://enzyme.expasy.org/
   entity_types:
@@ -1430,6 +1431,7 @@
       example_url: http://www.genome.jp/dbget-bin/www_bget?path:ot00020
 - database: KEGG_REACTION
   name: KEGG Reaction Database
+  rdf_uri_prefix: http://www.kegg.jp/entry/
   generic_urls:
     - http://www.genome.jp/kegg/reaction/
   entity_types:
@@ -1613,13 +1615,13 @@
   entity_types:
     - type_name: gene
       type_id: SO:0000704
-      id_syntax: MGI:[0-9]{5,}
+      id_syntax: MGI:[0-9]+
       url_syntax: http://www.informatics.jax.org/accession/[example_id]
       example_id: MGI:MGI:1345277
       example_url: http://www.informatics.jax.org/accession/MGI:1345277
     - type_name: variation
       type_id: VariO:0001
-      id_syntax: MGI:[0-9]{5,}
+      id_syntax: MGI:[0-9]+
       url_syntax: http://www.informatics.jax.org/accession/[example_id]
       example_id: MGI:MGI:3590672
       example_url: http://www.informatics.jax.org/accession/MGI:3590672
@@ -1971,14 +1973,14 @@
     - PUBMED
   rdf_uri_prefix: http://identifiers.org/pubmed/
   generic_urls:
-    - https://www.ncbi.nlm.nih.gov/pubmed
+    - https://pubmed.ncbi.nlm.nih.gov/
   entity_types:
     - type_name: entity
       type_id: BET:0000000
       id_syntax: '[0-9]+'
-      url_syntax: http://www.ncbi.nlm.nih.gov/pubmed/[example_id]
+      url_syntax: https://pubmed.ncbi.nlm.nih.gov/[example_id]
       example_id: PMID:31931324
-      example_url: https://www.ncbi.nlm.nih.gov/pubmed/31931324
+      example_url: https://pubmed.ncbi.nlm.nih.gov/31931324
 - database: PO
   name: Plant Ontology
   rdf_uri_prefix: http://purl.obolibrary.org/obo/PO_
@@ -2300,6 +2302,7 @@
 - database: RHEA
   name: Rhea, the Annotated Reactions Database
   description: Rhea is a manually annotated database of chemical reactions. All data in Rhea is freely accessible and available for anyone to use.
+  rdf_uri_prefix: http://rdf.rhea-db.org/
   generic_urls:
     - https://www.rhea-db.org
   entity_types:
@@ -2422,8 +2425,9 @@
   generic_urls:
     - https://pathway.yeastgenome.org/
   entity_types:
-    - type_name: entity
-      type_id: BET:0000000
+    - type_name: vocabulary
+      type_id: SIO:001080
+      id_syntax: '[A-Z0-9]+(?:-[A-Z0-9]+)*'
       url_syntax: https://pathway.yeastgenome.org/YEAST/NEW-IMAGE?type=NIL&object=[example_id]
       example_id: SGD_PWY:SERSYN-PWY
       example_url: https://pathway.yeastgenome.org/YEAST/NEW-IMAGE?type=NIL&object=SERSYN-PWY
@@ -2559,28 +2563,22 @@
       type_id: BET:0000000
 - database: TAIR
   name: The Arabidopsis Information Resource
-  rdf_uri_prefix: http://identifiers.org/tair.locus/
+  rdf_uri_prefix: https://registry.identifiers.org/registry/tair.name
   generic_urls:
     - http://www.arabidopsis.org/
   entity_types:
-    - type_name: gene
-      type_id: SO:0000704
-      id_syntax: gene:[0-9]{7,12}
-      url_syntax: http://arabidopsis.org/servlets/TairObject?accession=[example_id]
-      example_id: TAIR:gene:2062713
-      example_url: http://arabidopsis.org/servlets/TairObject?accession=gene:2062713
     - type_name: communication
       type_id: BET:0000000
       id_syntax: Communication:[0-9]{7,12}
-      url_syntax: http://arabidopsis.org/servlets/TairObject?type=communication&id=[example_id]
+      url_syntax: https://www.arabidopsis.org/communication?key=[example_id]
       example_id: TAIR:Communication:1345790
-      example_url: http://arabidopsis.org/servlets/TairObject?type=communication&id=1345790
-    - type_name: primary transcript
-      type_id: SO:0000185
-      id_syntax: locus:[0-9]{7,12}
-      url_syntax: http://arabidopsis.org/servlets/TairObject?accession=[example_id]
-      example_id: TAIR:locus:2146653
-      example_url: http://arabidopsis.org/servlets/TairObject?accession=locus:2146653
+      example_url: https://www.arabidopsis.org/communication?key=1345790
+    - type_name: analysisreference
+      type_id: BET:0000000
+      id_syntax: analysisreference:[0-9]{7,12}
+      url_syntax: https://www.arabidopsis.org/analysisreference?key=[example_id]
+      example_id: TAIR:AnalysisReference:501780126
+      example_url: https://www.arabidopsis.org/analysisreference?key=501780126
 - database: NCBITaxon
   name: NCBI Taxonomy
   synonyms:
@@ -2592,11 +2590,13 @@
   entity_types:
     - type_name: entity
       type_id: BET:0000000
+      id_syntax: NCBITaxon[0-9]+
       url_syntax: http://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?id=[example_id]
       example_id: NCBITaxon:7227
       example_url: http://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?id=3702
 - database: TC
   name: Transport Protein Database
+  rdf_uri_prefix: http://identifiers.org/tcdb/
   generic_urls:
     - http://www.tcdb.org/
   entity_types:
@@ -2710,6 +2710,7 @@
       example_url: http://eawag-bbd.ethz.ch/servlets/pageservlet?ptype=ep&enzymeID=e0230
 - database: UM-BBD_pathwayID
   name: EAWAG Biocatalysis/Biodegradation Database
+  rdf_uri_prefix: http://identifiers.org/umbbd.pathway/
   generic_urls:
     - http://eawag-bbd.ethz.ch/
   entity_types:
@@ -2720,6 +2721,7 @@
       example_url: http://eawag-bbd.ethz.ch/acr/acr_map.html
 - database: UM-BBD_reactionID
   name: EAWAG Biocatalysis/Biodegradation Database
+  rdf_uri_prefix: http://identifiers.org/umbbd.reaction/
   generic_urls:
     - http://eawag-bbd.ethz.ch/
   entity_types:
@@ -2831,6 +2833,7 @@
       example_url: https://www.uniprot.org/arba/ARBA00000001
 - database: VZ
   name: ViralZone
+  rdf_uri_prefix: https://viralzone.expasy.org/
   generic_urls:
     - http://viralzone.expasy.org/
   entity_types:
@@ -2999,15 +3002,27 @@
     - type_name: gene
       type_id: SO:0000704
       id_syntax: ZDB-(TRNAG|LINCRNAG|MIRNAG|NCRNAG|SNORNAG|GENE)-[0-9]{6}-[0-9]+
-      url_syntax: http://zfin.org/[example_id]
-      example_id: ZDB-GENE-990415-103
-      example_url: http://zfin.org/ZDB-GENE-990415-103
+      url_syntax: https://zfin.org/[example_id]
+      example_id: ZFIN:ZDB-GENE-990415-103
+      example_url: https://zfin.org/ZDB-GENE-990415-103
     - type_name: variation
       type_id: VariO:0001
       id_syntax: ZDB-(GENO|MRPHLNO|CRISPR|FISH|TALEN)-[0-9]{6}-[0-9]+
-      url_syntax: http://zfin.org/[example_id]
-      example_id: ZDB-GENE-990415-103
-      example_url: http://zfin.org/ZDB-GENE-990415-103
+      url_syntax: https://zfin.org/[example_id]
+      example_id: ZFIN:ZDB-MRPHLNO-081020-2
+      example_url: https://zfin.org/ZDB-MRPHLNO-081020-2
+- database: ZFA
+  name: Zebrafish anatomy ontology
+  rdf_uri_prefix: http://purl.obolibrary.org/obo/ZFA_
+  generic_urls:
+    - http://zfin.org/
+  entity_types:
+    - type_name: anatomical entity
+      type_id: UBERON:0000105
+      id_syntax: '[0-9]{7}'
+      url_syntax: https://zfin.org/action/ontology/term/ZFA:[example_id]
+      example_id: ZFA:0001327
+      example_url: https://zfin.org/action/ontology/term/ZFA:0001327
 - database: TFClass
   name: TFClass is a resource for the classification of eukaryotic transcription factors based on the characteristics of their DNA-binding domains
   generic_urls:

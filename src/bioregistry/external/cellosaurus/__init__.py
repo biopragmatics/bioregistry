@@ -3,16 +3,14 @@
 from __future__ import annotations
 
 import itertools as itt
-import json
 import logging
-from collections.abc import Mapping, Sequence
+from collections.abc import Iterable, Mapping, Sequence
 from pathlib import Path
 from typing import Any, ClassVar
 
-from pystow.utils import download
-
+from bioregistry.alignment_model import Record, make_record
 from bioregistry.constants import RAW_DIRECTORY, URI_FORMAT_KEY
-from bioregistry.external.alignment_utils import Aligner, load_processed
+from bioregistry.external.alignment_utils import Aligner, build_getter
 
 __all__ = [
     "CellosaurusAligner",
@@ -34,47 +32,51 @@ KEYMAP = {
 }
 
 
-def get_cellosaurus(
-    force_download: bool = False, keep_missing_uri: bool = True
-) -> dict[str, dict[str, Any]]:
-    """Get the Cellosaurus registry."""
-    if PROCESSED_PATH.exists() and not force_download:
-        return load_processed(PROCESSED_PATH)
-
-    download(url=URL, path=RAW_PATH, force=True)
-    with RAW_PATH.open(encoding="ISO8859-1") as file:
+def process_cellosaurus_raw(path: Path) -> dict[str, Record]:
+    """Process raw Cellosaurus registry."""
+    with path.open(encoding="ISO8859-1") as file:
         lines = [line.rstrip() for line in file]
 
-    # Get up until the third big line break and chomp two extra lines
-    # for the line break
+        # Get up until the third big line break and chomp two extra lines
+        # for the line break
     break_line_idxs = [i for i, line in enumerate(lines) if line.startswith("------")]
     lines = lines[break_line_idxs[3] + 2 :]
 
     rv = {}
-    for cond, slines in itt.groupby(lines, lambda line: line == "//"):
-        if cond:
+    for line_is_break, grouped_lines in itt.groupby(lines, lambda line: line == "//"):
+        if line_is_break:
             continue
-        d: dict[str, str] = {}
-        for line in slines:
-            if line[6] != ":":  # strip notes out
-                continue
-            key, value = (s.strip() for s in line.split(":", 1))
-            mapped_key = KEYMAP.get(key)
-            if mapped_key is None:
-                continue
-            if mapped_key == URI_FORMAT_KEY:
-                value_tmp = _process_db_url(d["prefix"], value)
-                if value_tmp is None:
-                    continue
-                else:
-                    value = value_tmp
-            d[mapped_key] = value
-        if not keep_missing_uri and URI_FORMAT_KEY not in d:
-            continue
-        rv[d.pop("prefix")] = d
+        d = _get_dict_from_lines(grouped_lines)
+        prefix = d.pop("prefix")
+        rv[prefix] = make_record(d)
+    return rv
 
-    with PROCESSED_PATH.open("w") as file:
-        json.dump(rv, file, indent=2, sort_keys=True)
+
+get_cellosaurus = build_getter(
+    processed_path=PROCESSED_PATH, raw_path=RAW_PATH, url=URL, func=process_cellosaurus_raw
+)
+
+
+def _get_dict_from_lines(lines: Iterable[str]) -> dict[str, Any]:
+    rv: dict[str, Any] = {}
+    for line in lines:
+        if line[6] != ":":  # strip notes out
+            continue
+        key, value = (s.strip() for s in line.split(":", 1))
+        mapped_key = KEYMAP.get(key)
+        if mapped_key is None:
+            continue
+        if mapped_key == URI_FORMAT_KEY:
+            value_tmp = _process_db_url(rv["prefix"], value)
+            if value_tmp is None:
+                continue
+            else:
+                value = value_tmp
+        rv[mapped_key] = value
+
+    # TODO can these be mapped to bioregistry-standardized domains?
+    if category := rv.pop("category", None):
+        rv["description"] = category
 
     return rv
 

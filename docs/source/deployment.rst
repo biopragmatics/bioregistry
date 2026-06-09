@@ -106,9 +106,9 @@ best represent the Bioregistry project. The following table includes the keys th
 can put in a configuration JSON file, an explanation of the keys, and suggestions on how
 to replace them.
 
-==================================== =================================================
+==================================== ==================================================
 Key                                  Description
-==================================== =================================================
+==================================== ==================================================
 ``METAREGISTRY_TITLE``               The title on the home page, defaults to
                                      "Bioregistry".
 ``METAREGISTRY_HEADER``              The header text on the home page. Can include
@@ -125,8 +125,17 @@ Key                                  Description
 ``METAREGISTRY_EXAMPLE_IDENTIFIER``  An example local unique identifier to go with the
                                      example prefix
 ``ANALYTICS_API_KEY``                A key for
-                                     https://github.com/tom-draper/api-analytics
-==================================== =================================================
+                                     https://github.com/tom-draper/api-analytics.
+                                     Defaults for https://bioregistry.io, set to an
+                                     empty string to disable.
+``METAREGISTRY_GOOGLE_ANALYTICS``    A key for Google analytics. Defaults to the value
+                                     for https://bioregistry.io, set to an empty string
+                                     to disable.
+``METAREGISTRY_MATOMO``              A key for `Matomo
+                                     <https://matomo.org/matomo-cloud/>`_ analytics,
+                                     which is GDPR-friendly. Blank by default. Don't
+                                     include ``https://`` or a trailing slash.
+==================================== ==================================================
 
 Finally, after filling up a configuration JSON file and naming it something like
 ``config.json``, you can use the ``--config config.json`` flag in the Python commands to
