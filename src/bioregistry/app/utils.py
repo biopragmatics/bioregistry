@@ -1,28 +1,24 @@
-"""Utility functions for the Bioregistry :mod:`flask` app."""
+"""Utility functions for the :mod:`flask` app."""
 
 from __future__ import annotations
 
 import json
 from collections.abc import Callable, Mapping, Sequence
 from functools import partial
-from typing import Any, cast
+from typing import Any, TypeAlias, cast
 
+import curies
+import rdflib
 import werkzeug
 import yaml
-from flask import (
-    Response,
-    abort,
-    current_app,
-    redirect,
-    render_template,
-    request,
-    url_for,
-)
+from curies import Reference
+from flask import Response, abort, current_app, redirect, render_template, request, url_for
 from pydantic import BaseModel
+from rdflib import RDFS
 
-from bioregistry.resource_manager import Manager
-
+from .constants import KEY_TO_MIMETYPE, MIMETYPE_TO_RDFLIB_FORMAT
 from .proxies import manager
+from ..resource_manager import Manager
 from ..utils import _norm
 
 
@@ -168,9 +164,12 @@ def _autocomplete(manager_: Manager, q: str, url_prefix: str | None = None) -> M
     }
 
 
+Serializer: TypeAlias = Callable[[BaseModel], str]
+
+
 def serialize(
-    data: BaseModel,
-    serializers: Sequence[tuple[str, str, Callable[[BaseModel], str]]] | None = None,
+    model: BaseModel,
+    serializers: Sequence[tuple[str, str, Serializer]] | None = None,
     negotiate: bool = False,
 ) -> Response:
     """Serialize either as JSON or YAML."""
@@ -178,36 +177,57 @@ def serialize(
         accept = get_accept_media_type()
     else:
         arg = request.args.get("format", "json")
-        if arg not in FORMAT_MAP:
+        if arg not in KEY_TO_MIMETYPE:
             return abort(
-                400, f"unhandled value for `format`: {arg}. Use one of: {sorted(FORMAT_MAP)}"
+                400, f"unhandled value for `format`: {arg}. Use one of: {sorted(KEY_TO_MIMETYPE)}"
             )
-        accept = FORMAT_MAP[arg]
+        accept = KEY_TO_MIMETYPE[arg]
 
     if accept == "application/json":
-        return cast(
-            Response,
-            current_app.response_class(
-                json.dumps(
-                    data.model_dump(exclude_unset=True, exclude_none=True), ensure_ascii=False
-                ),
-                mimetype="application/json",
-            ),
-        )
+        return flask_jsonify_pydantic(model)
     elif accept in "application/yaml":
-        return cast(
-            Response,
-            current_app.response_class(
-                yaml.safe_dump(
-                    data.model_dump(exclude_unset=True, exclude_none=True), allow_unicode=True
-                ),
-                mimetype="text/plain",
-            ),
-        )
+        return flask_yamlify_pydantic(model)
     for _name, mimetype, func in serializers or []:
         if accept == mimetype:
-            return cast(Response, current_app.response_class(func(data), mimetype=mimetype))
+            return cast(Response, current_app.response_class(func(model), mimetype=mimetype))
     return abort(404, f"unhandled media type: {accept}")
+
+
+def flask_jsonify_pydantic(model: BaseModel) -> Response:
+    """Serialize a model to JSON."""
+    # do this instead of flask.jsonify to ensure_ascii=False
+    return cast(
+        Response,
+        current_app.response_class(
+            json.dumps(model.model_dump(exclude_unset=True, exclude_none=True), ensure_ascii=False),
+            mimetype="application/json",
+        ),
+    )
+
+
+def flask_yamlify_pydantic(model: BaseModel) -> Response:
+    """Serialize a model to YAML."""
+    return yamlify(model.model_dump(exclude_unset=True, exclude_none=True))
+
+
+def flask_response_rdf(graph: rdflib.Graph, mimetype: str) -> Response:
+    """Serialize a graph to RDF."""
+    return cast(
+        Response,
+        current_app.response_class(
+            graph.serialize(format=MIMETYPE_TO_RDFLIB_FORMAT[mimetype]), mimetype=mimetype
+        ),
+    )
+
+
+def yamlify(data: Any) -> Response:
+    """Create a YAML response."""
+    return cast(
+        Response,
+        current_app.response_class(
+            yaml.safe_dump(data, allow_unicode=True), mimetype="application/yaml"
+        ),
+    )
 
 
 def serialize_model(entry: BaseModel, func, negotiate: bool = False) -> Response:  # type:ignore
@@ -232,27 +252,54 @@ def get_accept_media_type() -> str:
     """Get accept type."""
     fmt = request.args.get("format")
     if fmt is not None:
-        rv = FORMAT_MAP.get(fmt)
-        if rv:
-            return rv
-        return abort(400, f"bad query parameter format={fmt}. Should be one of {list(FORMAT_MAP)}")
+        if fmt not in KEY_TO_MIMETYPE:
+            raise abort(
+                400, f"bad query parameter format={fmt}. Should be one of {list(KEY_TO_MIMETYPE)}"
+            )
+        return KEY_TO_MIMETYPE[fmt]
+
+    # TODO could try and raise on "bad" mimetypes, but this
+    #  might be more of a rabbit hole for parsing all sorts of extra parts too
 
     # If accept is specifically set to one of the special quanties, then use it.
     accept = str(request.accept_mimetypes)
-    if accept in FORMAT_MAP.values():
+    if accept in KEY_TO_MIMETYPE.values():
         return accept
 
     # Otherwise, return HTML
     return "text/html"
 
 
-FORMAT_MAP = {
-    "json": "application/json",
-    "yml": "application/yaml",
-    "yaml": "application/yaml",
-    "turtle": "text/turtle",
-    "jsonld": "application/ld+json",
-    "json-ld": "application/ld+json",
-    "rdf": "application/rdf+xml",
-    "n3": "text/n3",
-}
+def get_provider_graph(
+    manager: Manager, reference: curies.Reference, providers: dict[str, str]
+) -> rdflib.Graph:
+    """Get the provider graph."""
+    graph = rdflib.Graph()
+    node_str = f"{manager.base_url}/{reference.curie}"
+    node = rdflib.URIRef(node_str)
+    for _key, provider in providers.items():
+        if provider != node_str:
+            graph.add((node, RDFS.seeAlso, rdflib.URIRef(provider)))
+    return graph
+
+
+class ResponseWrapperError(ValueError):
+    """An exception that helps with code reuse that returns multiple value types."""
+
+    def __init__(self, response: str | werkzeug.Response, code: int | None = None) -> None:
+        """Instantiate this "exception", which is a tricky way of writing a macro."""
+        self.response = response
+        self.code = code
+
+    def get_value(self) -> tuple[str | werkzeug.Response, int] | str | werkzeug.Response:
+        """Get either the response, or a pair of response + code if a code is available."""
+        if self.code is not None:
+            return self.response, self.code
+        return self.response
+
+
+class IdentifierResponse(BaseModel):
+    """A response for looking up a reference."""
+
+    query: Reference
+    providers: Mapping[str, str]

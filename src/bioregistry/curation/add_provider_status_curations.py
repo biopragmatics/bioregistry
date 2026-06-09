@@ -8,7 +8,7 @@ import pandas as pd
 from tqdm import tqdm
 
 from bioregistry import manager
-from bioregistry.schema.struct import StatusCheck
+from bioregistry.schema import StatusCheck
 
 URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vSC8RAMlNGauLHJb1RGwFuvC2LBJBjeeICRtq596npE6G4ZjZwX8W_Fz031hAfqsbu6f9Ruxl2PTsFx/pub?gid=1207894592&single=true&output=tsv"
 

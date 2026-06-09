@@ -1,7 +1,6 @@
-# See https://setuptools.readthedocs.io/en/latest/build_meta.html
 [build-system]
-requires = ["setuptools", "wheel"]
-build-backend = "setuptools.build_meta"
+requires = ["uv_build>=0.9.4,<1.0"]
+build-backend = "uv_build"
 
 # Pytest, see https://docs.pytest.org/en/stable/reference/customize.html#pyproject-toml
 [tool.pytest.ini_options]
@@ -11,7 +10,7 @@ markers = [
 
 [project]
 name = "bioregistry"
-version = "0.12.40-dev"
+version = "0.13.60-dev"
 description = "Integrated registry of biological databases and nomenclatures"
 readme = "README.md"
 authors = [
@@ -27,7 +26,6 @@ classifiers = [
     "Development Status :: 4 - Beta",
     "Environment :: Console",
     "Intended Audience :: Developers",
-    "License :: OSI Approved :: MIT License",
     "Operating System :: OS Independent",
     "Framework :: Pytest",
     "Framework :: tox",
@@ -37,6 +35,7 @@ classifiers = [
     "Programming Language :: Python :: 3.11",
     "Programming Language :: Python :: 3.12",
     "Programming Language :: Python :: 3.13",
+    "Programming Language :: Python :: 3.14",
     "Programming Language :: Python :: 3 :: Only",
 ]
 keywords = [
@@ -51,20 +50,26 @@ keywords = [
 # License Information. This can be any valid SPDX identifiers that can be resolved
 # with URLs like https://spdx.org/licenses/MIT
 # See https://packaging.python.org/en/latest/guides/writing-pyproject-toml/#license
-license = { file = "LICENSE" }
+license = "MIT"
+license-files = ["LICENSE"]
 
 requires-python = ">=3.10"
 dependencies = [
     "requests",
     "tqdm",
-    "pystow>=0.7.7",
+    "pystow>=0.8.2",
     "click",
     "more_click>=0.1.2",
     "pydantic[email]>=2.0",
-    "curies>=0.7.0",
+    "curies>=0.13.9",
+    "sssom-pydantic>=0.5.10",
+    #
+    "urllib3>=2.7.0",
+    "python-multipart>=0.0.27",
+    "idna>=3.15",
 ]
 
-[project.optional-dependencies]
+[dependency-groups]
 tests = [
     "pytest",
     "coverage",
@@ -72,6 +77,29 @@ tests = [
     "httpx",
     "scikit-learn",
 ]
+typing = [
+    "mypy",
+    "types-PyYAML",
+    "types-Markdown",
+    "types-tabulate",
+    "types-requests",
+    "types-python-dateutil",
+    "types-Flask",
+    "types-WTForms",
+    "types-tqdm",
+    "types-beautifulsoup4",
+    "types-Markdown",
+    "matplotlib-stubs",
+    "pandas-stubs",
+    "fastapi[all]",
+]
+dev = [
+    { include-group = "tests" },
+    { include-group = "typing" },
+    "pydantic",
+]
+
+[project.optional-dependencies]
 docs = [
     "sphinx>=8",
     "sphinx-rtd-theme>=3.0",
@@ -88,8 +116,10 @@ align = [
     "tabulate",
     "defusedxml",
     "class-resolver",
-    "fairsharing-client>=0.1.0",
-    "pandas",
+    "fairsharing-client>=0.3.1",
+    "pandas<3.0",
+    "wikidata-client",
+    "ontoportal-client>=0.0.9",
 ]
 export = [
     "pyyaml",
@@ -101,12 +131,12 @@ charts = [
     "matplotlib",
     "matplotlib_venn",
     "seaborn",
-    "pandas",
+    "pandas<3.0",
     "jinja2",
 ]
 health = [
     "click_default_group",
-    "pandas",
+    "pandas<3.0",
     "tabulate",
     "pyyaml",
     "jinja2",
@@ -119,6 +149,7 @@ web = [
     "flask>=3.0.0",
     "werkzeug>=3.0.0",
     "fastapi",
+    "starlette>=1.0.1",
     "uvicorn",
     "bootstrap-flask",
     "markdown",
@@ -127,13 +158,13 @@ web = [
     "api-analytics[fastapi]",
 ]
 paper-ranking = [
-    "pandas",
+    "pandas<3.0",
     "scikit-learn",
     "tabulate",
     "pubmed-downloader>=0.0.12",
 ]
 mapping-checking = [
-    "pandas",
+    "pandas<3.0",
     "sentence_transformers",
 ]
 
@@ -144,17 +175,6 @@ mapping-checking = [
 Homepage = "https://github.com/biopragmatics/bioregistry"
 Repository = "https://github.com/biopragmatics/bioregistry.git"
 Documentation = "https://bioregistry.readthedocs.io"
-
-[tool.setuptools]
-package-dir = { "" = "src" }
-
-[tool.setuptools.packages.find]
-# this implicitly sets `packages = ":find"`
-where = ["src"]  # list of folders that contain the packages (["."] by default)
-
-# See https://setuptools.pypa.io/en/latest/userguide/datafiles.html
-[tool.setuptools.package-data]
-"*" = ["*.*"]
 
 [project.scripts]
 bioregistry = "bioregistry.cli:main"
@@ -187,6 +207,7 @@ omit = [
     "docs/*",
     "src/bioregistry/cli.py",
     "src/bioregistry/__main__.py",
+    "src/bioregistry/curation/*.py",
 ]
 
 [tool.coverage.paths]
@@ -266,7 +287,7 @@ known-first-party = [
 docstring-code-format = true
 
 [tool.bumpversion]
-current_version = "0.12.40-dev"
+current_version = "0.13.60-dev"
 parse = "(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+)(?:-(?P<release>[0-9A-Za-z-]+(?:\\.[0-9A-Za-z-]+)*))?(?:\\+(?P<build>[0-9A-Za-z-]+(?:\\.[0-9A-Za-z-]+)*))?"
 serialize = [
     "{major}.{minor}.{patch}-{release}+{build}",

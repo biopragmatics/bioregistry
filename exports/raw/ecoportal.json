@@ -4,7 +4,7 @@
     "@type": "http://data.bioontology.org/metadata/Ontology",
     "acronym": "EUROSCIVOC",
     "administeredBy": [
-      "https://data.ecoportal.lifewatch.eu/users/admin"
+      "https://data.ecoportal.lifewatch.eu/users/bignoen"
     ],
     "contact": {
       "email": "OP-EU-VOCABULARIES@publications.europa.eu",
@@ -73,7 +73,7 @@
     "publications": [
       "https://op.europa.eu/en/web/eu-vocabularies/dataset/-/resource?uri=http://publications.europa.eu/resource/dataset/euroscivoc"
     ],
-    "version": "1.3",
+    "version": "1.6",
     "viewingRestriction": "public"
   },
   {
@@ -299,6 +299,9 @@
     },
     "name": "Chemical Functional Ontology",
     "ontologyType": "https://data.ecoportal.lifewatch.eu/ontology_types/ONTOLOGY",
+    "projects": [
+      "https://data.ecoportal.lifewatch.eu/projects/ITINERIS"
+    ],
     "publications": [
       "https://doi.org/10.1093/nar/gkac919"
     ],
@@ -528,10 +531,13 @@
     },
     "name": "CODATA Research Data Management Terminology",
     "ontologyType": "https://data.ecoportal.lifewatch.eu/ontology_types/ONTOLOGY",
+    "projects": [
+      "https://data.ecoportal.lifewatch.eu/projects/ITINERIS"
+    ],
     "publications": [
       "https://doi.org/10.5281/zenodo.10626170"
     ],
-    "version": "v001",
+    "version": "v002",
     "viewingRestriction": "public"
   },
   {
@@ -682,6 +688,159 @@
     },
     "name": "EUNIS habitats",
     "ontologyType": "https://data.ecoportal.lifewatch.eu/ontology_types/ONTOLOGY",
+    "projects": [
+      "https://data.ecoportal.lifewatch.eu/projects/LW+ITA+Data+Portal",
+      "https://data.ecoportal.lifewatch.eu/projects/ITINERIS"
+    ],
+    "viewingRestriction": "public"
+  },
+  {
+    "@id": "https://data.ecoportal.lifewatch.eu/ontologies/WLMO",
+    "@type": "http://data.bioontology.org/metadata/Ontology",
+    "acronym": "WLMO",
+    "administeredBy": [
+      "https://data.ecoportal.lifewatch.eu/users/martina_pulieri"
+    ],
+    "contact": {
+      "email": "alexander.wolodkin@senckenberg.de",
+      "name": "Alexander Wolodkin"
+    },
+    "description": "This semantic artifact describes the semantic relationships between entities which model the setup of a biodiversity monitoring project based on capturing audiovisual digital recordings. It encodes the semantics of the Wildlife Monitoring Ontology and at the same time provides the datamodel behind the wildlive.senckenberg.de platform.",
+    "hasDomain": [
+      "https://data.ecoportal.lifewatch.eu/categories/ECO",
+      "https://data.ecoportal.lifewatch.eu/categories/Applied_Ecology",
+      "https://data.ecoportal.lifewatch.eu/categories/Biodiversity_Conservation",
+      "https://data.ecoportal.lifewatch.eu/categories/Environmental_Sciences"
+    ],
+    "license": "CC-BY-4.0",
+    "links": {
+      "@context": {
+        "agents": "http://xmlns.com/foaf/0.1/Agent",
+        "analytics": "http://data.bioontology.org/metadata/Analytics",
+        "categories": "http://data.bioontology.org/metadata/Category",
+        "classes": "http://www.w3.org/2002/07/owl#Class",
+        "collections": "http://www.w3.org/2004/02/skos/core#Collection",
+        "download": "http://data.bioontology.org/metadata/Ontology",
+        "groups": "http://data.bioontology.org/metadata/Group",
+        "identifier_requests": "http://data.bioontology.org/metadata/IdentifierRequest",
+        "instances": "http://data.bioontology.org/metadata/Instance",
+        "latest_submission": "http://data.bioontology.org/metadata/OntologySubmission",
+        "mappings": "metadata/Mapping",
+        "metrics": "http://data.bioontology.org/metadata/Metrics",
+        "notes": "http://data.bioontology.org/metadata/Note",
+        "projects": "http://data.bioontology.org/metadata/Project",
+        "properties": "http://data.bioontology.org/metadata/Property",
+        "reviews": "http://data.bioontology.org/metadata/Review",
+        "roots": "http://www.w3.org/2002/07/owl#Class",
+        "schemes": "http://www.w3.org/2004/02/skos/core#ConceptScheme",
+        "single_class": "http://www.w3.org/2002/07/owl#Class",
+        "submissions": "http://data.bioontology.org/metadata/OntologySubmission",
+        "ui": "http://data.bioontology.org/metadata/Ontology",
+        "views": "http://data.bioontology.org/metadata/Ontology",
+        "xl_labels": "http://www.w3.org/2008/05/skos-xl#Label"
+      },
+      "agents": "https://data.ecoportal.lifewatch.eu/ontologies/WLMO/agents",
+      "analytics": "https://data.ecoportal.lifewatch.eu/ontologies/WLMO/analytics",
+      "categories": "https://data.ecoportal.lifewatch.eu/ontologies/WLMO/categories",
+      "classes": "https://data.ecoportal.lifewatch.eu/ontologies/WLMO/classes",
+      "collections": "https://data.ecoportal.lifewatch.eu/ontologies/WLMO/collections",
+      "download": "https://data.ecoportal.lifewatch.eu/ontologies/WLMO/download",
+      "groups": "https://data.ecoportal.lifewatch.eu/ontologies/WLMO/groups",
+      "identifier_requests": "https://data.ecoportal.lifewatch.eu/ontologies/WLMO/identifier_requests",
+      "instances": "https://data.ecoportal.lifewatch.eu/ontologies/WLMO/instances",
+      "latest_submission": "https://data.ecoportal.lifewatch.eu/ontologies/WLMO/latest_submission",
+      "mappings": "https://data.ecoportal.lifewatch.eu/ontologies/WLMO/mappings",
+      "metrics": "https://data.ecoportal.lifewatch.eu/ontologies/WLMO/metrics",
+      "notes": "https://data.ecoportal.lifewatch.eu/ontologies/WLMO/notes",
+      "projects": "https://data.ecoportal.lifewatch.eu/ontologies/WLMO/projects",
+      "properties": "https://data.ecoportal.lifewatch.eu/ontologies/WLMO/properties",
+      "reviews": "https://data.ecoportal.lifewatch.eu/ontologies/WLMO/reviews",
+      "roots": "https://data.ecoportal.lifewatch.eu/ontologies/WLMO/classes/roots",
+      "schemes": "https://data.ecoportal.lifewatch.eu/ontologies/WLMO/schemes",
+      "single_class": "https://data.ecoportal.lifewatch.eu/ontologies/WLMO/classes/{class_id}",
+      "submissions": "https://data.ecoportal.lifewatch.eu/ontologies/WLMO/submissions",
+      "ui": "http://ecoportal.lifewatch.eu/ontologies/WLMO",
+      "views": "https://data.ecoportal.lifewatch.eu/ontologies/WLMO/views",
+      "xl_labels": "https://data.ecoportal.lifewatch.eu/ontologies/WLMO/skos_xl_labels"
+    },
+    "name": "The Wildlive Monitoring Ontology",
+    "ontologyType": "https://data.ecoportal.lifewatch.eu/ontology_types/ONTOLOGY",
+    "version": "0.3",
+    "viewingRestriction": "public"
+  },
+  {
+    "@id": "https://data.ecoportal.lifewatch.eu/ontologies/BIOMASSVRE",
+    "@type": "http://data.bioontology.org/metadata/Ontology",
+    "acronym": "BIOMASSVRE",
+    "administeredBy": [
+      "https://data.ecoportal.lifewatch.eu/users/martina_pulieri"
+    ],
+    "contact": {
+      "email": "jessica.titocci@cnr.it",
+      "name": "Jessica Titocci"
+    },
+    "description": "The Biomass VRE Thesaurus provides a comprehensive set of concepts designed to enhance the interoperability of data related to both aquatic and terrestrial biomass. Its main goal is to facilitate the harmonisation and integration of heterogeneous datasets that include abiotic and biotic variables, measured in situ or derived from remote sensing observations. The thesaurus includes well-defined terms with corresponding labels, definitions, and semantic relationships covering key concepts associated with aquatic and terrestrial biomass. The Biomass VRE Thesaurus ensures compatibility with other data infrastructures and supports the sharing, comparison, and reuse of biomass-related information across different scientific domains and research communities.",
+    "exampleIdentifier": "https://kos.lifewatch.eu/thesauri/vrebiomass/c_12bf14d7",
+    "hasDomain": [
+      "https://data.ecoportal.lifewatch.eu/categories/ECO",
+      "https://data.ecoportal.lifewatch.eu/categories/Applied_Ecology",
+      "https://data.ecoportal.lifewatch.eu/categories/BIODIV"
+    ],
+    "homepage": "https://ecoportal.lifewatch.eu/ontologies/BIOMASSVRE",
+    "license": "CC-BY-4.0",
+    "links": {
+      "@context": {
+        "agents": "http://xmlns.com/foaf/0.1/Agent",
+        "analytics": "http://data.bioontology.org/metadata/Analytics",
+        "categories": "http://data.bioontology.org/metadata/Category",
+        "classes": "http://www.w3.org/2002/07/owl#Class",
+        "collections": "http://www.w3.org/2004/02/skos/core#Collection",
+        "download": "http://data.bioontology.org/metadata/Ontology",
+        "groups": "http://data.bioontology.org/metadata/Group",
+        "identifier_requests": "http://data.bioontology.org/metadata/IdentifierRequest",
+        "instances": "http://data.bioontology.org/metadata/Instance",
+        "latest_submission": "http://data.bioontology.org/metadata/OntologySubmission",
+        "mappings": "metadata/Mapping",
+        "metrics": "http://data.bioontology.org/metadata/Metrics",
+        "notes": "http://data.bioontology.org/metadata/Note",
+        "projects": "http://data.bioontology.org/metadata/Project",
+        "properties": "http://data.bioontology.org/metadata/Property",
+        "reviews": "http://data.bioontology.org/metadata/Review",
+        "roots": "http://www.w3.org/2002/07/owl#Class",
+        "schemes": "http://www.w3.org/2004/02/skos/core#ConceptScheme",
+        "single_class": "http://www.w3.org/2002/07/owl#Class",
+        "submissions": "http://data.bioontology.org/metadata/OntologySubmission",
+        "ui": "http://data.bioontology.org/metadata/Ontology",
+        "views": "http://data.bioontology.org/metadata/Ontology",
+        "xl_labels": "http://www.w3.org/2008/05/skos-xl#Label"
+      },
+      "agents": "https://data.ecoportal.lifewatch.eu/ontologies/BIOMASSVRE/agents",
+      "analytics": "https://data.ecoportal.lifewatch.eu/ontologies/BIOMASSVRE/analytics",
+      "categories": "https://data.ecoportal.lifewatch.eu/ontologies/BIOMASSVRE/categories",
+      "classes": "https://data.ecoportal.lifewatch.eu/ontologies/BIOMASSVRE/classes",
+      "collections": "https://data.ecoportal.lifewatch.eu/ontologies/BIOMASSVRE/collections",
+      "download": "https://data.ecoportal.lifewatch.eu/ontologies/BIOMASSVRE/download",
+      "groups": "https://data.ecoportal.lifewatch.eu/ontologies/BIOMASSVRE/groups",
+      "identifier_requests": "https://data.ecoportal.lifewatch.eu/ontologies/BIOMASSVRE/identifier_requests",
+      "instances": "https://data.ecoportal.lifewatch.eu/ontologies/BIOMASSVRE/instances",
+      "latest_submission": "https://data.ecoportal.lifewatch.eu/ontologies/BIOMASSVRE/latest_submission",
+      "mappings": "https://data.ecoportal.lifewatch.eu/ontologies/BIOMASSVRE/mappings",
+      "metrics": "https://data.ecoportal.lifewatch.eu/ontologies/BIOMASSVRE/metrics",
+      "notes": "https://data.ecoportal.lifewatch.eu/ontologies/BIOMASSVRE/notes",
+      "projects": "https://data.ecoportal.lifewatch.eu/ontologies/BIOMASSVRE/projects",
+      "properties": "https://data.ecoportal.lifewatch.eu/ontologies/BIOMASSVRE/properties",
+      "reviews": "https://data.ecoportal.lifewatch.eu/ontologies/BIOMASSVRE/reviews",
+      "roots": "https://data.ecoportal.lifewatch.eu/ontologies/BIOMASSVRE/classes/roots",
+      "schemes": "https://data.ecoportal.lifewatch.eu/ontologies/BIOMASSVRE/schemes",
+      "single_class": "https://data.ecoportal.lifewatch.eu/ontologies/BIOMASSVRE/classes/{class_id}",
+      "submissions": "https://data.ecoportal.lifewatch.eu/ontologies/BIOMASSVRE/submissions",
+      "ui": "http://ecoportal.lifewatch.eu/ontologies/BIOMASSVRE",
+      "views": "https://data.ecoportal.lifewatch.eu/ontologies/BIOMASSVRE/views",
+      "xl_labels": "https://data.ecoportal.lifewatch.eu/ontologies/BIOMASSVRE/skos_xl_labels"
+    },
+    "name": "Biomass VRE Thesaurus",
+    "ontologyType": "https://data.ecoportal.lifewatch.eu/ontology_types/ONTOLOGY",
+    "version": "1.0.0",
     "viewingRestriction": "public"
   },
   {
@@ -754,6 +913,9 @@
     },
     "name": "FRBR-aligned Bibliographic Ontology",
     "ontologyType": "https://data.ecoportal.lifewatch.eu/ontology_types/ONTOLOGY",
+    "projects": [
+      "https://data.ecoportal.lifewatch.eu/projects/ITINERIS"
+    ],
     "publications": [
       "http://speroni.web.cs.unibo.it/publications/peroni-2012-fabio-cito-ontologies.pdf"
     ],
@@ -831,6 +993,9 @@
     },
     "name": "The Extensible Observation Ontology",
     "ontologyType": "https://data.ecoportal.lifewatch.eu/ontology_types/ONTOLOGY",
+    "projects": [
+      "https://data.ecoportal.lifewatch.eu/projects/LW+ITA+Data+Portal"
+    ],
     "publications": [
       "https://doi.org/10.1016/j.ecoinf.2007.05.004"
     ],
@@ -843,8 +1008,7 @@
     "@type": "http://data.bioontology.org/metadata/Ontology",
     "acronym": "ENVTHES",
     "administeredBy": [
-      "https://data.ecoportal.lifewatch.eu/users/mabablue",
-      "https://data.ecoportal.lifewatch.eu/users/jonquet"
+      "https://data.ecoportal.lifewatch.eu/users/mabablue"
     ],
     "description": "EnvThes compiles a set of terms in order to describe in a harmonised way data resulting from observations and measurements of ecosystem processes across different domain specific sciences. It is used by DEIMS-SDR for common keywords for annotation and quering metadata purposes.",
     "hasDomain": [
@@ -902,11 +1066,21 @@
       "xl_labels": "https://data.ecoportal.lifewatch.eu/ontologies/ENVTHES/skos_xl_labels"
     },
     "name": "Environmental Thesaurus",
+    "notes": [
+      "https://data.ecoportal.lifewatch.eu/notes/09437ca0-177f-013e-2bf2-3c241174c172"
+    ],
     "ontologyType": "https://data.ecoportal.lifewatch.eu/ontology_types/ONTOLOGY",
+    "projects": [
+      "https://data.ecoportal.lifewatch.eu/projects/eLTER+PLUS",
+      "https://data.ecoportal.lifewatch.eu/projects/LW+ITA+Data+Portal"
+    ],
     "publications": [
       "https://www.w3.org/2013/share-psi/wiki/images/0/00/Schentz_et_al_SemanticDataIntegrationforLTER.pdf"
     ],
-    "version": "5.0.15",
+    "reviews": [
+      "https://data.ecoportal.lifewatch.eu/reviews/30f25c90-019c-0139-be80-000c29c082c0"
+    ],
+    "version": "5.0.16",
     "viewingRestriction": "public"
   },
   {
@@ -921,7 +1095,7 @@
       "email": "ilaria.rosati@cnr.it",
       "name": "Ilaria Rosati"
     },
-    "description": "The Fish Traits Thesaurus is the first initiative to deal with the semantics of fish functional traits. It has been developed by LifeWatch Italy, the Italian node of the e-science European infrastructure for biodiversity and ecosystem research (LifeWatch ERIC). FishTraits reflects the agreement of a scientific expert community to fix semantic properties (e.g. label, definition, relationships) of approximately 220 concepts.",
+    "description": "The Fish Traits Thesaurus is the first initiative to deal with the semantics of fish functional traits. It has been developed by LifeWatch Italy, the Italian node of the e-science European infrastructure for biodiversity and ecosystem research (LifeWatch ERIC). FishTraits reflects the agreement of a scientific expert community to fix semantic properties (e.g. label, definition, relationships) of approximately 220 concepts. This resource has been deprecated. The concepts can be consulted in https://kos.lifewatch.eu/thesauri/traits/.",
     "hasDomain": [
       "https://data.ecoportal.lifewatch.eu/categories/Functional_Diversity",
       "https://data.ecoportal.lifewatch.eu/categories/Aquatic_Biodiversity",
@@ -1062,6 +1236,9 @@
     },
     "name": "WISE Classification system",
     "ontologyType": "https://data.ecoportal.lifewatch.eu/ontology_types/ONTOLOGY",
+    "projects": [
+      "https://data.ecoportal.lifewatch.eu/projects/ITINERIS"
+    ],
     "viewingRestriction": "public"
   },
   {
@@ -1138,6 +1315,9 @@
     },
     "name": "Soil Food Web Ontology",
     "ontologyType": "https://data.ecoportal.lifewatch.eu/ontology_types/ONTOLOGY",
+    "projects": [
+      "https://data.ecoportal.lifewatch.eu/projects/ITINERIS"
+    ],
     "publications": [
       "https://doi.org/10.1016/j.ecoinf.2023.102360"
     ],
@@ -1233,7 +1413,7 @@
       "email": "meghan.balk@gmail.com",
       "name": "Meghan Balk"
     },
-    "description": "FuTRES Ontology of Vertebrate Traits is an application ontology used to convert vertebrate trait data in spreadsheet to triples. FOVT leverages the BioCollections Ontology (BCO) to link observations of individual specimens to their trait values. Traits are defined in the Ontology of Biological Attributes (OBA). For more details on FOVT, see https://futres.org/.",
+    "description": "FuTRES Ontology of Vertebrate Traits is an application ontology used to convert vertebrate trait data in spreadsheet to triples. FOVT leverages the BioCollections Ontology (BCO) to link observations of individual specimens to their trait values. Traits are defined in the Ontology of Biological Attributes (OBA). For more details on FOVT, see https://futres.org/., None, These are the terms that are improted for FOVT to describe vertebrate traits.",
     "hasDomain": [
       "https://data.ecoportal.lifewatch.eu/categories/Functional_Diversity",
       "https://data.ecoportal.lifewatch.eu/categories/BIODIV"
@@ -1292,7 +1472,10 @@
     },
     "name": "FuTRES Ontology of Vertebrate Traits",
     "ontologyType": "https://data.ecoportal.lifewatch.eu/ontology_types/ONTOLOGY",
-    "version": "2023-05-31",
+    "projects": [
+      "https://data.ecoportal.lifewatch.eu/projects/ITINERIS"
+    ],
+    "version": "2026-03-19",
     "viewingRestriction": "public"
   },
   {
@@ -1368,6 +1551,9 @@
     },
     "name": "Lithology",
     "ontologyType": "https://data.ecoportal.lifewatch.eu/ontology_types/ONTOLOGY",
+    "projects": [
+      "https://data.ecoportal.lifewatch.eu/projects/ITINERIS"
+    ],
     "publications": [
       "https://thesaurus.geolba.ac.at/bibl_res.html?proj=lithology"
     ],
@@ -1520,6 +1706,9 @@
     },
     "name": "The DMP Common Standard Ontology",
     "ontologyType": "https://data.ecoportal.lifewatch.eu/ontology_types/ONTOLOGY",
+    "projects": [
+      "https://data.ecoportal.lifewatch.eu/projects/ITINERIS"
+    ],
     "version": "4.0.0",
     "viewingRestriction": "public"
   },
@@ -1620,7 +1809,7 @@
       "https://data.ecoportal.lifewatch.eu/categories/Population_Ecology",
       "https://data.ecoportal.lifewatch.eu/categories/BIODIV"
     ],
-    "license": "CC BY-NC-SA 4.0",
+    "license": "CC-BY-NC-SA-4.0",
     "links": {
       "@context": {
         "agents": "http://xmlns.com/foaf/0.1/Agent",
@@ -1673,6 +1862,9 @@
     },
     "name": "Invasion Biology Ontology",
     "ontologyType": "https://data.ecoportal.lifewatch.eu/ontology_types/ONTOLOGY",
+    "projects": [
+      "https://data.ecoportal.lifewatch.eu/projects/ITINERIS"
+    ],
     "version": "1.2",
     "viewingRestriction": "public"
   },
@@ -1697,7 +1889,7 @@
       "https://data.ecoportal.lifewatch.eu/categories/ENV"
     ],
     "homepage": "http://linked.earth/ontology/#IntegrationTime",
-    "license": "CC BY 2.0",
+    "license": "CC-BY-2.0",
     "links": {
       "@context": {
         "agents": "http://xmlns.com/foaf/0.1/Agent",
@@ -1750,6 +1942,9 @@
     },
     "name": "The Paleo Units Ontology",
     "ontologyType": "https://data.ecoportal.lifewatch.eu/ontology_types/ONTOLOGY",
+    "projects": [
+      "https://data.ecoportal.lifewatch.eu/projects/ITINERIS"
+    ],
     "version": "2.0.0",
     "viewingRestriction": "public"
   },
@@ -1901,6 +2096,9 @@
     },
     "name": "Ontology of Integrated Carbon Observation System (ICOS)",
     "ontologyType": "https://data.ecoportal.lifewatch.eu/ontology_types/ONTOLOGY",
+    "projects": [
+      "https://data.ecoportal.lifewatch.eu/projects/ITINERIS"
+    ],
     "version": "1.1",
     "viewingRestriction": "public"
   },
@@ -2056,6 +2254,81 @@
     "viewingRestriction": "public"
   },
   {
+    "@id": "https://data.ecoportal.lifewatch.eu/ontologies/SPO",
+    "@type": "http://data.bioontology.org/metadata/Ontology",
+    "acronym": "SPO",
+    "administeredBy": [
+      "https://data.ecoportal.lifewatch.eu/users/martina_pulieri"
+    ],
+    "contact": {
+      "email": "ilaria.rosati@cnr.it",
+      "name": "Ilaria Rosati"
+    },
+    "description": "The LifeWatch Italy Semantic Platform Ontology is a graph-based data model designed to integrate and represent datasets produced by biodiversity and ecosystem researchers in LifeWatch Italy, along with the associated metadata. This semantic framework is implemented within the LifeWatch Italy Semantic Platform, offering users a browser to navigate ontology classes, a search engine, a SPARQL query endpoint, and other related services. The ontology developed by reusing LifeWatch Italy Domain Ontology, several term from Data Catalog Vocabulary, The PROV Ontology, FOAF Vocabulary Specification, and I-ADOPT Framework, enhancing interoperability and facilitating integration with other systems using these standards. The design of the ontology adheres to FAIR principles. It uses persistent identifiers, OWL2 for knowledge representation, semantic versioning, and rich metadata, including licensing and provenance details.",
+    "hasDomain": [
+      "https://data.ecoportal.lifewatch.eu/categories/GEO",
+      "https://data.ecoportal.lifewatch.eu/categories/EARTH",
+      "https://data.ecoportal.lifewatch.eu/categories/ECO",
+      "https://data.ecoportal.lifewatch.eu/categories/BIODIV",
+      "https://data.ecoportal.lifewatch.eu/categories/ENV"
+    ],
+    "license": "CC-BY-4.0",
+    "links": {
+      "@context": {
+        "agents": "http://xmlns.com/foaf/0.1/Agent",
+        "analytics": "http://data.bioontology.org/metadata/Analytics",
+        "categories": "http://data.bioontology.org/metadata/Category",
+        "classes": "http://www.w3.org/2002/07/owl#Class",
+        "collections": "http://www.w3.org/2004/02/skos/core#Collection",
+        "download": "http://data.bioontology.org/metadata/Ontology",
+        "groups": "http://data.bioontology.org/metadata/Group",
+        "identifier_requests": "http://data.bioontology.org/metadata/IdentifierRequest",
+        "instances": "http://data.bioontology.org/metadata/Instance",
+        "latest_submission": "http://data.bioontology.org/metadata/OntologySubmission",
+        "mappings": "metadata/Mapping",
+        "metrics": "http://data.bioontology.org/metadata/Metrics",
+        "notes": "http://data.bioontology.org/metadata/Note",
+        "projects": "http://data.bioontology.org/metadata/Project",
+        "properties": "http://data.bioontology.org/metadata/Property",
+        "reviews": "http://data.bioontology.org/metadata/Review",
+        "roots": "http://www.w3.org/2002/07/owl#Class",
+        "schemes": "http://www.w3.org/2004/02/skos/core#ConceptScheme",
+        "single_class": "http://www.w3.org/2002/07/owl#Class",
+        "submissions": "http://data.bioontology.org/metadata/OntologySubmission",
+        "ui": "http://data.bioontology.org/metadata/Ontology",
+        "views": "http://data.bioontology.org/metadata/Ontology",
+        "xl_labels": "http://www.w3.org/2008/05/skos-xl#Label"
+      },
+      "agents": "https://data.ecoportal.lifewatch.eu/ontologies/SPO/agents",
+      "analytics": "https://data.ecoportal.lifewatch.eu/ontologies/SPO/analytics",
+      "categories": "https://data.ecoportal.lifewatch.eu/ontologies/SPO/categories",
+      "classes": "https://data.ecoportal.lifewatch.eu/ontologies/SPO/classes",
+      "collections": "https://data.ecoportal.lifewatch.eu/ontologies/SPO/collections",
+      "download": "https://data.ecoportal.lifewatch.eu/ontologies/SPO/download",
+      "groups": "https://data.ecoportal.lifewatch.eu/ontologies/SPO/groups",
+      "identifier_requests": "https://data.ecoportal.lifewatch.eu/ontologies/SPO/identifier_requests",
+      "instances": "https://data.ecoportal.lifewatch.eu/ontologies/SPO/instances",
+      "latest_submission": "https://data.ecoportal.lifewatch.eu/ontologies/SPO/latest_submission",
+      "mappings": "https://data.ecoportal.lifewatch.eu/ontologies/SPO/mappings",
+      "metrics": "https://data.ecoportal.lifewatch.eu/ontologies/SPO/metrics",
+      "notes": "https://data.ecoportal.lifewatch.eu/ontologies/SPO/notes",
+      "projects": "https://data.ecoportal.lifewatch.eu/ontologies/SPO/projects",
+      "properties": "https://data.ecoportal.lifewatch.eu/ontologies/SPO/properties",
+      "reviews": "https://data.ecoportal.lifewatch.eu/ontologies/SPO/reviews",
+      "roots": "https://data.ecoportal.lifewatch.eu/ontologies/SPO/classes/roots",
+      "schemes": "https://data.ecoportal.lifewatch.eu/ontologies/SPO/schemes",
+      "single_class": "https://data.ecoportal.lifewatch.eu/ontologies/SPO/classes/{class_id}",
+      "submissions": "https://data.ecoportal.lifewatch.eu/ontologies/SPO/submissions",
+      "ui": "http://ecoportal.lifewatch.eu/ontologies/SPO",
+      "views": "https://data.ecoportal.lifewatch.eu/ontologies/SPO/views",
+      "xl_labels": "https://data.ecoportal.lifewatch.eu/ontologies/SPO/skos_xl_labels"
+    },
+    "name": "LifeWatch Italy Semantic Platform Ontology",
+    "ontologyType": "https://data.ecoportal.lifewatch.eu/ontology_types/ONTOLOGY",
+    "version": "1.0.0",
+    "viewingRestriction": "public"
+  },
+  {
     "@id": "https://data.ecoportal.lifewatch.eu/ontologies/SBTHES",
     "@type": "http://data.bioontology.org/metadata/Ontology",
     "acronym": "SBTHES",
@@ -2130,6 +2403,98 @@
     },
     "name": "Sandy Beach Thesaurus",
     "ontologyType": "https://data.ecoportal.lifewatch.eu/ontology_types/ONTOLOGY",
+    "projects": [
+      "https://data.ecoportal.lifewatch.eu/projects/LW+ITA+Data+Portal"
+    ],
+    "version": "1.0.0",
+    "viewingRestriction": "public"
+  },
+  {
+    "@id": "https://data.ecoportal.lifewatch.eu/ontologies/ERITHES",
+    "@type": "http://data.bioontology.org/metadata/Ontology",
+    "acronym": "ERITHES",
+    "administeredBy": [
+      "https://data.ecoportal.lifewatch.eu/users/grossi",
+      "https://data.ecoportal.lifewatch.eu/users/rosalia.santoleri",
+      "https://data.ecoportal.lifewatch.eu/users/antonello.provenzale",
+      "https://data.ecoportal.lifewatch.eu/users/davideraho",
+      "https://data.ecoportal.lifewatch.eu/users/carmela.cornacchia",
+      "https://data.ecoportal.lifewatch.eu/users/alexandra.muresan",
+      "https://data.ecoportal.lifewatch.eu/users/giuseppe.gargano",
+      "https://data.ecoportal.lifewatch.eu/users/gelsomina.pappalardo",
+      "https://data.ecoportal.lifewatch.eu/users/davide.raho",
+      "https://data.ecoportal.lifewatch.eu/users/ermann.ripepi",
+      "https://data.ecoportal.lifewatch.eu/users/darpap",
+      "https://data.ecoportal.lifewatch.eu/users/CristinaDiMuri",
+      "https://data.ecoportal.lifewatch.eu/users/alberto.basset",
+      "https://data.ecoportal.lifewatch.eu/users/lucia.mona"
+    ],
+    "contact": {
+      "email": "ilaria.rosati@cnr.it",
+      "name": "Ilaria Rosati"
+    },
+    "description": "The Environmental Research Infrastructures Thesaurus (ERITHES) was created within the task supporting semantic interoperability of the ITINERIS project (https://itineris.cnr.it). The Thesaurus was generated to provide controlled terms describing actors, ESFRI domains, facilities, services, research products and project management activities performed by Research Infrastructures.",
+    "exampleIdentifier": "https://kos.lifewatch.eu/thesauri/erithes/c_f788a36a",
+    "hasDomain": [
+      "https://data.ecoportal.lifewatch.eu/categories/ENV"
+    ],
+    "homepage": "https://ecoportal.lifewatch.eu/ontologies/ERITHES",
+    "license": "CC-BY-4.0",
+    "links": {
+      "@context": {
+        "agents": "http://xmlns.com/foaf/0.1/Agent",
+        "analytics": "http://data.bioontology.org/metadata/Analytics",
+        "categories": "http://data.bioontology.org/metadata/Category",
+        "classes": "http://www.w3.org/2002/07/owl#Class",
+        "collections": "http://www.w3.org/2004/02/skos/core#Collection",
+        "download": "http://data.bioontology.org/metadata/Ontology",
+        "groups": "http://data.bioontology.org/metadata/Group",
+        "identifier_requests": "http://data.bioontology.org/metadata/IdentifierRequest",
+        "instances": "http://data.bioontology.org/metadata/Instance",
+        "latest_submission": "http://data.bioontology.org/metadata/OntologySubmission",
+        "mappings": "metadata/Mapping",
+        "metrics": "http://data.bioontology.org/metadata/Metrics",
+        "notes": "http://data.bioontology.org/metadata/Note",
+        "projects": "http://data.bioontology.org/metadata/Project",
+        "properties": "http://data.bioontology.org/metadata/Property",
+        "reviews": "http://data.bioontology.org/metadata/Review",
+        "roots": "http://www.w3.org/2002/07/owl#Class",
+        "schemes": "http://www.w3.org/2004/02/skos/core#ConceptScheme",
+        "single_class": "http://www.w3.org/2002/07/owl#Class",
+        "submissions": "http://data.bioontology.org/metadata/OntologySubmission",
+        "ui": "http://data.bioontology.org/metadata/Ontology",
+        "views": "http://data.bioontology.org/metadata/Ontology",
+        "xl_labels": "http://www.w3.org/2008/05/skos-xl#Label"
+      },
+      "agents": "https://data.ecoportal.lifewatch.eu/ontologies/ERITHES/agents",
+      "analytics": "https://data.ecoportal.lifewatch.eu/ontologies/ERITHES/analytics",
+      "categories": "https://data.ecoportal.lifewatch.eu/ontologies/ERITHES/categories",
+      "classes": "https://data.ecoportal.lifewatch.eu/ontologies/ERITHES/classes",
+      "collections": "https://data.ecoportal.lifewatch.eu/ontologies/ERITHES/collections",
+      "download": "https://data.ecoportal.lifewatch.eu/ontologies/ERITHES/download",
+      "groups": "https://data.ecoportal.lifewatch.eu/ontologies/ERITHES/groups",
+      "identifier_requests": "https://data.ecoportal.lifewatch.eu/ontologies/ERITHES/identifier_requests",
+      "instances": "https://data.ecoportal.lifewatch.eu/ontologies/ERITHES/instances",
+      "latest_submission": "https://data.ecoportal.lifewatch.eu/ontologies/ERITHES/latest_submission",
+      "mappings": "https://data.ecoportal.lifewatch.eu/ontologies/ERITHES/mappings",
+      "metrics": "https://data.ecoportal.lifewatch.eu/ontologies/ERITHES/metrics",
+      "notes": "https://data.ecoportal.lifewatch.eu/ontologies/ERITHES/notes",
+      "projects": "https://data.ecoportal.lifewatch.eu/ontologies/ERITHES/projects",
+      "properties": "https://data.ecoportal.lifewatch.eu/ontologies/ERITHES/properties",
+      "reviews": "https://data.ecoportal.lifewatch.eu/ontologies/ERITHES/reviews",
+      "roots": "https://data.ecoportal.lifewatch.eu/ontologies/ERITHES/classes/roots",
+      "schemes": "https://data.ecoportal.lifewatch.eu/ontologies/ERITHES/schemes",
+      "single_class": "https://data.ecoportal.lifewatch.eu/ontologies/ERITHES/classes/{class_id}",
+      "submissions": "https://data.ecoportal.lifewatch.eu/ontologies/ERITHES/submissions",
+      "ui": "http://ecoportal.lifewatch.eu/ontologies/ERITHES",
+      "views": "https://data.ecoportal.lifewatch.eu/ontologies/ERITHES/views",
+      "xl_labels": "https://data.ecoportal.lifewatch.eu/ontologies/ERITHES/skos_xl_labels"
+    },
+    "name": "Environmental Research Infrastructures Thesaurus",
+    "ontologyType": "https://data.ecoportal.lifewatch.eu/ontology_types/ONTOLOGY",
+    "projects": [
+      "https://data.ecoportal.lifewatch.eu/projects/ITINERIS"
+    ],
     "version": "1.0.0",
     "viewingRestriction": "public"
   },
@@ -2204,6 +2569,9 @@
     },
     "name": "FAIR Vocabulary",
     "ontologyType": "https://data.ecoportal.lifewatch.eu/ontology_types/ONTOLOGY",
+    "projects": [
+      "https://data.ecoportal.lifewatch.eu/projects/ITINERIS"
+    ],
     "viewingRestriction": "public"
   },
   {
@@ -2227,7 +2595,7 @@
       "https://data.ecoportal.lifewatch.eu/categories/ENV"
     ],
     "homepage": "http://linked.earth/ontology/#IntegrationTime",
-    "license": "CC BY 2.0",
+    "license": "CC-BY-2.0",
     "links": {
       "@context": {
         "agents": "http://xmlns.com/foaf/0.1/Agent",
@@ -2280,6 +2648,9 @@
     },
     "name": "The Linked Earth Instrument Ontology",
     "ontologyType": "https://data.ecoportal.lifewatch.eu/ontology_types/ONTOLOGY",
+    "projects": [
+      "https://data.ecoportal.lifewatch.eu/projects/ITINERIS"
+    ],
     "version": "1.0.0",
     "viewingRestriction": "public"
   },
@@ -2359,6 +2730,9 @@
     },
     "name": "MarineTLO Ontology",
     "ontologyType": "https://data.ecoportal.lifewatch.eu/ontology_types/ONTOLOGY",
+    "projects": [
+      "https://data.ecoportal.lifewatch.eu/projects/ITINERIS"
+    ],
     "publications": [
       "https://doi.org/10.1007/978-3-319-03437-9_29",
       "http://ercim-news.ercim.eu/en96/special/ontology-based-integration-of-heterogeneous-and-distributed-information-of-the-marine-domain",
@@ -2439,6 +2813,9 @@
     },
     "name": "Biodiversity Thesaurus",
     "ontologyType": "https://data.ecoportal.lifewatch.eu/ontology_types/ONTOLOGY",
+    "projects": [
+      "https://data.ecoportal.lifewatch.eu/projects/LW+ITA+Data+Portal"
+    ],
     "publications": [
       "https://hal.archives-ouvertes.fr/hal-02907484"
     ],
@@ -2509,6 +2886,9 @@
     },
     "name": "I-ADOPT Framework ontology",
     "ontologyType": "https://data.ecoportal.lifewatch.eu/ontology_types/ONTOLOGY",
+    "projects": [
+      "https://data.ecoportal.lifewatch.eu/projects/LW+ITA+Data+Portal"
+    ],
     "publications": [
       "https://doi.org/10.15497/RDA00071/2"
     ],
@@ -2579,8 +2959,91 @@
       "xl_labels": "https://data.ecoportal.lifewatch.eu/ontologies/ELTER_CL/skos_xl_labels"
     },
     "name": "eLTER Controlled Lists",
+    "notes": [
+      "https://data.ecoportal.lifewatch.eu/notes/affc55d0-f843-013d-2bf2-3c241174c172"
+    ],
     "ontologyType": "https://data.ecoportal.lifewatch.eu/ontology_types/ONTOLOGY",
+    "projects": [
+      "https://data.ecoportal.lifewatch.eu/projects/eLTER+PLUS",
+      "https://data.ecoportal.lifewatch.eu/projects/LW+ITA+Data+Portal"
+    ],
     "version": "1.1.1",
+    "viewingRestriction": "public"
+  },
+  {
+    "@id": "https://data.ecoportal.lifewatch.eu/ontologies/PHYTOVRE",
+    "@type": "http://data.bioontology.org/metadata/Ontology",
+    "acronym": "PHYTOVRE",
+    "administeredBy": [
+      "https://data.ecoportal.lifewatch.eu/users/martina_pulieri"
+    ],
+    "contact": {
+      "email": "jessica.titocci@cnr.it",
+      "name": "Jessica Titocci"
+    },
+    "description": "The Phytoplankton VRE Thesaurus includes a set of concepts designed to facilitate navigation and use of the Virtual Research Environment (VRE), and to support data harmonisation and interoperability within the VRE, as well as data comparability and reusability across different platforms and research communities. In particular, the thesaurus encompasses concepts related to phytoplankton counting methods, statistical analyses, community indices, and parameters used in the VRE. It also includes standardised terms required to harmonise data templates used as input files for the VRE, the complete list of services available within the VRE, and specific terminology related to phytoplankton. The Phytoplankton VRE Thesaurus is aligned with existing vocabularies and thesauri to ensure semantic consistency and interoperability across research infrastructures, including the Traits Thesaurus, the Biomass VRE Thesaurus, and other relevant domain-specific semantic artefacts.",
+    "exampleIdentifier": "https://kos.lifewatch.eu/thesauri/vrephytoplankton/c_b89cdbfb",
+    "hasDomain": [
+      "https://data.ecoportal.lifewatch.eu/categories/Functional_Diversity",
+      "https://data.ecoportal.lifewatch.eu/categories/Aquatic_Biodiversity",
+      "https://data.ecoportal.lifewatch.eu/categories/ECO",
+      "https://data.ecoportal.lifewatch.eu/categories/Aquatic_Ecology"
+    ],
+    "homepage": "https://ecoportal.lifewatch.eu/ontologies/PHYTOVRE",
+    "license": "CC-BY-4.0",
+    "links": {
+      "@context": {
+        "agents": "http://xmlns.com/foaf/0.1/Agent",
+        "analytics": "http://data.bioontology.org/metadata/Analytics",
+        "categories": "http://data.bioontology.org/metadata/Category",
+        "classes": "http://www.w3.org/2002/07/owl#Class",
+        "collections": "http://www.w3.org/2004/02/skos/core#Collection",
+        "download": "http://data.bioontology.org/metadata/Ontology",
+        "groups": "http://data.bioontology.org/metadata/Group",
+        "identifier_requests": "http://data.bioontology.org/metadata/IdentifierRequest",
+        "instances": "http://data.bioontology.org/metadata/Instance",
+        "latest_submission": "http://data.bioontology.org/metadata/OntologySubmission",
+        "mappings": "metadata/Mapping",
+        "metrics": "http://data.bioontology.org/metadata/Metrics",
+        "notes": "http://data.bioontology.org/metadata/Note",
+        "projects": "http://data.bioontology.org/metadata/Project",
+        "properties": "http://data.bioontology.org/metadata/Property",
+        "reviews": "http://data.bioontology.org/metadata/Review",
+        "roots": "http://www.w3.org/2002/07/owl#Class",
+        "schemes": "http://www.w3.org/2004/02/skos/core#ConceptScheme",
+        "single_class": "http://www.w3.org/2002/07/owl#Class",
+        "submissions": "http://data.bioontology.org/metadata/OntologySubmission",
+        "ui": "http://data.bioontology.org/metadata/Ontology",
+        "views": "http://data.bioontology.org/metadata/Ontology",
+        "xl_labels": "http://www.w3.org/2008/05/skos-xl#Label"
+      },
+      "agents": "https://data.ecoportal.lifewatch.eu/ontologies/PHYTOVRE/agents",
+      "analytics": "https://data.ecoportal.lifewatch.eu/ontologies/PHYTOVRE/analytics",
+      "categories": "https://data.ecoportal.lifewatch.eu/ontologies/PHYTOVRE/categories",
+      "classes": "https://data.ecoportal.lifewatch.eu/ontologies/PHYTOVRE/classes",
+      "collections": "https://data.ecoportal.lifewatch.eu/ontologies/PHYTOVRE/collections",
+      "download": "https://data.ecoportal.lifewatch.eu/ontologies/PHYTOVRE/download",
+      "groups": "https://data.ecoportal.lifewatch.eu/ontologies/PHYTOVRE/groups",
+      "identifier_requests": "https://data.ecoportal.lifewatch.eu/ontologies/PHYTOVRE/identifier_requests",
+      "instances": "https://data.ecoportal.lifewatch.eu/ontologies/PHYTOVRE/instances",
+      "latest_submission": "https://data.ecoportal.lifewatch.eu/ontologies/PHYTOVRE/latest_submission",
+      "mappings": "https://data.ecoportal.lifewatch.eu/ontologies/PHYTOVRE/mappings",
+      "metrics": "https://data.ecoportal.lifewatch.eu/ontologies/PHYTOVRE/metrics",
+      "notes": "https://data.ecoportal.lifewatch.eu/ontologies/PHYTOVRE/notes",
+      "projects": "https://data.ecoportal.lifewatch.eu/ontologies/PHYTOVRE/projects",
+      "properties": "https://data.ecoportal.lifewatch.eu/ontologies/PHYTOVRE/properties",
+      "reviews": "https://data.ecoportal.lifewatch.eu/ontologies/PHYTOVRE/reviews",
+      "roots": "https://data.ecoportal.lifewatch.eu/ontologies/PHYTOVRE/classes/roots",
+      "schemes": "https://data.ecoportal.lifewatch.eu/ontologies/PHYTOVRE/schemes",
+      "single_class": "https://data.ecoportal.lifewatch.eu/ontologies/PHYTOVRE/classes/{class_id}",
+      "submissions": "https://data.ecoportal.lifewatch.eu/ontologies/PHYTOVRE/submissions",
+      "ui": "http://ecoportal.lifewatch.eu/ontologies/PHYTOVRE",
+      "views": "https://data.ecoportal.lifewatch.eu/ontologies/PHYTOVRE/views",
+      "xl_labels": "https://data.ecoportal.lifewatch.eu/ontologies/PHYTOVRE/skos_xl_labels"
+    },
+    "name": "Phytoplankton VRE Thesaurus",
+    "ontologyType": "https://data.ecoportal.lifewatch.eu/ontology_types/ONTOLOGY",
+    "version": "1.0.0",
     "viewingRestriction": "public"
   },
   {
@@ -2805,6 +3268,9 @@
     },
     "name": "The Ecosystem Ontology",
     "ontologyType": "https://data.ecoportal.lifewatch.eu/ontology_types/ONTOLOGY",
+    "projects": [
+      "https://data.ecoportal.lifewatch.eu/projects/LW+ITA+Data+Portal"
+    ],
     "repository": "https://github.com/DataONEorg/sem-prov-ontologies/tree/ECSO8-add_non-carbon_measurements",
     "version": "0.10.0",
     "viewingRestriction": "public"
@@ -2963,7 +3429,7 @@
     "@type": "http://data.bioontology.org/metadata/Ontology",
     "acronym": "ESMO",
     "administeredBy": [
-      "https://data.ecoportal.lifewatch.eu/users/martina_pulieri"
+      "https://data.ecoportal.lifewatch.eu/users/FlavAff"
     ],
     "contact": {
       "email": "flavio.affinito@mail.mcgill.ca",
@@ -3031,6 +3497,7 @@
     "publications": [
       "https://doi.org/10.1016/j.ecoser.2025.101726"
     ],
+    "repository": "https://github.com/FlavAff/ESMOntology",
     "version": "1.0.0",
     "viewingRestriction": "public"
   },
@@ -3194,6 +3661,7 @@
     "@type": "http://data.bioontology.org/metadata/Ontology",
     "acronym": "TRAITS_THES",
     "administeredBy": [
+      "https://data.ecoportal.lifewatch.eu/users/admin",
       "https://data.ecoportal.lifewatch.eu/users/martina_pulieri",
       "https://data.ecoportal.lifewatch.eu/users/jessica.titocci"
     ],
@@ -3202,6 +3670,7 @@
       "name": "Jessica Titocci"
     },
     "description": "The Traits Thesaurus is a comprehensive semantic resource developed to standardise trait data and metadata for aquatic organisms. It is the result of the revision and integration of the Phytoplankton, Zooplankton, Fish, Macroalgae and Macrozoobenthos Traits Thesauri, originally developed by LifeWatch Italy, into a unique and unified thesaurus. The Traits Thesaurus has been achieved through a combination of manual and automated alignment processes.",
+    "exampleIdentifier": "https://kos.lifewatch.eu/thesauri/traits/c_f48230fb",
     "hasDomain": [
       "https://data.ecoportal.lifewatch.eu/categories/Functional_Diversity",
       "https://data.ecoportal.lifewatch.eu/categories/Aquatic_Biodiversity",
@@ -3211,6 +3680,7 @@
       "https://data.ecoportal.lifewatch.eu/categories/BIODIV",
       "https://data.ecoportal.lifewatch.eu/categories/Aquatic_Ecology"
     ],
+    "homepage": "https://ecoportal.lifewatch.eu/ontologies/TRAITS_THES",
     "license": "CC-BY-4.0",
     "links": {
       "@context": {
@@ -3264,7 +3734,10 @@
     },
     "name": "Traits Thesaurus",
     "ontologyType": "https://data.ecoportal.lifewatch.eu/ontology_types/ONTOLOGY",
-    "version": "1.0.0",
+    "projects": [
+      "https://data.ecoportal.lifewatch.eu/projects/LW+ITA+Data+Portal"
+    ],
+    "version": "2.1.0",
     "viewingRestriction": "public"
   },
   {
@@ -3354,7 +3827,7 @@
       "email": "elena.stanca@unisalento.it",
       "name": "Elena Stanca"
     },
-    "description": "The Phytoplankton Traits Thesaurus is the first initiative to deal with the semantics of phytoplankton functional traits focusing on morpho-functional traits. It has been developed and published by LifeWatch Italy, the Italian node of the e-science European infrastructure for biodiversity and ecosystem research (LifeWatch ERIC). PhytoTraits reflects the agreement of a scientific expert community to fix semantic properties (e.g. label, definition) of approximately 120 traits.",
+    "description": "The Phytoplankton Traits Thesaurus is the first initiative to deal with the semantics of phytoplankton functional traits focusing on morpho-functional traits. It has been developed and published by LifeWatch Italy, the Italian node of the e-science European infrastructure for biodiversity and ecosystem research (LifeWatch ERIC). PhytoTraits reflects the agreement of a scientific expert community to fix semantic properties (e.g. label, definition) of approximately 120 traits. This resource has been deprecated. The concepts can be consulted in https://kos.lifewatch.eu/thesauri/traits/.",
     "hasDomain": [
       "https://data.ecoportal.lifewatch.eu/categories/Functional_Diversity",
       "https://data.ecoportal.lifewatch.eu/categories/Aquatic_Biodiversity",
@@ -3414,6 +3887,17 @@
       "xl_labels": "https://data.ecoportal.lifewatch.eu/ontologies/PHYTOTRAITS/skos_xl_labels"
     },
     "name": "Phytoplankton Traits Thesaurus",
+    "notes": [
+      "https://data.ecoportal.lifewatch.eu/notes/6e283440-13b9-013e-2bf2-3c241174c172",
+      "https://data.ecoportal.lifewatch.eu/notes/8e4134a0-4e97-0139-7704-000c29c082c0",
+      "https://data.ecoportal.lifewatch.eu/notes/d68e7160-4e98-0139-7704-000c29c082c0",
+      "https://data.ecoportal.lifewatch.eu/notes/cf7f6160-13bb-013e-2bf2-3c241174c172",
+      "https://data.ecoportal.lifewatch.eu/notes/281c26c0-13bb-013e-2bf2-3c241174c172",
+      "https://data.ecoportal.lifewatch.eu/notes/9918b860-13bb-013e-2bf2-3c241174c172",
+      "https://data.ecoportal.lifewatch.eu/notes/5a9ba320-13ba-013e-2bf2-3c241174c172",
+      "https://data.ecoportal.lifewatch.eu/notes/4586c830-4e97-0139-7704-000c29c082c0",
+      "https://data.ecoportal.lifewatch.eu/notes/75760290-13bb-013e-2bf2-3c241174c172"
+    ],
     "ontologyType": "https://data.ecoportal.lifewatch.eu/ontology_types/ONTOLOGY",
     "publications": [
       "https://doi.org/10.1016/j.ecoinf.2017.10.014"
@@ -3442,7 +3926,7 @@
       "https://data.ecoportal.lifewatch.eu/categories/ENV"
     ],
     "homepage": "http://linked.earth/ontology/#IntegrationTime",
-    "license": "CC BY 2.0",
+    "license": "CC-BY-2.0",
     "links": {
       "@context": {
         "agents": "http://xmlns.com/foaf/0.1/Agent",
@@ -3495,6 +3979,9 @@
     },
     "name": "The Paleo Proxy Ontology",
     "ontologyType": "https://data.ecoportal.lifewatch.eu/ontology_types/ONTOLOGY",
+    "projects": [
+      "https://data.ecoportal.lifewatch.eu/projects/ITINERIS"
+    ],
     "version": "2.0.0",
     "viewingRestriction": "public"
   },
@@ -3645,6 +4132,9 @@
     },
     "name": "FAIR Implementation Profile (FIP) Ontology",
     "ontologyType": "https://data.ecoportal.lifewatch.eu/ontology_types/ONTOLOGY",
+    "projects": [
+      "https://data.ecoportal.lifewatch.eu/projects/ITINERIS"
+    ],
     "viewingRestriction": "public"
   },
   {
@@ -3743,7 +4233,7 @@
       "https://data.ecoportal.lifewatch.eu/categories/ENV"
     ],
     "homepage": "http://linked.earth/ontology/",
-    "license": "CC BY 2.0",
+    "license": "CC-BY-2.0",
     "links": {
       "@context": {
         "agents": "http://xmlns.com/foaf/0.1/Agent",
@@ -3796,6 +4286,9 @@
     },
     "name": "The Archive Type Ontology",
     "ontologyType": "https://data.ecoportal.lifewatch.eu/ontology_types/ONTOLOGY",
+    "projects": [
+      "https://data.ecoportal.lifewatch.eu/projects/ITINERIS"
+    ],
     "version": "2.0.0",
     "viewingRestriction": "public"
   },
@@ -3810,7 +4303,7 @@
       "email": "caterina.bergami@ismar.cnr.it",
       "name": "Caterina Bergami"
     },
-    "description": "The Macroalgae Traits Thesaurus contains several concepts on demographic and functional traits. It has been developed and published by LifeWatch Italy, the Italian node of the e-science European infrastructure for biodiversity and ecosystem research (LifeWatch ERIC). It reflects the agreement of a scientific expert community to fix semantic properties (e.g. label, definition) of approximately 100 traits.",
+    "description": "The Macroalgae Traits Thesaurus contains several concepts on demographic and functional traits. It has been developed and published by LifeWatch Italy, the Italian node of the e-science European infrastructure for biodiversity and ecosystem research (LifeWatch ERIC). It reflects the agreement of a scientific expert community to fix semantic properties (e.g. label, definition) of approximately 100 traits. This resource has been deprecated. The concepts can be consulted in https://kos.lifewatch.eu/thesauri/traits/.",
     "hasDomain": [
       "https://data.ecoportal.lifewatch.eu/categories/Functional_Diversity",
       "https://data.ecoportal.lifewatch.eu/categories/Aquatic_Biodiversity",
@@ -3895,7 +4388,7 @@
       "https://data.ecoportal.lifewatch.eu/categories/ENV"
     ],
     "homepage": "http://linked.earth/ontology/#IntegrationTime",
-    "license": "CC BY 2.0",
+    "license": "CC-BY-2.0",
     "links": {
       "@context": {
         "agents": "http://xmlns.com/foaf/0.1/Agent",
@@ -3948,6 +4441,9 @@
     },
     "name": "The Interpretation Ontology",
     "ontologyType": "https://data.ecoportal.lifewatch.eu/ontology_types/ONTOLOGY",
+    "projects": [
+      "https://data.ecoportal.lifewatch.eu/projects/ITINERIS"
+    ],
     "version": "2.0.0",
     "viewingRestriction": "public"
   },
@@ -3972,7 +4468,7 @@
       "https://data.ecoportal.lifewatch.eu/categories/ENV"
     ],
     "homepage": "https://www.isp.cnr.it/index.php/en/snowterm",
-    "license": "CC BY-NC-SA 4.0",
+    "license": "CC-BY-NC-SA-4.0",
     "links": {
       "@context": {
         "agents": "http://xmlns.com/foaf/0.1/Agent",
@@ -4025,6 +4521,9 @@
     },
     "name": "SnowTerm Thesaurus",
     "ontologyType": "https://data.ecoportal.lifewatch.eu/ontology_types/ONTOLOGY",
+    "projects": [
+      "https://data.ecoportal.lifewatch.eu/projects/ITINERIS"
+    ],
     "publications": [
       "https://www.nomos-elibrary.de/10.5771/9783956508752-115.pdf"
     ],
@@ -4247,7 +4746,10 @@
     },
     "name": "ACTRIS Controlled Lists",
     "ontologyType": "https://data.ecoportal.lifewatch.eu/ontology_types/ONTOLOGY",
-    "version": "1.0.1",
+    "projects": [
+      "https://data.ecoportal.lifewatch.eu/projects/ITINERIS"
+    ],
+    "version": "1.1.0",
     "viewingRestriction": "public"
   },
   {
@@ -4398,6 +4900,10 @@
     },
     "name": "Annex I habitats for Natura 2000",
     "ontologyType": "https://data.ecoportal.lifewatch.eu/ontology_types/ONTOLOGY",
+    "projects": [
+      "https://data.ecoportal.lifewatch.eu/projects/LW+ITA+Data+Portal",
+      "https://data.ecoportal.lifewatch.eu/projects/ITINERIS"
+    ],
     "viewingRestriction": "public"
   },
   {
@@ -4546,6 +5052,9 @@
     },
     "name": "Geologic Units",
     "ontologyType": "https://data.ecoportal.lifewatch.eu/ontology_types/ONTOLOGY",
+    "projects": [
+      "https://data.ecoportal.lifewatch.eu/projects/ITINERIS"
+    ],
     "publications": [
       "https://thesaurus.geolba.ac.at/bibl_res.html?proj=GeologicUnit"
     ],
@@ -4646,7 +5155,7 @@
       "https://data.ecoportal.lifewatch.eu/categories/ENV"
     ],
     "homepage": "https://linked.earth/ontology/",
-    "license": "CC BY 2.0",
+    "license": "CC-BY-2.0",
     "links": {
       "@context": {
         "agents": "http://xmlns.com/foaf/0.1/Agent",
@@ -4699,6 +5208,9 @@
     },
     "name": "The Linked Earth Core Ontology",
     "ontologyType": "https://data.ecoportal.lifewatch.eu/ontology_types/ONTOLOGY",
+    "projects": [
+      "https://data.ecoportal.lifewatch.eu/projects/ITINERIS"
+    ],
     "version": "2.0.0",
     "viewingRestriction": "public"
   },
@@ -4707,7 +5219,8 @@
     "@type": "http://data.bioontology.org/metadata/Ontology",
     "acronym": "EUROVOC",
     "administeredBy": [
-      "https://data.ecoportal.lifewatch.eu/users/admin"
+      "https://data.ecoportal.lifewatch.eu/users/admin",
+      "https://data.ecoportal.lifewatch.eu/users/bignoen"
     ],
     "contact": {
       "email": "OP-EU-VOCABULARIES@publications.europa.eu",
@@ -4843,7 +5356,13 @@
       "xl_labels": "https://data.ecoportal.lifewatch.eu/ontologies/ALIENSPECIES/skos_xl_labels"
     },
     "name": "Alien Species Thesaurus",
+    "notes": [
+      "https://data.ecoportal.lifewatch.eu/notes/aca5bcc0-e90b-0138-2438-000c29c082c0"
+    ],
     "ontologyType": "https://data.ecoportal.lifewatch.eu/ontology_types/ONTOLOGY",
+    "projects": [
+      "https://data.ecoportal.lifewatch.eu/projects/LW+ITA+Data+Portal"
+    ],
     "publications": [
       "https://www.lifewatchitaly.eu/publications/#1590425563910-01d9d51a-b764"
     ],
@@ -4999,6 +5518,9 @@
     },
     "name": "Geologic Structures",
     "ontologyType": "https://data.ecoportal.lifewatch.eu/ontology_types/ONTOLOGY",
+    "projects": [
+      "https://data.ecoportal.lifewatch.eu/projects/ITINERIS"
+    ],
     "publications": [
       "https://thesaurus.geolba.ac.at/bibl_res.html?proj=structure"
     ],
@@ -5075,6 +5597,9 @@
     },
     "name": "Population and Community Ontology",
     "ontologyType": "https://data.ecoportal.lifewatch.eu/ontology_types/ONTOLOGY",
+    "projects": [
+      "https://data.ecoportal.lifewatch.eu/projects/LW+ITA+Data+Portal"
+    ],
     "publications": [
       "https://doi.org/10.1371/journal.pone.0089606"
     ],
@@ -5095,7 +5620,7 @@
       "email": "caterina.bergami@ismar.cnr.it",
       "name": "Caterina Bergami"
     },
-    "description": "The Zooplankton Traits Thesaurus contains several concepts mainly on zooplankton morpho-functional traits. It has been developed and published by LifeWatch Italy, the Italian node of the e-science European infrastructure for biodiversity and ecosystem research (LifeWatch ERIC). It reflects the agreement of a scientific expert community to fix semantic properties (e.g. label, definition) of approximately 90 traits.",
+    "description": "The Zooplankton Traits Thesaurus contains several concepts mainly on zooplankton morpho-functional traits. It has been developed and published by LifeWatch Italy, the Italian node of the e-science European infrastructure for biodiversity and ecosystem research (LifeWatch ERIC). It reflects the agreement of a scientific expert community to fix semantic properties (e.g. label, definition) of approximately 90 traits. This resource has been deprecated. The concepts can be consulted in https://kos.lifewatch.eu/thesauri/traits/.",
     "hasDomain": [
       "https://data.ecoportal.lifewatch.eu/categories/Functional_Diversity",
       "https://data.ecoportal.lifewatch.eu/categories/Aquatic_Biodiversity",
@@ -5234,10 +5759,84 @@
     },
     "name": "ACTRIS Vocabulary",
     "ontologyType": "https://data.ecoportal.lifewatch.eu/ontology_types/ONTOLOGY",
+    "projects": [
+      "https://data.ecoportal.lifewatch.eu/projects/ITINERIS"
+    ],
     "publications": [
       "https://vocabulary.actris.nilu.no/skosmos/actris_vocab/en/"
     ],
-    "version": "1.1.7",
+    "version": "1.2.1",
+    "viewingRestriction": "public"
+  },
+  {
+    "@id": "https://data.ecoportal.lifewatch.eu/ontologies/GEOSP",
+    "@type": "http://data.bioontology.org/metadata/Ontology",
+    "acronym": "GEOSP",
+    "administeredBy": [
+      "https://data.ecoportal.lifewatch.eu/users/LOV_migration"
+    ],
+    "contact": {
+      "email": "mohamed-el-amine.boukerfa@inrae.fr",
+      "name": "LOV Migration"
+    },
+    "description": "The GeoSpecies Ontology is used to describe geographical distribution of living species.",
+    "hasDomain": [
+      "https://data.ecoportal.lifewatch.eu/categories/ECO",
+      "https://data.ecoportal.lifewatch.eu/categories/Species_Diversity"
+    ],
+    "links": {
+      "@context": {
+        "agents": "http://xmlns.com/foaf/0.1/Agent",
+        "analytics": "http://data.bioontology.org/metadata/Analytics",
+        "categories": "http://data.bioontology.org/metadata/Category",
+        "classes": "http://www.w3.org/2002/07/owl#Class",
+        "collections": "http://www.w3.org/2004/02/skos/core#Collection",
+        "download": "http://data.bioontology.org/metadata/Ontology",
+        "groups": "http://data.bioontology.org/metadata/Group",
+        "identifier_requests": "http://data.bioontology.org/metadata/IdentifierRequest",
+        "instances": "http://data.bioontology.org/metadata/Instance",
+        "latest_submission": "http://data.bioontology.org/metadata/OntologySubmission",
+        "mappings": "metadata/Mapping",
+        "metrics": "http://data.bioontology.org/metadata/Metrics",
+        "notes": "http://data.bioontology.org/metadata/Note",
+        "projects": "http://data.bioontology.org/metadata/Project",
+        "properties": "http://data.bioontology.org/metadata/Property",
+        "reviews": "http://data.bioontology.org/metadata/Review",
+        "roots": "http://www.w3.org/2002/07/owl#Class",
+        "schemes": "http://www.w3.org/2004/02/skos/core#ConceptScheme",
+        "single_class": "http://www.w3.org/2002/07/owl#Class",
+        "submissions": "http://data.bioontology.org/metadata/OntologySubmission",
+        "ui": "http://data.bioontology.org/metadata/Ontology",
+        "views": "http://data.bioontology.org/metadata/Ontology",
+        "xl_labels": "http://www.w3.org/2008/05/skos-xl#Label"
+      },
+      "agents": "https://data.ecoportal.lifewatch.eu/ontologies/GEOSP/agents",
+      "analytics": "https://data.ecoportal.lifewatch.eu/ontologies/GEOSP/analytics",
+      "categories": "https://data.ecoportal.lifewatch.eu/ontologies/GEOSP/categories",
+      "classes": "https://data.ecoportal.lifewatch.eu/ontologies/GEOSP/classes",
+      "collections": "https://data.ecoportal.lifewatch.eu/ontologies/GEOSP/collections",
+      "download": "https://data.ecoportal.lifewatch.eu/ontologies/GEOSP/download",
+      "groups": "https://data.ecoportal.lifewatch.eu/ontologies/GEOSP/groups",
+      "identifier_requests": "https://data.ecoportal.lifewatch.eu/ontologies/GEOSP/identifier_requests",
+      "instances": "https://data.ecoportal.lifewatch.eu/ontologies/GEOSP/instances",
+      "latest_submission": "https://data.ecoportal.lifewatch.eu/ontologies/GEOSP/latest_submission",
+      "mappings": "https://data.ecoportal.lifewatch.eu/ontologies/GEOSP/mappings",
+      "metrics": "https://data.ecoportal.lifewatch.eu/ontologies/GEOSP/metrics",
+      "notes": "https://data.ecoportal.lifewatch.eu/ontologies/GEOSP/notes",
+      "projects": "https://data.ecoportal.lifewatch.eu/ontologies/GEOSP/projects",
+      "properties": "https://data.ecoportal.lifewatch.eu/ontologies/GEOSP/properties",
+      "reviews": "https://data.ecoportal.lifewatch.eu/ontologies/GEOSP/reviews",
+      "roots": "https://data.ecoportal.lifewatch.eu/ontologies/GEOSP/classes/roots",
+      "schemes": "https://data.ecoportal.lifewatch.eu/ontologies/GEOSP/schemes",
+      "single_class": "https://data.ecoportal.lifewatch.eu/ontologies/GEOSP/classes/{class_id}",
+      "submissions": "https://data.ecoportal.lifewatch.eu/ontologies/GEOSP/submissions",
+      "ui": "http://ecoportal.lifewatch.eu/ontologies/GEOSP",
+      "views": "https://data.ecoportal.lifewatch.eu/ontologies/GEOSP/views",
+      "xl_labels": "https://data.ecoportal.lifewatch.eu/ontologies/GEOSP/skos_xl_labels"
+    },
+    "name": "GeoSpecies Ontology",
+    "ontologyType": "https://data.ecoportal.lifewatch.eu/ontology_types/ONTOLOGY",
+    "version": "v2012-10-02",
     "viewingRestriction": "public"
   },
   {
@@ -5312,7 +5911,79 @@
     },
     "name": "Biogeographical regions",
     "ontologyType": "https://data.ecoportal.lifewatch.eu/ontology_types/ONTOLOGY",
+    "projects": [
+      "https://data.ecoportal.lifewatch.eu/projects/LW+ITA+Data+Portal",
+      "https://data.ecoportal.lifewatch.eu/projects/ITINERIS"
+    ],
     "version": "1.0",
+    "viewingRestriction": "public"
+  },
+  {
+    "@id": "https://data.ecoportal.lifewatch.eu/ontologies/PECO",
+    "@type": "http://data.bioontology.org/metadata/Ontology",
+    "acronym": "PECO",
+    "administeredBy": [
+      "https://data.ecoportal.lifewatch.eu/users/LOV_migration"
+    ],
+    "contact": {
+      "email": "mohamed-el-amine.boukerfa@inrae.fr",
+      "name": "LOV Migration"
+    },
+    "description": "This ontology defines a vocabulary for describing provenance traces of carbon emission calculations by capturing the quantifiable measurements of carbon emission sources used by some activities (e.g., electricity used by a machinery to produce a product, petrol used to make a car journey, etc.) and emission conversion factors used to estimate the carbon emissions produced by these. In addition, the ontology provides the ability to capture various data transformations that occurred before energy estimates may be used with relevant conversion factors. For example, sensors may provide raw readings about a water flow of an irrigation rig in an agri-food operation which is then used as a proxy to estimate the total volume of fertilisers used.",
+    "license": "CC-BY-4.0",
+    "links": {
+      "@context": {
+        "agents": "http://xmlns.com/foaf/0.1/Agent",
+        "analytics": "http://data.bioontology.org/metadata/Analytics",
+        "categories": "http://data.bioontology.org/metadata/Category",
+        "classes": "http://www.w3.org/2002/07/owl#Class",
+        "collections": "http://www.w3.org/2004/02/skos/core#Collection",
+        "download": "http://data.bioontology.org/metadata/Ontology",
+        "groups": "http://data.bioontology.org/metadata/Group",
+        "identifier_requests": "http://data.bioontology.org/metadata/IdentifierRequest",
+        "instances": "http://data.bioontology.org/metadata/Instance",
+        "latest_submission": "http://data.bioontology.org/metadata/OntologySubmission",
+        "mappings": "metadata/Mapping",
+        "metrics": "http://data.bioontology.org/metadata/Metrics",
+        "notes": "http://data.bioontology.org/metadata/Note",
+        "projects": "http://data.bioontology.org/metadata/Project",
+        "properties": "http://data.bioontology.org/metadata/Property",
+        "reviews": "http://data.bioontology.org/metadata/Review",
+        "roots": "http://www.w3.org/2002/07/owl#Class",
+        "schemes": "http://www.w3.org/2004/02/skos/core#ConceptScheme",
+        "single_class": "http://www.w3.org/2002/07/owl#Class",
+        "submissions": "http://data.bioontology.org/metadata/OntologySubmission",
+        "ui": "http://data.bioontology.org/metadata/Ontology",
+        "views": "http://data.bioontology.org/metadata/Ontology",
+        "xl_labels": "http://www.w3.org/2008/05/skos-xl#Label"
+      },
+      "agents": "https://data.ecoportal.lifewatch.eu/ontologies/PECO/agents",
+      "analytics": "https://data.ecoportal.lifewatch.eu/ontologies/PECO/analytics",
+      "categories": "https://data.ecoportal.lifewatch.eu/ontologies/PECO/categories",
+      "classes": "https://data.ecoportal.lifewatch.eu/ontologies/PECO/classes",
+      "collections": "https://data.ecoportal.lifewatch.eu/ontologies/PECO/collections",
+      "download": "https://data.ecoportal.lifewatch.eu/ontologies/PECO/download",
+      "groups": "https://data.ecoportal.lifewatch.eu/ontologies/PECO/groups",
+      "identifier_requests": "https://data.ecoportal.lifewatch.eu/ontologies/PECO/identifier_requests",
+      "instances": "https://data.ecoportal.lifewatch.eu/ontologies/PECO/instances",
+      "latest_submission": "https://data.ecoportal.lifewatch.eu/ontologies/PECO/latest_submission",
+      "mappings": "https://data.ecoportal.lifewatch.eu/ontologies/PECO/mappings",
+      "metrics": "https://data.ecoportal.lifewatch.eu/ontologies/PECO/metrics",
+      "notes": "https://data.ecoportal.lifewatch.eu/ontologies/PECO/notes",
+      "projects": "https://data.ecoportal.lifewatch.eu/ontologies/PECO/projects",
+      "properties": "https://data.ecoportal.lifewatch.eu/ontologies/PECO/properties",
+      "reviews": "https://data.ecoportal.lifewatch.eu/ontologies/PECO/reviews",
+      "roots": "https://data.ecoportal.lifewatch.eu/ontologies/PECO/classes/roots",
+      "schemes": "https://data.ecoportal.lifewatch.eu/ontologies/PECO/schemes",
+      "single_class": "https://data.ecoportal.lifewatch.eu/ontologies/PECO/classes/{class_id}",
+      "submissions": "https://data.ecoportal.lifewatch.eu/ontologies/PECO/submissions",
+      "ui": "http://ecoportal.lifewatch.eu/ontologies/PECO",
+      "views": "https://data.ecoportal.lifewatch.eu/ontologies/PECO/views",
+      "xl_labels": "https://data.ecoportal.lifewatch.eu/ontologies/PECO/skos_xl_labels"
+    },
+    "name": "The Provenance of Emission Calculations Ontology",
+    "ontologyType": "https://data.ecoportal.lifewatch.eu/ontology_types/ONTOLOGY",
+    "version": "1.0.0",
     "viewingRestriction": "public"
   },
   {

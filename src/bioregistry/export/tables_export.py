@@ -5,15 +5,18 @@ from textwrap import dedent
 import click
 import pandas as pd
 
-import bioregistry
-from bioregistry.constants import (
+from ..constants import (
+    INTERNAL_METAPREFIX,
     TABLES_GOVERNANCE_LATEX_PATH,
     TABLES_GOVERNANCE_TSV_PATH,
     TABLES_METADATA_LATEX_PATH,
     TABLES_METADATA_TSV_PATH,
     TABLES_SUMMARY_LATEX_PATH,
 )
-from bioregistry.summary import BioregistrySummary
+from ..resolve import count_mappings
+from ..schema import Registry
+from ..schema_utils import read_metaregistry
+from ..summary import BioregistrySummary
 
 __all__ = [
     "export_tables",
@@ -49,7 +52,7 @@ def _replace_na(s: str) -> str:
     return s
 
 
-def _short_name_bibtex(registry: bioregistry.Registry) -> str:
+def _short_name_bibtex(registry: Registry) -> str:
     name = registry.get_short_name()
     return f"{name}~\\cite{{{registry.bibtex}}}" if registry.bibtex else name
 
@@ -65,17 +68,17 @@ schema_status_map = {
 }
 
 
-def _sort_key(registry: bioregistry.Registry) -> tuple[int, str]:
-    if registry.prefix == "bioregistry":
+def _sort_key(registry: Registry) -> tuple[int, str]:
+    if registry.prefix == INTERNAL_METAPREFIX:
         return 0, registry.prefix
     return 1, registry.prefix
 
 
 def _get_governance_df() -> pd.DataFrame:
     rows = []
-    keep_metaprefixes = set(bioregistry.count_mappings())
-    for registry in sorted(bioregistry.read_metaregistry().values(), key=_sort_key):
-        if registry.prefix not in keep_metaprefixes:
+    keep_metaprefixes = set(count_mappings())
+    for registry in sorted(read_metaregistry().values(), key=_sort_key):
+        if registry.prefix not in keep_metaprefixes or registry.governance is None:
             continue
         rows.append(
             (
@@ -120,9 +123,13 @@ DATA_MODEL_CAPABILITIES = [
 
 def _get_metadata_df() -> pd.DataFrame:
     rows = []
-    keep_metaprefixes = set(bioregistry.count_mappings())
-    for registry in sorted(bioregistry.read_metaregistry().values(), key=_sort_key):
-        if registry.prefix not in keep_metaprefixes:
+    keep_metaprefixes = set(count_mappings())
+    for registry in sorted(read_metaregistry().values(), key=_sort_key):
+        if (
+            registry.prefix not in keep_metaprefixes
+            or registry.availability is None
+            or registry.qualities is None
+        ):
             continue
         rows.append(
             (
@@ -160,12 +167,7 @@ def _get_metadata_df() -> pd.DataFrame:
 
 @click.command()
 def export_tables() -> None:
-    """Export tables.
-
-    1. TODO: Export data model comparison, see also
-       https://bioregistry.io/related#data-models
-    2. Export governance comparison, see also https://bioregistry.io/related#governance
-    """
+    """Export tables."""
     governance_df = _get_governance_df()
     governance_df.to_csv(TABLES_GOVERNANCE_TSV_PATH, sep="\t", index=False)
     TABLES_GOVERNANCE_LATEX_PATH.write_text(

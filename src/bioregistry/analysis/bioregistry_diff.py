@@ -254,7 +254,7 @@ def visualize_changes(
             plt.xticks(rotation=45, ha="right")
             plt.grid(axis="y", linestyle="--", alpha=0.7)
             plt.tight_layout(pad=3.0)
-            plt.show()  # type:ignore
+            plt.show()
 
         # Plot for mapping fields
         if mapping_fields:
@@ -271,7 +271,7 @@ def visualize_changes(
             plt.xticks(rotation=45, ha="right")
             plt.grid(axis="y", linestyle="--", alpha=0.7)
             plt.tight_layout(pad=3.0)
-            plt.show()  # type:ignore
+            plt.show()
 
 
 @click.command()

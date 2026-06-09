@@ -1,6 +1,5 @@
 """Download registry information from NCBI."""
 
-import json
 import logging
 import re
 import textwrap
@@ -10,10 +9,10 @@ from typing import Any, ClassVar
 from urllib.parse import urlsplit, urlunsplit
 
 from bs4 import BeautifulSoup
-from pystow.utils import download
 
+from bioregistry.alignment_model import Record, make_record
 from bioregistry.constants import RAW_DIRECTORY
-from bioregistry.external.alignment_utils import Aligner, load_processed
+from bioregistry.external.alignment_utils import Aligner, build_getter
 
 __all__ = [
     "NcbiAligner",
@@ -54,13 +53,9 @@ OBSOLETE = {
 }
 
 
-def get_ncbi(force_download: bool = False) -> dict[str, dict[str, str]]:
-    """Get the NCBI data."""
-    if PROCESSED_PATH.exists() and not force_download:
-        return load_processed(PROCESSED_PATH)
-
-    download(url=URL, path=RAW_PATH, force=True)
-    with RAW_PATH.open() as file:
+def process_ncbi(path: Path) -> dict[str, Record]:
+    """Process NCBI registry."""
+    with path.open() as file:
         soup = BeautifulSoup(file, "html.parser")
     # find the data table based on its caption element
     data_table_child = soup.find("caption", string=DATA_TABLE_CAPTION_RE)
@@ -88,7 +83,7 @@ def get_ncbi(force_download: bool = False) -> dict[str, dict[str, str]]:
         if not (prefix and name):  # blank line
             continue
 
-        item = {"name": name}
+        item: dict[str, Any] = {"name": name}
 
         link = cells[0].find("a")
         if link and "href" in link.attrs:
@@ -140,14 +135,18 @@ def get_ncbi(force_download: bool = False) -> dict[str, dict[str, str]]:
                     f"example does not start with prefix {prefix} -> {identifier} from {example}"
                 )
 
-            item["example"] = identifier
+            item["examples"] = [identifier]
 
-        rv[prefix] = item
-
-    with PROCESSED_PATH.open("w") as file:
-        json.dump(rv, file, indent=2, sort_keys=True)
-
+        rv[prefix] = make_record(item)
     return rv
+
+
+get_ncbi = build_getter(
+    processed_path=PROCESSED_PATH,
+    raw_path=RAW_PATH,
+    url=URL,
+    func=process_ncbi,
+)
 
 
 class NcbiAligner(Aligner):
@@ -161,9 +160,9 @@ class NcbiAligner(Aligner):
     def get_curation_row(self, external_id: str, external_entry: dict[str, Any]) -> Sequence[str]:
         """Return the relevant fields from an NCBI entry for pretty-printing."""
         return [
-            textwrap.shorten(external_entry["name"], 50),
-            external_entry.get("example", ""),
-            external_entry.get("homepage", ""),
+            textwrap.shorten(external_entry["name"] or "", 50),
+            external_entry["examples"][0] if external_entry.get("examples") else "",
+            external_entry.get("homepage") or "",
         ]
 
 

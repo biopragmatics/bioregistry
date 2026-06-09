@@ -238,7 +238,7 @@ class MappingBurdenSummary:
 
 @click.command()
 @click.option("--split-lines", is_flag=True)
-@force_option  # type:ignore
+@force_option
 def _main(split_lines: bool, force: bool) -> None:
     if split_lines:
         from textwrap import fill as _fill

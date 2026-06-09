@@ -24,6 +24,7 @@ import logging
 import textwrap
 from collections import defaultdict
 from pathlib import Path
+from time import sleep
 from typing import TYPE_CHECKING, NamedTuple, TypeAlias, cast
 
 import click
@@ -163,9 +164,9 @@ def _fill_abstracts(
         pubmed_to_article = _get_articles_dict(df)
 
     df["abstract"] = df["pubmed"].map(
-        lambda pubmed: article.get_abstract()
-        if (article := pubmed_to_article.get(pubmed))
-        else None,
+        lambda pubmed: (
+            article.get_abstract() if (article := pubmed_to_article.get(pubmed)) else None
+        ),
         na_action="ignore",
     )
 
@@ -213,6 +214,7 @@ def _search(
         ):
             if pubmed_id not in pubmed_ids_to_filter:
                 pubmed_to_terms[pubmed_id].append(term)
+            sleep(1)
     return dict(pubmed_to_terms)
 
 
@@ -400,7 +402,7 @@ def predict_and_save(
     :param path: Path to save the predictions.
     """
     x_meta = pd.DataFrame()
-    x_transformed = vectorizer.transform(df["title"] + " " + df["abstract"])
+    x_transformed = vectorizer.transform(_concat(df))
     for name, clf in classifiers:
         x_meta[name] = _predict(clf, x_transformed)
 
@@ -524,7 +526,7 @@ def train(
     df = pd.concat(curated_dfs)[["pubmed", "title", "abstract", "relevant"]]
 
     df["abstract"] = df["abstract"].fillna("")
-    df["title_abstract"] = df["title"] + " " + df["abstract"]
+    df["title_abstract"] = _concat(df)
     df = df[df.title_abstract.notna()]
     df = df.drop_duplicates()
     _echo_stats(df, "combine curated publications")
@@ -580,6 +582,10 @@ def train(
     # These have already been curated and will therefore be filtered out
     curated_pubmed_ids: set[str] = {str(pubmed) for pubmed in df["pubmed"] if pd.notna(pubmed)}
     return TrainingResult(curated_pubmed_ids, vectorizer, classifiers, meta_clf)
+
+
+def _concat(df: pd.DataFrame) -> pd.Series[str]:
+    return cast("pd.Series[str]", df["title"]) + " " + cast("pd.Series[str]", df["abstract"])
 
 
 if __name__ == "__main__":

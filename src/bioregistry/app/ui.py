@@ -1,46 +1,33 @@
-"""User blueprint for the bioregistry web application."""
+"""User blueprint for the web application."""
 
 from __future__ import annotations
 
-import datetime
 import itertools as itt
 import json
-import platform
 from collections import defaultdict
 from collections.abc import Iterable
 from operator import attrgetter
-from pathlib import Path
+from typing import cast
 
 import flask
 import werkzeug
-from flask import (
-    Blueprint,
-    abort,
-    current_app,
-    jsonify,
-    redirect,
-    render_template,
-    request,
-    url_for,
-)
+from curies import Reference
+from flask import abort, current_app, jsonify, redirect, render_template, request, url_for
 
+from .components.base import ui_blueprint
+from .components.resolver import _clean_reference, resolve
+from .constants import FORMATS
 from .proxies import manager
 from .utils import (
+    ResponseWrapperError,
     _get_resource_providers,
-    _normalize_prefix_or_404,
     get_accept_media_type,
     serialize_model,
 )
-from .. import version
-from ..constants import NDEX_UUID
-from ..export.rdf_export import (
-    collection_to_rdf_str,
-    metaresource_to_rdf_str,
-    resource_to_rdf_str,
-)
-from ..schema import Context
-from ..schema.constants import bioregistry_schema_terms
-from ..schema.struct import (
+from ..constants import INTERNAL_LABEL, INTERNAL_METAPREFIX, NFDI_ROR
+from ..export.rdf_export import collection_to_rdf_str, metaresource_to_rdf_str
+from ..schema import (
+    Context,
     Registry,
     RegistryGovernance,
     RegistryQualities,
@@ -49,6 +36,7 @@ from ..schema.struct import (
     get_json_schema,
     schema_status_map,
 )
+from ..schema.struct import Collection, Organization, filter_collections
 from ..schema_utils import (
     read_collections_contributions,
     read_context_contributions,
@@ -60,17 +48,7 @@ from ..schema_utils import (
 )
 from ..utils import curie_to_str
 
-__all__ = [
-    "ui_blueprint",
-]
-
-TEMPLATES = Path(__file__).parent.resolve().joinpath("templates")
-ui_blueprint = Blueprint("metaregistry_ui", __name__, template_folder=TEMPLATES.as_posix())
-
-FORMATS = [
-    ("JSON", "json"),
-    ("YAML", "yaml"),
-]
+__all__ = ["ui_blueprint"]
 
 
 @ui_blueprint.route("/registry/")
@@ -99,88 +77,19 @@ def metaresources() -> str:
 @ui_blueprint.route("/collection/")
 def collections() -> str:
     """Serve the collections page."""
+    collections_: list[Collection] = list(manager.collections.values())
+    organization: Organization | None = None
+    if ror := flask.request.args.get("ror"):
+        collections_ = filter_collections(collections_, ror)
+        if not collections_:
+            raise flask.abort(404, f"no collections are tagged with ROR: {ror}")
+        organization = next(org for org in collections_[0].organizations or [] if org.ror == ror)
     return render_template(
         "collections.html",
-        rows=manager.collections.items(),
+        collections=collections_,
         formats=FORMATS,
-    )
-
-
-@ui_blueprint.route("/registry/<prefix>")
-def resource(prefix: str) -> str | werkzeug.Response | tuple[str, int]:
-    """Serve a resource page."""
-    norm_prefix = _normalize_prefix_or_404(prefix, "." + resource.__name__)
-    if not isinstance(norm_prefix, str):
-        return norm_prefix
-    _resource = manager.get_resource(norm_prefix)
-    if _resource is None:
-        raise RuntimeError
-    accept = get_accept_media_type()
-    if accept != "text/html":
-        return serialize_model(_resource, resource_to_rdf_str, negotiate=True)
-
-    example = _resource.get_example()
-    example_curie = _resource.get_example_curie(use_preferred=True)
-    example_extras = _resource.get_example_extras()
-    example_curie_extras = [
-        _resource.get_curie(example_extra, use_preferred=True) for example_extra in example_extras
-    ]
-    name_pack = manager._repack(_resource.get_name(provenance=True))
-    return render_template(
-        "resource.html",
-        zip=zip,
-        prefix=prefix,
-        resource=_resource,
-        bioschemas=json.dumps(_resource.get_bioschemas_jsonld(), ensure_ascii=False),
-        name_pack=name_pack,
-        example=example,
-        example_extras=example_extras,
-        example_curie=example_curie,
-        example_curie_extras=example_curie_extras,
-        mappings=[
-            {
-                "metaprefix": metaprefix,
-                "metaresource": manager.get_registry(metaprefix),
-                "xref": xref,
-                "homepage": manager.get_registry_homepage(metaprefix),
-                "name": manager.get_registry_name(metaprefix),
-                "short_name": manager.get_registry_short_name(metaprefix),
-                "uri": manager.get_registry_provider_uri_format(metaprefix, xref),
-            }
-            for metaprefix, xref in _resource.get_mappings().items()
-        ],
-        synonyms=_resource.get_synonyms(),
-        homepage=_resource.get_homepage(),
-        repository=_resource.get_repository(),
-        pattern=manager.get_pattern(prefix),
-        curie_pattern=manager.get_curie_pattern(prefix, use_preferred=True),
-        version=_resource.get_version(),
-        has_no_terms=manager.has_no_terms(prefix),
-        obo_download=_resource.get_download_obo(),
-        owl_download=_resource.get_download_owl(),
-        json_download=_resource.get_download_obograph(),
-        rdf_download=_resource.get_download_rdf(),
-        namespace_in_lui=_resource.get_namespace_in_lui(),
-        deprecated=manager.is_deprecated(prefix),
-        contact=_resource.get_contact(),
-        banana=_resource.get_banana(),
-        description=manager.get_description(prefix, use_markdown=True),
-        appears_in=manager.get_appears_in(prefix),
-        depends_on=manager.get_depends_on(prefix),
-        has_canonical=manager.get_has_canonical(prefix),
-        canonical_for=manager.get_canonical_for(prefix),
-        provides=manager.get_provides_for(prefix),
-        provided_by=manager.get_provided_by(prefix),
-        part_of=manager.get_part_of(prefix),
-        has_parts=manager.get_has_parts(prefix),
-        in_collections=manager.get_in_collections(prefix),
-        providers=None if example is None else _get_resource_providers(prefix, example),
-        formats=[
-            *FORMATS,
-            ("RDF (turtle)", "turtle"),
-            ("RDF (JSON-LD)", "jsonld"),
-            ("RDF (n3)", "n3"),
-        ],
+        ror=ror,
+        organization=organization,
     )
 
 
@@ -195,17 +104,17 @@ def metaresource(metaprefix: str) -> str | flask.Response:
         return serialize_model(entry, metaresource_to_rdf_str, negotiate=True)
 
     external_prefix = entry.example
-    bioregistry_prefix: str | None
-    if metaprefix == "bioregistry":
-        bioregistry_prefix = external_prefix
+    internal_prefix: str | None
+    if metaprefix == INTERNAL_METAPREFIX:
+        internal_prefix = external_prefix
     else:
         # TODO change this to [external_prefix] instead of .get(external_prefix)
         #  when all metaregistry entries are required to have corresponding schema slots
-        bioregistry_prefix = manager.get_registry_invmap(metaprefix).get(external_prefix)
+        internal_prefix = manager.get_registry_invmap(metaprefix).get(external_prefix)
 
-    # In the case that we can't map from the external registry's prefix to Bioregistry
+    # In the case that we can't map from the external registry's prefix to the internal
     # prefix, the example identifier can't be looked up
-    example_identifier = bioregistry_prefix and manager.get_example(bioregistry_prefix)
+    example_identifier = internal_prefix and manager.get_example(internal_prefix)
     return render_template(
         "metaresource.html",
         entry=entry,
@@ -222,8 +131,8 @@ def metaresource(metaprefix: str) -> str | flask.Response:
         ),
         example_curie_url=(
             # TODO there must be a more direct way for this
-            manager.get_registry_uri(metaprefix, bioregistry_prefix, example_identifier)
-            if bioregistry_prefix and example_identifier
+            manager.get_registry_uri(metaprefix, internal_prefix, example_identifier)
+            if internal_prefix and example_identifier
             else None
         ),
         formats=[
@@ -253,12 +162,17 @@ def collection(identifier: str) -> str | flask.Response:
     accept = get_accept_media_type()
     if accept != "text/html":
         return serialize_model(entry, collection_to_rdf_str, negotiate=True)
-
+    indirect = manager.get_collection_indirect_dependencies(entry)
+    first_party = manager.get_collection_first_party(entry, skip_org_rors={NFDI_ROR})
     return render_template(
         "collection.html",
         identifier=identifier,
         entry=entry,
-        resources={prefix: manager.get_resource(prefix) for prefix in entry.resources},
+        resources={
+            prefix: manager.get_resource(prefix, strict=True) for prefix in entry.get_prefixes()
+        },
+        indirect=indirect,
+        first_party=first_party,
         formats=[
             *FORMATS,
             ("Context (JSON-LD)", "context"),
@@ -295,61 +209,6 @@ def context(identifier: str) -> str:
     )
 
 
-class ResponseWrapperError(ValueError):
-    """An exception that helps with code reuse that returns multiple value types."""
-
-    def __init__(self, response: str | werkzeug.Response, code: int | None = None):
-        """Instantiate this "exception", which is a tricky way of writing a macro."""
-        self.response = response
-        self.code = code
-
-    def get_value(self) -> tuple[str | werkzeug.Response, int] | str | werkzeug.Response:
-        """Get either the response, or a pair of response + code if a code is available."""
-        if self.code is not None:
-            return self.response, self.code
-        return self.response
-
-
-def _clean_reference(prefix: str, identifier: str | None = None) -> tuple[Resource, str]:
-    if ":" in prefix:
-        # A colon might appear in the prefix if there are multiple colons
-        # in the CURIE, since Flask/Werkzeug parses from right to left.
-        # This block reorganizes the parts of the CURIE based on that assumption
-        prefix, middle = prefix.split(":", 1)
-        if identifier:
-            identifier = f"{middle}:{identifier}"
-        else:
-            identifier = middle  # not sure how this could happen, though
-
-    _resource = manager.get_resource(prefix)
-    if _resource is None:
-        raise ResponseWrapperError(
-            render_template(
-                "resolve_errors/missing_prefix.html", prefix=prefix, identifier=identifier
-            ),
-            404,
-        )
-    if identifier is None:
-        raise ResponseWrapperError(
-            redirect(url_for("." + resource.__name__, prefix=_resource.prefix))
-        )
-
-    identifier = _resource.standardize_identifier(identifier)
-    pattern = _resource.get_pattern()
-    if pattern and not _resource.is_valid_identifier(identifier):
-        raise ResponseWrapperError(
-            render_template(
-                "resolve_errors/invalid_identifier.html",
-                prefix=prefix,
-                identifier=identifier,
-                pattern=pattern,
-            ),
-            404,
-        )
-
-    return _resource, identifier
-
-
 @ui_blueprint.route("/reference/<prefix>:<path:identifier>")
 @ui_blueprint.route("/reference/<prefix>:/<path:identifier>")  # ARK hack, see below
 def reference(
@@ -357,70 +216,21 @@ def reference(
 ) -> str | werkzeug.Response | tuple[str | werkzeug.Response, int]:
     """Serve a reference page."""
     try:
-        _resource, identifier = _clean_reference(prefix, identifier)
+        _resource, reference_ = _clean_reference(prefix, identifier)
     except ResponseWrapperError as rw:
         return rw.get_value()
+    identifier = reference_.identifier
     return render_template(
         "reference.html",
         prefix=_resource.prefix,
         name=_resource.get_name(),
         identifier=identifier,
         providers=_get_resource_providers(_resource.prefix, identifier),
-        formats=FORMATS,
+        formats=[
+            *FORMATS,
+            ("RDF (turtle)", "turtle"),
+        ],
     )
-
-
-#: this is a hack to make it work when the luid starts with a slash for
-#: ARK, since ARK doesn't actually require a slash. Will break
-#: if there are other LUIDs that actualyl require a slash in front
-ark_hacked_route = ui_blueprint.route("/<prefix>:/<path:identifier>")
-
-
-@ui_blueprint.route("/<prefix>")
-@ui_blueprint.route("/<prefix>:<path:identifier>")
-@ark_hacked_route
-def resolve(
-    prefix: str, identifier: str | None = None
-) -> str | werkzeug.Response | tuple[str | werkzeug.Response, int]:
-    """Resolve a CURIE.
-
-    The following things can make a CURIE unable to resolve:
-
-    1. The prefix is not registered
-    2. The prefix has a validation pattern and the identifier does not match it
-    3. There are no providers available for the URL
-    """
-    try:
-        _resource, identifier = _clean_reference(prefix, identifier)
-    except ResponseWrapperError as rw:
-        return rw.get_value()
-    url = manager.get_iri(
-        _resource.prefix,
-        identifier,
-        use_bioregistry_io=False,
-        provider=request.args.get("provider"),
-    )
-    if not url:
-        return (
-            render_template(
-                "resolve_errors/missing_providers.html",
-                prefix=_resource.prefix,
-                identifier=identifier,
-            ),
-            404,
-        )
-    try:
-        # TODO remove any garbage characters?
-        return redirect(url)
-    except ValueError:  # headers could not be constructed
-        return (
-            render_template(
-                "resolve_errors/disallowed_identifier.html",
-                prefix=_resource.prefix,
-                identifier=identifier,
-            ),
-            404,
-        )
 
 
 @ui_blueprint.route("/metaregistry/<metaprefix>/<metaidentifier>")
@@ -437,27 +247,15 @@ def metaresolve(
     """
     if metaprefix not in manager.metaregistry:
         return abort(404, f"invalid metaprefix: {metaprefix}")
-    prefix = manager.lookup_from(metaprefix, metaidentifier, normalize=True)
+    prefix = manager.lookup_from(metaprefix, metaidentifier)
     if prefix is None:
         return abort(
             404,
-            f"Could not map {metaidentifier} in {metaprefix} to a Bioregistry prefix."
-            f" The Bioregistry contains mappings for the following:"
+            f"Could not map {metaidentifier} in {metaprefix} to a {INTERNAL_LABEL} prefix."
+            f" The {INTERNAL_LABEL} contains mappings for the following:"
             f" {list(manager.get_registry_invmap(metaprefix))}",
         )
     return redirect(url_for(f".{resolve.__name__}", prefix=prefix, identifier=identifier))
-
-
-@ui_blueprint.route("/resolve/github/issue/<owner>/<repository>/<int:issue>")
-def github_resolve_issue(owner: str, repository: str, issue: str) -> werkzeug.Response:
-    """Redirect to an issue on GitHub."""
-    return redirect(f"https://github.com/{owner}/{repository}/issues/{issue}")
-
-
-@ui_blueprint.route("/resolve/github/pull/<owner>/<repository>/<int:pull>")
-def github_resolve_pull(owner: str, repository: str, pull: int) -> werkzeug.Response:
-    """Redirect to a pull request on GitHub."""
-    return redirect(f"https://github.com/{owner}/{repository}/pull/{pull}")
 
 
 @ui_blueprint.route("/contributors/")
@@ -543,12 +341,6 @@ def home() -> str:
     )
 
 
-@ui_blueprint.route("/summary")
-def summary() -> str:
-    """Render the summary page."""
-    return render_template("meta/summary.html")
-
-
 @ui_blueprint.route("/related")
 def related() -> str:
     """Render the related page."""
@@ -564,83 +356,10 @@ def related() -> str:
     )
 
 
-@ui_blueprint.route("/download")
-def download() -> str:
-    """Render the download page."""
-    return render_template("meta/download.html", ndex_uuid=NDEX_UUID)
-
-
-@ui_blueprint.route("/acknowledgements")
-def acknowledgements() -> str:
-    """Render the acknowledgements page."""
-    return render_template(
-        "meta/acknowledgements.html",
-        registries=sorted(manager.metaregistry.values(), key=attrgetter("name")),
-    )
-
-
-_VERSION = version.get_version()
-_GIT_HASH = version.get_git_hash()
-_PLATFORM = platform.platform()
-_PLATFORM_VERSION = platform.version()
-_PYTHON_VERSION = platform.python_version()
-_DEPLOYED = datetime.datetime.now()
-
-
-@ui_blueprint.route("/sustainability")
-def sustainability() -> str:
-    """Render the sustainability page."""
-    return render_template(
-        "meta/sustainability.html",
-        software_version=_VERSION,
-        software_git_hash=_GIT_HASH,
-        platform=_PLATFORM,
-        platform_version=_PLATFORM_VERSION,
-        python_version=_PYTHON_VERSION,
-        deployed=_DEPLOYED,
-    )
-
-
-@ui_blueprint.route("/usage")
-def usage() -> str:
-    """Render the programmatic usage page."""
-    resource = manager.get_resource(current_app.config["METAREGISTRY_EXAMPLE_PREFIX"])
-    return render_template("meta/access.html", resource=resource)
-
-
-@ui_blueprint.route("/.well-known/funding-manifest-urls")
-def funding_manifest_urls() -> werkzeug.Response:
-    """Render the FLOSS Fund page, described by https://floss.fund/funding-manifest/."""
-    return current_app.send_static_file("funding-manifest-urls.txt")
-
-
-@ui_blueprint.route("/schema/")
-def schema() -> str:
-    """Render the Bioregistry RDF schema."""
-    return render_template("meta/schema.html", terms=bioregistry_schema_terms)
-
-
 @ui_blueprint.route("/schema.json")
 def json_schema() -> werkzeug.Response:
     """Return the JSON schema."""
     return jsonify(get_json_schema())  # type:ignore
-
-
-@ui_blueprint.route("/highlights/twitter")
-def highlights_twitter() -> str:
-    """Render the twitter highlights page."""
-    twitters = defaultdict(list)
-    for resource in manager.registry.values():
-        twitter = resource.get_twitter()
-        if twitter:
-            twitters[twitter].append(resource)
-    return render_template("highlights/twitter.html", twitters=twitters)
-
-
-@ui_blueprint.route("/highlights/relations")
-def highlights_relations() -> str:
-    """Render the relations highlights page."""
-    return render_template("highlights/relations.html")
 
 
 @ui_blueprint.route("/keywords")
@@ -663,17 +382,48 @@ def get_keyword(keyword: str) -> str:
     return render_template("keyword.html", keyword=keyword, resources=resources_)
 
 
-@ui_blueprint.route("/highlights/owners")
-def highlights_owners() -> str:
+@ui_blueprint.route("/organization/")
+def show_organizations() -> str:
     """Render the partners highlights page."""
     owner_to_resources = defaultdict(list)
     owners = {}
-    for resource in manager.registry.values():
-        for owner in resource.owners or []:
-            owners[owner.pair] = owner
-            owner_to_resources[owner.pair].append(resource)
+    for resource_ in manager.registry.values():
+        for owner in resource_.get_owners():
+            curie = owner.reference.curie
+            owners[curie] = owner
+            owner_to_resources[curie].append(resource_)
     return render_template(
-        "highlights/owners.html", owners=owners, owner_to_resources=owner_to_resources
+        "organizations.html", owners=owners, owner_to_resources=owner_to_resources
+    )
+
+
+@ui_blueprint.route("/organization/<curie>")
+def show_organization(curie: str) -> str:
+    """Show an organization."""
+    reference_ = Reference.from_curie(curie)
+    resources_ = [
+        resource_
+        for resource_ in manager.registry.values()
+        if resource_.has_organization(reference_)
+    ]
+    collections_ = [c for c in manager.collections.values() if c.has_organization(reference_)]
+    if not resources_ and not collections_:
+        raise flask.abort(404)
+    elif resources_:
+        organization = next(
+            o for o in resources_[0].get_owners() if o.matches_reference(reference_)
+        )
+    else:
+        organization = next(
+            o
+            for o in cast(list[Organization], collections_[0].organizations)
+            if o.matches_reference(reference_)
+        )
+    return render_template(
+        "organization.html",
+        organization=organization,
+        resources=resources_,
+        collections=collections_,
     )
 
 

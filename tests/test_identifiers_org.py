@@ -1,7 +1,7 @@
 """Tests for identifiers.org."""
 
 import unittest
-from collections.abc import Mapping
+from typing import ClassVar
 
 import requests
 
@@ -20,19 +20,23 @@ from bioregistry.version import VERSION
 class TestIdentifiersOrg(unittest.TestCase):
     """Tests for identifiers.org."""
 
-    def setUp(self) -> None:
+    session: ClassVar[requests.Session]
+    registry: ClassVar[dict[str, Resource]]
+
+    @classmethod
+    def setUpClass(cls) -> None:
         """Prepare a session that has a user agent."""
-        self.session = requests.Session()
-        self.session.headers = {
+        cls.session = requests.Session()
+        cls.session.headers = {
             "User-Agent": f"bioregistry/{VERSION}",
         }
-        self.entries: Mapping[str, Resource] = {
+        cls.registry = {
             prefix: entry
             for prefix, entry in bioregistry.read_registry().items()
             if entry.get_miriam_prefix()
         }
 
-    def test_get_prefix(self):
+    def test_get_prefix(self) -> None:
         """Test getting identifiers.org prefixes."""
         for prefix, miriam_prefix in [
             ("ncbitaxon", "taxonomy"),
@@ -45,21 +49,25 @@ class TestIdentifiersOrg(unittest.TestCase):
         for prefix in ["IDOMAL"]:
             self.assertIsNone(bioregistry.get_identifiers_org_prefix(prefix))
 
-    def test_standardize_identifier(self):
+    def test_standardize_identifier(self) -> None:
         """Test that standardization makes patterns valid."""
-        for prefix, entry in self.entries.items():
+        for prefix, entry in self.registry.items():
             if prefix in MIRIAM_BLACKLIST:
                 continue
-            example = entry.get_example()
-            self.assertIsNotNone(example)
-            pattern = entry.miriam.get("pattern")
+            if not entry.miriam:
+                raise self.fail("all MIRIAM entries should a data dictionary")
+            pattern = entry.miriam and entry.miriam.get("pattern")
             self.assertIsNotNone(pattern)
+            example = entry.get_example()
+            if example is None:
+                raise self.fail("all MIRIAM entries should have an example")
             with self.subTest(prefix=prefix, example=example, pattern=pattern):
                 standardized_example = entry.miriam_standardize_identifier(example)
-                self.assertIsNotNone(standardized_example)
+                if standardized_example is None:
+                    raise self.fail("miriam standardize should not return none")
                 self.assertRegex(standardized_example, pattern)
 
-    def test_curie(self):
+    def test_curie(self) -> None:
         """Test CURIEs explicitly."""
         for prefix, identifier, expected in [
             # Standard
@@ -77,28 +85,31 @@ class TestIdentifiersOrg(unittest.TestCase):
             with self.subTest(prefix=prefix, identifier=identifier):
                 self.assertEqual(expected, manager.get_miriam_curie(prefix, identifier))
 
-    def test_url_banana(self):
+    def test_url_banana(self) -> None:
         """Test that entries curated with a new banana are resolved properly."""
-        for prefix, entry in self.entries.items():
+        for prefix, entry in self.registry.items():
             banana = entry.get_banana()
             if banana is None:
                 continue
             if prefix in IDOT_BROKEN:
                 continue  # identifiers.org is broken for these prefixes
-            example = bioregistry.get_example(prefix)
-            self.assertIsNotNone(example)
             with self.subTest(prefix=prefix, banana=banana, peel=entry.get_banana_peel()):
+                example = bioregistry.get_example(prefix)
+                if example is None:
+                    raise self.fail("no example available")
                 self.assert_url(prefix, example)
 
-    def assert_url(self, prefix: str, identifier: str):
+    def assert_url(self, prefix: str, identifier: str) -> None:
         """Assert the URL resolves."""
         url = bioregistry.get_identifiers_org_iri(prefix, identifier)
-        self.assertIsNotNone(url)
-        res = self.session.get(url, allow_redirects=False)
+        if url is None:
+            raise self.fail("no URL available")
+        res = self.session.get(url, timeout=5, allow_redirects=False)
+        res.raise_for_status()
         self.assertEqual(302, res.status_code, msg=f"failed with URL: {url}")
 
-    @unittest.skip
-    def test_url_auto(self):
+    @unittest.skip(reason="slow")
+    def test_url_auto(self) -> None:
         """Test generating and resolving Identifiers.org URIs.
 
         .. warning::
@@ -106,15 +117,17 @@ class TestIdentifiersOrg(unittest.TestCase):
             This test takes up to 5 minutes since it makes a lot of web requests, and is
             therefore skipped by default.
         """
-        for prefix, entry in self.entries.items():
+        for prefix, entry in self.registry.items():
             miriam_prefix = entry.get_identifiers_org_prefix()
             if miriam_prefix is None or prefix in IDOT_BROKEN:
                 continue
             identifier = entry.get_example()
+            if identifier is None:
+                raise self.fail("requires identifier example")
             with self.subTest(prefix=prefix, identifier=identifier):
                 self.assert_url(prefix, identifier)
 
-    def test_url(self):
+    def test_url(self) -> None:
         """Test formatting URLs."""
         for prefix, identifier, expected, _reason in [
             ("efo", "0000400", "efo:0000400", "test simple concatenation"),
@@ -142,7 +155,7 @@ class TestIdentifiersOrg(unittest.TestCase):
 
                 self.assert_url(prefix, identifier)
 
-    def test_miriam_uri(self):
+    def test_miriam_uri(self) -> None:
         """Test URI generation."""
         self.assertEqual(
             "https://identifiers.org/taxonomy:", get_resource("ncbitaxon").get_miriam_uri_prefix()

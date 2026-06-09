@@ -10,7 +10,7 @@ from pathlib import Path
 import pandas as pd
 
 from bioregistry.analysis.paper_ranking import load_curated_papers, train
-from bioregistry.schema.struct import Publication, Resource
+from bioregistry.schema import Publication, Resource
 from bioregistry.schema_utils import write_registry
 
 
@@ -22,7 +22,9 @@ class TestPaperRanking(unittest.TestCase):
 
     @unittest.mock.patch("bioregistry.analysis.paper_ranking._get_articles_dict")
     @unittest.mock.patch("bioregistry.analysis.paper_ranking._search")
-    def test_pipeline(self, mock_search, mock_get_articles_dict):
+    def test_pipeline(
+        self, mock_search: unittest.mock.Mock, mock_get_articles_dict: unittest.mock.Mock
+    ) -> None:
         """Smoke test to ensure pipeline runs successfully without error."""
         import pubmed_downloader
         from pubmed_downloader import Article

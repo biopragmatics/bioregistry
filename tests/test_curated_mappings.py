@@ -2,20 +2,28 @@
 
 import unittest
 from collections import Counter
+from typing import Any
+
+import sssom_pydantic
 
 from bioregistry import is_valid_curie
 from bioregistry.constants import CURATED_MAPPINGS_PATH
-from bioregistry.schema_utils import SemanticMapping, read_mappings, read_metaregistry
+from bioregistry.schema_utils import (
+    SemanticMapping,
+    read_has_version_mappings,
+    read_mappings,
+    read_metaregistry,
+)
 
 
 class TestTSV(unittest.TestCase):
     """Tests for curated_mappings tsv file."""
 
-    def setUp(self):
+    def setUp(self) -> None:
         """Set up the test case."""
         self.metaregistry = read_metaregistry()
 
-    def validate_row(self, row):
+    def validate_row(self, row: dict[str, Any]) -> None:
         """Validate a single row from the TSV file."""
         # Constraints on what prefix has to be used for some columns
         self.assertEqual("orcid", row["creator_id"].split(":")[0])
@@ -34,48 +42,25 @@ class TestTSV(unittest.TestCase):
             self.assertFalse(row["comment"].startswith('"'))
             self.assertFalse(row["comment"].endswith('"'))
 
-    def test_tsv_file(self):
+    def test_tsv_file(self) -> None:
         """Tests all rows in TSV file are valid."""
-        with CURATED_MAPPINGS_PATH.open() as tsv_file:
-            mapping_keys = []
-            header = next(tsv_file).strip("\n").split("\t")
-            for row, line in enumerate(tsv_file, start=2):
-                with self.subTest(row=row, line=line):
-                    line = line.strip("\n").split("\t")
-                    self.assertEqual(
-                        len(header),
-                        len(line),
-                        msg="Wrong number of columns. This is usually due to the wrong amount of trailing tabs.",
-                    )
-                    data = dict(zip(header, line, strict=False))
-                    self.validate_row(data)
-                    mapping_keys.append(
-                        (
-                            data["subject_id"],
-                            data["object_id"],
-                            data["predicate_id"],
-                            data["predicate_modifier"],
-                        )
-                    )
-
-            mapping_counts = Counter(
-                (subject_id, object_id) for subject_id, object_id, _, _ in mapping_keys
+        mappings, _, _ = sssom_pydantic.read(CURATED_MAPPINGS_PATH)
+        mapping_counts = Counter((mapping.subject, mapping.object) for mapping in mappings)
+        duplicated_mappings = [
+            mapping for mapping, count in mapping_counts.most_common() if count > 1
+        ]
+        if duplicated_mappings:
+            summary = "\n".join(
+                f"- {subject_id}, {object_id}" for subject_id, object_id in duplicated_mappings
             )
-            duplicated_mappings = [
-                mapping for mapping, count in mapping_counts.most_common() if count > 1
-            ]
-            if duplicated_mappings:
-                summary = "\n".join(
-                    f"- {subject_id}, {object_id}" for subject_id, object_id in duplicated_mappings
-                )
-                self.fail(
-                    msg=f"The following subject-object pairs have multiple curations:\n\n{summary}\n\nI"
-                    f"f you meant to overwrite an existing curation, delete the old row."
-                )
-            self.assertEqual(
-                sorted(mapping_keys),
-                mapping_keys,
-                msg=f"""
+            self.fail(
+                msg=f"The following subject-object pairs have multiple curations:\n\n{summary}\n\nI"
+                f"f you meant to overwrite an existing curation, delete the old row."
+            )
+        self.assertEqual(
+            sorted(mappings),
+            mappings,
+            msg=f"""
 
     The curated mappings in src/bioregistry/data/{CURATED_MAPPINGS_PATH.name}
     were not sorted properly.
@@ -85,19 +70,22 @@ class TestTSV(unittest.TestCase):
     $ pip install tox
     $ tox -e bioregistry-lint
             """,
-            )
+        )
 
 
 class TestSemanticMappings(unittest.TestCase):
     """Tests to make sure semantic mappings are read correctly from TSV."""
 
-    def setUp(self):
-        """Set up the test case."""
-        self.mappings = read_mappings()
-
-    def test_semantic_mappings(self):
+    def test_semantic_mappings(self) -> None:
         """Test semantic mapping validity."""
-        for mapping in self.mappings:
+        for mapping in read_mappings():
             self.assertIsInstance(mapping, SemanticMapping)
             self.assertNotEqual(mapping.comment, "")
             self.assertIn(mapping.predicate_modifier, {None, "Not"})
+
+    def test_version_mappings(self) -> None:
+        """Test getting mappings that are versions."""
+        has_version_mappings = read_has_version_mappings()
+        self.assertIn("envo", has_version_mappings)
+        self.assertIn("tib", has_version_mappings["envo"])
+        self.assertIn("envo2023", has_version_mappings["envo"]["tib"])

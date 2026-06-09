@@ -9,12 +9,11 @@ To convert CHEMINF from OWL to OBO Graph JSON, do the following:
 See the OBO Foundry workflow for preparing a docker container that has ROBOT available
 """
 
-import json
 from collections.abc import Mapping, Sequence
 from pathlib import Path
-from typing import Any, ClassVar
+from typing import ClassVar
 
-from bioregistry.external.alignment_utils import Aligner, load_processed
+from bioregistry.external.alignment_utils import Aligner, build_no_raw_getter
 from bioregistry.utils import get_ols_descendants
 
 __all__ = [
@@ -32,15 +31,10 @@ SKIP = {
     "000303": "Double mapping onto `genbank`",
 }
 
-
-def get_cheminf(force_download: bool = False) -> dict[str, dict[str, Any]]:
-    """Get the Chemical Information Ontology registry."""
-    if PROCESSED_PATH.exists() and not force_download:
-        return load_processed(PROCESSED_PATH)
-    rv = get_ols_descendants(ontology="cheminf", uri=BASE_URL, force_download=force_download)
-    with PROCESSED_PATH.open("w") as file:
-        json.dump(rv, file, indent=2, sort_keys=True)
-    return rv
+get_cheminf = build_no_raw_getter(
+    processed_path=PROCESSED_PATH,
+    func=lambda: get_ols_descendants(ontology="cheminf", uri=BASE_URL),
+)
 
 
 class ChemInfAligner(Aligner):

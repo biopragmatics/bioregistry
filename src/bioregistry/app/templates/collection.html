@@ -8,8 +8,8 @@
         <div class="card-header">
             <div class="row align-items-center">
                 <div class="col-8">
-                    <h5 style="margin: 0"><a href="{{ url_for("metaregistry_ui.collections") }}">Collections</a>
-                        <i class="fas fa-angle-right"></i> {{ entry.name }}</h5>
+                    <h5 style="margin: 0"><a href="{{ url_for('metaregistry_ui.collections') }}">Collections</a>
+                        <i class="bi bi-chevron-right"></i> {{ entry.name }}</h5>
                 </div>
                 <div class="col-4 text-right">
                     <div class="d-flex flex-row-reverse">
@@ -22,14 +22,14 @@
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                             {% for label, key in formats %}
                                 <a class="dropdown-item"
-                                   href="{{ fastapi_url_for("get_collection", identifier=identifier) }}?format={{ key }}">
-                                    {{ label }} <i class="fas fa-download"></i>
+                                   href="{{ fastapi_url_for('get_collection', identifier=identifier) }}?format={{ key }}">
+                                    {{ label }} <i class="bi bi-download"></i>
                                 </a>
                             {% endfor %}
                         </div>
                     </div>
                     <a class="btn btn-sm btn-outline-dark" style="margin-right: 0.5em"
-                       href="https://github.com/biopragmatics/bioregistry/issues/new?template=add-collection-prefix.yml&collection={{ entry.identifier}}&title=Add+prefix+X+to+collection+{{ entry.identifier}}">
+                       href="{{ config.METAREGISTRY_REPOSITORY }}/issues/new?template=add-collection-prefix.yml&collection={{ entry.identifier}}&title=Add+prefix+X+to+collection+{{ entry.identifier}}">
                         Suggest
                     </a>
                     </div>
@@ -37,39 +37,162 @@
             </div>
         </div>
         <div class="card-body">
+            {%- if entry.logo %}
+            <img src="{{ entry.logo }}" alt="logo for {{ entry.name }}" style="float:right; max-height: 2.5em; padding-left: 1em;" />
+            {%- endif %}
             {{ markdown(entry.description) | safe }}
             <dl>
                 <dt>Identifier</dt>
                 <dd><code>{{ identifier }}</code></dd>
-                <dt>Contributors</dt>
+                {%- if entry.keywords %}
+                <dt>Keywords</dt>
                 <dd>
-                    {% for author in entry.authors %}
-                        <a href="{{ url_for("metaregistry_ui.contributor", orcid=author.orcid) }}">
-                            {{ author.name }}
-                            <i class="fab fa-orcid"></i>
-                        </a>{% if not loop.last %}, {% endif %}
-                    {% endfor %}
+                {%- for keyword in entry.keywords|sort %}
+                    <span class="badge badge-light">{{ keyword }}</span>
+                {%- endfor %}
                 </dd>
-                {% if entry.references %}
-                    <dt>References</dt>
-                    {% for reference in entry.references %}
-                        <dd><a href="{{ reference }}">{{ reference }}</a></dd>
-                    {% endfor %}
-                {% endif %}
-                <dt>Resources ({{ entry.resources | length }})</dt>
+                {%- endif %}
+                {%- if entry.maintainers %}
+                <dt>Maintainers</dt>
+                {%- for maintainer in entry.maintainers %}
+                <dd {% if not loop.last %}class="mb-0"{% endif %}>
+                    {{ utils.render_author(maintainer) }}
+                </dd>
+                {%- endfor %}
+                {%- endif %}
+
+                {%- if entry.contributors %}
+                <dt>Contributors</dt>
+                {%- for contributor in entry.contributors %}
+                <dd {% if not loop.last %}class="mb-0"{% endif %}>
+                    {{ utils.render_author(contributor) }}
+                </dd>
+                {%- endfor %}
+                {%- endif %}
+
+                {%- if entry.organizations %}
+                <dt>Organizations</dt>
+                {%- for organization in entry.organizations %}
+                <dd {% if not loop.last %}class="mb-0"{% endif %}>
+                    {{ utils.link_organization(organization) }}
+                </dd>
+                {%- endfor %}
+                {%- endif %}
+
+                <dt>Size</dt>
+                <dd>{{ entry.resources | length }}</dd>
+                {%- if entry.references %}
+                <dt>References</dt>
+                {%- for reference in entry.references %}
+                <dd><a href="{{ reference }}">{{ reference }}</a></dd>
+                {%- endfor %}
+                {%- endif %}
+
+                {%- if entry.mappings %}
+                <dt>Related Collections</dt>
+                {%- for mapping in entry.mappings %}
+                <dd {% if not loop.last %}class="mb-0"{% endif %}><a href="{{ url_for('metaregistry_ui.resolve', prefix=mapping.prefix, identifier=mapping.identifier) }}"><code>{{ mapping.curie }}</code></a></dd>
+                {%- endfor %}
+                {%- endif %}
+
+                <dt>Downloads</dt>
                 <dd>
-                    <ul>
-                        {% for prefix in entry.resources %}
-                            <li>
-                                <a href="{{ url_for("metaregistry_ui.resource", prefix=prefix) }}">
-                                    {{ resources[prefix].get_name() }} (<code>{{ prefix }}</code>)
-                                </a>
-                                {{ utils.render_resource_warnings(resources[prefix]) }}
-                            </li>
-                        {% endfor %}
-                    </ul>
+                    <span class="dropdown">
+                        <span class="badge badge-pill badge-light" type="button" data-toggle="dropdown"
+                                aria-expanded="false">
+                            External Mappings <i class="bi bi-caret-down-fill"></i>
+                        </span>
+                        <span class="dropdown-menu">
+                            {%- for metaprefix, target_registry in manager.metaregistry.items() %}
+                            <a class="dropdown-item"
+                               href="{{ fastapi_url_for('get_collection_mapped', identifier=entry.identifier, metaprefix=metaprefix) }}">
+                                {{ target_registry.get_short_name() }}
+                            </a>
+                            {%- endfor %}
+                        </span>
+                    </span>
+                    <a class="badge badge-pill badge-light"
+                       href="{{ fastapi_url_for('get_collection_ols_configurations', identifier=entry.identifier) }}">
+                        OLS Configurations
+                    </a>
                 </dd>
             </dl>
         </div>
+        <table class="table table-striped" style="margin-bottom: 0;">
+            <thead>
+            <tr>
+                <th scope="col">Prefix</th>
+                <th scope="col">Name</th>
+                <th scope="col">License</th>
+                <th scope="col">Download</th>
+            </tr>
+            </thead>
+            <tbody>
+            {%- for annotated_prefix in entry.get_annotated_prefixes() %}
+            {%- set resource = resources[annotated_prefix.prefix] %}
+            <tr>
+                <td>
+                    <code>{{ resource.prefix }}</code>
+                </td>
+                <td>
+                    <a href="{{ url_for('metaregistry_ui.resource', prefix=resource.prefix) }}">
+                        {{ resource.get_name() }} {{ utils.render_resource_warnings(resource) }}
+                    </a>
+                    {%- if first_party[resource.prefix] %}
+                    <span class="badge badge-primary" title="This resource is maintained by the same people/organizations that maintain this collection">
+                        First Party <i class="bi bi-check-circle-fill"></i></span>
+                    {%- endif %}
+                    {%- if annotated_prefix.comment %}
+                    <br><small>{{ annotated_prefix.comment}}</small>
+                    {%- endif %}
+                </td>
+                <td>
+                    {%- set license = resource.get_license() %}
+                    {%- if not license %}
+                    {%- elif license.startswith("http") %}
+                    <a href="{{ license }}">Custom</a>
+                    {%- else %}
+                    {{ license }}
+                    {%- endif %}
+                </td>
+                <td align="center">
+                    {%- if resource.has_download() %}
+                    <a href="{{ resource.get_download() }}"><i class="bi bi-download"></i></a>
+                    {%- endif %}
+                </td>
+            </tr>
+            {% endfor %}
+            </tbody>
+        </table>
     </div>
+
+    {%- if indirect %}
+    <div class="card" style="margin-top: 25px">
+        <div class="card-header">
+            <h5 style="margin: 0">Indirect Dependencies</h5>
+        </div>
+        <table class="table table-striped" style="margin-bottom: 0;">
+            <thead>
+            <tr>
+                <th scope="col">Prefix</th>
+                <th scope="col">Name</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for indirect_resource in indirect %}
+            <tr>
+                <td>
+                    <code>{{ indirect_resource.prefix }}</code>
+                </td>
+                <td>
+                    <a href="{{ url_for('metaregistry_ui.resource', prefix=indirect_resource) }}">
+                        {{ indirect_resource.get_name() }} {{ utils.render_resource_warnings(indirect_resource) }}
+                    </a>
+                </td>
+            </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    {%- endif %}
 {% endblock %}
