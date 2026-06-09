@@ -2639,7 +2639,8 @@ class Resource(BaseModel):
         if license_ := self.get_license():
             description += f" Licensed under {license_}."
 
-        ontology_purl = self.get_download()
+        if ontology_purl is None:
+            ontology_purl = self.get_download()
         if not ontology_purl:
             raise ValueError("no OWL nor OBO download available")
 
