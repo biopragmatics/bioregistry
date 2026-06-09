@@ -19,6 +19,7 @@ from .metaresource_api import (
 from .parse_iri import (
     curie_from_iri,
     get_default_converter,
+    get_preferred_converter,
     normalize_curie,
     normalize_parsed_curie,
     normalize_prefix,
@@ -244,6 +245,7 @@ __all__ = [
     "get_parts_collections",
     "get_pattern",
     "get_pattern_map",
+    "get_preferred_converter",
     "get_preferred_prefix",
     "get_prefix_map",
     "get_prefixcommons_uri_format",

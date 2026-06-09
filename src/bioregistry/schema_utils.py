@@ -233,7 +233,9 @@ def write_registry(registry: Mapping[str, Resource], *, path: Path | None = None
     with path.open(mode="w", encoding="utf-8") as file:
         json.dump(
             {
-                key: resource.model_dump(exclude_none=True, exclude={"prefix"})
+                key: resource.model_dump(
+                    exclude_none=True, exclude_defaults=True, exclude={"prefix"}
+                )
                 for key, resource in registry.items()
             },
             file,

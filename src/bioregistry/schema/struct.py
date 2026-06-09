@@ -36,6 +36,7 @@ from bioregistry import constants as brc
 from bioregistry.constants import (
     BIOREGISTRY_REMOTE_URL,
     DOCS,
+    GND_FIELD,
     MIRIAM_NAMESPACE_IN_LUI,
     ORCID_FIELD,
     ROR_FIELD,
@@ -137,6 +138,7 @@ Domain: TypeAlias = Literal[
     "genetic code",
     "mathematics",
     "registry",
+    "social science",
     "equipment",
 ]
 
@@ -188,13 +190,12 @@ class Organization(BaseModel):
 
     ror: Annotated[str | None, ROR_FIELD] = None
     wikidata: Annotated[str | None, WIKIDATA_FIELD] = None
-    gnd: str | None = Field(
-        default=None, title="Gemeinsame Normdatei (Integrated Authority File) identifier"
-    )
-    name: str = Field(..., description="Name of the organization")
-    partnered: bool = Field(
-        False, description="Has this organization made a specific connection with Bioregistry?"
-    )
+    gnd: Annotated[str | None, GND_FIELD] = None
+    name: Annotated[str, Field(..., description="Name of the organization")]
+    partnered: Annotated[
+        bool,
+        Field(description="Has this organization made a specific connection with Bioregistry?"),
+    ] = False
 
     @property
     def reference(self) -> Reference:
@@ -388,6 +389,7 @@ class Provider(BaseModel):
     name: str | None = Field(None, description="Name of the provider")
     description: str | None = Field(None, description="Description of the provider")
     homepage: str | None = Field(None, description="Homepage of the provider")
+    contact: Attributable | None = None
     uri_format: str = Field(
         ...,
         title="URI Format",
@@ -438,7 +440,7 @@ class AnnotatedURL(BaseModel):
     """A URL annotated with its file type and data schema."""
 
     url: str
-    rdf_format: RDFFormat = Field(default="ttl", title="RDF Format")
+    rdf_format: Annotated[RDFFormat, Field(title="RDF Format")]
 
 
 DEFAULT_METAPREFIX_PRIORITY = [
@@ -2638,7 +2640,8 @@ class Resource(BaseModel):
         if license_ := self.get_license():
             description += f" Licensed under {license_}."
 
-        ontology_purl = self.get_download()
+        if ontology_purl is None:
+            ontology_purl = self.get_download()
         if not ontology_purl:
             raise ValueError("no OWL nor OBO download available")
 

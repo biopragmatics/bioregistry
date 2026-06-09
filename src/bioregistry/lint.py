@@ -65,7 +65,7 @@ def lint() -> None:
     write_metaregistry(read_metaregistry())
     write_contexts(read_contexts())
 
-    sssom_pydantic.lint(CURATED_MAPPINGS_PATH)
+    sssom_pydantic.format(CURATED_MAPPINGS_PATH)
 
     df = pd.read_csv(CURATED_PAPERS_PATH, sep="\t")
     df["pr_added"] = df["pr_added"].map(lambda x: str(int(x)) if pd.notna(x) else None)
