@@ -1409,7 +1409,7 @@ class TestRegistry(unittest.TestCase):
             vv = mappings.get(metaprefix)
             if not vv:
                 continue
-            with self.subTest(prefix=prefix, registry=metaprefix):
+            with self.subTest(prefix=str(prefix), registry=str(metaprefix)):
                 self.assertNotEqual(value, vv)
 
     def test_depends_on(self) -> None:

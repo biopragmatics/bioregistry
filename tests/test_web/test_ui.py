@@ -72,12 +72,12 @@ class TestUI(unittest.TestCase):
         ]
         identifier = "0000001"
         for accept, loads in cases:
-            with self.subTest(format=format), self.app.test_client() as client:
+            with self.subTest(format=accept), self.app.test_client() as client:
                 res = client.get(f"/collection/{identifier}", headers={"Accept": accept})
                 self.assertEqual(
                     200,
                     res.status_code,
-                    msg=f"Failed on {identifier} to accept {accept} ({format})",
+                    msg=f"Failed on {identifier} to accept {accept}",
                 )
                 self.assertEqual({accept}, {t for t, _ in res.request.accept_mimetypes})
                 collection = Collection.model_validate(loads(res.text))
