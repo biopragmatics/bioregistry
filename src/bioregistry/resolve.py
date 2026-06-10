@@ -36,6 +36,8 @@ __all__ = [
     "get_jskos_download",
     "get_json_download",
     "get_keywords",
+    "get_license",
+    "get_license_url",
     "get_logo",
     "get_mailing_list",
     "get_mappings",
@@ -920,6 +922,19 @@ def get_license(prefix: str) -> str | None:
     if entry is None:
         return None
     return entry.get_license()
+
+
+def get_license_url(prefix: str) -> str | None:
+    """Get the license URL for the resource.
+
+    :param prefix: The prefix to look up
+
+    :returns: The license URL of the resource (normalized) if available
+    """
+    entry = get_resource(prefix)
+    if entry is None:
+        return None
+    return entry.get_license_url()
 
 
 def is_proprietary(prefix: str) -> bool | None:

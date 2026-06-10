@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+from functools import lru_cache
 from typing import Literal, overload
 
 import curies
@@ -13,6 +14,7 @@ from .resource_manager import manager
 __all__ = [
     "curie_from_iri",
     "get_default_converter",
+    "get_preferred_converter",
     "normalize_curie",
     "normalize_parsed_curie",
     "normalize_prefix",
@@ -24,6 +26,15 @@ __all__ = [
 def get_default_converter() -> curies.Converter:
     """Get a converter from this manager."""
     return manager.converter
+
+
+@lru_cache(1)
+def get_preferred_converter() -> curies.Converter:
+    """Get a converter from this manager with preferred CURIE prefixes and RDF URI prefixes."""
+    return manager.get_converter(
+        prefix_priority=["preferred", "default"],
+        uri_prefix_priority=["rdf", "default"],
+    )
 
 
 def curie_from_iri(

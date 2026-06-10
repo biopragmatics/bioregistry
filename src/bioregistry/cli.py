@@ -47,6 +47,7 @@ def download() -> None:
 @click.option("--skip-re3data", is_flag=True)
 @click.option("--skip-bioportal", is_flag=True)
 @click.option("--skip-agroportal", is_flag=True)
+@click.option("--skip-biodivportal", is_flag=True)
 @click.option("--skip-slow", is_flag=True)
 @click.option("--no-force", is_flag=True)
 def align(
@@ -54,6 +55,7 @@ def align(
     skip_re3data: bool,
     skip_bioportal: bool,
     skip_agroportal: bool,
+    skip_biodivportal: bool,
     skip_slow: bool,
     no_force: bool,
 ) -> None:
@@ -79,6 +81,8 @@ def align(
         skip.add("bioportal")
     if skip_agroportal or skip_slow:
         skip.add("agroportal")
+    if skip_biodivportal or skip_slow:
+        skip.add("biodivportal")
     for aligner_cls in aligner_resolver:
         if aligner_cls.key in skip:
             continue

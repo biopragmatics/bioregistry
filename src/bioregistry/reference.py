@@ -18,6 +18,10 @@ __all__ = [
 ]
 
 
+class MissingPartError(RuntimeError):
+    """Thrown when missing a prefix or identifier."""
+
+
 def _normalize_values(values: dict[str, str] | str | curies.Reference) -> dict[str, str]:
     """Validate the identifier."""
     if isinstance(values, str):
@@ -29,7 +33,7 @@ def _normalize_values(values: dict[str, str] | str | curies.Reference) -> dict[s
         values = {"prefix": values.prefix, "identifier": values.identifier}
     prefix, identifier = values.get("prefix"), values.get("identifier")
     if prefix is None or identifier is None:
-        raise RuntimeError(f"missing prefix/identifier from values: {values}")
+        raise MissingPartError(f"missing prefix/identifier from values: {values}")
     resource = bioregistry.get_resource(prefix)
     if resource is None:
         raise ExpansionError(f"Unknown prefix: {prefix}")
@@ -129,6 +133,10 @@ class NormalizedNamableReference(NormalizedReference, curies.NamableReference):
     NormalizedNamedReference(prefix='go', identifier='0032571', name='response to vitamin K')
     """
 
+    def without_name(self) -> NormalizedReference:
+        """Return this reference without a name."""
+        return NormalizedReference(prefix=self.prefix, identifier=self.identifier)
+
 
 class NormalizedNamedReference(NormalizedNamableReference, curies.NamedReference):
     """Extends :class:`curies.NamedReference` to normalize the prefix against the Bioregistry.
@@ -200,6 +208,10 @@ class StandardNamableReference(StandardReference, curies.NamableReference):
     >>> StandardNamableReference(prefix="GOBP", identifier="0032571", name="response to vitamin K")
     StandardNamableReference(prefix='GO', identifier='0032571', name='response to vitamin K')
     """
+
+    def without_name(self) -> StandardNamableReference:
+        """Return this reference without a name."""
+        return StandardNamableReference(prefix=self.prefix, identifier=self.identifier)
 
 
 class StandardNamedReference(StandardNamableReference, curies.NamedReference):

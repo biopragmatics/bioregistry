@@ -97,3 +97,16 @@ class TestCollections(unittest.TestCase):
                 continue
             with self.subTest(name=collection.name):
                 self.assertIsNotNone(collection.logo, msg="all NFDI collections need a logo")
+
+    def test_tags(self) -> None:
+        """Test all used tags are in the local definitions list."""
+        for collection in self.manager.collections.values():
+            with self.subTest(name=collection.name):
+                tags = {tag.code for tag in collection.tags or []}
+                for annotated_prefix in collection.get_annotated_prefixes():
+                    for tag in annotated_prefix.tags or []:
+                        self.assertIn(
+                            tag,
+                            tags,
+                            msg=f"tag {tag} not defined for collection {collection.identifier}",
+                        )

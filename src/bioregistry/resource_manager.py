@@ -399,11 +399,15 @@ class Manager:
         """
         norm_prefix = self.normalize_prefix(prefix)
         if norm_prefix is None:
+            if strict:
+                raise ValueError(f'prefix "{prefix}" could not be normalized')
             return None
         rv = self.registry.get(norm_prefix)
-        if rv is None and strict:
+        if rv is not None:
+            return rv
+        if strict:
             raise ValueError(f"could not a resource for {prefix}")
-        return rv
+        return None
 
     # docstr-coverage:excused `overload`
     @overload
@@ -855,13 +859,13 @@ class Manager:
     # docstr-coverage:excused `overload`
     @overload
     def get_uri_prefix(
-        self, prefix: str, *, priority: Sequence[str] | None = None, strict: Literal[True] = ...
+        self, prefix: str, *, priority: Sequence[str] | None = ..., strict: Literal[True] = ...
     ) -> str: ...
 
     # docstr-coverage:excused `overload`
     @overload
     def get_uri_prefix(
-        self, prefix: str, *, priority: Sequence[str] | None = None, strict: Literal[False] = ...
+        self, prefix: str, *, priority: Sequence[str] | None = ..., strict: Literal[False] = ...
     ) -> str | None: ...
 
     def get_uri_prefix(
