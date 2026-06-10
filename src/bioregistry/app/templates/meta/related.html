@@ -99,7 +99,8 @@
         </tr>
         </thead>
         <tbody>
-        {% for registry in registries %}
+        {%- for registry in registries %}
+        {%- if registry.availability %}
             <tr>
                 <td>
                     <a href="{{ url_for('metaregistry_ui.metaresource', metaprefix=registry.prefix) }}">{{ registry.get_short_name() }}</a>
@@ -117,7 +118,8 @@
                 <td style="text-align: center;">{{ render_circle(registry.availability.version) }}</td>
                 <td style="text-align: center;">{{ render_circle(registry.availability.contact) }}</td>
             </tr>
-        {% endfor %}
+        {%- endif %}
+        {%- endfor %}
         </tbody>
     </table>
 
@@ -294,7 +296,8 @@
         </tr>
         </thead>
         <tbody>
-        {% for registry in registries %}
+        {%- for registry in registries %}
+        {%- if registry.governance %}
             <tr>
                 <td>
                     <a href="{{ url_for('metaregistry_ui.metaresource', metaprefix=registry.prefix) }}">{{ registry.get_short_name() }}</a>
@@ -313,7 +316,8 @@
                 <td>{{ registry.governance.scope }}</td>
                 <td>{{ registry.governance.status }}</td>
             </tr>
-        {% endfor %}
+        {%- endif %}
+        {%- endfor %}
         </tbody>
     </table>
 

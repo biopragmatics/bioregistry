@@ -303,7 +303,7 @@
           "orcid": "0000-0003-4423-4370"
         }
       ],
-      "description": "The [Global Biodata Coalition](https://globalbiodata.org) released a [curated list](https://globalbiodata.org/scientific-activities/global-core-biodata-resources/) of 37 life sciences databases in December 2022 that they consider as having significant importance (see criteria [here](https://doi.org/10.5281/zenodo.5845116)). While it's not a primary goal of the Bioregistry to cover life science databases (other resources like Wikidata and [FAIRsharing](https://fairsharing.org) already do an excellent job of this), many notable databases induce one or more semantic spaces that are relevant for curation and prefix assignment in the Bioregistry. Therefore, a large number of the resources in this list correspond 1-to-1 with prefixes in the Bioregistry, a small number (e.g., Orphanet, CIViC, PharmGKB) correspond to multiple prefixes, some have a complicated relationship with many-to-1 relationships to prefixes (DNA Data Bank of Japan, European Nucleotide Archive), and some constitute databases that simply reuse other key vocabularies (e.g., STRING reuses UniProt, GWAS Catalog reuses dbSNP and EFO). Among the databases that don't induce semantic spaces or have simple relationships to prefixes are:\n\n- [Clinical Genome Resource](https://www.clinicalgenome.org/) (uses HGNC, MONDO, PharmGKB, etc.)\n- [DNA Data Bank of Japan](https://www.ddbj.nig.ac.jp/) (uses INSDC)\n- [GENCODE](https://www.gencodegenes.org/) (uses GenBank)\n- [GWAS Catalog](https://www.ebi.ac.uk/gwas/) (uses dbSNP, EFO, etc)\n- [STRING](https://string-db.org/) (uses UniProt)",
+      "description": "The [Global Biodata Coalition](https://globalbiodata.org) released a [curated list](https://globalbiodata.org/scientific-activities/global-core-biodata-resources/) of 37 life sciences databases in December 2022 that they consider as having significant importance (see criteria [here](https://doi.org/10.5281/zenodo.5845116)).\n\nWhile it's not a primary goal of the Bioregistry to cover life science databases (other resources like Wikidata and [FAIRsharing](https://fairsharing.org) already do an excellent job of this), many notable databases induce one or more semantic spaces that are relevant for curation and prefix assignment in the Bioregistry. Therefore, a large number of the resources in this list correspond 1-to-1 with prefixes in the Bioregistry, a small number (e.g., Orphanet, CIViC, PharmGKB) correspond to multiple prefixes, some have a complicated relationship with many-to-1 relationships to prefixes (DNA Data Bank of Japan, European Nucleotide Archive), and some constitute databases that simply reuse other key vocabularies (e.g., STRING reuses UniProt, GWAS Catalog reuses dbSNP and EFO). Among the databases that don't induce semantic spaces or have simple relationships to prefixes are:\n\n- [Clinical Genome Resource](https://www.clinicalgenome.org/) (uses HGNC, MONDO, PharmGKB, etc.)\n- [DNA Data Bank of Japan](https://www.ddbj.nig.ac.jp/) (uses INSDC)\n- [GENCODE](https://www.gencodegenes.org/) (uses GenBank)\n- [GWAS Catalog](https://www.ebi.ac.uk/gwas/) (uses dbSNP, EFO, etc)\n- [STRING](https://string-db.org/) (uses UniProt)",
       "identifier": "0000010",
       "name": "Global Biodata Coalition - Global Core Biodata Resources",
       "resources": [
@@ -401,7 +401,7 @@
           "prefix": "tib.collection"
         }
       ],
-      "name": "NDFI4Cat Collection",
+      "name": "NFDI4Cat Collection",
       "organizations": [
         {
           "name": "NFDI4Cat",
@@ -561,24 +561,56 @@
       ],
       "resources": [
         "afo",
-        "bfo",
+        {
+          "prefix": "bfo",
+          "tags": [
+            "production"
+          ]
+        },
         "bto",
         {
           "comment": "Used in YMDB, HMDB, PubChem, MassBank, KNApSAcK, UM-BBD, GMD, SMID-DB",
           "prefix": "chebi"
         },
-        "cheminf",
+        {
+          "prefix": "cheminf",
+          "tags": [
+            "production"
+          ]
+        },
         "chemrof",
         "chiro",
-        "chmo",
+        {
+          "prefix": "chmo",
+          "tags": [
+            "collaborative",
+            "production"
+          ]
+        },
+        {
+          "prefix": "dcat",
+          "tags": [
+            "production"
+          ]
+        },
         "duo",
         "edam",
         "efo",
         "enm",
         "envo",
         "fair",
-        "fix",
-        "gainesville.core",
+        {
+          "prefix": "fix",
+          "tags": [
+            "research"
+          ]
+        },
+        {
+          "prefix": "gainesville.core",
+          "tags": [
+            "research"
+          ]
+        },
         "iao",
         "mod",
         "mop",
@@ -587,33 +619,66 @@
         "nmr",
         "obi",
         "oboe",
+        "oboe.standard",
         "om",
         "ontorxn",
         "pato",
         "proco",
-        "prov",
+        {
+          "prefix": "prov",
+          "tags": [
+            "production"
+          ]
+        },
         "reproduceme",
-        "rex",
+        {
+          "prefix": "rex",
+          "tags": [
+            "research"
+          ]
+        },
         "ro",
-        "rxno",
+        {
+          "prefix": "rxno",
+          "tags": [
+            "collaborative"
+          ]
+        },
         "sepio",
         "sio",
         "sosa",
         "ssn",
         "ssn.system",
-        "suprabank.additive",
-        "suprabank.buffer",
-        "suprabank.interaction",
-        "suprabank.molecule",
-        "suprabank.solvent",
         "swo",
         "time",
         "uo",
-        "vibso",
+        {
+          "prefix": "vibso",
+          "tags": [
+            "collaborative"
+          ]
+        },
         "voc4cat",
         "worldavatar.compchem",
         "worldavatar.kin",
         "worldavatar.os"
+      ],
+      "tags": [
+        {
+          "code": "collaborative",
+          "description": "External, but curated by the consortium",
+          "name": "Collaborative"
+        },
+        {
+          "code": "production",
+          "description": "Used in production within services of the consortium",
+          "name": "In Production"
+        },
+        {
+          "code": "research",
+          "description": "not in any associated services of the consortium of the collection, but indexed to compare with the ones used, or to learn from, or to maybe build mappings",
+          "name": "Research"
+        }
       ]
     },
     {
@@ -1009,7 +1074,7 @@
         {
           "email": "noemi.betancort@suub.uni-bremen.de",
           "github": "nbetancort",
-          "name": "Noemi Betancort",
+          "name": "Noemi Betancort Cabrera",
           "orcid": "0000-0002-0156-3556"
         }
       ],
@@ -1024,6 +1089,11 @@
           "name": "NFDI",
           "ror": "05qj6w324",
           "wikidata": "Q61658497"
+        },
+        {
+          "name": "GESIS - Leibniz-Institute for the Social Sciences",
+          "ror": "018afyw53",
+          "wikidata": "Q1485220"
         }
       ],
       "resources": [
@@ -1059,11 +1129,16 @@
         "ddi.typeofnote",
         "ddi.typeoftelephone",
         "ddi.typeoftranslationmethod",
+        "esco.isco",
         "gesis.kategorienschemawahlstudien",
         "gesis.rexconcepts",
         "gesis.rexdatatype",
         "gesis.rexgroups",
-        "gesis.variables-relations"
+        "gesis.thesoz",
+        "gesis.variables-relations",
+        "isced1997",
+        "isced2011",
+        "isced2013"
       ]
     },
     {
@@ -1104,6 +1179,9 @@
           "wikidata": "Q61658497"
         }
       ],
+      "references": [
+        "https://go.rocket.chat/invite?host=all-chat.nfdi.de&path=invite%2FdQaz52"
+      ],
       "resources": [
         "bonsai",
         "brick",
@@ -1131,9 +1209,26 @@
           "wikidata": "Q139055838"
         }
       ],
-      "description": "A placeholder collection of ontologies, controlled vocabularies, and schemas relevant for the NFDI4Ing Consortium seeded from corresponding the [TIB OLS collection](https://service.tib.eu/terminology/collections/nfdi4ing). The [NFDI Section Metadata WG Ontology Harmonization and Mapping](https://github.com/nfdi-de/section-metadata-wg-onto/) is in the process of identifying NFDI4Ing Consortium members appropriate for maintaining this collection.",
+      "description": "A collection of ontologies, controlled vocabularies, and schemas relevant for engineering and the [NFDI4Ing Consortium](https://nfdi4ing.de). Ontologies are chronologically imported from the corresponding [TIB Terminology Service collection](https://service.tib.eu/terminology/collections/nfdi4ing).",
       "identifier": "0000022",
       "logo": "https://www.nfdi.de/wp-content/uploads/2025/03/NFDI4ING_Wort-Bildmarke_no-disclaimer_POS_RGB.png",
+      "maintainers": [
+        {
+          "github": "doigl",
+          "name": "Dorothea Iglezakis",
+          "orcid": "0000-0002-8524-0569"
+        },
+        {
+          "github": "Zack-83",
+          "name": "Giacomo Lanza",
+          "orcid": "0000-0002-2239-3955"
+        },
+        {
+          "github": "SArndt-TIB",
+          "name": "Susanne Arndt",
+          "orcid": "0000-0002-1019-9151"
+        }
+      ],
       "mappings": [
         {
           "identifier": "nfdi4ing",
@@ -1143,6 +1238,7 @@
       "name": "NFDI4Ing Collection",
       "organizations": [
         {
+          "gnd": "1227971389",
           "name": "NFDI4ING",
           "ror": "00enhv193",
           "wikidata": "Q98380344"
@@ -1152,6 +1248,9 @@
           "ror": "05qj6w324",
           "wikidata": "Q61658497"
         }
+      ],
+      "references": [
+        "https://go.rocket.chat/invite?host=all-chat.nfdi.de&path=invite%2F4kTQmd"
       ],
       "resources": [
         "afo",
@@ -1201,6 +1300,7 @@
         "mathmoddb",
         "mobivoc",
         "modsci",
+        "mwo",
         "oeo",
         "okn.sd",
         "om",
@@ -1224,6 +1324,7 @@
         "saref.wearable",
         "sepio",
         "sh",
+        "si",
         "sio",
         "sosa",
         "ssn",
@@ -1264,9 +1365,29 @@
           "wikidata": "Q139055838"
         }
       ],
-      "description": "A placeholder collection of ontologies, controlled vocabularies, and schemas relevant for the DataPLANT Consortium seeded from corresponding the [TIB OLS collection](https://service.tib.eu/terminology/collections/dataplant). The [NFDI Section Metadata WG Ontology Harmonization and Mapping](https://github.com/nfdi-de/section-metadata-wg-onto/) is in the process of identifying DataPLANT Consortium members appropriate for maintaining this collection.",
+      "description": "A collection of ontologies, controlled vocabularies, and schemas relevant for the DataPLANT Consortium seeded from corresponding the [TIB OLS collection](https://service.tib.eu/terminology/collections/dataplant). See also a [recent review](https://doi.org/10.3389/fpls.2023.1279694) on ontologies for plant research data.",
       "identifier": "0000023",
       "logo": "https://www.nfdi.de/wp-content/uploads/2021/05/DataPLANT_logo_square_bg_transparent.svg",
+      "maintainers": [
+        {
+          "email": "k.dumschott@fz-juelich.de",
+          "github": "kdumschott",
+          "name": "Kathryn Dumschott",
+          "orcid": "0000-0002-9905-4011"
+        },
+        {
+          "email": "a.kranz@fz-juelich.de",
+          "github": "AngelaKranz",
+          "name": "Angela Kranz",
+          "orcid": "0000-0002-8000-0400"
+        },
+        {
+          "email": "h.doerpholz@fz-juelich.de",
+          "github": "Hannah-Doerpholz",
+          "name": "Hannah Dörpholz",
+          "orcid": "0000-0002-0476-9699"
+        }
+      ],
       "mappings": [
         {
           "identifier": "dataplant",
@@ -1291,6 +1412,8 @@
         "bao",
         "bco",
         "bfo",
+        "bioportal.bof",
+        "bioportal.geospecies",
         "bto",
         "chebi",
         "chmo",
@@ -1299,12 +1422,15 @@
         "edam",
         "efo",
         "envo",
+        "eo",
         "flopo",
+        "gaz",
         "go",
         "mmo",
         "mod",
         "ms",
         "msio",
+        "ncbitaxon",
         "ncit",
         "obi",
         "omp",
@@ -1330,9 +1456,17 @@
           "wikidata": "Q139055838"
         }
       ],
-      "description": "A placeholder collection of ontologies, controlled vocabularies, and schemas relevant for the FAIRmat Consortium seeded from corresponding the [TIB OLS collection](https://service.tib.eu/terminology/collections/fairmat). The [NFDI Section Metadata WG Ontology Harmonization and Mapping](https://github.com/nfdi-de/section-metadata-wg-onto/) is in the process of identifying FAIRmat Consortium members appropriate for maintaining this collection.",
+      "description": "A collection of ontologies, controlled vocabularies, and schemas relevant for the FAIRmat Consortium seeded from corresponding the [TIB OLS collection](https://service.tib.eu/terminology/collections/fairmat).",
       "identifier": "0000024",
       "logo": "https://www.nfdi.de/wp-content/uploads/2025/02/aktuelles_logo_02.25.png",
+      "maintainers": [
+        {
+          "email": "markus.kuehbach@physik.hu-berlin.de",
+          "github": "mkuehbach",
+          "name": "Markus Kühbach",
+          "orcid": "0000-0002-7117-5196"
+        }
+      ],
       "mappings": [
         {
           "identifier": "fairmat",
@@ -1351,6 +1485,10 @@
           "ror": "05qj6w324",
           "wikidata": "Q61658497"
         }
+      ],
+      "references": [
+        "https://go.rocket.chat/invite?host=all-chat.nfdi.de&path=invite%2FboyT2y",
+        "https://discord.com/channels/1201445470485106719/1498656792937500785"
       ],
       "resources": [
         "bfo",
@@ -1377,9 +1515,17 @@
           "orcid": "0000-0002-0006-7542"
         }
       ],
-      "description": "A placeholder collection of ontologies, controlled vocabularies, and schemas relevant for the NFDI4Culture Consortium seeded from corresponding the [TIB OLS collection](https://service.tib.eu/terminology/collections/nfdi4culture). The [NFDI Section Metadata WG Ontology Harmonization and Mapping](https://github.com/nfdi-de/section-metadata-wg-onto/) is in the process of identifying NFDI4Culture Consortium members appropriate for maintaining this collection.",
+      "description": "A placeholder collection of ontologies, controlled vocabularies, and schemas relevant for the NFDI4Culture Consortium seeded from corresponding the [TIB OLS collection](https://service.tib.eu/terminology/collections/nfdi4culture). ",
       "identifier": "0000025",
       "logo": "https://www.nfdi.de/wp-content/uploads/2021/05/NFDI4C_Logo.png",
+      "maintainers": [
+        {
+          "email": "tabea.tietz@fiz-karlsruhe.de",
+          "github": "tabeatietz",
+          "name": "Tabea Tietz",
+          "orcid": "0000-0002-1648-1684"
+        }
+      ],
       "mappings": [
         {
           "identifier": "nfdi4culture",
@@ -1400,13 +1546,36 @@
         }
       ],
       "resources": [
+        "bfo",
         "bot",
         "cidoc.crm",
+        "dbo",
+        "dcat",
+        "dcterms",
+        "doap",
+        "fabio",
+        "foaf",
+        "frapo",
+        "geonames",
         "gesah",
+        "gnd",
+        "iao",
         "iconclass",
+        "lido",
+        "modsci",
         "nfdi4culture.cto",
+        "obi",
         "ohdab",
-        "premis"
+        "okn.sd",
+        "org",
+        "premis",
+        "schema",
+        "skos",
+        "swo",
+        "vcard",
+        "viaf",
+        "vivo",
+        "wikidata"
       ]
     },
     {
@@ -1419,6 +1588,25 @@
       "description": "A placeholder collection of ontologies, controlled vocabularies, and schemas relevant for the DAPHNE4NFDI Consortium created by the [NFDI Section Metadata WG Ontology Harmonization and Mapping](https://github.com/nfdi-de/section-metadata-wg-onto/). The working group is in the process of identifying DAPHNE4NFDI Consortium members appropriate for maintaining this collection.",
       "identifier": "0000026",
       "logo": "https://www.nfdi.de/wp-content/uploads/2022/05/DAPHNE4NFDI_logo.png",
+      "maintainers": [
+        {
+          "email": "heike.goerzig@helmholtz-berlin.de",
+          "github": "hgoerzig",
+          "name": "Heike Görzig",
+          "orcid": "0000-0001-9121-8643"
+        },
+        {
+          "email": "rolf.krahl@helmholtz-berlin.de",
+          "github": "RKrahl",
+          "name": "Rolf Krahl",
+          "orcid": "0000-0002-1266-3819"
+        },
+        {
+          "github": "paulmillar",
+          "name": "Paul Millar",
+          "orcid": "0000-0002-3957-1279"
+        }
+      ],
       "name": "DAPHNE4NFDI Collection",
       "organizations": [
         {
@@ -1432,8 +1620,12 @@
           "wikidata": "Q61658497"
         }
       ],
+      "references": [
+        "https://go.rocket.chat/invite?host=all-chat.nfdi.de&path=invite%2FZvh5e3"
+      ],
       "resources": [
-        "emg"
+        "nexus",
+        "panet"
       ]
     },
     {
@@ -1446,6 +1638,20 @@
       "description": "A placeholder collection of ontologies, controlled vocabularies, and schemas relevant for the MaRDI Consortium created by the [NFDI Section Metadata WG Ontology Harmonization and Mapping](https://github.com/nfdi-de/section-metadata-wg-onto/). The working group is in the process of identifying MaRDI Consortium members appropriate for maintaining this collection.",
       "identifier": "0000027",
       "logo": "https://www.nfdi.de/wp-content/uploads/2021/12/MaRDI_Logo_rgba.png",
+      "maintainers": [
+        {
+          "email": "bjoern.schembera@mathematik.uni-stuttgart.de",
+          "github": "bjschembera",
+          "name": " Björn Schembera",
+          "orcid": "0000-0003-2860-6621"
+        }
+      ],
+      "mappings": [
+        {
+          "identifier": "mardi",
+          "prefix": "tib.collection"
+        }
+      ],
       "name": "MaRDI Collection",
       "organizations": [
         {
@@ -1460,7 +1666,16 @@
         }
       ],
       "resources": [
-        "bioregistry"
+        "amv",
+        "codemeta",
+        "factgrid",
+        "mathalgodb",
+        "mathmoddb",
+        "msc",
+        "physh",
+        "qudt",
+        "tib.bk",
+        "wikidata"
       ]
     },
     {
@@ -1470,9 +1685,22 @@
           "wikidata": "Q139055838"
         }
       ],
-      "description": "A placeholder collection of ontologies, controlled vocabularies, and schemas relevant for the BERD@NFDI Consortium created by the [NFDI Section Metadata WG Ontology Harmonization and Mapping](https://github.com/nfdi-de/section-metadata-wg-onto/). The working group is in the process of identifying BERD@NFDI Consortium members appropriate for maintaining this collection.",
+      "description": "A collection of ontologies, controlled vocabularies, and schemas relevant for the BERD@NFDI Consortium created by the [NFDI Section Metadata WG Ontology Harmonization and Mapping](https://github.com/nfdi-de/section-metadata-wg-onto/).",
       "identifier": "0000028",
       "logo": "https://www.nfdi.de/wp-content/uploads/2021/12/Logo_BERD-NFDI_transparent_gruen-schwarz_400px.png",
+      "maintainers": [
+        {
+          "email": "f.limani@zbw.eu",
+          "github": "fidanLimani",
+          "name": "Fidan Limani",
+          "orcid": "0000-0002-5835-2784"
+        },
+        {
+          "github": "draatiflatif",
+          "name": "Atif Latif",
+          "orcid": "0000-0003-3085-3031"
+        }
+      ],
       "name": "BERD@NFDI Collection",
       "organizations": [
         {
@@ -1486,8 +1714,13 @@
           "wikidata": "Q61658497"
         }
       ],
+      "references": [
+        "https://go.rocket.chat/invite?host=all-chat.nfdi.de&path=invite%2FjxNRaY"
+      ],
       "resources": [
-        "bioregistry"
+        "dfg.fo",
+        "jel",
+        "zbw.stw"
       ]
     },
     {
@@ -1497,9 +1730,17 @@
           "wikidata": "Q139055838"
         }
       ],
-      "description": "A placeholder collection of ontologies, controlled vocabularies, and schemas relevant for the NFDI4DataScience Consortium created by the [NFDI Section Metadata WG Ontology Harmonization and Mapping](https://github.com/nfdi-de/section-metadata-wg-onto/). The working group is in the process of identifying NFDI4DataScience Consortium members appropriate for maintaining this collection.",
+      "description": "A placeholder collection of ontologies, controlled vocabularies, and schemas relevant for the NFDI4DataScience Consortium created by the [NFDI Section Metadata WG Ontology Harmonization and Mapping](https://github.com/nfdi-de/section-metadata-wg-onto/).",
       "identifier": "0000029",
       "logo": "https://www.nfdi.de/wp-content/uploads/2022/06/NFDI4DS_Logo.png",
+      "maintainers": [
+        {
+          "email": "Benjamin.Zapilko@gesis.org",
+          "github": "BenZapilko",
+          "name": "Benjamin Zapilko",
+          "orcid": "0000-0001-9495-040X"
+        }
+      ],
       "name": "NFDI4DataScience Collection",
       "organizations": [
         {
@@ -1513,8 +1754,13 @@
           "wikidata": "Q61658497"
         }
       ],
+      "references": [
+        "https://go.rocket.chat/invite?host=all-chat.nfdi.de&path=invite%2FNTuvAb"
+      ],
       "resources": [
-        "bioregistry"
+        "nfdi.core",
+        "nfdi4dso",
+        "schema"
       ]
     },
     {
@@ -1524,9 +1770,16 @@
           "wikidata": "Q139055838"
         }
       ],
-      "description": "A placeholder collection of ontologies, controlled vocabularies, and schemas relevant for the NFDI4Earth Consortium created by the [NFDI Section Metadata WG Ontology Harmonization and Mapping](https://github.com/nfdi-de/section-metadata-wg-onto/). The working group is in the process of identifying NFDI4Earth Consortium members appropriate for maintaining this collection.",
+      "description": "A collection of ontologies, controlled vocabularies, and schemas relevant for the NFDI4Earth Consortium created by the [NFDI Section Metadata WG Ontology Harmonization and Mapping](https://github.com/nfdi-de/section-metadata-wg-onto/).",
       "identifier": "0000030",
       "logo": "https://www.nfdi.de/wp-content/uploads/2021/12/NFDI4Earth_logo.png",
+      "maintainers": [
+        {
+          "github": "aurioldegbelo",
+          "name": "Auriol Degbelo",
+          "orcid": "0000-0001-5087-8776"
+        }
+      ],
       "name": "NFDI4Earth Collection",
       "organizations": [
         {
@@ -1540,8 +1793,37 @@
           "wikidata": "Q61658497"
         }
       ],
+      "references": [
+        "https://go.rocket.chat/invite?host=all-chat.nfdi.de&path=invite%2FXJ89uS"
+      ],
       "resources": [
-        "bioregistry"
+        "bco",
+        "chebi",
+        "dcat",
+        "dcterms",
+        "envo",
+        "flopo",
+        "foaf",
+        "gaz",
+        "geonames",
+        "geosparql",
+        "legacy.ao",
+        "n4e",
+        "ncbitaxon",
+        "oboe",
+        "pato",
+        "po",
+        "prov",
+        "schema",
+        "skos",
+        "sosa",
+        "ssn",
+        "sweet",
+        "t4fs",
+        "tdwg.abcd",
+        "to",
+        "vcard",
+        "wlmo"
       ]
     },
     {
@@ -1551,9 +1833,23 @@
           "wikidata": "Q139055838"
         }
       ],
-      "description": "A placeholder collection of ontologies, controlled vocabularies, and schemas relevant for the NFDI-MatWerk Consortium created by the [NFDI Section Metadata WG Ontology Harmonization and Mapping](https://github.com/nfdi-de/section-metadata-wg-onto/). The working group is in the process of identifying NFDI-MatWerk Consortium members appropriate for maintaining this collection.",
+      "description": "A collection of ontologies, controlled vocabularies, and schemas relevant for the NFDI-MatWerk Consortium created in cooperation with the [NFDI Section Metadata WG Ontology Harmonization and Mapping](https://github.com/nfdi-de/section-metadata-wg-onto/).",
       "identifier": "0000031",
       "logo": "https://www.nfdi.de/wp-content/uploads/2022/03/Logo_NFDI-MatWerk-1000px.png",
+      "maintainers": [
+        {
+          "email": "norouzi.iut@gmail.com",
+          "github": "ebrahimnorouzi",
+          "name": "Ebrahim Nourouzi",
+          "orcid": "0000-0002-2691-6995"
+        },
+        {
+          "email": "Heike.Fliegl@fiz-karlsruhe.de",
+          "github": "heikef",
+          "name": "Heike Fliegl",
+          "orcid": "0000-0002-7541-115X"
+        }
+      ],
       "name": "NFDI-MatWerk Collection",
       "organizations": [
         {
@@ -1568,7 +1864,15 @@
         }
       ],
       "resources": [
-        "bioregistry"
+        "bfo",
+        "chebi",
+        "mwo",
+        "nfdi.core",
+        "pmdco",
+        {
+          "comment": "used by JL MDMC, NEP, EOSC-Pillar",
+          "prefix": "prima"
+        }
       ]
     },
     {
@@ -1578,9 +1882,16 @@
           "wikidata": "Q139055838"
         }
       ],
-      "description": "A placeholder collection of ontologies, controlled vocabularies, and schemas relevant for the PUNCH4NFDI Consortium created by the [NFDI Section Metadata WG Ontology Harmonization and Mapping](https://github.com/nfdi-de/section-metadata-wg-onto/). The working group is in the process of identifying PUNCH4NFDI Consortium members appropriate for maintaining this collection.",
+      "description": "A placeholder collection of ontologies, controlled vocabularies, and schemas relevant for the PUNCH4NFDI Consortium created by the [NFDI Section Metadata WG Ontology Harmonization and Mapping](https://github.com/nfdi-de/section-metadata-wg-onto/). The working group is in the process of identifying PUNCH4NFDI Consortium members appropriate for maintaining this collection. PUNCH4NFDI is notable in that its sub-disciplines (e.g., astronomy, high energy physics, nuclear physics, etc.) have a large variety in data and metadata needs.",
       "identifier": "0000032",
       "logo": "https://www.nfdi.de/wp-content/uploads/2021/12/PUNCH4NFDI-Logo_RGB.png",
+      "maintainers": [
+        {
+          "github": "harenk",
+          "name": "Harry Enke",
+          "orcid": "0000-0002-2366-8316"
+        }
+      ],
       "name": "PUNCH4NFDI Collection",
       "organizations": [
         {
@@ -1593,6 +1904,9 @@
           "ror": "05qj6w324",
           "wikidata": "Q61658497"
         }
+      ],
+      "references": [
+        "https://go.rocket.chat/invite?host=all-chat.nfdi.de&path=invite%2FLMmoLA"
       ],
       "resources": [
         "bioregistry"
@@ -1608,6 +1922,14 @@
       "description": "A placeholder collection of ontologies, controlled vocabularies, and schemas relevant for the FAIRagro Consortium created by the [NFDI Section Metadata WG Ontology Harmonization and Mapping](https://github.com/nfdi-de/section-metadata-wg-onto/). The working group is in the process of identifying FAIRagro Consortium members appropriate for maintaining this collection.",
       "identifier": "0000033",
       "logo": "https://www.nfdi.de/wp-content/uploads/2023/08/Fairagro_Logo_mittelachsig_Verklauf_cmyk.png",
+      "maintainers": [
+        {
+          "email": "schneiderg@zbmed.de",
+          "github": "ga-schneider",
+          "name": "Gabriel Schneider",
+          "orcid": "0000-0001-6573-3115"
+        }
+      ],
       "name": "FAIRagro Collection",
       "organizations": [
         {
@@ -1621,8 +1943,33 @@
           "wikidata": "Q61658497"
         }
       ],
+      "references": [
+        "https://go.rocket.chat/invite?host=all-chat.nfdi.de&path=invite%2FP8mt5a"
+      ],
       "resources": [
-        "bioregistry"
+        "bco",
+        "chebi",
+        "dcat",
+        "dcterms",
+        "envo",
+        "flopo",
+        "foaf",
+        "gaz",
+        "geonames",
+        "legacy.ao",
+        "ncbitaxon",
+        "oboe",
+        "pato",
+        "po",
+        "prov",
+        "schema",
+        "skos",
+        "sosa",
+        "ssn",
+        "sweet",
+        "tdwg.abcd",
+        "to",
+        "wlmo"
       ]
     },
     {
@@ -1690,9 +2037,22 @@
           "wikidata": "Q139055838"
         }
       ],
-      "description": "A placeholder collection of ontologies, controlled vocabularies, and schemas relevant for the NFDIxCS Consortium created by the [NFDI Section Metadata WG Ontology Harmonization and Mapping](https://github.com/nfdi-de/section-metadata-wg-onto/). The working group is in the process of identifying NFDIxCS Consortium members appropriate for maintaining this collection.",
+      "description": "A collection of ontologies, controlled vocabularies, and schemas relevant for the NFDIxCS Consortium.",
       "identifier": "0000035",
       "logo": "https://nfdixcs.org/fileadmin/PR/NFDIxCS/NFDIxCS_Logo2024_deepblue_crop.png",
+      "maintainers": [
+        {
+          "email": "huch@in.tum.de",
+          "name": "Fabian Huch",
+          "orcid": "0000-0002-9418-1580"
+        }
+      ],
+      "mappings": [
+        {
+          "identifier": "nfdixcs",
+          "prefix": "tib.collection"
+        }
+      ],
       "name": "NFDIxCS Collection",
       "organizations": [
         {
@@ -1706,8 +2066,28 @@
           "wikidata": "Q61658497"
         }
       ],
+      "references": [
+        "https://go.rocket.chat/invite?host=all-chat.nfdi.de&path=invite%2FWgaGQB"
+      ],
       "resources": [
-        "bioregistry"
+        "amv",
+        "bfo",
+        "cito",
+        "cso",
+        "datacite",
+        "dblp.schema",
+        "dcterms",
+        "doap",
+        "fabio",
+        "gufo",
+        "hpc",
+        "iao",
+        "infosecsos",
+        "iotlite",
+        "mathmoddb",
+        "schema",
+        "seon",
+        "swo"
       ]
     },
     {
@@ -1766,19 +2146,52 @@
         }
       ],
       "resources": [
+        "amh.material",
         "bibo",
         "bioregistry",
         "cidoc.crm",
+        "dai.thesauri",
+        "datacite.contributor",
+        "datacite.date",
+        "datacite.description",
+        "datacite.identifier",
+        "datacite.name",
+        "datacite.relation",
+        "datacite.resource",
+        "fish.aoe",
+        "fish.as",
+        "fish.bm",
+        "fish.event",
+        "fish.mc",
+        "fish.mt",
         "geonames",
+        "geosparql",
+        "getty.att",
         "getty.tgn",
+        "getty.ulan",
         "gnd",
+        "hessische.systematik",
         "iconclass",
+        "kenom.material",
+        "lado",
+        "lido.actor",
+        "lido.event",
+        "lido.identifier",
+        "lido.recordmetadatadate",
+        "lido.recordtype",
+        "lido.repositoryset",
+        "lido.resourcerepresentation",
+        "lido.termmaterialstech",
+        "lv",
+        "oeai.ctp",
+        "oeai.material",
         "orcid",
         "ror",
         "skos",
         "time",
         "unesco.thesaurus",
         "viaf",
+        "whg",
         "wikidata"
       ]
     },
@@ -1792,6 +2205,14 @@
       "description": "A placeholder collection of ontologies, controlled vocabularies, and schemas relevant for the NFDI4Memory Consortium created by the [NFDI Section Metadata WG Ontology Harmonization and Mapping](https://github.com/nfdi-de/section-metadata-wg-onto/). The working group is in the process of identifying NFDI4Memory Consortium members appropriate for maintaining this collection.",
       "identifier": "0000037",
       "logo": "https://www.nfdi.de/wp-content/uploads/2023/08/Logo_for_memory_RGB.png",
+      "maintainers": [
+        {
+          "email": "tabea.tietz@fiz-karlsruhe.de",
+          "github": "tabeatietz",
+          "name": "Tabea Tietz",
+          "orcid": "0000-0002-1648-1684"
+        }
+      ],
       "name": "NFDI4Memory Collection",
       "organizations": [
         {
@@ -1806,7 +2227,27 @@
         }
       ],
       "resources": [
-        "bioregistry"
+        "cidoc.crm",
+        "edm",
+        "factgrid",
+        "geonames",
+        "getty.att",
+        "getty.cona",
+        "getty.ia",
+        "getty.tgn",
+        "getty.ulan",
+        "gnd",
+        "gov.object",
+        "hisco",
+        "iconclass",
+        "kldb",
+        "lido",
+        "nfdi.core",
+        "nfdi4culture.cto",
+        "ohdab",
+        "ontome",
+        "tadirah",
+        "wikidata"
       ]
     },
     {
@@ -1819,6 +2260,13 @@
       "description": "A placeholder collection of ontologies, controlled vocabularies, and schemas relevant for the Text+ Consortium created by the [NFDI Section Metadata WG Ontology Harmonization and Mapping](https://github.com/nfdi-de/section-metadata-wg-onto/). The working group is in the process of identifying Text+ Consortium members appropriate for maintaining this collection.",
       "identifier": "0000038",
       "logo": "https://www.nfdi.de/wp-content/uploads/2023/12/textplus_logo_RGB.png",
+      "maintainers": [
+        {
+          "github": "ttrippel",
+          "name": "Thorsten Trippel",
+          "orcid": "0000-0002-7211-7393"
+        }
+      ],
       "name": "Text+ Collection",
       "organizations": [
         {
@@ -1832,8 +2280,25 @@
           "wikidata": "Q61658497"
         }
       ],
+      "references": [
+        "https://go.rocket.chat/invite?host=all-chat.nfdi.de&path=invite%2FaKbtMN"
+      ],
       "resources": [
-        "bioregistry"
+        "bibframe",
+        "cessda.topicclassification",
+        "cidoc.crm",
+        "geonames",
+        "getty.att",
+        "getty.cona",
+        "getty.ia",
+        "getty.tgn",
+        "getty.ulan",
+        "gnd",
+        "iconclass",
+        "lido",
+        "ontolex",
+        "ontome",
+        "tadirah"
       ]
     },
     {
@@ -1846,6 +2311,13 @@
       "description": "A placeholder collection of ontologies, controlled vocabularies, and schemas relevant for the GHGA Consortium created by the [NFDI Section Metadata WG Ontology Harmonization and Mapping](https://github.com/nfdi-de/section-metadata-wg-onto/). The working group is in the process of identifying GHGA Consortium members appropriate for maintaining this collection.",
       "identifier": "0000039",
       "logo": "https://www.nfdi.de/wp-content/uploads/2022/10/Logo-GHGA.png",
+      "maintainers": [
+        {
+          "github": "mauerk",
+          "name": "Karoline Mauer",
+          "orcid": "0000-0002-9454-7941"
+        }
+      ],
       "name": "GHGA Collection",
       "organizations": [
         {
@@ -1859,8 +2331,22 @@
           "wikidata": "Q61658497"
         }
       ],
+      "references": [
+        "https://go.rocket.chat/invite?host=all-chat.nfdi.de&path=invite%2FCHzcLh"
+      ],
       "resources": [
-        "bioregistry"
+        "biolink",
+        "cob",
+        "duo",
+        "edam",
+        "efo",
+        "genepio",
+        "ghga",
+        "gsso",
+        "hancestro",
+        "linkml",
+        "ncit",
+        "sio"
       ]
     },
     {
@@ -1873,6 +2359,19 @@
       "description": "A placeholder collection of ontologies, controlled vocabularies, and schemas relevant for the NFDI4Biodiversity Consortium created by the [NFDI Section Metadata WG Ontology Harmonization and Mapping](https://github.com/nfdi-de/section-metadata-wg-onto/). The working group is in the process of identifying NFDI4Biodiversity Consortium members appropriate for maintaining this collection.",
       "identifier": "0000040",
       "logo": "https://www.nfdi.de/wp-content/uploads/2023/03/NFDI_4_Biodiversity___Logo_Positiv_Kopie.png",
+      "maintainers": [
+        {
+          "github": "naouelkaram",
+          "name": "Naouel Karam",
+          "orcid": "0000-0002-6762-6417"
+        },
+        {
+          "email": "schaefermeier@infai.org",
+          "github": "RalphBln",
+          "name": "Ralph Schäfermeier",
+          "orcid": "0000-0002-4349-6726"
+        }
+      ],
       "name": "NFDI4Biodiversity Collection",
       "organizations": [
         {
@@ -1886,8 +2385,75 @@
           "wikidata": "Q61658497"
         }
       ],
+      "references": [
+        "https://go.rocket.chat/invite?host=all-chat.nfdi.de&path=invite%2FEWutLP"
+      ],
       "resources": [
-        "bioregistry"
+        "abcd",
+        "ahol",
+        "aism",
+        "apto",
+        "atol",
+        "bco",
+        "bfo",
+        "biodivthes",
+        "bohlmann",
+        "bspo",
+        "caro",
+        "chebi",
+        "cl",
+        "cob",
+        "codata.rdmt",
+        "colao",
+        "dcat",
+        "dfg.fo",
+        "eco",
+        "edam",
+        "envo",
+        "envthes",
+        "eol",
+        "flopo",
+        "geonames",
+        "gfbio.biobank",
+        "gfbio.biol",
+        "gfbio.botany",
+        "gfbio.ets",
+        "gfbio.iho",
+        "gfbio.kingdom",
+        "gfbio.top",
+        "iadopt",
+        "inbio",
+        "iso.3166",
+        "itis",
+        "lepao",
+        "lpt",
+        "ncbitaxon",
+        "nfdi.core",
+        "oba",
+        "oboe",
+        "odm2.methodtype",
+        "odm2.specimentype",
+        "oim",
+        "om",
+        "pato",
+        "pco",
+        "po",
+        "prov",
+        "qudt",
+        "ro",
+        "schema",
+        "sosa",
+        "sumso",
+        "sweet",
+        "swo",
+        "taxonconcept",
+        "taxrank",
+        "tib.bk",
+        "to",
+        "uberon",
+        "unesco.thesaurus",
+        "vbo",
+        "vt"
       ]
     },
     {
@@ -1921,8 +2487,48 @@
           "wikidata": "Q61658497"
         }
       ],
+      "references": [
+        "https://go.rocket.chat/invite?host=all-chat.nfdi.de&path=invite%2FDFD2Ba"
+      ],
       "resources": [
-        "bioregistry"
+        "agrovoc",
+        "ahol",
+        "atc",
+        "atol",
+        "bao",
+        "chebi",
+        "clo",
+        "cmpo",
+        "datacite",
+        "dbsnp",
+        "dcterms",
+        "doid",
+        "efo",
+        "foodex2",
+        "foodon",
+        "go",
+        "hgnc",
+        "hp",
+        "iao",
+        "icd10",
+        "icd11",
+        "icdo",
+        "loinc",
+        "meddra",
+        "mesh",
+        "mgi",
+        "mirbase",
+        "ncbigene",
+        "ncbitaxon",
+        "ncit",
+        "orpha",
+        "rgd",
+        "snomedct",
+        "spdx",
+        "uberon",
+        "ucum",
+        "umls",
+        "uniprot"
       ]
     },
     {
@@ -1935,6 +2541,23 @@
       "description": "A placeholder collection of ontologies, controlled vocabularies, and schemas relevant for the NFDI4Microbiota Consortium created by the [NFDI Section Metadata WG Ontology Harmonization and Mapping](https://github.com/nfdi-de/section-metadata-wg-onto/). The working group is in the process of identifying NFDI4Microbiota Consortium members appropriate for maintaining this collection.",
       "identifier": "0000042",
       "logo": "https://www.nfdi.de/wp-content/uploads/2021/12/nfdi4microbiota_Logo_.png",
+      "maintainers": [
+        {
+          "github": "anandhi-iyappan",
+          "name": "Anandhi Iyappan",
+          "orcid": "0000-0002-5571-4962"
+        },
+        {
+          "github": "nacnoriko",
+          "name": "Noriko Cassman",
+          "orcid": "0000-0003-1655-0931"
+        },
+        {
+          "github": "magelm",
+          "name": "Maja Magel",
+          "orcid": "0009-0004-2517-0791"
+        }
+      ],
       "name": "NFDI4Microbiota Collection",
       "organizations": [
         {
@@ -1947,6 +2570,9 @@
           "ror": "05qj6w324",
           "wikidata": "Q61658497"
         }
+      ],
+      "references": [
+        "https://go.rocket.chat/invite?host=all-chat.nfdi.de&path=invite%2F32bEDW"
       ],
       "resources": [
         "bioregistry"
@@ -1987,8 +2613,113 @@
           "wikidata": "Q61658497"
         }
       ],
+      "references": [
+        "https://go.rocket.chat/invite?host=all-chat.nfdi.de&path=invite%2FBzRWeP"
+      ],
       "resources": [
         "bioregistry"
+      ]
+    },
+    {
+      "contributors": [
+        {
+          "email": "cthoyt@gmail.com",
+          "github": "cthoyt",
+          "name": "Charles Tapley Hoyt",
+          "orcid": "0000-0003-4423-4370"
+        }
+      ],
+      "description": "[PID4NFDI](https://pid.services.base4nfdi.de) is a Base4NFDI service that provides documentation about a small number of well-known identifier schemes (e.g., DOI) and services for registering identifiers within them (e.g., DataCite). This collection reflects their [PID Providers](https://pid.services.base4nfdi.de/get-pid/providers/) page. This comes with the following caveats:\n\n- Crossref and DataCite are services that mint DOIs. Since DOIs are the identifier space, only `doi` appears in this collection.\n- ePIC is a service that mints Handle system. Since Handles are the identifier space, only `hdl` appears in this collection\n- PIDINST is an abstraction on top of DataCite / ePIC, which is covered by `doi` and `hdl` as described above",
+      "identifier": "0000044",
+      "name": "PID4NFDI Providers",
+      "resources": [
+        "ark",
+        "doi",
+        "factgrid",
+        "gnd",
+        "hdl",
+        "igsn",
+        "orcid",
+        "pida",
+        "raid",
+        "ror",
+        "swh",
+        "wikidata"
+      ]
+    },
+    {
+      "contributors": [
+        {
+          "github": "anganske",
+          "name": "Anette Ganske",
+          "orcid": "0000-0003-1043-4964"
+        },
+        {
+          "github": "kraftalin",
+          "name": "Angelina Kraft",
+          "orcid": "0000-0002-6454-335X"
+        },
+        {
+          "email": "markus.stocker@tib.eu",
+          "github": "markusstocker",
+          "name": "Markus Stocker",
+          "orcid": "0000-0001-5492-3212"
+        }
+      ],
+      "description": "The Earth System Sciences (ESS) collection contains terminologies (ontologies and vocabularies) for describing Earth System Sciences (e.g., `bodc.cf`, `envo`), data and structures (e.g., `prov-o`), physical units (e.g., `time`), as well as measurements and observations (e.g., `tib.meth`).\n\nIt was developed by the [BITS project](https://projects.tib.eu/bits/home) (BluePrints for the Integration of Terminology Services in Earth System Sciences), which was funded by the Deutsche Forschungsgemeinschaft ([project number 508107981](https://gepris.dfg.de/gepris/projekt/508107981), July 2023 – June 2026). The ESS collection's terminologies were firstly chosen by the three project partners [TIB – Leibniz Information Centre for Science and Technology](https://www.tib.eu/en/), the [German Climate Computing Center (DKRZ)](https://www.dkrz.de/en/dkrz-partner-for-climate-research?set_language=en), and the [Senckenberg - Leibniz Institution for Biodiversity and Earth System Research (SGN)](https://www.senckenberg.de/en/about-us/senckenberg-society-nature-research/) in close cooperation with [NFDI4Earth](https://www.nfdi4earth.de/) and the [Helmholtz Metadata Collaboration](https://helmholtz-metadaten.de/).",
+      "identifier": "0000045",
+      "logo": "https://private-user-images.githubusercontent.com/58422600/595255823-95fb77d4-c775-4d1f-8d1d-aacbda324bb7.png?jwt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3NzkyNjMyMDEsIm5iZiI6MTc3OTI2MjkwMSwicGF0aCI6Ii81ODQyMjYwMC81OTUyNTU4MjMtOTVmYjc3ZDQtYzc3NS00ZDFmLThkMWQtYWFjYmRhMzI0YmI3LnBuZz9YLUFtei1BbGdvcml0aG09QVdTNC1ITUFDLVNIQTI1NiZYLUFtei1DcmVkZW50aWFsPUFLSUFWQ09EWUxTQTUzUFFLNFpBJTJGMjAyNjA1MjAlMkZ1cy1lYXN0LTElMkZzMyUyRmF3czRfcmVxdWVzdCZYLUFtei1EYXRlPTIwMjYwNTIwVDA3NDE0MVomWC1BbXotRXhwaXJlcz0zMDAmWC1BbXotU2lnbmF0dXJlPTg5YzM4MzEwNGViOWNhNTYzMmM4MjVmY2FkY2UzZWIxZTdjMjY1Mjc3MzNmODUxZTZhNDI4NmZlZDc1MmViOGQmWC1BbXotU2lnbmVkSGVhZGVycz1ob3N0JnJlc3BvbnNlLWNvbnRlbnQtdHlwZT1pbWFnZSUyRnBuZyJ9.9V4j3O3ppguT7s4TmyLNAJQwULkh2oGzIrRcP7N0SYg",
+      "mappings": [
+        {
+          "identifier": "ess",
+          "prefix": "tib.collection"
+        }
+      ],
+      "name": "Earth System Sciences Collection",
+      "resources": [
+        "bco",
+        "bodc.cf",
+        "bodc.sdn",
+        "chebi",
+        "dcat",
+        "dcterms",
+        "dfg.fo",
+        "dpvocab",
+        "dsw",
+        "duo",
+        "ecso",
+        "edam",
+        "efo",
+        "envo",
+        "envthes",
+        "flopo",
+        "gemet.concept",
+        "geosparql",
+        "gfbio.ets",
+        "gndo",
+        "n4e",
+        "oboe",
+        "om",
+        "pato",
+        "po",
+        "prov",
+        "sbo",
+        "schema",
+        "sio",
+        "sosa",
+        "ssn",
+        "stato",
+        "sweet",
+        "t4fs",
+        "tdwg.abcd",
+        "tib.bk",
+        "tib.cgo",
+        "tib.meth",
+        "time",
+        "to",
+        "uat",
+        "uo",
+        "wlmo"
       ]
     }
   ]

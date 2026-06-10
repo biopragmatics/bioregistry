@@ -3,11 +3,12 @@
 import logging
 import unittest
 from collections import Counter
+from typing import ClassVar
 
 import rdflib
 
 import bioregistry
-from bioregistry import manager
+from bioregistry import Manager, manager
 from bioregistry.constants import NFDI_ROR
 from bioregistry.export.rdf_export import collection_to_rdf_str
 from bioregistry.schema import Collection
@@ -19,9 +20,12 @@ logger = logging.getLogger(__name__)
 class TestCollections(unittest.TestCase):
     """Tests for collections."""
 
-    def setUp(self) -> None:
+    manager: ClassVar[Manager]
+
+    @classmethod
+    def setUpClass(cls) -> None:
         """Set up the test case."""
-        self.manager = manager
+        cls.manager = Manager()
 
     def test_minimum_metadata(self) -> None:
         """Check collections have minimal metadata and correct prefixes."""
@@ -93,3 +97,16 @@ class TestCollections(unittest.TestCase):
                 continue
             with self.subTest(name=collection.name):
                 self.assertIsNotNone(collection.logo, msg="all NFDI collections need a logo")
+
+    def test_tags(self) -> None:
+        """Test all used tags are in the local definitions list."""
+        for collection in self.manager.collections.values():
+            with self.subTest(name=collection.name):
+                tags = {tag.code for tag in collection.tags or []}
+                for annotated_prefix in collection.get_annotated_prefixes():
+                    for tag in annotated_prefix.tags or []:
+                        self.assertIn(
+                            tag,
+                            tags,
+                            msg=f"tag {tag} not defined for collection {collection.identifier}",
+                        )

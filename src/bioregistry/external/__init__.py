@@ -5,7 +5,7 @@ from .alignment_utils import Getter
 from .bartoc import get_bartoc
 from .biocontext import get_biocontext
 from .biolink import get_biolink
-from .bioportal import get_agroportal, get_bioportal, get_ecoportal
+from .bioportal import get_agroportal, get_biodivportal, get_bioportal, get_ecoportal
 from .cellosaurus import get_cellosaurus
 from .cheminf import get_cheminf
 from .cropoct import get_cropoct
@@ -36,6 +36,7 @@ __all__ = [
     "get_bartoc",
     # Getter functions
     "get_biocontext",
+    "get_biodivportal",
     "get_biolink",
     "get_bioportal",
     "get_cellosaurus",
@@ -63,6 +64,7 @@ __all__ = [
     "get_zazuko",
 ]
 
+# FIXME replace this with combination of Aligner lookup and metaregistry lookup
 GETTERS: list[tuple[str, str, Getter]] = [
     ("obofoundry", "OBO", get_obofoundry),
     ("ols", "OLS", get_ols),
@@ -95,4 +97,5 @@ GETTERS: list[tuple[str, str, Getter]] = [
     ("zazuko", "Zazuko", get_zazuko),
     ("rrid", "RRID", get_rrid),
     ("tib", "TIB TS", get_tib_ts),
+    ("biodivportal", "Biodiv Portal", get_biodivportal),
 ]

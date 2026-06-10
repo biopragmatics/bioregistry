@@ -1,6 +1,7 @@
 """Tests for managers."""
 
 import unittest
+from typing import ClassVar
 
 import bioregistry
 from bioregistry import Manager, Resource, parse_curie
@@ -11,9 +12,12 @@ from bioregistry.resource_manager import MappingsDiff
 class TestResourceManager(unittest.TestCase):
     """Test the registry manager."""
 
-    def setUp(self) -> None:
+    manager: ClassVar[Manager]
+
+    @classmethod
+    def setUpClass(cls) -> None:
         """Set up the test case with a resource manager."""
-        self.manager = Manager()
+        cls.manager = Manager()
 
     def test_get_records(self) -> None:
         """Test getting records."""
