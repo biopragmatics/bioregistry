@@ -415,7 +415,7 @@
     "homepage": "https://reflora.jbrj.gov.br/reflora/listaBrasil/PrincipalUC/PrincipalUC.do?lingua=es",
     "name": "Reflora ID",
     "pattern": "^FB[0-9]{2,6}$",
-    "uri_format": "https://floradobrasil2020.jbrj.gov.br/$1",
+    "uri_format": "https://floradobrasil.jbrj.gov.br/$1",
     "xrefs": {
       "wikidata": "Q111699652"
     }
@@ -1216,7 +1216,7 @@
     "uri_format": "http://www.scopus.com/record/display.url?origin=inward&eid=$1"
   },
   "P1155": {
-    "description": "identifier for an organisation in author affiliations per Scopus",
+    "description": "identifier for an organisation in author affiliations per Scopus",
     "examples": [
       "60025709",
       "60028651"
@@ -3212,6 +3212,23 @@
     "name": "EASIN ID",
     "uri_format": "https://easin.jrc.ec.europa.eu/spexplorer/species/factsheet/$1"
   },
+  "P13790": {
+    "description": "unique EU identifier for companies and branches",
+    "examples": [
+      "CYDRCOR.HE139104",
+      "DEX1517R.HRB395KI",
+      "DEX1517R.VR1503KI",
+      "DKCVR.11845118",
+      "ELGEMI.077700527000",
+      "MTROC.C22796"
+    ],
+    "homepage": "https://eur-lex.europa.eu/eli/reg_impl/2021/1042/oj#d1e4707-10-1",
+    "name": "European Unique Identifier",
+    "pattern": "^(ATBRA\\.\\d{6}\\-[01]{3}|BEKBOBCE\\.[01]\\d{3}\\.\\d{3}\\.\\d{3}|BGCOMREG\\.\\d{9}|CYDRCOR\\.(AE|HE)\\d{1,10}|CZVROR\\.\\d{8}|DE[A-Z][1-9]\\d{3}[RV]?(_[A-Z][1-9]\\d{3}[RV]?)?\\.(G[ns]R|HR[AB]|[PV]R)\\d+[A-Z]*|DKCVR\\.\\d{8}|EEARIREG\\.\\d{8}|ELGEMI\\.\\d{12}|ES[0-5]\\d{4}\\.\\d{9}|FIFPRO\\.\\d{7}\\-\\d|FR\\d{4}\\.\\d{9}|HRSR\\.\\d{9}|HUOCCSZ\\.\\d{2}\\-\\d{2}\\-\\d{6}|IECRO\\.\\d{6,7}|ISREI\\.[4-7]\\d[01]\\d{3}\\-\\d{3}[09]|ITRI\\.\\d{11}|LIFL\\.FL\\-\\d{4}\\.\\d{3}\\.\\d{3}-\\d|LTJAR\\.\\d{9}|LURCSL\\.B\\d{1,6}|LVUR\\.(\\d{9}|\\d{11})|MTROC\\.C\\d{1,6}|NLNHR\\.\\d{8}|NOFOR\\.\\d{9}|PLKRS\\.\\d{10}|PTIRNMJ\\.\\d{9}|ROONRC\\.[CFJ](\\d{1,2}/\\d{1,6}/\\d{4}|\\d{13})|SEBOLREG\\.\\d{10}|SIPRS\\.\\d{7}0{3}|SKORSR\\.\\d{1,18})$",
+    "xrefs": {
+      "wikidata": "Q131149706"
+    }
+  },
   "P13797": {
     "description": "identifier for a person, place, or thing on Dimensions.com",
     "examples": [
@@ -3447,6 +3464,21 @@
     "name": "Fungal Names taxon ID",
     "uri_format": "https://nmdc.cn/fungalnames/namesearch/toallfungalinfo?recordNumber=$1"
   },
+  "P14477": {
+    "description": "Identifier for a taxon of the beetle group Staphyliniformia, in the StaphBase database",
+    "examples": [
+      "837561",
+      "838716",
+      "866889"
+    ],
+    "homepage": "https://www.checklistbank.org",
+    "name": "StaphBase ID",
+    "pattern": "^[1-9]\\d$",
+    "uri_format": "https://www.checklistbank.org/dataset/1204/taxon/$1",
+    "xrefs": {
+      "wikidata": "Q139765482"
+    }
+  },
   "P1461": {
     "description": "identifier of disease at Patient UK",
     "examples": [
@@ -3670,7 +3702,7 @@
     "name": "operations and procedures key (OPS)"
   },
   "P1692": {
-    "description": "identifier in the ICD adaption assigning diagnostic and procedure codes",
+    "description": "identifier in the ICD adaption assigning diagnostic and procedure codes",
     "examples": [
       "135",
       "42",
@@ -4198,7 +4230,7 @@
     }
   },
   "P2026": {
-    "description": "identifier for a species, subspecies, or genus in the global bird database Avibase",
+    "description": "identifier for a species, subspecies, or genus in the global bird database Avibase",
     "examples": [
       "240E33900CE34D44",
       "68DF97EF92389F4D",
@@ -4546,7 +4578,7 @@
     ],
     "homepage": "https://portal.dnb.de",
     "name": "GND ID",
-    "pattern": "^1[0123]?\\d{7}[0-9X]|[47]\\d{6}-\\d|[1-9]\\d{0,7}-[0-9X]|3\\d{7}[0-9X]$",
+    "pattern": "^1[01234]?\\d{7}[0-9X]|[47]\\d{6}-\\d|[1-9]\\d{0,7}-[0-9X]|3\\d{7}[0-9X]$",
     "short_names": [
       "GND"
     ],
@@ -5562,17 +5594,6 @@
     "pattern": "^[a-z]+$",
     "uri_format": "https://www.saw-leipzig.de/de/mitglieder/$1"
   },
-  "P3413": {
-    "description": "identifier in the members' database of the Leopoldina – German Academy of Sciences",
-    "examples": [
-      "1536",
-      "266"
-    ],
-    "homepage": "http://www.leopoldina.org/de/mitglieder/mitglieder-seit-1652/",
-    "name": "Leopoldina member ID (superseded)",
-    "pattern": "^[1-9]\\d{0,3}$",
-    "uri_format": "https://web.archive.org/web/https://www.leopoldina.org/mitglieder/mitgliederverzeichnis/mitglieder/member/Member/show/$1/"
-  },
   "P3420": {
     "description": "identifier for a taxon in Calflora",
     "examples": [
@@ -5773,7 +5794,7 @@
     "uri_format": "https://tga-search.clients.funnelback.com/s/search.html?collection=tga-artg&profile=record&meta_i=$1"
   },
   "P356": {
-    "description": "serial code used to uniquely identify digital objects like academic papers (use upper case letters only)",
+    "description": "serial code used to uniquely identify physical, digital or abstract objects like scientific papers (upper case letters only)",
     "examples": [
       "10.12987/YALE/9780300197051.003.0010",
       "10.1371/JOURNAL.PONE.0029797"
@@ -5821,6 +5842,20 @@
     ],
     "name": "BOLD Systems taxon ID",
     "uri_format": "https://bench.boldsystems.org/index.php/TaxBrowser_TaxonPage?taxid=$1"
+  },
+  "P3608": {
+    "description": "VAT number assigned in the EU",
+    "examples": [
+      "ATU16274500",
+      "BG200356710",
+      "FI15243611"
+    ],
+    "homepage": "http://ec.europa.eu/taxation_customs/vies",
+    "name": "EU VAT number",
+    "uri_format": "https://wikidata-externalid-url.toolforge.org/index.php?url=https%3A%2F%2Fec.europa.eu%2Ftaxation_customs%2Fvies%2Frest-api%2Fms%2F%251%2Fvat%2F%252&exp=(%5BA-Z%5D%5BA-Z%5D)(.*)&id=$1",
+    "xrefs": {
+      "wikidata": "Q2319042"
+    }
   },
   "P3636": {
     "description": "identifier for small molecules and ligands in the Protein Data Bank (PDB)",
@@ -5890,7 +5925,7 @@
     ],
     "name": "Wildflowers of Israel ID",
     "pattern": "^[1-9]\\d{0,3}$",
-    "uri_format": "https://www.wildflowers.co.il/english/plant.asp?ID=$1"
+    "uri_format": "https://www.kkl.org.il/wild-flower/plants/$1.aspx"
   },
   "P3747": {
     "description": "identifier for an author at the Social Science Research Network",
@@ -6096,15 +6131,6 @@
     "name": "National Academy of Medicine (France) member ID",
     "pattern": "^\\d{1,4}|100\\d{3}$",
     "uri_format": "https://www.academie-medecine.fr/composition/membres/fiche-membre/?id=$1"
-  },
-  "P3978": {
-    "description": "Inventory of Existing Cosmetic Ingredients in China (2015)",
-    "examples": [
-      "3926"
-    ],
-    "homepage": "http://www.sda.gov.cn/WS01/CL0087/140365.html",
-    "name": "IECIC 2015 ID",
-    "pattern": "^\\d+$"
   },
   "P4011": {
     "description": "identifier for an article in the Semantic Scholar database (40 hexadecimal digits; for numeric ID see P8299)",
@@ -7412,6 +7438,20 @@
     "pattern": "^[1-9]\\d*$",
     "uri_format": "http://www.whonamedit.com/doctor.cfm/$1.html"
   },
+  "P5437": {
+    "description": "identifier for an area of government activity, in the European Union's EuroVoc thesaurus",
+    "examples": [
+      "4189",
+      "4704",
+      "637",
+      "833"
+    ],
+    "homepage": "https://publications.europa.eu/en/web/eu-vocabularies/th-dataset/-/resource/dataset/eurovoc",
+    "name": "EuroVoc ID",
+    "pattern": "^([1-9]\\d*|[0-9a-z_]+)$",
+    "uri_format": "https://op.europa.eu/en/web/eu-vocabularies/concept/-/resource?uri=http://eurovoc.europa.eu/$1",
+    "uri_format_rdf": "http://eurovoc.europa.eu/$1"
+  },
   "P5458": {
     "description": "target identifier of the Guide to Pharmacology database",
     "examples": [
@@ -7621,6 +7661,39 @@
     "pattern": "^[1-9]\\d{0,7}$",
     "uri_format": "https://www.cabi.org/isc/datasheet/$1"
   },
+  "P5755": {
+    "description": "Record Control Number for project/org/person under EU Framework Programmes",
+    "examples": [
+      "100079",
+      "194942",
+      "1959498",
+      "206017",
+      "2349130",
+      "93855"
+    ],
+    "homepage": "https://data.europa.eu/euodp/data/dataset/cordisfp7projects",
+    "name": "EU RCN",
+    "pattern": "^\\d+$",
+    "uri_format": "https://cordis.europa.eu/project/rcn/$1_en.html"
+  },
+  "P5785": {
+    "description": "ID of organization participating in EU programmes",
+    "examples": [
+      "919612769",
+      "951347774",
+      "965342449",
+      "997893806",
+      "999932164",
+      "999989103"
+    ],
+    "homepage": "https://data.europa.eu/euodp/data/dataset/cordisfp7projects",
+    "name": "EU Participant Identification Code",
+    "pattern": "^\\d+$",
+    "uri_format": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/how-to-participate/org-details/$1",
+    "xrefs": {
+      "wikidata": "Q131439257"
+    }
+  },
   "P5806": {
     "description": "identifier in the SNOMED CT catalogue codes for diseases, symptoms and procedures",
     "examples": [
@@ -7778,7 +7851,7 @@
     "uri_format": "https://sdbs.db.aist.go.jp/CompoundView.aspx?sdbsno=$1"
   },
   "P593": {
-    "description": "identifier in the HomoloGene database",
+    "description": "identifier in the HomoloGene database",
     "examples": [
       "193",
       "68068",
@@ -7787,7 +7860,7 @@
     "homepage": "http://www.ncbi.nlm.nih.gov/homologene",
     "name": "HomoloGene ID",
     "pattern": "^[1-9]\\d{0,5}$",
-    "uri_format": "https://www.ncbi.nlm.nih.gov/homologene?term=$1"
+    "uri_format": "https://www.ncbi.nlm.nih.gov/datasets/gene/$1/"
   },
   "P594": {
     "description": "identifier for a gene as per the Ensembl (European Bioinformatics Institute and the Wellcome Trust Sanger Institute) database",
@@ -8139,6 +8212,18 @@
     "name": "NOAA Fisheries Species Directory ID",
     "pattern": "^[a-z]+(\\-[a-z]+)*$",
     "uri_format": "https://www.fisheries.noaa.gov/species/$1"
+  },
+  "P605": {
+    "description": "code for a region per NUTS (Nomenclature des unités territoriales statistiques), a geocode standard for referencing the administrative divisions of countries for statistical purposes",
+    "examples": [
+      "BE1",
+      "BE10",
+      "SE071"
+    ],
+    "name": "NUTS code",
+    "pattern": "^[A-Z]{2}[A-Z0-9]{0,3}$",
+    "uri_format": "https://op.europa.eu/en/web/eu-vocabularies/concept/-/resource?uri=http://data.europa.eu/nuts/code/$1",
+    "uri_format_rdf": "http://data.europa.eu/nuts/code/$1"
   },
   "P6050": {
     "description": "identifier for a taxon on the Orthoptera Species File Online website (old version now archived)",
@@ -8960,7 +9045,7 @@
     "uri_format_rdf": "http://rdf.chemspider.com/$1"
   },
   "P662": {
-    "description": "identifier from database of chemical molecules and their activities in biological assays (Compound ID number)",
+    "description": "identifier from database of chemical molecules and their activities in biological assays (Compound ID number)",
     "examples": [
       "11125",
       "5284603",
@@ -9019,7 +9104,7 @@
     }
   },
   "P665": {
-    "description": "identifier from databases dealing with genomes, enzymatic pathways, and biological chemicals",
+    "description": "identifier from databases dealing with genomes, enzymatic pathways, and biological chemicals",
     "examples": [
       "D00018",
       "D05961"
@@ -9257,7 +9342,7 @@
     "uri_format": "https://antwiki.org/wiki/$1"
   },
   "P683": {
-    "description": "identifier from database and ontology of molecular entities focused on 'small' chemical compounds",
+    "description": "identifier from database and ontology of molecular entities focused on 'small' chemical compounds",
     "examples": [
       "18153",
       "27518",
@@ -9427,7 +9512,7 @@
     "pattern": "^[0-9A-Za-z_]+$"
   },
   "P698": {
-    "description": "identifier for journal articles/abstracts in PubMed",
+    "description": "identifier for journal articles/abstracts in PubMed",
     "examples": [
       "17246615",
       "32768924",
@@ -9877,16 +9962,7 @@
     }
   },
   "P7671": {
-    "description": "identifier of an author or reviewer, in Semion",
-    "examples": [
-      "1085144",
-      "17963667",
-      "2975999"
-    ],
-    "homepage": "https://www.semion.io",
-    "name": "Semion author ID (archived)",
-    "pattern": "^\\d+$",
-    "uri_format": "https://web.archive.org/web/1/https://www.semion.io/Author/$1"
+    "name": "P7671"
   },
   "P7710": {
     "description": "unique identifier of a work in ScienceOpen database",
@@ -9931,16 +10007,7 @@
     }
   },
   "P7720": {
-    "description": "identifier for a reference (scholarly articles) in the Fossilworks database",
-    "examples": [
-      "55763",
-      "61467",
-      "65044"
-    ],
-    "homepage": "http://www.fossilworks.org",
-    "name": "Fossilworks reference ID",
-    "pattern": "^\\d+$",
-    "uri_format": "https://web.archive.org/web/0/http://www.fossilworks.org/cgi-bin/bridge.pl?a=displayReference&reference_no=$1"
+    "name": "P7720"
   },
   "P7743": {
     "description": "identifier for a taxon on the Microworld website",
@@ -10425,6 +10492,16 @@
     "pattern": "^[1-9]\\d{0,7}$",
     "uri_format": "https://eol.org/pages/$1"
   },
+  "P8365": {
+    "description": "identifier for a concept in the Thesaurus Sozialwissenschaften (Thesaurus for the Social Sciences)",
+    "examples": [
+      "10034508",
+      "10048494"
+    ],
+    "homepage": "https://data.gesis.org/cvbrowser/thesoz/en/",
+    "name": "Thesaurus Sozialwissenschaften ID",
+    "uri_format": "https://data.gesis.org/thesoz/concept_$1"
+  },
   "P8372": {
     "description": "unique academic work identifier assigned in Web of Science bibliographic database (Web of Science Core Collection only and do not include WOS: prefix)",
     "examples": [
@@ -10438,7 +10515,7 @@
     "uri_format": "https://www.webofscience.com/wos/woscc/full-record/WOS:$1"
   },
   "P838": {
-    "description": "identifier for a taxon in the biological encyclopedia BioLib",
+    "description": "identifier for a taxon in the biological encyclopedia BioLib",
     "examples": [
       "138591",
       "325078"
@@ -10751,7 +10828,7 @@
     ],
     "homepage": "https://www.jstor.org/",
     "name": "JSTOR article ID",
-    "pattern": "^(\\d{2}.\\d{4,5}\\/[a-z\\d.-]+)|(arion|booksireland|genus|healhumarigh|jj|lindbergia|mammalianspecies|vermjenvilaw|westhistquar|wilsonq)[\\d.]+|[1-9]\\d{0,8}|j\\.[a-z\\d]{9}(\\.\\d{1,2})?$",
+    "pattern": "^(\\d{2}\\.\\d{4,5}\\/[a-z\\d.\\-_]+)|(arion|booksireland|community|e|genus|healhumarigh|i|j|jj|lindbergia|mammalianspecies|resrep|vermjenvilaw|westhistquar|wilsonq|yeatsannual)[\\d.]+|[1-9]\\d{0,8}|j\\.[a-z\\d]{9,10}(\\.\\d{1,2})?$",
     "uri_format": "https://www.jstor.org/stable/$1",
     "xrefs": {
       "wikidata": "Q19832971"
@@ -11154,12 +11231,12 @@
     "uri_format": "https://oregonflora.org/taxa/index.php?taxon=$1"
   },
   "P944": {
-    "description": "code that governs the scientific name of this taxon",
+    "description": "Code that governs this scientific name for a taxon",
     "examples": [
       "Q13011",
       "Q14920640"
     ],
-    "name": "code of nomenclature"
+    "name": "Code of nomenclature"
   },
   "P9450": {
     "description": "identification number for American health care providers issued by the Centers for Medicare and Medicaid Services",

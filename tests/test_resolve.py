@@ -24,6 +24,7 @@ class TestResolve(unittest.TestCase):
             ("chembl.compound", "chembl.compound"),
             ("chembl.compound", "chemblcompound"),
             ("chembl", "chembl"),
+            ("dcatap_plus", "dcat_ap_plus"),
         ]:
             with self.subTest(query=query):
                 self.assertEqual(expected, bioregistry.normalize_prefix(query))

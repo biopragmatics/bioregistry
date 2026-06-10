@@ -57,8 +57,14 @@
     {% elif resource.provides %}
         <a class="badge badge-danger" style="display: inline-block;" data-toggle="tooltip"
            href="{{ url_for("metaregistry_ui.resource", prefix=resource.provides) }}"
-           title="{{ manager.get_name(resource.provides) }} ({{ resource.provides }})">
+           title="You should use {{ manager.get_name(resource.provides) }} ({{ resource.provides }}) instead">
             Provider <i class="bi bi-exclamation-triangle"></i>
+        </a>
+    {% elif resource.has_canonical %}
+        <a class="badge badge-danger" style="display: inline-block;" data-toggle="tooltip"
+           href="{{ url_for("metaregistry_ui.resource", prefix=resource.has_canonical) }}"
+           title="You should use {{ manager.get_name(resource.has_canonical) }} ({{ resource.has_canonical }}) instead">
+            Not Canonical <i class="bi bi-exclamation-triangle"></i>
         </a>
     {% endif %}
     {% if resource.proprietary %}
@@ -101,21 +107,17 @@
     {% endif %}
 {% endmacro %}
 
-{% macro render_author(author, link=none) -%}
-    {% if link or author.email %}
-        <a href="{% if link %}{{ link }}{% else %}mailto:{{ author.email }}{% endif %}">
-            {% if author.name %}
-                {{ author.name }}
-            {% else %}
-                {{ author.email }}
-            {% endif %}
-        </a>
-    {% else %}
-        {% if author.name %}
-            {{ author.name }}
-        {% endif %}
-    {% endif %}
-    {% if author.orcid %}
+{%- macro render_author(author, link=none) -%}
+    {%- if author.name and link %}
+        <a href="{{ link }}">{{ author.name }}</a>
+    {%- elif author.name and author.orcid %}
+        <a href="{{ url_for("metaregistry_ui.contributor", orcid=author.orcid) }}">{{ author.name }}</a>
+    {%- elif author.name and author.email %}
+        <a href="mailto:{{ author.email }}">{{ author.name }}</a>
+    {%- elif author.email %}
+        <a href="mailto:{{ author.email }}">{{ author.email }}</a>
+    {%- endif %}
+    {%- if author.orcid %}
         &nbsp;
         <small>
             {{ orcid_img() }}
@@ -123,8 +125,8 @@
                 {{ author.orcid }}
             </a>
         </small>
-    {% endif %}
-    {% if author.github %}
+    {%- endif %}
+    {%- if author.github %}
         &nbsp;
         <small>
             <i class="bi bi-github"></i>
@@ -132,8 +134,8 @@
                 {{ author.github }}
             </a>
         </small>
-    {% endif %}
-{% endmacro %}
+    {%- endif %}
+{%- endmacro %}
 
 {% macro render_author_modal(prefix, author, key) %}
     <div class="modal fade" id="{{ key }}-modal" tabindex="-1" role="dialog" aria-labelledby="{{ key }}ModalLabel" aria-hidden="true">

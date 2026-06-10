@@ -10,7 +10,6 @@
           "type": "string"
         },
         "rdf_format": {
-          "default": "ttl",
           "enum": [
             "ttl",
             "rdf",
@@ -24,7 +23,8 @@
         }
       },
       "required": [
-        "url"
+        "url",
+        "rdf_format"
       ],
       "title": "AnnotatedURL",
       "type": "object"
@@ -314,6 +314,22 @@
           ],
           "default": null,
           "title": "Mappings"
+        },
+        "tags": {
+          "anyOf": [
+            {
+              "items": {
+                "$ref": "#/$defs/Tag"
+              },
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Tags are defined locally in each collection and can be used to give additional context to why the resource was included, how it's used, etc. Try to avoid using tags to describe information that's already available, such as whether a resource is an ontology or whether it's first-party to the collection maintainer(s). Tagging was added in https://github.com/biopragmatics/bioregistry/pull/1958.",
+          "title": "Tags"
         }
       },
       "required": [
@@ -344,6 +360,22 @@
           ],
           "default": null,
           "title": "Comment"
+        },
+        "tags": {
+          "anyOf": [
+            {
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "References to tag codes that are defined locally within a collection",
+          "title": "Tags"
         }
       },
       "required": [
@@ -586,6 +618,17 @@
           "description": "Homepage of the provider",
           "title": "Homepage"
         },
+        "contact": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Attributable"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
         "uri_format": {
           "description": "The URI format string, which must have at least one ``$1`` in it. Note that this field is generic enough to accept IRIs. See the URI specification (https://www.rfc-editor.org/rfc/rfc3986) and IRI specification (https://www.ietf.org/rfc/rfc3987.txt) for more information.",
           "title": "URI Format",
@@ -750,7 +793,7 @@
       "type": "object"
     },
     "Reference": {
-      "description": "A reference to an entity in a given identifier space.\n\nThis class uses Pydantic to make it easier to build other\nmore complex data types with Pydantic that also uses a first-\nclass notion of parsed reference (instead of merely stringified\nCURIEs). Instances of this class can also be hashed because of the\n\"frozen\" configuration from Pydantic (see\nhttps://docs.pydantic.dev/latest/usage/model_config/ for more details).\n\nA reference can be constructed several ways:\n\n>>> Reference(prefix=\"chebi\", identifier=\"1234\")\nReference(prefix='chebi', identifier='1234')\n\n>>> Reference.from_curie(\"chebi:1234\")\nReference(prefix='chebi', identifier='1234')\n\nA reference can also be constructued using Pydantic's parsing utilities,\nbut keep in mind if you're using Pydantic v1 or Pydantic v2.\n\nA reference can be formatted as a CURIE string with\nthe ``curie`` attribute\n\n>>> Reference.from_curie(\"chebi:1234\").curie\n'chebi:1234'\n\nReferences can't be sliced like reference tuples, but they can still\nbe accessed through attributes\n\n>>> t = Reference.from_curie(\"chebi:1234\")\n>>> t.prefix\n'chebi'\n>>> t.identifier\n'1234'\n\nIf you need a performance gain, you can get a :class:`ReferenceTuple`\nusing the ``pair`` attribute:\n\n>>> reference = Reference.from_curie(\"chebi:1234\")\n>>> reference.pair\nReferenceTuple(prefix='chebi', identifier='1234')",
+      "description": "A reference to an entity in a given identifier space.\n\nThis class uses Pydantic to make it easier to build other more complex data types\nwith Pydantic that also uses a first- class notion of parsed reference (instead of\nmerely stringified CURIEs). Instances of this class can also be hashed because of\nthe \"frozen\" configuration from Pydantic (see\nhttps://docs.pydantic.dev/latest/usage/model_config/ for more details).\n\nA reference can be constructed several ways:\n\n>>> Reference(prefix=\"chebi\", identifier=\"1234\")\nReference(prefix='chebi', identifier='1234')\n\n>>> Reference.from_curie(\"chebi:1234\")\nReference(prefix='chebi', identifier='1234')\n\nA reference can also be constructued using Pydantic's parsing utilities, but keep in\nmind if you're using Pydantic v1 or Pydantic v2.\n\nA reference can be formatted as a CURIE string with the ``curie`` attribute\n\n>>> Reference.from_curie(\"chebi:1234\").curie\n'chebi:1234'\n\nReferences can't be sliced like reference tuples, but they can still be accessed\nthrough attributes\n\n>>> t = Reference.from_curie(\"chebi:1234\")\n>>> t.prefix\n'chebi'\n>>> t.identifier\n'1234'\n\nIf you need a performance gain, you can get a :class:`ReferenceTuple` using the\n``pair`` attribute:\n\n>>> reference = Reference.from_curie(\"chebi:1234\")\n>>> reference.pair\nReferenceTuple(prefix='chebi', identifier='1234')",
       "properties": {
         "prefix": {
           "description": "The prefix used in a compact URI (CURIE).",
@@ -1817,7 +1860,9 @@
                 "experiment",
                 "genetic code",
                 "mathematics",
-                "registry"
+                "registry",
+                "social science",
+                "equipment"
               ],
               "type": "string"
             },
@@ -1870,7 +1915,9 @@
             "experiment",
             "genetic code",
             "mathematics",
-            "registry"
+            "registry",
+            "social science",
+            "equipment"
           ],
           "title": "Domain"
         },
@@ -2592,6 +2639,37 @@
         "contributor"
       ],
       "title": "StatusCheck",
+      "type": "object"
+    },
+    "Tag": {
+      "description": "A tag for a collection.",
+      "properties": {
+        "code": {
+          "title": "Code",
+          "type": "string"
+        },
+        "name": {
+          "title": "Name",
+          "type": "string"
+        },
+        "description": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Description"
+        }
+      },
+      "required": [
+        "code",
+        "name"
+      ],
+      "title": "Tag",
       "type": "object"
     }
   },

@@ -65,12 +65,9 @@
     {% endif %}
 
     <h2>Project Longevity</h2>
-    <p>
-        The {{ config.METAREGISTRY_TITLE }} is funded by the Chan Zuckerberg Initiative (CZI) Open Science Grant 2023-329850
-        which stipulates unlimited no-cost extensions. We have allocated part of this grant to ensure that
-        the domain registration, hosting, and hardware will be funded in the medium- and long term under
-        a conservative cost estimate of around $100-200/year.
-    </p>
+    {%- if config.METAREGISTRY_LONGEVITY_BLOCK %}
+    {{ config.METAREGISTRY_LONGEVITY_BLOCK | safe }}
+    {%- endif %}
     <p>
         The {{ config.METAREGISTRY_TITLE }} implements the <a href="https://doi.org/10.31219/osf.io/vuzt3">Open Code, Open Data,
         Open Infrastructure (O3) Guidelines</a> as a means to enable and encourage community contribution and
