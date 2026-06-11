@@ -1116,7 +1116,6 @@ class Manager:
         prefix_priority: Sequence[str] | None = None,
         uri_prefix_priority: Sequence[str] | None = None,
         include_prefixes: bool = False,
-        strict: bool = False,
         remapping: Mapping[str, str] | None = None,
         rewiring: Mapping[str, str] | None = None,
         blacklist: typing.Collection[str] | None = None,
@@ -1152,7 +1151,6 @@ class Manager:
             prefix_priority=prefix_priority,
             uri_prefix_priority=uri_prefix_priority,
             include_prefixes=include_prefixes,
-            strict=strict,
             blacklist=blacklist,
             remapping=remapping,
             rewiring=rewiring,
@@ -1161,7 +1159,7 @@ class Manager:
         return converter
 
     def get_reverse_prefix_map(
-        self, include_prefixes: bool = False, strict: bool = False
+        self, include_prefixes: bool = False
     ) -> Mapping[str, str]:
         """Get a reverse prefix map, pointing to canonical prefixes."""
         from .record_accumulator import _iterate_prefix_prefix
@@ -1170,7 +1168,7 @@ class Manager:
             "http://purl.obolibrary.org/obo/": "obo",
             "https://purl.obolibrary.org/obo/": "obo",
         }
-        converter = self.get_converter(include_prefixes=include_prefixes, strict=strict)
+        converter = self.get_converter(include_prefixes=include_prefixes)
         for record in converter.records:
             rv[record.uri_prefix] = record.prefix
             for uri_prefix in record.uri_prefix_synonyms:
@@ -2103,7 +2101,6 @@ class Manager:
     def get_converter_from_context(
         self,
         context: str | Context,
-        strict: bool = False,
         include_prefixes: bool = False,
     ) -> curies.Converter:
         """Get a converter based on a context."""
@@ -2112,7 +2109,6 @@ class Manager:
         return self.get_converter(
             prefix_priority=context.prefix_priority,
             uri_prefix_priority=context.uri_prefix_priority,
-            strict=strict,
             remapping=context.prefix_remapping,
             rewiring=context.custom_prefix_map,
             blacklist=context.blacklist,
