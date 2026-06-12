@@ -2043,7 +2043,9 @@ class Resource(BaseModel):
         return self.prefix
 
     def _iterate_uri_formats(self, priority: Sequence[str] | None = None) -> Iterable[str]:
-        for metaprefix in priority or self.DEFAULT_URI_FORMATTER_PRIORITY:
+        if priority is None:
+            priority = self.DEFAULT_URI_FORMATTER_PRIORITY
+        for metaprefix in priority:
             formatter = self.URI_FORMATTERS.get(metaprefix)
             if formatter is None:
                 logger.warning("could not get formatter for %s", metaprefix)
@@ -2098,15 +2100,45 @@ class Resource(BaseModel):
     # docstr-coverage:excused `overload`
     @overload
     def get_uri_prefix(
-        self, priority: Sequence[str] | None = None, *, strict: Literal[True] = ...
+        self,
+        priority: Sequence[str] | None = None,
+        *,
+        strict: Literal[False] = ...,
+        stubs: Literal[False] = ...,
+    ) -> str | None: ...
+
+    # docstr-coverage:excused `overload`
+    @overload
+    def get_uri_prefix(
+        self,
+        priority: Sequence[str] | None = None,
+        *,
+        strict: Literal[False] = ...,
+        stubs: Literal[True] = ...,
+    ) -> str: ...
+
+    # docstr-coverage:excused `overload`
+    @overload
+    def get_uri_prefix(
+        self,
+        priority: Sequence[str] | None = None,
+        *,
+        strict: Literal[True] = ...,
+        stubs: bool = ...,
     ) -> str: ...
 
     def get_uri_prefix(
-        self, priority: Sequence[str] | None = None, *, strict: bool = False
+        self,
+        priority: Sequence[str] | None = None,
+        *,
+        strict: bool = False,
+        stubs: bool = False,
     ) -> str | None:
         """Get a well-formed URI prefix, if available.
 
         :param priority: The prioirty order for :func:`get_format`.
+        :param strict: if true, raise an exception on not found
+        :param stubs: Should stub URIs be assigned to resources with no URI format?
 
         :returns: The URI prefix. Similar to what's returned by :func:`get_uri_format`,
             but it MUST have only one ``$1`` and end with ``$1`` to use the function.
@@ -2119,6 +2151,9 @@ class Resource(BaseModel):
             uri_prefix = self._clip_uri_format(uri_format)
             if uri_prefix is not None:
                 return uri_prefix
+        if stubs:
+            prefix = self.get_preferred_prefix() or self.prefix
+            return f"https://bioregistry.io/{prefix}:"
         if strict:
             raise ValueError
         return None
