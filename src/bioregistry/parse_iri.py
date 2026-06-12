@@ -23,8 +23,11 @@ __all__ = [
 ]
 
 
-def get_default_converter() -> curies.Converter:
+@lru_cache(2)
+def get_default_converter(*, stubs: bool = False) -> curies.Converter:
     """Get a converter from this manager."""
+    if stubs:
+        return manager.get_converter(stubs=True)
     return manager.converter
 
 
