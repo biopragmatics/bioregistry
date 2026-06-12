@@ -45,6 +45,7 @@ from .schema import (
     MetaprefixAnnotatedValue,
     Registry,
     Resource,
+    record_accumulator,
     sanitize_model,
 )
 from .schema_utils import (
@@ -1139,8 +1140,6 @@ class Manager:
 
         :returns: A list of records for :class:`curies.Converter`
         """
-        from .record_accumulator import get_converter
-
         # if including stubs, then _all_ resources will get assigned
         # a valid URI prefix. Otherwise, filter only to those wher
         # a URI prefix can be looked up.
@@ -1152,7 +1151,7 @@ class Manager:
                 for _, resource in sorted(self.registry.items())
                 if resource.get_uri_prefix(priority=uri_prefix_priority)
             ]
-        converter = get_converter(
+        converter = record_accumulator.get_converter(
             resources,
             prefix_priority=prefix_priority,
             uri_prefix_priority=uri_prefix_priority,
@@ -1167,8 +1166,6 @@ class Manager:
 
     def get_reverse_prefix_map(self, *, include_prefixes: bool = False) -> Mapping[str, str]:
         """Get a reverse prefix map, pointing to canonical prefixes."""
-        from .record_accumulator import _iterate_prefix_prefix
-
         rv: dict[str, str] = {
             "http://purl.obolibrary.org/obo/": "obo",
             "https://purl.obolibrary.org/obo/": "obo",
@@ -1193,7 +1190,7 @@ class Manager:
 
         for resource in self.registry.values():
             if not resource.get_uri_prefix():
-                for pp in _iterate_prefix_prefix(resource):
+                for pp in record_accumulator._iterate_prefix_prefix(resource):
                     rv[pp] = resource.prefix
 
         return rv

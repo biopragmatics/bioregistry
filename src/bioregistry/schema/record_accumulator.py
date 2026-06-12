@@ -9,7 +9,7 @@ import curies
 from curies import Converter, Record
 from curies.w3c import NCNAME_RE
 
-from .schema import Resource
+from .struct import Resource
 
 __all__ = [
     "get_converter",
