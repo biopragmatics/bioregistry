@@ -1120,6 +1120,7 @@ class Manager:
         rewiring: Mapping[str, str] | None = None,
         blacklist: typing.Collection[str] | None = None,
         enforce_w3c: bool = False,
+        stubs: bool = False,
     ) -> curies.Converter:
         """Get a converter from this manager.
 
@@ -1130,22 +1131,27 @@ class Manager:
         :param include_prefixes: Should prefixes be included with colon delimiters?
             Setting this to true makes an "omni"-reverse prefix map that can be used to
             parse both URIs and CURIEs
-        :param strict: If true, errors on URI prefix collisions. If false, sends logging
-            and skips them.
         :param remapping: A mapping from bioregistry prefixes to preferred prefixes.
         :param rewiring: A mapping from bioregistry prefixes to new URI prefixes.
         :param blacklist: A collection of prefixes to skip
-        :param enforce_w3c: Should non-W3C-compliant prefix synoynms be removed?
+        :param enforce_w3c: Should non-W3C-compliant prefix synonyms be removed?
+        :param stubs: Should stub URIs be assigned to resources with no URI format?
 
         :returns: A list of records for :class:`curies.Converter`
         """
         from .record_accumulator import get_converter
 
-        # first step - filter to resources that have *anything* for a URI prefix
-        # maybe better to filter on URI format string, since bioregistry can always provide a URI prefix
-        resources = [
-            resource for _, resource in sorted(self.registry.items()) if resource.get_uri_prefix()
-        ]
+        # if including stubs, then _all_ resources will get assigned
+        # a valid URI prefix. Otherwise, filter only to those wher
+        # a URI prefix can be looked up.
+        if stubs:
+            resources = list(self.registry.values())
+        else:
+            resources = [
+                resource
+                for _, resource in sorted(self.registry.items())
+                if resource.get_uri_prefix(priority=uri_prefix_priority)
+            ]
         converter = get_converter(
             resources,
             prefix_priority=prefix_priority,
@@ -1155,12 +1161,11 @@ class Manager:
             remapping=remapping,
             rewiring=rewiring,
             enforce_w3c=enforce_w3c,
+            stubs=stubs,
         )
         return converter
 
-    def get_reverse_prefix_map(
-        self, include_prefixes: bool = False
-    ) -> Mapping[str, str]:
+    def get_reverse_prefix_map(self, *, include_prefixes: bool = False) -> Mapping[str, str]:
         """Get a reverse prefix map, pointing to canonical prefixes."""
         from .record_accumulator import _iterate_prefix_prefix
 
@@ -1202,6 +1207,7 @@ class Manager:
         remapping: Mapping[str, str] | None = None,
         rewiring: Mapping[str, str] | None = None,
         blacklist: typing.Collection[str] | None = None,
+        stubs: bool = False,
     ) -> Mapping[str, str]:
         """Get a mapping from Bioregistry prefixes to their URI prefixes .
 
@@ -1214,6 +1220,7 @@ class Manager:
         :param remapping: A mapping from Bioregistry prefixes to preferred prefixes.
         :param rewiring: A mapping from Bioregistry prefixes to URI prefixes.
         :param blacklist: Prefixes to skip
+        :param stubs: Should stub URIs be assigned to resources with no URI format?
 
         :returns: A mapping from prefixes to URI prefixes.
         """
@@ -1223,6 +1230,7 @@ class Manager:
             remapping=remapping,
             rewiring=rewiring,
             blacklist=blacklist,
+            stubs=stubs,
         )
         return dict(converter.prefix_map) if include_synonyms else dict(converter.bimap)
 

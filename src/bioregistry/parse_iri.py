@@ -29,12 +29,16 @@ def get_default_converter() -> curies.Converter:
 
 
 @lru_cache(2)
-def get_preferred_converter(include_bioregistry: bool = False) -> curies.Converter:
-    """Get a converter from this manager with preferred CURIE prefixes and RDF URI prefixes."""
+def get_preferred_converter(*, stubs: bool = False) -> curies.Converter:
+    """Get a converter from this manager with preferred CURIE prefixes and RDF URI prefixes.
+
+    :param stubs: Should stub URIs be assigned to resources with no URI format?
+    :returns: A converter ready for semantic web applications.
+    """
     return manager.get_converter(
         prefix_priority=["preferred", "default"],
         uri_prefix_priority=["rdf", "default"],
-        include_bioregistry=include_bioregistry,
+        stubs=stubs,
     )
 
 

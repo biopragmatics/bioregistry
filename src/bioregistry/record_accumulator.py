@@ -2,11 +2,8 @@
 
 from __future__ import annotations
 
-import itertools as itt
 import logging
-from collections import defaultdict
 from collections.abc import Collection, Iterable, Mapping, Sequence
-from typing import Literal, cast, overload
 
 import curies
 from curies import Converter, Record
@@ -124,16 +121,12 @@ def _iterate_prefix_prefix(resource: Resource, *extras: str) -> Iterable[str]:
         ]
 
 
-# TODO handle situations where a URI format string is available but
-#  it is not directly convertable to URI prefix -> use Bioregistry
-#  URL for these (e.g., chemspider, lrg)
-
 # TODO handle when one URI is a subspace of another
 #  (e.g., uniprot.isoform and uniprot)
 
 
 def get_converter(
-    resources: list[Resource],
+    resources: Iterable[Resource],
     prefix_priority: Sequence[str] | None = None,
     uri_prefix_priority: Sequence[str] | None = None,
     include_prefixes: bool = False,
@@ -141,7 +134,7 @@ def get_converter(
     remapping: Mapping[str, str] | None = None,
     rewiring: Mapping[str, str] | None = None,
     enforce_w3c: bool = False,
-    include_bioregistry: bool = False,
+    stubs: bool = False,
 ) -> Converter:
     """Generate a converter from resources."""
     converter = _get_converter(
@@ -151,7 +144,7 @@ def get_converter(
         include_prefixes=include_prefixes,
         blacklist=blacklist,
         enforce_w3c=enforce_w3c,
-        include_bioregistry=include_bioregistry,
+        stubs=stubs,
     )
     if remapping:
         converter = curies.remap_curie_prefixes(converter, remapping)
@@ -173,13 +166,13 @@ def _w3c_clean_converter(converter: Converter) -> Converter:
 
 
 def _get_converter(
-    resources: list[Resource],
+    resources: Iterable[Resource],
     prefix_priority: Sequence[str] | None = None,
     uri_prefix_priority: Sequence[str] | None = None,
     include_prefixes: bool = False,
     blacklist: Collection[str] | None = None,
     enforce_w3c: bool = False,
-    include_bioregistry: bool = False,
+    stubs: bool = False,
 ) -> curies.Converter:
     blacklist = set(blacklist or []).union(prefix_blacklist)
     resources = [r for r in resources if r.prefix not in blacklist]
@@ -189,10 +182,7 @@ def _get_converter(
 
     for resource in primary_resources:
         primary_uri_prefix, secondary_uri_prefixes = _get_uri_prefixes(
-            resource,
-            uri_prefix_priority,
-            enforce_w3c=enforce_w3c,
-            include_bioregistry=include_bioregistry,
+            resource, uri_prefix_priority, enforce_w3c=enforce_w3c, stubs=stubs
         )
         if primary_uri_prefix is None:
             continue
@@ -216,10 +206,7 @@ def _get_converter(
 
     for resource, primary_prefix in secondary_resources:
         secondary_uri_prefix, secondary_uri_prefixes = _get_uri_prefixes(
-            resource,
-            uri_prefix_priority,
-            enforce_w3c=enforce_w3c,
-            include_bioregistry=include_bioregistry,
+            resource, uri_prefix_priority, enforce_w3c=enforce_w3c, stubs=stubs
         )
         if secondary_uri_prefix:
             converter.add_uri_prefix_synonym(primary_prefix, secondary_uri_prefix)
@@ -263,31 +250,13 @@ def _get_curie_prefixes(
     return primary, rest
 
 
-@overload
 def _get_uri_prefixes(
     resource: Resource,
     priority: Sequence[str] | None,
     enforce_w3c: bool,
-    include_bioregistry: Literal[True] = ...,
-) -> tuple[str, set[str]]: ...
-
-
-@overload
-def _get_uri_prefixes(
-    resource: Resource,
-    priority: Sequence[str] | None,
-    enforce_w3c: bool,
-    include_bioregistry: Literal[False] = ...,
-) -> tuple[str | None, set[str]]: ...
-
-
-def _get_uri_prefixes(
-    resource: Resource,
-    priority: Sequence[str] | None,
-    enforce_w3c: bool,
-    include_bioregistry: bool = False,
-) -> tuple[str | None, set[str]] | tuple[str, set[str]]:
-    primary = resource.get_uri_prefix(priority=priority, include_bioregistry=include_bioregistry)
+    stubs: bool = False,
+) -> tuple[str | None, set[str]]:
+    primary = resource.get_uri_prefix(priority=priority, stubs=stubs)
     rest = (
         resource.get_uri_prefixes(enforce_w3c=enforce_w3c)
         - {primary}
