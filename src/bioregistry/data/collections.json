@@ -2618,13 +2618,13 @@
       ],
       "resources": [
         {"prefix": "bioregistry", "tags": []},
-        {"prefix": "doid", "tags": ["disease"]},
+        {"comment":"Disease ontology used to describe patients disease / disease of research focus","prefix": "doid", "tags": ["disease"]},
         {"prefix": "hancestro", "tags": ["ancestry"]},
-        {"prefix": "snomedct", "tags": ["Ethnicity"]},
+        {"comment":"Only a subclass of SNOMEd CT is used to describe the Ethnicity of human patients","prefix": "snomedct", "tags": ["Ethnicity"]},
         {"prefix": "clo", "tags": ["cell_lin_name"]},
-        {"prefix": "ncit", "tags": ["medication"]},
-        {"prefix": "uberon", "tags": ["tissue"]},
-        {"prefix": "obi", "tags": ["data_processing_steps"]}
+        {"comment":"Only a subclass of ncit is used to describe the medication used within the study / individual patient","prefix": "ncit", "tags": ["medication"]},
+        {"comment":"Only a subclass of Uberon is used to describe the tissue where the sample was taken from","prefix": "uberon", "tags": ["tissue"]},
+        {"comment":"Only a subclass of obi is used to describe the data processing steps before the analysis part","prefix": "obi", "tags": ["data_processing_steps"]}
       ]
     },
     {
