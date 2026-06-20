@@ -93,12 +93,12 @@
     "artifacts": [
       {
         "type": "rdf",
-        "url": "https://purl.allotrope.org/voc/afo/merged/REC/2025/03/merged-without-qudt-and-inferred.ttl"
+        "url": "https://purl.allotrope.org/voc/afo/merged/REC/2026/03/merged-without-qudt-and-inferred.ttl"
       }
     ],
     "description": "The AFO is an ontology suite that provides a standard vocabulary and semantic model for the representation of laboratory analytical processes. The AFO suite is aligned at the upper layer to the Basic Formal Ontology (BFO). The core domains modeled include, Equipment, Material, Process, and Results. This artifact contains all triples of Allotrope Foundation Merged Without QUDT Ontology Suite together with triples inferred with HermiT.",
     "extras": {
-      "version.iri": "http://purl.allotrope.org/voc/afo/merged/REC/2025/03/merged-without-qudt-and-inferred"
+      "version.iri": "http://purl.allotrope.org/voc/afo/merged/REC/2026/03/merged-without-qudt-and-inferred"
     },
     "keywords": [
       "NFDI4CAT",
@@ -112,7 +112,7 @@
       "url": "https://creativecommons.org/licenses/by/4.0/"
     },
     "name": "Allotrope Foundation Ontology Merged Without QUDT And Inferred (REC/2025/03)",
-    "uri_format": "https://purl.allotrope.org/voc/afo/merged/REC/2025/03/merged-without-qudt-and-inferred$1"
+    "uri_format": "https://purl.allotrope.org/voc/afo/merged/REC/2026/03/merged-without-qudt-and-inferred$1"
   },
   "agro": {
     "artifacts": [
@@ -146,6 +146,7 @@
     "homepage": "https://www.isibang.ac.in/ns/amv/",
     "keywords": [
       "NFDIxCS",
+      "MaRDI",
       "computer science"
     ],
     "license": {
@@ -278,6 +279,12 @@
     "uri_format": "https://purl.org/fidbaudigital/subjects#$1"
   },
   "bf": {
+    "artifacts": [
+      {
+        "type": "rdf",
+        "url": "https://id.loc.gov/ontologies/bibframe.rdf"
+      }
+    ],
     "description": "The Bibframe vocabulary consists of RDF classes and properties used for the description of items cataloged principally by libraries, but may also be used to describe items cataloged by museums and archives. Classes include the three core classes - Work, Instance, and Item - in addition to many more classes to support description. Properties describe characteristics of the resource being described as well as relationships among resources. For example: one Work might be a \"translation of\" another Work; an Instance may be an \"instance of\" a particular Bibframe Work. Other properties describe attributes of Works and Instances. For example: the Bibframe property \"subject\" expresses an important attribute of a Work (what the Work is about), and the property \"extent\" (e.g. number of pages) expresses an attribute of an Instance.",
     "extras": {
       "version.iri": "http://id.loc.gov/ontologies/bibframe-3-0-1/"
@@ -297,6 +304,12 @@
     "uri_format": "http://id.loc.gov/ontologies/bibframe/$1"
   },
   "bflc": {
+    "artifacts": [
+      {
+        "type": "rdf",
+        "url": "https://id.loc.gov/ontologies/bflc.rdf"
+      }
+    ],
     "description": "BIBFRAME vocabulary with LC extensions",
     "extras": {
       "version.iri": "http://id.loc.gov/ontologies/bflc-3-0-0/"
@@ -353,6 +366,7 @@
       "FID move",
       "NFDI4ING",
       "ESS",
+      "MaRDI",
       "earth sciences"
     ],
     "license": {
@@ -706,11 +720,11 @@
       }
     ],
     "contact": {
-      "email": "chemistry-ontologies@googlegroups.com"
+      "email": "chemical-methods-ontology@googlegroups.com"
     },
     "description": "CHMO, the chemical methods ontology, describes methods used to collect data in chemical experiments, such as mass spectrometry and electron microscopy prepare and separate material for further analysis, such as sample ionisation, chromatography, and electrophoresis synthesise materials, such as epitaxy and continuous vapour deposition It also describes the instruments used in these experiments, such as mass spectrometers and chromatography columns. It is intended to be complementary to the Ontology for Biomedical Investigations (OBI).",
     "extras": {
-      "version.iri": "http://purl.obolibrary.org/obo/chmo/releases/2025-10-21/chmo.owl"
+      "version.iri": "http://purl.obolibrary.org/obo/chmo/releases/2026-05-28/chmo.owl"
     },
     "homepage": "https://github.com/rsc-ontology/rsc-cmo",
     "keywords": [
@@ -937,6 +951,31 @@
     "tracker": "https://github.com/biopragmatics/obo-db-ingest/issues",
     "uri_format": "https://credit.niso.org/contributor-roles/$1"
   },
+  "crmsci": {
+    "artifacts": [
+      {
+        "type": "owl",
+        "url": "https://cidoc-crm.org/extensions/crmsci/owl/2.0/CRMsci_v2.0.owl"
+      }
+    ],
+    "description": "The 'Scientific Observation Model' (CRMsci) is a formal ontology intended to serve as a global schema for integrating metadata about scientific observation, measurements, and processed data in descriptive and empirical sciences such as life sciences, geology, geography, archaeology, and cultural heritage conservation.",
+    "extras": {
+      "version.iri": "http://www.cidoc-crm.org/extensions/crmsci/owl/2.0/"
+    },
+    "homepage": "https://cidoc-crm.org/crmsci/",
+    "keywords": [
+      "ESS",
+      "earth sciences"
+    ],
+    "license": {
+      "name": "CC-BY 4.0",
+      "spdx": "CC-BY-4.0",
+      "url": "https://creativecommons.org/licenses/by/4.0/"
+    },
+    "name": "CRMsci",
+    "tracker": "https://github.com/erlangen-crm/crmsci/issues",
+    "uri_format": "http://www.cidoc-crm.org/extensions/crmsci/$1"
+  },
   "cso": {
     "description": "The Computer Science Ontology (CSO) is a large-scale ontology of research areas that was automatically generated using the Klink-2 algorithm (cf. http://people.kmi.open.ac.uk/francesco/wp-content/uploads/2015/09/ISWC2015_Klink-2.pdf) on the Rexplore dataset (cf. http://oro.open.ac.uk/39160/1/iswc2013_osborne.pdf), which consists of about 16 million publications, mainly in the field of Computer Science. The Klink-2 algorithm combines semantic technologies, machine learning, and knowledge from external sources to automatically generate a fully populated ontology of research areas. Some relationships were also revised manually by experts during the preparation of two ontology-assisted surveys in the field of Semantic Web and Software Architecture. The main root of CSO is Computer Science, however, the ontology includes also a few secondary roots, such as Linguistics, Geometry, Semantics, and so on.",
     "homepage": "https://cso.kmi.open.ac.uk/home",
@@ -979,9 +1018,9 @@
     "uri_format": "https://nfdi4culture.de/ontology/CTO_$1"
   },
   "datacite": {
-    "description": "The DataCite Ontology is an ontology written in OWL 2 DL to enable the metadata properties of the [DataCite Metadata Kernel Specification version 3.1](https://www.datacite.org/sites/default/files/document/DataCite-MetadataSchema_V31_Final_8-24-2015_0.pdf) to be described in RDF.  \n\nThis version of the DataCite Ontology has been completely revised and significantly expanded to permit accurate mapping of this new version of the DataCite Metadata Kernel Specification to RDF.",
+    "description": "\n## Description\n\nThe _DataCite Ontology_ (or simply DataCite) is an ontology written in OWL 2 DL to enable the metadata properties of the [DataCite Metadata Schema (version 4.7)](https://datacite-metadata-schema.readthedocs.io/en/4.7/) to be described in RDF. \n\n![A diagram of the DataCite Ontology.](datacite.png)\n\nThe main intent of the DataCite Ontology is to provide a flexible mechanism to define identifiers for bibliographic resources (e.g., papers and datasets) and related entities (e.g., authors). To this end, DataCite uses the object property `datacite:hasIdentifier`, which has as its object a member of the class `datacite:Identifier` or of one of its sub-classes (`datacite:ResourceIdentifier`, `datacite:AgentIdentifier` or `datacite:RightsIdentifier`). \nIn turn, `datacite:AgentIdentifier` is further sub-classed by three additional classes, i.e., `datacite:PersonalIdentifier`, `datacite:OrganizationIdentifier`, and `datacite:FunderIdentifier`. \nThe exact nature of the identifier is then defined using the second DataCite object property `datacite:usesIdentifierScheme`, which has as its object the class `datacite:IdentifierScheme` or one of its sub-classes: `datacite:ResourceIdentifierScheme`, `datacite:AgentIdentifierScheme` or `datacite:RightsIdentifierScheme`. `datacite:AgentIdentifierScheme` is further sub-classed by three additional classes, i.e., `datacite:PersonalIdentifierScheme`, `datacite:OrganizationIdentifierScheme`, and `datacite:FunderIdentifierScheme`.\nThis provides a robust method for defining identifiers, since each specific identifier is defined as an individual member of its appropriate identifier scheme class. Of course, existing identifier schemes have been already defined within the ontology. For instance:\n\n* `datacite:doi` is an individual member of the class `datacite:ResourceIdentifierScheme` specifying a DataCite Digital Object Identifier (DOI);\n* `datacite:orcid` is an individual member of the class `datacite:PersonalIdentifierScheme` specifying an Open Researcher and Contributor Identifier (ORCID);\n* `datacite:fundref` is an individual member of the class `datacite:FunderIdentifierScheme` specifying a FundRef Funder Identifier.\n\nAs need arises, new identifiers can be added later as new members of each class, without having to modify the structure of the DataCite Ontology. In addition, some members, i.e., `datacite:local-resource-identifier-scheme`, `datacite:local-personal-identifier-scheme`, `datacite:local-organization-identifier-scheme` and `datacite:local-funder-identifier-scheme`, have been already added to permit the use of local identifiers.\n\nThe class `datacite:DescriptionType`, and the object properties `datacite:hasDescription` and `datacite:hasDescriptionType`, have also been defined in order to link an entity to another item representing an entity description of a particular type. \nThis is defined using the property `datacite:hasDescriptionType`, which must have as its object one of the members of the class `datacite:DescriptionType`, i.e., `datacite:abstract`, `datacite:methods`, `datacite:other`, `datacite:series-information` and `datacite:table-of-content`. \nIn this way, it is possible to associate written documents (e.g. journal articles or data articles) as descriptions of datasets.\n\nIt is also possible to provide a link between a resource, such as a dataset, and the document describing its metadata by means of the _Citation Typing Ontology_ (CiTO), using the property `cito:citesAsMetadataDocument`, and the _FRBR-aligned Bibliographic Ontology_ (FaBiO), by means of the class `fabio:MetadataDocument`. \nIn addition to these entities, the DataCite Ontology provides appropriate classes (i.e., `datacite:MetadataScheme`) and properties (i.e., `datacite:hasMetadataScheme`) to specify the particular scheme followed for creating the resource metadata exemplified in the metadata document.\n\nFinally, with the DataCite Ontology, it is possible to represent situations where a given relation between two entities needs to be qualified in some way, e.g. with a description that specifies the nature of said relation.\nThis is provided by the class `datacite:QualifiedRelation`, which represents a certain relationship existing between two entities. \nThe qualified relation is linked with one entity (more specifically, the subject of the relation) via the object property `datacite:hasRelationSubject`, and with the other (the object of the relation) via the object property `datacite:hasRelationObject`.\nThe type of relation itself is defined via the property `datacite:hasRelationCharacterization`, which links a qualified relation to its characterization made by using an object property such as `dcterms:relation`, `cito:cites`, or `frbr:isPartOf`. \nThis usage involves [OWL2 punning](http://www.w3.org/TR/2009/WD-owl2-new-features-20090611/#F12:_Punning), a mechanism according to which an object property can be used as the object of an OWL assertion by being considered simultaneously both as a normal property and also as a named individual of the class `owl:Thing`.\n\n## Examples of use\n\nIn the following subsections, we introduce some examples to showcase how to use the DataCite Ontology. \n\nThe prefixes that are used in all the examples provided below are defined as follows:\n\n    @prefix : <http://www.sparontologies.net/example/> .\n    @prefix co: <http://purl.org/co/> .\n    @prefix datacite: <http://purl.org/spar/datacite/> .\n    @prefix dcterms: <http://purl.org/dc/terms/> .\n    @prefix fabio: <http://purl.org/spar/fabio/> .\n    @prefix foaf: <http://xmlns.com/foaf/0.1/> .\n    @prefix literal: <http://www.essepuntato.it/2010/06/literalreification/> .\n    @prefix orcid: <http://orcid.org/> .\n    @prefix owl: <http://www.w3.org/2002/07/owl#> .\n    @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .\n    @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .\n    @prefix skos: <http://www.w3.org/2004/02/skos/core#> .\n    @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .\n\n### Datasets' DOIs and authors' ORCIDs \n\nDataCite allows one to associate identifiers to a bibliographic entity (e.g., a dataset, a person, an article) specifying their exact nature by means of the object property `datacite:usesIdentifierScheme`. \nIn addition, it is also possible, through the object property `datacite:hasDescription`, to link an entity to another item representing an entity description of a particular type. \nThis is defined using the property `datacite:hasDescriptionType`, which must have as its object one of the members of the class `datacite:DescriptionType`, i.e., `datacite:abstract`, `datacite:other`, `datacite:series-information`, `datacite:methods`, and `datacite:table-of-content`. \nIn this way, it is possible to associate written documents (e.g., journal articles) as descriptions of datasets.\n\n\n    <http://dx.doi.org/10.5061/dryad.15v26> a fabio:Dataset ;\n        datacite:hasIdentifier :dataset-doi ;\n        dcterms:creator\n            orcid:0000-0002-5159-9717 ,\n            orcid:0000-0002-7811-3617 ;\n        datacite:hasDescription\n            <http://dx.doi.org/10.1098/rsbl.2015.0486> .\n\n    <http://dx.doi.org/10.1098/rsbl.2015.0486>\n        a fabio:JournalArticle ;\n        datacite:hasIdentifier :paper-doi ;\n        dcterms:creator\n            orcid:0000-0002-5159-9717 ,\n            orcid:0000-0002-7811-3617 ;\n        datacite:hasDescriptionType datacite:other .\n\n    :paper-doi a datacite:PrimaryResourceIdentifier ;\n        literal:hasLiteralValue \"10.1098/rsbl.2015.0486\" ;\n        datacite:usesIdentifierScheme datacite:doi .\n\n    :dataset-doi a datacite:PrimaryResourceIdentifier ;\n        literal:hasLiteralValue \"10.5061/dryad.mq8r2\" ;\n        datacite:usesIdentifierScheme datacite:doi .\n\n    orcid:0000-0002-5159-9717 a foaf:Person ;\n        foaf:name \"Nidhi Seethapathi\" ;\n        datacite:hasIdentifier :seethapathi-orcid .\n\n    :seethapathi-orcid a datacite:PersonalIdentifier ;\n        literal:hasLiteralValue \"0000-0002-5159-9717\" ;\n        datacite:usesIdentifierScheme datacite:orcid .\n\n    orcid:0000-0002-7811-3617 a foaf:Person ;\n        foaf:name \"Manoj Srinivasan\" ;\n        datacite:hasIdentifier :srinivasan-orcid .\n\n    :srinivasan-orcid a datacite:PersonalIdentifier ;\n        literal:hasLiteralValue \"0000-0002-7811-3617\" ;\n        datacite:usesIdentifierScheme datacite:orcid .\n\n\n### Competency Questions\n\nThe DataCite Ontology can be used for answering several questions related to related to the identification, attribution, and discoverability of research products within a scholarly knowledge graph. \nIn the following subsections, some of them are introduced together with their respective SPARQL queries. \n\nThe prefixes that are used in all the SPARQL queries provided below are defined as follows:\n\n    PREFIX datacite: <http://purl.org/spar/datacite/>\n    PREFIX dcterms: <http://purl.org/dc/terms/>\n    PREFIX fabio: <http://purl.org/spar/fabio/>\n    PREFIX foaf: <http://xmlns.com/foaf/0.1/>\n    PREFIX literal: <http://www.essepuntato.it/2010/06/literalreification/>\n\n#### CQ1\n\nWhich article provides the description for a specific dataset identified by the DOI \"10.5061/dryad.mq8r2\"?\n\n    SELECT ?article ?article_doi\n    WHERE {\n        ?dataset_id literal:hasLiteralValue \"10.5061/dryad.mq8r2\" .\n        ?dataset datacite:hasIdentifier ?dataset_id ;\n            a fabio:Dataset ;\n            datacite:hasDescription ?article .\n        \n        ?article datacite:hasIdentifier ?paper_id .\n        ?paper_id literal:hasLiteralValue ?article_doi .\n    }\n\n#### CQ2\n\nWho are the creators associated with both the dataset and the article?\n\n    SELECT DISTINCT ?name ?orcid_uri\n    WHERE {\n        ?dataset a fabio:Dataset ;\n                dcterms:creator ?orcid_uri .\n        \n        ?article a fabio:JournalArticle ;\n                dcterms:creator ?orcid_uri .\n                \n        ?orcid_uri foaf:name ?name .\n    }\n\n#### CQ3\n\nWhat are the names and ORCID iDs of all researchers mentioned in the graph?\n\n    SELECT ?name ?orcid_value\n    WHERE {\n        ?person a foaf:Person ;\n                foaf:name ?name ;\n                datacite:hasIdentifier ?id_node .\n        \n        ?id_node datacite:usesIdentifierScheme datacite:orcid ;\n                literal:hasLiteralValue ?orcid_value .\n    }\n\n#### CQ4\n\nList all resources that have a description type categorized as \"other\".\n\n    SELECT ?resource\n    WHERE {\n        ?resource datacite:hasDescriptionType datacite:other .\n    }\n\n#### CQ5\n\nHow many identifiers are registered for each identifier scheme?\n\n    SELECT ?scheme (COUNT(?id_node) AS ?count)\n    WHERE {\n        ?id_node datacite:usesIdentifierScheme ?scheme .\n    }\n    GROUP BY ?scheme\n\n        ",
     "extras": {
-      "version.iri": "http://purl.org/spar/datacite/2025-09-22"
+      "version.iri": "http://purl.org/spar/datacite/2026-05-05"
     },
     "homepage": "https://sparontologies.github.io/datacite/current/datacite.html",
     "keywords": [
@@ -1580,7 +1619,7 @@
     },
     "description": "The Experimental Factor Ontology (EFO) provides a systematic description of many experimental variables available in EBI databases, and for projects such as the NHGRI-EBI GWAS catalog. It combines parts of several biological ontologies, such as UBERON anatomy, ChEBI chemical compounds, Cell Ontology and the Monarch Disease Ontology (MONDO). The scope of EFO is to support the annotation, analysis and visualization of data handled by many groups at the EBI and as the core ontology for Open Targets.",
     "extras": {
-      "version.iri": "http://www.ebi.ac.uk/efo/releases/v3.89.0/efo.owl"
+      "version.iri": "http://www.ebi.ac.uk/efo/releases/v3.90.0/efo.owl"
     },
     "homepage": "https://www.ebi.ac.uk/efo/",
     "keywords": [
@@ -2221,7 +2260,7 @@
     },
     "description": "The Gene Ontology (GO) provides a framework and set of concepts for describing the functions of gene products from all organisms.",
     "extras": {
-      "version.iri": "http://purl.obolibrary.org/obo/go/releases/2026-03-25/go.owl"
+      "version.iri": "http://purl.obolibrary.org/obo/go/releases/2026-05-19/go.owl"
     },
     "homepage": "http://geneontology.org/",
     "keywords": [
@@ -2610,7 +2649,7 @@
   "iofcore": {
     "description": "The IOF Core Ontology contains notions found to be common across multiple manufacturing domains. This file is an RDF implementation of these notions. The ontology utilizes the Basic Formal Ontology or BFO as a top-level ontology but also borrows terms from various domain-independent or mid-level ontologies. The purpose of the ontology is to serve as a foundation for ensuring consistency and interoperability across various domain-specific reference ontologies the IOF publishes.",
     "extras": {
-      "version.iri": "https://spec.industrialontologies.org/ontology/202601/core/Core/"
+      "version.iri": "https://spec.industrialontologies.org/ontology/202602/core/Core/"
     },
     "homepage": "https://oagi.org/pages/Released-Ontologies",
     "keywords": [
@@ -2869,7 +2908,7 @@
         "url": "https://mardi4nfdi.github.io/MathModDB/ontology.owl"
       }
     ],
-    "description": "This is the MathModDB Ontology for documenting mathematical models.",
+    "description": "MathModDB is a database of mathematical models developed by the Mathematical Research Data Initiative (MaRDI). MathModDB defines a data model with classes (Mathematical Model, Mathematical Formulation, Research Field, Research Problem, Quantity [Kind], Computational Task, Publication), object properties/relations, data properties and annotation properties as an ontology. This ontology is populated with individuals/data from various fields of applied mathematics, making it a knowledge graph.",
     "keywords": [
       "NFDI4ING",
       "MaRDI",
@@ -2973,7 +3012,7 @@
     ],
     "description": "A representation of the variety of methods used to make clinical and phenotype measurements.",
     "extras": {
-      "version.iri": "http://purl.obolibrary.org/obo/mmo/releases/2026-05-06/mmo.owl"
+      "version.iri": "http://purl.obolibrary.org/obo/mmo/releases/2026-05-30/mmo.owl"
     },
     "homepage": "https://github.com/rat-genome-database/MMO-Measurement-Method-Ontology/",
     "keywords": [
@@ -2996,7 +3035,7 @@
     ],
     "description": "PSI-MOD is an ontology consisting of terms that describe protein chemical modifications, logically linked by an is_a relationship in such a way as to form a direct acyclic graph (DAG). The PSI-MOD ontology has more than 45 top-level nodes, and provides alternative hierarchical paths for classifying protein modifications either by the molecular structure of the modification, or by the amino acid residue that is modified.",
     "extras": {
-      "version.iri": "http://purl.obolibrary.org/obo/mod/1.033.0/mod.owl"
+      "version.iri": "http://purl.obolibrary.org/obo/mod/1.035.0/mod.owl"
     },
     "homepage": "http://www.psidev.info/MOD",
     "keywords": [
@@ -3097,7 +3136,7 @@
     ],
     "description": "A structured controlled vocabulary for the annotation of experiments concerned with proteomics mass spectrometry.",
     "extras": {
-      "version.iri": "http://purl.obolibrary.org/obo/ms/4.1.246/ms.owl"
+      "version.iri": "http://purl.obolibrary.org/obo/ms/4.1.248/ms.owl"
     },
     "homepage": "http://www.psidev.info/groups/controlled-vocabularies",
     "keywords": [
@@ -3221,7 +3260,7 @@
   "n4e": {
     "description": "The ontology and metadata schema for the NFDI4Earth Knowledge Hub. See serializations of this schema as an OWL ontology here:\n  - [RDF/XML](https://nfdi4earth.pages.rwth-aachen.de/knowledgehub/nfdi4earth-kh-schema/ontology.owl.xml)\n  - [RDF/Turtle](https://nfdi4earth.pages.rwth-aachen.de/knowledgehub/nfdi4earth-kh-schema/ontology.owl.ttl)\n  - [RDF/JSON-LD](https://nfdi4earth.pages.rwth-aachen.de/knowledgehub/nfdi4earth-kh-schema/ontology.owl.jsonld)\n  - [RDF/N-Triples](https://nfdi4earth.pages.rwth-aachen.de/knowledgehub/nfdi4earth-kh-schema/ontology.owl.nt)\n",
     "extras": {
-      "version.iri": "https://nfdi4earth.pages.rwth-aachen.de/knowledgehub/nfdi4earth-kh-schema/ontology-v0.38.4.owl.xml"
+      "version.iri": "https://nfdi4earth.pages.rwth-aachen.de/knowledgehub/nfdi4earth-kh-schema/ontology-v0.39.0.owl.xml"
     },
     "homepage": "https://nfdi4earth.de/ontology/",
     "keywords": [
@@ -3343,7 +3382,7 @@
     ],
     "description": "An ontology for representing biomedical investigations, including study designs, the collection and preparation of the targets of investigation, assays, instrumentation and reagents used, as well as the data generated and the types of analysis performed on the data to reach conclusions, and their documentation.",
     "extras": {
-      "version.iri": "http://purl.obolibrary.org/obo/obi/2026-03-19/obi.owl"
+      "version.iri": "http://purl.obolibrary.org/obo/obi/2026-05-08/obi.owl"
     },
     "homepage": "http://obi-ontology.org",
     "keywords": [
@@ -3981,6 +4020,7 @@
     "homepage": "https://physh.org/",
     "keywords": [
       "NFDI4ING",
+      "MaRDI",
       "physics"
     ],
     "license": {
@@ -3991,6 +4031,30 @@
     "name": "PhySH - Physics Subject Headings",
     "tracker": "https://github.com/physh-org/PhySH/issues",
     "uri_format": "https://doi.org/10.29172/$1"
+  },
+  "plsmo": {
+    "artifacts": [
+      {
+        "type": "rdf",
+        "url": "https://raw.githubusercontent.com/plasma-mds/plasma-ontology/refs/heads/master/plasma-ontology.ttl"
+      }
+    ],
+    "description": "The plasma ontology (Plasma-O) supports the standardized documentation of research data in the field of plasma physics. In accordance with typical plasma processes and applications, the ontology contains terminologicial knowledge about plasma source, plasma medium, and plasma target. Furthermore, metadata for the respectively applied diagnostic and modelling/simulation methods are represented.",
+    "extras": {
+      "version.iri": "https://plasma-mds.org/ontology/plasma-o/0.8.0"
+    },
+    "keywords": [
+      "Miscellaneous",
+      "physics"
+    ],
+    "license": {
+      "name": "CC BY 4.0",
+      "spdx": "CC-BY-4.0",
+      "url": "http://creativecommons.org/licenses/by/4.0/"
+    },
+    "name": "Plasma Ontology",
+    "tracker": "https://github.com/plasma-mds/plasma-ontology/issues",
+    "uri_format": "https://plasma-mds.org/ontology/plasma-o/PLSMO_$1"
   },
   "pmat": {
     "description": "PolyMat is a domain ontology designed for polymer membrane research and tailored for immediate integration within Electronic Laboratory Notebooks (ELNs), facilitating efficient documentation of laboratory experiments and advancing the domain's FAIRification process.",
@@ -4230,6 +4294,21 @@
     },
     "name": "Plant Stress Ontology",
     "tracker": "https://github.com/Planteome/plant-stress-ontology/issues/"
+  },
+  "qudt": {
+    "description": "QUDT.org is a 501(c)(3) public charity nonprofit organization founded to provide semantic specifications for units of measure, quantity kind, dimensions and data types.   QUDT is an advocate for the development and implementation of standards to quantify data expressed in RDF and JSON.   Our mission is to improve interoperability of data and the specification of information structures through industry standards for Units of Measure, Quantity Kinds, Dimensions and Data Types.",
+    "homepage": "https://www.qudt.org",
+    "keywords": [
+      "NFDI4ING"
+    ],
+    "license": {
+      "name": "CC BY 4.0",
+      "spdx": "CC-BY-4.0",
+      "url": "https://creativecommons.org/licenses/by/4.0/"
+    },
+    "name": "QUDT Schema - Version 3.2.1",
+    "tracker": "https://github.com/qudt/qudt-public-repo/issues",
+    "uri_format": "http://qudt.org/schema/qudt/$1"
   },
   "raum": {
     "artifacts": [

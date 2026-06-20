@@ -20,7 +20,7 @@ EXTENDED_PREFIX_MAP_PATH = EXPORT_CONTEXTS.joinpath("bioregistry.epm.json")
 @click.command()
 def generate_contexts() -> None:
     """Generate various context files."""
-    reverse_prefix_map = manager.get_reverse_prefix_map(include_prefixes=True, strict=False)
+    reverse_prefix_map = manager.get_reverse_prefix_map(include_prefixes=True)
     REVERSE_PREFIX_MAP_PATH.write_text(json.dumps(reverse_prefix_map, indent=4, sort_keys=True))
 
     _context_prefix_maps()

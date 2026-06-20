@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="{% block lang %}en{% endblock %}">
 <head>
     {% block head %}
     <title>{% block title %}{% endblock %}</title>
@@ -213,8 +213,8 @@
     </div>
 {% endblock %}
 
-<footer class="footer">
-    <div class="row justify-content-center">
+<footer class="footer d-print-none">
+    <div class="row justify-content-center" style="margin-left: 0; margin-right: 0">
         <div {% block footercontainerattr %}class="col-md-10 col-lg-7 pl-5 pr-5"{% endblock %}>
             {{ config.METAREGISTRY_FOOTER | safe }}
         </div>
