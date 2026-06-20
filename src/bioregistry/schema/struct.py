@@ -36,6 +36,7 @@ from bioregistry import constants as brc
 from bioregistry.constants import (
     BIOREGISTRY_REMOTE_URL,
     DOCS,
+    GND_FIELD,
     MIRIAM_NAMESPACE_IN_LUI,
     ORCID_FIELD,
     ROR_FIELD,
@@ -189,13 +190,12 @@ class Organization(BaseModel):
 
     ror: Annotated[str | None, ROR_FIELD] = None
     wikidata: Annotated[str | None, WIKIDATA_FIELD] = None
-    gnd: str | None = Field(
-        default=None, title="Gemeinsame Normdatei (Integrated Authority File) identifier"
-    )
-    name: str = Field(..., description="Name of the organization")
-    partnered: bool = Field(
-        False, description="Has this organization made a specific connection with Bioregistry?"
-    )
+    gnd: Annotated[str | None, GND_FIELD] = None
+    name: Annotated[str, Field(..., description="Name of the organization")]
+    partnered: Annotated[
+        bool,
+        Field(description="Has this organization made a specific connection with Bioregistry?"),
+    ] = False
 
     @property
     def reference(self) -> Reference:
@@ -389,6 +389,7 @@ class Provider(BaseModel):
     name: str | None = Field(None, description="Name of the provider")
     description: str | None = Field(None, description="Description of the provider")
     homepage: str | None = Field(None, description="Homepage of the provider")
+    contact: Attributable | None = None
     uri_format: str = Field(
         ...,
         title="URI Format",
@@ -2042,7 +2043,9 @@ class Resource(BaseModel):
         return self.prefix
 
     def _iterate_uri_formats(self, priority: Sequence[str] | None = None) -> Iterable[str]:
-        for metaprefix in priority or self.DEFAULT_URI_FORMATTER_PRIORITY:
+        if priority is None:
+            priority = self.DEFAULT_URI_FORMATTER_PRIORITY
+        for metaprefix in priority:
             formatter = self.URI_FORMATTERS.get(metaprefix)
             if formatter is None:
                 logger.warning("could not get formatter for %s", metaprefix)
@@ -2097,15 +2100,45 @@ class Resource(BaseModel):
     # docstr-coverage:excused `overload`
     @overload
     def get_uri_prefix(
-        self, priority: Sequence[str] | None = None, *, strict: Literal[True] = ...
+        self,
+        priority: Sequence[str] | None = None,
+        *,
+        strict: Literal[False] = ...,
+        stubs: Literal[False] = ...,
+    ) -> str | None: ...
+
+    # docstr-coverage:excused `overload`
+    @overload
+    def get_uri_prefix(
+        self,
+        priority: Sequence[str] | None = None,
+        *,
+        strict: Literal[False] = ...,
+        stubs: Literal[True] = ...,
+    ) -> str: ...
+
+    # docstr-coverage:excused `overload`
+    @overload
+    def get_uri_prefix(
+        self,
+        priority: Sequence[str] | None = None,
+        *,
+        strict: Literal[True] = ...,
+        stubs: bool = ...,
     ) -> str: ...
 
     def get_uri_prefix(
-        self, priority: Sequence[str] | None = None, *, strict: bool = False
+        self,
+        priority: Sequence[str] | None = None,
+        *,
+        strict: bool = False,
+        stubs: bool = False,
     ) -> str | None:
         """Get a well-formed URI prefix, if available.
 
         :param priority: The prioirty order for :func:`get_format`.
+        :param strict: if true, raise an exception on not found
+        :param stubs: Should stub URIs be assigned to resources with no URI format?
 
         :returns: The URI prefix. Similar to what's returned by :func:`get_uri_format`,
             but it MUST have only one ``$1`` and end with ``$1`` to use the function.
@@ -2118,6 +2151,9 @@ class Resource(BaseModel):
             uri_prefix = self._clip_uri_format(uri_format)
             if uri_prefix is not None:
                 return uri_prefix
+        if stubs:
+            prefix = self.get_preferred_prefix() or self.prefix
+            return f"https://bioregistry.io/{prefix}:"
         if strict:
             raise ValueError
         return None
@@ -2639,7 +2675,8 @@ class Resource(BaseModel):
         if license_ := self.get_license():
             description += f" Licensed under {license_}."
 
-        ontology_purl = self.get_download()
+        if ontology_purl is None:
+            ontology_purl = self.get_download()
         if not ontology_purl:
             raise ValueError("no OWL nor OBO download available")
 
@@ -3206,10 +3243,22 @@ class CollectionAnnotation(BaseModel):
 
     prefix: str
     comment: str | None = None
+    tags: Annotated[
+        list[str] | None,
+        Field(description="References to tag codes that are defined locally within a collection"),
+    ] = None
 
     def is_empty(self) -> bool:
         """Check if the collection annotation is empty."""
         return self.comment is None
+
+
+class Tag(BaseModel):
+    """A tag for a collection."""
+
+    code: str
+    name: str
+    description: str | None = None
 
 
 class Collection(BaseModel):
@@ -3250,6 +3299,12 @@ class Collection(BaseModel):
     references: list[str] | None = Field(default=None, description="URL references")
     keywords: list[str] | None = None
     mappings: list[Reference] | None = None
+    tags: Annotated[
+        list[Tag] | None,
+        Field(
+            description="Tags are defined locally in each collection and can be used to give additional context to why the resource was included, how it's used, etc. Try to avoid using tags to describe information that's already available, such as whether a resource is an ontology or whether it's first-party to the collection maintainer(s). Tagging was added in https://github.com/biopragmatics/bioregistry/pull/1958."
+        ),
+    ] = None
 
     def add_triples(self, graph: rdflib.Graph) -> None:
         """Add triples to an RDF graph for this collection.

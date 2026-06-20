@@ -23,17 +23,25 @@ __all__ = [
 ]
 
 
-def get_default_converter() -> curies.Converter:
+@lru_cache(2)
+def get_default_converter(*, stubs: bool = False) -> curies.Converter:
     """Get a converter from this manager."""
+    if stubs:
+        return manager.get_converter(stubs=True)
     return manager.converter
 
 
-@lru_cache(1)
-def get_preferred_converter() -> curies.Converter:
-    """Get a converter from this manager with preferred CURIE prefixes and RDF URI prefixes."""
+@lru_cache(2)
+def get_preferred_converter(*, stubs: bool = False) -> curies.Converter:
+    """Get a converter from this manager with preferred CURIE prefixes and RDF URI prefixes.
+
+    :param stubs: Should stub URIs be assigned to resources with no URI format?
+    :returns: A converter ready for semantic web applications.
+    """
     return manager.get_converter(
         prefix_priority=["preferred", "default"],
         uri_prefix_priority=["rdf", "default"],
+        stubs=stubs,
     )
 
 
