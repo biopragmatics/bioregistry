@@ -39,6 +39,9 @@ OBOFOUNDRY_URL = "https://raw.githubusercontent.com/OBOFoundry/OBOFoundry.github
 SKIP = {
     "obo_rel": "replaced",
 }
+URI_FORMAT_OVERRIDES = {
+    "cheminf": "http://semanticscience.org/resource/CHEMINF_$1",
+}
 
 
 def process_obofoundry(path: Path) -> dict[str, Record]:
@@ -130,6 +133,8 @@ def _process(record: dict[str, Any]) -> Record:
         record.pop(key, None)
 
     prefix = record["id"].lower()
+    preferred_prefix = record.get("preferredPrefix") or prefix.upper()
+
     contact = _get_contact(record)
     if record["activity_status"] == "active":
         if contact is None:
@@ -143,13 +148,18 @@ def _process(record: dict[str, Any]) -> Record:
     else:
         raise NotImplementedError(f"unhandled obo foundry status: {record['activity_status']}")
 
+    if prefix in URI_FORMAT_OVERRIDES:
+        uri_format = URI_FORMAT_OVERRIDES[prefix]
+    else:
+        uri_format = f"http://purl.obolibrary.org/obo/{preferred_prefix}_$1"
+
     rv = {
         "prefix": prefix,
         "name": record["title"],
         "description": record.get("description"),
         "status": status,
         "homepage": record.get("homepage"),
-        "preferred_prefix": record.get("preferredPrefix") or prefix.upper(),
+        "preferred_prefix": preferred_prefix,
         "contact": contact,
         "license": _get_license(record),
         "repository": record.get("repository"),
@@ -162,6 +172,8 @@ def _process(record: dict[str, Any]) -> Record:
             for product_dict in record.get("products", [])
             if (artifact := _process_product(prefix, product_dict))
         ],
+        "uri_format": uri_format,
+        "uri_format_rdf": uri_format,
     }
 
     if taxon := record.get("taxon"):

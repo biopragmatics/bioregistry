@@ -20,6 +20,10 @@ RAW_PATH = RAW_DIRECTORY / "biocontext.json"
 PROCESSED_PATH = DIRECTORY / "processed.json"
 URL = "https://raw.githubusercontent.com/prefixcommons/biocontext/master/registry/commons_context.jsonld"
 
+WRONG = {
+    "CHEMINF",  # obo masquerade
+}
+
 
 def parse_biocontext_raw(path: Path) -> dict[str, Record]:
     """Parse BioContext JSON file."""
@@ -28,6 +32,7 @@ def parse_biocontext_raw(path: Path) -> dict[str, Record]:
     rv = {
         prefix: Record(uri_format=f"{uri_prefix.strip()}$1")
         for prefix, uri_prefix in data["@context"].items()
+        if prefix not in WRONG
     }
     return rv
 

@@ -91,6 +91,8 @@ URI_IRI_INFO = (
     "and IRI specification (https://www.ietf.org/rfc/rfc3987.txt) for more information."
 )
 
+OlsVersion: TypeAlias = Literal["3", "4"]
+
 X = TypeVar("X")
 
 #: A controlled vocabulary of domains.
@@ -1694,10 +1696,10 @@ class Resource(BaseModel):
         'http://purl.obolibrary.org/obo/NCBITaxon_'
         >>> assert get_resource("sty").get_obofoundry_uri_prefix() is None
         """
-        obo_prefix = self.get_obofoundry_prefix()
-        if obo_prefix is None:
+        rv = self._get_external_uri_format("obofoundry")
+        if rv is None:
             return None
-        return f"http://purl.obolibrary.org/obo/{obo_prefix}_"
+        return rv.removesuffix("$1")
 
     def get_bioregistry_uri_format(self) -> str | None:
         """Get the Bioregisry URI format string for this entry.
@@ -1724,10 +1726,7 @@ class Resource(BaseModel):
         'http://purl.obolibrary.org/obo/NCBITaxon_$1'
         >>> assert get_resource("sty").get_obofoundry_uri_format() is None
         """
-        rv = self.get_obofoundry_uri_prefix()
-        if rv is None:
-            return None
-        return f"{rv}$1"
+        return self._get_external_uri_format("obofoundry")
 
     def _get_external_uri_format(self, metaprefix: str) -> str | None:
         return self.get_external(metaprefix).get(URI_FORMAT_KEY)
@@ -1912,15 +1911,23 @@ class Resource(BaseModel):
         'https://www.ebi.ac.uk/ols/ontologies/go/terms?iri=http://purl.obolibrary.org/obo/GO_'
         >>> get_resource("ncbitaxon").get_ols_uri_prefix()  # mixed case
         'https://www.ebi.ac.uk/ols/ontologies/ncbitaxon/terms?iri=http://purl.obolibrary.org/obo/NCBITaxon_'
+
+        These are non-OBO ontologies indexed in OLS
+
+        >>> get_resource("cheminf").get_ols_uri_prefix()
+        'https://www.ebi.ac.uk/ols/ontologies/cheminf/terms?iri=http://semanticscience.org/resource/CHEMINF_'
+        >>> get_resource("efo").get_ols_uri_prefix()
+        'https://www.ebi.ac.uk/ols/ontologies/efo/terms?iri=http://www.ebi.ac.uk/efo/EFO_'
+
+        These are not infexed in OLS
+
         >>> assert get_resource("sty").get_ols_uri_prefix() is None
         """
         ols_prefix = self.get_ols_prefix()
         if ols_prefix is None:
             return None
-        obo_format = self.get_obofoundry_uri_prefix()
-        if obo_format:
-            return f"https://www.ebi.ac.uk/ols/ontologies/{ols_prefix}/terms?iri={obo_format}"
-        # TODO find examples, like for EFO on when it's not based on OBO Foundry PURLs
+        if rdf_uri_prefix := self.get_rdf_uri_prefix():
+            return f"https://www.ebi.ac.uk/ols/ontologies/{ols_prefix}/terms?iri={rdf_uri_prefix}"
         return None
 
     def get_ols_uri_format(self) -> str | None:
@@ -1945,6 +1952,34 @@ class Resource(BaseModel):
             return None
         return f"{ols_url_prefix}$1"
 
+    def get_ols_iri(self, identifier: str, *, version: OlsVersion = "3") -> str | None:
+        """Get the OLS URL for the given local unique identifier, if possible."""
+        ols_prefix = self.get_ols_prefix()
+        if ols_prefix is None:
+            return None
+        if rdf_uri := self.get_rdf_uri(identifier):
+            ols_version = "ols4" if version == "4" else "ols"
+            return (
+                f"https://www.ebi.ac.uk/{ols_version}/ontologies/{ols_prefix}/terms?iri={rdf_uri}"
+            )
+        return None
+
+    def get_bioportal_iri(self, identifier: str) -> str | None:
+        """Get the Bioportal URL for the given local unique identifier, if possible."""
+        bioportal_prefix = self.get_mapped_prefix("bioportal")
+        if bioportal_prefix is None:
+            return None
+        if rdf_uri := self.get_rdf_uri(identifier):
+            return f"https://bioportal.bioontology.org/ontologies/{bioportal_prefix}/?p=classes&conceptid={rdf_uri}"
+        return None
+
+    def get_obofoundry_iri(self, identifier: str) -> str | None:
+        """Get the OBO Foundry URL for the given local unique identifier, if possible."""
+        uri_format = self.get_obofoundry_uri_format()
+        if uri_format is None:
+            return None
+        return uri_format.replace("$1", identifier)
+
     def get_rrid_uri_format(self) -> str | None:
         """Get the RRID URI format.
 
@@ -1966,9 +2001,9 @@ class Resource(BaseModel):
             return self.rdf_uri_format
         if self.obofoundry:
             return self.get_obofoundry_uri_format()
-        if self.wikidata and "uri_format_rdf" in self.wikidata:
-            return cast(str, self.wikidata["uri_format_rdf"])
-        # TODO also pull from Prefix Commons
+        for metaprefix in ["wikidata", "prefixcommons"]:
+            if uri_format_rdf := self.get_external(metaprefix).get("uri_format_rdf"):
+                return cast(str, uri_format_rdf)
         return None
 
     def get_rdf_uri_prefix(self) -> str | None:
