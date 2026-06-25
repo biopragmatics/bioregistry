@@ -52,7 +52,10 @@ class StructTest(unittest.TestCase):
         resource = Resource(
             prefix=internal_prefix,
             mappings={"ols": external_prefix, "obofoundry": external_prefix},
-            obofoundry={"prefix": external_prefix},
+            obofoundry={
+                "prefix": external_prefix,
+                "uri_format": f"http://purl.obolibrary.org/obo/{external_prefix.upper()}_$1",
+            },
         )
         self.assertEqual(external_prefix, resource.get_ols_prefix())
         self.assertEqual(

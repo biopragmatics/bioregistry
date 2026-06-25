@@ -1973,6 +1973,13 @@ class Resource(BaseModel):
             return f"https://bioportal.bioontology.org/ontologies/{bioportal_prefix}/?p=classes&conceptid={rdf_uri}"
         return None
 
+    def get_obofoundry_iri(self, identifier: str) -> str | None:
+        """Get the OBO Foundry URL for the given local unique identifier, if possible."""
+        uri_format = self.get_obofoundry_uri_format()
+        if uri_format is None:
+            return None
+        return uri_format.replace("$1", identifier)
+
     def get_rrid_uri_format(self) -> str | None:
         """Get the RRID URI format.
 

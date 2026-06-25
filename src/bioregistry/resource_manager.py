@@ -1614,8 +1614,16 @@ class Manager:
 
         >>> manager.get_obofoundry_iri("fbbt", "00007294")
         'http://purl.obolibrary.org/obo/FBbt_00007294'
+
+        For entries with an explicit override, respect it.
+
+        >>> manager.get_obofoundry_iri("cheminf", "000410")
+        'http://semanticscience.org/resource/CHEMINF_000410'
         """
-        return self.get_formatted_iri("obofoundry", prefix, identifier)
+        resource = self.get_resource(prefix)
+        if resource is None:
+            return None
+        return resource.get_obofoundry_iri(identifier)
 
     def get_n2t_iri(self, prefix: str, identifier: str) -> str | None:
         """Get the name-to-thing URL for the given CURIE.
