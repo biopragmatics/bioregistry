@@ -1929,7 +1929,6 @@ class Resource(BaseModel):
             return None
         if rdf_uri_prefix := self.get_rdf_uri_prefix():
             return f"https://www.ebi.ac.uk/ols/ontologies/{ols_prefix}/terms?iri={rdf_uri_prefix}"
-        # TODO find examples, like for EFO on when it's not based on OBO Foundry PURLs
         return None
 
     def get_ols_uri_format(self) -> str | None:
@@ -1975,9 +1974,9 @@ class Resource(BaseModel):
             return self.rdf_uri_format
         if self.obofoundry:
             return self.get_obofoundry_uri_format()
-        if self.wikidata and "uri_format_rdf" in self.wikidata:
-            return cast(str, self.wikidata["uri_format_rdf"])
-        # TODO also pull from Prefix Commons
+        for metaprefix in ["wikidata", "prefixcommons"]:
+            if v := self.get_external(metaprefix).get("uri_format_rdf"):
+                return v
         return None
 
     def get_rdf_uri_prefix(self) -> str | None:
