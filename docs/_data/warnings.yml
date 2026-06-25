@@ -395,7 +395,7 @@ wrong_patterns:
 - correct: ^(C|R|P|A|NHC)\d+$
   homepage: https://github.com/ncit-obo-org/ncit-obo-edition
   miriam: ^C\d+$
-  name: NCI Thesaurus
+  name: National Cancer Institute Thesaurus
   prefix: ncit
 - correct: ^\d+$
   homepage: https://github.com/SciCrunch/NIF-Ontology
@@ -517,6 +517,16 @@ wrong_patterns:
   miriam: ^PW:\d{7}$
   name: Pathway ontology
   prefix: pw
+- correct: ^Os\d{2}g\d{7}$
+  homepage: https://rapdb.dna.naro.go.jp
+  miriam: ^Os\S+g\d{7}$
+  name: Rice Annotation Project Database Locus
+  prefix: rapdb.locus
+- correct: ^Os\d{2}t\d{7}-\d{2}$
+  homepage: https://rapdb.dna.naro.go.jp
+  miriam: ^Os\S+t\d{7}-\d{2}$
+  name: Rice Annotation Project Database Transcript
+  prefix: rapdb.transcript
 - correct: ^R-[A-Z]{3}-\d+(-\d+)?(\.\d+)?$
   homepage: https://www.reactome.org/
   miriam: ^(R-[A-Z]{3}-\d+(-\d+)?(\.\d+)?)|(REACT_\d+(\.\d+)?)$
