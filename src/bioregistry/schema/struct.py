@@ -1696,10 +1696,7 @@ class Resource(BaseModel):
         'http://purl.obolibrary.org/obo/NCBITaxon_'
         >>> assert get_resource("sty").get_obofoundry_uri_prefix() is None
         """
-        obo_prefix = self.get_obofoundry_prefix()
-        if obo_prefix is None:
-            return None
-        return f"http://purl.obolibrary.org/obo/{obo_prefix}_"
+        return self._get_external_uri_format("obofoundry")
 
     def get_bioregistry_uri_format(self) -> str | None:
         """Get the Bioregisry URI format string for this entry.
