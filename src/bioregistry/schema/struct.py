@@ -1912,14 +1912,23 @@ class Resource(BaseModel):
         'https://www.ebi.ac.uk/ols/ontologies/go/terms?iri=http://purl.obolibrary.org/obo/GO_'
         >>> get_resource("ncbitaxon").get_ols_uri_prefix()  # mixed case
         'https://www.ebi.ac.uk/ols/ontologies/ncbitaxon/terms?iri=http://purl.obolibrary.org/obo/NCBITaxon_'
+
+        These are non-OBO ontologies indexed in OLS
+
+        >>> get_resource("cheminf").get_ols_prefix()
+        'https://www.ebi.ac.uk/ols/ontologies/ncbitaxon/terms?iri=http://semanticscience.org/resource/CHEMINF_'
+        >>> get_resource("efo").get_ols_prefix()
+        'https://www.ebi.ac.uk/ols/ontologies/ncbitaxon/terms?http://www.ebi.ac.uk/efo/EFO_'
+
+        These are not infexed in OLS
+
         >>> assert get_resource("sty").get_ols_uri_prefix() is None
         """
         ols_prefix = self.get_ols_prefix()
         if ols_prefix is None:
             return None
-        obo_format = self.get_obofoundry_uri_prefix()
-        if obo_format:
-            return f"https://www.ebi.ac.uk/ols/ontologies/{ols_prefix}/terms?iri={obo_format}"
+        if rdf_uri_prefix := self.get_rdf_uri_prefix():
+            return f"https://www.ebi.ac.uk/ols/ontologies/{ols_prefix}/terms?iri={rdf_uri_prefix}"
         # TODO find examples, like for EFO on when it's not based on OBO Foundry PURLs
         return None
 
