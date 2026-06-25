@@ -48,6 +48,7 @@ from .schema import (
     record_accumulator,
     sanitize_model,
 )
+from .schema.struct import OlsVersion
 from .schema_utils import (
     _collections_from_path,
     _contexts_from_path,
@@ -1559,21 +1560,17 @@ class Manager:
         >>> manager.get_bioportal_iri("chebi", "24431")
         'https://bioportal.bioontology.org/ontologies/CHEBI/?p=classes&conceptid=http://purl.obolibrary.org/obo/CHEBI_24431'
         """
-        bioportal_prefix = self.get_mapped_prefix(prefix, "bioportal")
-        if bioportal_prefix is None:
+        resource = self.get_resource(prefix)
+        if resource is None:
             return None
-        obo_link = self.get_obofoundry_iri(prefix, identifier)
-        if obo_link is not None:
-            return f"https://bioportal.bioontology.org/ontologies/{bioportal_prefix}/?p=classes&conceptid={obo_link}"
-        return None
+        return resource.get_bioportal_iri(identifier)
 
-    def get_ols_iri(self, prefix: str, identifier: str) -> str | None:
+    def get_ols_iri(self, prefix: str, identifier: str, *, version: OlsVersion = "3") -> str | None:
         """Get the OLS URL if possible."""
-        ols_prefix = self.get_mapped_prefix(prefix, "ols")
-        obo_iri = self.get_obofoundry_iri(prefix, identifier)
-        if ols_prefix is None or obo_iri is None:
+        resource = self.get_resource(prefix)
+        if resource is None:
             return None
-        return f"https://www.ebi.ac.uk/ols4/ontologies/{ols_prefix}/terms?iri={obo_iri}"
+        return resource.get_ols_iri(identifier, version=version)
 
     def get_formatted_iri(self, metaprefix: str, prefix: str, identifier: str) -> str | None:
         """Get an IRI using the format in the metaregistry.

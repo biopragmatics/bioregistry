@@ -91,6 +91,8 @@ URI_IRI_INFO = (
     "and IRI specification (https://www.ietf.org/rfc/rfc3987.txt) for more information."
 )
 
+OlsVersion: TypeAlias = Literal["3", "4"]
+
 X = TypeVar("X")
 
 #: A controlled vocabulary of domains.
@@ -1952,6 +1954,27 @@ class Resource(BaseModel):
         if ols_url_prefix is None:
             return None
         return f"{ols_url_prefix}$1"
+
+    def get_ols_iri(self, identifier: str, *, version: OlsVersion = "3") -> str | None:
+        """Get the OLS URL for the given local unique identifier, if possible."""
+        ols_prefix = self.get_ols_prefix()
+        if ols_prefix is None:
+            return None
+        if rdf_uri := self.get_rdf_uri(identifier):
+            ols_version = "ols4" if version == "4" else "ols"
+            return (
+                f"https://www.ebi.ac.uk/{ols_version}/ontologies/{ols_prefix}/terms?iri={rdf_uri}"
+            )
+        return None
+
+    def get_bioportal_iri(self, identifier: str) -> str | None:
+        """Get the Bioportal URL for the given local unique identifier, if possible."""
+        bioportal_prefix = self.get_mapped_prefix("bioportal")
+        if bioportal_prefix is None:
+            return None
+        if rdf_uri := self.get_rdf_uri(identifier):
+            return f"https://bioportal.bioontology.org/ontologies/{bioportal_prefix}/?p=classes&conceptid={rdf_uri}"
+        return None
 
     def get_rrid_uri_format(self) -> str | None:
         """Get the RRID URI format.
