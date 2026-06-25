@@ -1975,8 +1975,8 @@ class Resource(BaseModel):
         if self.obofoundry:
             return self.get_obofoundry_uri_format()
         for metaprefix in ["wikidata", "prefixcommons"]:
-            if v := self.get_external(metaprefix).get("uri_format_rdf"):
-                return v
+            if uri_format_rdf := self.get_external(metaprefix).get("uri_format_rdf"):
+                return cast(str, uri_format_rdf)
         return None
 
     def get_rdf_uri_prefix(self) -> str | None:
