@@ -1914,10 +1914,10 @@ class Resource(BaseModel):
 
         These are non-OBO ontologies indexed in OLS
 
-        >>> get_resource("cheminf").get_ols_prefix()
-        'https://www.ebi.ac.uk/ols/ontologies/ncbitaxon/terms?iri=http://semanticscience.org/resource/CHEMINF_'
-        >>> get_resource("efo").get_ols_prefix()
-        'https://www.ebi.ac.uk/ols/ontologies/ncbitaxon/terms?http://www.ebi.ac.uk/efo/EFO_'
+        >>> get_resource("cheminf").get_ols_uri_prefix()
+        'https://www.ebi.ac.uk/ols/ontologies/cheminf/terms?iri=http://semanticscience.org/resource/CHEMINF_'
+        >>> get_resource("efo").get_ols_uri_prefix()
+        'https://www.ebi.ac.uk/ols/ontologies/efo/terms?iri=http://www.ebi.ac.uk/efo/EFO_'
 
         These are not infexed in OLS
 

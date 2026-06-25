@@ -70,7 +70,7 @@ def _fix_github(url: str) -> str:
 def _extract_repository(url: str) -> str | None:
     """Extract a GitHub repository URL from a file URL.
 
-     >>> _extract_repository(
+    >>> _extract_repository(
     ...     "https://github.com/ghga-de/ghga-metadata-schema/blob/main/src/schema/submission.yaml"
     ... )
     'https://github.com/ghga-de/ghga-metadata-schema'
