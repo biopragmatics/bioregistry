@@ -29268,7 +29268,7 @@
       "orcid": "0000-0003-4423-4370"
     },
     "description": "The Common Core Ontologies (CCO) comprise twelve ontologies that are designed to represent and integrate taxonomies of generic classes and relations across all domains of interest.\n\nCCO is a mid-level extension of Basic Formal Ontology (BFO), an upper-level ontology framework widely used to structure and integrate ontologies in the biomedical domain (Arp, et al., 2015). BFO aims to represent the most generic categories of entity and the most generic types of relations that hold between them, by defining a small number of classes and relations. CCO then extends from BFO in the sense that every class in CCO is asserted to be a subclass of some class in BFO, and that CCO adopts the generic relations defined in BFO (e.g., has_part) (Smith and Grenon, 2004). Accordingly, CCO classes and relations are heavily constrained by the BFO framework, from which it inherits much of its basic semantic relationships.",
-    "example": "DirectiveInformationContentEntity",
+    "example": "00001760",
     "homepage": "http://www.ontologyrepository.com",
     "keywords": [
       "ontology",
@@ -29279,6 +29279,7 @@
       "tib": "cco"
     },
     "name": "Common Core Ontologies",
+    "pattern": "^\\d+$",
     "repository": "https://github.com/CommonCoreOntology/CommonCoreOntologies",
     "tib": {
       "description": "An import of all the Common Core mid-level ontologies into a single file so that content is easy to view. The All Core Ontology is not an ontology in the sense it contains no unique content. As such it should not be added to, but can be extended from.",
@@ -29299,7 +29300,7 @@
       "tracker": "https://github.com/CommonCoreOntology/CommonCoreOntologies/issues",
       "uri_format": "http://www.ontologyrepository.com/CommonCoreOntologies/$1"
     },
-    "uri_format": "http://www.ontologyrepository.com/CommonCoreOntologies/$1"
+    "uri_format": "https://www.commoncoreontologies.org/ont$1"
   },
   "complexportal": {
     "biocontext": {
@@ -82563,7 +82564,14 @@
       "prefix": "issn",
       "uri_format": "https://portal.issn.org/resource/ISSN/$1"
     },
-    "name": "International Standard Serial Number"
+    "name": "International Standard Serial Number",
+    "providers": [
+      {
+        "code": "lower",
+        "name": "ISSN lowercased",
+        "uri_format": "https://portal.issn.org/resource/issn/$1"
+      }
+    ]
   },
   "istransbase": {
     "contact": {
@@ -106137,6 +106145,7 @@
         "year": 2003
       }
     ],
+    "rdf_uri_format": "http://evs.nci.nih.gov/ftp1/NDF-RT/NDF-RT.owl#$1",
     "synonyms": [
       "NUI",
       "ndf-rt"
@@ -119201,6 +119210,11 @@
     "pattern": "^\\w+$",
     "repository": "https://github.com/linkml/owlstar",
     "uri_format": "http://w3id.org/owlstar/$1"
+  },
+  "owlx": {
+    "example": "Imports",
+    "homepage": "https://www.w3.org/TR/2003/NOTE-owl-xmlsyntax-20030611/",
+    "uri_format": "http://www.w3.org/2003/05/owl-xml#$1"
   },
   "p3db.protein": {
     "biocontext": {
@@ -158595,6 +158609,25 @@
     "preferred_prefix": "swrl",
     "uri_format": "http://www.w3.org/2003/11/swrl#$1"
   },
+  "swrla": {
+    "description": "This is not part of the W3C SWRL specification. It defines annotation properties and implementation-specific extensions (such as rule metadata, enable/disable flags, authorship, and other editor-related annotations) used by Protégé and SWRLAPI rather than the SWRL language itself.",
+    "download_owl": "http://swrl.stanford.edu/ontologies/3.3/swrla.owl",
+    "example": "isRuleEnabled",
+    "homepage": "http://swrl.stanford.edu/ontologies/3.3/swrla.owl",
+    "name": "Protégé SWRL API",
+    "uri_format": "http://swrl.stanford.edu/ontologies/3.3/swrla.owl#$1"
+  },
+  "swrlb": {
+    "example": "divide",
+    "homepage": "https://www.w3.org/submissions/2004/SUBM-SWRL-20040521/",
+    "name": "SWRL Builtins",
+    "uri_format": "http://www.w3.org/2003/11/swrlb#$1"
+  },
+  "swrlx": {
+    "description": "A local copy of the XML schema",
+    "example": "classAtom",
+    "uri_format": "https://www.w3.org/2003/11/swrlx#$1"
+  },
   "symp": {
     "aberowl": {
       "artifacts": [
@@ -162301,6 +162334,14 @@
       "zazuko": "time"
     },
     "name": "Time Ontology in OWL",
+    "providers": [
+      {
+        "code": "2022",
+        "homepage": "https://www.w3.org/TR/owl-time/",
+        "name": "2022 Draft",
+        "uri_format": "https://www.w3.org/TR/owl-time/#time:$1"
+      }
+    ],
     "repository": "https://github.com/w3c/sdw",
     "tib": {
       "artifacts": [
