@@ -32,6 +32,7 @@ from .reference import (
     NormalizedReference,
     StandardNamableReference,
     StandardNamedReference,
+    StandardPrefix,
     StandardReference,
 )
 from .resolve import (
@@ -176,6 +177,7 @@ __all__ = [
     "Resource",
     "StandardNamableReference",
     "StandardNamedReference",
+    "StandardPrefix",
     "StandardReference",
     "add_resource",
     "add_to_collection",
