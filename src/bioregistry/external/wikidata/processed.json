@@ -315,11 +315,12 @@
   "P1053": {
     "description": "identifier for a researcher in a system for scientific authors, redirects to a Web of Science ID, along with P3829",
     "examples": [
+      "A-1685-2010",
       "J-3403-2017",
       "K-8011-2013"
     ],
     "homepage": "https://access.clarivate.com/login?app=wos",
-    "name": "ResearcherID",
+    "name": "Web of Science ResearcherID",
     "pattern": "^[A-Z]{1,3}-\\d{4}-(19|20)\\d\\d$",
     "uri_format": "https://www.webofscience.com/wos/author/record/$1",
     "xrefs": {
@@ -3518,6 +3519,21 @@
     "pattern": "^\\d+$",
     "uri_format": "https://www.iau.org/Profile?ID=$1"
   },
+  "P14607": {
+    "description": "taxon identifier in Global Biodiversity Information Facility (GBIF) after 2026 update",
+    "examples": [
+      "59R5F",
+      "74Q6H",
+      "RLZLW"
+    ],
+    "homepage": "https://www.gbif.org/",
+    "name": "GBIF taxon ID",
+    "pattern": "^[23456789BCDFGHJKLMNPQRSTVWXYZ]{1,6}$",
+    "uri_format": "https://www.gbif.org/taxon/$1",
+    "xrefs": {
+      "wikidata": "Q1531570"
+    }
+  },
   "P1461": {
     "description": "identifier of disease at Patient UK",
     "examples": [
@@ -4525,7 +4541,7 @@
     "short_names": [
       "VIAF"
     ],
-    "uri_format": "https://viaf.org/viaf/$1",
+    "uri_format": "https://viaf.org/en/viaf/$1",
     "uri_format_rdf": "http://viaf.org/viaf/$1",
     "xrefs": {
       "wikidata": "Q54919"
@@ -7423,7 +7439,7 @@
     "homepage": "http://www.biusante.parisdescartes.fr/histoire/biographies/index.php",
     "name": "BIU Santé person ID",
     "pattern": "^\\d+$",
-    "uri_format": "https://www.biusante.parisdescartes.fr/histoire/biographies/index.php?cle=$1",
+    "uri_format": "https://numerabilis.u-pariscite.fr/s/numerabilis/ark:/13685/refbiogr$1",
     "xrefs": {
       "wikidata": "Q105958830"
     }
@@ -10585,7 +10601,7 @@
     "uri_format": "https://web.archive.org/web/0/http://www.fossilworks.org/cgi-bin/bridge.pl?a=taxonInfo&taxon_no=$1"
   },
   "P846": {
-    "description": "taxon identifier in GBIF",
+    "description": "taxon identifier in GBIF before 2026 - now use P14607",
     "examples": [
       "1948418",
       "3239598",
@@ -10594,7 +10610,7 @@
     ],
     "name": "GBIF-species-ID (before 2026 update)",
     "pattern": "^([1-9]\\d{0,8}|)$",
-    "uri_format": "https://www.gbif.org/taxon/$1",
+    "uri_format": "https://www.gbif.org/species/$1",
     "xrefs": {
       "wikidata": "Q1531570"
     }
@@ -10672,7 +10688,7 @@
     ],
     "homepage": "https://scholar.archive.org/fatcat",
     "name": "Fatcat ID",
-    "pattern": "^(release|work|container|creator|file|fileset|webcapture|extra)_[a-z0-9]{26}$",
+    "pattern": "^(release|work|container|creator|file|fileset|webcapture|extra)_[a-z0-9]{26,32}$",
     "uri_format": "https://scholar.archive.org/fatcat/$1"
   },
   "P8612": {

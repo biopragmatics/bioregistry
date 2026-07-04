@@ -11690,6 +11690,7 @@ clo:
   - cell
   - cell biology
   - cell line
+  - cellline
   - life science
   - morphology
   - obo
@@ -11707,6 +11708,7 @@ clo:
     ols: clo
     ontobee: CLO
     prefixcommons: clo
+    togoid: Clo
     wikidata: P2158
     wikidata.entity: Q21039006
   name: Cell Line Ontology
@@ -13723,6 +13725,7 @@ commoncoreontology:
     that CCO adopts the generic relations defined in BFO (e.g., has_part) (Smith and
     Grenon, 2004). Accordingly, CCO classes and relations are heavily constrained
     by the BFO framework, from which it inherits much of its basic semantic relationships.'
+  download_rdf: https://raw.githubusercontent.com/CommonCoreOntology/CommonCoreOntologies/refs/heads/develop/src/cco-merged/AllCoreOntology.ttl
   example: DirectiveInformationContentEntity
   homepage: http://www.ontologyrepository.com
   keywords:
@@ -18752,6 +18755,7 @@ disprot.region:
   preferred_prefix: disprot.region
   uri_format: https://www.disprot.org/$1
 dlxb:
+  deprecated: true
   description: DOULIX lab-tested standard biological parts, in this case linear double
     stranded DNA sequences.
   example: 6VDC956
@@ -18763,6 +18767,7 @@ dlxb:
   preferred_prefix: dlxb
   uri_format: https://doulix.com/biomodules/$1
 dlxc:
+  deprecated: true
   description: DOULIX lab-tested standard biological parts, in this case, full length
     constructs.
   example: M77F7JM
@@ -19636,6 +19641,7 @@ dpvocab:
   description: The Data Privacy Vocabulary provides an ontology (classes and properties)
     and taxonomies of concepts to represent information regarding how personal data
     is processed in the form of an ontology or a knowledge graph.
+  download_rdf: https://w3c-cg.github.io/dpv/2.3/dpv/dpv.rdf
   example: Duration
   github_request_issue: 1241
   homepage: https://w3c.github.io/dpv/2.0/dpv
@@ -25816,7 +25822,7 @@ fbbi:
   synonyms:
   - FBbi
   uri_format: http://purl.obolibrary.org/obo/FBbi_$1
-  version: '2026-03-30'
+  version: '2026-06-25'
 fbbt:
   contact:
     email: cp390@cam.ac.uk
@@ -34851,7 +34857,7 @@ hp:
   synonyms:
   - hpo
   uri_format: http://purl.obolibrary.org/obo/HP_$1
-  version: '2026-06-06'
+  version: '2026-06-23'
 hpa:
   description: The Human Protein Atlas (HPA) is a publicly available database with
     high-resolution images showing the spatial distribution of proteins in different
@@ -38750,10 +38756,13 @@ insdc.cds:
   example: AAA35559
   has_canonical: ncbiprotein
   homepage: http://getentry.ddbj.nig.ac.jp
+  keywords:
+  - protein
   mappings:
     biocontext: INSDC.CDS
     miriam: insdc.cds
     n2t: insdc.cds
+    togoid: InsdcCds
   name: INSDC CDS
   pattern: ^([A-Z]\d{5}|[A-Z]{2}\d{6}|[A-Z]{4}\d{8}|[A-J][A-Z]{2}\d{5})(\.\d+)?$
   preferred_prefix: insdc.cds
@@ -81670,7 +81679,7 @@ uberon:
   - Uber-anatomy ontology
   - Uberon
   uri_format: http://purl.obolibrary.org/obo/UBERON_$1
-  version: '2026-04-01'
+  version: '2026-06-19'
 uberon.issue:
   contributor:
     email: cthoyt@gmail.com
@@ -85257,7 +85266,7 @@ vt:
   rdf_uri_format: http://purl.obolibrary.org/obo/VT_$1
   repository: https://github.com/AnimalGenome/vertebrate-trait-ontology
   uri_format: http://purl.obolibrary.org/obo/VT_$1
-  version: '2026-06-12'
+  version: '2026-06-24'
 vto:
   contact:
     email: balhoff@renci.org
@@ -86460,7 +86469,7 @@ wos.researcher:
   homepage: https://access.clarivate.com/login?app=wos
   mappings:
     wikidata: P1053
-  name: ResearcherID
+  name: Web of Science ResearcherID
   pattern: ^[A-Z]{1,3}-\d{4}-(19|20)\d\d$
   preferred_prefix: wos.researcher
   providers:
@@ -86539,7 +86548,7 @@ wot.td:
   description: This ontology aims to model the Web of Things domain according to the
     W3C Interest Group (http://w3c.github.io/wot/)
   download_owl: https://akswnc7.informatik.uni-leipzig.de/dstreitmatter/archivo/w3.org/2019--wot--td/2021.09.22-190316/2019--wot--td_type=parsed.ttl
-  download_rdf: https://akswnc7.informatik.uni-leipzig.de/dstreitmatter/archivo/w3.org/2019--wot--td/2021.09.22-190316/2019--wot--td_type=parsed.ttl
+  download_rdf: https://raw.githubusercontent.com/w3c/wot-thing-description/refs/heads/main/ontology/td.ttl
   example: description
   homepage: https://akswnc7.informatik.uni-leipzig.de/dstreitmatter/archivo/w3.org/2019--wot--td/2021.09.22-190316/2019--wot--td_type=pyLodeDoc.html
   keywords:

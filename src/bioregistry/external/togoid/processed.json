@@ -313,6 +313,26 @@
       "integbio": "nbdc01514"
     }
   },
+  "Clo": {
+    "examples": [
+      "CLO:0001018",
+      "CLO:0001019",
+      "CLO:0001020",
+      "CLO:0001021",
+      "CLO:0001022",
+      "CLO:0001023",
+      "CLO:0001024",
+      "CLO:0001025",
+      "CLO:0002500",
+      "CLO:0002501"
+    ],
+    "keywords": [
+      "CellLine"
+    ],
+    "name": "Cell Line Ontology",
+    "pattern": "^CLO[:_](?\\d{7})$",
+    "uri_format": "http://purl.obolibrary.org/obo/CLO_$1"
+  },
   "Cog": {
     "description": "This database defines all orthologs of protein sequences coded by known genomes. The species name, protein name, and phylogenetic tree of orthologous clusters can be viewed through this site. Each cluster is comprised of individual proteins and its paralogs, matched to evolutionarily conserved molecular domains.",
     "examples": [
@@ -915,6 +935,29 @@
     "name": "GenBank/ENA/DDBJ",
     "pattern": "^(?:insdc:)?(?[A-Z]\\d{5}|[A-Z]{2}\\d{6}|[A-Z]{4}\\d{8}|[A-J][A-Z]{2}\\d{5}|[A-Z]{4,}\\d{9})(?:\\.\\d+)?$",
     "uri_format": "http://identifiers.org/insdc/$1",
+    "xrefs": {
+      "integbio": "nbdc02567"
+    }
+  },
+  "InsdcCds": {
+    "examples": [
+      "ABU85686",
+      "BAH11229",
+      "DAA12165",
+      "AAM68322",
+      "CAG33172",
+      "BAB22660",
+      "ABK55624",
+      "ABN77800",
+      "CCD67887",
+      "ABA88205"
+    ],
+    "keywords": [
+      "Protein"
+    ],
+    "name": "GenBank/ENA/DDBJ CDS",
+    "pattern": "^(?:insdc.cds:)?(?([A-Z]\\d{5}|[A-Z]{2}\\d{6}|[A-Z]{3}\\d{5}|[A-Z]{4}\\d{8}|[A-J][A-Z]{2}\\d{5})(\\.\\d+)?$",
+    "uri_format": "http://identifiers.org/insdc.cds/$1",
     "xrefs": {
       "integbio": "nbdc02567"
     }

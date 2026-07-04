@@ -11801,14 +11801,14 @@
       "artifacts": [
         {
           "type": "owl",
-          "url": "http://aber-owl.net/media/ontologies/BIOLINK/81/biolink.owl"
+          "url": "http://aber-owl.net/media/ontologies/BIOLINK/82/biolink.owl"
         }
       ],
       "description": "A high level datamodel of biological entities (genes, diseases, phenotypes, pathways, individuals, substances, etc) and their associations",
       "homepage": "https://biolink.github.io/biolink-model/",
       "name": "Biolink Model",
       "prefix": "BIOLINK",
-      "version": "4.4.2"
+      "version": "4.4.3"
     },
     "biolink": {
       "prefix": "biolink",
@@ -15105,7 +15105,7 @@
           "year": 2020
         }
       ],
-      "repository": "https://github.com/BrickSchema/brick",
+      "repository": "https://github.com/brickschema/Brick",
       "short_names": [
         "Brick"
       ]
@@ -23504,9 +23504,9 @@
           "url": "http://purl.org/spar/cito.xml"
         }
       ],
-      "description": "CiTO, the Citation Typing Ontology, is an ontology written in OWL 2 DL to enable characterization of the nature or type of citations, both factually and rhetorically, and to permit these descriptions to be published on the Web.  \n\nThe citations characterized may be either direct and explicit (as in the reference list of a journal article), indirect (e.g. a citation to a more recent paper by the same research group on the same topic), or implicit (e.g. as in artistic quotations or parodies, or in cases of plagiarism).\n\nCiTO contains the object property cito:cites and its sub-properties, and its inverse property cito:isCitedBy, from the original Citation Typing Ontology, CiTO v1.6.  Upon the creation of version 2.0 of CiTO, a number of new sub-properties of cito:cites were added, and the inverse properties of all the sub-properties of cito:cites were created, all of which are sub-properties of cito:isCitedBy.  The ontology has also been integrated with the SWAN Discourse Relationships Ontology by making cito:cites a sub-property of http://purl.org/swan/2.0/discourse-relationships/refersTo.\n\nRestrictions of domain and range present in the previous version of CiTO were removed from the object properties when creating CiTO v 2.0, permitting its independent use in other contexts, in addition to conventional bibliographic citations.  \n\nSo that they can be used independently, other entities that were previously included in CiTO v1.6 have now been made components of other SPAR ontologies: FaBiO, the FRBR-aligned Bibliographic Ontology; C4O, the Citation Counting and Context Characterization Ontology; and PSO, the Publication Status Ontology. \n\nThe addition of two new properties:cito:usesConclusionsFrom and its inverse cito:providesConclusionsFor on 09Dec2011 led to a version number increment from v2.0 to v2.1.\n\nThe addition of two additional properties, cito:compiles and cito:isCompiledBy, previously in the deprecated CiTO4Data ontology, on 03 July 2012 led to a version increment from v2.1 to v2.2.\n\nSubsequent expansions include:\n\nin versions 2.3 and 2.4 the addition of the object properties cito:citesAsPotentialSolution, cito:citesAsRecommendedReading, cito:repliesTo, cito:retracts, cito:speculates on, and their inverse properties;\n\nin v2.5 the addition of cito:CitationAct, cito:hasCitationEvent, cito:hasCitedEntity and cito:hasCitingEntity;\n\nin v 2.6: \nrenaming cito:hasCitationEvent to become cito:hasCitationCharacterization;\nimproving definitions of cito:CitationAct, cito:hasCitationCharacterization, cito:hasCitedEntity and cito:hasCitingEntity;\nrevising the definition of cito:isCompiledBy to correct it and bring it into line with the DataCite Metadata Kernel v2.2 definition;\nchanging the definition of cito:sharesAuthorsWith from 'An object property indicating that the citing entity has at least one author in common with the cited entity.' to 'An object property between two entities indicating that they have at least one author in common.' so that it can be used when one entity does not actually cite the other;\nadding the object properties cito:hasRelatedEntity, cito:sharesFundingAgencyWith and cito:sharesAuthorInstitutionWith;\nand adding the text 'An object property indicating that . . .' at the beginning of the textual definition (rdfs:comment) for each CiTO object property.\n\nin v 2.6.1:\nRemoved text 'An object property indicating that . . .' added in v 2.6 at the beginning of the textual definition (rdfs:comment) for each CiTO object property, so that each definition is just a direct statement of the relationship.  \nRemoved the property cito:hasRelatedEntity (in favour of using dcterms:relation).\nRenamed cito:hasReply to become cito:hasReplyFrom.\nImproved the textual definitions of cito:derides and its inverse property.\n\nin v 2.6.2:\nImproved definitions of of cito:CitationAct, cito:hasCitationCharacterization, cito:hasCitedEntity and cito:hasCitingEntity.\n\nin v 2.6.3:\nAdded examples for each citation type (i.e., all the subproperties of cito:cites).\n\nin v 2.6.4:\nAdded alignment with schema:citation.\n\nin v 2.7.0:\nAdded new property cito:linksTo, and corrected some property URL.\n\nin v 2.7.1\nCorrected some typos in property comments.\n\nin v 2.7.2\nThe name of the class cito:CitationAct has been changed to cito:Citation, and its definition has been modified. The property cito:hasCitationTimeSpan has been added.\n\nin v 2.7.3\nAdded the class cito:SelfCitation, i.e. citation in which the citing and the cited entities have at least one author in common.\n\nin v 2.8\nRenamed the class cito:SelfCitation in cito:AuthorSelfCitation. Created a new class cito:SelfCitation with a more general definition (citation in which the citing and the cited entities have something significant in common with one another), which now includes five subclasses: cito:AuthorSelfCitation, cito:JournalSelfCitation, cito:FunderSelfCitation, cito:AffiliationSelfCitation, cito:AuthorNetworkSelfCitation. The latter class is also accompanied by the new data property cito:hasCoAuthorCitationLevel, which specifies the minimal distance that one of the authors of a citing entity has with regards to one of the authors of a cited entity according to their co-author network. Added the object properties cito:sharesPublicationVenueWith and its subproperty cito:sharesJournalWith. Added the data property cito:hasCitationCreationDate, and changed the domain of cito:hasCitationTimeSpan with xsd:duration.\n\nin v 2.8.1\nRenamed the property cito:hasCoAuthorCitationLevel in cito:hasCoAuthorshipCitationLevel.",
+      "description": "The Citation Typing Ontology (CiTO) is an ontology that enables characterization of the nature or type of citations, both factually and rhetorically.",
       "extras": {
-        "version.iri": "http://purl.org/spar/cito/2018-02-16"
+        "version.iri": "http://purl.org/spar/cito/2026-06-22"
       },
       "homepage": "http://www.sparontologies.net/ontologies/cito",
       "keywords": [
@@ -25133,6 +25133,7 @@
       "ols": "clo",
       "ontobee": "CLO",
       "prefixcommons": "clo",
+      "togoid": "Clo",
       "wikidata": "P2158",
       "wikidata.entity": "Q21039006"
     },
@@ -25294,6 +25295,27 @@
     "synonyms": [
       "CLO"
     ],
+    "togoid": {
+      "examples": [
+        "CLO:0001018",
+        "CLO:0001019",
+        "CLO:0001020",
+        "CLO:0001021",
+        "CLO:0001022",
+        "CLO:0001023",
+        "CLO:0001024",
+        "CLO:0001025",
+        "CLO:0002500",
+        "CLO:0002501"
+      ],
+      "keywords": [
+        "CellLine"
+      ],
+      "name": "Cell Line Ontology",
+      "pattern": "^CLO[:_](?\\d{7})$",
+      "prefix": "Clo",
+      "uri_format": "http://purl.obolibrary.org/obo/CLO_$1"
+    },
     "uri_format": "http://purl.obolibrary.org/obo/CLO_$1",
     "wikidata": {
       "description": "identifier for the Cell Line Ontology which describes anatomic origin and nature of eukaryotic cell lines",
@@ -25557,7 +25579,7 @@
           "url": "http://www.ncbi.nlm.nih.gov/pmc/articles/PMC3361058/"
         }
       ],
-      "version": "2026-05-30"
+      "version": "2026-06-27"
     },
     "example": "0001350",
     "fairsharing": {
@@ -29281,9 +29303,15 @@
     "name": "Common Core Ontologies",
     "repository": "https://github.com/CommonCoreOntology/CommonCoreOntologies",
     "tib": {
+      "artifacts": [
+        {
+          "type": "rdf",
+          "url": "https://raw.githubusercontent.com/CommonCoreOntology/CommonCoreOntologies/refs/heads/develop/src/cco-merged/AllCoreOntology.ttl"
+        }
+      ],
       "description": "An import of all the Common Core mid-level ontologies into a single file so that content is easy to view. The All Core Ontology is not an ontology in the sense it contains no unique content. As such it should not be added to, but can be extended from.",
       "extras": {
-        "version.iri": "http://www.ontologyrepository.com/CommonCoreOntologies/Mid/2024-11-03/AllCoreOntology"
+        "version.iri": "https://www.commoncoreontologies.org/2026-04-04/AllCoreOntology"
       },
       "homepage": "https://www.cubrc.org/index.php/data-science-and-information-fusion/ontology",
       "keywords": [
@@ -33209,10 +33237,6 @@
     "bartoc": {
       "description": "The DataCite Ontology is an ontology written in OWL 2 DL to enable the metadata properties of the [DataCite Metadata Kernel Specification version 3.1](https://www.datacite.org/sites/default/files/document/DataCite-MetadataSchema_V31_Final_8-24-2015_0.pdf) to be described in RDF. This version of the DataCite Ontology has been completely revised and significantly expanded to permit accurate mapping of this new version of the DataCite Metadata Kernel Specification to RDF.",
       "homepage": "http://purl.org/spar/datacite",
-      "license": {
-        "spdx": "CC-BY-4.0",
-        "url": "http://creativecommons.org/licenses/by/4.0/"
-      },
       "name": "The DataCite Ontology",
       "prefix": "17907",
       "short_names": [
@@ -39032,7 +39056,7 @@
       "name": "Linear double stranded DNA sequences",
       "pattern": "^[A-Z0-9]{6,7}$",
       "prefix": "dlxb",
-      "status": "active",
+      "status": "deprecated",
       "uri_format": "https://doulix.com/biomodules/$1/"
     },
     "part_of_database": "dlx",
@@ -39055,7 +39079,7 @@
       "name": "Circular double stranded DNA sequences composed",
       "pattern": "^[A-Z0-9]{6,7}$",
       "prefix": "dlxc",
-      "status": "active",
+      "status": "deprecated",
       "uri_format": "https://doulix.com/constructs/$1/"
     },
     "part_of_database": "dlx",
@@ -39710,7 +39734,7 @@
           "url": "https://disease-ontology.org/community/publications"
         }
       ],
-      "version": "2026-05-30"
+      "version": "2026-06-30"
     },
     "download_json": "http://purl.obolibrary.org/obo/doid.json",
     "download_obo": "https://github.com/DiseaseOntology/HumanDiseaseOntology/raw/main/src/ontology/doid.obo",
@@ -40995,6 +41019,12 @@
       "orcid": "0000-0003-4423-4370"
     },
     "tib": {
+      "artifacts": [
+        {
+          "type": "rdf",
+          "url": "https://w3c-cg.github.io/dpv/2.3/dpv/dpv.rdf"
+        }
+      ],
       "description": "The Data Privacy Vocabulary (DPV) provides terms (classes and properties) to describe and represent information related to processing of personal data based on established requirements such as for the EU General Data Protection Regulation (GDPR). The DPV is structured as a top-down hierarchical vocabulary with the core or base concepts of personal data categories, purposes of processing and types of processing, data controller(s) associated, recipients of personal data, legal bases or justifications used, technical and organisational measures and restrictions (e.g. storage locations and storage durations), applicable rights, and the risks involved.",
       "extras": {
         "version.iri": "https://w3id.org/dpv/2.3"
@@ -44942,8 +44972,19 @@
     },
     "download_owl": "https://raw.githubusercontent.com/DataONEorg/sem-prov-ontologies/run4/observation/d1-ECSO.owl",
     "ecoportal": {
+      "contact": {
+        "email": "mecum@nceas.ucsb.edu",
+        "name": "Bryce Mecum"
+      },
+      "description": "DataONE ontology of Carbon Flux measurements for MsTMIP and LTER Use Cases",
+      "homepage": "https://bioportal.bioontology.org/ontologies/ECSO",
+      "license": {
+        "name": "CC-BY-4.0"
+      },
       "name": "The Ecosystem Ontology",
-      "prefix": "ECSO"
+      "prefix": "ECSO",
+      "repository": "https://github.com/DataONEorg/sem-prov-ontologies/tree/ECSO8-add_non-carbon_measurements",
+      "version": "0.10.0"
     },
     "example": "00000532",
     "fairsharing": {
@@ -45368,7 +45409,7 @@
         "email": "herve.menager@pasteur.fr",
         "name": "Hervé Ménager"
       },
-      "description": "EDAM is a domain ontology of data analysis and data management in bio- and other sciences, and science-based applications. It comprises concepts related to analysis, modelling, optimisation, and data life cycle. Targetting usability by diverse users, the structure of EDAM is relatively simple, divided into 4 main sections: Topic, Operation, Data (incl. Identifier), and Format. EDAM is particularly suitable for semantic annotations and categorisation of diverse resources related to data analysis and management: e.g. tools, workflows, learning materials, or standards. EDAM is also useful in data management itself, for recording provenance metadata of processed data. As a reference citation, please use https://doi.org/10.7490/f1000research.1118900.1, and Format.",
+      "description": "EDAM is a domain ontology of data analysis and data management in bio- and other sciences, and science-based applications. It comprises concepts related to analysis, modelling, optimisation, and data life cycle. Targetting usability by diverse users, the structure of EDAM is relatively simple, divided into 4 main sections: Topic, Operation, Data (incl. Identifier), and Format. EDAM is particularly suitable for semantic annotations and categorisation of diverse resources related to data analysis and management: e.g. tools, workflows, learning materials, or standards. EDAM is also useful in data management itself, for recording provenance metadata of processed data.",
       "homepage": "http://edamontology.org",
       "license": {
         "name": "CC-BY-SA-4.0"
@@ -46092,7 +46133,7 @@
       },
       "description": "The Experimental Factor Ontology (EFO) provides a systematic description of many experimental variables available in EBI databases, and for projects such as the NHGRI-EBI GWAS catalog. It combines parts of several biological ontologies, such as UBERON anatomy, ChEBI chemical compounds, Cell Ontology and the Monarch Disease Ontology (MONDO). The scope of EFO is to support the annotation, analysis and visualization of data handled by many groups at the EBI and as the core ontology for Open Targets.",
       "extras": {
-        "version.iri": "http://www.ebi.ac.uk/efo/releases/v3.90.0/efo.owl"
+        "version.iri": "http://www.ebi.ac.uk/efo/releases/v3.91.0/efo.owl"
       },
       "homepage": "https://www.ebi.ac.uk/efo/",
       "keywords": [
@@ -47162,7 +47203,7 @@
       "artifacts": [
         {
           "type": "owl",
-          "url": "http://aber-owl.net/media/ontologies/EMAPA/34/emapa.owl"
+          "url": "http://aber-owl.net/media/ontologies/EMAPA/35/emapa.owl"
         }
       ],
       "description": "An ontology for mouse anatomy covering embryonic development and postnatal stages.",
@@ -47592,7 +47633,7 @@
       },
       "name": "Electron Microscopy Glossary",
       "prefix": "emg",
-      "tracker": "https://codebase.helmholtz.cloud/em_glossary/em_glossary/-/issues",
+      "tracker": "https://codebase.helmholtz.cloud/em_glossary/em_glossary_owl/-/work_items/",
       "uri_format": "https://purls.helmholtz-metadaten.de/emg/EMG_$1"
     },
     "uri_format": "https://purls.helmholtz-metadaten.de/emg/EMG_$1"
@@ -49941,7 +49982,7 @@
         }
       ],
       "repository": "https://github.com/EnvironmentOntology/envo",
-      "version": "2025-10-20"
+      "version": "2026-06-26"
     },
     "bartoc": {
       "description": "The Environment Ontology (EnvO) provides a controlled, structured vocabulary that is designed to support the annotation of any organism or biological sample with environment descriptors. EnvO contains terms for biomes, environmental features, and environmental material.\" EnvO enables \"a concise, standardised, and comprehensive description of environment that is key to the integration, archiving and federated searching of environmental data. As a tool for the life sciences, we see EnvO bringing benefits similar to those of the Gene Ontology (GO). Through promoting consistent annotation grounded in an ontological framework, we hope to facilitate the semantic retrieval of any biological record anchored to EnvO. Records contained in sequence databases, 'omic data repositories, tissue banks and museum collections are prime candidates for EnvO annotation. However, EnvO is also suitable for the annotation of any record that has an environmental component. For example, you can use EnvO terms to provide information on the environment of remote sensing devices or simply to tag a picture that you took at the weekend. Further, the EnvO project is closely tied with GAZ, a first step towards an open source gazetteer constructed on ontological principles. GAZ describes places and place names as well as the relations between them and, when linked with EnvO descriptors, provides a basis to infer environment from place names.",
@@ -49967,7 +50008,7 @@
       },
       "name": "The Environment Ontology",
       "prefix": "ENVO",
-      "version": "2025-10-20"
+      "version": "2026-06-26"
     },
     "bioportal": {
       "description": "Official PURL: http://purl.obolibrary.org/obo/envo.owl The most up-to-date information about ENVO is available here: http://www.obofoundry.org/ontology/envo.html EnvO is an OBO Foundry and Library ontology for the concise, controlled description of environmental entities such as ecosystems, environmental processes, and environmental qualities. It closely interoperates with a broad collection of other OBO ontologies and is used in a diverse range of projects. , ENVO is an ontology which represents knowledge about environments,environmental processes, ecosystems, habitats, and related entities",
@@ -49982,7 +50023,7 @@
           "url": "http://environmentontology.org/"
         }
       ],
-      "version": "2025-10-20"
+      "version": "2026-06-26"
     },
     "fairsharing": {
       "description": "The Environment Ontology (EnvO) provides a controlled, structured vocabulary that is designed to support the annotation of any organism or biological sample with environment descriptors. EnvO contains terms ranging from astronomical objects, through planetary scale biomes, to nanomaterials. Further, these terms are interlinked with logical axioms describing their composition, colocalisation, and relationships to environmental and biological processes. Using ENVO terms for an environmental description allows a comprehensive description of environment that is key to machine-assisted integration, archiving and federated searching of environmental data.",
@@ -50219,7 +50260,7 @@
       ],
       "description": "ENVO is an ontology which represents knowledge about environments,environmental processes, ecosystems, habitats, and related entities",
       "extras": {
-        "version.iri": "http://purl.obolibrary.org/obo/envo/releases/2025-10-20/envo.owl"
+        "version.iri": "http://purl.obolibrary.org/obo/envo/releases/2026-06-26/envo.owl"
       },
       "homepage": "http://environmentontology.org/",
       "keywords": [
@@ -52429,7 +52470,7 @@
       },
       "name": "European Viral Outbreak Response Alliance Ontology",
       "prefix": "EVORAO",
-      "version": "1.1.68"
+      "version": "1.1.87"
     },
     "description": "The EVORAO Ontology provides a structured and harmonized vocabulary for describing shareable pathogens as characterized biological materials, along with their derived products and associated services, organized into collections. Developed within the EVORA project, it supports consistent metadata annotation across research infrastructures, promoting findability, accessibility, interoperability, and reusability (FAIR). By aligning with relevant standards and ontologies, EVORAO facilitates cross-domain collaboration, integration, and sharing of pathogenic resources and services to enhance pandemic preparedness and response. While initially focused on virology, EVORAO is designed to be extensible and also supports metadata harmonization for other pathogens. [from repository]",
     "download_owl": "https://raw.githubusercontent.com/EVORA-project/evora-ontology/refs/heads/main/models/owl/evora_ontology.owl.ttl",
@@ -53006,9 +53047,9 @@
     "rdf_uri_format": "http://purl.org/spar/fabio/$1",
     "repository": "https://github.com/sparontologies/fabio",
     "tib": {
-      "description": "http://purl.org/spar/fabio/FRBR%20diagram%20with%20new%20Fabio%20verbs.png",
+      "description": "FaBiO, the FRBR-aligned Bibliographic Ontology, is an ontology for recording and publishing on the Semantic Web descriptions of entities that are published or potentially publishable, and that contain or are referred to by bibliographic references, or entities used to define such bibliographic references. FaBiO entities are primarily textual publications such as books, magazines, newspapers and journals, and items of their content such as poems, conference papers and editorials.  However, they also include blogs, web pages, datasets, computer algorithms, experimental protocols, formal specifications and vocabularies, legal records, governmental papers, technical and commercial reports and similar publications, and also anthologies, catalogues and similar collections.",
       "extras": {
-        "version.iri": "http://purl.org/spar/fabio/2019-02-19"
+        "version.iri": "http://purl.org/spar/fabio/2026-05-18"
       },
       "homepage": "https://sparontologies.github.io/fabio/current/fabio.html",
       "keywords": [
@@ -53820,13 +53861,13 @@
       ],
       "description": "An ontology for the description of sample preparation, visualization, and imaging methods used in biomedical research.",
       "extras": {
-        "version.iri": "http://purl.obolibrary.org/obo/fbbi/releases/2026-03-30/fbbi.owl"
+        "version.iri": "http://purl.obolibrary.org/obo/fbbi/releases/2026-06-25/fbbi.owl"
       },
       "homepage": "https://github.com/foundingGIDE/fbbi",
       "name": "Biological Imaging Methods Ontology",
       "prefix": "fbbi",
       "tracker": "https://github.com/foundingGIDE/fbbi/issues",
-      "version": "2026-03-30"
+      "version": "2026-06-25"
     },
     "ontobee": {
       "keywords": [
@@ -55479,7 +55520,7 @@
         "email": "robert.hoehndorf@kaust.edu.sa",
         "name": "Robert Hoehndorf"
       },
-      "description": "The Flora Phenotype Ontology (FLOPO) is an ontology of phenotypes reported in Floras. The original version was developed at the pro-iBiosphere Hackathon in Leiden. This is the pre-classified version of the ontology. The Flora Phenotype Ontology is generated from the Flora Malesiana, Flora Gabon, Flora of Central Africa, and a collection of Kew's African Floras. Every class in the ontology has at least one taxon annotation. The (draft) taxon annotation are available at http://jagannath.pdn.cam.ac.uk/plant/flora/clean-rerun/",
+      "description": "The Flora Phenotype Ontology (FLOPO) is an ontology of phenotypes reported in Floras. The original version was developed at the pro-iBiosphere Hackathon in Leiden. This is the pre-classified version of the ontology. The Flora Phenotype Ontology is generated from the Flora Malesiana, Flora Gabon, Flora of Central Africa, and a collection of Kew's African Floras. Every class in the ontology has at least one taxon annotation. The (draft) taxon annotation are available at http://jagannath.pdn.cam.ac.uk/plant/flora/clean-rerun/, Traits and phenotypes of flowering plants occurring in digitized Floras.",
       "extras": {
         "example_uri": "http://purl.obolibrary.org/obo/FLOPO_0000003"
       },
@@ -55490,7 +55531,7 @@
       "name": "Flora Phenotype Ontology",
       "prefix": "FLOPO",
       "repository": "https://github.com/flora-phenotype-ontology/flopoontology/",
-      "version": "0.9"
+      "version": "2026-06-29"
     },
     "biocontext": {
       "prefix": "FLOPO",
@@ -55672,6 +55713,9 @@
         "email": "robert.hoehndorf@kaust.edu.sa"
       },
       "description": "The Flora Phenotype Ontology (FLOPO) is an ontology of phenotypes reported in Floras. The original version was developed at the pro-iBiosphere Hackathon in Leiden. This is the pre-classified version of the ontology. The Flora Phenotype Ontology is generated from the Flora Malesiana, Flora Gabon, Flora of Central Africa, and a collection of Kew's African Floras. Every class in the ontology has at least one taxon annotation. The (draft) taxon annotation are available at http://jagannath.pdn.cam.ac.uk/plant/flora/clean-rerun/ .",
+      "extras": {
+        "version.iri": "http://purl.obolibrary.org/obo/flopo/releases/2026-06-29/flopo.owl"
+      },
       "keywords": [
         "DataPLANT",
         "ESS",
@@ -57333,7 +57377,7 @@
           "year": 2019
         }
       ],
-      "repository": "https://github.com/FoodOntology/foodon",
+      "repository": "https://github.com/FoodOntology",
       "short_names": [
         "FOODON"
       ]
@@ -58536,7 +58580,7 @@
       },
       "name": "Fission Yeast Phenotype Ontology",
       "prefix": "FYPO",
-      "version": "2026-05-21"
+      "version": "2026-07-02"
     },
     "download_json": "http://purl.obolibrary.org/obo/fypo.json",
     "download_obo": "http://purl.obolibrary.org/obo/fypo.obo",
@@ -59480,7 +59524,7 @@
     },
     "uri_format": "https://www.gbif.org/species/$1",
     "wikidata": {
-      "description": "taxon identifier in GBIF",
+      "description": "taxon identifier in GBIF before 2026 - now use P14607",
       "examples": [
         "1948418",
         "3239598",
@@ -59490,7 +59534,7 @@
       "name": "GBIF-species-ID (before 2026 update)",
       "pattern": "^([1-9]\\d{0,8}|)$",
       "prefix": "P846",
-      "uri_format": "https://www.gbif.org/taxon/$1",
+      "uri_format": "https://www.gbif.org/species/$1",
       "xrefs": {
         "wikidata": "Q1531570"
       }
@@ -64660,7 +64704,7 @@
       "artifacts": [
         {
           "type": "owl",
-          "url": "http://aber-owl.net/media/ontologies/GO/1799/go.owl"
+          "url": "http://aber-owl.net/media/ontologies/GO/1800/go.owl"
         }
       ],
       "description": "An ontology for describing the function of genes and gene products",
@@ -64689,7 +64733,7 @@
         }
       ],
       "repository": "https://sourceforge.net/projects/geneontology/",
-      "version": "2026-05-19"
+      "version": "2026-06-15"
     },
     "bartoc": {
       "description": "The Gene Ontology project is a major bioinformatics initiative with the aim of standardizing the representation of gene and gene product attributes across species and databases. The project provides a controlled vocabulary of terms for describing gene product characteristics and gene product annotation data from GO Consortium members, as well as tools to access and process this data.",
@@ -64712,7 +64756,7 @@
       "homepage": "http://www.geneontology.org",
       "name": "Gene Ontology",
       "prefix": "GO",
-      "version": "2026-05-19"
+      "version": "2026-06-15"
     },
     "contributor_extras": [
       {
@@ -65269,7 +65313,7 @@
       },
       "description": "The Gene Ontology (GO) provides a framework and set of concepts for describing the functions of gene products from all organisms.",
       "extras": {
-        "version.iri": "http://purl.obolibrary.org/obo/go/releases/2026-05-19/go.owl"
+        "version.iri": "http://purl.obolibrary.org/obo/go/releases/2026-06-15/go.owl"
       },
       "homepage": "http://geneontology.org/",
       "keywords": [
@@ -72361,13 +72405,13 @@
       ],
       "description": "The Human Phenotype Ontology (HPO) provides a standardized vocabulary of phenotypic abnormalities and clinical features encountered in human disease.",
       "extras": {
-        "version.iri": "http://purl.obolibrary.org/obo/hp/releases/2026-06-06/hp-international.owl"
+        "version.iri": "http://purl.obolibrary.org/obo/hp/releases/2026-06-23/hp-international.owl"
       },
       "homepage": "http://www.human-phenotype-ontology.org/",
       "name": "Human Phenotype Ontology",
       "prefix": "hp",
       "tracker": "https://github.com/obophenotype/human-phenotype-ontology/issues/",
-      "version": "2026-06-06"
+      "version": "2026-06-23"
     },
     "ontobee": {
       "keywords": [
@@ -72440,7 +72484,7 @@
       ],
       "description": "The Human Phenotype Ontology (HPO) provides a standardized vocabulary of phenotypic abnormalities and clinical features encountered in human disease.",
       "extras": {
-        "version.iri": "http://purl.obolibrary.org/obo/hp/releases/2026-02-16/hp.owl"
+        "version.iri": "http://purl.obolibrary.org/obo/hp/releases/2026-06-23/hp.owl"
       },
       "homepage": "https://hpo.jax.org/app/",
       "keywords": [
@@ -80154,7 +80198,8 @@
     "mappings": {
       "biocontext": "INSDC.CDS",
       "miriam": "insdc.cds",
-      "n2t": "insdc.cds"
+      "n2t": "insdc.cds",
+      "togoid": "InsdcCds"
     },
     "miriam": {
       "description": "The coding sequence or protein identifiers as maintained in INSDC.",
@@ -80202,7 +80247,31 @@
       "prefix": "insdc.cds",
       "uri_format": "https://www.ncbi.nlm.nih.gov/protein/$1"
     },
-    "part_of_database": "insdc"
+    "part_of_database": "insdc",
+    "togoid": {
+      "examples": [
+        "ABU85686",
+        "BAH11229",
+        "DAA12165",
+        "AAM68322",
+        "CAG33172",
+        "BAB22660",
+        "ABK55624",
+        "ABN77800",
+        "CCD67887",
+        "ABA88205"
+      ],
+      "keywords": [
+        "Protein"
+      ],
+      "name": "GenBank/ENA/DDBJ CDS",
+      "pattern": "^(?:insdc.cds:)?(?([A-Z]\\d{5}|[A-Z]{2}\\d{6}|[A-Z]{3}\\d{5}|[A-Z]{4}\\d{8}|[A-J][A-Z]{2}\\d{5})(\\.\\d+)?$",
+      "prefix": "InsdcCds",
+      "uri_format": "http://identifiers.org/insdc.cds/$1",
+      "xrefs": {
+        "integbio": "nbdc02567"
+      }
+    }
   },
   "insdc.gca": {
     "biocontext": {
@@ -93783,7 +93852,7 @@
       "artifacts": [
         {
           "type": "owl",
-          "url": "http://aber-owl.net/media/ontologies/METPO/25/metpo.owl"
+          "url": "http://aber-owl.net/media/ontologies/METPO/26/metpo.owl"
         }
       ],
       "description": "An ontology of ecophysiological traits of microbes, including tolerated and preferred growth conditions, Microbial ecophysiological trait and phenotype ontology, METPO provides standardized terms for the phenotypic traits, growth conditions, metabolic capabilities, and morphology of bacteria and archaea. It integrates heterogeneous microbial trait resources (BactoTraits, BacDive, Madin et al.) and supports knowledge-graph and literature-mining workflows in projects such as KG-Microbe. METPO follows OBO Foundry conventions and reuses terms from PATO, GO, CHEBI, NCBITaxon, and related ontologies where possible., METPO provides terms for microbial ecophysiological traits and phenotypes: growth preferences (temperature, pH, salinity, oxygen), metabolism, and cell morphology of bacteria and archaea. Its primary purpose is to harmonize terminology across major microbial trait databases (BacDive, BactoTraits, Madin bacteria_archaea_traits, MetaTraits) for use in NMDC and KG-Microbe. METPO uses OBO-style annotation patterns (IAO textual definitions, oboInOwl synonyms) and cites terms from OMP, MicrO, ECOCORE, and PATO as definition sources., MetaTraits) for use in KG-Microbe. METPO uses OBO-style annotation patterns (IAO textual definitions",
@@ -98225,7 +98294,7 @@
       "artifacts": [
         {
           "type": "owl",
-          "url": "http://aber-owl.net/media/ontologies/MMO/129/mmo.owl"
+          "url": "http://aber-owl.net/media/ontologies/MMO/130/mmo.owl"
         }
       ],
       "description": "A representation of the variety of methods used to make clinical and phenotype measurements.",
@@ -98401,7 +98470,7 @@
       ],
       "description": "A representation of the variety of methods used to make clinical and phenotype measurements.",
       "extras": {
-        "version.iri": "http://purl.obolibrary.org/obo/mmo/releases/2026-05-30/mmo.owl"
+        "version.iri": "http://purl.obolibrary.org/obo/mmo/releases/2026-06-27/mmo.owl"
       },
       "homepage": "https://github.com/rat-genome-database/MMO-Measurement-Method-Ontology/",
       "keywords": [
@@ -99406,7 +99475,7 @@
       ],
       "description": "PSI-MOD is an ontology consisting of terms that describe protein chemical modifications, logically linked by an is_a relationship in such a way as to form a direct acyclic graph (DAG). The PSI-MOD ontology has more than 45 top-level nodes, and provides alternative hierarchical paths for classifying protein modifications either by the molecular structure of the modification, or by the amino acid residue that is modified.",
       "extras": {
-        "version.iri": "http://purl.obolibrary.org/obo/mod/1.035.0/mod.owl"
+        "version.iri": "http://purl.obolibrary.org/obo/mod/1.037.0/mod.owl"
       },
       "homepage": "http://www.psidev.info/MOD",
       "keywords": [
@@ -100728,7 +100797,7 @@
       "artifacts": [
         {
           "type": "owl",
-          "url": "http://aber-owl.net/media/ontologies/MP/141/mp.owl"
+          "url": "http://aber-owl.net/media/ontologies/MP/142/mp.owl"
         }
       ],
       "description": "Standard terms for annotating mammalian phenotypic data.",
@@ -101562,7 +101631,7 @@
       "artifacts": [
         {
           "type": "owl",
-          "url": "http://aber-owl.net/media/ontologies/MS/240/ms.owl"
+          "url": "http://aber-owl.net/media/ontologies/MS/241/ms.owl"
         }
       ],
       "description": "A structured controlled vocabulary for the annotation of experiments concerned with proteomics mass spectrometry.",
@@ -101723,7 +101792,7 @@
       ],
       "description": "A structured controlled vocabulary for the annotation of experiments concerned with proteomics mass spectrometry.",
       "extras": {
-        "version.iri": "http://purl.obolibrary.org/obo/ms/4.1.248/ms.owl"
+        "version.iri": "http://purl.obolibrary.org/obo/ms/4.1.256/ms.owl"
       },
       "homepage": "http://www.psidev.info/groups/controlled-vocabularies",
       "keywords": [
@@ -102403,7 +102472,7 @@
     "tib": {
       "description": "The MatWerk ontology represents research data and related activities of the MSE community. A first version of the ontology will be simplified, focusing on (i) community structure: researchers, research projects, universities, and institutions; (ii) infrastructure: software, workflows, ontologies, schemas, APIs, instruments, facilities, educational resources; and (iii) data: repositories, databases, scientific publications, published datasets and reference data.",
       "extras": {
-        "version.iri": "http://purls.helmholtz-metadaten.de/mwo/mwo.owl/3.0.1"
+        "version.iri": "http://purls.helmholtz-metadaten.de/mwo/3.0.2"
       },
       "homepage": "https://nfdi-matwerk.pages.rwth-aachen.de/ta-oms/mwo/docs/index.html",
       "keywords": [
@@ -103048,7 +103117,7 @@
     "tib": {
       "description": "The ontology and metadata schema for the NFDI4Earth Knowledge Hub. See serializations of this schema as an OWL ontology here:\n  - [RDF/XML](https://nfdi4earth.pages.rwth-aachen.de/knowledgehub/nfdi4earth-kh-schema/ontology.owl.xml)\n  - [RDF/Turtle](https://nfdi4earth.pages.rwth-aachen.de/knowledgehub/nfdi4earth-kh-schema/ontology.owl.ttl)\n  - [RDF/JSON-LD](https://nfdi4earth.pages.rwth-aachen.de/knowledgehub/nfdi4earth-kh-schema/ontology.owl.jsonld)\n  - [RDF/N-Triples](https://nfdi4earth.pages.rwth-aachen.de/knowledgehub/nfdi4earth-kh-schema/ontology.owl.nt)\n",
       "extras": {
-        "version.iri": "https://nfdi4earth.pages.rwth-aachen.de/knowledgehub/nfdi4earth-kh-schema/ontology-v0.39.0.owl.xml"
+        "version.iri": "https://nfdi4earth.pages.rwth-aachen.de/knowledgehub/nfdi4earth-kh-schema/ontology-v0.40.4.owl.xml"
       },
       "homepage": "https://nfdi4earth.de/ontology/",
       "keywords": [
@@ -105354,7 +105423,7 @@
       },
       "name": "National Cancer Institute Thesaurus",
       "prefix": "NCIT",
-      "version": "26.05d"
+      "version": "26.06e"
     },
     "cellosaurus": {
       "description": "Medical resources",
@@ -115977,6 +116046,14 @@
       },
       "name": "Ontology for Nutritional Studies",
       "prefix": "FAIRsharing.rfec93",
+      "publications": [
+        {
+          "doi": "10.1186/s12263-018-0601-y",
+          "title": "ONS: an ontology for a standardized description of interventions and observational studies in nutrition",
+          "url": "http://dx.doi.org/10.1186/s12263-018-0601-y",
+          "year": 2018
+        }
+      ],
       "repository": "https://github.com/enpadasi/Ontology-for-Nutritional-Studies/issues",
       "short_names": [
         "ONS"
@@ -118093,7 +118170,7 @@
       },
       "name": "Orphanet Rare Disease Ontology",
       "prefix": "ORDO",
-      "version": "4.8"
+      "version": "4.9"
     },
     "cellosaurus": {
       "description": "Medical resources",
@@ -139820,7 +139897,7 @@
       "artifacts": [
         {
           "type": "owl",
-          "url": "http://aber-owl.net/media/ontologies/RS/220/rs.owl"
+          "url": "http://aber-owl.net/media/ontologies/RS/221/rs.owl"
         }
       ],
       "description": "Ontology of rat strains",
@@ -139846,7 +139923,7 @@
           "pubmed": "23603846"
         }
       ],
-      "version": "2026-06-20"
+      "version": "2026-06-27"
     },
     "cellosaurus": {
       "description": "Organism-specific databases",
@@ -164435,7 +164512,7 @@
       "artifacts": [
         {
           "type": "owl",
-          "url": "http://aber-owl.net/media/ontologies/UBERON/311/uberon.owl"
+          "url": "http://aber-owl.net/media/ontologies/UBERON/312/uberon.owl"
         }
       ],
       "description": "An integrated cross-species anatomy ontology covering animals and bridging multiple species-specific ontologies",
@@ -164688,13 +164765,13 @@
       ],
       "description": "Uberon is an integrated cross-species anatomy ontology representing a variety of entities classified according to traditional anatomical criteria such as structure, function and developmental lineage. The ontology includes comprehensive relationships to taxon-specific anatomical ontologies, allowing integration of functional, phenotype and expression data.",
       "extras": {
-        "version.iri": "http://purl.obolibrary.org/obo/uberon/releases/2026-04-01/uberon.owl"
+        "version.iri": "http://purl.obolibrary.org/obo/uberon/releases/2026-06-19/uberon.owl"
       },
       "homepage": "http://uberon.org",
       "name": "Uber-anatomy ontology",
       "prefix": "uberon",
       "tracker": "https://github.com/obophenotype/uberon/issues",
-      "version": "2026-04-01"
+      "version": "2026-06-19"
     },
     "ontobee": {
       "keywords": [
@@ -164744,7 +164821,7 @@
       ],
       "description": "Uberon is an integrated cross-species anatomy ontology representing a variety of entities classified according to traditional anatomical criteria such as structure, function and developmental lineage. The ontology includes comprehensive relationships to taxon-specific anatomical ontologies, allowing integration of functional, phenotype and expression data.",
       "extras": {
-        "version.iri": "http://purl.obolibrary.org/obo/uberon/releases/2026-04-01/uberon.owl"
+        "version.iri": "http://purl.obolibrary.org/obo/uberon/releases/2026-06-19/uberon.owl"
       },
       "homepage": "http://obophenotype.github.io/uberon/",
       "keywords": [
@@ -170549,7 +170626,7 @@
       "short_names": [
         "VIAF"
       ],
-      "uri_format": "https://viaf.org/viaf/$1",
+      "uri_format": "https://viaf.org/en/viaf/$1",
       "uri_format_rdf": "http://viaf.org/viaf/$1",
       "xrefs": {
         "wikidata": "Q54919"
@@ -172335,7 +172412,7 @@
       "artifacts": [
         {
           "type": "owl",
-          "url": "http://aber-owl.net/media/ontologies/VT/155/vt.owl"
+          "url": "http://aber-owl.net/media/ontologies/VT/156/vt.owl"
         }
       ],
       "description": "An ontology of traits covering vertebrates",
@@ -172486,13 +172563,13 @@
       ],
       "description": "The Vertebrate Trait Ontology is a controlled vocabulary for the description of traits (measurable or observable characteristics) pertaining to the morphology, physiology, or development of vertebrate organisms.",
       "extras": {
-        "version.iri": "http://purl.obolibrary.org/obo/vt/releases/2026-06-12/vt.owl"
+        "version.iri": "http://purl.obolibrary.org/obo/vt/releases/2026-06-24/vt.owl"
       },
       "homepage": "https://github.com/AnimalGenome/vertebrate-trait-ontology",
       "name": "The Vertebrate Trait Ontology",
       "prefix": "vt",
       "tracker": "https://github.com/AnimalGenome/vertebrate-trait-ontology/issues",
-      "version": "2026-06-12"
+      "version": "2026-06-24"
     },
     "ontobee": {
       "keywords": [
@@ -175243,11 +175320,12 @@
     "wikidata": {
       "description": "identifier for a researcher in a system for scientific authors, redirects to a Web of Science ID, along with P3829",
       "examples": [
+        "A-1685-2010",
         "J-3403-2017",
         "K-8011-2013"
       ],
       "homepage": "https://access.clarivate.com/login?app=wos",
-      "name": "ResearcherID",
+      "name": "Web of Science ResearcherID",
       "pattern": "^[A-Z]{1,3}-\\d{4}-(19|20)\\d\\d$",
       "prefix": "P1053",
       "uri_format": "https://www.webofscience.com/wos/author/record/$1",
@@ -175350,7 +175428,7 @@
       "artifacts": [
         {
           "type": "rdf",
-          "url": "https://akswnc7.informatik.uni-leipzig.de/dstreitmatter/archivo/w3.org/2019--wot--td/2021.09.22-190316/2019--wot--td_type=parsed.ttl"
+          "url": "https://raw.githubusercontent.com/w3c/wot-thing-description/refs/heads/main/ontology/td.ttl"
         }
       ],
       "description": "This ontology aims to model the Web of Things domain according to the W3C Interest Group (http://w3c.github.io/wot/)",
@@ -175664,7 +175742,7 @@
           "url": "http://www.ncbi.nlm.nih.gov/pmc/articles/PMC3361058/"
         }
       ],
-      "version": "2026-06-13"
+      "version": "2026-06-27"
     },
     "example": "0000780",
     "fairsharing": {
