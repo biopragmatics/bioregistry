@@ -1803,6 +1803,30 @@
   "CATALOG-THEMES": {
     "name": "Catalog Themes"
   },
+  "CBCTX": {
+    "artifacts": [
+      {
+        "type": "owl",
+        "url": "http://aber-owl.net/media/ontologies/CBCTX/1/cbctx.owl"
+      }
+    ],
+    "description": "Curated dictionary of *momentary* context-feature IRIs for persona-based simulation. Stable user characteristics (full Big Five score, identity, etc.) belong in persona `characteristics:`, NOT here. Trait STATES (e.g. currently behaving in a high-extraversion manner) are included under `trait_state`. behaviour_state and capability_opportunity entries carry theory_mappings tying the IRI to TDF / COM-B / HAPA / TTM / SDT.",
+    "homepage": "https://github.com/MaaniBeigy/calendar-bench",
+    "name": "CalendarBench Context",
+    "version": "2026.05.26"
+  },
+  "CBHT": {
+    "artifacts": [
+      {
+        "type": "owl",
+        "url": "http://aber-owl.net/media/ontologies/CBHT/1/cbht.owl"
+      }
+    ],
+    "description": "Health task benchmark organised as Domain, Challenge, Difficulty, Task. Each task carries title, description, isConcurrent, isDividable, estimatedDurationMinutes, matchedActivity (Compendium of Physical Activities bridge) and contextLink edges into the curated context IRI dictionary (mood, energy, location, weather, behaviour-theory categories).",
+    "homepage": "https://github.com/MaaniBeigy/calendar-bench",
+    "name": "CalendarBench Health Tasks",
+    "version": "2026.05.19"
+  },
   "CBLAYERH": {
     "artifacts": [
       {
@@ -2394,7 +2418,7 @@
     "artifacts": [
       {
         "type": "owl",
-        "url": "http://aber-owl.net/media/ontologies/CMO/183/cmo.owl"
+        "url": "http://aber-owl.net/media/ontologies/CMO/184/cmo.owl"
       }
     ],
     "description": "Morphological and physiological measurement records generated from clinical and model organism research and health programs.",
@@ -4447,13 +4471,13 @@
     "artifacts": [
       {
         "type": "owl",
-        "url": "http://aber-owl.net/media/ontologies/EVORAO/25/evorao.owl"
+        "url": "http://aber-owl.net/media/ontologies/EVORAO/27/evorao.owl"
       }
     ],
     "description": "EVORAO is an ontology for standardized metadata supporting the sharing of pathogens as biological materials, their derived products, and associated services, organized into collections. While initially focused on virology, it is designed for interoperability and is extensible to other pathogens. EVORAO is compatible with DCAT, making it well-suited for efficiently cataloguing pathogen collections and related resources., The EVORAO Ontology provides a structured and harmonized vocabulary for describing shareable pathogens as characterized biological materials, along with their derived products and associated services, organized into collections. Developed within the EVORA project, it supports consistent metadata annotation across research infrastructures, promoting findability, accessibility, interoperability, and reusability (FAIR). By aligning with relevant standards and ontologies, EVORAO facilitates cross-domain collaboration, integration, and sharing of pathogenic resources and services to enhance pandemic preparedness and response. While initially focused on virology, EVORAO is designed to be extensible and also supports metadata harmonization for other pathogens. EVORAO is compatible with DCAT",
     "homepage": "https://evora-project.github.io/evora-ontology/",
     "name": "European Viral Outbreak Response Alliance Ontology",
-    "version": "1.1.68"
+    "version": "1.1.87"
   },
   "EVS": {
     "description": "A collection of curated and standardized values used in metadata specifications produced by ADAMS (Accelerating DAta and Metadata Standards \u000bin the Environmental Health Sciences Study of Emerging Water Contaminants) group. These values are designed to ensure uniformity in the description of the various metadata standards produced by the group.",
@@ -5095,7 +5119,7 @@
     "artifacts": [
       {
         "type": "owl",
-        "url": "http://aber-owl.net/media/ontologies/FYPO/487/fypo.owl"
+        "url": "http://aber-owl.net/media/ontologies/FYPO/488/fypo.owl"
       }
     ],
     "description": "FYPO is a formal ontology of phenotypes observed in fission yeast.",
@@ -5918,6 +5942,9 @@
     "name": "Home Cage Monitoring definition",
     "version": "0.2"
   },
+  "HCMO": {
+    "name": "Home Cage Monitoring Ontology"
+  },
   "HCODONONT": {
     "artifacts": [
       {
@@ -6329,13 +6356,13 @@
     "artifacts": [
       {
         "type": "owl",
-        "url": "http://aber-owl.net/media/ontologies/HOOM/13/hoom.owl"
+        "url": "http://aber-owl.net/media/ontologies/HOOM/14/hoom.owl"
       }
     ],
     "description": "Orphanet provides phenotypic annotations of the rare diseases in the Orphanet nomenclature using the Human Phenotype Ontology (HPO). HOOM is a module that qualifies the annotation between a clinical entity and phenotypic abnormalities according to a frequency and by integrating the notion of diagnostic criterion. In ORDO a clinical entity is either a group of rare disorders, a rare disorder or a subtype of disorder. The phenomes branch of ORDO has been refactored as a logical import of HPO, and the HPO-ORDO phenotype disease-annotations have been provided in a series of triples in OBAN format in which associations, frequency and provenance are modeled. HOOM is provided as an OWL (Ontologies Web Languages) file, using OBAN, the Orphanet Rare Disease Ontology (ORDO), and HPO ontological models. HOOM provides extra possibilities for researchers, pharmaceutical companies and others wishing to co-analyse rare and common disease phenotype associations, or re-use the integrated ontologies in genomic variants repositories or match-making tools.",
     "homepage": "https://www.orphadata.com",
     "name": "HPO - ORDO Ontological Module",
-    "version": "2.5"
+    "version": "2.6"
   },
   "HOOM_V3": {
     "artifacts": [
@@ -7664,11 +7691,12 @@
     "artifacts": [
       {
         "type": "owl",
-        "url": "http://aber-owl.net/media/ontologies/JFO/38/jfo.owl"
+        "url": "http://aber-owl.net/media/ontologies/JFO/50/jfo.owl"
       }
     ],
-    "description": "JFO v0.48 with CC BY 4.0 license",
-    "name": "Japanese Food Ontology"
+    "description": "JFO v0.57 - FoodAtlasEntity moved under BFO:0000020 (not top-level), The Japanese Food Ontology (JFO) is a comprehensive ontology of Japanese foods that integrates FGNHNS (National Health and Nutrition Survey) food groups, the Standard Tables of Food Composition in Japan (foodcomp), FoodOn cross-references, MeSH/OMOP medical terminologies, allergen data, microbiome literature, and UECFOOD256 image dataset categories. Version 0.60 adds WorldCuisine branch for non-Japanese foods.",
+    "name": "Japanese Food Ontology",
+    "version": "0.60"
   },
   "KENYAANC": {
     "artifacts": [
@@ -8909,7 +8937,7 @@
     "artifacts": [
       {
         "type": "owl",
-        "url": "http://aber-owl.net/media/ontologies/MMO/130/mmo.owl"
+        "url": "http://aber-owl.net/media/ontologies/MMO/131/mmo.owl"
       }
     ],
     "description": "A representation of the variety of methods used to make clinical and phenotype measurements.",
@@ -11497,67 +11525,67 @@
     "artifacts": [
       {
         "type": "owl",
-        "url": "http://aber-owl.net/media/ontologies/ORDO_CS/9/ordo_cs.owl"
+        "url": "http://aber-owl.net/media/ontologies/ORDO_CS/10/ordo_cs.owl"
       }
     ],
     "description": "This ontology is the czech version of ORDO with definition, labels and synonyms in czech.",
     "name": "ORDO Czech",
-    "version": "4.8"
+    "version": "4.9"
   },
   "ORDO_DE": {
     "artifacts": [
       {
         "type": "owl",
-        "url": "http://aber-owl.net/media/ontologies/ORDO_DE/19/ordo_de.owl"
+        "url": "http://aber-owl.net/media/ontologies/ORDO_DE/20/ordo_de.owl"
       }
     ],
     "description": "This ontology is the german version of ORDO with definition, labels and synonyms in german.",
     "name": "ORDO GERMAN",
-    "version": "4.8"
+    "version": "4.9"
   },
   "ORDO_ES": {
     "artifacts": [
       {
         "type": "owl",
-        "url": "http://aber-owl.net/media/ontologies/ORDO_ES/17/ordo_es.owl"
+        "url": "http://aber-owl.net/media/ontologies/ORDO_ES/18/ordo_es.owl"
       }
     ],
     "description": "This ontology is the spanish version of ORDO with definition, labels and synonyms in spanish.",
     "name": "ORDO SPANISH",
-    "version": "4.8"
+    "version": "4.9"
   },
   "ORDO_FR": {
     "artifacts": [
       {
         "type": "owl",
-        "url": "http://aber-owl.net/media/ontologies/ORDO_FR/19/ordo_fr.owl"
+        "url": "http://aber-owl.net/media/ontologies/ORDO_FR/20/ordo_fr.owl"
       }
     ],
     "description": "This ontology is the french version of ORDO with definition, labels and synonyms in french. Cette ontologie est la version française d'ORDO avec les définitions, labels et synonymes en français.",
     "name": "ORDO FRENCH",
-    "version": "4.8"
+    "version": "4.9"
   },
   "ORDO_IT": {
     "artifacts": [
       {
         "type": "owl",
-        "url": "http://aber-owl.net/media/ontologies/ORDO_IT/14/ordo_it.owl"
+        "url": "http://aber-owl.net/media/ontologies/ORDO_IT/15/ordo_it.owl"
       }
     ],
     "description": "This ontology is the italian version of ORDO with definition, labels and synonyms in italian.",
     "name": "ORDO ITALIAN",
-    "version": "4.8"
+    "version": "4.9"
   },
   "ORDO_NL": {
     "artifacts": [
       {
         "type": "owl",
-        "url": "http://aber-owl.net/media/ontologies/ORDO_NL/20/ordo_nl.owl"
+        "url": "http://aber-owl.net/media/ontologies/ORDO_NL/21/ordo_nl.owl"
       }
     ],
     "description": "This ontology is the dutch version of ORDO with definition, labels and synonyms in dutch.",
     "name": "ORDO DUTCH",
-    "version": "4.8"
+    "version": "4.9"
   },
   "ORDO_OBO": {
     "artifacts": [
@@ -11575,23 +11603,23 @@
     "artifacts": [
       {
         "type": "owl",
-        "url": "http://aber-owl.net/media/ontologies/ORDO_PL/14/ordo_pl.owl"
+        "url": "http://aber-owl.net/media/ontologies/ORDO_PL/15/ordo_pl.owl"
       }
     ],
     "description": "This ontology is the polish version of ORDO with definition, labels and synonyms in polish.",
     "name": "ORDO POLISH",
-    "version": "4.8"
+    "version": "4.9"
   },
   "ORDO_PT": {
     "artifacts": [
       {
         "type": "owl",
-        "url": "http://aber-owl.net/media/ontologies/ORDO_PT/10/ordo_pt.owl"
+        "url": "http://aber-owl.net/media/ontologies/ORDO_PT/11/ordo_pt.owl"
       }
     ],
     "description": "This ontology is the portuguese version of ORDO with definition, labels and synonyms in portuguese.",
     "name": "ORDO Portuguese",
-    "version": "4.8"
+    "version": "4.9"
   },
   "OREX-SAM": {
     "description": "Sample types from JSC-SAMIS Interface Control Document. Edited by S.M. Richard. These sample types are limited to those expected from the OSIRIS-REx sample return, this is not an exhaustive sample type categorization.",
@@ -11711,12 +11739,12 @@
     "artifacts": [
       {
         "type": "owl",
-        "url": "http://aber-owl.net/media/ontologies/PAIN/6/pain.owl"
+        "url": "http://aber-owl.net/media/ontologies/PAIN/8/pain.owl"
       }
     ],
     "description": "The Pain Ontology contains terms for representing pain as defined by the International Association For the Study of Pain (IASP), meaning that pain is both an unpleasant physical sensation and unpleasant emotional experience. It includes terms and axioms to represent the multidimensional aspect of pain, such as temporality (e.g, acute, chronic), qualitative (e.g., sharp, throbbing), extent (e.g., local, widespread), biological mechanism (e.g., nociceptive, neuropathic), and specific anatomical locations (e.g., back, knee)., such as temporality (e.g.",
     "name": "The Pain Ontology",
-    "version": "2026-06-05"
+    "version": "2026-07-03"
   },
   "PAINO": {
     "name": "Pain Ontology"
@@ -12517,7 +12545,7 @@
     "artifacts": [
       {
         "type": "owl",
-        "url": "http://aber-owl.net/media/ontologies/PR/87/pr.owl"
+        "url": "http://aber-owl.net/media/ontologies/PR/88/pr.owl"
       }
     ],
     "description": "An ontological representation of protein-related entities",
@@ -13354,7 +13382,7 @@
     "artifacts": [
       {
         "type": "owl",
-        "url": "http://aber-owl.net/media/ontologies/RS/221/rs.owl"
+        "url": "http://aber-owl.net/media/ontologies/RS/222/rs.owl"
       }
     ],
     "description": "Ontology of rat strains",
@@ -13885,13 +13913,12 @@
     "artifacts": [
       {
         "type": "owl",
-        "url": "http://aber-owl.net/media/ontologies/SMARTLHSONTOV1/4/smartlhsontov1.owl"
+        "url": "http://aber-owl.net/media/ontologies/SMARTLHSONTOV1/8/smartlhsontov1.owl"
       }
     ],
-    "description": "SMARTLHSONTO is an ontology for Learning Health System Framework covering the 12 top pillars (Value Creation and Benefits, Evaluation and Methodlogy, Ethics and Oversight, Care Delivery and Organisational Strategies, Community and Patient Engagement, Culture and Change Management, Governance and Leadership, Research and Education, Workforce and Capacity Building, Data and Technology, Learning Health Systems, LHS Frameworks) , their subclass and inter-relationship between the pillars and subclass.",
+    "description": "The SMARTLHS (Smart Learning Health System) Ontology provides a structured semantic framework for representing the core concepts, relationships, and organisational components required to operationalise Learning Health Systems (LHS) in healthcare settings. The ontology was developed to address the lack of standardised representations across existing LHS frameworks and to support the integration of governance, digital infrastructure, organisational processes, and evaluation mechanisms within a unified knowledge model. The ontology was developed using a realist synthesis of the Learning Health System literature, followed by an iterative ontology engineering process including conceptualisation, formalisation, validation, and refinement. The resulting ontology organises LHS concepts into three major structural components: Supporting Pillars, Cross-Cutting Themes, and Reference Learning Health System Frameworks. Supporting Pillars represent the operational foundations required for LHS implementation, including governance and leadership, data and technology systems, stakeholder engagement, care models and organisational design, research and workforce development, and change management. Cross-cutting themes capture elements that influence all pillars, such as ethics and oversight, evaluation methodology, and value creation. The ontology currently contains over 460 classes and defines explicit semantic relationships between organisational capabilities, governance mechanisms, and learning processes. It is designed to support knowledge representation, policy analysis, and Retrieval-Augmented Generation (RAG) applications, enabling automated mapping between healthcare strategies, policy documents, and LHS conceptual elements. The SMARTLHS ontology aims to facilitate systematic assessment of organisational readiness and gap analysis for implementing Learning Health Systems in real-world healthcare environments., The SMARTLHSONTO comprehensively represents the knowledge of Learning Health System Framework, including the key concepts and their complex relationships as identified in the existing mainstream framework theories. It provides the foundation model for the organisational researchers and practitioners to organize data in accordance with the identified relationships in the established theory and to visually understand the complex concepts and their interconnected relationships.",
     "homepage": "https://bioportal.bioontology.org/ontologies/SMARTLHSONTO",
-    "name": "SMARTLHSONTO V2",
-    "version": "4"
+    "name": "SMARTLHSONTO V3"
   },
   "SMASH": {
     "artifacts": [
@@ -15313,12 +15340,12 @@
     "artifacts": [
       {
         "type": "owl",
-        "url": "http://aber-owl.net/media/ontologies/VFB_DRIVERS/225/vfb_drivers.owl"
+        "url": "http://aber-owl.net/media/ontologies/VFB_DRIVERS/226/vfb_drivers.owl"
       }
     ],
     "description": "An ontology of Drosophila melanogaster drivers and expression patterns., An ontology of Drosophila melanogaster drivers and expression patterns. All genetic objects are created using data taken directly from FlyBase.",
     "name": "vfb_drivers",
-    "version": "2026-06-29"
+    "version": "2026-07-06"
   },
   "VHO": {
     "artifacts": [
@@ -15802,7 +15829,7 @@
     "artifacts": [
       {
         "type": "owl",
-        "url": "http://aber-owl.net/media/ontologies/XCO/172/xco.owl"
+        "url": "http://aber-owl.net/media/ontologies/XCO/173/xco.owl"
       }
     ],
     "description": "Conditions under which physiological and morphological measurements are made both in the clinic and in studies involving humans or model organisms.",

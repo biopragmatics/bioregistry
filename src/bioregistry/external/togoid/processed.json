@@ -940,6 +940,7 @@
     }
   },
   "InsdcCds": {
+    "description": "It is a portal site for the INSDC(International Nucleotide Sequence Database Collaboration), which is an initiative operated between DDBJ, EMBL-EBI and NCBI.  Each organization operates DNA databases in close coordination and cooperation with each other to achieve common accession numbers, and standardize data format (INSD-XML). The databases are called the International Nucleotide Sequence Databases (INSD).",
     "examples": [
       "ABU85686",
       "BAH11229",
@@ -956,7 +957,7 @@
       "Protein"
     ],
     "name": "GenBank/ENA/DDBJ CDS",
-    "pattern": "^(?:insdc.cds:)?(?([A-Z]\\d{5}|[A-Z]{2}\\d{6}|[A-Z]{3}\\d{5}|[A-Z]{4}\\d{8}|[A-J][A-Z]{2}\\d{5})(\\.\\d+)?$",
+    "pattern": "^(?:insdc.cds:)?(?([A-Z]\\d{5}|[A-Z]{2}\\d{6}|[A-Z]{3}\\d{5}|[A-Z]{4}\\d{8}|[A-J][A-Z]{2}\\d{5}))(?:\\.\\d+)?$",
     "uri_format": "http://identifiers.org/insdc.cds/$1",
     "xrefs": {
       "integbio": "nbdc02567"
