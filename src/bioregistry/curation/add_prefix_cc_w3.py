@@ -9,6 +9,10 @@ from tabulate import tabulate
 
 import bioregistry
 
+SKIP_CC_URI_PREFIXES = {
+    "http://www.w3.org/",
+}
+
 
 def main() -> None:
     """Add resources from Prefix.cc."""
@@ -17,17 +21,19 @@ def main() -> None:
 
     uri_prefix_to_prefix = bioregistry.get_default_converter().reverse_prefix_map
 
-    rows = []
-
     cc = defaultdict(set)
     for prefix, uri_prefix in res.items():
         cc[uri_prefix].add(prefix)
 
+    rows = []
     for uri_prefix, curie_prefixes in cc.items():
-        if "w3.org" not in uri_prefix:
+        if (
+            "w3.org" not in uri_prefix
+            or uri_prefix in uri_prefix_to_prefix
+            or uri_prefix in SKIP_CC_URI_PREFIXES
+        ):
             continue
-        if uri_prefix not in uri_prefix_to_prefix:
-            rows.append((", ".join(sorted(curie_prefixes)), uri_prefix, *_xx(curie_prefixes)))
+        rows.append((", ".join(sorted(curie_prefixes)), uri_prefix, *_xx(curie_prefixes)))
 
     click.echo(tabulate(sorted(rows)))
 
