@@ -15,7 +15,7 @@ def main() -> None:
     res_raw = requests.get("https://prefix.cc/context", timeout=5, verify=False)  # noqa:S501
     res = res_raw.json()["@context"]
 
-    x = bioregistry.get_default_converter().reverse_prefix_map
+    uri_prefix_to_prefix = bioregistry.get_default_converter().reverse_prefix_map
 
     rows = []
 
@@ -23,11 +23,11 @@ def main() -> None:
     for prefix, uri_prefix in res.items():
         cc[uri_prefix].add(prefix)
 
-    for uri_prefix, prefixes in cc.items():
+    for uri_prefix, curie_prefixes in cc.items():
         if "w3.org" not in uri_prefix:
             continue
-        if uri_prefix not in x:
-            rows.append((", ".join(sorted(prefixes)), uri_prefix, *_xx(prefixes)))
+        if uri_prefix not in uri_prefix_to_prefix:
+            rows.append((", ".join(sorted(curie_prefixes)), uri_prefix, *_xx(curie_prefixes)))
 
     click.echo(tabulate(sorted(rows)))
 
