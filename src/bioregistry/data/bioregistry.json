@@ -7897,7 +7897,9 @@
     "description": "Atom is an XML-based document format that describes lists of related information known as \"feeds\". Feeds are composed of a number of items, known as \"entries\", each with an extensible set of attached metadata. For example, each entry has a title. (from homepage)",
     "example": "title",
     "homepage": "https://validator.w3.org/feed/docs/rfc4287.html",
-    "name": "Atom Syndication Format"
+    "name": "Atom Syndication Format",
+    "rdf_uri_format": "http://www.w3.org/2005/Atom/$1",
+    "uri_format": "http://www.w3.org/2005/Atom/$1"
   },
   "atomistic": {
     "description": "An EMMO-based domain ontology for atomistic and electronic modelling.",
@@ -14719,6 +14721,14 @@
       "tracker": "https://github.com/BONSAMURAIS/ontology/issues",
       "uri_format": "http://ontology.bonsai.uno/core#$1"
     }
+  },
+  "bookmark": {
+    "description": "The Annotea Bookmark Schema, describing properties used to define instances of bookmarks, topics, and shortcuts.",
+    "example": "bookmarks",
+    "homepage": "https://www.w3.org/2002/01/bookmark",
+    "name": "Bookmark Schema",
+    "rdf_uri_format": "https://www.w3.org/2002/01/bookmark#$1",
+    "uri_format": "https://www.w3.org/2002/01/bookmark#$1"
   },
   "bot": {
     "download_owl": "https://w3c-lbd-cg.github.io/bot/bot.ttl",
@@ -139843,6 +139853,14 @@
     },
     "uri_format": "https://www.kazusa.or.jp/rouge/gfpage/$1"
   },
+  "rov": {
+    "description": "The Registered Organization Vocabulary is a profile of the Organization Ontology for describing organizations that have gained legal entity status through a formal registration process, typically in a national or regional register.",
+    "example": "RegisteredOrganization",
+    "homepage": "https://www.w3.org/TR/vocab-regorg/",
+    "name": "Registered Organization Vocabulary",
+    "rdf_uri_format": "http://www.w3.org/ns/regorg#$1",
+    "uri_format": "http://www.w3.org/ns/regorg#$1"
+  },
   "rpcec": {
     "contributor": {
       "email": "cthoyt@gmail.com",
@@ -149286,6 +149304,16 @@
       }
     ],
     "uri_format": "http://purl.obolibrary.org/obo/SO_$1"
+  },
+  "solid": {
+    "description": "The Solid Terms vocabulary defines terms referenced in Solid specifications.",
+    "download_owl": "https://solid.github.io/vocab/solid-terms.ttl",
+    "example": "Account",
+    "homepage": "https://solid.github.io/vocab/",
+    "license": "CC0-1.0",
+    "name": "Solid Terms",
+    "rdf_uri_format": "http://www.w3.org/ns/solid/terms#$1",
+    "uri_format": "http://www.w3.org/ns/solid/terms#$1"
   },
   "sopharm": {
     "aberowl": {
@@ -165469,6 +165497,14 @@
       "uri_format": "https://purl.org/sms-ontology#$1"
     }
   },
+  "ui": {
+    "description": "",
+    "download_rdf": "https://www.w3.org/ns/ui#",
+    "example": "CaseForm",
+    "license": "CC0-1.0",
+    "name": "An ontology for User Interface description, Hints and Forms",
+    "uri_format": "https://www.w3.org/ns/ui#$1"
+  },
   "ukbiobank.category": {
     "contributor": {
       "email": "cthoyt@gmail.com",
@@ -166035,7 +166071,8 @@
       "units"
     ],
     "name": "An Ontology for Units of Measure",
-    "uri_format": "www.w3.org/2007/ont/unit#$1"
+    "rdf_uri_format": "http://www.w3.org/2007/ont/unit#$1",
+    "uri_format": "http://www.w3.org/2007/ont/unit#$1"
   },
   "unesco.thesaurus": {
     "bartoc": {
@@ -175734,6 +175771,13 @@
     "name": "Web of Things Thing Model",
     "rdf_uri_format": "https://www.w3.org/2022/wot/tm#$1",
     "uri_format": "https://www.w3.org/2022/wot/tm#$1"
+  },
+  "ws": {
+    "description": "This ontology is for use in describing Workspaces.  Workspaces are places where data is stored and associated policies of privacy. A given application typically stores information in several different workspaces, some being user private, some shared, and some public. it is crucial that the user has easy control over the destiny of information.",
+    "example": "ControlledStorage",
+    "name": "Workspace Ontology",
+    "rdf_uri_format": "https://www.w3.org/ns/pim/space#$1",
+    "uri_format": "https://www.w3.org/ns/pim/space#$1"
   },
   "wsdl": {
     "description": "An XML language for describing Web services. This specification defines the core language which can be used to describe Web services based on an abstract model of what the service offers. It also defines the conformance criteria for documents in this language. (from homepage)",

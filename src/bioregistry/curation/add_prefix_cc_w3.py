@@ -11,6 +11,7 @@ import bioregistry
 
 SKIP_CC_URI_PREFIXES = {
     "http://www.w3.org/",
+    "http://www.w3.org/XML/1998/namespace/",  # incorrectly ends with /
 }
 
 
