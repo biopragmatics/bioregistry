@@ -109,7 +109,7 @@ def validate_jsonld(
 ) -> list[Message]:
     """Validate a JSON-LD object."""
     if isinstance(obj, str):
-        if obj.startswith("http://") or obj.startswith("https://"):
+        if obj.startswith(("http://", "https://")):
             import requests
 
             res = requests.get(obj, timeout=15)
@@ -177,7 +177,7 @@ def validate_prefix_map(prefix_map: dict[str, str], **kwargs: Any) -> list[Messa
 def _get_all_messages(
     inputs: list[tuple[str, str, int | None]],
     *,
-    context: str | None | Context = None,
+    context: str | Context | None = None,
     use_preferred: bool = False,
     rpm: Mapping[str, str] | None = None,
     strict: bool = False,
@@ -299,7 +299,7 @@ def _ensure_manager(manager: Manager | None) -> Manager:
 
 
 def _get_checker(
-    context: str | None | Context = None,
+    context: str | Context | None = None,
     use_preferred: bool = False,
     manager: Manager | None = None,
 ) -> Callable[[str], str | None]:
@@ -338,7 +338,7 @@ def get_virtuoso_prefix_map(url: str) -> dict[str, str]:
     soup = get_soup(url)
     table_body_tag = soup.find("tbody")
     if not isinstance(table_body_tag, Tag):
-        raise ValueError(
+        raise TypeError(
             f"could not find table body tag, are you sure this is a Virtuoso "
             f"SPARQL endpoint? Error from {url}"
         )

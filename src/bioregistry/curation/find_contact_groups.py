@@ -24,7 +24,7 @@ def main() -> None:
         if contact.email in ALLOWLIST:
             continue
         if any(p in contact.email for p in DISALLOWED_EMAIL_PARTS | {"help", "list"}) or any(
-            p in contact.name.lower() for p in {"helpdesk", "support"}
+            p in contact.name.lower() for p in ("helpdesk", "support")
         ):
             publications = resource.get_publications()
             if publications:

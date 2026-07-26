@@ -210,7 +210,7 @@ class FailureReturnType(enum.Enum):
     pair = enum.auto()
 
 
-def get_failure_return_type(frt: FailureReturnType) -> None | NonePair:
+def get_failure_return_type(frt: FailureReturnType) -> NonePair | None:
     """Get the right failure return type."""
     if frt == FailureReturnType.single:
         return None

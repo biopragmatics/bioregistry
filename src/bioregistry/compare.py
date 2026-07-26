@@ -319,12 +319,9 @@ def get_getters() -> list[tuple[str, str, Callable]]:  # type:ignore
 def get_registry_infos() -> list[RegistryInfo]:
     """Get keys for plots."""
     getters = get_getters()
-    try:
-        import seaborn as sns
-    except ImportError:
-        raise
-    else:
-        palette = sns.color_palette("Paired", len(getters))
+    import seaborn as sns
+
+    palette = sns.color_palette("Paired", len(getters))
     return [
         RegistryInfo(metaprefix, label, color, set(func(force_download=False)))
         for (metaprefix, label, func), color in zip(getters, palette, strict=False)
