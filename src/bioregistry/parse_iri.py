@@ -445,28 +445,10 @@ def parse_curie(
     >>> parse_curie("pdb:1234", use_preferred=True)
     ReferenceTuple(prefix='pdb', identifier='1234')
     """
-    if strict:
-        return manager.parse_curie(
-            curie,
-            sep=sep,
-            use_preferred=use_preferred,
-            strict=strict,
-        )
-    elif on_failure_return_type == FailureReturnType.single:
-        return manager.parse_curie(
-            curie,
-            sep=sep,
-            use_preferred=use_preferred,
-            on_failure_return_type=on_failure_return_type,
-            strict=strict,
-        )
-    elif on_failure_return_type == FailureReturnType.pair:
-        return manager.parse_curie(
-            curie,
-            sep=sep,
-            use_preferred=use_preferred,
-            on_failure_return_type=on_failure_return_type,
-            strict=strict,
-        )
-    else:
-        raise TypeError
+    return manager.parse_curie(  # type:ignore
+        curie,
+        sep=sep,
+        use_preferred=use_preferred,
+        on_failure_return_type=on_failure_return_type,
+        strict=strict,
+    )

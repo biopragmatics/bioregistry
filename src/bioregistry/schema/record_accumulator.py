@@ -219,14 +219,13 @@ def _get_converter(
             converter.add_prefix_synonym(primary_prefix, s)
 
         if include_prefixes:
-            if include_prefixes:
-                converter.add_uri_prefix_synonym(primary_prefix, f"{secondary_prefix}:")
-                converter.add_uri_prefix_synonym(primary_prefix, f"{secondary_prefix.upper()}:")
-                converter.add_uri_prefix_synonym(primary_prefix, f"{secondary_prefix.lower()}:")
-                for tertiary_prefix in tertiary_prefixes:
-                    converter.add_uri_prefix_synonym(primary_prefix, f"{tertiary_prefix}:")
-                    converter.add_uri_prefix_synonym(primary_prefix, f"{tertiary_prefix.upper()}:")
-                    converter.add_uri_prefix_synonym(primary_prefix, f"{tertiary_prefix.lower()}:")
+            converter.add_uri_prefix_synonym(primary_prefix, f"{secondary_prefix}:")
+            converter.add_uri_prefix_synonym(primary_prefix, f"{secondary_prefix.upper()}:")
+            converter.add_uri_prefix_synonym(primary_prefix, f"{secondary_prefix.lower()}:")
+            for tertiary_prefix in tertiary_prefixes:
+                converter.add_uri_prefix_synonym(primary_prefix, f"{tertiary_prefix}:")
+                converter.add_uri_prefix_synonym(primary_prefix, f"{tertiary_prefix.upper()}:")
+                converter.add_uri_prefix_synonym(primary_prefix, f"{tertiary_prefix.lower()}:")
 
     return converter
 

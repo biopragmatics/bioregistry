@@ -130,8 +130,7 @@ class TestResolve(unittest.TestCase):
                 continue
             with self.subTest(prefix=prefix):
                 self.assertTrue(
-                    re_pattern.startswith(f"^{miriam_prefix.upper()}")
-                    or re_pattern.startswith(miriam_prefix.upper()),
+                    re_pattern.startswith((f"^{miriam_prefix.upper()}", miriam_prefix.upper())),
                     msg=f"{prefix} pattern: {re_pattern}",
                 )
 

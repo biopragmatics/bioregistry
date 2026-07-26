@@ -10,7 +10,7 @@ markers = [
 
 [project]
 name = "bioregistry"
-version = "0.13.65-dev"
+version = "0.13.67-dev"
 description = "Integrated registry of biological databases and nomenclatures"
 readme = "README.md"
 authors = [
@@ -120,6 +120,7 @@ align = [
     "pandas<3.0",
     "wikidata-client",
     "ontoportal-client>=0.0.9",
+    "lxml",
 ]
 export = [
     "pyyaml",
@@ -258,6 +259,8 @@ ignore = [
     "C901", # ehh, complexity out the wind
     "S704", # TODO figure out why this gets thrown and how to fix
     "S314", # unsafe xml
+    "DTZ",
+    "BLE001",
 ]
 
 # See https://docs.astral.sh/ruff/settings/#per-file-ignores
@@ -287,7 +290,7 @@ known-first-party = [
 docstring-code-format = true
 
 [tool.bumpversion]
-current_version = "0.13.65-dev"
+current_version = "0.13.67-dev"
 parse = "(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+)(?:-(?P<release>[0-9A-Za-z-]+(?:\\.[0-9A-Za-z-]+)*))?(?:\\+(?P<build>[0-9A-Za-z-]+(?:\\.[0-9A-Za-z-]+)*))?"
 serialize = [
     "{major}.{minor}.{patch}-{release}+{build}",

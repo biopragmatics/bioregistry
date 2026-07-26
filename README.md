@@ -186,26 +186,26 @@ with the `normalize_prefix()` function.
 from bioregistry import normalize_prefix
 
 # Doesn't affect canonical prefixes
-assert 'ncbitaxon' == normalize_prefix('ncbitaxon')
+assert "ncbitaxon" == normalize_prefix("ncbitaxon")
 
 # This works for uppercased prefixes, like:
-assert 'chebi' == normalize_prefix("CHEBI")
+assert "chebi" == normalize_prefix("CHEBI")
 
 # This works for mixed case prefixes like
-assert 'fbbt' == normalize_prefix("FBbt")
+assert "fbbt" == normalize_prefix("FBbt")
 
 # This works for synonym prefixes, like:
-assert 'ncbitaxon' == normalize_prefix('taxonomy')
+assert "ncbitaxon" == normalize_prefix("taxonomy")
 
 # This works for common mistaken prefixes, like:
-assert 'pubchem.compound' == normalize_prefix('pubchem')
+assert "pubchem.compound" == normalize_prefix("pubchem")
 
 # This works for prefixes that are often written many ways, like:
-assert 'ec' == normalize_prefix('ec-code')
-assert 'ec' == normalize_prefix('EC_CODE')
+assert "ec" == normalize_prefix("ec-code")
+assert "ec" == normalize_prefix("EC_CODE")
 
 # If a prefix is not registered, it gives back `None`
-assert normalize_prefix('not a real key') is None
+assert normalize_prefix("not a real key") is None
 ```
 
 ### Parsing CURIEs
@@ -217,16 +217,16 @@ identifier using the `parse_curie()` function:
 from bioregistry import parse_curie
 
 # Obvious for canonical CURIEs
-assert ('chebi', '1234') == parse_curie('chebi:1234')
+assert ("chebi", "1234") == parse_curie("chebi:1234")
 
 # Normalize mixed case prefixes
-assert ('fbbt', '00007294') == parse_curie('FBbt:00007294')
+assert ("fbbt", "00007294") == parse_curie("FBbt:00007294")
 
 # Normalize common mistaken prefixes
-assert ('pubchem.compound', '1234') == parse_curie('pubchem:1234')
+assert ("pubchem.compound", "1234") == parse_curie("pubchem:1234")
 
 # Remove the redundant prefix and normalize
-assert ('go', '1234') == parse_curie('GO:GO:1234')
+assert ("go", "1234") == parse_curie("GO:GO:1234")
 ```
 
 This will also apply the same normalization rules for prefixes from the previous
@@ -242,16 +242,16 @@ the prefix and removing redundant namespaces embedded in LUIs with the
 from bioregistry import normalize_curie
 
 # Idempotent to canonical CURIEs
-assert 'chebi:1234' == normalize_curie('chebi:1234')
+assert "chebi:1234" == normalize_curie("chebi:1234")
 
 # Normalize common mistaken prefixes
-assert 'pubchem.compound:1234' == normalize_curie('pubchem:1234')
+assert "pubchem.compound:1234" == normalize_curie("pubchem:1234")
 
 # Normalize mixed case prefixes
-assert 'fbbt:1234' == normalize_curie('FBbt:1234')
+assert "fbbt:1234" == normalize_curie("FBbt:1234")
 
 # Remove the redundant prefix and normalize
-assert 'go:1234' == normalize_curie('GO:GO:1234')
+assert "go:1234" == normalize_curie("GO:GO:1234")
 ```
 
 ### Parsing IRIs
@@ -268,25 +268,33 @@ pre-parsed CURIE.
 from bioregistry import curie_from_iri, parse_iri
 
 # First-party IRI
-assert ('chebi', '24867') == parse_iri('https://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:24867')
-assert 'chebi:24867' == curie_from_iri('https://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:24867')
+assert ("chebi", "24867") == parse_iri(
+    "https://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:24867"
+)
+assert "chebi:24867" == curie_from_iri(
+    "https://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:24867"
+)
 
 # OBO Library PURL
-assert ('chebi', '24867') == parse_iri('http://purl.obolibrary.org/obo/CHEBI_24867')
-assert 'chebi:24867' == curie_from_iri('http://purl.obolibrary.org/obo/CHEBI_24867')
+assert ("chebi", "24867") == parse_iri("http://purl.obolibrary.org/obo/CHEBI_24867")
+assert "chebi:24867" == curie_from_iri("http://purl.obolibrary.org/obo/CHEBI_24867")
 
 # OLS IRI
-assert ('chebi', '24867') == parse_iri('https://www.ebi.ac.uk/ols/ontologies/chebi/terms?iri=http://purl.obolibrary.org/obo/CHEBI_24867')
-assert 'chebi:24867' == curie_from_iri('https://www.ebi.ac.uk/ols/ontologies/chebi/terms?iri=http://purl.obolibrary.org/obo/CHEBI_24867')
+assert ("chebi", "24867") == parse_iri(
+    "https://www.ebi.ac.uk/ols/ontologies/chebi/terms?iri=http://purl.obolibrary.org/obo/CHEBI_24867"
+)
+assert "chebi:24867" == curie_from_iri(
+    "https://www.ebi.ac.uk/ols/ontologies/chebi/terms?iri=http://purl.obolibrary.org/obo/CHEBI_24867"
+)
 
 # Identifiers.org IRIs (with varying usage of HTTP(s) and colon/slash separator
-assert ('chebi', '24867') == parse_iri('https://identifiers.org/CHEBI:24867')
-assert ('chebi', '24867') == parse_iri('http://identifiers.org/CHEBI:24867')
-assert ('chebi', '24867') == parse_iri('https://identifiers.org/CHEBI/24867')
-assert ('chebi', '24867') == parse_iri('http://identifiers.org/CHEBI/24867')
+assert ("chebi", "24867") == parse_iri("https://identifiers.org/CHEBI:24867")
+assert ("chebi", "24867") == parse_iri("http://identifiers.org/CHEBI:24867")
+assert ("chebi", "24867") == parse_iri("https://identifiers.org/CHEBI/24867")
+assert ("chebi", "24867") == parse_iri("http://identifiers.org/CHEBI/24867")
 
 # Bioregistry IRI
-assert ('chebi', '24867') == parse_iri('https://bioregistry.io/chebi:24867')
+assert ("chebi", "24867") == parse_iri("https://bioregistry.io/chebi:24867")
 ```
 
 In general, the Bioregistry knows how to parse both the http and https variants
@@ -295,8 +303,12 @@ of any given URI:
 ```python
 from bioregistry import parse_iri
 
-assert ('neuronames', '268') == parse_iri("http://braininfo.rprc.washington.edu/centraldirectory.aspx?ID=268")
-assert ('neuronames', '268') == parse_iri("https://braininfo.rprc.washington.edu/centraldirectory.aspx?ID=268")
+assert ("neuronames", "268") == parse_iri(
+    "http://braininfo.rprc.washington.edu/centraldirectory.aspx?ID=268"
+)
+assert ("neuronames", "268") == parse_iri(
+    "https://braininfo.rprc.washington.edu/centraldirectory.aspx?ID=268"
+)
 ```
 
 ### Generating IRIs
@@ -316,8 +328,8 @@ it uses the following priorities:
 ```python
 from bioregistry import get_iri
 
-assert get_iri("chebi", "24867") == 'https://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:24867'
-assert get_iri("chebi:24867") == 'https://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:24867'
+assert get_iri("chebi", "24867") == "https://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:24867"
+assert get_iri("chebi:24867") == "https://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:24867"
 ```
 
 It's possible to change the default priority list by passing an alternate
@@ -329,8 +341,8 @@ priority and when OBO PURLs can't be generated, default to something else:
 from bioregistry import get_iri
 
 priority = ["obofoundry", "default", "miriam", "ols", "n2t", "bioportal"]
-assert get_iri("chebi:24867", priority=priority) == 'http://purl.obolibrary.org/obo/CHEBI_24867'
-assert get_iri("hgnc:1234", priority=priority) == 'https://bioregistry.io/hgnc:1234'
+assert get_iri("chebi:24867", priority=priority) == "http://purl.obolibrary.org/obo/CHEBI_24867"
+assert get_iri("hgnc:1234", priority=priority) == "https://bioregistry.io/hgnc:1234"
 ```
 
 Even deeper, you can add (or override) any of the Bioregistry's default prefix
@@ -340,11 +352,11 @@ map with the `prefix_map` keyword:
 from bioregistry import get_iri
 
 prefix_map = {
-   "myprefix": "https://example.org/myprefix/",
-   "chebi": "https://example.org/chebi/",
+    "myprefix": "https://example.org/myprefix/",
+    "chebi": "https://example.org/chebi/",
 }
-assert get_iri("chebi:24867", prefix_map=prefix_map) == 'https://example.org/chebi/24867'
-assert get_iri("myprefix:1234", prefix_map=prefix_map) == 'https://example.org/myprefix/1234'
+assert get_iri("chebi:24867", prefix_map=prefix_map) == "https://example.org/chebi/24867"
+assert get_iri("myprefix:1234", prefix_map=prefix_map) == "https://example.org/myprefix/1234"
 ```
 
 A custom prefix map can be supplied in combination with a priority list, using
@@ -355,10 +367,14 @@ from bioregistry import get_iri
 
 prefix_map = {"lipidmaps": "https://example.org/lipidmaps/"}
 priority = ["obofoundry", "custom", "default", "bioregistry"]
-assert get_iri("chebi:24867", prefix_map=prefix_map, priority=priority) == \
-    'http://purl.obolibrary.org/obo/CHEBI_24867'
-assert get_iri("lipidmaps:1234", prefix_map=prefix_map, priority=priority) == \
-    'https://example.org/lipidmaps/1234'
+assert (
+    get_iri("chebi:24867", prefix_map=prefix_map, priority=priority)
+    == "http://purl.obolibrary.org/obo/CHEBI_24867"
+)
+assert (
+    get_iri("lipidmaps:1234", prefix_map=prefix_map, priority=priority)
+    == "https://example.org/lipidmaps/1234"
+)
 ```
 
 Alternatively, there are direct functions for generating IRIs for different
@@ -424,7 +440,7 @@ Wikidata pattern.
 ```python
 import bioregistry
 
-assert '^GO:\\d{7}$' == bioregistry.get_pattern('go')
+assert "^GO:\\d{7}$" == bioregistry.get_pattern("go")
 ```
 
 Entries in the Bioregistry can be checked for deprecation with the
@@ -434,8 +450,8 @@ Foundry takes precedence since it seems to be updated more often.
 ```python
 import bioregistry
 
-assert bioregistry.is_deprecated('nmr')
-assert not bioregistry.is_deprecated('efo')
+assert bioregistry.is_deprecated("nmr")
+assert not bioregistry.is_deprecated("efo")
 ```
 
 Entries in the Bioregistry can be looked up with the `get_resource()` function.
@@ -443,7 +459,7 @@ Entries in the Bioregistry can be looked up with the `get_resource()` function.
 ```python
 import bioregistry
 
-entry = bioregistry.get_resource('taxonomy')
+entry = bioregistry.get_resource("taxonomy")
 # there are lots of mysteries to discover in this dictionary!
 ```
 

@@ -207,8 +207,10 @@ REVERSE_LICENSES: Mapping[str | None, list[str]] = {
         "http://creativecommons.org/licenses/by/4.0/legalcode",
         "https://creativecommons.org/licenses/by/4.0/legalcode",
         "url: http://creativecommons.org/licenses/by/4.0",
-        "SWO is provided under a Creative Commons Attribution 4.0 International"
-        " (CC BY 4.0) license (https://creativecommons.org/licenses/by/4.0/).",
+        (
+            "SWO is provided under a Creative Commons Attribution 4.0 International"
+            " (CC BY 4.0) license (https://creativecommons.org/licenses/by/4.0/)."
+        ),
         "http://purl.org/NET/rdflicense/cc-by4.0",
         "CC-BY 4.0 License",
         "ATTRIBUTION 4.0 INTERNATIONAL (CC BY 4.0)",
@@ -408,6 +410,10 @@ REVERSE_LICENSES: Mapping[str | None, list[str]] = {
         APACHE_UNSPECIFIED,
         "Apache License",
         "http://www.apache.org/licenses/",
+    ],
+    CC_0: [
+        CC_0,
+        "CC0-1.0 License",
     ],
 }
 

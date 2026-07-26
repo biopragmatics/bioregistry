@@ -315,11 +315,12 @@
   "P1053": {
     "description": "identifier for a researcher in a system for scientific authors, redirects to a Web of Science ID, along with P3829",
     "examples": [
+      "A-1685-2010",
       "J-3403-2017",
       "K-8011-2013"
     ],
     "homepage": "https://access.clarivate.com/login?app=wos",
-    "name": "ResearcherID",
+    "name": "Web of Science ResearcherID",
     "pattern": "^[A-Z]{1,3}-\\d{4}-(19|20)\\d\\d$",
     "uri_format": "https://www.webofscience.com/wos/author/record/$1",
     "xrefs": {
@@ -1247,7 +1248,7 @@
     "homepage": "https://www.radoctores.es/academicos.php?cat=N&estado=F",
     "name": "Real Academia de Doctores de España ID",
     "pattern": "^\\d{1,4}$",
-    "uri_format": "https://www.radoctores.es/academico.php?item=$1"
+    "uri_format": "https://www.rade.es/academico.php?item=$1"
   },
   "P11583": {
     "description": "identifier for a taxon in the Great Lakes Aquatic Nonindigenous Species Information System (GLANSIS)",
@@ -3518,6 +3519,21 @@
     "pattern": "^\\d+$",
     "uri_format": "https://www.iau.org/Profile?ID=$1"
   },
+  "P14607": {
+    "description": "taxon identifier in Global Biodiversity Information Facility (GBIF) after 2026 update",
+    "examples": [
+      "59R5F",
+      "74Q6H",
+      "RLZLW"
+    ],
+    "homepage": "https://www.gbif.org/",
+    "name": "GBIF taxon ID",
+    "pattern": "^[23456789BCDFGHJKLMNPQRSTVWXYZ]{1,6}$",
+    "uri_format": "https://www.gbif.org/taxon/$1",
+    "xrefs": {
+      "wikidata": "Q1531570"
+    }
+  },
   "P1461": {
     "description": "identifier of disease at Patient UK",
     "examples": [
@@ -3528,6 +3544,19 @@
     "name": "Patientplus ID",
     "pattern": "^[A-Za-z\\-\\d\\(\\)]+$",
     "uri_format": "https://patient.info/doctor/$1"
+  },
+  "P14635": {
+    "description": "image of a footprint of this taxon (preferably with a ruler or other object for scale)",
+    "examples": [
+      "http://commons.wikimedia.org/wiki/Special:FilePath/Anas%20platyrhynchos%20track%2003.jpg",
+      "http://commons.wikimedia.org/wiki/Special:FilePath/Footprint%20of%20Vulpes%20vulpes.jpg",
+      "http://commons.wikimedia.org/wiki/Special:FilePath/Keating%20track%20fall%202007%202%20brown%20odfw%20%2816680086664%29.jpg",
+      "http://commons.wikimedia.org/wiki/Special:FilePath/Spuren%2C%20Trittsiegel%20Wolf%2C%20Fuchs%2C%20Haushund.pdf"
+    ],
+    "name": "taxon footprint",
+    "xrefs": {
+      "wikidata": "Q135790"
+    }
   },
   "P1550": {
     "description": "identifier in the Orpha.net database (without ORPHA prefix)",
@@ -3798,7 +3827,7 @@
     ],
     "name": "parent taxon",
     "xrefs": {
-      "wikidata": "Q16521"
+      "wikidata": "Q140562347"
     }
   },
   "P1717": {
@@ -4525,7 +4554,7 @@
     "short_names": [
       "VIAF"
     ],
-    "uri_format": "https://viaf.org/viaf/$1",
+    "uri_format": "https://viaf.org/en/viaf/$1",
     "uri_format_rdf": "http://viaf.org/viaf/$1",
     "xrefs": {
       "wikidata": "Q54919"
@@ -4831,10 +4860,10 @@
       "sh85037527"
     ],
     "homepage": "https://id.loc.gov",
-    "name": "Library of Congress authority ID",
+    "name": "Library of Congress Authorities ID",
     "pattern": "^(cf|ct|gf|n|nb|nr|no|ns|sh|sj)([4-9][0-9]|00|01|20[0-2][0-9])[0-9]{6}$",
     "short_names": [
-      "LC authority ID",
+      "LC Authorities ID",
       "LCAuth"
     ],
     "uri_format": "https://id.loc.gov/authorities/$1",
@@ -6244,10 +6273,9 @@
       "750712184",
       "970403606"
     ],
-    "homepage": "https://finess.esante.gouv.fr/",
+    "homepage": "https://finess.esante.gouv.fr/recherche",
     "name": "FINESS ID",
     "pattern": "^\\d{9}$",
-    "uri_format": "https://finess.esante.gouv.fr/fininter/jsp/actionDetailEtablissement.do?noFiness=$1",
     "xrefs": {
       "wikidata": "Q3063240"
     }
@@ -7423,7 +7451,7 @@
     "homepage": "http://www.biusante.parisdescartes.fr/histoire/biographies/index.php",
     "name": "BIU Santé person ID",
     "pattern": "^\\d+$",
-    "uri_format": "https://www.biusante.parisdescartes.fr/histoire/biographies/index.php?cle=$1",
+    "uri_format": "https://numerabilis.u-pariscite.fr/s/numerabilis/ark:/13685/refbiogr$1",
     "xrefs": {
       "wikidata": "Q105958830"
     }
@@ -7478,7 +7506,7 @@
     "uri_format": "http://www.whonamedit.com/doctor.cfm/$1.html"
   },
   "P5437": {
-    "description": "identifier for an area of government activity, in the European Union's EuroVoc thesaurus",
+    "description": "identifier for an area of government activity, in the EuroVoc thesaurus from the European Union (EU)",
     "examples": [
       "4189",
       "4704",
@@ -10585,7 +10613,7 @@
     "uri_format": "https://web.archive.org/web/0/http://www.fossilworks.org/cgi-bin/bridge.pl?a=taxonInfo&taxon_no=$1"
   },
   "P846": {
-    "description": "taxon identifier in GBIF",
+    "description": "taxon identifier in GBIF before 2026 - now use P14607",
     "examples": [
       "1948418",
       "3239598",
@@ -10594,7 +10622,7 @@
     ],
     "name": "GBIF-species-ID (before 2026 update)",
     "pattern": "^([1-9]\\d{0,8}|)$",
-    "uri_format": "https://www.gbif.org/taxon/$1",
+    "uri_format": "https://www.gbif.org/species/$1",
     "xrefs": {
       "wikidata": "Q1531570"
     }
@@ -10672,7 +10700,7 @@
     ],
     "homepage": "https://scholar.archive.org/fatcat",
     "name": "Fatcat ID",
-    "pattern": "^(release|work|container|creator|file|fileset|webcapture|extra)_[a-z0-9]{26}$",
+    "pattern": "^(release|work|container|creator|file|fileset|webcapture|extra)_[a-z0-9]{26,32}$",
     "uri_format": "https://scholar.archive.org/fatcat/$1"
   },
   "P8612": {

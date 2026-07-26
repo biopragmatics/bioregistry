@@ -85,9 +85,7 @@ def process_aberowl_record(entry: dict[str, Any]) -> Record | None:
                 type=ArtifactType.obo,
             )
         )
-    elif download_url_suffix.endswith(".skos"):
-        pass  # TODO
-    elif download_url_suffix.endswith(".umls"):
+    elif download_url_suffix.endswith((".skos", ".umls")):
         pass  # TODO
     else:
         tqdm.write(f"[aberowl:{prefix}] unknown download URL: {download_url_suffix}")

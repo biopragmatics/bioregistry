@@ -141,10 +141,10 @@ class Manager:
 
     def __init__(
         self,
-        registry: None | str | Path | Mapping[str, Resource] = None,
-        metaregistry: None | str | Path | Mapping[str, Registry] = None,
-        collections: None | str | Path | Mapping[str, Collection] = None,
-        contexts: None | str | Path | Mapping[str, Context] = None,
+        registry: str | Path | Mapping[str, Resource] | None = None,
+        metaregistry: str | Path | Mapping[str, Registry] | None = None,
+        collections: str | Path | Mapping[str, Collection] | None = None,
+        contexts: str | Path | Mapping[str, Context] | None = None,
         mismatches: Mapping[str, Mapping[str, set[str]]] | None = None,
         version_mappings: Mapping[str, Mapping[str, set[str]]] | None = None,
         provided_by_mappings: Mapping[str, Mapping[str, set[str]]] | None = None,
@@ -437,7 +437,7 @@ class Manager:
         *,
         use_preferred: bool = False,
         on_failure_return_type: FailureReturnType = FailureReturnType.pair,
-    ) -> ReferenceTuple | None | NonePair:
+    ) -> ReferenceTuple | NonePair | None:
         """Parse a compact identifier from a URI.
 
         :param uri: A valid URI
@@ -894,7 +894,7 @@ class Manager:
     def _repack(self, obj: MetaprefixAnnotatedValue[X]) -> MetaresourceAnnotatedValue[X]: ...
 
     def _repack(
-        self, obj: None | X | MetaprefixAnnotatedValue[X]
+        self, obj: X | MetaprefixAnnotatedValue[X] | None
     ) -> MetaresourceAnnotatedValue[X] | X | None:
         if obj is None:
             return None
@@ -954,11 +954,11 @@ class Manager:
     @overload
     def get_namespace_in_lui(
         self, prefix: str, *, provenance: Literal[True] = ...
-    ) -> None | MetaresourceAnnotatedValue[bool]: ...
+    ) -> MetaresourceAnnotatedValue[bool] | None: ...
 
     def get_namespace_in_lui(
         self, prefix: str, *, provenance: bool = False
-    ) -> None | bool | MetaresourceAnnotatedValue[bool]:
+    ) -> bool | MetaresourceAnnotatedValue[bool] | None:
         """Get the name for the given prefix, if it's available."""
         entry = self.get_resource(prefix)
         if entry is None:
@@ -2259,28 +2259,28 @@ class Manager:
             owners = resource.get_owners()
             if skip_org_rors is not None:
                 owners = [o for o in owners if o.ror not in skip_org_rors]
-            if any(
-                owner.ror == resource_owner.ror
-                for owner in collection.organizations or []
-                for resource_owner in owners
-                if owner.ror is not None and resource_owner.ror is not None
-            ):
-                calls[prefix] = True
-            elif (
-                resource.contact is not None
-                and resource.contact.orcid is not None
-                and any(
-                    resource.contact.orcid == maintainer.orcid
-                    for maintainer in collection.maintainers or []
-                    if maintainer.orcid is not None
+            if (
+                any(
+                    owner.ror == resource_owner.ror
+                    for owner in collection.organizations or []
+                    for resource_owner in owners
+                    if owner.ror is not None and resource_owner.ror is not None
                 )
-            ):
-                calls[prefix] = True
-            elif any(
-                contact.orcid == maintainer.orcid
-                for maintainer in collection.maintainers or []
-                for contact in resource.contact_extras or []
-                if contact.orcid is not None and maintainer.orcid is not None
+                or (
+                    resource.contact is not None
+                    and resource.contact.orcid is not None
+                    and any(
+                        resource.contact.orcid == maintainer.orcid
+                        for maintainer in collection.maintainers or []
+                        if maintainer.orcid is not None
+                    )
+                )
+                or any(
+                    contact.orcid == maintainer.orcid
+                    for maintainer in collection.maintainers or []
+                    for contact in resource.contact_extras or []
+                    if contact.orcid is not None and maintainer.orcid is not None
+                )
             ):
                 calls[prefix] = True
             else:
@@ -2316,9 +2316,8 @@ def _read_contributors(
                 if contact_extra.orcid is not None:
                     rv[contact_extra.orcid] = contact_extra
     for metaresource in metaregistry.values():
-        if not direct_only:
-            if metaresource.contact.orcid:
-                rv[metaresource.contact.orcid] = metaresource.contact
+        if not direct_only and metaresource.contact.orcid:
+            rv[metaresource.contact.orcid] = metaresource.contact
     for collection in collections.values():
         for collection_contributor in collection.contributors or []:
             if collection_contributor.orcid:

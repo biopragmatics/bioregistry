@@ -327,11 +327,11 @@ def _process(
     download = _clean_url(config["fileLocation"])
     if download is None:
         pass
-    elif download.endswith(".obo") or download.endswith(".obo.gz"):
+    elif download.endswith((".obo", ".obo.gz")):
         rv.setdefault("artifacts", []).append(Artifact(type=ArtifactType.obo, url=download))
-    elif download.endswith(".owl") or download.endswith(".owl.gz"):
+    elif download.endswith((".owl", ".owl.gz")):
         rv.setdefault("artifacts", []).append(Artifact(type=ArtifactType.owl, url=download))
-    elif download.endswith(".rdf") or download.endswith(".ttl") or download.endswith(".ttl.gz"):
+    elif download.endswith((".rdf", ".ttl", ".ttl.gz")):
         rv.setdefault("artifacts", []).append(Artifact(type=ArtifactType.rdf, url=download))
     elif download.endswith(".xml"):
         rv.setdefault("artifacts", []).append(Artifact(type=ArtifactType.xml, url=download))

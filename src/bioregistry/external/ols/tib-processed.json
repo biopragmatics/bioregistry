@@ -543,9 +543,15 @@
     "uri_format": "http://champ-project.org/images/ontology/cao.owl#CAO_$1"
   },
   "cco": {
+    "artifacts": [
+      {
+        "type": "rdf",
+        "url": "https://raw.githubusercontent.com/CommonCoreOntology/CommonCoreOntologies/refs/heads/develop/src/cco-merged/AllCoreOntology.ttl"
+      }
+    ],
     "description": "An import of all the Common Core mid-level ontologies into a single file so that content is easy to view. The All Core Ontology is not an ontology in the sense it contains no unique content. As such it should not be added to, but can be extended from.",
     "extras": {
-      "version.iri": "http://www.ontologyrepository.com/CommonCoreOntologies/Mid/2024-11-03/AllCoreOntology"
+      "version.iri": "https://www.commoncoreontologies.org/2026-04-04/AllCoreOntology"
     },
     "homepage": "https://www.cubrc.org/index.php/data-science-and-information-fusion/ontology",
     "keywords": [
@@ -574,6 +580,24 @@
     },
     "name": "Describing Copyright in RDF - Creative Commons Rights Expression Language",
     "uri_format": "http://creativecommons.org/ns#$1"
+  },
+  "cepo": {
+    "artifacts": [
+      {
+        "type": "owl",
+        "url": "https://raw.githubusercontent.com/OpenEnergyPlatform/climate-energy-policy-ontology/refs/heads/production/src/ontology/cepo.owl"
+      }
+    ],
+    "description": "The Climate and Energy Policy Ontology (CEPO) is a common set of definitions and relationships which can be used to structure information about climate and energy policy instruments. The CEPO was first developed in 2025 and will be extended and revised according to the needs of the user community.",
+    "homepage": "https://climatepolicyatlas.org/index.html",
+    "keywords": [
+      "NFDI4Energy",
+      "mechanical engineering, energy technology",
+      "chemical and environmental engineering"
+    ],
+    "name": "Climate and Energy Policy Ontology",
+    "tracker": "https://github.com/OpenEnergyPlatform/climate-energy-policy-ontology/issues",
+    "uri_format": "http://www.semanticweb.org/awein/ontologies/2024/11/CEPO#CEPO_$1"
   },
   "cf": {
     "description": "Ontology representation of the Climate and Forecast (CF) standard names parameter vocabulary, which is intended for use with climate and forecast data in the atmosphere, surface and ocean domains. Every CF parameter is captured as a SKOS concept.This vocabulary is a simplified version of the CF vocabulary P07 from the NERC Vocabulary Server (NVS), National Oceanography Centre - British Oceanographic Data Centre (BODC), https://vocab.nerc.ac.uk.",
@@ -797,9 +821,9 @@
         "url": "http://purl.org/spar/cito.xml"
       }
     ],
-    "description": "CiTO, the Citation Typing Ontology, is an ontology written in OWL 2 DL to enable characterization of the nature or type of citations, both factually and rhetorically, and to permit these descriptions to be published on the Web.  \n\nThe citations characterized may be either direct and explicit (as in the reference list of a journal article), indirect (e.g. a citation to a more recent paper by the same research group on the same topic), or implicit (e.g. as in artistic quotations or parodies, or in cases of plagiarism).\n\nCiTO contains the object property cito:cites and its sub-properties, and its inverse property cito:isCitedBy, from the original Citation Typing Ontology, CiTO v1.6.  Upon the creation of version 2.0 of CiTO, a number of new sub-properties of cito:cites were added, and the inverse properties of all the sub-properties of cito:cites were created, all of which are sub-properties of cito:isCitedBy.  The ontology has also been integrated with the SWAN Discourse Relationships Ontology by making cito:cites a sub-property of http://purl.org/swan/2.0/discourse-relationships/refersTo.\n\nRestrictions of domain and range present in the previous version of CiTO were removed from the object properties when creating CiTO v 2.0, permitting its independent use in other contexts, in addition to conventional bibliographic citations.  \n\nSo that they can be used independently, other entities that were previously included in CiTO v1.6 have now been made components of other SPAR ontologies: FaBiO, the FRBR-aligned Bibliographic Ontology; C4O, the Citation Counting and Context Characterization Ontology; and PSO, the Publication Status Ontology. \n\nThe addition of two new properties:cito:usesConclusionsFrom and its inverse cito:providesConclusionsFor on 09Dec2011 led to a version number increment from v2.0 to v2.1.\n\nThe addition of two additional properties, cito:compiles and cito:isCompiledBy, previously in the deprecated CiTO4Data ontology, on 03 July 2012 led to a version increment from v2.1 to v2.2.\n\nSubsequent expansions include:\n\nin versions 2.3 and 2.4 the addition of the object properties cito:citesAsPotentialSolution, cito:citesAsRecommendedReading, cito:repliesTo, cito:retracts, cito:speculates on, and their inverse properties;\n\nin v2.5 the addition of cito:CitationAct, cito:hasCitationEvent, cito:hasCitedEntity and cito:hasCitingEntity;\n\nin v 2.6: \nrenaming cito:hasCitationEvent to become cito:hasCitationCharacterization;\nimproving definitions of cito:CitationAct, cito:hasCitationCharacterization, cito:hasCitedEntity and cito:hasCitingEntity;\nrevising the definition of cito:isCompiledBy to correct it and bring it into line with the DataCite Metadata Kernel v2.2 definition;\nchanging the definition of cito:sharesAuthorsWith from 'An object property indicating that the citing entity has at least one author in common with the cited entity.' to 'An object property between two entities indicating that they have at least one author in common.' so that it can be used when one entity does not actually cite the other;\nadding the object properties cito:hasRelatedEntity, cito:sharesFundingAgencyWith and cito:sharesAuthorInstitutionWith;\nand adding the text 'An object property indicating that . . .' at the beginning of the textual definition (rdfs:comment) for each CiTO object property.\n\nin v 2.6.1:\nRemoved text 'An object property indicating that . . .' added in v 2.6 at the beginning of the textual definition (rdfs:comment) for each CiTO object property, so that each definition is just a direct statement of the relationship.  \nRemoved the property cito:hasRelatedEntity (in favour of using dcterms:relation).\nRenamed cito:hasReply to become cito:hasReplyFrom.\nImproved the textual definitions of cito:derides and its inverse property.\n\nin v 2.6.2:\nImproved definitions of of cito:CitationAct, cito:hasCitationCharacterization, cito:hasCitedEntity and cito:hasCitingEntity.\n\nin v 2.6.3:\nAdded examples for each citation type (i.e., all the subproperties of cito:cites).\n\nin v 2.6.4:\nAdded alignment with schema:citation.\n\nin v 2.7.0:\nAdded new property cito:linksTo, and corrected some property URL.\n\nin v 2.7.1\nCorrected some typos in property comments.\n\nin v 2.7.2\nThe name of the class cito:CitationAct has been changed to cito:Citation, and its definition has been modified. The property cito:hasCitationTimeSpan has been added.\n\nin v 2.7.3\nAdded the class cito:SelfCitation, i.e. citation in which the citing and the cited entities have at least one author in common.\n\nin v 2.8\nRenamed the class cito:SelfCitation in cito:AuthorSelfCitation. Created a new class cito:SelfCitation with a more general definition (citation in which the citing and the cited entities have something significant in common with one another), which now includes five subclasses: cito:AuthorSelfCitation, cito:JournalSelfCitation, cito:FunderSelfCitation, cito:AffiliationSelfCitation, cito:AuthorNetworkSelfCitation. The latter class is also accompanied by the new data property cito:hasCoAuthorCitationLevel, which specifies the minimal distance that one of the authors of a citing entity has with regards to one of the authors of a cited entity according to their co-author network. Added the object properties cito:sharesPublicationVenueWith and its subproperty cito:sharesJournalWith. Added the data property cito:hasCitationCreationDate, and changed the domain of cito:hasCitationTimeSpan with xsd:duration.\n\nin v 2.8.1\nRenamed the property cito:hasCoAuthorCitationLevel in cito:hasCoAuthorshipCitationLevel.",
+    "description": "The Citation Typing Ontology (CiTO) is an ontology that enables characterization of the nature or type of citations, both factually and rhetorically.",
     "extras": {
-      "version.iri": "http://purl.org/spar/cito/2018-02-16"
+      "version.iri": "http://purl.org/spar/cito/2026-06-22"
     },
     "homepage": "http://www.sparontologies.net/ontologies/cito",
     "keywords": [
@@ -958,6 +982,9 @@
         "url": "https://cidoc-crm.org/extensions/crmsci/owl/2.0/CRMsci_v2.0.owl"
       }
     ],
+    "contact": {
+      "email": "csa@ics.forth.gr"
+    },
     "description": "The 'Scientific Observation Model' (CRMsci) is a formal ontology intended to serve as a global schema for integrating metadata about scientific observation, measurements, and processed data in descriptive and empirical sciences such as life sciences, geology, geography, archaeology, and cultural heritage conservation.",
     "extras": {
       "version.iri": "http://www.cidoc-crm.org/extensions/crmsci/owl/2.0/"
@@ -973,7 +1000,6 @@
       "url": "https://creativecommons.org/licenses/by/4.0/"
     },
     "name": "CRMsci",
-    "tracker": "https://github.com/erlangen-crm/crmsci/issues",
     "uri_format": "http://www.cidoc-crm.org/extensions/crmsci/$1"
   },
   "cso": {
@@ -1092,6 +1118,30 @@
     },
     "name": "Digital Competence Framework",
     "uri_format": "http://data.europa.eu/snb/dcf/$1"
+  },
+  "dcld": {
+    "artifacts": [
+      {
+        "type": "owl",
+        "url": "https://raw.githubusercontent.com/TIBHannover/datacite-metadata-toolkit/refs/heads/main/production-namespace/dist/datacite-4.7.owl"
+      }
+    ],
+    "description": "OWL representation of the DataCite linked-data vocabulary for DataCite Metadata Schema 4.7.",
+    "extras": {
+      "version.iri": "https://w3id.org/tib/datacite/dist/datacite-4.7"
+    },
+    "homepage": "https://w3id.org/tib/datacite/",
+    "keywords": [
+      "Miscellaneous"
+    ],
+    "license": {
+      "name": "CC BY 4.0",
+      "spdx": "CC-BY-4.0",
+      "url": "https://creativecommons.org/licenses/by/4.0/"
+    },
+    "name": "DataCite Metadata Schema 4.7",
+    "tracker": "https://github.com/TIBHannover/datacite-metadata-toolkit/issues",
+    "uri_format": "https://w3id.org/tib/datacite/class/$1"
   },
   "dcterms": {
     "description": "This document is an up-to-date specification of all metadata terms maintained by the Dublin Core Metadata Initiative, including properties, vocabulary encoding schemes, syntax encoding schemes, and classes.",
@@ -1361,6 +1411,12 @@
     "uri_format": "https://purl.org/nfdi4plants/ontology/dpbo/DPBO_$1"
   },
   "dpv": {
+    "artifacts": [
+      {
+        "type": "rdf",
+        "url": "https://w3c-cg.github.io/dpv/2.3/dpv/dpv.rdf"
+      }
+    ],
     "description": "The Data Privacy Vocabulary (DPV) provides terms (classes and properties) to describe and represent information related to processing of personal data based on established requirements such as for the EU General Data Protection Regulation (GDPR). The DPV is structured as a top-down hierarchical vocabulary with the core or base concepts of personal data categories, purposes of processing and types of processing, data controller(s) associated, recipients of personal data, legal bases or justifications used, technical and organisational measures and restrictions (e.g. storage locations and storage durations), applicable rights, and the risks involved.",
     "extras": {
       "version.iri": "https://w3id.org/dpv/2.3"
@@ -1619,7 +1675,7 @@
     },
     "description": "The Experimental Factor Ontology (EFO) provides a systematic description of many experimental variables available in EBI databases, and for projects such as the NHGRI-EBI GWAS catalog. It combines parts of several biological ontologies, such as UBERON anatomy, ChEBI chemical compounds, Cell Ontology and the Monarch Disease Ontology (MONDO). The scope of EFO is to support the annotation, analysis and visualization of data handled by many groups at the EBI and as the core ontology for Open Targets.",
     "extras": {
-      "version.iri": "http://www.ebi.ac.uk/efo/releases/v3.90.0/efo.owl"
+      "version.iri": "http://www.ebi.ac.uk/efo/releases/v3.91.0/efo.owl"
     },
     "homepage": "https://www.ebi.ac.uk/efo/",
     "keywords": [
@@ -1688,7 +1744,7 @@
       "url": "https://creativecommons.org/licenses/by/4.0/"
     },
     "name": "Electron Microscopy Glossary",
-    "tracker": "https://codebase.helmholtz.cloud/em_glossary/em_glossary/-/issues",
+    "tracker": "https://codebase.helmholtz.cloud/em_glossary/em_glossary_owl/-/work_items/",
     "uri_format": "https://purls.helmholtz-metadaten.de/emg/EMG_$1"
   },
   "emmo": {
@@ -1770,7 +1826,7 @@
     ],
     "description": "ENVO is an ontology which represents knowledge about environments,environmental processes, ecosystems, habitats, and related entities",
     "extras": {
-      "version.iri": "http://purl.obolibrary.org/obo/envo/releases/2025-10-20/envo.owl"
+      "version.iri": "http://purl.obolibrary.org/obo/envo/releases/2026-06-26/envo.owl"
     },
     "homepage": "http://environmentontology.org/",
     "keywords": [
@@ -1895,9 +1951,9 @@
     "uri_format": "http://data.europa.eu/8mn/euroscivoc/$1"
   },
   "fabio": {
-    "description": "http://purl.org/spar/fabio/FRBR%20diagram%20with%20new%20Fabio%20verbs.png",
+    "description": "FaBiO, the FRBR-aligned Bibliographic Ontology, is an ontology for recording and publishing on the Semantic Web descriptions of entities that are published or potentially publishable, and that contain or are referred to by bibliographic references, or entities used to define such bibliographic references. FaBiO entities are primarily textual publications such as books, magazines, newspapers and journals, and items of their content such as poems, conference papers and editorials.  However, they also include blogs, web pages, datasets, computer algorithms, experimental protocols, formal specifications and vocabularies, legal records, governmental papers, technical and commercial reports and similar publications, and also anthologies, catalogues and similar collections.",
     "extras": {
-      "version.iri": "http://purl.org/spar/fabio/2019-02-19"
+      "version.iri": "http://purl.org/spar/fabio/2026-05-18"
     },
     "homepage": "https://sparontologies.github.io/fabio/current/fabio.html",
     "keywords": [
@@ -2008,6 +2064,9 @@
       "email": "robert.hoehndorf@kaust.edu.sa"
     },
     "description": "The Flora Phenotype Ontology (FLOPO) is an ontology of phenotypes reported in Floras. The original version was developed at the pro-iBiosphere Hackathon in Leiden. This is the pre-classified version of the ontology. The Flora Phenotype Ontology is generated from the Flora Malesiana, Flora Gabon, Flora of Central Africa, and a collection of Kew's African Floras. Every class in the ontology has at least one taxon annotation. The (draft) taxon annotation are available at http://jagannath.pdn.cam.ac.uk/plant/flora/clean-rerun/ .",
+    "extras": {
+      "version.iri": "http://purl.obolibrary.org/obo/flopo/releases/2026-06-29/flopo.owl"
+    },
     "keywords": [
       "DataPLANT",
       "ESS",
@@ -2260,7 +2319,7 @@
     },
     "description": "The Gene Ontology (GO) provides a framework and set of concepts for describing the functions of gene products from all organisms.",
     "extras": {
-      "version.iri": "http://purl.obolibrary.org/obo/go/releases/2026-05-19/go.owl"
+      "version.iri": "http://purl.obolibrary.org/obo/go/releases/2026-06-15/go.owl"
     },
     "homepage": "http://geneontology.org/",
     "keywords": [
@@ -2402,7 +2461,7 @@
     ],
     "description": "The Human Phenotype Ontology (HPO) provides a standardized vocabulary of phenotypic abnormalities and clinical features encountered in human disease.",
     "extras": {
-      "version.iri": "http://purl.obolibrary.org/obo/hp/releases/2026-02-16/hp.owl"
+      "version.iri": "http://purl.obolibrary.org/obo/hp/releases/2026-06-23/hp.owl"
     },
     "homepage": "https://hpo.jax.org/app/",
     "keywords": [
@@ -3012,7 +3071,7 @@
     ],
     "description": "A representation of the variety of methods used to make clinical and phenotype measurements.",
     "extras": {
-      "version.iri": "http://purl.obolibrary.org/obo/mmo/releases/2026-05-30/mmo.owl"
+      "version.iri": "http://purl.obolibrary.org/obo/mmo/releases/2026-06-27/mmo.owl"
     },
     "homepage": "https://github.com/rat-genome-database/MMO-Measurement-Method-Ontology/",
     "keywords": [
@@ -3035,7 +3094,7 @@
     ],
     "description": "PSI-MOD is an ontology consisting of terms that describe protein chemical modifications, logically linked by an is_a relationship in such a way as to form a direct acyclic graph (DAG). The PSI-MOD ontology has more than 45 top-level nodes, and provides alternative hierarchical paths for classifying protein modifications either by the molecular structure of the modification, or by the amino acid residue that is modified.",
     "extras": {
-      "version.iri": "http://purl.obolibrary.org/obo/mod/1.035.0/mod.owl"
+      "version.iri": "http://purl.obolibrary.org/obo/mod/1.037.0/mod.owl"
     },
     "homepage": "http://www.psidev.info/MOD",
     "keywords": [
@@ -3136,7 +3195,7 @@
     ],
     "description": "A structured controlled vocabulary for the annotation of experiments concerned with proteomics mass spectrometry.",
     "extras": {
-      "version.iri": "http://purl.obolibrary.org/obo/ms/4.1.248/ms.owl"
+      "version.iri": "http://purl.obolibrary.org/obo/ms/4.1.256/ms.owl"
     },
     "homepage": "http://www.psidev.info/groups/controlled-vocabularies",
     "keywords": [
@@ -3221,7 +3280,7 @@
   "mwo": {
     "description": "The MatWerk ontology represents research data and related activities of the MSE community. A first version of the ontology will be simplified, focusing on (i) community structure: researchers, research projects, universities, and institutions; (ii) infrastructure: software, workflows, ontologies, schemas, APIs, instruments, facilities, educational resources; and (iii) data: repositories, databases, scientific publications, published datasets and reference data.",
     "extras": {
-      "version.iri": "http://purls.helmholtz-metadaten.de/mwo/mwo.owl/3.0.1"
+      "version.iri": "http://purls.helmholtz-metadaten.de/mwo/3.0.2"
     },
     "homepage": "https://nfdi-matwerk.pages.rwth-aachen.de/ta-oms/mwo/docs/index.html",
     "keywords": [
@@ -3260,7 +3319,7 @@
   "n4e": {
     "description": "The ontology and metadata schema for the NFDI4Earth Knowledge Hub. See serializations of this schema as an OWL ontology here:\n  - [RDF/XML](https://nfdi4earth.pages.rwth-aachen.de/knowledgehub/nfdi4earth-kh-schema/ontology.owl.xml)\n  - [RDF/Turtle](https://nfdi4earth.pages.rwth-aachen.de/knowledgehub/nfdi4earth-kh-schema/ontology.owl.ttl)\n  - [RDF/JSON-LD](https://nfdi4earth.pages.rwth-aachen.de/knowledgehub/nfdi4earth-kh-schema/ontology.owl.jsonld)\n  - [RDF/N-Triples](https://nfdi4earth.pages.rwth-aachen.de/knowledgehub/nfdi4earth-kh-schema/ontology.owl.nt)\n",
     "extras": {
-      "version.iri": "https://nfdi4earth.pages.rwth-aachen.de/knowledgehub/nfdi4earth-kh-schema/ontology-v0.39.0.owl.xml"
+      "version.iri": "https://nfdi4earth.pages.rwth-aachen.de/knowledgehub/nfdi4earth-kh-schema/ontology-v0.40.4.owl.xml"
     },
     "homepage": "https://nfdi4earth.de/ontology/",
     "keywords": [
@@ -4773,6 +4832,28 @@
     "tracker": "https://github.com/N5GEH/SARGON-Website/issues",
     "uri_format": "https://sargon-n5geh.netlify.app/ontology/1.0/object_properties/$1"
   },
+  "sargon2": {
+    "artifacts": [
+      {
+        "type": "rdf",
+        "url": "https://sumon-tun.github.io/SARGON2/OnToology/sargon2.owl/documentation/ontology.ttl"
+      }
+    ],
+    "description": "SARGON2 ontology represents the energy domain including building and non-energy domain including weather and serve as the extension of other ontologies for the digital services in the energy sector, and enable the seamless semantic integration of energy assets in Renewable Energy Valleys. This ontology also fouces on the renewable energy resources including biomass, biogas, wind, solar, geothermal, and hydrogen entities. The main focus of this ontology is to cover the necessary components in the power systems by aligning with IEC61970CIM standard.",
+    "homepage": "https://sumon-tun.github.io/SARGON2/OnToology/sargon2.owl/documentation/index-en.html",
+    "keywords": [
+      "NFDI4Energy",
+      "engineering"
+    ],
+    "license": {
+      "name": "CC BY 4.0",
+      "spdx": "CC-BY-4.0",
+      "url": "https://creativecommons.org/licenses/by/4.0/"
+    },
+    "name": "SARGON2 Ontology",
+    "tracker": "https://github.com/Sumon-tun/SARGON2/issues",
+    "uri_format": "http://www.semanticweb.org/stu/ontologies/2024/9/sargon2#$1"
+  },
   "sbo": {
     "artifacts": [
       {
@@ -5306,7 +5387,7 @@
     "artifacts": [
       {
         "type": "rdf",
-        "url": "https://akswnc7.informatik.uni-leipzig.de/dstreitmatter/archivo/w3.org/2019--wot--td/2021.09.22-190316/2019--wot--td_type=parsed.ttl"
+        "url": "https://raw.githubusercontent.com/w3c/wot-thing-description/refs/heads/main/ontology/td.ttl"
       }
     ],
     "description": "This ontology aims to model the Web of Things domain according to the W3C Interest Group (http://w3c.github.io/wot/)",
@@ -5475,7 +5556,7 @@
     ],
     "description": "Uberon is an integrated cross-species anatomy ontology representing a variety of entities classified according to traditional anatomical criteria such as structure, function and developmental lineage. The ontology includes comprehensive relationships to taxon-specific anatomical ontologies, allowing integration of functional, phenotype and expression data.",
     "extras": {
-      "version.iri": "http://purl.obolibrary.org/obo/uberon/releases/2026-04-01/uberon.owl"
+      "version.iri": "http://purl.obolibrary.org/obo/uberon/releases/2026-06-19/uberon.owl"
     },
     "homepage": "http://obophenotype.github.io/uberon/",
     "keywords": [
