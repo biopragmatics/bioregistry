@@ -296,7 +296,7 @@ def validate_identifiers(
             return _help_validate_identifiers(df, column, next(iter(prefixes)))
         patterns: dict[str, Pattern[str] | None] = {}
         for prefix_column_value in df[prefix_column].unique():
-            if pd.isna(prefix):
+            if pd.isna(prefix_column_value):
                 continue
             pattern = bioregistry.get_pattern(prefix_column_value)
             patterns[prefix_column_value] = re.compile(pattern) if pattern else None
