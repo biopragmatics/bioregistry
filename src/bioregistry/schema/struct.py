@@ -176,6 +176,7 @@ URI_FORMAT_PATHS = [
     ("rrid", URI_FORMAT_KEY),
     ("tib", URI_FORMAT_KEY),
     ("bartoc", URI_FORMAT_KEY),
+    ("zazuko", URI_FORMAT_KEY),
 ]
 
 
@@ -1742,6 +1743,10 @@ class Resource(BaseModel):
         """
         return self._get_external_uri_format("biocontext")
 
+    def get_zazuko_uri_format(self) -> str | None:
+        """Get the Zazuko URI format string for this entry, if available."""
+        return self._get_external_uri_format("zazuko")
+
     def get_bartoc_uri_format(self) -> str | None:
         """Get the BARTOC URI format string for this entry, if available.
 
@@ -2018,6 +2023,7 @@ class Resource(BaseModel):
         "obofoundry": get_obofoundry_uri_format,
         "prefixcommons": get_prefixcommons_uri_format,
         "biocontext": get_biocontext_uri_format,
+        "zazuko": get_zazuko_uri_format,
         "miriam": get_miriam_uri_format,
         "miriam.legacy": get_legacy_miriam_uri_format,
         "miriam.legacy_banana": get_legacy_alt_miriam_uri_format,
