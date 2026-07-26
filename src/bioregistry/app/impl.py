@@ -262,7 +262,7 @@ in the medium- and long term, and will continue to cover these costs.
 @overload
 def get_app(
     manager: Manager | None = ...,
-    config: None | str | Path | dict[str, Any] = ...,
+    config: str | Path | dict[str, Any] | None = ...,
     *,
     first_party: bool = ...,
     return_flask: Literal[True] = True,
@@ -276,7 +276,7 @@ def get_app(
 @overload
 def get_app(
     manager: Manager | None = ...,
-    config: None | str | Path | dict[str, Any] = ...,
+    config: str | Path | dict[str, Any] | None = ...,
     *,
     first_party: bool = ...,
     return_flask: Literal[False] = False,
@@ -288,7 +288,7 @@ def get_app(
 
 def get_app(
     manager: Manager | None = None,
-    config: None | str | Path | dict[str, Any] = None,
+    config: str | Path | dict[str, Any] | None = None,
     *,
     first_party: bool = True,
     return_flask: bool = False,
@@ -375,7 +375,7 @@ def get_app(
 
 
 def _prepare_config(
-    config: None | str | Path | dict[str, Any] = None, first_party: bool = True
+    config: str | Path | dict[str, Any] | None = None, first_party: bool = True
 ) -> dict[str, Any]:
     if isinstance(config, str | Path):
         with open(config) as file:
@@ -407,7 +407,7 @@ def _prepare_config(
     config.setdefault("METAREGISTRY_MATOMO", "")
 
     # yes, this isn't very secure. just for testing now.
-    key = "-".join([KEY_A, KEY_B, KEY_C, KEY_D, KEY_E])
+    key = f"{KEY_A}-{KEY_B}-{KEY_C}-{KEY_D}-{KEY_E}"
 
     # setdefault works by not overriding if the value is there,
     # so set ANALYTICS_API_KEY with an empty string as value to

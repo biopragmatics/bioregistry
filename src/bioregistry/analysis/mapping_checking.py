@@ -69,7 +69,7 @@ def get_scored_mappings_for_prefix(
     # Add any extra entries that were passed in
     if mismatch_entries:
         mappings_to_process.extend(
-            (mapped_registry, mapped_entry["prefix"], mismatch_entries[mapped_registry], 1)
+            (mapped_registry, mapped_entry["prefix"], mapped_entry, 1)
             for mapped_registry, mapped_entry in mismatch_entries.items()
         )
 

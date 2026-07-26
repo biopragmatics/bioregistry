@@ -87,8 +87,5 @@ def _sort_collections(c: list[Collection]) -> list[Collection]:
 
 def _collections_key(c: Collection) -> tuple[int, int]:
     rv = len(c.maintainers or [])
-    rv += sum(
-        r.startswith("https://discord") or r.startswith("https://go.rocket")
-        for r in c.references or []
-    )
+    rv += sum(r.startswith(("https://discord", "https://go.rocket")) for r in c.references or [])
     return rv, len(c.resources)

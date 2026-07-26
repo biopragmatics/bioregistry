@@ -28,9 +28,8 @@ def main() -> None:
         elif obo_deprecation is not None:
             if resource.deprecated != obo_deprecation:
                 rows.append((prefix, resource.deprecated, obo_deprecation, "-"))
-        elif miriam_deprecation is not None:
-            if resource.deprecated != miriam_deprecation:
-                rows.append((prefix, resource.deprecated, "-", miriam_deprecation))
+        elif miriam_deprecation is not None and resource.deprecated != miriam_deprecation:
+            rows.append((prefix, resource.deprecated, "-", miriam_deprecation))
 
     df = pd.DataFrame(rows, columns=["prefix", "bioregistry", "obo", "miriam"])
     click.echo(df.to_markdown())

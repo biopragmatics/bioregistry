@@ -153,11 +153,7 @@ def _process_row(line: str) -> tuple[str, dict[str, Any]] | tuple[None, None]:
             rv.setdefault("xrefs", {})[metaprefix] = metavalue
 
     synonyms = rv.pop("synonyms", None)
-    if not synonyms:
-        pass
-    elif prefix in DISCARD_SYNONYMS:
-        pass
-    else:
+    if synonyms and prefix not in DISCARD_SYNONYMS:
         synonyms_it = [s.strip() for s in synonyms.split(",")]
         synonyms_it = [
             synonym
