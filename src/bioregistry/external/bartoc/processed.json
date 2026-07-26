@@ -6733,7 +6733,7 @@
     "homepage": "http://purl.oclc.org/NET/UNIS/fiware/iot-lite",
     "name": "IoT-lite Ontology",
     "short_names": [
-      "iot-lite"
+      "iotlite"
     ],
     "uri_format": "http://purl.oclc.org/NET/UNIS/fiware/iot-lite#$1"
   },
@@ -20835,15 +20835,11 @@
   "21007": {
     "description": "Plasma Ontology, also called Plasma-O, is a domain-specific ontology for low-temperature plasma science and technology. It reuses several classes and properties from other ontologies such as VIVO, BIBO, and FOAF.",
     "homepage": "https://github.com/plasma-mds/plasma-ontology",
-    "license": {
-      "spdx": "CC-BY-4.0",
-      "url": "http://creativecommons.org/licenses/by/4.0/"
-    },
     "name": "Plasma-Ontology",
     "short_names": [
-      "Plasma-O"
+      "PLSMO"
     ],
-    "uri_format": "https://plasma-mds.org/ontology/plasma-o/PLSMO$1"
+    "uri_format": "https://plasma-mds.org/ontology/plasma-o/PLSMO_$1"
   },
   "21008": {
     "description": "MathModDB is a database of mathematical models developed by the Mathematical Research Data Initiative (MaRDI). MathModDB defines a data model with classes (Mathematical Model, Mathematical Formulation, Research Field, Research Problem, Quantity [Kind], Computational Task, Publication), object properties/relations, data properties and annotation properties as an ontology. This ontology is populated with individuals/data from various fields of applied mathematics, making it a knowledge graph.",
@@ -21787,6 +21783,22 @@
     "name": "Climate and Energy Policy Ontology",
     "short_names": [
       "CEPO"
+    ]
+  },
+  "21152": {
+    "description": "AgrO, the Agronomy Ontology, describes agronomic practices, techniques, and variables used in agronomic experiments. AgrO is being built using traits identified by agronomists, the ICASA variables, and other existing ontologies such as ENVO, UO, PATO, IAO, and CHEBI. Further, AgrO powers AgroFIMS, the Agronomy Fieldbook and Information Management System modeled on a CGIAR Breeding Management System to capture agronomic data.",
+    "homepage": "https://bigdata.cgiar.org/resources/agronomy-ontology/",
+    "name": "Agronomy Ontology",
+    "short_names": [
+      "AgrO"
+    ]
+  },
+  "21153": {
+    "description": "The Plant Phenotyping Experiment Ontology (PPEO) is an implementation of the Minimal Information About Plant Phenotyping Experiment. It lists and organises all the informations necessary to describe and reuse a phenotyping dataset following FAIR principles (Findable Interoperable Accessible Reusable). It has been initiated with experts from Elixir, Emphasis, Bioversity International - CGIAR and RDA.",
+    "homepage": "http://purl.org/ppeo",
+    "name": "Plant Phenotyping Experiment Ontology",
+    "short_names": [
+      "PPEO"
     ]
   },
   "212": {
@@ -23718,16 +23730,12 @@
       "B1-B5802"
     ],
     "homepage": "http://www.loc.gov/catdir/cpso/lcc.html",
-    "license": {
-      "spdx": "CC0-1.0",
-      "url": "http://creativecommons.org/publicdomain/zero/1.0/"
-    },
     "name": "Library of Congress Classification",
-    "pattern": "^[A-Z]{1,3}(\\d+(\\.\\d+)?( *\\.?[A-Z]{0,3}\\d*([ -]\\.?[A-Z]{0,3}\\d+)?)?( *\\d+[a-z]*)?)?$",
+    "pattern": "^(?:[A-Z(][A-Z0-9.()\\-]*(?: [A-Z0-9.()\\-]+)*[A-Z0-9)]|[A-Z]|[A-Z][A-Za-z]*)$",
     "short_names": [
       "LCC"
     ],
-    "uri_format": "http://id.loc.gov/authorities/classification/$1",
+    "uri_format": "http://uri.gbv.de/terminology/lcc/$1",
     "xrefs": {
       "wikidata": "Q621080"
     }

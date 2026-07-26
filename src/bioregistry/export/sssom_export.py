@@ -17,7 +17,7 @@ from ..constants import (
 )
 from ..parse_iri import normalize_prefix
 from ..resolve import get_appears_in, get_depends_on, get_name, get_resource
-from ..resource_manager import manager
+from ..resource_manager import Manager
 from ..schema_utils import read_mappings, read_registry
 
 __all__ = [
@@ -28,6 +28,7 @@ __all__ = [
 @click.command()
 def export_sssom() -> None:
     """Export the meta-registry as SSSOM."""
+    manager = Manager()
     converter = manager._get_internal_converter()
 
     semantic_mappings = read_mappings()

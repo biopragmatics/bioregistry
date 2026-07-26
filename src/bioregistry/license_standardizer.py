@@ -411,6 +411,10 @@ REVERSE_LICENSES: Mapping[str | None, list[str]] = {
         "Apache License",
         "http://www.apache.org/licenses/",
     ],
+    CC_0: [
+        CC_0,
+        "CC0-1.0 License",
+    ],
 }
 
 NONSTANDARD = {
