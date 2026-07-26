@@ -120,14 +120,14 @@ def get_name(
 @overload
 def get_name(
     prefix: str, *, provenance: Literal[False] = False, strict: Literal[False] = False
-) -> None | str: ...
+) -> str | None: ...
 
 
 # docstr-coverage:excused `overload`
 @overload
 def get_name(
     prefix: str, *, provenance: Literal[True] = True, strict: Literal[False] = False
-) -> None | MetaresourceAnnotatedValue[str]: ...
+) -> MetaresourceAnnotatedValue[str] | None: ...
 
 
 def get_name(

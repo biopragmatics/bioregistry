@@ -930,7 +930,7 @@ class Resource(BaseModel):
         *,
         rv_type: type[X],
         provenance: bool = False,
-    ) -> None | X | MetaprefixAnnotatedValue[X]:
+    ) -> X | MetaprefixAnnotatedValue[X] | None:
         """Get a key enriched by the given external resources' data."""
         rv = self.model_dump().get(key)
         if rv is not None:
@@ -963,17 +963,17 @@ class Resource(BaseModel):
         metaprefixes: str | Sequence[str],
         *,
         provenance: Literal[False] = False,
-    ) -> None | str: ...
+    ) -> str | None: ...
 
     # docstr-coverage:excused `overload`
     @overload
     def _get_prefix_key_str(
         self, key: str, metaprefixes: str | Sequence[str], *, provenance: Literal[True] = True
-    ) -> None | MetaprefixAnnotatedValue[str]: ...
+    ) -> MetaprefixAnnotatedValue[str] | None: ...
 
     def _get_prefix_key_str(
         self, key: str, metaprefixes: str | Sequence[str], *, provenance: bool = False
-    ) -> None | str | MetaprefixAnnotatedValue[str]:
+    ) -> str | MetaprefixAnnotatedValue[str] | None:
         if provenance:
             return self.get_prefix_key(key, metaprefixes, rv_type=str, provenance=True)
         else:
@@ -987,17 +987,17 @@ class Resource(BaseModel):
         metaprefixes: str | Sequence[str],
         *,
         provenance: Literal[False] = False,
-    ) -> None | bool: ...
+    ) -> bool | None: ...
 
     # docstr-coverage:excused `overload`
     @overload
     def _get_prefix_key_bool(
         self, key: str, metaprefixes: str | Sequence[str], *, provenance: Literal[True] = True
-    ) -> None | MetaprefixAnnotatedValue[bool]: ...
+    ) -> MetaprefixAnnotatedValue[bool] | None: ...
 
     def _get_prefix_key_bool(
         self, key: str, metaprefixes: str | Sequence[str], *, provenance: bool = False
-    ) -> None | bool | MetaprefixAnnotatedValue[bool]:
+    ) -> bool | MetaprefixAnnotatedValue[bool] | None:
         if provenance:
             return self.get_prefix_key(key, metaprefixes, rv_type=bool, provenance=True)
         else:
@@ -1184,7 +1184,7 @@ class Resource(BaseModel):
         *,
         provenance: Literal[False] = ...,
         strict: Literal[False] = ...,
-    ) -> None | str: ...
+    ) -> str | None: ...
 
     # docstr-coverage:excused `overload`
     @overload
@@ -1193,7 +1193,7 @@ class Resource(BaseModel):
         *,
         provenance: Literal[True] = ...,
         strict: Literal[False] = ...,
-    ) -> None | MetaprefixAnnotatedValue[str]: ...
+    ) -> MetaprefixAnnotatedValue[str] | None: ...
 
     # docstr-coverage:excused `overload`
     @overload
@@ -1215,7 +1215,7 @@ class Resource(BaseModel):
 
     def get_name(
         self, *, provenance: bool = False, strict: bool = False
-    ) -> None | str | MetaprefixAnnotatedValue[str]:
+    ) -> str | MetaprefixAnnotatedValue[str] | None:
         """Get the name for the given prefix, if it's available."""
         if provenance:
             rv = self._get_prefix_key_str("name", DEFAULT_METAPREFIX_PRIORITY, provenance=True)
@@ -1446,12 +1446,13 @@ class Resource(BaseModel):
         """
         if self.contact is not None:
             return self.contact
-
-        contacts = []
-        for metaprefix in self.mappings or []:
-            if contact := self.get_external(metaprefix).get("contact"):
-                if contact.get("name"):
-                    contacts.append(Attributable.model_validate(contact))
+        if not self.mappings:
+            return None
+        contacts = [
+            Attributable.model_validate(contact)
+            for metaprefix in self.mappings
+            if (contact := self.get_external(metaprefix).get("contact")) and contact.get("name")
+        ]
         if contacts:
             return max(contacts, key=lambda c: c.get_score())
         return None
@@ -2038,7 +2039,7 @@ class Resource(BaseModel):
         "bioregistry",
     )
 
-    def get_priority_prefix(self, priority: None | str | Sequence[str] = None) -> str:
+    def get_priority_prefix(self, priority: str | Sequence[str] | None = None) -> str:
         """Get a prioritized prefix.
 
         :param priority: A metaprefix or list of metaprefixes used to choose a
@@ -2197,17 +2198,17 @@ class Resource(BaseModel):
         if uri_format is None or uri_format == "None":
             return None
         if uri_format != uri_format.rstrip():
-            logging.debug("[%s] formatter has whitespace on right: %s", self.prefix, uri_format)
+            logger.debug("[%s] formatter has whitespace on right: %s", self.prefix, uri_format)
             uri_format = uri_format.rstrip()
         count = uri_format.count("$1")
         if 0 == count:
-            logging.debug("[%s] formatter missing $1: %s", self.prefix, uri_format)
+            logger.debug("[%s] formatter missing $1: %s", self.prefix, uri_format)
             return None
         if uri_format.count("$1") != 1:
-            logging.debug("[%s] formatter has multiple $1: %s", self.prefix, uri_format)
+            logger.debug("[%s] formatter has multiple $1: %s", self.prefix, uri_format)
             return None
         if not uri_format.endswith("$1"):
-            logging.debug("[%s] formatter does not end with $1: %s", self.prefix, uri_format)
+            logger.debug("[%s] formatter does not end with $1: %s", self.prefix, uri_format)
             return None
         return uri_format[: -len("$1")]
 
@@ -2623,7 +2624,7 @@ class Resource(BaseModel):
         license_value = self.get_license()
         if license_value is None:
             return None
-        if license_value.startswith("http://") or license_value.startswith("https://"):
+        if license_value.startswith(("http://", "https://")):
             return license_value
         if license_value in {"CC0", "CC0-1.0"}:
             return "https://creativecommons.org/publicdomain/zero/1.0/"
@@ -2700,8 +2701,10 @@ class Resource(BaseModel):
                 creators.extend(ce.name for ce in self.contact_extras if ce.name)
         else:
             creators = [
-                "Converted to OWL by Charles Tapley Hoyt (cthoyt@gmail.com), "
-                "no primary contact information is available."
+                (
+                    "Converted to OWL by Charles Tapley Hoyt (cthoyt@gmail.com), "
+                    "no primary contact information is available."
+                )
             ]
 
         description = ""
