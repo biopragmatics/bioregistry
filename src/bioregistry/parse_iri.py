@@ -32,17 +32,23 @@ def get_default_converter(*, stubs: bool = False) -> curies.Converter:
 
 
 @lru_cache(2)
-def get_preferred_converter(*, stubs: bool = False) -> curies.Converter:
+def get_preferred_converter(*, stubs: bool = False, wrap: bool = False) -> curies.Converter:
     """Get a converter from this manager with preferred CURIE prefixes and RDF URI prefixes.
 
     :param stubs: Should stub URIs be assigned to resources with no URI format?
+    :param wrap: Wrap with auto-normalization rules?
     :returns: A converter ready for semantic web applications.
     """
-    return manager.get_converter(
+    rv = manager.get_converter(
         prefix_priority=["preferred", "default"],
         uri_prefix_priority=["rdf", "default"],
         stubs=stubs,
     )
+    if wrap:
+        import curies_processing
+
+        rv = curies_processing.wrap(rv)
+    return rv
 
 
 def curie_from_iri(

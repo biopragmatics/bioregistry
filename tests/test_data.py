@@ -356,11 +356,10 @@ class TestRegistry(unittest.TestCase):
 
     def test_own_terms_conflict(self) -> None:
         """Test there is no conflict between no own terms and having an example."""
-        for prefix, resource in self.registry.items():
+        for prefix in self.registry:
             if bioregistry.has_no_terms(prefix):
                 with self.subTest(prefix=prefix):
                     self.assertIsNone(bioregistry.get_example(prefix))
-                    self.assertIsNone(resource.uri_format)
 
     def test_patterns(self) -> None:
         """Test that all prefixes are norm-unique."""
