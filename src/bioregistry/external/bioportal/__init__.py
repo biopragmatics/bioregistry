@@ -75,7 +75,7 @@ class OntoPortalClient:
             return cast(list[dict[str, Any]], json.loads(self.raw_path.read_text()))
 
         records = self.client.get_ontologies(summary_only=False, notes=True)
-        records = thread_map(
+        records = thread_map(  # type:ignore[call-overload]
             self._preprocess,
             records,
             unit="ontology",
@@ -86,7 +86,7 @@ class OntoPortalClient:
         with self.raw_path.open("w") as file:
             json.dump(records, file, indent=2, sort_keys=True, ensure_ascii=False)
 
-        return records
+        return cast(list[dict[str, Any]], records)
 
     def _preprocess(self, record: dict[str, Any]) -> dict[str, Any]:
         record.pop("@context", None)

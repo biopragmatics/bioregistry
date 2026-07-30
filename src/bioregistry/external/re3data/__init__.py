@@ -67,7 +67,7 @@ def get_re3data(force_download: bool = False, force_process: bool = False) -> di
         identifier_to_doi[identifier_element.text.strip()] = doi
 
     records: dict[str, Record] = dict(
-        thread_map(
+        thread_map(  # type:ignore[call-overload]
             partial(_get_record, force=force_download),
             identifier_to_doi,
             unit_scale=True,
