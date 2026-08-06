@@ -125,6 +125,11 @@
                 <th scope="col">Name</th>
                 <th scope="col">License</th>
                 <th scope="col">Download</th>
+                {%- for tag in entry.tags %}
+                {%- if tags[tag].display == "column" %}
+                <th scope="col">{{ tags[tag].name }}</th>
+                {%- endif %}
+                {%- endfor %}
             </tr>
             </thead>
             <tbody>
@@ -148,7 +153,9 @@
                     {%- endif %}
                     {%- if annotated_prefix.tags %}
                     {%- for tag in annotated_prefix.tags %}
+                    {%- if tag.display == "badge" %}
                     <span class="badge badge-secondary" {% if tags[tag].description %}title="{{ tags[tag].description }}"{% endif %}>{{ tags[tag].name }}</span>
+                    {%- endif %}
                     {%- endfor %}
                     {%- endif %}
                     {%- endif %}
@@ -167,6 +174,11 @@
                     <a href="{{ resource.get_download() }}"><i class="bi bi-download"></i></a>
                     {%- endif %}
                 </td>
+                {%- for tag in annotated_prefix.tags %}
+                {%- if tags[tag].display == "column" %}
+                {{ tags[tag].name }}
+                {%- endif %}
+                {%- endfor %}
             </tr>
             {% endfor %}
             </tbody>

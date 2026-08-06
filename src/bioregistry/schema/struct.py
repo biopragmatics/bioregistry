@@ -3303,6 +3303,7 @@ class Tag(BaseModel):
     code: str
     name: str
     description: str | None = None
+    display: Literal["column", "badge"] = "badge"
 
 
 class Collection(BaseModel):
