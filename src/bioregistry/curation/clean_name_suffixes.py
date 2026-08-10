@@ -11,7 +11,8 @@ SUFFIXES = ["id", "accession"]
 
 
 @resource_mutator()
-def remove_uninformative_suffix(resource) -> None:
+def clean_name_suffixes(resource) -> None:
+    """Remove uninformative suffixes in names of resources."""
     name = resource.get_name()
     if not name:
         return
@@ -22,4 +23,4 @@ def remove_uninformative_suffix(resource) -> None:
 
 
 if __name__ == "__main__":
-    remove_uninformative_suffix()
+    clean_name_suffixes()
