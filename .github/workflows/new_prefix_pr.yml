@@ -14,6 +14,8 @@ jobs:
         python-version: ["3.12"]
     steps:
       - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+        with:
+          persist-credentials: false
       - name: Delay to ensure labels are attached
         run: sleep 10
       - name: Check Issue Labels
@@ -40,19 +42,22 @@ jobs:
         id: update
         if: steps.check_labels.outputs.hasRequiredLabels == 'true'
         run: |
-          issue_url="${{ github.event.issue.html_url }}"
+          issue_url="${GITHUB_EVENT_ISSUE_HTML_URL}"
           issue_number=$(echo "$issue_url" | grep -oE '[0-9]+$')
           python -m bioregistry.gh.new_prefix --github --issue=$issue_number
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_EVENT_ISSUE_HTML_URL: ${{ github.event.issue.html_url }}
       - name: Create Branch
         id: create_branch
         if: steps.check_labels.outputs.hasRequiredLabels == 'true'
         run: |
-          issue_url="${{ github.event.issue.html_url }}"
+          issue_url="${GITHUB_EVENT_ISSUE_HTML_URL}"
           issue_number=$(echo "$issue_url" | grep -oE '[0-9]+$') 
           branch_name="create-pull-request/patch-$issue_number"
           echo "::set-output name=branch_name::$branch_name"
+        env:
+          GITHUB_EVENT_ISSUE_HTML_URL: ${{ github.event.issue.html_url }}
       - name: Create Pull Request
         if: steps.check_labels.outputs.hasRequiredLabels == 'true'
         uses: peter-evans/create-pull-request@c0f553fe549906ede9cf27b5156039d195d2ece0 # v8.1.0

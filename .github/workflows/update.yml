@@ -36,7 +36,9 @@ jobs:
           NDEX_USERNAME: ${{ secrets.NDEX_USERNAME }}
           NDEX_PASSWORD: ${{ secrets.NDEX_PASSWORD }}
       - name: Check environment
-        run: echo ${{ steps.update.outputs.BR_UPDATED }}
+        run: echo ${STEPS_UPDATE_OUTPUTS_BR_UPDATED}
+        env:
+          STEPS_UPDATE_OUTPUTS_BR_UPDATED: ${{ steps.update.outputs.BR_UPDATED }}
       - name: Commit files
         if: steps.update.outputs.BR_UPDATED == 'true'
         run: |
@@ -117,4 +119,6 @@ jobs:
           tags: biopragmatics/bioregistry:latest
       - name: Image digest
         if: steps.update.outputs.BR_UPDATED == 'true'
-        run: echo ${{ steps.docker_build.outputs.digest }}
+        run: echo ${STEPS_DOCKER_BUILD_OUTPUTS_DIGEST}
+        env:
+          STEPS_DOCKER_BUILD_OUTPUTS_DIGEST: ${{ steps.docker_build.outputs.digest }}
