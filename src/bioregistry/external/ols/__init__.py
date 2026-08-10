@@ -136,7 +136,7 @@ def _download(base_url: str, raw_path: Path, force: bool = False) -> None:
     raw_path.write_text(json.dumps(data, indent=2, sort_keys=True, ensure_ascii=False))
 
 
-class VersionType(str, enum.Enum):
+class VersionType(enum.StrEnum):
     """Types for OLS ontology versions."""
 
     date = "date"

@@ -10,7 +10,7 @@ markers = [
 
 [project]
 name = "bioregistry"
-version = "0.13.68-dev"
+version = "0.14.0-dev"
 description = "Integrated registry of biological databases and nomenclatures"
 readme = "README.md"
 authors = [
@@ -31,7 +31,6 @@ classifiers = [
     "Framework :: tox",
     "Framework :: Sphinx",
     "Programming Language :: Python",
-    "Programming Language :: Python :: 3.10",
     "Programming Language :: Python :: 3.11",
     "Programming Language :: Python :: 3.12",
     "Programming Language :: Python :: 3.13",
@@ -53,15 +52,15 @@ keywords = [
 license = "MIT"
 license-files = ["LICENSE"]
 
-requires-python = ">=3.10"
+requires-python = ">=3.11"
 dependencies = [
     "requests",
     "tqdm",
-    "pystow>=0.8.2",
+    "pystow>=0.9.0",
     "click",
     "more_click>=0.1.2",
     "pydantic[email]>=2.0",
-    "curies>=0.13.9",
+    "curies>=0.15.0",
     "sssom-pydantic>=0.5.10",
     #
     "urllib3>=2.7.0",
@@ -290,7 +289,7 @@ known-first-party = [
 docstring-code-format = true
 
 [tool.bumpversion]
-current_version = "0.13.68-dev"
+current_version = "0.14.0-dev"
 parse = "(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+)(?:-(?P<release>[0-9A-Za-z-]+(?:\\.[0-9A-Za-z-]+)*))?(?:\\+(?P<build>[0-9A-Za-z-]+(?:\\.[0-9A-Za-z-]+)*))?"
 serialize = [
     "{major}.{minor}.{patch}-{release}+{build}",
