@@ -5,13 +5,14 @@ For example, renames ``IEEE Xplore document ID`` to ``IEEE Xplore document``.
 
 from tqdm import tqdm
 
+from bioregistry import Resource
 from bioregistry.curation.utils import resource_mutator
 
 SUFFIXES = ["id", "accession"]
 
 
 @resource_mutator()
-def clean_name_suffixes(resource) -> None:
+def clean_name_suffixes(resource: Resource) -> None:
     """Remove uninformative suffixes in names of resources."""
     name = resource.get_name()
     if not name:
