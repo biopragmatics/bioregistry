@@ -3,8 +3,9 @@
 from collections.abc import Callable
 
 import click
+from tqdm import tqdm
 
-from bioregistry import Manager, Resource, manager
+from bioregistry import Manager, Resource
 
 __all__ = [
     "manager_mutator",
@@ -25,6 +26,7 @@ def manager_mutator(*, name: str | None = None) -> Callable[[ManagerConsumer], c
     def _inner(func: ManagerConsumer) -> click.Command:
         @click.command(name=name)
         def _main() -> None:
+            manager = Manager()
             func(manager)
             manager.write_registry()
 
@@ -43,7 +45,10 @@ def resource_mutator(*, name: str | None = None) -> Callable[[ResourceConsumer],
     def _inner(func: ResourceConsumer) -> click.Command:
         @click.command(name=name)
         def _main() -> None:
-            for resource in manager.registry.values():
+            manager = Manager()
+            for resource in tqdm(
+                manager.registry.values(), unit="resource", unit_scale=True, leave=False
+            ):
                 func(resource)
             manager.write_registry()
 

@@ -83,6 +83,7 @@ CC_BY_UNSPECIFIED = "CC-BY"
 CC_BY_SA_UNSPECIFIED = "CC-BY-SA"
 CC_BY_NC_UNSPECIFIED = "CC-BY-NC"
 CC_UNSPECIFIED = "CC"
+BSD_UNSPECIFIED = "BSD"
 APACHE_UNSPECIFIED = "Apache"
 
 ##########################
@@ -182,6 +183,7 @@ REVERSE_LICENSES: Mapping[str | None, list[str]] = {
         "https://www.w3.org/Consortium/Legal/2015/copyright-software-and-document",
     ],
     "W3C-2023": [
+        "W3C-2023",
         "https://www.w3.org/copyright/document-license-2023/",
         "https://www.w3.org/copyright/document-license-2023",
         "W3C Software and Document license - 2023 version",
@@ -396,6 +398,9 @@ REVERSE_LICENSES: Mapping[str | None, list[str]] = {
         "creative commons",
         "Creative Commons Attribution License",
     ],
+    BSD_UNSPECIFIED: [
+        BSD_UNSPECIFIED,
+    ],
     "GPL-3.0-only": ["GPL-3.0-only", "GNU General Public License v3.0"],
     "GFDL-1.3": [
         "GFDL-1.3",
@@ -424,6 +429,7 @@ NONSTANDARD = {
     CC_BY_UNSPECIFIED,
     CC_BY_NC_UNSPECIFIED,
     CC_UNSPECIFIED,
+    BSD_UNSPECIFIED,
     APACHE_UNSPECIFIED,
     "public-domain",
     "W3C-2023",

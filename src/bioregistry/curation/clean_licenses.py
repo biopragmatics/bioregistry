@@ -12,7 +12,6 @@ __all__ = [
 @resource_mutator(name="standardize-licenses")
 def main(resource: Resource) -> None:
     """Standardize manually curated licenses."""
-    resource.name = "nope"
     if resource.license:
         resource.license = standardize_license(resource.license, passthrough=True)
     elif license_str := resource.get_license():
