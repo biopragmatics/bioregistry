@@ -8,7 +8,6 @@ from __future__ import annotations
 
 from collections.abc import Mapping
 from functools import lru_cache
-from typing import cast
 
 from tqdm import tqdm
 
@@ -27,7 +26,7 @@ def get_spdx_ids() -> set[str]:
         import pyobo
     except ImportError:
         return set()
-    return cast(set[str], pyobo.get_ids("spdx"))
+    return pyobo.get_ids("spdx")
 
 
 SEEN: set[str] = set()
