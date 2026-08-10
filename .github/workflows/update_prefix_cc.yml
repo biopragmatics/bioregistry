@@ -3,6 +3,9 @@ on:
   workflow_dispatch:
   schedule:
     - cron: "5 4 * * *"  # run at 4:05 in the morning (cron format is minute hour day month day, check https://crontab.guru)
+
+permissions: {}
+
 jobs:
   build:
     runs-on: ubuntu-latest
