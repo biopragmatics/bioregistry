@@ -3,12 +3,13 @@
 from collections import defaultdict
 
 from bioregistry import Author, Manager
-from bioregistry.schema import Attributable
 from bioregistry.curation.utils import manager_mutator
+from bioregistry.schema import Attributable
 
 
 @manager_mutator()
-def normalize_authors(manager: Manager) -> None:
+def cleanup_authors(manager: Manager) -> None:
+    """Standardize author names, emails, and GitHub links."""
     githubs, emails = {}, {}
     names: defaultdict[str, set[str]] = defaultdict(set)
     for resource in manager.registry.values():
@@ -38,10 +39,6 @@ def normalize_authors(manager: Manager) -> None:
     orcid_to_name: dict[str, str] = {
         orcid: max(all_names, key=len) for orcid, all_names in names.items()
     }
-
-    # manual updates
-    emails['0000-0001-9439-5346'] = 'b.gyori@northeastern.edu'
-    emails["0000-0002-5497-0243"] = 'bandrow@gmail.com'
 
     def _new_attributable(orcid_: str) -> Attributable:
         return Attributable(
@@ -86,4 +83,4 @@ def normalize_authors(manager: Manager) -> None:
 
 
 if __name__ == "__main__":
-    normalize_authors()
+    cleanup_authors()

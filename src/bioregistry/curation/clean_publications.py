@@ -5,8 +5,8 @@
 """
 
 from bioregistry import Resource
-from bioregistry.schema import deduplicate_publications
 from bioregistry.curation.utils import resource_mutator
+from bioregistry.schema import deduplicate_publications
 
 
 def _clean_title(title: str) -> str:

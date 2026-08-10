@@ -3,8 +3,9 @@
 For example, renames ``IEEE Xplore document ID`` to ``IEEE Xplore document``.
 """
 
-from bioregistry.curation.utils import resource_mutator
 from tqdm import tqdm
+
+from bioregistry.curation.utils import resource_mutator
 
 SUFFIXES = ["id", "accession"]
 

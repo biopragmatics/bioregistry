@@ -4,11 +4,11 @@ from collections.abc import Callable
 
 import click
 
-from bioregistry import Resource, manager, Manager
+from bioregistry import Manager, Resource, manager
 
 __all__ = [
-    "resource_mutator",
     "manager_mutator",
+    "resource_mutator",
 ]
 
 ResourceConsumer = Callable[[Resource], None]
