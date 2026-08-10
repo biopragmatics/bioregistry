@@ -2,20 +2,23 @@
 
 from collections import defaultdict
 
-from bioregistry import Author, manager
+from bioregistry import Author, Manager
 from bioregistry.schema import Attributable
+from bioregistry.curation.utils import manager_mutator
 
 
-def _main() -> None:
+@manager_mutator()
+def normalize_authors(manager: Manager) -> None:
     githubs, emails = {}, {}
     names: defaultdict[str, set[str]] = defaultdict(set)
     for resource in manager.registry.values():
         authors = [
             resource.contributor,
-            resource.contributor,
             resource.contact,
             resource.reviewer,
             *(resource.contributor_extras or []),
+            *(resource.reviewer_extras or []),
+            *(resource.contact_extras or []),
         ]
         for author in authors:
             if author is None:
@@ -28,6 +31,7 @@ def _main() -> None:
             if author.github:
                 githubs[orcid] = author.github
             if author.email:
+                # TODO lowercase?
                 emails[orcid] = author.email
 
     # Chose the longest name, assuming that contains the least abbreviations and most initials
@@ -35,7 +39,11 @@ def _main() -> None:
         orcid: max(all_names, key=len) for orcid, all_names in names.items()
     }
 
-    def _new(orcid_: str) -> Attributable:
+    # manual updates
+    emails['0000-0001-9439-5346'] = 'b.gyori@northeastern.edu'
+    emails["0000-0002-5497-0243"] = 'bandrow@gmail.com'
+
+    def _new_attributable(orcid_: str) -> Attributable:
         return Attributable(
             orcid=orcid_,
             name=orcid_to_name[orcid_],
@@ -54,6 +62,12 @@ def _main() -> None:
     for resource in manager.registry.values():
         if resource.contributor and resource.contributor.orcid:
             resource.contributor = _new_author(resource.contributor.orcid)
+        if resource.contributor_extras:
+            resource.contributor_extras = [
+                _new_author(contributor.orcid) if contributor.orcid else contributor
+                for contributor in resource.contributor_extras
+            ]
+
         if resource.reviewer and resource.reviewer.orcid:
             resource.reviewer = _new_author(resource.reviewer.orcid)
         if resource.reviewer_extras:
@@ -61,16 +75,15 @@ def _main() -> None:
                 _new_author(reviewer.orcid) if reviewer.orcid else reviewer
                 for reviewer in resource.reviewer_extras
             ]
-        if resource.contact and resource.contact.orcid:
-            resource.contact = _new(resource.contact.orcid)
-        if resource.contributor_extras:
-            resource.contributor_extras = [
-                _new_author(contributor.orcid) if contributor.orcid else contributor
-                for contributor in resource.contributor_extras
-            ]
 
-    manager.write_registry()
+        if resource.contact and resource.contact.orcid:
+            resource.contact = _new_attributable(resource.contact.orcid)
+        if resource.contact_extras:
+            resource.contact_extras = [
+                _new_attributable(contact.orcid) if contact.orcid else contact
+                for contact in resource.contact_extras
+            ]
 
 
 if __name__ == "__main__":
-    _main()
+    normalize_authors()
