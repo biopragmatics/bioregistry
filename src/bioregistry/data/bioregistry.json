@@ -8970,13 +8970,13 @@
       ],
       "description": "The Behaviour Change Intervention Ontology is an ontology for all aspects of human behaviour change interventions and their evaluation.",
       "extras": {
-        "version.iri": "http://humanbehaviourchange.org/ontology/bcio.owl/2026-06-16"
+        "version.iri": "http://humanbehaviourchange.org/ontology/bcio.owl/2026-08-06"
       },
       "homepage": "https://www.humanbehaviourchange.org/",
       "name": "The Behaviour Change Intervention Ontology",
       "prefix": "bcio",
       "uri_format": "http://humanbehaviourchange.org/ontology/BCIO_$1",
-      "version": "2026-06-16"
+      "version": "2026-08-06"
     },
     "pattern": "^\\d{6}$",
     "providers": [
@@ -23772,6 +23772,43 @@
     "synonyms": [
       "civic.evidence"
     ]
+  },
+  "civic.fid": {
+    "contact": {
+      "email": "mgriffit@wustl.edu",
+      "github": "malachig",
+      "name": "Malachi Griffith",
+      "orcid": "0000-0002-6388-446X"
+    },
+    "contact_group_email": "help@civicdb.org",
+    "license": "CC0-1.0",
+    "logo": "https://civic.readthedocs.io/en/latest/_images/CIViC_logo_for-light-bg_LG_v5a1.png",
+    "mappings": {
+      "miriam": "civic.fid"
+    },
+    "miriam": {
+      "description": "A CIViC Feature is the basis for variants in CIViC. Supported feature types are Genes, Fusions, Factors and Regions. Features define the classes of variants supported in CIViC. Molecular Profiles consist of one or more variants.",
+      "examples": [
+        "5"
+      ],
+      "extras": {
+        "miriam_id": "00001224",
+        "namespaceEmbeddedInLui": false
+      },
+      "homepage": "https://wustl.edu/",
+      "name": "CIViC Feature",
+      "owners": [
+        {
+          "name": "Washington University in St. Louis",
+          "ror": "01yc7t268"
+        }
+      ],
+      "pattern": "^[0-9]+$",
+      "prefix": "civic.fid",
+      "status": "active",
+      "uri_format": "https://civicdb.org/links/feature/$1"
+    },
+    "part_of_database": "civic"
   },
   "civic.gid": {
     "contact": {
@@ -39891,7 +39928,7 @@
           "url": "https://disease-ontology.org/community/publications"
         }
       ],
-      "version": "2026-06-30"
+      "version": "2026-07-31"
     },
     "download_json": "http://purl.obolibrary.org/obo/doid.json",
     "download_obo": "https://github.com/DiseaseOntology/HumanDiseaseOntology/raw/main/src/ontology/doid.obo",
@@ -40188,13 +40225,13 @@
       ],
       "description": "The Disease Ontology has been developed as a standardized ontology for human disease with the purpose of providing the biomedical community with consistent, reusable and sustainable descriptions of human disease terms, phenotype characteristics and related medical vocabulary disease concepts.",
       "extras": {
-        "version.iri": "http://purl.obolibrary.org/obo/doid/releases/2026-06-30/translations/doid-international.owl"
+        "version.iri": "http://purl.obolibrary.org/obo/doid/releases/2026-07-31/translations/doid-international.owl"
       },
       "homepage": "https://disease-ontology.org",
       "name": "Human Disease Ontology",
       "prefix": "doid",
       "tracker": "https://github.com/DiseaseOntology/HumanDiseaseOntology/issues",
-      "version": "2026-06-30"
+      "version": "2026-07-31"
     },
     "ontobee": {
       "keywords": [
@@ -41881,6 +41918,27 @@
       "uri_format": "http://www.flyrnai.org/cgi-bin/RNAi_gene_lookup_public.pl?gname=$1"
     },
     "name": "Drosophila RNAi Screening Center"
+  },
+  "drsheartdata": {
+    "mappings": {
+      "miriam": "drs.heartdata"
+    },
+    "miriam": {
+      "description": "GA4GH Data Repository Service for data objects managed by the HeartData data commons.",
+      "examples": [
+        "00018c2f-25bf-439b-a58f-8c098118300d"
+      ],
+      "extras": {
+        "miriam_id": "00001138",
+        "namespaceEmbeddedInLui": false
+      },
+      "homepage": "https://baker.edu.au",
+      "name": "HeartData",
+      "pattern": "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$",
+      "prefix": "drs.heartdata",
+      "status": "active",
+      "uri_format": "https://commons.heartdata.baker.edu.au/ga4gh/drs/v1/objects/$1"
+    }
   },
   "drugbank": {
     "bartoc": {
@@ -55814,7 +55872,7 @@
       },
       "name": "Flora Phenotype Ontology",
       "prefix": "FLOPO",
-      "version": "2026-07-15"
+      "version": "2026-07-31"
     },
     "example": "0005250",
     "fairsharing": {
@@ -55927,13 +55985,13 @@
       ],
       "description": "Traits and phenotypes of flowering plants occurring in digitized Floras",
       "extras": {
-        "version.iri": "http://purl.obolibrary.org/obo/flopo/releases/2026-06-29/flopo.owl"
+        "version.iri": "http://purl.obolibrary.org/obo/flopo/releases/2026-07-31/flopo.owl"
       },
       "homepage": "https://github.com/flora-phenotype-ontology/flopoontology",
       "name": "Flora Phenotype Ontology",
       "prefix": "flopo",
       "tracker": "https://github.com/flora-phenotype-ontology/flopoontology/issues",
-      "version": "2026-06-29"
+      "version": "2026-07-31"
     },
     "ontobee": {
       "keywords": [
@@ -60784,12 +60842,12 @@
         "miriam_id": "00000323",
         "namespaceEmbeddedInLui": false
       },
-      "homepage": "http://www.genecards.org/",
+      "homepage": "https://www.genecards.org/",
       "name": "GeneCards",
       "pattern": "^[A-Za-z-0-9_]+(\\@)?$",
       "prefix": "genecards",
       "status": "active",
-      "uri_format": "https://www.genecards.org/cgi-bin/carddisp.pl?gene=$1"
+      "uri_format": "https://www.genecards.org/card/$1"
     },
     "n2t": {
       "description": "The GeneCards human gene database stores gene related transcriptomic, genetic, proteomic, functional and disease information. It uses standard nomenclature and approved gene symbols. GeneCards presents a complete summary for each human gene.",
@@ -65058,7 +65116,7 @@
       "homepage": "http://www.geneontology.org",
       "name": "Gene Ontology",
       "prefix": "GO",
-      "version": "2026-06-15"
+      "version": "2026-07-26"
     },
     "contributor_extras": [
       {
@@ -65392,13 +65450,13 @@
       ],
       "description": "The Gene Ontology (GO) provides a framework and set of concepts for describing the functions of gene products from all organisms.",
       "extras": {
-        "version.iri": "http://purl.obolibrary.org/obo/go/releases/2026-06-15/extensions/go-plus.ofn"
+        "version.iri": "http://purl.obolibrary.org/obo/go/releases/2026-07-26/extensions/go-plus.ofn"
       },
       "homepage": "http://geneontology.org/",
       "name": "Gene Ontology",
       "prefix": "go",
       "tracker": "https://github.com/geneontology/go-ontology/issues/",
-      "version": "2026-06-15"
+      "version": "2026-07-26"
     },
     "ontobee": {
       "keywords": [
@@ -81376,7 +81434,7 @@
     "download_obo": "https://w3id.org/biopragmatics/resources/interpro/interpro.obo",
     "download_owl": "https://w3id.org/biopragmatics/resources/interpro/interpro.owl",
     "edam": {
-      "description": "Every InterPro entry has a unique accession number to provide a persistent citation of database records.",
+      "description": "Primary accession number of an InterPro entry.",
       "name": "InterPro",
       "prefix": "1133"
     },
@@ -86482,6 +86540,27 @@
       "pattern": "^C\\d{8}$",
       "prefix": "P2064",
       "uri_format": "https://www.knapsackfamily.com/knapsack_core/information.php?sname=C_ID&word=$1"
+    }
+  },
+  "knetminer": {
+    "mappings": {
+      "miriam": "knetminer"
+    },
+    "miriam": {
+      "description": "KnetMiner is a knowledge graph platform for evidence-based gene discovery and complex trait analysis across plants, crops and other species. It integrates genome annotations, orthology, pathways, protein interactions, gene expression, phenotypes, GWAS results and the published literature into a single knowledge graph, and publishes a gene page for every gene it holds. Identifiers in this namespace resolve to the KnetMiner gene page for a given gene in a given species, showing that gene's network context, traits, functional annotations, orthologs and supporting literature evidence.",
+      "examples": [
+        "triticum_aestivum/TRAESCS5D02G004100"
+      ],
+      "extras": {
+        "miriam_id": "00001141",
+        "namespaceEmbeddedInLui": false
+      },
+      "homepage": "https://knetminer.com/",
+      "name": "KnetMiner",
+      "pattern": "^[a-z0-9_]+/[A-Za-z0-9._-]+$",
+      "prefix": "knetminer",
+      "status": "active",
+      "uri_format": "https://app.knetminer.com/genepage/$1"
     }
   },
   "knockrbp": {
@@ -97602,7 +97681,7 @@
   },
   "miriam": {
     "edam": {
-      "description": "This is the identifier used internally by MIRIAM for a data type.",
+      "description": "Unique identifier of a MIRIAM data resource.",
       "name": "MIRIAM",
       "prefix": "1162"
     },
@@ -98430,7 +98509,7 @@
       "homepage": "https://github.com/GenomicsStandardsConsortium/mixs",
       "name": "Minimal Information about any Sequence Ontology",
       "prefix": "MIXS",
-      "version": "7.0.0"
+      "version": "7.0.1"
     },
     "comment": "Some things to be decided before granting - [ ] should the prefix be mixs, gsc.mixs, MIxS, MIXS, ...? - [ ] MIxS terms are most commonly identified by a short computable stable label, e.g ph_regm. The GSC CIG team are creating numeric identifiers, e.g. MIXS:0001056 - Should we support both schemes? - If we do, should these be different prefixes? I would strongly recommend this. E.g. mixs.term:ph_regm, mixs:0001056. We can then have different regex patterns for both Additional notes: - It currently redirects to the tdwg wiki but this is I assume temporary",
     "contact": {
@@ -99845,13 +99924,13 @@
       ],
       "description": "PSI-MOD is an ontology consisting of terms that describe protein chemical modifications",
       "extras": {
-        "version.iri": "http://purl.obolibrary.org/obo/mod/1.037.0/mod.owl"
+        "version.iri": "http://purl.obolibrary.org/obo/mod/1.038.0/mod.owl"
       },
       "homepage": "http://www.psidev.info/MOD",
       "name": "Protein modification",
       "prefix": "mod",
       "tracker": "https://github.com/HUPO-PSI/psi-mod-CV/issues",
-      "version": "1.037.0"
+      "version": "1.038.0"
     },
     "ontobee": {
       "keywords": [
@@ -100587,14 +100666,14 @@
         "email": "f.musyaffa@fz-juelich.de",
         "name": "Fathoni A. Musyaffa"
       },
-      "description": "MOLSIM is an interoperable domain ontology designed to semantically represent platform-agnostic biomolecular simulations as interconnected FAIR datasets. This ontology aims to standardize the representation of molecular simulation data, processes, and methodologies across different platforms and tools., MOLSIM is an interoperable domain ontology designed to semantically represent platform-agnostic atomistic biomolecular simulations as FAIR (Findable, Accessible, Interoperable, and Reusable) datasets. This ontology aims to standardize the representation of atomistic biomolecular simulation data, MOLSIM is a domain (application) ontology designed to semantically represent platform-agnostic biomolecular simulations (all-atom and coarse-grained) as FAIR (Findable, and Reusable) datasets. As an application ontology, it reuses terms from established OBO ontologies where they fit and defines its own where they do not, aiming to standardize the representation of biomolecular simulation data, and methodologies across platforms and tools.",
+      "description": "MOLSIM is an interoperable domain ontology designed to semantically represent platform-agnostic biomolecular simulations as interconnected FAIR datasets. This ontology aims to standardize the representation of molecular simulation data, processes, and methodologies across different platforms and tools., MOLSIM is a domain (application) ontology designed to semantically represent platform-agnostic biomolecular simulations (all-atom and coarse-grained) as FAIR (Findable, Accessible, Interoperable, and Reusable) datasets. As an application ontology, it reuses terms from established OBO ontologies where they fit and defines its own where they do not, aiming to standardize the representation of biomolecular simulation data, and methodologies across platforms and tools.",
       "homepage": "https://github.com/CPCLab/molsim-ontology",
       "license": {
         "name": "CC-BY-4.0"
       },
       "name": "Molecular Simulation Ontology",
       "prefix": "MOLSIM",
-      "version": "2026-07-29"
+      "version": "2026-08-07"
     },
     "contributor": {
       "email": "cthoyt@gmail.com",
@@ -100703,7 +100782,7 @@
           "url": "https://mondo.monarchinitiative.org/pages/resources/"
         }
       ],
-      "version": "2026-07-06"
+      "version": "2026-08-04"
     },
     "download_obo": "http://purl.obolibrary.org/obo/mondo.obo",
     "example": "0000001",
@@ -100861,13 +100940,13 @@
       ],
       "description": "A semi-automatically constructed ontology that merges in multiple disease resources to yield a coherent merged ontology.",
       "extras": {
-        "version.iri": "http://purl.obolibrary.org/obo/mondo/releases/2026-07-06/mondo-international.owl"
+        "version.iri": "http://purl.obolibrary.org/obo/mondo/releases/2026-08-04/mondo-international.owl"
       },
       "homepage": "https://monarch-initiative.github.io/mondo",
       "name": "Mondo Disease Ontology",
       "prefix": "mondo",
       "tracker": "https://github.com/monarch-initiative/mondo/issues",
-      "version": "2026-07-06"
+      "version": "2026-08-04"
     },
     "ontobee": {
       "keywords": [
@@ -102204,13 +102283,13 @@
       },
       "description": "A structured controlled vocabulary for the annotation of experiments concerned with proteomics mass spectrometry.",
       "extras": {
-        "version.iri": "http://purl.obolibrary.org/obo/ms/4.1.256/ms.owl"
+        "version.iri": "http://purl.obolibrary.org/obo/ms/4.1.257/ms.owl"
       },
       "homepage": "http://www.psidev.info/groups/controlled-vocabularies",
       "name": "Mass spectrometry ontology",
       "prefix": "ms",
       "tracker": "https://github.com/HUPO-PSI/psi-ms-CV/issues",
-      "version": "4.1.256"
+      "version": "4.1.257"
     },
     "ontobee": {
       "keywords": [
@@ -111558,7 +111637,7 @@
           "url": "http://purl.obolibrary.org/obo/obi/Technical_Reports"
         }
       ],
-      "version": "2026-05-08"
+      "version": "2026-07-27"
     },
     "download_obo": "https://github.com/obi-ontology/obi/raw/master/views/obi.obo",
     "example": "0400109",
@@ -111742,13 +111821,13 @@
       ],
       "description": "An ontology for representing biomedical investigations, including study designs, the collection and preparation of the targets of investigation, assays, instrumentation and reagents used, as well as the data generated and the types of analysis performed on the data to reach conclusions, and their documentation.",
       "extras": {
-        "version.iri": "http://purl.obolibrary.org/obo/obi/2026-05-08/obi.owl"
+        "version.iri": "http://purl.obolibrary.org/obo/obi/2026-07-27/obi.owl"
       },
       "homepage": "http://obi-ontology.org",
       "name": "Ontology for Biomedical Investigations",
       "prefix": "obi",
       "tracker": "http://purl.obolibrary.org/obo/obi/tracker",
-      "version": "2026-05-08"
+      "version": "2026-07-27"
     },
     "ontobee": {
       "keywords": [
@@ -122358,7 +122437,7 @@
       "uri_format": "http://www.ebi.ac.uk/pdbsum/$1"
     },
     "edam": {
-      "description": "A PDB identification code which consists of 4 characters, the first of which is a digit in the range 0 - 9; the remaining 3 are alphanumeric, and letters are upper case only. (source: https://cdn.rcsb.org/wwpdb/docs/documentation/file-format/PDB_format_1996.pdf)",
+      "description": "An identifier of an entry from the PDB database.",
       "name": "PDB",
       "prefix": "1127"
     },
@@ -125865,7 +125944,7 @@
       },
       "name": "Pathogen Host Interaction Phenotype Ontology",
       "prefix": "PHIPO",
-      "version": "2026-03-12"
+      "version": "2026-08-06"
     },
     "example": "0000001",
     "license": "CC-BY-3.0",
@@ -125927,13 +126006,13 @@
       ],
       "description": "Ontology of species-neutral phenotypes observed in pathogen-host interactions.",
       "extras": {
-        "version.iri": "http://purl.obolibrary.org/obo/phipo/releases/2026-03-12/phipo.owl"
+        "version.iri": "http://purl.obolibrary.org/obo/phipo/releases/2026-08-06/phipo.owl"
       },
       "homepage": "https://github.com/PHI-base/phipo",
       "name": "Pathogen Host Interactions Phenotype Ontology",
       "prefix": "phipo",
       "tracker": "https://github.com/PHI-base/phipo/issues",
-      "version": "2026-03-12"
+      "version": "2026-08-06"
     },
     "ontobee": {
       "keywords": [
@@ -130036,7 +130115,7 @@
           "url": "https://proconsortium.org/pro_pub.shtml"
         }
       ],
-      "version": "71.0"
+      "version": "73.0"
     },
     "contributor_extras": [
       {
@@ -140569,7 +140648,7 @@
           "pubmed": "23603846"
         }
       ],
-      "version": "2026-07-29"
+      "version": "2026-08-01"
     },
     "cellosaurus": {
       "description": "Organism-specific databases",
@@ -140680,13 +140759,13 @@
       ],
       "description": "Ontology of rat strains",
       "extras": {
-        "version.iri": "http://purl.obolibrary.org/obo/rs/releases/2026-07-29/rs.owl"
+        "version.iri": "http://purl.obolibrary.org/obo/rs/releases/2026-08-01/rs.owl"
       },
       "homepage": "http://rgd.mcw.edu/rgdweb/search/strains.html",
       "name": "Rat Strain Ontology",
       "prefix": "rs",
       "tracker": "https://github.com/rat-genome-database/RS-Rat-Strain-Ontology/issues",
-      "version": "2026-07-29"
+      "version": "2026-08-01"
     },
     "ontobee": {
       "keywords": [
@@ -143406,7 +143485,7 @@
     },
     "description": "SCOP(e) unique identifier. This is simply a number that may be used to reference any entry in the SCOP(e) hierarchy, from root to leaves (Fold, Superfamily, Family, etc.).",
     "edam": {
-      "description": "A sunid uniquely identifies an entry in the SCOP hierarchy, including leaves (the SCOP domains) and higher level nodes including entries corresponding to the protein level.",
+      "description": "Unique identifier (number) of an entry in the SCOP hierarchy, for example 33229.",
       "name": "SCOP sunid",
       "prefix": "1042"
     },
@@ -149647,13 +149726,13 @@
       ],
       "description": "A structured controlled vocabulary for sequence annotation, for the exchange of annotation data and for the description of sequence objects in databases.",
       "extras": {
-        "version.iri": "http://purl.obolibrary.org/obo/so/2024-11-18/so.owl"
+        "version.iri": "http://purl.obolibrary.org/obo/so/2026-08-07/so.owl"
       },
       "homepage": "http://www.sequenceontology.org/",
       "name": "Sequence types and features ontology",
       "prefix": "so",
       "tracker": "https://github.com/The-Sequence-Ontology/SO-Ontologies/issues",
-      "version": "2024-11-18"
+      "version": "2026-08-07"
     },
     "ontobee": {
       "keywords": [
@@ -159581,13 +159660,13 @@
       ],
       "description": "The Symptom Ontology has been developed as a standardized ontology for symptoms of human diseases.",
       "extras": {
-        "version.iri": "http://purl.obolibrary.org/obo/symp/releases/2024-05-17/symp.owl"
+        "version.iri": "http://purl.obolibrary.org/obo/symp/releases/2026-07-30/symp.owl"
       },
       "homepage": "https://github.com/DiseaseOntology/SymptomOntology",
       "name": "Symptom Ontology",
       "prefix": "symp",
       "tracker": "https://github.com/DiseaseOntology/SymptomOntology/issues",
-      "version": "2024-05-17"
+      "version": "2026-07-30"
     },
     "ontobee": {
       "keywords": [
@@ -168893,9 +168972,12 @@
       },
       "description": "Metrical units for use in conjunction with PATO",
       "homepage": "https://github.com/bio-ontology-research-group/unit-ontology",
+      "license": {
+        "name": "CC-BY-4.0"
+      },
       "name": "Units of Measurement Ontology",
       "prefix": "UO",
-      "version": "2026-01-16"
+      "version": "2026-07-31"
     },
     "fairsharing": {
       "contact": {
@@ -169045,13 +169127,13 @@
       ],
       "description": "Metrical units for use in conjunction with PATO",
       "extras": {
-        "version.iri": "http://purl.obolibrary.org/obo/uo/releases/2026-01-16/uo.owl"
+        "version.iri": "http://purl.obolibrary.org/obo/uo/releases/2026-07-31/uo.owl"
       },
       "homepage": "https://github.com/bio-ontology-research-group/unit-ontology",
       "name": "Units of measurement ontology",
       "prefix": "uo",
       "tracker": "https://github.com/bio-ontology-research-group/unit-ontology/issues",
-      "version": "2026-01-16"
+      "version": "2026-07-31"
     },
     "ontobee": {
       "keywords": [
@@ -172351,6 +172433,10 @@
       "keywords": [
         "Miscellaneous"
       ],
+      "license": {
+        "spdx": "Unlicense",
+        "url": "https://spdx.org/licenses/Unlicense.html"
+      },
       "name": "VIVO Core Ontology",
       "prefix": "vivo",
       "tracker": "https://github.com/vivo-ontologies/vivo-ontology/issues"
