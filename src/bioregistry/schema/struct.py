@@ -19,6 +19,7 @@ from typing import (
     ClassVar,
     Generic,
     Literal,
+    Self,
     TypeAlias,
     TypeVar,
     cast,
@@ -30,7 +31,6 @@ from curies import Reference
 from curies.w3c import NCNAME_RE
 from pydantic import BaseModel, EmailStr, Field, PrivateAttr
 from pydantic.json_schema import models_json_schema
-from typing_extensions import Self
 
 from bioregistry import constants as brc
 from bioregistry.constants import (

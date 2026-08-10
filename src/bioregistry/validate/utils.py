@@ -5,11 +5,11 @@ from __future__ import annotations
 import json
 from collections.abc import Callable, Mapping
 from pathlib import Path
-from typing import TYPE_CHECKING, Any, Literal, TextIO, cast
+from typing import TYPE_CHECKING, Any, Literal, NotRequired, TextIO, cast
 
 import click
 from pydantic import BaseModel
-from typing_extensions import NotRequired, TypedDict, Unpack
+from typing_extensions import TypedDict, Unpack
 
 if TYPE_CHECKING:
     from bioregistry import Context, Manager

@@ -38,7 +38,7 @@ class License(BaseModel):
     url: str | None = None
 
 
-class Status(str, enum.Enum):
+class Status(enum.StrEnum):
     """Represents the project status."""
 
     active = "active"
@@ -66,7 +66,7 @@ class Publication(BaseModel):
     zenodo: str | None = None
 
 
-class ArtifactType(str, enum.Enum):
+class ArtifactType(enum.StrEnum):
     """A semantic space artifact type."""
 
     obo = "obo"
