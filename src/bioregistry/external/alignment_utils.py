@@ -9,6 +9,7 @@ from typing import Any, ClassVar, ParamSpec, TypeAlias
 import click
 from curies.w3c import NCNAME_RE
 from pystow.utils import download, safe_open_writer
+from pystow.utils.download import DownloadKwargs
 from tabulate import tabulate
 
 from ..alignment_model import Record, dump_records
@@ -379,6 +380,7 @@ def build_getter(
     url: str | Callable[[], str],
     func: Callable[[Path], dict[str, Record]],
     cleanup: Callable[[Path], None] | None = None,
+    download_kwargs: DownloadKwargs | None = None,
 ) -> Getter:
     """Construct a getter function."""
 
@@ -391,6 +393,7 @@ def build_getter(
             url=url if isinstance(url, str) else url(),
             path=raw_path,
             force=force_download,
+            **(download_kwargs or {}),
         )
         if cleanup is not None:
             cleanup(raw_path)
