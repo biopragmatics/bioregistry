@@ -136979,6 +136979,44 @@
       "uri_format": "https://www.ncbi.nlm.nih.gov/protein/$1"
     }
   },
+  "rehabo": {
+    "bioportal": {
+      "contact": {
+        "email": "hoganwr@gmail.com",
+        "name": "William Hogan"
+      },
+      "description": "An ontology of physical medicine & rehabilitation, physical therapy, occupational therapy, and speech therapy.",
+      "license": {
+        "name": "https://creativecommons.org/public-domain/cc0"
+      },
+      "name": "The Rehabilitation Ontology",
+      "prefix": "REHABO",
+      "version": "2026-04-22"
+    },
+    "example": "0011014",
+    "license": "CC0-1.0",
+    "mappings": {
+      "bioportal": "REHABO",
+      "ols": "rehabo"
+    },
+    "ols": {
+      "artifacts": [
+        {
+          "type": "owl",
+          "url": "https://github.com/mcwdsi/rehabo/releases/latest/download/rehabo.owl"
+        }
+      ],
+      "extras": {
+        "version.iri": "http://purl.obolibrary.org/obo/rehabo/releases/2026-04-22/rehabo.owl"
+      },
+      "homepage": "https://github.com/mcwdsi/rehabo",
+      "name": "The Rehabilitation Ontology",
+      "prefix": "rehabo"
+    },
+    "pattern": "^\\d{7}$",
+    "repository": "https://github.com/mcwdsi/rehabo",
+    "uri_format": "http://purl.obolibrary.org/obo/REHABO_$1"
+  },
   "reo": {
     "comment": "From James O.: It was an ontology for \"reagents\" developed by @Matthew Brush. Since OBI was interested in reagents, Matt developed it in coordination with OBI and had plans to submit it to OBO. I believe that REO was once included in Ontobee, and OBI even started using some REO terms. But REO was never submitted to OBO. I believe it was abandoned.",
     "contact": {
@@ -169900,6 +169938,37 @@
       }
     ],
     "uri_format": "https://webchem.ncbr.muni.cz/Platform/ValidatorDb/ByStructure/$1"
+  },
+  "valuesets": {
+    "bioportal": {
+      "contact": {
+        "email": "cjmungall@lbl.gov",
+        "name": "Chris Mungall"
+      },
+      "name": "valuesets",
+      "prefix": "VALUESETS"
+    },
+    "example": "Environment",
+    "mappings": {
+      "bioportal": "VALUESETS",
+      "ols": "valuesets"
+    },
+    "ols": {
+      "artifacts": [
+        {
+          "type": "rdf",
+          "url": "https://w3id.org/valuesets/valuesets.owl.ttl"
+        }
+      ],
+      "contact": {
+        "email": "cjmungall@lbl.gov"
+      },
+      "description": "Comprehensive value sets across multiple domains including biological entities, data formats, geographic locations, chemical entities, anatomical structures, investigation metadata, clinical information, and specialized scientific domains. This is derived from the LinkML representation, with each value set represented as a class, with permissible values as subclasses",
+      "homepage": "https://github.com/linkml/valuesets",
+      "name": "Value Sets",
+      "prefix": "valuesets",
+      "uri_format": "https://w3id.org/linkml/valuesets/$1"
+    }
   },
   "vandf": {
     "aberowl": {
