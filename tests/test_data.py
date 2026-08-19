@@ -1341,19 +1341,9 @@ class TestRegistry(unittest.TestCase):
             manager.get_resource("mod", strict=True).get_download_owl(),
         )
 
-    def test_upgraded(self) -> None:
-        """Test external records are conformant."""
-        for metaprefix, _, func in sorted(GETTERS):
-            with self.subTest(metaprefix=metaprefix):
-                self.assertTrue(getattr(func, "__new_style_bioregistry", None))
-
     def test_external_records(self) -> None:
         """Test external records are conformant."""
-        metaprefixes = [
-            metaprefix
-            for metaprefix, _, func in GETTERS
-            if getattr(func, "__new_style_bioregistry", None)
-        ]
+        metaprefixes = [metaprefix for metaprefix, _, func in GETTERS]
         for resource in bioregistry.resources():
             for metaprefix in metaprefixes:
                 external = resource.get_external(metaprefix)
