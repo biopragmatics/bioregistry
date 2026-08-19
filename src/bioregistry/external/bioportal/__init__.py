@@ -214,38 +214,38 @@ def get_bioportal(
 
 @adapter
 def get_ecoportal(
-    force_download: bool = False, force_process: bool = False, *, api_key: str | None = None
+    force_download: bool = False, force_process: bool = False, *, api_key: str | None = None, progress: bool=True
 ) -> dict[str, Record]:
     """Get the EcoPortal registry."""
     client = OntoPortalClient(
         metaprefix="ecoportal",
         client=ontoportal_client.EcoPortalClient(api_key=api_key),
     )
-    return client.download(force_download=force_download, force_process=force_process)
+    return client.download(force_download=force_download, force_process=force_process, progress=progress)
 
 
 @adapter
 def get_agroportal(
-    force_download: bool = False, force_process: bool = False, *, api_key: str | None = None
+    force_download: bool = False, force_process: bool = False, *, api_key: str | None = None, progress: bool=True
 ) -> dict[str, Record]:
     """Get the AgroPortal registry."""
     client = OntoPortalClient(
         metaprefix="agroportal",
         client=ontoportal_client.AgroPortalClient(api_key=api_key),
     )
-    return client.download(force_download=force_download, force_process=force_process)
+    return client.download(force_download=force_download, force_process=force_process,progress=progress)
 
 
 @adapter
 def get_biodivportal(
-    force_download: bool = False, force_process: bool = False, *, api_key: str | None = None
+    force_download: bool = False, force_process: bool = False, *, api_key: str | None = None, progress: bool=True
 ) -> dict[str, Record]:
     """Get the BiodivPortal registry."""
     client = OntoPortalClient(
         metaprefix="biodivportal",
         client=ontoportal_client.BioDivPortal(api_key=api_key),
     )
-    return client.download(force_download=force_download, force_process=force_process)
+    return client.download(force_download=force_download, force_process=force_process, progress=progress)
 
 
 if __name__ == "__main__":
