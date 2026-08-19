@@ -15,10 +15,8 @@ from ..constants import (
     SSSOM_METADATA,
     SSSOM_PATH,
 )
-from ..parse_iri import normalize_prefix
-from ..resolve import get_appears_in, get_depends_on, get_name, get_resource
 from ..resource_manager import Manager
-from ..schema_utils import read_mappings, read_registry
+from ..schema_utils import read_mappings
 
 __all__ = [
     "export_sssom",
@@ -32,35 +30,50 @@ def export_sssom() -> None:
     converter = manager._get_internal_converter()
 
     semantic_mappings = read_mappings()
-    for prefix, resource in read_registry().items():
+    for prefix, resource in manager.registry.items():
         mappings = resource.get_mappings()
         for metaprefix, metaidentifier in mappings.items():
             metaprefix = converter.standardize_prefix(metaprefix, strict=True)
             semantic_mappings.append(
-                _make_semantic_mapping(prefix, exact_match, metaprefix, metaidentifier)
+                _make_semantic_mapping(
+                    prefix,
+                    exact_match,
+                    metaprefix,
+                    metaidentifier,
+                    manager=manager,
+                )
             )
 
-        for appears_in_internal_prefix in get_appears_in(prefix) or []:
+        for appears_in_internal_prefix in manager.get_appears_in(prefix) or []:
             semantic_mappings.append(
                 _make_semantic_mapping(
                     prefix,
                     APPEARS_IN_PRED,
                     INTERNAL_METAPREFIX,
                     appears_in_internal_prefix,
+                    manager=manager,
                 )
             )
-        for depends_on_internal_prefix in get_depends_on(prefix) or []:
+        for depends_on_internal_prefix in manager.get_depends_on(prefix) or []:
             semantic_mappings.append(
                 _make_semantic_mapping(
                     prefix,
                     DEPENDS_ON_PRED,
                     INTERNAL_METAPREFIX,
                     depends_on_internal_prefix,
+                    manager=manager,
                 )
             )
-        if resource.part_of and normalize_prefix(resource.part_of):
+
+        if resource.part_of and manager.normalize_prefix(resource.part_of):
             semantic_mappings.append(
-                _make_semantic_mapping(prefix, part_of, INTERNAL_METAPREFIX, resource.part_of)
+                _make_semantic_mapping(
+                    prefix,
+                    part_of,
+                    INTERNAL_METAPREFIX,
+                    resource.part_of,
+                    manager=manager,
+                )
             )
         if resource.provides:
             semantic_mappings.append(
@@ -69,6 +82,7 @@ def export_sssom() -> None:
                     PROVIDES_PRED,
                     INTERNAL_METAPREFIX,
                     resource.provides,
+                    manager=manager,
                 )
             )
         if resource.has_canonical:
@@ -78,6 +92,7 @@ def export_sssom() -> None:
                     HAS_CANONICAL_PRED,
                     INTERNAL_METAPREFIX,
                     resource.has_canonical,
+                    manager=manager,
                 )
             )
 
@@ -92,13 +107,16 @@ def _make_semantic_mapping(
     predicate: ReferenceTuple | Reference,
     external_metaprefix: str,
     external_prefix: str,
+    manager: Manager,
 ) -> SemanticMapping:
-    resource = get_resource(internal_prefix, strict=True)
+    resource = manager.get_resource(internal_prefix, strict=True)
     external_data = resource.get_external(external_metaprefix)
     external_name = external_data.get("name")
     return SemanticMapping(
         subject=NamableReference(
-            prefix=INTERNAL_METAPREFIX, identifier=internal_prefix, name=get_name(internal_prefix)
+            prefix=INTERNAL_METAPREFIX,
+            identifier=internal_prefix,
+            name=manager.get_name(internal_prefix),
         ),
         predicate=Reference.from_curie(predicate.curie),
         object=NamableReference(
