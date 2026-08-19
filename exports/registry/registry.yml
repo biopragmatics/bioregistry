@@ -992,9 +992,6 @@ affy.probeset:
   preferred_prefix: affy.probeset
   uri_format: http://bio2rdf.org/affymetrix:$1
 afo:
-  contact:
-    email: more.info@allotrope.org
-    name: Allotrope Foundation
   description: Allotrope Merged Ontology Suite
   download_owl: https://purl.allotrope.org/voc/afo/merged/REC/2025/03/merged-without-qudt-and-inferred.ttl
   download_rdf: https://purl.allotrope.org/voc/afo/merged/REC/2026/03/merged-without-qudt-and-inferred.ttl
@@ -1006,7 +1003,7 @@ afo:
   - nfdi4chem
   - nfdi4ing
   - ontology
-  license: http://purl.allotrope.org/voc/copyright
+  license: CC-BY-4.0
   mappings:
     aberowl: AFO
     bioportal: AFO
@@ -1458,7 +1455,7 @@ ahol:
     fishes) or the one causing the disease (virus, bacteria, fungus, parasite).'
   download_owl: http://aber-owl.net/media/ontologies/AHOL/1/ahol.owl
   example: '0005114'
-  homepage: http://147.99.156.182/ontologies/visualisation/ontologie/
+  homepage: http://www.atol-ontology.com/
   keywords:
   - animal husbandry
   - disease
@@ -1509,6 +1506,7 @@ aio:
     aberowl: AIO
     bioportal: AIO
     fairsharing: FAIRsharing.8d6247
+    ols: aio
   name: The Artificial Intelligence Ontology
   preferred_prefix: aio
   publications:
@@ -3620,7 +3618,7 @@ atol:
     to animal production.'
   download_owl: http://sicpa-web.cati.inrae.fr/ontologies/visualisation/ontologie/atol/creation_fichier_owl.php?filename=atol.owl
   example: '0002233'
-  homepage: http://www.atol-ontology.com
+  homepage: http://www.atol-ontology.com/
   keywords:
   - agriculture
   - animal husbandry
@@ -4708,9 +4706,6 @@ bgee.stage:
   - https://github.com/biopragmatics/bioregistry/issues/889
   uri_format: http://bgee.unil.ch/bgee/bgee?page=anatomy&action=organs&stage_children=on&stage_id=$1
 bibframe:
-  contact:
-    email: khes@loc.gov
-    name: Kirk Hess
   contributor:
     email: cthoyt@gmail.com
     github: cthoyt
@@ -5919,12 +5914,12 @@ bioportal.geospecies:
   contact:
     email: pdevries@wisc.edu
     name: Peter J. DeVries
-  description: This ontology was designed to help integrate species concepts with
-    species occurrences, gene sequences, images, references and geographical information.
-    See also Taxonconcept.org
+    orcid: 0000-0003-4637-5281
+  description: A schema for integrating species concepts with species occurrences,
+    gene sequences, images, references and geographical information.
   download_owl: http://rdf.geospecies.org/ont/geospecies.owl
   example: DarwinPoint
-  homepage: http://lod.geospecies.org/
+  homepage: http://lod.geospecies.org
   keywords:
   - ontology
   mappings:
@@ -5935,15 +5930,10 @@ bioportal.geospecies:
 bioportal.pae:
   contact:
     email: jaiswalp@science.oregonstate.edu
+    github: jaiswalp
     name: Pankaj Jaiswal
+    orcid: 0000-0002-1005-8383
   deprecated: true
-  description: 'REPLACED BY: Plant Ontology (PO). A controlled vocabulary of plant
-    morphological and anatomical structures representing organs, tissues, cell types,
-    and their biological relationships based on spatial and developmental organization.
-    Note that this has been subsumed into the PO. This file is created by filtering
-    plant_ontology_assert.obo to contain only terms from the plant anatomical entity
-    branch of the PO. For more information, please see: http://palea.cgrb.oregonstate.edu/viewsvn/Poc/tags/live/'
-  homepage: http://www.plantontology.org
   keywords:
   - ontology
   mappings:
@@ -9673,7 +9663,7 @@ chebi:
   - CHEBIID
   - ChEBI
   uri_format: http://purl.obolibrary.org/obo/CHEBI_$1
-  version: '253'
+  version: '254'
 chembank:
   comment: This resource doesn't exist on the web anymore
   deprecated: true
@@ -12031,7 +12021,7 @@ cmo:
   rdf_uri_format: http://purl.obolibrary.org/obo/CMO_$1
   repository: https://github.com/rat-genome-database/CMO-Clinical-Measurement-Ontology
   uri_format: http://purl.obolibrary.org/obo/CMO_$1
-  version: '2026-07-25'
+  version: '2026-08-15'
 cmpo:
   contact:
     email: jupp@ebi.ac.uk
@@ -12040,7 +12030,7 @@ cmpo:
   description: CMPO is a species neutral ontology for describing general phenotypic
     observations relating to the whole cell, cellular components, cellular processes
     and cell populations.
-  download_owl: http://www.ebi.ac.uk/cmpo/cmpo.owl
+  download_owl: http://aber-owl.net/media/ontologies/CMPO/14/cmpo.owl
   example: '0000435'
   homepage: http://www.ebi.ac.uk/cmpo
   keywords:
@@ -16810,9 +16800,6 @@ dcterms:
   - terms
   uri_format: http://purl.org/dc/terms/$1
 dctypes:
-  contact:
-    email: kdurante@stanford.edu
-    name: Kim Durante
   contributor:
     email: cthoyt@gmail.com
     github: cthoyt
@@ -21527,7 +21514,7 @@ ecocore:
   rdf_uri_format: http://purl.obolibrary.org/obo/ECOCORE_$1
   repository: https://github.com/EcologicalSemantics/ecocore
   uri_format: http://purl.obolibrary.org/obo/ECOCORE_$1
-  version: '2022-03-09'
+  version: '2026-08-17'
 ecocyc:
   contact:
     email: pkarp@ai.sri.com
@@ -21704,7 +21691,7 @@ ecso:
     Cases
   download_owl: https://raw.githubusercontent.com/DataONEorg/sem-prov-ontologies/run4/observation/d1-ECSO.owl
   example: '00000532'
-  homepage: https://github.com/DataONEorg/sem-prov-ontologies
+  homepage: https://bioportal.bioontology.org/ontologies/ECSO
   keywords:
   - chemical and environmental engineering
   - earth science
@@ -22238,7 +22225,7 @@ efo:
   rdf_uri_format: http://www.ebi.ac.uk/efo/EFO_$1
   repository: https://github.com/EBISPOT/efo
   uri_format: http://www.ebi.ac.uk/efo/EFO_$1
-  version: 3.92.0
+  version: 3.93.0
 ega:
   description: The European Genome-phenome Archive (EGA) is a global network for permanent
     archiving and sharing of personally identifiable genetic, phenotypic, and clinical
@@ -22453,7 +22440,7 @@ ehdaa:
     hierarchical structures were not integrated.
   download_obo: http://aber-owl.net/media/ontologies/EHDAA/6/ehdaa.obo
   example: '1'
-  homepage: http://obofoundry.org/ontology/ehdaa.html
+  homepage: http://genex.hgu.mrc.ac.uk/
   keywords:
   - anatomy
   - biomedical science
@@ -22500,7 +22487,7 @@ ehdaa:
 ehdaa2:
   contact:
     email: J.Bard@ed.ac.uk
-    name: EMAP Administrators
+    name: Jonathan Bard
   depends_on:
   - aeo
   - caro
@@ -22885,6 +22872,23 @@ emea:
   homepage: https://www.ema.europa.eu/en/medicines
   name: European Medicines Evaluation Agency
   preferred_prefix: emea
+emedicine:
+  appears_in:
+  - hp
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: A resource for anatomical and disease terms
+  example: '986802'
+  homepage: https://emedicine.medscape.com
+  keywords:
+  - anatomy
+  - disease
+  name: Medscape
+  preferred_prefix: emedicine
+  uri_format: https://emedicine.medscape.com/article/$1
 emg:
   contact:
     email: oonagh.mannix@helmholtz-berlin.de
@@ -24428,6 +24432,43 @@ eolife:
   pattern: ^\d+$
   preferred_prefix: eolife
   uri_format: https://eol.org/pages/$1
+eom:
+  appears_in:
+  - hp
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: n international group of clinicians working in the field of dysmorphology
+    has initiated the standardization of terms used to describe human morphology.
+    The goals are to standardize these terms and reach consensus regarding their definitions.
+    In this way, we will increase the utility of descriptions of the human phenotype
+    and facilitate reliable comparisons of findings among patients. Discussions with
+    other workers in dysmorphology and related fields, such as developmental biology
+    and molecular genetics, will become more precise. [from homepage]
+  example: 7e778d8e789373bb23d8022b911499f6
+  homepage: https://elementsofmorphology.nih.gov
+  keywords:
+  - phenotype
+  mappings:
+    biocontext: EOM
+    prefixcommons: eom
+  name: Elements of Morphology
+  preferred_prefix: eom
+  providers:
+  - code: bio2rdf
+    description: Bio2RDF is an open-source project that uses Semantic Web technologies
+      to build and provide the largest network of Linked Data for the Life Sciences.
+      Bio2RDF defines a set of simple conventions to create RDF(S) compatible Linked
+      Data from a diverse set of heterogeneously formatted sources obtained from multiple
+      data providers.
+    homepage: https://bio2rdf.org
+    name: Bio2RDF
+    uri_format: http://bio2rdf.org/eom:$1
+  publications:
+  - pubmed: '19127575'
+  uri_format: https://elementsofmorphology.nih.gov/index.cgi?tid=$1
 epawaste:
   contact:
     email: brennan.thomas@epa.gov
@@ -25342,9 +25383,6 @@ evm:
   references:
   - https://genomebiology.biomedcentral.com/articles/10.1186/gb-2007-8-10-r229
 evorao:
-  contact:
-    email: evorao@evora-project.eu
-    name: d3fk
   description: The EVORAO Ontology provides a structured and harmonized vocabulary
     for describing shareable pathogens as characterized biological materials, along
     with their derived products and associated services, organized into collections.
@@ -29716,9 +29754,6 @@ geonames.ontology:
   preferred_prefix: geonames.ontology
   uri_format: http://www.geonames.org/ontology#$1
 geosparql:
-  contact:
-    email: kdurante@stanford.edu
-    name: Kim Durante
   description: The OGC GeoSPARQL standard supports representing and querying geospatial
     data on the Semantic Web. GeoSPARQL defines a vocabulary for representing geospatial
     data in RDF, and it defines an extension to the SPARQL query language for processing
@@ -32200,8 +32235,10 @@ gramene.gene:
 gramene.growthstage:
   banana: GRO
   contact:
-    email: jaiswalp@oregonstate.edu
+    email: jaiswalp@science.oregonstate.edu
+    github: jaiswalp
     name: Pankaj Jaiswal
+    orcid: 0000-0002-1005-8383
   deprecated: true
   description: Gramene is a comparative genome mapping database for grasses and crop
     plants. It combines a semi-automatically generated database of cereal genomic
@@ -36100,9 +36137,6 @@ icd10:
   - ICD10WHO
   uri_format: https://icd.who.int/browse10/2019/en#/$1
 icd10cm:
-  contact:
-    email: pbrooks@hcfa.gov
-    name: Patricia Brooks
   contributor:
     email: cthoyt@gmail.com
     github: cthoyt
@@ -36383,9 +36417,6 @@ icd9:
   - MTHICD9_2006
   uri_format: http://www.icd9data.com/getICD9Code.ashx?icd9=$1
 icd9cm:
-  contact:
-    email: pbrooks@hcfa.gov
-    name: Patricia Brooks
   contributor:
     email: cthoyt@gmail.com
     github: cthoyt
@@ -43359,9 +43390,6 @@ loggerhead:
   rdf_uri_format: http://purl.obolibrary.org/obo/LOGGERHEAD_$1
   uri_format: http://purl.obolibrary.org/obo/LOGGERHEAD_$1
 loinc:
-  contact:
-    email: loinc@regenstrief.org
-    name: LOINC Support
   contributor:
     email: cthoyt@gmail.com
     github: cthoyt
@@ -44379,7 +44407,7 @@ mastodon:
   uri_format: https://fedirect.toolforge.org/?id=$1
 mat:
   contact:
-    email: J.Bard@ed.ac.uk
+    email: j.bard@ed.ac.uk
     name: Jonathan Bard
   deprecated: true
   description: Minimal set of terms for anatomy.
@@ -44671,9 +44699,6 @@ maxo:
   uri_format: http://purl.obolibrary.org/obo/MAXO_$1
   version: '2026-01-15'
 mba:
-  contact:
-    email: chinhda@alleninstitute.org
-    name: Allen Institute for Brain Science
   contributor:
     email: cthoyt@gmail.com
     github: cthoyt
@@ -45081,9 +45106,6 @@ mediadive.solution:
   preferred_prefix: mediadive.solution
   uri_format: https://mediadive.dsmz.de/solutions/$1
 medlineplus:
-  contact:
-    email: custserv@nlm.nih.gov
-    name: NLM Customer Service
   description: MedlinePlus is the National Institutes of Health's Web site for patients
     and their families and friends. Produced by the National Library of Medicine,
     it provides information about diseases, conditions, and wellness issues using
@@ -45345,9 +45367,6 @@ merriamwebster:
   - merriam_webster
   uri_format: https://www.merriam-webster.com/dictionary/$1
 mesh:
-  contact:
-    email: custserv@nlm.nih.gov
-    name: NLM Customer Service
   contributor_extras:
   - email: baum@zbmed.de
     github: rombaum
@@ -48703,9 +48722,6 @@ molmovdb:
     orcid: 0000-0003-4423-4370
   uri_format: http://www.molmovdb.org/cgi-bin/morph.cgi?ID=$1
 molsim:
-  contact:
-    email: f.musyaffa@fz-juelich.de
-    name: Fathoni A. Musyaffa
   contributor:
     email: cthoyt@gmail.com
     github: cthoyt
@@ -49233,7 +49249,7 @@ mro:
   rdf_uri_format: http://purl.obolibrary.org/obo/MRO_$1
   repository: https://github.com/IEDB/MRO
   uri_format: http://purl.obolibrary.org/obo/MRO_$1
-  version: '2026-02-10'
+  version: '2026-08-10'
 ms:
   banana: MS
   contact:
@@ -49641,9 +49657,6 @@ mw.study:
     uri_format: https://www.omicsdi.org/dataset/metabolomics_workbench/$1
   uri_format: http://www.metabolomicsworkbench.org/data/DRCCMetadata.php?Mode=Study&StudyID=$1
 mwo:
-  contact:
-    email: ho_beygi@yahoo.com
-    name: Hossein Beygi Nasrabadi
   contributor:
     email: cthoyt@gmail.com
     github: cthoyt
@@ -50027,9 +50040,6 @@ namerxn:
   - https://twitter.com/cthoyt/status/1443929184745758723
 nando:
   banana: NANDO
-  contact:
-    email: takatter@dbcls.rois.ac.jp
-    name: Terue Takatsuki
   description: Nanbyo Disease Ontology (NANDO) is the ontology creating a comprehensive
     hierarchical controlled vocabulary for intractable and rare disease (i.e., nanbyo)
     representation in Japan.
@@ -51260,9 +51270,6 @@ ndc:
     uri_format: http://bio2rdf.org/ndc:$1
   uri_format: http://www.hipaaspace.com/Medical_Billing/Coding/National.Drug.Codes/$1
 nddf:
-  contact:
-    email: cs@firstdatabank.com
-    name: First DataBank Customer Support
   contributor:
     email: cthoyt@gmail.com
     github: cthoyt
@@ -56354,9 +56361,6 @@ ontocape:
 ontodm:
   appears_in:
   - efo
-  contact:
-    email: pance.panov@ijs.si
-    name: Pance Panov
   contributor:
     email: cthoyt@gmail.com
     github: cthoyt
@@ -56546,6 +56550,37 @@ ontorxn:
     pubmed: '35637523'
     title: 'Chemical reaction network knowledge graphs: the OntoRXN ontology'
     year: 2022
+ontouml:
+  contact:
+    email: pedro.barcelos@health-ri.nl
+    github: pedropaulofb
+    name: Pedro Paulo Favato Barcelos
+    orcid: 0000-0003-2736-7817
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: The OntoUML Metamodel repository contains the metamodel of the OntoUML
+    language. Unlike the UML profile, this version is independent of UML and presents
+    only the concepts officially supported in the language. This metamodel covers
+    the abstract and concrete syntaxes of the language and serves as the reference
+    for all projects in the OntoUML as a Service (OaaS) ecosystem, including its different
+    model serializations. [from https://github.com/OntoUML/ontouml-metamodel]
+  download_owl: https://w3id.org/ontouml
+  example: property
+  homepage: https://w3id.org/ontouml/vocabulary/docs
+  keywords:
+  - methods
+  - ontology
+  - rdf
+  mappings:
+    lov: ontouml
+  name: OntoUML
+  preferred_prefix: ontouml
+  rdf_uri_format: https://w3id.org/ontouml#$1
+  repository: https://github.com/OntoUML/ontouml-vocabulary
+  uri_format: https://w3id.org/ontouml#$1
 oostt:
   contact:
     email: mbrochhausen@gmail.com
@@ -60320,9 +60355,6 @@ phenolexplorer:
   preferred_prefix: phenolexplorer
   uri_format: http://phenol-explorer.eu/foods/$1
 phenx:
-  contact:
-    email: yingqin@rti.org
-    name: PhenX Admin
   contributor:
     email: cthoyt@gmail.com
     github: cthoyt
@@ -61305,9 +61337,6 @@ plo:
   rdf_uri_format: http://purl.obolibrary.org/obo/PLO_$1
   uri_format: http://purl.obolibrary.org/obo/PLO_$1
 plos:
-  contact:
-    email: subjectareas@plos.org
-    name: PLOS Taxonomy Team
   contributor:
     email: cthoyt@gmail.com
     github: cthoyt
@@ -62553,7 +62582,7 @@ pride:
     year: 2005
   repository: https://github.com/PRIDE-Utilities/pride-ontology
   uri_format: http://purl.obolibrary.org/obo/PRIDE_$1
-  version: '2026-06-19'
+  version: '2026-08-13'
 pride.project:
   description: The PRIDE PRoteomics IDEntifications database is a centralized, standards
     compliant, public data repository that provides protein and peptide identifications
@@ -64438,9 +64467,6 @@ radiomics:
   preferred_prefix: radiomics
   uri_format: http://www.radiomics.org/RO/$1
 radlex:
-  contact:
-    email: radlex-feedback@lists.rsna.org
-    name: Radiological Society of North America
   contributor:
     email: cthoyt@gmail.com
     github: cthoyt
@@ -65339,6 +65365,26 @@ refseq:
   synonyms:
   - REFSEQ_PROT
   uri_format: https://www.ncbi.nlm.nih.gov/protein/$1
+rehabo:
+  contact:
+    email: hoganwr@gmail.com
+    name: William Hogan
+  description: An ontology of physical medicine & rehabilitation, physical therapy,
+    occupational therapy, and speech therapy.
+  download_owl: https://github.com/mcwdsi/rehabo/releases/latest/download/rehabo.owl
+  example: '0011014'
+  homepage: https://github.com/mcwdsi/rehabo
+  keywords:
+  - ontology
+  license: CC0-1.0
+  mappings:
+    bioportal: REHABO
+    ols: rehabo
+  name: The Rehabilitation Ontology
+  pattern: ^\d{7}$
+  preferred_prefix: rehabo
+  repository: https://github.com/mcwdsi/rehabo
+  uri_format: http://purl.obolibrary.org/obo/REHABO_$1
 reo:
   comment: 'From James O.: It was an ontology for "reagents" developed by @Matthew
     Brush. Since OBI was interested in reagents, Matt developed it in coordination
@@ -65540,9 +65586,6 @@ resid:
   rdf_uri_format: http://purl.obolibrary.org/obo/RESID_$1
   uri_format: https://proteininformationresource.org/cgi-bin/resid?id=$1
 reto:
-  contact:
-    email: vladimir.n.mironov@gmail.com
-    name: Vladimir Mironov
   description: Regulation of Transcription
   download_obo: https://www.bio.ntnu.no/ontology/ReTO/reto.obo
   download_owl: https://www.bio.ntnu.no/ontology/ReTO/reto.owl
@@ -66793,7 +66836,6 @@ ror:
     ror: 03yrm5c26
   pattern: ^0[a-hj-km-np-tv-z|0-9]{6}[0-9]{2}$
   preferred_prefix: ror
-  repository: https://github.com/ror-community
   uri_format: https://ror.org/$1
 rosetta:
   description: The ROSETTA ontology of industrial robotics devices and robotic skills.
@@ -67115,7 +67157,7 @@ rs:
   rdf_uri_format: http://purl.obolibrary.org/obo/RS_$1
   repository: https://github.com/rat-genome-database/RS-Rat-Strain-Ontology
   uri_format: http://purl.obolibrary.org/obo/RS_$1
-  version: '2026-08-01'
+  version: '2026-08-15'
 rtecs:
   contact:
     email: vep1@cdc.gov
@@ -69233,9 +69275,6 @@ seon:
   preferred_prefix: seon
   uri_format: http://dev.nemo.inf.ufes.br/seon/SEON.owl#$1
 sep:
-  contact:
-    email: psidev-gps-dev@lists.sourceforge.net
-    name: SEP developers
   deprecated: true
   description: A structured controlled vocabulary for the annotation of sample processing
     and separation techniques in scientific experiments.
@@ -84114,6 +84153,25 @@ validatordb:
       non-standard residues from the Protein Data Bank'
     year: 2014
   uri_format: https://webchem.ncbr.muni.cz/Platform/ValidatorDb/ByStructure/$1
+valuesets:
+  contact:
+    email: cjmungall@lbl.gov
+    name: Chris Mungall
+  description: Comprehensive value sets across multiple domains including biological
+    entities, data formats, geographic locations, chemical entities, anatomical structures,
+    investigation metadata, clinical information, and specialized scientific domains.
+    This is derived from the LinkML representation, with each value set represented
+    as a class, with permissible values as subclasses
+  download_rdf: https://w3id.org/valuesets/valuesets.owl.ttl
+  example: Environment
+  homepage: https://github.com/linkml/valuesets
+  keywords:
+  - ontology
+  mappings:
+    bioportal: VALUESETS
+    ols: valuesets
+  name: Value Sets
+  preferred_prefix: valuesets
 vandf:
   contact:
     email: michael.lincoln@med.va.gov
@@ -87294,7 +87352,7 @@ xco:
   rdf_uri_format: http://purl.obolibrary.org/obo/XCO_$1
   repository: https://github.com/rat-genome-database/XCO-experimental-condition-ontology
   uri_format: http://purl.obolibrary.org/obo/XCO_$1
-  version: '2026-07-29'
+  version: '2026-08-15'
 xenbase:
   contact:
     email: troy_pells@yahoo.ca
@@ -87401,6 +87459,28 @@ xenbase:
   synonyms:
   - Xenbase
   uri_format: https://www.xenbase.org/entry/$1
+xfid:
+  description: "XframeworkID (XFID) is an open registry of permanent, content-based\
+    \ identifiers for extra-financial disclosure documents associated with labelled\
+    \ bond issuances — green, social and sustainability bond frameworks, Second Party\
+    \ Opinions (SPOs), EU Green Bond Standard pre/post-issuance reviews and\nfactsheets,\
+    \ impact and allocation reports, certifications, assurance reports, and academic\
+    \ research analysing labelled bonds. XFIDs are derived from a SHA-256 hash of\
+    \ the document's canonical content, so an identifier permanently and verifiably\
+    \ denotes one specific document version regardless of where\n the file is hosted\
+    \ — addressing the measured erosion of this disclosure class (23% of tracked documents\
+    \ are no longer accessible at their original URLs). The registry cross-references\
+    \ documents to issuers, bond ISINs, assessment providers and analysts, and is\
+    \ used for citation in academic research, investor due diligence and regulatory\
+    \ monitoring."
+  example: XFI5ICTDJ4
+  homepage: https://xframework.id
+  mappings:
+    miriam: xfid
+  name: xfid
+  pattern: ^XF[A-Z0-9]{8}$
+  preferred_prefix: xfid
+  uri_format: https://xframework.id/$1
 xhv:
   contributor:
     email: cthoyt@gmail.com

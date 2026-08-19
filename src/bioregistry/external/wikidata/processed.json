@@ -1511,10 +1511,10 @@
       "1684865",
       "1686124"
     ],
-    "homepage": "https://bomen.meetnetportaal.nl",
+    "homepage": "https://www.monumentalebomen.nl/",
     "name": "National Register of Monumental Trees ID",
     "pattern": "^\\d+$",
-    "uri_format": "https://bomen.meetnetportaal.nl/index.php?c=portal&mm=claim&m=custom&options=monumentale_bomen/claimformulier.xml&boomnr=$1"
+    "uri_format": "https://bomenstichting.maps.arcgis.com/apps/dashboards/db36bef64a3d4fdf9543efe2e33d7830#boomnr=$1"
   },
   "P12057": {
     "description": "identifier for a taxon in the World Auchenorrhyncha Database (Hoppers Species File)",
@@ -3347,9 +3347,9 @@
       "levi-montalcini-rita",
       "sella-quintino"
     ],
-    "homepage": "https://www.lincei.it/it/accademici-dal-1870",
+    "homepage": "https://accademici.lincei.it/",
     "name": "Accademia Nazionale dei Lincei ID",
-    "uri_format": "https://www.lincei.it/it/socio/$1/"
+    "uri_format": "https://accademici.lincei.it/it/component/fabrik/details/13/$1"
   },
   "P141": {
     "description": "conservation status assigned by the International Union for Conservation of Nature",
@@ -3558,17 +3558,26 @@
       "wikidata": "Q135790"
     }
   },
-  "P14729": {
-    "description": "official tax registration number assigned in Andorra to natural persons, legal entities and other taxable subjects.",
+  "P14751": {
+    "description": "identifier for a taxon in the Brazilian Fauna Taxonomic Catalogue",
     "examples": [
-      "A-704834-X",
-      "A-710646-J",
-      "A-713653-Z",
-      "L-716545-Y"
+      "108907",
+      "58623",
+      "97573"
     ],
-    "homepage": "https://www.oecd.org/content/dam/oecd/en/topics/policy-issue-focus/aeoi/andorra-tin.pdf",
-    "name": "Número de Registre Tributari",
-    "pattern": "^[A-Z]-[0-9]{6}-[A-Z]$"
+    "name": "Brazilian Fauna Taxonomic Catalogue ID",
+    "pattern": "^[1-9]\\d*$",
+    "uri_format": "https://fauna.jbrj.gov.br/fauna/faunadobrasil/$1"
+  },
+  "P14796": {
+    "description": "region outside the natural range of a taxon into which it was introduced through direct or indirect human activity",
+    "examples": [
+      "Q155"
+    ],
+    "name": "introduced to",
+    "xrefs": {
+      "wikidata": "Q1065449"
+    }
   },
   "P1550": {
     "description": "identifier in the Orpha.net database (without ORPHA prefix)",
@@ -5891,7 +5900,7 @@
     "description": "ID in the Relations Ontology",
     "homepage": "https://github.com/oborel/obo-relations/",
     "name": "Relations Ontology ID",
-    "pattern": "^(RO|BFO)_[0-9]{7}$"
+    "pattern": "^(RO)_[0-9]{7}$"
   },
   "P3591": {
     "description": "identifier of a plant taxon, in the World Checklist of Selected Plant Families",
@@ -7007,7 +7016,7 @@
     "homepage": "https://www.ukrlp.co.uk/",
     "name": "UK Provider Reference Number",
     "pattern": "^[1-9][0-9]{7}$",
-    "uri_format": "https://www.ukrlp.co.uk/ukrlp/ukrlp_provider.page_pls_provDetails?x=&pn_p_id=$1&pv_status=VERIFIED&pv_vis_code=L"
+    "uri_format": "https://ukrlp.education.gov.uk/search/provider/$1"
   },
   "P5003": {
     "description": "identifier for a species of amphibian in the Amphibians of India database",
