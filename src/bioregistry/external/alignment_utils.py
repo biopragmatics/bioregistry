@@ -383,17 +383,22 @@ def build_getter(
     download_kwargs: DownloadKwargs | None = None,
 ) -> Getter:
     """Construct a getter function."""
+    if download_kwargs is None:
+        download_kwargs = {}
 
     @adapter
-    def getter(*, force_download: bool = False, force_process: bool = False) -> dict[str, Record]:
+    def getter(
+        *, force_download: bool = False, force_process: bool = False, progress: bool = True
+    ) -> dict[str, Record]:
         """Get the registry."""
         if processed_path.exists() and not force_download and not force_process:
             return load_records(processed_path)
+        inner_download_kwargs: DownloadKwargs = {**download_kwargs, "progress_bar": progress}
         download(
             url=url if isinstance(url, str) else url(),
             path=raw_path,
             force=force_download,
-            **(download_kwargs or {}),
+            **inner_download_kwargs,
         )
         if cleanup is not None:
             cleanup(raw_path)
