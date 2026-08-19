@@ -108,10 +108,11 @@ main.add_command(generate_schema)
 
 
 @main.command()
+@click.option("--progress/--no-progress", is_flag=True)
 @click.pass_context
-def update(ctx: click.Context) -> None:
+def update(ctx: click.Context, progress: bool) -> None:
     """Update the Bioregistry."""
-    ctx.invoke(align)
+    ctx.invoke(align, progress=progress)
     ctx.invoke(lint)
     ctx.invoke(export)
     ctx.invoke(compare)
