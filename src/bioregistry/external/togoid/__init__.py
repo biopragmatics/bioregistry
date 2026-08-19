@@ -57,7 +57,9 @@ def _get_descriptions() -> dict[str, str]:
 
 
 @adapter
-def get_togoid(*, force_download: bool = False, force_process: bool = False, progress: bool = True) -> dict[str, Record]:
+def get_togoid(
+    *, force_download: bool = False, force_process: bool = False, progress: bool = True
+) -> dict[str, Record]:
     """Get the TogoID data."""
     if PROCESSED_PATH.exists() and not force_download and not force_process:
         return load_processed(PROCESSED_PATH)
