@@ -219,6 +219,7 @@ class Aligner:
         :param dry: If true, don't write changes to the registry
         :param show: If true, print a curation table
         :param force_download: Force re-download of the data
+        :param force_process: Force re-processing, but not re-downloading of the data
         """
         instance = cls(force_download=force_download, force_process=force_process)
         if not dry:
@@ -352,17 +353,16 @@ def load_processed(path: Path) -> dict[str, dict[str, Any]]:
 P = ParamSpec("P")
 
 
-def adapter(f: Callable[P, dict[str, Record]]) -> Getter:
+def adapter(func: Callable[P, dict[str, Record]]) -> Getter:
     """Adapt a new-style getter."""
 
     def _getter(*args: P.args, **kwargs: P.kwargs) -> GetterRt:
-        r = f(*args, **kwargs)
+        records = func(*args, **kwargs)
         return {
             prefix: model.model_dump(exclude_unset=True, exclude_none=True, exclude_defaults=True)
-            for prefix, model in r.items()
+            for prefix, model in records.items()
         }
 
-    _getter.__new_style_bioregistry = True  # type:ignore[attr-defined]
     return _getter
 
 

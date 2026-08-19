@@ -53,13 +53,16 @@ class OntoPortalClient:
         self.processed_path = DIRECTORY.joinpath(self.metaprefix).with_suffix(".json")
 
     def download(
-        self, force_download: bool = False, force_process: bool = False
+        self,
+        force_download: bool = False,
+        force_process: bool = False,
+        progress: bool = True,
     ) -> dict[str, Record]:
         """Get the full dump of the OntoPortal site's registry."""
         if self.processed_path.exists() and not force_download and not force_process:
             return load_processed(self.processed_path)
 
-        records = self._get_records(force=force_download)
+        records = self._get_records(force=force_download, progress=progress)
 
         rv = dict(
             thread_map(  # type:ignore
@@ -70,7 +73,7 @@ class OntoPortalClient:
         dump_records(rv, self.processed_path)
         return rv
 
-    def _get_records(self, force: bool = False) -> list[dict[str, Any]]:
+    def _get_records(self, *, force: bool = False, progress: bool = True) -> list[dict[str, Any]]:
         if self.raw_path.exists() and not force:
             return cast(list[dict[str, Any]], json.loads(self.raw_path.read_text()))
 
@@ -82,6 +85,7 @@ class OntoPortalClient:
             max_workers=self.max_workers,
             desc=f"Preprocessing {self.metaprefix}",
             leave=False,
+            disable=not progress,
         )
         with self.raw_path.open("w") as file:
             json.dump(records, file, indent=2, sort_keys=True, ensure_ascii=False)
