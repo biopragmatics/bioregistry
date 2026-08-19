@@ -46,7 +46,9 @@ UNCURATABLE = {
 
 
 @adapter
-def get_rrid(*, force_download: bool = False, force_process: bool = False) -> dict[str, Record]:
+def get_rrid(
+    *, force_download: bool = False, force_process: bool = False, progress: bool = True
+) -> dict[str, Record]:
     """Get RRIDs."""
     rv = {}
     with RAW_PATH.open() as file:

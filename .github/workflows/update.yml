@@ -25,7 +25,7 @@ jobs:
       - name: Create local changes
         id: update
         run: |
-          tox -e update
+          tox -e update -- --no-progress
         env:
           BIOPORTAL_API_KEY: ${{ secrets.BIOPORTAL_API_KEY }}
           ECOPORTAL_API_KEY: ${{ secrets.ECOPORTAL_API_KEY }}

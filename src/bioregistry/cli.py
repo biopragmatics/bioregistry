@@ -50,6 +50,7 @@ def download() -> None:
 @click.option("--skip-biodivportal", is_flag=True)
 @click.option("--skip-slow", is_flag=True)
 @click.option("--no-force", is_flag=True)
+@click.option("--progress/--no-progress", is_flag=True)
 def align(
     skip_fairsharing: bool,
     skip_re3data: bool,
@@ -58,6 +59,7 @@ def align(
     skip_biodivportal: bool,
     skip_slow: bool,
     no_force: bool,
+    progress: bool,
 ) -> None:
     """Align all external registries."""
     try:
@@ -88,7 +90,7 @@ def align(
             continue
         secho(f"Aligning {aligner_cls.key}")
         try:
-            aligner_cls.align(force_download=not no_force)
+            aligner_cls.align(force_download=not no_force, progress=progress)
         except Exception as e:
             secho(f"Failed to align {aligner_cls.key}: {e}", fg="red")
 
@@ -106,10 +108,11 @@ main.add_command(generate_schema)
 
 
 @main.command()
+@click.option("--progress/--no-progress", is_flag=True)
 @click.pass_context
-def update(ctx: click.Context) -> None:
+def update(ctx: click.Context, progress: bool) -> None:
     """Update the Bioregistry."""
-    ctx.invoke(align)
+    ctx.invoke(align, progress=progress)
     ctx.invoke(lint)
     ctx.invoke(export)
     ctx.invoke(compare)
