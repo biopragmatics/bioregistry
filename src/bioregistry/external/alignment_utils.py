@@ -76,6 +76,7 @@ class Aligner:
         *,
         force_download: bool | None = None,
         force_process: bool | None = None,
+        progress: bool | None = None,
         manager: Manager | None = None,
     ) -> None:
         """Instantiate the aligner."""
@@ -95,6 +96,8 @@ class Aligner:
             kwargs["force_download"] = force_download
         if force_process is not None:
             kwargs["force_process"] = force_process
+        if progress is not None:
+            kwargs["progress"] = progress
         self.external_registry = self.__class__.getter(**kwargs)
         self.skip_external = self.get_skip()
 
@@ -213,6 +216,7 @@ class Aligner:
         show: bool = False,
         force_download: bool | None = None,
         force_process: bool | None = None,
+        progress: bool = True,
     ) -> None:
         """Align and output the curation sheet.
 
@@ -220,8 +224,11 @@ class Aligner:
         :param show: If true, print a curation table
         :param force_download: Force re-download of the data
         :param force_process: Force re-processing, but not re-downloading of the data
+        :param progress: should a progress bar be shown (if available)?
         """
-        instance = cls(force_download=force_download, force_process=force_process)
+        instance = cls(
+            force_download=force_download, force_process=force_process, progress=progress
+        )
         if not dry:
             instance.write_registry()
         if show:
@@ -412,16 +419,18 @@ def build_getter(
 def build_no_raw_getter(
     *,
     processed_path: Path,
-    func: Callable[[], dict[str, Record]],
+    func: Callable[..., dict[str, Record]],
 ) -> Getter:
     """Construct a getter function."""
 
     @adapter
-    def getter(*, force_download: bool = False, force_process: bool = False) -> dict[str, Record]:
+    def getter(
+        *, force_download: bool = False, force_process: bool = False, progress: bool = True
+    ) -> dict[str, Record]:
         """Get the registry."""
         if processed_path.exists() and not force_download and not force_process:
             return load_records(processed_path)
-        rv = func()
+        rv = func(progress=progress)
         dump_records(rv, processed_path)
         return rv
 
