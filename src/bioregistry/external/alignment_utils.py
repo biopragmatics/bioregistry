@@ -430,7 +430,7 @@ def build_no_raw_getter(
         """Get the registry."""
         if processed_path.exists() and not force_download and not force_process:
             return load_records(processed_path)
-        rv = func(progress=progress)
+        rv = func()
         dump_records(rv, processed_path)
         return rv
 
