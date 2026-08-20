@@ -60,6 +60,14 @@ BAD_NAMES = {
     "World Health Organization",
     "the W3C Schema.org Community Group",
     "The World Health Organization",
+    "NCI Thesaurus Mailbox",
+    "RxNorm Customer Service",
+    "UNESCO",
+    "MedDRA MSSO",
+    "IIS Helpdesk",
+    "ICD Helpdesk",
+    "ESIP Semantic Team",
+    "Eionet Helpdesk",
 }
 
 COULD_NOT_FIND_GITHUB = {
