@@ -68,6 +68,8 @@ BAD_NAMES = {
     "ICD Helpdesk",
     "ESIP Semantic Team",
     "Eionet Helpdesk",
+    "NLM Customer Service",
+    "NIH Reporter Helpdesk",
 }
 
 COULD_NOT_FIND_GITHUB = {
