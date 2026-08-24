@@ -31,7 +31,7 @@ def cleanup_authors(manager: Manager) -> None:
                 names[orcid].add(author.name)
             if author.github:
                 githubs[orcid] = author.github
-            if author.email:
+            if author.email and orcid not in emails:
                 # TODO lowercase?
                 emails[orcid] = author.email
 
