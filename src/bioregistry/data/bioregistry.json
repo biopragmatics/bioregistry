@@ -19714,6 +19714,33 @@
       "uri_format_rdf": "http://purl.obolibrary.org/obo/CEPH_$1"
     }
   },
+  "cerise.cim": {
+    "contact": {
+      "email": "laura.daniele@tno.nl",
+      "github": "danielelm",
+      "name": "Laura Daniele",
+      "orcid": "0000-0002-9267-7160"
+    },
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "This ontology is an OWL profile of the IEC Common Information Model for Smart Grids, developed by the Cerise-SG project. This profile extends the cim-smartgrid profile previously created by Maarten Steen (available at http://ns.cerise-project.nl/energy/def/cim-smartgrid) with the classes Register and Channel. This OWL profile was generated from the UML version of the IEC Common Information Model using the CIMTool (from ontology)",
+    "download_owl": "http://ontology.tno.nl/cerise/cim-profile.ttl",
+    "example": "CustomerKind",
+    "homepage": "https://ontology.tno.nl/cerise/cim-profile/",
+    "name": "A Common Information Model Profile for Smart Grids",
+    "owners": [
+      {
+        "name": "Netherlands Organisation for Applied Scientific Research",
+        "ror": "01bnjb948"
+      }
+    ],
+    "rdf_uri_format": "http://ontology.tno.nl/cerise/cim-profile#$1",
+    "uri_format": "http://ontology.tno.nl/cerise/cim-profile#$1"
+  },
   "cert": {
     "example": "Certificate",
     "lov": {
@@ -77674,6 +77701,25 @@
       "uri_format": "https://w3id.org/idsa/core/$1"
     }
   },
+  "iec.cim": {
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "An ontology export from the International ElectroChemical Commission (EIC)'s common information model produced by TNO.",
+    "download_owl": "https://ontology.tno.nl/IEC_CIM.ttl",
+    "example": "ACDCConverter.ACDCConverterDCTerminal",
+    "name": "International Electrotechnical Commission Common Information Model",
+    "owners": [
+      {
+        "name": "Netherlands Organisation for Applied Scientific Research",
+        "ror": "01bnjb948"
+      }
+    ],
+    "rdf_uri_format": "http://www.iec.ch/TC57/CIM#$1"
+  },
   "iedb.assay": {
     "contact": {
       "email": "rvita@liai.org",
@@ -89313,7 +89359,7 @@
       "name": "Charles Tapley Hoyt",
       "orcid": "0000-0003-4423-4370"
     },
-    "description": " LogiServ (Logistics Service Ontology) models business activities (such as Transport, Transshipment, Load, Discharge, Storage, Consolidation, Deconsolidation, etc.) and their properties as the basis for specifying logistic services. LogiServ is an extension of LogiCO (Logistics Core Ontology).",
+    "description": "LogiServ (Logistics Service Ontology) models business activities (such as Transport, Transshipment, Load, Discharge, Storage, Consolidation, Deconsolidation, etc.) and their properties as the basis for specifying logistic services. LogiServ is an extension of LogiCO (Logistics Core Ontology).",
     "example": "Consolidation",
     "homepage": "https://ontology.tno.nl/logiserv/",
     "name": "Logistics Service Ontology",
@@ -144445,6 +144491,52 @@
     },
     "uri_format": "http://stormo.wustl.edu/ScerTF/details/$1"
   },
+  "scsn.core": {
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "An core data schema for the mart Connected Supplier Network (SCSN).",
+    "download_owl": "http://ontology.tno.nl/dfcore.ttl",
+    "example": "Address",
+    "homepage": "http://ontology.tno.nl/dfcore",
+    "name": "Smart Connected Supplier Network (SCSN) CORE ontology",
+    "owners": [
+      {
+        "name": "Netherlands Organisation for Applied Scientific Research",
+        "ror": "01bnjb948"
+      }
+    ],
+    "rdf_uri_format": "http://ontology.tno.nl/dfcore#$1",
+    "references": [
+      "https://smart-connected.nl/nl"
+    ]
+  },
+  "scsn.order": {
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "A representation of orders (i.e. transactions)",
+    "download_owl": "https://ontology.tno.nl/dforder.ttl",
+    "example": "hasOrderLine",
+    "homepage": "http://ontology.tno.nl/dforder",
+    "name": "Smart Connected Supplier Network (SCSN) ORDER ontology",
+    "owners": [
+      {
+        "name": "Netherlands Organisation for Applied Scientific Research",
+        "ror": "01bnjb948"
+      }
+    ],
+    "rdf_uri_format": "http://ontology.tno.nl/dforder#$1",
+    "references": [
+      "https://smart-connected.nl/nl"
+    ]
+  },
   "sd": {
     "example": "endpoint",
     "lov": {
@@ -151193,6 +151285,21 @@
         "year": 2008
       }
     ]
+  },
+  "spin": {
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "An RDF Schema that can be used to attach constraints and rules to RDFS classes, and to encapsulate reusable SPARQL queries into functions and templates.",
+    "domain": "schema",
+    "download_owl": "https://spinrdf.org/spin",
+    "example": "imports",
+    "homepage": "http://spinrdf.org",
+    "name": "SPIN Modeling Vocabulary",
+    "uri_format": "http://spinrdf.org/spin#$1"
   },
   "splash": {
     "biocontext": {
