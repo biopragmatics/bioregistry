@@ -57,6 +57,11 @@ def lint() -> None:
             if provider.publications:
                 provider.publications = sorted(provider.publications)
 
+        if resource.homepage:
+            resource.homepage = resource.homepage.rstrip("/")
+        if resource.repository:
+            resource.repository = resource.repository.rstrip("/")
+
     write_registry(registry)
     collections = read_collections()
     for collection in collections.values():
