@@ -72,4 +72,4 @@ class TestAlign(unittest.TestCase):
 
         self.assertIsNone(geo.obofoundry)
         self.assertIsNotNone(geogeo.obofoundry)
-        self.assertEqual("geo", (geogeo.obofoundry or {}).get("prefix"))
+        self.assertEqual("GEO", geogeo.get_mapped_prefix("obofoundry"))

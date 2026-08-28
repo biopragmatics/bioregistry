@@ -110,8 +110,7 @@ def _make_semantic_mapping(
     manager: Manager,
 ) -> SemanticMapping:
     resource = manager.get_resource(internal_prefix, strict=True)
-    external_data = resource.get_external(external_metaprefix)
-    external_name = external_data.get("name")
+    external_name = resource._get_external_value(external_metaprefix, "name")
     return SemanticMapping(
         subject=NamableReference(
             prefix=INTERNAL_METAPREFIX,
