@@ -837,7 +837,7 @@ class Manager:
         entry = self.get_resource(prefix)
         if entry is None:
             return {}
-        return entry.get_external(metaprefix)
+        return entry.get_external(metaprefix) or {}
 
     def get_versions(self) -> Mapping[str, str]:
         """Get a map of prefixes to versions."""
