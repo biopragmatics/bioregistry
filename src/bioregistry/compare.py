@@ -213,7 +213,7 @@ def make_overlaps(keys: list[RegistryInfo]) -> OverlapsHint:
         # Remap internal prefixes to match the external
         #  vocabulary, when possible
         internal_remapped = {
-            resource.get_external(metaprefix).get("prefix", prefix)
+            resource.get_mapped_prefix(metaprefix) or prefix
             for prefix, resource in read_registry().items()
         }
         rv[metaprefix] = {
