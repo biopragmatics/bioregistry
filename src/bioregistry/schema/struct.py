@@ -165,18 +165,18 @@ def _yield_protocol_variations(u: str) -> Iterable[str]:
 
 
 URI_FORMAT_PATHS = [
-    ("miriam", URI_FORMAT_KEY),
-    ("n2t", URI_FORMAT_KEY),
-    ("go", URI_FORMAT_KEY),
-    ("biocontext", URI_FORMAT_KEY),
-    ("wikidata", URI_FORMAT_KEY),
-    ("uniprot", URI_FORMAT_KEY),
-    ("cellosaurus", URI_FORMAT_KEY),
-    ("prefixcommons", URI_FORMAT_KEY),
-    ("rrid", URI_FORMAT_KEY),
-    ("tib", URI_FORMAT_KEY),
-    ("bartoc", URI_FORMAT_KEY),
-    ("zazuko", URI_FORMAT_KEY),
+    "miriam"
+    "n2t",
+    "go",
+    "biocontext",
+    "wikidata",
+    "uniprot",
+    "cellosaurus",
+    "prefixcommons",
+    "rrid",
+    "tib",
+    "bartoc",
+    "zazuko",
 ]
 
 
