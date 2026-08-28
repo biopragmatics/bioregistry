@@ -643,7 +643,7 @@ def plot_xrefs(registry_infos: list[RegistryInfo], watermark: bool) -> FigAxPair
     import seaborn as sns
 
     xref_counts = [
-        sum(0 < len(entry.get_external(key)) for key, *_ in registry_infos)
+        sum(metaprefix in entry.get_mappings() for metaprefix, *_ in registry_infos)
         for entry in read_registry().values()
     ]
     fig, ax = plt.subplots(1, 1, figsize=SINGLE_FIG)
