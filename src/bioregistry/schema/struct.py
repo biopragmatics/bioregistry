@@ -881,7 +881,17 @@ class Resource(BaseModel):
 
     def get_external(self, metaprefix: str) -> Record:
         """Get an external registry."""
-        return self.model_dump().get(metaprefix) or {}
+        external = self.model_dump().get(metaprefix)
+        if external is None:
+            return {}
+        return cast(Record, external)
+
+    def _get_external_value(self, metaprefix: str, key: str, default: Any = None) -> Any:
+        """Get the value."""
+        external = self.get_external(metaprefix)
+        if external:
+            return external.get(key)
+        return default
 
     def get_mapped_prefix(self, metaprefix: str, use_obo_preferred: bool = True) -> str | None:
         """Get the prefix for the given external.
