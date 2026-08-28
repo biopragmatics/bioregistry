@@ -2658,7 +2658,7 @@ class Resource(BaseModel):
         """Get the version for the resource."""
         if self.version:
             return self.version
-        return self.get_external("ols").get("version")
+        return self._get_prefix_key_str("version", DEFAULT_METAPREFIX_PRIORITY, provenance=False)
 
     def get_short_description(self, use_markdown: bool = False) -> str | None:
         """Get a short description."""
