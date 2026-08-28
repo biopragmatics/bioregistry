@@ -1,9 +1,9 @@
 """Test alignment."""
 
 import unittest
-from typing import Any
 
 from bioregistry import Manager, Resource
+from bioregistry.alignment_model import Record
 from bioregistry.external.alignment_utils import Aligner
 
 
@@ -15,12 +15,14 @@ class TestAlign(unittest.TestCase):
 
         def mock_getter(
             force_download: bool = False, force_process: bool = False
-        ) -> dict[str, dict[str, Any]]:
+        ) -> dict[str, Record]:
             """Mock getter for FAIRsharing."""
             return {
-                "FAIRsharing.Z8OKi5": {
-                    "name": "ABCD database",
-                }
+                "FAIRsharing.Z8OKi5": Record.model_validate(
+                    {
+                        "name": "ABCD database",
+                    }
+                )
             }
 
         class MockAligner(Aligner):
@@ -44,9 +46,13 @@ class TestAlign(unittest.TestCase):
 
         def mock_getter(
             force_download: bool = False, force_process: bool = False
-        ) -> dict[str, dict[str, Any]]:
+        ) -> dict[str, Record]:
             """Mock getter for OBO foundry."""
-            return {"geo": {"name": "geographical entity ontology", "preferred_prefix": "GEO"}}
+            return {
+                "geo": Record.model_validate(
+                    {"name": "geographical entity ontology", "preferred_prefix": "GEO"}
+                )
+            }
 
         class MockAligner(Aligner):
             """Mock aligner for OBO foundry."""
