@@ -479,7 +479,7 @@ def _get_prioritized_metaprefixes(pr: list[str]) -> list[str]:
     return [*pr, *(x for x in DEFAULT_METAPREFIX_PRIORITY if x not in pr)]
 
 
-RRR = Mapping[str, Any]
+Record = Mapping[str, Any]
 # TODO update to RRR = Record
 
 
@@ -810,76 +810,76 @@ class Resource(BaseModel):
     )
 
     #: External data from Identifiers.org's MIRIAM Database
-    miriam: RRR | None = None
+    miriam: Record | None = None
     #: External data from the Name-to-Thing service
-    n2t: RRR | None = None
+    n2t: Record | None = None
     #: External data from Prefix Commons
-    prefixcommons: RRR | None = None
+    prefixcommons: Record | None = None
     #: External data from Wikidata Properties
-    wikidata: RRR | None = None
+    wikidata: Record | None = None
     #: External data from Wikidata Entity
-    wikidata_entity: RRR | None = None
+    wikidata_entity: Record | None = None
     #: External data from the Gene Ontology's custom registry
-    go: RRR | None = None
+    go: Record | None = None
     #: External data from the Open Biomedical Ontologies (OBO) Foundry catalog
-    obofoundry: RRR | None = None
+    obofoundry: Record | None = None
     #: External data from the BioPortal ontology repository
-    bioportal: RRR | None = None
+    bioportal: Record | None = None
     #: External data from the EcoPortal ontology repository
-    ecoportal: RRR | None = None
+    ecoportal: Record | None = None
     #: External data from the AgroPortal ontology repository
-    agroportal: RRR | None = None
+    agroportal: Record | None = None
     #: External data from the CropOCT ontology curation tool
-    cropoct: RRR | None = None
+    cropoct: Record | None = None
     #: External data from the Ontology Lookup Service
-    ols: RRR | None = None
+    ols: Record | None = None
     #: External data from the AberOWL ontology repository
-    aberowl: RRR | None = None
+    aberowl: Record | None = None
     #: External data from the NCBI Genbank's custom registry
-    ncbi: RRR | None = None
+    ncbi: Record | None = None
     #: External data from UniProt's custom registry
-    uniprot: RRR | None = None
+    uniprot: Record | None = None
     #: External data from the BioLink Model's custom registry
-    biolink: RRR | None = None
+    biolink: Record | None = None
     #: External data from the Cellosaurus custom registry
-    cellosaurus: RRR | None = None
+    cellosaurus: Record | None = None
     #: External data from the OntoBee
-    ontobee: RRR | None = None
+    ontobee: Record | None = None
     #: External data from ChemInf
-    cheminf: RRR | None = None
+    cheminf: Record | None = None
     #: External data from FAIRsharing
-    fairsharing: RRR | None = None
+    fairsharing: Record | None = None
     #: External data from BioContext
-    biocontext: RRR | None = None
+    biocontext: Record | None = None
     #: External data from EDAM ontology
-    edam: RRR | None = None
+    edam: Record | None = None
     #: External data from re3data
-    re3data: RRR | None = None
+    re3data: Record | None = None
     #: External data from hl7
-    hl7: RRR | None = None
+    hl7: Record | None = None
     #: External data from bartoc
-    bartoc: RRR | None = Field(default=None, title="BARTOC")
+    bartoc: Record | None = Field(default=None, title="BARTOC")
     #: External data from RRID
-    rrid: RRR | None = Field(default=None, title="RRID")
+    rrid: Record | None = Field(default=None, title="RRID")
     #: External data from LOV
-    lov: RRR | None = Field(default=None, title="LOV")
+    lov: Record | None = Field(default=None, title="LOV")
     #: External data from Zazuko
-    zazuko: RRR | None = Field(default=None)
+    zazuko: Record | None = Field(default=None)
     #: External data from TogoID
-    togoid: RRR | None = Field(default=None)
+    togoid: Record | None = Field(default=None)
     #: External data from Integbio
-    integbio: RRR | None = Field(default=None)
+    integbio: Record | None = Field(default=None)
     #: External data from PathGuide
-    pathguide: RRR | None = Field(default=None)
+    pathguide: Record | None = Field(default=None)
     #: External data from TIB Terminology Service
-    tib: RRR | None = Field(default=None)
+    tib: Record | None = Field(default=None)
     #: External data from BiodivPortal
-    biodivportal: RRR | None = Field(default=None)
+    biodivportal: Record | None = Field(default=None)
 
     # Cached compiled pattern for identifiers
     _compiled_pattern: re.Pattern[str] | None = PrivateAttr(None)
 
-    def get_external(self, metaprefix: str) -> RRR:
+    def get_external(self, metaprefix: str) -> Record:
         """Get an external registry."""
         return self.model_dump().get(metaprefix) or {}
 
