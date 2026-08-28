@@ -950,7 +950,7 @@ class Resource(BaseModel):
         rv = getattr(self, key, None)
         if rv is not None:
             if isinstance(rv, str):
-                rv = rv.replace("\r\n", "\n") # FIXME there should be a test against this
+                rv = rv.replace("\r\n", "\n")  # FIXME there should be a test against this
             if provenance:
                 return cast(
                     MetaprefixAnnotatedValue[X], MetaprefixAnnotatedValue(rv, "bioregistry")
