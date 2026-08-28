@@ -881,7 +881,7 @@ class Resource(BaseModel):
 
     def get_external(self, metaprefix: str) -> Record:
         """Get an external registry."""
-        external = self.model_dump().get(metaprefix)
+        external = getattr(self, metaprefix, None)
         if external is None:
             return {}
         return cast(Record, external)
