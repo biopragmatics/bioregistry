@@ -156,8 +156,10 @@ def _get_mismatch_entries() -> dict[str, Any]:
                 external_entry = external_registries[external_registry].get(external_prefix)
                 if not external_entry:
                     continue
-                external_entry["prefix"] = external_prefix
-                mismatch_entries[bioregistry_prefix][external_registry] = external_entry
+                mismatch_entries[bioregistry_prefix][external_registry] = {
+                    "prefix": external_prefix,
+                    **external_entry.model_dump(),
+                }
     return dict(mismatch_entries)
 
 

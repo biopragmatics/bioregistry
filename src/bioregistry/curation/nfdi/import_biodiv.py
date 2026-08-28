@@ -36,9 +36,9 @@ def import_biodiv(add: bool) -> None:
             rows.append(
                 (
                     acronym,
-                    record["name"],
+                    record.name,
                     f"https://biodivportal.gfbio.org/ontologies/{acronym}",
-                    record.get("extras", {}).get("example_uri"),
+                    (record.extras or {}).get("example_uri"),
                 )
             )
     click.echo(

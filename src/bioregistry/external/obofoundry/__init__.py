@@ -220,9 +220,7 @@ class OBOFoundryAligner(Aligner):
         """Get the prefixes in the OBO Foundry that should be skipped."""
         return SKIP
 
-    def _align_action(
-        self, bioregistry_id: str, external_id: str, external_entry: dict[str, Any]
-    ) -> None:
+    def _align_action(self, bioregistry_id: str, external_id: str, external_entry: Record) -> None:
         super()._align_action(bioregistry_id, external_id, external_entry)
         if (
             self.manager.get_example(bioregistry_id)
