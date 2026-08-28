@@ -61,26 +61,28 @@ def main() -> None:
         if bioregistry.normalize_prefix(prefix):
             tqdm.write(f"[{prefix:15}] duplicate alignment")
             continue
-
-        uri_format = data.get("uri_format")
-        if uri_format is None:
+        if (
+            not data.name
+            or not data.description
+            or not data.pattern
+            or not data.examples
+            or not data.homepage
+            or not data.uri_format
+        ):
             continue
-        if not uri_format.endswith("$1"):
-            tqdm.write(f"[{prefix:15}] URI format: {uri_format}")
+        if not data.uri_format.endswith("$1"):
+            tqdm.write(f"[{prefix:15}] URI format: {data.uri_format}")
             continue
 
-        if not all(data.get(k) for k in ["name", "description", "homepage", "pattern", "example"]):
-            continue
-
-        example = data["example"]
+        example = data.examples[0]
         if uniprot_pattern.match(example):
             tqdm.write(f"[{prefix:15}] skipping duplicate of UniProt: {example}")
             continue
 
-        example_url = uri_format.replace("$1", data["example"])
+        example_url = data.uri_format.replace("$1", example)
 
         tqdm.write(f"checking {prefix}")
-        homepage_res = _works(data["homepage"])
+        homepage_res = _works(data.homepage)
         entry_res = _works(example_url)
         if homepage_res and entry_res:
             c += 1

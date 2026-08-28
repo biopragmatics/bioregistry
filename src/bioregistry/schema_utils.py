@@ -113,11 +113,16 @@ def add_resource(resource: Resource) -> None:
 
 
 def read_mismatches() -> dict[str, dict[str, set[str]]]:
-    """Read the mismatches subset of curated mappings as a nested dictionary data structure."""
+    """Read the mismatches subset of curated mappings as a nested dictionary data structure.
+
+    bioregistry prefix -> metaprefix -> set of external identifiers
+    """
     mismatches: defaultdict[str, defaultdict[str, set[str]]] = defaultdict(lambda: defaultdict(set))
-    for m in read_mappings():
-        if m.predicate.curie == "skos:exactMatch" and m.predicate_modifier == "Not":
-            mismatches[m.subject.identifier][m.object.prefix].add(m.object.identifier)
+    for mapping in read_mappings():
+        if mapping.predicate.curie == "skos:exactMatch" and mapping.predicate_modifier == "Not":
+            mismatches[mapping.subject.identifier][mapping.object.prefix].add(
+                mapping.object.identifier
+            )
     return {k: dict(v) for k, v in mismatches.items()}
 
 
