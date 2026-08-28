@@ -890,7 +890,7 @@ class Resource(BaseModel):
         """Get the value."""
         external = self.get_external(metaprefix)
         if external:
-            return external.get(key)
+            return external.get(key, default)
         return default
 
     def get_mapped_prefix(self, metaprefix: str, use_obo_preferred: bool = True) -> str | None:
