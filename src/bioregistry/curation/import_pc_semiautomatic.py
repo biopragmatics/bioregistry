@@ -61,7 +61,14 @@ def main() -> None:
         if bioregistry.normalize_prefix(prefix):
             tqdm.write(f"[{prefix:15}] duplicate alignment")
             continue
-        if not data.name or not data.description or not data.pattern or not data.examples or not data.homepage or not data.uri_format:
+        if (
+            not data.name
+            or not data.description
+            or not data.pattern
+            or not data.examples
+            or not data.homepage
+            or not data.uri_format
+        ):
             continue
         if not data.uri_format.endswith("$1"):
             tqdm.write(f"[{prefix:15}] URI format: {data.uri_format}")

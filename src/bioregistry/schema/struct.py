@@ -479,6 +479,10 @@ def _get_prioritized_metaprefixes(pr: list[str]) -> list[str]:
     return [*pr, *(x for x in DEFAULT_METAPREFIX_PRIORITY if x not in pr)]
 
 
+RRR = Mapping[str, Any]
+# TODO update to RRR = Record
+
+
 class Resource(BaseModel):
     """Metadata about an ontology, database, or other resource."""
 
@@ -806,76 +810,76 @@ class Resource(BaseModel):
     )
 
     #: External data from Identifiers.org's MIRIAM Database
-    miriam: Mapping[str, Any] | None = None
+    miriam: RRR | None = None
     #: External data from the Name-to-Thing service
-    n2t: Mapping[str, Any] | None = None
+    n2t: RRR | None = None
     #: External data from Prefix Commons
-    prefixcommons: Mapping[str, Any] | None = None
+    prefixcommons: RRR | None = None
     #: External data from Wikidata Properties
-    wikidata: Mapping[str, Any] | None = None
+    wikidata: RRR | None = None
     #: External data from Wikidata Entity
-    wikidata_entity: Mapping[str, Any] | None = None
+    wikidata_entity: RRR | None = None
     #: External data from the Gene Ontology's custom registry
-    go: Mapping[str, Any] | None = None
+    go: RRR | None = None
     #: External data from the Open Biomedical Ontologies (OBO) Foundry catalog
-    obofoundry: Mapping[str, Any] | None = None
+    obofoundry: RRR | None = None
     #: External data from the BioPortal ontology repository
-    bioportal: Mapping[str, Any] | None = None
+    bioportal: RRR | None = None
     #: External data from the EcoPortal ontology repository
-    ecoportal: Mapping[str, Any] | None = None
+    ecoportal: RRR | None = None
     #: External data from the AgroPortal ontology repository
-    agroportal: Mapping[str, Any] | None = None
+    agroportal: RRR | None = None
     #: External data from the CropOCT ontology curation tool
-    cropoct: Mapping[str, Any] | None = None
+    cropoct: RRR | None = None
     #: External data from the Ontology Lookup Service
-    ols: Mapping[str, Any] | None = None
+    ols: RRR | None = None
     #: External data from the AberOWL ontology repository
-    aberowl: Mapping[str, Any] | None = None
+    aberowl: RRR | None = None
     #: External data from the NCBI Genbank's custom registry
-    ncbi: Mapping[str, Any] | None = None
+    ncbi: RRR | None = None
     #: External data from UniProt's custom registry
-    uniprot: Mapping[str, Any] | None = None
+    uniprot: RRR | None = None
     #: External data from the BioLink Model's custom registry
-    biolink: Mapping[str, Any] | None = None
+    biolink: RRR | None = None
     #: External data from the Cellosaurus custom registry
-    cellosaurus: Mapping[str, Any] | None = None
+    cellosaurus: RRR | None = None
     #: External data from the OntoBee
-    ontobee: Mapping[str, Any] | None = None
+    ontobee: RRR | None = None
     #: External data from ChemInf
-    cheminf: Mapping[str, Any] | None = None
+    cheminf: RRR | None = None
     #: External data from FAIRsharing
-    fairsharing: Mapping[str, Any] | None = None
+    fairsharing: RRR | None = None
     #: External data from BioContext
-    biocontext: Mapping[str, Any] | None = None
+    biocontext: RRR | None = None
     #: External data from EDAM ontology
-    edam: Mapping[str, Any] | None = None
+    edam: RRR | None = None
     #: External data from re3data
-    re3data: Mapping[str, Any] | None = None
+    re3data: RRR | None = None
     #: External data from hl7
-    hl7: Mapping[str, Any] | None = None
+    hl7: RRR | None = None
     #: External data from bartoc
-    bartoc: Mapping[str, Any] | None = Field(default=None, title="BARTOC")
+    bartoc: RRR | None = Field(default=None, title="BARTOC")
     #: External data from RRID
-    rrid: Mapping[str, Any] | None = Field(default=None, title="RRID")
+    rrid: RRR | None = Field(default=None, title="RRID")
     #: External data from LOV
-    lov: Mapping[str, Any] | None = Field(default=None, title="LOV")
+    lov: RRR | None = Field(default=None, title="LOV")
     #: External data from Zazuko
-    zazuko: Mapping[str, Any] | None = Field(default=None)
+    zazuko: RRR | None = Field(default=None)
     #: External data from TogoID
-    togoid: Mapping[str, Any] | None = Field(default=None)
+    togoid: RRR | None = Field(default=None)
     #: External data from Integbio
-    integbio: Mapping[str, Any] | None = Field(default=None)
+    integbio: RRR | None = Field(default=None)
     #: External data from PathGuide
-    pathguide: Mapping[str, Any] | None = Field(default=None)
+    pathguide: RRR | None = Field(default=None)
     #: External data from TIB Terminology Service
-    tib: Mapping[str, Any] | None = Field(default=None)
+    tib: RRR | None = Field(default=None)
     #: External data from BiodivPortal
-    biodivportal: Mapping[str, Any] | None = Field(default=None)
+    biodivportal: RRR | None = Field(default=None)
 
     # Cached compiled pattern for identifiers
     _compiled_pattern: re.Pattern[str] | None = PrivateAttr(None)
 
-    def get_external(self, metaprefix: str) -> Mapping[str, Any]:
+    def get_external(self, metaprefix: str) -> RRR:
         """Get an external registry."""
         return self.model_dump().get(metaprefix) or {}
 
