@@ -106,10 +106,7 @@ def _synonym_to_canonical(registry: Mapping[str, Resource]) -> NormDict:
             norm_synonym_to_key[synonym] = identifier
 
         for metaprefix in ("miriam", "ols", "obofoundry", "go"):
-            external = resource.get_external(metaprefix)
-            if external is None:
-                continue
-            external_prefix = external.get("prefix")
+            external_prefix = resource.get_mapped_prefix(metaprefix)
             if external_prefix is None:
                 continue
             if external_prefix not in norm_synonym_to_key:
