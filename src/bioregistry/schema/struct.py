@@ -165,7 +165,7 @@ def _yield_protocol_variations(u: str) -> Iterable[str]:
 
 
 URI_FORMAT_PATHS = [
-    "miriam"
+    "miriam",
     "n2t",
     "go",
     "biocontext",
