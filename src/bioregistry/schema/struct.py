@@ -947,10 +947,10 @@ class Resource(BaseModel):
         provenance: bool = False,
     ) -> X | MetaprefixAnnotatedValue[X] | None:
         """Get a key enriched by the given external resources' data."""
-        rv = self.model_dump().get(key)
+        rv = getattr(self, key, None)
         if rv is not None:
             if isinstance(rv, str):
-                rv = rv.replace("\r\n", "\n")
+                rv = rv.replace("\r\n", "\n") # FIXME there should be a test against this
             if provenance:
                 return cast(
                     MetaprefixAnnotatedValue[X], MetaprefixAnnotatedValue(rv, "bioregistry")
