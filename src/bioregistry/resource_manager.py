@@ -48,7 +48,7 @@ from .schema import (
     record_accumulator,
     sanitize_model,
 )
-from .schema.struct import OlsVersion
+from .schema.struct import OlsVersion, Record
 from .schema_utils import (
     _collections_from_path,
     _contexts_from_path,
@@ -832,12 +832,12 @@ class Manager:
             return None
         return resource.get_mapped_prefix(metaprefix, use_obo_preferred=use_obo_preferred)
 
-    def get_external(self, prefix: str, metaprefix: str) -> Mapping[str, Any]:
+    def get_external(self, prefix: str, metaprefix: str) -> Record | None:
         """Get the external data for the entry."""
         entry = self.get_resource(prefix)
         if entry is None:
-            return {}
-        return entry.get_external(metaprefix) or {}
+            return None
+        return entry.get_external(metaprefix)
 
     def get_versions(self) -> Mapping[str, str]:
         """Get a map of prefixes to versions."""
@@ -1370,7 +1370,7 @@ class Manager:
 
     def _get_obo_list(self, *, prefix: str, resource: Resource, key: str) -> list[str]:
         rv = []
-        for obo_prefix in resource.get_external("obofoundry").get(key, []):
+        for obo_prefix in resource._get_external_value("obofoundry", key, []):
             # these prefixes are normalized / lowercased already
             canonical_prefix = self.lookup_from("obofoundry", obo_prefix)
             if canonical_prefix is None:

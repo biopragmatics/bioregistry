@@ -74,7 +74,8 @@ def export_warnings() -> None:
     # unparsable = get_unparsable_uris()
     missing_wikidata_database = _g(
         lambda prefix: (
-            get_external(prefix, "wikidata").get("database") is None and not has_no_terms(prefix)
+            (get_external(prefix, "wikidata") or {}).get("database") is None
+            and not has_no_terms(prefix)
         )
     )
     missing_pattern = _g(lambda prefix: get_pattern(prefix) is None and not has_no_terms(prefix))

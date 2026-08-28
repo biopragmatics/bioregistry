@@ -879,11 +879,11 @@ class Resource(BaseModel):
     # Cached compiled pattern for identifiers
     _compiled_pattern: re.Pattern[str] | None = PrivateAttr(None)
 
-    def get_external(self, metaprefix: str) -> Record:
+    def get_external(self, metaprefix: str) -> Record | None:
         """Get an external registry."""
         external = getattr(self, metaprefix, None)
         if external is None:
-            return {}
+            return None
         return cast(Record, external)
 
     def _get_external_value(self, metaprefix: str, key: str, default: Any = None) -> Any:
@@ -959,7 +959,7 @@ class Resource(BaseModel):
         if isinstance(metaprefixes, str):
             metaprefixes = [metaprefixes]
         for metaprefix in metaprefixes:
-            rv = self.get_external(metaprefix).get(key)
+            rv = self._get_external_value(metaprefix, key)
             if rv is not None:
                 if isinstance(rv, str):
                     rv = rv.replace("\r\n", "\n")
@@ -1423,7 +1423,7 @@ class Resource(BaseModel):
         if self.keywords:
             keywords.extend(self.keywords)
         for metaprefix in self.mappings or []:
-            if kk := self.get_external(metaprefix).get("keywords"):
+            if kk := self._get_external_value(metaprefix, "keywords"):
                 keywords.extend(kk)
         if (
             self.get_download_obo()
