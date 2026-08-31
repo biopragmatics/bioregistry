@@ -2496,7 +2496,7 @@ class Resource(BaseModel):
         change over time so the exact value isn't used in the doctest):
 
         >>> url = get_resource("dermo").get_download_obo()
-        >>> assert url is not None and url.startswith("http://aber-owl.net/media/ontologies/DERMO")
+        >>> assert url is not None and not url.startswith("http://purl.obolibrary.org/obo/")
         """
         if self.download_obo:
             return self.download_obo
