@@ -52,8 +52,12 @@ def parse_aberowl_raw(path: Path) -> dict[str, Record]:
 def process_aberowl_record(entry: dict[str, Any]) -> Record | None:
     """Process a record from AberOWL."""
     prefix = entry["acronym"]
+    name = entry["name"]
+    if name.lower().endswith(f"({prefix})".lower()):
+        name = name[: -len(prefix) - 2].strip()
+
     rv = {
-        "name": entry["name"],
+        "name": name,
     }
     submission = entry.get("submission", {})
     if not submission:
@@ -63,12 +67,12 @@ def process_aberowl_record(entry: dict[str, Any]) -> Record | None:
     rv["homepage"] = submission.get("home_page")
 
     description = submission.get("description")
-    if description:
+    if description and description != name and description != "None":
         description = description.strip().replace("\r\n", " ").replace("\n", " ").replace("  ", " ")
         rv["description"] = description
     version = submission.get("version")
     if version:
-        rv["version"] = version.strip()
+        rv["version"] = version.strip().lstrip("v")
     download_url_suffix = submission.get("download_url")
     if not download_url_suffix:
         pass
