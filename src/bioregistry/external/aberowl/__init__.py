@@ -54,7 +54,7 @@ def process_aberowl_record(entry: dict[str, Any]) -> Record | None:
     prefix = entry["acronym"]
     name = entry["name"]
     if name.lower().endswith(f"({prefix})".lower()):
-        name = name[:-len(prefix)-2].strip()
+        name = name[: -len(prefix) - 2].strip()
 
     rv = {
         "name": name,
