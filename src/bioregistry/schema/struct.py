@@ -2215,17 +2215,16 @@ class Resource(BaseModel):
         if uri_format is None or uri_format == "None":
             return None
         if uri_format != uri_format.rstrip():
-            logger.debug("[%s] formatter has whitespace on right: %s", self.prefix, uri_format)
             uri_format = uri_format.rstrip()
         count = uri_format.count("$1")
         if 0 == count:
-            logger.debug("[%s] formatter missing $1: %s", self.prefix, uri_format)
+            logger.log(1, "[%s] formatter missing $1: %s", self.prefix, uri_format)
             return None
         if uri_format.count("$1") != 1:
-            logger.debug("[%s] formatter has multiple $1: %s", self.prefix, uri_format)
+            logger.log(1, "[%s] formatter has multiple $1: %s", self.prefix, uri_format)
             return None
         if not uri_format.endswith("$1"):
-            logger.debug("[%s] formatter does not end with $1: %s", self.prefix, uri_format)
+            logger.log(1, "[%s] formatter does not end with $1: %s", self.prefix, uri_format)
             return None
         return uri_format[: -len("$1")]
 
