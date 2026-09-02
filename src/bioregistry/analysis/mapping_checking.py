@@ -40,6 +40,7 @@ from sssom_pydantic import SemanticMapping, to_dataframe
 from bioregistry import Resource, manager, read_mismatches, read_registry
 from bioregistry.constants import EXPORT_ANALYSES
 from bioregistry.external import GETTERS
+from bioregistry.schema.struct import Record
 
 if TYPE_CHECKING:
     from sentence_transformers import SentenceTransformer
@@ -65,7 +66,7 @@ def get_scored_mappings_for_prefix(
     # Collect all the mappings to process as tuples (better than dict since
     # the extra entries might contain the same registry as the raw entry
     # with a different prefix).
-    mappings_to_process: list[tuple[str, str, Mapping[str, Any], int]] = []
+    mappings_to_process: list[tuple[str, str, Record | None, int]] = []
     if raw_entry.mappings:
         mappings_to_process.extend(
             (mapped_registry, mapped_prefix, raw_entry.get_external(mapped_registry), 0)
