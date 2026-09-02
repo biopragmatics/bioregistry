@@ -7,6 +7,9 @@ build-backend = "uv_build"
 markers = [
     "slow: marks tests as slow (deselect with '-m \"not slow\"')",
 ]
+filterwarnings = [
+    "ignore:Dataset.default_context is deprecated:DeprecationWarning:rdflib.plugins.parsers.notation3",
+]
 
 [project]
 name = "bioregistry"

@@ -425,7 +425,7 @@ def _get_meta_results(
 ) -> tuple[LogisticRegression, MetaClassifierEvaluationResults]:
     meta_features = generate_meta_features(classifiers, x_train, y_train)
     meta_clf = LogisticRegression()
-    meta_clf.fit(meta_features, y_train)
+    meta_clf.fit(meta_features.to_numpy(), y_train)
 
     x_test_meta = pd.DataFrame()
     for name, clf in classifiers:
