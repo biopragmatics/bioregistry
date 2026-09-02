@@ -90,7 +90,7 @@ APACHE_UNSPECIFIED = "Apache"
 ##########################
 
 #: https://creativecommons.org/publicdomain/zero/1.0/
-CC_0 = "CC0 1.0"
+CC_0 = "CC0-1.0"
 
 #: https://creativecommons.org/publicdomain/mark/1.0/
 CC_MARK = "CC-PDM-1.0"
@@ -254,6 +254,7 @@ REVERSE_LICENSES: Mapping[str | None, list[str]] = {
         "CC-0",  # correct
         "CC 0",
         "CC0",
+        "CC0-1.0 License",
         "CC-0 1.0 Universal",
         "CC0 1.0 Universal",
         "CC0 1.0",
@@ -414,10 +415,6 @@ REVERSE_LICENSES: Mapping[str | None, list[str]] = {
         APACHE_UNSPECIFIED,
         "Apache License",
         "http://www.apache.org/licenses/",
-    ],
-    CC_0: [
-        CC_0,
-        "CC0-1.0 License",
     ],
 }
 

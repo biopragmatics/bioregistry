@@ -454,7 +454,7 @@ def _get_sparql_router(app: Flask, manager: Manager) -> APIRouter:
         title=f"{app.config['METAREGISTRY_TITLE']} SPARQL Service",
         description="An identifier mapping service",
         version=version.get_version(),
-        example_query=example_query,
+        example_queries={"ChEBI sameAs with VALUES": {"query": example_query, "endpoint": None}},
         graph=sparql_graph,
         processor=sparql_processor,
         public_url=f"{manager.base_url}/sparql",

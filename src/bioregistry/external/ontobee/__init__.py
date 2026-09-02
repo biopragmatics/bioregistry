@@ -3,7 +3,7 @@
 import textwrap
 from collections.abc import Sequence
 from pathlib import Path
-from typing import Any, ClassVar
+from typing import ClassVar
 
 from bs4 import BeautifulSoup
 
@@ -69,11 +69,11 @@ class OntobeeAligner(Aligner):
     getter = get_ontobee
     curation_header: ClassVar[Sequence[str]] = ("name", "url")
 
-    def get_curation_row(self, external_id: str, external_entry: dict[str, Any]) -> Sequence[str]:
+    def get_curation_row(self, external_id: str, external_entry: Record) -> Sequence[str]:
         """Return the relevant fields from an OntoBee entry for pretty-printing."""
         return [
-            textwrap.shorten(external_entry["name"] or "", 50),
-            external_entry.get("uri_format") or "",
+            textwrap.shorten(external_entry.name or "", 50),
+            external_entry.uri_format or "",
         ]
 
 

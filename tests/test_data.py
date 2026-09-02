@@ -194,7 +194,7 @@ class TestRegistry(unittest.TestCase):
             other_names: set[str] = {
                 other_name
                 for metaprefix in entry.mappings or {}
-                if (other_name := entry.get_external(metaprefix).get("name"))
+                if (other_name := entry._get_external_value(metaprefix, "name"))
                 and other_name.casefold() != name.casefold()
             }
             if prefix == name.lower() and name.upper() == name:
