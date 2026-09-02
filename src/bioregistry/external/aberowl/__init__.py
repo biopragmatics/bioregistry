@@ -55,6 +55,8 @@ def process_aberowl_record(entry: dict[str, Any]) -> Record | None:
     name = entry["name"]
     if name.lower().endswith(f"({prefix})".lower()):
         name = name[: -len(prefix) - 2].strip()
+    if name == prefix:
+        name = None
 
     rv = {
         "name": name,
@@ -67,7 +69,12 @@ def process_aberowl_record(entry: dict[str, Any]) -> Record | None:
     rv["homepage"] = submission.get("home_page")
 
     description = submission.get("description")
-    if description and description != name and description != "None":
+    if (
+        description
+        and description.casefold() != prefix.casefold()
+        and description.casefold() != name
+        and description != "None"
+    ):
         description = description.strip().replace("\r\n", " ").replace("\n", " ").replace("  ", " ")
         rv["description"] = description
     version = submission.get("version")
