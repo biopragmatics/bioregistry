@@ -19,6 +19,7 @@ def lint() -> None:
         read_contexts,
         read_mappings,
         read_metaregistry,
+        read_mismatches,
         read_registry,
         write_collections,
         write_contexts,
@@ -41,6 +42,7 @@ def lint() -> None:
     import pandas as pd
 
     registry = read_registry()
+    mismatches = read_mismatches()
     for resource in registry.values():
         if resource.synonyms:
             resource.synonyms = sorted(set(resource.synonyms))
@@ -61,6 +63,12 @@ def lint() -> None:
             resource.homepage = resource.homepage.rstrip("/")
         if resource.repository:
             resource.repository = resource.repository.rstrip("/")
+
+        if resource.mappings:
+            for k, vv in mismatches.get(resource.prefix, {}).items():
+                if k in resource.mappings and resource.mappings[k] in vv:
+                    del resource.mappings[k]
+                    setattr(resource, k, None)
 
     write_registry(registry)
     collections = read_collections()
