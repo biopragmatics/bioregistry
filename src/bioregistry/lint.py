@@ -65,10 +65,13 @@ def lint() -> None:
             resource.repository = resource.repository.rstrip("/")
 
         if resource.mappings:
-            for k, vv in mismatches.get(resource.prefix, {}).items():
-                if k in resource.mappings and resource.mappings[k] in vv:
-                    del resource.mappings[k]
-                    setattr(resource, k, None)
+            for external_registry, external_prefixes in mismatches.get(resource.prefix, {}).items():
+                if (
+                    external_registry in resource.mappings
+                    and resource.mappings[external_registry] in external_prefixes
+                ):
+                    del resource.mappings[external_registry]
+                    setattr(resource, external_registry, None)
 
     write_registry(registry)
     collections = read_collections()
