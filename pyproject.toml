@@ -2,12 +2,6 @@
 requires = ["uv_build>=0.9.4,<1.0"]
 build-backend = "uv_build"
 
-# Pytest, see https://docs.pytest.org/en/stable/reference/customize.html#pyproject-toml
-[tool.pytest.ini_options]
-markers = [
-    "slow: marks tests as slow (deselect with '-m \"not slow\"')",
-]
-
 [project]
 name = "bioregistry"
 version = "0.14.5-dev"
@@ -61,7 +55,7 @@ dependencies = [
     "more-click>=0.1.2",
     "pydantic[email]>=2.0",
     "curies>=0.15.0",
-    "sssom-pydantic>=0.5.10",
+    "sssom-pydantic>=0.6.3",
     #
     "urllib3>=2.7.0",
     "python-multipart>=0.0.27",
@@ -91,7 +85,7 @@ typing = [
     "matplotlib-stubs",
     "pandas-stubs",
     "fastapi[all]",
-    "pyobo>=0.13.4",
+    "pyobo>=0.14.1",
     "ror-downloader",
     "pandas",
     "manubot",
@@ -149,7 +143,7 @@ web = [
     "pyyaml",
     "rdflib",
     "rdflib-jsonld",
-    "rdflib-endpoint>=0.5.3",
+    "rdflib-endpoint>=0.6.3",
     "flask>=3.0.0",
     "werkzeug>=3.0.0",
     "fastapi",
@@ -199,6 +193,17 @@ plugins = [
 [tool.doc8]
 max-line-length = 120
 ignore = ["D001"]
+
+# Pytest, see https://docs.pytest.org/en/stable/reference/customize.html#pyproject-toml
+[tool.pytest.ini_options]
+markers = [
+    "slow: marks tests as slow (deselect with '-m \"not slow\"')",
+]
+filterwarnings = [
+    # these two warnings are both rdflib-internal
+    "ignore:Dataset.default_context is deprecated:DeprecationWarning:rdflib.plugins.parsers.notation3",
+    "ignore:Dataset.default_context is deprecated:DeprecationWarning:rdflib.graph",
+]
 
 # Coverage, see https://coverage.readthedocs.io/en/latest/config.html
 [tool.coverage.run]
