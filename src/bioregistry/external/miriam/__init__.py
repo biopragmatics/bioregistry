@@ -107,7 +107,8 @@ def _process(record: dict[str, Any]) -> Record:
         rv[URI_FORMAT_KEY] = primary[URI_FORMAT_KEY]
 
     if organization := primary.get("organization"):
-        rv["owners"] = [Organization.model_validate(organization)]
+        organization_model = Organization.model_validate(organization)
+        rv["owners"] = [organization_model]
 
     extras = []
     for provider in rest:
