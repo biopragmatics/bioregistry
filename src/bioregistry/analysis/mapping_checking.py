@@ -24,23 +24,28 @@ Run with either of the following commands:
 
 from __future__ import annotations
 
+import itertools as itt
 from collections import defaultdict
 from collections.abc import Mapping
-from typing import Any, cast
+from typing import TYPE_CHECKING, Any
 
 import pandas as pd
+import pystow
 import tqdm
-from sentence_transformers import SentenceTransformer
+from curies import NamedReference
+from curies.vocabulary import exact_match, lexical_matching_process
 from sentence_transformers.util import cos_sim
+from sssom_pydantic import SemanticMapping, to_dataframe
 
 from bioregistry import Resource, manager, read_mismatches, read_registry
 from bioregistry.constants import EXPORT_ANALYSES
 from bioregistry.external import GETTERS
 
+if TYPE_CHECKING:
+    from sentence_transformers import SentenceTransformer
+
 OUTPUT_PATH = EXPORT_ANALYSES.joinpath("mapping_checking", "mapping_embedding_similarities.tsv")
 
-#: see https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2
-DEFAULT_MODEL = "all-MiniLM-L6-v2"
 #: Metadata fields to use for embedding
 METADATA_FIELDS = ["name", "description", "homepage"]
 
@@ -51,7 +56,7 @@ def get_scored_mappings_for_prefix(
     compiled_entry: Mapping[str, Any],
     model: SentenceTransformer,
     mismatch_entries: Mapping[str, Any] | None = None,
-) -> list[dict[str, Any]]:
+) -> list[SemanticMapping]:
     """Return scored mappings for a given prefix."""
     # If no mappings at all then we don't need to do anything
     if not raw_entry.mappings and not mismatch_entries:
@@ -60,12 +65,12 @@ def get_scored_mappings_for_prefix(
     # Collect all the mappings to process as tuples (better than dict since
     # the extra entries might contain the same registry as the raw entry
     # with a different prefix).
-    mappings_to_process = []
+    mappings_to_process: list[tuple[str, str, Mapping[str, Any], int]] = []
     if raw_entry.mappings:
-        mappings_to_process = [
+        mappings_to_process.extend(
             (mapped_registry, mapped_prefix, raw_entry.get_external(mapped_registry), 0)
             for mapped_registry, mapped_prefix in raw_entry.mappings.items()
-        ]
+        )
     # Add any extra entries that were passed in
     if mismatch_entries:
         mappings_to_process.extend(
@@ -78,7 +83,7 @@ def get_scored_mappings_for_prefix(
     # wrong and can serve as a reference point for comparison
     reference_text = " ".join([compiled_entry.get(part, "") for part in METADATA_FIELDS])
 
-    mapping_entries = []
+    mapping_entries: list[SemanticMapping] = []
     for mapped_registry, mapped_prefix, details, known_mismatch in mappings_to_process:
         # In a handful of cases, an entry in the mappings dict doesn't correspond
         # to an actual key to provide additional data on the mapping
@@ -96,17 +101,21 @@ def get_scored_mappings_for_prefix(
         if not text_parts:
             continue
         mapping_text = " ".join(text_parts)
-
+        comment = f"{known_mismatch=} parts used: " + ",".join(parts_used)
         mapping_entries.append(
-            {
-                "prefix": prefix,
-                "mapped_registry": mapped_registry,
-                "mapped_prefix": mapped_prefix,
-                "reference_text": reference_text,
-                "external_text": mapping_text.replace("\n", " ").replace("  ", " "),
-                "parts_used": ",".join(parts_used),
-                "known_mismatch": known_mismatch,
-            }
+            SemanticMapping(
+                subject=NamedReference(
+                    prefix="bioregistry", identifier=prefix, name=reference_text
+                ),
+                predicate=exact_match,
+                object=NamedReference(
+                    prefix=mapped_registry,
+                    identifier=mapped_prefix,
+                    name=mapping_text.replace("\n", " ").replace("  ", " "),
+                ),
+                justification=lexical_matching_process,
+                comment=comment,
+            )
         )
     # Skip if we couldn't collect any useful mappings
     if not mapping_entries:
@@ -114,7 +123,7 @@ def get_scored_mappings_for_prefix(
 
     # Compute embeddings for each mapping entry (in a single list but the
     # calculation is done individually)
-    texts = cast(list[str], [entry["external_text"] for entry in mapping_entries])
+    texts = [entry.object.name for entry in mapping_entries]
     embeddings = model.encode(texts, convert_to_tensor=True)
     # Calculate embedding for the reference text
     ref_embedding = model.encode(reference_text, convert_to_tensor=True)
@@ -123,9 +132,11 @@ def get_scored_mappings_for_prefix(
     # mapping's embedding.
     cosine_scores = cos_sim(ref_embedding, embeddings)[0].tolist()
 
-    # Add similarity score and reference text to each entry in the mapping entries
-    for entry, score in zip(mapping_entries, cosine_scores, strict=False):
-        entry["similarity"] = score
+    # Add similarity score to each entry in the mapping entries
+    mapping_entries = [
+        entry.model_copy(update={"similarity": score})
+        for entry, score in zip(mapping_entries, cosine_scores, strict=True)
+    ]
 
     return mapping_entries
 
@@ -170,31 +181,26 @@ def get_scored_mappings(model: SentenceTransformer) -> pd.DataFrame:
     # For benchmarking purposes, it is useful to include mappings that have already been curated as mismatches
     mismatch_entries = _get_mismatch_entries()
 
-    all_mapping_entries = []
     # For each prefix, compute the similarity between the prefix's compiled
     # data and each applicable mapped prefix's data, then add these to
     # an aggregate list
-    for prefix, compiled_entry in tqdm.tqdm(
-        compiled_registry.items(), desc="Scoring prefix mappings"
-    ):
-        raw_entry = raw_registry[prefix]
-
-        mapping_entries = get_scored_mappings_for_prefix(
-            prefix, raw_entry, compiled_entry, model, mismatch_entries.get(prefix, {})
+    all_mapping_entries = itt.chain.from_iterable(
+        get_scored_mappings_for_prefix(
+            prefix, raw_registry[prefix], compiled_entry, model, mismatch_entries.get(prefix, {})
         )
-        all_mapping_entries.extend(mapping_entries)
+        for prefix, compiled_entry in tqdm.tqdm(
+            compiled_registry.items(), desc="Scoring prefix mappings", unit_scale=True
+        )
+    )
+    df = to_dataframe(all_mapping_entries)
 
     # Collect all the similarities and metadata in a data frame
     # and sort so that first entry is most likely incorrect
-    df = pd.DataFrame(all_mapping_entries)
-    df_sorted = df.sort_values(by="similarity")
-    return df_sorted
+    return df.sort_values("similarity")
 
 
 def _main() -> None:
-    # Choose an embedding model
-    model = SentenceTransformer(DEFAULT_MODEL)
-    # Run mappings
+    model = pystow.get_sentence_transformer()
     df = get_scored_mappings(model)
     df.round(9).to_csv(OUTPUT_PATH, index=False, sep="\t")
 
