@@ -107,7 +107,7 @@ def get_scored_mappings_for_prefix(
     reference_text = _clean(" ".join([compiled_entry.get(part, "") for part in METADATA_FIELDS]))
 
     mappings: list[SemanticMapping] = []
-    for mapped_registry, mapped_prefix, details, known_mismatch in mappings_to_process:
+    for external_registry, external_prefix, details, known_mismatch in mappings_to_process:
         # In a handful of cases, an entry in the mappings dict doesn't correspond
         # to an actual key to provide additional data on the mapping
         if not details:
@@ -131,16 +131,16 @@ def get_scored_mappings_for_prefix(
                 ),
                 predicate=exact_match,
                 object=NamableReference(
-                    prefix=mapped_registry,
-                    identifier=mapped_prefix,
-                    name=getattr(resource, mapped_registry, {}).get("name"),
+                    prefix=external_registry,
+                    identifier=external_prefix,
+                    name=resource._get_external_value(external_registry, "name"),
                 ),
                 justification=lexical_matching_process,
                 comment=f"{known_mismatch=}" if mismatch_entries_dict is not None else None,
                 extensions={
                     "parts_used": Slot.default("parts_used", ",".join(parts_used)),
                     "reference_text": Slot.default("reference_text", reference_text),
-                    "mapping_text": Slot.default("reference_text", _clean(mapping_text)),
+                    "mapping_text": Slot.default("mapping_text", _clean(mapping_text)),
                 },
             )
         )
