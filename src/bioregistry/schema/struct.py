@@ -1435,6 +1435,8 @@ class Resource(BaseModel):
             or self.ecoportal
         ):
             keywords.append("ontology")
+        if self.part_of_database:
+            keywords.append(self.part_of_database)
         # TODO remove plurals?
         return sorted(
             {
