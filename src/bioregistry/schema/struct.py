@@ -1440,7 +1440,7 @@ class Resource(BaseModel):
         # TODO remove plurals?
         return sorted(
             {
-                keyword.lower().replace("’", "'")  # noqa:RUF001
+                keyword.lower().replace("’", "'").strip()  # noqa:RUF001
                 for keyword in keywords
                 if keyword
             }
