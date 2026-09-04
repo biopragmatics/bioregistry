@@ -10,8 +10,6 @@ from tqdm import tqdm
 
 from bioregistry import Author, Manager, Resource
 
-CURATIONS = {"sewage": ""}
-
 
 @click.command()
 @click.option("--force-process", is_flag=True)
@@ -51,7 +49,7 @@ def main(force_process: bool) -> None:
             inner_record = next(
                 inner_record
                 for inner_record in inner_records
-                if inner_record["name"].endswith(".owl")
+                if inner_record["name"].endswith(".owl") or inner_record["name"].endswith(".ttl")
             )
         except StopIteration:
             tqdm.write(
@@ -85,24 +83,32 @@ def main(force_process: bool) -> None:
         except Exception:
             tqdm.write(click.style(f"[{prefix}] exception when reading obograph json", fg="yellow"))
         else:
-            if obograph.id is not None:
-                uri_format, example = _guess(obograph, obograph.id + "#")
-            if uri_format is None:
-                uri_format, example = _guess(
-                    obograph, f"https://www.theworldavatar.com/kg/{worldavatar_name}/"
-                )
-            if uri_format is None:
-                uri_format, example = _guess(
-                    obograph, f"https://www.theworldavatar.io/kg/{worldavatar_name}/"
-                )
-            if uri_format is None:
-                tqdm.write(
-                    click.style(f"[{prefix}] couldn't guess URI format, look manually", fg="yellow")
-                )
+            if not obograph.nodes:
+                click.style(f"[{prefix}] has no nodes, so couldn't guess URI format", fg="yellow")
+            else:
+                if obograph.id is not None:
+                    uri_format, example = _guess(obograph, obograph.id + "#")
+                for guess in [
+                    f"https://www.theworldavatar.com/kg/{worldavatar_name}/",
+                    f"http://www.theworldavatar.com/kg/{worldavatar_name}/",
+                    f"https://www.theworldavatar.io/kg/{worldavatar_name}/",
+                    f"http://www.theworldavatar.io/kg/{worldavatar_name}/",
+                ]:
+                    if uri_format is None:
+                        uri_format, example = _guess(obograph, guess)
+                if uri_format is None:
+                    tqdm.write(
+                        click.style(
+                            f"[{prefix}] couldn't guess URI format ({worldavatar_name}), look manually",
+                            fg="yellow",
+                        )
+                    )
 
             # try to guess a description
             if obograph.meta and obograph.meta:
-                description = obograph._get_property("http://www.w3.org/2000/01/rdf-schema#comment")
+                description = obograph._get_property(
+                    "http://purl.org/dc/terms/description"
+                ) or obograph._get_property("http://www.w3.org/2000/01/rdf-schema#comment")
             if description is None:
                 tqdm.write(click.style(f"[{prefix}] no description", fg="yellow"))
 
