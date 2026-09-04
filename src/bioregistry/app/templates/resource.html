@@ -147,14 +147,16 @@
                         {% endfor %}
                     </dd>
                 {% endif %}
-                {% if keywords %}
-                    <dt>Keywords</dt>
-                    <dd>
-                        {% for keyword in keywords|sort %}
-                            <a class="badge badge-light" href="{{ url_for(".get_keyword", keyword=keyword) }}">{{ keyword }}</a>
-                        {% endfor %}
-                    </dd>
-                {% endif %}
+                {%- if keywords %}
+                <dt>Keywords</dt>
+                <dd>
+                    {%- for keyword in keywords|sort %}
+                    {%- if not resource.part_of_database or keyword != resource.part_of_database %}
+                    <a class="badge badge-light" href="{{ url_for(".get_keyword", keyword=keyword) }}">{{ keyword }}</a>
+                    {%- endif %}
+                    {%- endfor %}
+                </dd>
+                {%- endif %}
                 {% if version %}
                     <dt>
                         Version
