@@ -45,10 +45,11 @@ def main(force_process: bool) -> None:
             tqdm.write(f"[{prefix}] caching GitHub results to {inner_contents_cache}")
             write_json(inner_records, inner_contents_cache, indent=2)
 
-        name = "WorldAvatar " + inner_record["name"].removesuffix(".owl")
         uri_format: str | None = None
         example: str | None = None
         description: str | None = None
+        name: str | None = None
+        download_owl: str | None = None
 
         try:
             inner_record = next(
@@ -64,6 +65,7 @@ def main(force_process: bool) -> None:
                 )
             )
         else:
+            name = "WorldAvatar " + inner_record["name"].removesuffix(".owl")
             download_owl = inner_record["download_url"]
             owl_path = module.ensure(url=download_owl)
             obograph_json_path = owl_path.with_suffix(".obograph.json")
@@ -80,10 +82,14 @@ def main(force_process: bool) -> None:
                 try:
                     obograph = obographs.read(obograph_json_path, squeeze=True)
                 except Exception:
-                    tqdm.write(click.style(f"[{prefix}] exception when reading obograph json", fg="yellow"))
+                    tqdm.write(
+                        click.style(f"[{prefix}] exception when reading obograph json", fg="yellow")
+                    )
                 else:
                     if not obograph.nodes:
-                        click.style(f"[{prefix}] has no nodes, so couldn't guess URI format", fg="yellow")
+                        click.style(
+                            f"[{prefix}] has no nodes, so couldn't guess URI format", fg="yellow"
+                        )
                     else:
                         if obograph.id is not None:
                             uri_format, example = _guess(obograph, obograph.id + "#")
@@ -128,6 +134,8 @@ def main(force_process: bool) -> None:
                 orcid="0000-0002-3168-237X",
                 github="qhouyee",
             ),
+            # see dicussion at https://github.com/TheWorldAvatar/ontology/issues/43
+            license="MIT",
         )
         manager.add_resource(resource)
 
