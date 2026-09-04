@@ -117,6 +117,12 @@ def main(force_process: bool) -> None:
             repository="https://github.com/TheWorldAvatar/ontology",
             contributor=Author.get_charlie(),
             download_owl=download_owl,
+            contact_group_email="contact@theworldavatar.io",
+            contact=Author(
+                name="Hou Yee Quek",
+                orcid="0000-0002-3168-237X",
+                github="qhouyee",
+            ),
         )
         manager.add_resource(resource)
 
