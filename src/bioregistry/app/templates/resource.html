@@ -185,7 +185,7 @@
                 <dd>
                     {% if homepage %}
                         <a class="badge badge-pill badge-light" href="{{ homepage }}">
-                            Homepage <i class="bi bi-home"></i>
+                            Homepage <i class="bi bi-house"></i>
                         </a>
                     {% else %}
                         <span class="badge badge-pill badge-warning">Missing Homepage</span>
@@ -235,6 +235,11 @@
                             <i class="bi bi-mastodon"></i> @{{ mastodon }}
                         </a>
                     {% endif %}
+                    {%- if resource.part_of_database %}
+                    <a class="badge badge-pill badge-light" href="{{ url_for('.get_keyword', keyword=resource.part_of_database) }}">
+                            <i class="bi bi-box-seam"></i> Part of {{ resource.part_of_database }}
+                        </a>
+                    {%- endif %}
                 </dd>
 
                 {%- set publications = resource.get_publications() %}
