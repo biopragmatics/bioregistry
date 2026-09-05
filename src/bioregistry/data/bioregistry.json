@@ -103018,6 +103018,30 @@
     ],
     "uri_format": "https://uts.nlm.nih.gov/uts/umls/vocabulary/MTH/$1"
   },
+  "mtoratlas": {
+    "comment": "Also registered with FAIRsharing (ID: 8905) and bio.tools (ID: olivers_mtor_atlas). Dataset DOI (Zenodo, concept): 10.5281/zenodo.22059963. Note on the regex pattern: widened from a plain 4-digit suffix to ^[A-Z]+\\d{4,8}[A-Z]?$ because one record uses a clinical-trial NCT identifier as its local ID (NCT05835999, 8 digits). Verified against all 354 study SIDs in the corpus: 0 non-matches, 0 duplicates, 0 lowercase.",
+    "contact": {
+      "email": "barton.petr@gmail.com",
+      "github": "golfparada2",
+      "name": "Oliver Barton",
+      "orcid": "0009-0008-2025-2148"
+    },
+    "contributor": {
+      "github": "golfparada2",
+      "name": "Oliver Barton",
+      "orcid": "0009-0008-2025-2148"
+    },
+    "description": "An evidence-graded database of curated primary research studies on mTOR (mechanistic target of rapamycin) signaling. Each study record is graded by evidence tier (A = systematic review/meta-analysis through D = mechanistic/in-vitro) and linked to the pathway entities and processes it involves. 354 studies, 146 pathway entities. Free, non-commercial, no login required.",
+    "example": "ABR2026",
+    "github_request_issue": 2048,
+    "homepage": "https://mtor-atlas.org/",
+    "license": "CC-BY-4.0",
+    "name": "Oliver's mTOR Atlas",
+    "pattern": "^[A-Z]+\\d{4,8}[A-Z]?$",
+    "publications": [],
+    "repository": "https://github.com/open-mtor-atlas/atlas",
+    "uri_format": "https://mtor-atlas.org/study/$1/"
+  },
   "multicellds": {
     "contributor": {
       "email": "cthoyt@gmail.com",
