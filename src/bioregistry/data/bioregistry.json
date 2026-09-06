@@ -151945,6 +151945,33 @@
     },
     "uri_format": "https://w3id.org/sssom/$1"
   },
+  "sstim": {
+    "comment": "Resolution: w3id.org content-negotiates. `curl -H \"Accept: text/turtle\" https://w3id.org/sstim` returns the namespace catalogue in Turtle, and JSON-LD and RDF/XML are served the same way; an HTML request returns a namespace landing page. Releases are frozen and citable: 0.16.0 is current, version DOI 10.5281/zenodo.22003777 under the concept DOI given above. One thing worth your judgement. The requested URI format is the core ontology namespace, which is also what prefix.cc serves for `sstim`. SSTIM is modular, and three sibling term namespaces exist under the same authority, all with hash IRIs and the same local-name shape: https://w3id.org/sstim/vocab# (405 local names, the SKOS controlled vocabulary), https://w3id.org/sstim/exposure# (268) and https://w3id.org/sstim/ecosystem# (82), against 344 in the core namespace. If you would rather have them as separate prefixes (sstim.vocab and so on), I will file those too, or change the requested URI format to whichever you consider primary. The pattern above was checked against every local name in all four namespaces, not inferred from examples. Existing records, each checked today (BioPortal through its REST API, the rest over HTTP): BioPortal (SSTIM), BARTOC node 21154, FAIRsharing 8494, DBpedia Archivo, the DBpedia KG Catalog, prefix.cc and Software Heritage. Wikidata has an item for the ontology, Q141325360, and 29 Wikidata items carry skos-style mappings to SSTIM terms; there is no Wikidata identifier property yet, which is why that field is blank. An OLS4 inclusion request is open.",
+    "contact": {
+      "github": "ttm",
+      "name": "Renato Fabbri",
+      "orcid": "0000-0002-9699-629X"
+    },
+    "contributor": {
+      "github": "ttm",
+      "name": "Renato Fabbri",
+      "orcid": "0000-0002-9699-629X"
+    },
+    "description": "SSTIM is an open OWL and SKOS vocabulary for sensory stimulation. It mints identifiers for stimulation techniques, stimuli and their parameters, delivery media and body placements, exposure and safety boundaries, session records, and the evidence assessments attached to a claim. It exists so that auditory, visual, tactile and cross-modal stimulation protocols can be described and exchanged in one vocabulary instead of per-study prose, and it is used by researchers, tool builders and the W3C Sensory Stimulation Vocabulary Community Group.",
+    "example": "SensoryStimulation",
+    "github_request_issue": 2055,
+    "homepage": "https://w3id.org/sstim",
+    "license": "CC-BY-4.0",
+    "name": "Sensory Stimulation Ontology",
+    "pattern": "^[A-Za-z][A-Za-z0-9]*$",
+    "publications": [
+      {
+        "doi": "10.5281/zenodo.21286974"
+      }
+    ],
+    "repository": "https://github.com/w3c-cg/sstim",
+    "uri_format": "https://w3id.org/sstim#$1"
+  },
   "sstoss": {
     "comment": "This resource doesn't exist on the web anymore",
     "deprecated": true,
