@@ -39,18 +39,20 @@ def process_bartoc(path: Path) -> dict[str, Record]:
     with path.open() as file:
         for line in file:
             data = json.loads(line)
-            prefix = data["uri"][len(URI_PREFIX):]
+            prefix = data["uri"][len(URI_PREFIX) :]
             rv[prefix] = _process_bartoc_record(prefix, data)
     return rv
+
 
 def process_bartoc_registry(path: Path) -> dict[str, Record]:
     """Process BARTOC."""
     rv = {}
     with path.open() as file:
         for data in json.load(file):
-            prefix = data["uri"][len(URI_PREFIX):]
+            prefix = data["uri"][len(URI_PREFIX) :]
             rv[prefix] = _process_bartoc_record(prefix, data)
     return rv
+
 
 get_bartoc_dump = build_getter(
     processed_path=PROCESSED_PATH, raw_path=RAW_PATH, url=URL, func=process_bartoc
@@ -58,16 +60,24 @@ get_bartoc_dump = build_getter(
 
 _get_bartoc_registries = build_getter(
     # FIXME
-    processed_path=PROCESSED_REGISTRIES_PATH, raw_path=RAW_REGISTRIES_PATH, url=REGISTRIES_API_ENDPOINT, func=process_bartoc_registry
+    processed_path=PROCESSED_REGISTRIES_PATH,
+    raw_path=RAW_REGISTRIES_PATH,
+    url=REGISTRIES_API_ENDPOINT,
+    func=process_bartoc_registry,
 )
 
 
-def get_bartoc(*, force_download: bool = False, force_process: bool = False, progress: bool = True) -> dict[
-    str, Record]:
+def get_bartoc(
+    *, force_download: bool = False, force_process: bool = False, progress: bool = True
+) -> dict[str, Record]:
     """Get BARTOC records from the dump and registries."""
     return {
-        **get_bartoc_dump(force_download=force_download, force_process=force_process, progress=progress),
-        **_get_bartoc_registries(force_download=force_download, force_process=force_process, progress=progress),
+        **get_bartoc_dump(
+            force_download=force_download, force_process=force_process, progress=progress
+        ),
+        **_get_bartoc_registries(
+            force_download=force_download, force_process=force_process, progress=progress
+        ),
     }
 
 
@@ -97,7 +107,7 @@ def _process_bartoc_record(prefix: str, record: dict[str, Any]) -> Record:
     for identifier in record.get("identifier", []):
         if identifier.startswith("http://www.wikidata.org/entity/"):
             rv.setdefault("xrefs", {})["wikidata"] = identifier[
-                len("http://www.wikidata.org/entity/"):
+                len("http://www.wikidata.org/entity/") :
             ]
 
     for short_name in record.get("notation", []):
@@ -123,7 +133,7 @@ def _process_bartoc_record(prefix: str, record: dict[str, Any]) -> Record:
         else:
             left_pos = uri_pattern.find("(")
             right_pos = uri_pattern.find(")")
-            rv[URI_FORMAT_KEY] = uri_pattern[:left_pos] + "$1" + uri_pattern[1 + right_pos:]
+            rv[URI_FORMAT_KEY] = uri_pattern[:left_pos] + "$1" + uri_pattern[1 + right_pos :]
 
     if examples := record.pop("EXAMPLES", []):
         rv["examples"] = [example.strip() for example in examples]
