@@ -151946,6 +151946,35 @@
     "uri_format": "https://w3id.org/sssom/$1"
   },
   "sstim": {
+    "bartoc": {
+      "description": "An OWL 2 ontology for describing parameter-specified delivery of structured sensory input — techniques, protocols, implementations, exposure conditions, observations, safety metadata, and evidence-qualified claims — with a multilingual SKOS vocabulary (frequency bands, modalities, mechanisms, techniques, evidence tiers) and SHACL validation shapes.",
+      "homepage": "https://w3c-cg.github.io/sstim/ontology/docs/",
+      "name": "Sensory Stimulation Ontology",
+      "prefix": "21154",
+      "short_names": [
+        "SSTIM"
+      ],
+      "uri_format": "https://w3id.org/sstim#$1"
+    },
+    "bioportal": {
+      "contact": {
+        "email": "renato.fabbri@gmail.com",
+        "name": "Renato Fabbri"
+      },
+      "description": "An OWL 2 ontology with a multilingual SKOS vocabulary (frequency bands, modalities, mechanisms, techniques, evidence tiers) for parameter-specified delivery of structured sensory input — techniques, protocols, implementations, exposure conditions, observations, safety metadata, and evidence-qualified claims across auditory, visual, and tactile modalities., An OWL 2 ontology for describing parameter-specified delivery of structured sensory input, including techniques, and evidence-qualified claims., The stimulus-description half of the SSTIM Core Profile: engine-independent specifications, channels, regime, duration, and optional stimulation target., The ADR 0034–0037 neuromodulation, neurostimulation, self-regulation, neural-facet, and neuroplasticity extension., Reusable technique, framework, protocol, and implementation semantics, independent of neuromodulation and evidence claims., Reusable SSTIM module for the sensory-stimulation ecosystem: a neutral agent umbrella, qualified relationship and membership records, implementation responsibility, a retractable approved public projection, append-only private operational activities, and controlled relationship, purpose, and outcome vocabularies. Carries no personal data; named agents are curated implementation data., Reusable SSTIM module for separating physical delivery medium, perceived modality, device capability, body placement, comfort boundary, experiment context, effect claims, and knowledge status., Planned stimulation interventions, session specifications and executions, configuration overrides, and consent-governed self-reports., Optional shared descriptors used across SSTIM concerns: bands, temporal structure, delivery approach, cautions, and calibrated channel quantities., Optional range axioms connecting generic evidence scope and basis relations to exposure profiles and experiment contexts., Optional outcome relations connecting generic evidence concepts with neuromodulation access-route, target-site, system, and phenomenon facets., Multilingual SKOS concept schemes and dual-typed controlled values for sensory stimulation modalities, evidence, session reporting, and implementation metadata., Generic engine configurations, tracks, defaults, revision links, and configuration-to-stimulus, technique, and caution relations., Evidence assessments, atomic propositions, qualified bases, scope, references, searches, reviews, provenance, and public-claim governance., Conservatively scoped mappings from SSTIM classes and concepts to verified Wikidata and OBO Foundry resources., Characteristic physical delivery media asserted for vocabulary-owned stimulation and neuromodulation techniques., BSC-specific voice, grouping, permutation, audio synthesis, haptic, and authoring parameters over the generic configuration and session model.",
+      "homepage": "https://labiosyncare.github.io/ontology/docs/",
+      "license": {
+        "name": "CC-BY-4.0"
+      },
+      "name": "Sensory Stimulation Ontology",
+      "prefix": "SSTIM",
+      "publications": [
+        {
+          "doi": "10.5281/zenodo.21286974"
+        }
+      ],
+      "version": "0.16.0"
+    },
     "comment": "Resolution: w3id.org content-negotiates. `curl -H \"Accept: text/turtle\" https://w3id.org/sstim` returns the namespace catalogue in Turtle, and JSON-LD and RDF/XML are served the same way; an HTML request returns a namespace landing page. Releases are frozen and citable: 0.16.0 is current, version DOI 10.5281/zenodo.22003777 under the concept DOI given above. One thing worth your judgement. The requested URI format is the core ontology namespace, which is also what prefix.cc serves for `sstim`. SSTIM is modular, and three sibling term namespaces exist under the same authority, all with hash IRIs and the same local-name shape: https://w3id.org/sstim/vocab# (405 local names, the SKOS controlled vocabulary), https://w3id.org/sstim/exposure# (268) and https://w3id.org/sstim/ecosystem# (82), against 344 in the core namespace. If you would rather have them as separate prefixes (sstim.vocab and so on), I will file those too, or change the requested URI format to whichever you consider primary. The pattern above was checked against every local name in all four namespaces, not inferred from examples. Existing records, each checked today (BioPortal through its REST API, the rest over HTTP): BioPortal (SSTIM), BARTOC node 21154, FAIRsharing 8494, DBpedia Archivo, the DBpedia KG Catalog, prefix.cc and Software Heritage. Wikidata has an item for the ontology, Q141325360, and 29 Wikidata items carry skos-style mappings to SSTIM terms; there is no Wikidata identifier property yet, which is why that field is blank. An OLS4 inclusion request is open.",
     "contact": {
       "github": "ttm",
@@ -151961,7 +151990,22 @@
     "example": "SensoryStimulation",
     "github_request_issue": 2055,
     "homepage": "https://w3id.org/sstim",
+    "keywords": [
+      "audio-visual entrainment",
+      "binaural beats",
+      "brainwave entrainment",
+      "evidence tiers",
+      "isochronic tones",
+      "multisensory integration",
+      "paced breathing",
+      "sensory stimulation",
+      "vibrotactile stimulation"
+    ],
     "license": "CC-BY-4.0",
+    "mappings": {
+      "bartoc": "21154",
+      "bioportal": "SSTIM"
+    },
     "name": "Sensory Stimulation Ontology",
     "pattern": "^[A-Za-z][A-Za-z0-9]*$",
     "publications": [
@@ -151970,6 +152014,12 @@
       }
     ],
     "repository": "https://github.com/w3c-cg/sstim",
+    "reviewer": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
     "uri_format": "https://w3id.org/sstim#$1"
   },
   "sstoss": {
