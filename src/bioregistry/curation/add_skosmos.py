@@ -40,8 +40,8 @@ def get_bartoc_skosmos() -> list[tuple[str, str | None, dict[str, Any]]]:
     res_json = res.json()
     rows = []
     for key, data in res_json.items():
-        prefix = key.removeprefix("http://bartoc.org/en/node/")
-        if prefix in SKIP:
+        bartoc_id = key.removeprefix("http://bartoc.org/en/node/")
+        if bartoc_id in SKIP:
             continue
         for api in data.get("API", []):
             if api["type"] == "http://bartoc.org/api-type/skosmos":
@@ -51,19 +51,18 @@ def get_bartoc_skosmos() -> list[tuple[str, str | None, dict[str, Any]]]:
             # if we didn't find a SKOSMOS API endpoint, skip this record
             continue
 
-        rows.append((prefix, api_url, data))
+        rows.append((bartoc_id, api_url, data))
     return rows
 
 
 @click.command()
 def main() -> None:
     """Import content from skosmos."""
-    yy = bioregistry.get_registry_invmap("bartoc")
-    xx = get_bartoc_skosmos()
+    bartoc_to_bioregistry = bioregistry.get_registry_invmap("bartoc")
     srows = [
-        (prefix, data["prefLabel"]["en"], data["url"].rstrip("/"))
-        for prefix, url, data in xx
-        if prefix not in yy
+        (bartoc_id, data["prefLabel"]["en"], data["url"].rstrip("/"))
+        for bartoc_id, _api_url, data in get_bartoc_skosmos()
+        if bartoc_id not in bartoc_to_bioregistry
     ]
     if srows:
         click.echo(
