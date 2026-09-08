@@ -25,7 +25,7 @@ SKOSMOS_APIS: list[tuple[str, str | None]] = [
     ("zbw", None),
     ("sshopencloud", "http://vocabs.acdh.oeaw.ac.at/rest/v1/"),
     ("nbvok", "https://www.nb.no/nbvok/rest/v1/"),
-    ("ilc4clarin", None)
+    ("ilc4clarin", None),
 ]
 
 BARTOC_REGISTRIES_URL = "https://bartoc.org/registries"
@@ -66,7 +66,9 @@ def main() -> None:
         if prefix not in yy
     ]
     if srows:
-        click.echo("\nStill need to curate prefixes (or skips) for the following SKOSMOS listed in BARTOC:\n")
+        click.echo(
+            "\nStill need to curate prefixes (or skips) for the following SKOSMOS listed in BARTOC:\n"
+        )
         click.echo(tabulate(srows, headers=["bartoc", "name", "homepage"]))
         raise sys.exit(0)
 
@@ -97,7 +99,7 @@ def main() -> None:
             language = v["defaultLanguage"]
             concept_schemes = v["conceptschemes"]
             if not concept_schemes:
-                raise
+                raise ValueError
             elif len(concept_schemes) == 1:
                 concept_scheme = concept_schemes[0]
             else:

@@ -18,8 +18,6 @@ from curies.w3c import NCNAME_RE
 
 import bioregistry
 from bioregistry import Resource, manager
-from bioregistry.constants import BIOREGISTRY_PATH, DISALLOWED_EMAIL_PARTS, EMAIL_RE
-from bioregistry.curation.add_skosmos import SKOSMOS_APIS
 from bioregistry.alignment_model import Record
 from bioregistry.constants import (
     BIOREGISTRY_PATH,
@@ -28,6 +26,7 @@ from bioregistry.constants import (
     EMAIL_RE,
     METAREGISTRY_PATH,
 )
+from bioregistry.curation.add_skosmos import SKOSMOS_APIS
 from bioregistry.export.rdf_export import resource_to_rdf_str
 from bioregistry.external import GETTERS
 from bioregistry.license_standardizer import REVERSE_LICENSES, standardize_license

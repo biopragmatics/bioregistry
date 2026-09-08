@@ -16,8 +16,8 @@ from ...alignment_model import License, Record, make_record
 __all__ = [
     "BartocAligner",
     "get_bartoc",
-    "main",
     "get_bartoc_registries",
+    "main",
 ]
 
 logger = logging.getLogger(__name__)
