@@ -17,6 +17,7 @@ from curies.w3c import NCNAME_RE
 import bioregistry
 from bioregistry import Resource, manager
 from bioregistry.constants import BIOREGISTRY_PATH, DISALLOWED_EMAIL_PARTS, EMAIL_RE
+from bioregistry.curation.add_skosmos import SKOSMOS_APIS
 from bioregistry.export.rdf_export import resource_to_rdf_str
 from bioregistry.license_standardizer import REVERSE_LICENSES, standardize_license
 from bioregistry.resource_manager import MetaresourceAnnotatedValue
@@ -1254,3 +1255,9 @@ class TestRegistry(unittest.TestCase):
         """Test status contributions."""
         status_contributions = read_status_contributions(self.registry)
         self.assertIn("0009-0006-4842-7427", status_contributions)
+
+    def test_skosmos(self) -> None:
+        """Check all SKOSMOS keys are valid Bioregistry prefixes."""
+        for key, _ in SKOSMOS_APIS:
+            with self.subTest(prefix=key):
+                self.assertIn(key, self.registry)
