@@ -136,6 +136,7 @@ def main() -> None:
                 uri_format=uri_format,
                 example=example_luid,
                 homepage=uri_prefix,
+                keywords=["skosmos", "skosmos-server"],
             )
 
     click.echo(tabulate(rows))
