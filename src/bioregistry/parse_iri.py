@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+from functools import lru_cache
 from typing import Literal, overload
 
 import curies
@@ -13,6 +14,7 @@ from .resource_manager import manager
 __all__ = [
     "curie_from_iri",
     "get_default_converter",
+    "get_preferred_converter",
     "normalize_curie",
     "normalize_parsed_curie",
     "normalize_prefix",
@@ -21,9 +23,32 @@ __all__ = [
 ]
 
 
-def get_default_converter() -> curies.Converter:
+@lru_cache(2)
+def get_default_converter(*, stubs: bool = False) -> curies.Converter:
     """Get a converter from this manager."""
+    if stubs:
+        return manager.get_converter(stubs=True)
     return manager.converter
+
+
+@lru_cache(2)
+def get_preferred_converter(*, stubs: bool = False, wrap: bool = False) -> curies.Converter:
+    """Get a converter from this manager with preferred CURIE prefixes and RDF URI prefixes.
+
+    :param stubs: Should stub URIs be assigned to resources with no URI format?
+    :param wrap: Wrap with auto-normalization rules?
+    :returns: A converter ready for semantic web applications.
+    """
+    rv = manager.get_converter(
+        prefix_priority=["preferred", "default"],
+        uri_prefix_priority=["rdf", "default"],
+        stubs=stubs,
+    )
+    if wrap:
+        import curies_processing
+
+        rv = curies_processing.wrap(rv)
+    return rv
 
 
 def curie_from_iri(
@@ -102,9 +127,7 @@ def parse_iri(
 
     :raises TypeError: if an invalid on_failure_return_type is given
     """
-    rv: ReferenceTuple | None = get_default_converter().parse_uri(
-        iri, return_none=True, strict=strict
-    )  # type:ignore[call-overload]
+    rv: ReferenceTuple | None = get_default_converter().parse_uri(iri, strict=strict)  # type:ignore[call-overload]
     if rv is None:
         return get_failure_return_type(on_failure_return_type)
     # don't invoke the manager until it's needed
@@ -422,28 +445,10 @@ def parse_curie(
     >>> parse_curie("pdb:1234", use_preferred=True)
     ReferenceTuple(prefix='pdb', identifier='1234')
     """
-    if strict:
-        return manager.parse_curie(
-            curie,
-            sep=sep,
-            use_preferred=use_preferred,
-            strict=strict,
-        )
-    elif on_failure_return_type == FailureReturnType.single:
-        return manager.parse_curie(
-            curie,
-            sep=sep,
-            use_preferred=use_preferred,
-            on_failure_return_type=on_failure_return_type,
-            strict=strict,
-        )
-    elif on_failure_return_type == FailureReturnType.pair:
-        return manager.parse_curie(
-            curie,
-            sep=sep,
-            use_preferred=use_preferred,
-            on_failure_return_type=on_failure_return_type,
-            strict=strict,
-        )
-    else:
-        raise TypeError
+    return manager.parse_curie(  # type:ignore
+        curie,
+        sep=sep,
+        use_preferred=use_preferred,
+        on_failure_return_type=on_failure_return_type,
+        strict=strict,
+    )

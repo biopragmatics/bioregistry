@@ -33,7 +33,7 @@ def _get_example(prefix: str) -> str | None:
         return None
     try:
         x = pyobo.get_id_name_mapping(prefix)
-    except (pyobo.getters.NoBuild, ValueError, urllib.error.URLError):
+    except (pyobo.getters.NoBuildError, ValueError, urllib.error.URLError):
         return None
     if not x:
         return None

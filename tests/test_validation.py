@@ -1,6 +1,8 @@
 """Test for validation utilities."""
 
 import unittest
+from collections.abc import Mapping
+from typing import ClassVar
 
 import bioregistry
 from bioregistry.validate.utils import Message, validate_jsonld
@@ -16,6 +18,8 @@ TEST_CONTEXT = {
 class TestValidation(unittest.TestCase):
     """Test case for validation utilities."""
 
+    rpm: ClassVar[Mapping[str, str]]
+
     @classmethod
     def setUpClass(cls) -> None:
         """Set up the test case with a reusable reverse prefix map."""
@@ -24,11 +28,11 @@ class TestValidation(unittest.TestCase):
     def test_validate_jsonld_exceptions(self) -> None:
         """Test errors when validating JSON-LD."""
         with self.assertRaises(TypeError):
-            validate_jsonld(None)
+            validate_jsonld(None)  # type:ignore
         with self.assertRaises(TypeError):
             validate_jsonld({})
         with self.assertRaises(TypeError):
-            validate_jsonld({"@context": None})
+            validate_jsonld({"@context": None})  # type:ignore
 
     def test_validate_jsonld(self) -> None:
         """Test validating JSON-LD."""

@@ -4,8 +4,8 @@
 ----------------------------------------------------------------------------
 
  Description: Cellosaurus: cross-referencing to external resources
- Version: 54.0
- Last update: 27-November-2025
+ Version: 56.0
+ Last update: 25-June-2026
 
 ----------------------------------------------------------------------------
 
@@ -58,7 +58,7 @@ here:
 1) DR lines
 
 Format: DR   Resource_abbrev; %s
-Where : Resource_abbrev is one of: 4DN|Abcam|ABCD|Abeomics|ABM|AddexBio|ArrayExpress|ATCC|BCGO|BCRC|BCRJ|BEI_Resources|BioGRID_ORCS_Cell_line|BTO|BioSample|BioSamples|cancercelllines|CancerTools|CBA|CCLV|CCRID|CCTCC|Cell_Biolabs|Cell_Model_Passport|CGH-DB|ChEMBL-Cells|ChEMBL-Targets|CLDB|CLO|CLS|ColonAtlas|Coriell|Cosmic|Cosmic-CLP|dbGAP|dbMHC|DepMap|DGRC|DiscoverX|DSHB|DSMZ|DSMZCellDive|EBiSC|ECACC|EFO|EGA|ENCODE|ESTDAB|Evercyte|FANTOM5_SSTAR|FCDI|FCS-free|FlyBase_Cell_line|GDSC|GeneCopoeia|Genomeditech|GenScript|GEO|HipSci|Horizon_Discovery|hPSCreg|Hysigen|IARC_TP53|IBRC|ICLC|ICLDB|IGRhCellID|IGSR|IHW|Imanis|Innoprot|InvivoGen|IPD-IMGT/HLA|IZSLER|JCRB|KCB|KCLB|Kerafast|KYinno|LiGeA|LIMORE|LINCS_HMS|LINCS_LDP|Lonza|MCCL|MeSH|MetaboLights|Millipore|MMRRC|NCBI_Iran|NCI-DTP|NHCDR|NIHhESC|NISES|NRFC|PharmacoDB|PRIDE|Progenetix|PubChem_Cell_line|RCB|Revvity/PerkinElmer|RIKEN_BRC_EPD|Rockland|RSCB|Sigma-Aldrich|SKIP|SKY/M-FISH/CGH|SLKBase|TKG|TNGB|TOKU-E|Ubigene|WiCell|Wikidata|Ximbio
+Where : Resource_abbrev is one of: 4DN|Abcam|ABCD|Abeomics|ABM|AddexBio|ArrayExpress|ATCC|BCGO|BCRC|BCRJ|BEI_Resources|BioGRID_ORCS_Cell_line|BTO|BioSample|BioSamples|cancercelllines|CancerTools|CBA|CCLV|CCRID|CCTCC|Cell_Biolabs|Cell_Model_Passport|CGH-DB|ChEMBL-Cells|ChEMBL-Targets|CLDB|CLO|CLS|ColonAtlas|Coriell|Cosmic|Cosmic-CLP|dbGAP|dbMHC|DepMap|DGRC|DiscoverX|DSHB|DSMZ|DSMZCellDive|EBiSC|ECACC|EDITGENE|EFO|EGA|ENCODE|ESTDAB|Evercyte|FANTOM5_SSTAR|FCDI|FCS-free|FlyBase_Cell_line|GDSC|GeneCopoeia|Genomeditech|GenScript|GEO|HipSci|Horizon_Discovery|hPSCreg|Hysigen|IARC_TP53|IBRC|ICLC|ICLDB|IGRhCellID|IGSR|IHW|Imanis|Innoprot|InvivoGen|IPD-IMGT/HLA|IZSLER|JCRB|KCB|KCLB|Kerafast|KYinno|LiGeA|LIMORE|LINCS_HMS|LINCS_LDP|Lonza|MCCL|MeSH|MetaboLights|Millipore|MMRRC|NCBI_Iran|NCI-DCTD|NHCDR|NIHhESC|NISES|NRFC|PharmacoDB|PRIDE|Progenetix|PubChem_Cell_line|RCB|Revvity/PerkinElmer|RIKEN_BRC_EPD|Rockland|RSCB|Sigma-Aldrich|SKIP|SKY/M-FISH/CGH|SLKBase|TKG|TNGB|TOKU-E|Ubigene|WiCell|Wikidata|Ximbio
 
 2) RX lines
 
@@ -323,8 +323,8 @@ Cat   : Cell line databases/resources
 //
 Abbrev: CGNC
 Name  : Chicken Gene Nomenclature Consortium Database
-Server: http://birdgenenames.org/cgnc/
-Db_URL: http://birdgenenames.org/cgnc/GeneReport?id=%s
+Server: https://birdgenenames.org
+Db_URL: https://birdgenenames.org/GeneReport?id=%s
 Term. : Yes
 Cat   : Organism-specific databases
 //
@@ -503,6 +503,13 @@ Abbrev: ECACC
 Name  : European Collection of Cell Cultures
 Server: https://www.culturecollections.org.uk/about-us/ecacc/
 Db_URL: https://www.culturecollections.org.uk/products/celllines/detail.jsp?refId=%s
+Term. : No
+Cat   : Cell line collections (Providers)
+//
+Abbrev: EDITGENE
+Name  : EDITGENE
+Server: https://www.editxor.com/
+Db_URL: https://www.editxor.com/products/cat/?keyword=%s 
 Term. : No
 Cat   : Cell line collections (Providers)
 //
@@ -878,10 +885,17 @@ Db_IRI: http://purl.obolibrary.org/obo/NCBITaxon_%s
 Term. : Yes
 Cat   : Taxonomy
 //
-Abbrev: NCI-DTP
+Abbrev: NCI-DCTD
 Name  : NCI Development Therapeutics Program
-Server: https://dtp.cancer.gov/repositories/
+Server: https://dctd.cancer.gov/drug-discovery-development/reagents-materials/animal-tumor-models
 Db_URL: None
+Term. : No
+Cat   : Cell line collections (Providers)
+//
+Abbrev: NCI-PDMR
+Name  : Patient-Derived Model Repository
+Server: https://pdmr.cancer.gov/
+Db_URL: https://pdmdb.cancer.gov/web/apex/f?p=101:7::::7:P7_SAMPLESEQNBR:%s
 Term. : No
 Cat   : Cell line collections (Providers)
 //

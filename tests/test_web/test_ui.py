@@ -4,12 +4,15 @@ from __future__ import annotations
 
 import json
 import unittest
+from collections.abc import Callable
+from typing import Any
 
 import rdflib
 import yaml
 
 from bioregistry import Collection
 from bioregistry.app.impl import get_app
+from bioregistry.app.utils import IdentifierResponse
 
 
 class TestUI(unittest.TestCase):
@@ -21,7 +24,7 @@ class TestUI(unittest.TestCase):
         self.app.testing = True
         self.manager = self.app.manager
 
-    def test_ui(self):
+    def test_ui(self) -> None:
         """Test user-facing pages don't error."""
         with self.app.test_client() as client:
             for endpoint in [
@@ -61,13 +64,14 @@ class TestUI(unittest.TestCase):
                     ):
                         json.loads(res.text)
 
-    def test_ui_collection_json(self):
+    def test_ui_collection_json(self) -> None:
         """Test the UI registry with content negotiation for json/yaml."""
-        identifier = "0000001"
-        for accept, loads in [
+        cases: list[tuple[str, Callable[[str], dict[str, Any]]]] = [
             ("application/json", json.loads),
             ("application/yaml", yaml.safe_load),
-        ]:
+        ]
+        identifier = "0000001"
+        for accept, loads in cases:
             with self.subTest(format=format), self.app.test_client() as client:
                 res = client.get(f"/collection/{identifier}", headers={"Accept": accept})
                 self.assertEqual(
@@ -76,10 +80,10 @@ class TestUI(unittest.TestCase):
                     msg=f"Failed on {identifier} to accept {accept} ({format})",
                 )
                 self.assertEqual({accept}, {t for t, _ in res.request.accept_mimetypes})
-                collection = Collection(**loads(res.text))
+                collection = Collection.model_validate(loads(res.text))
                 self.assertEqual(self.manager.collections[identifier], collection)
 
-    def test_ui_collection_rdf(self):
+    def test_ui_collection_rdf(self) -> None:
         """Test the UI registry with content negotiation."""
         identifier = "0000001"
         for accept, format in [
@@ -108,10 +112,11 @@ class TestUI(unittest.TestCase):
                 )
                 self.assertEqual(1, len(results))
                 self.assertEqual(
-                    f"https://bioregistry.io/collection/{identifier}", str(results[0][0])
+                    f"https://bioregistry.io/collection/{identifier}",
+                    str(results[0][0]),  # type:ignore[index]
                 )
 
-    def test_ui_registry_rdf(self):
+    def test_ui_registry_rdf(self) -> None:
         """Test the UI registry with content negotiation."""
         metaprefix = "miriam"
         for accept, format in [
@@ -140,10 +145,11 @@ class TestUI(unittest.TestCase):
                 )
                 self.assertEqual(1, len(results))
                 self.assertEqual(
-                    f"https://bioregistry.io/metaregistry/{metaprefix}", str(results[0][0])
+                    f"https://bioregistry.io/metaregistry/{metaprefix}",
+                    str(results[0][0]),  # type:ignore[index]
                 )
 
-    def test_missing_prefix(self):
+    def test_missing_prefix(self) -> None:
         """Test missing prefix responses."""
         with self.app.test_client() as client:
             for query in ["xxxx", "xxxx:yyyy"]:
@@ -151,15 +157,52 @@ class TestUI(unittest.TestCase):
                     res = client.get(f"/{query}")
                     self.assertEqual(404, res.status_code)
 
-    def test_resolve_failures(self):
-        """Test resolve failures."""
+    def test_resolve_missing_prefix(self) -> None:
+        """Test resolving a missing prefix."""
         with self.app.test_client() as client:
-            for endpoint in ["chebi:ddd", "xxx:yyy", "gmelin:1"]:
-                with self.subTest(endpoint=endpoint):
-                    res = client.get(endpoint)
-                    self.assertEqual(404, res.status_code)
+            res = client.get("/nope:nope")
+            self.assertEqual(404, res.status_code)
+            self.assertIn("Unknown Prefix", res.text)
 
-    def test_banana_redirects(self):
+    def test_resolve_invalid_identifier(self) -> None:
+        """Test resolving an invalid LUID."""
+        with self.app.test_client() as client:
+            res = client.get("/chebi:ABCD")
+            self.assertEqual(404, res.status_code)
+            self.assertIn("Invalid Identifier", res.text)
+
+    def test_resolve_no_provider(self) -> None:
+        """Test resolving an invalid LUID."""
+        with self.app.test_client() as client:
+            res = client.get("/gmelin:1234")
+            self.assertEqual(404, res.status_code)
+            self.assertIn("Missing Provider", res.text)
+
+        # different mesage when asking for non HTML
+        with self.app.test_client() as client:
+            res = client.get("/gmelin:1234", headers={"Accept": "application/json"})
+            self.assertEqual(404, res.status_code)
+            self.assertIn("no providers available for", res.text)
+
+    def test_resolve_content_negotiation(self) -> None:
+        """Test resolve turtle via content negotiation."""
+        with self.app.test_client() as client:
+            graph = rdflib.Graph()
+            res = client.get("/GO:1234567", headers={"Accept": "text/turtle"})
+            graph.parse(data=res.text, format="turtle")
+            self.assertIn(rdflib.URIRef("https://bioregistry.io/go:1234567"), graph.all_nodes())
+
+        with self.app.test_client() as client:
+            graph = rdflib.Graph()
+            res = client.get("/GO:1234567?format=turtle")
+            graph.parse(data=res.text, format="turtle")
+            self.assertIn(rdflib.URIRef("https://bioregistry.io/go:1234567"), graph.all_nodes())
+
+        with self.app.test_client() as client:
+            res = client.get("/GO:1234567?format=json")
+            IdentifierResponse.model_validate_json(res.text)
+
+    def test_banana_redirects(self) -> None:
         """Test banana redirects."""
         with self.app.test_client() as client:
             for prefix, identifier, location in [
@@ -167,8 +210,8 @@ class TestUI(unittest.TestCase):
                 ("agrovoc", "2842", "http://aims.fao.org/aos/agrovoc/c_2842"),
                 # Related to https://github.com/biopragmatics/bioregistry/issues/93,
                 # the app route is not greedy, so it parses on the rightmost colon.
-                # ("go", "0032571", "http://amigo.geneontology.org/amigo/term/GO:0032571"),
-                # ("go", "GO:0032571", "http://amigo.geneontology.org/amigo/term/GO:0032571"),
+                ("go", "0032571", "http://purl.obolibrary.org/obo/GO_0032571"),
+                ("go", "GO:0032571", "http://purl.obolibrary.org/obo/GO_0032571"),
             ]:
                 with self.subTest(prefix=prefix, identifier=identifier):
                     res = client.get(f"/{prefix}:{identifier}", follow_redirects=False)
@@ -179,7 +222,7 @@ class TestUI(unittest.TestCase):
                     )
                     self.assertEqual(location, res.headers["Location"])
 
-    def test_redirects(self):
+    def test_redirects(self) -> None:
         """Test healthy redirects."""
         with self.app.test_client() as client:
             for endpoint in [
@@ -224,7 +267,7 @@ class TestUI(unittest.TestCase):
                     res = client.get(endpoint)
                     self.assertEqual(404, res.status_code)
 
-    def test_redirect_404(self):
+    def test_redirect_404(self) -> None:
         """Test 404 errors."""
         with self.app.test_client() as client:
             for endpoint in [
@@ -235,7 +278,7 @@ class TestUI(unittest.TestCase):
                     res = client.get(endpoint, follow_redirects=False)
                     self.assertEqual(404, res.status_code)
 
-    def test_reference_page(self):
+    def test_reference_page(self) -> None:
         """Test the reference page."""
         with self.app.test_client() as client:
             for endpoint in [

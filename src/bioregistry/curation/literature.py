@@ -18,7 +18,7 @@ COLUMNS = [
 ]
 
 
-class CurationRelevance(str, enum.Enum):
+class CurationRelevance(enum.StrEnum):
     """An enumeration for curation relevance."""
 
     #: A resource for new primary identifiers

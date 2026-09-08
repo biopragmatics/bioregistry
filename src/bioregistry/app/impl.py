@@ -5,7 +5,7 @@ from __future__ import annotations
 import json
 from pathlib import Path
 from textwrap import dedent
-from typing import Any, Literal, cast, overload
+from typing import TYPE_CHECKING, Any, Literal, cast, overload
 
 import pystow
 from a2wsgi import WSGIMiddleware
@@ -38,6 +38,9 @@ from ..constants import (
 from ..resource_manager import Manager
 from ..utils import curie_to_str
 
+if TYPE_CHECKING:
+    from rdflib.plugins.sparql.processor import SPARQLProcessor
+
 __all__ = [
     "get_app",
 ]
@@ -49,14 +52,14 @@ BIOREGISTRY_DESCRIPTION_DEFAULT = dedent("""\
     and compact identifier (CURIE) resolver.
 """)
 BIOREGISTRY_FOOTER_DEFAULT = dedent(f"""\
-    <div class="row mt-3"><h5>Projects and Partners</h3></div>
+    <div class="row mt-3"><h5>Projects and Partners</h5></div>
     <div class="row mt-2">
         <div class="col text-center align-self-center"><a href="https://www.iac.rwth-aachen.de"><img src="/static/rwth-iac.svg" style="height: 2.3em;" /></a></div>
         <div class="col text-center align-self-center"><a href="https://nfdi4chem.de"><img src="/static/nfdi4chem.svg" style="height: 2.3em;" /></a></div>
         <div class="col text-center align-self-center"><a href="https://dalia.education/en"><img src="/static/dalia.png" style="height: 1.9em;" /></a></div>
         <div class="col text-center align-self-center"><a href="https://www.northeastern.edu"><img src="/static/northeastern.svg" style="height: 2.3em;" /></a></div>
     </div>
-    <div class="row mt-4"><h5>Funding</h3></div>
+    <div class="row mt-4"><h5>Funding</h5></div>
     <div class="row mt-1">
         <div class="col text-center align-self-center"><a href="https://www.dfg.de"><img src="/static/dfg.svg" style="height: 2.3em;" /></a></div>
         <div class="col text-center align-self-center"><a href="https://chanzuckerberg.com"><img src="/static/czi.svg" style="height: 3.5em;" /></a></div>
@@ -68,8 +71,8 @@ BIOREGISTRY_FOOTER_DEFAULT = dedent(f"""\
 
     <p class="small text-center text-muted">
     Developed with ❤️ by the
-    <a href="https://www.iac.rwth-aachen.de">Institute for Inorganic Chemistry</a> at RWTH Aachen University
-    </br> and the
+    <a href="https://www.iac.rwth-aachen.de">Institute of Inorganic Chemistry</a> at RWTH Aachen University
+    <br/> and the
     <a href="https://gyorilab.github.io">Gyori Lab for Computational Biomedicine</a>
     at Northeastern University.<br/>
     Point of contact: Charles Tapley Hoyt (<a href="https://github.com/cthoyt">@cthoyt</a>; RWTH Aachen)
@@ -77,7 +80,7 @@ BIOREGISTRY_FOOTER_DEFAULT = dedent(f"""\
 
     <div class="text-center">
     <a class="btn btn-outline-primary btn-sm mb-1" rel="me" href="https://{INTERNAL_MASTODON_SERVER}/@{INTERNAL_MASTODON_HANDLE}" title="{INTERNAL_MASTODON_HANDLE}"> @{INTERNAL_MASTODON}</a>
-    <a class="btn btn-outline-primary btn-sm mb-1" href="{INTERNAL_REPOSITORY}"><i class="fa fa-brands fa-github"></i> Source Code</a>
+    <a class="btn btn-outline-primary btn-sm mb-1" href="{INTERNAL_REPOSITORY}"><i class="bi bi-github"></i> Source Code</a>
     </div>
 """)
 BIOREGISTRY_HEADER_DEFAULT = dedent("""\
@@ -195,8 +198,8 @@ BIOREGISTRY_DEPLOYMENT_BLOCK = dedent(f"""\
 <p>
     A Docker image is automatically built weekly following the
     <a href="{INTERNAL_REPOSITORY}/actions/workflows/update.yml">update workflow</a>
-    on GitHub Actions and pushed to the <a href="https://hub.docker.com/r/{INTERNAL_DOCKERHUB_SLUG}"><i class="fab fa-docker"></i>
-    {INTERNAL_DOCKERHUB_SLUG}</a> DockerHub repository. This image is built with the Python 3.9 alpine base image,
+    on GitHub Actions and pushed to the <a href="https://hub.docker.com/r/{INTERNAL_DOCKERHUB_SLUG}">
+    {INTERNAL_DOCKERHUB_SLUG}</a> DockerHub repository. This image is built with a Python alpine base image,
     which significantly reduces non-essential components. The final compressed image weights less than 40 MB of disk
     space and runs inside Docker with about 65 MB of memory at baseline. This could easily fit on a dedicated
     <a href="https://aws.amazon.com/ec2/instance-types/t4/">t4g.nano</a> instance on AWS that costs about
@@ -246,12 +249,20 @@ BIOREGISTRY_DOMAIN_NAME_BLOCK = dedent("""\
 </p>
 """)
 
+BIOREGISTRY_LONGEVITY_BLOCK = dedent("""\
+The Bioregistry is currently funded by the Chan Zuckerberg Initiative (CZI) Open Science
+Grant 2023-329850, which presently supports the domain registration and hosting. The ongoing
+costs of maintaining the deployment are modest, with a conservative estimate of around
+$100-200/year. The maintainers are committed to sustaining the domain registration and hosting,
+in the medium- and long term, and will continue to cover these costs.
+""")
+
 
 # docstr-coverage:excused `overload`
 @overload
 def get_app(
     manager: Manager | None = ...,
-    config: None | str | Path | dict[str, Any] = ...,
+    config: str | Path | dict[str, Any] | None = ...,
     *,
     first_party: bool = ...,
     return_flask: Literal[True] = True,
@@ -265,7 +276,7 @@ def get_app(
 @overload
 def get_app(
     manager: Manager | None = ...,
-    config: None | str | Path | dict[str, Any] = ...,
+    config: str | Path | dict[str, Any] | None = ...,
     *,
     first_party: bool = ...,
     return_flask: Literal[False] = False,
@@ -277,7 +288,7 @@ def get_app(
 
 def get_app(
     manager: Manager | None = None,
-    config: None | str | Path | dict[str, Any] = None,
+    config: str | Path | dict[str, Any] | None = None,
     *,
     first_party: bool = True,
     return_flask: bool = False,
@@ -294,8 +305,8 @@ def get_app(
     :param return_flask: Set to true to get internal flask app
     :param analytics: Should analytics be enabled?
     :param import_name: The import name for the flask app
-    :param flask_kwargs: Remaining keyword arguments to pass to the flask app
-        (don't pass ``import_name`` as a key here)
+    :param flask_kwargs: Remaining keyword arguments to pass to the flask app (don't
+        pass ``import_name`` as a key here)
 
     :returns: An instantiated WSGI application
 
@@ -342,17 +353,10 @@ def get_app(
     )
     fast_api.manager = manager  # type:ignore
     fast_api.include_router(api_router)
-    fast_api.include_router(_get_sparql_router(app))
+    fast_api.include_router(_get_sparql_router(app, manager))
     fast_api.mount("/", WSGIMiddleware(app))  # type:ignore
 
-    # yes, this isn't very secure. just for testing now.
-    key = "-".join([KEY_A, KEY_B, KEY_C, KEY_D, KEY_E])
-    analytics_api_key = conf.get("ANALYTICS_API_KEY") or pystow.get_config(
-        "bioregistry",
-        "analytics_api_key",
-        passthrough=key,
-    )
-    if analytics_api_key and analytics:
+    if analytics and (analytics_api_key := conf.get("ANALYTICS_API_KEY")):
         from api_analytics.fastapi import Analytics
 
         fast_api.add_middleware(Analytics, api_key=analytics_api_key)  # Add middleware
@@ -371,7 +375,7 @@ def get_app(
 
 
 def _prepare_config(
-    config: None | str | Path | dict[str, Any] = None, first_party: bool = True
+    config: str | Path | dict[str, Any] | None = None, first_party: bool = True
 ) -> dict[str, Any]:
     if isinstance(config, str | Path):
         with open(config) as file:
@@ -399,6 +403,23 @@ def _prepare_config(
     config.setdefault("METAREGISTRY_SCHEMA_PREFIX", SCHEMA_CURIE_PREFIX)
     config.setdefault("METAREGISTRY_SCHEMA_URI_PREFIX", SCHEMA_URI_PREFIX)
     config.setdefault("METAREGISTRY_RESOURCES_SUBHEADER", RESOURCES_SUBHEADER_DEFAULT)
+    config.setdefault("METAREGISTRY_GOOGLE_ANALYTICS", "G-SPV2J3MLNE")
+    config.setdefault("METAREGISTRY_MATOMO", "")
+
+    # yes, this isn't very secure. just for testing now.
+    key = f"{KEY_A}-{KEY_B}-{KEY_C}-{KEY_D}-{KEY_E}"
+
+    # setdefault works by not overriding if the value is there,
+    # so set ANALYTICS_API_KEY with an empty string as value to
+    # disable this
+    config.setdefault(
+        "ANALYTICS_API_KEY",
+        pystow.get_config(
+            "bioregistry",
+            "analytics_api_key",
+            passthrough=key,
+        ),
+    )
 
     # key for updating on non-first party
     config.setdefault("METAREGISTRY_TITLE", BIOREGISTRY_TITLE_DEFAULT)
@@ -410,6 +431,7 @@ def _prepare_config(
     # should not be there if not first-party
     config.setdefault("METAREGISTRY_DEPLOYMENT", BIOREGISTRY_DEPLOYMENT_BLOCK)
     config.setdefault("METAREGISTRY_DOMAIN_NAME_BLOCK", BIOREGISTRY_DOMAIN_NAME_BLOCK)
+    config.setdefault("METAREGISTRY_LONGEVITY_BLOCK", BIOREGISTRY_LONGEVITY_BLOCK)
 
     return config
 
@@ -424,18 +446,18 @@ SELECT ?s ?o WHERE {
 """.rstrip()
 
 
-def _get_sparql_router(app: Flask) -> APIRouter:
-    sparql_graph = MappingServiceGraph(converter=app.manager.converter)
-    sparql_processor = MappingServiceSPARQLProcessor(graph=sparql_graph)
+def _get_sparql_router(app: Flask, manager: Manager) -> APIRouter:
+    sparql_graph = MappingServiceGraph(converter=manager.converter)
+    sparql_processor: SPARQLProcessor = MappingServiceSPARQLProcessor(graph=sparql_graph)  # type:ignore [no-untyped-call]
     sparql_router: APIRouter = SparqlRouter(
         path="/sparql",
         title=f"{app.config['METAREGISTRY_TITLE']} SPARQL Service",
         description="An identifier mapping service",
         version=version.get_version(),
-        example_query=example_query,
+        example_queries={"ChEBI sameAs with VALUES": {"query": example_query, "endpoint": None}},
         graph=sparql_graph,
         processor=sparql_processor,
-        public_url=f"{app.manager.base_url}/sparql",
+        public_url=f"{manager.base_url}/sparql",
     )
     return sparql_router
 

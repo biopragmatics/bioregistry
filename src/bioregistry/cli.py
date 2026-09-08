@@ -47,15 +47,19 @@ def download() -> None:
 @click.option("--skip-re3data", is_flag=True)
 @click.option("--skip-bioportal", is_flag=True)
 @click.option("--skip-agroportal", is_flag=True)
+@click.option("--skip-biodivportal", is_flag=True)
 @click.option("--skip-slow", is_flag=True)
-@click.option("--no-force", is_flag=True)
+@click.option("--no-force", is_flag=True, help="if set, do not force re-downloading the data")
+@click.option("--progress/--no-progress", is_flag=True)
 def align(
     skip_fairsharing: bool,
     skip_re3data: bool,
     skip_bioportal: bool,
     skip_agroportal: bool,
+    skip_biodivportal: bool,
     skip_slow: bool,
     no_force: bool,
+    progress: bool,
 ) -> None:
     """Align all external registries."""
     try:
@@ -79,14 +83,14 @@ def align(
         skip.add("bioportal")
     if skip_agroportal or skip_slow:
         skip.add("agroportal")
-    # Temporary fix to avoid issue with duplicate URI prefix
-    skip.add("wikidata")
+    if skip_biodivportal or skip_slow:
+        skip.add("biodivportal")
     for aligner_cls in aligner_resolver:
         if aligner_cls.key in skip:
             continue
         secho(f"Aligning {aligner_cls.key}")
         try:
-            aligner_cls.align(force_download=not no_force)
+            aligner_cls.align(force_download=not no_force, progress=progress)
         except Exception as e:
             secho(f"Failed to align {aligner_cls.key}: {e}", fg="red")
 
@@ -104,10 +108,11 @@ main.add_command(generate_schema)
 
 
 @main.command()
+@click.option("--progress/--no-progress", is_flag=True)
 @click.pass_context
-def update(ctx: click.Context) -> None:
+def update(ctx: click.Context, progress: bool) -> None:
     """Update the Bioregistry."""
-    ctx.invoke(align)
+    ctx.invoke(align, progress=progress)
     ctx.invoke(lint)
     ctx.invoke(export)
     ctx.invoke(compare)
@@ -121,6 +126,20 @@ def update(ctx: click.Context) -> None:
     except Exception as e:
         click.secho("Error uploading to ndex", fg="red")
         click.secho(str(e), fg="red")
+
+
+@main.group()
+def curate() -> None:
+    """Curation workflows."""
+
+
+@curate.command()
+@click.argument("url")
+def linkml(url: str) -> None:
+    """Import from LinkML."""
+    from .curation.add_linkml import import_from_linkml
+
+    import_from_linkml(url)
 
 
 if __name__ == "__main__":

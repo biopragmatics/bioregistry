@@ -31,14 +31,15 @@ class TestNormalizedReference(unittest.TestCase):
 
     def test_failed_validation(self) -> None:
         """Test throwing a runtime error when missing prefix/identifier."""
-        for cls in [
+        classes: list[type[BaseModel]] = [
             NormalizedReference,
             NormalizedNamableReference,
             StandardReference,
             StandardNamableReference,
             StandardNamedReference,
             NormalizedNamedReference,
-        ]:
+        ]
+        for cls in classes:
             with self.subTest(cls=cls.__name__):
                 with self.assertRaises(RuntimeError):
                     cls.model_validate({})
@@ -51,13 +52,14 @@ class TestNormalizedReference(unittest.TestCase):
 
     def test_invalid(self) -> None:
         """Test invalid CURIEs."""
+        classes: list[type[curies.Reference]] = [
+            NormalizedReference,
+            NormalizedNamableReference,
+            StandardReference,
+            StandardNamableReference,
+        ]
         for curie in BAD_CURIES:
-            for cls in [
-                NormalizedReference,
-                NormalizedNamableReference,
-                StandardReference,
-                StandardNamableReference,
-            ]:
+            for cls in classes:
                 with (
                     self.subTest(curie=curie, cls=cls.__name__),
                     self.assertRaises(ValidationError),

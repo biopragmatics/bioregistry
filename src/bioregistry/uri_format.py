@@ -10,6 +10,7 @@
 from __future__ import annotations
 
 from collections.abc import Collection, Mapping, Sequence
+from typing import Literal, overload
 
 from .resource_manager import manager
 
@@ -58,11 +59,28 @@ def get_uri_format(prefix: str, priority: Sequence[str] | None = None) -> str | 
     return manager.get_uri_format(prefix=prefix, priority=priority)
 
 
-def get_uri_prefix(prefix: str, priority: Sequence[str] | None = None) -> str | None:
+# docstr-coverage:excused `overload`
+@overload
+def get_uri_prefix(
+    prefix: str, *, priority: Sequence[str] | None = ..., strict: Literal[False] = ...
+) -> str | None: ...
+
+
+# docstr-coverage:excused `overload`
+@overload
+def get_uri_prefix(
+    prefix: str, *, priority: Sequence[str] | None = ..., strict: Literal[True] = ...
+) -> str: ...
+
+
+def get_uri_prefix(
+    prefix: str, *, priority: Sequence[str] | None = None, strict: bool = False
+) -> str | None:
     """Get a well-formed URI prefix for usage in a prefix map.
 
     :param prefix: The prefix to lookup.
     :param priority: The prioirty order for :func:`get_format`.
+    :param strict: If true, will error on a missing value
 
     :returns: The URI prefix. Similar to what's returned by
         :func:`bioregistry.get_format`, but it MUST have only one ``$1`` and end with
@@ -72,7 +90,7 @@ def get_uri_prefix(prefix: str, priority: Sequence[str] | None = None) -> str | 
     >>> bioregistry.get_uri_prefix("chebi")
     'http://purl.obolibrary.org/obo/CHEBI_'
     """
-    return manager.get_uri_prefix(prefix=prefix, priority=priority)
+    return manager.get_uri_prefix(prefix=prefix, priority=priority, strict=strict)  # type:ignore[no-any-return,call-overload]
 
 
 def get_prefix_map(

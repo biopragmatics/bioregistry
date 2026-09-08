@@ -10,7 +10,7 @@
                 <div class="col-8">
                     <h5 style="margin: 0">
                         <a href="{{ url_for("metaregistry_ui.resource", prefix=prefix) }}">{{ name }}</a>&nbsp;&nbsp;
-                        <i class="fas fa-angle-right"></i>&nbsp;&nbsp;{{ identifier }}
+                        <i class="bi bi-chevron-right"></i>&nbsp;&nbsp;{{ identifier }}
                     </h5>
                 </div>
                 <div class="col-4 text-right">
@@ -24,7 +24,7 @@
                             {% for label, key in formats %}
                                 <a class="dropdown-item"
                                    href="{{ fastapi_url_for("get_reference", prefix=prefix, identifier=identifier) }}?format={{ key }}">
-                                    {{ label }} <i class="fas fa-download"></i>
+                                    {{ label }} <i class="bi bi-download"></i>
                                 </a>
                             {% endfor %}
                         </div>
@@ -37,12 +37,12 @@
                 <a class="btn btn-success btn-lg"
                    href="{{ url_for("metaregistry_ui.resolve", prefix=prefix, identifier=identifier) }}">
                     Resolve {{ utils.code_curie(prefix, identifier) }} with Default Provider&nbsp;&nbsp;
-                    <i class="fas fa-share-square"></i>
+                    <i class="bi bi-share"></i>
                 </a>
             {% else %}
                 <span class="btn btn-warning btn-lg">
                     Unable to resolve entries in <code>{{ prefix }}</code>&nbsp;&nbsp;
-                    <i class="fas fa-skull-crossbones"></i>
+                    <i class="bi bi-ban"></i>
                 </span>
             {% endif %}
         </div>

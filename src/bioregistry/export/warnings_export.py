@@ -6,17 +6,14 @@ curated in the Bioregistry.
 
 from __future__ import annotations
 
-import os
 from collections.abc import Callable
 
 import click
 import yaml
 from tqdm import tqdm
 
-import bioregistry
-from bioregistry import parse_iri
-
 from ..constants import DOCS_DATA, EXTERNAL
+from ..parse_iri import parse_iri
 from ..resolve import (
     get_example,
     get_external,
@@ -35,10 +32,7 @@ __all__ = [
 ]
 
 CURATIONS_PATH = DOCS_DATA.joinpath("curation.yml")
-
-ENTRIES = sorted(
-    (prefix, resource.model_dump(exclude_none=True)) for prefix, resource in read_registry().items()
-)
+WARNINGS_PATH = DOCS_DATA.joinpath("warnings.yml")
 
 
 def _g(predicate: Callable[[str], bool]) -> list[dict[str, str | None]]:
@@ -74,17 +68,21 @@ def export_warnings() -> None:
     """Make warnings list."""
     # unparsable = get_unparsable_uris()
     missing_wikidata_database = _g(
-        lambda prefix: get_external(prefix, "wikidata").get("database") is None
-        and not has_no_terms(prefix)
+        lambda prefix: (
+            (get_external(prefix, "wikidata") or {}).get("database") is None
+            and not has_no_terms(prefix)
+        )
     )
     missing_pattern = _g(lambda prefix: get_pattern(prefix) is None and not has_no_terms(prefix))
     missing_format_url = _g(
         lambda prefix: get_uri_format(prefix) is None and not has_no_terms(prefix)
     )
     missing_example = _g(
-        lambda prefix: get_example(prefix) is None
-        and not has_no_terms(prefix)
-        and get_provides_for(prefix) is None
+        lambda prefix: (
+            get_example(prefix) is None
+            and not has_no_terms(prefix)
+            and get_provides_for(prefix) is None
+        )
     )
 
     prefix_xrefs = [
@@ -114,51 +112,20 @@ def export_warnings() -> None:
             "prefix": prefix,
             "name": get_name(prefix),
             "homepage": get_homepage(prefix),
-            "correct": entry["pattern"],
-            "miriam": entry["miriam"]["pattern"],
+            "correct": entry.pattern,
+            "miriam": miriam_pattern,
         }
-        for prefix, entry in ENTRIES
-        if "miriam" in entry
-        and "pattern" in entry
-        and entry["pattern"] != entry["miriam"]["pattern"]
+        for prefix, entry in read_registry().items()
+        if entry.miriam
+        and (miriam_pattern := entry.miriam.get("pattern")) is not None
+        and entry.pattern
+        and entry.pattern != miriam_pattern
     ]
 
-    miriam_embedding_rewrites = [
-        {
-            "prefix": prefix,
-            "name": get_name(prefix),
-            "homepage": get_homepage(prefix),
-            "pattern": get_pattern(prefix),
-            "correct": entry["namespace.embedded"],
-            "miriam": entry["miriam"]["namespaceEmbeddedInLui"],
-        }
-        for prefix, entry in ENTRIES
-        if "namespace.embedded" in entry
-    ]
-
-    # When are namespace rewrites required?
-    miriam_prefix_rewrites = [
-        {
-            "prefix": prefix,
-            "name": get_name(prefix),
-            "homepage": get_homepage(prefix),
-            "pattern": get_pattern(prefix),
-            "correct": entry["namespace.rewrite"],
-        }
-        for prefix, entry in ENTRIES
-        if "namespace.rewrite" in entry
-    ]
-
-    with open(os.path.join(DOCS_DATA, "warnings.yml"), "w") as file:
+    with WARNINGS_PATH.open("w") as file:
         yaml.safe_dump(
             {
                 "wrong_patterns": miriam_pattern_wrong,
-                "embedding_rewrites": miriam_embedding_rewrites,
-                "prefix_rewrites": miriam_prefix_rewrites,
-                "license_conflict": [
-                    {"prefix": prefix, "obo": obo, "ols": ols}
-                    for prefix, _override, obo, ols in bioregistry.get_license_conflicts()
-                ],
             },
             file,
         )

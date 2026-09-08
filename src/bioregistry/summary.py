@@ -8,11 +8,10 @@ from collections.abc import Mapping
 from dataclasses import dataclass
 from itertools import combinations
 from textwrap import dedent
-from typing import TYPE_CHECKING
+from typing import TYPE_CHECKING, Self
 
 import click
 from more_click import force_option
-from typing_extensions import Self
 
 from bioregistry import manager
 from bioregistry.constants import TABLES_SUMMARY_LATEX_PATH

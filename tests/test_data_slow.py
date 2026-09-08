@@ -6,14 +6,14 @@ from collections import defaultdict
 import pytest
 
 import bioregistry
-from bioregistry import get_obo_context_prefix_map
+from bioregistry import Resource, get_obo_context_prefix_map
 
 
 class TestDataSlow(unittest.TestCase):
     """Slow tests."""
 
     @pytest.mark.slow
-    def test_parse_http_vs_https(self):
+    def test_parse_http_vs_https(self) -> None:
         """Test parsing both HTTP and HTTPS, even when the provider is only set to one."""
         prefix = "neuronames"
         ex = bioregistry.get_example(prefix)
@@ -39,7 +39,7 @@ class TestDataSlow(unittest.TestCase):
                 self.assertEqual((p, i), bioregistry.parse_iri(u))
 
     @pytest.mark.slow
-    def test_prefix_map_priorities(self):
+    def test_prefix_map_priorities(self) -> None:
         """Test that different lead priorities all work for prefix map generation."""
         priorities = [
             "default",
@@ -57,16 +57,15 @@ class TestDataSlow(unittest.TestCase):
                 self.assertIsNotNone(prefix_map)
 
     @pytest.mark.slow
-    def test_unique_iris(self):
+    def test_unique_iris(self) -> None:
         """Test that all IRIs are unique, or at least there's a mapping to which one is the preferred prefix."""
         # TODO make sure there are also no HTTP vs HTTPS clashes,
         #  for example if one prefix has http://example.org/foo/$1 and a different one
         #  has https://example.org/foo/$1
         prefix_map = bioregistry.get_prefix_map()
-        dd = defaultdict(dict)
+        dd: defaultdict[str, dict[str, Resource]] = defaultdict(dict)
         for prefix, iri in prefix_map.items():
-            resource = bioregistry.get_resource(prefix)
-            self.assertIsNotNone(resource)
+            resource = bioregistry.get_resource(prefix, strict=True)
             if resource.provides is not None:
                 # Don't consider resources that are providing, such as `ctd.gene`
                 continue
@@ -101,7 +100,7 @@ class TestDataSlow(unittest.TestCase):
         self.assertEqual({}, x)
 
     @pytest.mark.slow
-    def test_obo_prefix_map(self):
+    def test_obo_prefix_map(self) -> None:
         """Test the integrity of the OBO prefix map."""
         obofoundry_prefix_map = get_obo_context_prefix_map()
         self.assertIn("FlyBase", set(obofoundry_prefix_map))

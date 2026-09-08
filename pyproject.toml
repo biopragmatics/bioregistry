@@ -2,15 +2,9 @@
 requires = ["uv_build>=0.9.4,<1.0"]
 build-backend = "uv_build"
 
-# Pytest, see https://docs.pytest.org/en/stable/reference/customize.html#pyproject-toml
-[tool.pytest.ini_options]
-markers = [
-    "slow: marks tests as slow (deselect with '-m \"not slow\"')",
-]
-
 [project]
 name = "bioregistry"
-version = "0.13.12-dev"
+version = "0.14.5-dev"
 description = "Integrated registry of biological databases and nomenclatures"
 readme = "README.md"
 authors = [
@@ -26,16 +20,15 @@ classifiers = [
     "Development Status :: 4 - Beta",
     "Environment :: Console",
     "Intended Audience :: Developers",
-    "License :: OSI Approved :: MIT License",
     "Operating System :: OS Independent",
     "Framework :: Pytest",
     "Framework :: tox",
     "Framework :: Sphinx",
     "Programming Language :: Python",
-    "Programming Language :: Python :: 3.10",
     "Programming Language :: Python :: 3.11",
     "Programming Language :: Python :: 3.12",
     "Programming Language :: Python :: 3.13",
+    "Programming Language :: Python :: 3.14",
     "Programming Language :: Python :: 3 :: Only",
 ]
 keywords = [
@@ -50,36 +43,69 @@ keywords = [
 # License Information. This can be any valid SPDX identifiers that can be resolved
 # with URLs like https://spdx.org/licenses/MIT
 # See https://packaging.python.org/en/latest/guides/writing-pyproject-toml/#license
-license = { file = "LICENSE" }
+license = "MIT"
+license-files = ["LICENSE"]
 
-requires-python = ">=3.10"
+requires-python = ">=3.11"
 dependencies = [
     "requests",
     "tqdm",
-    "pystow>=0.7.7",
+    "pystow>=0.9.0",
     "click",
-    "more_click>=0.1.2",
+    "more-click>=0.1.2",
     "pydantic[email]>=2.0",
-    "curies>=0.12.2",
+    "curies>=0.15.0",
+    "sssom-pydantic>=0.6.4",
+    #
+    "urllib3>=2.7.0",
+    "python-multipart>=0.0.27",
+    "idna>=3.15",
 ]
 
-[project.optional-dependencies]
+[dependency-groups]
 tests = [
     "pytest",
     "coverage",
-    "more_itertools",
-    "httpx",
+    "more-itertools",
+    "httpx2",
     "scikit-learn",
 ]
+typing = [
+    "mypy",
+    "types-PyYAML",
+    "types-Markdown",
+    "types-tabulate",
+    "types-requests",
+    "types-python-dateutil",
+    "types-Flask",
+    "types-WTForms",
+    "types-tqdm",
+    "types-beautifulsoup4",
+    "types-Markdown",
+    "matplotlib-stubs",
+    "pandas-stubs",
+    "fastapi[all]",
+    "pyobo>=0.14.1",
+    "ror-downloader",
+    "pandas",
+    "manubot",
+]
+dev = [
+    { include-group = "tests" },
+    { include-group = "typing" },
+    "pydantic",
+]
+
+[project.optional-dependencies]
 docs = [
     "sphinx>=8",
     "sphinx-rtd-theme>=3.0",
     "sphinx-click",
-    "sphinx_automodapi",
-    "autodoc_pydantic",
+    "sphinx-automodapi",
+    "autodoc-pydantic",
 ]
 gha = [
-    "more_itertools",
+    "more-itertools",
 ]
 align = [
     "pyyaml",
@@ -87,8 +113,11 @@ align = [
     "tabulate",
     "defusedxml",
     "class-resolver",
-    "fairsharing-client>=0.1.0",
-    "pandas",
+    "fairsharing-client>=0.3.1",
+    "pandas<3.0",
+    "wikidata-client",
+    "ontoportal-client>=0.0.9",
+    "lxml",
 ]
 export = [
     "pyyaml",
@@ -98,14 +127,14 @@ export = [
 ]
 charts = [
     "matplotlib",
-    "matplotlib_venn",
+    "matplotlib-venn",
     "seaborn",
-    "pandas",
+    "pandas<3.0",
     "jinja2",
 ]
 health = [
-    "click_default_group",
-    "pandas",
+    "click-default-group",
+    "pandas<3.0",
     "tabulate",
     "pyyaml",
     "jinja2",
@@ -114,10 +143,11 @@ web = [
     "pyyaml",
     "rdflib",
     "rdflib-jsonld",
-    "rdflib-endpoint>=0.5.3",
+    "rdflib-endpoint>=0.6.3",
     "flask>=3.0.0",
     "werkzeug>=3.0.0",
     "fastapi",
+    "starlette>=1.0.1",
     "uvicorn",
     "bootstrap-flask",
     "markdown",
@@ -126,14 +156,14 @@ web = [
     "api-analytics[fastapi]",
 ]
 paper-ranking = [
-    "pandas",
+    "pandas<3.0",
     "scikit-learn",
     "tabulate",
     "pubmed-downloader>=0.0.12",
 ]
 mapping-checking = [
-    "pandas",
-    "sentence_transformers",
+    "pandas<3.0",
+    "sentence-transformers",
 ]
 
 
@@ -164,6 +194,17 @@ plugins = [
 max-line-length = 120
 ignore = ["D001"]
 
+# Pytest, see https://docs.pytest.org/en/stable/reference/customize.html#pyproject-toml
+[tool.pytest.ini_options]
+markers = [
+    "slow: marks tests as slow (deselect with '-m \"not slow\"')",
+]
+filterwarnings = [
+    # these two warnings are both rdflib-internal
+    "ignore:Dataset.default_context is deprecated:DeprecationWarning:rdflib.plugins.parsers.notation3",
+    "ignore:Dataset.default_context is deprecated:DeprecationWarning:rdflib.graph",
+]
+
 # Coverage, see https://coverage.readthedocs.io/en/latest/config.html
 [tool.coverage.run]
 branch = true
@@ -175,6 +216,7 @@ omit = [
     "docs/*",
     "src/bioregistry/cli.py",
     "src/bioregistry/__main__.py",
+    "src/bioregistry/curation/*.py",
 ]
 
 [tool.coverage.paths]
@@ -225,6 +267,8 @@ ignore = [
     "C901", # ehh, complexity out the wind
     "S704", # TODO figure out why this gets thrown and how to fix
     "S314", # unsafe xml
+    "DTZ",
+    "BLE001",
 ]
 
 # See https://docs.astral.sh/ruff/settings/#per-file-ignores
@@ -254,7 +298,7 @@ known-first-party = [
 docstring-code-format = true
 
 [tool.bumpversion]
-current_version = "0.13.12-dev"
+current_version = "0.14.5-dev"
 parse = "(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+)(?:-(?P<release>[0-9A-Za-z-]+(?:\\.[0-9A-Za-z-]+)*))?(?:\\+(?P<build>[0-9A-Za-z-]+(?:\\.[0-9A-Za-z-]+)*))?"
 serialize = [
     "{major}.{minor}.{patch}-{release}+{build}",

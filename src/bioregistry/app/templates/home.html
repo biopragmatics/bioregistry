@@ -40,11 +40,11 @@
                 </div>
                 <div v-if="current_result" class="patrick-dropdown">
                     <div v-if="result_url" class="option-line">
-                        <i class="far fa-check-circle" style="color: green;"></i>
+                        <i class="bi bi-check-circle" style="color: green;"></i>
                         <a :href="result_url" target="_blank">{{ user_input }}</a>
                     </div>
                     <div v-if="validation_failed" class="option-line">
-                        <i class="far fa-times-circle" style="color: red;"></i> Does not match pattern <kbd>{{
+                        <i class="bi bi-x-circle" style="color: red;"></i> Does not match pattern <kbd>{{
                         current_result.pattern }}</kbd>
                     </div>
                     <div v-if="result_has_options && options_are_worth_showing" class="option-box">
@@ -57,7 +57,7 @@
                         </a>
                     </div>
                     <div v-else-if="options_are_worth_showing" class="option-line">
-                        <i class="fas fa-exclamation-circle" style="color: goldenrod"></i> No results
+                        <i class="bi bi-exclamation-circle" style="color: goldenrod"></i> No results
                     </div>
                 </div>
             </div>
@@ -68,7 +68,7 @@
         <div class="list-group">
             <a href="{{ url_for(".resolve", prefix=example_prefix, identifier=example_identifier) }}" class="list-group-item list-group-item-action flex-column align-items-start">
                 <div class="d-flex w-100 justify-content-between">
-                    <h5 class="mb-1"><i class="fas fa-share-square"></i> Resolve</h5>
+                    <h5 class="mb-1"><i class="bi bi-box-arrow-in-right"></i> Resolve</h5>
                 </div>
                 <p class="mb-1">
                     A compact URI (CURIE) like <span class="badge badge-light">
@@ -78,7 +78,7 @@
             <a href="{{ url_for('metaregistry_ui.resources') }}"
                class="list-group-item list-group-item-action flex-column align-items-start">
                 <div class="d-flex w-100 justify-content-between">
-                    <h5 class="mb-1"><i class="fas fa-list"></i> View Registry</h5>
+                    <h5 class="mb-1"><i class="bi bi-list"></i> View Registry</h5>
                     <small class="text-muted">{{ "{:,}".format(registry_size) }} entries</small>
                 </div>
                 <p class="mb-1">The integrative registry of databases, ontologies, and resources that assign (persistent) identifiers.</p>
@@ -86,7 +86,7 @@
             <a href="{{ url_for('metaregistry_ui.metaresources') }}"
                class="list-group-item list-group-item-action flex-column align-items-start">
                 <div class="d-flex w-100 justify-content-between">
-                    <h5 class="mb-1"><i class="fas fa-atom"></i> View Metaregistry</h5>
+                    <h5 class="mb-1"><i class="bi bi-balloon"></i> View Metaregistry</h5>
                     <small class="text-muted">{{ metaregistry_size }} registries</small>
                 </div>
                 <p class="mb-1">The registry of registries.</p>
@@ -95,7 +95,7 @@
             <a href="{{ url_for('metaregistry_ui.collections') }}"
                class="list-group-item list-group-item-action flex-column align-items-start">
                 <div class="d-flex w-100 justify-content-between">
-                    <h5 class="mb-1"><i class="fas fa-layer-group"></i> View Collections</h5>
+                    <h5 class="mb-1"><i class="bi bi-collection"></i> View Collections</h5>
                     <small class="text-muted">{{ manager.collections | length }} collections</small>
                 </div>
                 <p class="mb-1">Manually curated subsets of the registry.</p>
@@ -104,7 +104,7 @@
             <a href="{{ url_for('metaregistry_ui.contributors') }}"
                class="list-group-item list-group-item-action flex-column align-items-start">
                 <div class="d-flex w-100 justify-content-between">
-                    <h5 class="mb-1"><i class="fas fa-users"></i> View Contributors</h5>
+                    <h5 class="mb-1"><i class="bi bi-person"></i> View Contributors</h5>
                     <small class="text-muted">{{ contributors_size }} contributors</small>
                 </div>
                 <p class="mb-1">Contributors to the {{ config.METAREGISTRY_TITLE }}</p>
@@ -113,7 +113,7 @@
             <a href="{{ url_for('metaregistry_ui.summary') }}"
                class="list-group-item list-group-item-action flex-column align-items-start">
                 <div class="d-flex w-100 justify-content-between">
-                    <h5 class="mb-1"><i class="fas fa-book"></i> Learn</h5>
+                    <h5 class="mb-1"><i class="bi bi-book"></i> Learn</h5>
                 </div>
                 <p class="mb-1">
                     About the motivation for constructing the {{ config.METAREGISTRY_TITLE }}.
@@ -123,7 +123,7 @@
             <a href="{{ config.METAREGISTRY_REPOSITORY }}/issues/new?labels=New%2CPrefix&template=new-prefix.yml&title=Add+prefix+%5BX%5D"
                class="list-group-item list-group-item-action flex-column align-items-start">
                 <div class="d-flex w-100 justify-content-between">
-                    <h5 class="mb-1"><i class="fas fa-question"></i> Request a Prefix</h5>
+                    <h5 class="mb-1"><i class="bi bi-question-circle"></i> Request a Prefix</h5>
                 </div>
                 <p class="mb-1">
                     Request a new prefix in the {{ config.METAREGISTRY_TITLE }} via its GitHub Issue tracker.
@@ -133,7 +133,7 @@
             <a href="{{ url_for('metaregistry_ui.download') }}"
                class="list-group-item list-group-item-action flex-column align-items-start">
                 <div class="d-flex w-100 justify-content-between">
-                    <h5 class="mb-1"><i class="fas fa-download"></i> Download</h5>
+                    <h5 class="mb-1"><i class="bi bi-download"></i> Download</h5>
                 </div>
                 <p class="mb-1">
                     All the data in the {{ config.METAREGISTRY_TITLE }} (version {{ config.METAREGISTRY_VERSION }}).
@@ -295,11 +295,11 @@
                         case SEARCHED_PREFIX:
                             return '';
                         case MATCHED_PREFIX:
-                            return '<i class="far fa-check-circle" style="color: green;"></i>';
+                            return '<i class="bi bi-check-circle" style="color: green;"></i>';
                         case FAILED_VALIDATION:
-                            return '<i class="far fa-times-circle" style="color: red;"></i>';
+                            return '<i class="bi bi-x-circle" style="color: red;"></i>';
                         case PASSED_VALIDATION:
-                            return '<i class="far fa-check-circle" style="color: green;"></i>';
+                            return '<i class="bi bi-check-circle" style="color: green;"></i>';
                         default:
                             return this.current_result.result;
                     }

@@ -2,13 +2,14 @@
 
 import unittest
 
+from bioregistry.external.obofoundry import get_obofoundry_example
 from bioregistry.utils import backfill, deduplicate, get_ec_url
 
 
 class TestDeduplicate(unittest.TestCase):
     """Test deduplication workflow."""
 
-    def test_backfill(self):
+    def test_backfill(self) -> None:
         """Test record backfill."""
         records = [
             {"pubmed": "pmid_1"},
@@ -44,7 +45,7 @@ class TestDeduplicate(unittest.TestCase):
             res,
         )
 
-    def test_deduplicate(self):
+    def test_deduplicate(self) -> None:
         """Test record deduplication."""
         records = [
             {"arxiv": "arxiv_1", "doi": "doi_1"},
@@ -86,3 +87,7 @@ class TestDeduplicate(unittest.TestCase):
         self.assertEqual("https://www.enzyme-database.org/class.php?c=1", get_ec_url("1.-"))
         self.assertEqual("https://www.enzyme-database.org/class.php?c=1", get_ec_url("1.-.-"))
         self.assertEqual("https://www.enzyme-database.org/class.php?c=1", get_ec_url("1.-.-.-"))
+
+    def test_obolibrary_example(self) -> None:
+        """Test looking up an example from the OBO Foundry PURL service configuration."""
+        self.assertEqual("0011124", get_obofoundry_example("pcl"))

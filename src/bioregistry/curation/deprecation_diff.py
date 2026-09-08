@@ -17,10 +17,8 @@ def main() -> None:
         if resource.deprecated is None:
             continue
 
-        obo_deprecation = (
-            None if resource.obofoundry is None else resource.obofoundry.get("deprecated", False)
-        )
-        miriam_deprecation = (resource.miriam or {}).get("deprecated")
+        obo_deprecation = resource._get_external_value("obofoundry", "deprecated")
+        miriam_deprecation = resource._get_external_value("miriam", "deprecated")
 
         if obo_deprecation is not None and miriam_deprecation is not None:
             if resource.deprecated != obo_deprecation or resource.deprecated != miriam_deprecation:
@@ -28,9 +26,8 @@ def main() -> None:
         elif obo_deprecation is not None:
             if resource.deprecated != obo_deprecation:
                 rows.append((prefix, resource.deprecated, obo_deprecation, "-"))
-        elif miriam_deprecation is not None:
-            if resource.deprecated != miriam_deprecation:
-                rows.append((prefix, resource.deprecated, "-", miriam_deprecation))
+        elif miriam_deprecation is not None and resource.deprecated != miriam_deprecation:
+            rows.append((prefix, resource.deprecated, "-", miriam_deprecation))
 
     df = pd.DataFrame(rows, columns=["prefix", "bioregistry", "obo", "miriam"])
     click.echo(df.to_markdown())

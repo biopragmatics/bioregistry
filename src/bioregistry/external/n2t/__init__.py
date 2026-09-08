@@ -2,16 +2,15 @@
 
 from __future__ import annotations
 
-import json
 from collections.abc import Mapping, Sequence
 from pathlib import Path
 from typing import Any, ClassVar
 
 import yaml
-from pystow.utils import download
 
+from bioregistry.alignment_model import Record, make_record
 from bioregistry.constants import RAW_DIRECTORY, URI_FORMAT_KEY
-from bioregistry.external.alignment_utils import Aligner, load_processed
+from bioregistry.external.alignment_utils import Aligner, build_getter
 
 __all__ = [
     "N2TAligner",
@@ -38,38 +37,41 @@ SKIP_URI_FORMATS = {
 }
 
 
-def get_n2t(force_download: bool = False) -> dict[str, dict[str, Any]]:
-    """Get the N2T registry."""
-    if PROCESSED_PATH.exists() and not force_download:
-        return load_processed(PROCESSED_PATH)
-
-    download(url=URL, path=RAW_PATH, force=True)
+def process_n2t(path: Path) -> dict[str, Record]:
+    """Process raw data from name-to-thing."""
     # they give malformed YAML so time to write a new parser
-    with RAW_PATH.open() as file:
+    with path.open() as file:
         data = yaml.safe_load(file)
-
     rv = {
         key: _process(record)
         for key, record in data.items()
         if record["type"] == "scheme" and "/" not in key and key not in SKIP
     }
-
-    with PROCESSED_PATH.open("w") as file:
-        json.dump(rv, file, sort_keys=True, indent=2)
     return rv
 
 
-def _process(record: dict[str, Any]) -> dict[str, Any]:
+get_n2t = build_getter(
+    processed_path=PROCESSED_PATH,
+    raw_path=RAW_PATH,
+    url=URL,
+    func=process_n2t,
+)
+
+
+def _process(record: dict[str, Any]) -> Record:
     rv = {
         "name": record.get("name"),
         URI_FORMAT_KEY: _get_uri_format(record),
         "description": record.get("description"),
         "homepage": record.get("more"),
         "pattern": record.get("pattern"),
-        "example": record.get("test"),
-        "namespaceEmbeddedInLui": (record.get("prefixed") == "true"),
+        "extras": {
+            "namespaceEmbeddedInLui": (record.get("prefixed") == "true"),
+        },
     }
-    return {k: v for k, v in rv.items() if v is not None}
+    if test := record.get("test"):
+        rv["examples"] = [test]
+    return make_record(rv)
 
 
 def _get_uri_format(record: dict[str, Any]) -> str | None:
