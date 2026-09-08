@@ -40,9 +40,9 @@ PROCESSED_PATH = DIRECTORY / "processed.json"
 ALLOWED_TYPES = {
     "terminology_artefact",
     "identifier_schema",
-    # "knowledgebase",
-    # "knowledgebase_and_repository",
-    # "repository",
+    "knowledgebase",
+    "knowledgebase_and_repository",
+    "repository",
 }
 
 ORCID_RE = re.compile(ORCID_PATTERN)
@@ -121,7 +121,8 @@ def _process_record(record: MutableMapping[str, Any]) -> Record | None:
         if (orcid := contact.get("contact_orcid")) and ORCID_RE.match(orcid)
     ]
     for contact in contacts:
-        contact["name"] = removeprefix(removeprefix(contact["name"], "Dr. "), "Dr ")
+        if name := contact.get("name"):
+            contact["name"] = removeprefix(removeprefix(name, "Dr. "), "Dr ")
         if "orcid" in contact:
             contact["orcid"] = contact["orcid"].replace(" ", "")
     if contacts:
