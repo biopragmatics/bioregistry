@@ -32,6 +32,7 @@ import numpy as np
 import pandas as pd
 from numpy.typing import NDArray
 from sklearn.base import ClassifierMixin
+from sklearn.calibration import CalibratedClassifierCV
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.linear_model import LogisticRegression
@@ -314,7 +315,7 @@ def train_classifiers(x_train: XTrain, y_train: YTrain) -> Classifiers:
         ("lr", LogisticRegression()),
         ("dt", DecisionTreeClassifier()),
         ("svc", LinearSVC()),
-        ("svm", SVC(kernel="rbf", probability=True)),
+        ("svm", CalibratedClassifierCV(SVC(kernel="rbf"), ensemble=False)),
     ]
     for _, clf in classifiers:
         clf.fit(x_train, y_train)
@@ -424,7 +425,7 @@ def _get_meta_results(
 ) -> tuple[LogisticRegression, MetaClassifierEvaluationResults]:
     meta_features = generate_meta_features(classifiers, x_train, y_train)
     meta_clf = LogisticRegression()
-    meta_clf.fit(meta_features, y_train)
+    meta_clf.fit(meta_features.to_numpy(), y_train)
 
     x_test_meta = pd.DataFrame()
     for name, clf in classifiers:

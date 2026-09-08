@@ -49,7 +49,7 @@ def download() -> None:
 @click.option("--skip-agroportal", is_flag=True)
 @click.option("--skip-biodivportal", is_flag=True)
 @click.option("--skip-slow", is_flag=True)
-@click.option("--no-force", is_flag=True)
+@click.option("--no-force", is_flag=True, help="if set, do not force re-downloading the data")
 @click.option("--progress/--no-progress", is_flag=True)
 def align(
     skip_fairsharing: bool,

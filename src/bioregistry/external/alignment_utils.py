@@ -29,9 +29,7 @@ __all__ = [
     "load_processed",
 ]
 
-GetterRt: TypeAlias = Mapping[str, Any]
-
-Getter: TypeAlias = Callable[..., GetterRt]
+Getter: TypeAlias = Callable[..., dict[str, Record]]
 
 
 class Aligner:
@@ -142,7 +140,7 @@ class Aligner:
             if not self.alt_key_match:
                 bioregistry_id = self.manager.normalize_prefix(external_id)
             else:
-                alt_match = external_entry.get(self.alt_key_match)
+                alt_match = getattr(external_entry, self.alt_key_match, None)
                 if alt_match is None:
                     pass
                 elif isinstance(alt_match, str):
@@ -159,7 +157,7 @@ class Aligner:
                     )
 
             if bioregistry_id is None and self.alt_keys_match:
-                for alt_match in external_entry.get(self.alt_keys_match, []):
+                for alt_match in getattr(external_entry, self.alt_keys_match, []):
                     bioregistry_id = self.manager.normalize_prefix(alt_match)
                     if bioregistry_id:
                         break
@@ -194,15 +192,17 @@ class Aligner:
                 self._align_action(bioregistry_id, external_id, external_entry)
                 continue
 
-    def _align_action(
-        self, bioregistry_id: str, external_id: str, external_entry: dict[str, Any]
-    ) -> None:
+    def _align_action(self, bioregistry_id: str, external_id: str, external_entry: Record) -> None:
         if self.internal_registry[bioregistry_id].mappings is None:
             self.internal_registry[bioregistry_id].mappings = {}
         self.internal_registry[bioregistry_id].mappings[self.key] = external_id  # type:ignore
 
-        external_entry[self.subkey] = external_id
-        self.internal_registry[bioregistry_id][self.key] = external_entry
+        self.internal_registry[bioregistry_id][self.key] = {
+            self.subkey: external_id,
+            **external_entry.model_dump(
+                exclude_none=True, exclude_defaults=True, exclude_unset=True
+            ),
+        }
         self.external_id_to_bioregistry_id[external_id] = bioregistry_id
 
     def write_registry(self) -> None:
@@ -250,7 +250,7 @@ class Aligner:
 
         _main(*args, **kwargs)
 
-    def get_curation_row(self, external_id: str, external_entry: dict[str, Any]) -> Sequence[str]:
+    def get_curation_row(self, external_id: str, external_entry: Record) -> Sequence[str]:
         """Get a sequence of items that will be ech row in the curation table.
 
         :param external_id: The external registry identifier
@@ -271,7 +271,7 @@ class Aligner:
         """
         rv = []
         for k in self.curation_header:
-            value = external_entry.get(k)
+            value = getattr(external_entry, k, None)
             if value is None:
                 rv.append("")
             elif isinstance(value, str):
@@ -360,17 +360,10 @@ def load_processed(path: Path) -> dict[str, dict[str, Any]]:
 P = ParamSpec("P")
 
 
-def adapter(func: Callable[P, dict[str, Record]]) -> Getter:
+# FIXME delete this, no longer needed
+def adapter(func: Callable[P, dict[str, Record]]) -> Callable[P, dict[str, Record]]:
     """Adapt a new-style getter."""
-
-    def _getter(*args: P.args, **kwargs: P.kwargs) -> GetterRt:
-        records = func(*args, **kwargs)
-        return {
-            prefix: model.model_dump(exclude_unset=True, exclude_none=True, exclude_defaults=True)
-            for prefix, model in records.items()
-        }
-
-    return _getter
+    return func
 
 
 def cleanup_json(path: Path) -> None:

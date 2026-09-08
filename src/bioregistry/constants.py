@@ -20,6 +20,7 @@ __all__ = [
     "CONTEXTS_PATH",
     "CURATED_MAPPINGS_PATH",
     "DATA_DIRECTORY",
+    "EXPORT_ANALYSES",
     "HERE",
     "INTERNAL_COLOR",
     "INTERNAL_KEY",

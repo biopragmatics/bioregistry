@@ -12,9 +12,9 @@ def _main() -> None:
         if resource.wikidata and "database" in resource.wikidata
     }
     wikidata_database_to_bartoc = {
-        value["wikidata_database"]: key
-        for key, value in get_bartoc(force_download=False).items()
-        if "wikidata_database" in value
+        record.extras["wikidata_database"]: key
+        for key, record in get_bartoc(force_download=False).items()
+        if record.extras and "wikidata_database" in record.extras
     }
     for wikidata_id, prefix in wikidata_database_to_bioregistry.items():
         bartoc_id = wikidata_database_to_bartoc.get(wikidata_id)

@@ -213,7 +213,7 @@ def make_overlaps(keys: list[RegistryInfo]) -> OverlapsHint:
         # Remap internal prefixes to match the external
         #  vocabulary, when possible
         internal_remapped = {
-            resource.get_external(metaprefix).get("prefix", prefix)
+            resource.get_mapped_prefix(metaprefix, use_obo_preferred=False) or prefix
             for prefix, resource in read_registry().items()
         }
         rv[metaprefix] = {
@@ -278,8 +278,8 @@ def _plot_external_overlap(
         (l_key, l_label, l_color, l_prefixes), (r_key, r_label, r_color, r_prefixes) = pair
         # Remap external vocabularies to internal
         #  prefixes, when possible
-        l_prefixes = _remap(key=l_key, prefixes=l_prefixes)
-        r_prefixes = _remap(key=r_key, prefixes=r_prefixes)
+        l_prefixes = _remap(metaprefix=l_key, prefixes=l_prefixes)
+        r_prefixes = _remap(metaprefix=r_key, prefixes=r_prefixes)
         venn2(
             subsets=(l_prefixes, r_prefixes),
             set_labels=(l_label, r_label),
@@ -443,11 +443,10 @@ def _count_providers(resource: Resource) -> int:
     return rv
 
 
-def _remap(*, key: str, prefixes: Collection[str]) -> set[str]:
+def _remap(*, metaprefix: str, prefixes: Collection[str]) -> set[str]:
     br_external_to = {}
     for br_id, resource in read_registry().items():
-        _k = (resource.model_dump().get(key) or {}).get("prefix")
-        if _k:
+        if _k := resource.get_mapped_prefix(metaprefix, use_obo_preferred=False):
             br_external_to[_k] = br_id
 
     return {br_external_to.get(prefix, prefix) for prefix in prefixes}
@@ -643,7 +642,7 @@ def plot_xrefs(registry_infos: list[RegistryInfo], watermark: bool) -> FigAxPair
     import seaborn as sns
 
     xref_counts = [
-        sum(0 < len(entry.get_external(key)) for key, *_ in registry_infos)
+        sum(metaprefix in entry.get_mappings() for metaprefix, *_ in registry_infos)
         for entry in read_registry().values()
     ]
     fig, ax = plt.subplots(1, 1, figsize=SINGLE_FIG)
