@@ -151977,7 +151977,6 @@
       ],
       "version": "0.16.0"
     },
-    "comment": "Resolution: w3id.org content-negotiates. `curl -H \"Accept: text/turtle\" https://w3id.org/sstim` returns the namespace catalogue in Turtle, and JSON-LD and RDF/XML are served the same way; an HTML request returns a namespace landing page. Releases are frozen and citable: 0.16.0 is current, version DOI 10.5281/zenodo.22003777 under the concept DOI given above. One thing worth your judgement. The requested URI format is the core ontology namespace, which is also what prefix.cc serves for `sstim`. SSTIM is modular, and three sibling term namespaces exist under the same authority, all with hash IRIs and the same local-name shape: https://w3id.org/sstim/vocab# (405 local names, the SKOS controlled vocabulary), https://w3id.org/sstim/exposure# (268) and https://w3id.org/sstim/ecosystem# (82), against 344 in the core namespace. If you would rather have them as separate prefixes (sstim.vocab and so on), I will file those too, or change the requested URI format to whichever you consider primary. The pattern above was checked against every local name in all four namespaces, not inferred from examples. Existing records, each checked today (BioPortal through its REST API, the rest over HTTP): BioPortal (SSTIM), BARTOC node 21154, FAIRsharing 8494, DBpedia Archivo, the DBpedia KG Catalog, prefix.cc and Software Heritage. Wikidata has an item for the ontology, Q141325360, and 29 Wikidata items carry skos-style mappings to SSTIM terms; there is no Wikidata identifier property yet, which is why that field is blank. An OLS4 inclusion request is open.",
     "contact": {
       "email": "renato.fabbri@gmail.com",
       "github": "ttm",
@@ -152072,7 +152071,6 @@
     "uri_format": "https://w3id.org/sstim#$1"
   },
   "sstim.ecosystem": {
-    "comment": "Sibling namespace of the `sstim` prefix (issue #2055, PR #2056), filed after @cthoyt confirmed that separate requests are right for separate URI namespaces. Content negotiated at https://w3id.org/sstim/ecosystem: Turtle, JSON-LD and RDF/XML by Accept header. The pattern was checked against all 82 local names minted in this namespace, not inferred from the example.",
     "contact": {
       "email": "renato.fabbri@gmail.com",
       "github": "ttm",
@@ -152121,7 +152119,6 @@
     "uri_format": "https://w3id.org/sstim/ecosystem#$1"
   },
   "sstim.exposure": {
-    "comment": "Sibling namespace of the `sstim` prefix (issue #2055, PR #2056), filed after @cthoyt confirmed that separate requests are right for separate URI namespaces. Content negotiated at https://w3id.org/sstim/exposure: Turtle, JSON-LD and RDF/XML by Accept header. The pattern was checked against all 268 local names minted in this namespace, not inferred from the example.",
     "contact": {
       "email": "renato.fabbri@gmail.com",
       "github": "ttm",
@@ -152138,6 +152135,17 @@
     "example": "modalityAuditory",
     "github_request_issue": 2058,
     "homepage": "https://w3id.org/sstim/exposure",
+    "keywords": [
+      "audio-visual entrainment",
+      "binaural beats",
+      "brainwave entrainment",
+      "evidence tiers",
+      "isochronic tones",
+      "multisensory integration",
+      "paced breathing",
+      "sensory stimulation",
+      "vibrotactile stimulation"
+    ],
     "license": "CC-BY-4.0",
     "name": "Sensory Stimulation Ontology Exposure Namespace",
     "part_of": "sstim",
@@ -152159,7 +152167,6 @@
     "uri_format": "https://w3id.org/sstim/exposure#$1"
   },
   "sstim.vocab": {
-    "comment": "Sibling namespace of the `sstim` prefix (issue #2055, PR #2056), filed after @cthoyt confirmed that separate requests are right for separate URI namespaces. Content negotiated at https://w3id.org/sstim/vocab: Turtle, JSON-LD and RDF/XML by Accept header. The pattern was checked against all 405 local names minted in this namespace, not inferred from the example",
     "contact": {
       "email": "renato.fabbri@gmail.com",
       "github": "ttm",
@@ -152172,10 +152179,21 @@
       "name": "Renato Fabbri",
       "orcid": "0000-0002-9699-629X"
     },
-    "description": "The SKOS controlled vocabulary of the Sensory Stimulation Ontology (SSTIM), in its own URI namespace. It mints the multilingual concepts and concept schemes used as values in SSTIM descriptions: sensory modalities, stimulation mechanisms and techniques, evidence tiers, caution and session-reporting values, and implementation metadata.",
+    "description": "The SKOS controlled vocabulary of the Sensory Stimulation Ontology (SSTIM). It mints the multilingual concepts and concept schemes used as values in SSTIM descriptions: sensory modalities, stimulation mechanisms and techniques, evidence tiers, caution and session-reporting values, and implementation metadata.",
     "example": "alpha",
     "github_request_issue": 2057,
     "homepage": "https://w3id.org/sstim/vocab",
+    "keywords": [
+      "audio-visual entrainment",
+      "binaural beats",
+      "brainwave entrainment",
+      "evidence tiers",
+      "isochronic tones",
+      "multisensory integration",
+      "paced breathing",
+      "sensory stimulation",
+      "vibrotactile stimulation"
+    ],
     "license": "CC-BY-4.0",
     "name": "Sensory Stimulation Ontology Controlled Vocabulary",
     "part_of": "sstim",
