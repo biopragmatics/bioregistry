@@ -121,7 +121,7 @@ CANONICAL_URI_FORMATS = {
     "P2085": "https://jglobal.jst.go.jp/en/redirect?Nikkaji_No=$1",
     "P604": "https://medlineplus.gov/ency/article/$1.htm",
     "P492": "https://omim.org/OMIM:$1",
-    "P486": "http://www.nlm.nih.gov",
+    "P486": "https://meshb.nlm.nih.gov/record/ui?ui=$1",
     "P3201": "http://bioportal.bioontology.org/ontologies/MEDDRA?p=classes&conceptid=$1",
     "P7224": "http://insecta.pro/taxonomy/$1",
     "P3088": "https://taibnet.sinica.edu.tw/eng/taibnet_species_detail.php?name_code=$1",
@@ -132,8 +132,11 @@ CANONICAL_URI_FORMATS = {
     "P5397": "http://www.tierstimmen.org/en/database?field_spec_species_target_id_selective=$1",
     "P7471": "https://www.inaturalist.org/places/$1",
     "P696": "https://scicrunch.org/scicrunch/interlex/view/ilx_$1",
+    "P244": None, # need to override since it's wrong
 }
-CANONICAL_RDF_URI_FORMATS: dict[str, str] = {}
+CANONICAL_RDF_URI_FORMATS= {
+    "P244": None
+}
 
 # Stuff with miriam IDs that shouldn't
 
@@ -242,33 +245,31 @@ def _process_record(bindings: Mapping[str, Any]) -> tuple[str, Record] | tuple[N
         ("uri_format", CANONICAL_URI_FORMATS),
         ("uri_format_rdf", CANONICAL_RDF_URI_FORMATS),
     ]:
+        if prefix in canonicals:
+            bindings[key] = canonicals[prefix]
         # sort by increasing length - the assumption being that the shortest
         # one has the least amount of nonsense, like language tags or extra
         # parameters
-        values = sorted(bindings.get(key, []), key=len)
-        if not values:
-            pass
-        elif len(values) == 1:
-            bindings[key] = values[0]
-        elif prefix not in canonicals:
-            logger.debug(
-                "[wikidata] need to curate canonical %s for %s (%s):",
-                key,
-                prefix,
-                bindings["name"],
-            )
-            for value in values:
-                logger.debug("  %s", value)
-            bindings[key] = values[0]
-        else:
-            bindings[key] = canonicals[prefix]
+        elif values := sorted(bindings.get(key, []), key=len):
+            if len(values) == 1:
+                bindings[key] = values[0]
+            else:
+                logger.debug(
+                    "[wikidata] need to curate canonical %s for %s (%s):",
+                    key,
+                    prefix,
+                    bindings["name"],
+                )
+                for value in values:
+                    logger.debug("  %s", value)
+                bindings[key] = values[0]
 
     for key in ("uri_format", "uri_format_rdf"):
         if (prefix, bindings.get(key) or None) in URI_FORMAT_BLACKLIST:
             bindings.pop(key)
 
     pattern = bindings.get("pattern")
-    if pattern:
+    if pattern and isinstance(pattern, str):
         if not pattern.startswith("^"):
             pattern = "^" + pattern
         if not pattern.endswith("$"):

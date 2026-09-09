@@ -22584,10 +22584,7 @@
       "pattern": "^\\d+$",
       "prefix": "P683",
       "uri_format": "https://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:$1",
-      "uri_format_rdf": "http://purl.obolibrary.org/obo/CHEBI_$1",
-      "xrefs": {
-        "miriam": "chebi"
-      }
+      "uri_format_rdf": "http://purl.obolibrary.org/obo/CHEBI_$1"
     }
   },
   "chembank": {
@@ -31310,7 +31307,7 @@
       "name": "TaiBNET ID",
       "pattern": "^([1-9]\\d{5})$",
       "prefix": "P3088",
-      "uri_format": "https://taibnet.sinica.edu.tw/chi/taibnet_species_detail.php?name_code=$1",
+      "uri_format": "https://taibnet.sinica.edu.tw/eng/taibnet_species_detail.php?name_code=$1",
       "xrefs": {
         "wikidata": "Q26218155"
       }
@@ -86414,7 +86411,7 @@
         "أمفيتامين",
         "苯丙胺"
       ],
-      "homepage": "https://www.who.int/teams/health-product-and-policy-standards/inn/",
+      "homepage": "http://www.who.int/medicines/services/inn/en/",
       "name": "World Health Organisation  international non-proprietary name",
       "prefix": "P2275",
       "xrefs": {
@@ -87790,7 +87787,8 @@
       "homepage": "http://interlex.org",
       "name": "Interlex ID",
       "pattern": "^[0-9A-Za-z_]+$",
-      "prefix": "P696"
+      "prefix": "P696",
+      "uri_format": "https://scicrunch.org/scicrunch/interlex/view/ilx_$1"
     }
   },
   "interpro": {
@@ -90529,7 +90527,7 @@
       "homepage": "http://www.genome.jp/kegg",
       "name": "Nikkaji ID",
       "prefix": "P2085",
-      "uri_format": "https://jglobal.jst.go.jp/redirect?Nikkaji_No=$1"
+      "uri_format": "https://jglobal.jst.go.jp/en/redirect?Nikkaji_No=$1"
     }
   },
   "jecfa": {
@@ -93653,8 +93651,6 @@
         "LC Authorities ID",
         "LCAuth"
       ],
-      "uri_format": "https://id.loc.gov/authorities/$1",
-      "uri_format_rdf": "http://id.loc.gov/authorities/names/$1",
       "xrefs": {
         "wikidata": "Q620946"
       }
@@ -100146,7 +100142,7 @@
       ],
       "name": "Medical Dictionary for Regulatory Activities ID",
       "prefix": "P3201",
-      "uri_format": "https://bioportal.bioontology.org/ontologies/MEDDRA?p=classes&conceptid=$1",
+      "uri_format": "http://bioportal.bioontology.org/ontologies/MEDDRA?p=classes&conceptid=$1",
       "uri_format_rdf": "http://purl.bioontology.org/ontology/MDRFRE/$1"
     }
   },
@@ -113849,7 +113845,8 @@
       "uri_format": "https://www.ncbi.nlm.nih.gov/gene/$1",
       "uri_format_rdf": "http://purl.uniprot.org/geneid/$1",
       "xrefs": {
-        "miriam": "ncbigene"
+        "miriam": "ncbigene",
+        "wikidata": "Q1345229"
       }
     }
   },
