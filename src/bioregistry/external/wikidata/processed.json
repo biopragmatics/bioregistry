@@ -3267,9 +3267,7 @@
       "danish-swedish-farmdog",
       "german-wirehaired-pointer"
     ],
-    "homepage": "https://www.akc.org/dog-breeds/",
     "name": "American Kennel Club ID",
-    "uri_format": "https://www.akc.org/dog-breeds/$1/",
     "xrefs": {
       "wikidata": "Q38216"
     }
@@ -3591,6 +3589,20 @@
     "uri_format": "https://en.seaslug.world/species/$1",
     "xrefs": {
       "wikidata": "Q141027920"
+    }
+  },
+  "P14834": {
+    "description": "control regime a substance is placed under in a jurisdiction or by an international treaty — schedule, class, or explicitly uncontrolled; qualify with \"applies to jurisdiction\" (P1001) and start/end time",
+    "examples": [
+      "Q141130839",
+      "Q141130840",
+      "Q141130845",
+      "Q141131210",
+      "Q141131217"
+    ],
+    "name": "substance control status",
+    "xrefs": {
+      "wikidata": "Q141131062"
     }
   },
   "P1550": {
@@ -4526,7 +4538,7 @@
     ],
     "homepage": "http://www.genome.jp/kegg",
     "name": "Nikkaji ID",
-    "uri_format": "https://jglobal.jst.go.jp/redirect?Nikkaji_No=$1"
+    "uri_format": "https://jglobal.jst.go.jp/en/redirect?Nikkaji_No=$1"
   },
   "P2106": {
     "description": "RSC ontology for organic reactions",
@@ -4716,7 +4728,7 @@
       "أمفيتامين",
       "苯丙胺"
     ],
-    "homepage": "https://www.who.int/teams/health-product-and-policy-standards/inn/",
+    "homepage": "http://www.who.int/medicines/services/inn/en/",
     "name": "World Health Organisation  international non-proprietary name",
     "xrefs": {
       "wikidata": "Q824258"
@@ -4901,8 +4913,6 @@
       "LC Authorities ID",
       "LCAuth"
     ],
-    "uri_format": "https://id.loc.gov/authorities/$1",
-    "uri_format_rdf": "http://id.loc.gov/authorities/names/$1",
     "xrefs": {
       "wikidata": "Q620946"
     }
@@ -5281,7 +5291,7 @@
     "homepage": "https://taibnet.sinica.edu.tw/home_eng.php",
     "name": "TaiBNET ID",
     "pattern": "^([1-9]\\d{5})$",
-    "uri_format": "https://taibnet.sinica.edu.tw/chi/taibnet_species_detail.php?name_code=$1",
+    "uri_format": "https://taibnet.sinica.edu.tw/eng/taibnet_species_detail.php?name_code=$1",
     "xrefs": {
       "wikidata": "Q26218155"
     }
@@ -5471,7 +5481,7 @@
       "10067326"
     ],
     "name": "Medical Dictionary for Regulatory Activities ID",
-    "uri_format": "https://bioportal.bioontology.org/ontologies/MEDDRA?p=classes&conceptid=$1",
+    "uri_format": "http://bioportal.bioontology.org/ontologies/MEDDRA?p=classes&conceptid=$1",
     "uri_format_rdf": "http://purl.bioontology.org/ontology/MDRFRE/$1"
   },
   "P3226": {
@@ -5797,7 +5807,8 @@
     "uri_format": "https://www.ncbi.nlm.nih.gov/gene/$1",
     "uri_format_rdf": "http://purl.uniprot.org/geneid/$1",
     "xrefs": {
-      "miriam": "ncbigene"
+      "miriam": "ncbigene",
+      "wikidata": "Q1345229"
     }
   },
   "P3519": {
@@ -6358,7 +6369,10 @@
     "homepage": "http://www.iedb.org/home_v3.php",
     "name": "IEDB Epitope ID",
     "pattern": "^[1-9]\\d*$",
-    "uri_format": "http://www.iedb.org/epitope/$1"
+    "uri_format": "http://www.iedb.org/epitope/$1",
+    "xrefs": {
+      "wikidata": "Q112783946"
+    }
   },
   "P4194": {
     "description": "identifier in the California Native Plant Society database",
@@ -7535,10 +7549,9 @@
       "2234",
       "2943"
     ],
-    "homepage": "http://www.whonamedit.com/people/",
-    "name": "Whonamedit? doctor ID",
+    "name": "Whonamedit? doctor ID (archived)",
     "pattern": "^[1-9]\\d*$",
-    "uri_format": "http://www.whonamedit.com/doctor.cfm/$1.html"
+    "uri_format": "https://web.archive.org/web/2/https://www.whonamedit.com/doctor.cfm/$1.html"
   },
   "P5437": {
     "description": "identifier for an area of government activity, in the EuroVoc thesaurus from the European Union (EU)",
@@ -8823,7 +8836,7 @@
     "pattern": "^[1-9]\\d{0,8}$",
     "uri_format": "https://www.iucnredlist.org/details/$1/0",
     "xrefs": {
-      "wikidata": "Q32059"
+      "wikidata": "Q48268"
     }
   },
   "P6282": {
@@ -9454,10 +9467,7 @@
     "name": "ChEBI ID",
     "pattern": "^\\d+$",
     "uri_format": "https://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:$1",
-    "uri_format_rdf": "http://purl.obolibrary.org/obo/CHEBI_$1",
-    "xrefs": {
-      "miriam": "chebi"
-    }
+    "uri_format_rdf": "http://purl.obolibrary.org/obo/CHEBI_$1"
   },
   "P685": {
     "description": "identifier for a taxon in the Taxonomy Database by the National Center for Biotechnology Information",
@@ -9611,7 +9621,8 @@
     ],
     "homepage": "http://interlex.org",
     "name": "Interlex ID",
-    "pattern": "^[0-9A-Za-z_]+$"
+    "pattern": "^[0-9A-Za-z_]+$",
+    "uri_format": "https://scicrunch.org/scicrunch/interlex/view/ilx_$1"
   },
   "P698": {
     "description": "identifier for journal articles/abstracts in PubMed",
@@ -9824,6 +9835,19 @@
     "name": "Transporter Classification Database ID",
     "pattern": "^\\d|(\\d\\.[A-Z](\\.(\\d{1,3}){0,3}))$",
     "uri_format": "http://www.tcdb.org/search/result.php?tc=$1"
+  },
+  "P7291": {
+    "description": "semi-scientific classification system for catfish from the Loricariidae family",
+    "examples": [
+      "L018",
+      "L027 Tapajos",
+      "L037a",
+      "L081",
+      "L085",
+      "L177"
+    ],
+    "name": "L-number",
+    "pattern": "^L(\\d{3})([a-z]*)(([ ][A-Za-z]+)*)$"
   },
   "P7292": {
     "description": "ID of a publication in Arnet Miner",
@@ -10249,7 +10273,7 @@
       "882a8473602a675c3f5320ea18c71f24",
       "be21ac525bce06749b86883665d347b7"
     ],
-    "homepage": "https://www.scilit.com/publications",
+    "homepage": "https://www.scilit.net",
     "name": "Scilit work ID",
     "pattern": "^[0-9a-f]{32}$",
     "uri_format": "https://www.scilit.com/publications/$1"
@@ -11186,7 +11210,7 @@
     "homepage": "https://decs.bvsalud.org/I/DeCS2020_Alfab.htm",
     "name": "DeCS ID",
     "pattern": "^[1-9]\\d*$",
-    "uri_format": "https://decs.bvsalud.org/en/ths/resource/?id=$1"
+    "uri_format": "https://decs.bvsalud.org/ths/resource/?id=$1"
   },
   "P9273": {
     "description": "identifier for a scholarly article in the RePEc (Research Papers in Economics) database",
