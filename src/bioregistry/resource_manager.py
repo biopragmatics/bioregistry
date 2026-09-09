@@ -45,8 +45,10 @@ from .schema import (
     MetaprefixAnnotatedValue,
     Registry,
     Resource,
+    record_accumulator,
     sanitize_model,
 )
+from .schema.struct import OlsVersion, Record
 from .schema_utils import (
     _collections_from_path,
     _contexts_from_path,
@@ -104,10 +106,7 @@ def _synonym_to_canonical(registry: Mapping[str, Resource]) -> NormDict:
             norm_synonym_to_key[synonym] = identifier
 
         for metaprefix in ("miriam", "ols", "obofoundry", "go"):
-            external = resource.get_external(metaprefix)
-            if external is None:
-                continue
-            external_prefix = external.get("prefix")
+            external_prefix = resource.get_mapped_prefix(metaprefix, use_obo_preferred=False)
             if external_prefix is None:
                 continue
             if external_prefix not in norm_synonym_to_key:
@@ -139,10 +138,10 @@ class Manager:
 
     def __init__(
         self,
-        registry: None | str | Path | Mapping[str, Resource] = None,
-        metaregistry: None | str | Path | Mapping[str, Registry] = None,
-        collections: None | str | Path | Mapping[str, Collection] = None,
-        contexts: None | str | Path | Mapping[str, Context] = None,
+        registry: str | Path | Mapping[str, Resource] | None = None,
+        metaregistry: str | Path | Mapping[str, Registry] | None = None,
+        collections: str | Path | Mapping[str, Collection] | None = None,
+        contexts: str | Path | Mapping[str, Context] | None = None,
         mismatches: Mapping[str, Mapping[str, set[str]]] | None = None,
         version_mappings: Mapping[str, Mapping[str, set[str]]] | None = None,
         provided_by_mappings: Mapping[str, Mapping[str, set[str]]] | None = None,
@@ -435,7 +434,7 @@ class Manager:
         *,
         use_preferred: bool = False,
         on_failure_return_type: FailureReturnType = FailureReturnType.pair,
-    ) -> ReferenceTuple | None | NonePair:
+    ) -> ReferenceTuple | NonePair | None:
         """Parse a compact identifier from a URI.
 
         :param uri: A valid URI
@@ -833,11 +832,11 @@ class Manager:
             return None
         return resource.get_mapped_prefix(metaprefix, use_obo_preferred=use_obo_preferred)
 
-    def get_external(self, prefix: str, metaprefix: str) -> Mapping[str, Any]:
+    def get_external(self, prefix: str, metaprefix: str) -> Record | None:
         """Get the external data for the entry."""
         entry = self.get_resource(prefix)
         if entry is None:
-            return {}
+            return None
         return entry.get_external(metaprefix)
 
     def get_versions(self) -> Mapping[str, str]:
@@ -892,7 +891,7 @@ class Manager:
     def _repack(self, obj: MetaprefixAnnotatedValue[X]) -> MetaresourceAnnotatedValue[X]: ...
 
     def _repack(
-        self, obj: None | X | MetaprefixAnnotatedValue[X]
+        self, obj: X | MetaprefixAnnotatedValue[X] | None
     ) -> MetaresourceAnnotatedValue[X] | X | None:
         if obj is None:
             return None
@@ -952,11 +951,11 @@ class Manager:
     @overload
     def get_namespace_in_lui(
         self, prefix: str, *, provenance: Literal[True] = ...
-    ) -> None | MetaresourceAnnotatedValue[bool]: ...
+    ) -> MetaresourceAnnotatedValue[bool] | None: ...
 
     def get_namespace_in_lui(
         self, prefix: str, *, provenance: bool = False
-    ) -> None | bool | MetaresourceAnnotatedValue[bool]:
+    ) -> bool | MetaresourceAnnotatedValue[bool] | None:
         """Get the name for the given prefix, if it's available."""
         entry = self.get_resource(prefix)
         if entry is None:
@@ -1116,11 +1115,11 @@ class Manager:
         prefix_priority: Sequence[str] | None = None,
         uri_prefix_priority: Sequence[str] | None = None,
         include_prefixes: bool = False,
-        strict: bool = False,
         remapping: Mapping[str, str] | None = None,
         rewiring: Mapping[str, str] | None = None,
         blacklist: typing.Collection[str] | None = None,
         enforce_w3c: bool = False,
+        stubs: bool = False,
     ) -> curies.Converter:
         """Get a converter from this manager.
 
@@ -1131,46 +1130,45 @@ class Manager:
         :param include_prefixes: Should prefixes be included with colon delimiters?
             Setting this to true makes an "omni"-reverse prefix map that can be used to
             parse both URIs and CURIEs
-        :param strict: If true, errors on URI prefix collisions. If false, sends logging
-            and skips them.
         :param remapping: A mapping from bioregistry prefixes to preferred prefixes.
         :param rewiring: A mapping from bioregistry prefixes to new URI prefixes.
         :param blacklist: A collection of prefixes to skip
-        :param enforce_w3c: Should non-W3C-compliant prefix synoynms be removed?
+        :param enforce_w3c: Should non-W3C-compliant prefix synonyms be removed?
+        :param stubs: Should stub URIs be assigned to resources with no URI format?
 
         :returns: A list of records for :class:`curies.Converter`
         """
-        from .record_accumulator import get_converter
-
-        # first step - filter to resources that have *anything* for a URI prefix
-        # maybe better to filter on URI format string, since bioregistry can always provide a URI prefix
-        resources = [
-            resource for _, resource in sorted(self.registry.items()) if resource.get_uri_prefix()
-        ]
-        converter = get_converter(
+        # if including stubs, then _all_ resources will get assigned
+        # a valid URI prefix. Otherwise, filter only to those wher
+        # a URI prefix can be looked up.
+        if stubs:
+            resources = list(self.registry.values())
+        else:
+            resources = [
+                resource
+                for _, resource in sorted(self.registry.items())
+                if resource.get_uri_prefix(priority=uri_prefix_priority)
+            ]
+        converter = record_accumulator.get_converter(
             resources,
             prefix_priority=prefix_priority,
             uri_prefix_priority=uri_prefix_priority,
             include_prefixes=include_prefixes,
-            strict=strict,
             blacklist=blacklist,
             remapping=remapping,
             rewiring=rewiring,
             enforce_w3c=enforce_w3c,
+            stubs=stubs,
         )
         return converter
 
-    def get_reverse_prefix_map(
-        self, include_prefixes: bool = False, strict: bool = False
-    ) -> Mapping[str, str]:
+    def get_reverse_prefix_map(self, *, include_prefixes: bool = False) -> Mapping[str, str]:
         """Get a reverse prefix map, pointing to canonical prefixes."""
-        from .record_accumulator import _iterate_prefix_prefix
-
         rv: dict[str, str] = {
             "http://purl.obolibrary.org/obo/": "obo",
             "https://purl.obolibrary.org/obo/": "obo",
         }
-        converter = self.get_converter(include_prefixes=include_prefixes, strict=strict)
+        converter = self.get_converter(include_prefixes=include_prefixes)
         for record in converter.records:
             rv[record.uri_prefix] = record.prefix
             for uri_prefix in record.uri_prefix_synonyms:
@@ -1190,7 +1188,7 @@ class Manager:
 
         for resource in self.registry.values():
             if not resource.get_uri_prefix():
-                for pp in _iterate_prefix_prefix(resource):
+                for pp in record_accumulator._iterate_prefix_prefix(resource):
                     rv[pp] = resource.prefix
 
         return rv
@@ -1204,6 +1202,7 @@ class Manager:
         remapping: Mapping[str, str] | None = None,
         rewiring: Mapping[str, str] | None = None,
         blacklist: typing.Collection[str] | None = None,
+        stubs: bool = False,
     ) -> Mapping[str, str]:
         """Get a mapping from Bioregistry prefixes to their URI prefixes .
 
@@ -1216,6 +1215,7 @@ class Manager:
         :param remapping: A mapping from Bioregistry prefixes to preferred prefixes.
         :param rewiring: A mapping from Bioregistry prefixes to URI prefixes.
         :param blacklist: Prefixes to skip
+        :param stubs: Should stub URIs be assigned to resources with no URI format?
 
         :returns: A mapping from prefixes to URI prefixes.
         """
@@ -1225,6 +1225,7 @@ class Manager:
             remapping=remapping,
             rewiring=rewiring,
             blacklist=blacklist,
+            stubs=stubs,
         )
         return dict(converter.prefix_map) if include_synonyms else dict(converter.bimap)
 
@@ -1369,7 +1370,7 @@ class Manager:
 
     def _get_obo_list(self, *, prefix: str, resource: Resource, key: str) -> list[str]:
         rv = []
-        for obo_prefix in resource.get_external("obofoundry").get(key, []):
+        for obo_prefix in resource._get_external_value("obofoundry", key, []):
             # these prefixes are normalized / lowercased already
             canonical_prefix = self.lookup_from("obofoundry", obo_prefix)
             if canonical_prefix is None:
@@ -1556,21 +1557,17 @@ class Manager:
         >>> manager.get_bioportal_iri("chebi", "24431")
         'https://bioportal.bioontology.org/ontologies/CHEBI/?p=classes&conceptid=http://purl.obolibrary.org/obo/CHEBI_24431'
         """
-        bioportal_prefix = self.get_mapped_prefix(prefix, "bioportal")
-        if bioportal_prefix is None:
+        resource = self.get_resource(prefix)
+        if resource is None:
             return None
-        obo_link = self.get_obofoundry_iri(prefix, identifier)
-        if obo_link is not None:
-            return f"https://bioportal.bioontology.org/ontologies/{bioportal_prefix}/?p=classes&conceptid={obo_link}"
-        return None
+        return resource.get_bioportal_iri(identifier)
 
-    def get_ols_iri(self, prefix: str, identifier: str) -> str | None:
+    def get_ols_iri(self, prefix: str, identifier: str, *, version: OlsVersion = "3") -> str | None:
         """Get the OLS URL if possible."""
-        ols_prefix = self.get_mapped_prefix(prefix, "ols")
-        obo_iri = self.get_obofoundry_iri(prefix, identifier)
-        if ols_prefix is None or obo_iri is None:
+        resource = self.get_resource(prefix)
+        if resource is None:
             return None
-        return f"https://www.ebi.ac.uk/ols4/ontologies/{ols_prefix}/terms?iri={obo_iri}"
+        return resource.get_ols_iri(identifier, version=version)
 
     def get_formatted_iri(self, metaprefix: str, prefix: str, identifier: str) -> str | None:
         """Get an IRI using the format in the metaregistry.
@@ -1614,8 +1611,16 @@ class Manager:
 
         >>> manager.get_obofoundry_iri("fbbt", "00007294")
         'http://purl.obolibrary.org/obo/FBbt_00007294'
+
+        For entries with an explicit override, respect it.
+
+        >>> manager.get_obofoundry_iri("cheminf", "000410")
+        'http://semanticscience.org/resource/CHEMINF_000410'
         """
-        return self.get_formatted_iri("obofoundry", prefix, identifier)
+        resource = self.get_resource(prefix)
+        if resource is None:
+            return None
+        return resource.get_obofoundry_iri(identifier)
 
     def get_n2t_iri(self, prefix: str, identifier: str) -> str | None:
         """Get the name-to-thing URL for the given CURIE.
@@ -2103,7 +2108,6 @@ class Manager:
     def get_converter_from_context(
         self,
         context: str | Context,
-        strict: bool = False,
         include_prefixes: bool = False,
     ) -> curies.Converter:
         """Get a converter based on a context."""
@@ -2112,7 +2116,6 @@ class Manager:
         return self.get_converter(
             prefix_priority=context.prefix_priority,
             uri_prefix_priority=context.uri_prefix_priority,
-            strict=strict,
             remapping=context.prefix_remapping,
             rewiring=context.custom_prefix_map,
             blacklist=context.blacklist,
@@ -2253,28 +2256,28 @@ class Manager:
             owners = resource.get_owners()
             if skip_org_rors is not None:
                 owners = [o for o in owners if o.ror not in skip_org_rors]
-            if any(
-                owner.ror == resource_owner.ror
-                for owner in collection.organizations or []
-                for resource_owner in owners
-                if owner.ror is not None and resource_owner.ror is not None
-            ):
-                calls[prefix] = True
-            elif (
-                resource.contact is not None
-                and resource.contact.orcid is not None
-                and any(
-                    resource.contact.orcid == maintainer.orcid
-                    for maintainer in collection.maintainers or []
-                    if maintainer.orcid is not None
+            if (
+                any(
+                    owner.ror == resource_owner.ror
+                    for owner in collection.organizations or []
+                    for resource_owner in owners
+                    if owner.ror is not None and resource_owner.ror is not None
                 )
-            ):
-                calls[prefix] = True
-            elif any(
-                contact.orcid == maintainer.orcid
-                for maintainer in collection.maintainers or []
-                for contact in resource.contact_extras or []
-                if contact.orcid is not None and maintainer.orcid is not None
+                or (
+                    resource.contact is not None
+                    and resource.contact.orcid is not None
+                    and any(
+                        resource.contact.orcid == maintainer.orcid
+                        for maintainer in collection.maintainers or []
+                        if maintainer.orcid is not None
+                    )
+                )
+                or any(
+                    contact.orcid == maintainer.orcid
+                    for maintainer in collection.maintainers or []
+                    for contact in resource.contact_extras or []
+                    if contact.orcid is not None and maintainer.orcid is not None
+                )
             ):
                 calls[prefix] = True
             else:
@@ -2310,9 +2313,8 @@ def _read_contributors(
                 if contact_extra.orcid is not None:
                     rv[contact_extra.orcid] = contact_extra
     for metaresource in metaregistry.values():
-        if not direct_only:
-            if metaresource.contact.orcid:
-                rv[metaresource.contact.orcid] = metaresource.contact
+        if not direct_only and metaresource.contact.orcid:
+            rv[metaresource.contact.orcid] = metaresource.contact
     for collection in collections.values():
         for collection_contributor in collection.contributors or []:
             if collection_contributor.orcid:

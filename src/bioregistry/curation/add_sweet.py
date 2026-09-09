@@ -111,9 +111,7 @@ def main() -> None:
             keywords = [nsl.removeprefix("realm land") + "land"]
         elif nsl.startswith("realm "):
             keywords = ["realm", nsl.removeprefix("realm ")]
-        elif nsl.startswith("representation "):
-            keywords = [nsl.removeprefix("realm ")]
-        elif nsl.startswith("state "):
+        elif nsl.startswith(("representation ", "state ")):
             keywords = [nsl.removeprefix("realm ")]
         elif nsl.startswith("relationships "):
             keywords = [nsl.removeprefix("relationships ")]

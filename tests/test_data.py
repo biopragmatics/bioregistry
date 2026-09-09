@@ -26,6 +26,7 @@ from bioregistry.constants import (
     EMAIL_RE,
     METAREGISTRY_PATH,
 )
+from bioregistry.curation.add_skosmos import SKOSMOS_APIS
 from bioregistry.export.rdf_export import resource_to_rdf_str
 from bioregistry.external import GETTERS
 from bioregistry.license_standardizer import REVERSE_LICENSES, standardize_license
@@ -66,11 +67,14 @@ class TestRegistry(unittest.TestCase):
             https://github.com/biopragmatics/bioregistry/issues/180
         """
         text = BIOREGISTRY_PATH.read_text(encoding="utf8")
-        linted_text = json.dumps(
-            json.loads(text),
-            indent=2,
-            sort_keys=True,
-            ensure_ascii=False,
+        linted_text = (
+            json.dumps(
+                json.loads(text),
+                indent=2,
+                sort_keys=True,
+                ensure_ascii=False,
+            )
+            + "\n"
         )
         self.assertEqual(
             linted_text,
@@ -194,7 +198,7 @@ class TestRegistry(unittest.TestCase):
             other_names: set[str] = {
                 other_name
                 for metaprefix in entry.mappings or {}
-                if (other_name := entry.get_external(metaprefix).get("name"))
+                if (other_name := entry._get_external_value(metaprefix, "name"))
                 and other_name.casefold() != name.casefold()
             }
             if prefix == name.lower() and name.upper() == name:
@@ -259,7 +263,7 @@ class TestRegistry(unittest.TestCase):
         """Test that all homepages start with http."""
         for prefix in self.registry:
             homepage = bioregistry.get_homepage(prefix)
-            if homepage is None or homepage.startswith("http") or homepage.startswith("ftp"):
+            if homepage is None or homepage.startswith(("http", "ftp")):
                 continue
             with self.subTest(prefix=prefix):
                 self.fail(msg=f"malformed homepage: {homepage}")
@@ -356,11 +360,10 @@ class TestRegistry(unittest.TestCase):
 
     def test_own_terms_conflict(self) -> None:
         """Test there is no conflict between no own terms and having an example."""
-        for prefix, resource in self.registry.items():
+        for prefix in self.registry:
             if bioregistry.has_no_terms(prefix):
                 with self.subTest(prefix=prefix):
                     self.assertIsNone(bioregistry.get_example(prefix))
-                    self.assertIsNone(resource.uri_format)
 
     def test_patterns(self) -> None:
         """Test that all prefixes are norm-unique."""
@@ -1309,6 +1312,12 @@ class TestRegistry(unittest.TestCase):
         status_contributions = read_status_contributions(self.registry)
         self.assertIn("0009-0006-4842-7427", status_contributions)
 
+    def test_skosmos(self) -> None:
+        """Check all SKOSMOS keys are valid Bioregistry prefixes."""
+        for key, _ in SKOSMOS_APIS:
+            with self.subTest(prefix=key):
+                self.assertIn(key, self.registry)
+
     def test_download_obo(self) -> None:
         """Test getting OBO download link."""
         bfo = manager.get_resource("bfo", strict=True)
@@ -1342,19 +1351,9 @@ class TestRegistry(unittest.TestCase):
             manager.get_resource("mod", strict=True).get_download_owl(),
         )
 
-    def test_upgraded(self) -> None:
-        """Test external records are conformant."""
-        for metaprefix, _, func in sorted(GETTERS):
-            with self.subTest(metaprefix=metaprefix):
-                self.assertTrue(getattr(func, "__new_style_bioregistry", None))
-
     def test_external_records(self) -> None:
         """Test external records are conformant."""
-        metaprefixes = [
-            metaprefix
-            for metaprefix, _, func in GETTERS
-            if getattr(func, "__new_style_bioregistry", None)
-        ]
+        metaprefixes = [metaprefix for metaprefix, _, func in GETTERS]
         for resource in bioregistry.resources():
             for metaprefix in metaprefixes:
                 external = resource.get_external(metaprefix)

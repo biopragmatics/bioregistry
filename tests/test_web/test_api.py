@@ -19,7 +19,7 @@ from bioregistry.app.api import MappingResponse, URIResponse
 from bioregistry.app.impl import get_app
 
 if TYPE_CHECKING:
-    import httpx
+    import httpx2
 
 
 class TestWeb(unittest.TestCase):
@@ -51,9 +51,9 @@ class TestWeb(unittest.TestCase):
                 self._test_registry(endpoint, parse_func)
 
     def _test_registry(
-        self, endpoint: str, parse_func: Callable[[httpx.Response], dict[str, Resource]]
+        self, endpoint: str, parse_func: Callable[[httpx2.Response], dict[str, Resource]]
     ) -> None:
-        res: httpx.Response = self.client.get(endpoint)
+        res: httpx2.Response = self.client.get(endpoint)
         self.assertEqual(200, res.status_code)
         self.assertIsInstance(res.text, str)
         registry = parse_func(res)
@@ -61,11 +61,11 @@ class TestWeb(unittest.TestCase):
         self.assertEqual("CHEBI", registry["chebi"].get_preferred_prefix())
 
     @staticmethod
-    def _parse_registry_json(res: httpx.Response) -> dict[str, Resource]:
+    def _parse_registry_json(res: httpx2.Response) -> dict[str, Resource]:
         data = res.json().items()
         return {key: Resource.model_validate(resource) for key, resource in data}
 
-    def _parse_registry_rdf(self, res: httpx.Response, fmt: str) -> dict[str, Resource]:
+    def _parse_registry_rdf(self, res: httpx2.Response, fmt: str) -> dict[str, Resource]:
         graph = rdflib.Graph()
         try:
             graph.parse(data=res.text, format=fmt)
@@ -95,7 +95,7 @@ class TestWeb(unittest.TestCase):
         return rv
 
     @staticmethod
-    def _parse_registry_yaml(res: httpx.Response) -> dict[str, Resource]:
+    def _parse_registry_yaml(res: httpx2.Response) -> dict[str, Resource]:
         data = yaml.safe_load(res.text).items()
         return {key: Resource.model_validate(resource) for key, resource in data}
 

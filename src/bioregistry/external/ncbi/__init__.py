@@ -157,12 +157,12 @@ class NcbiAligner(Aligner):
     getter_kwargs: ClassVar[dict[str, Any]] = {"force_download": False}
     curation_header: ClassVar[Sequence[str]] = ("name", "example", "homepage")
 
-    def get_curation_row(self, external_id: str, external_entry: dict[str, Any]) -> Sequence[str]:
+    def get_curation_row(self, external_id: str, external_entry: Record) -> Sequence[str]:
         """Return the relevant fields from an NCBI entry for pretty-printing."""
         return [
-            textwrap.shorten(external_entry["name"] or "", 50),
-            external_entry["examples"][0] if external_entry.get("examples") else "",
-            external_entry.get("homepage") or "",
+            textwrap.shorten(external_entry.name or "", 50),
+            external_entry.examples[0] if external_entry.examples else "",
+            external_entry.homepage or "",
         ]
 
 

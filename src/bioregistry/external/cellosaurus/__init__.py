@@ -84,8 +84,11 @@ def _get_dict_from_lines(lines: Iterable[str]) -> dict[str, Any]:
 def _process_db_url(key: str, value: str) -> str | None:
     if value in {"https://%s", "None"}:
         return None
-    if value.endswith("http%253A%252F%252Fpurl.obolibrary.org%252Fobo%252F%s") or value.endswith(
-        "http://purl.obolibrary.org/obo/%s"
+    if value.endswith(
+        (
+            "http%253A%252F%252Fpurl.obolibrary.org%252Fobo%252F%s",
+            "http://purl.obolibrary.org/obo/%s",
+        )
     ):
         logger.debug(
             "Cellosaurus curated an OBO PURL for `%s` that is is missing namespace. "

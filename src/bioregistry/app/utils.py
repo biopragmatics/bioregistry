@@ -277,7 +277,7 @@ def get_provider_graph(
     graph = rdflib.Graph()
     node_str = f"{manager.base_url}/{reference.curie}"
     node = rdflib.URIRef(node_str)
-    for _key, provider in providers.items():
+    for provider in providers.values():
         if provider != node_str:
             graph.add((node, RDFS.seeAlso, rdflib.URIRef(provider)))
     return graph

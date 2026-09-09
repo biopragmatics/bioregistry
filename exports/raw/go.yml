@@ -1,15 +1,6 @@
 # Metadata on databases and database prefixes of relevances to the GOC
 # See the README.md in this directory for more details.
 #
-- database: AgBase
-  name: AgBase resource for functional analysis of agricultural plant and animal gene products
-  generic_urls:
-    - http://www.agbase.msstate.edu/
-  entity_types:
-    - type_name: entity
-      type_id: BET:0000000
-      example_id: P02264
-      url_syntax: https://agbase.arizona.edu/cgi-bin/getEntry.pl?db_pick=all&database=Swiss-Prot&gb_acc=[example_id]
 - database: AGI_LocusCode
   name: Arabidopsis Genome Initiative
   description: Comprises TAIR, TIGR and MIPS
@@ -62,51 +53,6 @@
   entity_types:
     - type_name: entity
       type_id: BET:0000000
-- database: ASAP
-  name: A Systematic Annotation Package for Community Analysis of Genomes
-  generic_urls:
-    - https://asap.genetics.wisc.edu/asap/ASAP1.htm
-  entity_types:
-    - type_name: gene
-      type_id: SO:0000704
-      url_syntax: https://asap.genetics.wisc.edu/asap/feature_info.php?FeatureID=[example_id]
-      example_id: ASAP:ABF-0014586
-      example_url: https://asap.genetics.wisc.edu/asap/feature_info.php?FeatureID=ABF-0014586
-- database: AspGD
-  name: Aspergillus Genome Database
-  synonyms:
-    - ASPGD
-    - AspGDID
-  generic_urls:
-    - http://www.aspergillusgenome.org/
-  entity_types:
-    - type_name: gene
-      type_id: SO:0000704
-      id_syntax: ASPL[0-9]{10}
-      url_syntax: http://www.aspergillusgenome.org/cgi-bin/locus.pl?dbid=[example_id]
-      example_id: AspGD:ASPL0000067538
-      example_url: http://www.aspergillusgenome.org/cgi-bin/locus.pl?dbid=ASPL0000067538
-- database: AspGD_LOCUS
-  name: Aspergillus Genome Database
-  rdf_uri_prefix: http://identifiers.org/aspgd.locus/
-  generic_urls:
-    - http://www.aspergillusgenome.org/
-  entity_types:
-    - type_name: entity
-      type_id: BET:0000000
-      url_syntax: http://www.aspergillusgenome.org/cgi-bin/locus.pl?locus=[example_id]
-      example_id: AspGD_LOCUS:AN10942
-      example_url: http://www.aspergillusgenome.org/cgi-bin/locus.pl?locus=AN10942
-- database: AspGD_REF
-  name: Aspergillus Genome Database
-  generic_urls:
-    - http://www.aspergillusgenome.org/
-  entity_types:
-    - type_name: entity
-      type_id: BET:0000000
-      url_syntax: http://www.aspergillusgenome.org/cgi-bin/reference/reference.pl?dbid=[example_id]
-      example_id: AspGD_REF:90
-      example_url: http://www.aspergillusgenome.org/cgi-bin/reference/reference.pl?dbid=90
 - database: BFO
   name: Basic Formal Ontology
   description: An upper ontology used by Open Bio Ontologies (OBO) Foundry. BFO contains upper-level classes as well as core relations such as part_of (BFO_0000050)
@@ -256,6 +202,18 @@
       url_syntax: http://www.cazy.org/[example_id].html
       example_id: CAZY:PL11
       example_url: http://www.cazy.org/PL11.html
+- database: CL
+  name: Cell Type Ontology
+  rdf_uri_prefix: http://purl.obolibrary.org/obo/CL_
+  generic_urls:
+    - https://cell-ontology.github.io/
+  entity_types:
+    - type_name: cell
+      type_id: GO:0005623
+      id_syntax: '[0-9]{7}'
+      url_syntax: http://purl.obolibrary.org/obo/CL_[example_id]
+      example_id: CL:0000041
+      example_url: http://purl.obolibrary.org/obo/CL_0000041
 - database: DTU
   name:  DTU Health Tech Services
   description: Formerly CBS (Center for Biological Sequence Analysis)
@@ -310,15 +268,6 @@
       url_syntax: http://www.candidagenome.org/cgi-bin/reference/reference.pl?dbid=[example_id]
       example_id: CGD_REF:1490
       example_url: http://www.candidagenome.org/cgi-bin/reference/reference.pl?dbid=1490
-- database: CGSC
-  name: CGSC
-  generic_urls:
-    - http://cgsc.biology.yale.edu/
-  entity_types:
-    - type_name: entity
-      type_id: BET:0000000
-      example_id: CGSC:rbsK
-      example_url: http://cgsc.biology.yale.edu/Site.php?ID=315
 - database: CHEBI
   name: Chemical Entities of Biological Interest
   synonyms:
@@ -333,18 +282,6 @@
       url_syntax: http://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:[example_id]
       example_id: CHEBI:17234
       example_url: http://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:17234
-- database: CL
-  name: Cell Type Ontology
-  rdf_uri_prefix: http://purl.obolibrary.org/obo/CL_
-  generic_urls:
-    - http://cellontology.org
-  entity_types:
-    - type_name: cell
-      type_id: GO:0005623
-      id_syntax: '[0-9]{7}'
-      url_syntax: http://purl.obolibrary.org/obo/CL_[example_id]
-      example_id: CL:0000041
-      example_url: http://purl.obolibrary.org/obo/CL_0000041
 - database: CO_125
   name: Crop Ontology CGIAR Musa Anatomy
   generic_urls:
@@ -430,16 +367,6 @@
       url_syntax: https://mips.helmholtz-muenchen.de/corum/?id=[example_id]
       example_id: CORUM:837
       example_url: https://mips.helmholtz-muenchen.de/corum/?id=837
-- database: cribi_vitis
-  name: Vitis CRIBI database
-  generic_urls:
-    - http://genomes.cribi.unipd.it
-  entity_types:
-    - type_name: entity
-      type_id: BET:0000000
-      url_syntax: http://genomes.cribi.unipd.it/cgi-bin/pqs2/report.pl?gene_name=[example_id]&release=v1
-      example_id: VIT_00s0173g00270
-      example_url: http://genomes.cribi.unipd.it/cgi-bin/pqs2/report.pl?gene_name=VIT_00s0173g00270&release=v1
 - database: dbSNP
   name: NCBI dbSNP
   rdf_uri_prefix: http://identifiers.org/dbsnp/
@@ -784,13 +711,6 @@
       url_syntax: http://eupathdb.org/gene/[example_id]
       example_id: EuPathDB:LtaP17.1490
       example_url: http://eupathdb.org/gene/LtaP17.1490
-- database: Eurofung
-  name: Eurofungbase community annotation
-  generic_urls:
-    - http://www.eurofung.net/option=com_content&task=section&id=3&Itemid=4
-  entity_types:
-    - type_name: entity
-      type_id: BET:0000000
 - database: FB
   name: FlyBase
   synonyms:
@@ -880,16 +800,6 @@
       url_syntax: http://www.ncbi.nlm.nih.gov/entrez/viewer.fcgi?db=nucleotide&val=[example_id]
       example_id: GB:AA816246
       example_url: http://www.ncbi.nlm.nih.gov/entrez/viewer.fcgi?db=nucleotide&val=AA816246
-- database: Gene3D
-  name: Domain Architecture Classification
-  generic_urls:
-    - http://gene3d.biochem.ucl.ac.uk/Gene3D/
-  entity_types:
-    - type_name: entity
-      type_id: BET:0000000
-      url_syntax: http://gene3d.biochem.ucl.ac.uk/search?mode=family&sterm=[example_id]
-      example_id: Gene3D:3.30.390.30
-      example_url: http://gene3d.biochem.ucl.ac.uk/search?mode=family&sterm=3.30.390.30
 - database: GeneDB
   name: GeneDB
   rdf_uri_prefix: http://identifiers.org/genedb/
@@ -1127,33 +1037,6 @@
       url_syntax: https://npgsweb.ars-grin.gov/gringlobal/descriptordetail.aspx?id=[example_id]
       example_id: GRINdesc:89033
       example_url: https://npgsweb.ars-grin.gov/gringlobal/descriptordetail.aspx?id=89033
-- database: H-invDB
-  name: H-invitational Database
-  generic_urls:
-    - http://www.h-invitational.jp/
-  entity_types:
-    - type_name: entity
-      type_id: BET:0000000
-- database: H-invDB_cDNA
-  name: H-invitational Database
-  generic_urls:
-    - http://www.h-invitational.jp/
-  entity_types:
-    - type_name: entity
-      type_id: BET:0000000
-      url_syntax: http://www.h-invitational.jp/hinv/spsoup/transcript_view?acc_id=[example_id]
-      example_id: H-invDB_cDNA:AK093148
-      example_url: http://www.h-invitational.jp/hinv/spsoup/transcript_view?acc_id=AK093149
-- database: H-invDB_locus
-  name: H-invitational Database
-  generic_urls:
-    - http://www.h-invitational.jp/
-  entity_types:
-    - type_name: entity
-      type_id: BET:0000000
-      url_syntax: http://www.h-invitational.jp/hinv/spsoup/locus_view?hix_id=[example_id]
-      example_id: H-invDB_locus:HIX0014446
-      example_url: http://www.h-invitational.jp/hinv/spsoup/locus_view?hix_id=HIX0014446
 - database: HAMAP
   name: High-quality Automated and Manual Annotation of microbial Proteomes
   generic_urls:
@@ -1238,15 +1121,6 @@
     - type_name: entity
       type_id: BET:0000000
       example_id: IMGT_HLA:HLA00031
-- database: IMGT_LIGM
-  name: ImMunoGeneTics database covering immunoglobulins and T-cell receptors
-  description: Database of immunoglobulins and T cell receptors from human and other vertebrates, with translation for fully annotated sequences.
-  generic_urls:
-    - http://www.imgt.org/
-  entity_types:
-    - type_name: entity
-      type_id: BET:0000000
-      example_id: IMGT_LIGM:U03895
 - database: IntAct
   name: IntAct protein interaction database
   rdf_uri_prefix: http://identifiers.org/intact/
@@ -1290,16 +1164,6 @@
       url_syntax: https://research.bioinformatics.udel.edu/iptmnet/entry/[example_id]/
       example_id: iPTM:P06493
       example_url: https://research.bioinformatics.udel.edu/iptmnet/entry/P06493/
-- database: IRIC
-  name: International Rice Research Institute
-  generic_urls:
-    - https://oryzasnp.org
-  entity_types:
-    - type_name: entity
-      type_id: BET:0000000
-      url_syntax: https://oryzasnp.org/_variety.zul?irisid=[example_id]
-      example_id: IRIS_313-8922
-      example_url: https://oryzasnp.org/_variety.zul?irisid=IRIS_313-8922
 - database: IRGC
   name: International Rice Genebank Collection
   generic_urls:
@@ -1441,17 +1305,6 @@
       url_syntax: http://www.genome.jp/dbget-bin/www_bget?rn:[example_id]
       example_id: KEGG:R02328
       example_url: http://www.genome.jp/dbget-bin/www_bget?rn:R02328
-- database: LIFEdb
-  name: LifeDB
-  description: LifeDB is a database for information on protein localization, interaction, functional assays and expression.
-  generic_urls:
-    - http://www.lifedb.de/
-  entity_types:
-    - type_name: entity
-      type_id: BET:0000000
-      url_syntax: https://www.dkfz.de/en/mga/Groups/LIFEdb-Database.html?ID=[example_id]
-      example_id: LIFEdb:DKFZp564O1716
-      example_url: https://www.dkfz.de/en/mga/Groups/LIFEdb-Database.html?ID=DKFZp564O1716
 - database: MA
   name: Adult Mouse Anatomical Dictionary
   description: Adult Mouse Anatomical Dictionary; part of Gene Expression Database
@@ -1625,23 +1478,6 @@
       url_syntax: http://www.informatics.jax.org/accession/[example_id]
       example_id: MGI:MGI:3590672
       example_url: http://www.informatics.jax.org/accession/MGI:3590672
-- database: MIPS_funcat
-  name: MIPS Functional Catalogue
-  generic_urls:
-    - http://mips.gsf.de/proj/funcatDB/
-  entity_types:
-    - type_name: entity
-      type_id: BET:0000000
-      url_syntax: http://mips.gsf.de/cgi-bin/proj/funcatDB/search_advanced.pl?action=2&wert=[example_id]
-      example_id: MIPS_funcat:11.02
-      example_url: http://mips.gsf.de/cgi-bin/proj/funcatDB/search_advanced.pl?action=2&wert=11.02
-- database: MITRE
-  name: The MITRE Corporation
-  generic_urls:
-    - http://www.mitre.org/
-  entity_types:
-    - type_name: entity
-      type_id: BET:0000000
 - database: ModBase
   name: ModBase comprehensive Database of Comparative Protein Structure Models
   generic_urls:
@@ -1664,13 +1500,6 @@
       url_syntax: http://seeds.nottingham.ac.uk/NASC/stockatidb.lasso?code=[example_id]
       example_id: NASC_code:N3371
       example_url: http://seeds.nottingham.ac.uk/NASC/stockatidb.lasso?code=N3371
-- database: NC-IUBMB
-  name: Nomenclature Committee of the International Union of Biochemistry and Molecular Biology
-  generic_urls:
-    - http://www.chem.qmw.ac.uk/iubmb/
-  entity_types:
-    - type_name: entity
-      type_id: BET:0000000
 - database: NCBI
   name: National Center for Biotechnology Information
   generic_urls:
@@ -1856,17 +1685,6 @@
       url_syntax: https://www.patricbrc.org/view/Feature/[example_id]
       example_id: PATRIC:fig%7C83332.12.peg.11
       example_url: https://www.patricbrc.org/view/Feature/fig%7C83332.12.peg.1
-- database: PDB
-  name: Protein Data Bank
-  generic_urls:
-    - https://www.rcsb.org/pdb/
-  entity_types:
-    - type_name: protein
-      type_id: PR:000000001
-      id_syntax: '[A-Za-z0-9]{4}'
-      url_syntax: https://www.rcsb.org/structure/[example_id]
-      example_id: PDB:1A4U
-      example_url: https://www.rcsb.org/structure/1A4U
 - database: PECO_GIT
   name: GitHub Issue Tracker for PECO
   generic_urls:
@@ -1945,16 +1763,6 @@
       url_syntax: http://pir.georgetown.edu/cgi-bin/ipcSF?id=[example_id]
       example_id: PIRSF:SF002327
       example_url: http://pir.georgetown.edu/cgi-bin/ipcSF?id=SF002327
-- database: PlantSystematics_image_archive
-  name: PlantSystematics.org
-  generic_urls:
-    - http://plantsystematics.org
-  entity_types:
-    - type_name: entity
-      type_id: BET:0000000
-      url_syntax: http://www.plantsystematics.org/imagebyid_[example_id].html
-      example_id: PlantSystematics_image_archivee:37658
-      example_url: http://www.plantsystematics.org/imagebyid_37658.html
 - database: PMCID
   name: Pubmed Central
   synonyms:
@@ -2064,13 +1872,6 @@
     - type_name: entity
       type_id: BET:0000000
       example_id: Pompep:SPAC890.04C
-- database: PPI
-  name: Pseudomonas syringae community annotation project
-  generic_urls:
-    - http://www.pseudomonas-syringae.org/
-  entity_types:
-    - type_name: entity
-      type_id: BET:0000000
 - database: PR
   name: Protein Ontology
   synonyms:
@@ -2333,18 +2134,6 @@
       url_syntax: https://rnacentral.org/rna/[example_id]
       example_id: RNAcentral:URS000047C79B_9606
       example_url: https://rnacentral.org/rna/URS000047C79B_9606
-- database: RNAmods
-  name: RNA Modification Database
-  synonyms:
-    - RNAMDB
-  generic_urls:
-    - https://mods.rna.albany.edu/
-  entity_types:
-    - type_name: entity
-      type_id: BET:0000000
-      url_syntax: https://mods.rna.albany.edu/mods/modifications/view/[example_id]
-      example_id: RNAmods:20
-      example_url: https://mods.rna.albany.edu/mods/modifications/view/20
 - database: RO
   name: OBO Relation Ontology Ontology
   description: A collection of relations used across OBO ontologies
@@ -2357,17 +2146,6 @@
       url_syntax: http://purl.obolibrary.org/obo/RO_[example_id]
       example_id: RO:0002211
       example_url: http://purl.obolibrary.org/obo/RO_0002211
-- database: SABIO-RK
-  name: SABIO Reaction Kinetics
-  description: The SABIO-RK (System for the Analysis of Biochemical Pathways - Reaction Kinetics) is a web-based application based on the SABIO relational database that contains information about biochemical reactions, their kinetic equations with their parameters, and the experimental conditions under which these parameters were measured.
-  generic_urls:
-    - http://sabio.villa-bosch.de/
-  entity_types:
-    - type_name: entity
-      type_id: BET:0000000
-      url_syntax: http://sabio.villa-bosch.de/reacdetails.jsp?reactid=[example_id]
-      example_id: SABIO-RK:1858
-      example_url: http://sabio.villa-bosch.de/reacdetails.jsp?reactid=1858
 - database: Sanger
   name: Wellcome Trust Sanger Institute
   generic_urls:
@@ -2431,29 +2209,6 @@
       url_syntax: https://pathway.yeastgenome.org/YEAST/NEW-IMAGE?type=NIL&object=[example_id]
       example_id: SGD_PWY:SERSYN-PWY
       example_url: https://pathway.yeastgenome.org/YEAST/NEW-IMAGE?type=NIL&object=SERSYN-PWY
-- database: SGN
-  name: Sol Genomics Network
-  synonyms:
-    - SGN_gene
-  rdf_uri_prefix: http://identifiers.org/sgn/
-  generic_urls:
-    - https://www.sgn.cornell.edu/
-  entity_types:
-    - type_name: gene
-      type_id: SO:0000704
-      url_syntax: http://solgenomics.net/phenome/locus_display.pl?locus_id=[example_id]
-      example_id: SGN_gene:7740
-      example_url: http://solgenomics.net/phenome/locus_display.pl?locus_id=7740
-- database: SGN_ref
-  name: Sol Genomics Network
-  generic_urls:
-    - https://www.sgn.cornell.edu/
-  entity_types:
-    - type_name: entity
-      type_id: BET:0000000
-      url_syntax: https://sgn.cornell.edu/chado/publication.pl?pub_id=[example_id]
-      example_id: SGN_ref:861
-      example_url: https://sgn.cornell.edu/chado/publication.pl?pub_id=861
 - database: SGN_germplasm
   name: Sol Genomics Network
   generic_urls:
@@ -2553,14 +2308,6 @@
   entity_types:
     - type_name: entity
       type_id: BET:0000000
-- database: SYSCILIA_CCNET
-  name: Syscilia
-  description: A systems biology approach to dissect cilia function and its disruption in human genetic disease
-  generic_urls:
-    - http://syscilia.org/
-  entity_types:
-    - type_name: entity
-      type_id: BET:0000000
 - database: TAIR
   name: The Arabidopsis Information Resource
   rdf_uri_prefix: https://registry.identifiers.org/registry/tair.name
@@ -2594,7 +2341,9 @@
       url_syntax: http://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?id=[example_id]
       example_id: NCBITaxon:7227
       example_url: http://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?id=3702
-- database: TC
+- database: TCDB
+  synonyms:
+    - TC
   name: Transport Protein Database
   rdf_uri_prefix: http://identifiers.org/tcdb/
   generic_urls:
@@ -2604,7 +2353,7 @@
       type_id: PR:000000001
       id_syntax: '[0-9]+\.[A-Z](\.[0-9]+)+'
       url_syntax: http://www.tcdb.org/tcdb/index.php?tc=[example_id]
-      example_id: TC:9.A.4.1.1
+      example_id: TCDB:9.A.4.1.1
       example_url: http://www.tcdb.org/tcdb/index.php?tc=9.A.4.1.1
 - database: TGD
   name: Tetrahymena Genome Database
@@ -2651,16 +2400,6 @@
   entity_types:
     - type_name: entity
       type_id: BET:0000000
-- database: TreeGenes
-  name: Forest Tree Genome Database
-  generic_urls:
-    - http://dendrome.ucdavis.edu/treegenes/
-  entity_types:
-    - type_name: entity
-      type_id: BET:0000000
-      url_syntax: http://dendrome.ucdavis.edu/treegenes/protein/view_protein.php?id=[example_id]
-      example_id: TreeGenes:254
-      example_url: http://dendrome.ucdavis.edu/treegenes/protein/view_protein.php?id=254
 - database: TriTrypDB
   name: TriTrypDB
   rdf_uri_prefix: http://identifiers.org/tritrypdb/
@@ -2981,18 +2720,6 @@
       url_syntax: http://www.xenbase.org/entry/[example_id]
       example_id: Xenbase:XB-LINE-1248
       example_url: http://www.xenbase.org/entry/XB-LINE-1248
-- database: YeastFunc
-  name: Yeast Function
-  generic_urls:
-    - http://func.med.harvard.edu/yeast/
-  entity_types:
-    - type_name: entity
-      type_id: BET:0000000
-- database: YuBioLab
-  name: CITGeneDB
-  description: CITGeneDB is a comprehensive database of human and mouse genes enhancing or suppressing Cold-Induced Thermogenesis (CIT).
-  generic_urls:
-    - http://citgenedb.yubiolab.org
 - database: ZFIN
   name: Zebrafish Information Network
   rdf_uri_prefix: http://identifiers.org/zfin/

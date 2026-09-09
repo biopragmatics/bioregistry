@@ -8,7 +8,6 @@ from __future__ import annotations
 
 from collections.abc import Mapping
 from functools import lru_cache
-from typing import cast
 
 from tqdm import tqdm
 
@@ -27,7 +26,7 @@ def get_spdx_ids() -> set[str]:
         import pyobo
     except ImportError:
         return set()
-    return cast(set[str], pyobo.get_ids("spdx"))
+    return pyobo.get_ids("spdx")
 
 
 SEEN: set[str] = set()
@@ -83,6 +82,7 @@ CC_BY_UNSPECIFIED = "CC-BY"
 CC_BY_SA_UNSPECIFIED = "CC-BY-SA"
 CC_BY_NC_UNSPECIFIED = "CC-BY-NC"
 CC_UNSPECIFIED = "CC"
+BSD_UNSPECIFIED = "BSD"
 APACHE_UNSPECIFIED = "Apache"
 
 ##########################
@@ -90,7 +90,7 @@ APACHE_UNSPECIFIED = "Apache"
 ##########################
 
 #: https://creativecommons.org/publicdomain/zero/1.0/
-CC_0 = "CC0 1.0"
+CC_0 = "CC0-1.0"
 
 #: https://creativecommons.org/publicdomain/mark/1.0/
 CC_MARK = "CC-PDM-1.0"
@@ -182,6 +182,7 @@ REVERSE_LICENSES: Mapping[str | None, list[str]] = {
         "https://www.w3.org/Consortium/Legal/2015/copyright-software-and-document",
     ],
     "W3C-2023": [
+        "W3C-2023",
         "https://www.w3.org/copyright/document-license-2023/",
         "https://www.w3.org/copyright/document-license-2023",
         "W3C Software and Document license - 2023 version",
@@ -207,8 +208,10 @@ REVERSE_LICENSES: Mapping[str | None, list[str]] = {
         "http://creativecommons.org/licenses/by/4.0/legalcode",
         "https://creativecommons.org/licenses/by/4.0/legalcode",
         "url: http://creativecommons.org/licenses/by/4.0",
-        "SWO is provided under a Creative Commons Attribution 4.0 International"
-        " (CC BY 4.0) license (https://creativecommons.org/licenses/by/4.0/).",
+        (
+            "SWO is provided under a Creative Commons Attribution 4.0 International"
+            " (CC BY 4.0) license (https://creativecommons.org/licenses/by/4.0/)."
+        ),
         "http://purl.org/NET/rdflicense/cc-by4.0",
         "CC-BY 4.0 License",
         "ATTRIBUTION 4.0 INTERNATIONAL (CC BY 4.0)",
@@ -251,6 +254,7 @@ REVERSE_LICENSES: Mapping[str | None, list[str]] = {
         "CC-0",  # correct
         "CC 0",
         "CC0",
+        "CC0-1.0 License",
         "CC-0 1.0 Universal",
         "CC0 1.0 Universal",
         "CC0 1.0",
@@ -394,6 +398,9 @@ REVERSE_LICENSES: Mapping[str | None, list[str]] = {
         "creative commons",
         "Creative Commons Attribution License",
     ],
+    BSD_UNSPECIFIED: [
+        BSD_UNSPECIFIED,
+    ],
     "GPL-3.0-only": ["GPL-3.0-only", "GNU General Public License v3.0"],
     "GFDL-1.3": [
         "GFDL-1.3",
@@ -418,6 +425,7 @@ NONSTANDARD = {
     CC_BY_UNSPECIFIED,
     CC_BY_NC_UNSPECIFIED,
     CC_UNSPECIFIED,
+    BSD_UNSPECIFIED,
     APACHE_UNSPECIFIED,
     "public-domain",
     "W3C-2023",

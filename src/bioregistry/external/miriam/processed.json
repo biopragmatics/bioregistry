@@ -2244,12 +2244,6 @@
     },
     "homepage": "https://www.ebi.ac.uk/ols4/ontologies/cheminf",
     "name": "Chemical Information Ontology",
-    "owners": [
-      {
-        "name": "European Bioinformatics Institute",
-        "ror": "02catss52"
-      }
-    ],
     "pattern": "^CHEMINF:\\d+$",
     "status": "active",
     "uri_format": "https://www.ebi.ac.uk/ols4/ontologies/cheminf/classes?obo_id=CHEMINF:$1"
@@ -2352,6 +2346,27 @@
     "pattern": "^[0-9]+$",
     "status": "active",
     "uri_format": "https://civicdb.org/links/evidence/$1"
+  },
+  "civic.fid": {
+    "description": "A CIViC Feature is the basis for variants in CIViC. Supported feature types are Genes, Fusions, Factors and Regions. Features define the classes of variants supported in CIViC. Molecular Profiles consist of one or more variants.",
+    "examples": [
+      "5"
+    ],
+    "extras": {
+      "miriam_id": "00001224",
+      "namespaceEmbeddedInLui": false
+    },
+    "homepage": "https://wustl.edu/",
+    "name": "CIViC Feature",
+    "owners": [
+      {
+        "name": "Washington University in St. Louis",
+        "ror": "01yc7t268"
+      }
+    ],
+    "pattern": "^[0-9]+$",
+    "status": "active",
+    "uri_format": "https://civicdb.org/links/feature/$1"
   },
   "civic.gid": {
     "description": "A CIViC Gene Summary is created to provide a high-level overview of clinical relevance of cancer variants for the gene. Gene Summaries in CIViC focus on emphasizing the clinical relevance from a molecular perspective rather than describing the biological function of the gene unless necessary to contextualize its clinical relevance in cancer. Gene Summaries include relevant cancer subtypes, specific treatments for the gene’s associated variants, pathway interactions, functional alterations caused by the variants in the gene, and normal/abnormal functions of the gene with associated roles in oncogenesis",
@@ -2661,12 +2676,6 @@
     },
     "homepage": "https://www.ebi.ac.uk/ols4/ontologies/clo",
     "name": "Cell Line Ontology",
-    "owners": [
-      {
-        "name": "University of Michigan–Ann Arbor",
-        "ror": "00jmfr291"
-      }
-    ],
     "pattern": "^\\d{7}$",
     "providers": [
       {
@@ -3704,7 +3713,7 @@
     "homepage": "https://doulix.com",
     "name": "Linear double stranded DNA sequences",
     "pattern": "^[A-Z0-9]{6,7}$",
-    "status": "active",
+    "status": "deprecated",
     "uri_format": "https://doulix.com/biomodules/$1/"
   },
   "dlxc": {
@@ -3719,7 +3728,7 @@
     "homepage": "https://doulix.com",
     "name": "Circular double stranded DNA sequences composed",
     "pattern": "^[A-Z0-9]{6,7}$",
-    "status": "active",
+    "status": "deprecated",
     "uri_format": "https://doulix.com/constructs/$1/"
   },
   "doi": {
@@ -3757,12 +3766,6 @@
     },
     "homepage": "https://www.ebi.ac.uk/ols4/ontologies/doid",
     "name": "Human Disease Ontology",
-    "owners": [
-      {
-        "name": "European Bioinformatics Institute",
-        "ror": "02catss52"
-      }
-    ],
     "pattern": "^DOID:\\d+$",
     "providers": [
       {
@@ -3988,6 +3991,21 @@
     "pattern": "^v2_[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$",
     "status": "active",
     "uri_format": "https://data.terra.bio/ga4gh/drs/v1/objects/$1"
+  },
+  "drs.heartdata": {
+    "description": "GA4GH Data Repository Service for data objects managed by the HeartData data commons.",
+    "examples": [
+      "00018c2f-25bf-439b-a58f-8c098118300d"
+    ],
+    "extras": {
+      "miriam_id": "00001138",
+      "namespaceEmbeddedInLui": false
+    },
+    "homepage": "https://baker.edu.au",
+    "name": "HeartData",
+    "pattern": "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$",
+    "status": "active",
+    "uri_format": "https://commons.heartdata.baker.edu.au/ga4gh/drs/v1/objects/$1"
   },
   "drsc": {
     "description": "The DRSC (Drosophila RNAi Screening Cente) tracks both production of reagents for RNA interference (RNAi) screening in Drosophila cells and RNAi screen results. It maintains a list of Drosophila gene names, identifiers, symbols and synonyms and provides  information for cell-based or in vivo RNAi reagents, other types of reagents, screen results, etc. corresponding for a given gene.",
@@ -4924,12 +4942,6 @@
     },
     "homepage": "https://www.ebi.ac.uk/ols4/ontologies/fma/",
     "name": "FMA",
-    "owners": [
-      {
-        "name": "European Bioinformatics Institute",
-        "ror": "02catss52"
-      }
-    ],
     "pattern": "^FMA:\\d+$",
     "status": "active",
     "uri_format": "https://www.ebi.ac.uk/ols4/ontologies/fma/terms?obo_id=FMA:$1"
@@ -5246,11 +5258,11 @@
       "miriam_id": "00000323",
       "namespaceEmbeddedInLui": false
     },
-    "homepage": "http://www.genecards.org/",
+    "homepage": "https://www.genecards.org/",
     "name": "GeneCards",
     "pattern": "^[A-Za-z-0-9_]+(\\@)?$",
     "status": "active",
-    "uri_format": "https://www.genecards.org/cgi-bin/carddisp.pl?gene=$1"
+    "uri_format": "https://www.genecards.org/card/$1"
   },
   "genedb": {
     "description": "GeneDB is a genome database for prokaryotic and eukaryotic organisms and provides a portal through which data generated by the \"Pathogen Genomics\" group at the Wellcome Trust Sanger Institute and other collaborating sequencing centres can be accessed.",
@@ -6921,12 +6933,6 @@
     },
     "homepage": "https://www.ebi.ac.uk/ols4/ontologies/ido",
     "name": "Infectious Disease Ontology",
-    "owners": [
-      {
-        "name": "European Bioinformatics Institute",
-        "ror": "02catss52"
-      }
-    ],
     "pattern": "^[0-9]+$",
     "status": "active",
     "uri_format": "https://www.ebi.ac.uk/ols4/ontologies/ido/terms?obo_id=IDO:$1"
@@ -8046,6 +8052,21 @@
     "status": "active",
     "uri_format": "http://www.knapsackfamily.com/knapsack_core/information.php?word=$1"
   },
+  "knetminer": {
+    "description": "KnetMiner is a knowledge graph platform for evidence-based gene discovery and complex trait analysis across plants, crops and other species. It integrates genome annotations, orthology, pathways, protein interactions, gene expression, phenotypes, GWAS results and the published literature into a single knowledge graph, and publishes a gene page for every gene it holds. Identifiers in this namespace resolve to the KnetMiner gene page for a given gene in a given species, showing that gene's network context, traits, functional annotations, orthologs and supporting literature evidence.",
+    "examples": [
+      "triticum_aestivum/TRAESCS5D02G004100"
+    ],
+    "extras": {
+      "miriam_id": "00001141",
+      "namespaceEmbeddedInLui": false
+    },
+    "homepage": "https://knetminer.com/",
+    "name": "KnetMiner",
+    "pattern": "^[a-z0-9_]+/[A-Za-z0-9._-]+$",
+    "status": "active",
+    "uri_format": "https://app.knetminer.com/genepage/$1"
+  },
   "lei": {
     "description": "Established by the Financial Stability Board in June 2014, the Global Legal Entity Identifier Foundation (GLEIF) is tasked to support the implementation and use of the Legal Entity Identifier (LEI). The foundation is backed and overseen by the LEI Regulatory Oversight Committee, representing public authorities from around the globe that have come together to jointly drive forward transparency within the global financial markets. GLEIF is a supra-national not-for-profit organization headquartered in Basel, Switzerland.",
     "examples": [
@@ -8584,12 +8605,6 @@
     },
     "homepage": "https://www.ebi.ac.uk/ols4/ontologies/mcro",
     "name": "Model Card Ontology",
-    "owners": [
-      {
-        "name": "European Bioinformatics Institute",
-        "ror": "02catss52"
-      }
-    ],
     "pattern": "^MCRO:\\d+$",
     "status": "active",
     "uri_format": "https://www.ebi.ac.uk/ols4/ontologies/mcro/classes?obo_id=MCRO:$1"
@@ -9150,12 +9165,6 @@
     },
     "homepage": "https://www.ebi.ac.uk/ols4/ontologies/mi",
     "name": "Molecular Interactions Ontology",
-    "owners": [
-      {
-        "name": "European Bioinformatics Institute",
-        "ror": "02catss52"
-      }
-    ],
     "pattern": "^MI:\\d{4}$",
     "status": "active",
     "uri_format": "https://www.ebi.ac.uk/ols4/ontologies/mi/terms?obo_id=MI:$1"
@@ -9631,12 +9640,6 @@
     },
     "homepage": "https://www.ebi.ac.uk/ols4/ontologies/mod",
     "name": "Protein Modification Ontology",
-    "owners": [
-      {
-        "name": "European Bioinformatics Institute",
-        "ror": "02catss52"
-      }
-    ],
     "pattern": "^MOD:\\d{5}$",
     "status": "active",
     "uri_format": "https://www.ebi.ac.uk/ols4/ontologies/mod/terms?obo_id=MOD:$1"
@@ -10038,6 +10041,27 @@
     "status": "active",
     "uri_format": "https://nanbyodata.jp/disease/NANDO:$1"
   },
+  "nanostar": {
+    "description": "NanostarDB aggregates structured and searchable RNA and DNA nanostar data.",
+    "examples": [
+      "LDM24s001"
+    ],
+    "extras": {
+      "miriam_id": "00001133",
+      "namespaceEmbeddedInLui": false
+    },
+    "homepage": "https://nanostardb.org",
+    "name": "NanostarDB",
+    "owners": [
+      {
+        "name": "The University of Cambridge",
+        "ror": "013meh722"
+      }
+    ],
+    "pattern": "^[A-Z]{2,}(\\d{2}|__)[sm]\\d{3}$",
+    "status": "active",
+    "uri_format": "https://nanostardb.org/nanostar/$1"
+  },
   "napdi": {
     "description": "The Natural Product-Drug Interaction Research Data Repository, a publicly accessible database where researchers can access scientific results, raw data, and recommended approaches to optimally assess the clinical significance of pharmacokinetic natural product-drug interactions (PK-NPDIs).",
     "examples": [
@@ -10244,12 +10268,6 @@
     },
     "homepage": "https://www.ebi.ac.uk/ols4/ontologies/ncit",
     "name": "NCIt",
-    "owners": [
-      {
-        "name": "European Bioinformatics Institute",
-        "ror": "02catss52"
-      }
-    ],
     "pattern": "^C\\d+$",
     "providers": [
       {
@@ -10514,12 +10532,6 @@
     },
     "homepage": "https://www.ebi.ac.uk/ols4/ontologies/nmrcv",
     "name": "Nuclear Magnetic Resonance Controlled Vocabulary",
-    "owners": [
-      {
-        "name": "European Bioinformatics Institute",
-        "ror": "02catss52"
-      }
-    ],
     "pattern": "^NMR:\\d+$",
     "status": "active",
     "uri_format": "https://www.ebi.ac.uk/ols4/ontologies/nmrcv/terms?curie=NMR:$1"
@@ -10670,12 +10682,6 @@
     },
     "homepage": "https://www.ebi.ac.uk/ols4/ontologies/obcs",
     "name": " Ontology of Biological and Clinical Statistics",
-    "owners": [
-      {
-        "name": "European Bioinformatics Institute",
-        "ror": "02catss52"
-      }
-    ],
     "pattern": "^OBCS:\\d+$",
     "status": "active",
     "uri_format": "https://www.ebi.ac.uk/ols4/ontologies/obcs/classes?obo_id=OBCS:$1"
@@ -11006,12 +11012,6 @@
     },
     "homepage": "https://www.ebi.ac.uk/ols4/ontologies/omit/",
     "name": "OMIT",
-    "owners": [
-      {
-        "name": "European Bioinformatics Institute",
-        "ror": "02catss52"
-      }
-    ],
     "pattern": "^\\d{7}$",
     "status": "active",
     "uri_format": "https://www.ebi.ac.uk/ols4/ontologies/omit/terms?short_form=OMIT_$1"
@@ -11042,12 +11042,6 @@
     },
     "homepage": "https://www.ebi.ac.uk/ols4/ontologies/opl",
     "name": "Ontology for Parasite Lifecycle",
-    "owners": [
-      {
-        "name": "European Bioinformatics Institute",
-        "ror": "02catss52"
-      }
-    ],
     "pattern": "^OPL:\\d+$",
     "status": "active",
     "uri_format": "https://www.ebi.ac.uk/ols4/ontologies/opl/classes?obo_id=OPL:$1"
@@ -11174,12 +11168,6 @@
     },
     "homepage": "https://www.ebi.ac.uk/ols4/ontologies/ordo",
     "name": "Orphanet Rare Disease Ontology",
-    "owners": [
-      {
-        "name": "European Bioinformatics Institute",
-        "ror": "02catss52"
-      }
-    ],
     "pattern": "^Orphanet(_|:)C?\\d+$",
     "status": "active",
     "uri_format": "https://www.ebi.ac.uk/ols4/ontologies/ordo/terms/http%253A%252F%252Fwww.orpha.net%252FORDO%252F$1"
@@ -12460,12 +12448,6 @@
     },
     "homepage": "https://www.ebi.ac.uk/ols4/ontologies/probonto",
     "name": "ProbOnto",
-    "owners": [
-      {
-        "name": "European Bioinformatics Institute",
-        "ror": "02catss52"
-      }
-    ],
     "pattern": "^PROB_c\\d+$",
     "status": "active",
     "uri_format": "https://www.ebi.ac.uk/ols4/ontologies/probonto/terms/http%253A%252F%252Fwww.probonto.org%252Fontology%2523$1"
@@ -12837,12 +12819,6 @@
     },
     "homepage": "https://www.ebi.ac.uk/ols4/ontologies/pw",
     "name": "Pathway Ontology",
-    "owners": [
-      {
-        "name": "European Bioinformatics Institute",
-        "ror": "02catss52"
-      }
-    ],
     "pattern": "^PW:\\d{7}$",
     "providers": [
       {
@@ -13431,12 +13407,6 @@
     },
     "homepage": "https://www.ebi.ac.uk/ols4/ontologies/ro",
     "name": "Relation Ontology",
-    "owners": [
-      {
-        "name": "European Bioinformatics Institute",
-        "ror": "02catss52"
-      }
-    ],
     "pattern": "^RO_\\d{7}$",
     "providers": [
       {
@@ -13650,12 +13620,6 @@
     },
     "homepage": "https://www.ebi.ac.uk/ols4/ontologies/sbo",
     "name": "Systems Biology Ontology",
-    "owners": [
-      {
-        "name": "European Bioinformatics Institute",
-        "ror": "02catss52"
-      }
-    ],
     "pattern": "^SBO:\\d{7}$",
     "status": "active",
     "uri_format": "https://www.ebi.ac.uk/ols4/ontologies/sbo/terms?obo_id=SBO:$1"
@@ -13995,12 +13959,6 @@
     },
     "homepage": "https://www.ebi.ac.uk/ols4/ontologies/sio",
     "name": "Semanticscience Integrated Ontology",
-    "owners": [
-      {
-        "name": "European Bioinformatics Institute",
-        "ror": "02catss52"
-      }
-    ],
     "pattern": "^SIO_\\d{6,6}$",
     "status": "active",
     "uri_format": "https://www.ebi.ac.uk/ols4/ontologies/sio/terms?short_form=$1"
@@ -14985,12 +14943,6 @@
     },
     "homepage": "https://www.ebi.ac.uk/ols4/ontologies/uberon",
     "name": "UBERON",
-    "owners": [
-      {
-        "name": "European Bioinformatics Institute",
-        "ror": "02catss52"
-      }
-    ],
     "pattern": "^UBERON:\\d+$",
     "status": "active",
     "uri_format": "https://www.ebi.ac.uk/ols4/ontologies/uberon/terms?obo_id=UBERON:$1"
@@ -15366,12 +15318,6 @@
     },
     "homepage": "https://www.ebi.ac.uk/ols4/ontologies/uo",
     "name": "Unit Ontology",
-    "owners": [
-      {
-        "name": "European Bioinformatics Institute",
-        "ror": "02catss52"
-      }
-    ],
     "pattern": "^UO:\\d{7}?$",
     "status": "active",
     "uri_format": "https://www.ebi.ac.uk/ols4/ontologies/uo/terms?obo_id=UO:$1"
@@ -15996,6 +15942,21 @@
     "pattern": "^XB\\-\\w+\\-\\d+$",
     "status": "active",
     "uri_format": "https://www.xenbase.org/entry/$1"
+  },
+  "xfid": {
+    "description": "XframeworkID (XFID) is an open registry of permanent, content-based identifiers for extra-financial disclosure documents associated with labelled bond issuances — green, social and sustainability bond frameworks, Second Party Opinions (SPOs), EU Green Bond Standard pre/post-issuance reviews and\nfactsheets, impact and allocation reports, certifications, assurance reports, and academic research analysing labelled bonds. XFIDs are derived from a SHA-256 hash of the document's canonical content, so an identifier permanently and verifiably denotes one specific document version regardless of where\n the file is hosted — addressing the measured erosion of this disclosure class (23% of tracked documents are no longer accessible at their original URLs). The registry cross-references documents to issuers, bond ISINs, assessment providers and analysts, and is used for citation in academic research, investor due diligence and regulatory monitoring.",
+    "examples": [
+      "XFI5ICTDJ4"
+    ],
+    "extras": {
+      "miriam_id": "00001143",
+      "namespaceEmbeddedInLui": false
+    },
+    "homepage": "https://xframework.id",
+    "name": "xfid",
+    "pattern": "^XF[A-Z0-9]{8}$",
+    "status": "active",
+    "uri_format": "https://xframework.id/$1"
   },
   "ydpm": {
     "description": "The YDPM database serves to support the Yeast Deletion and the Mitochondrial Proteomics Project. The project aims to increase the understanding of mitochondrial function and biogenesis in the context of the cell. In the Deletion Project, strains from the deletion collection were monitored under 9 different media conditions selected for the study of mitochondrial function. The YDPM database contains both the raw data and growth rates calculated for each strain in each media condition.",

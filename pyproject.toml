@@ -2,15 +2,9 @@
 requires = ["uv_build>=0.9.4,<1.0"]
 build-backend = "uv_build"
 
-# Pytest, see https://docs.pytest.org/en/stable/reference/customize.html#pyproject-toml
-[tool.pytest.ini_options]
-markers = [
-    "slow: marks tests as slow (deselect with '-m \"not slow\"')",
-]
-
 [project]
 name = "bioregistry"
-version = "0.13.59-dev"
+version = "0.14.5-dev"
 description = "Integrated registry of biological databases and nomenclatures"
 readme = "README.md"
 authors = [
@@ -31,7 +25,6 @@ classifiers = [
     "Framework :: tox",
     "Framework :: Sphinx",
     "Programming Language :: Python",
-    "Programming Language :: Python :: 3.10",
     "Programming Language :: Python :: 3.11",
     "Programming Language :: Python :: 3.12",
     "Programming Language :: Python :: 3.13",
@@ -53,16 +46,16 @@ keywords = [
 license = "MIT"
 license-files = ["LICENSE"]
 
-requires-python = ">=3.10"
+requires-python = ">=3.11"
 dependencies = [
     "requests",
     "tqdm",
-    "pystow>=0.8.2",
+    "pystow>=0.9.0",
     "click",
-    "more_click>=0.1.2",
+    "more-click>=0.1.2",
     "pydantic[email]>=2.0",
-    "curies>=0.13.9",
-    "sssom-pydantic>=0.5.10",
+    "curies>=0.15.0",
+    "sssom-pydantic>=0.6.4",
     #
     "urllib3>=2.7.0",
     "python-multipart>=0.0.27",
@@ -73,9 +66,10 @@ dependencies = [
 tests = [
     "pytest",
     "coverage",
-    "more_itertools",
-    "httpx",
+    "more-itertools",
+    "httpx2",
     "scikit-learn",
+    "skosmos-client",
 ]
 typing = [
     "mypy",
@@ -92,6 +86,10 @@ typing = [
     "matplotlib-stubs",
     "pandas-stubs",
     "fastapi[all]",
+    "pyobo>=0.14.1",
+    "ror-downloader",
+    "pandas",
+    "manubot",
 ]
 dev = [
     { include-group = "tests" },
@@ -104,11 +102,11 @@ docs = [
     "sphinx>=8",
     "sphinx-rtd-theme>=3.0",
     "sphinx-click",
-    "sphinx_automodapi",
-    "autodoc_pydantic",
+    "sphinx-automodapi",
+    "autodoc-pydantic",
 ]
 gha = [
-    "more_itertools",
+    "more-itertools",
 ]
 align = [
     "pyyaml",
@@ -120,6 +118,7 @@ align = [
     "pandas<3.0",
     "wikidata-client",
     "ontoportal-client>=0.0.9",
+    "lxml",
 ]
 export = [
     "pyyaml",
@@ -129,13 +128,13 @@ export = [
 ]
 charts = [
     "matplotlib",
-    "matplotlib_venn",
+    "matplotlib-venn",
     "seaborn",
     "pandas<3.0",
     "jinja2",
 ]
 health = [
-    "click_default_group",
+    "click-default-group",
     "pandas<3.0",
     "tabulate",
     "pyyaml",
@@ -145,7 +144,7 @@ web = [
     "pyyaml",
     "rdflib",
     "rdflib-jsonld",
-    "rdflib-endpoint>=0.5.3",
+    "rdflib-endpoint>=0.6.3",
     "flask>=3.0.0",
     "werkzeug>=3.0.0",
     "fastapi",
@@ -165,7 +164,7 @@ paper-ranking = [
 ]
 mapping-checking = [
     "pandas<3.0",
-    "sentence_transformers",
+    "sentence-transformers",
 ]
 
 
@@ -195,6 +194,17 @@ plugins = [
 [tool.doc8]
 max-line-length = 120
 ignore = ["D001"]
+
+# Pytest, see https://docs.pytest.org/en/stable/reference/customize.html#pyproject-toml
+[tool.pytest.ini_options]
+markers = [
+    "slow: marks tests as slow (deselect with '-m \"not slow\"')",
+]
+filterwarnings = [
+    # these two warnings are both rdflib-internal
+    "ignore:Dataset.default_context is deprecated:DeprecationWarning:rdflib.plugins.parsers.notation3",
+    "ignore:Dataset.default_context is deprecated:DeprecationWarning:rdflib.graph",
+]
 
 # Coverage, see https://coverage.readthedocs.io/en/latest/config.html
 [tool.coverage.run]
@@ -258,6 +268,8 @@ ignore = [
     "C901", # ehh, complexity out the wind
     "S704", # TODO figure out why this gets thrown and how to fix
     "S314", # unsafe xml
+    "DTZ",
+    "BLE001",
 ]
 
 # See https://docs.astral.sh/ruff/settings/#per-file-ignores
@@ -287,7 +299,7 @@ known-first-party = [
 docstring-code-format = true
 
 [tool.bumpversion]
-current_version = "0.13.59-dev"
+current_version = "0.14.5-dev"
 parse = "(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+)(?:-(?P<release>[0-9A-Za-z-]+(?:\\.[0-9A-Za-z-]+)*))?(?:\\+(?P<build>[0-9A-Za-z-]+(?:\\.[0-9A-Za-z-]+)*))?"
 serialize = [
     "{major}.{minor}.{patch}-{release}+{build}",

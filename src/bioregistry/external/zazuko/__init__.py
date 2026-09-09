@@ -36,6 +36,7 @@ get_zazuko = build_getter(
     url=URL,
     func=parse_zazuko_raw,
     cleanup=cleanup_json,
+    download_kwargs={"backend": "requests"},
 )
 
 

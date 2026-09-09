@@ -41,7 +41,6 @@ __all__ = [
 
 logger = logging.getLogger(__name__)
 
-
 DIRECTORY = Path(__file__).parent.resolve()
 RAW_PATH = RAW_DIRECTORY / "ols.json"
 PROCESSED_PATH = DIRECTORY / "processed.json"
@@ -62,7 +61,9 @@ EBI_OLS_BASE_URL = "https://www.ebi.ac.uk/ols4/api"
 
 
 @adapter
-def get_ols(*, force_download: bool = False, force_process: bool = False) -> dict[str, Record]:
+def get_ols(
+    *, force_download: bool = False, force_process: bool = False, progress: bool = True
+) -> dict[str, Record]:
     """Get the EBI OLS registry."""
     return get_ols_base(
         force_download=force_download,
@@ -119,7 +120,8 @@ def get_ols_base(
     return processed
 
 
-def _download(base_url: str, raw_path: Path, force: bool = False) -> None:
+def _download(base_url: str, raw_path: Path, *, force: bool = False) -> None:
+    # FIXME replace with OLS Client call?
     if raw_path.is_file() and not force:
         return
     data = requests.get(f"{base_url}/ontologies", timeout=15, params={"size": 1000}).json()
@@ -136,7 +138,7 @@ def _download(base_url: str, raw_path: Path, force: bool = False) -> None:
     raw_path.write_text(json.dumps(data, indent=2, sort_keys=True, ensure_ascii=False))
 
 
-class VersionType(str, enum.Enum):
+class VersionType(enum.StrEnum):
     """Types for OLS ontology versions."""
 
     date = "date"
@@ -327,11 +329,11 @@ def _process(
     download = _clean_url(config["fileLocation"])
     if download is None:
         pass
-    elif download.endswith(".obo") or download.endswith(".obo.gz"):
+    elif download.endswith((".obo", ".obo.gz")):
         rv.setdefault("artifacts", []).append(Artifact(type=ArtifactType.obo, url=download))
-    elif download.endswith(".owl") or download.endswith(".owl.gz"):
+    elif download.endswith((".owl", ".owl.gz")):
         rv.setdefault("artifacts", []).append(Artifact(type=ArtifactType.owl, url=download))
-    elif download.endswith(".rdf") or download.endswith(".ttl") or download.endswith(".ttl.gz"):
+    elif download.endswith((".rdf", ".ttl", ".ttl.gz")):
         rv.setdefault("artifacts", []).append(Artifact(type=ArtifactType.rdf, url=download))
     elif download.endswith(".xml"):
         rv.setdefault("artifacts", []).append(Artifact(type=ArtifactType.xml, url=download))

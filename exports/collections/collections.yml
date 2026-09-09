@@ -538,22 +538,36 @@
   - https://doi.org/10.1515/pac-2021-2007
   resources:
   - afo
-  - bfo
+  - prefix: bfo
+    tags:
+    - production
   - bto
   - comment: Used in YMDB, HMDB, PubChem, MassBank, KNApSAcK, UM-BBD, GMD, SMID-DB
     prefix: chebi
-  - cheminf
+  - prefix: cheminf
+    tags:
+    - production
   - chemrof
   - chiro
-  - chmo
+  - prefix: chmo
+    tags:
+    - collaborative
+    - production
+  - prefix: dcat
+    tags:
+    - production
   - duo
   - edam
   - efo
   - enm
   - envo
   - fair
-  - fix
-  - gainesville.core
+  - prefix: fix
+    tags:
+    - research
+  - prefix: gainesville.core
+    tags:
+    - research
   - iao
   - mod
   - mop
@@ -567,11 +581,17 @@
   - ontorxn
   - pato
   - proco
-  - prov
+  - prefix: prov
+    tags:
+    - production
   - reproduceme
-  - rex
+  - prefix: rex
+    tags:
+    - research
   - ro
-  - rxno
+  - prefix: rxno
+    tags:
+    - collaborative
   - sepio
   - sio
   - sosa
@@ -580,11 +600,25 @@
   - swo
   - time
   - uo
-  - vibso
+  - prefix: vibso
+    tags:
+    - collaborative
   - voc4cat
   - worldavatar.compchem
   - worldavatar.kin
   - worldavatar.os
+  tags:
+  - code: collaborative
+    description: External, but curated by the consortium
+    name: Collaborative
+  - code: production
+    description: Used in production within services of the consortium
+    name: In Production
+  - code: research
+    description: not in any associated services of the consortium of the collection,
+      but indexed to compare with the ones used, or to learn from, or to maybe build
+      mappings
+    name: Research
 '0000015':
   contributors:
   - email: cthoyt@gmail.com
@@ -959,7 +993,7 @@
   maintainers:
   - email: noemi.betancort@suub.uni-bremen.de
     github: nbetancort
-    name: Noemi Betancort
+    name: Noemi Betancort Cabrera
     orcid: 0000-0002-0156-3556
   name: KonsortSWD
   organizations:
@@ -969,6 +1003,9 @@
   - name: NFDI
     ror: 05qj6w324
     wikidata: Q61658497
+  - name: GESIS - Leibniz-Institute for the Social Sciences
+    ror: 018afyw53
+    wikidata: Q1485220
   resources:
   - cessda
   - cessda.cdcpublishernames
@@ -1002,11 +1039,16 @@
   - ddi.typeofnote
   - ddi.typeoftelephone
   - ddi.typeoftranslationmethod
+  - esco.isco
   - gesis.kategorienschemawahlstudien
   - gesis.rexconcepts
   - gesis.rexdatatype
   - gesis.rexgroups
+  - gesis.thesoz
   - gesis.variables-relations
+  - isced1997
+  - isced2011
+  - isced2013
 '0000021':
   contributors:
   - email: cthoyt@gmail.com
@@ -1487,6 +1529,11 @@
   references:
   - https://go.rocket.chat/invite?host=all-chat.nfdi.de&path=invite%2FNTuvAb
   resources:
+  - bfo
+  - bioschemas
+  - codemeta
+  - datacite
+  - dcatap
   - nfdi.core
   - nfdi4dso
   - schema
@@ -2181,7 +2228,25 @@
   references:
   - https://go.rocket.chat/invite?host=all-chat.nfdi.de&path=invite%2FBzRWeP
   resources:
-  - bioregistry
+  - comment: 'Recommended for entities of type: cell_lin_name'
+    prefix: clo
+  - comment: 'Disease ontology used to describe patients disease / disease of research
+      focus. Recommended for entities of type: disease'
+    prefix: doid
+  - comment: 'Recommended for entities of type: ancestry'
+    prefix: hancestro
+  - comment: 'Only a subclass of NCIT is used to describe the medication used within
+      the study / individual patient. Recommended for entities of type: medication'
+    prefix: ncit
+  - comment: 'Only a subclass of OBI is used to describe the data processing steps
+      before the analysis part. Recommended for entities of type: data_processing_steps'
+    prefix: obi
+  - comment: 'Only a subclass of SNOMED CT is used to describe the Ethnicity of human
+      patients. Recommended for entities of type: Ethnicity'
+    prefix: snomedct
+  - comment: 'Only a subclass of Uberon is used to describe the tissue where the sample
+      was taken from. Recommended for entities of type: tissue'
+    prefix: uberon
 '0000044':
   contributors:
   - email: cthoyt@gmail.com
@@ -2256,6 +2321,7 @@
   - bco
   - bodc.cf
   - bodc.sdn
+  - cgo
   - chebi
   - dcat
   - dcterms
@@ -2289,7 +2355,6 @@
   - t4fs
   - tdwg.abcd
   - tib.bk
-  - tib.cgo
   - tib.meth
   - time
   - to

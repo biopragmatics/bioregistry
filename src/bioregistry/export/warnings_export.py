@@ -6,16 +6,13 @@ curated in the Bioregistry.
 
 from __future__ import annotations
 
-import os
 from collections.abc import Callable
 
 import click
-import yaml
 from tqdm import tqdm
 
-from bioregistry import parse_iri
-
 from ..constants import DOCS_DATA, EXTERNAL
+from ..parse_iri import parse_iri
 from ..resolve import (
     get_example,
     get_external,
@@ -34,10 +31,7 @@ __all__ = [
 ]
 
 CURATIONS_PATH = DOCS_DATA.joinpath("curation.yml")
-
-ENTRIES = sorted(
-    (prefix, resource.model_dump(exclude_none=True)) for prefix, resource in read_registry().items()
-)
+WARNINGS_PATH = DOCS_DATA.joinpath("warnings.yml")
 
 
 def _g(predicate: Callable[[str], bool]) -> list[dict[str, str | None]]:
@@ -71,10 +65,13 @@ def get_unparsable_uris() -> list[tuple[str, str, str]]:
 @click.command()
 def export_warnings() -> None:
     """Make warnings list."""
+    from pystow.utils import write_yaml
+
     # unparsable = get_unparsable_uris()
     missing_wikidata_database = _g(
         lambda prefix: (
-            get_external(prefix, "wikidata").get("database") is None and not has_no_terms(prefix)
+            (get_external(prefix, "wikidata") or {}).get("database") is None
+            and not has_no_terms(prefix)
         )
     )
     missing_pattern = _g(lambda prefix: get_pattern(prefix) is None and not has_no_terms(prefix))
@@ -98,69 +95,34 @@ def export_warnings() -> None:
         if EXTERNAL.joinpath(metaprefix, "curation.tsv").is_file()
     ]
 
-    with CURATIONS_PATH.open("w") as file:
-        yaml.safe_dump(
-            {
-                "wikidata": missing_wikidata_database,
-                "pattern": missing_pattern,
-                "formatter": missing_format_url,
-                "example": missing_example,
-                "prefix_xrefs": prefix_xrefs,
-                # "unparsable": unparsable,
-            },
-            file,
-        )
+    write_yaml(
+        {
+            "wikidata": missing_wikidata_database,
+            "pattern": missing_pattern,
+            "formatter": missing_format_url,
+            "example": missing_example,
+            "prefix_xrefs": prefix_xrefs,
+            # "unparsable": unparsable,
+        },
+        CURATIONS_PATH,
+    )
 
     miriam_pattern_wrong = [
         {
             "prefix": prefix,
             "name": get_name(prefix),
             "homepage": get_homepage(prefix),
-            "correct": entry["pattern"],
-            "miriam": entry["miriam"]["pattern"],
+            "correct": entry.pattern,
+            "miriam": miriam_pattern,
         }
-        for prefix, entry in ENTRIES
-        if "miriam" in entry
-        and "pattern" in entry
-        and entry["pattern"] != entry["miriam"]["pattern"]
+        for prefix, entry in read_registry().items()
+        if entry.miriam
+        and (miriam_pattern := entry.miriam.get("pattern")) is not None
+        and entry.pattern
+        and entry.pattern != miriam_pattern
     ]
 
-    miriam_embedding_rewrites = [
-        {
-            "prefix": prefix,
-            "name": get_name(prefix),
-            "homepage": get_homepage(prefix),
-            "pattern": get_pattern(prefix),
-            "correct": entry["namespace.embedded"],
-            "miriam": entry["miriam"]["namespaceEmbeddedInLui"],
-        }
-        for prefix, entry in ENTRIES
-        if "namespace.embedded" in entry
-    ]
-
-    # When are namespace rewrites required?
-    miriam_prefix_rewrites = [
-        {
-            "prefix": prefix,
-            "name": get_name(prefix),
-            "homepage": get_homepage(prefix),
-            "pattern": get_pattern(prefix),
-            "correct": entry["namespace.rewrite"],
-        }
-        for prefix, entry in ENTRIES
-        if "namespace.rewrite" in entry
-    ]
-
-    with open(os.path.join(DOCS_DATA, "warnings.yml"), "w") as file:
-        yaml.safe_dump(
-            {
-                "wrong_patterns": miriam_pattern_wrong,
-                "embedding_rewrites": miriam_embedding_rewrites,
-                "prefix_rewrites": miriam_prefix_rewrites,
-                "license_conflict": [],
-            },
-            file,
-        )
+    write_yaml({"wrong_patterns": miriam_pattern_wrong}, WARNINGS_PATH)
 
 
 if __name__ == "__main__":

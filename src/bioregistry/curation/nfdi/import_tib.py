@@ -26,7 +26,7 @@ def import_tib() -> None:
     misses = defaultdict(list)
     for tib_prefix, tib_data in get_tib_ts().items():
         internal_prefix = tib_to_internal.get(tib_prefix)
-        for keyword in tib_data.get("keywords", []):
+        for keyword in tib_data.keywords or []:
             collection_id = KEYWORD_TO_COLLECTION.get(keyword.lower())
             if not collection_id:
                 counter[keyword.lower()] += 1

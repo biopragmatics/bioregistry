@@ -53,13 +53,16 @@ class OntoPortalClient:
         self.processed_path = DIRECTORY.joinpath(self.metaprefix).with_suffix(".json")
 
     def download(
-        self, force_download: bool = False, force_process: bool = False
+        self,
+        force_download: bool = False,
+        force_process: bool = False,
+        progress: bool = True,
     ) -> dict[str, Record]:
         """Get the full dump of the OntoPortal site's registry."""
         if self.processed_path.exists() and not force_download and not force_process:
             return load_processed(self.processed_path)
 
-        records = self._get_records(force=force_download)
+        records = self._get_records(force=force_download, progress=progress)
 
         rv = dict(
             thread_map(  # type:ignore
@@ -70,7 +73,7 @@ class OntoPortalClient:
         dump_records(rv, self.processed_path)
         return rv
 
-    def _get_records(self, force: bool = False) -> list[dict[str, Any]]:
+    def _get_records(self, *, force: bool = False, progress: bool = True) -> list[dict[str, Any]]:
         if self.raw_path.exists() and not force:
             return cast(list[dict[str, Any]], json.loads(self.raw_path.read_text()))
 
@@ -82,6 +85,7 @@ class OntoPortalClient:
             max_workers=self.max_workers,
             desc=f"Preprocessing {self.metaprefix}",
             leave=False,
+            disable=not progress,
         )
         with self.raw_path.open("w") as file:
             json.dump(records, file, indent=2, sort_keys=True, ensure_ascii=False)
@@ -198,50 +202,74 @@ def _handle_publications(ll: list[str]) -> list[Publication]:
 
 @adapter
 def get_bioportal(
-    force_download: bool = False, force_process: bool = False, *, api_key: str | None = None
+    force_download: bool = False,
+    force_process: bool = False,
+    *,
+    api_key: str | None = None,
+    progress: bool = True,
 ) -> dict[str, Record]:
     """Get the BioPortal registry."""
     client = OntoPortalClient(
         metaprefix="bioportal",
         client=ontoportal_client.BioPortalClient(api_key=api_key),
     )
-    return client.download(force_download=force_download, force_process=force_process)
+    return client.download(
+        force_download=force_download, force_process=force_process, progress=progress
+    )
 
 
 @adapter
 def get_ecoportal(
-    force_download: bool = False, force_process: bool = False, *, api_key: str | None = None
+    force_download: bool = False,
+    force_process: bool = False,
+    *,
+    api_key: str | None = None,
+    progress: bool = True,
 ) -> dict[str, Record]:
     """Get the EcoPortal registry."""
     client = OntoPortalClient(
         metaprefix="ecoportal",
         client=ontoportal_client.EcoPortalClient(api_key=api_key),
     )
-    return client.download(force_download=force_download, force_process=force_process)
+    return client.download(
+        force_download=force_download, force_process=force_process, progress=progress
+    )
 
 
 @adapter
 def get_agroportal(
-    force_download: bool = False, force_process: bool = False, *, api_key: str | None = None
+    force_download: bool = False,
+    force_process: bool = False,
+    *,
+    api_key: str | None = None,
+    progress: bool = True,
 ) -> dict[str, Record]:
     """Get the AgroPortal registry."""
     client = OntoPortalClient(
         metaprefix="agroportal",
         client=ontoportal_client.AgroPortalClient(api_key=api_key),
     )
-    return client.download(force_download=force_download, force_process=force_process)
+    return client.download(
+        force_download=force_download, force_process=force_process, progress=progress
+    )
 
 
 @adapter
 def get_biodivportal(
-    force_download: bool = False, force_process: bool = False, *, api_key: str | None = None
+    force_download: bool = False,
+    force_process: bool = False,
+    *,
+    api_key: str | None = None,
+    progress: bool = True,
 ) -> dict[str, Record]:
     """Get the BiodivPortal registry."""
     client = OntoPortalClient(
         metaprefix="biodivportal",
         client=ontoportal_client.BioDivPortal(api_key=api_key),
     )
-    return client.download(force_download=force_download, force_process=force_process)
+    return client.download(
+        force_download=force_download, force_process=force_process, progress=progress
+    )
 
 
 if __name__ == "__main__":

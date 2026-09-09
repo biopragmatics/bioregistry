@@ -12,6 +12,7 @@ import curies
 
 from .resource_manager import MetaresourceAnnotatedValue, manager
 from .schema import AnnotatedURL, Attributable, Collection, Organization, Resource
+from .schema.struct import Record
 
 __all__ = [
     "add_resource",
@@ -120,14 +121,14 @@ def get_name(
 @overload
 def get_name(
     prefix: str, *, provenance: Literal[False] = False, strict: Literal[False] = False
-) -> None | str: ...
+) -> str | None: ...
 
 
 # docstr-coverage:excused `overload`
 @overload
 def get_name(
     prefix: str, *, provenance: Literal[True] = True, strict: Literal[False] = False
-) -> None | MetaresourceAnnotatedValue[str]: ...
+) -> MetaresourceAnnotatedValue[str] | None: ...
 
 
 def get_name(
@@ -660,9 +661,9 @@ def get_prefixcommons_uri_format(prefix: str) -> str | None:
     return resource.get_prefixcommons_uri_format()
 
 
-def get_external(prefix: str, metaprefix: str) -> Mapping[str, Any]:
+def get_external(prefix: str, metaprefix: str) -> Record | None:
     """Get the external data for the entry."""
-    return manager.get_external(prefix, metaprefix)
+    return manager.get_external(prefix, metaprefix) or {}
 
 
 def get_example(prefix: str) -> str | None:

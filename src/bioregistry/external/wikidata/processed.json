@@ -315,11 +315,12 @@
   "P1053": {
     "description": "identifier for a researcher in a system for scientific authors, redirects to a Web of Science ID, along with P3829",
     "examples": [
+      "A-1685-2010",
       "J-3403-2017",
       "K-8011-2013"
     ],
     "homepage": "https://access.clarivate.com/login?app=wos",
-    "name": "ResearcherID",
+    "name": "Web of Science ResearcherID",
     "pattern": "^[A-Z]{1,3}-\\d{4}-(19|20)\\d\\d$",
     "uri_format": "https://www.webofscience.com/wos/author/record/$1",
     "xrefs": {
@@ -415,7 +416,7 @@
     "homepage": "https://reflora.jbrj.gov.br/reflora/listaBrasil/PrincipalUC/PrincipalUC.do?lingua=es",
     "name": "Reflora ID",
     "pattern": "^FB[0-9]{2,6}$",
-    "uri_format": "https://floradobrasil2020.jbrj.gov.br/$1",
+    "uri_format": "https://floradobrasil.jbrj.gov.br/$1",
     "xrefs": {
       "wikidata": "Q111699652"
     }
@@ -1005,7 +1006,7 @@
     "name": "WikiProjectMed ID",
     "uri_format": "https://mdwiki.org/wiki/$1",
     "xrefs": {
-      "wikidata": "Q52661450"
+      "wikidata": "Q141207617"
     }
   },
   "P11160": {
@@ -1247,7 +1248,7 @@
     "homepage": "https://www.radoctores.es/academicos.php?cat=N&estado=F",
     "name": "Real Academia de Doctores de España ID",
     "pattern": "^\\d{1,4}$",
-    "uri_format": "https://www.radoctores.es/academico.php?item=$1"
+    "uri_format": "https://www.rade.es/academico.php?item=$1"
   },
   "P11583": {
     "description": "identifier for a taxon in the Great Lakes Aquatic Nonindigenous Species Information System (GLANSIS)",
@@ -1510,10 +1511,10 @@
       "1684865",
       "1686124"
     ],
-    "homepage": "https://bomen.meetnetportaal.nl",
+    "homepage": "https://www.monumentalebomen.nl/",
     "name": "National Register of Monumental Trees ID",
     "pattern": "^\\d+$",
-    "uri_format": "https://bomen.meetnetportaal.nl/index.php?c=portal&mm=claim&m=custom&options=monumentale_bomen/claimformulier.xml&boomnr=$1"
+    "uri_format": "https://bomenstichting.maps.arcgis.com/apps/dashboards/db36bef64a3d4fdf9543efe2e33d7830#boomnr=$1"
   },
   "P12057": {
     "description": "identifier for a taxon in the World Auchenorrhyncha Database (Hoppers Species File)",
@@ -1817,7 +1818,7 @@
       "3321",
       "89"
     ],
-    "homepage": "http://jpnrdb.com",
+    "homepage": "https://jpnrdb.com",
     "name": "Search System of Japanese Red Data ID",
     "uri_format": "http://jpnrdb.com/database/taxon/detail/$1",
     "xrefs": {
@@ -3346,9 +3347,9 @@
       "levi-montalcini-rita",
       "sella-quintino"
     ],
-    "homepage": "https://www.lincei.it/it/accademici-dal-1870",
+    "homepage": "https://accademici.lincei.it/",
     "name": "Accademia Nazionale dei Lincei ID",
-    "uri_format": "https://www.lincei.it/it/socio/$1/"
+    "uri_format": "https://accademici.lincei.it/it/component/fabrik/details/13/$1"
   },
   "P141": {
     "description": "conservation status assigned by the International Union for Conservation of Nature",
@@ -3479,6 +3480,60 @@
       "wikidata": "Q139765482"
     }
   },
+  "P14516": {
+    "description": "the conservation status from the Australian Environment Protection and Biodiversity Conservation Act 1999 assigned by the Australian Department of Climate Change, Energy, the Environment and Water",
+    "examples": [
+      "Q140084493",
+      "Q140084495",
+      "Q140084496"
+    ],
+    "homepage": "https://www.legislation.gov.au/F2005B02653/latest/text",
+    "name": "EPBC conservation status",
+    "xrefs": {
+      "wikidata": "Q140084492"
+    }
+  },
+  "P14519": {
+    "description": "deliberate altering of the human anatomy for non-medical reasons that this person or fictional character has undergone",
+    "examples": [
+      "Q136419574",
+      "Q136423164",
+      "Q138886980",
+      "Q138887063",
+      "Q139257389",
+      "Q87389"
+    ],
+    "name": "body modification(s)",
+    "xrefs": {
+      "wikidata": "Q890057"
+    }
+  },
+  "P14528": {
+    "description": "identifier for a member of the International Astronomical Union (IAU)",
+    "examples": [
+      "31033",
+      "33536",
+      "38482"
+    ],
+    "name": "IAU member ID",
+    "pattern": "^\\d+$",
+    "uri_format": "https://www.iau.org/Profile?ID=$1"
+  },
+  "P14607": {
+    "description": "taxon identifier in Global Biodiversity Information Facility (GBIF) after 2026 update",
+    "examples": [
+      "59R5F",
+      "74Q6H",
+      "RLZLW"
+    ],
+    "homepage": "https://www.gbif.org/",
+    "name": "GBIF taxon ID",
+    "pattern": "^[23456789BCDFGHJKLMNPQRSTVWXYZ]{1,6}$",
+    "uri_format": "https://www.gbif.org/taxon/$1",
+    "xrefs": {
+      "wikidata": "Q1531570"
+    }
+  },
   "P1461": {
     "description": "identifier of disease at Patient UK",
     "examples": [
@@ -3489,6 +3544,54 @@
     "name": "Patientplus ID",
     "pattern": "^[A-Za-z\\-\\d\\(\\)]+$",
     "uri_format": "https://patient.info/doctor/$1"
+  },
+  "P14635": {
+    "description": "image of a footprint of this taxon (preferably with a ruler or other object for scale)",
+    "examples": [
+      "http://commons.wikimedia.org/wiki/Special:FilePath/Anas%20platyrhynchos%20track%2003.jpg",
+      "http://commons.wikimedia.org/wiki/Special:FilePath/Footprint%20of%20Vulpes%20vulpes.jpg",
+      "http://commons.wikimedia.org/wiki/Special:FilePath/Keating%20track%20fall%202007%202%20brown%20odfw%20%2816680086664%29.jpg",
+      "http://commons.wikimedia.org/wiki/Special:FilePath/Spuren%2C%20Trittsiegel%20Wolf%2C%20Fuchs%2C%20Haushund.pdf"
+    ],
+    "name": "taxon footprint",
+    "xrefs": {
+      "wikidata": "Q135790"
+    }
+  },
+  "P14751": {
+    "description": "identifier for a taxon in the Brazilian Fauna Taxonomic Catalogue",
+    "examples": [
+      "108907",
+      "58623",
+      "97573"
+    ],
+    "name": "Brazilian Fauna Taxonomic Catalogue ID",
+    "pattern": "^[1-9]\\d*$",
+    "uri_format": "https://fauna.jbrj.gov.br/fauna/faunadobrasil/$1"
+  },
+  "P14796": {
+    "description": "region outside the natural range of a taxon into which it was introduced through direct or indirect human activity",
+    "examples": [
+      "Q155"
+    ],
+    "name": "introduced to",
+    "xrefs": {
+      "wikidata": "Q1065449"
+    }
+  },
+  "P14817": {
+    "description": "identifier for a sea slug taxon on SEASLUG.WORLD",
+    "examples": [
+      "glaucus_atlanticus",
+      "hexabranchus_sanguineus",
+      "hypselodoris_festiva"
+    ],
+    "name": "SEASLUG.WORLD species ID",
+    "pattern": "^[a-z]+_[a-z]+(_[a-z]+)?$",
+    "uri_format": "https://en.seaslug.world/species/$1",
+    "xrefs": {
+      "wikidata": "Q141027920"
+    }
   },
   "P1550": {
     "description": "identifier in the Orpha.net database (without ORPHA prefix)",
@@ -3759,7 +3862,7 @@
     ],
     "name": "parent taxon",
     "xrefs": {
-      "wikidata": "Q16521"
+      "wikidata": "Q140562347"
     }
   },
   "P1717": {
@@ -4486,7 +4589,7 @@
     "short_names": [
       "VIAF"
     ],
-    "uri_format": "https://viaf.org/viaf/$1",
+    "uri_format": "https://viaf.org/en/viaf/$1",
     "uri_format_rdf": "http://viaf.org/viaf/$1",
     "xrefs": {
       "wikidata": "Q54919"
@@ -4792,10 +4895,10 @@
       "sh85037527"
     ],
     "homepage": "https://id.loc.gov",
-    "name": "Library of Congress authority ID",
+    "name": "Library of Congress Authorities ID",
     "pattern": "^(cf|ct|gf|n|nb|nr|no|ns|sh|sj)([4-9][0-9]|00|01|20[0-2][0-9])[0-9]{6}$",
     "short_names": [
-      "LC authority ID",
+      "LC Authorities ID",
       "LCAuth"
     ],
     "uri_format": "https://id.loc.gov/authorities/$1",
@@ -5416,7 +5519,7 @@
     ],
     "name": "World Spider Catalog ID",
     "pattern": "^urn:lsid:nmbe\\.ch:spider(sp|gen|fam):\\d{4,6}$",
-    "uri_format": "https://www.wsc.nmbe.ch/lsid/$1",
+    "uri_format": "https://wsc.nmbe.ch/lsid/$1",
     "xrefs": {
       "wikidata": "Q3570011"
     }
@@ -5811,7 +5914,7 @@
     "description": "ID in the Relations Ontology",
     "homepage": "https://github.com/oborel/obo-relations/",
     "name": "Relations Ontology ID",
-    "pattern": "^(RO|BFO)_[0-9]{7}$"
+    "pattern": "^(RO)_[0-9]{7}$"
   },
   "P3591": {
     "description": "identifier of a plant taxon, in the World Checklist of Selected Plant Families",
@@ -6205,10 +6308,9 @@
       "750712184",
       "970403606"
     ],
-    "homepage": "https://finess.esante.gouv.fr/",
+    "homepage": "https://finess.esante.gouv.fr/recherche",
     "name": "FINESS ID",
     "pattern": "^\\d{9}$",
-    "uri_format": "https://finess.esante.gouv.fr/fininter/jsp/actionDetailEtablissement.do?noFiness=$1",
     "xrefs": {
       "wikidata": "Q3063240"
     }
@@ -6668,7 +6770,7 @@
     ],
     "homepage": "http://goldbook.iupac.org/",
     "name": "IUPAC Gold Book ID",
-    "pattern": "^[A-Z]{1,2}\\d{5}$",
+    "pattern": "^[A-Z]{0,2}\\d{5}$",
     "uri_format": "https://goldbook.iupac.org/terms/view/$1",
     "uri_format_rdf": "http://dx.doi.org/10.1351/goldbook.$1"
   },
@@ -6928,7 +7030,7 @@
     "homepage": "https://www.ukrlp.co.uk/",
     "name": "UK Provider Reference Number",
     "pattern": "^[1-9][0-9]{7}$",
-    "uri_format": "https://www.ukrlp.co.uk/ukrlp/ukrlp_provider.page_pls_provDetails?x=&pn_p_id=$1&pv_status=VERIFIED&pv_vis_code=L"
+    "uri_format": "https://ukrlp.education.gov.uk/search/provider/$1"
   },
   "P5003": {
     "description": "identifier for a species of amphibian in the Amphibians of India database",
@@ -7384,7 +7486,7 @@
     "homepage": "http://www.biusante.parisdescartes.fr/histoire/biographies/index.php",
     "name": "BIU Santé person ID",
     "pattern": "^\\d+$",
-    "uri_format": "https://www.biusante.parisdescartes.fr/histoire/biographies/index.php?cle=$1",
+    "uri_format": "https://numerabilis.u-pariscite.fr/s/numerabilis/ark:/13685/refbiogr$1",
     "xrefs": {
       "wikidata": "Q105958830"
     }
@@ -7439,7 +7541,7 @@
     "uri_format": "http://www.whonamedit.com/doctor.cfm/$1.html"
   },
   "P5437": {
-    "description": "identifier for an area of government activity, in the European Union's EuroVoc thesaurus",
+    "description": "identifier for an area of government activity, in the EuroVoc thesaurus from the European Union (EU)",
     "examples": [
       "4189",
       "4704",
@@ -7616,7 +7718,7 @@
     ],
     "homepage": "http://www.ac-sciences-lettres-montpellier.fr/academie_edition/sources/index.php?page=academiciens",
     "name": "Académie de Montpellier member ID",
-    "uri_format": "https://www.ac-sciences-lettres-montpellier.fr/academie_edition/sources/index.php?page=academicien_detail&id=$1"
+    "uri_format": "https://www.ac-sciences-lettres-montpellier.fr/academie/membres/biographie/$1"
   },
   "P5662": {
     "description": "identifier for a member of the 'Académie de Mâcon' on its website",
@@ -9366,7 +9468,7 @@
     "homepage": "http://www.ncbi.nlm.nih.gov/taxonomy",
     "name": "NCBI taxonomy ID",
     "pattern": "^[1-9][0-9]{0,6}$",
-    "uri_format": "https://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?mode=Info&id=$1",
+    "uri_format": "https://www.ncbi.nlm.nih.gov/datasets/taxonomy/$1/",
     "uri_format_rdf": "http://purl.obolibrary.org/obo/NCBITaxon_$1"
   },
   "P6852": {
@@ -10492,6 +10594,16 @@
     "pattern": "^[1-9]\\d{0,7}$",
     "uri_format": "https://eol.org/pages/$1"
   },
+  "P8365": {
+    "description": "identifier for a concept in the Thesaurus Sozialwissenschaften (Thesaurus for the Social Sciences)",
+    "examples": [
+      "10034508",
+      "10048494"
+    ],
+    "homepage": "https://data.gesis.org/cvbrowser/thesoz/en/",
+    "name": "Thesaurus Sozialwissenschaften ID",
+    "uri_format": "https://data.gesis.org/thesoz/concept_$1"
+  },
   "P8372": {
     "description": "unique academic work identifier assigned in Web of Science bibliographic database (Web of Science Core Collection only and do not include WOS: prefix)",
     "examples": [
@@ -10536,14 +10648,14 @@
     "uri_format": "https://web.archive.org/web/0/http://www.fossilworks.org/cgi-bin/bridge.pl?a=taxonInfo&taxon_no=$1"
   },
   "P846": {
-    "description": "taxon identifier in GBIF",
+    "description": "taxon identifier in GBIF before 2026 - now use P14607",
     "examples": [
       "1948418",
       "3239598",
       "4656467",
       "5963040"
     ],
-    "name": "GBIF taxon ID",
+    "name": "GBIF-species-ID (before 2026 update)",
     "pattern": "^([1-9]\\d{0,8}|)$",
     "uri_format": "https://www.gbif.org/species/$1",
     "xrefs": {
@@ -10623,7 +10735,7 @@
     ],
     "homepage": "https://scholar.archive.org/fatcat",
     "name": "Fatcat ID",
-    "pattern": "^(release|work|container|creator|file|fileset|webcapture|extra)_[a-z0-9]{26}$",
+    "pattern": "^(release|work|container|creator|file|fileset|webcapture|extra)_[a-z0-9]{26,32}$",
     "uri_format": "https://scholar.archive.org/fatcat/$1"
   },
   "P8612": {
@@ -10758,7 +10870,7 @@
     ],
     "homepage": "https://www.rhs.org.uk/plants/search-form",
     "name": "Royal Horticultural Society plant ID",
-    "uri_format": "https://www.rhs.org.uk/Plants/$1/wd/Details",
+    "uri_format": "https://www.rhs.org.uk/plants/$1/wd/details",
     "xrefs": {
       "wikidata": "Q123072786"
     }
@@ -11221,12 +11333,12 @@
     "uri_format": "https://oregonflora.org/taxa/index.php?taxon=$1"
   },
   "P944": {
-    "description": "code that governs the scientific name of this taxon",
+    "description": "Code that governs this scientific name for a taxon",
     "examples": [
       "Q13011",
       "Q14920640"
     ],
-    "name": "code of nomenclature"
+    "name": "Code of nomenclature"
   },
   "P9450": {
     "description": "identification number for American health care providers issued by the Centers for Medicare and Medicaid Services",

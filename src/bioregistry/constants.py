@@ -17,9 +17,11 @@ __all__ = [
     "BIOREGISTRY_MODULE",
     "BIOREGISTRY_PATH",
     "COLLECTIONS_PATH",
+    "COLLECTIONS_YAML_PATH",
     "CONTEXTS_PATH",
     "CURATED_MAPPINGS_PATH",
     "DATA_DIRECTORY",
+    "EXPORT_ANALYSES",
     "HERE",
     "INTERNAL_COLOR",
     "INTERNAL_KEY",
@@ -28,9 +30,12 @@ __all__ = [
     "INTERNAL_PIP",
     "INTERNAL_REPOSITORY",
     "METAREGISTRY_PATH",
+    "METAREGISTRY_YAML_PATH",
     "NDEX_UUID",
     "NFDI_ROR",
     "RAW_DIRECTORY",
+    "REGISTRY_JSON_PATH",
+    "REGISTRY_YAML_PATH",
     "FailureReturnType",
     "MaybeCURIE",
     "get_failure_return_type",
@@ -79,7 +84,6 @@ RDF_JSONLD_PATH = EXPORT_RDF / "bioregistry.jsonld"
 
 EXPORT_SSSOM = EXPORT_DIRECTORY.joinpath("sssom")
 SSSOM_PATH = EXPORT_SSSOM / "bioregistry.sssom.tsv"
-SSSOM_METADATA_PATH = EXPORT_SSSOM / "bioregistry.sssom.yml"
 
 EXPORT_REGISTRY = EXPORT_DIRECTORY.joinpath("registry")
 REGISTRY_YAML_PATH = EXPORT_REGISTRY / "registry.yml"
@@ -100,6 +104,10 @@ TABLES_GOVERNANCE_LATEX_PATH = EXPORT_TABLES.joinpath("comparison_goveranance.te
 TABLES_METADATA_TSV_PATH = EXPORT_TABLES.joinpath("comparison_metadata.tsv")
 TABLES_METADATA_LATEX_PATH = EXPORT_TABLES.joinpath("comparison_metadata.tex")
 TABLES_SUMMARY_LATEX_PATH = EXPORT_TABLES.joinpath("summary.tex")
+
+GEO_DIRECTORY = EXPORT_DIRECTORY.joinpath("geography")
+MAP_SVG_PATH = GEO_DIRECTORY.joinpath("map.svg")
+MAP_TSV_PATH = GEO_DIRECTORY.joinpath("map.tsv")
 
 EXPORT_ANALYSES = EXPORT_DIRECTORY.joinpath("analyses")
 
@@ -206,7 +214,7 @@ class FailureReturnType(enum.Enum):
     pair = enum.auto()
 
 
-def get_failure_return_type(frt: FailureReturnType) -> None | NonePair:
+def get_failure_return_type(frt: FailureReturnType) -> NonePair | None:
     """Get the right failure return type."""
     if frt == FailureReturnType.single:
         return None
@@ -274,3 +282,5 @@ ROR_FIELD = Field(
     pattern="^0[a-hj-km-np-tv-z|0-9]{6}[0-9]{2}$",
     examples=["03yrm5c26"],
 )
+
+GND_FIELD = Field(title="Gemeinsame Normdatei (Integrated Authority File) identifier")
