@@ -4051,15 +4051,12 @@
     "bartoc": {
       "description": "Algorithm Metadata Vocabulary is a vocabulary for capturing and storing the metadata about the algorithms (a procedure or a set of rules that is followed step-by-step to solve a problem, especially by a computer). There are uncountable algorithms present in every area (e.g., Computer Science, Mathematics), which makes it hard for specialists, academicians, application engineers, and so forth to discover, distinguish, select, and reuse them. The snag faced by the researchers in the current time is the failure of getting relevant results when searching for algorithms in any search engine. AMV is represented as a semantic model and produced OWL file, which can be directly used by anyone interested to create and publish algorithm metadata as a knowledge graph, or to provide metadata service through SPARQL endpoint. The vocabulary may also be used to annotate the literature (e.g., research article, monographs, dissertation, technical reports) providing the algorithms.",
       "homepage": "https://www.isibang.ac.in/ns/amv/",
-      "license": {
-        "spdx": "CC0-1.0",
-        "url": "http://creativecommons.org/publicdomain/zero/1.0/"
-      },
       "name": "Algorithm Metadata Vocabulary",
       "prefix": "20331",
       "short_names": [
         "AMV"
-      ]
+      ],
+      "uri_format": "https://w3id.org/amv#$1"
     },
     "contact": {
       "github": "biswanathdutta",
@@ -9716,7 +9713,11 @@
     "bartoc": {
       "description": "BFO grows out of a philosophical orientation which overlaps with that of DOLCE and SUMO. Unlike these, however, it is narrowly focused on the task of providing a genuine upper ontology which can be used in support of domain ontologies developed for scientific research, as for example in biomedicine within the framework of the OBO Foundry. Thus BFO does not contain physical, chemical, biological or other terms which would properly fall within the special sciences domains.\n\nThe BFO project was initiated in 2002. The theory behind BFO was developed initially by Barry Smith and Pierre Grenon and presented in a series of publications listed here. Since then important contributions to BFO have been made by many people, including: Werner Ceusters, Chris Mungall, Fabian Neuhaus, Holger Stenzhorn, Alan Ruttenberg, Mathias Brochausen, Bjoern Peters, Kerry Trentelman, and by more than hundred other members of the BFO Discussion Group. Its development has been carried out under the auspices of the project Forms of Life sponsored by the Volkswagen Foundation.",
       "homepage": "http://www.ifomis.org/bfo/",
+      "name": "Basic Formal Ontology",
       "prefix": "216",
+      "short_names": [
+        "BFO"
+      ],
       "uri_format": "http://purl.obolibrary.org/obo/BFO_$1",
       "xrefs": {
         "wikidata": "Q4866972"
@@ -23300,6 +23301,16 @@
     "uri_format": "https://europepmc.org/article/CTX/$1"
   },
   "cito": {
+    "bartoc": {
+      "description": "CiTO, the Citation Typing Ontology, is an ontology written in OWL 2 DL to enable characterization of the nature or type of citations, both factually and rhetorically, and to permit these descriptions to be published on the Web. The citations characterized may be either direct and explicit (as in the reference list of a journal article), indirect (e.g. a citation to a more recent paper by the same research group on the same topic), or implicit (e.g. as in artistic quotations or parodies, or in cases of plagiarism). CiTO contains the object property cito:cites and its sub-properties, and its inverse property cito:isCitedBy, from the original Citation Typing Ontology, CiTO v1.6. Upon the creation of version 2.0 of CiTO, a number of new sub-properties of cito:cites were added, and the inverse properties of all the sub-properties of cito:cites were created, all of which are sub-properties of cito:isCitedBy. The ontology has also been integrated with the SWAN Discourse Relationships Ontology by making cito:cites a sub-property of http://purl.org/swan/2.0/discourse-relationships/refersTo. Restrictions of domain and range present in the previous version of CiTO were removed from the object properties when creating CiTO v 2.0, permitting its independent use in other contexts, in addition to conventional bibliographic citations.",
+      "homepage": "http://purl.org/spar/cito/",
+      "name": "CiTO, the Citation Typing Ontology",
+      "prefix": "721",
+      "short_names": [
+        "CiTO"
+      ],
+      "uri_format": "http://purl.org/spar/cito/$1"
+    },
     "contributor": {
       "email": "cthoyt@gmail.com",
       "github": "cthoyt",
@@ -23352,6 +23363,7 @@
       "uri_format": "http://purl.org/spar/cito/$1"
     },
     "mappings": {
+      "bartoc": "721",
       "fairsharing": "FAIRsharing.b220d4",
       "lov": "cito",
       "prefixcommons": "cito",
@@ -33020,9 +33032,13 @@
       "version": "1.3.1"
     },
     "bartoc": {
+      "description": "The DataCite Ontology is an ontology written in OWL 2 DL to enable the metadata properties of the [DataCite Metadata Kernel Specification version 3.1](https://www.datacite.org/sites/default/files/document/DataCite-MetadataSchema_V31_Final_8-24-2015_0.pdf) to be described in RDF. This version of the DataCite Ontology has been completely revised and significantly expanded to permit accurate mapping of this new version of the DataCite Metadata Kernel Specification to RDF.",
       "homepage": "http://purl.org/spar/datacite",
       "name": "The DataCite Ontology",
       "prefix": "17907",
+      "short_names": [
+        "datacite"
+      ],
       "uri_format": "http://purl.org/spar/datacite/$1"
     },
     "bioportal": {
@@ -35008,6 +35024,19 @@
       "prefix": "dcterms",
       "version": "1.5"
     },
+    "bartoc": {
+      "description": "This document is an up-to-date, authoritative specification of all metadata terms maintained by the Dublin Core Metadata Initiative. Included are the fifteen terms of the Dublin Core Metadata Element Set, which have also been published as IETF RFC 5013 [RFC5013], ANSI/NISO Standard Z39.85-2007 [NISOZ3985], and ISO Standard 15836:2009 [ISO15836].",
+      "homepage": "http://purl.org/dc/terms/",
+      "name": "DCMI Metadata Terms",
+      "prefix": "725",
+      "short_names": [
+        "dcterms"
+      ],
+      "uri_format": "http://purl.org/dc/terms/$1",
+      "xrefs": {
+        "wikidata": "Q624610"
+      }
+    },
     "biocontext": {
       "prefix": "dcterms",
       "uri_format": "http://purl.org/dc/terms/$1"
@@ -35066,6 +35095,7 @@
     },
     "mappings": {
       "aberowl": "dcterms",
+      "bartoc": "725",
       "biocontext": "dcterms",
       "biolink": "dct",
       "bioportal": "DCTERMS",
@@ -38942,6 +38972,16 @@
     "uri_format": "https://dnasu.org/DNASU/GetVectorDetail.do?vectorid=$1"
   },
   "doap": {
+    "bartoc": {
+      "description": "DOAP is a project to create an XML/RDF vocabulary to describe software projects, and in particular open source projects.\n\nIn addition to developing an RDF schema and examples, the DOAP project aims to provide tool support in all the popular programming languages.",
+      "homepage": "https://github.com/ewilderj/doap/wiki",
+      "name": "Description of a Project vocabulary",
+      "prefix": "17919",
+      "short_names": [
+        "DOAP"
+      ],
+      "uri_format": "http://usefulinc.com/ns/doap#$1"
+    },
     "contact": {
       "email": "edd@usefulinc.com",
       "github": "ewilderj",
@@ -38974,6 +39014,7 @@
       "uri_format": "http://usefulinc.com/ns/doap#$1"
     },
     "mappings": {
+      "bartoc": "17919",
       "lov": "doap",
       "tib": "doap",
       "zazuko": "doap"
@@ -52652,6 +52693,16 @@
       "prefix": "FaBiO",
       "version": "1.5"
     },
+    "bartoc": {
+      "description": "The FRBR-aligned Bibliographic Ontology (FaBiO) is an ontology for describing entities that are published or potentially publishable (e.g., journal articles, conference papers, books), and that contain or are referred to by bibliographic references.",
+      "homepage": "https://www.sparontologies.net/ontologies/fabio",
+      "name": "FaBiO, the FRBR-aligned Bibliographic Ontology",
+      "prefix": "17959",
+      "short_names": [
+        "fabio"
+      ],
+      "uri_format": "http://purl.org/spar/fabio/$1"
+    },
     "biolink": {
       "prefix": "fabio",
       "uri_format": "http://purl.org/spar/fabio/$1"
@@ -52727,6 +52778,7 @@
     },
     "mappings": {
       "aberowl": "FaBiO",
+      "bartoc": "17959",
       "biolink": "fabio",
       "ecoportal": "FABIO",
       "fairsharing": "FAIRsharing.2f3180",
@@ -67732,15 +67784,12 @@
     "bartoc": {
       "description": "The objective of gUFO is to provide a lightweight implementation of the Unified Foundational Ontology (UFO) [1-5] suitable for Semantic Web OWL 2 DL applications. \n\nIntended users are those implementing UFO-based lightweight ontologies that reuse gUFO by specializing and instantiating its elements.\n\nThere are three implications of the use of the term lightweight. First of all, we have employed little expressive means in an effort to retain computational properties for the resulting OWL ontology. Second, we have selected a subset of UFO-A [1, 2] and UFO-B [3] to include here. In particular, there is minimalistic support for UFO-B (only that which is necessary to establish the participation of objects in events and to capture historical dependence between events). Third, a lightweight ontology, differently from a reference ontology, is designed with the purpose of providing an implementation artifact to structure a knowledge base (or knowledge graph). This has driven a number of pragmatic implementation choices which are discussed in comments annotated to the various elements of this implementation. \n\nThe 'g' in gUFO stands for gentle. At the same time, \\\"gufo\\\" is the Italian word for \\\"owl\\\".\n\nFor background information on the reference ontology on which this implementation is based, see: \n\n1. G. Guizzardi, G. Wagner, J. P. A. Almeida, R. S. S. Guizzardi, “Towards ontological foundations for conceptual modeling: The unified foundational ontology (UFO) story,” Applied Ontology (Online), vol. 10, p. 259–271, 2015. <http://dx.doi.org/10.3233/ao-150157>\n2. G. Guizzardi, Ontological Foundations for Structural Conceptual Models,\nPhD Thesis, University of Twente, The Netherlands, 2005. <https://research.utwente.nl/en/publications/ontological-foundations-for-structural-conceptual-models>\n3. G. Guizzardi, G. Wagner, R. A. Falbo, R. S. S. Guizzardi, and J. P. A. Almeida, “Towards Ontological Foundations for the Conceptual Modeling of Events,” in Proc. 32th International Conference, ER 2013, 2013, p. 327–341. <https://doi.org/10.1007/978-3-642-41924-9_27>\n4. G. Guizzardi, C. M. Fonseca, A. B. Benevides, J. P. A. Almeida, D. Porello, T. P. Sales, “Endurant Types in Ontology-Driven Conceptual Modeling: Towards OntoUML 2.0,” in Conceptual Modeling – 37th International Conference, ER 2018, 2018, p. 136–150. <https://doi.org/10.1007/978-3-030-00847-5_12>\n5. C. M. Fonseca, D. Porello, G. Guizzardi, J. P. A. Almeida, and N. Guarino, “Relations in ontology-driven conceptual modeling,” in 38th International Conference on Conceptual Modeling (ER 2019), LNCS, 2019. v. 11788, 2019, p. 1–15. <http://dx.doi.org/10.1007/978-3-030-33223-5_4>\n\nCite this work as: \n\nJ. P. A. Almeida, G. Guizzardi, T. P. Sales, R. A. Falbo, \\\"gUFO: A Lightweight Implementation of the Unified Foundational Ontology (UFO)\\\", 2019, http://purl.org/nemo/doc/gufo\n\nThis work is distributed under Creative Commons Attribution License CC BY 4.0 <https://creativecommons.org/licenses/by/4.0/legalcode>.\n\nFor the source repository, see: <https://github.com/nemo-ufes/gufo>",
       "homepage": "https://nemo-ufes.github.io/gufo/",
-      "license": {
-        "spdx": "CC-BY-4.0",
-        "url": "http://creativecommons.org/licenses/by/4.0/"
-      },
       "name": "gUFO: A Lightweight Implementation of the Unified Foundational Ontology (UFO)",
       "prefix": "19064",
       "short_names": [
         "gUFO"
-      ]
+      ],
+      "uri_format": "http://purl.org/nemo/gufo#$1"
     },
     "contact": {
       "github": "jpalmeida",
@@ -73659,7 +73708,10 @@
       "description": "The Information Artifact Ontology (IAO) is a new ontology of information entities, originally driven by work by the OBI digital entity and realizable information entity branch.\n\nAn information artifact is, loosely, a dependent continuant or its bearer that is created as the result of one or more intentional processes. Examples: uniprot, the english language, the contents of this document or a printout of it, the temperature measurements from a weather balloon.",
       "homepage": "http://code.google.com/p/information-artifact-ontology/",
       "name": "Information Artifact Ontology",
-      "prefix": "583"
+      "prefix": "583",
+      "short_names": [
+        "IAO"
+      ]
     },
     "biocontext": {
       "prefix": "IAO",
@@ -80839,12 +80891,11 @@
     "bartoc": {
       "description": "The IoT lite Ontology is a lightweight ontology to represent Internet of Things resources, entities and services. The lightweight allow the representation and use of IoT platforms without consuming excessive processing time when querying the ontology. However it is also a meta ontology that can be extended in order to represent IoT concepts in a more detail way in different domains.",
       "homepage": "http://purl.oclc.org/NET/UNIS/fiware/iot-lite",
-      "license": {
-        "spdx": "CC-BY-3.0",
-        "url": "http://creativecommons.org/licenses/by/3.0/"
-      },
-      "name": "IoT lite Ontology",
+      "name": "IoT-lite Ontology",
       "prefix": "18015",
+      "short_names": [
+        "iotlite"
+      ],
       "uri_format": "http://purl.oclc.org/NET/UNIS/fiware/iot-lite#$1"
     },
     "contributor": {
@@ -85850,7 +85901,9 @@
     ],
     "synonyms": [
       "lcnaf",
-      "lcnafid"
+      "lcnafid",
+      "loc.subject",
+      "loc.subjects"
     ],
     "uri_format": "https://id.loc.gov/authorities/$1",
     "wikidata": {
@@ -87740,12 +87793,12 @@
     "example": "demographicTerms",
     "github_request_issue": 1980,
     "homepage": "https://id.loc.gov/",
+    "keywords": [
+      "registry"
+    ],
     "license": "CC0-1.0",
-    "mappings": {
-      "wikidata": "P244"
-    },
-    "name": "Library of Congress Linked Data Service",
-    "publications": [],
+    "name": "Library of Congress Vocabulary",
+    "uri_format": "http://id.loc.gov/vocabulary/$1",
     "wikidata": {
       "prefix": "P244"
     }
@@ -87782,7 +87835,51 @@
     ],
     "uri_format": "https://www.loc.gov/preservation/digital/formats/fdd/$1"
   },
+  "loc.mediatypes": {
+    "bartoc": {
+      "description": "Media Types Scheme is derived from a controlled list of coded values representing content types principally used in RDA cataloging.",
+      "homepage": "http://id.loc.gov/vocabulary/mediaTypes",
+      "name": "Library of Congress Media Types Scheme",
+      "prefix": "1814"
+    },
+    "mappings": {
+      "bartoc": "1814"
+    },
+    "part_of": "loc",
+    "uri_format": "http://id.loc.gov/vocabulary/mediaTypes/$1"
+  },
+  "loc.organizations": {
+    "bartoc": {
+      "description": "This list includes terms that describe general categories, or genres that may be applied to various types of information resources. It has been compiled from controlled lists of values in various data elements in the MARC 21 Format for Bibliographic Data.",
+      "homepage": "http://id.loc.gov/vocabulary/marcgt",
+      "name": "Library of Congress MARC Genre Terms",
+      "prefix": "18902"
+    },
+    "mappings": {
+      "bartoc": "18902"
+    },
+    "part_of": "loc",
+    "uri_format": "http://id.loc.gov/vocabulary/marcgt/$1"
+  },
+  "loc.preservation": {
+    "bartoc": {
+      "description": "An umbrella scheme to collocate all the preservation vocabularies.",
+      "homepage": "http://id.loc.gov/vocabulary/preservation",
+      "name": "Preservation Schemes",
+      "prefix": "1815"
+    },
+    "mappings": {
+      "bartoc": "1815"
+    },
+    "uri_format": "http://id.loc.gov/vocabulary/preservation/$1"
+  },
   "loc.relator": {
+    "bartoc": {
+      "description": "The purpose of this list of relator terms and associated codes is to allow the relationship between an agent and a resource to be designated in bibliographic records.",
+      "homepage": "http://id.loc.gov/vocabulary/relators",
+      "name": "MARC Code List for Relators",
+      "prefix": "18089"
+    },
     "contributor": {
       "email": "cthoyt@gmail.com",
       "github": "cthoyt",
@@ -87793,7 +87890,11 @@
     "download_rdf": "https://id.loc.gov/download/vocabulary/relators.skosrdf.ttl.gz",
     "example": "arc",
     "homepage": "http://id.loc.gov/vocabulary/relators",
+    "mappings": {
+      "bartoc": "18089"
+    },
     "name": "Library of Congress Relator",
+    "part_of": "loc",
     "rdf_uri_format": "http://id.loc.gov/vocabulary/relators/$1",
     "uri_format": "https://id.loc.gov/vocabulary/relators/$1"
   },
@@ -87819,7 +87920,21 @@
       "data classification"
     ],
     "name": "Library of Congress Resource Types Scheme",
+    "part_of": "loc",
     "uri_format": "http://id.loc.gov/vocabulary/resourceTypes/$1"
+  },
+  "loc.subjectschemes": {
+    "bartoc": {
+      "description": "Controlled list of Subject Schemes",
+      "homepage": "http://id.loc.gov/vocabulary/subjectSchemes",
+      "name": "Library of Congress Subject Schemes",
+      "prefix": "18899"
+    },
+    "mappings": {
+      "bartoc": "18899"
+    },
+    "part_of": "loc",
+    "uri_format": "http://id.loc.gov/vocabulary/subjectSchemes/$1"
   },
   "locn": {
     "example": "Address",
@@ -141133,12 +141248,14 @@
       "version": "3.4"
     },
     "bartoc": {
+      "description": "A structured data vocabulary (schema) for the web. It was created by major search engines like Google, Bing, Yahoo!, and Yandex to help webmasters provide search engines with clear, structured information about their websites' content.",
       "homepage": "http://schema.org/",
       "name": "Schema.org vocabulary",
       "prefix": "18250",
       "short_names": [
         "schema"
-      ]
+      ],
+      "uri_format": "https://schema.org/$1"
     },
     "biodivportal": {
       "contact": {
@@ -148362,6 +148479,9 @@
       "name": "SPDX License List",
       "pattern": "^.+$",
       "prefix": "20514",
+      "short_names": [
+        "spdx"
+      ],
       "uri_format": "https://spdx.org/licenses/$1"
     },
     "contact": {
