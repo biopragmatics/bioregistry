@@ -21,6 +21,26 @@
     "name": "ABCD Base Ontology",
     "tracker": "https://github.com/tdwg/abcd/issues"
   },
+  "ac": {
+    "artifacts": [
+      {
+        "type": "rdf",
+        "url": "https://raw.githubusercontent.com/AudioCommons/ac-ontology/master/aco.ttl"
+      }
+    ],
+    "description": "The Audio Commons Ontology has been created in the context of the European project [Audio Commons](https://www.audiocommons.org/), which were aimed at favouring sharing and reuse of audio content (both of musical and non-musical nature), specially using [Creative Commons](https://creativecommons.org/) licenses.\n\nIt is designed specifically to integrate access to multiple heterogeneously structured audio content providers. In particular the following ones have been considered in the project:\n- [Freesound](https://freesound.org/), a collaborative database of Creative Commons Licensed sounds;\n- [Jamendo](https://www.jamendo.com/), a music website for independent artists;\n- [Europeana Sounds](https://www.eusounds.eu/), a European project collecting and sharing data from several archives of sounds and sound-related media;\n- [Internet Archive](https://archive.org/), a non-profit library of millions of freely accessible media contents.\n\n### The base model\n<center> ![A diagram showing the entities Work, Expression, Manifestation, Item](./img/FRBR-Group-1-entities-and-basic-relations.svg.png) </center>\nThe Audio Commons ontology is based on [Functional Requirements for Bibliographic Records (FRBR)](https://en.wikipedia.org/wiki/Functional_Requirements_for_Bibliographic_Records), a bibliographic model designed for user tasks of retrieval and access in online library catalogues and bibliographic databases. FRBR distinguish the products of intellectual or artistic endeavor in four main classes: work, expression, manifestation, item. It is available as RDF vocabulary at https://vocab.org/frbr/core. For further information on FRBR, check the [standard](https://repository.ifla.org/handle/123456789/811).\n\nAnother important model related to audio is the [Music Ontology](http://musicontology.com/), which is also based on the FRBR model. Our ontology is more generic than the Music Ontology but is interoperable with it to support the specificities of music-related audio content.\n\nThe Audio Commons ontology works also in conjunction with\n- [Dublin Core](https://www.dublincore.org/specifications/dublin-core/dcmi-terms/) for basic metadata,\n- [EBU Core](https://www.ebu.ch/metadata/ontologies/ebucore/) for technical properties of audio files,\n- [SKOS](https://www.w3.org/TR/skos-primer/) to support taxonomic classifications,\n- [Creative Commons Licensing schema](https://creativecommons.org/ns) to represent media licensing,\n- [Event ontology](http://motools.sf.net/event/event.html) for the formalisation of events,\n- [Audio Features Ontology](https://w3id.org/afo/onto/) for the characterisation of audio features.\n\n### Ontology overview\n\n![A diagram showing the main classes of the Audio Commons ontology](./img/AC-Ontology-Skeleton.png)\n\nThe figure above shows the most general classes and properties of the Audio Commons ontology and their relationship with classes of the FRBR and the Music Ontology:\n- **`ac:AudioExpression`**, the specific intellectual or artistic form that a work takes each time it is _realised_, in the audio domain, e.g., the recording or synthesis of music or sounds;\n- **`ac:AudioManifestation`**, the physical embodiment of an audio expression, e.g., a musical track, a sound, an album; \n- **`ac:AudioItem`**, a single exemplar of an audio manifestation, e.g., a copy of a CD or a specific media file.\n\nThe FRBR class Work, representing a distinct intellectual or artistic creation on a more conceptual level, has not been specialised in Audio Commons.\n\nThe Audio Commons ontology provides a generic schema for audio classification through the property **`ac:audioCategory`** that associates any audio expression, manifestation, or item to some generic **`ac:AudioCategory`**. These two terms can be specialised to provide spefic categorisations.\n\n### Manifestations: audio clips and collections\n\n![A diagram showing the main classes of the Audio Commons ontology](./img/AC-Ontology-Manifestation.png)\n\nThe figure above shows classes and properties related to audio manifestations. An instance of **`ac:AudioClip`**, a subclass of `ac:AudioManifestation`, is any audio segment that has been published in some form or uploaded for consumption, for example, a track in a music label's repository or a sound in an audio repository, library or archive.\n\nThe class **`ac:AudioCollection`**, another subclass of `ac:AudioManifestation`, is used to represent collections of audio clips. The class **`ac:AudioCollectionNode`** is used to represent single nodes of a collection, offering local information like the index in the collection and pointers to previous and next nodes. The separation between the collection node and its actual content (e.g., an `ac:AudioClip`) permits the same content to be shared in multiple collections.\n\nThe content of each node of a collection is not limited to an `ac:AudioClip`, but may contain any `ac:AudioManifestation`. Collections can thus contain other collections to support specific cases, e.g. a mapping to the Music Ontology model where an `mo:Release` can contain multiple `mo:Record`(s) that can in turn contain multiple `mo:Track`(s).\n### Items: audio files\n![A diagram showing ac:Item class and related class and properties](./img/AC-Ontology-Item.png)\n\nAn `ac:AudioItem` is a concrete exemplar of an audio manifestation. In our domain, the main exemplars are the actual audio files. \n\nThe corresponding class **`ac:AudioFile`** is a subclass of `ac:AudioItem`. It is subclass of `ebu:MediaResource` too and the corresponging properties of EBU Core can be used to describe the file (e.g., `ebu:hasEncodingFormat`, `ebu:fileSize`).\n\n### Expressions: audio signals\n![A diagram showing ac:Expression class and related class and properties](./img/AC-Ontology-Expression.png)\n\nWhile `ac:AudioFile` represents a concrete file encoded in a certain format, **`ac:DigitalSignal`** is the representation of the corresponding digital signal. `ac:DigitalSignal` is a subclass of `ac:MusicalExpression`. \n\nThe data properties `ac:sampleRate`, `ac:bitsPerSample`, and `ac:channels`, associate a signal with its basic features specific to digital representations.\n\nThe property `ac:publicationOf` can be used to associate an `ac:AudioClip` with the corresponding digital signal. The property `ac:encodes` instead, associates an `ac:AudioFile` with the encoded digital signal.\n\n### Events: recording/syntesis\n![A diagram showing ac:SignalProduction class and related class and properties!](./img/AC-Ontology-SignalProduction.png)\n\nThe description of temporal events is crucial to formalise and document transitions in the workflow of audio production and publication. The class `event:Event` of the Event Ontology is thus specialised for specific actions that are interesting for the audio domain.\n\nUsing the `event:Event` class, details of an event such as its location in time and space, its factor and its products may be explicitly described. Moreover, events can be composed using the property `event:sub_event`, to build complex events.\n\nThe class `ac:SignalProduction` represents the act of producing a `ac:Signal`, which could be either an `ac:AnalogSignal` or a `ac:DigitalSignal`. This is complemented by **`ac:Recording`**, representing the process of recording a sound (`ac:Sound`) or the product of **`ac:Synthesis`**, in case of artificially generated sounds. \n\n### Events (continued): publication\n![A diagram showing ac:Publication class and related class and properties!](./img/AC-Ontology-Publication.png)\n\nThe event **`ac:AudioPublication`** represents the public release of a piece of work, e.g., the release of a new album by a band.\n\n### Usage Example\n![A diagram showing an example of ontology usage!](./img/AC_Example-AudioClip.png)\n\nThe figure above shows an example of use of the Audio Commons ontology to represent a sound from the Freesound database. For simplicity only the classes `ac:AudioClip`, `ac:AudioFile`, and `ac:AudioCategory` are used in this case.\n",
+    "homepage": "https://audiocommons.github.io/ac-ontology/aco.html",
+    "keywords": [
+      "NFDI4ING",
+      "engineering"
+    ],
+    "license": {
+      "spdx": "CC0-1.0",
+      "url": "https://github.com/AudioCommons/ac-ontology/blob/master/LICENSE"
+    },
+    "name": "The Audio Commons Ontology",
+    "uri_format": "https://w3id.org/ac-ontology/aco#$1"
+  },
   "acsubtype": {
     "artifacts": [
       {
@@ -166,6 +186,7 @@
     "homepage": "https://github.com/emmo-repo/domain-atomistic",
     "keywords": [
       "NFDI4ING",
+      "NFDI-MatWerk",
       "engineering"
     ],
     "license": {
@@ -212,6 +233,7 @@
     },
     "keywords": [
       "NFDI4ING",
+      "NFDI-MatWerk",
       "engineering",
       "electrical engineering"
     ],
@@ -365,7 +387,8 @@
       "Foundational Ontologies",
       "DataPLANT",
       "FAIRmat",
-      "NFDIxCS"
+      "NFDIxCS",
+      "NFDI-MatWerk"
     ],
     "license": {
       "name": "CC-BY",
@@ -569,7 +592,7 @@
     ],
     "description": "An import of all the Common Core mid-level ontologies into a single file so that content is easy to view. The All Core Ontology is not an ontology in the sense it contains no unique content. As such it should not be added to, but can be extended from.",
     "extras": {
-      "version.iri": "https://www.commoncoreontologies.org/2026-04-04/AllCoreOntology"
+      "version.iri": "https://www.commoncoreontologies.org/2026-08-13/AllCoreOntology"
     },
     "homepage": "https://www.cubrc.org/index.php/data-science-and-information-fusion/ontology",
     "keywords": [
@@ -669,6 +692,7 @@
     "homepage": "https://w3id.org/emmo/domain/characterisation-methodology/chameo",
     "keywords": [
       "NFDI4ING",
+      "NFDI-MatWerk",
       "engineering",
       "material science"
     ],
@@ -690,7 +714,7 @@
     ],
     "description": "ChEBI (Chemical Entities of Biological Interest) is a free dictionary of small molecular entities, including distinct atoms, molecules, ions, radicals, and complexes. These entities can be natural or synthetic, used in or affecting biological processes. The term \"small\" excludes genome-encoded entities like nucleic acids and proteins. ChEBI also includes classes of molecular entities and their parts, such as substituent groups or atoms.",
     "extras": {
-      "version.iri": "http://purl.obolibrary.org/obo/chebi/253/chebi.owl"
+      "version.iri": "http://purl.obolibrary.org/obo/chebi/254/chebi.owl"
     },
     "homepage": "http://www.ebi.ac.uk/chebi",
     "keywords": [
@@ -698,6 +722,7 @@
       "ESS",
       "DataPLANT",
       "NFDI4CAT",
+      "NFDI-MatWerk",
       "chemistry",
       "earth sciences"
     ],
@@ -762,7 +787,7 @@
     ],
     "description": "CHEBI provides a distinct role hierarchy. Chemicals in the structural hierarchy are connected via a 'has role' relation. CHIRO provides links from these roles to useful other classes in other ontologies. This will allow direct connection between chemical structures (small molecules, drugs) and what they do. This could be formalized using 'capable of', in the same way Uberon and the Cell Ontology link structures to processes.",
     "extras": {
-      "version.iri": "http://purl.obolibrary.org/obo/chiro/releases/2015-11-23/chiro.owl"
+      "version.iri": "http://purl.obolibrary.org/obo/chiro/releases/2026-08-24/chiro.owl"
     },
     "homepage": "https://github.com/obophenotype/chiro",
     "keywords": [
@@ -847,6 +872,7 @@
     },
     "keywords": [
       "NFDI4CAT",
+      "NFDI-MatWerk",
       "material science",
       "physics"
     ],
@@ -1224,6 +1250,12 @@
     "uri_format": "https://w3id.org/tib/datacite/class/$1"
   },
   "dcterms": {
+    "artifacts": [
+      {
+        "type": "rdf",
+        "url": "https://www.dublincore.org/specifications/dublin-core/dcmi-terms/dublin_core_terms.rdf"
+      }
+    ],
     "description": "This document is an up-to-date specification of all metadata terms maintained by the Dublin Core Metadata Initiative, including properties, vocabulary encoding schemes, syntax encoding schemes, and classes.",
     "homepage": "http://dublincore.org/specifications/dublin-core/dcmi-terms/2020-01-20/",
     "keywords": [
@@ -1758,7 +1790,7 @@
     },
     "description": "The Experimental Factor Ontology (EFO) provides a systematic description of many experimental variables available in EBI databases, and for projects such as the NHGRI-EBI GWAS catalog. It combines parts of several biological ontologies, such as UBERON anatomy, ChEBI chemical compounds, Cell Ontology and the Monarch Disease Ontology (MONDO). The scope of EFO is to support the annotation, analysis and visualization of data handled by many groups at the EBI and as the core ontology for Open Targets.",
     "extras": {
-      "version.iri": "http://www.ebi.ac.uk/efo/releases/v3.92.0/efo.owl"
+      "version.iri": "http://www.ebi.ac.uk/efo/releases/v3.93.0/efo.owl"
     },
     "homepage": "https://www.ebi.ac.uk/efo/",
     "keywords": [
@@ -1845,6 +1877,7 @@
     "keywords": [
       "NFDI4ING",
       "NFDI4CAT",
+      "NFDI-MatWerk",
       "material science"
     ],
     "license": {
@@ -1874,31 +1907,6 @@
     },
     "name": "Energy Market Roles ontology",
     "uri_format": "http://www.purl.org/dabgeo/conceptual/energymarketroles#$1"
-  },
-  "enm": {
-    "artifacts": [
-      {
-        "type": "owl",
-        "url": "http://enanomapper.github.io/ontologies/enanomapper.owl"
-      }
-    ],
-    "description": "The eNanoMapper project (https://www.enanomapper.net/), NanoCommons project (https://www.nanocommons.eu/) and ACEnano project (http://acenano-project.eu/) are creating a pan-European computational infrastructure for toxicological data management for ENMs, based on semantic web standards and ontologies. This ontology is an application ontology targeting the full domain of nanomaterial safety assessment. It re-uses several other ontologies including the NPO, CHEMINF, ChEBI, and ENVO.",
-    "extras": {
-      "version.iri": "http://enanomapper.github.io/ontologies/releases/10.0/enanomapper.owl"
-    },
-    "homepage": "https://doi.org/10.1186/s13326-015-0005-5",
-    "keywords": [
-      "NFDI4CHEM",
-      "chemistry"
-    ],
-    "license": {
-      "name": "CC-BY 3.0",
-      "spdx": "CC-BY-3.0",
-      "url": "https://creativecommons.org/licenses/by/3.0/"
-    },
-    "name": "eNanoMapper ontology",
-    "tracker": "https://github.com/enanomapper/ontologies/issues",
-    "uri_format": "http://purl.enanomapper.net/onto/ENM_$1"
   },
   "envo": {
     "artifacts": [
@@ -2148,7 +2156,7 @@
     },
     "description": "The Flora Phenotype Ontology (FLOPO) is an ontology of phenotypes reported in Floras. The original version was developed at the pro-iBiosphere Hackathon in Leiden. This is the pre-classified version of the ontology. The Flora Phenotype Ontology is generated from the Flora Malesiana, Flora Gabon, Flora of Central Africa, and a collection of Kew's African Floras. Every class in the ontology has at least one taxon annotation. The (draft) taxon annotation are available at http://jagannath.pdn.cam.ac.uk/plant/flora/clean-rerun/ .",
     "extras": {
-      "version.iri": "http://purl.obolibrary.org/obo/flopo/releases/2026-07-15/flopo.owl"
+      "version.iri": "http://purl.obolibrary.org/obo/flopo/releases/2026-07-31/flopo.owl"
     },
     "keywords": [
       "DataPLANT",
@@ -2177,6 +2185,28 @@
     "name": "FMI-Ontology",
     "tracker": "https://github.com/UdSAES/fmi2rdf/issues",
     "uri_format": "https://purl.org/fmi-ontology#$1"
+  },
+  "foaf": {
+    "artifacts": [
+      {
+        "type": "rdf",
+        "url": "https://xmlns.com/foaf/spec/index.rdf"
+      }
+    ],
+    "description": "The Friend of a Friend (FOAF) RDF vocabulary, described using W3C RDF Schema and the Web Ontology Language.",
+    "homepage": "http://xmlns.com/foaf/0.1/",
+    "keywords": [
+      "NFDI4ING",
+      "ESS",
+      "Digital Planning and Construction",
+      "FID BAUdigital"
+    ],
+    "license": {
+      "spdx": "CC-BY-1.0",
+      "url": "https://creativecommons.org/licenses/by/1.0/"
+    },
+    "name": "Friend of a Friend (FOAF) vocabulary",
+    "uri_format": "http://xmlns.com/foaf/0.1/$1"
   },
   "format": {
     "artifacts": [
@@ -2281,7 +2311,7 @@
     "artifacts": [
       {
         "type": "rdf",
-        "url": "https://opengeospatial.github.io/ogc-geosparql/geosparql11/geo.ttl"
+        "url": "https://raw.githubusercontent.com/opengeospatial/geosemantics-semantic-resources/refs/heads/main/resources/geosparql-swg/geosparql-1.1/ontologies/geo.ttl"
       }
     ],
     "description": "An RDF/OWL vocabulary for representing spatial information",
@@ -2402,7 +2432,7 @@
     },
     "description": "The Gene Ontology (GO) provides a framework and set of concepts for describing the functions of gene products from all organisms.",
     "extras": {
-      "version.iri": "http://purl.obolibrary.org/obo/go/releases/2026-06-15/go.owl"
+      "version.iri": "http://purl.obolibrary.org/obo/go/releases/2026-07-26/go.owl"
     },
     "homepage": "http://geneontology.org/",
     "keywords": [
@@ -2597,7 +2627,8 @@
       "NFDI4ING",
       "NFDI4CHEM",
       "FAIR Data Spaces",
-      "NFDIxCS"
+      "NFDIxCS",
+      "NFDI-MatWerk"
     ],
     "license": {
       "name": "CC-BY",
@@ -2790,6 +2821,7 @@
     "homepage": "https://oagi.org/pages/Released-Ontologies",
     "keywords": [
       "NFDI4ING",
+      "NFDI-MatWerk",
       "engineering"
     ],
     "license": {
@@ -3002,6 +3034,7 @@
       "FID BAUdigital",
       "Digital Planning and Construction",
       "NFDI4ING",
+      "NFDI-MatWerk",
       "engineering"
     ],
     "license": {
@@ -3080,6 +3113,7 @@
     "homepage": "https://liusemweb.github.io/mdo/full/1.0/index.html#namespaces",
     "keywords": [
       "NFDI4ING",
+      "NFDI-MatWerk",
       "material science"
     ],
     "license": {
@@ -3175,7 +3209,7 @@
     ],
     "description": "PSI-MOD is an ontology consisting of terms that describe protein chemical modifications, logically linked by an is_a relationship in such a way as to form a direct acyclic graph (DAG). The PSI-MOD ontology has more than 45 top-level nodes, and provides alternative hierarchical paths for classifying protein modifications either by the molecular structure of the modification, or by the amino acid residue that is modified.",
     "extras": {
-      "version.iri": "http://purl.obolibrary.org/obo/mod/1.037.0/mod.owl"
+      "version.iri": "http://purl.obolibrary.org/obo/mod/1.038.0/mod.owl"
     },
     "homepage": "http://www.psidev.info/MOD",
     "keywords": [
@@ -3214,6 +3248,7 @@
       "url": "https://spdx.org/licenses/CC-BY-4.0"
     },
     "name": "MoDalia Ontology",
+    "tracker": "https://git.rwth-aachen.de/dalia/dalia-ontology/-/work_items",
     "uri_format": "https://purl.org/ontology/modalia#$1"
   },
   "modsci": {
@@ -3276,7 +3311,7 @@
     ],
     "description": "A structured controlled vocabulary for the annotation of experiments concerned with proteomics mass spectrometry.",
     "extras": {
-      "version.iri": "http://purl.obolibrary.org/obo/ms/4.1.256/ms.owl"
+      "version.iri": "http://purl.obolibrary.org/obo/ms/4.1.258/ms.owl"
     },
     "homepage": "http://www.psidev.info/groups/controlled-vocabularies",
     "keywords": [
@@ -3372,6 +3407,7 @@
     "homepage": "https://ise-fizkarlsruhe.github.io/mwo/",
     "keywords": [
       "NFDI4ING",
+      "NFDI-MatWerk",
       "material science"
     ],
     "license": {
@@ -3383,30 +3419,10 @@
     "tracker": "https://github.com/ISE-FIZKarlsruhe/mwo/issues",
     "uri_format": "http://purls.helmholtz-metadaten.de/mwo#$1"
   },
-  "n0": {
-    "artifacts": [
-      {
-        "type": "rdf",
-        "url": "https://raw.githubusercontent.com/AudioCommons/ac-ontology/master/aco.ttl"
-      }
-    ],
-    "description": "The Audio Commons Ontology has been created in the context of the European project [Audio Commons](https://www.audiocommons.org/), which were aimed at favouring sharing and reuse of audio content (both of musical and non-musical nature), specially using [Creative Commons](https://creativecommons.org/) licenses.\n\nIt is designed specifically to integrate access to multiple heterogeneously structured audio content providers. In particular the following ones have been considered in the project:\n- [Freesound](https://freesound.org/), a collaborative database of Creative Commons Licensed sounds;\n- [Jamendo](https://www.jamendo.com/), a music website for independent artists;\n- [Europeana Sounds](https://www.eusounds.eu/), a European project collecting and sharing data from several archives of sounds and sound-related media;\n- [Internet Archive](https://archive.org/), a non-profit library of millions of freely accessible media contents.\n\n### The base model\n<center> ![A diagram showing the entities Work, Expression, Manifestation, Item](./img/FRBR-Group-1-entities-and-basic-relations.svg.png) </center>\nThe Audio Commons ontology is based on [Functional Requirements for Bibliographic Records (FRBR)](https://en.wikipedia.org/wiki/Functional_Requirements_for_Bibliographic_Records), a bibliographic model designed for user tasks of retrieval and access in online library catalogues and bibliographic databases. FRBR distinguish the products of intellectual or artistic endeavor in four main classes: work, expression, manifestation, item. It is available as RDF vocabulary at https://vocab.org/frbr/core. For further information on FRBR, check the [standard](https://repository.ifla.org/handle/123456789/811).\n\nAnother important model related to audio is the [Music Ontology](http://musicontology.com/), which is also based on the FRBR model. Our ontology is more generic than the Music Ontology but is interoperable with it to support the specificities of music-related audio content.\n\nThe Audio Commons ontology works also in conjunction with\n- [Dublin Core](https://www.dublincore.org/specifications/dublin-core/dcmi-terms/) for basic metadata,\n- [EBU Core](https://www.ebu.ch/metadata/ontologies/ebucore/) for technical properties of audio files,\n- [SKOS](https://www.w3.org/TR/skos-primer/) to support taxonomic classifications,\n- [Creative Commons Licensing schema](https://creativecommons.org/ns) to represent media licensing,\n- [Event ontology](http://motools.sf.net/event/event.html) for the formalisation of events,\n- [Audio Features Ontology](https://w3id.org/afo/onto/) for the characterisation of audio features.\n\n### Ontology overview\n\n![A diagram showing the main classes of the Audio Commons ontology](./img/AC-Ontology-Skeleton.png)\n\nThe figure above shows the most general classes and properties of the Audio Commons ontology and their relationship with classes of the FRBR and the Music Ontology:\n- **`ac:AudioExpression`**, the specific intellectual or artistic form that a work takes each time it is _realised_, in the audio domain, e.g., the recording or synthesis of music or sounds;\n- **`ac:AudioManifestation`**, the physical embodiment of an audio expression, e.g., a musical track, a sound, an album; \n- **`ac:AudioItem`**, a single exemplar of an audio manifestation, e.g., a copy of a CD or a specific media file.\n\nThe FRBR class Work, representing a distinct intellectual or artistic creation on a more conceptual level, has not been specialised in Audio Commons.\n\nThe Audio Commons ontology provides a generic schema for audio classification through the property **`ac:audioCategory`** that associates any audio expression, manifestation, or item to some generic **`ac:AudioCategory`**. These two terms can be specialised to provide spefic categorisations.\n\n### Manifestations: audio clips and collections\n\n![A diagram showing the main classes of the Audio Commons ontology](./img/AC-Ontology-Manifestation.png)\n\nThe figure above shows classes and properties related to audio manifestations. An instance of **`ac:AudioClip`**, a subclass of `ac:AudioManifestation`, is any audio segment that has been published in some form or uploaded for consumption, for example, a track in a music label's repository or a sound in an audio repository, library or archive.\n\nThe class **`ac:AudioCollection`**, another subclass of `ac:AudioManifestation`, is used to represent collections of audio clips. The class **`ac:AudioCollectionNode`** is used to represent single nodes of a collection, offering local information like the index in the collection and pointers to previous and next nodes. The separation between the collection node and its actual content (e.g., an `ac:AudioClip`) permits the same content to be shared in multiple collections.\n\nThe content of each node of a collection is not limited to an `ac:AudioClip`, but may contain any `ac:AudioManifestation`. Collections can thus contain other collections to support specific cases, e.g. a mapping to the Music Ontology model where an `mo:Release` can contain multiple `mo:Record`(s) that can in turn contain multiple `mo:Track`(s).\n### Items: audio files\n![A diagram showing ac:Item class and related class and properties](./img/AC-Ontology-Item.png)\n\nAn `ac:AudioItem` is a concrete exemplar of an audio manifestation. In our domain, the main exemplars are the actual audio files. \n\nThe corresponding class **`ac:AudioFile`** is a subclass of `ac:AudioItem`. It is subclass of `ebu:MediaResource` too and the corresponging properties of EBU Core can be used to describe the file (e.g., `ebu:hasEncodingFormat`, `ebu:fileSize`).\n\n### Expressions: audio signals\n![A diagram showing ac:Expression class and related class and properties](./img/AC-Ontology-Expression.png)\n\nWhile `ac:AudioFile` represents a concrete file encoded in a certain format, **`ac:DigitalSignal`** is the representation of the corresponding digital signal. `ac:DigitalSignal` is a subclass of `ac:MusicalExpression`. \n\nThe data properties `ac:sampleRate`, `ac:bitsPerSample`, and `ac:channels`, associate a signal with its basic features specific to digital representations.\n\nThe property `ac:publicationOf` can be used to associate an `ac:AudioClip` with the corresponding digital signal. The property `ac:encodes` instead, associates an `ac:AudioFile` with the encoded digital signal.\n\n### Events: recording/syntesis\n![A diagram showing ac:SignalProduction class and related class and properties!](./img/AC-Ontology-SignalProduction.png)\n\nThe description of temporal events is crucial to formalise and document transitions in the workflow of audio production and publication. The class `event:Event` of the Event Ontology is thus specialised for specific actions that are interesting for the audio domain.\n\nUsing the `event:Event` class, details of an event such as its location in time and space, its factor and its products may be explicitly described. Moreover, events can be composed using the property `event:sub_event`, to build complex events.\n\nThe class `ac:SignalProduction` represents the act of producing a `ac:Signal`, which could be either an `ac:AnalogSignal` or a `ac:DigitalSignal`. This is complemented by **`ac:Recording`**, representing the process of recording a sound (`ac:Sound`) or the product of **`ac:Synthesis`**, in case of artificially generated sounds. \n\n### Events (continued): publication\n![A diagram showing ac:Publication class and related class and properties!](./img/AC-Ontology-Publication.png)\n\nThe event **`ac:AudioPublication`** represents the public release of a piece of work, e.g., the release of a new album by a band.\n\n### Usage Example\n![A diagram showing an example of ontology usage!](./img/AC_Example-AudioClip.png)\n\nThe figure above shows an example of use of the Audio Commons ontology to represent a sound from the Freesound database. For simplicity only the classes `ac:AudioClip`, `ac:AudioFile`, and `ac:AudioCategory` are used in this case.\n",
-    "homepage": "http://www.audiocommons.org/ac-ontology/aco.html",
-    "keywords": [
-      "NFDI4ING",
-      "engineering"
-    ],
-    "license": {
-      "spdx": "CC0-1.0",
-      "url": "https://github.com/AudioCommons/ac-ontology/blob/master/LICENSE"
-    },
-    "name": "The Audio Commons Ontology",
-    "uri_format": "https://w3id.org/ac-ontology/aco#$1"
-  },
   "n4e": {
     "description": "The ontology and metadata schema for the NFDI4Earth Knowledge Hub. See serializations of this schema as an OWL ontology here:\n  - [RDF/XML](https://nfdi4earth.pages.rwth-aachen.de/knowledgehub/nfdi4earth-kh-schema/ontology.owl.xml)\n  - [RDF/Turtle](https://nfdi4earth.pages.rwth-aachen.de/knowledgehub/nfdi4earth-kh-schema/ontology.owl.ttl)\n  - [RDF/JSON-LD](https://nfdi4earth.pages.rwth-aachen.de/knowledgehub/nfdi4earth-kh-schema/ontology.owl.jsonld)\n  - [RDF/N-Triples](https://nfdi4earth.pages.rwth-aachen.de/knowledgehub/nfdi4earth-kh-schema/ontology.owl.nt)\n",
     "extras": {
-      "version.iri": "https://nfdi4earth.pages.rwth-aachen.de/knowledgehub/nfdi4earth-kh-schema/ontology-v0.40.8.owl.xml"
+      "version.iri": "https://nfdi4earth.pages.rwth-aachen.de/knowledgehub/nfdi4earth-kh-schema/ontology-v0.40.13.owl.xml"
     },
     "homepage": "https://nfdi4earth.de/ontology/",
     "keywords": [
@@ -3458,6 +3474,7 @@
     "homepage": "https://github.com/nexusformat/NeXusOntology",
     "keywords": [
       "FAIRmat",
+      "NFDI-MatWerk",
       "physics"
     ],
     "license": {
@@ -3481,7 +3498,7 @@
     },
     "homepage": "https://ise-fizkarlsruhe.github.io/nfdicore/",
     "keywords": [
-      "Miscellaneous",
+      "NFDI-MatWerk",
       "other subjects"
     ],
     "license": {
@@ -3553,7 +3570,7 @@
     ],
     "description": "An ontology for representing biomedical investigations, including study designs, the collection and preparation of the targets of investigation, assays, instrumentation and reagents used, as well as the data generated and the types of analysis performed on the data to reach conclusions, and their documentation.",
     "extras": {
-      "version.iri": "http://purl.obolibrary.org/obo/obi/2026-05-08/obi.owl"
+      "version.iri": "http://purl.obolibrary.org/obo/obi/2026-07-27/obi.owl"
     },
     "homepage": "http://obi-ontology.org",
     "keywords": [
@@ -3682,7 +3699,7 @@
     "artifacts": [
       {
         "type": "owl",
-        "url": "https://openenergyplatform.org/ontology/oeo/releases/oeo-closure.owl"
+        "url": "https://github.com/OpenEnergyPlatform/ontology/releases/latest/download/oeo-closure.owl"
       }
     ],
     "description": "The Open Energy Ontology is an ontology for all aspects of the energy modelling domain.\nIt is developed in four main modules: 'oeo-model', a module for all entities related to models and modelling; 'oeo-physical', a module for all entities related to the world of energy and energy generation; 'oeo-social', a module for all relevant social and economic aspects of the energy domain; 'oeo-shared', a module to cover entities and relations needed in all of the modules above to prevent them getting implemented multiple times.\nA supplementary module is the oeo-physical-axioms module, which contains general class axioms.",
@@ -3716,6 +3733,7 @@
     "homepage": "https://github.com/enegri/OFM",
     "keywords": [
       "NFDI4ING",
+      "NFDI-MatWerk",
       "engineering"
     ],
     "name": "Ontology for manufacturing and logistics",
@@ -3726,7 +3744,7 @@
     "artifacts": [
       {
         "type": "rdf",
-        "url": "https://raw.githubusercontent.com/ts4nfdi/Wikibase-ts-convert/refs/heads/main/ohdab/OhdAB.ttl"
+        "url": "https://raw.githubusercontent.com/ts4nfdi/Wikibase-ts-convert/refs/heads/main/pipelines/ohdab/out/OhdAB.ttl"
       }
     ],
     "description": "This version of the historical German-language nomenclature for offices and professions (OhdAB) was automatically generated via a script from FactGrid.",
@@ -3761,6 +3779,7 @@
       "NFDI4CHEM",
       "ESS",
       "NFDI4CAT",
+      "NFDI-MatWerk",
       "physics",
       "life sciences, biology",
       "earth sciences"
@@ -4069,6 +4088,7 @@
     },
     "keywords": [
       "NFDI4CAT",
+      "NFDI-MatWerk",
       "material science",
       "computer science"
     ],
@@ -4256,11 +4276,12 @@
     ],
     "description": "The PMD Core Ontology (PMDco) is a comprehensive framework for representing knowledge that encompasses fundamental concepts from the domains of materials science and engineering (MSE). The PMDco has been designed as a mid-level ontology to establish a connection between specific MSE application ontologies and the domain neutral concepts found in established top-level ontologies. The primary goal of the PMDco is to promote interoperability between diverse domains. PMDco's class structure is both understandable and extensible, making it an efficient tool for organizing MSE knowledge. It serves as a semantic intermediate layer that unifies MSE knowledge representations, enabling data and metadata to be systematically integrated on key terms within the MSE domain. With PMDco, it is possible to seamlessly trace data generation. By building on this foundation, PMDco facilitates the integration of data from various sources and the creation of complex workflows. In summary, PMDco is a valuable tool for researchers and practitioners in the MSE domains. It provides a common language for representing and sharing knowledge, allowing for efficient collaboration and promoting interoperability between diverse domains. Its design allows for the systematic integration of data and metadata, enabling seamless traceability of data generation. Overall, PMDco is a crucial step towards a unified and comprehensive understanding of the MSE domain. PMDco at GitHub: https://github.com/materialdigital/core-ontology Documentation: https://materialdigital.github.io/core-ontology/docs/",
     "extras": {
-      "version.iri": "https://w3id.org/pmd/co/3.0.0"
+      "version.iri": "https://w3id.org/pmd/co/3.1.0"
     },
     "homepage": "https://materialdigital.github.io/core-ontology/",
     "keywords": [
       "NFDI4ING",
+      "NFDI-MatWerk",
       "material science",
       "mechanical engineering, energy technology",
       "chemical and environmental engineering"
@@ -4451,7 +4472,8 @@
     "keywords": [
       "NFDI4ING",
       "NFDI4CHEM",
-      "ESS"
+      "ESS",
+      "NFDI-MatWerk"
     ],
     "license": {
       "name": "W3C Software License",
@@ -5239,7 +5261,8 @@
     "keywords": [
       "NFDI4ING",
       "NFDI4CHEM",
-      "ESS"
+      "ESS",
+      "NFDI-MatWerk"
     ],
     "license": {
       "name": "CC BY 4.0",
@@ -5530,6 +5553,7 @@
       "NFDI4CHEM",
       "DataPLANT",
       "NFDIxCS",
+      "NFDI-MatWerk",
       "computer science"
     ],
     "license": {
@@ -5602,6 +5626,7 @@
     "homepage": "https://github.com/snow0815/tribAIn",
     "keywords": [
       "NFDI4ING",
+      "NFDI-MatWerk",
       "engineering"
     ],
     "license": {
@@ -5829,7 +5854,7 @@
     ],
     "description": "The Ontology of Units of Measure models concepts and relations for defining and using measures and units in scientific research. It includes common units like SI units (meter, kilogram) and others like the mile. OM supports the following application areas- Geometry; Mechanics; Thermodynamics; Electromagnetism; Fluid mechanics; Chemical physics; Photometry; Radiometry and Radiobiology; Nuclear physics; Astronomy and Astrophysics; Cosmology; Earth science; Meteorology; Material science; Microbiology; Economics; Information technology and Typography.",
     "extras": {
-      "version.iri": "http://purl.obolibrary.org/obo/uo/releases/2026-01-16/uo.owl"
+      "version.iri": "http://purl.obolibrary.org/obo/uo/releases/2026-07-31/uo.owl"
     },
     "homepage": "https://github.com/bio-ontology-research-group/unit-ontology",
     "keywords": [
@@ -5904,6 +5929,10 @@
     "keywords": [
       "Miscellaneous"
     ],
+    "license": {
+      "spdx": "Unlicense",
+      "url": "https://spdx.org/licenses/Unlicense.html"
+    },
     "name": "VIVO Core Ontology",
     "tracker": "https://github.com/vivo-ontologies/vivo-ontology/issues"
   },

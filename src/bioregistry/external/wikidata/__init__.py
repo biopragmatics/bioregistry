@@ -244,8 +244,8 @@ def _process_record(bindings: Mapping[str, Any]) -> tuple[str, Record] | tuple[N
         ("uri_format", CANONICAL_URI_FORMATS),
         ("uri_format_rdf", CANONICAL_RDF_URI_FORMATS),
     ]:
-        if value := canonicals.get(prefix):
-            bindings[key] = value
+        if prefix in canonicals:
+            bindings[key] = canonicals[prefix]
         # sort by increasing length - the assumption being that the shortest
         # one has the least amount of nonsense, like language tags or extra
         # parameters
