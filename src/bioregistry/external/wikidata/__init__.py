@@ -94,14 +94,14 @@ CONFIG = json.loads(CONFIG_PATH.read_text(encoding="utf-8"))
 SKIP: dict[str, str] = CONFIG["skips"]
 
 RENAMES = {"propLabel": "name", "propDescription": "description"}
-CANONICAL_DATABASES = {
+CANONICAL_DATABASES: dict[str, str | None] = {
     "P6800": "Q87630124",  # -> NCBI Genome
     "P627": "Q48268",  # -> International Union for Conservation of Nature
     "P351": "Q1345229",  # NCBI Gene
     "P4168": "Q112783946",  # Immune epitope database
 }
 
-CANONICAL_HOMEPAGES: dict[str, str] = {
+CANONICAL_HOMEPAGES: dict[str, str | None] = {
     "P6852": "https://www.ccdc.cam.ac.uk",
     "P7224": "http://insecta.pro/catalog",
     "P1761": "http://delta-intkey.com",
@@ -116,7 +116,7 @@ CANONICAL_HOMEPAGES: dict[str, str] = {
     "P3088": "https://taibnet.sinica.edu.tw/home_eng.php",
     "P486": "http://www.nlm.nih.gov",
 }
-CANONICAL_URI_FORMATS = {
+CANONICAL_URI_FORMATS: dict[str, str | None] = {
     "P830": "https://eol.org/pages/$1",
     "P2085": "https://jglobal.jst.go.jp/en/redirect?Nikkaji_No=$1",
     "P604": "https://medlineplus.gov/ency/article/$1.htm",
@@ -134,7 +134,7 @@ CANONICAL_URI_FORMATS = {
     "P696": "https://scicrunch.org/scicrunch/interlex/view/ilx_$1",
     "P244": None,  # need to override since it's wrong
 }
-CANONICAL_RDF_URI_FORMATS = {"P244": None}
+CANONICAL_RDF_URI_FORMATS: dict[str, str | None] = {"P244": None}
 
 # Stuff with miriam IDs that shouldn't
 
@@ -237,14 +237,15 @@ def _process_record(bindings: Mapping[str, Any]) -> tuple[str, Record] | tuple[N
         if not uri_format_rdf.startswith("urn:")
     ]
 
+    canonicals: dict[str, str | None]
     for key, canonicals in [
         ("database", CANONICAL_DATABASES),
         ("homepage", CANONICAL_HOMEPAGES),
         ("uri_format", CANONICAL_URI_FORMATS),
         ("uri_format_rdf", CANONICAL_RDF_URI_FORMATS),
     ]:
-        if prefix in canonicals:
-            bindings[key] = canonicals[prefix]
+        if value := canonicals.get(prefix):
+            bindings[key] = value
         # sort by increasing length - the assumption being that the shortest
         # one has the least amount of nonsense, like language tags or extra
         # parameters
