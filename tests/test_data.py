@@ -458,6 +458,8 @@ class TestRegistry(unittest.TestCase):
                     msg += (
                         f"\nSee: https://www.ebi.ac.uk/ols/ontologies/{entry.ols['prefix']}/terms"
                     )
+                elif homepage := entry.get_homepage():
+                    msg += f"\nSee: {homepage}"
                 example = entry.get_example()
                 if example is None:
                     raise self.fail(msg=f"{prefix} is missing an example local identifier")
