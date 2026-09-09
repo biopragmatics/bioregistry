@@ -95804,7 +95804,7 @@
     "description": "The Library of Congress Linked Data Service (id.loc.gov) provides interactive and machine access to the Library's authority and bibliographic metadata, along with commonly-found standards and vocabularies used and/or maintained by the Library of Congress. Each controlled vocabulary list has a resolvable URI, as does each data value within it. Ontologies for several major data element sets are also available. This includes the LCSH (Library of Congress Subject Headings), the TGM (Thesaurus for Graphic Materials), preservation vocabularies, language and country codes, or the American Folklore Society Ethnographic Thesaurus (AFS Ethnographic Thesaurus) among others.",
     "example": "demographicTerms",
     "github_request_issue": 1980,
-    "homepage": "https://id.loc.gov/",
+    "homepage": "https://id.loc.gov",
     "keywords": [
       "registry"
     ],
@@ -95822,6 +95822,7 @@
       "name": "Library of Congress Carriers",
       "prefix": "18907"
     },
+    "download_rdf": "http://id.loc.gov/vocabulary/carriers.rdf",
     "mappings": {
       "bartoc": "18907"
     },
@@ -95835,6 +95836,7 @@
       "name": "Library of Congress Classification Schemes",
       "prefix": "18900"
     },
+    "download_rdf": "http://id.loc.gov/vocabulary/classSchemes.rdf",
     "mappings": {
       "bartoc": "18900"
     },
@@ -95848,6 +95850,7 @@
       "name": "Library of Congress Content Types",
       "prefix": "18906"
     },
+    "download_rdf": "http://id.loc.gov/vocabulary/contentTypes.rdf",
     "mappings": {
       "bartoc": "18906"
     },
@@ -95861,6 +95864,7 @@
       "name": "Library of Congress MARC Countries",
       "prefix": "18904"
     },
+    "download_rdf": "http://id.loc.gov/vocabulary/countries.rdf",
     "mappings": {
       "bartoc": "18904"
     },
@@ -95874,6 +95878,7 @@
       "name": "Library of Congress Description Conventions",
       "prefix": "18908"
     },
+    "download_rdf": "http://id.loc.gov/vocabulary/descriptionConventions.rdf",
     "mappings": {
       "bartoc": "18908"
     },
@@ -95887,6 +95892,7 @@
       "name": "American Folklore Society Ethnographic Thesaurus",
       "prefix": "130"
     },
+    "download_rdf": "http://id.loc.gov/vocabulary/ethnographicTerms.rdf",
     "mappings": {
       "bartoc": "130"
     },
@@ -95910,6 +95916,7 @@
       "media type"
     ],
     "name": "Library of Congress Format Description Document",
+    "part_of": "loc",
     "pattern": "^fdd\\d+$",
     "providers": [
       {
@@ -95932,6 +95939,7 @@
       "name": "Library of Congress Genre/Form Schemes",
       "prefix": "18903"
     },
+    "download_rdf": "http://id.loc.gov/vocabulary/genreFormSchemes.rdf",
     "mappings": {
       "bartoc": "18903"
     },
@@ -95951,6 +95959,20 @@
     "part_of": "loc",
     "uri_format": "http://id.loc.gov/vocabulary/geographicAreas/$1"
   },
+  "loc.marcgt": {
+    "bartoc": {
+      "description": "This list includes terms that describe general categories, or genres that may be applied to various types of information resources. It has been compiled from controlled lists of values in various data elements in the MARC 21 Format for Bibliographic Data.",
+      "homepage": "http://id.loc.gov/vocabulary/marcgt",
+      "name": "Library of Congress MARC Genre Terms",
+      "prefix": "18902"
+    },
+    "download_rdf": "http://id.loc.gov/vocabulary/marcgt.rdf",
+    "mappings": {
+      "bartoc": "18902"
+    },
+    "part_of": "loc",
+    "uri_format": "http://id.loc.gov/vocabulary/marcgt/$1"
+  },
   "loc.mediatypes": {
     "bartoc": {
       "description": "Media Types Scheme is derived from a controlled list of coded values representing content types principally used in RDA cataloging.",
@@ -95958,6 +95980,7 @@
       "name": "Library of Congress Media Types Scheme",
       "prefix": "1814"
     },
+    "download_rdf": "http://id.loc.gov/vocabulary/mediaTypes.rdf",
     "mappings": {
       "bartoc": "1814"
     },
@@ -95971,6 +95994,7 @@
       "name": "Library of Congress MARC Encoding Level",
       "prefix": "18909"
     },
+    "download_rdf": "http://id.loc.gov/vocabulary/menclvl.rdf",
     "mappings": {
       "bartoc": "18909"
     },
@@ -95984,6 +96008,7 @@
       "name": "Library of Congress MARC File Type",
       "prefix": "18910"
     },
+    "download_rdf": "http://id.loc.gov/vocabulary/mfiletype.rdf",
     "mappings": {
       "bartoc": "18910"
     },
@@ -95997,6 +96022,7 @@
       "name": "Library of Congress MARC Illustrative Content",
       "prefix": "18911"
     },
+    "download_rdf": "http://id.loc.gov/vocabulary/millus.rdf",
     "mappings": {
       "bartoc": "18911"
     },
@@ -96010,6 +96036,7 @@
       "name": "Library of Congress Projection",
       "prefix": "18912"
     },
+    "download_rdf": "http://id.loc.gov/vocabulary/mprojection.rdf",
     "mappings": {
       "bartoc": "18912"
     },
@@ -96023,6 +96050,7 @@
       "name": "Library of Congress Video Format",
       "prefix": "18913"
     },
+    "download_rdf": "http://id.loc.gov/vocabulary/mvidformat.rdf",
     "mappings": {
       "bartoc": "18913"
     },
@@ -96036,6 +96064,7 @@
       "name": "Library of Congress Cultural Heritage Organizations",
       "prefix": "18901"
     },
+    "download_rdf": "http://id.loc.gov/vocabulary/marcgt.rdf",
     "mappings": {
       "bartoc": "18901"
     },
@@ -96049,9 +96078,11 @@
       "name": "Preservation Schemes",
       "prefix": "1815"
     },
+    "download_rdf": "http://id.loc.gov/vocabulary/preservation.rdf",
     "mappings": {
       "bartoc": "1815"
     },
+    "part_of": "loc",
     "uri_format": "http://id.loc.gov/vocabulary/preservation/$1"
   },
   "loc.relator": {
@@ -96094,6 +96125,7 @@
       }
     ],
     "description": "A controlled vocabulary of media resources, such as audio, cartographic, manuscript, multimedia, etc.",
+    "download_rdf": "http://id.loc.gov/vocabulary/resourceTypes.rdf",
     "download_skos": "http://id.loc.gov/vocabulary/resourceTypes.skos.rdf",
     "example": "dig",
     "homepage": "https://id.loc.gov/vocabulary/resourceTypes.html",
@@ -96111,6 +96143,7 @@
       "name": "Library of Congress Subject Schemes",
       "prefix": "18899"
     },
+    "download_rdf": "http://id.loc.gov/vocabulary/subjectSchemes.rdf",
     "mappings": {
       "bartoc": "18899"
     },
