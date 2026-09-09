@@ -22584,10 +22584,7 @@
       "pattern": "^\\d+$",
       "prefix": "P683",
       "uri_format": "https://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:$1",
-      "uri_format_rdf": "http://purl.obolibrary.org/obo/CHEBI_$1",
-      "xrefs": {
-        "miriam": "chebi"
-      }
+      "uri_format_rdf": "http://purl.obolibrary.org/obo/CHEBI_$1"
     }
   },
   "chembank": {
@@ -25502,6 +25499,16 @@
     "uri_format": "https://europepmc.org/article/CTX/$1"
   },
   "cito": {
+    "bartoc": {
+      "description": "CiTO, the Citation Typing Ontology, is an ontology written in OWL 2 DL to enable characterization of the nature or type of citations, both factually and rhetorically, and to permit these descriptions to be published on the Web. The citations characterized may be either direct and explicit (as in the reference list of a journal article), indirect (e.g. a citation to a more recent paper by the same research group on the same topic), or implicit (e.g. as in artistic quotations or parodies, or in cases of plagiarism). CiTO contains the object property cito:cites and its sub-properties, and its inverse property cito:isCitedBy, from the original Citation Typing Ontology, CiTO v1.6. Upon the creation of version 2.0 of CiTO, a number of new sub-properties of cito:cites were added, and the inverse properties of all the sub-properties of cito:cites were created, all of which are sub-properties of cito:isCitedBy. The ontology has also been integrated with the SWAN Discourse Relationships Ontology by making cito:cites a sub-property of http://purl.org/swan/2.0/discourse-relationships/refersTo. Restrictions of domain and range present in the previous version of CiTO were removed from the object properties when creating CiTO v 2.0, permitting its independent use in other contexts, in addition to conventional bibliographic citations.",
+      "homepage": "http://purl.org/spar/cito/",
+      "name": "CiTO, the Citation Typing Ontology",
+      "prefix": "721",
+      "short_names": [
+        "CiTO"
+      ],
+      "uri_format": "http://purl.org/spar/cito/$1"
+    },
     "contributor": {
       "email": "cthoyt@gmail.com",
       "github": "cthoyt",
@@ -25554,6 +25561,7 @@
       "uri_format": "http://purl.org/spar/cito/$1"
     },
     "mappings": {
+      "bartoc": "721",
       "fairsharing": "FAIRsharing.b220d4",
       "lov": "cito",
       "prefixcommons": "cito",
@@ -31299,7 +31307,7 @@
       "name": "TaiBNET ID",
       "pattern": "^([1-9]\\d{5})$",
       "prefix": "P3088",
-      "uri_format": "https://taibnet.sinica.edu.tw/chi/taibnet_species_detail.php?name_code=$1",
+      "uri_format": "https://taibnet.sinica.edu.tw/eng/taibnet_species_detail.php?name_code=$1",
       "xrefs": {
         "wikidata": "Q26218155"
       }
@@ -38156,6 +38164,19 @@
       ],
       "prefix": "DCTERMS"
     },
+    "bartoc": {
+      "description": "This document is an up-to-date, authoritative specification of all metadata terms maintained by the Dublin Core Metadata Initiative. Included are the fifteen terms of the Dublin Core Metadata Element Set, which have also been published as IETF RFC 5013 [RFC5013], ANSI/NISO Standard Z39.85-2007 [NISOZ3985], and ISO Standard 15836:2009 [ISO15836].",
+      "homepage": "http://purl.org/dc/terms/",
+      "name": "DCMI Metadata Terms",
+      "prefix": "725",
+      "short_names": [
+        "dcterms"
+      ],
+      "uri_format": "http://purl.org/dc/terms/$1",
+      "xrefs": {
+        "wikidata": "Q624610"
+      }
+    },
     "biocontext": {
       "prefix": "dcterms",
       "uri_format": "http://purl.org/dc/terms/$1"
@@ -38215,6 +38236,7 @@
     },
     "mappings": {
       "aberowl": "DCTERMS",
+      "bartoc": "725",
       "biocontext": "dcterms",
       "biolink": "dct",
       "bioportal": "DCTERMS",
@@ -42270,6 +42292,16 @@
     "uri_format": "https://dnasu.org/DNASU/GetVectorDetail.do?vectorid=$1"
   },
   "doap": {
+    "bartoc": {
+      "description": "DOAP is a project to create an XML/RDF vocabulary to describe software projects, and in particular open source projects.\n\nIn addition to developing an RDF schema and examples, the DOAP project aims to provide tool support in all the popular programming languages.",
+      "homepage": "https://github.com/ewilderj/doap/wiki",
+      "name": "Description of a Project vocabulary",
+      "prefix": "17919",
+      "short_names": [
+        "DOAP"
+      ],
+      "uri_format": "http://usefulinc.com/ns/doap#$1"
+    },
     "contact": {
       "email": "edd@usefulinc.com",
       "github": "ewilderj",
@@ -42302,6 +42334,7 @@
       "uri_format": "http://usefulinc.com/ns/doap#$1"
     },
     "mappings": {
+      "bartoc": "17919",
       "lov": "doap",
       "tib": "doap",
       "zazuko": "doap"
@@ -57257,6 +57290,16 @@
       "prefix": "FaBiO",
       "version": "1.5"
     },
+    "bartoc": {
+      "description": "The FRBR-aligned Bibliographic Ontology (FaBiO) is an ontology for describing entities that are published or potentially publishable (e.g., journal articles, conference papers, books), and that contain or are referred to by bibliographic references.",
+      "homepage": "https://www.sparontologies.net/ontologies/fabio",
+      "name": "FaBiO, the FRBR-aligned Bibliographic Ontology",
+      "prefix": "17959",
+      "short_names": [
+        "fabio"
+      ],
+      "uri_format": "http://purl.org/spar/fabio/$1"
+    },
     "biolink": {
       "prefix": "fabio",
       "uri_format": "http://purl.org/spar/fabio/$1"
@@ -57332,6 +57375,7 @@
     },
     "mappings": {
       "aberowl": "FaBiO",
+      "bartoc": "17959",
       "biolink": "fabio",
       "ecoportal": "FABIO",
       "fairsharing": "FAIRsharing.2f3180",
@@ -86367,7 +86411,7 @@
         "أمفيتامين",
         "苯丙胺"
       ],
-      "homepage": "https://www.who.int/teams/health-product-and-policy-standards/inn/",
+      "homepage": "http://www.who.int/medicines/services/inn/en/",
       "name": "World Health Organisation  international non-proprietary name",
       "prefix": "P2275",
       "xrefs": {
@@ -87743,7 +87787,8 @@
       "homepage": "http://interlex.org",
       "name": "Interlex ID",
       "pattern": "^[0-9A-Za-z_]+$",
-      "prefix": "P696"
+      "prefix": "P696",
+      "uri_format": "https://scicrunch.org/scicrunch/interlex/view/ilx_$1"
     }
   },
   "interpro": {
@@ -90482,7 +90527,7 @@
       "homepage": "http://www.genome.jp/kegg",
       "name": "Nikkaji ID",
       "prefix": "P2085",
-      "uri_format": "https://jglobal.jst.go.jp/redirect?Nikkaji_No=$1"
+      "uri_format": "https://jglobal.jst.go.jp/en/redirect?Nikkaji_No=$1"
     }
   },
   "jecfa": {
@@ -93569,6 +93614,7 @@
       "wikidata.entity": "Q17109002"
     },
     "name": "Library of Congress Subject Headings",
+    "part_of_database": "loc",
     "pattern": "^\\w{1,2}\\d{8,10}$",
     "providers": [
       {
@@ -93581,9 +93627,11 @@
     ],
     "synonyms": [
       "lcnaf",
-      "lcnafid"
+      "lcnafid",
+      "loc.subject",
+      "loc.subjects"
     ],
-    "uri_format": "https://id.loc.gov/authorities/$1",
+    "uri_format": "https://id.loc.gov/authorities/subjects/$1",
     "wikidata": {
       "description": "Library of Congress name authority (persons, families, corporate bodies, events, places, works and expressions) and subject authority identifier [Format: 1-2 specific letters followed by 8-10 digits (see regex). For manifestations, use P1144]",
       "examples": [
@@ -93603,8 +93651,6 @@
         "LC Authorities ID",
         "LCAuth"
       ],
-      "uri_format": "https://id.loc.gov/authorities/$1",
-      "uri_format_rdf": "http://id.loc.gov/authorities/names/$1",
       "xrefs": {
         "wikidata": "Q620946"
       }
@@ -93621,7 +93667,7 @@
     "example": "gf2018026088",
     "homepage": "https://id.loc.gov/authorities",
     "name": "Library of Congress Subject Headings - Genre Forms",
-    "part_of": "lcsh",
+    "part_of_database": "loc",
     "uri_format": "http://id.loc.gov/authorities/genreForms/$1"
   },
   "ldp": {
@@ -95745,6 +95791,176 @@
       }
     ]
   },
+  "loc.authority": {
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "A sub-registry of the Library of Congress Linked Data Service",
+    "example": "subjects",
+    "github_request_issue": 1980,
+    "homepage": "https://id.loc.gov/authorities",
+    "keywords": [
+      "registry"
+    ],
+    "name": "Library of Congress Authority",
+    "part_of_database": "loc",
+    "uri_format": "https://id.loc.gov/authorities/$1"
+  },
+  "loc.carriers": {
+    "bartoc": {
+      "description": "A list containing storage containers for data.",
+      "homepage": "http://id.loc.gov/vocabulary/carriers",
+      "name": "Library of Congress Carriers",
+      "prefix": "18907"
+    },
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "download_rdf": "http://id.loc.gov/vocabulary/carriers.rdf",
+    "example": "sd",
+    "github_request_issue": 1980,
+    "mappings": {
+      "bartoc": "18907"
+    },
+    "part_of_database": "loc",
+    "uri_format": "http://id.loc.gov/vocabulary/carriers/$1"
+  },
+  "loc.classschemes": {
+    "bartoc": {
+      "description": "Controlled list of Classification Schemes",
+      "homepage": "http://id.loc.gov/vocabulary/classSchemes",
+      "name": "Library of Congress Classification Schemes",
+      "prefix": "18900"
+    },
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "download_rdf": "http://id.loc.gov/vocabulary/classSchemes.rdf",
+    "example": "acmccs",
+    "github_request_issue": 1980,
+    "mappings": {
+      "bartoc": "18900"
+    },
+    "part_of_database": "loc",
+    "uri_format": "http://id.loc.gov/vocabulary/classSchemes/$1"
+  },
+  "loc.contenttypes": {
+    "bartoc": {
+      "description": "This list contains Resource Description and Access (RDA) terms and corresponding three-character lower case alphabetic codes for RDA Content types.",
+      "homepage": "http://id.loc.gov/vocabulary/contentTypes",
+      "name": "Library of Congress Content Types",
+      "prefix": "18906"
+    },
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "download_rdf": "http://id.loc.gov/vocabulary/contentTypes.rdf",
+    "example": "crm",
+    "github_request_issue": 1980,
+    "mappings": {
+      "bartoc": "18906"
+    },
+    "part_of_database": "loc",
+    "uri_format": "http://id.loc.gov/vocabulary/contentTypes/$1"
+  },
+  "loc.countries": {
+    "bartoc": {
+      "description": "The MARC Code List for Countries contains a list of places and their associated two- or three-character lowercase alphabetic codes.",
+      "homepage": "http://id.loc.gov/vocabulary/countries",
+      "name": "Library of Congress MARC Countries",
+      "prefix": "18904"
+    },
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "download_rdf": "http://id.loc.gov/vocabulary/countries.rdf",
+    "example": "aj",
+    "github_request_issue": 1980,
+    "mappings": {
+      "bartoc": "18904"
+    },
+    "part_of_database": "loc",
+    "uri_format": "http://id.loc.gov/vocabulary/countries/$1"
+  },
+  "loc.datatype": {
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "A sub-registry of the Library of Congress Linked Data Service",
+    "example": "codes",
+    "github_request_issue": 1980,
+    "homepage": "https://id.loc.gov/datatypes",
+    "keywords": [
+      "registry"
+    ],
+    "name": "Library of Congress Datatype",
+    "part_of_database": "loc",
+    "uri_format": "https://id.loc.gov/datatypes/$1"
+  },
+  "loc.descriptionconventions": {
+    "bartoc": {
+      "description": "Convention Sources identifies standard rules or guidelines for describing bibliographic resources, commonly called cataloging rules, and assigns a code to each source. The purpose of this list is to enable the source of description guidelines in metadata records to be indicated by a code.",
+      "homepage": "http://id.loc.gov/vocabulary/descriptionConventions",
+      "name": "Library of Congress Description Conventions",
+      "prefix": "18908"
+    },
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "download_rdf": "http://id.loc.gov/vocabulary/descriptionConventions.rdf",
+    "example": "amim",
+    "github_request_issue": 1980,
+    "homepage": "http://id.loc.gov/vocabulary/descriptionConventions",
+    "mappings": {
+      "bartoc": "18908"
+    },
+    "part_of_database": "loc",
+    "uri_format": "http://id.loc.gov/vocabulary/descriptionConventions/$1"
+  },
+  "loc.ethnographicterms": {
+    "bartoc": {
+      "description": "The AFS Ethnographic Thesaurus (version 2.2) is a vocabulary that can be used to improve access to information about folklore, ethnomusicology, ethnology, and related fields. The American Folklore Society developed the Thesaurus in cooperation with the American Folklife Center of the Library of Congress and supported by a generous grant from the Scholarly Communications Program of the Andrew W. Mellon Foundation.",
+      "homepage": "http://id.loc.gov/vocabulary/ethnographicTerms.html",
+      "name": "American Folklore Society Ethnographic Thesaurus",
+      "prefix": "130"
+    },
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "download_rdf": "http://id.loc.gov/vocabulary/ethnographicTerms.rdf",
+    "example": "afset006116",
+    "github_request_issue": 1980,
+    "homepage": "http://id.loc.gov/vocabulary/ethnographicTerms",
+    "mappings": {
+      "bartoc": "130"
+    },
+    "part_of_database": "loc",
+    "uri_format": "http://id.loc.gov/vocabulary/ethnographicTerms/$1"
+  },
   "loc.fdd": {
     "contributor": {
       "email": "cthoyt@gmail.com",
@@ -95762,6 +95978,7 @@
       "media type"
     ],
     "name": "Library of Congress Format Description Document",
+    "part_of_database": "loc",
     "pattern": "^fdd\\d+$",
     "providers": [
       {
@@ -95777,7 +95994,298 @@
     ],
     "uri_format": "https://www.loc.gov/preservation/digital/formats/fdd/$1"
   },
+  "loc.genreformschemes": {
+    "bartoc": {
+      "description": "Genre/Form Schemes lists genre/form schemes and assigns a URI to each, enabling users to link controlled terms to the correct scheme. The schemes cover: content types (e.g., text, notated music, cartographic dataset); media types (e.g., device needed to access content); carrier types (e.g., audiocassette, microfiche, online resource); genre types (e.g., biographies, essays, hymns) describing style or intellectual content; and form/physical characteristics (e.g., diaries, directories, journals) indicating material type or structure. Only sources specific to genre/form are included.",
+      "homepage": "http://id.loc.gov/vocabulary/genreFormSchemes",
+      "name": "Library of Congress Genre/Form Schemes",
+      "prefix": "18903"
+    },
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "download_rdf": "http://id.loc.gov/vocabulary/genreFormSchemes.rdf",
+    "example": "coarrt",
+    "github_request_issue": 1980,
+    "homepage": "http://id.loc.gov/vocabulary/genreFormSchemes",
+    "mappings": {
+      "bartoc": "18903"
+    },
+    "part_of_database": "loc",
+    "uri_format": "http://id.loc.gov/vocabulary/genreFormSchemes/$1"
+  },
+  "loc.geographicareas": {
+    "bartoc": {
+      "description": "The MARC Code List for Geographic Areas consists of a list of geographic areas and their associated one to seven-character codes.",
+      "homepage": "http://id.loc.gov/vocabulary/geographicAreas",
+      "name": "Library of Congress MARC Geographic Areas",
+      "prefix": "18905"
+    },
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "example": "e",
+    "github_request_issue": 1980,
+    "mappings": {
+      "bartoc": "18905"
+    },
+    "part_of_database": "loc",
+    "uri_format": "http://id.loc.gov/vocabulary/geographicAreas/$1"
+  },
+  "loc.graphicmaterials": {
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "The Thesaurus for Graphic Materials is a tool for indexing visual materials by subject and by genre/format. The thesaurus includes more than 7,000 subject terms and 650 genre/format terms to index types of photographs, prints, design drawings, ephemera, and other pictures. In 2007, the subject and genre/format vocabularies, previously maintained separately, were merged into a single list and migrated to new software, MultiTes. New terms are added regularly. TGM is searchable through the Prints and Photographs Online Catalog (PPOC). For questions about the thesaurus, contact TGM editors at: tgmed@loc.gov.  (from homepage)",
+    "download_rdf": "http://id.loc.gov/vocabulary/graphicMaterials.rdf",
+    "example": "tgm000027",
+    "github_request_issue": 1980,
+    "homepage": "https://id.loc.gov/vocabulary/graphicMaterials",
+    "keywords": [
+      "design drawings",
+      "ephemera",
+      "format",
+      "genre",
+      "photographs",
+      "prints",
+      "visual materials"
+    ],
+    "name": "Thesaurus for Graphic Materials",
+    "part_of_database": "loc",
+    "uri_format": "http://id.loc.gov/vocabulary/graphicMaterials/$1"
+  },
+  "loc.marcgt": {
+    "bartoc": {
+      "description": "This list includes terms that describe general categories, or genres that may be applied to various types of information resources. It has been compiled from controlled lists of values in various data elements in the MARC 21 Format for Bibliographic Data.",
+      "homepage": "http://id.loc.gov/vocabulary/marcgt",
+      "name": "Library of Congress MARC Genre Terms",
+      "prefix": "18902"
+    },
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "download_rdf": "http://id.loc.gov/vocabulary/marcgt.rdf",
+    "example": "boo",
+    "github_request_issue": 1980,
+    "mappings": {
+      "bartoc": "18902"
+    },
+    "part_of_database": "loc",
+    "uri_format": "http://id.loc.gov/vocabulary/marcgt/$1"
+  },
+  "loc.mediatypes": {
+    "bartoc": {
+      "description": "Media Types Scheme is derived from a controlled list of coded values representing content types principally used in RDA cataloging.",
+      "homepage": "http://id.loc.gov/vocabulary/mediaTypes",
+      "name": "Library of Congress Media Types Scheme",
+      "prefix": "1814"
+    },
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "download_rdf": "http://id.loc.gov/vocabulary/mediaTypes.rdf",
+    "example": "z",
+    "github_request_issue": 1980,
+    "mappings": {
+      "bartoc": "1814"
+    },
+    "part_of_database": "loc",
+    "uri_format": "http://id.loc.gov/vocabulary/mediaTypes/$1"
+  },
+  "loc.menclvl": {
+    "bartoc": {
+      "description": "A list containing the degree of the level of an encoding.",
+      "homepage": "http://id.loc.gov/vocabulary/menclvl",
+      "name": "Library of Congress MARC Encoding Level",
+      "prefix": "18909"
+    },
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "download_rdf": "http://id.loc.gov/vocabulary/menclvl.rdf",
+    "example": "5",
+    "github_request_issue": 1980,
+    "mappings": {
+      "bartoc": "18909"
+    },
+    "part_of_database": "loc",
+    "uri_format": "http://id.loc.gov/vocabulary/menclvl/$1"
+  },
+  "loc.mfiletype": {
+    "bartoc": {
+      "description": "A list containing the file types on which data is saved on.",
+      "homepage": "http://id.loc.gov/vocabulary/mfiletype",
+      "name": "Library of Congress MARC File Type",
+      "prefix": "18910"
+    },
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "download_rdf": "http://id.loc.gov/vocabulary/mfiletype.rdf",
+    "example": "program",
+    "github_request_issue": 1980,
+    "mappings": {
+      "bartoc": "18910"
+    },
+    "part_of_database": "loc",
+    "uri_format": "http://id.loc.gov/vocabulary/mfiletype/$1"
+  },
+  "loc.millus": {
+    "bartoc": {
+      "description": "A list containing images of MARC data.",
+      "homepage": "http://id.loc.gov/vocabulary/millus",
+      "name": "Library of Congress MARC Illustrative Content",
+      "prefix": "18911"
+    },
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "download_rdf": "http://id.loc.gov/vocabulary/millus.rdf",
+    "example": "chr",
+    "github_request_issue": 1980,
+    "mappings": {
+      "bartoc": "18911"
+    },
+    "part_of_database": "loc",
+    "uri_format": "http://id.loc.gov/vocabulary/millus/$1"
+  },
+  "loc.mprojection": {
+    "bartoc": {
+      "description": "A method or system used to represent the surface of the Earth or of a celestial sphere on a plane.",
+      "homepage": "http://id.loc.gov/vocabulary/mprojection",
+      "name": "Library of Congress Projection",
+      "prefix": "18912"
+    },
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "download_rdf": "http://id.loc.gov/vocabulary/mprojection.rdf",
+    "example": "ad",
+    "github_request_issue": 1980,
+    "mappings": {
+      "bartoc": "18912"
+    },
+    "part_of_database": "loc",
+    "uri_format": "http://id.loc.gov/vocabulary/mprojection/$1"
+  },
+  "loc.mvidformat": {
+    "bartoc": {
+      "description": "Used to encode the video content of a resource",
+      "homepage": "http://id.loc.gov/vocabulary/mvidformat",
+      "name": "Library of Congress Video Format",
+      "prefix": "18913"
+    },
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "download_rdf": "http://id.loc.gov/vocabulary/mvidformat.rdf",
+    "example": "betasp",
+    "github_request_issue": 1980,
+    "mappings": {
+      "bartoc": "18913"
+    },
+    "part_of_database": "loc",
+    "uri_format": "http://id.loc.gov/vocabulary/mvidformat/$1"
+  },
+  "loc.ontology": {
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "A sub-registry of the Library of Congress Linked Data Service",
+    "example": "bibframe",
+    "github_request_issue": 1980,
+    "homepage": "https://id.loc.gov/ontologies",
+    "keywords": [
+      "registry"
+    ],
+    "name": "Library of Congress Ontology",
+    "part_of_database": "loc",
+    "uri_format": "https://id.loc.gov/ontologies/$1"
+  },
+  "loc.organizations": {
+    "bartoc": {
+      "description": "A system of classification for Cultural Heritage Organizations developed by the Library of Congress.",
+      "homepage": "http://id.loc.gov/vocabulary/organizations",
+      "name": "Library of Congress Cultural Heritage Organizations",
+      "prefix": "18901"
+    },
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "download_rdf": "http://id.loc.gov/vocabulary/organizations.rdf",
+    "example": "20512",
+    "github_request_issue": 1980,
+    "mappings": {
+      "bartoc": "18901"
+    },
+    "part_of_database": "loc",
+    "uri_format": "http://id.loc.gov/vocabulary/organizations/$1"
+  },
+  "loc.preservation": {
+    "bartoc": {
+      "description": "An umbrella scheme to collocate all the preservation vocabularies.",
+      "homepage": "http://id.loc.gov/vocabulary/preservation",
+      "name": "Preservation Schemes",
+      "prefix": "1815"
+    },
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "download_rdf": "http://id.loc.gov/vocabulary/preservation.rdf",
+    "example": "contentLocationType",
+    "github_request_issue": 1980,
+    "mappings": {
+      "bartoc": "1815"
+    },
+    "part_of_database": "loc",
+    "uri_format": "http://id.loc.gov/vocabulary/preservation/$1"
+  },
   "loc.relator": {
+    "bartoc": {
+      "description": "The purpose of this list of relator terms and associated codes is to allow the relationship between an agent and a resource to be designated in bibliographic records.",
+      "homepage": "http://id.loc.gov/vocabulary/relators",
+      "name": "MARC Code List for Relators",
+      "prefix": "18089"
+    },
     "contributor": {
       "email": "cthoyt@gmail.com",
       "github": "cthoyt",
@@ -95787,10 +96295,33 @@
     "description": "Relator terms and their associated codes designate the relationship between an agent and a bibliographic resource.",
     "download_rdf": "https://id.loc.gov/download/vocabulary/relators.skosrdf.ttl.gz",
     "example": "arc",
+    "github_request_issue": 1980,
     "homepage": "http://id.loc.gov/vocabulary/relators",
+    "mappings": {
+      "bartoc": "18089"
+    },
     "name": "Library of Congress Relator",
+    "part_of_database": "loc",
     "rdf_uri_format": "http://id.loc.gov/vocabulary/relators/$1",
     "uri_format": "https://id.loc.gov/vocabulary/relators/$1"
+  },
+  "loc.resource": {
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "A sub-registry of the Library of Congress Linked Data Service",
+    "example": "hubs",
+    "github_request_issue": 1980,
+    "homepage": "https://id.loc.gov/resources",
+    "keywords": [
+      "registry"
+    ],
+    "name": "Library of Congress Resource",
+    "part_of_database": "loc",
+    "uri_format": "https://id.loc.gov/resources/$1"
   },
   "loc.resourcetype": {
     "contributor": {
@@ -95807,6 +96338,7 @@
       }
     ],
     "description": "A controlled vocabulary of media resources, such as audio, cartographic, manuscript, multimedia, etc.",
+    "download_rdf": "http://id.loc.gov/vocabulary/resourceTypes.rdf",
     "download_skos": "http://id.loc.gov/vocabulary/resourceTypes.skos.rdf",
     "example": "dig",
     "homepage": "https://id.loc.gov/vocabulary/resourceTypes.html",
@@ -95814,7 +96346,54 @@
       "data classification"
     ],
     "name": "Library of Congress Resource Types Scheme",
+    "part_of_database": "loc",
     "uri_format": "http://id.loc.gov/vocabulary/resourceTypes/$1"
+  },
+  "loc.subjectschemes": {
+    "bartoc": {
+      "description": "Controlled list of Subject Schemes",
+      "homepage": "http://id.loc.gov/vocabulary/subjectSchemes",
+      "name": "Library of Congress Subject Schemes",
+      "prefix": "18899"
+    },
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "download_rdf": "http://id.loc.gov/vocabulary/subjectSchemes.rdf",
+    "example": "agrifors",
+    "github_request_issue": 1980,
+    "mappings": {
+      "bartoc": "18899"
+    },
+    "part_of_database": "loc",
+    "uri_format": "http://id.loc.gov/vocabulary/subjectSchemes/$1"
+  },
+  "loc.vocabulary": {
+    "contributor": {
+      "github": "nbetancort",
+      "name": "Noemi Betancort Cabrera",
+      "orcid": "0000-0002-0156-3556"
+    },
+    "description": "The Library of Congress Linked Data Service (id.loc.gov) provides interactive and machine access to the Library's authority and bibliographic metadata, along with commonly-found standards and vocabularies used and/or maintained by the Library of Congress. Each controlled vocabulary list has a resolvable URI, as does each data value within it. Ontologies for several major data element sets are also available. This includes the LCSH (Library of Congress Subject Headings), the TGM (Thesaurus for Graphic Materials), preservation vocabularies, language and country codes, or the American Folklore Society Ethnographic Thesaurus (AFS Ethnographic Thesaurus) among others.",
+    "example": "demographicTerms",
+    "github_request_issue": 1980,
+    "homepage": "https://id.loc.gov",
+    "keywords": [
+      "registry"
+    ],
+    "license": "CC0-1.0",
+    "name": "Library of Congress Vocabulary",
+    "part_of_database": "loc",
+    "reviewer": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "uri_format": "http://id.loc.gov/vocabulary/$1"
   },
   "locn": {
     "example": "Address",
@@ -99563,7 +100142,7 @@
       ],
       "name": "Medical Dictionary for Regulatory Activities ID",
       "prefix": "P3201",
-      "uri_format": "https://bioportal.bioontology.org/ontologies/MEDDRA?p=classes&conceptid=$1",
+      "uri_format": "http://bioportal.bioontology.org/ontologies/MEDDRA?p=classes&conceptid=$1",
       "uri_format_rdf": "http://purl.bioontology.org/ontology/MDRFRE/$1"
     }
   },
@@ -113266,7 +113845,8 @@
       "uri_format": "https://www.ncbi.nlm.nih.gov/gene/$1",
       "uri_format_rdf": "http://purl.uniprot.org/geneid/$1",
       "xrefs": {
-        "miriam": "ncbigene"
+        "miriam": "ncbigene",
+        "wikidata": "Q1345229"
       }
     }
   },
