@@ -24627,16 +24627,19 @@
     ]
   },
   "FAIRsharing.628821": {
-    "description": "The ACSS Dataverse is an initiative of the Arab Council for the Social Sciences, in collaboration with the Odum Institute for Research in Social Science at the University of North Carolina at Chapel Hill. The ACSS Dataverse contains social science datasets produced in Arab countries, with the goal of making data available for research in the region and preserving data for future generations of researchers.",
+    "description": "The ACSS Dataverse is an initiative of the Arab Council for the Social Sciences, in collaboration with the Odum Institute for Research in Social Science at the University of North Carolina at Chapel Hill. The ACSS Dataverse contains social science datasets produced in/on Arab countries, with the goal of making data available for research in the region and preserving data for future generations of researchers.",
     "homepage": "https://dataverse.theacss.org/",
     "keywords": [
       "Social Science",
-      "Political Science"
+      "Humanities",
+      "qualitative data",
+      "quantitative data"
     ],
     "license": {
       "name": "CC0-1.0",
       "url": "https://creativecommons.org/publicdomain/zero/1.0/"
     },
+    "logo": "https://api.fairsharing.org/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBaFlLIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--59201605674a886761a745990bc7e04602578ed8/ACSS%202.jpg?disposition=inline",
     "name": "ACSS Dataverse"
   },
   "FAIRsharing.628b9b": {
@@ -40307,7 +40310,7 @@
   },
   "FAIRsharing.9HiHNn": {
     "description": "WheatMine integrates many types of data for Triticum aestivum including gene model, markers, and scaffolds. You can run flexible queries, export results and analyse lists of data.",
-    "homepage": "https://urgi.versailles.inra.fr/WheatMine/begin.do",
+    "homepage": "https://urgi.versailles.inrae.fr/WheatMine/begin.do",
     "keywords": [
       "Life Science",
       "Genomics",
@@ -40317,6 +40320,14 @@
       "url": "https://www.gnu.org/licenses/lgpl-2.1.html"
     },
     "name": "WheatMine",
+    "publications": [
+      {
+        "doi": "10.1186/s13059-018-1491-4",
+        "title": "Linking the International Wheat Genome Sequencing Consortium bread wheat reference genome sequence to wheat genetic and phenomic data",
+        "url": "http://dx.doi.org/10.1186/s13059-018-1491-4",
+        "year": 2018
+      }
+    ],
     "short_names": [
       "WheatMine"
     ]
@@ -61477,7 +61488,7 @@
         "year": 2024
       }
     ],
-    "repository": "https://github.com/NMRLipids/BilayerData"
+    "repository": "https://github.com/NMRLipids/FAIRMD_lipids"
   },
   "FAIRsharing.d339e7": {
     "description": "(a) Ligand-Receptor Interaction Explorer to explore ligand-receptor interaction database, and (b) Cell- Cell Communication Atlas Explorer to explore the cell-cell communications for any given scRNA-seq dataset processed  by the R toolkit CellChat",
@@ -66133,13 +66144,8 @@
     ]
   },
   "FAIRsharing.dw22y3": {
-    "contact": {
-      "email": "urgi-contact@versailles.inra.fr",
-      "name": "URGI Contact",
-      "orcid": "0000-0003-3001-4908"
-    },
-    "description": "GnpIS is a multispecies integrative information system dedicated to plant and fungi pests. It bridges genetic and genomic data, allowing researchers access to both genetic information (e.g. genetic maps, quantitative trait loci, association genetics, markers, polymorphisms, germplasms, phenotypes and genotypes) and genomic data (e.g. genomic sequences, physical maps, genome annotation and expression data) for species of agronomical interest. GnpIS is used by both large international projects and plant science departments at the French National Institute for Agricultural Research. It is regularly improved and released several times per year. GnpIS is accessible through a web portal and allows to browse different types of data either independently through dedicated interfaces or simultaneously using a quick search ('google like search') or advanced search (Biomart, Galaxy, Intermine) tools.",
-    "homepage": "https://urgi.versailles.inra.fr/gnpis",
+    "description": "GnpIS is an integrative and multi-species information system dedicated to plants, including forest trees. It handles various types of data, focusing on genetic resources and phenomics. It allows researchers from the Plant community to access and cross-reference genetic data (accessions, phenotypes, polymorphisms, markers and QTLs) and genomic data (sequences, physical maps, genome annotations) for species of agronomic and forestry interest.\n\nAccessible via a public web portal , GnpIS enables different types of data to be managed, browsed and retrieved via specialized search tools and web services. Data hosted in GnpIS is also indexed in FAIDARE and WheatIS Data Discovery.\nGnpIS curates and adds value its datasets by enabling their interoperability and reusability through the use of internationally agreed standards and ontologies (MIAPPE  and Crop Ontology  for phenotyping data, MultiCropPassportData for genetic resources, NCBI/EMBL recommendations for genomic data). It is continuously improving its compliance with the FAIR principles (Findable, Accessible, Interoperable, Reusable). To enhance the findability and accessibility of the submitted datasets, we collaborate with Data INRAE to assign a DOI (Digital Object Identifier) to your dataset and integrate it into GnpIS.\nFinally, GnpIS gives access to curated genome annotations, with a strong expertise of URGI’s staff on transposable elements annotation.\n\nGnpIS is used by INRAE and its partners in major national and international projects. For instance, GnpIS is the repository for the global community working on wheat genomics (International Wheat Genome Sequencing Consortium; IWGSC; https://wheat-urgi.versailles.inra.fr ). GnpIS is also INRAE’s repository for crops and forest trees catalogs of genetic resources, their phenotyping data and genetic data, as no central archive exists for such data, and support their linkage with genomic data, feed the catalog of the French infrastructure of Resources for Research in Agriculture ( www.agrobrc-rare.org ).\nIt is a major player for data management of the French national node of the ESFRI EMPHASIS for plant phenotyping and its staff has been very active in linking the ELIXIR and EMPHASIS European infrastructures ( https://www.elixir-europe.org/use-cases/plant-sciences ).",
+    "homepage": "https://urgi.versailles.inrae.fr/gnpis",
     "keywords": [
       "Life Science",
       "Genetic map",
@@ -66148,9 +66154,15 @@
       "DNA sequence",
       "Genetic Polymorphism",
       "phenotype",
-      "genotype"
+      "genotype",
+      "germplasm"
     ],
-    "name": "Genetic and Genomic Information System",
+    "license": {
+      "name": "CC-BY-4.0",
+      "url": "https://creativecommons.org/licenses/by/4.0/"
+    },
+    "logo": "https://api.fairsharing.org/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBaEVLIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--40f5a650bcbd22b0c5754f6cd0d81e6033fbc138/gnpis_logo.png?disposition=inline",
+    "name": "Genetic and Genomic Information System for Plants",
     "publications": [
       {
         "doi": "10.1093/database/bat058",
@@ -66158,6 +66170,24 @@
         "title": "GnpIS: an information system to integrate genetic and genomic data from plants and fungi",
         "url": "http://doi.org/10.1093/database/bat058",
         "year": 2013
+      },
+      {
+        "doi": "10.1007/978-1-4939-6658-5_5",
+        "title": "Mining Plant Genomic and Genetic Data Using the GnpIS Information System",
+        "url": "http://dx.doi.org/10.1007/978-1-4939-6658-5_5",
+        "year": 2017
+      },
+      {
+        "doi": "10.1186/s13059-018-1491-4",
+        "title": "Linking the International Wheat Genome Sequencing Consortium bread wheat reference genome sequence to wheat genetic and phenomic data",
+        "url": "http://dx.doi.org/10.1186/s13059-018-1491-4",
+        "year": 2018
+      },
+      {
+        "doi": "10.34133/2019/1671403",
+        "title": "Applying FAIR Principles to Plant Phenotypic Data Management in GnpIS",
+        "url": "http://dx.doi.org/10.34133/2019/1671403",
+        "year": 2019
       }
     ],
     "short_names": [
@@ -94165,7 +94195,16 @@
     "license": {
       "url": "https://www.gnu.org/licenses/lgpl-2.1.html"
     },
+    "logo": "https://api.fairsharing.org/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBaFVLIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--38e5b7dd412e339067782ec8488d899c1f7cb63e/logoRepetDBv1.png?disposition=inline",
     "name": "RepetDB",
+    "publications": [
+      {
+        "doi": "10.1186/s13100-019-0150-y",
+        "title": "RepetDB: a unified resource for transposable element references",
+        "url": "http://dx.doi.org/10.1186/s13100-019-0150-y",
+        "year": 2019
+      }
+    ],
     "short_names": [
       "RepetDB"
     ]

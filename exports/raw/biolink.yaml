@@ -1647,10 +1647,14 @@ slots:
       approval for a specific condition, disease, phenotype, etc., see the association slot, 'clinical approval status.'
     range: ApprovalStatusEnum
 
-  FDA regulatory approvals:
+  regulatory approvals:
     description: >-
-      Numbers that identify specific drug applications. Each drug can have multiple approval numbers
-      (for example, as seen with ranitidine having both ANADA200536 and ANDA200536).
+      Numbers or identifiers issued by regulatory agencies that identify specific drug
+      applications or marketing authorizations. Values are application-number provenance
+      and are not guaranteed to be verified identifiers from any particular agency; they
+      may include FDA application numbers (for example, as seen with ranitidine having both
+      ANADA200536 and ANDA200536) as well as identifiers from other regulatory agencies such
+      as EMA marketing authorizations. Each drug can have multiple approval numbers.
     range: string
     multivalued: true
 
@@ -6994,6 +6998,13 @@ slots:
       as captured in the context of the association between the chemical and the disease.
     range: ClinicalApprovalStatusEnum
 
+  treatment outcome:
+    is_a: association slot
+    description: >-
+      The outcome of treating a disease or phenotypic feature with a chemical entity.
+    range: TreatmentOutcomeEnum
+    multivalued: true
+
   max research phase:
     is_a: association slot
     description: >-
@@ -11462,7 +11473,6 @@ classes:
       - object
     mixins:
       - entity to disease or phenotypic feature association mixin
-      - clinical trial and regulatory approval context mixin
     slot_usage:
       object:
         range: disease or phenotypic feature
@@ -11482,34 +11492,6 @@ classes:
           category: biolink:ChemicalEntityToDiseaseOrPhenotypicFeatureAssociation
           knowledge_level: knowledge_assertion
           agent_type: manual_validation_of_automated_agent
-      - object:
-          subject: PUBCHEM.COMPOUND:134612761  # macimorelin
-          predicate: biolink:diagnoses
-          object: UMLS:C1720505  # Adult growth hormone deficiency
-          category: biolink:ChemicalEntityToDiseaseOrPhenotypicFeatureAssociation
-          knowledge_level: knowledge_assertion
-          agent_type: manual_validation_of_automated_agent
-      - object:
-          subject: CHEBI:82720  # empagliflozin
-          predicate: biolink:preventative_for_condition
-          object: UMLS:C1320716  # Cardiovascular event
-          category: biolink:ChemicalEntityToDiseaseOrPhenotypicFeatureAssociation
-          knowledge_level: knowledge_assertion
-          agent_type: manual_validation_of_automated_agent
-      - object:
-          subject: CHEBI:6919  # mezlocillin
-          predicate: biolink:treats
-          object: EFO:1001421  # Serratia Infections
-          category: biolink:ChemicalEntityToDiseaseOrPhenotypicFeatureAssociation
-          knowledge_level: knowledge_assertion
-          agent_type: manual_validation_of_automated_agent
-      - object:
-          subject: CHEBI:135361  # methscopolamine
-          predicate: biolink:treats
-          object: MONDO:0005324  # seasonal allergic rhinitis
-          category: biolink:ChemicalEntityToDiseaseOrPhenotypicFeatureAssociation
-          knowledge_level: knowledge_assertion
-          agent_type: manual_validation_of_automated_agent
 
   chemical or drug or treatment to disease or phenotypic feature association:
     description: >-
@@ -11523,9 +11505,33 @@ classes:
     mixins:
       - entity to disease or phenotypic feature association mixin
       - clinical trial and regulatory approval context mixin
+    slots:
+      - treatment outcome
     slot_usage:
       predicate:
         subproperty_of: treats or applied or studied to treat
+    examples:
+      - object:
+          subject: CHEBI:6919  # mezlocillin
+          predicate: biolink:treats
+          object: EFO:1001421  # Serratia Infections
+          category: biolink:ChemicalOrDrugOrTreatmentToDiseaseOrPhenotypicFeatureAssociation
+          knowledge_level: knowledge_assertion
+          agent_type: manual_validation_of_automated_agent
+      - object:
+          subject: CHEBI:135361  # methscopolamine
+          predicate: biolink:treats
+          object: MONDO:0005324  # seasonal allergic rhinitis
+          category: biolink:ChemicalOrDrugOrTreatmentToDiseaseOrPhenotypicFeatureAssociation
+          knowledge_level: knowledge_assertion
+          agent_type: manual_validation_of_automated_agent
+      - object:
+          subject: CHEBI:82720  # empagliflozin
+          predicate: biolink:preventative_for_condition
+          object: UMLS:C1320716  # Cardiovascular event
+          category: biolink:ChemicalOrDrugOrTreatmentToDiseaseOrPhenotypicFeatureAssociation
+          knowledge_level: knowledge_assertion
+          agent_type: manual_validation_of_automated_agent
 
   chemical or drug or treatment adverse event association:
     description: >-
@@ -12305,7 +12311,7 @@ classes:
     slots:
       - clinical approval status
       - max research phase
-      - FDA regulatory approvals
+      - regulatory approvals
       - number of cases
 
   entity to feature or variant qualifiers mixin:
@@ -13593,7 +13599,7 @@ classes:
     description: >-
       An association between any entity and a disease, capturing
       clinical context such as approval status, research phase,
-      FDA regulatory approvals, and number of cases.
+      regulatory approvals, and number of cases.
     is_a: association
     exact_mappings:
     mixins:
@@ -13644,7 +13650,7 @@ classes:
     description: >-
       An association between any entity and a phenotypic feature,
       capturing clinical context such as approval status, research phase,
-      FDA regulatory approvals, and number of cases.
+      regulatory approvals, and number of cases.
     is_a: association
     exact_mappings:
     mixins:
@@ -14044,6 +14050,43 @@ enums:
       negative:
         description: >-
           A negative response to a treatment or intervention
+
+  TreatmentOutcomeEnum:
+    description: >-
+      The outcome of treating a disease or phenotypic feature with a chemical entity.
+    permissible_values:
+      fully_recovered:
+        description: Complete recovery following treatment; free of symptoms with no lasting health problems.
+        exact_mappings:
+          - NCIT:C82467  # Complete Recovery
+        narrow_mappings:
+          - NCIT:C4870  # Complete Remission (disease-response-specific)
+      improved:
+        description: Partial improvement following treatment.
+        exact_mappings:
+          - NCIT:C125459  # Improved
+        narrow_mappings:
+          - NCIT:C18058  # Partial Remission (disease-response-specific)
+      unchanged:
+        description: No change in the condition following treatment.
+        exact_mappings:
+          - NCIT:C71687  # Unchanged
+        narrow_mappings:
+          - NCIT:C18213  # Stable Disease (disease-response-specific)
+      deteriorated:
+        description: Worsening of the condition following treatment.
+        exact_mappings:
+          - NCIT:C25751  # Deterioration
+        narrow_mappings:
+          - NCIT:C35571  # Progressive Disease (disease-response-specific)
+      died:
+        description: Death following treatment.
+        exact_mappings:
+          - NCIT:C28554  # Dead
+      unknown:
+        description: Treatment outcome is unknown.
+        exact_mappings:
+          - NCIT:C17998  # Unknown
 
   ResponseTargetEnum:
     description: >-
