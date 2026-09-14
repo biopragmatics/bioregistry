@@ -1,5 +1,7 @@
 """Add WorldAvatar ontologies."""
 
+from pathlib import Path
+
 import click
 import obographs
 import pystow
@@ -45,12 +47,6 @@ def main(force_process: bool) -> None:
             tqdm.write(f"[{prefix}] caching GitHub results to {inner_contents_cache}")
             write_json(inner_records, inner_contents_cache, indent=2)
 
-        uri_format: str | None = None
-        example: str | None = None
-        description: str | None = None
-        name: str | None = None
-        download_owl: str | None = None
-
         try:
             inner_record = next(
                 inner_record
@@ -64,58 +60,12 @@ def main(force_process: bool) -> None:
                     fg="yellow",
                 )
             )
-        else:
-            name = "WorldAvatar " + inner_record["name"].removesuffix(".owl")
-            download_owl = inner_record["download_url"]
-            owl_path = module.ensure(url=download_owl)
-            obograph_json_path = owl_path.with_suffix(".obograph.json")
-            if not obograph_json_path.is_file():
-                try:
-                    robot_obo_tool.convert(owl_path, obograph_json_path)
-                except Exception:
-                    tqdm.write(
-                        click.style(
-                            f"[{prefix}] exception when converting to obograph json", fg="yellow"
-                        )
-                    )
-            if obograph_json_path.is_file():
-                try:
-                    obograph = obographs.read(obograph_json_path, squeeze=True)
-                except Exception:
-                    tqdm.write(
-                        click.style(f"[{prefix}] exception when reading obograph json", fg="yellow")
-                    )
-                else:
-                    if not obograph.nodes:
-                        click.style(
-                            f"[{prefix}] has no nodes, so couldn't guess URI format", fg="yellow"
-                        )
-                    else:
-                        if obograph.id is not None:
-                            uri_format, example = _guess(obograph, obograph.id + "#")
-                        for guess in [
-                            f"https://www.theworldavatar.com/kg/{worldavatar_name}/",
-                            f"http://www.theworldavatar.com/kg/{worldavatar_name}/",
-                            f"https://www.theworldavatar.io/kg/{worldavatar_name}/",
-                            f"http://www.theworldavatar.io/kg/{worldavatar_name}/",
-                        ]:
-                            if uri_format is None:
-                                uri_format, example = _guess(obograph, guess)
-                        if uri_format is None:
-                            tqdm.write(
-                                click.style(
-                                    f"[{prefix}] couldn't guess URI format ({worldavatar_name}), look manually",
-                                    fg="yellow",
-                                )
-                            )
+            continue
 
-                    # try to guess a description
-                    if obograph.meta and obograph.meta:
-                        description = obograph._get_property(
-                            "http://purl.org/dc/terms/description"
-                        ) or obograph._get_property("http://www.w3.org/2000/01/rdf-schema#comment")
-                    if description is None:
-                        tqdm.write(click.style(f"[{prefix}] no description", fg="yellow"))
+        name = "WorldAvatar " + inner_record["name"].removesuffix(".owl")
+        download_owl = inner_record["download_url"]
+        owl_path = module.ensure(url=download_owl)
+        uri_format, example, description = _parse_worldavatar_owl(owl_path, prefix, worldavatar_name=worldavatar_name)
 
         resource = Resource(
             prefix=prefix,
@@ -149,6 +99,65 @@ def _guess(obograph: obographs.Graph, guess_uri_prefix: str) -> tuple[str, str] 
             example = node.id.removeprefix(guess_uri_prefix)
             return uri_format, example
     return None, None
+
+
+def _parse_worldavatar_owl(owl_path: Path, prefix: str, worldavatar_name: str) -> tuple[str | None, str | None, str | None]:
+    uri_format = None
+    description = None
+    example = None
+
+    obograph_json_path = owl_path.with_suffix(".obograph.json")
+    if not obograph_json_path.is_file():
+        try:
+            robot_obo_tool.convert(owl_path, obograph_json_path)
+        except Exception:
+            tqdm.write(
+                click.style(
+                    f"[{prefix}] exception when converting to obograph json", fg="yellow"
+                )
+            )
+            return None, None, None
+
+    try:
+        obograph = obographs.read(obograph_json_path, squeeze=True)
+    except Exception:
+        tqdm.write(
+            click.style(f"[{prefix}] exception when reading obograph json", fg="yellow")
+        )
+        return None, None, None
+
+    if not obograph.nodes:
+        click.style(
+            f"[{prefix}] has no nodes, so couldn't guess URI format", fg="yellow"
+        )
+    else:
+        if obograph.id is not None:
+            uri_format, example = _guess(obograph, obograph.id + "#")
+        for guess in [
+            f"https://www.theworldavatar.com/kg/{worldavatar_name}/",
+            f"http://www.theworldavatar.com/kg/{worldavatar_name}/",
+            f"https://www.theworldavatar.io/kg/{worldavatar_name}/",
+            f"http://www.theworldavatar.io/kg/{worldavatar_name}/",
+        ]:
+            if uri_format is None:
+                uri_format, example = _guess(obograph, guess)
+        if uri_format is None:
+            tqdm.write(
+                click.style(
+                    f"[{prefix}] couldn't guess URI format ({worldavatar_name}), look manually",
+                    fg="yellow",
+                )
+            )
+
+    # try to guess a description
+    if obograph.meta and obograph.meta:
+        description = obograph._get_property(
+            "http://purl.org/dc/terms/description"
+        ) or obograph._get_property("http://www.w3.org/2000/01/rdf-schema#comment")
+    if description is None:
+        tqdm.write(click.style(f"[{prefix}] no description", fg="yellow"))
+
+    return uri_format, example, description
 
 
 if __name__ == "__main__":
