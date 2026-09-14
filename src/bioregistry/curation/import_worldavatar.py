@@ -1,5 +1,6 @@
 """Add WorldAvatar ontologies."""
 
+from collections.abc import Iterable
 from pathlib import Path
 
 import click
@@ -12,15 +13,81 @@ from tqdm import tqdm
 
 from bioregistry import Author, Manager, Resource
 
+LOCAL_DIR = Path.home().joinpath("dev", "worldavatar-ontologies")
+ROOT = "https://raw.githubusercontent.com/TheWorldAvatar/ontology/main/"
+
 
 @click.command()
 @click.option("--force-process", is_flag=True)
 def main(force_process: bool) -> None:
     """Add WorldAvatar ontologies."""
     manager = Manager()
+    for prefix, worldavatar_name, name, download_owl, owl_path in _iter_from_github(
+        manager, force_process
+    ):
+        uri_format, example, description = _parse_worldavatar_owl(
+            owl_path, prefix, worldavatar_name=worldavatar_name
+        )
+        resource = Resource(
+            prefix=prefix,
+            name=name,
+            description=description,
+            uri_format=uri_format,
+            example=example,
+            homepage="https://theworldavatar.io",
+            part_of_database="worldavatar",
+            repository="https://github.com/TheWorldAvatar/ontology",
+            contributor=Author.get_charlie(),
+            download_owl=download_owl,
+            contact_group_email="contact@theworldavatar.io",
+            contact=Author(
+                name="Hou Yee Quek",
+                orcid="0000-0002-3168-237X",
+                github="qhouyee",
+            ),
+            # see dicussion at https://github.com/TheWorldAvatar/ontology/issues/43
+            license="MIT",
+        )
+        manager.add_resource(resource)
 
+    manager.write_registry()
+
+
+SKIP = {
+    "ontopoi-with-properties.owl",
+    "rml4ts.owl",
+    "V1_CEUS.owl",
+    "meta_model.owl",
+    "ontocompchem-TopBraid.owl",
+}
+
+
+def _iter_from_home() -> Iterable[tuple[str, str, str, str, Path]]:
+    for directory in LOCAL_DIR.joinpath("ontology").iterdir():
+        worldavatar_name = directory.name
+        for owl_path in directory.glob("*.owl"):
+            if "ABox" in owl_path.name:
+                continue
+            if owl_path.name in SKIP:
+                continue
+            short = worldavatar_name.removeprefix("onto")
+            prefix = "worldavatar." + short
+            name = (
+                "WorldAvatar "
+                + owl_path.name.removesuffix(".owl")
+                .removeprefix("Onto")
+                .removeprefix("onto")
+                .replace("_", " ")
+                .capitalize()
+            )
+            download_owl = ROOT + owl_path.relative_to(LOCAL_DIR).as_posix()
+            yield prefix, worldavatar_name, name, download_owl, owl_path
+
+
+def _iter_from_github(
+    manager: Manager, force_process: bool
+) -> Iterable[tuple[str, str, str, str, Path]]:
     module = pystow.module("worldavatar")
-
     outer_contents_cache = module.join(name="ontologies.json")
     if outer_contents_cache.exists():
         outer_records = safe_open_json(outer_contents_cache)
@@ -65,31 +132,7 @@ def main(force_process: bool) -> None:
         name = "WorldAvatar " + inner_record["name"].removesuffix(".owl")
         download_owl = inner_record["download_url"]
         owl_path = module.ensure(url=download_owl)
-        uri_format, example, description = _parse_worldavatar_owl(owl_path, prefix, worldavatar_name=worldavatar_name)
-
-        resource = Resource(
-            prefix=prefix,
-            name=name,
-            description=description,
-            uri_format=uri_format,
-            example=example,
-            homepage="https://theworldavatar.io",
-            part_of_database="worldavatar",
-            repository="https://github.com/TheWorldAvatar/ontology",
-            contributor=Author.get_charlie(),
-            download_owl=download_owl,
-            contact_group_email="contact@theworldavatar.io",
-            contact=Author(
-                name="Hou Yee Quek",
-                orcid="0000-0002-3168-237X",
-                github="qhouyee",
-            ),
-            # see dicussion at https://github.com/TheWorldAvatar/ontology/issues/43
-            license="MIT",
-        )
-        manager.add_resource(resource)
-
-    manager.write_registry()
+        yield prefix, worldavatar_name, name, download_owl, owl_path
 
 
 def _guess(obograph: obographs.Graph, guess_uri_prefix: str) -> tuple[str, str] | tuple[None, None]:
@@ -101,7 +144,9 @@ def _guess(obograph: obographs.Graph, guess_uri_prefix: str) -> tuple[str, str] 
     return None, None
 
 
-def _parse_worldavatar_owl(owl_path: Path, prefix: str, worldavatar_name: str) -> tuple[str | None, str | None, str | None]:
+def _parse_worldavatar_owl(
+    owl_path: Path, prefix: str, worldavatar_name: str
+) -> tuple[str | None, str | None, str | None]:
     uri_format = None
     description = None
     example = None
@@ -112,24 +157,18 @@ def _parse_worldavatar_owl(owl_path: Path, prefix: str, worldavatar_name: str) -
             robot_obo_tool.convert(owl_path, obograph_json_path)
         except Exception:
             tqdm.write(
-                click.style(
-                    f"[{prefix}] exception when converting to obograph json", fg="yellow"
-                )
+                click.style(f"[{prefix}] exception when converting to obograph json", fg="yellow")
             )
             return None, None, None
 
     try:
         obograph = obographs.read(obograph_json_path, squeeze=True)
     except Exception:
-        tqdm.write(
-            click.style(f"[{prefix}] exception when reading obograph json", fg="yellow")
-        )
+        tqdm.write(click.style(f"[{prefix}] exception when reading obograph json", fg="yellow"))
         return None, None, None
 
     if not obograph.nodes:
-        click.style(
-            f"[{prefix}] has no nodes, so couldn't guess URI format", fg="yellow"
-        )
+        click.style(f"[{prefix}] has no nodes, so couldn't guess URI format", fg="yellow")
     else:
         if obograph.id is not None:
             uri_format, example = _guess(obograph, obograph.id + "#")
