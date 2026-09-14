@@ -236,7 +236,7 @@ class Aligner:
         instance.write_curation_table()
 
     @classmethod
-    def cli(cls, *args: Any, **kwargs: Any) -> None:
+    def get_cli(cls) -> click.Command:
         """Construct a CLI for the aligner."""
 
         @click.command(help=f"Align {cls.key}")
@@ -248,6 +248,12 @@ class Aligner:
         def _main(dry: bool, show: bool, no_force: bool) -> None:
             cls.align(dry=dry, show=show, force_download=not no_force)
 
+        return _main
+
+    @classmethod
+    def cli(cls, *args: Any, **kwargs: Any) -> None:
+        """Run a CLI for the aligner."""
+        _main = cls.get_cli()
         _main(*args, **kwargs)
 
     def get_curation_row(self, external_id: str, external_entry: Record) -> Sequence[str]:
@@ -260,7 +266,7 @@ class Aligner:
 
         :raises TypeError: If an invalid value is encountered
 
-        The default implementation of this function iterates over all of the keys in the
+        The default implementation of this function iterates over all the keys in the
         class variable :data:`curation_header` and looks inside each record for those in
         order.
 

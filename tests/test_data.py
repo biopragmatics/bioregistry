@@ -26,6 +26,7 @@ from bioregistry.constants import (
     EMAIL_RE,
     METAREGISTRY_PATH,
 )
+from bioregistry.curation.add_skosmos import SKOSMOS_APIS
 from bioregistry.export.rdf_export import resource_to_rdf_str
 from bioregistry.external import GETTERS
 from bioregistry.license_standardizer import REVERSE_LICENSES, standardize_license
@@ -66,11 +67,14 @@ class TestRegistry(unittest.TestCase):
             https://github.com/biopragmatics/bioregistry/issues/180
         """
         text = BIOREGISTRY_PATH.read_text(encoding="utf8")
-        linted_text = json.dumps(
-            json.loads(text),
-            indent=2,
-            sort_keys=True,
-            ensure_ascii=False,
+        linted_text = (
+            json.dumps(
+                json.loads(text),
+                indent=2,
+                sort_keys=True,
+                ensure_ascii=False,
+            )
+            + "\n"
         )
         self.assertEqual(
             linted_text,
@@ -454,6 +458,8 @@ class TestRegistry(unittest.TestCase):
                     msg += (
                         f"\nSee: https://www.ebi.ac.uk/ols/ontologies/{entry.ols['prefix']}/terms"
                     )
+                elif homepage := entry.get_homepage():
+                    msg += f"\nSee: {homepage}"
                 example = entry.get_example()
                 if example is None:
                     raise self.fail(msg=f"{prefix} is missing an example local identifier")
@@ -1307,6 +1313,12 @@ class TestRegistry(unittest.TestCase):
         """Test status contributions."""
         status_contributions = read_status_contributions(self.registry)
         self.assertIn("0009-0006-4842-7427", status_contributions)
+
+    def test_skosmos(self) -> None:
+        """Check all SKOSMOS keys are valid Bioregistry prefixes."""
+        for key, _ in SKOSMOS_APIS:
+            with self.subTest(prefix=key):
+                self.assertIn(key, self.registry)
 
     def test_download_obo(self) -> None:
         """Test getting OBO download link."""

@@ -17,14 +17,18 @@ __all__ = [
     "BartocAligner",
     "get_bartoc",
     "get_bartoc_registries",
+    "main",
 ]
 
 logger = logging.getLogger(__name__)
 
 HERE = Path(__file__).parent.resolve()
 RAW_PATH = RAW_DIRECTORY.joinpath("bartoc.jsonl")
+RAW_REGISTRIES_PATH = RAW_DIRECTORY.joinpath("bartoc-registries.json")
 PROCESSED_PATH = HERE / "processed.json"
+PROCESSED_REGISTRIES_PATH = HERE / "processed-registries.json"
 URL = "https://bartoc.org/data/dumps/latest.ndjson"
+REGISTRIES_API_ENDPOINT = "https://bartoc.org/api/registries?limit=1000"
 
 URI_PREFIX = "http://bartoc.org/en/node/"
 
@@ -40,9 +44,42 @@ def process_bartoc(path: Path) -> dict[str, Record]:
     return rv
 
 
-get_bartoc = build_getter(
+def process_bartoc_registry(path: Path) -> dict[str, Record]:
+    """Process BARTOC."""
+    rv = {}
+    with path.open() as file:
+        for data in json.load(file):
+            prefix = data["uri"][len(URI_PREFIX) :]
+            rv[prefix] = _process_bartoc_record(prefix, data)
+    return rv
+
+
+get_bartoc_dump = build_getter(
     processed_path=PROCESSED_PATH, raw_path=RAW_PATH, url=URL, func=process_bartoc
 )
+
+_get_bartoc_registries = build_getter(
+    # FIXME
+    processed_path=PROCESSED_REGISTRIES_PATH,
+    raw_path=RAW_REGISTRIES_PATH,
+    url=REGISTRIES_API_ENDPOINT,
+    func=process_bartoc_registry,
+)
+
+
+def get_bartoc(
+    *, force_download: bool = False, force_process: bool = False, progress: bool = True
+) -> dict[str, Record]:
+    """Get BARTOC records from the dump and registries."""
+    return {
+        **get_bartoc_dump(
+            force_download=force_download, force_process=force_process, progress=progress
+        ),
+        **_get_bartoc_registries(
+            force_download=force_download, force_process=force_process, progress=progress
+        ),
+    }
+
 
 URI_FORMAT_SKIPS: dict[str, str] = {
     "18653": "all LIDO records are overlapping",
@@ -132,5 +169,7 @@ class BartocAligner(Aligner):
     curation_header: ClassVar[Sequence[str]] = ["name", "homepage", "description"]
 
 
+main = BartocAligner.get_cli()
+
 if __name__ == "__main__":
-    BartocAligner.cli()
+    main()

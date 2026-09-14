@@ -17,6 +17,7 @@ __all__ = [
     "BIOREGISTRY_MODULE",
     "BIOREGISTRY_PATH",
     "COLLECTIONS_PATH",
+    "COLLECTIONS_YAML_PATH",
     "CONTEXTS_PATH",
     "CURATED_MAPPINGS_PATH",
     "DATA_DIRECTORY",
@@ -29,9 +30,12 @@ __all__ = [
     "INTERNAL_PIP",
     "INTERNAL_REPOSITORY",
     "METAREGISTRY_PATH",
+    "METAREGISTRY_YAML_PATH",
     "NDEX_UUID",
     "NFDI_ROR",
     "RAW_DIRECTORY",
+    "REGISTRY_JSON_PATH",
+    "REGISTRY_YAML_PATH",
     "FailureReturnType",
     "MaybeCURIE",
     "get_failure_return_type",
@@ -80,7 +84,6 @@ RDF_JSONLD_PATH = EXPORT_RDF / "bioregistry.jsonld"
 
 EXPORT_SSSOM = EXPORT_DIRECTORY.joinpath("sssom")
 SSSOM_PATH = EXPORT_SSSOM / "bioregistry.sssom.tsv"
-SSSOM_METADATA_PATH = EXPORT_SSSOM / "bioregistry.sssom.yml"
 
 EXPORT_REGISTRY = EXPORT_DIRECTORY.joinpath("registry")
 REGISTRY_YAML_PATH = EXPORT_REGISTRY / "registry.yml"

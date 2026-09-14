@@ -106,8 +106,9 @@ def _process(record: dict[str, Any]) -> Record:
         # special case for kegg... this is hacky but needs to be done now
         rv[URI_FORMAT_KEY] = primary[URI_FORMAT_KEY]
 
-    if organization := primary.get("organization"):
-        rv["owners"] = [Organization.model_validate(organization)]
+    if (organization := primary.get("organization")) and not _organization_is_ebi(primary):
+        organization_model = Organization.model_validate(organization)
+        rv["owners"] = [organization_model]
 
     extras = []
     for provider in rest:
@@ -151,6 +152,10 @@ def _preprocess_resource(resource: dict[str, Any]) -> dict[str, Any]:
     if uri_format not in SKIP_URI_FORMATS:
         rv[URI_FORMAT_KEY] = uri_format
     return rv
+
+
+def _organization_is_ebi(primary: dict[str, Any]) -> bool:
+    return "ebi.ac.uk/ols" in primary["homepage"]
 
 
 class MiriamAligner(Aligner):

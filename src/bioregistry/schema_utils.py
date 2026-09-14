@@ -12,6 +12,7 @@ from pathlib import Path
 from typing import TypeAlias
 
 import sssom_pydantic
+from pystow.utils import write_json
 from sssom_pydantic import SemanticMapping
 
 from .constants import (
@@ -188,19 +189,18 @@ def write_collections(collections: Mapping[str, Collection], *, path: Path | Non
     values = [v for _, v in sorted(collections.items())]
     for collection in values:
         collection.resources = _lint_collection_resources(collection.resources)
-    with open(path or COLLECTIONS_PATH, encoding="utf-8", mode="w") as file:
-        json.dump(
-            {
-                "collections": [
-                    c.model_dump(exclude_none=True, exclude_defaults=True, exclude_unset=True)
-                    for c in values
-                ]
-            },
-            file,
-            indent=2,
-            sort_keys=True,
-            ensure_ascii=False,
-        )
+    write_json(
+        {
+            "collections": [
+                c.model_dump(exclude_none=True, exclude_defaults=True, exclude_unset=True)
+                for c in values
+            ]
+        },
+        COLLECTIONS_PATH,
+        indent=2,
+        sort_keys=True,
+        ensure_ascii=False,
+    )
 
 
 def _lint_collection_resources(
@@ -235,44 +235,39 @@ def write_registry(registry: Mapping[str, Resource], *, path: Path | None = None
     """Write to the Bioregistry."""
     if path is None:
         path = BIOREGISTRY_PATH
-    with path.open(mode="w", encoding="utf-8") as file:
-        json.dump(
-            {
-                key: resource.model_dump(
-                    exclude_none=True, exclude_defaults=True, exclude={"prefix"}
-                )
-                for key, resource in registry.items()
-            },
-            file,
-            indent=2,
-            sort_keys=True,
-            ensure_ascii=False,
-        )
+    write_json(
+        {
+            key: resource.model_dump(exclude_none=True, exclude_defaults=True, exclude={"prefix"})
+            for key, resource in registry.items()
+        },
+        path,
+        indent=2,
+        sort_keys=True,
+        ensure_ascii=False,
+    )
 
 
 def write_metaregistry(metaregistry: Mapping[str, Registry]) -> None:
     """Write to the metaregistry."""
     values = [v for _, v in sorted(metaregistry.items())]
-    with open(METAREGISTRY_PATH, mode="w", encoding="utf-8") as file:
-        json.dump(
-            {"metaregistry": [m.model_dump(exclude_none=True) for m in values]},
-            fp=file,
-            indent=2,
-            sort_keys=True,
-            ensure_ascii=False,
-        )
+    write_json(
+        {"metaregistry": [m.model_dump(exclude_none=True) for m in values]},
+        METAREGISTRY_PATH,
+        indent=2,
+        sort_keys=True,
+        ensure_ascii=False,
+    )
 
 
 def write_contexts(contexts: Mapping[str, Context]) -> None:
     """Write to contexts."""
-    with open(CONTEXTS_PATH, mode="w", encoding="utf-8") as file:
-        json.dump(
-            {key: context.model_dump(exclude_none=True) for key, context in contexts.items()},
-            fp=file,
-            indent=2,
-            sort_keys=True,
-            ensure_ascii=False,
-        )
+    write_json(
+        {key: context.model_dump(exclude_none=True) for key, context in contexts.items()},
+        CONTEXTS_PATH,
+        indent=2,
+        sort_keys=True,
+        ensure_ascii=False,
+    )
 
 
 #: An ORCID string
