@@ -6,7 +6,7 @@ from typing import ClassVar
 import rdflib
 
 import bioregistry
-from bioregistry import Manager, manager
+from bioregistry import Manager
 from bioregistry.export.rdf_export import metaresource_to_rdf_str
 from bioregistry.schema import Registry
 
@@ -50,15 +50,7 @@ class TestMetaregistry(unittest.TestCase):
                     self.assertIsNotNone(registry.uri_format)
                     self.assertIn("$1", registry.uri_format)
 
-                if (
-                    # Missing URI format string
-                    not registry.uri_format
-                    # Unresolved overlap in Bioregistry
-                    or metaprefix in bioregistry.read_registry()
-                    # Has URI format string, but not in proper form
-                    or (registry.uri_format and not registry.uri_format.endswith("$1"))
-                ):
-                    self.assertIsNotNone(registry.bioregistry_prefix)
+                self.assertIsNotNone(registry.bioregistry_prefix)
 
                 if registry.bioregistry_prefix:
                     self.assertEqual(
@@ -136,7 +128,7 @@ class TestMetaregistry(unittest.TestCase):
     def test_get_rdf(self) -> None:
         """Test conversion to RDF."""
         registry = self.manager.metaregistry["uniprot"]
-        s = metaresource_to_rdf_str(registry, manager=manager)
+        s = metaresource_to_rdf_str(registry, manager=self.manager)
         self.assertIsInstance(s, str)
         g = rdflib.Graph()
         g.parse(data=s)

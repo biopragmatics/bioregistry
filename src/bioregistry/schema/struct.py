@@ -3108,7 +3108,9 @@ class Registry(BaseModel):
         default=None, description="A download link for the data contained in the registry"
     )
     uri_format: str | None = Field(
-        default=None, description="A URL with a $1 for a prefix to resolve in the registry"
+        default=None,
+        title="URI format string",
+        description="A URL with a $1 for a prefix to resolve in the registry"
     )
     search_uri_format: str | None = Field(
         default=None,
@@ -3124,8 +3126,8 @@ class Registry(BaseModel):
     )
     contact: Attributable = Field(..., description="The contact for the registry.")
     bioregistry_prefix: Annotated[
-        str | None, Field(description="The prefix for this registry in the Bioregistry")
-    ] = None
+        str, Field(description="The prefix for this registry in the Bioregistry")
+    ]
     logo: str | None = Field(
         default=None,
         description="The URL for the logo of the resource",
