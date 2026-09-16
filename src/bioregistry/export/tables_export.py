@@ -5,6 +5,8 @@ from textwrap import dedent
 import click
 import pandas as pd
 
+from bioregistry import Manager
+
 from ..constants import (
     INTERNAL_METAPREFIX,
     TABLES_GOVERNANCE_LATEX_PATH,
@@ -15,7 +17,6 @@ from ..constants import (
 )
 from ..resolve import count_mappings
 from ..schema import Registry
-from ..schema_utils import read_metaregistry
 from ..summary import BioregistrySummary
 
 __all__ = [
@@ -74,10 +75,10 @@ def _sort_key(registry: Registry) -> tuple[int, str]:
     return 1, registry.prefix
 
 
-def _get_governance_df() -> pd.DataFrame:
+def _get_governance_df(manager: Manager) -> pd.DataFrame:
     rows = []
     keep_metaprefixes = set(count_mappings())
-    for registry in sorted(read_metaregistry().values(), key=_sort_key):
+    for registry in sorted(manager.metaregistry.values(), key=_sort_key):
         if registry.prefix not in keep_metaprefixes or registry.governance is None:
             continue
         rows.append(
@@ -121,10 +122,10 @@ DATA_MODEL_CAPABILITIES = [
 ]
 
 
-def _get_metadata_df() -> pd.DataFrame:
+def _get_metadata_df(manager: Manager) -> pd.DataFrame:
     rows = []
     keep_metaprefixes = set(count_mappings())
-    for registry in sorted(read_metaregistry().values(), key=_sort_key):
+    for registry in sorted(manager.metaregistry.values(), key=_sort_key):
         if (
             registry.prefix not in keep_metaprefixes
             or registry.availability is None
@@ -168,7 +169,8 @@ def _get_metadata_df() -> pd.DataFrame:
 @click.command()
 def export_tables() -> None:
     """Export tables."""
-    governance_df = _get_governance_df()
+    manager = Manager()
+    governance_df = _get_governance_df(manager)
     governance_df.to_csv(TABLES_GOVERNANCE_TSV_PATH, sep="\t", index=False)
     TABLES_GOVERNANCE_LATEX_PATH.write_text(
         governance_df.to_latex(
@@ -201,7 +203,7 @@ def export_tables() -> None:
         encoding="utf-8",
     )
 
-    metadata_df = _get_metadata_df()
+    metadata_df = _get_metadata_df(manager)
     metadata_df.to_csv(TABLES_METADATA_TSV_PATH, sep="\t", index=False)
     metadata_caption = dedent(
         f"""\

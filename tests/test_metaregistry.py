@@ -46,20 +46,17 @@ class TestMetaregistry(unittest.TestCase):
                     self.assertIsNotNone(registry.contact.orcid)
                     self.assertIsNotNone(registry.contact.github)
 
-                if registry.provider_uri_format:
-                    self.assertIsNotNone(registry.provider_uri_format)
-                    self.assertIn("$1", registry.provider_uri_format)
+                if registry.uri_format:
+                    self.assertIsNotNone(registry.uri_format)
+                    self.assertIn("$1", registry.uri_format)
 
                 if (
                     # Missing URI format string
-                    not registry.provider_uri_format
+                    not registry.uri_format
                     # Unresolved overlap in Bioregistry
                     or metaprefix in bioregistry.read_registry()
                     # Has URI format string, but not in proper form
-                    or (
-                        registry.provider_uri_format
-                        and not registry.provider_uri_format.endswith("$1")
-                    )
+                    or (registry.uri_format and not registry.uri_format.endswith("$1"))
                 ):
                     self.assertIsNotNone(registry.bioregistry_prefix)
 
@@ -162,7 +159,7 @@ class TestMetaregistry(unittest.TestCase):
                 self.assertRegex(registry.example, pattern)
 
                 # Test URI format string
-                if registry.provider_uri_format:
+                if registry.uri_format:
                     uri_formats = resource.get_uri_formats()
                     self.assertLess(0, len(uri_formats))
-                    self.assertIn(registry.provider_uri_format, uri_formats)
+                    self.assertIn(registry.uri_format, uri_formats)

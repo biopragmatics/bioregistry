@@ -3107,7 +3107,7 @@ class Registry(BaseModel):
     download: str | None = Field(
         default=None, description="A download link for the data contained in the registry"
     )
-    provider_uri_format: str | None = Field(
+    uri_format: str | None = Field(
         default=None, description="A URL with a $1 for a prefix to resolve in the registry"
     )
     search_uri_format: str | None = Field(
@@ -3123,10 +3123,10 @@ class Registry(BaseModel):
         description="An optional type annotation for what kind of resolver it is (i.e., redirect or lookup)",
     )
     contact: Attributable = Field(..., description="The contact for the registry.")
-    bioregistry_prefix: str | None = Field(
-        default=None, description="The prefix for this registry in the Bioregistry"
-    )
-    logo_url: str | None = Field(
+    bioregistry_prefix: Annotated[
+        str | None, Field(description="The prefix for this registry in the Bioregistry")
+    ] = None
+    logo: str | None = Field(
         default=None,
         description="The URL for the logo of the resource",
     )
@@ -3138,13 +3138,18 @@ class Registry(BaseModel):
         default=None, description="A short name for the resource, e.g., for use in charts"
     )
 
+    @property
+    def logo_url(self) -> str | None:
+        """Get the logo."""
+        return self.logo
+
     def score(self) -> int | None:
         """Calculate a metadata score/goodness for this registry."""
         if self.availability is None or self.qualities is None:
             return None
         return (
             (
-                int(self.provider_uri_format is not None)
+                int(self.uri_format is not None)
                 + int(self.resolver_uri_format is not None)
                 + int(self.download is not None)
                 + int(self.contact is not None)
@@ -3166,9 +3171,9 @@ class Registry(BaseModel):
         >>> get_registry("n2t").get_provider_uri_prefix()
         'https://bioregistry.io/metaregistry/n2t/resolve/'
         """
-        if self.provider_uri_format is None or not self.provider_uri_format.endswith("$1"):
+        if self.uri_format is None or not self.uri_format.endswith("$1"):
             return f"{BIOREGISTRY_REMOTE_URL}/metaregistry/{self.prefix}/resolve/"
-        return self.provider_uri_format.replace("$1", "")
+        return self.uri_format.replace("$1", "")
 
     def get_provider_uri_format(self, external_prefix: str) -> str | None:
         """Get the provider string.
@@ -3247,8 +3252,8 @@ class Registry(BaseModel):
         graph.add((node, DC.description, Literal(self.description)))
         graph.add((node, FOAF["homepage"], Literal(self.homepage)))
         graph.add((node, bioregistry_schema["0000005"], Literal(self.example)))
-        if self.provider_uri_format:
-            graph.add((node, bioregistry_schema["0000006"], Literal(self.provider_uri_format)))
+        if self.uri_format:
+            graph.add((node, bioregistry_schema["0000006"], Literal(self.uri_format)))
         if self.resolver_uri_format:
             graph.add((node, bioregistry_schema["0000007"], Literal(self.resolver_uri_format)))
         graph.add((node, bioregistry_schema["0000019"], self.contact.add_triples(graph)))
@@ -3283,7 +3288,7 @@ class Registry(BaseModel):
     @property
     def is_prefix_provider(self) -> bool:
         """Check if the registry is a prefix provider."""
-        return self.provider_uri_format is not None
+        return self.uri_format is not None
 
     def get_quality_score(self) -> int | None:
         """Get the quality score for this registry."""
