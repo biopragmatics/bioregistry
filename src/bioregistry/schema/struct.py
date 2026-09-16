@@ -3110,7 +3110,7 @@ class Registry(BaseModel):
     uri_format: str | None = Field(
         default=None,
         title="URI format string",
-        description="A URL with a $1 for a prefix to resolve in the registry"
+        description="A URL with a $1 for a prefix to resolve in the registry",
     )
     search_uri_format: str | None = Field(
         default=None,
