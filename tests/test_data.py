@@ -1465,3 +1465,11 @@ class TestRegistry(unittest.TestCase):
             for synonym in entry.synonyms or []:
                 with self.subTest(key=key, synonym=synonym):
                     self.assertNotIn(synonym, norm_prefixes - {norm(key)})
+
+    def test_registry_keyword(self) -> None:
+        """Test registries contain appropriate keywords."""
+        for registry in self.metaregistry.values():
+            with self.subTest(prefix=registry.bioregistry_prefix):
+                resource = self.registry[registry.bioregistry_prefix]
+                self.assertIn("registry", resource.get_keywords())
+                self.assertIsNotNone(resource.contributor)
