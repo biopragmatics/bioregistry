@@ -5,8 +5,6 @@ from textwrap import dedent
 import click
 import pandas as pd
 
-from bioregistry import Manager
-
 from ..constants import (
     INTERNAL_METAPREFIX,
     TABLES_GOVERNANCE_LATEX_PATH,
@@ -16,6 +14,7 @@ from ..constants import (
     TABLES_SUMMARY_LATEX_PATH,
 )
 from ..resolve import count_mappings
+from ..resource_manager import Manager
 from ..schema import Registry
 from ..summary import BioregistrySummary
 
