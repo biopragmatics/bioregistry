@@ -103,7 +103,7 @@
                     <span class="badge badge-pill badge-success">
                         Registry
                     </span>
-                    <span class="badge badge-pill badge-{% if entry.provider_uri_format %}success{% else %}light text-muted{% endif %}">
+                    <span class="badge badge-pill badge-{% if entry.uri_format %}success{% else %}light text-muted{% endif %}">
                         Provider
                     </span>
                     <span class="badge badge-pill badge-{% if entry.resolver_uri_format and entry.resolver_type == "resolver" %}success{% else %}light text-muted{% endif %}">
@@ -131,7 +131,7 @@
                 <dd>
                     <code>{{ entry.example }}</code>
                 </dd>
-                {% if entry.provider_uri_format %}
+                {% if entry.uri_format %}
                     <dt>Example Prefix Page</dt>
                     <dd>
                         <a href="{{ example_prefix_url }}"><code>{{ example_prefix_url }}</code></a>
