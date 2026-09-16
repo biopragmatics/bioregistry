@@ -446,8 +446,9 @@ formatters with `tox -e format`.
 
 This project uses [`ruff`](https://github.com/astral-sh/ruff) and several
 plugins for additional checks of documentation style, security issues, good
-variable nomenclature, and more ( see [`pyproject.toml`](pyproject.toml) for a
-list of ruff plugins). You can check if your code passes `ruff` with
+variable nomenclature, and more ( see
+[`pyproject.toml`](https://github.com/biopragmatics/bioregistry/blob/main/pyproject.toml)
+for a list of ruff plugins). You can check if your code passes `ruff` with
 `tox -e lint`.
 
 Each of these checks are run on each commit using GitHub Actions as a continuous
