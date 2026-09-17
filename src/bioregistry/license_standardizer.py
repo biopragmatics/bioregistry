@@ -77,6 +77,8 @@ CC_BY_NC_SA_4 = "CC-BY-NC-SA-4.0"
 CC_BY_NC_4 = "CC-BY-NC-4.0"
 #: http://creativecommons.org/licenses/by-nc-sa/2.5
 CC_BY_NC_SA_25 = "CC-BY-NC-SA-2.5"
+#: http://creativecommons.org/licenses/by-nc/2.5
+CC_BY_NC_25 = "CC-BY-NC-SA-2.5"
 
 CC_BY_UNSPECIFIED = "CC-BY"
 CC_BY_SA_UNSPECIFIED = "CC-BY-SA"
@@ -147,6 +149,11 @@ REVERSE_LICENSES: Mapping[str | None, list[str]] = {
         CC_BY_NC_SA_25,
         "CC BY-NC-SA 2.5",
         "http://creativecommons.org/licenses/by-nc-sa/2.5/deed.en",
+    ],
+    CC_BY_NC_25: [
+        CC_BY_NC_25,
+        "http://creativecommons.org/licenses/by-nc/2.5",
+        "http://creativecommons.org/licenses/by-nc/2.5/deed.en",
     ],
     "CC-BY-3.0-IGO": [
         CC_BY_3_IGO,
@@ -390,6 +397,10 @@ REVERSE_LICENSES: Mapping[str | None, list[str]] = {
         "MIT",
         "MIT License",
         "MIT license",
+    ],
+    "Unlicense": [
+        "Unlicense",
+        "The Unlicense",
     ],
     CC_UNSPECIFIED: [
         "CC_UNSPECIFIED",
