@@ -64355,7 +64355,7 @@
     "pattern": "^\\d{7}$"
   },
   "gard": {
-    "comment": "The GARD website was rebuilt and the previous per-disease URL format (https://rarediseases.info.nih.gov/diseases/$1/index) does not resolve correctly formatted GARD ids. GARD accepts both bare identifiers (?gard_id=6038) and the zero-padded seven-digit form (?gard_id=0006038); both resolve to the same record. Moreover, not every GARD concept identifier has a published webpage, and an unpublished identifier silently lands on the GARD homepage rather than on an error page.",
+    "comment": "Around September 2026, the GARD website was rebuilt and the previous per-disease URL format (`https://rarediseases.info.nih.gov/diseases/$1/index`) does not resolve correctly formatted GARD ids. GARD accepts both bare identifiers (`?gard_id=6038`) and the zero-padded seven-digit form (`?gard_id=0006038`); both resolve to the same record. Moreover, not every GARD concept identifier has a published webpage, and an unpublished identifier silently lands on the GARD homepage rather than on an error page. See discussion [here](https://github.com/biopragmatics/bioregistry/pull/2097)",
     "contact": {
       "email": "eric.sid@nih.gov",
       "github": "ericsid",
@@ -64415,6 +64415,9 @@
         "title": "Marking 15 years of the Genetic and Rare Diseases Information Center",
         "year": 2017
       }
+    ],
+    "references": [
+      "https://github.com/biopragmatics/bioregistry/pull/2097"
     ],
     "synonyms": [
       "GARD",
