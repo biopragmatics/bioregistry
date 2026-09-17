@@ -169,8 +169,8 @@ class OntoPortalClient:
         }
         if license_name := entry.get("license"):
             rv["license"] = License(name=license_name)
-        if publications := entry.pop("publications", None):
-            rv["publications"] = _handle_publications(publications)
+        if publication_urls := entry.pop("publications", None):
+            rv["publications"] = [Publication.from_url(url) for url in publication_urls]
         if example_uri := entry.get("exampleIdentifier"):
             rv.setdefault("extras", {})["example_uri"] = example_uri
 
@@ -191,31 +191,6 @@ def _handle_contacts(contacts: list[dict[str, Any]]) -> list[dict[str, Any]]:
         contact["email"] = validated_email.normalized
 
         rv.append(contact)
-    return rv
-
-
-def _handle_publications(ll: list[str]) -> list[Publication]:
-    # TODO this should get upstreamed somewhere, since it's such a common pattern
-    rv = []
-    for url in ll:
-        if url.startswith("https://doi.org/"):
-            rv.append(Publication(doi=url.removeprefix("https://doi.org/")))
-        elif url.startswith("http://doi.org/"):
-            rv.append(Publication(doi=url.removeprefix("http://doi.org/")))
-        elif url.startswith("https://dx.doi.org/"):
-            rv.append(Publication(doi=url.removeprefix("https://dx.doi.org/")))
-        elif url.startswith("http://www.ncbi.nlm.nih.gov/pubmed/"):
-            rv.append(Publication(pubmed=url.removeprefix("http://www.ncbi.nlm.nih.gov/pubmed/")))
-        elif url.startswith("https://www.ncbi.nlm.nih.gov/pubmed/"):
-            rv.append(Publication(pubmed=url.removeprefix("https://www.ncbi.nlm.nih.gov/pubmed/")))
-        elif url.startswith("https://zenodo.org/records/"):
-            rv.append(Publication(zenodo=url.removeprefix("https://zenodo.org/records/")))
-        elif url.startswith("https://arxiv.org/abs/"):
-            rv.append(Publication(arxiv=url.removeprefix("https://arxiv.org/abs/")))
-        else:
-            # TODO look back for PMC
-            # tqdm.write(f'publication URL: {url}')
-            rv.append(Publication(url=url))
     return rv
 
 
