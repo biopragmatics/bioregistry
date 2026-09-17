@@ -13,24 +13,27 @@ from ..constants import (
     REGISTRY_TSV_PATH,
     URI_FORMAT_KEY,
 )
-from ..schema_utils import read_collections, read_metaregistry, read_registry
+from ..resource_manager import Manager
+from ..schema_utils import read_collections
 from ..uri_format import get_uri_format
 
 
 @click.command()
 def export_tsv() -> None:
     """Export TSV."""
+    manager = Manager()
+
     with safe_open_writer(COLLECTIONS_TSV_PATH) as writer:
         writer.writerow(COLLECTIONS_HEADER)
         writer.writerows(get_collections_rows())
 
     with safe_open_writer(METAREGISTRY_TSV_PATH) as writer:
         writer.writerow(METAREGISTRY_HEADER)
-        writer.writerows(get_metaregistry_rows())
+        writer.writerows(get_metaregistry_rows(manager))
 
     with safe_open_writer(REGISTRY_TSV_PATH) as writer:
-        writer.writerow(REGISTRY_HEADER)
-        writer.writerows(get_registry_rows())
+        writer.writerow(_get_registry_header(manager))
+        writer.writerows(get_registry_rows(manager))
 
 
 COLLECTIONS_HEADER = [
@@ -57,30 +60,36 @@ METAREGISTRY_HEADER = [
     "resolver_uri_format",
     "resolver_type",
 ]
-METAPREFIXES = [
-    k
-    for k in sorted(read_metaregistry())
-    if k not in {"bioregistry", "biolink", "ncbi", "fairsharing", "go"}
-]
-REGISTRY_HEADER = [
-    "identifier",
-    "name",
-    "homepage",
-    "description",
-    "pattern",
-    "example",
-    "email",
-    URI_FORMAT_KEY,
-    "download.owl",
-    "download.obo",
-    "synonyms",
-    "deprecated",
-    *METAPREFIXES,
-    "part_of",
-    "provides",
-    "has_canonical",
-    # 'type',
-]
+
+
+def _get_metaprefixes(manager: Manager) -> list[str]:
+    return [
+        k
+        for k in sorted(manager.metaregistry)
+        if k not in {"bioregistry", "biolink", "ncbi", "fairsharing", "go"}
+    ]
+
+
+def _get_registry_header(manager: Manager) -> list[str]:
+    return [
+        "identifier",
+        "name",
+        "homepage",
+        "description",
+        "pattern",
+        "example",
+        "email",
+        URI_FORMAT_KEY,
+        "download.owl",
+        "download.obo",
+        "synonyms",
+        "deprecated",
+        *_get_metaprefixes(manager),
+        "part_of",
+        "provides",
+        "has_canonical",
+        # 'type',
+    ]
 
 
 def get_collections_rows() -> list[tuple[str, str, str, str, str, str, str, str]]:
@@ -118,10 +127,12 @@ def get_collections_rows() -> list[tuple[str, str, str, str, str, str, str, str]
     return rows
 
 
-def get_metaregistry_rows() -> list[tuple[str, ...]]:
+def get_metaregistry_rows(manager: Manager | None = None) -> list[tuple[str, ...]]:
     """Get a dataframe of all metaresources."""
+    if manager is None:
+        manager = Manager()
     rows: list[tuple[str, ...]] = []
-    for metaprefix, data in read_metaregistry().items():
+    for metaprefix, data in manager.metaregistry.items():
         rows.append(
             (
                 metaprefix,
@@ -133,7 +144,7 @@ def get_metaregistry_rows() -> list[tuple[str, ...]]:
                 data.contact.name,
                 data.contact.email or "",
                 data.contact.github or "",
-                data.provider_uri_format or "",
+                data.uri_format or "",
                 data.resolver_uri_format or "",
                 data.resolver_type or "",
             )
@@ -141,10 +152,13 @@ def get_metaregistry_rows() -> list[tuple[str, ...]]:
     return rows
 
 
-def get_registry_rows() -> list[Sequence[str | None]]:
+def get_registry_rows(manager: Manager | None = None) -> list[Sequence[str | None]]:
     """Get a dataframe of all resources."""
+    if manager is None:
+        manager = Manager()
+    metaprefixes = _get_metaprefixes(manager)
     rows: list[Sequence[str | None]] = []
-    for prefix, data in read_registry().items():
+    for prefix, data in manager.registry.items():
         mappings = data.get_mappings()
         rows.append(
             (
@@ -160,7 +174,7 @@ def get_registry_rows() -> list[Sequence[str | None]]:
                 data.download_obo,
                 "|".join(sorted(data.get_synonyms())),
                 str(data.is_deprecated()),
-                *[mappings.get(metaprefix) for metaprefix in METAPREFIXES],
+                *[mappings.get(metaprefix) for metaprefix in metaprefixes],
                 data.part_of,
                 data.provides,
                 data.has_canonical,

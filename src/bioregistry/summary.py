@@ -13,7 +13,7 @@ from typing import TYPE_CHECKING, Self
 import click
 from more_click import force_option
 
-from bioregistry import manager
+from bioregistry import Manager
 from bioregistry.constants import TABLES_SUMMARY_LATEX_PATH
 from bioregistry.version import get_version
 
@@ -104,8 +104,10 @@ class BioregistrySummary:
         )
 
     @classmethod
-    def make(cls, force_download: bool = False) -> Self:
+    def make(cls, *, manager: Manager | None = None, force_download: bool = False) -> Self:
         """Instantiate the class."""
+        if manager is None:
+            manager = Manager()
         registry = manager.registry
 
         metaprefix_to_mapping_count = manager.count_mappings()
@@ -196,9 +198,12 @@ class MappingBurdenSummary:
         )
 
     @classmethod
-    def make(cls, force_download: bool = False) -> Self:
+    def make(cls, *, manager: Manager | None = None, force_download: bool = False) -> Self:
         """Instantiate the class."""
         from bioregistry.external import GETTERS
+
+        if manager is None:
+            manager = Manager()
 
         registry_to_prefixes = {
             metaprefix: set(getter(force_download=force_download))
@@ -246,8 +251,12 @@ def _main(split_lines: bool, force: bool) -> None:
         def _fill(_s: str) -> str:  # type:ignore
             return _s
 
-    click.echo(_fill(MappingBurdenSummary.make(force_download=force).get_text()) + "\n")
-    s = BioregistrySummary.make(force_download=force)
+    manager = Manager()
+
+    click.echo(
+        _fill(MappingBurdenSummary.make(manager=manager, force_download=force).get_text()) + "\n"
+    )
+    s = BioregistrySummary.make(manager=manager, force_download=force)
     click.echo(_fill(s.get_text()) + "\n")
     click.echo(s.get_table_text())
 

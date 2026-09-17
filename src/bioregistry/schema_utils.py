@@ -69,7 +69,7 @@ def _read_metaregistry(path: str | Path) -> Mapping[str, Registry]:
         data = json.load(file)
     return {
         registry.prefix: registry
-        for registry in (Registry(**record) for record in data["metaregistry"])
+        for registry in (Registry.model_validate(record) for record in data["metaregistry"])
     }
 
 
@@ -180,7 +180,7 @@ def _collections_from_path(path: str | Path) -> dict[str, Collection]:
         data = json.load(file)
     return {
         collection.identifier: collection
-        for collection in (Collection(**record) for record in data["collections"])
+        for collection in (Collection.model_validate(record) for record in data["collections"])
     }
 
 
@@ -370,4 +370,4 @@ def read_contexts() -> Mapping[str, Context]:
 def _contexts_from_path(path: str | Path) -> Mapping[str, Context]:
     with open(path, encoding="utf-8") as file:
         data = json.load(file)
-    return {key: Context(**data) for key, data in data.items()}
+    return {key: Context.model_validate(data) for key, data in data.items()}

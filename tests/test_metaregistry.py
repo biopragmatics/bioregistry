@@ -6,7 +6,7 @@ from typing import ClassVar
 import rdflib
 
 import bioregistry
-from bioregistry import Manager, manager
+from bioregistry import Manager
 from bioregistry.export.rdf_export import metaresource_to_rdf_str
 from bioregistry.schema import Registry
 
@@ -46,36 +46,23 @@ class TestMetaregistry(unittest.TestCase):
                     self.assertIsNotNone(registry.contact.orcid)
                     self.assertIsNotNone(registry.contact.github)
 
-                if registry.provider_uri_format:
-                    self.assertIsNotNone(registry.provider_uri_format)
-                    self.assertIn("$1", registry.provider_uri_format)
+                if registry.uri_format:
+                    self.assertIsNotNone(registry.uri_format)
+                    self.assertIn("$1", registry.uri_format)
 
-                if (
-                    # Missing URI format string
-                    not registry.provider_uri_format
-                    # Unresolved overlap in Bioregistry
-                    or metaprefix in bioregistry.read_registry()
-                    # Has URI format string, but not in proper form
-                    or (
-                        registry.provider_uri_format
-                        and not registry.provider_uri_format.endswith("$1")
-                    )
-                ):
-                    self.assertIsNotNone(registry.bioregistry_prefix)
-
-                if registry.bioregistry_prefix:
-                    self.assertEqual(
-                        bioregistry.normalize_prefix(registry.bioregistry_prefix),
-                        registry.bioregistry_prefix,
-                        msg="link from metaregistry to bioregistry must use canonical prefix",
-                    )
-                    resource = bioregistry.get_resource(registry.bioregistry_prefix)
-                    self.assertIsNotNone(resource)
-                    self.assertIsNotNone(
-                        resource.get_uri_format(),
-                        msg=f"corresponding registry entry ({registry.bioregistry_prefix})"
-                        f" is missing a uri_format",
-                    )
+                self.assertIsNotNone(registry.bioregistry_prefix)
+                self.assertEqual(
+                    bioregistry.normalize_prefix(registry.bioregistry_prefix),
+                    registry.bioregistry_prefix,
+                    msg="link from metaregistry to bioregistry must use canonical prefix",
+                )
+                resource = bioregistry.get_resource(registry.bioregistry_prefix)
+                self.assertIsNotNone(resource)
+                self.assertIsNotNone(
+                    resource.get_uri_format(),
+                    msg=f"corresponding registry entry ({registry.bioregistry_prefix})"
+                    f" is missing a uri_format",
+                )
 
                 # When a registry is a resolver, it means it
                 # can resolve entries (prefixes) + identifiers
@@ -139,7 +126,7 @@ class TestMetaregistry(unittest.TestCase):
     def test_get_rdf(self) -> None:
         """Test conversion to RDF."""
         registry = self.manager.metaregistry["uniprot"]
-        s = metaresource_to_rdf_str(registry, manager=manager)
+        s = metaresource_to_rdf_str(registry, manager=self.manager)
         self.assertIsInstance(s, str)
         g = rdflib.Graph()
         g.parse(data=s)
@@ -147,14 +134,7 @@ class TestMetaregistry(unittest.TestCase):
     def test_corresponding(self) -> None:
         """Test data corresponds between the registry and metaregistry."""
         for metaprefix, registry in self.manager.metaregistry.items():
-            if registry.bioregistry_prefix:
-                resource = self.manager.registry[registry.bioregistry_prefix]
-            elif metaprefix in self.manager.registry:
-                resource = self.manager.registry[metaprefix]
-            else:
-                continue
-
-            # Test pattern
+            resource = self.manager.registry[registry.bioregistry_prefix]
             pattern = resource.get_pattern()
             if pattern is None:
                 continue
@@ -162,7 +142,7 @@ class TestMetaregistry(unittest.TestCase):
                 self.assertRegex(registry.example, pattern)
 
                 # Test URI format string
-                if registry.provider_uri_format:
+                if registry.uri_format:
                     uri_formats = resource.get_uri_formats()
                     self.assertLess(0, len(uri_formats))
-                    self.assertIn(registry.provider_uri_format, uri_formats)
+                    self.assertIn(registry.uri_format, uri_formats)

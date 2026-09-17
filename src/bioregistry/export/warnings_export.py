@@ -23,7 +23,8 @@ from ..resolve import (
     has_no_terms,
 )
 from ..resolve_identifier import get_iri
-from ..schema_utils import read_metaregistry, read_registry
+from ..resource_manager import Manager
+from ..schema_utils import read_registry
 from ..uri_format import get_uri_format
 
 __all__ = [
@@ -67,6 +68,8 @@ def export_warnings() -> None:
     """Make warnings list."""
     from pystow.utils import write_yaml
 
+    manager = Manager()
+
     # unparsable = get_unparsable_uris()
     missing_wikidata_database = _g(
         lambda prefix: (
@@ -91,7 +94,7 @@ def export_warnings() -> None:
             "metaprefix": metaprefix,
             "name": registry.get_short_name(),
         }
-        for metaprefix, registry in sorted(read_metaregistry().items())
+        for metaprefix, registry in sorted(manager.metaregistry.items())
         if EXTERNAL.joinpath(metaprefix, "curation.tsv").is_file()
     ]
 

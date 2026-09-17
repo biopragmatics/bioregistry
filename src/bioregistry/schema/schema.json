@@ -903,7 +903,7 @@
           "description": "A download link for the data contained in the registry",
           "title": "Download"
         },
-        "provider_uri_format": {
+        "uri_format": {
           "anyOf": [
             {
               "type": "string"
@@ -914,7 +914,7 @@
           ],
           "default": null,
           "description": "A URL with a $1 for a prefix to resolve in the registry",
-          "title": "Provider Uri Format"
+          "title": "URI format string"
         },
         "search_uri_format": {
           "anyOf": [
@@ -960,19 +960,11 @@
           "description": "The contact for the registry."
         },
         "bioregistry_prefix": {
-          "anyOf": [
-            {
-              "type": "string"
-            },
-            {
-              "type": "null"
-            }
-          ],
-          "default": null,
           "description": "The prefix for this registry in the Bioregistry",
-          "title": "Bioregistry Prefix"
+          "title": "Bioregistry Prefix",
+          "type": "string"
         },
-        "logo_url": {
+        "logo": {
           "anyOf": [
             {
               "type": "string"
@@ -983,7 +975,7 @@
           ],
           "default": null,
           "description": "The URL for the logo of the resource",
-          "title": "Logo Url"
+          "title": "Logo"
         },
         "license": {
           "anyOf": [
@@ -1018,7 +1010,8 @@
         "description",
         "homepage",
         "example",
-        "contact"
+        "contact",
+        "bioregistry_prefix"
       ],
       "title": "Registry",
       "type": "object"
