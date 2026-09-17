@@ -1,12 +1,10 @@
 """Export the Bioregistry to SSSOM."""
 
-import csv
-from collections import namedtuple
-
 import click
-import yaml
-from curies import Reference, ReferenceTuple
-from curies.vocabulary import exact_match, manual_mapping_curation, part_of
+import sssom_pydantic
+from curies import NamableReference, Reference, ReferenceTuple
+from curies.vocabulary import exact_match, part_of, unspecified_matching_process
+from sssom_pydantic import MappingSetRecord, SemanticMapping
 
 from ..constants import (
     APPEARS_IN_PRED,
@@ -15,92 +13,115 @@ from ..constants import (
     INTERNAL_METAPREFIX,
     PROVIDES_PRED,
     SSSOM_METADATA,
-    SSSOM_METADATA_PATH,
     SSSOM_PATH,
 )
-from ..parse_iri import normalize_prefix
-from ..resolve import get_appears_in, get_depends_on
-from ..resource_manager import manager
-from ..schema_utils import read_registry
-from ..utils import curie_to_str
+from ..resource_manager import Manager
+from ..schema_utils import read_mappings
 
 __all__ = [
     "export_sssom",
 ]
 
-Row = namedtuple("Row", "subject_id predicate_id object_id mapping_justification")
-
 
 @click.command()
 def export_sssom() -> None:
     """Export the meta-registry as SSSOM."""
-    internal_prefix_map = manager.get_internal_prefix_map()
+    manager = Manager()
+    converter = manager._get_internal_converter()
 
-    rows = []
-    for prefix, resource in read_registry().items():
+    semantic_mappings = read_mappings()
+    for prefix, resource in manager.registry.items():
         mappings = resource.get_mappings()
         for metaprefix, metaidentifier in mappings.items():
-            if metaprefix not in internal_prefix_map:
-                continue
-            rows.append(_make_row(prefix, exact_match, metaprefix, metaidentifier))
-        for appears_in_internal_prefix in get_appears_in(prefix) or []:
-            rows.append(
-                _make_row(
+            metaprefix = converter.standardize_prefix(metaprefix, strict=True)
+            semantic_mappings.append(
+                _make_semantic_mapping(
+                    prefix,
+                    exact_match,
+                    metaprefix,
+                    metaidentifier,
+                    manager=manager,
+                )
+            )
+
+        for appears_in_internal_prefix in manager.get_appears_in(prefix) or []:
+            semantic_mappings.append(
+                _make_semantic_mapping(
                     prefix,
                     APPEARS_IN_PRED,
                     INTERNAL_METAPREFIX,
                     appears_in_internal_prefix,
+                    manager=manager,
                 )
             )
-        for depends_on_internal_prefix in get_depends_on(prefix) or []:
-            rows.append(
-                _make_row(
+        for depends_on_internal_prefix in manager.get_depends_on(prefix) or []:
+            semantic_mappings.append(
+                _make_semantic_mapping(
                     prefix,
                     DEPENDS_ON_PRED,
                     INTERNAL_METAPREFIX,
                     depends_on_internal_prefix,
+                    manager=manager,
                 )
             )
-        if resource.part_of and normalize_prefix(resource.part_of):
-            rows.append(_make_row(prefix, part_of, INTERNAL_METAPREFIX, resource.part_of))
+
+        if resource.part_of and manager.normalize_prefix(resource.part_of):
+            semantic_mappings.append(
+                _make_semantic_mapping(
+                    prefix,
+                    part_of,
+                    INTERNAL_METAPREFIX,
+                    resource.part_of,
+                    manager=manager,
+                )
+            )
         if resource.provides:
-            rows.append(
-                _make_row(
+            semantic_mappings.append(
+                _make_semantic_mapping(
                     prefix,
                     PROVIDES_PRED,
                     INTERNAL_METAPREFIX,
                     resource.provides,
+                    manager=manager,
                 )
             )
         if resource.has_canonical:
-            rows.append(
-                _make_row(
+            semantic_mappings.append(
+                _make_semantic_mapping(
                     prefix,
                     HAS_CANONICAL_PRED,
                     INTERNAL_METAPREFIX,
                     resource.has_canonical,
+                    manager=manager,
                 )
             )
 
-    with SSSOM_PATH.open("w") as file:
-        writer = csv.writer(file, delimiter="\t")
-        writer.writerow(Row._fields)
-        writer.writerows(rows)
-    with SSSOM_METADATA_PATH.open("w") as file:
-        yaml.safe_dump({**SSSOM_METADATA, "curie_map": internal_prefix_map}, file)
+    metadata = MappingSetRecord.model_validate(SSSOM_METADATA)
+    sssom_pydantic.write(
+        semantic_mappings, SSSOM_PATH, metadata=metadata, converter=converter, sort=True
+    )
 
 
-def _make_row(
+def _make_semantic_mapping(
     internal_prefix: str,
-    relation: Reference | ReferenceTuple,
+    predicate: ReferenceTuple | Reference,
     external_metaprefix: str,
     external_prefix: str,
-) -> Row:
-    return Row(
-        subject_id=curie_to_str(INTERNAL_METAPREFIX, internal_prefix),
-        predicate_id=relation.curie,
-        object_id=curie_to_str(external_metaprefix, external_prefix),
-        mapping_justification=manual_mapping_curation.curie,
+    manager: Manager,
+) -> SemanticMapping:
+    resource = manager.get_resource(internal_prefix, strict=True)
+    external_name = resource._get_external_value(external_metaprefix, "name")
+    return SemanticMapping(
+        subject=NamableReference(
+            prefix=INTERNAL_METAPREFIX,
+            identifier=internal_prefix,
+            name=manager.get_name(internal_prefix),
+        ),
+        predicate=Reference.from_curie(predicate.curie),
+        object=NamableReference(
+            prefix=external_metaprefix, identifier=external_prefix, name=external_name
+        ),
+        justification=unspecified_matching_process,
     )
 
 

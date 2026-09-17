@@ -20,10 +20,10 @@
     </p>
     <div class="list-group">
         {% for term in terms %}
-            <div class="list-group-item list-group-item-action">
+            <div class="list-group-item list-group-item-action schema-list-item">
                 <a id="{{ term.identifier }}"></a>
                 <div class="d-flex w-100 justify-content-between">
-                    <h5 class="mb-1">
+                    <h5 class="mb-2">
                         <span class="badge badge-pill badge-info">
                         {% if term.type == "Class" %}C{% elif term.type == "Property" %}P{% endif %}
                         </span>
@@ -31,7 +31,7 @@
                     </h5>
                     <small>{{ config.METAREGISTRY_SCHEMA_PREFIX }}:{{ term.identifier }}</small>
                 </div>
-                <p class="mb-1">{{ markdown(term.description) | safe }}</p>
+                {{ markdown(term.description) | safe }}
             </div>
         {% endfor %}
     </div>

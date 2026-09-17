@@ -11,10 +11,12 @@ from typing import Any, Literal, overload
 import curies
 
 from .resource_manager import MetaresourceAnnotatedValue, manager
-from .schema import Attributable, Resource
+from .schema import AnnotatedURL, Attributable, Collection, Organization, Resource
+from .schema.struct import Record
 
 __all__ = [
     "add_resource",
+    "add_to_collection",
     "count_mappings",
     "get_appears_in",
     "get_banana",
@@ -35,6 +37,8 @@ __all__ = [
     "get_jskos_download",
     "get_json_download",
     "get_keywords",
+    "get_license",
+    "get_license_url",
     "get_logo",
     "get_mailing_list",
     "get_mappings",
@@ -43,6 +47,7 @@ __all__ = [
     "get_obo_context_prefix_map",
     "get_obo_download",
     "get_obo_health_url",
+    "get_organizations",
     "get_owl_download",
     "get_part_of",
     "get_parts_collections",
@@ -55,6 +60,7 @@ __all__ = [
     "get_registry_invmap",
     # Registry-level functions
     "get_registry_map",
+    "get_registry_short_name_to_prefix",
     "get_repository",
     "get_repository_to_prefix",
     "get_resource",
@@ -74,12 +80,12 @@ logger = logging.getLogger(__name__)
 
 # docstr-coverage:excused `overload`
 @overload
-def get_resource(prefix: str, *, strict: Literal[True] = True) -> Resource: ...
+def get_resource(prefix: str, *, strict: Literal[True] = ...) -> Resource: ...
 
 
 # docstr-coverage:excused `overload`
 @overload
-def get_resource(prefix: str, *, strict: Literal[False] = False) -> Resource | None: ...
+def get_resource(prefix: str, *, strict: Literal[False] = ...) -> Resource | None: ...
 
 
 def get_resource(prefix: str, *, strict: bool = False) -> Resource | None:
@@ -115,14 +121,14 @@ def get_name(
 @overload
 def get_name(
     prefix: str, *, provenance: Literal[False] = False, strict: Literal[False] = False
-) -> None | str: ...
+) -> str | None: ...
 
 
 # docstr-coverage:excused `overload`
 @overload
 def get_name(
     prefix: str, *, provenance: Literal[True] = True, strict: Literal[False] = False
-) -> None | MetaresourceAnnotatedValue[str]: ...
+) -> MetaresourceAnnotatedValue[str] | None: ...
 
 
 def get_name(
@@ -219,6 +225,23 @@ def get_pattern(prefix: str) -> str | None:
         3. Wikidata
     """
     return manager.get_pattern(prefix)
+
+
+# docstr-coverage:excused `overload`
+@overload
+def get_namespace_in_lui(prefix: str, *, provenance: Literal[False]) -> bool | None: ...
+
+
+# docstr-coverage:excused `overload`
+@overload
+def get_namespace_in_lui(prefix: str) -> bool | None: ...
+
+
+# docstr-coverage:excused `overload`
+@overload
+def get_namespace_in_lui(
+    prefix: str, *, provenance: Literal[True]
+) -> MetaresourceAnnotatedValue[bool] | None: ...
 
 
 def get_namespace_in_lui(
@@ -430,8 +453,8 @@ def get_fairsharing_prefix(prefix: str) -> str | None:
 
     :returns: The FAIRSharing prefix corresponding to the prefix, if mappable.
 
-    >>> get_fairsharing_prefix("genbank")
-    'FAIRsharing.9kahy4'
+    >>> get_fairsharing_prefix("go")
+    'FAIRsharing.6xq0ee'
     """
     return manager.get_mapped_prefix(prefix, "fairsharing")
 
@@ -638,9 +661,9 @@ def get_prefixcommons_uri_format(prefix: str) -> str | None:
     return resource.get_prefixcommons_uri_format()
 
 
-def get_external(prefix: str, metaprefix: str) -> Mapping[str, Any]:
+def get_external(prefix: str, metaprefix: str) -> Record | None:
     """Get the external data for the entry."""
-    return manager.get_external(prefix, metaprefix)
+    return manager.get_external(prefix, metaprefix) or {}
 
 
 def get_example(prefix: str) -> str | None:
@@ -787,20 +810,44 @@ def get_owl_download(prefix: str) -> str | None:
     return entry.get_download_owl()
 
 
-def get_rdf_download(prefix: str) -> str | None:
+# docstr-coverage:excused `overload`
+@overload
+def get_rdf_download(
+    prefix: str, *, get_format: Literal[True] = ...
+) -> str | AnnotatedURL | None: ...
+
+
+# docstr-coverage:excused `overload`
+@overload
+def get_rdf_download(prefix: str, *, get_format: Literal[False] = ...) -> str | None: ...
+
+
+def get_rdf_download(prefix: str, *, get_format: bool = False) -> str | AnnotatedURL | None:
     """Get the download link for the RDF file."""
     entry = get_resource(prefix)
     if entry is None:
         return None
-    return entry.get_download_rdf()
+    return entry.get_download_rdf(get_format=get_format)  # type:ignore
 
 
-def get_skos_download(prefix: str) -> str | None:
+# docstr-coverage:excused `overload`
+@overload
+def get_skos_download(
+    prefix: str, *, get_format: Literal[True] = ...
+) -> str | AnnotatedURL | None: ...
+
+
+# docstr-coverage:excused `overload`
+@overload
+def get_skos_download(prefix: str, *, get_format: Literal[False] = ...) -> str | None: ...
+
+
+def get_skos_download(prefix: str, *, get_format: bool = False) -> str | AnnotatedURL | None:
     """Get the download link for the SKOS RDF file."""
     entry = get_resource(prefix)
     if entry is None:
         return None
-    return entry.get_download_skos()
+    return entry.get_download_skos(get_format=get_format)  # type:ignore
 
 
 def get_jskos_download(prefix: str) -> str | None:
@@ -847,7 +894,7 @@ def get_part_of(prefix: str) -> str | None:
     :returns: The prefixes of the parent resource for this prefix, if one is annotated.
         This is the inverse of :func:`get_has_parts`.
 
-    >>> assert "chembl" in get_part_of("chembl.compound")
+    >>> assert "kegg" in get_part_of("kegg.compound")
     """
     return manager.get_part_of(prefix)
 
@@ -860,7 +907,7 @@ def get_has_parts(prefix: str) -> list[str] | None:
     :returns: The prefixes of resource for which this prefix is the parent. This is the
         inverse of :func:`get_has_parts`.
 
-    >>> assert "chembl.compound" in get_has_parts("chembl")
+    >>> assert "kegg.compound" in get_has_parts("kegg")
     """
     return manager.get_has_parts(prefix)
 
@@ -876,6 +923,19 @@ def get_license(prefix: str) -> str | None:
     if entry is None:
         return None
     return entry.get_license()
+
+
+def get_license_url(prefix: str) -> str | None:
+    """Get the license URL for the resource.
+
+    :param prefix: The prefix to look up
+
+    :returns: The license URL of the resource (normalized) if available
+    """
+    entry = get_resource(prefix)
+    if entry is None:
+        return None
+    return entry.get_license_url()
 
 
 def is_proprietary(prefix: str) -> bool | None:
@@ -939,11 +999,6 @@ def get_curie_pattern(prefix: str, *, use_preferred: bool = False) -> str | None
     return manager.get_curie_pattern(prefix, use_preferred=use_preferred)
 
 
-def get_license_conflicts() -> list[tuple[str, str | None, str | None, str | None]]:
-    """Get license conflicts."""
-    return manager.get_license_conflicts()
-
-
 def get_obo_health_url(prefix: str) -> str | None:
     """Get the OBO community health badge."""
     return manager.get_obo_health_url(prefix)
@@ -996,6 +1051,11 @@ def add_resource(resource: Resource) -> None:
     manager.add_resource(resource)
 
 
+def add_to_collection(collection: str | Collection, resource: str | Resource) -> None:
+    """Add a resource to the collection."""
+    manager.add_to_collection(collection, resource)
+
+
 def get_logo(prefix: str) -> str | None:
     """Get the logo for the resource, if it's available."""
     return manager.get_logo(prefix)
@@ -1015,3 +1075,31 @@ def get_repository_to_prefix() -> dict[str, str]:
             continue
         rv[repository.removeprefix("https://github.com/").casefold()] = resource.prefix
     return rv
+
+
+def get_registry_short_name_to_prefix(metaprefix: str) -> dict[str, str]:
+    """Get a mapping from short names in an external registry to their associated prefixes in the external registry.
+
+    :param metaprefix: A metaprefix (e.g., ``integbio``)
+
+    :returns: A mapping
+
+    .. note::
+
+        A given record in an external registry could have multiple short names, so
+        there might be duplicate values in this dictionary
+
+    >>> import bioregistry
+    >>> m = bioregistry.get_registry_short_name_to_prefix("integbio")
+    >>> m["AAindex"]
+    'nbdc00004'
+    """
+    return manager.get_registry_short_name_to_prefix(metaprefix)
+
+
+def get_organizations(prefix: str) -> list[Organization] | None:
+    """Get organizations for the prefix."""
+    resource = manager.get_resource(prefix)
+    if resource is None:
+        return None
+    return resource.get_owners()

@@ -1,8 +1,9 @@
 name: Request new prefix
-description: Add metadata about a database, ontology, or other authority that issues stable
+description:
+  Add metadata about a database, ontology, or other authority that issues stable
   identifiers.
 title: Add prefix [X]
-labels: [ New, Prefix ]
+labels: [New, Prefix]
 body:
   - type: markdown
     attributes:
@@ -14,7 +15,9 @@ body:
     id: prefix
     attributes:
       label: Prefix
-      description: What is the desired prefix? Don't include any strange punctuation or spaces. Keep it lowercase.
+      description:
+        What is the desired prefix? Don't include any strange punctuation or
+        spaces. Keep it lowercase.
       placeholder: ex. chebi
     validations:
       required: true
@@ -22,7 +25,9 @@ body:
     id: name
     attributes:
       label: Name
-      description: What is the name of the nomenclature authority associated with this prefix? Please write out acronyms in full.
+      description:
+        What is the name of the nomenclature authority associated with this
+        prefix? Please write out acronyms in full.
       placeholder: ex. Chemical Entities of Biological Interest
     validations:
       required: true
@@ -50,7 +55,10 @@ body:
     id: description
     attributes:
       label: Description
-      description: Please describe this resource in a sentence or two of english prose. A good description says what kind of entities the resource makes identifiers for, why the resource exists, and who might want to use it.
+      description:
+        Please describe this resource in a sentence or two of english prose. A
+        good description says what kind of entities the resource makes
+        identifiers for, why the resource exists, and who might want to use it.
       placeholder: Tell us about this nomenclature authority!
       # value: "A bug happened!"
     validations:
@@ -68,13 +76,16 @@ body:
       label: Publications
       description: |
         If you have a PubMed identifier, PMC identifier, or DOI with an article associated with this resource, please put it here. Please write publications using CURIE syntax. Please delimit multiple unique publications with a pipe "|" character. You only need one CURIE for each publication.
-      placeholder: ex. doi:10.1101/2022.07.08.499378 | pubmed:33290552 | pmc:PMC4383985
+      placeholder:
+        ex. doi:10.1101/2022.07.08.499378 | pubmed:33290552 | pmc:PMC4383985
 
   - type: input
     id: example
     attributes:
       label: Example Local Unique Identifier
-      description: Please provide an example local unique identifier from the nomenclature authority. This should NOT be written as a CURIE nor include the prefix.
+      description:
+        Please provide an example local unique identifier from the nomenclature
+        authority. This should NOT be written as a CURIE nor include the prefix.
       placeholder: ex. 1234
     validations:
       required: true
@@ -99,14 +110,18 @@ body:
         A URI format string is a URI with a placeholder (`$1`) for the local unique identifier that can be used in combination with a given local unique identifier to make a URI for the local unique identifier.
 
         While it is encouraged that these URIs can resolved to a webpage, it is not strictly necessary, e.g in the case of many ontologies, URIs are auto-generated.
-      placeholder: ex. `https://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:$1`
+      placeholder:
+        ex. `https://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:$1`
     validations:
       required: false
   - type: input
     id: wikidata_property
     attributes:
       label: Wikidata Property
-      description: A Wikidata property for connecting to local unique identifiers in this resource, e.g., [P683](https://www.wikidata.org/wiki/Property:P683) for ChEBI
+      description:
+        A Wikidata property for connecting to local unique identifiers in this
+        resource, e.g., [P683](https://www.wikidata.org/wiki/Property:P683) for
+        ChEBI
       placeholder: ex. P683
     validations:
       required: false
@@ -115,7 +130,8 @@ body:
     id: contributor_name
     attributes:
       label: Contributor Name
-      description: Please provide your name so we can attribute this contribution to you.
+      description:
+        Please provide your name so we can attribute this contribution to you.
       placeholder: ex. Charles Tapley Hoyt
     validations:
       required: true
@@ -123,7 +139,9 @@ body:
     id: contributor_github
     attributes:
       label: Contributor GitHub
-      description: Please provide your GitHub username (no @ symbol) so we can attribute this contribution to you.
+      description:
+        Please provide your GitHub username (no @ symbol) so we can attribute
+        this contribution to you.
       placeholder: ex. cthoyt
     validations:
       required: true
@@ -142,38 +160,56 @@ body:
     id: contributor_email
     attributes:
       label: Contributor Email
-      description: Please provide your email address (optional) so others can contact you regarding your contribution
+      description:
+        Please provide your email address (optional) so others can contact you
+        regarding your contribution
       placeholder: ex. cthoyt@gmail.com
 
   - type: input
     id: contact_name
     attributes:
       label: Contact Name
-      description: Please provide the name of the primary contact for this resource, if known. If you are contributing your own resource, please fill out this field even though it is redundant of the contributor field.
+      description:
+        Please provide the name of the primary contact for this resource, if
+        known. If you are contributing your own resource, please fill out this
+        field even though it is redundant of the contributor field.
       placeholder: ex. Charles Tapley Hoyt
   - type: input
     id: contact_orcid
     attributes:
       label: Contact ORCiD
-      description: Please provide the ORCiD identifier of the primary contact for this resource, if known. If you are contributing your own resource, please fill out this field even though it is redundant of the contributor field.
+      description:
+        Please provide the ORCiD identifier of the primary contact for this
+        resource, if known. If you are contributing your own resource, please
+        fill out this field even though it is redundant of the contributor
+        field.
       placeholder: ex. 0000-0003-4423-4370
   - type: input
     id: contact_github
     attributes:
       label: Contact GitHub
-      description: Please provide the GitHub handle of the primary contact for this resource, if known. If you are contributing your own resource, please fill out this field even though it is redundant of the contributor field.
+      description:
+        Please provide the GitHub handle of the primary contact for this
+        resource, if known. If you are contributing your own resource, please
+        fill out this field even though it is redundant of the contributor
+        field.
       placeholder: ex. cthoyt
   - type: input
     id: contact_email
     attributes:
       label: Contact Email
-      description: Please provide the email address of the primary contact for this resource, if known.
+      description:
+        Please provide the email address of the primary contact for this
+        resource, if known.
       placeholder: ex. cthoyt@gmail.com
 
   - type: textarea
     id: comments
     attributes:
       label: Additional Comments
-      description: If you have any additional comments about this nomenclature authority to include in the Bioregistry that don't exactly belong in the description, please leave them here.
+      description:
+        If you have any additional comments about this nomenclature authority to
+        include in the Bioregistry that don't exactly belong in the description,
+        please leave them here.
     validations:
       required: false

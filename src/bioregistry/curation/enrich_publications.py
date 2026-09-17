@@ -6,14 +6,14 @@ Run this script with python -m bioregistry.curation.clean_publications.
 from __future__ import annotations
 
 from functools import lru_cache
-from typing import Any
+from typing import Any, cast
 
 from manubot.cite.doi import get_doi_csl_item
 from manubot.cite.pubmed import get_pmid_for_doi, get_pubmed_csl_item
 from tqdm import tqdm
 
 from bioregistry import manager
-from bioregistry.schema.struct import Publication, deduplicate_publications
+from bioregistry.schema import Publication, deduplicate_publications
 from bioregistry.utils import removeprefix
 
 
@@ -27,7 +27,12 @@ def _get_pubmed_csl_item(pubmed_id: str) -> dict[str, Any] | None:
 
 @lru_cache(None)
 def _get_doi_csl_item(pubmed_id: str) -> dict[str, Any] | None:
-    return get_doi_csl_item(pubmed_id)  # type:ignore
+    try:
+        rv = cast(dict[str, Any], get_doi_csl_item(pubmed_id))
+    except Exception:
+        return None
+    else:
+        return rv
 
 
 @lru_cache(None)

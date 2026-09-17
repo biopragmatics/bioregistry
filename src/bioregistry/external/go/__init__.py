@@ -7,10 +7,10 @@ from pathlib import Path
 from typing import Any, ClassVar
 
 import yaml
-from pystow.utils import download
 
+from bioregistry.alignment_model import Record, make_record
 from bioregistry.constants import RAW_DIRECTORY, URI_FORMAT_KEY
-from bioregistry.external.alignment_utils import Aligner, load_processed
+from bioregistry.external.alignment_utils import Aligner, build_getter
 
 __all__ = [
     "GoAligner",
@@ -35,6 +35,9 @@ BLOCK = {
     ("WB_REF", "http://www.wormbase.org/get?name=$1"),
     ("WBPhenotype", "http://www.wormbase.org/get?name=$1"),
     ("EnsemblFungi", "http://www.ensemblgenomes.org/id/$1"),
+    ("EnsemblMetazoa", "http://www.ensemblgenomes.org/id/$1"),
+    ("EnsemblPlants", "http://www.ensemblgenomes.org/id/$1"),
+    ("EnsemblProtists", "http://www.ensemblgenomes.org/id/$1"),
 }
 
 # The key is redundant of the value
@@ -49,23 +52,75 @@ GO_URL = "https://raw.githubusercontent.com/geneontology/go-site/master/metadata
 PROCESSING_GO_PATH = DIRECTORY / "processing_go.json"
 
 
-def get_go(force_download: bool = False) -> dict[str, dict[str, Any]]:
-    """Get the GO registry."""
-    if PROCESSED_PATH.exists() and not force_download:
-        return load_processed(PROCESSED_PATH)
-
-    download(url=GO_URL, path=RAW_PATH, force=True)
-    with RAW_PATH.open() as file:
-        entries = yaml.full_load(file)
-    entries = [
-        entry
-        for entry in entries
+def parse_go(path: Path) -> dict[str, Record]:
+    """Parse raw GO registry."""
+    with path.open() as file:
+        raw_entries = yaml.full_load(file)
+    records = {
+        entry["database"]: _process_record(entry)
+        for entry in raw_entries
         if entry["database"] not in SKIP and entry["database"] not in REDUNDANT
+    }
+    return records
+
+
+get_go = build_getter(
+    processed_path=PROCESSED_PATH,
+    raw_path=RAW_PATH,
+    url=GO_URL,
+    func=parse_go,
+)
+
+
+def _process_record(data: Mapping[str, Any]) -> Record:
+    """Prepare GO data to be added to the bioregistry for each GO registry entry."""
+    external_id = data["database"]
+
+    rv = {
+        "name": data["name"],
+    }
+
+    description = data.get("description")
+    if description:
+        rv["description"] = description
+
+    homepages = [
+        homepage
+        for homepage in data.get("generic_urls", [])
+        if not any(
+            homepage.startswith(homepage_prefix)
+            for homepage_prefix in [
+                "http://purl.obolibrary.org",
+            ]
+        )
     ]
-    rv = {entry["database"]: entry for entry in entries}
-    with PROCESSED_PATH.open("w") as file:
-        json.dump(rv, file, indent=2, sort_keys=True)
-    return rv
+    if len(homepages) > 1:
+        logger.info(f"{external_id} multiple homepages {homepages}")
+    if homepages:
+        rv["homepage"] = homepages[0]
+
+    entity_types = data.get("entity_types", [])
+    if len(entity_types) > 1:
+        logger.info(f"{external_id} multiple entity types")
+        # TODO handle
+    elif len(entity_types) == 1:
+        entity_type = entity_types[0]
+        uri_format = entity_type.get("url_syntax")
+        if uri_format and not any(
+            uri_format.startswith(formatter_prefix)
+            for formatter_prefix in [
+                "http://purl.obolibrary.org",
+                "https://purl.obolibrary.org",
+            ]
+        ):
+            uri_format = uri_format.replace("[example_id]", "$1")
+            if (external_id, uri_format) not in BLOCK:
+                rv[URI_FORMAT_KEY] = uri_format
+
+    if "synonyms" in data:
+        rv["prefix_synonyms"] = data["synonyms"]
+
+    return make_record(rv)
 
 
 class GoAligner(Aligner):
@@ -80,56 +135,6 @@ class GoAligner(Aligner):
         with PROCESSING_GO_PATH.open() as file:
             j = json.load(file)
         return j["skip"]  # type:ignore
-
-    def prepare_external(
-        self, external_id: str, external_entry: Mapping[str, Any]
-    ) -> dict[str, Any]:
-        """Prepare GO data to be added to the bioregistry for each GO registry entry."""
-        rv = {
-            "name": external_entry["name"],
-        }
-
-        description = external_entry.get("description")
-        if description:
-            rv["description"] = description
-
-        homepages = [
-            homepage
-            for homepage in external_entry.get("generic_urls", [])
-            if not any(
-                homepage.startswith(homepage_prefix)
-                for homepage_prefix in [
-                    "http://purl.obolibrary.org",
-                ]
-            )
-        ]
-        if len(homepages) > 1:
-            logger.info(f"{external_id} multiple homepages {homepages}")
-        if homepages:
-            rv["homepage"] = homepages[0]
-
-        entity_types = external_entry.get("entity_types", [])
-        if len(entity_types) > 1:
-            logger.info(f"{external_id} multiple entity types")
-            # TODO handle
-        elif len(entity_types) == 1:
-            entity_type = entity_types[0]
-            uri_format = entity_type.get("url_syntax")
-            if uri_format and not any(
-                uri_format.startswith(formatter_prefix)
-                for formatter_prefix in [
-                    "http://purl.obolibrary.org",
-                    "https://purl.obolibrary.org",
-                ]
-            ):
-                uri_format = uri_format.replace("[example_id]", "$1")
-                if (external_id, uri_format) not in BLOCK:
-                    rv[URI_FORMAT_KEY] = uri_format
-
-        if "synonyms" in external_entry:
-            rv["synonyms"] = external_entry["synonyms"]
-
-        return rv
 
 
 if __name__ == "__main__":

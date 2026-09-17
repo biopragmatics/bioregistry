@@ -144,11 +144,12 @@ def get_all_mapping_keys(data: dict[str, dict[str, Any]]) -> set[str]:
 
     :returns: A set of all unique mapping keys.
     """
-    mapping_keys: set[str] = set()
-    for prefix in data:
-        if "mappings" in data[prefix]:
-            mapping_keys.update(data[prefix]["mappings"].keys())
-    return mapping_keys
+    return {
+        key
+        for subdata in data.values()
+        if (mappings := subdata.get("mappings"))
+        for key in mappings
+    }
 
 
 class DataResult(NamedTuple):
@@ -225,13 +226,13 @@ def visualize_changes(
                 if field == "mappings":
                     mappings = change[1] if isinstance(change[1], dict) else change[0]
                     if mappings:
-                        for mapping_key in mappings.keys():
+                        for mapping_key in mappings:
                             if mapping_key in mapping_fields:
                                 mapping_fields[mapping_key] += 1
 
         # Process other fields, excluding mappings
         for _prefix, changes in update_details:
-            for field, _change in changes.items():
+            for field in changes:
                 if field in mapping_fields or field == "mappings":
                     continue
                 if field == "contributor" or field == "contributor_extras":

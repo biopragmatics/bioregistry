@@ -18,16 +18,22 @@ __all__ = [
 ]
 
 
-def _normalize_values(values: dict[str, str] | str) -> dict[str, str]:
+class MissingPartError(RuntimeError):
+    """Thrown when missing a prefix or identifier."""
+
+
+def _normalize_values(values: dict[str, str] | str | curies.Reference) -> dict[str, str]:
     """Validate the identifier."""
     if isinstance(values, str):
         prefix_, _, identifier_ = values.partition(":")
         if not identifier_:
             raise ValueError("not formatted as a CURIE")
         values = {"prefix": prefix_, "identifier": identifier_}
+    elif isinstance(values, curies.Reference):
+        values = {"prefix": values.prefix, "identifier": values.identifier}
     prefix, identifier = values.get("prefix"), values.get("identifier")
     if prefix is None or identifier is None:
-        raise RuntimeError(f"missing prefix/identifier from values: {values}")
+        raise MissingPartError(f"missing prefix/identifier from values: {values}")
     resource = bioregistry.get_resource(prefix)
     if resource is None:
         raise ExpansionError(f"Unknown prefix: {prefix}")
@@ -42,13 +48,15 @@ def _normalize_values(values: dict[str, str] | str) -> dict[str, str]:
     return values
 
 
-def _standardize_values(values: dict[str, str] | str) -> dict[str, str]:
+def _standardize_values(values: dict[str, str] | str | curies.Reference) -> dict[str, str]:
     """Validate the identifier."""
     if isinstance(values, str):
         prefix_, _, identifier_ = values.partition(":")
         if not identifier_:
             raise ValueError("not formatted as a CURIE")
         values = {"prefix": prefix_, "identifier": identifier_}
+    elif isinstance(values, curies.Reference):
+        values = {"prefix": values.prefix, "identifier": values.identifier}
     prefix, identifier = values.get("prefix"), values.get("identifier")
     if prefix is None or identifier is None:
         raise RuntimeError(f"missing prefix/identifier from values: {values}")
@@ -98,7 +106,7 @@ class NormalizedReference(curies.Reference):
     """
 
     @model_validator(mode="before")
-    def validate_identifier(cls, values: dict[str, str] | str) -> dict[str, str]:  # noqa
+    def validate_identifier(cls, values: dict[str, str] | str | curies.Reference) -> dict[str, str]:  # noqa
         """Validate the identifier."""
         return _normalize_values(values)
 
@@ -124,6 +132,10 @@ class NormalizedNamableReference(NormalizedReference, curies.NamableReference):
     >>> NormalizedNamedReference(prefix="GOBP", identifier="0032571", name="response to vitamin K")
     NormalizedNamedReference(prefix='go', identifier='0032571', name='response to vitamin K')
     """
+
+    def without_name(self) -> NormalizedReference:
+        """Return this reference without a name."""
+        return NormalizedReference(prefix=self.prefix, identifier=self.identifier)
 
 
 class NormalizedNamedReference(NormalizedNamableReference, curies.NamedReference):
@@ -170,7 +182,7 @@ class StandardReference(curies.Reference):
     """
 
     @model_validator(mode="before")
-    def validate_identifier(cls, values: dict[str, str] | str) -> dict[str, str]:  # noqa
+    def validate_identifier(cls, values: dict[str, str] | str | curies.Reference) -> dict[str, str]:  # noqa
         """Validate the identifier."""
         return _standardize_values(values)
 
@@ -196,6 +208,10 @@ class StandardNamableReference(StandardReference, curies.NamableReference):
     >>> StandardNamableReference(prefix="GOBP", identifier="0032571", name="response to vitamin K")
     StandardNamableReference(prefix='GO', identifier='0032571', name='response to vitamin K')
     """
+
+    def without_name(self) -> StandardNamableReference:
+        """Return this reference without a name."""
+        return StandardNamableReference(prefix=self.prefix, identifier=self.identifier)
 
 
 class StandardNamedReference(StandardNamableReference, curies.NamedReference):

@@ -1,0 +1,80 @@
+{% import "macros.html" as utils %}
+
+<div class="card" style="margin-top: 20px">
+    <h5 class="card-header">Contacts</h5>
+    <div class="card-body">
+        <dl>
+            <dt>
+                Contact{% if contacts and contacts|length > 1 %}s{% endif %}
+                {% if contacts %}
+                <a type="button" data-toggle="modal" data-target="#contact-modal">
+                    <i class="bi bi-question-circle"></i>
+                </a>
+                {% endif %}
+            </dt>
+            {%- if contacts %}
+            {%- for contact in contacts %}
+            <dd {% if not loop.last %}class="mb-0"{% endif %}>
+            {{ utils.render_author(contact, link=none) }}
+            </dd>
+            {%- endfor %}
+            {%- else %}
+            <dd>
+                <span class="badge badge-pill badge-warning">Missing Contact</span>
+            </dd>
+            {%- endif %}
+
+            {%- if resource.contact_group_email or resource.contact_page %}
+            <dt>Group Contact</dt>
+            <dd>
+                {%- if resource.contact_group_email %}
+                <a class="badge badge-pill badge-light" href="mailto:{{ resource.contact_group_email }}">
+                    Mailing List <i class="bi bi-envelope"></i>
+                </a>
+                {%- endif %}
+                {%- if resource.contact_page %}
+                <a class="badge badge-pill badge-light" href="{{ resource.contact_page }}">
+                    Contact Page <i class="bi bi-envelope"></i>
+                </a>
+                {%- endif %}
+            </dd>
+            {%- endif %}
+
+            {%- set owners = resource.get_owners() %}
+            {%- if owners %}
+            <dt>Identifier Space Owner{% if owners | length > 1 %}s{% endif %}</dt>
+            {%- for owner in owners %}
+            <dd {% if not loop.last %}class="mb-0"{% endif %}>
+                {{ utils.link_organization(owner) }}
+                {% if owner.partnered %}
+                <a href="{{ config.METAREGISTRY_REPOSITORY }}/blob/main/docs/GOVERNANCE.md#partners"
+                   class="badge badge-pill badge-info" data-toggle="tooltip"
+                   title="This organization has partnered with the {{ config.METAREGISTRY_TITLE }} to proactively maintain this record. Click to see related project governance.">
+                    Partnered
+                </a>
+                {% endif %}
+            </dd>
+            {%- endfor %}
+            {%- endif %}
+
+            {%- if contributors %}
+            <dt>Contributor{% if contributors | length > 1 %}s{% endif %}</dt>
+            {%- for badge, contributor in contributors %}
+            <dd {% if not loop.last %}class="mb-0"{% endif %}>
+                <span class="badge badge-info">{{ badge }}</span>
+                {{ utils.render_author(contributor, link=url_for('metaregistry_ui.contributor', orcid=contributor.orcid)) }}
+            </dd>
+            {%- endfor %}
+            {%- endif %}
+
+            {%- if reviewers %}
+            <dt>Reviewer{% if reviewers | length > 1 %}s{% endif %}</dt>
+            {%- for reviewer in reviewers %}
+            <dd {% if not loop.last %}class="mb-0"{% endif %}>
+                {{ utils.render_author(reviewer, link=url_for('metaregistry_ui.contributor', orcid=resource.reviewer.orcid)) }}
+            </dd>
+            {%- endfor %}
+            {%- endif %}
+        </dl>
+    </div>
+</div>

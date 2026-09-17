@@ -16,11 +16,12 @@
         "version": "present"
       },
       "bibtex": "Hoehndorf2015",
+      "bioregistry_prefix": "aberowl",
       "contact": {
-        "email": "ali.syed@kaust.edu.sa",
-        "github": "aliraza995",
-        "name": "Ali Syed",
-        "orcid": "0000-0002-5103-9058"
+        "email": "maxat.kulmanov@kaust.edu.sa",
+        "github": "coolmaksat",
+        "name": "Maxat Kulmanov",
+        "orcid": "0000-0003-1710-1820"
       },
       "description": "AberOWL is a framework for ontology-based access to biological data. It consists of a repository of bio-ontologies, a set of webservices which provide access to OWL(-EL) reasoning over the ontologies, and several frontends which utilise the ontology repository and reasoning services to provide access to specific biological datasets.",
       "download": "http://aber-owl.net/api/ontology/?format=json",
@@ -30,6 +31,7 @@
         "curates": false,
         "curation": "import",
         "imports": true,
+        "issue_tracker": "https://github.com/bio-ontology-research-group/aberowlweb/issues",
         "public_version_controlled_data": false,
         "review_team": "n/a",
         "scope": "bio-ontologies",
@@ -37,10 +39,9 @@
       },
       "homepage": "http://aber-owl.net",
       "license": "See https://github.com/biopragmatics/bioregistry/issues/339",
-      "logo_url": "http://aber-owl.net/static/images/logo-owl-small.33629e604a66.png",
+      "logo": "http://aber-owl.net/static/images/logo-owl-small.33629e604a66.png",
       "name": "AberOWL",
       "prefix": "aberowl",
-      "provider_uri_format": "http://aber-owl.net/ontology/$1",
       "qualities": {
         "automatable_download": true,
         "bulk_data": true,
@@ -49,7 +50,8 @@
       },
       "resolver_type": "lookup",
       "resolver_uri_format": "http://aber-owl.net/ontology/$1/#/Browse/<http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2F$1_$2>",
-      "search_uri_format": "http://aber-owl.net/#/$1/Ontologies"
+      "search_uri_format": "http://aber-owl.net/#/$1/Ontologies",
+      "uri_format": "http://aber-owl.net/ontology/$1"
     },
     {
       "availability": {
@@ -67,6 +69,7 @@
         "version": "present"
       },
       "bibtex": "Jonquet2018",
+      "bioregistry_prefix": "agroportal",
       "contact": {
         "email": "clement.jonquet@inrae.fr",
         "github": "jonquet",
@@ -88,17 +91,17 @@
       },
       "homepage": "http://agroportal.lirmm.fr",
       "license": "See https://github.com/biopragmatics/bioregistry/issues/336",
-      "logo_url": "https://avatars.githubusercontent.com/u/16088111",
+      "logo": "https://avatars.githubusercontent.com/u/16088111",
       "name": "AgroPortal",
       "prefix": "agroportal",
-      "provider_uri_format": "http://agroportal.lirmm.fr/ontologies/$1",
       "qualities": {
         "automatable_download": true,
         "bulk_data": false,
         "no_authentication": false,
         "structured_data": true
       },
-      "resolver_type": "lookup"
+      "resolver_type": "lookup",
+      "uri_format": "http://agroportal.lirmm.fr/ontologies/$1"
     },
     {
       "availability": {
@@ -139,17 +142,17 @@
       },
       "homepage": "https://bartoc.org/",
       "license": "PDDL 1.0",
-      "logo_url": "https://bartoc.org/img/bartoc-logo.svg",
+      "logo": "https://bartoc.org/img/bartoc-logo.svg",
       "name": "Basic Register of Thesauri, Ontologies & Classifications",
       "prefix": "bartoc",
-      "provider_uri_format": "https://bartoc.org/en/node/$1",
       "qualities": {
         "automatable_download": true,
         "bulk_data": true,
         "no_authentication": true,
         "structured_data": true
       },
-      "short_name": "BARTOC"
+      "short_name": "BARTOC",
+      "uri_format": "https://bartoc.org/en/node/$1"
     },
     {
       "availability": {
@@ -167,6 +170,7 @@
         "version": "missing"
       },
       "bibtex": "biocontext",
+      "bioregistry_prefix": "biocontext",
       "contact": {
         "email": "cjmungall@lbl.gov",
         "github": "cmungall",
@@ -193,13 +197,37 @@
       "license": "missing",
       "name": "BioContext",
       "prefix": "biocontext",
-      "provider_uri_format": "https://bioregistry.io/metaregistry/biocontext/$1",
       "qualities": {
         "automatable_download": true,
         "bulk_data": true,
         "no_authentication": true,
         "structured_data": true
-      }
+      },
+      "uri_format": "https://bioregistry.io/metaregistry/biocontext/$1"
+    },
+    {
+      "bioregistry_prefix": "biodivportal",
+      "contact": {
+        "github": "naouelkaram",
+        "name": "Naouel Karam",
+        "orcid": "0000-0002-6762-6417"
+      },
+      "description": "The BiodivPortal is an OntoPortal instance for biodiversity-related ontologies",
+      "example": "CARO",
+      "homepage": "https://biodivportal.gfbio.org",
+      "license": "See https://github.com/biopragmatics/bioregistry/issues/337",
+      "logo": "https://biodivportal.gfbio.org/assets/logo-white-d9b8799b92fd0419f657fa6eea2114bde3f56205d75bfb4dbf5415563f05e263.svg",
+      "name": "BiodivPortal",
+      "prefix": "biodivportal",
+      "qualities": {
+        "automatable_download": true,
+        "bulk_data": false,
+        "no_authentication": false,
+        "structured_data": true
+      },
+      "resolver_type": "lookup",
+      "short_name": "BiodivPortal",
+      "uri_format": "https://biodivportal.gfbio.org/ontologies/$1"
     },
     {
       "availability": {
@@ -242,7 +270,7 @@
       },
       "homepage": "https://github.com/biolink/biolink-model",
       "license": "Apache 2.0",
-      "logo_url": "https://avatars.githubusercontent.com/u/25489141",
+      "logo": "https://avatars.githubusercontent.com/u/25489141",
       "name": "Biolink Model Registry",
       "prefix": "biolink",
       "qualities": {
@@ -291,10 +319,9 @@
       },
       "homepage": "https://bioportal.bioontology.org/",
       "license": "See https://github.com/biopragmatics/bioregistry/issues/337",
-      "logo_url": "https://ontoportal.org/images/alliance_member_logos/bioportal.png",
+      "logo": "https://ontoportal.org/images/alliance_member_logos/bioportal.png",
       "name": "BioPortal Prefixes",
       "prefix": "bioportal",
-      "provider_uri_format": "https://bioportal.bioontology.org/ontologies/$1",
       "qualities": {
         "automatable_download": true,
         "bulk_data": false,
@@ -302,7 +329,8 @@
         "structured_data": true
       },
       "resolver_type": "lookup",
-      "short_name": "BioPortal"
+      "short_name": "BioPortal",
+      "uri_format": "https://bioportal.bioontology.org/ontologies/$1"
     },
     {
       "availability": {
@@ -345,10 +373,9 @@
       },
       "homepage": "https://bioregistry.io",
       "license": "CC0",
-      "logo_url": "https://bioregistry.io/static/logo.svg",
+      "logo": "https://bioregistry.io/static/logo.svg",
       "name": "Bioregistry",
       "prefix": "bioregistry",
-      "provider_uri_format": "https://bioregistry.io/registry/$1",
       "qualities": {
         "automatable_download": true,
         "bulk_data": true,
@@ -356,7 +383,8 @@
         "structured_data": true
       },
       "resolver_type": "resolver",
-      "resolver_uri_format": "https://bioregistry.io/$1:$2"
+      "resolver_uri_format": "https://bioregistry.io/$1:$2",
+      "uri_format": "https://bioregistry.io/registry/$1"
     },
     {
       "availability": {
@@ -395,7 +423,7 @@
       },
       "homepage": "https://web.expasy.org/cellosaurus/",
       "license": "CC BY 4.0",
-      "logo_url": "https://www.cellosaurus.org/images/cellosaurus/cellosaurus.png",
+      "logo": "https://www.cellosaurus.org/images/cellosaurus/cellosaurus.png",
       "name": "Cellosaurus Registry",
       "prefix": "cellosaurus",
       "qualities": {
@@ -448,7 +476,6 @@
       "license": "CC BY 3.0",
       "name": "Chemical Information Ontology",
       "prefix": "cheminf",
-      "provider_uri_format": "https://semanticscience.org/resource/CHEMINF_$1",
       "qualities": {
         "automatable_download": true,
         "bulk_data": true,
@@ -456,7 +483,8 @@
         "structured_data": true
       },
       "resolver_type": "lookup",
-      "short_name": "CHEMINF"
+      "short_name": "CHEMINF",
+      "uri_format": "https://semanticscience.org/resource/CHEMINF_$1"
     },
     {
       "availability": {
@@ -474,6 +502,7 @@
         "version": "missing"
       },
       "bibtex": "Arnaud2020",
+      "bioregistry_prefix": "cropoct",
       "contact": {
         "email": "e.arnaud@cgiar.org",
         "github": "elizabetharnaud",
@@ -496,10 +525,9 @@
       },
       "homepage": "https://www.cropontology.org",
       "license": "CC BY 4.0",
-      "logo_url": "https://cropontology.org/cropontology_static/crop_ontology_logo_2.png",
+      "logo": "https://cropontology.org/cropontology_static/crop_ontology_logo_2.png",
       "name": "Crop Ontology Curation Tool",
       "prefix": "cropoct",
-      "provider_uri_format": "https://cropontology.org/ontology/$1",
       "qualities": {
         "automatable_download": true,
         "bulk_data": true,
@@ -508,7 +536,8 @@
       },
       "resolver_type": "lookup",
       "resolver_uri_format": "https://cropontology.org/term/$1:$2",
-      "short_name": "CropOCT"
+      "short_name": "CropOCT",
+      "uri_format": "https://cropontology.org/ontology/$1"
     },
     {
       "availability": {
@@ -526,6 +555,7 @@
         "version": "present"
       },
       "bibtex": "Kechagioglou2021",
+      "bioregistry_prefix": "ecoportal",
       "contact": {
         "email": "xeni.kechagioglou@lifewatch.eu",
         "github": "xeniacs",
@@ -546,17 +576,17 @@
       },
       "homepage": "http://ecoportal.lifewatch.eu",
       "license": "See https://github.com/biopragmatics/bioregistry/issues/338",
-      "logo_url": "https://metadatacatalogue.lifewatch.eu/srv/api/records/95a44a9c-6f70-454f-9d3e-5e9d5684bb51/attachments/EcoPortal%20Positivo2.png",
+      "logo": "https://metadatacatalogue.lifewatch.eu/srv/api/records/95a44a9c-6f70-454f-9d3e-5e9d5684bb51/attachments/EcoPortal%20Positivo2.png",
       "name": "EcoPortal",
       "prefix": "ecoportal",
-      "provider_uri_format": "http://ecoportal.lifewatch.eu/ontologies/$1",
       "qualities": {
         "automatable_download": true,
         "bulk_data": false,
         "no_authentication": false,
         "structured_data": true
       },
-      "resolver_type": "lookup"
+      "resolver_type": "lookup",
+      "uri_format": "http://ecoportal.lifewatch.eu/ontologies/$1"
     },
     {
       "availability": {
@@ -599,17 +629,17 @@
       },
       "homepage": " http://edamontology.org",
       "license": "CC BY-SA 4.0",
-      "logo_url": "https://avatars.githubusercontent.com/u/7922809",
+      "logo": "https://avatars.githubusercontent.com/u/7922809",
       "name": "EDAM Ontology",
       "prefix": "edam",
-      "provider_uri_format": "http://edamontology.org/data_$1",
       "qualities": {
         "automatable_download": true,
         "bulk_data": true,
         "no_authentication": true,
         "structured_data": true
       },
-      "short_name": "EDAM"
+      "short_name": "EDAM",
+      "uri_format": "http://edamontology.org/data_$1"
     },
     {
       "availability": {
@@ -648,16 +678,16 @@
       },
       "homepage": "https://fairsharing.org/",
       "license": "CC BY-SA 4.0",
-      "logo_url": "https://api.fairsharing.org/img/fairsharing-attribution.svg",
+      "logo": "https://api.fairsharing.org/img/fairsharing-attribution.svg",
       "name": "FAIRSharing",
       "prefix": "fairsharing",
-      "provider_uri_format": "https://fairsharing.org/$1",
       "qualities": {
         "automatable_download": true,
         "bulk_data": false,
         "no_authentication": false,
         "structured_data": true
-      }
+      },
+      "uri_format": "https://fairsharing.org/$1"
     },
     {
       "availability": {
@@ -700,7 +730,7 @@
       },
       "homepage": "http://geneontology.org/",
       "license": "CC BY 4.0",
-      "logo_url": "http://geneontology.org/assets/go-logo.large.png",
+      "logo": "http://geneontology.org/assets/go-logo.large.png",
       "name": "Gene Ontology Registry",
       "prefix": "go",
       "qualities": {
@@ -729,7 +759,7 @@
       "bibtex": "Bender2013",
       "bioregistry_prefix": "oid",
       "contact": {
-        "email": "hq@HL7.org",
+        "email": "hq@hl7.org",
         "name": "HL7 Support"
       },
       "description": "HL7 External Code Systems are stored within the greater OID system",
@@ -746,17 +776,17 @@
       },
       "homepage": "http://www.oid-info.com/get/2.16.840.1.113883.6",
       "license": "See https://github.com/biopragmatics/bioregistry/issues/586",
-      "logo_url": "https://comjoodoc.de/wp-content/uploads/2019/03/blog_comjoodoc_hl7fhir-1200x800.png",
+      "logo": "https://comjoodoc.de/wp-content/uploads/2019/03/blog_comjoodoc_hl7fhir-1200x800.png",
       "name": "HL7 External Code Systems",
       "prefix": "hl7",
-      "provider_uri_format": "https://oid-base.com/get/$1",
       "qualities": {
         "automatable_download": false,
         "bulk_data": false,
         "no_authentication": true,
         "structured_data": true
       },
-      "short_name": "HL7"
+      "short_name": "HL7",
+      "uri_format": "https://oid-base.com/get/$1"
     },
     {
       "availability": {
@@ -795,17 +825,17 @@
       },
       "homepage": "https://integbio.jp/en/",
       "license": "CC0",
-      "logo_url": "https://integbio.jp/templates/integbio/images/logo/logo.png",
+      "logo": "https://integbio.jp/templates/integbio/images/logo/logo.png",
       "name": "Integbio",
       "prefix": "integbio",
-      "provider_uri_format": "https://catalog.integbio.jp/dbcatalog/en/record/$1",
       "qualities": {
         "automatable_download": true,
         "bulk_data": true,
         "no_authentication": true,
         "structured_data": true
       },
-      "search_uri_format": "https://integbio.jp/dbcatalog/dbsearch-en?cck=database_catalog&order_en=1&dbcat_search_all_en=$1&tag2_en=&tag3_en=&inst_country_en=&inst_country_others_en=&dbarchive_en=&togotv_en=&data_downloadable_en=&biosharing_en=&record_creation_en=&status_en=&dbcat_ministry=&taxonomy=&lang=en&search=database_catalog_search_en&task=search"
+      "search_uri_format": "https://integbio.jp/dbcatalog/dbsearch-en?cck=database_catalog&order_en=1&dbcat_search_all_en=$1&tag2_en=&tag3_en=&inst_country_en=&inst_country_others_en=&dbarchive_en=&togotv_en=&data_downloadable_en=&biosharing_en=&record_creation_en=&status_en=&dbcat_ministry=&taxonomy=&lang=en&search=database_catalog_search_en&task=search",
+      "uri_format": "https://catalog.integbio.jp/dbcatalog/en/record/$1"
     },
     {
       "availability": {
@@ -822,6 +852,7 @@
         "synonyms": "missing",
         "version": "missing"
       },
+      "bioregistry_prefix": "lov",
       "contact": {
         "email": "py.vandenbussche@gmail.com",
         "github": "pyvandenbussche",
@@ -845,10 +876,9 @@
       },
       "homepage": "https://lov.linkeddata.es",
       "license": "CC BY 4.0",
-      "logo_url": "https://lov.linkeddata.es/img/icon-LOV.png",
+      "logo": "https://lov.linkeddata.es/img/icon-LOV.png",
       "name": "Linked Open Vocabularies",
       "prefix": "lov",
-      "provider_uri_format": "https://lov.linkeddata.es/dataset/lov/vocabs/$1",
       "qualities": {
         "automatable_download": true,
         "bulk_data": true,
@@ -856,7 +886,8 @@
         "structured_data": true
       },
       "search_uri_format": "https://lov.linkeddata.es/dataset/lov/vocabs?q=$1",
-      "short_name": "LOV"
+      "short_name": "LOV",
+      "uri_format": "https://lov.linkeddata.es/dataset/lov/vocabs/$1"
     },
     {
       "availability": {
@@ -898,10 +929,9 @@
       },
       "homepage": "https://identifiers.org",
       "license": "CC BY 4.0",
-      "logo_url": "https://identifiers.org/identifiers_logo.f6737b08.png",
+      "logo": "https://identifiers.org/identifiers_logo.f6737b08.png",
       "name": "Identifiers.org",
       "prefix": "miriam",
-      "provider_uri_format": "https://registry.identifiers.org/registry/$1",
       "qualities": {
         "automatable_download": true,
         "bulk_data": true,
@@ -909,7 +939,8 @@
         "structured_data": true
       },
       "resolver_type": "resolver",
-      "resolver_uri_format": "https://identifiers.org/$1:$2"
+      "resolver_uri_format": "https://identifiers.org/$1:$2",
+      "uri_format": "https://registry.identifiers.org/registry/$1"
     },
     {
       "availability": {
@@ -949,10 +980,9 @@
       },
       "homepage": "https://n2t.net",
       "license": "CC0",
-      "logo_url": "https://n2t.net/e/images/n2t_net_logo.png",
+      "logo": "https://n2t.net/e/images/n2t_net_logo.png",
       "name": "Name-to-Thing",
       "prefix": "n2t",
-      "provider_uri_format": "https://n2t.net/$1:",
       "qualities": {
         "automatable_download": true,
         "bulk_data": true,
@@ -961,7 +991,8 @@
       },
       "resolver_type": "resolver",
       "resolver_uri_format": "https://n2t.net/$1:$2",
-      "short_name": "N2T"
+      "short_name": "N2T",
+      "uri_format": "https://n2t.net/$1:"
     },
     {
       "availability": {
@@ -998,7 +1029,7 @@
       },
       "homepage": "https://www.ncbi.nlm.nih.gov/genbank/collab/db_xref/",
       "license": "See https://github.com/biopragmatics/bioregistry/issues/342",
-      "logo_url": "https://upload.wikimedia.org/wikipedia/commons/0/07/US-NLM-NCBI-Logo.svg",
+      "logo": "https://upload.wikimedia.org/wikipedia/commons/0/07/US-NLM-NCBI-Logo.svg",
       "name": "National Center for Biotechnology Information Registry",
       "prefix": "ncbi",
       "qualities": {
@@ -1025,6 +1056,7 @@
         "version": "missing"
       },
       "bibtex": "Jackson2021",
+      "bioregistry_prefix": "obo",
       "contact": {
         "email": "cjmungall@lbl.gov",
         "github": "cmungall",
@@ -1049,10 +1081,9 @@
       },
       "homepage": "http://www.obofoundry.org/",
       "license": "CC0",
-      "logo_url": "https://obofoundry.org/images/foundrylogo.png",
+      "logo": "https://obofoundry.org/images/foundrylogo.png",
       "name": "OBO Foundry",
       "prefix": "obofoundry",
-      "provider_uri_format": "https://www.obofoundry.org/ontology/$1",
       "qualities": {
         "automatable_download": true,
         "bulk_data": true,
@@ -1060,7 +1091,8 @@
         "structured_data": true
       },
       "resolver_type": "resolver",
-      "resolver_uri_format": "http://purl.obolibrary.org/obo/$1_$2"
+      "resolver_uri_format": "http://purl.obolibrary.org/obo/$1_$2",
+      "uri_format": "https://www.obofoundry.org/ontology/$1"
     },
     {
       "availability": {
@@ -1078,6 +1110,7 @@
         "version": "present"
       },
       "bibtex": "Cote2006a",
+      "bioregistry_prefix": "ols",
       "contact": {
         "email": "henriette007@ebi.ac.uk",
         "github": "henrietteharmse",
@@ -1102,10 +1135,9 @@
       },
       "homepage": "https://www.ebi.ac.uk/ols4",
       "license": "See https://github.com/biopragmatics/bioregistry/issues/340",
-      "logo_url": "https://www.ebi.ac.uk/ols4/logo.png",
-      "name": "Ontology Lookup Service",
+      "logo": "https://www.ebi.ac.uk/ols4/logo.png",
+      "name": "EBI Ontology Lookup Service",
       "prefix": "ols",
-      "provider_uri_format": "https://www.ebi.ac.uk/ols4/ontologies/$1",
       "qualities": {
         "automatable_download": true,
         "bulk_data": true,
@@ -1113,7 +1145,8 @@
         "structured_data": true
       },
       "resolver_type": "lookup",
-      "short_name": "OLS"
+      "short_name": "OLS",
+      "uri_format": "https://www.ebi.ac.uk/ols4/ontologies/$1"
     },
     {
       "availability": {
@@ -1131,6 +1164,7 @@
         "version": "missing"
       },
       "bibtex": "Ong2017",
+      "bioregistry_prefix": "ontobee",
       "contact": {
         "email": "yongqunh@med.umich.edu",
         "github": "yongqunh",
@@ -1152,10 +1186,9 @@
       },
       "homepage": "http://www.ontobee.org/",
       "license": "See https://github.com/biopragmatics/bioregistry/issues/341",
-      "logo_url": "https://ontobee.org/public/images/logo.gif",
+      "logo": "https://ontobee.org/public/images/logo.gif",
       "name": "OntoBee",
       "prefix": "ontobee",
-      "provider_uri_format": "http://www.ontobee.org/ontology/$1",
       "qualities": {
         "automatable_download": true,
         "bulk_data": true,
@@ -1163,7 +1196,8 @@
         "structured_data": false
       },
       "resolver_type": "lookup",
-      "resolver_uri_format": "http://www.ontobee.org/ontology/$1?iri=http://purl.obolibrary.org/obo/$1_$2"
+      "resolver_uri_format": "http://www.ontobee.org/ontology/$1?iri=http://purl.obolibrary.org/obo/$1_$2",
+      "uri_format": "http://www.ontobee.org/ontology/$1"
     },
     {
       "availability": {
@@ -1201,16 +1235,16 @@
       },
       "homepage": "http://pathguide.org",
       "license": "Unknown",
-      "logo_url": "http://pathguide.org/images/logo.gif",
+      "logo": "http://pathguide.org/images/logo.gif",
       "name": "Pathguide",
       "prefix": "pathguide",
-      "provider_uri_format": "http://www.pathguide.org/fullrecord.php?organisms=all&availability=all&standards=all&order=alphabetic&DBID=$1",
       "qualities": {
         "automatable_download": false,
         "bulk_data": false,
         "no_authentication": true,
         "structured_data": false
-      }
+      },
+      "uri_format": "http://www.pathguide.org/fullrecord.php?DBID=$1"
     },
     {
       "availability": {
@@ -1227,6 +1261,7 @@
         "synonyms": "missing",
         "version": "missing"
       },
+      "bioregistry_prefix": "prefixcc",
       "contact": {
         "email": "richard@cyganiak.de",
         "github": "cygri",
@@ -1252,13 +1287,13 @@
       "license": "CC0",
       "name": "Prefix.cc",
       "prefix": "prefixcc",
-      "provider_uri_format": "https://prefix.cc/$1",
       "qualities": {
         "automatable_download": true,
         "bulk_data": true,
         "no_authentication": true,
         "structured_data": true
-      }
+      },
+      "uri_format": "https://prefix.cc/$1"
     },
     {
       "availability": {
@@ -1298,16 +1333,16 @@
       },
       "homepage": "https://registry.bio2kg.org",
       "license": "CC0",
-      "logo_url": "https://avatars.githubusercontent.com/u/15466415",
+      "logo": "https://avatars.githubusercontent.com/u/15466415",
       "name": "Prefix Commons",
       "prefix": "prefixcommons",
-      "provider_uri_format": "https://registry.bio2kg.org/resource/$1",
       "qualities": {
         "automatable_download": true,
         "bulk_data": true,
         "no_authentication": true,
         "structured_data": true
-      }
+      },
+      "uri_format": "https://registry.bio2kg.org/resource/$1"
     },
     {
       "availability": {
@@ -1346,17 +1381,17 @@
       },
       "homepage": "https://www.re3data.org",
       "license": "CC0",
-      "logo_url": "https://www.re3data.org/bundles/kitlibraryre3dataapp/img/re3datalogo_black.png",
+      "logo": "https://www.re3data.org/bundles/kitlibraryre3dataapp/img/re3datalogo_black.png",
       "name": "Registry of Research Data Repositories",
       "prefix": "re3data",
-      "provider_uri_format": "https://www.re3data.org/repository/$1",
       "qualities": {
         "automatable_download": true,
         "bulk_data": false,
         "no_authentication": true,
         "structured_data": false
       },
-      "short_name": "re3data"
+      "short_name": "re3data",
+      "uri_format": "https://www.re3data.org/repository/$1"
     },
     {
       "availability": {
@@ -1396,7 +1431,7 @@
       },
       "homepage": "https://rrid.site",
       "license": "CC BY 4.0",
-      "logo_url": "https://scicrunch.org/upload/community-logo/rin-resources_69984.png",
+      "logo": "https://scicrunch.org/upload/community-logo/rin-resources_69984.png",
       "name": "Research Resource Identifiers",
       "prefix": "rrid",
       "qualities": {
@@ -1408,6 +1443,59 @@
       "resolver_type": "lookup",
       "resolver_uri_format": "https://scicrunch.org/resolver/RRID:$1_$2",
       "short_name": "RRID"
+    },
+    {
+      "availability": {
+        "alternate_providers": "missing",
+        "contact": "present",
+        "description": "required",
+        "example": "present",
+        "homepage": "present",
+        "license": "required",
+        "name": "required",
+        "pattern": "missing",
+        "provider": "present",
+        "search": true,
+        "synonyms": "missing",
+        "version": "present"
+      },
+      "bioregistry_prefix": "tib.ts",
+      "contact": {
+        "email": "baum@zbmed.de",
+        "github": "rombaum",
+        "name": "Roman Baum",
+        "orcid": "0000-0001-5246-9351"
+      },
+      "description": "The TIB Terminology Service is an instance of the EBI OLS.",
+      "example": "abcd",
+      "governance": {
+        "accepts_external_contributions": true,
+        "code_repository": "https://github.com/TIBHannover/TIB-Terminology-Service-Frontend-2.0",
+        "comments": "Accepts suggestions through the issue tracker at https://github.com/TIBHannover/TIB-Terminology-Service-Frontend-2.0/issue",
+        "curates": false,
+        "curation": "import",
+        "data_repository": "https://github.com/EBISPOT/OLS",
+        "imports": true,
+        "issue_tracker": "https://github.com/TIBHannover/TIB-Terminology-Service-Frontend-2.0/issues/",
+        "public_version_controlled_data": true,
+        "review_team": "inferrable",
+        "scope": "general",
+        "status": "active"
+      },
+      "homepage": "https://terminology.tib.eu",
+      "license": "CCO",
+      "logo": "https://terminology.tib.eu/TIB_Logo_W_W.SVG",
+      "name": "TIB Terminology Service",
+      "prefix": "tib",
+      "qualities": {
+        "automatable_download": true,
+        "bulk_data": true,
+        "no_authentication": true,
+        "structured_data": true
+      },
+      "resolver_type": "lookup",
+      "short_name": "TIB-TS",
+      "uri_format": "https://terminology.tib.eu/ts/ontologies/$1"
     },
     {
       "availability": {
@@ -1451,13 +1539,13 @@
       "license": "CC BY 4.0",
       "name": "TogoID",
       "prefix": "togoid",
-      "provider_uri_format": "https://togoid.dbcls.jp/#$1",
       "qualities": {
         "automatable_download": true,
         "bulk_data": true,
         "no_authentication": true,
         "structured_data": true
-      }
+      },
+      "uri_format": "https://togoid.dbcls.jp/#$1"
     },
     {
       "availability": {
@@ -1497,17 +1585,17 @@
       },
       "homepage": "https://www.uniprot.org/database/",
       "license": "CC BY 4.0",
-      "logo_url": "https://www.uniprot.org/uniprot-logo.img.0df091.svg",
+      "logo": "https://www.uniprot.org/uniprot-logo.img.0df091.svg",
       "name": "UniProt Cross-ref database",
       "prefix": "uniprot",
-      "provider_uri_format": "https://www.uniprot.org/database/$1",
       "qualities": {
         "automatable_download": true,
         "bulk_data": true,
         "no_authentication": true,
         "structured_data": true
       },
-      "short_name": "UniProt"
+      "short_name": "UniProt",
+      "uri_format": "https://www.uniprot.org/database/$1"
     },
     {
       "availability": {
@@ -1544,17 +1632,17 @@
       },
       "homepage": "https://www.wikidata.org",
       "license": "CC0",
-      "logo_url": "https://upload.wikimedia.org/wikipedia/commons/6/66/Wikidata-logo-en.svg",
+      "logo": "https://upload.wikimedia.org/wikipedia/commons/6/66/Wikidata-logo-en.svg",
       "name": "Wikidata Property",
       "prefix": "wikidata",
-      "provider_uri_format": "http://www.wikidata.org/entity/$1",
       "qualities": {
         "automatable_download": true,
         "bulk_data": true,
         "no_authentication": true,
         "structured_data": true
       },
-      "short_name": "Wikidata"
+      "short_name": "Wikidata",
+      "uri_format": "http://www.wikidata.org/entity/$1"
     },
     {
       "availability": {
@@ -1591,17 +1679,17 @@
       },
       "homepage": "https://www.wikidata.org",
       "license": "CC0",
-      "logo_url": "https://upload.wikimedia.org/wikipedia/commons/6/66/Wikidata-logo-en.svg",
+      "logo": "https://upload.wikimedia.org/wikipedia/commons/6/66/Wikidata-logo-en.svg",
       "name": "Wikidata Entity",
       "prefix": "wikidata.entity",
-      "provider_uri_format": "http://www.wikidata.org/entity/$1",
       "qualities": {
         "automatable_download": true,
         "bulk_data": true,
         "no_authentication": true,
         "structured_data": true
       },
-      "short_name": "Wikidata (E)"
+      "short_name": "Wikidata (E)",
+      "uri_format": "http://www.wikidata.org/entity/$1"
     },
     {
       "availability": {
@@ -1643,10 +1731,9 @@
       },
       "homepage": "https://prefix.zazuko.com/",
       "license": "MIT",
-      "logo_url": "https://prefix.zazuko.com/_nuxt/img/zazuko-logo.2dc686c.svg",
+      "logo": "https://prefix.zazuko.com/_nuxt/img/zazuko-logo.2dc686c.svg",
       "name": "Zazuko Prefix Server",
       "prefix": "zazuko",
-      "provider_uri_format": "https://prefix.zazuko.com/prefix/$1:",
       "qualities": {
         "automatable_download": true,
         "bulk_data": true,
@@ -1655,7 +1742,8 @@
       },
       "resolver_type": "lookup",
       "resolver_uri_format": "https://prefix.zazuko.com/$1:$2",
-      "short_name": "Zazuko"
+      "short_name": "Zazuko",
+      "uri_format": "https://prefix.zazuko.com/prefix/$1:"
     }
   ]
 }

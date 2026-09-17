@@ -321,6 +321,14 @@ SCHEMA_TERMS = [
             BRIDGEDB["systemCode"],
         ],
     ),
+    PropertyTerm(
+        "0000030",
+        "Property",
+        "provided by",
+        "Inverse of provides for",
+        domain="0000001",
+        range="0000001",
+    ),
 ]
 bioregistry_schema_extras = [
     ("0000001", DCTERMS.isPartOf, "part of", "0000002"),  # resource part of registry
@@ -362,9 +370,8 @@ def _graph(manager: Optional["bioregistry.resource_manager.Manager"] = None) -> 
     graph.namespace_manager.bind("void", VOID)
     graph.namespace_manager.bind("doap", DOAP)
     graph.namespace_manager.bind("sh", SH)
-    if manager:
-        for key, value in manager.get_internal_prefix_map().items():
-            graph.namespace_manager.bind(key, value)
+    if manager is not None:
+        manager._get_internal_converter().bind_rdflib(graph)
     return graph
 
 

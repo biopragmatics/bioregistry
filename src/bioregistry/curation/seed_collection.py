@@ -38,7 +38,7 @@ def get_seed_collection(
         identifier=collection_id,
         name="",
         description="",
-        authors=[Author.get_charlie()],
+        contributors=[Author.get_charlie()],
         resources=sorted(resources),
     )
     return collection
@@ -53,13 +53,4 @@ def main(keywords: list[str]) -> None:
 
 
 if __name__ == "__main__":
-    main(
-        [
-            "education",
-            "education level",
-            "education science",
-            "educational resource",
-            "open educational resources",
-            "discipline",
-        ]
-    )
+    main()

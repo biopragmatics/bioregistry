@@ -24,6 +24,7 @@ import logging
 import textwrap
 from collections import defaultdict
 from pathlib import Path
+from time import sleep
 from typing import TYPE_CHECKING, NamedTuple, TypeAlias, cast
 
 import click
@@ -31,6 +32,7 @@ import numpy as np
 import pandas as pd
 from numpy.typing import NDArray
 from sklearn.base import ClassifierMixin
+from sklearn.calibration import CalibratedClassifierCV
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.linear_model import LogisticRegression
@@ -163,9 +165,9 @@ def _fill_abstracts(
         pubmed_to_article = _get_articles_dict(df)
 
     df["abstract"] = df["pubmed"].map(
-        lambda pubmed: article.get_abstract()
-        if (article := pubmed_to_article.get(pubmed))
-        else None,
+        lambda pubmed: (
+            article.get_abstract() if (article := pubmed_to_article.get(pubmed)) else None
+        ),
         na_action="ignore",
     )
 
@@ -213,6 +215,7 @@ def _search(
         ):
             if pubmed_id not in pubmed_ids_to_filter:
                 pubmed_to_terms[pubmed_id].append(term)
+            sleep(1)
     return dict(pubmed_to_terms)
 
 
@@ -312,7 +315,7 @@ def train_classifiers(x_train: XTrain, y_train: YTrain) -> Classifiers:
         ("lr", LogisticRegression()),
         ("dt", DecisionTreeClassifier()),
         ("svc", LinearSVC()),
-        ("svm", SVC(kernel="rbf", probability=True)),
+        ("svm", CalibratedClassifierCV(SVC(kernel="rbf"), ensemble=False)),
     ]
     for _, clf in classifiers:
         clf.fit(x_train, y_train)
@@ -400,7 +403,7 @@ def predict_and_save(
     :param path: Path to save the predictions.
     """
     x_meta = pd.DataFrame()
-    x_transformed = vectorizer.transform(df["title"] + " " + df["abstract"])
+    x_transformed = vectorizer.transform(_concat(df))
     for name, clf in classifiers:
         x_meta[name] = _predict(clf, x_transformed)
 
@@ -422,7 +425,7 @@ def _get_meta_results(
 ) -> tuple[LogisticRegression, MetaClassifierEvaluationResults]:
     meta_features = generate_meta_features(classifiers, x_train, y_train)
     meta_clf = LogisticRegression()
-    meta_clf.fit(meta_features, y_train)
+    meta_clf.fit(meta_features.to_numpy(), y_train)
 
     x_test_meta = pd.DataFrame()
     for name, clf in classifiers:
@@ -524,7 +527,7 @@ def train(
     df = pd.concat(curated_dfs)[["pubmed", "title", "abstract", "relevant"]]
 
     df["abstract"] = df["abstract"].fillna("")
-    df["title_abstract"] = df["title"] + " " + df["abstract"]
+    df["title_abstract"] = _concat(df)
     df = df[df.title_abstract.notna()]
     df = df.drop_duplicates()
     _echo_stats(df, "combine curated publications")
@@ -580,6 +583,10 @@ def train(
     # These have already been curated and will therefore be filtered out
     curated_pubmed_ids: set[str] = {str(pubmed) for pubmed in df["pubmed"] if pd.notna(pubmed)}
     return TrainingResult(curated_pubmed_ids, vectorizer, classifiers, meta_clf)
+
+
+def _concat(df: pd.DataFrame) -> pd.Series[str]:
+    return cast("pd.Series[str]", df["title"]) + " " + cast("pd.Series[str]", df["abstract"])
 
 
 if __name__ == "__main__":

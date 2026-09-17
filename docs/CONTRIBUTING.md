@@ -27,10 +27,10 @@ There are several ways to request a new prefix in the Bioregistry:
    possible (e.g., name, homepage, format URL pattern, example identifier,
    pattern). Don't worry if you don't understand everything, our Review Team
    will guide you through the process.
-2. ~Add an entry yourself by
+2. ~~Add an entry yourself by
    [editing the Bioregistry](https://github.com/biopragmatics/bioregistry/edit/main/src/bioregistry/data/bioregistry.json)
-   in GitHub through the web browser.~ As the Bioregistry has surpassed the size
-   limit of in-browser editing on GitHub, this is no longer possible.
+   in GitHub through the web browser.~~ As the Bioregistry has surpassed the
+   size limit of in-browser editing on GitHub, this is no longer possible.
 3. Make a pull request directly to the upstream repository
    [biopragmatics/bioregistry](https://github.com/biopragmatics/bioregistry).
    Make sure that you run `tox -e bioregistry-lint` from the shell after editing
@@ -337,10 +337,10 @@ There are several ways to update a prefix's record in the Bioregistry:
    requested information. If no template exists for your update, feel free to
    fill out a blank issue. We will help make the update and attribute you
    properly.
-2. ~Edit an entry yourself by
+2. ~~Edit an entry yourself by
    [editing the Bioregistry](https://github.com/biopragmatics/bioregistry/edit/main/src/bioregistry/data/bioregistry.json)
-   in GitHub through the web browser.~ As the Bioregistry has surpassed the size
-   limit of in-browser editing on GitHub, this is no longer possible.
+   in GitHub through the web browser.~~ As the Bioregistry has surpassed the
+   size limit of in-browser editing on GitHub, this is no longer possible.
 3. Make a pull request directly to the upstream repository
    [biopragmatics/bioregistry](https://github.com/biopragmatics/bioregistry).
    Make sure that you run `tox -e bioregistry-lint` from the shell after editing
