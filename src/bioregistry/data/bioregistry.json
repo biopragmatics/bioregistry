@@ -64355,6 +64355,7 @@
     "pattern": "^\\d{7}$"
   },
   "gard": {
+    "comment": "The GARD website was rebuilt and the previous per-disease URL format (https://rarediseases.info.nih.gov/diseases/$1/index) does not resolve correctly formatted GARD ids. GARD accepts both bare identifiers (?gard_id=6038) and the zero-padded seven-digit form (?gard_id=0006038); both resolve to the same record. Moreover, not every GARD concept identifier has a published webpage, and an unpublished identifier silently lands on the GARD homepage rather than on an error page.",
     "contact": {
       "email": "eric.sid@nih.gov",
       "github": "ericsid",
@@ -64404,7 +64405,7 @@
       "GARD",
       "Genetic and Rare Diseases Information Center"
     ],
-    "uri_format": "https://rarediseases.info.nih.gov/diseases/$1/index",
+    "uri_format": "https://rarediseases.info.nih.gov/?gard_id=$1",
     "wikidata": {
       "description": "identifier for a rare disease in the United States National Institutes of Health's Genetic and Rare Diseases (GARD) Information Center database",
       "examples": [
