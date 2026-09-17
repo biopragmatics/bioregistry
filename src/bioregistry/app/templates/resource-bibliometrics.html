@@ -56,34 +56,25 @@
             </dd>
             {%- endfor %}
             {%- endif %}
-            {% if resource.contributor or resource.contributor_extras %}
-            <dt>Contributors</dt>
-            {% if resource.contributor %}
-            <dd>
-                <span class="badge badge-info">submitter</span> {{ utils.render_author(resource.contributor,
-                link=url_for('metaregistry_ui.contributor', orcid=resource.contributor.orcid)) }}
-            </dd>
-            {% endif %}
-            {% for contributor in resource.contributor_extras or [] %}
-            <dd {% if not loop.last %}class="mb-0"{% endif %}>
-                <span class="badge badge-info">contributor</span> {{ utils.render_author(contributor,
-                link=url_for('metaregistry_ui.contributor', orcid=contributor.orcid)) }}
-            </dd>
-            {% endfor %}
-            {% endif %}
 
-            {% if resource.reviewer %}
-            <dt>Reviewer</dt>
-            <dd>
-                {{ utils.render_author(resource.reviewer, link=url_for('metaregistry_ui.contributor',
-                orcid=resource.reviewer.orcid)) }}
-            </dd>
-            {%- for reviewer in resource.reviewer_extras or [] %}
+            {%- if contributors %}
+            <dt>Contributor{% if contributors | length > 1 %}s{% endif %}</dt>
+            {%- for badge, contributor in contributors %}
             <dd {% if not loop.last %}class="mb-0"{% endif %}>
-                {{ utils.render_author(reviewer, link=url_for('metaregistry_ui.contributor', orcid=reviewer.orcid)) }}
+                <span class="badge badge-info">{{ badge }}</span>
+                {{ utils.render_author(contributor, link=url_for('metaregistry_ui.contributor', orcid=contributor.orcid)) }}
             </dd>
             {%- endfor %}
-            {% endif %}
+            {%- endif %}
+
+            {%- if reviewers %}
+            <dt>Reviewer{% if reviewers | length > 1 %}s{% endif %}</dt>
+            {%- for reviewer in reviewers %}
+            <dd {% if not loop.last %}class="mb-0"{% endif %}>
+                {{ utils.render_author(reviewer, link=url_for('metaregistry_ui.contributor', orcid=resource.reviewer.orcid)) }}
+            </dd>
+            {%- endfor %}
+            {%- endif %}
         </dl>
     </div>
 </div>
