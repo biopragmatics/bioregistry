@@ -479,8 +479,6 @@ def _get_prioritized_metaprefixes(pr: list[str]) -> list[str]:
 
 
 Record = Mapping[str, Any]
-
-
 # TODO update to RRR = Record
 
 
@@ -3161,9 +3159,11 @@ class Registry(BaseModel):
             + self.qualities.score()
         )
 
+    # docstr-coverage:excused `overload`
     @overload
     def get_provider_uri_prefix(self, *, base_url: str = ...) -> str: ...
 
+    # docstr-coverage:excused `overload`
     @overload
     def get_provider_uri_prefix(self, *, base_url: None = ...) -> str | None: ...
 
@@ -3204,9 +3204,11 @@ class Registry(BaseModel):
             return self.uri_format.replace("$1", external_prefix)
         return None
 
+    # docstr-coverage:excused `overload`
     @overload
     def get_resolver_uri_format(self, prefix: str, *, base_url: str = ...) -> str: ...
 
+    # docstr-coverage:excused `overload`
     @overload
     def get_resolver_uri_format(self, prefix: str, *, base_url: None = ...) -> str | None: ...
 
