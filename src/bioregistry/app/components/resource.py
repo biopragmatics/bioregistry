@@ -41,6 +41,13 @@ def resource(prefix: str) -> str | werkzeug.Response | tuple[str, int]:
         _resource.get_curie(example_extra, use_preferred=True) for example_extra in example_extras
     ]
     name_pack = manager._repack(_resource.get_name(provenance=True))
+
+    contacts = []
+    if contact := _resource.get_contact():
+        contacts.append(contact)
+    if _resource.contact_extras:
+        contacts.extend(_resource.contact_extras)
+
     return render_template(
         "resource.html",
         zip=zip,
@@ -79,7 +86,7 @@ def resource(prefix: str) -> str | werkzeug.Response | tuple[str, int]:
         jskos_download=_resource.get_download_jskos(),
         namespace_in_lui=_resource.get_namespace_in_lui(),
         deprecated=manager.is_deprecated(prefix),
-        contact=_resource.get_contact(),
+        contacts=contacts,
         banana=_resource.get_banana(),
         description=manager.get_description(prefix, use_markdown=True),
         appears_in=manager.get_appears_in(prefix),

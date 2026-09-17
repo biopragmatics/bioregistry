@@ -5,25 +5,24 @@
     <div class="card-body">
         <dl>
             <dt>
-                Contact
-                {% if contact %}
+                Contact{% if contacts and contacts|length > 1 %}s{% endif %}
+                {% if contacts %}
                 <a type="button" data-toggle="modal" data-target="#contact-modal">
                     <i class="bi bi-question-circle"></i>
                 </a>
                 {% endif %}
             </dt>
-            <dd>
-                {% if contact %}
-                {{ utils.render_author(contact, link=none) }}
-                {% else %}
-                <span class="badge badge-pill badge-warning">Missing Contact</span>
-                {% endif %}
-            </dd>
-            {%- for secondary_contact in resource.contact_extras or [] %}
-            <dd>
-                {{ utils.render_author(secondary_contact, link=none) }}
+            {%- if contacts %}
+            {%- for contact in contacts %}
+            <dd {% if not loop.last %}class="mb-0"{% endif %}>
+            {{ utils.render_author(contact, link=none) }}
             </dd>
             {%- endfor %}
+            {%- else %}
+            <dd>
+                <span class="badge badge-pill badge-warning">Missing Contact</span>
+            </dd>
+            {%- endif %}
 
             {%- if resource.contact_group_email or resource.contact_page %}
             <dt>Group Contact</dt>
