@@ -13,6 +13,7 @@ from typing import Any, cast
 
 import ontoportal_client
 import requests
+from email_validator import validate_email
 from tqdm import tqdm
 from tqdm.contrib.concurrent import thread_map
 
@@ -143,11 +144,7 @@ class OntoPortalClient:
         if license_stub:
             record["license"] = standardize_license(license_stub)
 
-        contacts = [
-            {k: v.strip() for k, v in contact.items() if not k.startswith("@") and v}
-            for contact in res_json.get("contact", [])
-        ]
-        contacts = [contact for contact in contacts if EMAIL_RE.match(contact.get("email", ""))]
+        contacts = _handle_contacts(res_json.get("contact", []))
         if contacts:
             contact = contacts[0]
             # TODO consider sorting contacts in a canonical order?
@@ -178,6 +175,23 @@ class OntoPortalClient:
             rv.setdefault("extras", {})["example_uri"] = example_uri
 
         return prefix, make_record(rv)
+
+
+def _handle_contacts(contacts: list[dict[str, Any]]) -> list[dict[str, Any]]:
+    rv = []
+    for contact in contacts:
+        contact = {k: v.strip() for k, v in contact.items() if not k.startswith("@") and v}
+        email = contact.pop("email")
+        if not email:
+            continue
+        try:
+            validated_email = validate_email(email)
+        except ValueError:
+            continue
+        contact["email"] = validated_email.normalized
+
+        rv.append(contact)
+    return rv
 
 
 def _handle_publications(ll: list[str]) -> list[Publication]:
