@@ -2,26 +2,28 @@
 
 import json
 import logging
-from collections.abc import Iterable, Mapping, Sequence
+from collections.abc import Iterable, Mapping
 from pathlib import Path
 from textwrap import dedent
-from typing import Any, ClassVar
+from typing import Any
 
+import wikidata_client
+
+from bioregistry.alignment_model import Record, make_record
 from bioregistry.constants import BIOREGISTRY_PATH, URI_FORMAT_KEY
-from bioregistry.external.alignment_utils import Aligner, load_processed
-from bioregistry.utils import query_wikidata, removeprefix
+from bioregistry.external.alignment_utils import Aligner, build_no_raw_getter
+from bioregistry.utils import removeprefix
 
 __all__ = [
     "WikidataAligner",
     "get_wikidata",
 ]
 
-
 logger = logging.getLogger(__name__)
 
-DIRECTORY = Path(__file__).parent.resolve()
-PROCESSED_PATH = DIRECTORY / "processed.json"
-
+HERE = Path(__file__).parent.resolve()
+PROCESSED_PATH = HERE / "processed.json"
+CONFIG_PATH = HERE / "config.json"
 
 PROPERTIES_QUERY = dedent(
     """\
@@ -52,8 +54,8 @@ QUERY_FMT = dedent(
       (GROUP_CONCAT(DISTINCT ?format_; separator='\\t') AS ?uri_format)
       (GROUP_CONCAT(DISTINCT ?format_rdf_; separator='\\t') AS ?uri_format_rdf)
       (GROUP_CONCAT(DISTINCT ?database_; separator='\\t') AS ?database)
-      (GROUP_CONCAT(DISTINCT ?example_; separator='\\t') AS ?example)
-      (GROUP_CONCAT(DISTINCT ?short_name_; separator='\\t') AS ?short_name)
+      (GROUP_CONCAT(DISTINCT ?examples_; separator='\\t') AS ?examples)
+      (GROUP_CONCAT(DISTINCT ?short_name_; separator='\\t') AS ?short_names)
     WHERE {
       {
         VALUES ?category {
@@ -77,7 +79,7 @@ QUERY_FMT = dedent(
       OPTIONAL { ?prop wdt:P1629 ?database_ }
       OPTIONAL {
         ?prop p:P1855 ?statement .
-        ?statement ?propQualifier ?example_ .
+        ?statement ?propQualifier ?examples_ .
         FILTER (STRSTARTS(STR(?propQualifier), "http://www.wikidata.org/prop/qualifier/"))
         FILTER (?propStr = SUBSTR(STR(?propQualifier), 40))
       }
@@ -88,63 +90,18 @@ QUERY_FMT = dedent(
     """
 )
 
-SKIP = {
-    "P3205": "is a relationship",
-    "P3781": "is a relationship",
-    "P4545": "is a relationship",
-    "P3190": "is a relationship",
-    "P4954": "is a relationship",
-    "P4000": "is a relationship",
-    "P3189": "is a relationship",
-    "P3310": "is a relationship",
-    "P3395": "is a data property",
-    "P3387": "is a data property",
-    "P3337": "is a data property",
-    "P3485": "is a data property",
-    "P3486": "is a data property",
-    "P10322": "is a data property",
-    "P10630": "is a data property",
-    "P1193": "is a data property",
-    "P1603": "is a data property",
-    "P2067": "is a data property",
-    "P2844": "is a data property",
-    "P2854": "is a data property",
-    "P3487": "is a data property",
-    "P3492": "is a data property",
-    "P4214": "is a data property",
-    "P3488": "is a data property",
-    "P4250": "is a data property",
-    "P574": "is a data property",
-    "P7770": "is a data property",
-    "P783": "is a data property",
-    "P7862": "is a data property",
-    "P8010": "is a data property",
-    "P8011": "is a data property",
-    "P8049": "is a data property",
-    "P8556": "is a data property",
-    "P9107": "is a data property",
-    "Q112586709": "should not be annotated like a property",
-    "Q111831044": "should not be annotated like a property",
-    "Q115916376": "should not be annotated like a property",
-    "P1104": "is a data property",
-    "P10676": "is a data property",
-    "P181": "is a data property",
-    "P1843": "is a data property",
-    "P225": "is a data property",
-    "P3752": "is a data property",
-    "P8558": "is a data property",
-    "P6507": "is a data property",
-    "P428": "is a data property",
-}
+CONFIG = json.loads(CONFIG_PATH.read_text(encoding="utf-8"))
+SKIP: dict[str, str] = CONFIG["skips"]
+
 RENAMES = {"propLabel": "name", "propDescription": "description"}
-CANONICAL_DATABASES = {
+CANONICAL_DATABASES: dict[str, str | None] = {
     "P6800": "Q87630124",  # -> NCBI Genome
     "P627": "Q48268",  # -> International Union for Conservation of Nature
     "P351": "Q1345229",  # NCBI Gene
     "P4168": "Q112783946",  # Immune epitope database
 }
 
-CANONICAL_HOMEPAGES: dict[str, str] = {
+CANONICAL_HOMEPAGES: dict[str, str | None] = {
     "P6852": "https://www.ccdc.cam.ac.uk",
     "P7224": "http://insecta.pro/catalog",
     "P1761": "http://delta-intkey.com",
@@ -159,12 +116,12 @@ CANONICAL_HOMEPAGES: dict[str, str] = {
     "P3088": "https://taibnet.sinica.edu.tw/home_eng.php",
     "P486": "http://www.nlm.nih.gov",
 }
-CANONICAL_URI_FORMATS = {
+CANONICAL_URI_FORMATS: dict[str, str | None] = {
     "P830": "https://eol.org/pages/$1",
     "P2085": "https://jglobal.jst.go.jp/en/redirect?Nikkaji_No=$1",
     "P604": "https://medlineplus.gov/ency/article/$1.htm",
     "P492": "https://omim.org/OMIM:$1",
-    "P486": "http://www.nlm.nih.gov",
+    "P486": "https://meshb.nlm.nih.gov/record/ui?ui=$1",
     "P3201": "http://bioportal.bioontology.org/ontologies/MEDDRA?p=classes&conceptid=$1",
     "P7224": "http://insecta.pro/taxonomy/$1",
     "P3088": "https://taibnet.sinica.edu.tw/eng/taibnet_species_detail.php?name_code=$1",
@@ -175,8 +132,9 @@ CANONICAL_URI_FORMATS = {
     "P5397": "http://www.tierstimmen.org/en/database?field_spec_species_target_id_selective=$1",
     "P7471": "https://www.inaturalist.org/places/$1",
     "P696": "https://scicrunch.org/scicrunch/interlex/view/ilx_$1",
+    "P244": None,  # need to override since it's wrong
 }
-CANONICAL_RDF_URI_FORMATS: dict[str, str] = {}
+CANONICAL_RDF_URI_FORMATS: dict[str, str | None] = {"P244": None}
 
 # Stuff with miriam IDs that shouldn't
 
@@ -191,6 +149,10 @@ MIRIAM_BLACKLIST = {
     "Q51162088",
     "Q56221155",
     "Q96212863",
+}
+URI_FORMAT_BLACKLIST = {
+    ("P4229", "https://icdcodelookup.com/icd-10/codes/$1"),
+    ("P696", "http://uri.neuinfo.org/nif/nifstd/$1"),
 }
 
 
@@ -208,113 +170,123 @@ def _get_query(properties: Iterable[str]) -> str:
     return QUERY_FMT % values
 
 
-def _get_wikidata() -> dict[str, dict[str, Any]]:
+def _get_wikidata() -> dict[str, Record]:
     """Iterate over Wikidata properties connected to biological databases."""
     mapped = _get_mapped()
     # throw out anything that can be queried directly
     mapped.difference_update(
-        bindings["propStr"]["value"]
-        for bindings in query_wikidata(PROPERTIES_QUERY)
-        if bindings["propStr"]["value"].startswith("P")  # throw away any regular ones
+        bindings["propStr"]
+        for bindings in wikidata_client.query(PROPERTIES_QUERY)
+        if bindings["propStr"].startswith("P")  # throw away any regular ones
     )
+    raw_records = wikidata_client.query(_get_query(mapped))
+
     rv = {}
-    for bindings in query_wikidata(_get_query(mapped)):
-        bindings = {
-            RENAMES.get(key, key): value["value"]
-            for key, value in bindings.items()
-            if value["value"]
-        }
-        prefix = bindings["prefix"] = removeprefix(
-            bindings["prefix"], "http://www.wikidata.org/entity/"
-        )
-        if prefix in SKIP or not prefix:
-            continue
+    for raw_record in raw_records:
+        prefix, record = _process_record(raw_record)
+        if prefix and record:
+            rv[prefix] = record
+    return rv
 
-        examples = bindings.get("example", "").split("\t")
-        if examples and all(
-            example.startswith("http://www.wikidata.org/entity/") for example in examples
-        ):
-            # This is a relationship
-            continue
 
-        for key in [
-            "homepage",
-            "uri_format_rdf",
-            URI_FORMAT_KEY,
-            "database",
-            "example",
-            "short_name",
-        ]:
-            if key in bindings:
-                bindings[key] = tuple(
-                    sorted(
-                        removeprefix(value, "http://www.wikidata.org/entity/")
-                        for value in bindings[key].split("\t")
-                    )
+def _process_record(bindings: Mapping[str, Any]) -> tuple[str, Record] | tuple[None, None]:
+    bindings = {
+        RENAMES.get(key, key): value.replace(" ", " ")  # noqa:RUF001
+        for key, value in bindings.items()
+        if value
+    }
+    prefix = bindings["prefix"] = removeprefix(
+        bindings["prefix"], "http://www.wikidata.org/entity/"
+    )
+    if prefix in SKIP or not prefix:
+        return None, None
+
+    examples = bindings.get("examples", "").split("\t")
+    if examples and all(
+        example.startswith("http://www.wikidata.org/entity/") for example in examples
+    ):
+        # This is a relationship
+        return None, None
+
+    for key in [
+        "homepage",
+        "uri_format_rdf",
+        URI_FORMAT_KEY,
+        "database",
+        "examples",
+        "short_names",
+    ]:
+        if key in bindings:
+            bindings[key] = tuple(
+                sorted(
+                    removeprefix(value, "http://www.wikidata.org/entity/")
+                    for value in bindings[key].split("\t")
                 )
+            )
 
-        for key in ["uri_format_rdf", URI_FORMAT_KEY]:
-            if key in bindings:
-                bindings[key] = tuple(
-                    k for k in bindings[key] if k != "http://purl.obolibrary.org/obo/$1"
-                )
+    for key in ["uri_format_rdf", URI_FORMAT_KEY]:
+        if key in bindings:
+            bindings[key] = tuple(
+                k for k in bindings[key] if k != "http://purl.obolibrary.org/obo/$1"
+            )
 
-        # remove URNs
-        bindings["uri_format_rdf"] = [
-            uri_format_rdf
-            for uri_format_rdf in bindings.get("uri_format_rdf", [])
-            if not uri_format_rdf.startswith("urn:")
-        ]
+    # remove URNs
+    bindings["uri_format_rdf"] = [
+        uri_format_rdf
+        for uri_format_rdf in bindings.get("uri_format_rdf", [])
+        if not uri_format_rdf.startswith("urn:")
+    ]
 
-        for key, canonicals in [
-            ("database", CANONICAL_DATABASES),
-            ("homepage", CANONICAL_HOMEPAGES),
-            ("uri_format", CANONICAL_URI_FORMATS),
-            ("uri_format_rdf", CANONICAL_RDF_URI_FORMATS),
-        ]:
-            # sort by increasing length - the assumption being that the shortest
-            # one has the least amount of nonsense, like language tags or extra
-            # parameters
-            values = sorted(bindings.get(key, []), key=len)
-            if not values:
-                pass
-            elif len(values) == 1:
+    canonicals: dict[str, str | None]
+    for key, canonicals in [
+        ("database", CANONICAL_DATABASES),
+        ("homepage", CANONICAL_HOMEPAGES),
+        ("uri_format", CANONICAL_URI_FORMATS),
+        ("uri_format_rdf", CANONICAL_RDF_URI_FORMATS),
+    ]:
+        if prefix in canonicals:
+            bindings[key] = canonicals[prefix]
+        # sort by increasing length - the assumption being that the shortest
+        # one has the least amount of nonsense, like language tags or extra
+        # parameters
+        elif values := sorted(bindings.get(key, []), key=len):
+            if len(values) == 1:
                 bindings[key] = values[0]
-            elif prefix not in canonicals:
-                logger.warning(
+            else:
+                logger.debug(
                     "[wikidata] need to curate canonical %s for %s (%s):",
                     key,
                     prefix,
                     bindings["name"],
                 )
                 for value in values:
-                    logger.warning("  %s", value)
+                    logger.debug("  %s", value)
                 bindings[key] = values[0]
-            else:
-                bindings[key] = canonicals[prefix]
 
-        pattern = bindings.get("pattern")
-        if pattern:
-            if not pattern.startswith("^"):
-                pattern = "^" + pattern
-            if not pattern.endswith("$"):
-                pattern = pattern + "$"
-            bindings["pattern"] = pattern
+    for key in ("uri_format", "uri_format_rdf"):
+        if (prefix, bindings.get(key) or None) in URI_FORMAT_BLACKLIST:
+            bindings.pop(key)
 
-        rv[prefix] = {k: v for k, v in bindings.items() if k and v}
+    pattern = bindings.get("pattern")
+    if pattern and isinstance(pattern, str):
+        if not pattern.startswith("^"):
+            pattern = "^" + pattern
+        if not pattern.endswith("$"):
+            pattern = pattern + "$"
+        bindings["pattern"] = pattern
 
-    return rv
+    if miriam := bindings.pop("miriam", None):
+        bindings.setdefault("xrefs", {})["miriam"] = miriam
+    if wikidata_db := bindings.pop("database", None):
+        bindings.setdefault("xrefs", {})["wikidata"] = wikidata_db
+
+    return prefix, make_record(bindings)
 
 
-def get_wikidata(force_download: bool = False) -> dict[str, dict[str, Any]]:
-    """Get the wikidata registry."""
-    if PROCESSED_PATH.exists() and not force_download:
-        return load_processed(PROCESSED_PATH)
-
-    data = _get_wikidata()
-    with PROCESSED_PATH.open("w") as file:
-        json.dump(data, file, indent=2, sort_keys=True)
-    return data
+get_wikidata = build_no_raw_getter(
+    processed_path=PROCESSED_PATH,
+    func=_get_wikidata,
+)
 
 
 # Unlike the other aligners, the wikidata one doesn't really do the job of making the alignment.
@@ -326,13 +298,6 @@ class WikidataAligner(Aligner):
 
     key = "wikidata"
     getter = get_wikidata
-    curation_header: ClassVar[Sequence[str]] = (
-        "name",
-        "homepage",
-        "description",
-        "uri_format",
-        "example",
-    )
 
     def get_skip(self) -> Mapping[str, str]:
         """Get entries to skip."""

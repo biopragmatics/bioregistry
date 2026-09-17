@@ -23,6 +23,7 @@ from .version import get_version
 __all__ = [
     "curie_from_iri",
     "get_default_converter",
+    "get_preferred_converter",
     "normalize_curie",
     "normalize_parsed_curie",
     "normalize_prefix",
@@ -31,8 +32,8 @@ __all__ = [
 ]
 
 
-@lru_cache(1)
-def get_default_converter(*, force: bool = False) -> curies.Converter:
+@lru_cache(2)
+def get_default_converter(*, force: bool = False, stubs: bool = False) -> curies.Converter:
     """Get a converter from this manager.
 
     :param force: If set to true, busts the cached EPM
@@ -45,18 +46,38 @@ def get_default_converter(*, force: bool = False) -> curies.Converter:
 
     Further, a LRU cache is used to keep the results in memory.
     """
-    return _get_default_converter_helper(force)
+    return _get_default_converter_helper(force, stubs=stubs)
 
 
-def _get_default_converter_helper(force: bool) -> curies.Converter:
+def _get_default_converter_helper(force: bool, stubs: bool) -> curies.Converter:
     version = get_version()
     digest = get_hash_hexdigest(BIOREGISTRY_PATH, "md5")[:8]
     name = f"{version}-{digest}.json"
     path = pystow.join("bioregistry", "epm-cache", name=name)
     if path.is_file() and not force:
         return curies.load_extended_prefix_map(path)
-    rv = manager.converter
+    rv = manager.get_converter(stubs=stubs)
     curies.write_extended_prefix_map(rv, path)
+    return rv
+
+
+@lru_cache(2)
+def get_preferred_converter(*, stubs: bool = False, wrap: bool = False) -> curies.Converter:
+    """Get a converter from this manager with preferred CURIE prefixes and RDF URI prefixes.
+
+    :param stubs: Should stub URIs be assigned to resources with no URI format?
+    :param wrap: Wrap with auto-normalization rules?
+    :returns: A converter ready for semantic web applications.
+    """
+    rv = manager.get_converter(
+        prefix_priority=["preferred", "default"],
+        uri_prefix_priority=["rdf", "default"],
+        stubs=stubs,
+    )
+    if wrap:
+        import curies_processing
+
+        rv = curies_processing.wrap(rv)
     return rv
 
 
@@ -72,6 +93,9 @@ def curie_from_iri(
         instead of the canonicalized Bioregistry prefix.
 
     :returns: A CURIE string, if the IRI can be parsed.
+
+    >>> curie_from_iri("http://purl.bioontology.org/ontology/NCBITAXON/131567")
+    'ncbitaxon:131567'
     """
     rv = parse_iri(
         iri, use_preferred=use_preferred, on_failure_return_type=FailureReturnType.single
@@ -87,6 +111,18 @@ def parse_iri(
     iri: str,
     *,
     use_preferred: bool = ...,
+    strict: Literal[True] = ...,
+    on_failure_return_type: FailureReturnType = ...,
+) -> ReferenceTuple: ...
+
+
+# docstr-coverage:excused `overload`
+@overload
+def parse_iri(
+    iri: str,
+    *,
+    use_preferred: bool = ...,
+    strict: Literal[False] = ...,
     on_failure_return_type: Literal[FailureReturnType.pair] = FailureReturnType.pair,
 ) -> ReferenceTuple | NonePair: ...
 
@@ -97,6 +133,7 @@ def parse_iri(
     iri: str,
     *,
     use_preferred: bool = ...,
+    strict: Literal[False] = ...,
     on_failure_return_type: Literal[FailureReturnType.single],
 ) -> ReferenceTuple | None: ...
 
@@ -105,6 +142,7 @@ def parse_iri(
     iri: str,
     *,
     use_preferred: bool = False,
+    strict: bool = False,
     on_failure_return_type: FailureReturnType = FailureReturnType.pair,
 ) -> ReferenceTuple | NonePair | None:
     """Parse a compact identifier from an IRI that wraps :meth:`Manager.parse_uri`.
@@ -112,13 +150,14 @@ def parse_iri(
     :param iri: A valid IRI
     :param use_preferred: If set to true, uses the "preferred prefix", if available,
         instead of the canonicalized Bioregistry prefix.
+    :param strict: If set to true, requires parsing to succeed
     :param on_failure_return_type: whether to return a single None or a pair of None's
 
     :returns: A pair of prefix/identifier, if can be parsed
 
     :raises TypeError: if an invalid on_failure_return_type is given
     """
-    rv = get_default_converter().parse_uri(iri, return_none=True)
+    rv: ReferenceTuple | None = get_default_converter().parse_uri(iri, strict=strict)  # type:ignore[call-overload]
     if rv is None:
         return get_failure_return_type(on_failure_return_type)
     # don't invoke the manager until it's needed
@@ -160,21 +199,24 @@ def normalize_curie(
 
     :param curie: A compact URI (CURIE) in the form of <prefix:identifier>
     :param sep: The separator for the CURIE. Defaults to the colon ":" however the slash
-        "/" is sometimes used in Identifiers.org and the underscore "_" is used for OBO PURLs.
-    :param use_preferred:
-        If set to true, uses the "preferred prefix", if available, instead
-        of the canonicalized Bioregistry prefix.
+        "/" is sometimes used in Identifiers.org and the underscore "_" is used for OBO
+        PURLs.
+    :param use_preferred: If set to true, uses the "preferred prefix", if available,
+        instead of the canonicalized Bioregistry prefix.
     :param strict: If true, raises an error if the prefix can't be standardized
-    :return: A normalized CURIE, if possible using the colon as a separator
+
+    :returns: A normalized CURIE, if possible using the colon as a separator
 
     >>> normalize_curie("pdb:1234")
     'pdb:1234'
 
     Fix commonly mistaken prefix
+
     >>> normalize_curie("pubchem:1234")
     'pubchem.compound:1234'
 
     Address banana problem
+
     >>> normalize_curie("GO:GO:1234")
     'go:1234'
     >>> normalize_curie("go:GO:1234")
@@ -185,6 +227,7 @@ def normalize_curie(
     'go:1234'
 
     Address banana problem with OBO banana
+
     >>> normalize_curie("fbbt:FBbt:1234")
     'fbbt:1234'
     >>> normalize_curie("fbbt:fbbt:1234")
@@ -193,16 +236,19 @@ def normalize_curie(
     'fbbt:1234'
 
     Address banana problem with explit banana
+
     >>> normalize_curie("go.ref:GO_REF:1234")
     'go.ref:1234'
     >>> normalize_curie("go.ref:1234")
     'go.ref:1234'
 
     Parse OBO PURL curies
+
     >>> normalize_curie("GO_1234", sep="_")
     'go:1234'
 
     Use preferred
+
     >>> normalize_curie("GO_1234", sep="_", use_preferred=True)
     'GO:1234'
     """
@@ -244,12 +290,12 @@ def normalize_parsed_curie(
 
     :param prefix: The prefix in the CURIE
     :param identifier: The identifier in the CURIE
-    :param use_preferred:
-        If set to true, uses the "preferred prefix", if available, instead
-        of the canonicalized Bioregistry prefix.
+    :param use_preferred: If set to true, uses the "preferred prefix", if available,
+        instead of the canonicalized Bioregistry prefix.
     :param strict: If true, raises an error if the prefix can't be standardized
-    :return: A normalized prefix/identifier pair, conforming to Bioregistry standards. This means no redundant
-        prefixes or bananas, all lowercase.
+
+    :returns: A normalized prefix/identifier pair, conforming to Bioregistry standards.
+        This means no redundant prefixes or bananas, all lowercase.
     """
     if strict:
         return manager.normalize_parsed_curie(
@@ -286,15 +332,15 @@ def normalize_prefix(
 ) -> str | None:
     """Get the normalized prefix, or return None if not registered.
 
-    :param prefix: The prefix to normalize, which could come from Bioregistry,
-        OBO Foundry, OLS, or any of the curated synonyms in the Bioregistry
+    :param prefix: The prefix to normalize, which could come from Bioregistry, OBO
+        Foundry, OLS, or any of the curated synonyms in the Bioregistry
     :param strict: If true and the prefix could not be looked up, raises an error
-    :param use_preferred:
-        If set to true, uses the "preferred prefix", if available, instead
-        of the canonicalized Bioregistry prefix.
-    :returns: The canonical Bioregistry prefix, it could be looked up. This
-        will usually take precedence: MIRIAM, OBO Foundry / OLS, Custom except
-        in a few cases, such as NCBITaxon.
+    :param use_preferred: If set to true, uses the "preferred prefix", if available,
+        instead of the canonicalized Bioregistry prefix.
+
+    :returns: The canonical Bioregistry prefix, it could be looked up. This will usually
+        take precedence: MIRIAM, OBO Foundry / OLS, Custom except in a few cases, such
+        as NCBITaxon.
 
     This works for synonym prefixes, like:
 
@@ -366,83 +412,73 @@ def parse_curie(
     """Parse a CURIE, normalizing the prefix and identifier if necessary.
 
     :param curie: A compact URI (CURIE) in the form of <prefix:identifier>
-    :param sep:
-        The separator for the CURIE. Defaults to the colon ":" however the slash
-        "/" is sometimes used in Identifiers.org and the underscore "_" is used for OBO PURLs.
-    :param use_preferred:
-        If set to true, uses the "preferred prefix", if available, instead
-        of the canonicalized Bioregistry prefix.
+    :param sep: The separator for the CURIE. Defaults to the colon ":" however the slash
+        "/" is sometimes used in Identifiers.org and the underscore "_" is used for OBO
+        PURLs.
+    :param use_preferred: If set to true, uses the "preferred prefix", if available,
+        instead of the canonicalized Bioregistry prefix.
     :param on_failure_return_type: whether to return a single None or a pair of None's
+
     :returns: A tuple of the prefix, identifier, if parsable
+
     :raises TypeError: If an invalid on_failure_return_type is given
 
-    The algorithm for parsing a CURIE is very simple: it splits the string on the leftmost occurrence
-    of the separator (usually a colon ":" unless specified otherwise). The left part is the prefix,
-    and the right part is the identifier.
+    The algorithm for parsing a CURIE is very simple: it splits the string on the
+    leftmost occurrence of the separator (usually a colon ":" unless specified
+    otherwise). The left part is the prefix, and the right part is the identifier.
 
     >>> parse_curie("pdb:1234")
-    ReferenceTuple('pdb', '1234')
+    ReferenceTuple(prefix='pdb', identifier='1234')
 
     Address banana problem
+
     >>> parse_curie("go:GO:1234")
-    ReferenceTuple('go', '1234')
+    ReferenceTuple(prefix='go', identifier='1234')
     >>> parse_curie("go:go:1234")
-    ReferenceTuple('go', '1234')
+    ReferenceTuple(prefix='go', identifier='1234')
     >>> parse_curie("go:1234")
-    ReferenceTuple('go', '1234')
+    ReferenceTuple(prefix='go', identifier='1234')
 
     Address banana problem with OBO banana
+
     >>> parse_curie("fbbt:FBbt:1234")
-    ReferenceTuple('fbbt', '1234')
+    ReferenceTuple(prefix='fbbt', identifier='1234')
     >>> parse_curie("fbbt:fbbt:1234")
-    ReferenceTuple('fbbt', '1234')
+    ReferenceTuple(prefix='fbbt', identifier='1234')
     >>> parse_curie("fbbt:1234")
-    ReferenceTuple('fbbt', '1234')
+    ReferenceTuple(prefix='fbbt', identifier='1234')
 
     Address banana problem with explit banana
+
     >>> parse_curie("go.ref:GO_REF:1234")
-    ReferenceTuple('go.ref', '1234')
+    ReferenceTuple(prefix='go.ref', identifier='1234')
     >>> parse_curie("go.ref:1234")
-    ReferenceTuple('go.ref', '1234')
+    ReferenceTuple(prefix='go.ref', identifier='1234')
 
     Parse OBO PURL curies
-    >>> parse_curie("GO_1234", sep="_")
-    ReferenceTuple('go', '1234')
 
-    Banana with no peel:
+    >>> parse_curie("GO_1234", sep="_")
+    ReferenceTuple(prefix='go', identifier='1234')
+
+    Banana with no peel
+
     >>> parse_curie("omim.ps:PS12345")
-    ReferenceTuple('omim.ps', '12345')
+    ReferenceTuple(prefix='omim.ps', identifier='12345')
 
     Use preferred (available)
+
     >>> parse_curie("GO_1234", sep="_", use_preferred=True)
-    ReferenceTuple('GO', '1234')
+    ReferenceTuple(prefix='GO', identifier='1234')
 
     Use preferred (unavailable)
+
     >>> parse_curie("pdb:1234", use_preferred=True)
-    ReferenceTuple('pdb', '1234')
+    ReferenceTuple(prefix='pdb', identifier='1234')
     """
-    if strict:
-        return manager.parse_curie(
-            curie,
-            sep=sep,
-            use_preferred=use_preferred,
-            strict=strict,
-        )
-    elif on_failure_return_type == FailureReturnType.single:
-        return manager.parse_curie(
-            curie,
-            sep=sep,
-            use_preferred=use_preferred,
-            on_failure_return_type=on_failure_return_type,
-            strict=strict,
-        )
-    elif on_failure_return_type == FailureReturnType.pair:
-        return manager.parse_curie(
-            curie,
-            sep=sep,
-            use_preferred=use_preferred,
-            on_failure_return_type=on_failure_return_type,
-            strict=strict,
-        )
-    else:
-        raise TypeError
+    return manager.parse_curie(  # type:ignore
+        curie,
+        sep=sep,
+        use_preferred=use_preferred,
+        on_failure_return_type=on_failure_return_type,
+        strict=strict,
+    )

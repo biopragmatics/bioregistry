@@ -282,9 +282,9 @@ def validate_identifiers(
         invalid_df = df[~idx]
     """
     column = _norm_column(df, column)
-    if prefix_column is None and prefix is None:
-        raise PrefixLocationError
-    elif prefix_column is not None and prefix is not None:
+    if (prefix_column is None and prefix is None) or (
+        prefix_column is not None and prefix is not None
+    ):
         raise PrefixLocationError
     elif prefix is not None:
         return _help_validate_identifiers(df, column, prefix)
@@ -295,11 +295,11 @@ def validate_identifiers(
         if 1 == len(prefixes):
             return _help_validate_identifiers(df, column, next(iter(prefixes)))
         patterns: dict[str, Pattern[str] | None] = {}
-        for prefix in df[prefix_column].unique():
-            if pd.isna(prefix):
+        for prefix_column_value in df[prefix_column].unique():
+            if pd.isna(prefix_column_value):
                 continue
-            pattern = bioregistry.get_pattern(prefix)
-            patterns[prefix] = re.compile(pattern) if pattern else None
+            pattern = bioregistry.get_pattern(prefix_column_value)
+            patterns[prefix_column_value] = re.compile(pattern) if pattern else None
 
         def _validate_lambda(_p: str | None, _i: str) -> bool | None:
             if _p is None:
@@ -352,7 +352,7 @@ def identifiers_to_curies(
     column: int | str,
     *,
     prefix: str | None = None,
-    prefix_column: None | int | str = None,
+    prefix_column: int | str | None = None,
     target_column: str | None = None,
     use_tqdm: bool = False,
     normalize_prefixes_: bool = True,
@@ -390,9 +390,9 @@ def identifiers_to_curies(
     """
     # FIXME do pattern check first so you don't get bananas
     column = _norm_column(df, column)
-    if prefix_column is None and prefix is None:
-        raise PrefixLocationError
-    elif prefix_column is not None and prefix is not None:
+    if (prefix_column is None and prefix is None) or (
+        prefix_column is not None and prefix is not None
+    ):
         raise PrefixLocationError
 
     # valid_idx = validate_identifiers(df, column=column, prefix=prefix, prefix_column=prefix_column)
@@ -456,9 +456,9 @@ def identifiers_to_iris(
         brpd.identifiers_to_iris(df, column=1, prefix_column=0)
     """
     column = _norm_column(df, column)
-    if prefix_column is None and prefix is None:
-        raise PrefixLocationError
-    elif prefix_column is not None and prefix is not None:
+    if (prefix_column is None and prefix is None) or (
+        prefix_column is not None and prefix is not None
+    ):
         raise PrefixLocationError
     elif prefix is not None:
         norm_prefix = bioregistry.normalize_prefix(prefix)

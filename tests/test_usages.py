@@ -16,7 +16,7 @@ USAGES_PATH = ROOT.joinpath("docs", "_data", "usages.yml")
 class TestUsages(unittest.TestCase):
     """Test the integrity of the usages annotations."""
 
-    def test_usages(self):
+    def test_usages(self) -> None:
         """Test the integrity of the usages annotations."""
         data = yaml.safe_load(USAGES_PATH.read_text())
         self.assertIsNotNone(data)

@@ -1,4 +1,4 @@
-"""Command line interface for the bioregistry."""
+"""Command line interface."""
 
 from .cli import main
 

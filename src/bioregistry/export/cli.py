@@ -1,4 +1,4 @@
-"""Export the Bioregistry."""
+"""Command line interface for exports."""
 
 import click
 
@@ -6,7 +6,7 @@ import click
 @click.command()
 @click.pass_context
 def export(ctx: click.Context) -> None:
-    """Export the Bioregistry."""
+    """Export as SSSOM, RDF, TSV, and other formats."""
     from .prefix_maps import generate_contexts
     from .rdf_export import export_rdf
     from .sssom_export import export_sssom

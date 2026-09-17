@@ -2,7 +2,8 @@
 
 This script does the following:
 
-1. Search GitHub for ODK configurations in order to identify repositories containing ontologies
+1. Search GitHub for ODK configurations in order to identify repositories containing
+   ontologies
 2. Filter out known false positives and low quality repositories
 3. Map repositories back to the Bioregistry, when possible
 4. Otherwise, make stub entries in the Bioregistry for new prefixes
@@ -84,14 +85,11 @@ SKIP_REPOS: dict[str, SkipReason] = {
     "NhanAZ/SLBSER": SkipReason.false_positive,
     "gootools/token-list": SkipReason.false_positive,
     "InSilicoVida-Research-Lab/pbpko": SkipReason.false_positive,
-    #
     "yasuhide0802/Eye2": SkipReason.hard_fork,  # of HP
     "vyasakhilesh/digitrubber": SkipReason.hard_fork,
-    #
     "EBISPOT/ontology_editor_training": SkipReason.training,
     "pfabry/ODKDocs": SkipReason.training,
     "pfabry/ODKDocsV2": SkipReason.training,
-    #
     "anitacaron/cato": SkipReason.playtime,  # test "cat" ontology
     "AgriculturalSemantics/seont_test": SkipReason.playtime,
     # see real one at https://github.com/AgriculturalSemantics/SEOnt
@@ -102,10 +100,8 @@ SKIP_REPOS: dict[str, SkipReason] = {
     "EBISPOT/scatlas_ontology": SkipReason.application,
     "futres/uberonfovt": SkipReason.application,
     "rsc3/biocoreterms": SkipReason.application,
-    #
     "cmungall/lsfo": SkipReason.in_development,
     "StroemPhi/semunit": SkipReason.in_development,
-    #
     "ASHS21/csonto": SkipReason.low_quality,
     "Mjvolk3/torchcell_ontology": SkipReason.low_quality,
     "JPReceveur/sudo_ontology": SkipReason.low_quality,

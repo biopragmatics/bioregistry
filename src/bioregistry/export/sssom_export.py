@@ -1,112 +1,127 @@
 """Export the Bioregistry to SSSOM."""
 
-import csv
-import logging
-from collections import namedtuple
-
 import click
-import yaml
+import sssom_pydantic
+from curies import NamableReference, Reference, ReferenceTuple
+from curies.vocabulary import exact_match, part_of, unspecified_matching_process
+from sssom_pydantic import MappingSetRecord, SemanticMapping
 
-import bioregistry
-from bioregistry import manager
-from bioregistry.constants import SSSOM_METADATA_PATH, SSSOM_PATH
-from bioregistry.utils import curie_to_str
+from ..constants import (
+    APPEARS_IN_PRED,
+    DEPENDS_ON_PRED,
+    HAS_CANONICAL_PRED,
+    INTERNAL_METAPREFIX,
+    PROVIDES_PRED,
+    SSSOM_METADATA,
+    SSSOM_PATH,
+)
+from ..resource_manager import Manager
+from ..schema_utils import read_mappings
 
 __all__ = [
     "export_sssom",
 ]
 
-logger = logging.getLogger(__name__)
-
-Row = namedtuple("Row", "subject_id predicate_id object_id match_type")
-
-CURIE_MAP = manager.get_internal_prefix_map()
-
-METADATA = {
-    "license": "https://creativecommons.org/publicdomain/zero/1.0/",
-    "mapping_provider": "https://github.com/biopragmatics/bioregistry",
-    "mapping_set_group": "bioregistry",
-    "mapping_set_id": "bioregistry",
-    "mapping_set_title": "Bioregistry",
-    "curie_map": CURIE_MAP,
-}
-
 
 @click.command()
 def export_sssom() -> None:
     """Export the meta-registry as SSSOM."""
-    rows = []
-    for prefix, resource in bioregistry.read_registry().items():
+    manager = Manager()
+    converter = manager._get_internal_converter()
+
+    semantic_mappings = read_mappings()
+    for prefix, resource in manager.registry.items():
         mappings = resource.get_mappings()
         for metaprefix, metaidentifier in mappings.items():
-            if metaprefix not in CURIE_MAP:
-                continue
-            rows.append(
-                _make_row("bioregistry", prefix, "skos", "exactMatch", metaprefix, metaidentifier)
-            )
-        for appears_in in bioregistry.get_appears_in(prefix) or []:
-            rows.append(
-                _make_row(
-                    "bioregistry",
+            metaprefix = converter.standardize_prefix(metaprefix, strict=True)
+            semantic_mappings.append(
+                _make_semantic_mapping(
                     prefix,
-                    "bioregistry.schema",
-                    "0000018",
-                    "bioregistry",
-                    appears_in,
+                    exact_match,
+                    metaprefix,
+                    metaidentifier,
+                    manager=manager,
                 )
             )
-        for depends_on in bioregistry.get_depends_on(prefix) or []:
-            rows.append(
-                _make_row(
-                    "bioregistry",
+
+        for appears_in_internal_prefix in manager.get_appears_in(prefix) or []:
+            semantic_mappings.append(
+                _make_semantic_mapping(
                     prefix,
-                    "bioregistry.schema",
-                    "0000017",
-                    "bioregistry",
-                    depends_on,
+                    APPEARS_IN_PRED,
+                    INTERNAL_METAPREFIX,
+                    appears_in_internal_prefix,
+                    manager=manager,
                 )
             )
-        if resource.part_of and bioregistry.normalize_prefix(resource.part_of):
-            rows.append(
-                _make_row("bioregistry", prefix, "bfo", "0000050", "bioregistry", resource.part_of)
+        for depends_on_internal_prefix in manager.get_depends_on(prefix) or []:
+            semantic_mappings.append(
+                _make_semantic_mapping(
+                    prefix,
+                    DEPENDS_ON_PRED,
+                    INTERNAL_METAPREFIX,
+                    depends_on_internal_prefix,
+                    manager=manager,
+                )
+            )
+
+        if resource.part_of and manager.normalize_prefix(resource.part_of):
+            semantic_mappings.append(
+                _make_semantic_mapping(
+                    prefix,
+                    part_of,
+                    INTERNAL_METAPREFIX,
+                    resource.part_of,
+                    manager=manager,
+                )
             )
         if resource.provides:
-            rows.append(
-                _make_row(
-                    "bioregistry",
+            semantic_mappings.append(
+                _make_semantic_mapping(
                     prefix,
-                    "bioregistry.schema",
-                    "0000011",
-                    "bioregistry",
+                    PROVIDES_PRED,
+                    INTERNAL_METAPREFIX,
                     resource.provides,
+                    manager=manager,
                 )
             )
         if resource.has_canonical:
-            rows.append(
-                _make_row(
-                    "bioregistry",
+            semantic_mappings.append(
+                _make_semantic_mapping(
                     prefix,
-                    "bioregistry.schema",
-                    "0000016",
-                    "bioregistry",
+                    HAS_CANONICAL_PRED,
+                    INTERNAL_METAPREFIX,
                     resource.has_canonical,
+                    manager=manager,
                 )
             )
 
-    with SSSOM_PATH.open("w") as file:
-        writer = csv.writer(file, delimiter="\t")
-        writer.writerow(Row._fields)
-        writer.writerows(rows)
-    with SSSOM_METADATA_PATH.open("w") as file:
-        yaml.safe_dump(METADATA, file)
+    metadata = MappingSetRecord.model_validate(SSSOM_METADATA)
+    sssom_pydantic.write(
+        semantic_mappings, SSSOM_PATH, metadata=metadata, converter=converter, sort=True
+    )
 
 
-def _make_row(mp1: str, mi1: str, rp: str, ri: str, mp2: str, mi2: str) -> Row:
-    return Row(
-        subject_id=curie_to_str(mp1, mi1),
-        predicate_id=curie_to_str(rp, ri),
-        object_id=curie_to_str(mp2, mi2),
-        match_type="sssom:HumanCurated",
+def _make_semantic_mapping(
+    internal_prefix: str,
+    predicate: ReferenceTuple | Reference,
+    external_metaprefix: str,
+    external_prefix: str,
+    manager: Manager,
+) -> SemanticMapping:
+    resource = manager.get_resource(internal_prefix, strict=True)
+    external_name = resource._get_external_value(external_metaprefix, "name")
+    return SemanticMapping(
+        subject=NamableReference(
+            prefix=INTERNAL_METAPREFIX,
+            identifier=internal_prefix,
+            name=manager.get_name(internal_prefix),
+        ),
+        predicate=Reference.from_curie(predicate.curie),
+        object=NamableReference(
+            prefix=external_metaprefix, identifier=external_prefix, name=external_name
+        ),
+        justification=unspecified_matching_process,
     )
 
 

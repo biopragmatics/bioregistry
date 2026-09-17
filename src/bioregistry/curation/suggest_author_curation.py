@@ -1,4 +1,4 @@
-"""Suggest curation of authors missing orcid/github."""
+"""Suggest curation of authors missing ORCiD/GitHub."""
 
 from collections import defaultdict
 
@@ -38,11 +38,47 @@ EMAIL_BLACKLIST = {
     "whocc@fhi.no",
     "info@casrai.org",
     "ppdb@gifu-u.ac.jp",
+    "admin@admin.com",
+    "contact-terminologietal@inist.fr",
+    "register@clinicaltrials.gov",
+    "esip-semanticweb@lists.esipfed.org",
+    "mssohelp@meddra.org",
+    "ncithesaurus@mail.nih.gov",
+    "custserv@nlm.nih.gov",
+    "OP-EU-VOCABULARIES@publications.europa.eu",
+    "public-schemaorg@w3.org",
+}
+
+BAD_NAMES = {
+    "WHO Collaborating Centre for Drug Statistics Methodology",
+    "admin",
+    "American Medical Association",
+    "Biodiversity Thesaurus contact",
+    "ClinicalTrials.gov Helpdesk",
+    "UK Food Standard Agency",
+    "Publications Office of the European Union",
+    "World Health Organization",
+    "the W3C Schema.org Community Group",
+    "The World Health Organization",
+    "NCI Thesaurus Mailbox",
+    "RxNorm Customer Service",
+    "UNESCO",
+    "MedDRA MSSO",
+    "IIS Helpdesk",
+    "ICD Helpdesk",
+    "ESIP Semantic Team",
+    "Eionet Helpdesk",
+    "NLM Customer Service",
+    "NIH Reporter Helpdesk",
+}
+
+COULD_NOT_FIND_GITHUB = {
+    "0000-0002-8527-5614",
 }
 
 
 def _main() -> None:
-    rows = defaultdict(set)
+    curatable_people_rows = defaultdict(set)
     for resource in bioregistry.resources():
         if resource.is_deprecated():
             continue
@@ -56,7 +92,12 @@ def _main() -> None:
         contact.name = contact.name.removesuffix("MD").strip()
         if contact.orcid and contact.email and contact.github:
             continue
-        rows[
+        if contact.orcid and contact.orcid in COULD_NOT_FIND_GITHUB:
+            continue
+        if contact.name in BAD_NAMES:
+            continue  # TODO add curation table for this too
+
+        curatable_people_rows[
             contact.name or "", contact.orcid or "", contact.email or "", contact.github or ""
         ].add(resource.prefix)
 
@@ -65,7 +106,7 @@ def _main() -> None:
             [
                 (name, orcid, email, github, ", ".join(sorted(prefixes)))
                 for (name, orcid, email, github), prefixes in sorted(
-                    rows.items(), key=lambda t: (t[0][0].casefold(), t[0][0])
+                    curatable_people_rows.items(), key=lambda t: (t[0][0].casefold(), t[0][0])
                 )
             ],
             tablefmt="github",
