@@ -64390,6 +64390,7 @@
     "pattern": "^\\d{7}$"
   },
   "gard": {
+    "comment": "Around September 2026, the GARD website was rebuilt and the previous per-disease URL format (`https://rarediseases.info.nih.gov/diseases/$1/index`) does not resolve correctly formatted GARD ids. GARD accepts both bare identifiers (`?gard_id=6038`) and the zero-padded seven-digit form (`?gard_id=0006038`); both resolve to the same record. Moreover, not every GARD concept identifier has a published webpage, and an unpublished identifier silently lands on the GARD homepage rather than on an error page. See discussion [here](https://github.com/biopragmatics/bioregistry/pull/2097)",
     "contact": {
       "email": "eric.sid@nih.gov",
       "github": "ericsid",
@@ -64402,6 +64403,14 @@
       "name": "Charles Tapley Hoyt",
       "orcid": "0000-0003-4423-4370"
     },
+    "contributor_extras": [
+      {
+        "email": "nicolas.matentzoglu@gmail.com",
+        "github": "matentzn",
+        "name": "Nicolas Matentzoglu",
+        "orcid": "0000-0002-7356-1779"
+      }
+    ],
     "description": "Database of rare diseases and related terms, including symptoms, healthcare resources, and organizations supporting research of the disease.",
     "domain": "disease",
     "download_json": "https://w3id.org/biopragmatics/resources/gard/gard.json",
@@ -64420,6 +64429,13 @@
     },
     "name": "Genetic and Rare Diseases Information Center",
     "pattern": "^\\d+$",
+    "providers": [
+      {
+        "code": "legacy",
+        "description": "This provider only accepts old-style GARD identifiers that are not zero-padded",
+        "uri_format": "https://rarediseases.info.nih.gov/diseases/$1/index"
+      }
+    ],
     "publications": [
       {
         "doi": "10.1080/02763869.2022.2131143",
@@ -64435,11 +64451,14 @@
         "year": 2017
       }
     ],
+    "references": [
+      "https://github.com/biopragmatics/bioregistry/pull/2097"
+    ],
     "synonyms": [
       "GARD",
       "Genetic and Rare Diseases Information Center"
     ],
-    "uri_format": "https://rarediseases.info.nih.gov/diseases/$1/index",
+    "uri_format": "https://rarediseases.info.nih.gov/?gard_id=$1",
     "wikidata": {
       "description": "identifier for a rare disease in the United States National Institutes of Health's Genetic and Rare Diseases (GARD) Information Center database",
       "examples": [
