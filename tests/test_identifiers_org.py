@@ -13,8 +13,36 @@ from bioregistry import (
     get_resource,
     manager,
 )
-from bioregistry.constants import IDOT_BROKEN, MIRIAM_BLACKLIST
 from bioregistry.version import VERSION
+
+#: Resolution is broken on identifiers.org for the following
+IDOT_BROKEN = {
+    "gramene.growthstage",
+    "oma.hog",
+    "mir",  # Added on 2021-10-08
+    "storedb",  # Added on 2021-10-12
+    "miriam.collection",  # Added on 2022-09-17
+    "miriam.resource",  # Added on 2022-09-17
+    "psipar",  # Added on 2022-09-17
+}
+
+#: MIRIAM definitions that don't make any sense
+MIRIAM_BLACKLIST = {
+    # this one uses the names instead of IDs, and points to a dead resource.
+    # See https://github.com/identifiers-org/identifiers-org.github.io/issues/139
+    "pid.pathway",
+    # this uses namespace-in-namespace
+    "neurolex",
+    # Miriam needs to be extended
+    "ccds",
+    # Miriam completely misses the actual usage
+    "agricola",
+    # Miriam pattern/example combo is broken
+    # See https://github.com/biopragmatics/bioregistry/issues/1588
+    "hogenom",
+    # Miriam pattern/example combo is broken
+    "homd.seq",
+}
 
 
 class TestIdentifiersOrg(unittest.TestCase):

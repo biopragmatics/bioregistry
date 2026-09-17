@@ -65,7 +65,9 @@ def resource(prefix: str) -> str | werkzeug.Response | tuple[str, int]:
         zip=zip,
         prefix=prefix,
         resource=_resource,
-        bioschemas=json.dumps(_resource.get_bioschemas_jsonld(), ensure_ascii=False),
+        bioschemas=json.dumps(
+            _resource.get_bioschemas_jsonld(manager.base_url), ensure_ascii=False
+        ),
         name_pack=name_pack,
         example=example,
         example_extras=example_extras,

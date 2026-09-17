@@ -3,10 +3,8 @@
 from __future__ import annotations
 
 import enum
-import os
-import pathlib
-import re
 import textwrap
+from pathlib import Path
 from typing import TypeAlias
 
 import pystow
@@ -47,7 +45,7 @@ __all__ = [
 
 ORCID_PATTERN = r"^\d{4}-\d{4}-\d{4}-\d{3}(\d|X)$"
 
-HERE = pathlib.Path(os.path.abspath(os.path.dirname(__file__)))
+HERE = Path(__file__).parent.resolve()
 DATA_DIRECTORY = HERE / "data"
 EXTERNAL = DATA_DIRECTORY / "external"
 BIOREGISTRY_PATH = DATA_DIRECTORY / "bioregistry.json"
@@ -130,45 +128,14 @@ CURIE_VALIDATION_DATA_PATH = CURIE_VALIDATION.joinpath("data.tsv")
 CURIE_VALIDATION_SVG_PATH = CURIE_VALIDATION.joinpath("results.svg")
 
 BIOREGISTRY_DEFAULT_BASE_URL = "https://bioregistry.io"
-#: The URL of the remote Bioregistry site
-BIOREGISTRY_REMOTE_URL = pystow.get_config(
-    "bioregistry", "url", default=BIOREGISTRY_DEFAULT_BASE_URL
-)
 
 #: The research organization registry (ROR) identifier
 #: for the German National Forschungsdateninfrastructur (NFDI) project
 NFDI_ROR = "05qj6w324"
 
-#: Resolution is broken on identifiers.org for the following
-IDOT_BROKEN = {
-    "gramene.growthstage",
-    "oma.hog",
-    "mir",  # Added on 2021-10-08
-    "storedb",  # Added on 2021-10-12
-    "miriam.collection",  # Added on 2022-09-17
-    "miriam.resource",  # Added on 2022-09-17
-    "psipar",  # Added on 2022-09-17
-}
 
 URI_FORMAT_KEY = "uri_format"
 
-#: MIRIAM definitions that don't make any sense
-MIRIAM_BLACKLIST = {
-    # this one uses the names instead of IDs, and points to a dead resource.
-    # See https://github.com/identifiers-org/identifiers-org.github.io/issues/139
-    "pid.pathway",
-    # this uses namespace-in-namespace
-    "neurolex",
-    # Miriam needs to be extended
-    "ccds",
-    # Miriam completely misses the actual usage
-    "agricola",
-    # Miriam pattern/example combo is broken
-    # See https://github.com/biopragmatics/bioregistry/issues/1588
-    "hogenom",
-    # Miriam pattern/example combo is broken
-    "homd.seq",
-}
 IDENTIFIERS_ORG_URL_PREFIX = "https://identifiers.org/"
 
 MIRIAM_NAMESPACE_IN_LUI = "namespaceEmbeddedInLui"
@@ -191,10 +158,6 @@ SHIELDS_BASE = "https://img.shields.io/badge/dynamic"
 CH_BASE = "https://cthoyt.com/obo-community-health"
 HEALTH_BASE = "https://github.com/cthoyt/obo-community-health/raw/main/data/data.json"
 EXTRAS = f"%20Community%20Health%20Score&link={CH_BASE}"
-
-# not a perfect email regex, but close enough
-EMAIL_RE_STR = r"^(\w|\.|\_|\-)+[@](\w|\_|\-|\.)+[.]\w{2,7}$"
-EMAIL_RE = re.compile(EMAIL_RE_STR)
 
 NonePair: TypeAlias = tuple[None, None]
 

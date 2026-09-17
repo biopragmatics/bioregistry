@@ -23,7 +23,6 @@ from bioregistry.constants import (
     BIOREGISTRY_PATH,
     CURATED_MAPPINGS_PATH,
     DISALLOWED_EMAIL_PARTS,
-    EMAIL_RE,
     METAREGISTRY_PATH,
 )
 from bioregistry.curation.add_skosmos import SKOSMOS_APIS
@@ -272,16 +271,6 @@ class TestRegistry(unittest.TestCase):
         """Test getting contact name."""
         chebi = manager.get_resource("chebi", strict=True)
         self.assertEqual("Adnan Malik", chebi.get_contact_name())
-
-    def test_email(self) -> None:
-        """Test that the email getter returns valid email addresses."""
-        for prefix, resource in self.registry.items():
-            self.assertIsNotNone(resource)
-            email = resource.get_contact_email()
-            if email is None or EMAIL_RE.match(email):
-                continue
-            with self.subTest(prefix=prefix):
-                self.fail(msg=f"bad email: {email}")
 
     def test_mastodon(self) -> None:
         """Test that all Mastodon handles look like go@genomic.social."""
@@ -881,7 +870,6 @@ class TestRegistry(unittest.TestCase):
         if author.orcid:
             self.assertNotIn(" ", author.orcid)
         if author.email:
-            self.assertRegex(author.email, EMAIL_RE)
             self.assertFalse(
                 any(
                     disallowed_email_part in author.email

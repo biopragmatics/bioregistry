@@ -124,7 +124,7 @@ def metaresource(metaprefix: str) -> str | flask.Response:
         homepage=entry.homepage,
         download=entry.download,
         example_prefix=external_prefix,
-        example_prefix_url=entry.get_provider_uri_format(external_prefix),
+        example_prefix_url=entry.get_provider_url(external_prefix),
         example_identifier=example_identifier,
         example_curie=(
             curie_to_str(external_prefix, example_identifier) if example_identifier else None

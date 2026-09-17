@@ -34,7 +34,6 @@ from pydantic.json_schema import models_json_schema
 
 from bioregistry import constants as brc
 from bioregistry.constants import (
-    BIOREGISTRY_REMOTE_URL,
     DOCS,
     GND_FIELD,
     MIRIAM_NAMESPACE_IN_LUI,
@@ -1474,7 +1473,7 @@ class Resource(BaseModel):
             return max(contacts, key=lambda c: c.get_score())
         return None
 
-    def get_contact_email(self) -> str | None:
+    def get_contact_email(self) -> EmailStr | None:
         """Return the contact email, if available.
 
         :returns: The resource's contact email address, if it is available.
@@ -2650,7 +2649,7 @@ class Resource(BaseModel):
             return "https://creativecommons.org/licenses/by/4.0/"
         if license_value == "CC-BY-3.0":
             return "https://creativecommons.org/licenses/by/3.0/"
-        return f"{BIOREGISTRY_REMOTE_URL}/spdx:{license_value}"
+        return f"https://spdx.org/licenses/{license_value}"
 
     def get_version(self) -> str | None:
         """Get the version for the resource."""
@@ -2678,7 +2677,7 @@ class Resource(BaseModel):
         rv = removesuffix(removeprefix(markdown(rv), "<p>"), "</p>")
         return markupsafe.Markup(rv)
 
-    def get_bioschemas_jsonld(self) -> dict[str, Any]:
+    def get_bioschemas_jsonld(self, base_url: str) -> dict[str, Any]:
         """Get the BioSchemas JSON-LD."""
         identifiers = [
             f"bioregistry:{self.prefix}",
@@ -2695,7 +2694,7 @@ class Resource(BaseModel):
                 "@id": "https://bioschemas.org/profiles/Dataset/1.0-RELEASE",
                 "@type": "CreativeWork",
             },
-            "@id": f"{BIOREGISTRY_REMOTE_URL}/{self.prefix}",
+            "@id": f"{base_url}/{self.prefix}",
             "url": self.get_homepage(),
             "name": self.get_name(),
             "description": self.get_description(),
@@ -3160,7 +3159,15 @@ class Registry(BaseModel):
             + self.qualities.score()
         )
 
-    def get_provider_uri_prefix(self) -> str:
+    # docstr-coverage:excused `overload`
+    @overload
+    def get_provider_uri_prefix(self, *, base_url: str = ...) -> str: ...
+
+    # docstr-coverage:excused `overload`
+    @overload
+    def get_provider_uri_prefix(self, *, base_url: None = ...) -> str | None: ...
+
+    def get_provider_uri_prefix(self, *, base_url: str | None = None) -> str | None:
         """Get provider URI prefix.
 
         :returns: The URI prefix for the provider for prefixes in this registry.
@@ -3171,13 +3178,14 @@ class Registry(BaseModel):
         >>> get_registry("miriam").get_provider_uri_prefix()
         'https://registry.identifiers.org/registry/'
         >>> get_registry("n2t").get_provider_uri_prefix()
-        'https://bioregistry.io/metaregistry/n2t/resolve/'
         """
-        if self.uri_format is None or not self.uri_format.endswith("$1"):
-            return f"{BIOREGISTRY_REMOTE_URL}/metaregistry/{self.prefix}/resolve/"
-        return self.uri_format.replace("$1", "")
+        if self.uri_format is not None and self.uri_format.endswith("$1"):
+            return self.uri_format.replace("$1", "")
+        elif base_url is not None:
+            return f"{base_url.rstrip('/')}/metaregistry/{self.prefix}/resolve/"
+        return None
 
-    def get_provider_uri_format(self, external_prefix: str) -> str | None:
+    def get_provider_url(self, external_prefix: str) -> str | None:
         """Get the provider string.
 
         :param external_prefix: The prefix used in the metaregistry
@@ -3185,19 +3193,31 @@ class Registry(BaseModel):
         :returns: The URL in the registry for the prefix, if it's able to provide one
 
         >>> from bioregistry import get_registry
-        >>> get_registry("fairsharing").get_provider_uri_format("FAIRsharing.62qk8w")
+        >>> get_registry("fairsharing").get_provider_url("FAIRsharing.62qk8w")
         'https://fairsharing.org/FAIRsharing.62qk8w'
-        >>> get_registry("miriam").get_provider_uri_format("go")
+        >>> get_registry("miriam").get_provider_url("go")
         'https://registry.identifiers.org/registry/go'
-        >>> get_registry("n2t").get_provider_uri_format("go")
-        'https://bioregistry.io/metaregistry/n2t/resolve/go'
+        >>> get_registry("n2t").get_provider_url("go")
+        'https://n2t.net/go:'
         """
-        return self.get_provider_uri_prefix() + external_prefix
+        if self.uri_format is not None:
+            return self.uri_format.replace("$1", external_prefix)
+        return None
 
-    def get_resolver_uri_format(self, prefix: str) -> str:
+    # docstr-coverage:excused `overload`
+    @overload
+    def get_resolver_uri_format(self, prefix: str, *, base_url: str = ...) -> str: ...
+
+    # docstr-coverage:excused `overload`
+    @overload
+    def get_resolver_uri_format(self, prefix: str, *, base_url: None = ...) -> str | None: ...
+
+    def get_resolver_uri_format(self, prefix: str, *, base_url: str | None = None) -> str | None:
         """Generate a provider URI string based on mapping through this registry's vocabulary.
 
         :param prefix: The prefix used in the metaregistry
+        :param base_url: The base URL for the running metaregistry service,
+            such as ``https://bioregistry.io``
 
         :returns: The URI format string to be used for identifiers in the semantic space
             based on this resolver or the Bioregistry's meta-resolver.
@@ -3205,16 +3225,20 @@ class Registry(BaseModel):
         >>> from bioregistry import get_registry
         >>> get_registry("miriam").get_resolver_uri_format("go")
         'https://identifiers.org/go:$1'
-        >>> get_registry("cellosaurus").get_resolver_uri_format("go")
-        'https://bioregistry.io/metaregistry/cellosaurus/go:$1'
         >>> get_registry("n2t").get_resolver_uri_format("go")
         'https://n2t.net/go:$1'
+        >>> base_url = "https://bioregistry.io"
+        >>> get_registry("cellosaurus").get_resolver_uri_format("go", base_url=base_url)
+        'https://bioregistry.io/metaregistry/cellosaurus/go:$1'
+        >>> get_registry("cellosaurus").get_resolver_uri_format("go")
         """
-        if self.resolver_uri_format is None:
-            return f"{BIOREGISTRY_REMOTE_URL}/metaregistry/{self.prefix}/{prefix}:$1"
-        return self.resolver_uri_format.replace("$1", prefix).replace("$2", "$1")
+        if self.resolver_uri_format is not None:
+            return self.resolver_uri_format.replace("$1", prefix).replace("$2", "$1")
+        elif base_url is not None:
+            return f"{base_url.rstrip('/')}/metaregistry/{self.prefix}/{prefix}:$1"
+        return None
 
-    def resolve(self, prefix: str, identifier: str) -> str | None:
+    def resolve(self, prefix: str, identifier: str, base_url: str | None = None) -> str | None:
         """Resolve the registry-specific prefix and identifier.
 
         :param prefix: The prefix used in the metaregistry
@@ -3225,12 +3249,17 @@ class Registry(BaseModel):
         >>> from bioregistry import get_registry
         >>> get_registry("miriam").resolve("go", "0032571")
         'https://identifiers.org/go:0032571'
+        >>> base_url = "https://bioregistry.io"
         >>> get_registry("cellosaurus").resolve("go", "0032571")
+        >>> get_registry("cellosaurus").resolve("go", "0032571", base_url=base_url)
         'https://bioregistry.io/metaregistry/cellosaurus/go:0032571'
         >>> get_registry("rrid").resolve("AB", "493771")
         'https://scicrunch.org/resolver/RRID:AB_493771'
         """
-        return self.get_resolver_uri_format(prefix).replace("$1", identifier)
+        uri_format = self.get_resolver_uri_format(prefix, base_url=base_url)
+        if uri_format is None:
+            return None
+        return uri_format.replace("$1", identifier)
 
     def add_triples(self, graph: rdflib.Graph) -> rdflib.term.Node:
         """Add triples to an RDF graph for this registry.
