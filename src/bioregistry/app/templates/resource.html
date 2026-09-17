@@ -37,7 +37,7 @@
 {% endmacro %}
 
 {% macro get_tooltip(manager, prefix) %}
-<a href="{{ url_for("metaregistry_ui.resource", prefix=prefix) }}"
+<a href="{{ url_for('metaregistry_ui.resource', prefix=prefix) }}"
    class="badge badge-pill badge-light" data-toggle="tooltip"
    title="{{ manager.get_name(prefix) }}">
     {{ manager.get_preferred_prefix(prefix) or prefix }}
@@ -56,7 +56,7 @@
         <div class="card-header">
             <div class="row align-items-center">
                 <div class="col-8">
-                    <h5 style="margin: 0"><a href="{{ url_for("metaregistry_ui.resources") }}">Registry</a> <i
+                    <h5 style="margin: 0"><a href="{{ url_for('metaregistry_ui.resources') }}">Registry</a> <i
                             class="bi bi-chevron-right"></i> {{ name_pack.value }}
                         <a type="button" data-toggle="modal" data-target="#name-modal">
                             <i class="bi bi-question-circle"></i>
@@ -75,7 +75,7 @@
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                             {% for label, key in formats %}
                                 <a class="dropdown-item"
-                                   href="{{ fastapi_url_for("get_resource", prefix=prefix) }}?format={{ key }}">
+                                   href="{{ fastapi_url_for('get_resource', prefix=prefix) }}?format={{ key }}">
                                     {{ label }} <i class="bi bi-download"></i>
                                 </a>
                             {% endfor %}
@@ -108,9 +108,9 @@
                 <p>
                     This resource is a <span class="badge badge-danger">provider</span>. This means that
                     while it may have its own prefix, it actually reuses the identifiers provided by the
-                    <a href="{{ url_for(".resource", prefix=provides) }}"><code>{{ provides }}</code></a>
+                    <a href="{{ url_for('.resource', prefix=provides) }}"><code>{{ provides }}</code></a>
                     prefix. For <b>all</b> use cases, you should use <a
-                        href="{{ url_for(".resource", prefix=provides) }}"><code>{{ provides }}</code></a>
+                        href="{{ url_for('.resource', prefix=provides) }}"><code>{{ provides }}</code></a>
                     instead of <code>{{ prefix }}</code>.
                 </p>
             {% endif %}
@@ -152,7 +152,7 @@
                 <dd>
                     {%- for keyword in keywords|sort %}
                     {%- if not resource.part_of_database or keyword != resource.part_of_database %}
-                    <a class="badge badge-light" href="{{ url_for(".get_keyword", keyword=keyword) }}">{{ keyword }}</a>
+                    <a class="badge badge-light" href="{{ url_for('.get_keyword', keyword=keyword) }}">{{ keyword }}</a>
                     {%- endif %}
                     {%- endfor %}
                 </dd>
@@ -273,7 +273,7 @@
         <div class="card-body">
             <p>
                 A summary of the relations in the {{ config.METAREGISTRY_TITLE }} schema
-                can be found <a href="{{ url_for("metaregistry_ui.schema") }}">here</a>.
+                can be found <a href="{{ url_for('metaregistry_ui.schema') }}">here</a>.
             </p>
             <dl>
                 {% if provides %}
@@ -358,7 +358,7 @@
                     <dt>In Collection ({{ in_collections | length }})</dt>
                     <dd>
                     {% for collection_id in in_collections %}
-                    <a href="{{ url_for("metaregistry_ui.collection", identifier=collection_id) }}"
+                    <a href="{{ url_for('metaregistry_ui.collection', identifier=collection_id) }}"
                        class="badge badge-pill badge-light" data-toggle="tooltip"
                        title="{{ manager.get_collection_name(collection_id) }}">
                         {{ manager.get_collection_name(collection_id) }}
@@ -579,7 +579,7 @@
                 <div class="modal-body">
                     <p>
                     This name annotation was originally annotated in
-                        <a href="{{ url_for("metaregistry_ui.metaresource", metaprefix=name_pack.metaprefix) }}">{{ name_pack.name }}</a>
+                        <a href="{{ url_for('metaregistry_ui.metaresource', metaprefix=name_pack.metaprefix) }}">{{ name_pack.name }}</a>
                         and is redistributed under the {{ name_pack.license }} license.
                     </p>
                     <p>Get the name:</p>
