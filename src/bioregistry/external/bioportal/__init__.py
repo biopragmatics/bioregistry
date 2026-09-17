@@ -6,6 +6,7 @@ https://bioportal.bioontology.org/account.
 
 import json
 import math
+import re
 from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Any, cast
@@ -23,7 +24,7 @@ from bioregistry.alignment_model import (
     load_processed,
     make_record,
 )
-from bioregistry.constants import EMAIL_RE, RAW_DIRECTORY
+from bioregistry.constants import RAW_DIRECTORY
 from bioregistry.external.alignment_utils import adapter
 from bioregistry.license_standardizer import standardize_license
 from bioregistry.utils import removeprefix
@@ -36,6 +37,10 @@ __all__ = [
 ]
 
 DIRECTORY = Path(__file__).parent.resolve()
+
+# not a perfect email regex, but close enough
+EMAIL_RE_STR = r"^(\w|\.|\_|\-)+[@](\w|\_|\-|\.)+[.]\w{2,7}$"
+EMAIL_RE = re.compile(EMAIL_RE_STR)
 
 
 @dataclass

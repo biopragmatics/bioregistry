@@ -18,13 +18,14 @@ from typing import (
 )
 
 import curies
+import pystow
 from curies import ReferenceTuple
 from curies.api import NoCURIEDelimiterError, PrefixStandardizationError
 from pydantic import BaseModel
 
 from .constants import (
+    BIOREGISTRY_DEFAULT_BASE_URL,
     BIOREGISTRY_PATH,
-    BIOREGISTRY_REMOTE_URL,
     COLLECTIONS_PATH,
     CONTEXTS_PATH,
     EXTRAS,
@@ -128,6 +129,7 @@ class MappingsDiff(BaseModel):
 class Manager:
     """A manager for functionality related to a metaregistry."""
 
+    base_url: str
     registry: dict[str, Resource]
     metaregistry: dict[str, Registry]
     collections: dict[str, Collection]
@@ -160,7 +162,9 @@ class Manager:
             Bioregistry's mismatches.
         :param base_url: The base URL.
         """
-        self.base_url = (base_url or BIOREGISTRY_REMOTE_URL).rstrip()
+        self.base_url = pystow.get_config(
+            "bioregistry", "url", default=BIOREGISTRY_DEFAULT_BASE_URL, passthrough=base_url
+        ).rstrip()
 
         if registry is None:
             self.registry = dict(_registry_from_path(BIOREGISTRY_PATH))
@@ -333,7 +337,7 @@ class Manager:
         entry = self.get_registry(metaprefix)
         if entry is None:
             return None
-        return entry.get_provider_uri_format(prefix)
+        return entry.get_provider_url(prefix)
 
     def get_collection_name(self, identifier: str) -> str:
         """Get a collection's name."""
@@ -1869,28 +1873,25 @@ class Manager:
         return None
 
     def _get_internal_converter(self) -> curies.Converter:
-        rr = curies.Converter()
-        rr.add_prefix(
+        converter = curies.Converter()
+        converter.add_prefix(
             "wikidata", "http://www.wikidata.org/entity/", ["wikidata.entity", "wikidata.property"]
         )
-        rr.add_prefix("edam", "http://edamontology.org/data_", ["edam.data"])
+        converter.add_prefix("edam", "http://edamontology.org/data_", ["edam.data"])
 
         default_prefixes = {"bioregistry.schema", "bfo"}
         for prefix in default_prefixes:
-            rr.add_prefix(prefix, self.get_uri_prefix(prefix, strict=True))
+            converter.add_prefix(prefix, self.get_uri_prefix(prefix, strict=True))
 
         for metaprefix, metaresource in self.metaregistry.items():
-            uri_prefix = metaresource.get_provider_uri_prefix()
-            if metaresource.bioregistry_prefix:
-                rr.add_prefix(
-                    metaresource.bioregistry_prefix,
-                    uri_prefix,
-                    [metaprefix] if metaresource.bioregistry_prefix != metaprefix else [],
-                    merge=True,
-                )
-            else:
-                rr.add_prefix(metaprefix, uri_prefix, merge=True)
-        return rr
+            uri_prefix = metaresource.get_provider_uri_prefix(base_url=self.base_url)
+            converter.add_prefix(
+                metaresource.bioregistry_prefix,
+                uri_prefix,
+                [metaprefix] if metaresource.bioregistry_prefix != metaprefix else [],
+                merge=True,
+            )
+        return converter
 
     def get_internal_prefix_map(self) -> Mapping[str, str]:
         """Get an internal prefix map for RDF and SSSOM dumps."""
