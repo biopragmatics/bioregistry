@@ -19,8 +19,7 @@
                 <a href="{{ url_for('metaregistry_ui.reference', prefix=prefix, identifier=example) }}">{{ example }}</a>
                 {%- if providers %}
                 &nbsp;
-                <a class="badge badge-pill badge-info" href="{{ url_for("metaregistry_ui.resolve", prefix=prefix,
-                identifier=example) }}"><i class="bi bi-share"></i> Resolve</a>
+                <a class="badge badge-pill badge-info" href="{{ url_for('metaregistry_ui.resolve', prefix=prefix, identifier=example) }}"><i class="bi bi-share"></i> Resolve</a>
                 {%- endif %}
                 {%- for extra_example in example_extras %}
                 <br/>
