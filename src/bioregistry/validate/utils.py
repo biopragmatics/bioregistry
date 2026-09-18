@@ -356,9 +356,7 @@ def get_linkml_prefix_map(path_or_url: str | Path | TextIO) -> dict[str, str]:
 
     :returns: The prefix map defined in the LinkML configuration
     """
-    import yaml
-    from pystow.utils import safe_open
+    from pystow.utils import safe_open_yaml
 
-    with safe_open(path_or_url) as file:
-        data = yaml.safe_load(file)
+    data = safe_open_yaml(path_or_url)
     return cast(dict[str, str], data["prefixes"])
