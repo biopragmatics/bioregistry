@@ -16336,6 +16336,7 @@
     "uri_format": "https://www.flymine.org/come/entry?gn=$1"
   },
   "commoncoreontology": {
+    "comment": "Between the v1 and v2, transparent identifiers were replaced with opaque identifiers. A mapping file can be found [here](https://github.com/CommonCoreOntology/CommonCoreOntologies/tree/develop/documentation/mapping-new-iris)",
     "contact": {
       "email": "mpjensen@buffalo.edu",
       "github": "mark-jensen",
@@ -16349,7 +16350,7 @@
       "orcid": "0000-0003-4423-4370"
     },
     "description": "The Common Core Ontologies (CCO) comprise twelve ontologies that are designed to represent and integrate taxonomies of generic classes and relations across all domains of interest.\n\nCCO is a mid-level extension of Basic Formal Ontology (BFO), an upper-level ontology framework widely used to structure and integrate ontologies in the biomedical domain (Arp, et al., 2015). BFO aims to represent the most generic categories of entity and the most generic types of relations that hold between them, by defining a small number of classes and relations. CCO then extends from BFO in the sense that every class in CCO is asserted to be a subclass of some class in BFO, and that CCO adopts the generic relations defined in BFO (e.g., has_part) (Smith and Grenon, 2004). Accordingly, CCO classes and relations are heavily constrained by the BFO framework, from which it inherits much of its basic semantic relationships.",
-    "download_rdf": "https://raw.githubusercontent.com/CommonCoreOntology/CommonCoreOntologies/refs/heads/develop/src/cco-merged/AllCoreOntology.ttl",
+    "download_rdf": "https://github.com/CommonCoreOntology/CommonCoreOntologies/releases/download/v2.2/CommonCoreOntologiesMerged-2.2.ttl",
     "example": "00001760",
     "homepage": "http://www.ontologyrepository.com",
     "keywords": [
@@ -49835,8 +49836,16 @@
       "name": "Charles Tapley Hoyt",
       "orcid": "0000-0003-4423-4370"
     },
+    "contributor_extras": [
+      {
+        "email": "noemi.betancort@suub.uni-bremen.de",
+        "github": "nbetancort",
+        "name": "Noemi Betancort Cabrera",
+        "orcid": "0000-0002-0156-3556"
+      }
+    ],
     "description": "Library of Congress Subject Headings (LCSH) has been actively maintained since 1898 to catalog materials held at the Library of Congress. (from homepage)",
-    "example": "nb2018006591",
+    "example": "sh2002006576",
     "homepage": "https://id.loc.gov/authorities/subjects.html",
     "keywords": [
       "loc",
@@ -49860,6 +49869,9 @@
         "name": "LOC Subject",
         "uri_format": "http://id.loc.gov/authorities/subjects/$1"
       }
+    ],
+    "references": [
+      "https://github.com/biopragmatics/bioregistry/issues/2101"
     ],
     "synonyms": [
       "lcnaf",
@@ -51091,6 +51103,46 @@
     "preferred_prefix": "loc.datatype",
     "uri_format": "https://id.loc.gov/datatypes/$1"
   },
+  "loc.demographicterms": {
+    "contact": {
+      "email": "futo@stanford.edu",
+      "name": "Michelle Futornick"
+    },
+    "contributor": {
+      "email": "noemi.betancort@suub.uni-bremen.de",
+      "github": "nbetancort",
+      "name": "Noemi Betancort Cabrera",
+      "orcid": "0000-0002-0156-3556"
+    },
+    "description": "The Library of Congress Demographic Group Terms (LCDGT) is designed to describe the characteristics of the intended audiences of resources, and also the creators of, and contributors to, those resources.",
+    "example": "2015060004",
+    "github_request_issue": 2105,
+    "homepage": "https://id.loc.gov/authorities/demographicTerms.html",
+    "keywords": [
+      "loc",
+      "ontology",
+      "social sciences"
+    ],
+    "mappings": {
+      "bartoc": "1797",
+      "bioportal": "LCDGT",
+      "wikidata": "P4946"
+    },
+    "name": "Library of Congress Demographic Group Terms",
+    "pattern": "^\\d{10}$",
+    "preferred_prefix": "loc.demographicterms",
+    "rdf_uri_format": "http://id.loc.gov/authorities/demographicTerms/$1",
+    "reviewer": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "synonyms": [
+      "lcdgt"
+    ],
+    "uri_format": "http://id.loc.gov/authorities/demographicTerms/dg$1"
+  },
   "loc.descriptionconventions": {
     "contributor": {
       "email": "cthoyt@gmail.com",
@@ -51598,6 +51650,7 @@
     },
     "name": "SWAP Logic Ontology",
     "preferred_prefix": "log",
+    "repository": "https://github.com/linkeddata/swap",
     "uri_format": "http://www.w3.org/2000/10/swap/log#$1"
   },
   "loggerhead": {
@@ -51991,7 +52044,7 @@
     "preferred_prefix": "lpt",
     "repository": "https://github.com/AnimalGenome/livestock-product-trait-ontology",
     "uri_format": "http://purl.obolibrary.org/obo/LPT_$1",
-    "version": "2026-04-01"
+    "version": "2026-09-17"
   },
   "lrg": {
     "banana": "LRG",
@@ -58005,7 +58058,7 @@
     "preferred_prefix": "MOLSIM",
     "repository": "https://github.com/CPCLab/molsim-ontology",
     "uri_format": "http://purl.obolibrary.org/obo/MOLSIM_$1",
-    "version": "2026-08-28"
+    "version": "2026-09-18"
   },
   "mona": {
     "description": "identifier for spectra in the MassBank of North America database",
@@ -72032,7 +72085,6 @@
       "tib": "physh"
     },
     "name": "Physics Subject Headings",
-    "pattern": "^[0-9a-z-]+$",
     "preferred_prefix": "physh",
     "repository": "https://github.com/physh-org/PhySH",
     "uri_format": "https://doi.org/10.29172/$1"
@@ -72455,6 +72507,19 @@
       }
     ],
     "uri_format": "https://pk-db.com/data/$1"
+  },
+  "pkg": {
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "A meta-registry system for software dependencies, with IDs like `pkg:type/namespace/name@version?qualifiers#subpath`",
+    "example": "pypi/ontoportal-client",
+    "homepage": "https://www.packageurl.org/docs/getting-started/introduction",
+    "name": "Package URL",
+    "preferred_prefix": "pkg"
   },
   "plana": {
     "appears_in": [
@@ -74081,7 +74146,7 @@
       "PRO"
     ],
     "uri_format": "http://purl.obolibrary.org/obo/PR_$1",
-    "version": "73.0"
+    "version": "73.1"
   },
   "prefer": {
     "contact": {
@@ -103804,6 +103869,22 @@
     "pattern": "^\\d+$",
     "preferred_prefix": "ximbio",
     "uri_format": "https://ximbio.com/reagent/$1"
+  },
+  "xkcd": {
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "The identifier for an XKCD comic",
+    "example": "927",
+    "homepage": "https://xkcd.com",
+    "license": "CC-BY-NC-2.5",
+    "name": "XKCD",
+    "pattern": "^\\d+$",
+    "preferred_prefix": "xkcd",
+    "uri_format": "https://xkcd.com/$1"
   },
   "xkos": {
     "description": "An extension of SKOS for representaion of nomenclatures",
