@@ -419,6 +419,7 @@ def get_registry_invmap(metaprefix: str, **kwargs: Any) -> dict[str, str]:
     return manager.get_registry_invmap(metaprefix, **kwargs)
 
 
+# docstr-coverage:excused `overload`
 @overload
 def lookup_external_prefix(
     metaprefix: str,
@@ -429,6 +430,7 @@ def lookup_external_prefix(
 ) -> str: ...
 
 
+# docstr-coverage:excused `overload`
 @overload
 def lookup_external_prefix(
     metaprefix: str,
