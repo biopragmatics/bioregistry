@@ -1383,6 +1383,7 @@ class Manager:
                 rv.append(canonical_prefix)
         return rv
 
+    # docstr-coverage:excused `overload`
     @overload
     def lookup_external_prefix(
         self,
@@ -1392,6 +1393,8 @@ class Manager:
         use_obo_preferred: bool = ...,
         strict: Literal[True] = ...,
     ) -> str: ...
+
+    # docstr-coverage:excused `overload`
     @overload
     def lookup_external_prefix(
         self,

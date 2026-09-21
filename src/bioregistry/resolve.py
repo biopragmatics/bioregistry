@@ -460,7 +460,7 @@ def lookup_external_prefix(
     >>> bioregistry.lookup_external_prefix("obofoundry", "GO", use_obo_preferred=True)
     'go'
     """
-    return manager.lookup_external_prefix(
+    return manager.lookup_external_prefix(  # type:ignore[no-any-return,call-overload]
         metaprefix, metaidentifier, use_obo_preferred=use_obo_preferred, strict=strict
     )
 

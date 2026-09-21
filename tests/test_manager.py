@@ -151,7 +151,7 @@ class TestResourceManager(unittest.TestCase):
             ("obofoundry", "go", "go"),
         ]:
             with self.subTest(meteprefix=metaprefix, key=key):
-                self.assertEqual(expected, self.manager.lookup_from(metaprefix, key))
+                self.assertEqual(expected, self.manager.lookup_external_prefix(metaprefix, key))
 
     def test_curie_validation(self) -> None:
         """Test validation functions."""
