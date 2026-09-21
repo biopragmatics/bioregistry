@@ -73,6 +73,7 @@ __all__ = [
     "is_novel",
     "is_obo_foundry",
     "is_proprietary",
+    "lookup_external_prefix",
 ]
 
 logger = logging.getLogger(__name__)
@@ -416,6 +417,54 @@ def get_registry_map(metaprefix: str) -> dict[str, str]:
 def get_registry_invmap(metaprefix: str, **kwargs: Any) -> dict[str, str]:
     """Get a mapping from the external registry prefixes to Bioregistry prefixes."""
     return manager.get_registry_invmap(metaprefix, **kwargs)
+
+
+# docstr-coverage:excused `overload`
+@overload
+def lookup_external_prefix(
+    metaprefix: str,
+    metaidentifier: str,
+    *,
+    use_obo_preferred: bool = ...,
+    strict: Literal[True] = ...,
+) -> str: ...
+
+
+# docstr-coverage:excused `overload`
+@overload
+def lookup_external_prefix(
+    metaprefix: str,
+    metaidentifier: str,
+    *,
+    use_obo_preferred: bool = ...,
+    strict: Literal[False] = ...,
+) -> str | None: ...
+
+
+def lookup_external_prefix(
+    metaprefix: str, metaidentifier: str, *, use_obo_preferred: bool = False, strict: bool = False
+) -> str | None:
+    """Get the bioregistry prefix from an external prefix.
+
+    :param metaprefix: The key for the external registry
+    :param metaidentifier: The prefix in the external registry
+    :param use_obo_preferred: Should OBO preferred prefixes be used?
+    :param strict: If true, raises an exception when there is no available internal
+        prefix
+
+    :returns: The Bioregistry prefix (if it can be mapped)
+
+    >>> import bioregistry
+    >>> bioregistry.lookup_external_prefix("obofoundry", "go")
+    'go'
+    >>> bioregistry.lookup_external_prefix("obofoundry", "GO")
+    None
+    >>> bioregistry.lookup_external_prefix("obofoundry", "GO", use_obo_preferred=True)
+    'go'
+    """
+    return manager.lookup_external_prefix(  # type:ignore[no-any-return,call-overload]
+        metaprefix, metaidentifier, use_obo_preferred=use_obo_preferred, strict=strict
+    )
 
 
 def get_obofoundry_uri_prefix(prefix: str) -> str | None:
