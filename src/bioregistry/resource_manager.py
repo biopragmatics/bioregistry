@@ -785,7 +785,7 @@ class Manager:
 
     @cache  # noqa:B019
     def get_registry_invmap(
-        self, metaprefix: str, use_obo_preferred: bool = False
+        self, metaprefix: str, *, use_obo_preferred: bool = False
     ) -> dict[str, str]:
         """Get a mapping from prefixes in another registry to Bioregistry prefixes.
 
@@ -818,7 +818,7 @@ class Manager:
         return rv
 
     def _iter_registry_map(
-        self, metaprefix: str, use_obo_preferred: bool = False
+        self, metaprefix: str, *, use_obo_preferred: bool = False
     ) -> Iterable[tuple[str, str]]:
         for prefix, resource in self.registry.items():
             mapped_prefix = resource.get_mapped_prefix(
@@ -1376,35 +1376,66 @@ class Manager:
         rv = []
         for obo_prefix in resource._get_external_value("obofoundry", key, []):
             # these prefixes are normalized / lowercased already
-            canonical_prefix = self.lookup_from("obofoundry", obo_prefix)
+            canonical_prefix = self.lookup_external_prefix("obofoundry", obo_prefix)
             if canonical_prefix is None:
                 logger.warning("[%s] could not map OBO %s: %s", prefix, key, obo_prefix)
             else:
                 rv.append(canonical_prefix)
         return rv
 
-    def lookup_from(
-        self, metaprefix: str, metaidentifier: str, use_obo_preferred: bool = False
+    @overload
+    def lookup_external_prefix(
+        self,
+        metaprefix: str,
+        metaidentifier: str,
+        *,
+        use_obo_preferred: bool = ...,
+        strict: Literal[True] = ...,
+    ) -> str: ...
+    @overload
+    def lookup_external_prefix(
+        self,
+        metaprefix: str,
+        metaidentifier: str,
+        *,
+        use_obo_preferred: bool = ...,
+        strict: Literal[False] = ...,
+    ) -> str | None: ...
+
+    def lookup_external_prefix(
+        self,
+        metaprefix: str,
+        metaidentifier: str,
+        *,
+        use_obo_preferred: bool = False,
+        strict: bool = False,
     ) -> str | None:
         """Get the bioregistry prefix from an external prefix.
 
         :param metaprefix: The key for the external registry
         :param metaidentifier: The prefix in the external registry
+        :param use_obo_preferred: Should OBO preferred prefixes be used?
+        :param strict: If true, raises an exception when there is no available internal prefix
 
-        :returns: The bioregistry prefix (if it can be mapped)
+        :returns: The Bioregistry prefix (if it can be mapped)
 
         >>> from bioregistry import manager
-        >>> manager.lookup_from("obofoundry", "go")
+        >>> manager.lookup_external_prefix("obofoundry", "go")
         'go'
-        >>> manager.lookup_from("obofoundry", "GO")
+        >>> manager.lookup_external_prefix("obofoundry", "GO")
         None
-        >>> manager.lookup_from("obofoundry", "GO", use_obo_preferred=True)
+        >>> manager.lookup_external_prefix("obofoundry", "GO", use_obo_preferred=True)
         'go'
         """
         external_id_to_bioregistry_id = self.get_registry_invmap(
             metaprefix, use_obo_preferred=use_obo_preferred
         )
-        return external_id_to_bioregistry_id.get(metaidentifier)
+        prefix = external_id_to_bioregistry_id.get(metaidentifier)
+        if prefix is not None:
+            return prefix
+        if strict:
+            raise KeyError
+        return None
 
     def get_has_canonical(self, prefix: str) -> str | None:
         """Get the canonical prefix."""
