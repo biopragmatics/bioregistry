@@ -2580,7 +2580,6 @@ class Resource(BaseModel):
         >>> assert url is not None and url.startswith(
         ...     "http://aber-owl.net/media/ontologies/BIRNLEX/"
         ... )
-
         """
         if self.download_owl:
             return self.download_owl
@@ -3216,8 +3215,8 @@ class Registry(BaseModel):
         """Generate a provider URI string based on mapping through this registry's vocabulary.
 
         :param prefix: The prefix used in the metaregistry
-        :param base_url: The base URL for the running metaregistry service,
-            such as ``https://bioregistry.io``
+        :param base_url: The base URL for the running metaregistry service, such as
+            ``https://bioregistry.io``
 
         :returns: The URI format string to be used for identifiers in the semantic space
             based on this resolver or the Bioregistry's meta-resolver.

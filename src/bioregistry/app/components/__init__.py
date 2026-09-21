@@ -1,7 +1,7 @@
 """Components for the UI.
 
-Note that the submodules have to get explicitly imported to make
-sure that they are all registered.
+Note that the submodules have to get explicitly imported to make sure that they are all
+registered.
 """
 
 from .base import ui_blueprint

@@ -144,11 +144,12 @@ def _process_bartoc_record(prefix: str, record: dict[str, Any]) -> Record:
 def get_bartoc_registries() -> dict[str, set[str]]:
     """Get a mapping from registries to their parts.
 
-    :returns: A mapping from BARTOC ID for a registry to BARTOC ID for an entry in the registry.
+    :returns: A mapping from BARTOC ID for a registry to BARTOC ID for an entry in the
+        registry.
 
     For example, the `NFDI4Objects Terminologies <http://bartoc.org/en/node/18961>`_
-    list will be a key of ``18961`` and have values listed on this search
-    page: https://bartoc.org/vocabularies/?sort=relevance&order=desc&limit=10&filter=in%3Ahttp%3A%2F%2Fbartoc.org%2Fen%2Fnode%2F18961
+    list will be a key of ``18961`` and have values listed on this search page:
+    https://bartoc.org/vocabularies/?sort=relevance&order=desc&limit=10&filter=in%3Ahttp%3A%2F%2Fbartoc.org%2Fen%2Fnode%2F18961
     """
     rv: defaultdict[str, set[str]] = defaultdict(set)
     with RAW_PATH.open() as file:

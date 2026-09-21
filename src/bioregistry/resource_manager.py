@@ -2247,7 +2247,8 @@ class Manager:
         A prefix is first party if:
 
         1. One of the maintainers of the collection is also a contact or contact extra
-        2. One of the organizations of the collection is also an organization of the record
+        2. One of the organizations of the collection is also an organization of the
+           record
         """
         if isinstance(collection, str):
             collection = self.collections[collection]
