@@ -1086,8 +1086,8 @@ def get_registry_short_name_to_prefix(metaprefix: str) -> dict[str, str]:
 
     .. note::
 
-        A given record in an external registry could have multiple short names, so
-        there might be duplicate values in this dictionary
+        A given record in an external registry could have multiple short names, so there
+        might be duplicate values in this dictionary
 
     >>> import bioregistry
     >>> m = bioregistry.get_registry_short_name_to_prefix("integbio")
