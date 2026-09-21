@@ -43171,6 +43171,35 @@
       }
     }
   },
+  "doi.prefix": {
+    "description": "The first half of a DOI which corresponds to a registrant (e.g., a publisher). In <https://doi.org/10.1038/s41597-022-01807-3>, `10.1038` corresponds to Nature Portfolio.",
+    "homepage": "https://doi.org",
+    "keywords": [
+      "registry"
+    ],
+    "mappings": {
+      "wikidata": "P1662"
+    },
+    "owners": [
+      {
+        "name": "DOI Foundation",
+        "ror": "01fyxcz70"
+      }
+    ],
+    "part_of": "doi",
+    "uri_format": "https://doi.org/$1",
+    "wikidata": {
+      "description": "identifier specific to a DOI registrant",
+      "examples": [
+        "10.1039",
+        "10.1371"
+      ],
+      "name": "DOI prefix",
+      "pattern": "^10(\\.[1-9]\\d*)+$",
+      "prefix": "P1662",
+      "uri_format": "https://doi.org/$1"
+    }
+  },
   "doid": {
     "aberowl": {
       "artifacts": [
