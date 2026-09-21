@@ -170,16 +170,16 @@ def _get_query(properties: Iterable[str]) -> str:
     return QUERY_FMT % values
 
 
-def _get_wikidata() -> dict[str, Record]:
+def _get_wikidata(timeout: int = 300) -> dict[str, Record]:
     """Iterate over Wikidata properties connected to biological databases."""
     mapped = _get_mapped()
     # throw out anything that can be queried directly
     mapped.difference_update(
         bindings["propStr"]
-        for bindings in wikidata_client.query(PROPERTIES_QUERY)
+        for bindings in wikidata_client.query(PROPERTIES_QUERY, timeout=timeout)
         if bindings["propStr"].startswith("P")  # throw away any regular ones
     )
-    raw_records = wikidata_client.query(_get_query(mapped))
+    raw_records = wikidata_client.query(_get_query(mapped), timeout=timeout)
 
     rv = {}
     for raw_record in raw_records:
