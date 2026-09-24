@@ -2190,7 +2190,7 @@ class Resource(BaseModel):
     ) -> str | None:
         """Get a well-formed URI prefix, if available.
 
-        :param priority: The prioirty order for :func:`get_format`.
+        :param priority: The priority order for :func:`get_format`.
         :param strict: if true, raise an exception on not found
         :param stubs: Should stub URIs be assigned to resources with no URI format?
 
