@@ -52,7 +52,7 @@ def get_registry_homepage(metaprefix: str) -> str | None:
     :returns: The URL for the registry, if available, otherwise ``None``.
 
     >>> get_registry_homepage("biolink")
-    'https://github.com/biolink/biolink-model'
+    'https://biolink.github.io/biolink-model'
 
     ``None`` is returned on missing values.
 
