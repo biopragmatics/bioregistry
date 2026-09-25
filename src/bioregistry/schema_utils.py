@@ -61,16 +61,52 @@ logger = logging.getLogger(__name__)
 @lru_cache(maxsize=1)
 def read_metaregistry() -> Mapping[str, Registry]:
     """Read the metaregistry."""
-    return _read_metaregistry(METAREGISTRY_PATH)
+    return _read_metaregistry(METAREGISTRY_PATH, read_registry())
 
 
-def _read_metaregistry(path: str | Path) -> Mapping[str, Registry]:
+NOT_ALLOWED_IN_METAREGISTRY = {
+    "contact",
+    "description",
+    "example",
+    "homepage",
+    "license",
+    "logo",
+    "name",
+    "uri_format",
+}
+READY_TO_UPDATE = False
+
+
+def _read_metaregistry(
+    path: str | Path, registry: Mapping[str, Resource]
+) -> Mapping[str, Registry]:
     with open(path, encoding="utf-8") as file:
         data = json.load(file)
-    return {
-        registry.prefix: registry
-        for registry in (Registry.model_validate(record) for record in data["metaregistry"])
-    }
+
+    rv = {}
+    for record in data["metaregistry"]:
+        if READY_TO_UPDATE:
+            for key in NOT_ALLOWED_IN_METAREGISTRY:
+                if key in record:
+                    del record[key]
+                    # raise ValueError(
+                    #     f"{key} should not be in metaregistry, should import from registry instead"
+                    # )
+            resource = registry[record["bioregistry_prefix"]]
+            record["contact"] = resource.get_contact(strict=True)
+            record["description"] = resource.get_description(strict=True)
+            record["example"] = resource.get_example(strict=True)
+            record["homepage"] = resource.get_homepage()  # TODO add strict
+            # don't use get_license() since it causes circular imports
+            # when using pyobo in testing
+            record["license"] = resource.license
+            record["logo"] = resource.get_logo()
+            record["name"] = resource.get_name(strict=True)
+            record["uri_format"] = resource.get_uri_format()  # TODO add strict
+
+        rr = Registry.model_validate(record)
+        rv[rr.prefix] = rr
+    return rv
 
 
 def registries() -> list[Registry]:
@@ -251,7 +287,15 @@ def write_metaregistry(metaregistry: Mapping[str, Registry]) -> None:
     """Write to the metaregistry."""
     values = [v for _, v in sorted(metaregistry.items())]
     write_json(
-        {"metaregistry": [m.model_dump(exclude_none=True) for m in values]},
+        {
+            "metaregistry": [
+                m.model_dump(
+                    exclude_none=True,
+                    exclude=NOT_ALLOWED_IN_METAREGISTRY if READY_TO_UPDATE else None,
+                )
+                for m in values
+            ]
+        },
         METAREGISTRY_PATH,
         indent=2,
         sort_keys=True,
