@@ -1241,7 +1241,17 @@ class Resource(BaseModel):
             raise ValueError
         return None
 
-    def get_description(self, use_markdown: bool = False) -> str | None:
+    # docstr-coverage:excused `overload`
+    @overload
+    def get_description(self, *, use_markdown: bool = ..., strict: Literal[True] = ...) -> str: ...
+
+    # docstr-coverage:excused `overload`
+    @overload
+    def get_description(
+        self, *, use_markdown: bool = ..., strict: Literal[False] = ...
+    ) -> str | None: ...
+
+    def get_description(self, *, use_markdown: bool = False, strict: bool = False) -> str | None:
         """Get the description for the given prefix, if available."""
         if self.description and use_markdown:
             import markupsafe
@@ -1274,6 +1284,8 @@ class Resource(BaseModel):
         rv = self._get_prefix_key_str("description", metaprefixes, provenance=False)
         if rv is not None:
             return rv.strip()
+        if strict:
+            raise ValueError
         return None
 
     def get_pattern(self) -> str | None:
@@ -1451,7 +1463,15 @@ class Resource(BaseModel):
             return self.repository
         return self._get_prefix_key_str("repository", DEFAULT_METAPREFIX_PRIORITY)
 
-    def get_contact(self) -> Attributable | None:
+    # docstr-coverage:excused `overload`
+    @overload
+    def get_contact(self, *, strict: Literal[True] = ...) -> Attributable: ...
+
+    # docstr-coverage:excused `overload`
+    @overload
+    def get_contact(self, *, strict: Literal[False] = ...) -> Attributable | None: ...
+
+    def get_contact(self, *, strict: bool = False) -> Attributable | None:
         """Get the contact, if available.
 
         :returns: A contact
@@ -1463,6 +1483,8 @@ class Resource(BaseModel):
         if self.contact is not None:
             return self.contact
         if not self.mappings:
+            if strict:
+                raise ValueError(f"no contact available for {self.prefix}")
             return None
         contacts = [
             Attributable.model_validate(contact)
@@ -1471,6 +1493,8 @@ class Resource(BaseModel):
         ]
         if contacts:
             return max(contacts, key=lambda c: c.get_score())
+        if strict:
+            raise ValueError(f"no contact available for {self.prefix}")
         return None
 
     def get_contact_email(self) -> EmailStr | None:
