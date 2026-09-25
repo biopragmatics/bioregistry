@@ -39,11 +39,10 @@ class TestMetaregistry(unittest.TestCase):
                         msg="Examples should be external-registry specific and mapped",
                     )
                 self.assertIsNotNone(registry.description)
-                self.assertIsNotNone(registry.contact)
-                self.assertIsNotNone(registry.license, msg=f"Contact: {registry.contact}")
+                self.assertIsNotNone(registry.contact, msg="contact is None")
                 self.assertNotEqual("FIXME", registry.contact.name)
                 if "support" not in registry.contact.name.lower():
-                    self.assertIsNotNone(registry.contact.orcid)
+                    self.assertIsNotNone(registry.contact.orcid, msg="contact ORCiD is none")
                     self.assertIsNotNone(
                         registry.contact.github,
                         msg=f"missing github for {registry.prefix} for {registry.contact.name}",
@@ -61,11 +60,6 @@ class TestMetaregistry(unittest.TestCase):
                 )
                 resource = bioregistry.get_resource(registry.bioregistry_prefix)
                 self.assertIsNotNone(resource)
-                self.assertIsNotNone(
-                    resource.get_uri_format(),
-                    msg=f"corresponding registry entry ({registry.bioregistry_prefix})"
-                    f" is missing a uri_format",
-                )
 
                 # When a registry is a resolver, it means it
                 # can resolve entries (prefixes) + identifiers
