@@ -4271,7 +4271,7 @@ bartoc:
   - knowledge representation
   - registry
   license: PDDL-1.0
-  logo: https://api.fairsharing.org/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBY1k9IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--6c3fa861660fbcc6686f2208af8848ce7c4fcf5c/bartoc.png?disposition=inline
+  logo: https://bartoc.org/img/bartoc-logo.svg
   mappings:
     bartoc: '2054'
     fairsharing: FAIRsharing.f1777e
@@ -5862,11 +5862,10 @@ biolink:
     pathways, individuals, substances, etc) and their associations.
   download_owl: https://w3id.org/biolink/biolink-model.owl.ttl
   download_rdf: https://w3id.org/biolink/biolink-model.owl.ttl
-  example: Gene
+  example: PathologicalProcessOutcome
   homepage: https://biolink.github.io/biolink-model
   keywords:
   - ontology
-  - registry
   license: CC0-1.0
   mappings:
     aberowl: BIOLINK
@@ -5877,8 +5876,29 @@ biolink:
   name: BioLink Model
   pattern: ^\S+$
   preferred_prefix: biolink
+  rdf_uri_format: https://w3id.org/biolink/vocab/$1
+  repository: https://github.com/biolink/biolink-model
   uri_format: https://biolink.github.io/biolink-model/$1
   version: 4.4.4
+biolink.resource:
+  contact:
+    email: deepak.unni3@lbl.gov
+    github: deepakunni3
+    name: Deepak Unni
+    orcid: 0000-0002-3583-7340
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: A modeling paradigm-specific registry of prefixes and their URL expansions
+  example: doi
+  homepage: https://biolink.github.io/biolink-model
+  keywords:
+  - registry
+  name: BioLink Model Registry
+  preferred_prefix: biolink.resource
+  repository: https://github.com/biolink/biolink-model
 biomagresbank:
   description: A repository for Data from NMR Spectroscopy on Proteins, Peptides,
     and Nucleic Acids.
@@ -6229,6 +6249,7 @@ biopixie:
 bioportal:
   contact:
     email: jgraybeal@stanford.edu
+    github: graybeal
     name: John Graybeal
     orcid: 0000-0001-6875-5360
   contributor:
@@ -6246,7 +6267,7 @@ bioportal:
   - FBBi
   - SEPIO
   - pseudo
-  homepage: http://bioportal.bioontology.org/
+  homepage: https://bioportal.bioontology.org
   keywords:
   - bibliography/documents
   - health/disease
@@ -6254,6 +6275,7 @@ bioportal:
   - ontology/terminology/nomenclature
   - portal
   - registry
+  logo: https://ontoportal.org/images/alliance_member_logos/bioportal.png
   mappings:
     bartoc: '1713'
     biocontext: BIOPORTAL
@@ -6288,7 +6310,9 @@ bioportal:
     title: 'BioPortal: ontologies and integrated data resources at the click of a
       mouse'
     year: 2009
-  uri_format: http://bioportal.bioontology.org/ontologies/$1
+  references:
+  - https://github.com/biopragmatics/bioregistry/issues/33
+  uri_format: https://bioportal.bioontology.org/ontologies/$1
 bioportal.bof:
   contact:
     email: francolamping@gmail.com
@@ -6413,6 +6437,7 @@ bioregistry:
   - life science
   - registry
   license: CC0-1.0
+  logo: https://bioregistry.io/static/logo.svg
   mappings:
     bartoc: '18968'
     fairsharing: FAIRsharing.250a8c
@@ -9693,6 +9718,11 @@ cellosaurus:
   - CVCL
   uri_format: https://www.cellosaurus.org/CVCL_$1
 cellosaurus.resource:
+  contact:
+    email: Amos.Bairoch@sib.swiss
+    github: AmosBairoch
+    name: Amos Bairoch
+    orcid: 0000-0003-2826-6444
   contributor:
     email: cthoyt@gmail.com
     github: cthoyt
@@ -17526,24 +17556,56 @@ dbgap:
     year: 2007
   uri_format: https://www.ncbi.nlm.nih.gov/projects/gap/cgi-bin/study.cgi?study_id=$1
 dblp.author:
+  contact:
+    email: florian.jaeckel@dagstuhl.de
+    github: tutebatti
+    name: ' Florian Jäckel '
+    orcid: 0000-0001-7307-1051
   description: identifier for author entries in the DBLP computer science bibliography
     (use portion of DBLP person key after pid/)
   example: 199/2168
   homepage: https://dblp.org/
   keywords:
   - dblp
+  license: CC0-1.0
   mappings:
     wikidata: P2456
   name: DBLP author
   preferred_prefix: dblp.author
   rdf_uri_format: https://dblp.org/pid/$1
   uri_format: https://dblp.org/pid/$1
+dblp.institution:
+  contact:
+    email: florian.jaeckel@dagstuhl.de
+    github: tutebatti
+    name: ' Florian Jäckel '
+    orcid: 0000-0001-7307-1051
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: Affiliations and institutions in DBLP, see [announcement](https://blog.dblp.org/2026/09/21/institutions-as-first-class-citizens-introducing-affiliations-in-dblp/)
+  example: 11/687
+  homepage: https://dblp.org/inst
+  keywords:
+  - dblp
+  license: CC0-1.0
+  name: DBLP institution
+  preferred_prefix: dblp.institution
+  uri_format: https://dblp.org/inst/$1
 dblp.publication:
+  contact:
+    email: florian.jaeckel@dagstuhl.de
+    github: tutebatti
+    name: ' Florian Jäckel '
+    orcid: 0000-0001-7307-1051
   description: identifier of publications in the DBLP database
   example: books/el/01/BurkartCMS01
   homepage: https://dblp.org/
   keywords:
   - dblp
+  license: CC0-1.0
   mappings:
     wikidata: P8978
   name: DBLP publication
@@ -17551,6 +17613,11 @@ dblp.publication:
   rdf_uri_format: https://dblp.org/rec/$1
   uri_format: https://dblp.org/rec/$1
 dblp.schema:
+  contact:
+    email: florian.jaeckel@dagstuhl.de
+    github: tutebatti
+    name: ' Florian Jäckel '
+    orcid: 0000-0001-7307-1051
   description: This ontology describes the RDF representation of the contents of the
     dblp computer science bibliography.
   download_owl: https://dblp.org/rdf/schema.ttl
@@ -20617,6 +20684,24 @@ doi:
   - https://github.com/biopragmatics/bioregistry/issues/287
   - https://github.com/biopragmatics/bioregistry/pull/316
   uri_format: https://doi.org/$1
+doi.prefix:
+  description: The first half of a DOI which corresponds to a registrant (e.g., a
+    publisher). In <https://doi.org/10.1038/s41597-022-01807-3>, `10.1038` corresponds
+    to Nature Portfolio.
+  example: '10.1039'
+  homepage: https://doi.org
+  keywords:
+  - registry
+  mappings:
+    wikidata: P1662
+  name: DOI prefix
+  owners:
+  - name: DOI Foundation
+    ror: 01fyxcz70
+  part_of: doi
+  pattern: ^10(\.[1-9]\d*)+$
+  preferred_prefix: doi.prefix
+  uri_format: https://doi.org/$1
 doid:
   appears_in:
   - clo
@@ -23460,6 +23545,7 @@ edam:
   - omics
   - ontology
   license: CC-BY-SA-4.0
+  logo: https://avatars.githubusercontent.com/u/7922809
   mappings:
     aberowl: EDAM
     agroportal: EDAM
@@ -23523,6 +23609,8 @@ edam.data:
   keywords:
   - ontology
   - registry
+  license: CC-BY-SA-4.0
+  logo: https://avatars.githubusercontent.com/u/7922809
   mappings:
     biolink: EDAM-DATA
   name: EDAM Data
@@ -23551,6 +23639,7 @@ edam.format:
   homepage: http://edamontology.org
   keywords:
   - ontology
+  logo: https://avatars.githubusercontent.com/u/7922809
   mappings:
     biolink: EDAM-FORMAT
   name: EDAM Format
@@ -23581,6 +23670,7 @@ edam.operation:
   homepage: http://edamontology.org
   keywords:
   - ontology
+  logo: https://avatars.githubusercontent.com/u/7922809
   mappings:
     biolink: EDAM-OPERATION
   name: EDAM Operation
@@ -23607,6 +23697,7 @@ edam.topic:
   homepage: http://edamontology.org
   keywords:
   - ontology
+  logo: https://avatars.githubusercontent.com/u/7922809
   mappings:
     biolink: EDAM-TOPIC
   name: EDAM Topic
@@ -27605,6 +27696,11 @@ fairmdlipids:
   preferred_prefix: fairmdlipids
   uri_format: https://lipids.fairmd.org/$1
 fairsharing:
+  contact:
+    email: allyson.lister@oerc.ox.ac.uk
+    github: allysonlister
+    name: Allyson Lister
+    orcid: 0000-0002-7702-4495
   contributor:
     email: cthoyt@gmail.com
     github: cthoyt
@@ -27617,9 +27713,11 @@ fairsharing:
   example: bsg-000052
   example_extras:
   - FAIRsharing.CugtbQ
-  homepage: https://fairsharing.org/
+  homepage: https://fairsharing.org
   keywords:
   - registry
+  license: CC-BY-SA-4.0
+  logo: https://api.fairsharing.org/img/fairsharing-attribution.svg
   mappings:
     bartoc: '18925'
     biocontext: FAIRSHARING
@@ -27662,6 +27760,8 @@ fairsharing.organization:
   homepage: https://fairsharing.org
   keywords:
   - fairsharing
+  license: CC-BY-SA-4.0
+  logo: https://api.fairsharing.org/img/fairsharing-attribution.svg
   name: FAIRsharing Organization
   pattern: ^\d+$
   preferred_prefix: fairsharing.organization
@@ -27682,6 +27782,8 @@ fairsharing.user:
   homepage: https://fairsharing.org
   keywords:
   - fairsharing
+  license: CC-BY-SA-4.0
+  logo: https://api.fairsharing.org/img/fairsharing-attribution.svg
   name: FAIRsharing User
   pattern: ^\d+$
   preferred_prefix: fairsharing.user
@@ -33800,6 +33902,11 @@ go.ref:
     uri_format: https://github.com/geneontology/go-site/blob/master/metadata/gorefs/README.md#goref$1
   uri_format: https://geneontology.org/GO_REF/$1
 go.resource:
+  contact:
+    email: cjmungall@lbl.gov
+    github: cmungall
+    name: Chris Mungall
+    orcid: 0000-0002-6601-2165
   contributor:
     email: cthoyt@gmail.com
     github: cthoyt
@@ -36712,6 +36819,24 @@ hivreagentprogram:
   name: NIH HIV Reagent Program
   preferred_prefix: hivreagentprogram
   uri_format: https://www.hivreagentprogram.org/Catalog/HRPCellLines/$1.aspx
+hl7:
+  contact:
+    email: hq@hl7.org
+    github: ghost
+    name: HL7 Support
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: HL7 External Code Systems are stored within the greater OID system
+  example: '6.88'
+  homepage: https://oid-base.com/get/2.16.840.1.113883.6
+  keywords:
+  - registry
+  name: HL7 External Code System
+  preferred_prefix: hl7
+  uri_format: https://oid-base.com/get/2.16.840.1.113883.6:$1
 hl7.v2codesystem:
   contributor:
     email: cthoyt@gmail.com
@@ -48626,6 +48751,8 @@ medgen:
     The core content of the record may include names, identifiers used by other databases,
     mode of inheritance, clinical features, and map location of the loci affecting
     the disorder.
+  download_obo: https://github.com/monarch-initiative/medgen/releases/latest/download/medgen.obo
+  download_owl: https://github.com/monarch-initiative/medgen/releases/latest/download/medgen.ttl.gz
   download_rdf: https://github.com/monarch-initiative/medgen/releases/latest/download/medgen.ttl.gz
   example: '760050'
   example_decoys:
@@ -48639,6 +48766,7 @@ medgen:
   - bibliography/documents
   - genome/gene
   - health/disease
+  - ontology
   - ontology/terminology/nomenclature
   - phenotype
   mappings:
@@ -51142,6 +51270,11 @@ mirgenedb:
     orcid: 0000-0001-9439-5346
   uri_format: https://mirgenedb.org/browse?qtype=mgid&org=ALL&query=$1
 miriam:
+  contact:
+    email: hhe@ebi.ac.uk
+    github: hHermjakob
+    name: Henning Hermjakob
+    orcid: 0000-0001-8479-0262
   contributor:
     email: cthoyt@gmail.com
     github: cthoyt
@@ -51151,10 +51284,12 @@ miriam:
     referencing of data for the scientific community, with a current focus on the
     Life Sciences domain.
   example: pubmed
-  homepage: https://www.ebi.ac.uk
+  homepage: https://identifiers.org
   keywords:
   - miriam
   - registry
+  license: CC-BY-4.0
+  logo: https://identifiers.org/identifiers_logo.9d30579d.png
   mappings:
     edam: '1162'
     miriam: identifiers.namespace
@@ -51181,6 +51316,7 @@ miriam:
     pubmed: '16333295'
     title: Minimum information requested in the annotation of biochemical models (MIRIAM)
     year: 2005
+  repository: https://github.com/identifiers-org/registry-data
   synonyms:
   - identifiers.namespace
   uri_format: https://registry.identifiers.org/registry/$1
@@ -51869,16 +52005,20 @@ mmsl:
     github: cthoyt
     name: Charles Tapley Hoyt
     orcid: 0000-0003-4423-4370
-  description: The Lexicon is a foundational database with comprehensive drug product
-    and disease nomenclature information. It includes drug names, drug product information,
-    disease names, coding systems such as ICD-9-CM and NDC, generic names, brand names
-    and common abbreviations. A comprehensive list of standard or customized disease
-    names and ICD-9 codes is also included.
+  description: Previously known as Multum MediSource Lexicon (MMSL), the Lexicon is
+    a foundational database with comprehensive drug product and disease nomenclature
+    information. It includes drug names, drug product information, disease names,
+    coding systems such as ICD-9-CM and NDC, generic names, brand names and common
+    abbreviations. A comprehensive list of standard or customized disease names and
+    ICD-9 codes is also included.
   example: '3355'
   homepage: https://www.nlm.nih.gov/research/umls/rxnorm/sourcereleasedocs/mmsl.html
   mappings:
     hl7: 2.16.840.1.113883.6.175
-  name: Multum MediSource Lexicon
+  name: Oracle Health Multum Drug Database
+  owners:
+  - name: Oracle
+    ror: 006c77m33
   pattern: ^\d+$
   preferred_prefix: mmsl
   synonyms:
@@ -53878,6 +54018,11 @@ mzspec:
   repository: https://github.com/HUPO-PSI/usi
   uri_format: http://proteomecentral.proteomexchange.org/usi/?usi=mzspec:$1
 n2t:
+  contact:
+    email: jak@ucop.edu
+    github: jkunze
+    name: John Kunze
+    orcid: 0000-0001-7604-8041
   contributor:
     email: cthoyt@gmail.com
     github: cthoyt
@@ -54629,6 +54774,10 @@ ncbi.genome:
   preferred_prefix: ncbi.genome
   uri_format: https://www.ncbi.nlm.nih.gov/genome/$1
 ncbi.resource:
+  contact:
+    email: gb-admin@ncbi.nlm.nih.gov
+    github: ghost
+    name: GenBank Support
   contributor:
     email: cthoyt@gmail.com
     github: cthoyt
@@ -54993,6 +55142,14 @@ ncbitaxon:
     homepage: https://www.ebi.ac.uk/ena/
     name: European Nucleotide Archive (ENA)
     uri_format: https://www.ebi.ac.uk/ena/data/view/Taxon:$1
+  - code: ena
+    homepage: https://www.ebi.ac.uk/ena
+    name: ENA Taxon Browser
+    uri_format: https://www.ebi.ac.uk/ena/browser/view/Taxon:$1
+  - code: ena.xml
+    homepage: https://www.ebi.ac.uk/ena
+    name: ENA Taxon XML
+    uri_format: https://www.ebi.ac.uk/ena/browser/api/xml/Taxon:$1
   - code: scholia
     description: Scholia is a service that creates visual scholarly profiles for topic,
       people, organizations, species, chemicals, etc using bibliographic and other
@@ -62702,6 +62859,7 @@ pathguide:
   - protein
   - registry
   - small molecule
+  logo: http://pathguide.org/images/logo.gif
   mappings:
     integbio: nbdc00608
     prefixcommons: pathguide
@@ -67191,6 +67349,11 @@ prefixcc:
   preferred_prefix: prefixcc
   uri_format: https://prefix.cc/$1
 prefixcommons:
+  contact:
+    email: michel.dumontier@gmail.com
+    github: micheldumontier
+    name: Michel Dumontier
+    orcid: 0000-0003-4727-9435
   contributor:
     email: cthoyt@gmail.com
     github: cthoyt
@@ -69845,6 +70008,11 @@ rdo:
   preferred_prefix: rdo
   uri_format: http://www.semanticweb.org/mca/ontologies/2018/8/untitled-ontology-47#$1
 re3data:
+  contact:
+    email: mwitt@purdue.edu
+    github: mwittin
+    name: Michael Witt
+    orcid: 0000-0003-4221-7956
   contributor:
     email: cthoyt@gmail.com
     github: cthoyt
@@ -69853,17 +70021,17 @@ re3data:
   description: Re3data is a global registry of research data repositories that covers
     research data repositories from different academic disciplines.
   example: r3d100010772
-  homepage: https://datacite.org
+  homepage: https://www.re3data.org
   keywords:
   - registry
   - subject agnostic
-  license: CC-BY-3.0
-  logo: https://api.fairsharing.org/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBc0VCIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--a4c43cbd0da7ed77259f2f760dd661b1d2bbabbe/re3datalogo_black.png?disposition=inline
+  license: CC0-1.0
+  logo: https://www.re3data.org/bundles/kitlibraryre3dataapp/img/re3datalogo_black.png
   mappings:
     bartoc: '822'
     fairsharing: FAIRsharing.fae0b7
     miriam: re3data
-  name: re3data
+  name: Registry of Research Data Repositories
   owners:
   - name: DataCite
     ror: 04wxnsj81
@@ -71048,6 +71216,7 @@ rhea:
     pubmed: '22135291'
     title: Rhea--a manually curated resource of biochemical reactions
     year: 2011
+  rdf_uri_format: http://rdf.rhea-db.org/$1
   synonyms:
   - RHEA
   uri_format: https://www.rhea-db.org/rhea/$1
@@ -71960,9 +72129,10 @@ rrid:
   - fair
   - life science
   - omics
-  - registry
   - resource discovery
   - resource metadata
+  - rrid
+  license: CC-BY-4.0
   mappings:
     biocontext: RRID
     fairsharing: FAIRsharing.ATwSZG
@@ -72031,6 +72201,29 @@ rrid:
       in the biomedical literature'
     year: 2013
   uri_format: https://scicrunch.org/resolver/RRID:$1
+rrid.resource:
+  contact:
+    email: bandrow@gmail.com
+    github: bandrow
+    name: Anita Bandrowski
+    orcid: 0000-0002-5497-0243
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: 'The Research Resource Identification Initiative provides RRIDs to
+    4 main classes of resources: Antibodies, Cell Lines, Model Organisms, and Databases
+    / Software tools'
+  example: AB
+  homepage: https://rrid.site
+  keywords:
+  - registry
+  - rrid
+  license: CC-BY-4.0
+  logo: https://scicrunch.org/upload/community-logo/rin-resources_69984.png
+  name: Research Resource Identifiers Resource
+  preferred_prefix: rrid.resource
 rrrc:
   description: Supplies biomedical investigators with rat models, embryonic stem cells,
     related reagents, and protocols they require for their research. In addition to
@@ -89707,7 +89900,8 @@ uniprot.resource:
   keywords:
   - registry
   - uniprot
-  logo: https://www.uniprot.org/og-uniprot-wide-logo-1200x630.png
+  license: CC-BY-4.0
+  logo: https://www.uniprot.org/uniprot-logo.img.0df091.svg
   name: UniProt Resource
   owners:
   - name: The Uniprot Consortium
@@ -92597,6 +92791,7 @@ wikidata:
   - P675
   homepage: https://www.wikidata.org/
   license: CC0-1.0
+  logo: https://upload.wikimedia.org/wikipedia/commons/6/66/Wikidata-logo-en.svg
   mappings:
     bartoc: '1940'
     biocontext: WIKIDATA
@@ -92629,6 +92824,11 @@ wikidata:
   - wdeschema
   uri_format: http://www.wikidata.org/entity/$1
 wikidata.entity:
+  contact:
+    email: vrandecic@gmail.com
+    github: vrandezo
+    name: Denny Vrandečić
+    orcid: 0000-0002-9593-2294
   contributor:
     email: cthoyt@gmail.com
     github: cthoyt
@@ -92640,6 +92840,7 @@ wikidata.entity:
   keywords:
   - registry
   license: CC0-1.0
+  logo: https://upload.wikimedia.org/wikipedia/commons/6/66/Wikidata-logo-en.svg
   name: Wikidata Entity
   part_of: wikidata
   pattern: ^Q\d+$
@@ -92654,6 +92855,11 @@ wikidata.entity:
   rdf_uri_format: http://www.wikidata.org/entity/$1
   uri_format: http://www.wikidata.org/entity/$1
 wikidata.property:
+  contact:
+    email: vrandecic@gmail.com
+    github: vrandezo
+    name: Denny Vrandečić
+    orcid: 0000-0002-9593-2294
   contributor:
     email: cthoyt@gmail.com
     github: cthoyt
@@ -92669,6 +92875,7 @@ wikidata.property:
   keywords:
   - registry
   license: CC0-1.0
+  logo: https://upload.wikimedia.org/wikipedia/commons/6/66/Wikidata-logo-en.svg
   mappings:
     biocontext: WD_Prop
     biolink: WIKIDATA_PROPERTY
