@@ -1417,9 +1417,11 @@ class Resource(BaseModel):
             return cast(bool, rv)
         return False
 
+    # docstr-coverage:excused `overload`
     @overload
     def get_homepage(self, *, strict: Literal[True] = ...) -> str: ...
 
+    # docstr-coverage:excused `overload`
     @overload
     def get_homepage(self, *, strict: Literal[False] = ...) -> str | None: ...
 
