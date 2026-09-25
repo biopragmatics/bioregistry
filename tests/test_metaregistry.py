@@ -26,7 +26,7 @@ class TestMetaregistry(unittest.TestCase):
         for metaprefix, registry in self.manager.metaregistry.items():
             self.assertIsInstance(registry, Registry)
             external_prefixes = set(
-                self.manager.get_registry_invmap(metaprefix, use_obo_preferred=True)
+                self.manager.get_registry_invmap(metaprefix, use_obo_preferred=False)
             )
             with self.subTest(metaprefix=metaprefix):
                 self.assertIsNotNone(registry.name)
