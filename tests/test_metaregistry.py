@@ -102,7 +102,7 @@ class TestMetaregistry(unittest.TestCase):
         self.assertEqual(homepage, registry.homepage)
         self.assertEqual(homepage, bioregistry.get_registry_homepage(metaprefix))
 
-        name = "UniProt Cross-ref database"
+        name = "UniProt Resource"
         self.assertEqual(name, registry.name)
         self.assertEqual(name, bioregistry.get_registry_name(metaprefix))
 
