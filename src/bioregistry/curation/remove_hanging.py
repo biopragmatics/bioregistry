@@ -14,7 +14,6 @@ def main() -> None:
     registry = json.loads(BIOREGISTRY_PATH.read_text())
 
     for aligner_cls in aligner_resolver:
-        click.echo(aligner_cls.key)
         data = aligner_cls.getter(force_download=False)
         for record in registry.values():
             mappings = record.get("mappings")
