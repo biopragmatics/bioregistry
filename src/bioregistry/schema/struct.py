@@ -1417,9 +1417,20 @@ class Resource(BaseModel):
             return cast(bool, rv)
         return False
 
-    def get_homepage(self) -> str | None:
+    @overload
+    def get_homepage(self, *, strict: Literal[True] = ...) -> str: ...
+
+    @overload
+    def get_homepage(self, *, strict: Literal[False] = ...) -> str | None: ...
+
+    def get_homepage(self, *, strict: bool = False) -> str | None:
         """Return the homepage, if available."""
-        return self._get_prefix_key_str("homepage", DEFAULT_METAPREFIX_PRIORITY)
+        rv = self._get_prefix_key_str("homepage", DEFAULT_METAPREFIX_PRIORITY)
+        if rv is not None:
+            return rv
+        if strict:
+            raise ValueError
+        return None
 
     def get_domain(self) -> str | None:
         """Get the domain."""

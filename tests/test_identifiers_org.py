@@ -42,6 +42,10 @@ MIRIAM_BLACKLIST = {
     "hogenom",
     # Miriam pattern/example combo is broken
     "homd.seq",
+    # MIRIAM pattern uses numbers instead of ontology strings
+    "bioportal",
+    # MIRIAM pattern only matches old-style
+    "fairsharing",
 }
 
 
