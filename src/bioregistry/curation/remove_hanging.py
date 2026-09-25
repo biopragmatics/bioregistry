@@ -32,7 +32,7 @@ def main() -> None:
             del v["mappings"]
 
     BIOREGISTRY_PATH.write_text(
-        json.dumps(registry, indent=2, ensure_ascii=False), encoding="utf-8"
+        json.dumps(registry, indent=2, ensure_ascii=False) + "\n", encoding="utf-8"
     )
 
 
