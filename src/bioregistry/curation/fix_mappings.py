@@ -15,7 +15,7 @@ def main() -> None:
     registry = json.loads(BIOREGISTRY_PATH.read_text())
     with safe_open_dict_reader(CURATED_MAPPINGS_PATH) as reader:
         for record in reader:
-            if record["predicate_modifier"] != "Not":
+            if record.get("predicate_modifier") != "Not":
                 continue
             prefix = record["subject_id"].removeprefix("bioregistry:")
             metaprefix, value = curies.ReferenceTuple.from_curie(record["object_id"])
