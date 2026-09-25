@@ -35,6 +35,7 @@ COLUMNS = {
 
 OID_PREFIX = "2.16.840.1.113883."
 
+
 @adapter
 def get_hl7(
     *, force_download: bool = False, force_process: bool = False, progress: bool = True
@@ -53,11 +54,9 @@ def process_hl7(path: Path, *, progress: bool = True) -> dict[str, Record]:
     with path.open() as file:
         reader = csv.DictReader(file)
         for row in tqdm(reader, desc="Progessing HL7", leave=False, disable=not progress):
-            record: dict[str, Any] = {
-                COLUMNS[k]: v for k, v in row.items() if k in COLUMNS and v
-            }
-            if (prefix := record['prefix']).startswith(OID_PREFIX):
-                record['prefix'] = prefix.removeprefix(OID_PREFIX)
+            record: dict[str, Any] = {COLUMNS[k]: v for k, v in row.items() if k in COLUMNS and v}
+            if (prefix := record["prefix"]).startswith(OID_PREFIX):
+                record["prefix"] = prefix.removeprefix(OID_PREFIX)
             else:
                 continue
             match record.pop("status"):
