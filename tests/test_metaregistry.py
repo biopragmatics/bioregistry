@@ -148,4 +148,6 @@ class TestMetaregistry(unittest.TestCase):
                 # self.assertEqual(registry.example, resource.get_example())
                 self.assertEqual(registry.homepage, resource.get_homepage())
                 self.assertEqual(registry.license, resource.get_license())
+                self.assertEqual(registry.logo, resource.logo)
+                self.assertEqual(registry.name, resource.get_name())
                 self.assertEqual(registry.uri_format, resource.get_uri_format())
