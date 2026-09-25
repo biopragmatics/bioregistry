@@ -44,7 +44,10 @@ class TestMetaregistry(unittest.TestCase):
                 self.assertNotEqual("FIXME", registry.contact.name)
                 if "support" not in registry.contact.name.lower():
                     self.assertIsNotNone(registry.contact.orcid)
-                    self.assertIsNotNone(registry.contact.github)
+                    self.assertIsNotNone(
+                        registry.contact.github,
+                        msg=f"missing github for {registry.prefix} for {registry.contact.name}",
+                    )
 
                 if registry.uri_format:
                     self.assertIsNotNone(registry.uri_format)
@@ -98,7 +101,7 @@ class TestMetaregistry(unittest.TestCase):
 
         self.assertEqual(registry.description, bioregistry.get_registry_description(metaprefix))
 
-        homepage = "https://www.uniprot.org/database/"
+        homepage = "https://www.uniprot.org/database"
         self.assertEqual(homepage, registry.homepage)
         self.assertEqual(homepage, bioregistry.get_registry_homepage(metaprefix))
 
@@ -146,3 +149,9 @@ class TestMetaregistry(unittest.TestCase):
                     uri_formats = resource.get_uri_formats()
                     self.assertLess(0, len(uri_formats))
                     self.assertIn(registry.uri_format, uri_formats)
+
+                self.assertEqual(registry.contact, resource.get_contact())
+                # self.assertEqual(registry.example, resource.get_example())
+                self.assertEqual(registry.homepage, resource.get_homepage())
+                self.assertEqual(registry.license, resource.get_license())
+                self.assertEqual(registry.uri_format, resource.get_uri_format())
