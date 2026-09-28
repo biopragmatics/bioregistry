@@ -88,14 +88,13 @@ def _read_metaregistry(
     rv = {}
     for record in data["metaregistry"]:
         if READY_TO_UPDATE:
-            for key in NOT_ALLOWED_IN_METAREGISTRY:
+            resource = registry[record["bioregistry_prefix"]]
+            for key, func in NOT_ALLOWED_IN_METAREGISTRY.items():
                 if key in record:
                     del record[key]
                     # raise ValueError(
                     #     f"{key} should not be in metaregistry, should import from registry instead"
                     # )
-            resource = registry[record["bioregistry_prefix"]]
-            for key, func in NOT_ALLOWED_IN_METAREGISTRY.items():
                 record[key] = func(resource)
 
         rr = Registry.model_validate(record)
