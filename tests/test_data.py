@@ -1323,17 +1323,17 @@ class TestRegistry(unittest.TestCase):
     def test_download_owl(self) -> None:
         """Test download OWL."""
         self.assertEqual(
-            "http://aber-owl.net/media/ontologies/ADW/2/adw.owl",
-            bioregistry.get_owl_download("adw"),
+            "http://purl.obolibrary.org/obo/go.owl",
+            bioregistry.get_owl_download("go"),
         )
         self.assertEqual(
-            "http://aber-owl.net/media/ontologies/ADW/2/adw.owl",
-            bioregistry.get_resource("adw", strict=True).get_download_owl(),
+            "http://purl.obolibrary.org/obo/go.owl",
+            bioregistry.get_resource("go", strict=True).get_download_owl(),
         )
         self.assertEqual(
-            "http://aber-owl.net/media/ontologies/ADW/2/adw.owl",
+            "http://purl.obolibrary.org/obo/go.owl",
             manager.rasterized_resource(
-                bioregistry.get_resource("adw", strict=True)
+                bioregistry.get_resource("go", strict=True)
             ).get_download_owl(),
         )
         self.assertEqual(

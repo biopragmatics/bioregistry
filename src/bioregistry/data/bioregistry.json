@@ -753,7 +753,7 @@
     },
     "contributor_extras": [
       {
-        "email": "benjamin_gyori@hms.harvard.edu",
+        "email": "b.gyori@northeastern.edu",
         "github": "bgyori",
         "name": "Benjamin M. Gyori",
         "orcid": "0000-0001-9439-5346"
@@ -1279,19 +1279,6 @@
     "uri_format": "http://purl.obolibrary.org/obo/ACTAN_$1"
   },
   "adcad": {
-    "aberowl": {
-      "artifacts": [
-        {
-          "type": "owl",
-          "url": "http://aber-owl.net/media/ontologies/ADCAD/1/adcad.owl"
-        }
-      ],
-      "description": "Ontology to support disciplinary annotation of datasets housed at the Arctic Data Center (https://arcticdata.io)",
-      "homepage": "https://github.com/NCEAS/adc-disciplines",
-      "name": "Arctic Data Center Academic Disciplines Ontology",
-      "prefix": "ADCAD",
-      "version": "Version 1.0.0"
-    },
     "bioportal": {
       "contact": {
         "email": "jones@nceas.ucsb.edu",
@@ -1322,7 +1309,6 @@
     "homepage": "https://arcticdata.io",
     "license": "CC-BY-4.0",
     "mappings": {
-      "aberowl": "ADCAD",
       "bioportal": "ADCAD"
     },
     "name": "Arctic Data Center Academic Disciplines Ontology",
@@ -1579,6 +1565,7 @@
       "uri_format": "http://addictovocab.org/ADDICTO_$1",
       "version": "2026-06-16"
     },
+    "pattern": "^\\d{7}$",
     "repository": "https://github.com/addicto-org/addiction-ontology",
     "uri_format": "http://addictovocab.org/ADDICTO_$1"
   },
@@ -1777,19 +1764,6 @@
     "uri_format": "http://purl.obolibrary.org/obo/ADO_$1"
   },
   "adw": {
-    "aberowl": {
-      "artifacts": [
-        {
-          "type": "owl",
-          "url": "http://aber-owl.net/media/ontologies/ADW/2/adw.owl"
-        }
-      ],
-      "description": "An ontology for animal life history and natural history characteristics suitable for populations and higher taxonomic entities.",
-      "homepage": "http://www.animaldiversity.org",
-      "name": "Animal Natural History and Life History Ontology",
-      "prefix": "ADW",
-      "version": "10/11/04"
-    },
     "agroportal": {
       "contact": {
         "email": "adw.staff@umich.edu",
@@ -1841,7 +1815,6 @@
       ]
     },
     "mappings": {
-      "aberowl": "ADW",
       "agroportal": "ADW",
       "biocontext": "ADW",
       "bioportal": "ADW",
@@ -1935,18 +1908,6 @@
     }
   },
   "aeo": {
-    "aberowl": {
-      "artifacts": [
-        {
-          "type": "owl",
-          "url": "http://aber-owl.net/media/ontologies/AEO/9/aeo.owl"
-        }
-      ],
-      "description": "AEO is an ontology of anatomical structures that expands CARO, the Common Anatomy Reference Ontology",
-      "homepage": "https://github.com/obophenotype/human-developmental-anatomy-ontology/",
-      "name": "Anatomical Entity Ontology",
-      "prefix": "AEO"
-    },
     "bartoc": {
       "description": "This ontology is inactive.\"\n\n\"The AEO is an ontology of anatomical structures that expands CARO, the Common Anatomy Reference Ontology, to about 160 classes using the is_a relationship; it thus provides a detailed type classification for tissues. The ~100 new classes were chosen for their use in categorizing the major vertebrate and invertebrate anatomy ontologies at a granularity adequate for tissues of a single cell type.\n\nThe AEO is intended to be useful in increasing the amount of knowledge in anatomy ontologies, facilitating annotation and enabling interoperability across anatomy ontologies.\n\nAn important subcategory of the AEO is simple tissue (a synonym of the CARO portion of tissue), a recognisable anatomical entity composed predominantly to a single cell type. CARO had a only few epithelial classes here and these are inadequate for capturing the richness of anatomical tissue knowledge. The AEO has ~70 simple tissues and these are linked to their cell types (~100) as detailed in the cell type ontology through a has_part relationship. The AEO thus includes a subset of the cell type ontology.\n\nThe AEO has been refined through its use in annotating the ~2500 terms of the new version of the Ontology of Developing Human Anatomy and, while this has improved the ontology, it may have given it a mammalian bias.\n\nThe ontology can be used to classify most organisms as its terms are appropriate for most plant and fungal tissues. I plan to improve the ontology to include more non-animal anatomical terms.",
       "name": "Ontology of Anatomical Entities",
@@ -2002,7 +1963,6 @@
     },
     "license": "CC-BY-4.0",
     "mappings": {
-      "aberowl": "AEO",
       "bartoc": "181",
       "biocontext": "AEO",
       "bioportal": "AEO",
@@ -2145,19 +2105,6 @@
     "uri_format": "http://purl.obolibrary.org/obo/AEON_$1"
   },
   "aero": {
-    "aberowl": {
-      "artifacts": [
-        {
-          "type": "owl",
-          "url": "http://aber-owl.net/media/ontologies/AERO/45/aero.owl"
-        }
-      ],
-      "description": "The Adverse Event Reporting Ontology (AERO) is an ontology aimed at supporting clinicians at the time of data entry, increasing quality and accuracy of reported adverse events.",
-      "homepage": "http://purl.obolibrary.org/obo/aero",
-      "name": "Adverse Event Reporting Ontology",
-      "prefix": "AERO",
-      "version": "unknown"
-    },
     "biocontext": {
       "prefix": "AERO",
       "uri_format": "http://purl.obolibrary.org/obo/AERO_$1"
@@ -2210,7 +2157,6 @@
     },
     "license": "CC-BY-3.0",
     "mappings": {
-      "aberowl": "AERO",
       "biocontext": "AERO",
       "bioportal": "AERO",
       "fairsharing": "FAIRsharing.rycy2x",
@@ -2533,7 +2479,8 @@
       ],
       "name": "African Population Ontology",
       "prefix": "AfPO"
-    }
+    },
+    "pattern": "^\\d{7}$"
   },
   "aftol.category": {
     "contact": {
@@ -3127,10 +3074,6 @@
     "uri_format": "http://agroportal.lirmm.fr/ontologies/$1"
   },
   "agrovoc": {
-    "aberowl": {
-      "name": "AGROVOC",
-      "prefix": "AGROVOC"
-    },
     "agroportal": {
       "contact": {
         "email": "AGROVOC@fao.org",
@@ -3271,7 +3214,6 @@
     "homepage": "https://data.apps.fao.org/catalog/organization/agrovoc",
     "license": "CC-BY-4.0",
     "mappings": {
-      "aberowl": "AGROVOC",
       "agroportal": "AGROVOC",
       "bartoc": "305",
       "ecoportal": "AGROVOC",
@@ -3640,7 +3582,7 @@
     },
     "repository": "https://github.com/berkeleybop/artificial-intelligence-ontology",
     "reviewer": {
-      "email": "benjamin_gyori@hms.harvard.edu",
+      "email": "b.gyori@northeastern.edu",
       "github": "bgyori",
       "name": "Benjamin M. Gyori",
       "orcid": "0000-0001-9439-5346"
@@ -5305,18 +5247,6 @@
     "uri_format": "http://aopkb.org/aop_ontology#$1"
   },
   "apaonto": {
-    "aberowl": {
-      "artifacts": [
-        {
-          "type": "owl",
-          "url": "http://aber-owl.net/media/ontologies/APAONTO/4/apaonto.owl"
-        }
-      ],
-      "description": "APA thesaurus . Flat ontology file",
-      "name": "Psychology Ontology",
-      "prefix": "APAONTO",
-      "version": "4"
-    },
     "contact": {
       "email": "awalker@apa.org",
       "name": "Alvin Walker",
@@ -5353,7 +5283,6 @@
     },
     "homepage": "https://bioportal.bioontology.org/ontologies/APAONTO",
     "mappings": {
-      "aberowl": "APAONTO",
       "fairsharing": "FAIRsharing.gkw1w8",
       "wikidata.entity": "Q111194686"
     },
@@ -7350,15 +7279,8 @@
       "name": "Jeremy D. Glasner",
       "orcid": "0000-0003-1848-4464"
     },
-    "go": {
-      "homepage": "https://asap.genetics.wisc.edu/asap/ASAP1.htm",
-      "name": "A Systematic Annotation Package for Community Analysis of Genomes",
-      "prefix": "ASAP",
-      "uri_format": "https://asap.genetics.wisc.edu/asap/feature_info.php?FeatureID=$1"
-    },
     "mappings": {
       "biocontext": "ASAP",
-      "go": "ASAP",
       "miriam": "asap",
       "n2t": "asap",
       "ncbi": "ASAP",
@@ -7638,16 +7560,9 @@
       "prefix": "AspGD",
       "uri_format": "http://www.aspergillusgenome.org/cgi-bin/locus.pl?dbid=$1"
     },
-    "go": {
-      "homepage": "http://www.aspergillusgenome.org/",
-      "name": "Aspergillus Genome Database",
-      "prefix": "AspGD_LOCUS",
-      "uri_format": "http://www.aspergillusgenome.org/cgi-bin/locus.pl?locus=$1"
-    },
     "mappings": {
       "biocontext": "ASPGD.LOCUS",
       "biolink": "AspGD",
-      "go": "AspGD_LOCUS",
       "miriam": "aspgd.locus",
       "n2t": "aspgd.locus"
     },
@@ -8411,19 +8326,6 @@
     }
   },
   "ato": {
-    "aberowl": {
-      "artifacts": [
-        {
-          "type": "obo",
-          "url": "http://aber-owl.net/media/ontologies/ATO/2/ato.obo"
-        }
-      ],
-      "description": "A taxonomy of Amphibia",
-      "homepage": "http://www.amphibanat.org",
-      "name": "Amphibian Taxonomy Ontology",
-      "prefix": "ATO",
-      "version": "See Remote Site"
-    },
     "biocontext": {
       "prefix": "ATO",
       "uri_format": "http://purl.obolibrary.org/obo/ATO_$1"
@@ -8459,7 +8361,6 @@
       ]
     },
     "mappings": {
-      "aberowl": "ATO",
       "biocontext": "ATO",
       "bioportal": "ATO",
       "fairsharing": "FAIRsharing.ayjdsm",
@@ -9545,18 +9446,6 @@
     "uri_format": "https://scicrunch.org/resolver/RRID:BCBC_$1"
   },
   "bcgo": {
-    "aberowl": {
-      "artifacts": [
-        {
-          "type": "owl",
-          "url": "http://aber-owl.net/media/ontologies/BCGO/3/bcgo.owl"
-        }
-      ],
-      "description": "An application ontology built for beta cell genomics studies.",
-      "homepage": "https://github.com/obi-bcgo/bcgo",
-      "name": "Beta Cell Genomics Ontology",
-      "prefix": "BCGO"
-    },
     "biocontext": {
       "prefix": "BCGO",
       "uri_format": "http://purl.obolibrary.org/obo/BCGO_$1"
@@ -9571,7 +9460,6 @@
     "example": "0000015",
     "license": "CC-BY-3.0",
     "mappings": {
-      "aberowl": "BCGO",
       "biocontext": "BCGO",
       "cellosaurus": "BCGO",
       "obofoundry": "bcgo",
@@ -10519,7 +10407,7 @@
       "description": "The Biological and Environmental Research Variable Ontology (BERVO) is a model of the experimental variables, conditions, and concepts used in the study of environmental research, including studies in earth science, plant science, and geochemistry. , None, \"An ontology of variables for earth system simulation, partially derived from the EcoSIM framework.\"",
       "name": "The Biological and Environmental Research Variable Ontology",
       "prefix": "BERVO",
-      "version": "2026-09-03"
+      "version": "2026-09-25"
     },
     "contributor": {
       "email": "cthoyt@gmail.com",
@@ -11058,19 +10946,6 @@
     "uri_format": "http://bgee.unil.ch/bgee/bgee?page=anatomy&action=organs&stage_children=on&stage_id=$1"
   },
   "bibframe": {
-    "aberowl": {
-      "artifacts": [
-        {
-          "type": "owl",
-          "url": "http://aber-owl.net/media/ontologies/BIBFRAME/3/bibframe.owl"
-        }
-      ],
-      "description": "Initiated by the Library of Congress, BIBFRAME provides a foundation for the future of bibliographic description, both on the web, and in the broader networked world. In addition to being a replacement for MARC, BIBFRAME serves as a general model for expressing and connecting bibliographic data. A major focus of the initiative will be to determine a transition path for the MARC 21 formats while preserving a robust data exchange that has supported resource sharing and cataloging cost savings in recent decades.",
-      "homepage": "https://www.loc.gov/bibframe/",
-      "name": "BIBFRAME 2.0",
-      "prefix": "BIBFRAME",
-      "version": "2017-05-04T14:49:12.796-04:00"
-    },
     "bioportal": {
       "contact": {
         "email": "khes@loc.gov",
@@ -11105,7 +10980,6 @@
     "homepage": "https://id.loc.gov/ontologies/bibframe.html",
     "license": "CC0-1.0",
     "mappings": {
-      "aberowl": "BIBFRAME",
       "bioportal": "BIBFRAME",
       "fairsharing": "FAIRsharing.xj5egt",
       "tib": "bf"
@@ -12412,7 +12286,7 @@
       "orcid": "0000-0002-8912-5699"
     },
     "contributor": {
-      "email": "benjamin_gyori@hms.harvard.edu",
+      "email": "b.gyori@northeastern.edu",
       "github": "bgyori",
       "name": "Benjamin M. Gyori",
       "orcid": "0000-0001-9439-5346"
@@ -12829,6 +12703,12 @@
       "vendor"
     ],
     "name": "BioLegend",
+    "owners": [
+      {
+        "name": "BioLegend (United States)",
+        "ror": "006vvv981"
+      }
+    ],
     "pattern": "^\\d+$",
     "uri_format": "https://www.biolegend.com/Default.aspx?ID=6664&productid=$1"
   },
@@ -15458,7 +15338,7 @@
       "orcid": "0000-0002-2118-035X"
     },
     "contributor": {
-      "email": "benjamin_gyori@hms.harvard.edu",
+      "email": "b.gyori@northeastern.edu",
       "github": "bgyori",
       "name": "Benjamin M. Gyori",
       "orcid": "0000-0001-9439-5346"
@@ -15590,7 +15470,8 @@
       ],
       "name": "Biomarker Ontology",
       "prefix": "BMONT"
-    }
+    },
+    "pattern": "^\\d{7}$"
   },
   "bmrb.entry": {
     "contact": {
@@ -17414,21 +17295,9 @@
     }
   },
   "building": {
-    "aberowl": {
-      "artifacts": [
-        {
-          "type": "owl",
-          "url": "http://aber-owl.net/media/ontologies/building/1/building.owl"
-        }
-      ],
-      "name": "Building and Sub Elements",
-      "prefix": "building",
-      "version": "1.0"
-    },
     "example": "AirConditioningUnit",
     "license": "CC-BY-4.0",
     "mappings": {
-      "aberowl": "building",
       "tib": "building"
     },
     "tib": {
@@ -18509,7 +18378,7 @@
   "casspc": {
     "comment": "Jim Balhoff said that Catalog of Fishes does not publish their data in a machine readable format, but a long time ago they sent a CSV dump to help in the development of TTO and VTO. These ontologies are effectively retired and CASSPC terms are only also used in Phenoscape. Note that the github request issue is not correct, since this was made on a commit (but, fishbase is related).",
     "contributor": {
-      "email": "benjamin_gyori@hms.harvard.edu",
+      "email": "b.gyori@northeastern.edu",
       "github": "bgyori",
       "name": "Benjamin M. Gyori",
       "orcid": "0000-0001-9439-5346"
@@ -19732,7 +19601,7 @@
       "orcid": "0000-0002-3321-6137"
     },
     "contributor": {
-      "email": "benjamin_gyori@hms.harvard.edu",
+      "email": "b.gyori@northeastern.edu",
       "github": "bgyori",
       "name": "Benjamin M. Gyori",
       "orcid": "0000-0001-9439-5346"
@@ -21405,7 +21274,7 @@
       "orcid": "0000-0003-0169-8159"
     },
     "contributor": {
-      "email": "benjamin_gyori@hms.harvard.edu",
+      "email": "b.gyori@northeastern.edu",
       "github": "bgyori",
       "name": "Benjamin M. Gyori",
       "orcid": "0000-0001-9439-5346"
@@ -22152,14 +22021,8 @@
       "name": "Kelly T. Hughes",
       "orcid": "0000-0003-1546-6746"
     },
-    "go": {
-      "homepage": "http://cgsc.biology.yale.edu/",
-      "name": "CGSC",
-      "prefix": "CGSC"
-    },
     "mappings": {
       "biocontext": "CGSC",
-      "go": "CGSC",
       "miriam": "cgsc",
       "n2t": "cgsc",
       "prefixcommons": "cgsc",
@@ -27023,9 +26886,11 @@
       "uri_format": "http://identifiers.org/clinicaltrials/$1"
     },
     "contact": {
-      "email": "register@clinicaltrials.gov",
-      "name": "ClinicalTrials.gov Helpdesk"
+      "email": "Anna.Fine@nih.gov",
+      "name": "Anna M. Fine",
+      "orcid": "0009-0005-6005-1816"
     },
+    "contact_group_email": "register@clinicaltrials.gov",
     "domain": "clinical trial",
     "download_json": "https://w3id.org/biopragmatics/resources/clinicaltrials/clinicaltrials.json.gz",
     "download_obo": "https://w3id.org/biopragmatics/resources/clinicaltrials/clinicaltrials.obo.gz",
@@ -27872,19 +27737,6 @@
     "uri_format": "http://purl.obolibrary.org/obo/CLYH_$1"
   },
   "cmecs": {
-    "aberowl": {
-      "artifacts": [
-        {
-          "type": "owl",
-          "url": "http://aber-owl.net/media/ontologies/CMECS/2/cmecs.owl"
-        }
-      ],
-      "description": "The Coastal and Marine Ecological Classification Standard (CMECS, FGDC-STD-018-2012) is collection of defined terms (\"units\") used to describe and classify marine ecological data. It is a national scheme for classifying and integrating observational data collected in coastal, marine, and lacustrine environments in U.S. waters. CMECS was published by the U.S. Federal Geographic Data Committee (FGDC) in 2012.",
-      "homepage": "https://github.com/NCEI-NOAAGov/cmecs",
-      "name": "Coastal and Marine Ecological Classification Standard Catalog",
-      "prefix": "CMECS",
-      "version": "1.1.0"
-    },
     "contact": {
       "email": "kater@ngi.msstate.edu",
       "name": "Kate Rose",
@@ -27928,7 +27780,6 @@
     ],
     "license": "CC0-1.0",
     "mappings": {
-      "aberowl": "CMECS",
       "ecoportal": "CMECS"
     },
     "name": "Costal and Marine Ecological Classification Standard",
@@ -27941,10 +27792,6 @@
     "uri_format": "https://cmecscatalog.org/cmecs/classification/unit/$1.html"
   },
   "cmf": {
-    "aberowl": {
-      "name": "CranioMaxilloFacial ontology",
-      "prefix": "CMF"
-    },
     "biocontext": {
       "prefix": "CMF",
       "uri_format": "http://purl.obolibrary.org/obo/CMF_$1"
@@ -27952,7 +27799,6 @@
     "deprecated": true,
     "description": "This ontology represents the clinical findings and procedures used in the oral and maxillo-facial surgical domain",
     "mappings": {
-      "aberowl": "CMF",
       "biocontext": "CMF",
       "obofoundry": "cmf",
       "ontobee": "CMF",
@@ -28013,7 +27859,7 @@
           "url": "http://www.ncbi.nlm.nih.gov/pmc/articles/PMC3361058/"
         }
       ],
-      "version": "2026-09-12"
+      "version": "2026-09-19"
     },
     "example": "0001350",
     "fairsharing": {
@@ -28125,13 +27971,13 @@
       ],
       "description": "Morphological and physiological measurement records generated from clinical and model organism research and health programs.",
       "extras": {
-        "version.iri": "http://purl.obolibrary.org/obo/cmo/releases/2026-09-12/cmo.owl"
+        "version.iri": "http://purl.obolibrary.org/obo/cmo/releases/2026-09-19/cmo.owl"
       },
       "homepage": "http://rgd.mcw.edu/rgdweb/ontology/search.html",
       "name": "Clinical measurement ontology",
       "prefix": "cmo",
       "tracker": "https://github.com/rat-genome-database/CMO-Clinical-Measurement-Ontology/issues",
-      "version": "2026-09-12"
+      "version": "2026-09-19"
     },
     "ontobee": {
       "keywords": [
@@ -31139,17 +30985,6 @@
     "uri_format": "https://www.ncbi.nlm.nih.gov/research/cog/cogcategory/$1"
   },
   "cog.cluster": {
-    "aberowl": {
-      "artifacts": [
-        {
-          "type": "owl",
-          "url": "http://aber-owl.net/media/ontologies/COG/1/cog.owl"
-        }
-      ],
-      "description": "The Common Ontology of Genome (COG) is the upper level of the conceptual layer of a genome metamodel and is associated with the next levels of the subdomain ontologies of different type genomes. The taxonomy of COG includes two sub-concepts of the main concept Genome – Structure of genome and Function of genome, and name label Type of genome. These sub-concepts define the mereology part and the name label – the classification part of the taxonomy. The links to the main external knowledge areas are shown, namely, biology and chemistry (as ontologies).",
-      "name": "Common Ontology of Genome",
-      "prefix": "COG"
-    },
     "biolink": {
       "prefix": "COG",
       "uri_format": "https://www.ncbi.nlm.nih.gov/research/cog-project/$1"
@@ -31223,7 +31058,6 @@
     },
     "homepage": "https://www.ncbi.nlm.nih.gov/research/cog",
     "mappings": {
-      "aberowl": "COG",
       "biolink": "COG",
       "bioportal": "COG",
       "fairsharing": "FAIRsharing.djsbw2",
@@ -31514,10 +31348,11 @@
         }
       ],
       "extras": {
-        "version.iri": "http://www.ebi.ac.uk/coho/releases/2026-08-26/coho.owl"
+        "version.iri": "http://www.ebi.ac.uk/coho/releases/2026-09-22.2/coho.owl"
       },
       "prefix": "coho"
     },
+    "pattern": "^\\d{7}$",
     "rdf_uri_format": "http://www.ebi.ac.uk/coho/COHO_$1",
     "repository": "https://github.com/EBISPOT/cohort-ontology",
     "uri_format": "http://www.ebi.ac.uk/coho/COHO_$1"
@@ -32723,7 +32558,7 @@
   },
   "cordis.project": {
     "contributor": {
-      "email": "benjamin_gyori@hms.harvard.edu",
+      "email": "b.gyori@northeastern.edu",
       "github": "bgyori",
       "name": "Benjamin M. Gyori",
       "orcid": "0000-0001-9439-5346"
@@ -33578,13 +33413,6 @@
     }
   },
   "cpt": {
-    "aberowl": {
-      "description": "Current Procedural Terminology",
-      "homepage": "http://www.ama-assn.org/ama/pub/category/3113.html",
-      "name": "Current Procedural Terminology",
-      "prefix": "CPT",
-      "version": "2016AB"
-    },
     "biolink": {
       "prefix": "CPT",
       "uri_format": "https://www.ama-assn.org/practice-management/cpt/$1"
@@ -33653,7 +33481,6 @@
     "homepage": "https://www.aapc.com",
     "logo": "https://edhub.ama-assn.org/ImageLibrary/Ed-Hub-Self-Serve/CPT-monogram.png",
     "mappings": {
-      "aberowl": "CPT",
       "biolink": "CPT",
       "bioportal": "CPT",
       "fairsharing": "FAIRsharing.wpxab1"
@@ -34699,17 +34526,6 @@
     }
   },
   "cso": {
-    "aberowl": {
-      "artifacts": [
-        {
-          "type": "owl",
-          "url": "http://aber-owl.net/media/ontologies/CSO/1/cso.owl"
-        }
-      ],
-      "description": "Ontology to describe general clinical studies.",
-      "name": "Clinical Study Ontology",
-      "prefix": "CSO"
-    },
     "bioportal": {
       "contact": {
         "email": "cameron@rockefeller.edu",
@@ -34744,7 +34560,6 @@
     },
     "license": "CC-BY-4.0",
     "mappings": {
-      "aberowl": "CSO",
       "bioportal": "CSO",
       "fairsharing": "FAIRsharing.y4z3tx",
       "tib": "cso"
@@ -35908,9 +35723,11 @@
   },
   "cvx": {
     "contact": {
-      "email": "iisinfo@cdc.gov",
-      "name": "IIS Helpdesk"
+      "email": "dil8@cdc.gov",
+      "name": "David Lyalin",
+      "orcid": "0000-0002-3469-9791"
     },
+    "contact_group_email": "iisinfo@cdc.gov",
     "contributor": {
       "email": "cthoyt@gmail.com",
       "github": "cthoyt",
@@ -38141,19 +37958,6 @@
     "uri_format": "https://www.ncbi.nlm.nih.gov/dbvar/variants/$1"
   },
   "dc": {
-    "aberowl": {
-      "artifacts": [
-        {
-          "type": "owl",
-          "url": "http://aber-owl.net/media/ontologies/dcelements/1/dcelements.owl"
-        }
-      ],
-      "description": "This file is imported by vivo-core-public-1.5.owl. It contains selected terms from the \thttp://purl.org/dc/elements/1.1/ namespace that are included in the vivo core ontology.",
-      "homepage": "http://sourceforge.net/apps/mediawiki/vivo/index.php?title=Ontology",
-      "name": "dcelements",
-      "prefix": "dcelements",
-      "version": "1.5"
-    },
     "biocontext": {
       "prefix": "dc",
       "uri_format": "http://purl.org/dc/elements/1.1/$1"
@@ -38215,7 +38019,6 @@
       "uri_format": "http://purl.org/dc/elements/1.1/$1"
     },
     "mappings": {
-      "aberowl": "dcelements",
       "biocontext": "dc",
       "bioportal": "DC",
       "fairsharing": "FAIRsharing.3nx7t",
@@ -40726,6 +40529,7 @@
       "tib": "destf"
     },
     "name": "Destatis subject classification",
+    "pattern": "^\\d{2}$",
     "repository": "https://github.com/VIVO-DE/destatis_faecherklassifikation",
     "tib": {
       "artifacts": [
@@ -40799,6 +40603,7 @@
       "orcid": "0000-0002-6807-8731"
     },
     "contributor": {
+      "email": "b.gyori@northeastern.edu",
       "github": "bgyori",
       "name": "Benjamin M. Gyori",
       "orcid": "0000-0001-9439-5346"
@@ -40955,27 +40760,7 @@
     "download_obo": "https://raw.githubusercontent.com/obophenotype/uberon/master/source-ontologies/allen-dhba.obo",
     "example": "10153",
     "homepage": "https://www.brainspan.org",
-    "mappings": {
-      "ols": "dhba"
-    },
     "name": "Developing Human Brain Atlas",
-    "ols": {
-      "artifacts": [
-        {
-          "type": "owl",
-          "url": "https://purl.brain-bican.org/ontology/dhbao/dhbao.owl"
-        }
-      ],
-      "description": "An application ontology built by combining ontologised versions of the Allen Institute Developing Human Brain Atlas (DHBA) Structure Graph mapped to Uberon.",
-      "extras": {
-        "version.iri": "https://purl.brain-bican.org/ontology/dhbao/releases/2025-11-13/dhbao.owl"
-      },
-      "homepage": "https://purl.brain-bican.org/ontology/dhbao",
-      "name": "Developing Human Brain Atlas Ontology",
-      "prefix": "dhba",
-      "uri_format": "https://purl.brain-bican.org/ontology/dhbao/DHBA_$1",
-      "version": "2025-11-13"
-    },
     "pattern": "^\\d+$",
     "preferred_prefix": "DHBA",
     "providers": [
@@ -41171,22 +40956,10 @@
       "orcid": "0000-0002-2406-1145"
     },
     "example": "109082",
-    "hl7": {
-      "description": "Coded concepts defined in PS 3.16 Digital Imaging andCommunications in Medicine (DICOM): Part 16: Content Mapping Resource,Annex D: DICOM Controlled Terminology Definition",
-      "extras": {
-        "organization": "DICOM Standards Committee"
-      },
-      "homepage": "http://medical.nema.org/",
-      "name": "DICOM Controlled Terminology",
-      "preferred_prefix": "DCM",
-      "prefix": "1.2.840.10008.2.16.4",
-      "status": "active"
-    },
     "homepage": "http://medical.nema.org",
     "mappings": {
       "aberowl": "DICOM",
-      "bioportal": "DICOM",
-      "hl7": "1.2.840.10008.2.16.4"
+      "bioportal": "DICOM"
     },
     "pattern": "^\\d+$",
     "publications": [
@@ -41793,23 +41566,11 @@
     "example": "000040",
     "homepage": "https://tibhannover.github.io/DIGIT-RUBBER",
     "name": "DigitRubber Ontology",
+    "pattern": "^\\d{6}$",
     "repository": "https://github.com/TIBHannover/DIGIT-RUBBER",
     "uri_format": "https://www.tib.eu/digitrubber#DIGITRUBBER_$1"
   },
   "dinto": {
-    "aberowl": {
-      "artifacts": [
-        {
-          "type": "owl",
-          "url": "http://aber-owl.net/media/ontologies/DINTO/5/dinto.owl"
-        }
-      ],
-      "description": "DINTO is an OWL ontology that systematically organizes all drug-drug interaction (DDI) related information. Drug-drug interactions (DDIs) form a significant risk group for adverse effects associated with pharmaceutical treatment. These interactions are often reported in the literature, however, they are sparsely represented in machine-readable resources, such as online databases, thesauri or ontologies. DINTO is an ontology that describes and categorizes DDIs and all the possible mechanisms that can lead to them (including both pharmacodynamic and pharmacokinetic DDI mechanisms).",
-      "homepage": "http://labda.inf.uc3m.es/doku.php?id=es:labda_dinto",
-      "name": "The Drug-Drug Interactions Ontology",
-      "prefix": "DINTO",
-      "version": "1.3"
-    },
     "biocontext": {
       "prefix": "DINTO",
       "uri_format": "http://purl.obolibrary.org/obo/DINTO_$1"
@@ -41846,7 +41607,6 @@
     },
     "license": "CC-BY-3.0",
     "mappings": {
-      "aberowl": "DINTO",
       "biocontext": "DINTO",
       "bioportal": "DINTO",
       "fairsharing": "FAIRsharing.dgh9j9",
@@ -42652,30 +42412,7 @@
     "download_obo": "https://raw.githubusercontent.com/obophenotype/uberon/master/source-ontologies/allen-dmba.obo",
     "example": "15567",
     "homepage": "https://developingmouse.brain-map.org",
-    "mappings": {
-      "ols": "dmba"
-    },
     "name": "Developing Mouse Brain Atlas",
-    "ols": {
-      "artifacts": [
-        {
-          "type": "owl",
-          "url": "https://purl.brain-bican.org/ontology/dmbao/dmbao.owl"
-        }
-      ],
-      "contact": {
-        "email": "cellsemantics@gmail.com"
-      },
-      "description": "An application ontology built by combining ontologised versions of the Allen Institute Developing Mouse Brain Atlas (DMBA) StructureGraph mapped to Uberon.",
-      "extras": {
-        "version.iri": "https://purl.brain-bican.org/ontology/dmbao/releases/2025-02-10/dmbao.owl"
-      },
-      "homepage": "https://purl.brain-bican.org/ontology/dmbao",
-      "name": "Developing Mouse Brain Atlas Ontology",
-      "prefix": "dmba",
-      "uri_format": "https://purl.brain-bican.org/ontology/dmbao/DMBA_$1",
-      "version": "2025-02-10"
-    },
     "pattern": "^\\d+$",
     "preferred_prefix": "DMBA",
     "providers": [
@@ -45161,7 +44898,7 @@
       },
       "name": "The Drug Ontology",
       "prefix": "DRON",
-      "version": "2026-06-04"
+      "version": "2026-09-19"
     },
     "download_json": "http://purl.obolibrary.org/obo/dron.json",
     "download_obo": "http://purl.obolibrary.org/obo/dron.obo",
@@ -45270,13 +45007,13 @@
       ],
       "description": "An ontology to support comparative effectiveness researchers studying claims data.",
       "extras": {
-        "version.iri": "http://purl.obolibrary.org/obo/dron/releases/2026-06-04/dron.owl"
+        "version.iri": "http://purl.obolibrary.org/obo/dron/releases/2026-09-19/dron.owl"
       },
       "homepage": "https://github.com/ufbmi/dron",
       "name": "The Drug Ontology",
       "prefix": "dron",
       "tracker": "https://github.com/ufbmi/dron/issues",
-      "version": "2026-06-04"
+      "version": "2026-09-19"
     },
     "ontobee": {
       "keywords": [
@@ -46280,19 +46017,6 @@
     }
   },
   "dto": {
-    "aberowl": {
-      "artifacts": [
-        {
-          "type": "owl",
-          "url": "http://aber-owl.net/media/ontologies/DTO/4/dto.owl"
-        }
-      ],
-      "description": "Drug Target Ontology (DTO) is being developed at the University of Miami in the research group of Stephan Schürer. DTO is supported by grant U54CA189205 (Illuminating the Druggable Genome Knowledge Management Center, Tudor Oprea, PI) awarded by the NCI through the NIH Common Fund. It is a component of the Illuminating the Druggable Genome (IDG) project (https://commonfund.nih.gov/idg). The DTO project develops a novel semantic framework to formalize knowledge about drug targets with a focus on the current IDG protein families. The DTO is developed as a reference for drug targets with the longer-term goal to create a community standard that will facilitate the integration of diverse drug discovery information from numerous heterogeneous resources. The first version of the DTO consists of asserted class hierarchies of the four IDG protein families, GPCRs, kinases, ion channels, and nuclear hormone receptors. Protein classes are linked to tissue and disease via different levels of confidence. DTO also contains drug target development level classifications developed in the IDG project (http://targetcentral.ws/), and functional and qualitative annotations and classifications for kinase proteins, GPCR ligands and ion channels. DTO is modeled in OWL2-DL to enable further classification by inference reasoning and SPARQL queries. DTO is implemented following a modularization approach. DTO is used as the organizational framework for drug targets in the IDG PHAROS User Interface Portal (https://pharos.nih.gov) and also the Tin-X Target Importance and Novelty Explorer (http://newdrugtargets.org).",
-      "homepage": "http://drugtargetontology.org/",
-      "name": "Drug Target Ontology",
-      "prefix": "DTO",
-      "version": "1.1"
-    },
     "appears_in": [
       "pr"
     ],
@@ -46352,7 +46076,6 @@
     },
     "homepage": "https://github.com/DrugTargetOntology/DTO",
     "mappings": {
-      "aberowl": "DTO",
       "bioportal": "DTO",
       "fairsharing": "FAIRsharing.tke3y2"
     },
@@ -48826,6 +48549,7 @@
       "ecology",
       "registry"
     ],
+    "license": "CC",
     "logo": "https://metadatacatalogue.lifewatch.eu/srv/api/records/95a44a9c-6f70-454f-9d3e-5e9d5684bb51/attachments/EcoPortal%20Positivo2.png",
     "mappings": {
       "fairsharing": "FAIRsharing.4e77ae",
@@ -49261,19 +48985,6 @@
     "uri_format": "https://e-cyanobacterium.org/bcs/rule/$1"
   },
   "edam": {
-    "aberowl": {
-      "artifacts": [
-        {
-          "type": "owl",
-          "url": "http://aber-owl.net/media/ontologies/EDAM/36/edam.owl"
-        }
-      ],
-      "description": "EDAM is a comprehensive ontology of well-established, familiar concepts that are prevalent within bioinformatics and computational biology, including types of data and data identifiers, data formats, operations and topics. EDAM is a simply-structured ontology - essentially a set of concepts with preferred terms and synonyms, definitions, and some additional information - organised into a simple and intuitive hierarchy for convenient use by information curators, software developers and end-users. EDAM is suitable for large-scale semantic annotations and categorization of diverse bioinformatics resources. EDAM is also suitable for diverse application including for example within workbenches and workflow-management systems, software distributions, and resource registries.",
-      "homepage": "http://edamontology.org",
-      "name": "EDAM bioinformatics operations, types of data, data formats, identifiers, and topics",
-      "prefix": "EDAM",
-      "version": "1.19"
-    },
     "agroportal": {
       "contact": {
         "email": "jison@bioinformatics.dtu.dk",
@@ -49381,7 +49092,6 @@
     "license": "CC-BY-SA-4.0",
     "logo": "https://avatars.githubusercontent.com/u/7922809",
     "mappings": {
-      "aberowl": "EDAM",
       "agroportal": "EDAM",
       "biocontext": "EDAM",
       "biodivportal": "EDAM",
@@ -50431,19 +50141,6 @@
     }
   },
   "ehda": {
-    "aberowl": {
-      "artifacts": [
-        {
-          "type": "obo",
-          "url": "http://aber-owl.net/media/ontologies/EHDA/6/ehda.obo"
-        }
-      ],
-      "description": "A structured controlled vocabulary of stage-specific anatomical structures of the human. It has been designed to mesh with the mouse anatomy and incorporates each Carnegie stage of development (CS1-20). The timed version of the human developmental anatomy ontology gives all the tissues present at each Carnegie Stage (CS) of human development (1-20) linked by a part-of rule. Each term is mentioned only once so that the embryo at each stage can be seen as the simple sum of its parts. Users should note that tissues that are symmetric (e.g. eyes, ears, limbs) are only mentioned once.",
-      "homepage": "http://genex.hgu.mrc.ac.uk/",
-      "name": "Human Developmental Anatomy Ontology, timed version",
-      "prefix": "EHDA",
-      "version": "unknown"
-    },
     "biocontext": {
       "prefix": "EHDA",
       "uri_format": "http://purl.obolibrary.org/obo/EHDA_$1"
@@ -50487,7 +50184,6 @@
       ]
     },
     "mappings": {
-      "aberowl": "EHDA",
       "biocontext": "EHDA",
       "bioportal": "EHDA",
       "fairsharing": "FAIRsharing.3dm6gm",
@@ -50545,19 +50241,6 @@
     }
   },
   "ehdaa": {
-    "aberowl": {
-      "artifacts": [
-        {
-          "type": "obo",
-          "url": "http://aber-owl.net/media/ontologies/EHDAA/6/ehdaa.obo"
-        }
-      ],
-      "description": "A structured controlled vocabulary of stage-specific anatomical structures of the human. It has been designed to mesh with the mouse anatomy and incorporates each Carnegie stage of development (CS1-20). The abstract version of the human developmental anatomy ontology compresses all the tissues present over Carnegie stages 1-20 into a single hierarchy. The heart, for example, is present from Carnegie Stage 9 onwards and is thus represented by 12 EHDA IDs (one for each stage). In the abstract mouse, it has a single ID so that the abstract term given as just <i>heart</i> really means <i>heart (CS 9-20)</i>. Timing details will be added to the abstract version of the ontology in a future release.",
-      "homepage": "http://genex.hgu.mrc.ac.uk/",
-      "name": "Human Developmental Anatomy Ontology, abstract version 1",
-      "prefix": "EHDAA",
-      "version": "unknown"
-    },
     "biocontext": {
       "prefix": "EHDAA",
       "uri_format": "http://purl.obolibrary.org/obo/EHDAA_$1"
@@ -50607,7 +50290,6 @@
       ]
     },
     "mappings": {
-      "aberowl": "EHDAA",
       "biocontext": "EHDAA",
       "bioportal": "EHDAA",
       "fairsharing": "FAIRsharing.fr3ng0",
@@ -50667,18 +50349,6 @@
     }
   },
   "ehdaa2": {
-    "aberowl": {
-      "artifacts": [
-        {
-          "type": "owl",
-          "url": "http://aber-owl.net/media/ontologies/EHDAA2/34/ehdaa2.owl"
-        }
-      ],
-      "description": "A structured controlled vocabulary of stage-specific anatomical structures of the developing human.",
-      "homepage": "https://github.com/obophenotype/human-developmental-anatomy-ontology",
-      "name": "Human developmental anatomy, abstract",
-      "prefix": "EHDAA2"
-    },
     "biocontext": {
       "prefix": "EHDAA2",
       "uri_format": "http://purl.obolibrary.org/obo/EHDAA2_$1"
@@ -50721,7 +50391,6 @@
     },
     "license": "CC-BY-4.0",
     "mappings": {
-      "aberowl": "EHDAA2",
       "biocontext": "EHDAA2",
       "bioportal": "EHDAA2",
       "fairsharing": "FAIRsharing.7zxrs6",
@@ -51006,7 +50675,7 @@
   },
   "elsst": {
     "bartoc": {
-      "description": "The European Language Social Science Thesaurus (ELSST) is a broad-based, multilingual thesaurus for the social sciences. It is owned and published by the Consortium of European Social Science Data Archives (CESSDA) and its national Service Providers. The thesaurus consists of over 3,400 concepts and covers the core social science disciplines: politics, sociology, economics, education, law, crime, demography, health, employment, information and communication technology, and environmental science.\nELSST is currently available in 15 languages: Czech, Dutch, English, Finnish, French, German, Greek, Hungarian, Icelandic, Lithuanian, Norwegian, Romanian, Slovenian, Spanish, and Swedish.\nWork for the latest release of ELSST (Release 6-2025) has focused on updating the DEMOGRAPHY hierarchy and related terms, in consultation with international demography experts. Changes include additional terms to improve coverage of vital statistics (such as births, marriages, cohabitation, civil partnerships and deaths) and updated definitions for existing terms.\nELSST is also used for data discovery within CESSDA and facilitates access to data resources across Europe, independent of domain, resource, language or vocabulary. For ease of use, a bidirectional link has been established between ELSST and the CESSDA Data Catalogue (CDC), which contains descriptions of more than 40,000 data collections held by CESSDA’s Service Providers, originating from over 20 European countries.",
+      "description": "The European Language Social Science Thesaurus (ELSST) is a broad-based, multilingual thesaurus for the social sciences. It is owned and published by the Consortium of European Social Science Data Archives (CESSDA) and its national Service Providers. The thesaurus consists of over 3,500 concepts and covers the core social science disciplines: politics, sociology, economics, education, law, crime, demography, health, employment, information and communication technology, and environmental science.\n\nELSST is currently available in 15 languages: Czech, Dutch, English, Finnish, French, German, Greek, Hungarian, Icelandic, Lithuanian, Norwegian, Romanian, Slovenian, Spanish, and Swedish.\n\nThe September 2026 release of ELSST Version 7 includes revisions to the Science and Technology hierarchy and related terms. The revision was needed to ensure that the thesaurus reflects modern society.\nThe changes include the addition of terms to cover new technologies, and the deprecation of terms representing outdated technologies. New concepts include smart technology, facial recognition, autonomous vehicles, drones, wearable technology, digital humanities, teleconferencing, citizen science and body mass index. Other terms added are deepfake, fitness trackers and webinars. Deprecated concepts include telex, telegraphy and fax transmission. \nNew or changed definitions include the addition of a definition to the term disinformation (false information spread deliberately in order to deceive people), and the addition of the concept immersive technology together with its definition a broad category of technologies that create a sense of presence or immersion in a simulated or enhanced environment. it includes virtual reality, augmented reality, and mixed reality.\nAll language versions have been updated in version 7 except for Icelandic and Romanian where no new translations have been added to this release.\n\nELSST is also used for data discovery within CESSDA and facilitates access to data resources across Europe, independent of domain, resource, language or vocabulary. For ease of use, a bidirectional link has been established between ELSST and the CESSDA Data Catalogue (CDC), which contains descriptions of more than 40,000 data collections held by CESSDA’s Service Providers, originating from over 20 European countries.",
       "homepage": "https://elsst.cessda.eu/",
       "license": {
         "spdx": "CC-BY-SA-4.0",
@@ -51017,7 +50686,7 @@
       "short_names": [
         "ELSST"
       ],
-      "uri_format": "https://elsst.cessda.eu/id/6/$1"
+      "uri_format": "https://elsst.cessda.eu/id/7/$1"
     },
     "contributor": {
       "email": "cthoyt@gmail.com",
@@ -51421,7 +51090,7 @@
       "orcid": "0000-0002-0956-8634"
     },
     "contributor": {
-      "email": "benjamin_gyori@hms.harvard.edu",
+      "email": "b.gyori@northeastern.edu",
       "github": "bgyori",
       "name": "Benjamin M. Gyori",
       "orcid": "0000-0001-9439-5346"
@@ -51449,6 +51118,12 @@
       "prefix": "EMDB",
       "uri_format": "http://identifiers.org/emdb/$1"
     },
+    "contact": {
+      "email": "ardan@ebi.ac.uk",
+      "name": "Ardan Patwardhan",
+      "orcid": "0000-0001-7663-9028"
+    },
+    "contact_group_email": "help@emdatabank.org",
     "edam": {
       "description": "Identifier of an entry from the EMDB electron microscopy database.",
       "name": "EMDB",
@@ -52170,7 +51845,8 @@
       ],
       "name": "Emotion Response Ontology",
       "prefix": "EMRO"
-    }
+    },
+    "pattern": "^\\d{7}$"
   },
   "emsl.project": {
     "contact": {
@@ -53030,17 +52706,6 @@
     }
   },
   "enm": {
-    "aberowl": {
-      "artifacts": [
-        {
-          "type": "owl",
-          "url": "http://aber-owl.net/media/ontologies/ENM/17/enm.owl"
-        }
-      ],
-      "name": "eNanoMapper",
-      "prefix": "ENM",
-      "version": "6.0"
-    },
     "bioportal": {
       "contact": {
         "email": "hastings@ebi.ac.uk",
@@ -53093,7 +52758,6 @@
     },
     "license": "CC-BY-3.0",
     "mappings": {
-      "aberowl": "ENM",
       "bioportal": "ENM",
       "fairsharing": "FAIRsharing.2gpf81",
       "ols": "enm",
@@ -56223,18 +55887,6 @@
     ]
   },
   "ero": {
-    "aberowl": {
-      "artifacts": [
-        {
-          "type": "owl",
-          "url": "http://aber-owl.net/media/ontologies/ERO/15/ero.owl"
-        }
-      ],
-      "description": "An ontology of research resources such as instruments. protocols, reagents, animal models and biospecimens.",
-      "homepage": "https://open.med.harvard.edu/wiki/display/eaglei/Ontology",
-      "name": "eagle-i resource ontology",
-      "prefix": "ERO"
-    },
     "biocontext": {
       "prefix": "ERO",
       "uri_format": "http://purl.obolibrary.org/obo/ERO_$1"
@@ -56298,7 +55950,6 @@
     },
     "license": "CC-BY-2.0",
     "mappings": {
-      "aberowl": "ERO",
       "biocontext": "ERO",
       "bioportal": "ERO",
       "fairsharing": "FAIRsharing.nwgynk",
@@ -57727,7 +57378,8 @@
       ],
       "name": "Exercise Medicine Ontology",
       "prefix": "EXMO"
-    }
+    },
+    "pattern": "^\\d{7}$"
   },
   "exo": {
     "aberowl": {
@@ -57885,19 +57537,6 @@
     "uri_format": "http://purl.obolibrary.org/obo/ExO_$1"
   },
   "fabio": {
-    "aberowl": {
-      "artifacts": [
-        {
-          "type": "owl",
-          "url": "http://aber-owl.net/media/ontologies/FaBiO/1/fabio.owl"
-        }
-      ],
-      "description": "This file is imported by the vivo-core-public-1.5.owl file. It contains terms relating to documents from the http://purl.org/spar/fabio/ namespace that are included in the VIVO ontology. FaBiO is a FRBR-aligned Bibliographic Ontology that is part of the Semantic Publishing and Referencing (SPAR) suite of ontologies.",
-      "homepage": "http://sourceforge.net/apps/mediawiki/vivo/index.php?title=Ontology",
-      "name": "FaBiO (bibliographic)",
-      "prefix": "FaBiO",
-      "version": "1.5"
-    },
     "bartoc": {
       "description": "The FRBR-aligned Bibliographic Ontology (FaBiO) is an ontology for describing entities that are published or potentially publishable (e.g., journal articles, conference papers, books), and that contain or are referred to by bibliographic references.",
       "homepage": "https://www.sparontologies.net/ontologies/fabio",
@@ -57982,7 +57621,6 @@
       "uri_format": "http://purl.org/spar/fabio/$1"
     },
     "mappings": {
-      "aberowl": "FaBiO",
       "bartoc": "17959",
       "biolink": "fabio",
       "ecoportal": "FABIO",
@@ -60409,17 +60047,6 @@
     "repository": "https://github.com/sparontologies/fivestars"
   },
   "fix": {
-    "aberowl": {
-      "artifacts": [
-        {
-          "type": "owl",
-          "url": "http://aber-owl.net/media/ontologies/FIX/119/fix.owl"
-        }
-      ],
-      "description": "An ontology of physico-chemical methods and properties.",
-      "name": "Physico-chemical methods and properties",
-      "prefix": "FIX"
-    },
     "biocontext": {
       "prefix": "FIX",
       "uri_format": "http://purl.obolibrary.org/obo/FIX_$1"
@@ -60468,7 +60095,6 @@
     "homepage": "https://www.ebi.ac.uk/chebi",
     "license": "CC-BY-4.0",
     "mappings": {
-      "aberowl": "FIX",
       "biocontext": "FIX",
       "bioportal": "FIX",
       "fairsharing": "FAIRsharing.wwy1ns",
@@ -60965,19 +60591,6 @@
     }
   },
   "flu": {
-    "aberowl": {
-      "artifacts": [
-        {
-          "type": "owl",
-          "url": "http://aber-owl.net/media/ontologies/FLU/27/flu.owl"
-        }
-      ],
-      "description": "Starting in the fall of 2007, a collaborative group of influenza researchers have established an influenza ontology. The influenza ontology is an application ontology.  Consolidated influenza sequence and surveillance terms from resources such as the BioHealthBase (BHB), a Bioinformatics Resource Center (BRC) for Biodefense and Emerging and Re-emerging Infectious Diseases, the Centers for Excellence in Influenza Research and Surveillance (CEIRS)",
-      "homepage": "http://purl.obolibrary.org/obo/flu/",
-      "name": "Influenza Ontology",
-      "prefix": "FLU",
-      "version": "0.9.0"
-    },
     "biocontext": {
       "prefix": "FLU",
       "uri_format": "http://purl.obolibrary.org/obo/FLU_$1"
@@ -61019,7 +60632,6 @@
       ]
     },
     "mappings": {
-      "aberowl": "FLU",
       "biocontext": "FLU",
       "bioportal": "FLU",
       "fairsharing": "FAIRsharing.xjj977",
@@ -62763,7 +62375,7 @@
           "url": "https://www.nature.com/articles/s41538-018-0032-6"
         }
       ],
-      "version": "2025-12-30"
+      "version": "2026-02-02"
     },
     "download_obo": "http://purl.obolibrary.org/obo/foodon.obo",
     "fairsharing": {
@@ -62922,13 +62534,13 @@
       ],
       "description": "A broadly scoped ontology representing entities which bear a “food role”. It encompasses materials in natural ecosystems and agriculture that are consumed by humans and domesticated animals. This includes any generic (unbranded) raw or processed food material found in processing plants, markets, stores or food distribution points. FoodOn also imports nutritional component and dietary pattern terms from other OBO Foundry ontologies to support interoperability in diet and nutrition research",
       "extras": {
-        "version.iri": "http://purl.obolibrary.org/obo/foodon/releases/2025-12-30/foodon.owl"
+        "version.iri": "http://purl.obolibrary.org/obo/foodon/releases/2026-09-20/foodon.owl"
       },
       "homepage": "https://foodon.org/",
       "name": "Food Ontology",
       "prefix": "foodon",
       "tracker": "https://github.com/FoodOntology/foodon/issues/",
-      "version": "2025-12-30"
+      "version": "2026-09-20"
     },
     "ontobee": {
       "keywords": [
@@ -63177,7 +62789,7 @@
       "version": "1.0"
     },
     "contact": {
-      "email": "benjamin_gyori@hms.harvard.edu",
+      "email": "b.gyori@northeastern.edu",
       "github": "bgyori",
       "name": "Benjamin M. Gyori",
       "orcid": "0000-0001-9439-5346"
@@ -63284,10 +62896,6 @@
     "repository": "https://github.com/sparontologies/fr"
   },
   "frapo": {
-    "aberowl": {
-      "name": "Funding, Research Administration and Projects Ontology",
-      "prefix": "FRAPO"
-    },
     "contributor": {
       "email": "cthoyt@gmail.com",
       "github": "cthoyt",
@@ -63333,7 +62941,6 @@
       "uri_format": "http://purl.org/cerif/frapo/$1"
     },
     "mappings": {
-      "aberowl": "FRAPO",
       "fairsharing": "FAIRsharing.0a2576",
       "lov": "frapo"
     },
@@ -65031,6 +64638,12 @@
       "wikidata": "P846"
     },
     "name": "Global Biodiversity Information Facility",
+    "owners": [
+      {
+        "name": "Global Biodiversity Information Facility",
+        "ror": "05fjyn938"
+      }
+    ],
     "pattern": "^\\d+$",
     "publications": [
       {
@@ -65178,6 +64791,7 @@
     "example": "0000016",
     "homepage": "https://gdo.endlessforms.info",
     "name": "Graphic Descriptor Ontology",
+    "pattern": "^\\d{7}$",
     "repository": "https://github.com/endlessforms-info/GDO-GDOA",
     "uri_format": "https://gdo.endlessforms.info/view/classes?uuid=GDO_$1"
   },
@@ -69264,7 +68878,19 @@
   "gist": {
     "example": "Account",
     "license": "CC-BY-4.0",
+    "lov": {
+      "description": "gist is a minimalist upper ontology created by Semantic Arts.",
+      "homepage": "https://w3id.org/semanticarts/ontology/gistCore",
+      "keywords": [
+        "General & Upper",
+        "Industry"
+      ],
+      "name": "gist ontology",
+      "prefix": "gist",
+      "uri_format": "https://w3id.org/semanticarts/ns/ontology/gist/$1"
+    },
     "mappings": {
+      "lov": "gist",
       "tib": "gist"
     },
     "tib": {
@@ -70542,6 +70168,7 @@
       "prefix": "gmho",
       "uri_format": "https://galenos.org.uk/ontologies/GMHO_$1"
     },
+    "pattern": "^\\d{7}$",
     "repository": "https://github.com/galenos-project/mental-health-ontology"
   },
   "gnd": {
@@ -72552,7 +72179,7 @@
     },
     "contributor_extras": [
       {
-        "email": "benjamin_gyori@hms.harvard.edu",
+        "email": "b.gyori@northeastern.edu",
         "github": "bgyori",
         "name": "Benjamin M. Gyori",
         "orcid": "0000-0001-9439-5346"
@@ -74087,19 +73714,6 @@
     }
   },
   "gro": {
-    "aberowl": {
-      "artifacts": [
-        {
-          "type": "owl",
-          "url": "http://aber-owl.net/media/ontologies/GRO/5/gro.owl"
-        }
-      ],
-      "description": "The Gene Regulation Ontology (GRO) is a conceptual model for the domain of gene regulation. It covers processes that are linked to the regulation of gene expression as well as physical entities that are involved in these processes (such as genes and transcription factors) in terms of ontology classes and semantic relations between classes.",
-      "homepage": "http://www.ebi.ac.uk/Rebholz-srv/GRO/GRO.html",
-      "name": "Gene Regulation Ontology",
-      "prefix": "GRO",
-      "version": "0.5"
-    },
     "biocontext": {
       "prefix": "BOOTSTREP",
       "uri_format": "http://purl.obolibrary.org/obo/BOOTSTREP_$1"
@@ -74118,7 +73732,6 @@
     "deprecated": true,
     "example": "Lipid",
     "mappings": {
-      "aberowl": "GRO",
       "biocontext": "BOOTSTREP",
       "bioportal": "GRO",
       "obofoundry": "bootstrep"
@@ -75976,27 +75589,7 @@
       "265504410"
     ],
     "homepage": "https://human.brain-map.org",
-    "mappings": {
-      "ols": "hba"
-    },
     "name": "Human Brain Atlas",
-    "ols": {
-      "artifacts": [
-        {
-          "type": "owl",
-          "url": "https://purl.brain-bican.org/ontology/hbao/hbao.owl"
-        }
-      ],
-      "description": "An application ontology built by combining ontologised versions of the Allen Institute Human Brain Atlas (HBA) Structure Graph mapped to Uberon.",
-      "extras": {
-        "version.iri": "https://purl.brain-bican.org/ontology/hbao/releases/2025-02-10/hbao.owl"
-      },
-      "homepage": "https://purl.brain-bican.org/ontology/hbao",
-      "name": "Human Brain Atlas Ontology",
-      "prefix": "hba",
-      "uri_format": "https://purl.brain-bican.org/ontology/hbao/HBA_$1",
-      "version": "2025-02-10"
-    },
     "pattern": "^\\d+$",
     "preferred_prefix": "HBA",
     "providers": [
@@ -77542,6 +77135,34 @@
     }
   },
   "hl7": {
+    "aberowl": {
+      "artifacts": [
+        {
+          "type": "owl",
+          "url": "http://aber-owl.net/media/ontologies/HL7/1/hl7.owl"
+        }
+      ],
+      "description": "RDF Version of the UMLS ontology HL7V3.0; converted with the UMLS2RDF tool (https://github.com/ncbo/umls2rdf), developed by the NCBO project.",
+      "name": "HL7 Version 3.0",
+      "prefix": "HL7",
+      "version": "2025_07"
+    },
+    "bioportal": {
+      "contact": {
+        "email": "mnm@lists.hl7.org",
+        "name": "Methodology and Modelling Committee"
+      },
+      "description": "HL7 specifies a standardization that allows computer systems in healthcare organizations to communicate with each other. The HL7 vocabulary consists of hierarchical Concept Domains, which are categories of like concepts that will be bound to one or more coded elements; code systems, which are the contexts in which concepts are defined; and value sets, which are lists of intended values for a Concept Domain or sub-domain.",
+      "homepage": "http://www.hl7.org",
+      "name": "Health Level Seven Reference Implementation Model, Version 3.0",
+      "prefix": "HL7",
+      "publications": [
+        {
+          "url": "http://www.hl7.org"
+        }
+      ],
+      "version": "2025_07"
+    },
     "contact": {
       "email": "hq@hl7.org",
       "github": "ghost",
@@ -77559,6 +77180,10 @@
     "keywords": [
       "registry"
     ],
+    "mappings": {
+      "aberowl": "HL7",
+      "bioportal": "HL7"
+    },
     "name": "HL7 External Code System",
     "uri_format": "https://oid-base.com/get/2.16.840.1.113883:$1"
   },
@@ -80993,18 +80618,6 @@
     "uri_format": "https://www.w3.org/ns/i18n#$1"
   },
   "iadopt": {
-    "aberowl": {
-      "artifacts": [
-        {
-          "type": "owl",
-          "url": "http://aber-owl.net/media/ontologies/I-ADOPT/6/i-adopt.owl"
-        }
-      ],
-      "description": "The I-ADOPT Framework is an ontology designed to facilitate interoperability between existing variable description models (including ontologies, taxonomy, and structured controlled vocabularies). One of the challenges in representing semantic descriptions of variables is getting people to agree about what they mean when describing the components that define the variables. The I-ADOPT ontology addresses this by providing core components and their relations that can be applied to define machine-interpretable variable descriptions that re-use FAIR vocabulary terms. This first version of the ontology has been developed by a core group of terminology experts and users from the Research Data Alliance (RDA) InteroperAble Descriptions of Observable Property Terminology (I-ADOPT) Working Group.",
-      "name": "I-ADOPT Framework Ontology",
-      "prefix": "I-ADOPT",
-      "version": "1.1.0"
-    },
     "biodivportal": {
       "contact": {
         "email": "barbara@gofair.foundation",
@@ -81071,7 +80684,6 @@
       "uri_format": "https://w3id.org/iadopt/ont/$1"
     },
     "mappings": {
-      "aberowl": "I-ADOPT",
       "biodivportal": "I-ADOPT",
       "bioportal": "I-ADOPT",
       "ecoportal": "I-ADOPT",
@@ -81481,12 +81093,6 @@
     }
   },
   "icd10": {
-    "aberowl": {
-      "description": "International Statistical Classification of Diseases and Related Health Problems (ICD-10). 10th rev. Geneva",
-      "name": "International Classification of Diseases, Version 10",
-      "prefix": "ICD10",
-      "version": "2016AB"
-    },
     "bartoc": {
       "description": "The International Classification of Diseases (ICD) is the standard diagnostic tool for epidemiology, health management and clinical purposes. This includes the analysis of the general health situation of population groups. It is used to monitor the incidence and prevalence of diseases and other health problems. It is used to classify diseases and other health problems recorded on many types of health and vital records including death certificates and health records. In addition to enabling the storage and retrieval of diagnostic information for clinical, epidemiological and quality purposes, these records also provide the basis for the compilation of national mortality and morbidity statistics by WHO Member States. It is used for reimbursement and resource allocation decision-making by countries. ICD-10 was endorsed by the Forty-third World Health Assembly in May 1990 and came into use in WHO Member States as from 1994. The 11th revision of the classification has already started and will continue until 2015.",
       "homepage": "https://www.who.int/standards/classifications/classification-of-diseases",
@@ -81516,6 +81122,11 @@
       "name": "International Classification of Diseases, Version 10",
       "prefix": "ICD10",
       "version": "ICD10_1998"
+    },
+    "contact": {
+      "email": "jakobr@who.int",
+      "name": "Robert Jakob",
+      "orcid": "0000-0001-6542-7548"
     },
     "contributor_extras": [
       {
@@ -81598,7 +81209,6 @@
     "license": "https://cdn.who.int/media/docs/default-source/publishing-policies/copyright/who-faq-licensing-icd-10.pdf",
     "logo": "https://upload.wikimedia.org/wikipedia/commons/a/a4/Icd10codeslogo.png",
     "mappings": {
-      "aberowl": "ICD10",
       "bartoc": "447",
       "biocontext": "ICD",
       "biolink": "ICD10",
@@ -81643,6 +81253,7 @@
       "uri_format": "http://apps.who.int/classifications/icd10/browse/2010/en#/$1"
     },
     "name": "International Classification of Diseases, 10th Revision",
+    "part_of_database": "icd",
     "pattern": "^(([XVI]+)|([A-Z][0-9]+((-[A-Z][0-9]+)|(\\.[0-9]))?))$",
     "prefixcommons": {
       "description": "The International Classification of Diseases is the international standard diagnostic classification for all general epidemiological and many health management purposes.",
@@ -81773,6 +81384,11 @@
       ],
       "version": "2026"
     },
+    "contact": {
+      "email": "jakobr@who.int",
+      "name": "Robert Jakob",
+      "orcid": "0000-0001-6542-7548"
+    },
     "contributor": {
       "email": "cthoyt@gmail.com",
       "github": "cthoyt",
@@ -81837,6 +81453,7 @@
       "wikidata": "P4229"
     },
     "name": "International Classification of Diseases, 10th Revision, Clinical Modification",
+    "part_of_database": "icd",
     "pattern": "^([A-Z][0-9][0-9AB]((-[A-Z][0-9][0-9AB])|(\\.[0-9A-KXZ]([0-9A-EXYZ]([0-9A-HX][0-59A-HJKMNP-S]?)?)?)?))$",
     "providers": [
       {
@@ -81910,6 +81527,11 @@
       ],
       "version": "2026"
     },
+    "contact": {
+      "email": "jakobr@who.int",
+      "name": "Robert Jakob",
+      "orcid": "0000-0001-6542-7548"
+    },
     "contributor": {
       "email": "cthoyt@gmail.com",
       "github": "cthoyt",
@@ -81958,6 +81580,7 @@
       "wikidata": "P1690"
     },
     "name": "International Classification of Diseases, 10th Revision, Procedure Coding System",
+    "part_of_database": "icd",
     "uri_format": "https://www.findacode.com/code.php?set=ICD10PCS&c=$1",
     "wikidata": {
       "description": "identifier in the ICD-10-PCS (Procedure Coding System, International Classification of Diseases, 10th revision)",
@@ -81977,8 +81600,9 @@
     },
     "comment": "Clinical codes from an ICD-11 linearization (a structured subset of the ICD-11 Foundation tailored for specific use cases, such as morbidity or mortality coding), such as RA00.0, have their own namespace (icd11.code).",
     "contact": {
-      "email": "icd@who.int",
-      "name": "ICD Helpdesk"
+      "email": "jakobr@who.int",
+      "name": "Robert Jakob",
+      "orcid": "0000-0001-6542-7548"
     },
     "contact_group_email": "icd@who.int",
     "contributor": {
@@ -82170,6 +81794,11 @@
     }
   },
   "icd11.code": {
+    "contact": {
+      "email": "jakobr@who.int",
+      "name": "Robert Jakob",
+      "orcid": "0000-0001-6542-7548"
+    },
     "contributor": {
       "email": "cthoyt@gmail.com",
       "github": "cthoyt",
@@ -82187,6 +81816,7 @@
     "homepage": "https://icd.who.int/en",
     "license": "http://www.who.int/about/licensing/copyright_form/en",
     "name": "ICD 11 Codes",
+    "part_of_database": "icd",
     "pattern": "^[0-9A-Z]+(\\.[0-9A-Z]+)?$",
     "references": [
       "https://github.com/biopragmatics/bioregistry/issues/1344"
@@ -82199,6 +81829,11 @@
       "uri_format": "http://translator.ncats.nih.gov/ICD9_$1"
     },
     "comment": "Note that ICD9 codes representing mid-hierarchy relations, such as those in the form of XXX-YYY are not possible to resolve, but are useful and appear in many places that make xrefs to ICD9",
+    "contact": {
+      "email": "jakobr@who.int",
+      "name": "Robert Jakob",
+      "orcid": "0000-0001-6542-7548"
+    },
     "contributor": {
       "email": "cthoyt@gmail.com",
       "github": "cthoyt",
@@ -82234,6 +81869,7 @@
       "wikidata.entity": "Q50018"
     },
     "name": "International Classification of Diseases, 9th Revision",
+    "part_of_database": "icd",
     "pattern": "^((\\d\\d\\d|V\\d\\d|E[8-9]\\d\\d)(\\.\\d{1,2})?)|(\\d{1,3}-\\d{1,3})$",
     "references": [
       "https://www.who.int/about/policies/publishing/copyright"
@@ -82279,6 +81915,11 @@
       "name": "International Classification of Diseases, Version 9 - Clinical Modification",
       "prefix": "ICD9CM",
       "version": "ICD9CM_2014"
+    },
+    "contact": {
+      "email": "jakobr@who.int",
+      "name": "Robert Jakob",
+      "orcid": "0000-0001-6542-7548"
     },
     "contributor": {
       "email": "cthoyt@gmail.com",
@@ -82329,6 +81970,7 @@
       "wikidata.entity": "Q5737131"
     },
     "name": "International Classification of Diseases, 9th Revision, Clinical Modification",
+    "part_of_database": "icd",
     "pattern": "^([\\dA-Z]\\d{2}(\\.\\d{1,3}|))|(\\d{2}(\\.\\d{1,2}|))$",
     "references": [
       "https://www.who.int/about/policies/publishing/copyright"
@@ -82417,6 +82059,11 @@
         "wikidata": "Q1430635"
       }
     },
+    "contact": {
+      "email": "jakobr@who.int",
+      "name": "Robert Jakob",
+      "orcid": "0000-0001-6542-7548"
+    },
     "contributor": {
       "email": "cthoyt@gmail.com",
       "github": "cthoyt",
@@ -82446,6 +82093,13 @@
       "wikidata.entity": "Q1430635"
     },
     "name": "International Classification of Diseases for Oncology",
+    "owners": [
+      {
+        "name": "World Health Organization",
+        "ror": "01f80g185"
+      }
+    ],
+    "part_of_database": "icd",
     "pattern": "^[8-9]\\d{3}(/[0-3])?$",
     "prefixcommons": {
       "description": "Ontology of Oncology as based on CDC SEER's ICDO-3 Code classification",
@@ -83847,34 +83501,9 @@
       ]
     },
     "homepage": "https://ngdc.cncb.ac.cn/idog",
-    "integbio": {
-      "description": "iDog is an integrated resource for domestic dog (Canis lupus familiaris) and wild canids. It includes information about Genes, Genomes, SNPs, Breed/Disease Traits, Gene Expressions, GO Function Annotations, Dog-Human Homolog Diseases and Literatures. In addition, it provides online tools for performing genomic data visualization and analyses.",
-      "homepage": "https://bigd.big.ac.cn/idog/",
-      "keywords": [
-        "Genome/Gene",
-        "Genetic variation",
-        "Organism",
-        "Health/Disease",
-        "Sequence",
-        "Expression",
-        "Phenotype",
-        "Interaction/Pathway",
-        "Bibliography/Documents"
-      ],
-      "name": "iDog",
-      "prefix": "nbdc02480",
-      "publications": [
-        {
-          "doi": "10.1093/nar/gky1041",
-          "pubmed": "30371881"
-        }
-      ],
-      "status": "active"
-    },
     "license": "CC-BY-4.0",
     "mappings": {
       "fairsharing": "FAIRsharing.exc0vp",
-      "integbio": "nbdc02480",
       "re3data": "r3d100012176"
     },
     "name": "Integrated Resource for Domestic Dog",
@@ -83907,18 +83536,6 @@
     "uri_format": "https://ngdc.cncb.ac.cn/idog/breed/getBreedDetail.action?breedId=$1"
   },
   "idomal": {
-    "aberowl": {
-      "artifacts": [
-        {
-          "type": "owl",
-          "url": "http://aber-owl.net/media/ontologies/IDOMAL/187/idomal.owl"
-        }
-      ],
-      "description": "An application ontology to cover all aspects of malaria as well as the intervention attempts to control it.",
-      "homepage": "https://www.vectorbase.org/ontology-browser",
-      "name": "Malaria Ontology",
-      "prefix": "IDOMAL"
-    },
     "biocontext": {
       "prefix": "IDOMAL",
       "uri_format": "http://purl.obolibrary.org/obo/IDOMAL_$1"
@@ -83995,7 +83612,6 @@
     },
     "license": "CC0-1.0",
     "mappings": {
-      "aberowl": "IDOMAL",
       "biocontext": "IDOMAL",
       "bioportal": "IDOMAL",
       "fairsharing": "FAIRsharing.2q8c28",
@@ -86111,15 +85727,8 @@
       "name": "Marie-Paule Lefranc",
       "orcid": "0000-0003-0116-9353"
     },
-    "go": {
-      "description": "Database of immunoglobulins and T cell receptors from human and other vertebrates, with translation for fully annotated sequences.",
-      "homepage": "http://www.imgt.org/",
-      "name": "ImMunoGeneTics database covering immunoglobulins and T-cell receptors",
-      "prefix": "IMGT_LIGM"
-    },
     "mappings": {
       "biocontext": "IMGT.LIGM",
-      "go": "IMGT_LIGM",
       "miriam": "imgt.ligm",
       "n2t": "imgt.ligm",
       "ncbi": "IMGT/LIGM",
@@ -86783,6 +86392,7 @@
       "bioportal": "INBIO",
       "ecoportal": "INBIO"
     },
+    "pattern": "^\\d{6}$",
     "repository": "https://github.com/fusion-jena/inbio",
     "uri_format": "https://w3id.org/inbio#_$1"
   },
@@ -87193,6 +86803,12 @@
       "wikidata.entity": "Q824258"
     },
     "name": "International Nonproprietary Names",
+    "owners": [
+      {
+        "name": "World Health Organization",
+        "ror": "01f80g185"
+      }
+    ],
     "providers": [
       {
         "code": "dotad",
@@ -90091,6 +89707,12 @@
       "uri_format": "http://www.isni.org/isni/$1"
     },
     "name": "International Standard Name Identifier",
+    "owners": [
+      {
+        "name": "ISNI International Agency (United Kingdom)",
+        "ror": "003t7f717"
+      }
+    ],
     "providers": [
       {
         "code": "isni.short",
@@ -90187,17 +89809,7 @@
     },
     "description": "Two letter country codes assigned by ISO",
     "example": "TG",
-    "hl7": {
-      "description": "ISO 3166-2 Country subdivision codes; now is deprecated because it was entered in error.",
-      "name": "ISO 3166 3 Character country codes",
-      "preferred_prefix": "ISO3166-2",
-      "prefix": "2.16.2",
-      "status": "deprecated"
-    },
     "homepage": "https://www.iso.org/iso-3166-country-codes.html",
-    "mappings": {
-      "hl7": "2.16.2"
-    },
     "name": "ISO 3166-2 Country Code",
     "owners": [
       {
@@ -90232,21 +89844,9 @@
       ]
     },
     "github_request_issue": 1614,
-    "hl7": {
-      "description": "ISO 639-3 is a code that aims to define three-letter identifiers for all known human languages. At the core of ISO 639-3 are the individual languages already accounted for in ISO 639-2. The large number of living languages in the initial inventory of ISO 639-3 beyond those already included in ISO 639-2 was derived primarily from Ethnologue (15th edition). Additional extinct, ancient, historic, and constructed languages have been obtained from Linguist List.SIL International has been designated as the ISO 639-3/RA for the purpose of processing requests for alpha-3 language codes comprising the International Standard, Codes for the representation of names of languages - Part 3: Alpha-3 code for comprehensive coverage of languages. The ISO 639-3/RA receives and reviews applications for requesting new language codes and for the change of existing ones according to criteria indicated in the standard. It maintains an accurate list of information associated with registered language codes which can be viewed on or downloaded from this website, and processes updates of registered language codes. Notification of pending and adopted updates are also distributed on a regular basis to subscribers and other parties.",
-      "extras": {
-        "organization": "SIL International"
-      },
-      "homepage": "http://www.sil.org/ISO639-3/",
-      "name": "ISO 639-3 Language Codes Alpha 3",
-      "preferred_prefix": "iso639-3",
-      "prefix": "1.0.639.3",
-      "status": "active"
-    },
     "homepage": "https://iso639-3.sil.org",
     "mappings": {
-      "fairsharing": "FAIRsharing.33aa85",
-      "hl7": "1.0.639.3"
+      "fairsharing": "FAIRsharing.33aa85"
     },
     "name": "ISO 639 3-Letter Language Code",
     "providers": [
@@ -90673,6 +90273,7 @@
     ],
     "license": "CC-BY-4.0",
     "name": "Curriculum Ontology",
+    "pattern": "^\\d{8}$",
     "repository": "https://github.com/yovisto/curriculum",
     "uri_format": "https://w3id.org/curriculum/EDU_$1"
   },
@@ -93516,7 +93117,7 @@
   },
   "kestrelo": {
     "contact": {
-      "email": "lindsey.anderson@pnnl.gov",
+      "email": "Lindsey.Anderson@pnnl.gov",
       "github": "lnanderson",
       "name": "Lindsey N. Anderson",
       "orcid": "0000-0002-8741-7823"
@@ -93571,6 +93172,7 @@
   },
   "kim.conditionsofaccess": {
     "contributor": {
+      "email": "m.voigt@hzdr.de",
       "github": "eilmiv",
       "name": "Martin Voigt",
       "orcid": "0000-0001-5556-838X"
@@ -95232,6 +94834,7 @@
       "name": "Lifestyle Factors Ontology",
       "prefix": "lifestylefactors"
     },
+    "pattern": "^\\d{7}$",
     "uri_format": "http://purl.obolibrary.org/obo/LFID_$1"
   },
   "ligandbook": {
@@ -96360,18 +95963,6 @@
     }
   },
   "lipro": {
-    "aberowl": {
-      "artifacts": [
-        {
-          "type": "owl",
-          "url": "http://aber-owl.net/media/ontologies/LIPRO/4/lipro.owl"
-        }
-      ],
-      "description": "Lipid research is increasingly integrated within systems level biology such as lipidomics where lipid classification is required before appropriate annotation of chemical functions can be applied. The ontology describes the LIPIDMAPS nomenclature classification explicitly using description logics (OWL-DL). Lipid classes are organized hierarchically with the super-classes restricted by generic necessary conditions. More specific necessary conditions are used to define membership requirements for sub classes of lipid according to appropriate functional groups.",
-      "name": "Lipid Ontology",
-      "prefix": "LIPRO",
-      "version": "See Remote Site"
-    },
     "biocontext": {
       "prefix": "LIPRO",
       "uri_format": "http://purl.obolibrary.org/obo/LIPRO_$1"
@@ -96410,7 +96001,6 @@
       ]
     },
     "mappings": {
-      "aberowl": "LIPRO",
       "biocontext": "LIPRO",
       "bioportal": "LIPRO",
       "fairsharing": "FAIRsharing.vxyt0f",
@@ -97327,6 +96917,7 @@
   },
   "loc.vocabulary": {
     "contributor": {
+      "email": "noemi.betancort@suub.uni-bremen.de",
       "github": "nbetancort",
       "name": "Noemi Betancort Cabrera",
       "orcid": "0000-0002-0156-3556"
@@ -97538,6 +97129,12 @@
       ],
       "version": "281"
     },
+    "contact": {
+      "email": "mrallins@regenstrief.org",
+      "name": "Marjorie Rallins",
+      "orcid": "0009-0009-1437-4795"
+    },
+    "contact_group_email": "loinc@regenstrief.org",
     "contributor": {
       "email": "cthoyt@gmail.com",
       "github": "cthoyt",
@@ -97938,7 +97535,7 @@
       },
       "name": "Livestock Product Trait Ontology",
       "prefix": "LPT",
-      "version": "2026-04-01"
+      "version": "2026-09-23"
     },
     "bioportal": {
       "contact": {
@@ -97952,7 +97549,7 @@
       },
       "name": "Livestock Product Trait Ontology",
       "prefix": "LPT",
-      "version": "2026-09-17"
+      "version": "2026-09-24"
     },
     "contact": {
       "email": "caripark@iastate.edu",
@@ -99163,18 +98760,6 @@
     }
   },
   "mamo": {
-    "aberowl": {
-      "artifacts": [
-        {
-          "type": "owl",
-          "url": "http://aber-owl.net/media/ontologies/MAMO/17/mamo.owl"
-        }
-      ],
-      "description": "The Mathematical Modelling Ontology (MAMO) is a classification of the types of mathematical models used mostly in the life sciences, their variables, relationships and other relevant features.",
-      "homepage": "http://sourceforge.net/p/mamo-ontology/wiki/Home/",
-      "name": "Mathematical modeling ontology",
-      "prefix": "MAMO"
-    },
     "banana": "MAMO",
     "banana_peel": "_",
     "biocontext": {
@@ -99219,7 +98804,6 @@
     },
     "license": "Artistic-2.0",
     "mappings": {
-      "aberowl": "MAMO",
       "biocontext": "MAMO",
       "bioportal": "MAMO",
       "fairsharing": "FAIRsharing.kbz5jh",
@@ -99477,7 +99061,7 @@
       }
     ],
     "reviewer": {
-      "email": "benjamin_gyori@hms.harvard.edu",
+      "email": "b.gyori@northeastern.edu",
       "github": "bgyori",
       "name": "Benjamin M. Gyori",
       "orcid": "0000-0001-9439-5346"
@@ -99817,18 +99401,6 @@
     }
   },
   "mat": {
-    "aberowl": {
-      "artifacts": [
-        {
-          "type": "obo",
-          "url": "http://aber-owl.net/media/ontologies/MAT/3/mat.obo"
-        }
-      ],
-      "description": "Minimal set of terms for anatomy",
-      "name": "Minimal Anatomical Terminology",
-      "prefix": "MAT",
-      "version": "1.1"
-    },
     "biocontext": {
       "prefix": "MAT",
       "uri_format": "http://purl.obolibrary.org/obo/MAT_$1"
@@ -99858,7 +99430,6 @@
       ]
     },
     "mappings": {
-      "aberowl": "MAT",
       "biocontext": "MAT",
       "bioportal": "MAT",
       "fairsharing": "FAIRsharing.qtb9yb",
@@ -100506,30 +100077,9 @@
     "example": "688",
     "homepage": "https://mouse.brain-map.org",
     "mappings": {
-      "bioportal": "ABA-AMB",
-      "ols": "mba"
+      "bioportal": "ABA-AMB"
     },
     "name": "Mouse Brain Atlas",
-    "ols": {
-      "artifacts": [
-        {
-          "type": "owl",
-          "url": "https://purl.brain-bican.org/ontology/mbao/mbao.owl"
-        }
-      ],
-      "contact": {
-        "email": "cellsemantics@gmail.com"
-      },
-      "description": "An application ontology built by combining ontologised versions of the Allen Institute Mouse Brain Atlas (MBA) StructureGraph mapped to Uberon.",
-      "extras": {
-        "version.iri": "https://purl.brain-bican.org/ontology/mbao/releases/2025-10-29/mbao.owl"
-      },
-      "homepage": "https://purl.brain-bican.org/ontology/mbao",
-      "name": "Mouse Brain Atlas Ontology",
-      "prefix": "mba",
-      "uri_format": "https://purl.brain-bican.org/ontology/mbao/MBA_$1",
-      "version": "2025-10-29"
-    },
     "pattern": "^\\d+$",
     "preferred_prefix": "MBA",
     "providers": [
@@ -100924,13 +100474,6 @@
     }
   },
   "meddra": {
-    "aberowl": {
-      "description": "Medical Dictionary for Regulatory Activities Terminology (MedDRA)",
-      "homepage": "http://www.meddramsso.com/MSSOWeb/contact_us/index.htm",
-      "name": "Medical Dictionary for Regulatory Activities Terminology (MedDRA)",
-      "prefix": "MEDDRA",
-      "version": "2016AB"
-    },
     "bartoc": {
       "description": "In the late 1990s, the International Conference on Harmonisation of Technical Requirements for Registration of Pharmaceuticals for Human Use (ICH) developed MedDRA, a rich and highly specific standardised medical terminology to facilitate sharing of regulatory information internationally for medical products used by humans. ICH’s powerful tool, MedDRA is available to all for use in the registration, documentation and safety monitoring of medical products both before and after a product has been authorised for sale. Products covered by the scope of MedDRA include pharmaceuticals, biologics, vaccines and drug-device combination products. Today, its growing use worldwide by regulatory authorities, pharmaceutical companies, clinical research organisations and health care professionals allows better global protection of patient health.",
       "homepage": "http://www.meddra.org/",
@@ -100943,22 +100486,6 @@
     "biocontext": {
       "prefix": "MEDDRA",
       "uri_format": "http://purl.bioontology.org/ontology/MEDDRA/$1"
-    },
-    "bioportal": {
-      "contact": {
-        "email": "mssohelp@meddra.org",
-        "name": "MedDRA MSSO"
-      },
-      "description": "MedDRA is an international medical terminology with an emphasis on use for data entry, retrieval, analysis, and display. It applies to all phases of drug development, excluding animal toxicology, and to the health effects and malfunction of devices. An appendix includes concept descriptions which describe how a medical concept is interpreted, used, and classified within the MedDRA terminology. It is not intended as a medical definition. The concept descriptions are intended to aid the consistent and accurate use of MedDRA in coding, retrieval, and analysis.",
-      "homepage": "https://www.meddra.org/",
-      "name": "Medical Dictionary for Regulatory Activities Terminology (MedDRA)",
-      "prefix": "MEDDRA",
-      "publications": [
-        {
-          "url": "https://www.meddra.org/msso-presentations"
-        }
-      ],
-      "version": "28.0"
     },
     "fairsharing": {
       "description": "MedDRA is a multilingual terminology allowing most users to operate in their native languages. MedDRA can be used to analyse individual medical events (e.g., “Influenza”) or issues involving a system, organ or etiology (e.g., infections) using its hierarchical structure. MedDRA can be used for signal detection and monitoring of clinical syndromes whose symptoms encompass numerous systems or organs using its multi-axial hierarchy or through the special feature of Standardised MedDRA Queries. The ability to communicate adverse event data is another strength of MedDRA and has lead to MedDRA being an integral part of the ICH e-submission standards: eCTD (ICH M8) and ICSRs (ICH E2B).",
@@ -101024,10 +100551,8 @@
       }
     },
     "mappings": {
-      "aberowl": "MEDDRA",
       "bartoc": "1237",
       "biocontext": "MEDDRA",
-      "bioportal": "MEDDRA",
       "fairsharing": "FAIRsharing.ad3137",
       "hl7": "6.163",
       "integbio": "nbdc02564",
@@ -103410,18 +102935,6 @@
     "uri_format": "http://purl.obolibrary.org/obo/MF_$1"
   },
   "mfmo": {
-    "aberowl": {
-      "artifacts": [
-        {
-          "type": "owl",
-          "url": "http://aber-owl.net/media/ontologies/MFMO/2/mfmo.owl"
-        }
-      ],
-      "description": "The Mammalian Feeding Muscle Ontology is an antomy ontology for the muscles of the head and neck that participate in feeding, swallowing, and other oral-pharyngeal behaviors.",
-      "homepage": "http://feedexp.org",
-      "name": "Mammalian Feeding Muscle Ontology",
-      "prefix": "MFMO"
-    },
     "biocontext": {
       "prefix": "MFMO",
       "uri_format": "http://purl.obolibrary.org/obo/MFMO_$1"
@@ -103451,7 +102964,6 @@
     },
     "license": "CC-BY-3.0",
     "mappings": {
-      "aberowl": "MFMO",
       "biocontext": "MFMO",
       "bioportal": "MFMO",
       "fairsharing": "FAIRsharing.669cnk",
@@ -103534,18 +103046,6 @@
     "uri_format": "http://purl.obolibrary.org/obo/MFMO_$1"
   },
   "mfo": {
-    "aberowl": {
-      "artifacts": [
-        {
-          "type": "obo",
-          "url": "http://aber-owl.net/media/ontologies/MFO/14/mfo.obo"
-        }
-      ],
-      "description": "A structured controlled vocabulary of the anatomy and development of the Japanese medaka fish, <i>Oryzias latipes</i>.",
-      "name": "Medaka Fish Anatomy and Development Ontology",
-      "prefix": "MFO",
-      "version": "unknown"
-    },
     "biocontext": {
       "prefix": "MFO",
       "uri_format": "http://purl.obolibrary.org/obo/MFO_$1"
@@ -103585,7 +103085,6 @@
       ]
     },
     "mappings": {
-      "aberowl": "MFO",
       "biocontext": "MFO",
       "bioportal": "MFO",
       "fairsharing": "FAIRsharing.5403x",
@@ -105207,18 +104706,6 @@
     "uri_format": "https://mibig.secondarymetabolites.org/go/$1"
   },
   "micro": {
-    "aberowl": {
-      "artifacts": [
-        {
-          "type": "owl",
-          "url": "http://aber-owl.net/media/ontologies/MICRO/3/micro.owl"
-        }
-      ],
-      "description": "An ontology of prokaryotic phenotypic and metabolic characters",
-      "homepage": "https://github.com/carrineblank/MicrO",
-      "name": "Ontology of Prokaryotic Phenotypic and Metabolic Characters",
-      "prefix": "MICRO"
-    },
     "biocontext": {
       "prefix": "MICRO",
       "uri_format": "http://purl.obolibrary.org/obo/MICRO_$1"
@@ -105256,7 +104743,6 @@
     },
     "license": "CC-BY-2.0",
     "mappings": {
-      "aberowl": "MICRO",
       "biocontext": "MICRO",
       "fairsharing": "FAIRsharing.brhpb0",
       "obofoundry": "micro",
@@ -107282,18 +106768,6 @@
     ]
   },
   "miro": {
-    "aberowl": {
-      "artifacts": [
-        {
-          "type": "owl",
-          "url": "http://aber-owl.net/media/ontologies/MIRO/1/miro.owl"
-        }
-      ],
-      "description": "Application ontology for entities related to insecticide resistance in mosquitos",
-      "homepage": "http://anobase.vectorbase.org",
-      "name": "Mosquito insecticide resistance",
-      "prefix": "MIRO"
-    },
     "biocontext": {
       "prefix": "MIRO",
       "uri_format": "http://purl.obolibrary.org/obo/MIRO_$1"
@@ -107343,7 +106817,6 @@
       ]
     },
     "mappings": {
-      "aberowl": "MIRO",
       "biocontext": "MIRO",
       "bioportal": "MIRO",
       "fairsharing": "FAIRsharing.sjf113",
@@ -107423,7 +106896,7 @@
     },
     "contributor_extras": [
       {
-        "email": "benjamin_gyori@hms.harvard.edu",
+        "email": "b.gyori@northeastern.edu",
         "github": "bgyori",
         "name": "Benjamin M. Gyori",
         "orcid": "0000-0001-9439-5346"
@@ -107711,7 +107184,7 @@
         "orcid": "0000-0002-1335-0881"
       },
       {
-        "email": "lindsey.anderson@pnnl.gov",
+        "email": "Lindsey.Anderson@pnnl.gov",
         "github": "lnanderson",
         "name": "Lindsey N. Anderson",
         "orcid": "0000-0002-8741-7823"
@@ -108663,19 +108136,6 @@
     "uri_format": "http://purl.obolibrary.org/obo/MmusDv_$1"
   },
   "mo": {
-    "aberowl": {
-      "artifacts": [
-        {
-          "type": "owl",
-          "url": "http://aber-owl.net/media/ontologies/MO/1/mo.owl"
-        }
-      ],
-      "description": "Concepts, definitions, terms, and resources for standardized description of a microarray experiment in support of MAGE v.1.",
-      "homepage": "http://mged.sourceforge.net/ontologies/MGEDontology.php",
-      "name": "Microarray and Gene Expression Data Ontology",
-      "prefix": "MO",
-      "version": "1.3.1.1"
-    },
     "biocontext": {
       "prefix": "MO",
       "uri_format": "http://purl.obolibrary.org/obo/MO_$1"
@@ -108722,7 +108182,6 @@
       ]
     },
     "mappings": {
-      "aberowl": "MO",
       "biocontext": "MO",
       "bioportal": "MO",
       "fairsharing": "FAIRsharing.qs4x5m",
@@ -109196,13 +108655,13 @@
       ],
       "description": "PSI-MOD is an ontology consisting of terms that describe protein chemical modifications",
       "extras": {
-        "version.iri": "http://purl.obolibrary.org/obo/mod/1.038.0/mod.owl"
+        "version.iri": "http://purl.obolibrary.org/obo/mod/1.039.0/mod.owl"
       },
       "homepage": "http://www.psidev.info/MOD",
       "name": "Protein modification",
       "prefix": "mod",
       "tracker": "https://github.com/HUPO-PSI/psi-mod-CV/issues",
-      "version": "1.038.0"
+      "version": "1.039.0"
     },
     "ontobee": {
       "keywords": [
@@ -110071,7 +109530,7 @@
       },
       "name": "Molecular Simulation Ontology",
       "prefix": "MOLSIM",
-      "version": "2026-09-18"
+      "version": "2026-09-25"
     },
     "contributor": {
       "email": "cthoyt@gmail.com",
@@ -111762,13 +111221,13 @@
       },
       "description": "A structured controlled vocabulary for the annotation of experiments concerned with proteomics mass spectrometry.",
       "extras": {
-        "version.iri": "http://purl.obolibrary.org/obo/ms/4.1.260/ms.owl"
+        "version.iri": "http://purl.obolibrary.org/obo/ms/4.2.2/ms.owl"
       },
       "homepage": "http://www.psidev.info/groups/controlled-vocabularies",
       "name": "Mass spectrometry ontology",
       "prefix": "ms",
       "tracker": "https://github.com/HUPO-PSI/psi-ms-CV/issues",
-      "version": "4.1.260"
+      "version": "4.2.2"
     },
     "ontobee": {
       "keywords": [
@@ -112248,7 +111707,7 @@
   },
   "mvx": {
     "contributor": {
-      "email": "lindsey.anderson@pnnl.gov",
+      "email": "Lindsey.Anderson@pnnl.gov",
       "github": "lnanderson",
       "name": "Lindsey N. Anderson",
       "orcid": "0000-0002-8741-7823"
@@ -113033,7 +112492,7 @@
     },
     "contributor_extras": [
       {
-        "email": "lindsey.anderson@pnnl.gov",
+        "email": "Lindsey.Anderson@pnnl.gov",
         "github": "lnanderson",
         "name": "Lindsey N. Anderson",
         "orcid": "0000-0002-8741-7823"
@@ -113605,6 +113064,12 @@
     "github_request_issue": 1298,
     "homepage": "https://www.nasa.gov/osdr",
     "name": "NASA Open Science Data Repository Biospecimen",
+    "owners": [
+      {
+        "name": "National Aeronautics and Space Administration",
+        "ror": "027ka1x80"
+      }
+    ],
     "pattern": "^\\d+$",
     "publications": [
       {
@@ -113640,6 +113105,12 @@
     "github_request_issue": 1298,
     "homepage": "https://www.nasa.gov/osdr",
     "name": "NASA Open Science Data Repository Experiment",
+    "owners": [
+      {
+        "name": "National Aeronautics and Space Administration",
+        "ror": "027ka1x80"
+      }
+    ],
     "pattern": "^OS-\\d+$",
     "publications": [
       {
@@ -113675,6 +113146,12 @@
     "github_request_issue": 1298,
     "homepage": "https://www.nasa.gov/osdr",
     "name": "NASA Open Science Data Repository Hardware",
+    "owners": [
+      {
+        "name": "National Aeronautics and Space Administration",
+        "ror": "027ka1x80"
+      }
+    ],
     "pattern": "^\\d+$",
     "publications": [
       {
@@ -113714,6 +113191,12 @@
     "github_request_issue": 1298,
     "homepage": "https://www.nasa.gov/osdr",
     "name": "NASA Open Science Data Repository Mission",
+    "owners": [
+      {
+        "name": "National Aeronautics and Space Administration",
+        "ror": "027ka1x80"
+      }
+    ],
     "pattern": "^.+$",
     "publications": [
       {
@@ -113754,6 +113237,12 @@
     "github_request_issue": 1298,
     "homepage": "https://www.nasa.gov/osdr",
     "name": "NASA Open Science Data Repository Payload",
+    "owners": [
+      {
+        "name": "National Aeronautics and Space Administration",
+        "ror": "027ka1x80"
+      }
+    ],
     "pattern": "^.+$",
     "publications": [
       {
@@ -113790,6 +113279,12 @@
     "github_request_issue": 1298,
     "homepage": "https://www.nasa.gov/osdr",
     "name": "NASA Open Science Data Repository Study",
+    "owners": [
+      {
+        "name": "National Aeronautics and Space Administration",
+        "ror": "027ka1x80"
+      }
+    ],
     "pattern": "^OSD-\\d+$",
     "publications": [
       {
@@ -113825,6 +113320,12 @@
     "github_request_issue": 1298,
     "homepage": "https://www.nasa.gov/osdr",
     "name": "NASA Open Science Data Repository Subject",
+    "owners": [
+      {
+        "name": "National Aeronautics and Space Administration",
+        "ror": "027ka1x80"
+      }
+    ],
     "pattern": "^\\d+$",
     "publications": [
       {
@@ -114285,6 +113786,12 @@
       "bartoc": "18947"
     },
     "name": "Nasjonalbibliotekets vokabulartjeneste",
+    "owners": [
+      {
+        "name": "The National Library of Norway",
+        "ror": "032saz229"
+      }
+    ],
     "uri_format": "https://www.nb.no/nbvok/$1"
   },
   "ncats.bioplanet": {
@@ -114498,10 +114005,11 @@
   },
   "ncbi.resource": {
     "contact": {
-      "email": "gb-admin@ncbi.nlm.nih.gov",
-      "github": "ghost",
-      "name": "GenBank Support"
+      "email": "mizrachi@ncbi.nlm.nih.gov",
+      "name": "Ilene Karsch-Mizrachi",
+      "orcid": "0000-0002-0289-7101"
     },
+    "contact_group_email": "gb-admin@ncbi.nlm.nih.gov",
     "contributor": {
       "email": "cthoyt@gmail.com",
       "github": "cthoyt",
@@ -116208,12 +115716,6 @@
     }
   },
   "nddf": {
-    "aberowl": {
-      "description": "National Drug Data File Plus Source Vocabulary",
-      "name": "National Drug Data File",
-      "prefix": "NDDF",
-      "version": "2016AB"
-    },
     "biolink": {
       "prefix": "NDDF",
       "uri_format": "http://purl.bioontology.org/ontology/NDDF/$1"
@@ -116229,6 +115731,11 @@
       "prefix": "NDDF",
       "version": "2025_08_13"
     },
+    "contact": {
+      "email": "jsuko@fdbhealth.com",
+      "name": "Julie Suko"
+    },
+    "contact_group_email": "cs@firstdatabank.com",
     "contributor": {
       "email": "cthoyt@gmail.com",
       "github": "cthoyt",
@@ -116265,7 +115772,6 @@
     "homepage": "https://www.nlm.nih.gov/research/umls/sourcereleasedocs/current/NDDF",
     "license": "https://uts.nlm.nih.gov/uts/assets/LicenseAgreement.pdf",
     "mappings": {
-      "aberowl": "NDDF",
       "biolink": "NDDF",
       "bioportal": "NDDF",
       "fairsharing": "FAIRsharing.8qcbs0",
@@ -116397,13 +115903,6 @@
     "uri_format": "https://www.ndexbio.org/viewer/networks/$1"
   },
   "ndfrt": {
-    "aberowl": {
-      "description": "National Drug File - Reference Terminology Public Inferred Edition, 2008_03_11",
-      "homepage": "http://www.va.gov",
-      "name": "National Drug File - Reference Terminology",
-      "prefix": "NDFRT",
-      "version": "2016AB"
-    },
     "bioportal": {
       "contact": {
         "email": "michael.lincoln@va.gov",
@@ -116465,7 +115964,6 @@
     },
     "homepage": "https://www.nlm.nih.gov/research/umls/sourcereleasedocs/current/NDFRT",
     "mappings": {
-      "aberowl": "NDFRT",
       "bioportal": "NDFRT",
       "fairsharing": "FAIRsharing.901nkj",
       "hl7": "6.209",
@@ -116700,6 +116198,7 @@
       "bioportal": "NEMO",
       "fairsharing": "FAIRsharing.n66krd"
     },
+    "pattern": "^\\d{7}$",
     "publications": [
       {
         "doi": "10.4056/sigs.2025347",
@@ -117436,10 +116935,18 @@
     "uri_format": "https://www.nextprot.org/term/FA-$1"
   },
   "nexus": {
+    "bartoc": {
+      "description": "Machine-readable ontology of the NeXus definitions.“\n\nThe NeXusOntology is licensed under the GNU Free Documentation License 1.3 (GFDL-1.3).",
+      "homepage": "https://github.com/nexusformat/NeXusOntology",
+      "name": "NeXusOntology",
+      "prefix": "21162"
+    },
+    "description": "NeXus is a common data format for neutron, x-ray, and muon science. It is being developed as an international standard by scientists and programmers representing major scientific facilities in order to facilitate greater cooperation in the analysis and visualization of neutron, x-ray, and muon data. NeXusOntology is an ontology representation of the NeXus definitions. [adapted from repository README]",
     "download_owl": "https://github.com/nexusformat/NeXusOntology/raw/refs/heads/main/ontology/NeXusOntology.owl",
     "example": "version",
     "license": "GFDL-1.3",
     "mappings": {
+      "bartoc": "21162",
       "tib": "nexus"
     },
     "tib": {
@@ -118001,6 +117508,7 @@
       "wikidata": "P2065"
     },
     "name": "NIAID ChemDB",
+    "pattern": "^\\d{6}$",
     "wikidata": {
       "description": "ID in NIAID ChemDB",
       "examples": [
@@ -118197,19 +117705,6 @@
     "part_of_database": "nif"
   },
   "nif.std": {
-    "aberowl": {
-      "artifacts": [
-        {
-          "type": "owl",
-          "url": "http://aber-owl.net/media/ontologies/NIFSTD/23/nifstd.owl"
-        }
-      ],
-      "description": "NIF Standard ontology (NIFSTD) is a core component of Neuroscience Information Framework (NIF) project (http://neuinfo.org), a semantically enhanced portal for accessing and integrating neuroscience data, tools and information. NIFSTD includes a set of modular ontologies that provide a comprehensive collection of terminologies to describe neuroscience data and resources.",
-      "homepage": "http://ontology.neuinfo.org",
-      "name": "Neuroscience Information Framework (NIF) Standard Ontology",
-      "prefix": "NIFSTD",
-      "version": "3.0 - October 16, 2017"
-    },
     "bioportal": {
       "contact": {
         "email": "tgbugs@gmail.com",
@@ -118275,7 +117770,6 @@
     "homepage": "https://github.com/SciCrunch/NIF-Ontology",
     "license": "CC-BY-4.0",
     "mappings": {
-      "aberowl": "NIFSTD",
       "bioportal": "NIFSTD",
       "fairsharing": "FAIRsharing.vgw1m6"
     },
@@ -118328,12 +117822,13 @@
   },
   "nihreporter.project": {
     "contact": {
-      "email": "report@mail.nih.gov",
-      "name": "NIH Reporter Helpdesk"
+      "email": "haugenb@mail.nih.gov",
+      "name": "Brian Haugen",
+      "orcid": "0000-0001-6634-8147"
     },
     "contact_group_email": "report@mail.nih.gov",
     "contributor": {
-      "email": "benjamin_gyori@hms.harvard.edu",
+      "email": "b.gyori@northeastern.edu",
       "github": "bgyori",
       "name": "Benjamin M. Gyori",
       "orcid": "0000-0001-9439-5346"
@@ -119153,19 +118648,6 @@
     }
   },
   "nmr": {
-    "aberowl": {
-      "artifacts": [
-        {
-          "type": "owl",
-          "url": "http://aber-owl.net/media/ontologies/NMR/12/nmr.owl"
-        }
-      ],
-      "description": "This is the new msi-sanctioned nmr CV, created within the COSMOS EU project, to support the nmrML data standard for nuclear magnetic resonance data in metabolomics with meaningful raw data descriptors.",
-      "homepage": "http://nmrml.org/cv/",
-      "name": "NMR-Controlled Vocabulary",
-      "prefix": "NMR",
-      "version": "1.1.0"
-    },
     "biocontext": {
       "prefix": "NMR",
       "uri_format": "http://purl.obolibrary.org/obo/NMR_$1"
@@ -119242,7 +118724,6 @@
     },
     "license": "CC-PDM-1.0",
     "mappings": {
-      "aberowl": "NMR",
       "biocontext": "NMR",
       "bioportal": "NMR",
       "fairsharing": "FAIRsharing.xm7tkj",
@@ -122117,19 +121598,6 @@
     "uri_format": "http://purl.obolibrary.org/obo/$1"
   },
   "oboe": {
-    "aberowl": {
-      "artifacts": [
-        {
-          "type": "owl",
-          "url": "http://aber-owl.net/media/ontologies/OBOE/4/oboe.owl"
-        }
-      ],
-      "description": "The Extensible Observation Ontology (OBOE) is a formal ontology for capturing the semantics of scientific observation and measurement. The ontology supports researchers to add detailed semantic annotations to scientific data, thereby clarifying the inherent meaning of scientific observations. The main concepts in OBOE include: - Observation: an event in which one or more measurements are taken - Measurement: the measured value of a property for a specific object or phenomenon (e.g., 3.2) - Entity: an object or phenomenon on which measurements are made (e.g., Quercus rubrum) - Characteristic: the property being measured (e.g., VolumetricDensity) - Standard: units and controlled vocabularies for interpreting measured values (e.g., g/cm^3) - Protocol: the procedures followed to obtain measurements (e.g., DensityProtocol2014) OBOE can characterize the context of an observation (e.g., space and time), as well as dependencies such as nested experimental observations. It includes an extensive set of unit definitions (e.g., grams of carbon per liter of seawater), and can facilitate automatic unit conversions (e.g., pounds to kilograms). OBOE can be easily extended to create Entities and Characteristics for specific research domains, making it both broadly applicable and highly customizable. OBOE is being used to improve data interpretation, facilitate reuse, and create precise and effective systems for data search and discovery.",
-      "homepage": "https://github.com/NCEAS/oboe",
-      "name": "The Extensible Observation Ontology",
-      "prefix": "OBOE",
-      "version": "Version 1.2"
-    },
     "agroportal": {
       "contact": {
         "email": "joshua.madin@mq.edu.au",
@@ -122252,7 +121720,6 @@
     "homepage": "https://github.com/NCEAS/oboe",
     "license": "CC-BY-3.0",
     "mappings": {
-      "aberowl": "OBOE",
       "agroportal": "OBOE",
       "biodivportal": "OBOE",
       "bioportal": "OBOE",
@@ -123135,6 +122602,7 @@
   "oecd.template": {
     "comment": "The identifiers have two numbers separated by a dot. The first one corresponds to the template number which can be found on the homepage. The second number referes to the row within the corresponding spreadsheet.",
     "contributor": {
+      "email": "b.gyori@northeastern.edu",
       "github": "bgyori",
       "name": "Benjamin M. Gyori",
       "orcid": "0000-0001-9439-5346"
@@ -123411,18 +122879,6 @@
     }
   },
   "ogg": {
-    "aberowl": {
-      "artifacts": [
-        {
-          "type": "owl",
-          "url": "http://aber-owl.net/media/ontologies/OGG/4/ogg.owl"
-        }
-      ],
-      "description": "A formal ontology of genes and genomes of biological organisms.",
-      "homepage": "https://bitbucket.org/hegroup/ogg",
-      "name": "The Ontology of Genes and Genomes",
-      "prefix": "OGG"
-    },
     "biocontext": {
       "prefix": "OGG",
       "uri_format": "http://purl.obolibrary.org/obo/OGG_$1"
@@ -123466,12 +122922,10 @@
     },
     "license": "CC-BY-3.0",
     "mappings": {
-      "aberowl": "OGG",
       "biocontext": "OGG",
       "bioportal": "OGG",
       "fairsharing": "FAIRsharing.zmx7nn",
       "obofoundry": "ogg",
-      "ols": "ogg",
       "ontobee": "OGG",
       "wikidata.entity": "Q81661736"
     },
@@ -123503,20 +122957,6 @@
       "uri_format": "http://purl.obolibrary.org/obo/OGG_$1",
       "uri_format_rdf": "http://purl.obolibrary.org/obo/OGG_$1"
     },
-    "ols": {
-      "artifacts": [
-        {
-          "type": "owl",
-          "url": "http://purl.obolibrary.org/obo/ogg.owl"
-        }
-      ],
-      "description": "OGG is a biological ontology in the area of genes and genomes. OGG uses the Basic Formal Ontology (BFO) as its upper level ontology. This OGG document contains the genes and genomes of a list of selected organisms, including human, two viruses (HIV and influenza virus), and bacteria (B. melitensis strain 16M, E. coli strain K-12 substrain MG1655, M. tuberculosis strain H37Rv, and P. aeruginosa strain PAO1). More OGG information for other organisms (e.g., mouse, zebrafish, fruit fly, yeast, etc.) may be found in other OGG subsets. ",
-      "homepage": "https://bitbucket.org/hegroup/ogg",
-      "name": "OGG: Ontology of Genes and Genomes",
-      "prefix": "ogg",
-      "tracker": "https://bitbucket.org/hegroup/ogg/issues/",
-      "version": "1.0.59"
-    },
     "ontobee": {
       "keywords": [
         "obo",
@@ -123529,19 +122969,6 @@
     "uri_format": "http://purl.obolibrary.org/obo/OGG_$1"
   },
   "ogi": {
-    "aberowl": {
-      "artifacts": [
-        {
-          "type": "owl",
-          "url": "http://aber-owl.net/media/ontologies/OGI/18/ogi.owl"
-        }
-      ],
-      "description": "Using BFO as its framwork, OGI formalized the genomic element by defining an upper class 'genetic interval'. The definition of 'genetic interval' is \"the spatial continuous physical entity which contains ordered genomic sets(DNA, RNA, Allele, Marker,etc.) between and including two points (Nucleic_Acid_Base_Residue) on a chromosome or RNA molecule which must have a liner primary sequence sturcture.",
-      "homepage": "https://code.google.com/p/ontology-for-genetic-interval/",
-      "name": "Ontology for genetic interval",
-      "prefix": "OGI",
-      "version": "2.0"
-    },
     "biocontext": {
       "prefix": "OGI",
       "uri_format": "http://purl.obolibrary.org/obo/OGI_$1"
@@ -123561,7 +122988,6 @@
     "example": "0000019",
     "homepage": "https://code.google.com/archive/p/ontology-for-genetic-interval",
     "mappings": {
-      "aberowl": "OGI",
       "biocontext": "OGI",
       "bioportal": "OGI",
       "obofoundry": "ogi",
@@ -123792,18 +123218,6 @@
     "uri_format": "http://purl.obolibrary.org/obo/OGMS_$1"
   },
   "ogsf": {
-    "aberowl": {
-      "artifacts": [
-        {
-          "type": "owl",
-          "url": "http://aber-owl.net/media/ontologies/OGSF/11/ogsf.owl"
-        }
-      ],
-      "description": "An application ontology to represent genetic susceptibility to a specific disease, adverse event, or a pathological process.",
-      "homepage": "none",
-      "name": "Ontology of Genetic Susceptibility Factor",
-      "prefix": "OGSF"
-    },
     "biocontext": {
       "prefix": "OGSF",
       "uri_format": "http://purl.obolibrary.org/obo/OGSF_$1"
@@ -123862,7 +123276,6 @@
     },
     "license": "CC-BY-3.0",
     "mappings": {
-      "aberowl": "OGSF",
       "biocontext": "OGSF",
       "bioportal": "OGSF",
       "fairsharing": "FAIRsharing.egv2cz",
@@ -124592,18 +124005,6 @@
     }
   },
   "olatdv": {
-    "aberowl": {
-      "artifacts": [
-        {
-          "type": "owl",
-          "url": "http://aber-owl.net/media/ontologies/OLATDV/9/olatdv.owl"
-        }
-      ],
-      "description": "Life cycle stages for Medaka",
-      "homepage": "https://github.com/obophenotype/developmental-stage-ontologies/wiki/OlatDv",
-      "name": "Medaka Developmental Stages",
-      "prefix": "OLATDV"
-    },
     "biocontext": {
       "prefix": "OLATDV",
       "uri_format": "http://purl.obolibrary.org/obo/OLATDV_$1"
@@ -124646,7 +124047,6 @@
     },
     "license": "CC-BY-3.0",
     "mappings": {
-      "aberowl": "OLATDV",
       "biocontext": "OLATDV",
       "bioportal": "OLATDV",
       "fairsharing": "FAIRsharing.c86z66",
@@ -124780,6 +124180,12 @@
       "fairsharing": "FAIRsharing.Mkl9RR"
     },
     "name": "EBI Ontology Lookup Service",
+    "owners": [
+      {
+        "name": "European Bioinformatics Institute",
+        "ror": "02catss52"
+      }
+    ],
     "uri_format": "https://www.ebi.ac.uk/ols4/ontologies/$1"
   },
   "om": {
@@ -125298,18 +124704,6 @@
     "uri_format": "https://omia.org/variant/omia.variant:$1"
   },
   "omiabis": {
-    "aberowl": {
-      "artifacts": [
-        {
-          "type": "owl",
-          "url": "http://aber-owl.net/media/ontologies/OMIABIS/2/omiabis.owl"
-        }
-      ],
-      "description": "An ontological version of MIABIS (Minimum Information About BIobank data Sharing)",
-      "homepage": "https://github.com/OMIABIS/omiabis-dev",
-      "name": "Ontologized MIABIS",
-      "prefix": "OMIABIS"
-    },
     "biocontext": {
       "prefix": "OMIABIS",
       "uri_format": "http://purl.obolibrary.org/obo/OMIABIS_$1"
@@ -125336,7 +124730,6 @@
     },
     "license": "CC-BY-3.0",
     "mappings": {
-      "aberowl": "OMIABIS",
       "biocontext": "OMIABIS",
       "fairsharing": "FAIRsharing.7e0974",
       "obofoundry": "omiabis",
@@ -127743,7 +127136,7 @@
     },
     "contributor_extras": [
       {
-        "email": "benjamin_gyori@hms.harvard.edu",
+        "email": "b.gyori@northeastern.edu",
         "github": "bgyori",
         "name": "Benjamin M. Gyori",
         "orcid": "0000-0001-9439-5346"
@@ -128938,10 +128331,6 @@
       "prefix": "Orphanet",
       "uri_format": "http://www.orpha.net/ORDO/Orphanet_$1"
     },
-    "biolink": {
-      "prefix": "orphanet",
-      "uri_format": "http://www.orpha.net/ORDO/Orphanet_$1"
-    },
     "contact": {
       "email": "marc.hanauer@inserm.fr",
       "github": "Orphanet",
@@ -128984,7 +128373,6 @@
     "logo": "https://www.orpha.net/build/images/logo-orphanet.png",
     "mappings": {
       "biocontext": "Orphanet",
-      "biolink": "orphanet",
       "integbio": "nbdc01422",
       "miriam": "orphanet",
       "n2t": "orphanet",
@@ -130635,7 +130023,7 @@
       },
       "name": "The Pain Ontology",
       "prefix": "PAIN",
-      "version": "2026-08-13"
+      "version": "2026-09-25"
     },
     "example": "0000036",
     "fairsharing": {
@@ -130730,7 +130118,8 @@
       ],
       "name": "The Pain Ontology",
       "prefix": "PAIN"
-    }
+    },
+    "pattern": "^\\d{7}$"
   },
   "paleodb": {
     "biocontext": {
@@ -133226,12 +132615,6 @@
         "PDBj"
       ]
     },
-    "go": {
-      "homepage": "https://www.rcsb.org/pdb/",
-      "name": "Protein Data Bank",
-      "prefix": "PDB",
-      "uri_format": "https://www.rcsb.org/structure/$1"
-    },
     "integbio": {
       "description": "PDBe is a database of protein structures. The database is the European resource for the Protein Databank and contains molecular structure coordinates and visualizations of thousands of proteins. Users can search for entries, browse by several curated categories, submit structures, and download coordinate data.",
       "homepage": "http://www.ebi.ac.uk/pdbe/",
@@ -133264,7 +132647,6 @@
       "biocontext": "PDB",
       "edam": "1127",
       "fairsharing": "FAIRsharing.rs2815",
-      "go": "PDB",
       "integbio": "nbdc00613",
       "miriam": "pdb",
       "n2t": "pdb",
@@ -134033,7 +133415,7 @@
   },
   "pdc.study": {
     "contributor": {
-      "email": "benjamin_gyori@hms.harvard.edu",
+      "email": "b.gyori@northeastern.edu",
       "github": "bgyori",
       "name": "Benjamin M. Gyori",
       "orcid": "0000-0001-9439-5346"
@@ -134194,18 +133576,6 @@
     "uri_format": "http://purl.obolibrary.org/obo/PDRO_$1"
   },
   "pdumdv": {
-    "aberowl": {
-      "artifacts": [
-        {
-          "type": "owl",
-          "url": "http://aber-owl.net/media/ontologies/PDUMDV/10/pdumdv.owl"
-        }
-      ],
-      "description": "Life cycle stages for Platynereis dumerilii",
-      "homepage": "https://github.com/obophenotype/developmental-stage-ontologies/wiki/PdumDv",
-      "name": "Platynereis Developmental Stages",
-      "prefix": "PDUMDV"
-    },
     "biocontext": {
       "prefix": "PDUMDV",
       "uri_format": "http://purl.obolibrary.org/obo/PDUMDV_$1"
@@ -134238,7 +133608,6 @@
     },
     "license": "CC-BY-3.0",
     "mappings": {
-      "aberowl": "PDUMDV",
       "biocontext": "PDUMDV",
       "bioportal": "PDUMDV",
       "fairsharing": "FAIRsharing.493qns",
@@ -137384,7 +136753,7 @@
   "phosphosite.sitegroup": {
     "comment": "Potentially could use a URI format like https://www.phosphosite.org/siteGroupAction.action?protOrg=1156&id=$1, but it's not obvious what the protOrg does.",
     "contributor": {
-      "email": "benjamin_gyori@hms.harvard.edu",
+      "email": "b.gyori@northeastern.edu",
       "github": "bgyori",
       "name": "Benjamin M. Gyori",
       "orcid": "0000-0001-9439-5346"
@@ -139183,7 +138552,7 @@
     ],
     "re3data": {
       "description": "PlasmoDB is a genome database for the genus Plasmodium, a set of single-celled eukaryotic pathogens that cause human and animal diseases, including malaria.",
-      "homepage": "https://plasmodb.org/plasmo/app/",
+      "homepage": "https://plasmodb.org/plasmo/app",
       "name": "PlasmoDB",
       "prefix": "r3d100011569",
       "prefix_synonyms": [
@@ -142361,7 +141730,8 @@
       ],
       "name": "Precision Fermentation Ontology",
       "prefix": "PREFER"
-    }
+    },
+    "pattern": "^\\d{7}$"
   },
   "prefixcc": {
     "contact": {
@@ -142465,10 +141835,6 @@
     "uri_format": "http://www.loc.gov/premis/rdf/v3/$1"
   },
   "pride": {
-    "aberowl": {
-      "name": "PRIDE Controlled Vocabulary",
-      "prefix": "PRIDE"
-    },
     "biocontext": {
       "prefix": "PRIDE",
       "uri_format": "http://identifiers.org/pride/$1"
@@ -142504,7 +141870,6 @@
     },
     "logo": "https://www.proteomexchange.org/pride_logo.png",
     "mappings": {
-      "aberowl": "PRIDE",
       "biocontext": "PRIDE",
       "integbio": "nbdc00312",
       "miriam": "pride",
@@ -142559,13 +141924,13 @@
       ],
       "description": "Proteomics Identification Database Ontology, terms describing proteomics data and experimental metadata",
       "extras": {
-        "version.iri": "http://purl.obolibrary.org/obo/pride/releases/2026-08-13/pride.owl"
+        "version.iri": "http://purl.obolibrary.org/obo/pride/releases/2026-09-22/pride.owl"
       },
       "homepage": "https://github.com/PRIDE-Utilities/pride-ontology",
       "name": "Proteomics Identification Database Ontology",
       "prefix": "pride",
       "uri_format": "http://purl.obolibrary.org/obo/PRIDE_$1",
-      "version": "2026-08-13"
+      "version": "2026-09-22"
     },
     "part_of_database": "pride",
     "pattern": "^\\d{7}$",
@@ -143587,19 +142952,6 @@
     }
   },
   "propreo": {
-    "aberowl": {
-      "artifacts": [
-        {
-          "type": "owl",
-          "url": "http://aber-owl.net/media/ontologies/PROPREO/2/propreo.owl"
-        }
-      ],
-      "description": "A comprehensive proteomics data and process provenance ontology.",
-      "homepage": "http://knoesis.wright.edu/research/semsci/application_domain/sem_life_sci/glycomics/resources/ontologies/propreo/",
-      "name": "Proteomics Data and Process Provenance Ontology",
-      "prefix": "PROPREO",
-      "version": "1.1"
-    },
     "biocontext": {
       "prefix": "PROPREO",
       "uri_format": "http://purl.obolibrary.org/obo/PROPREO_$1"
@@ -143639,7 +142991,6 @@
       ]
     },
     "mappings": {
-      "aberowl": "PROPREO",
       "biocontext": "PROPREO",
       "bioportal": "PROPREO",
       "fairsharing": "FAIRsharing.sp7hvb",
@@ -144511,19 +143862,6 @@
     ]
   },
   "prov": {
-    "aberowl": {
-      "artifacts": [
-        {
-          "type": "owl",
-          "url": "http://aber-owl.net/media/ontologies/PROVO/124/provo.owl"
-        }
-      ],
-      "description": "The PROV Ontology (PROV-O) expresses the PROV Data Model using the OWL2 Web Ontology Language (OWL2). It provides a set of classes, properties, and restrictions that can be used to represent and interchange provenance information generated in different systems and under different contexts. It can also be specialized to create new classes and properties to model provenance information for different applications and domains.",
-      "homepage": "http://www.w3.org/TR/prov-o/",
-      "name": "Provenance Ontology",
-      "prefix": "PROVO",
-      "version": "Recommendation version 2013-04-30"
-    },
     "biocontext": {
       "prefix": "prov",
       "uri_format": "http://www.w3.org/ns/prov#$1"
@@ -144594,7 +143932,6 @@
       "uri_format": "http://www.w3.org/ns/prov#$1"
     },
     "mappings": {
-      "aberowl": "PROVO",
       "biocontext": "prov",
       "biodivportal": "PROV-O",
       "biolink": "prov",
@@ -147747,7 +147084,7 @@
           "doi": "10.1080/09553002.2023.2173823"
         }
       ],
-      "version": "2026-07-16"
+      "version": "2026-09-23"
     },
     "example": "00000105",
     "example_extras": [
@@ -147816,13 +147153,13 @@
       ],
       "description": "RBO is an ontology for the effects of radiation on biota in terrestrial and space environments.",
       "extras": {
-        "version.iri": "http://purl.obolibrary.org/obo/rbo/releases/2026-07-16/rbo.owl"
+        "version.iri": "http://purl.obolibrary.org/obo/rbo/releases/2026-09-23/rbo.owl"
       },
       "homepage": "https://github.com/Radiobiology-Informatics-Consortium/RBO",
       "name": "Radiation Biology Ontology",
       "prefix": "rbo",
       "tracker": "https://github.com/Radiobiology-Informatics-Consortium/RBO/issues",
-      "version": "2026-07-16"
+      "version": "2026-09-23"
     },
     "ontobee": {
       "keywords": [
@@ -148017,18 +147354,6 @@
     }
   },
   "rdfs": {
-    "aberowl": {
-      "artifacts": [
-        {
-          "type": "owl",
-          "url": "http://aber-owl.net/media/ontologies/RDFS/4/rdfs.owl"
-        }
-      ],
-      "description": "RDF Schema provides a data-modelling vocabulary for RDF data",
-      "name": "The RDF Schema vocabulary",
-      "prefix": "RDFS",
-      "version": "1.1"
-    },
     "biocontext": {
       "prefix": "rdfs",
       "uri_format": "http://www.w3.org/2000/01/rdf-schema#$1"
@@ -148070,7 +147395,6 @@
       "uri_format": "http://www.w3.org/2000/01/rdf-schema#$1"
     },
     "mappings": {
-      "aberowl": "RDFS",
       "biocontext": "rdfs",
       "bioportal": "RDFS",
       "lov": "rdfs",
@@ -149575,17 +148899,6 @@
     }
   },
   "rex": {
-    "aberowl": {
-      "artifacts": [
-        {
-          "type": "owl",
-          "url": "http://aber-owl.net/media/ontologies/REX/1/rex.owl"
-        }
-      ],
-      "description": "An ontology of physico-chemical processes, i.e. physico-chemical changes occurring in course of time.",
-      "name": "Physico-chemical process",
-      "prefix": "REX"
-    },
     "biocontext": {
       "prefix": "REX",
       "uri_format": "http://purl.obolibrary.org/obo/REX_$1"
@@ -149637,7 +148950,6 @@
     "homepage": "https://www.ebi.ac.uk/chebi",
     "license": "CC-BY-4.0",
     "mappings": {
-      "aberowl": "REX",
       "biocontext": "REX",
       "bioportal": "REX",
       "fairsharing": "FAIRsharing.g0a7s0",
@@ -151126,7 +150438,7 @@
       "orcid": "0000-0002-2121-365X"
     },
     "contributor": {
-      "email": "benjamin_gyori@hms.harvard.edu",
+      "email": "b.gyori@northeastern.edu",
       "github": "bgyori",
       "name": "Benjamin M. Gyori",
       "orcid": "0000-0001-9439-5346"
@@ -151927,7 +151239,7 @@
       "orcid": "0000-0002-5320-2023"
     },
     "contributor": {
-      "email": "benjamin_gyori@hms.harvard.edu",
+      "email": "b.gyori@northeastern.edu",
       "github": "bgyori",
       "name": "Benjamin M. Gyori",
       "orcid": "0000-0001-9439-5346"
@@ -151974,18 +151286,8 @@
       "prefix": "RNAMODS",
       "uri_format": "http://identifiers.org/rnamods/$1"
     },
-    "go": {
-      "homepage": "https://mods.rna.albany.edu/",
-      "name": "RNA Modification Database",
-      "prefix": "RNAmods",
-      "prefix_synonyms": [
-        "RNAMDB"
-      ],
-      "uri_format": "https://mods.rna.albany.edu/mods/modifications/view/$1"
-    },
     "mappings": {
       "biocontext": "RNAMODS",
-      "go": "RNAmods",
       "miriam": "rnamods",
       "n2t": "rnamods",
       "prefixcommons": "rnamods"
@@ -152049,19 +151351,6 @@
     }
   },
   "rnao": {
-    "aberowl": {
-      "artifacts": [
-        {
-          "type": "obo",
-          "url": "http://aber-owl.net/media/ontologies/RNAO/4/rnao.obo"
-        }
-      ],
-      "description": "The central aim of the RNA Ontology Consortium (ROC) is to develop an ontology to capture all aspects of RNA - from primary sequence to alignments, secondary and tertiary structure from base pairing and base stacking to sophisticated motifs.",
-      "homepage": "https://github.com/BGSU-RNA/rnao",
-      "name": "RNA ontology",
-      "prefix": "RNAO",
-      "version": "r113"
-    },
     "biocontext": {
       "prefix": "RNAO",
       "uri_format": "http://purl.obolibrary.org/obo/RNAO_$1"
@@ -152117,7 +151406,6 @@
     },
     "license": "CC0-1.0",
     "mappings": {
-      "aberowl": "RNAO",
       "biocontext": "RNAO",
       "bioportal": "RNAO",
       "fairsharing": "FAIRsharing.kqt2h2",
@@ -154159,16 +153447,8 @@
       "name": "Ulrike Wittig",
       "orcid": "0000-0002-9077-5664"
     },
-    "go": {
-      "description": "The SABIO-RK (System for the Analysis of Biochemical Pathways - Reaction Kinetics) is a web-based application based on the SABIO relational database that contains information about biochemical reactions, their kinetic equations with their parameters, and the experimental conditions under which these parameters were measured.",
-      "homepage": "http://sabio.villa-bosch.de/",
-      "name": "SABIO Reaction Kinetics",
-      "prefix": "SABIO-RK",
-      "uri_format": "http://sabio.villa-bosch.de/reacdetails.jsp?reactid=$1"
-    },
     "mappings": {
       "biocontext": "SABIORK.KINETICRECORD",
-      "go": "SABIO-RK",
       "miriam": "sabiork.kineticrecord",
       "n2t": "sabiork.kineticrecord",
       "prefixcommons": "sabiork.kinetic"
@@ -154542,19 +153822,6 @@
     "uri_format": "https://purl.dataone.org/odo/SALMON_$1"
   },
   "sao": {
-    "aberowl": {
-      "artifacts": [
-        {
-          "type": "owl",
-          "url": "http://aber-owl.net/media/ontologies/SAO/2/sao.owl"
-        }
-      ],
-      "description": "SAO describes structures from the dimensional range encompassing cellular and subcellular structure, supracellular domains, and macromolecules.",
-      "homepage": "http://ccdb.ucsd.edu/SAO",
-      "name": "Subcellular Anatomy Ontology",
-      "prefix": "SAO",
-      "version": "Version 1.2"
-    },
     "biocontext": {
       "prefix": "SAO",
       "uri_format": "http://purl.obolibrary.org/obo/SAO_$1"
@@ -154592,7 +153859,6 @@
       ]
     },
     "mappings": {
-      "aberowl": "SAO",
       "biocontext": "SAO",
       "bioportal": "SAO",
       "fairsharing": "FAIRsharing.vhgehd",
@@ -155711,6 +154977,12 @@
       "name": "Systems Biology Ontology",
       "prefix": "SBO"
     },
+    "owners": [
+      {
+        "name": "European Bioinformatics Institute",
+        "ror": "02catss52"
+      }
+    ],
     "pattern": "^\\d{7}$",
     "prefixcommons": {
       "description": "The Systems Biology Ontology is a set of controlled vocabularies and ontologies tailored specifically for the kinds of problems being faced in Systems Biology, especially in the context of computational modelling.",
@@ -157768,19 +157040,6 @@
     }
   },
   "senso": {
-    "aberowl": {
-      "artifacts": [
-        {
-          "type": "owl",
-          "url": "http://aber-owl.net/media/ontologies/SENSO/1/senso.owl"
-        }
-      ],
-      "description": "The SENSO ontology is designed to provide classification terms for labeling sensitive data for data archival and sharing.",
-      "homepage": "https://github.com/DataONEorg/sem-prov-ontologies",
-      "name": "Sensitive Data Ontology",
-      "prefix": "SENSO",
-      "version": "Version 0.1.0"
-    },
     "bioportal": {
       "contact": {
         "email": "jones@nceas.ucsb.edu",
@@ -157802,7 +157061,6 @@
     "example": "00000003",
     "homepage": "https://github.com/DataONEorg/sem-prov-ontologies/tree/main/senso",
     "mappings": {
-      "aberowl": "SENSO",
       "bioportal": "SENSO"
     },
     "pattern": "^\\d+$",
@@ -157858,19 +157116,6 @@
     "uri_format": "http://dev.nemo.inf.ufes.br/seon/SEON.owl#$1"
   },
   "sep": {
-    "aberowl": {
-      "artifacts": [
-        {
-          "type": "obo",
-          "url": "http://aber-owl.net/media/ontologies/SEP/4/sep.obo"
-        }
-      ],
-      "description": "A structured controlled vocabulary for the annotation of sample processing and separation techniques in scientific experiments, such as, and including, gel electrophoresis, column chromatography, capillary electrophoresis, centrifugation and so on. Developed jointly by the HUPO Proteomics Standards Initiative and The Metabolomics Standards Initiative.",
-      "homepage": "http://psidev.info/index.php?q=node/312",
-      "name": "Sample Processing and Separation Techniques Ontology",
-      "prefix": "SEP",
-      "version": "1.070708"
-    },
     "biocontext": {
       "prefix": "SEP",
       "uri_format": "http://purl.obolibrary.org/obo/SEP_$1"
@@ -157905,7 +157150,6 @@
     },
     "homepage": "https://psidev.info/sepcv",
     "mappings": {
-      "aberowl": "SEP",
       "biocontext": "SEP",
       "bioportal": "SEP",
       "fairsharing": "FAIRsharing.jt4pzr",
@@ -159225,15 +158469,6 @@
         "SGN"
       ]
     },
-    "go": {
-      "homepage": "https://www.sgn.cornell.edu/",
-      "name": "Sol Genomics Network",
-      "prefix": "SGN",
-      "prefix_synonyms": [
-        "SGN_gene"
-      ],
-      "uri_format": "http://solgenomics.net/phenome/locus_display.pl?locus_id=$1"
-    },
     "integbio": {
       "description": "SGN is a database of genome and phenotype data for species in the Solanaceae and their close relatives. It provides genome maps and sequences, QTLs, RNA-seq, and microarray data. Users can use tools, such as BLAST, Browse for browsing genomes, expression and map data viewers, a locus community annotation system and a QTL analysis tools.",
       "homepage": "https://solgenomics.net",
@@ -159265,7 +158500,6 @@
     "mappings": {
       "biocontext": "SGN",
       "fairsharing": "FAIRsharing.3zqvaf",
-      "go": "SGN",
       "integbio": "nbdc02414",
       "miriam": "sgn",
       "n2t": "sgn",
@@ -159477,7 +158711,7 @@
       "orcid": "0000-0003-1710-8256"
     },
     "contributor": {
-      "email": "benjamin_gyori@hms.harvard.edu",
+      "email": "b.gyori@northeastern.edu",
       "github": "bgyori",
       "name": "Benjamin M. Gyori",
       "orcid": "0000-0001-9439-5346"
@@ -159518,7 +158752,7 @@
       "orcid": "0000-0003-1710-8256"
     },
     "contributor": {
-      "email": "benjamin_gyori@hms.harvard.edu",
+      "email": "b.gyori@northeastern.edu",
       "github": "bgyori",
       "name": "Benjamin M. Gyori",
       "orcid": "0000-0001-9439-5346"
@@ -159559,7 +158793,7 @@
       "orcid": "0000-0003-1710-8256"
     },
     "contributor": {
-      "email": "benjamin_gyori@hms.harvard.edu",
+      "email": "b.gyori@northeastern.edu",
       "github": "bgyori",
       "name": "Benjamin M. Gyori",
       "orcid": "0000-0001-9439-5346"
@@ -160034,18 +159268,6 @@
     "uri_format": "https://si-digital-framework.org/SI/units/$1"
   },
   "sibo": {
-    "aberowl": {
-      "artifacts": [
-        {
-          "type": "owl",
-          "url": "http://aber-owl.net/media/ontologies/SIBO/3/sibo.owl"
-        }
-      ],
-      "description": "Social Behavior in insects",
-      "homepage": "https://github.com/obophenotype/sibo",
-      "name": "Social Insect Behavior Ontology",
-      "prefix": "SIBO"
-    },
     "biocontext": {
       "prefix": "SIBO",
       "uri_format": "http://purl.obolibrary.org/obo/SIBO_$1"
@@ -160094,7 +159316,6 @@
     },
     "license": "CC-BY-3.0",
     "mappings": {
-      "aberowl": "SIBO",
       "biocontext": "SIBO",
       "bioportal": "SIBO",
       "ecoportal": "SIBO",
@@ -160272,6 +159493,12 @@
       "pathguide": "236"
     },
     "name": "Sigma Aldrich",
+    "owners": [
+      {
+        "name": "MilliporeSigma (United States)",
+        "ror": "04cyww122"
+      }
+    ],
     "pathguide": {
       "homepage": "http://www.sigmaaldrich.com/Area_of_Interest/Life_Science/Cell_Signaling/Scientific_Resources/Pathway_Slides___Charts.html",
       "name": "Cell Signalling Pathway Slides & Charts",
@@ -160569,7 +159796,7 @@
   "signor.relation": {
     "comment": "Currently, you can put a SIGNOR relation ID into the main page search box and it will resolve, but there is not currently a way to resolve them via a URL pattern",
     "contributor": {
-      "email": "benjamin_gyori@hms.harvard.edu",
+      "email": "b.gyori@northeastern.edu",
       "github": "bgyori",
       "name": "Benjamin M. Gyori",
       "orcid": "0000-0001-9439-5346"
@@ -160638,19 +159865,6 @@
     }
   },
   "sio": {
-    "aberowl": {
-      "artifacts": [
-        {
-          "type": "owl",
-          "url": "http://aber-owl.net/media/ontologies/SIO/95/sio.owl"
-        }
-      ],
-      "description": "The semanticscience integrated ontology (SIO) provides a simple, integrated upper level ontology (types, relations) for consistent knowledge representation across physical, processual and informational entities. It provides vocabulary for the Bio2RDF (http://bio2rdf.org) and SADI (http://sadiframework.org) projects., integrated ontology (types, relations) for objects, processes and their attributes. This project provides foundational support for the Bio2RDF (http://bio2rdf.org) and SADI (http://sadiframework.org) projects.  website: http://semanticscience.org email: sio-ontology@googlegroups.com mailing list: http://groups.google.com/group/sio-ontology",
-      "homepage": "http://sio.semanticscience.org",
-      "name": "Semanticscience Integrated Ontology",
-      "prefix": "SIO",
-      "version": "1.61"
-    },
     "agroportal": {
       "contact": {
         "email": "michel.dumontier@gmail.com",
@@ -160758,7 +159972,6 @@
       "uri_format": "http://semanticscience.org/resource/$1"
     },
     "mappings": {
-      "aberowl": "SIO",
       "agroportal": "SIO",
       "biocontext": "SIO",
       "biolink": "SIO",
@@ -161355,19 +160568,6 @@
     }
   },
   "skos": {
-    "aberowl": {
-      "artifacts": [
-        {
-          "type": "owl",
-          "url": "http://aber-owl.net/media/ontologies/skos/1/skos.owl"
-        }
-      ],
-      "description": "This file is imported by vivo-core-1.5.owl. It contains terms relating to concepts from the http://www.w3.org/2004/02/skos/core# namespace of the SKOS (Simple Knowledge Organization System) ontology that are included in the vivo ontology.",
-      "homepage": "http://sourceforge.net/apps/mediawiki/vivo/index.php?title=Ontology",
-      "name": "SKOS (concepts)",
-      "prefix": "skos",
-      "version": "1.5"
-    },
     "bartoc": {
       "homepage": "http://www.w3.org/2004/02/skos/core",
       "name": "Simple Knowledge Organization System",
@@ -161408,7 +160608,6 @@
       "uri_format": "http://www.w3.org/2004/02/skos/core#$1"
     },
     "mappings": {
-      "aberowl": "skos",
       "bartoc": "18274",
       "biocontext": "skos",
       "lov": "skos",
@@ -161887,7 +161086,8 @@
       ],
       "name": "Space Life Sciences Ontology",
       "prefix": "SLSO"
-    }
+    },
+    "pattern": "^\\d{7}$"
   },
   "smart": {
     "biocontext": {
@@ -162873,13 +162073,6 @@
     "uri_format": "https://bioinfo-scottgroup.med.usherbrooke.ca/snoDB/detailed_view/$1"
   },
   "snomedct": {
-    "aberowl": {
-      "description": "SNOMED Clinical Terms",
-      "homepage": "http://www.snomed.org",
-      "name": "SNOMED CT",
-      "prefix": "SNOMEDCT",
-      "version": "2016AB"
-    },
     "bartoc": {
       "homepage": "https://www.snomed.org/",
       "name": "Systematized Nomenclature of Human and Veterinary Medicine Clinical Termns",
@@ -162960,7 +162153,6 @@
     },
     "license": "https://uts.nlm.nih.gov/uts/assets/LicenseAgreement.pdf",
     "mappings": {
-      "aberowl": "SNOMEDCT",
       "bartoc": "20686",
       "biocontext": "SNOMEDCT",
       "biolink": "SNOMEDCT",
@@ -163583,19 +162775,6 @@
     }
   },
   "sopharm": {
-    "aberowl": {
-      "artifacts": [
-        {
-          "type": "owl",
-          "url": "http://aber-owl.net/media/ontologies/SOPHARM/18/sopharm.owl"
-        }
-      ],
-      "description": "SO-Pharm (Suggested Ontology for Pharmacogenomics) is a domain ontology implemented in OWL-DL, which proposes a formal description of pharmacogenomic knowledge. SO-Pharm articulates different ontologies that represent complementary sub-domains of pharmacogenomics, i.e. related to genotype, phenotype, drugs, and clinical trials. SO-Pharm enables to represent pharmacogenomic relationships between a drug, a genomic variation and a phenotype trait. In addition, it enables to represent patient and more largely panel included in trials, and populations. SO-Pharm enables the representation of measured items on this patients such as results from the observation of a phenotype trait or of genomic variations. SO-Pharm supports knowledge about pharmacogenomic hypothesis, case study, and investigations in pharmacogenomics. SO-Pharm is designed to facilitate data integration and knowledge discovery in pharmacogenomics. In addition it provides a consistent articulation of ontologies of pharmacogenomic sub-domains.",
-      "homepage": "https://members.loria.fr/ACoulet/files/sopharm2.0_description.php",
-      "name": "Suggested Ontology for Pharmacogenomics",
-      "prefix": "SOPHARM",
-      "version": "The new release (March 02, 2017) 2.2 includes concept and properties labels in French.\nImports have been abandoned in favor of simple references to distant URI"
-    },
     "biocontext": {
       "prefix": "SOPHARM",
       "uri_format": "http://purl.obolibrary.org/obo/SOPHARM_$1"
@@ -163650,7 +162829,6 @@
       ]
     },
     "mappings": {
-      "aberowl": "SOPHARM",
       "biocontext": "SOPHARM",
       "bioportal": "SOPHARM",
       "fairsharing": "FAIRsharing.nttge3",
@@ -164468,6 +163646,12 @@
     "homepage": "https://www.sphn.ch",
     "license": "CC-BY-4.0",
     "name": "Swiss Personalized Health Network Schema",
+    "owners": [
+      {
+        "name": "Swiss Personalized Health Network (SPHN)",
+        "ror": "050zyz368"
+      }
+    ],
     "pattern": "^\\S+$",
     "repository": "https://git.dcc.sib.swiss/sphn-semantic-framework/sphn-ontology",
     "reviewer": {
@@ -165343,7 +164527,7 @@
         }
       ],
       "repository": "https://github.com/w3c-cg/sstim",
-      "version": "0.17.0"
+      "version": "0.18.0"
     },
     "contact": {
       "email": "renato.fabbri@gmail.com",
@@ -167152,18 +166336,6 @@
     ]
   },
   "sugarbind": {
-    "aberowl": {
-      "artifacts": [
-        {
-          "type": "owl",
-          "url": "http://aber-owl.net/media/ontologies/SUGARBIND/1/sugarbind.owl"
-        }
-      ],
-      "description": "Ontology for representing glycan and pathogen binding interaction data in RDF. Many of the terms are based on the data originally contained in the SugarBind database.",
-      "name": "SugarBind",
-      "prefix": "SUGARBIND",
-      "version": "1.0.0"
-    },
     "biocontext": {
       "prefix": "SUGARBIND",
       "uri_format": "http://identifiers.org/sugarbind/$1"
@@ -167241,7 +166413,6 @@
       }
     },
     "mappings": {
-      "aberowl": "SUGARBIND",
       "biocontext": "SUGARBIND",
       "bioportal": "SUGARBIND",
       "fairsharing": "FAIRsharing.d064y6",
@@ -167771,19 +166942,6 @@
     "repository": "https://github.com/pav-ontology/swan-ontology"
   },
   "sweet": {
-    "aberowl": {
-      "artifacts": [
-        {
-          "type": "owl",
-          "url": "http://aber-owl.net/media/ontologies/SWEET/2/sweet.owl"
-        }
-      ],
-      "description": "The Semantic Web for Earth and Environmental Terminology is a mature foundational ontology that contains over 6000 concepts organized in 200 ontologies represented in OWL. Top level concepts include Representation (math, space, science, time, data), Realm (Ocean, Land Surface, Terrestrial Hydroshere, Atmosphere, etc.), Phenomena (macro-scale ecological and physical), Processes (micro-scale physical, biological, chemical, and mathematical), Human Activities (Decision, Commerce, Jurisdiction, Environmental, Research). Originally developed by NASA Jet Propulsion Labs under Rob Raskin, SWEET is now officially under the governance of the ESIP foundation.",
-      "homepage": "https://github.com/ESIPFed/sweet/blob/master/README.md",
-      "name": "Semantic Web for Earth and Environment Technology Ontology",
-      "prefix": "SWEET",
-      "version": "3.1.0"
-    },
     "bartoc": {
       "description": "The Semantic Web for Earth and Environmental Terminology is a mature foundational ontology that contains over 6000 concepts organized in 200 ontologies represented in OWL. Top level concepts include Representation (math, space, science, time, data), Realm (Ocean, Land Surface, Terrestrial Hydroshere, Atmosphere, etc.), Phenomena (macro-scale ecological and physical), Processes (micro-scale physical, biological, chemical, and mathematical), Human Activities (Decision, Commerce, Jurisdiction, Environmental, Research). Originally developed by NASA Jet Propulsion Labs under Rob Raskin, SWEET is now officially under the governance of the ESIP foundation.",
       "homepage": "http://sweetontology.net/sweetAll",
@@ -167855,7 +167013,6 @@
     "homepage": "http://sweetontology.net",
     "license": "CC0-1.0",
     "mappings": {
-      "aberowl": "SWEET",
       "bartoc": "20510",
       "biodivportal": "SWEET",
       "bioportal": "SWEET",
@@ -174955,18 +174112,6 @@
     }
   },
   "tads": {
-    "aberowl": {
-      "artifacts": [
-        {
-          "type": "owl",
-          "url": "http://aber-owl.net/media/ontologies/TADS/18/tads.owl"
-        }
-      ],
-      "description": "The anatomy of the Tick, <i>Families: Ixodidae, Argassidae</i>",
-      "homepage": "https://www.vectorbase.org/ontology-browser",
-      "name": "Tick Anatomy Ontology",
-      "prefix": "TADS"
-    },
     "biocontext": {
       "prefix": "TADS",
       "uri_format": "http://purl.obolibrary.org/obo/TADS_$1"
@@ -175018,7 +174163,6 @@
     },
     "license": "CC-BY-4.0",
     "mappings": {
-      "aberowl": "TADS",
       "biocontext": "TADS",
       "bioportal": "TADS",
       "fairsharing": "FAIRsharing.8wm364",
@@ -175494,19 +174638,6 @@
     "uri_format": "https://www.arabidopsis.org/protein?key=$1"
   },
   "tao": {
-    "aberowl": {
-      "artifacts": [
-        {
-          "type": "obo",
-          "url": "http://aber-owl.net/media/ontologies/TAO/135/tao.obo"
-        }
-      ],
-      "description": "TAO is a multispecies anatomy ontology for teleost fishes. Originally seeded from ZFA, but intended to cover terms relevant to other taxa.",
-      "homepage": "https://www.nescent.org/phenoscape/Main_Page",
-      "name": "Teleost Anatomy Ontology",
-      "prefix": "TAO",
-      "version": "2012-08-10"
-    },
     "biocontext": {
       "prefix": "TAO",
       "uri_format": "http://purl.obolibrary.org/obo/TAO_$1"
@@ -175559,7 +174690,6 @@
     },
     "license": "CC0-1.0",
     "mappings": {
-      "aberowl": "TAO",
       "biocontext": "TAO",
       "bioportal": "TAO",
       "fairsharing": "FAIRsharing.abxd9x",
@@ -176348,7 +175478,7 @@
   },
   "tcia.collection": {
     "contributor": {
-      "email": "robert.allaway@sagebionetworks.org",
+      "email": "robert.j.allaway@gmail.com",
       "github": "allaway",
       "name": "Robert Allaway",
       "orcid": "0000-0003-3573-3565"
@@ -176644,6 +175774,7 @@
       "tib": "tfsco"
     },
     "name": "Thin-film Solar Cells Ontology",
+    "pattern": "^\\d{8}$",
     "repository": "https://github.com/nomad-hzb/autoperosol",
     "tib": {
       "description": "Domain ontology for thin-film solar cells and related tandem solar cells. Contains relevant terms and concepts from BFO, IAO, UO, PATO, OBI, CHMO.",
@@ -176736,18 +175867,6 @@
     "uri_format": "http://gemma.msl.ubc.ca/ont/TGEMO_$1"
   },
   "tgma": {
-    "aberowl": {
-      "artifacts": [
-        {
-          "type": "owl",
-          "url": "http://aber-owl.net/media/ontologies/TGMA/18/tgma.owl"
-        }
-      ],
-      "description": "A structured controlled vocabulary of the anatomy of mosquitoes.",
-      "homepage": "https://www.vectorbase.org/ontology-browser",
-      "name": "Mosquito gross anatomy ontology",
-      "prefix": "TGMA"
-    },
     "biocontext": {
       "prefix": "TGMA",
       "uri_format": "http://purl.obolibrary.org/obo/TGMA_$1"
@@ -176800,7 +175919,6 @@
     },
     "license": "CC0-1.0",
     "mappings": {
-      "aberowl": "TGMA",
       "biocontext": "TGMA",
       "bioportal": "TGMA",
       "fairsharing": "FAIRsharing.dqnfkg",
@@ -183611,15 +182729,16 @@
   },
   "uniprot.proteome": {
     "contributor": {
-      "email": "benjamin_gyori@hms.harvard.edu",
+      "email": "b.gyori@northeastern.edu",
       "github": "bgyori",
       "name": "Benjamin M. Gyori",
       "orcid": "0000-0001-9439-5346"
     },
     "contributor_extras": [
       {
+        "email": "jerven.bolleman@isb-sib.ch",
         "github": "JervenBolleman",
-        "name": "JervenBolleman",
+        "name": "Jerven Bolleman",
         "orcid": "0000-0002-7449-1266"
       },
       {
@@ -183714,7 +182833,7 @@
     },
     "contributor_extras": [
       {
-        "email": "benjamin_gyori@hms.harvard.edu",
+        "email": "b.gyori@northeastern.edu",
         "github": "bgyori",
         "name": "Benjamin M. Gyori",
         "orcid": "0000-0001-9439-5346"
@@ -184550,18 +183669,6 @@
     "uri_format": "http://purl.obolibrary.org/obo/UO_$1"
   },
   "upa": {
-    "aberowl": {
-      "artifacts": [
-        {
-          "type": "owl",
-          "url": "http://aber-owl.net/media/ontologies/UPA/2/upa.owl"
-        }
-      ],
-      "description": "A manually curated resource for the representation and annotation of metabolic pathways",
-      "homepage": "https://github.com/geneontology/unipathway",
-      "name": "Unipathway",
-      "prefix": "UPA"
-    },
     "biocontext": {
       "prefix": "UNIPATHWAY",
       "uri_format": "http://identifiers.org/unipathway/$1"
@@ -184599,7 +183706,6 @@
     },
     "license": "CC-BY-3.0",
     "mappings": {
-      "aberowl": "UPA",
       "biocontext": "UNIPATHWAY",
       "bioportal": "UPA",
       "edam": "2645",
@@ -185399,18 +184505,6 @@
     }
   },
   "vario": {
-    "aberowl": {
-      "artifacts": [
-        {
-          "type": "owl",
-          "url": "http://aber-owl.net/media/ontologies/VARIO/19/vario.owl"
-        }
-      ],
-      "description": "Variation Ontology, VariO, is an ontology for standardized, systematic description of effects, consequences and mechanisms of variations.",
-      "homepage": "http://variationontology.org",
-      "name": "Variation Ontology",
-      "prefix": "VARIO"
-    },
     "agroportal": {
       "contact": {
         "email": "mauno.vihinen@med.lu.se",
@@ -185514,7 +184608,6 @@
     },
     "license": "CC-BY-4.0",
     "mappings": {
-      "aberowl": "VARIO",
       "agroportal": "VARIO",
       "biocontext": "VARIO",
       "bioportal": "VARIO",
@@ -186912,19 +186005,6 @@
     }
   },
   "vhog": {
-    "aberowl": {
-      "artifacts": [
-        {
-          "type": "obo",
-          "url": "http://aber-owl.net/media/ontologies/VHOG/12/vhog.obo"
-        }
-      ],
-      "description": "vHOG is a multi-species anatomical ontology for the vertebrate lineage, developed as part of the Bgee project. The mapping to species-specific anatomical ontologies is provided as a separated file: http://bgee.unil.ch/download/organ_association_vHOG.txt This mapping represents homology-strict relationships, in the sense of HOM:0000007 \"historical homology\". Each mapping has been manually reviewed, and we provide confidence codes and references when available.",
-      "homepage": "http://bgee.unil.ch",
-      "name": "Vertebrate Homologous Organ Group Ontology",
-      "prefix": "VHOG",
-      "version": "unknown"
-    },
     "biocontext": {
       "prefix": "VHOG",
       "uri_format": "http://purl.obolibrary.org/obo/VHOG_$1"
@@ -186981,7 +186061,6 @@
       ]
     },
     "mappings": {
-      "aberowl": "VHOG",
       "biocontext": "VHOG",
       "bioportal": "VHOG",
       "fairsharing": "FAIRsharing.8a7a0w",
@@ -188704,19 +187783,6 @@
     }
   },
   "vsao": {
-    "aberowl": {
-      "artifacts": [
-        {
-          "type": "obo",
-          "url": "http://aber-owl.net/media/ontologies/VSAO/20/vsao.obo"
-        }
-      ],
-      "description": "VSAO is an anatomy ontology covering the vertebrate skeletal system. VSAO integrates terms for skeletal cells, tissues, biological processes, organs (skeletal elements such as bones and cartilages), and subdivisions of the skeletal system.",
-      "homepage": "http://phenoscape.org/wiki/Main_Page",
-      "name": "Vertebrate Skeletal Anatomy Ontology",
-      "prefix": "VSAO",
-      "version": "2012-11-06"
-    },
     "biocontext": {
       "prefix": "VSAO",
       "uri_format": "http://purl.obolibrary.org/obo/VSAO_$1"
@@ -188766,7 +187832,6 @@
       ]
     },
     "mappings": {
-      "aberowl": "VSAO",
       "biocontext": "VSAO",
       "bioportal": "VSAO",
       "fairsharing": "FAIRsharing.p51kqa",
@@ -188933,6 +187998,7 @@
     "homepage": "https://code.google.com/archive/p/vector-surveillance-and-management-ontology",
     "license": "BSD-3-Clause",
     "name": "Ontology for vector surveillance and management",
+    "pattern": "^\\d{7}$",
     "publications": [
       {
         "doi": "10.1603/me12169",
@@ -189114,7 +188180,7 @@
       },
       "name": "Vertebrate Trait Ontology",
       "prefix": "VT",
-      "version": "2026-09-09"
+      "version": "2026-09-23"
     },
     "bioportal": {
       "contact": {
@@ -189132,7 +188198,7 @@
           "url": "https://www.animalgenome.org/bioinfo/projects/vt/"
         }
       ],
-      "version": "2026-09-09"
+      "version": "2026-09-25"
     },
     "download_obo": "https://github.com/AnimalGenome/vertebrate-trait-ontology/raw/master/current_release/vt.obo",
     "example": "0000685",
@@ -190915,18 +189981,6 @@
     "uri_format": "http://vocabularies.wikipathways.org/wpTypes#$1"
   },
   "wikipathways.vocab": {
-    "aberowl": {
-      "artifacts": [
-        {
-          "type": "owl",
-          "url": "http://aber-owl.net/media/ontologies/WIKIPATHWAYS/225/wikipathways.owl"
-        }
-      ],
-      "description": "The WP ontology for WikiPathways.",
-      "homepage": "http://www.wikipathways.org/",
-      "name": "WikiPathways",
-      "prefix": "WIKIPATHWAYS"
-    },
     "bioportal": {
       "contact": {
         "email": "egon.willighagen@gmail.com",
@@ -190960,7 +190014,6 @@
     "example": "DataNode",
     "homepage": "http://www.wikipathways.org",
     "mappings": {
-      "aberowl": "WIKIPATHWAYS",
       "bioportal": "WIKIPATHWAYS"
     },
     "mastodon": "wikipathways@fosstodon.org",
@@ -191501,40 +190554,40 @@
       "keywords": [
         "Life Science",
         "Anatomy",
-        "Mass spectrum",
         "Cytogenetic map",
-        "Genome map",
-        "Protein domain",
-        "Gene name",
-        "Expression data",
-        "GO-term enrichment data",
-        "Protein interactions",
-        "Model organisms",
-        "Clone library",
-        "reagent",
-        "regulation of gene expression",
-        "regulatory ncRNA-mediated post-transcriptional gene silencing",
-        "immunoglobulin complex, circulating",
-        "molecular interaction",
-        "genetic interaction (sensu unexpected)",
-        "small molecule",
-        "Genetic Polymorphism",
-        "Protein Expression",
+        "strain",
         "cross linking",
-        "phenotype",
+        "molecular interaction",
+        "Gene name",
+        "small molecule",
+        "Model organisms",
         "disease",
-        "sequence feature",
-        "promoter",
-        "UTR",
-        "pseudogene",
-        "binding site",
+        "Genome map",
+        "Protein interactions",
         "SNP",
         "gene",
+        "Clone library",
+        "UTR",
+        "Protein domain",
+        "pseudogene",
+        "binding site",
+        "regulation of gene expression",
         "orthologous",
         "trans spliced",
-        "genome",
+        "Expression data",
+        "Protein Expression",
+        "sequence feature",
+        "Mass spectrum",
+        "regulatory ncRNA-mediated post-transcriptional gene silencing",
         "life cycle",
-        "strain"
+        "genetic interaction (sensu unexpected)",
+        "immunoglobulin complex, circulating",
+        "reagent",
+        "genome",
+        "phenotype",
+        "GO-term enrichment data",
+        "Genetic Polymorphism",
+        "promoter"
       ],
       "license": {
         "url": "https://wormbase.org/about/policies"
@@ -193347,17 +192400,12 @@
     }
   },
   "xl": {
-    "aberowl": {
-      "name": "Cross-linker reagents ontology",
-      "prefix": "XL"
-    },
     "biocontext": {
       "prefix": "XL",
       "uri_format": "http://purl.obolibrary.org/obo/XL_$1"
     },
     "deprecated": true,
     "mappings": {
-      "aberowl": "XL",
       "biocontext": "XL",
       "ontobee": "XL"
     },
@@ -194402,6 +193450,12 @@
       "bartoc": "18946"
     },
     "name": "Leibnitz Information Centre for Economics Vocabularies",
+    "owners": [
+      {
+        "name": "ZBW – Leibniz-Informationszentrum Wirtschaft",
+        "ror": "03a96gc12"
+      }
+    ],
     "uri_format": "https://zbw.eu/beta/skosmos/$1"
   },
   "zbw.stw": {
@@ -194449,18 +193503,6 @@
     "uri_format": "http://zbw.eu/stw/thsys/$1"
   },
   "zea": {
-    "aberowl": {
-      "artifacts": [
-        {
-          "type": "obo",
-          "url": "http://aber-owl.net/media/ontologies/ZEA/2/zea.obo"
-        }
-      ],
-      "homepage": "http://www.maizemap.org/",
-      "name": "Maize Gross Anatomy Ontology",
-      "prefix": "ZEA",
-      "version": "1.2"
-    },
     "biocontext": {
       "prefix": "ZEA",
       "uri_format": "http://purl.obolibrary.org/obo/ZEA_$1"
@@ -194490,7 +193532,6 @@
       ]
     },
     "mappings": {
-      "aberowl": "ZEA",
       "biocontext": "ZEA",
       "bioportal": "ZEA",
       "fairsharing": "FAIRsharing.6ttpnv",
@@ -194685,7 +193726,7 @@
   },
   "zenodo.record": {
     "contributor": {
-      "email": "benjamin_gyori@hms.harvard.edu",
+      "email": "b.gyori@northeastern.edu",
       "github": "bgyori",
       "name": "Benjamin M. Gyori",
       "orcid": "0000-0001-9439-5346"

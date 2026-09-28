@@ -2148,6 +2148,15 @@
     "name": "The Linked Earth Ontology",
     "uri_format": "http://linked.earth/ontology#$1"
   },
+  "eau": {
+    "description": "The Eautonome Ontology provides an OWL representation of residential water end-use monitoring. It models domestic water uses, quality levels, and greywater reuse processes, specifically describing the monitoring and observations of the system to reduce water consumption.",
+    "homepage": "https://w3id.org/eautonome/",
+    "keywords": [
+      "Water"
+    ],
+    "name": "The Eautonome Ontology",
+    "uri_format": "https://w3id.org/eautonome/$1"
+  },
   "ebg": {
     "description": "The euBusinessGraph (`ebg:`) ontology represents companies, type/status/economic classification, addresses, identifiers, company officers (e.g., directors and CEOs), and dataset offerings.\n\nIt uses `schema:domainIncludes/rangeIncludes` (which are polymorphic) to describe which properties are applicable to a class, \nrather than `rdfs:domain/range` (which are monomorphic) to prescribe what classes must be applied to each node using a property.\nWe find that this enables more flexible reuse and combination of different ontologies.\nWe reuse the following ontologies and nomenclatures, and extend them where appropriate with classes and properties:\n\n- W3C Org, W3C RegOrg (basic company data), \n\n- W3C Time (officer membership), \n\n- W3C Locn (addresses),\n\n- schema.org (domain/rangeIncludes and various properties)\n\n- DBpedia ontology (jurisdiction)\n\n- NGEO and Spatial (NUTS administrative divisions)\n\n- ADMS (identifiers), \n\n- FOAF, SIOC (blog posts),\n\n- RAMON, SKOS (NACE economic classifications and various nomenclatures),\n\n- VOID (dataset descriptions).\n\nThis is only a reference. See more detail in the [EBG Semantic Model](https://docs.google.com/document/d/1dhMOTlIOC6dOK_jksJRX0CB-GIRoiYY6fWtCnZArUhU/edit) google document, which includes an informative description of classes and properties, gives examples and data provider rules, and provides more schema and instance diagrams.",
     "homepage": "http://data.businessgraph.io/ontology#",
@@ -2296,6 +2305,15 @@
     ],
     "name": "EKC 데이터 모델: 한국문화 엔사이브 온톨로지",
     "uri_format": "http://dh.aks.ac.kr/ontologies/ekc#$1"
+  },
+  "ekcd": {
+    "description": "A derivative ontology extending the EKC line for Korean cultural heritage knowledge modeling, with a particular focus on historical and cultural resources of Korea. It provides additional datatype properties for dates and URLs, local application guidelines for standard semantic mapping properties, and project-level semantic extensions.",
+    "homepage": "http://dh.aks.ac.kr/ontologies/ekcd",
+    "keywords": [
+      "Cultural Heritage"
+    ],
+    "name": "EKCD: An EKC-derived Ontology for Korean Cultural Heritage Knowledge Modeling",
+    "uri_format": "http://dh.aks.ac.kr/ontologies/ekcd#$1"
   },
   "elec": {
     "description": "El objetivo de este vocabulario es la creación de un esquema que permita definir los contenidos de información relacionada con procesos electorales y sus resultados.  \t\t\tSe identifican ciertas variables en el dominio de las elecciones, que se modelan a través de ciertos tipos de datos y de propiedades relacionadas entre los recursos.",
@@ -2483,6 +2501,15 @@
     ],
     "name": "FRBR-aligned Bibliographic Ontology",
     "uri_format": "http://purl.org/spar/fabio/$1"
+  },
+  "fairo": {
+    "description": "The FAIR Assessment Ontology is designed to model the process and outcomes of evaluating digital objects according to the FAIR principles. It captures FAIR assessments as provenance-aware activities, linking evaluated resources to detailed results for each FAIR sub-principle.\n                    Each assessment can include multiple sub-principle results, associated evidence, quantitative scores, and test outcomes (e.g., pass, fail, indeterminate). The ontology also models the computational aspects of FAIR evaluation, including scoring functions, calculation algorithms, and aggregation methods used to derive higher-level scores.\n                    The ontology is aligned with the FAIR Vocabulary (https://w3id.org/fair/principles/terms/) for the definition of principles and sub-principles, and reuses established standards such as PROV-O for provenance and SKOS for controlled vocabularies. This ensures interoperability with existing FAIR tools and supports integration into automated FAIR assessment pipelines.",
+    "homepage": "https://w3id.org/fair-o",
+    "keywords": [
+      "Quality"
+    ],
+    "name": "FAIR-O: An Ontology for FAIR Assessment and Scoring",
+    "uri_format": "https://w3id.org/fair-o#$1"
   },
   "faldo": {
     "description": "Used to describe a location that consists of a number of Regions but where the order is not known. e.g. the oddly named order() keyword in a INSDC file.",
@@ -2815,6 +2842,16 @@
     ],
     "name": "OWL representation of ISO 19109 (General Feature Model)",
     "uri_format": "http://def.seegrid.csiro.au/isotc211/iso19109/2005/feature#$1"
+  },
+  "gist": {
+    "description": "gist is a minimalist upper ontology created by Semantic Arts.",
+    "homepage": "https://w3id.org/semanticarts/ontology/gistCore",
+    "keywords": [
+      "General & Upper",
+      "Industry"
+    ],
+    "name": "gist ontology",
+    "uri_format": "https://w3id.org/semanticarts/ns/ontology/gist/$1"
   },
   "glc": {
     "description": "The GLACIATION platform develops a novel Distributed Knowledge Graph (DKG) that stretches across the edge-core-cloud architecture to reduce energy consumption, improving data processing and optimizing data movement operations. Towards this aim, the platform needs to consume the data and metadata that are fed into the DKG. The metadata can affect and inform the decision-making processes in the GLACIATION architecture and introduces the GLACIATION Metadata Reference Model that will be used for modelling the metadata in the DKG.\n\nThe GLACIATION Reference Metadata Model makes data ingestion and processing interoperable inside the GLACIATION platform. Linked Data allows for a high level of flexibility and to tackle the variety and merging issues that emerge in heterogenous environments, especially due to the wide range of sensors and other data sources that the platform may integrate. The GLACIATION Reference Metadata Model is tailored to fit the specific purposes of the GLACIATION platform, while the GLACIATION use cases define the scope of the model for better interoperability.\n\nThere are common metadata challenges for all use cases. This stems from the use of the Kubernetes orchestration system as a basis for the GLACIATION platform. In addition, common to the platform is the ingestion of data from other sources into the DKG that can then be used to affect processing decisions. There are direct data flows from sensors within the system, but also data and metadata from sources external to the system. This allows the system to react e.g. to environmental situations like weather or temperature, but also to requirements concerning security or privacy. Exemplary uses and specializations of the reference model to the GLACIATION use cases are also provided.\n\nThe GLACIATION Metadata Reference Model can be used for scheduling and performing tasks. The model can be considered as a general conceptualization of a tasks scheduling problem that considers various measuring indicators over the deployed resources. It captures the assignment of time-constrained tasks to time constrained and energy consuming resources, that can satisfy various hard and soft constraints, even compositions of such constraints. The tasks can be monitored through various measuring resources using a variety of single or aggregated, predicted or real measurements.\n\nThe model is generic, by being both domain and application independent, describing the scheduling tasks, without providing specific solutions on how they can be solved. It can be easily adjusted to each of the current three GLACIATION use cases, covering also the Kubernetes orchestration and its Telemetry System deployed by the project. The proposed model makes it feasible to answer the competency queries defined by each of the Glaciation's use case.",
@@ -4016,6 +4053,16 @@
     "name": "ELSEWeb Lifemapper Parameters Ontology",
     "uri_format": "http://ontology.cybershare.utep.edu/ELSEWeb/elseweb-lifemapper-parameters.owl#$1"
   },
+  "lto": {
+    "description": "A FAIR-compliant metadata vocabulary (MV), the Library Transaction Ontology (LTO), is designed and developed for representing and managing library transaction data (LTD), including circulation, interlibrary loan, hold requests, and fiscal information. Our investigation revealed that despite significant focus on bibliographic and authority data, no standardized vocabulary exists for LTD, resulting in data loss, mapping errors, and interoperability challenges during system migration and integration. LTO supports machine processing and automated reasoning for data-driven decision making. Additionally, it supports interoperability across heterogeneous library platforms by providing mappings for the circulation metadata of multiple Library Management Systems (LMS), including Koha, Virtua, Evergreen, SOUL, etc. It is also compliant with the Library of Congress's (LOC) BIBFRAME model and extends the bibliographic Linked Data (LD) framework to support the standardized representation of library transaction LD. LTO?s elements were validated through expert evaluation by LIS professionals, and its effectiveness in information processing and retrieval was successfully assessed.",
+    "homepage": "https://w3id.org/lto",
+    "keywords": [
+      "Academy",
+      "Catalogs"
+    ],
+    "name": "Library Transaction Ontology",
+    "uri_format": "https://w3id.org/lto#$1"
+  },
   "ludo": {
     "description": "Ludo is an ontology created to enable the description and representation of Serious Games that use structured data published on the Web through the Linked Data as a knowledge base. From the representation of the players’ profile and their contextual information whithin the game, it is possible to generate personalized recommendations of related educational resources in order to stimulate the learning process while playing.",
     "homepage": "http://ns.inria.fr/ludo",
@@ -5163,7 +5210,7 @@
   },
   "oso": {
     "description": "Ontology describing the relationships between Regional Facilities, Sites, Platforms, Research Infrastructures, Organisations, Cruises, and the persons in charge of each level.",
-    "homepage": "http://www.w3.org/ns/prov-o",
+    "homepage": "https://w3id.org/earthsemantics/OSO",
     "keywords": [
       "Biology"
     ],
@@ -5908,6 +5955,16 @@
     "name": "RiverBench documentation ontology",
     "uri_format": "https://w3id.org/riverbench/schema/documentation#$1"
   },
+  "rcao": {
+    "description": "The RCAO aims to provide a common knowledge model of the resilient collective awareness on automated driving domain.",
+    "homepage": "https://www.w3id.org/rcao",
+    "keywords": [
+      "Security",
+      "Services"
+    ],
+    "name": "Resilient Collective Awareness Ontology",
+    "uri_format": "https://www.w3id.org/rcao#$1"
+  },
   "rdaa": {
     "description": "The Agent properties element set consists of properties representing the attributes and relationships of the RDA Agent, Person, Family, and Corporate Body entities. Each property in the element set has a domain of the class representing one of these entities.",
     "homepage": "https://github.com/RDARegistry/RDA-Vocabularies/",
@@ -6203,24 +6260,26 @@
     "name": "Verisav RMA / Ticketing Vocabulary",
     "uri_format": "https://ns.verisav.fr/rma#$1"
   },
-  "rml": {
-    "description": "Generic Mapping Language for RDF (RDB/CSV/TSV/XML/JSON/... to RDF) - Vocabulary description",
-    "homepage": "http://w3id.org/rml/core",
-    "keywords": [
-      "RDF",
-      "W3C Rec"
-    ],
-    "name": "RML: Generic Mapping Language for RDF",
-    "uri_format": "http://w3id.org/rml/$1"
-  },
   "rml-cc": {
     "description": "RML module to generate RDF collections and containers",
     "homepage": "http://w3id.org/rml/cc/",
     "keywords": [
       "RDF",
+      "RML",
       "W3C Rec"
     ],
     "name": "RML-Containers",
+    "uri_format": "http://w3id.org/rml/$1"
+  },
+  "rml-core": {
+    "description": "Generic Mapping Language for RDF (RDB/CSV/TSV/XML/JSON/... to RDF) - Vocabulary description",
+    "homepage": "http://w3id.org/rml/core",
+    "keywords": [
+      "RDF",
+      "RML",
+      "W3C Rec"
+    ],
+    "name": "RML: Generic Mapping Language for RDF",
     "uri_format": "http://w3id.org/rml/$1"
   },
   "rml-fnml": {
@@ -6228,6 +6287,7 @@
     "homepage": "http://w3id.org/rml/fnml/",
     "keywords": [
       "RDF",
+      "RML",
       "W3C Rec"
     ],
     "name": "RML-FNML",
@@ -6238,9 +6298,21 @@
     "homepage": "http://w3id.org/rml/io/",
     "keywords": [
       "RDF",
+      "RML",
       "W3C Rec"
     ],
     "name": "RML-IO: Source and Target",
+    "uri_format": "http://w3id.org/rml/$1"
+  },
+  "rml-lv": {
+    "description": "RML Logical Views flatten nested data, allow flexible joining of data sources, and handle mix source formats.",
+    "homepage": "http://w3id.org/rml/lv/",
+    "keywords": [
+      "RDF",
+      "RML",
+      "W3C Rec"
+    ],
+    "name": "RML Logical Views",
     "uri_format": "http://w3id.org/rml/$1"
   },
   "rml-star": {
@@ -6248,6 +6320,7 @@
     "homepage": "http://w3id.org/rml/star/",
     "keywords": [
       "RDF",
+      "RML",
       "W3C Rec"
     ],
     "name": "RML-star",
@@ -6589,6 +6662,15 @@
     ],
     "name": "SPARQL 1.1 Service Description",
     "uri_format": "http://www.w3.org/ns/sparql-service-description#$1"
+  },
+  "sdc": {
+    "description": "An Ontology for the Statbarn Framework used in Output Statistical Disclosure Control (OSDC).",
+    "homepage": "https://w3id.org/statbarnsdc",
+    "keywords": [
+      "Methods"
+    ],
+    "name": "StatbarnSDC Ontology",
+    "uri_format": "https://w3id.org/statbarnsdc#$1"
   },
   "sdm": {
     "description": "A small vocabulary for representing SPARQL endpoint metadata on the web",
@@ -7069,6 +7151,16 @@
     ],
     "name": "Software Process Control Model",
     "uri_format": "http://spi-fm.uca.es/spdef/models/deployment/spcm/1.0#$1"
+  },
+  "spectra": {
+    "description": "OWL 2 ontology modeling the 3GPP RAN standardization document lifecycle (Tdoc, Resolution, CR, LS, Section, Spec, TechnicalReport, TRImpact, Meeting, Company, WorkingGroup). Designed from RAN1 competency questions and validated by cross-WG instantiation against RAN2-RAN5 with no additional process-layer classes required. Also declares six entity-layer classes (RRCParameter, CapabilityItem, Feature, Procedure, PerformanceRequirement, ConformanceTest) modeling spec-body entities: ASN.1 IEs, UE capability items, named standardization features, protocol procedures, performance requirements, and conformance test specifications.",
+    "homepage": "https://w3id.org/spectra",
+    "keywords": [
+      "Industry",
+      "Metadata"
+    ],
+    "name": "SPECTRA: A Traceability Ontology for 3GPP RAN Standardization",
+    "uri_format": "https://w3id.org/spectra#$1"
   },
   "spfood": {
     "description": "Defines concepts and properties specific for the SmartProducts Philips use case (cooking domain).",
