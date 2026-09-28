@@ -216,6 +216,8 @@ def _add_resource(
             obj = WIKIDATA[owner.wikidata]
         else:
             continue
+        graph.add((obj, RDF.type, FOAF.Organization))
+        graph.add((obj, RDFS.label, Literal(owner.name)))
         graph.add((node, bioregistry_schema["0000026"], obj))
 
     part_of = manager.get_part_of(resource.prefix)
@@ -234,9 +236,9 @@ def _add_resource(
 
     contact = resource.get_contact()
     if contact is not None:
-        graph.add((node, bioregistry_schema["0000019"], contact.add_triples(graph)))
+        graph.add((node, DOAP.maintainer, contact.add_triples(graph)))
     for contact in resource.contact_extras or []:
-        graph.add((node, bioregistry_schema["0000019"], contact.add_triples(graph)))
+        graph.add((node, DOAP.maintainer, contact.add_triples(graph)))
 
     if resource.reviewer is not None and resource.reviewer.orcid:
         graph.add((node, bioregistry_schema["0000021"], resource.reviewer.add_triples(graph)))
@@ -251,19 +253,20 @@ def _add_resource(
             graph.add((node, DCTERMS.contributor, contributor.add_triples(graph)))
 
     mappings = resource.get_mappings()
-    for metaprefix, metaidentifier in (mappings or {}).items():
+    for metaprefix, metaidentifier in sorted((mappings or {}).items()):
         metaresource = manager.metaregistry[metaprefix]
-        if metaprefix not in namespaces_dict and metaresource.bioregistry_prefix in namespaces_dict:
-            metaprefix = metaresource.bioregistry_prefix
-        if metaprefix not in namespaces_dict:
-            if metaprefix not in NAMESPACE_WARNINGS:
-                logger.warning(f"can not find prefix-uri pair for {metaprefix}")
+        external_namespace = namespaces_dict.get(metaresource.bioregistry_prefix)
+        if external_namespace is None:
+            if metaresource.bioregistry_prefix not in NAMESPACE_WARNINGS:
+                logger.warning(
+                    f"can not find prefix-uri pair for {metaprefix} (primary: {metaresource.bioregistry_prefix})"
+                )
                 NAMESPACE_WARNINGS.add(metaprefix)
             continue
-        graph.add((node, SKOS.exactMatch, namespaces_dict[metaprefix][metaidentifier]))
+        graph.add((node, SKOS.exactMatch, external_namespace[metaidentifier]))
         graph.add(
             (
-                namespaces_dict[metaprefix][metaidentifier],
+                external_namespace[metaidentifier],
                 DCTERMS.isPartOf,
                 bioregistry_resource[metaresource.bioregistry_prefix],
             )
@@ -272,7 +275,7 @@ def _add_resource(
             (
                 bioregistry_resource[metaresource.bioregistry_prefix],
                 DCTERMS.hasPart,
-                namespaces_dict[metaprefix][metaidentifier],
+                external_namespace[metaidentifier],
             )
         )
 

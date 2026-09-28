@@ -223,6 +223,7 @@ SCHEMA_TERMS = [
         "The responsible person for a resource",
         domain="0000001",
         range="0000020",
+        xrefs=[DOAP.maintainer],
     ),
     ClassTerm(
         "0000020",

@@ -1916,7 +1916,10 @@ class Manager:
     def _get_internal_converter(self) -> curies.Converter:
         converter = curies.Converter()
         converter.add_prefix(
-            "wikidata", "http://www.wikidata.org/entity/", ["wikidata.entity", "wikidata.property"]
+            "wikidata",
+            "http://www.wikidata.org/entity/",
+            ["wikidata.entity", "wikidata.property"],
+            ["https://www.wikidata.org/entity/"],
         )
 
         default_prefixes = {"bioregistry.schema", "bfo"}
