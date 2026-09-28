@@ -30,9 +30,7 @@ if TYPE_CHECKING:
 
 __all__ = [
     "SCHEMA_TERMS",
-    # Namespaces
     "bioregistry_collection",
-    "bioregistry_metaresource",
     "bioregistry_resource",
     "bioregistry_schema",
     "orcid",
@@ -339,7 +337,6 @@ bioregistry_schema_extras = [
 ]
 bioregistry_collection = rdflib.namespace.Namespace("https://bioregistry.io/collection/")
 bioregistry_resource = rdflib.namespace.Namespace("https://bioregistry.io/registry/")
-bioregistry_metaresource = rdflib.namespace.Namespace("https://bioregistry.io/metaregistry/")
 bioregistry_schema = rdflib.namespace.ClosedNamespace(
     uri=URIRef("https://bioregistry.io/schema/#"),
     terms=[term.identifier for term in SCHEMA_TERMS],

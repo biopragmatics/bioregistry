@@ -32,7 +32,6 @@ from ..schema.constants import (
     WIKIDATA,
     _add_schema,
     _graph,
-    bioregistry_metaresource,
     bioregistry_resource,
     bioregistry_schema,
     get_schema_rdf,
@@ -171,8 +170,8 @@ def _add_resource(
     graph.add((node, RDF.type, bioregistry_schema["0000001"]))
     graph.add((node, RDFS.label, Literal(resource.get_name())))
     graph.add((node, bioregistry_schema["0000029"], Literal(resource.prefix)))
-    graph.add((node, DCTERMS.isPartOf, bioregistry_metaresource["bioregistry"]))
-    graph.add((bioregistry_metaresource["bioregistry"], DCTERMS.hasPart, node))
+    graph.add((node, DCTERMS.isPartOf, bioregistry_resource["bioregistry"]))
+    graph.add((bioregistry_resource["bioregistry"], DCTERMS.hasPart, node))
     for synonym in resource.get_synonyms():
         graph.add((node, bioregistry_schema["0000023"], Literal(synonym)))
     for keyword in resource.get_keywords():
@@ -266,12 +265,12 @@ def _add_resource(
             (
                 namespaces_dict[metaprefix][metaidentifier],
                 DCTERMS.isPartOf,
-                bioregistry_metaresource[metaresource.prefix],
+                bioregistry_resource[metaresource.bioregistry_prefix],
             )
         )
         graph.add(
             (
-                bioregistry_metaresource[metaresource.prefix],
+                bioregistry_resource[metaresource.bioregistry_prefix],
                 DCTERMS.hasPart,
                 namespaces_dict[metaprefix][metaidentifier],
             )
