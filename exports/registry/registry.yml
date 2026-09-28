@@ -17878,7 +17878,11 @@ dc:
     ols: dc
     zazuko: dc11
   name: Dublin Core Elements (1.1)
+  owners:
+  - name: Dublin Core Metadata Initiative
+    wikidata: Q108771890
   preferred_prefix: dc
+  rdf_uri_format: http://purl.org/dc/elements/1.1/$1
   synonyms:
   - dc.elements
   - dc11
@@ -17935,6 +17939,9 @@ dcam:
     lov: dcam
     zazuko: dcam
   name: Dublin Core Metadata Initiative Abstract Model
+  owners:
+  - name: Dublin Core Metadata Initiative
+    wikidata: Q108771890
   preferred_prefix: dcam
   rdf_uri_format: http://purl.org/dc/dcam/$1
   uri_format: http://purl.org/dc/dcam/$1
@@ -18077,6 +18084,43 @@ dcatap_plus:
     name: Charles Tapley Hoyt
     orcid: 0000-0003-4423-4370
   uri_format: http://w3id.org/nfdi-de/dcat-ap-plus/latest/class/$1
+dcmitype:
+  contact:
+    email: kdurante@stanford.edu
+    name: Kim Durante
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: This document is an up-to-date specification of all metadata terms
+    maintained by the Dublin Core Metadata Initiative, including properties, vocabulary
+    encoding schemes, syntax encoding schemes, and classes.
+  download_owl: http://aber-owl.net/media/ontologies/DCMITYPE/1/dcmitype.owl
+  download_rdf: https://www.dublincore.org/specifications/dublin-core/dcmi-terms/dublin_core_type.ttl
+  example: Collection
+  homepage: https://dublincore.org/specifications/dublin-core/dcmi-terms
+  keywords:
+  - dc
+  - ontology
+  mappings:
+    aberowl: DCMITYPE
+    biocontext: dctypes
+    bioportal: DCMITYPE
+    zazuko: dcmitype
+  name: DCMI Type Vocabulary
+  owners:
+  - name: Dublin Core Metadata Initiative
+    wikidata: Q108771890
+  preferred_prefix: dcmitype
+  providers:
+  - code: web
+    uri_format: https://www.dublincore.org/specifications/dublin-core/dcmi-terms/#$1
+  rdf_uri_format: http://purl.org/dc/dcmitype/$1
+  synonyms:
+  - dcmitypes
+  - dctypes
+  uri_format: http://purl.org/dc/dcmitype/$1
 dcterms:
   contact:
     email: futo@stanford.edu
@@ -18117,41 +18161,16 @@ dcterms:
     tib: dcterms
     zazuko: dcterms
   name: Dublin Core Metadata Initiative Terms
+  owners:
+  - name: Dublin Core Metadata Initiative
+    wikidata: Q108771890
   preferred_prefix: dcterms
+  rdf_uri_format: http://purl.org/dc/terms/$1
   synonyms:
   - dc.terms
   - dct
   - terms
   uri_format: http://purl.org/dc/terms/$1
-dctypes:
-  contact:
-    email: kdurante@stanford.edu
-    name: Kim Durante
-  contributor:
-    email: cthoyt@gmail.com
-    github: cthoyt
-    name: Charles Tapley Hoyt
-    orcid: 0000-0003-4423-4370
-  description: This document is an up-to-date specification of all metadata terms
-    maintained by the Dublin Core Metadata Initiative, including properties, vocabulary
-    encoding schemes, syntax encoding schemes, and classes.
-  download_owl: http://aber-owl.net/media/ontologies/DCMITYPE/1/dcmitype.owl
-  example: Collection
-  homepage: https://dublincore.org/specifications/dublin-core/dcmi-terms
-  keywords:
-  - dc
-  - ontology
-  mappings:
-    aberowl: DCMITYPE
-    biocontext: dctypes
-    bioportal: DCMITYPE
-    zazuko: dcmitype
-  name: Dublin Core Types
-  preferred_prefix: dctypes
-  synonyms:
-  - dcmitype
-  - dcmitypes
-  uri_format: http://purl.org/dc/dcmitype/$1
 ddanat:
   contact:
     email: pfey@northwestern.edu
@@ -23555,7 +23574,7 @@ edam:
     year: 2020
   rdf_uri_format: http://edamontology.org/$1
   repository: https://github.com/edamontology/edamontology
-  uri_format: https://www.ebi.ac.uk/ols/ontologies/edam/terms?iri=http://edamontology.org/$1
+  uri_format: http://edamontology.org/$1
   version: 1.25-20260626T1230Z
 edam.data:
   contact:
@@ -26855,6 +26874,31 @@ esldb:
     name: Charles Tapley Hoyt
     orcid: 0000-0003-4423-4370
   uri_format: http://gpcr.biocomp.unibo.it/cgi-bin/predictors/esldb/dettagli.cgi?codice=$1
+esrfet:
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: The ESRFET ontology describes beamline experimental techniques at ESRF
+    to enhance the FAIRness of experimental metadata. It supports semantic interoperability
+    and reasoning over relationships between techniques. (from homepage)
+  download_owl: https://pan-ontologies.github.io/esrf-ontologies/esrfet/latest/ontology.owl
+  example: vertical_linear_polarization
+  homepage: https://w3id.org/PaN/ESRFET
+  keywords:
+  - ontology
+  license: CC-BY-4.0
+  mappings:
+    bartoc: '21163'
+  name: ESRF Experimental Techniques Ontology
+  owners:
+  - name: European Synchrotron Radiation Facility
+    ror: 02550n020
+  preferred_prefix: esrfet
+  rdf_uri_format: https://w3id.org/PaN/ESRFET#$1
+  repository: https://github.com/pan-ontologies/esrf-ontologies
+  uri_format: https://w3id.org/PaN/ESRFET#$1
 estdab:
   comment: Website is dead
   deprecated: true
@@ -36802,7 +36846,7 @@ hl7:
     bioportal: HL7
   name: HL7 External Code System
   preferred_prefix: hl7
-  uri_format: https://oid-base.com/get/2.16.840.1.113883:$1
+  uri_format: https://oid-base.com/get/2.16.840.1.113883.$1
   version: '2025_07'
 hl7.v2codesystem:
   contributor:
@@ -54013,7 +54057,10 @@ n2t:
   - registry
   name: Name-to-Thing
   preferred_prefix: n2t
-  uri_format: 'https://n2t.net/$1:'
+  providers:
+  - code: legacy
+    uri_format: 'https://n2t.net/$1:'
+  uri_format: https://n2t.net/.info/$1
 n4e:
   description: "The ontology and metadata schema for the NFDI4Earth Knowledge Hub.\
     \ See serializations of this schema as an OWL ontology here:\n  - [RDF/XML](https://nfdi4earth.pages.rwth-aachen.de/knowledgehub/nfdi4earth-kh-schema/ontology.owl.xml)\n\
@@ -56038,6 +56085,9 @@ nexus:
     bartoc: '21162'
     tib: nexus
   name: NeXusOntology
+  owners:
+  - name: European Synchrotron Radiation Facility
+    ror: 02550n020
   preferred_prefix: nexus
   uri_format: http://purl.org/nexusformat/definitions/NeXusOntology#$1
 nfdi.core:
@@ -62513,6 +62563,9 @@ panet:
     fairsharing: FAIRsharing.a08d34
     tib: panet
   name: Photon and Neutron Experimental Techniques Ontology
+  owners:
+  - name: European Synchrotron Radiation Facility
+    ror: 02550n020
   pattern: ^\d+$
   preferred_prefix: panet
   publications:
@@ -67361,6 +67414,9 @@ prefixcommons:
   - registry
   name: Prefix Commons
   preferred_prefix: prefixcommons
+  providers:
+  - code: legacy
+    uri_format: https://registry.bio2kg.org/resource/$1
   uri_format: https://bioregistry.io/metaregistry/prefixcommons/$1
 premis:
   contributor:
@@ -87474,7 +87530,7 @@ togoid:
     year: 2022
   rdf_uri_format: https://togoid.dbcls.jp/ontology#$1
   repository: https://github.com/dbcls/togoid/togoid-config
-  uri_format: https://togoid.dbcls.jp/#$1
+  uri_format: https://togoid.dbcls.jp/ontology#$1
 togovar:
   contact:
     email: mitsuhashi@dbcls.rois.ac.jp
@@ -94618,7 +94674,7 @@ zazuko:
   license: MIT
   name: Zazuko Prefix Server
   preferred_prefix: zazuko
-  uri_format: 'https://prefix.zazuko.com/prefix/$1:'
+  uri_format: https://prefix.zazuko.com/prefix/$1
 zbw:
   contributor:
     email: cthoyt@gmail.com
