@@ -3251,7 +3251,7 @@ class Registry(BaseModel):
         >>> get_registry("miriam").get_provider_url("go")
         'https://registry.identifiers.org/registry/go'
         >>> get_registry("n2t").get_provider_url("go")
-        'https://n2t.net/go:'
+        'https://n2t.net/.info/go'
         """
         if self.uri_format is not None:
             return self.uri_format.replace("$1", external_prefix)

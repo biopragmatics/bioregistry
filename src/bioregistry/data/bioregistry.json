@@ -38037,7 +38037,14 @@
       "prefix": "dc",
       "uri_format": "http://purl.org/dc/elements/1.1/$1"
     },
+    "owners": [
+      {
+        "name": "Dublin Core Metadata Initiative",
+        "wikidata": "Q108771890"
+      }
+    ],
     "preferred_prefix": "dc",
+    "rdf_uri_format": "http://purl.org/dc/elements/1.1/$1",
     "synonyms": [
       "dc.elements",
       "dc11",
@@ -38136,6 +38143,12 @@
       "zazuko": "dcam"
     },
     "name": "Dublin Core Metadata Initiative Abstract Model",
+    "owners": [
+      {
+        "name": "Dublin Core Metadata Initiative",
+        "wikidata": "Q108771890"
+      }
+    ],
     "part_of_database": "dc",
     "rdf_uri_format": "http://purl.org/dc/dcam/$1",
     "uri_format": "http://purl.org/dc/dcam/$1",
@@ -38380,6 +38393,74 @@
     },
     "uri_format": "http://w3id.org/nfdi-de/dcat-ap-plus/latest/class/$1"
   },
+  "dcmitype": {
+    "aberowl": {
+      "artifacts": [
+        {
+          "type": "owl",
+          "url": "http://aber-owl.net/media/ontologies/DCMITYPE/1/dcmitype.owl"
+        }
+      ],
+      "description": "OWL 2 DL ontology for a few terms of the DCMI abstract model from the http://purl.org/dc/dcam/ namespace",
+      "name": "DCMI Abstract Model",
+      "prefix": "DCMITYPE"
+    },
+    "biocontext": {
+      "prefix": "dctypes",
+      "uri_format": "http://purl.org/dc/dcmitype/$1"
+    },
+    "bioportal": {
+      "contact": {
+        "email": "kdurante@stanford.edu",
+        "name": "Kim Durante"
+      },
+      "description": "The DCMI Type Vocabulary provides a general, cross-domain list of approved terms that may be used as values for the Resource Type element to identify the genre of a resource",
+      "homepage": "http://dublincore.org/documents/dcmi-type-vocabulary",
+      "name": "DCMI Type Vocabulary",
+      "prefix": "DCMITYPE"
+    },
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "This document is an up-to-date specification of all metadata terms maintained by the Dublin Core Metadata Initiative, including properties, vocabulary encoding schemes, syntax encoding schemes, and classes.",
+    "download_rdf": "https://www.dublincore.org/specifications/dublin-core/dcmi-terms/dublin_core_type.ttl",
+    "example": "Collection",
+    "homepage": "https://dublincore.org/specifications/dublin-core/dcmi-terms",
+    "mappings": {
+      "aberowl": "DCMITYPE",
+      "biocontext": "dctypes",
+      "bioportal": "DCMITYPE",
+      "zazuko": "dcmitype"
+    },
+    "name": "DCMI Type Vocabulary",
+    "owners": [
+      {
+        "name": "Dublin Core Metadata Initiative",
+        "wikidata": "Q108771890"
+      }
+    ],
+    "part_of_database": "dc",
+    "preferred_prefix": "dcmitype",
+    "providers": [
+      {
+        "code": "web",
+        "uri_format": "https://www.dublincore.org/specifications/dublin-core/dcmi-terms/#$1"
+      }
+    ],
+    "rdf_uri_format": "http://purl.org/dc/dcmitype/$1",
+    "synonyms": [
+      "dcmitypes",
+      "dctypes"
+    ],
+    "uri_format": "http://purl.org/dc/dcmitype/$1",
+    "zazuko": {
+      "prefix": "dcmitype",
+      "uri_format": "http://purl.org/dc/dcmitype/$1"
+    }
+  },
   "dcterms": {
     "aberowl": {
       "artifacts": [
@@ -38483,7 +38564,14 @@
       "prefix": "dcterms",
       "uri_format": "http://purl.org/dc/terms/$1"
     },
+    "owners": [
+      {
+        "name": "Dublin Core Metadata Initiative",
+        "wikidata": "Q108771890"
+      }
+    ],
     "preferred_prefix": "dcterms",
+    "rdf_uri_format": "http://purl.org/dc/terms/$1",
     "synonyms": [
       "dc.terms",
       "dct",
@@ -38518,60 +38606,6 @@
     "zazuko": {
       "prefix": "dcterms",
       "uri_format": "http://purl.org/dc/terms/$1"
-    }
-  },
-  "dctypes": {
-    "aberowl": {
-      "artifacts": [
-        {
-          "type": "owl",
-          "url": "http://aber-owl.net/media/ontologies/DCMITYPE/1/dcmitype.owl"
-        }
-      ],
-      "description": "OWL 2 DL ontology for a few terms of the DCMI abstract model from the http://purl.org/dc/dcam/ namespace",
-      "name": "DCMI Abstract Model",
-      "prefix": "DCMITYPE"
-    },
-    "biocontext": {
-      "prefix": "dctypes",
-      "uri_format": "http://purl.org/dc/dcmitype/$1"
-    },
-    "bioportal": {
-      "contact": {
-        "email": "kdurante@stanford.edu",
-        "name": "Kim Durante"
-      },
-      "description": "The DCMI Type Vocabulary provides a general, cross-domain list of approved terms that may be used as values for the Resource Type element to identify the genre of a resource",
-      "homepage": "http://dublincore.org/documents/dcmi-type-vocabulary",
-      "name": "DCMI Type Vocabulary",
-      "prefix": "DCMITYPE"
-    },
-    "contributor": {
-      "email": "cthoyt@gmail.com",
-      "github": "cthoyt",
-      "name": "Charles Tapley Hoyt",
-      "orcid": "0000-0003-4423-4370"
-    },
-    "description": "This document is an up-to-date specification of all metadata terms maintained by the Dublin Core Metadata Initiative, including properties, vocabulary encoding schemes, syntax encoding schemes, and classes.",
-    "example": "Collection",
-    "homepage": "https://dublincore.org/specifications/dublin-core/dcmi-terms",
-    "mappings": {
-      "aberowl": "DCMITYPE",
-      "biocontext": "dctypes",
-      "bioportal": "DCMITYPE",
-      "zazuko": "dcmitype"
-    },
-    "name": "Dublin Core Types",
-    "part_of_database": "dc",
-    "preferred_prefix": "dctypes",
-    "synonyms": [
-      "dcmitype",
-      "dcmitypes"
-    ],
-    "uri_format": "http://purl.org/dc/dcmitype/$1",
-    "zazuko": {
-      "prefix": "dcmitype",
-      "uri_format": "http://purl.org/dc/dcmitype/$1"
     }
   },
   "ddanat": {
@@ -49230,7 +49264,7 @@
       "prefix": "edam",
       "tracker": "https://github.com/edamontology/edamontology/issues"
     },
-    "uri_format": "https://www.ebi.ac.uk/ols/ontologies/edam/terms?iri=http://edamontology.org/$1"
+    "uri_format": "http://edamontology.org/$1"
   },
   "edam.data": {
     "biolink": {
@@ -56254,6 +56288,45 @@
       "name": "Charles Tapley Hoyt",
       "orcid": "0000-0003-4423-4370"
     }
+  },
+  "esrfet": {
+    "bartoc": {
+      "description": "The ESRFET ontology describes beamline experimental techniques at ESRF to enhance the FAIRness of experimental metadata. It supports semantic interoperability and reasoning over relationships between techniques.",
+      "homepage": "https://pan-ontologies.github.io/esrf-ontologies/esrfet/v0.1.0/",
+      "license": {
+        "spdx": "CC-BY-4.0",
+        "url": "http://creativecommons.org/licenses/by/4.0/"
+      },
+      "name": "ESRF Experimental Techniques Ontology",
+      "prefix": "21163",
+      "short_names": [
+        "ESRFET Ontology"
+      ]
+    },
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "The ESRFET ontology describes beamline experimental techniques at ESRF to enhance the FAIRness of experimental metadata. It supports semantic interoperability and reasoning over relationships between techniques. (from homepage)",
+    "download_owl": "https://pan-ontologies.github.io/esrf-ontologies/esrfet/latest/ontology.owl",
+    "example": "vertical_linear_polarization",
+    "homepage": "https://w3id.org/PaN/ESRFET",
+    "license": "CC-BY-4.0",
+    "mappings": {
+      "bartoc": "21163"
+    },
+    "name": "ESRF Experimental Techniques Ontology",
+    "owners": [
+      {
+        "name": "European Synchrotron Radiation Facility",
+        "ror": "02550n020"
+      }
+    ],
+    "rdf_uri_format": "https://w3id.org/PaN/ESRFET#$1",
+    "repository": "https://github.com/pan-ontologies/esrf-ontologies",
+    "uri_format": "https://w3id.org/PaN/ESRFET#$1"
   },
   "estdab": {
     "cellosaurus": {
@@ -77185,7 +77258,7 @@
       "bioportal": "HL7"
     },
     "name": "HL7 External Code System",
-    "uri_format": "https://oid-base.com/get/2.16.840.1.113883:$1"
+    "uri_format": "https://oid-base.com/get/2.16.840.1.113883.$1"
   },
   "hl7.v2codesystem": {
     "contributor": {
@@ -112626,7 +112699,13 @@
       "registry"
     ],
     "name": "Name-to-Thing",
-    "uri_format": "https://n2t.net/$1:"
+    "providers": [
+      {
+        "code": "legacy",
+        "uri_format": "https://n2t.net/$1:"
+      }
+    ],
+    "uri_format": "https://n2t.net/.info/$1"
   },
   "n4e": {
     "example": "API",
@@ -116949,6 +117028,12 @@
       "bartoc": "21162",
       "tib": "nexus"
     },
+    "owners": [
+      {
+        "name": "European Synchrotron Radiation Facility",
+        "ror": "02550n020"
+      }
+    ],
     "tib": {
       "artifacts": [
         {
@@ -130344,6 +130429,12 @@
       },
       "logo": "https://api.fairsharing.org/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBb29JIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--48e885a666df21f8c07a09a1bafea0a67972697b/panet_logo.png?disposition=inline",
       "name": "ExPaNDS Photon and Neutron Experimental Techniques Ontology",
+      "owners": [
+        {
+          "name": "European Synchrotron Radiation Facility",
+          "ror": "02550n020"
+        }
+      ],
       "prefix": "FAIRsharing.a08d34",
       "publications": [
         {
@@ -130366,6 +130457,12 @@
       "tib": "panet"
     },
     "name": "Photon and Neutron Experimental Techniques Ontology",
+    "owners": [
+      {
+        "name": "European Synchrotron Radiation Facility",
+        "ror": "02550n020"
+      }
+    ],
     "pattern": "^\\d+$",
     "publications": [
       {
@@ -141776,6 +141873,12 @@
       "registry"
     ],
     "name": "Prefix Commons",
+    "providers": [
+      {
+        "code": "legacy",
+        "uri_format": "https://registry.bio2kg.org/resource/$1"
+      }
+    ],
     "uri_format": "https://bioregistry.io/metaregistry/prefixcommons/$1"
   },
   "premis": {
@@ -177791,7 +177894,7 @@
     ],
     "rdf_uri_format": "https://togoid.dbcls.jp/ontology#$1",
     "repository": "https://github.com/dbcls/togoid/togoid-config",
-    "uri_format": "https://togoid.dbcls.jp/#$1"
+    "uri_format": "https://togoid.dbcls.jp/ontology#$1"
   },
   "togovar": {
     "fairsharing": {
@@ -193424,7 +193527,7 @@
     ],
     "license": "MIT",
     "name": "Zazuko Prefix Server",
-    "uri_format": "https://prefix.zazuko.com/prefix/$1:"
+    "uri_format": "https://prefix.zazuko.com/prefix/$1"
   },
   "zbw": {
     "bartoc": {
