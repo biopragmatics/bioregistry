@@ -905,11 +905,13 @@ class Resource(BaseModel):
             return external.get(key, default)
         return default
 
+    # docstr-coverage:excused `overload`
     @overload
     def get_mapped_prefix(
         self, metaprefix: str, *, use_obo_preferred: bool = ..., strict: Literal[True] = ...
     ) -> str: ...
 
+    # docstr-coverage:excused `overload`
     @overload
     def get_mapped_prefix(
         self, metaprefix: str, *, use_obo_preferred: bool = ..., strict: Literal[False] = ...
