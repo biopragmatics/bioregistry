@@ -3096,8 +3096,6 @@
       ],
       "version": "2026-05"
     },
-    "banana": "c_",
-    "banana_peel": "",
     "bartoc": {
       "description": "AGROVOC is a controlled vocabulary covering all areas of interest of the Food and Agriculture Organization (FAO) of the United Nations, including food, nutrition, agriculture, fisheries, forestry, environment etc. It is published by FAO and edited by a community of experts.\n\nAGROVOC consists of over 40,900 concepts available in up to 42 languages: Arabic, Belarusian, Chinese, Czech, English, Estonian, French, German, Hindi, Hungarian, Italian, Japanese, Korean, Lao, Malay, Norwegian Bokmål, Persian, Polish, Portuguese, Russian, Slovak, Spanish, Swahili, Telugu, Thai, Turkish, Ukrainian and others.\n\nYou can use AGROVOC to look up the common name of a plant in a language that you do not master, or to find  relations between a commodity and the crop from which it is produced. Your library can use AGROVOC to index its documents, or you can use it from inside your content management system (e.g., Drupal) to organize your documents or web site. You can also use AGROVOC as an hub to access many other vocabularies available on the web.\n\nTo date, AGROVOC is used by researchers, librarians and information managers for indexing, retrieving and organizing data in agricultural information systems and Web pages. Currently, AGROVOC is an SKOS-XL concept scheme and a Linked Open Data (LOD) set aligned with 16 other multilingual knowledge organization systems related to agriculture.\n\nYou may download AGROVOC, access its Web Services or SPARQL endpoint.",
       "homepage": "http://www.fao.org/agrovoc/",
@@ -3160,7 +3158,12 @@
       ],
       "version": "2024-04"
     },
-    "example": "2842",
+    "example": "c_25756",
+    "example_extras": [
+      "xl_lo_1299496125062",
+      "xDef_5b0dcc34",
+      "xl_sv_6c7a1a27"
+    ],
     "fairsharing": {
       "description": "AGROVOC is a controlled vocabulary covering all areas of interest of the Food and Agriculture Organization (FAO) of the United Nations, including food, nutrition, agriculture, fisheries, forestry, environment etc. It is published by FAO and edited by a community of experts. AGROVOC consists of over 41,400 concepts available in up to 42 languages. AGROVOC uses semantic web technologies, linking to other multilingual knowledge organization systems and building bridges between datasets. Your library can use AGROVOC to index its documents or datasets, or you can use it from inside your content management system (e.g., Drupal) to organize your documents or web site. You can also use AGROVOC as an hub to access many other vocabularies available on the web.  To date, AGROVOC is used by researchers, librarians and information managers for indexing, retrieving and organizing data in agricultural information systems and Web pages. Currently, AGROVOC is an SKOS-XL concept scheme and a Linked Open Data (LOD*) set aligned with over 20 other multilingual knowledge organization systems related to agriculture. You may browse AGROVOC, access its Web Services or SPARQL endpoint.",
       "homepage": "https://www.fao.org/agrovoc/",
@@ -3222,7 +3225,6 @@
       "wikidata.entity": "Q292649"
     },
     "name": "AGROVOC",
-    "pattern": "^[a-z0-9]+$",
     "publications": [
       {
         "doi": "10.1016/j.compag.2020.105965",
@@ -3240,12 +3242,13 @@
         "year": 2021
       }
     ],
+    "rdf_uri_format": "http://aims.fao.org/aos/agrovoc/$1",
     "references": [
       "http://agrovoc.uniroma2.it/latestAgrovoc/agrovoc_core.nt.zip",
       "http://agrovoc.uniroma2.it/latestAgrovoc/agrovoc_lod.nt.zip",
       "https://en.wikipedia.org/wiki/AGROVOC"
     ],
-    "uri_format": "http://aims.fao.org/aos/agrovoc/c_$1",
+    "uri_format": "http://aims.fao.org/aos/agrovoc/$1",
     "wikidata": {
       "description": "identifier for a subject in AGROVOC thesaurus",
       "examples": [
@@ -9179,6 +9182,7 @@
         "year": 1975
       }
     ],
+    "rdf_uri_format": "http://www.bioassayontology.org/bao#BAO_$1",
     "repository": "https://github.com/BioAssayOntology/BAO",
     "synonyms": [
       "BAO"
@@ -51486,7 +51490,7 @@
         "ror": "02d0g4295"
       }
     ],
-    "rdf_uri_format": " https://purl.org/emi#$1",
+    "rdf_uri_format": "https://purl.org/emi#$1",
     "repository": "https://github.com/digital-botanical-gardens-initiative/earth_metabolome_ontology",
     "uri_format": "https://www.dbgi.org/earth_metabolome_ontology/#$1"
   },
@@ -57884,7 +57888,7 @@
     },
     "name": "FactGrid",
     "pattern": "^Q\\d+$",
-    "rdf_uri_format": "https://database.factgrid.de/wiki/Item:Q24708",
+    "rdf_uri_format": "https://database.factgrid.de/wiki/Item:$1",
     "re3data": {
       "description": "FactGrid is a Wikibase instance designed to be used by historians with a focus on international projects. The database is hosted by the Thuringian University and State Library Jena and coordinated at the Gotha Research Centre and the Historical Data Centre of Saxony-Anhalt, Halle. Partners in joint ventures are Wikimedia Germany as the software provider and the German National Library in a project to open the GND to international research.",
       "homepage": "https://database.factgrid.de/wiki/Main_Page",
@@ -65144,7 +65148,7 @@
         "uri_format": "http://www.eionet.europa.eu/gemet/concept/$1"
       }
     ],
-    "rdf_uri_format": " http://www.eionet.europa.eu/gemet/concept/$1",
+    "rdf_uri_format": "http://www.eionet.europa.eu/gemet/concept/$1",
     "tib": {
       "description": "GEMET, the GEneral Multilingual Environmental Thesaurus, has been developed since 1995 as a tool for indexing, retrieval, and control for the European Environment Agency. It was created to utilize the best available multilingual thesauri, saving time and resources. GEMET serves as a \"general\" thesaurus, aiming to establish a common core of environmental terminology.",
       "homepage": "https://www.eionet.europa.eu/gemet/en/themes/",
@@ -83866,8 +83870,9 @@
         "uri_format": "https://biomodels.net/vocab/idot.rdf#$1"
       }
     ],
-    "rdf_uri_format": "http://identifiers.org/idot/",
-    "repository": "https://github.com/identifiers-org/ontop"
+    "rdf_uri_format": "http://identifiers.org/idot/$1",
+    "repository": "https://github.com/identifiers-org/ontop",
+    "uri_format": "http://identifiers.org/idot/$1"
   },
   "idpo": {
     "contact": {
@@ -98970,6 +98975,7 @@
       "prefix": "MAMO"
     },
     "pattern": "^\\d{7}$",
+    "rdf_uri_format": "http://identifiers.org/mamo/MAMO_$1",
     "repository": "https://github.com/cmungall/mamo",
     "uri_format": "http://bioportal.bioontology.org/ontologies/MAMO/?p=classes&conceptid=http://identifiers.org/mamo/MAMO_$1"
   },

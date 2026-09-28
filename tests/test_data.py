@@ -296,21 +296,24 @@ class TestRegistry(unittest.TestCase):
     def test_format_urls(self) -> None:
         """Test that entries with a format URL are formatted right (yo dawg)."""
         for prefix, entry in self.registry.items():
-            uri_format = entry.uri_format
-            if not uri_format:
-                continue
-            with self.subTest(prefix=prefix):
-                self.assertEqual(
-                    uri_format.strip(), uri_format, msg=f"{prefix} URI format has spaces"
-                )
-                self.assertTrue(
-                    any(
-                        uri_format.startswith(protocol + "://")
-                        for protocol in ["http", "https", "ftp", "s3"]
-                    ),
-                    msg=f"{prefix} URI format dos not start with a valid protocol",
-                )
-                self.assertIn("$1", uri_format, msg=f"{prefix} URI format does not have a $1")
+            for name, uri_format in [
+                ("uri_format", entry.uri_format),
+                ("rdf_uri_format", entry.rdf_uri_format),
+            ]:
+                if not uri_format:
+                    continue
+                with self.subTest(prefix=prefix, type=name):
+                    self.assertEqual(
+                        uri_format.strip(), uri_format, msg=f"{prefix} URI format has spaces"
+                    )
+                    self.assertTrue(
+                        any(
+                            uri_format.startswith(protocol + "://")
+                            for protocol in ["http", "https", "ftp", "s3"]
+                        ),
+                        msg=f"{prefix} URI format dos not start with a valid protocol",
+                    )
+                    self.assertIn("$1", uri_format, msg=f"{prefix} URI format does not have a $1")
 
     def test_uri_format_uniqueness(self) -> None:
         """Test URI format uniqueness."""
@@ -397,12 +400,12 @@ class TestRegistry(unittest.TestCase):
         )
         self.assertEqual("^(CHEBI:)?\\d+$", resource.get_pattern_with_banana(strict=False))
 
-        resource = self.registry["agrovoc"]
+        resource = self.registry["mint"]
         self.assertEqual(
-            "^c_[a-z0-9]+$",
+            "^MINT-\\d{1,7}$",
             resource.get_pattern_with_banana(),
         )
-        self.assertEqual("^(c_)?[a-z0-9]+$", resource.get_pattern_with_banana(strict=False))
+        self.assertEqual("^(MINT-)?\\d{1,7}$", resource.get_pattern_with_banana(strict=False))
 
     def test_examples(self) -> None:
         """Test examples for the required conditions.
@@ -676,7 +679,7 @@ class TestRegistry(unittest.TestCase):
     def assert_no_idot(self, prefix_map: Mapping[str, str]) -> None:
         """Assert none of the URI prefixes have identifiers.org in them."""
         for prefix, uri_prefix in prefix_map.items():
-            if prefix in {"idoo", "miriam.collection", "mir", "identifiers.namespace"}:
+            if prefix in {"idot", "miriam.collection", "mir", "identifiers.namespace"}:
                 # allow identifiers.org namespaces since this actually should be here
                 continue
             with self.subTest(prefix=prefix):
@@ -1149,8 +1152,10 @@ class TestRegistry(unittest.TestCase):
     def test_standardize_identifier(self) -> None:
         """Standardize the identifier."""
         examples = [
-            ("agrovoc", "1234", "1234"),
-            ("agrovoc", "c_1234", "1234"),
+            ("go", "1234567", "1234567"),
+            ("go", "GO:1234567", "1234567"),
+            ("mint", "6978836", "6978836"),
+            ("mint", "MINT-6978836", "6978836"),
         ]
         for prefix, identifier, norm_identifier in examples:
             with self.subTest(prefix=prefix, identifier=identifier):

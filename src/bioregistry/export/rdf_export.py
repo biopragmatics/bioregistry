@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import logging
 from collections.abc import Callable
+from functools import partial
 from typing import Any
 
 import click
@@ -15,6 +16,7 @@ from rdflib import (
     FOAF,
     RDF,
     RDFS,
+    SH,
     SKOS,
     XSD,
     Literal,
@@ -96,9 +98,9 @@ def get_full_rdf(manager: Manager) -> rdflib.Graph:
     for collection in manager.collections.values():
         collection.add_triples(graph)
     for resource in manager.registry.values():
-        uri_prefix = resource.get_uri_prefix()
+        uri_prefix = resource.get_rdf_uri_prefix() or resource.get_uri_prefix()
         if uri_prefix:
-            graph.bind(resource.prefix, uri_prefix)
+            graph.bind(resource.get_preferred_prefix() or resource.prefix, uri_prefix)
         _add_resource(
             graph=graph, manager=manager, resource=resource, namespaces_dict=namespaces_dict
         )
@@ -142,18 +144,19 @@ def _get_resource_functions() -> list[tuple[str | URIRef, Callable[[Resource], A
     return [
         ("0000008", Resource.get_pattern, XSD.string),
         ("0000006", Resource.get_uri_format, XSD.string),
-        ("0000024", Resource.get_uri_prefix, XSD.string),
         ("0000005", Resource.get_example, XSD.string),
         ("0000012", Resource.is_deprecated, XSD.boolean),
         (DCTERMS.description, Resource.get_description, XSD.string),
     ]
 
 
-def _get_resource_function_2() -> list[tuple[str | URIRef, Callable[[Resource], Any]]]:
+def _get_resource_function_2() -> list[
+    tuple[str | URIRef, Callable[[Resource], Any], Callable[[str], rdflib.Node]]
+]:
     return [
-        ("0000027", Resource.get_example_iri),
-        (FOAF.homepage, Resource.get_homepage),
-        (DOAP.GitRepository, Resource.get_repository),
+        ("0000027", Resource.get_example_iri, URIRef),
+        (FOAF.homepage, Resource.get_homepage, partial(Literal, datatype=XSD.anyURI)),
+        (DOAP.GitRepository, Resource.get_repository, partial(Literal, datatype=XSD.anyURI)),
     ]
 
 
@@ -169,13 +172,17 @@ def _add_resource(
     node = bioregistry_resource[resource.prefix]
     graph.add((node, RDF.type, bioregistry_schema["0000001"]))
     graph.add((node, RDFS.label, Literal(resource.get_name())))
-    graph.add((node, bioregistry_schema["0000029"], Literal(resource.prefix)))
+    graph.add((node, SH.prefix, Literal(resource.get_preferred_prefix() or resource.prefix)))
     graph.add((node, DCTERMS.isPartOf, bioregistry_resource["bioregistry"]))
     graph.add((bioregistry_resource["bioregistry"], DCTERMS.hasPart, node))
     for synonym in resource.get_synonyms():
         graph.add((node, bioregistry_schema["0000023"], Literal(synonym)))
     for keyword in resource.get_keywords():
         graph.add((node, DCAT.keyword, Literal(keyword)))
+
+    if uri_prefix := resource.get_uri_prefix():
+        graph.add((node, RDF.type, SH.PrefixDeclaration))
+        graph.add((node, SH.namespace, Literal(uri_prefix, datatype=XSD.anyURI)))
 
     for predicate, func, datatype in _get_resource_functions():
         value = func(resource)
@@ -185,13 +192,13 @@ def _add_resource(
             predicate = bioregistry_schema[predicate]
         graph.add((node, predicate, Literal(value, datatype=datatype)))
 
-    for predicate, func in _get_resource_function_2():
+    for predicate, func, builder in _get_resource_function_2():
         value = func(resource)
         if value is None or not _is_valid_uri(value):
             continue
         if not isinstance(predicate, URIRef):
             predicate = bioregistry_schema[predicate]
-        graph.add((node, predicate, URIRef(value)))
+        graph.add((node, predicate, builder(value)))
 
     download = (
         resource.get_download_owl()
@@ -199,7 +206,7 @@ def _add_resource(
         or resource.get_download_obograph()
     )
     if download:
-        graph.add((node, bioregistry_schema["0000010"], URIRef(download)))
+        graph.add((node, bioregistry_schema["0000010"], Literal(download, datatype=XSD.anyURI)))
 
     # Ontological relationships
 
