@@ -96,7 +96,7 @@ def _read_metaregistry(
                 )
             record[key] = func(resource)
 
-        rr = Registry.model_validate(record)
+        rr = Registry.model_validate(record, extra="forbid")
         rv[rr.prefix] = rr
     return rv
 
@@ -210,7 +210,7 @@ def _collections_from_path(path: str | Path) -> dict[str, Collection]:
         data = json.load(file)
     return {
         collection.identifier: collection
-        for collection in (Collection.model_validate(record) for record in data["collections"])
+        for collection in (Collection.model_validate(record, extra="forbid") for record in data["collections"])
     }
 
 
@@ -409,4 +409,4 @@ def read_contexts() -> Mapping[str, Context]:
 def _contexts_from_path(path: str | Path) -> Mapping[str, Context]:
     with open(path, encoding="utf-8") as file:
         data = json.load(file)
-    return {key: Context.model_validate(data) for key, data in data.items()}
+    return {key: Context.model_validate(data, extra="forbid") for key, data in data.items()}

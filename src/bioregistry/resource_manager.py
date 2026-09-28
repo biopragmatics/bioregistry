@@ -863,7 +863,7 @@ class Manager:
         )
 
     def _raise_for_invalid_metaprefix(self, metaprefix: str) -> None:
-        if metaprefix not in self.registry:
+        if metaprefix not in self.metaregistry:
             raise KeyError(f"metaprefix is not in the metaregistry: {metaprefix}")
 
     def get_external(self, prefix: str, metaprefix: str) -> Record | None:

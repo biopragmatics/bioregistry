@@ -1420,7 +1420,7 @@ class TestRegistry(unittest.TestCase):
         with self.subTest(msg="test hasVersion relation"):
             self.assertIn("envo2023", manager.get_registry_invmap("tib"))
         with self.subTest(msg="test the providerOf relation"):
-            self.assertIn("DB-0262", manager.get_registry_invmap("uniprot"))
+            self.assertIn("DB-0262", manager.get_registry_invmap("uniprot.resource"))
 
     def test_short_name_map(self) -> None:
         """Test the short name map."""
