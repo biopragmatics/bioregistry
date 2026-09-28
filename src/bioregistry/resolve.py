@@ -381,7 +381,7 @@ def get_wikidata_prefix(prefix: str) -> str | None:
     >>> get_wikidata_prefix("ncbitaxon")
     'P685'
     """
-    return manager.get_mapped_prefix(prefix, "wikidata")
+    return manager.get_mapped_prefix(prefix, "wikidata.property")
 
 
 def get_bioportal_prefix(prefix: str) -> str | None:
