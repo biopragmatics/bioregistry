@@ -272,9 +272,14 @@ class Manager:
 
     def get_registry(self, metaprefix: str, *, strict: bool = False) -> Registry | None:
         """Get the metaregistry entry for the given prefix."""
+        if rv := self.metaregistry.get(metaprefix):
+            return rv
+        if rv := self.metaregistry.get(f"{metaprefix}.resource"):
+            logger.warning(f"metaprefix has been changed from {metaprefix} to {rv.prefix}")
+            return rv
         if strict:
-            return self.metaregistry[metaprefix]
-        return self.metaregistry.get(metaprefix)
+            raise KeyError
+        return None
 
     def write_collections(self) -> None:
         """Write collections."""
@@ -857,9 +862,11 @@ class Manager:
         resource = self.get_resource(prefix, strict=strict)  # type:ignore[call-overload]
         if resource is None:
             return None
-        self._raise_for_invalid_metaprefix(metaprefix)
+        registry = self.get_registry(metaprefix, strict=strict)  # type:ignore[call-overload]
+        if registry is None:
+            return None
         return resource.get_mapped_prefix(  # type:ignore[no-any-return]
-            metaprefix, use_obo_preferred=use_obo_preferred, strict=strict
+            registry.prefix, use_obo_preferred=use_obo_preferred, strict=strict
         )
 
     def _raise_for_invalid_metaprefix(self, metaprefix: str) -> None:
