@@ -100,7 +100,7 @@ def get_full_rdf(manager: Manager) -> rdflib.Graph:
     for resource in manager.registry.values():
         uri_prefix = resource.get_rdf_uri_prefix() or resource.get_uri_prefix()
         if uri_prefix:
-            graph.bind(resource.prefix, uri_prefix)
+            graph.bind(resource.get_preferred_prefix() or resource.prefix, uri_prefix)
         _add_resource(
             graph=graph, manager=manager, resource=resource, namespaces_dict=namespaces_dict
         )
@@ -172,7 +172,7 @@ def _add_resource(
     node = bioregistry_resource[resource.prefix]
     graph.add((node, RDF.type, bioregistry_schema["0000001"]))
     graph.add((node, RDFS.label, Literal(resource.get_name())))
-    graph.add((node, SH.prefix, Literal(resource.prefix)))
+    graph.add((node, SH.prefix, Literal(resource.get_preferred_prefix() or resource.prefix)))
     graph.add((node, DCTERMS.isPartOf, bioregistry_resource["bioregistry"]))
     graph.add((bioregistry_resource["bioregistry"], DCTERMS.hasPart, node))
     for synonym in resource.get_synonyms():
@@ -206,7 +206,7 @@ def _add_resource(
         or resource.get_download_obograph()
     )
     if download:
-        graph.add((node, bioregistry_schema["0000010"], URIRef(download)))
+        graph.add((node, bioregistry_schema["0000010"], Literal(download, datatype=XSD.anyURI)))
 
     # Ontological relationships
 
