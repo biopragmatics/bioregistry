@@ -76,7 +76,7 @@ NOT_ALLOWED_IN_METAREGISTRY: dict[str, Callable[[Resource], Any]] = {
     "name": partial(Resource.get_name, strict=True),
     "uri_format": Resource.get_uri_format,
 }
-READY_TO_UPDATE = False
+READY_TO_UPDATE = True
 
 
 def _read_metaregistry(
