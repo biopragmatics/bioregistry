@@ -13,7 +13,6 @@ aberowl:
     synonyms: missing
     version: present
   bibtex: Hoehndorf2015
-  bioregistry_prefix: aberowl
   contact:
     email: maxat.kulmanov@kaust.edu.sa
     github: coolmaksat
@@ -64,7 +63,6 @@ agroportal:
     synonyms: missing
     version: present
   bibtex: Jonquet2018
-  bioregistry_prefix: agroportal
   contact:
     email: clement.jonquet@inrae.fr
     github: jonquet
@@ -107,7 +105,6 @@ bartoc:
     search: true
     synonyms: missing
     version: missing
-  bioregistry_prefix: bartoc
   contact:
     email: voss@gbv.de
     github: nichtich
@@ -165,7 +162,6 @@ biocontext:
     synonyms: missing
     version: missing
   bibtex: biocontext
-  bioregistry_prefix: biocontext
   contact:
     email: cjmungall@lbl.gov
     github: cmungall
@@ -196,7 +192,6 @@ biocontext:
     structured_data: true
   uri_format: https://bioregistry.io/metaregistry/biocontext/$1
 biodivportal:
-  bioregistry_prefix: biodivportal
   contact:
     github: naouelkaram
     name: Naouel Karam
@@ -216,7 +211,7 @@ biodivportal:
   resolver_type: lookup
   short_name: BiodivPortal
   uri_format: https://biodivportal.gfbio.org/ontologies/$1
-biolink:
+biolink.resource:
   availability:
     alternate_providers: missing
     contact: missing
@@ -231,7 +226,6 @@ biolink:
     synonyms: missing
     version: missing
   bibtex: Unni2022
-  bioregistry_prefix: biolink.resource
   contact:
     email: deepak.unni3@lbl.gov
     github: deepakunni3
@@ -254,7 +248,7 @@ biolink:
     status: active
   homepage: https://biolink.github.io/biolink-model
   name: BioLink Model Registry
-  prefix: biolink
+  prefix: biolink.resource
   qualities:
     automatable_download: true
     bulk_data: true
@@ -276,7 +270,6 @@ bioportal:
     synonyms: missing
     version: required
   bibtex: Whetzel2011
-  bioregistry_prefix: bioportal
   contact:
     email: jgraybeal@stanford.edu
     github: graybeal
@@ -324,7 +317,6 @@ bioregistry:
     synonyms: present
     version: present
   bibtex: Hoyt2022
-  bioregistry_prefix: bioregistry
   contact:
     email: cthoyt@gmail.com
     github: cthoyt
@@ -359,7 +351,7 @@ bioregistry:
   resolver_type: resolver
   resolver_uri_format: https://bioregistry.io/$1:$2
   uri_format: https://bioregistry.io/registry/$1
-cellosaurus:
+cellosaurus.resource:
   availability:
     alternate_providers: missing
     contact: missing
@@ -374,7 +366,6 @@ cellosaurus:
     synonyms: missing
     version: missing
   bibtex: Bairoch2018
-  bioregistry_prefix: cellosaurus.resource
   contact:
     email: Amos.Bairoch@sib.swiss
     github: AmosBairoch
@@ -393,7 +384,7 @@ cellosaurus:
     status: active
   homepage: https://web.expasy.org/cellosaurus
   name: Cellosaurus Registry
-  prefix: cellosaurus
+  prefix: cellosaurus.resource
   qualities:
     automatable_download: true
     bulk_data: true
@@ -416,7 +407,6 @@ cheminf:
     synonyms: missing
     version: missing
   bibtex: Hastings2011
-  bioregistry_prefix: cheminf
   contact:
     email: egon.willighagen@gmail.com
     github: egonw
@@ -465,7 +455,6 @@ cropoct:
     synonyms: missing
     version: missing
   bibtex: Arnaud2020
-  bioregistry_prefix: cropoct
   contact:
     email: e.arnaud@cgiar.org
     github: elizabetharnaud
@@ -516,7 +505,6 @@ ecoportal:
     synonyms: missing
     version: present
   bibtex: Kechagioglou2021
-  bioregistry_prefix: ecoportal
   contact:
     email: xeni.kechagioglou@lifewatch.eu
     github: xeniacs
@@ -546,7 +534,7 @@ ecoportal:
     structured_data: true
   resolver_type: lookup
   uri_format: http://ecoportal.lifewatch.eu/ontologies/$1
-edam:
+edam.data:
   availability:
     alternate_providers: missing
     contact: missing
@@ -561,7 +549,6 @@ edam:
     synonyms: missing
     version: missing
   bibtex: Ison2013
-  bioregistry_prefix: edam.data
   contact:
     email: matus.kalas@uib.no
     github: matuskalas
@@ -588,7 +575,7 @@ edam:
   license: CC-BY-SA-4.0
   logo: https://avatars.githubusercontent.com/u/7922809
   name: EDAM Data
-  prefix: edam
+  prefix: edam.data
   qualities:
     automatable_download: true
     bulk_data: true
@@ -611,7 +598,6 @@ fairsharing:
     synonyms: missing
     version: missing
   bibtex: Sansone2019
-  bioregistry_prefix: fairsharing
   contact:
     email: allyson.lister@oerc.ox.ac.uk
     github: allysonlister
@@ -642,7 +628,7 @@ fairsharing:
     no_authentication: false
     structured_data: true
   uri_format: https://fairsharing.org/$1
-go:
+go.resource:
   availability:
     alternate_providers: present
     contact: missing
@@ -657,7 +643,6 @@ go:
     synonyms: missing
     version: missing
   bibtex: TheGeneOntologyConsortium2019
-  bioregistry_prefix: go.resource
   contact:
     email: cjmungall@lbl.gov
     github: cmungall
@@ -680,7 +665,7 @@ go:
     status: inactive
   homepage: https://raw.githubusercontent.com/geneontology/go-site/master/metadata/db-xrefs.yaml
   name: Gene Ontology Registry
-  prefix: go
+  prefix: go.resource
   qualities:
     automatable_download: true
     bulk_data: true
@@ -703,7 +688,6 @@ hl7:
     synonyms: missing
     version: missing
   bibtex: Bender2013
-  bioregistry_prefix: hl7
   contact:
     email: hq@hl7.org
     github: ghost
@@ -743,7 +727,6 @@ integbio:
     search: false
     synonyms: missing
     version: missing
-  bioregistry_prefix: integbio
   contact:
     email: kwsm@dbcls.rois.ac.jp
     github: skwsm
@@ -794,7 +777,6 @@ lov:
     search: true
     synonyms: missing
     version: missing
-  bioregistry_prefix: lov
   contact:
     email: py.vandenbussche@gmail.com
     github: pyvandenbussche
@@ -850,7 +832,6 @@ miriam:
     synonyms: missing
     version: missing
   bibtex: Juty2012
-  bioregistry_prefix: miriam
   contact:
     email: hhe@ebi.ac.uk
     github: hHermjakob
@@ -900,7 +881,6 @@ n2t:
     synonyms: present
     version: missing
   bibtex: Wimalaratne2018
-  bioregistry_prefix: n2t
   contact:
     email: jak@ucop.edu
     github: jkunze
@@ -931,7 +911,7 @@ n2t:
   resolver_uri_format: https://n2t.net/$1:$2
   short_name: N2T
   uri_format: https://n2t.net/.info/$1
-ncbi:
+ncbi.resource:
   availability:
     alternate_providers: missing
     contact: missing
@@ -946,7 +926,6 @@ ncbi:
     synonyms: missing
     version: missing
   bibtex: Clark2016
-  bioregistry_prefix: ncbi.resource
   contact:
     email: mizrachi@ncbi.nlm.nih.gov
     name: Ilene Karsch-Mizrachi
@@ -965,7 +944,7 @@ ncbi:
     status: inactive
   homepage: https://www.ncbi.nlm.nih.gov/genbank/collab/db_xref
   name: NCBI Registry
-  prefix: ncbi
+  prefix: ncbi.resource
   qualities:
     automatable_download: true
     bulk_data: true
@@ -988,16 +967,14 @@ obofoundry:
     synonyms: missing
     version: missing
   bibtex: Jackson2021
-  bioregistry_prefix: obo
   contact:
-    email: nicolas.matentzoglu@gmail.com
-    github: matentzn
-    name: Nicolas Matentzoglu
-    orcid: 0000-0002-7356-1779
-  description: The OBO namespace is the top-level namespace used by Open Biological
-    and Biomedical Ontology (OBO) Foundry ontologies.
+    email: cjmungall@lbl.gov
+    github: cmungall
+    name: Chris Mungall
+    orcid: 0000-0002-6601-2165
+  description: An ontology in the OBO foundry, not exactly the same as the obo namespace
   download: http://www.obofoundry.org/registry/ontologies.yml
-  example: uberon
+  example: chebi
   governance:
     accepts_external_contributions: true
     code_repository: https://github.com/OBOFoundry/OBOFoundry.github.io
@@ -1010,9 +987,9 @@ obofoundry:
     review_team: public
     scope: bio-ontologies
     status: active
-  homepage: http://www.obofoundry.org
-  license: CC-BY-4.0
-  name: Open Biological and Biomedical Ontologies
+  homepage: https://obofoundry.org
+  license: CC0-1.0
+  name: OBO Foundry ontology
   prefix: obofoundry
   qualities:
     automatable_download: true
@@ -1021,7 +998,7 @@ obofoundry:
     structured_data: true
   resolver_type: resolver
   resolver_uri_format: http://purl.obolibrary.org/obo/$1_$2
-  uri_format: http://purl.obolibrary.org/obo/$1
+  uri_format: https://www.obofoundry.org/ontology/$1
 ols:
   availability:
     alternate_providers: missing
@@ -1037,7 +1014,6 @@ ols:
     synonyms: missing
     version: present
   bibtex: Cote2006a
-  bioregistry_prefix: ols
   contact:
     email: henriette007@ebi.ac.uk
     github: henrietteharmse
@@ -1086,7 +1062,6 @@ ontobee:
     synonyms: missing
     version: missing
   bibtex: Ong2017
-  bioregistry_prefix: ontobee
   contact:
     email: yongqunh@med.umich.edu
     github: yongqunh
@@ -1132,7 +1107,6 @@ pathguide:
     search: true
     synonyms: missing
     version: missing
-  bioregistry_prefix: pathguide
   contact:
     email: gary.bader@utoronto.ca
     github: gbader
@@ -1174,7 +1148,6 @@ prefixcc:
     search: false
     synonyms: missing
     version: missing
-  bioregistry_prefix: prefixcc
   contact:
     email: richard@cyganiak.de
     github: cygri
@@ -1219,7 +1192,6 @@ prefixcommons:
     synonyms: present
     version: missing
   bibtex: prefixcommons
-  bioregistry_prefix: prefixcommons
   contact:
     email: michel.dumontier@gmail.com
     github: micheldumontier
@@ -1261,7 +1233,6 @@ re3data:
     synonyms: missing
     version: missing
   bibtex: Pampel2013
-  bioregistry_prefix: re3data
   contact:
     email: mwitt@purdue.edu
     github: mwittin
@@ -1291,7 +1262,7 @@ re3data:
     structured_data: false
   short_name: re3data
   uri_format: https://www.re3data.org/repository/$1
-rrid:
+rrid.resource:
   availability:
     alternate_providers: missing
     contact: present
@@ -1305,7 +1276,6 @@ rrid:
     search: true
     synonyms: present
     version: missing
-  bioregistry_prefix: rrid.resource
   contact:
     email: bandrow@gmail.com
     github: bandrow
@@ -1329,7 +1299,7 @@ rrid:
   license: CC-BY-4.0
   logo: https://scicrunch.org/upload/community-logo/rin-resources_69984.png
   name: Research Resource Identifiers Resource
-  prefix: rrid
+  prefix: rrid.resource
   qualities:
     automatable_download: true
     bulk_data: true
@@ -1338,7 +1308,7 @@ rrid:
   resolver_type: lookup
   resolver_uri_format: https://scicrunch.org/resolver/RRID:$1_$2
   short_name: RRID
-tib:
+tib.ts:
   availability:
     alternate_providers: missing
     contact: present
@@ -1352,7 +1322,6 @@ tib:
     search: true
     synonyms: missing
     version: present
-  bioregistry_prefix: tib.ts
   contact:
     email: baum@zbmed.de
     github: rombaum
@@ -1375,7 +1344,7 @@ tib:
     status: active
   homepage: https://terminology.tib.eu
   name: TIB Terminology Service
-  prefix: tib
+  prefix: tib.ts
   qualities:
     automatable_download: true
     bulk_data: true
@@ -1398,7 +1367,6 @@ togoid:
     search: false
     synonyms: missing
     version: missing
-  bioregistry_prefix: togoid
   contact:
     email: ktym@dbcls.jp
     github: ktym
@@ -1434,7 +1402,7 @@ togoid:
     no_authentication: true
     structured_data: true
   uri_format: https://togoid.dbcls.jp/ontology#$1
-uniprot:
+uniprot.resource:
   availability:
     alternate_providers: missing
     contact: missing
@@ -1449,7 +1417,6 @@ uniprot:
     synonyms: missing
     version: missing
   bibtex: Bateman2021
-  bioregistry_prefix: uniprot.resource
   contact:
     email: agb@ebi.ac.uk
     github: bateman-research
@@ -1473,7 +1440,7 @@ uniprot:
   license: CC-BY-4.0
   logo: https://www.uniprot.org/uniprot-logo.img.0df091.svg
   name: UniProt Resource
-  prefix: uniprot
+  prefix: uniprot.resource
   qualities:
     automatable_download: true
     bulk_data: true
@@ -1481,54 +1448,6 @@ uniprot:
     structured_data: true
   short_name: UniProt
   uri_format: https://www.uniprot.org/database/$1
-wikidata:
-  availability:
-    alternate_providers: present
-    contact: present
-    description: required
-    example: present
-    homepage: present
-    license: present
-    name: required
-    pattern: present
-    provider: present
-    search: true
-    synonyms: missing
-    version: present
-  bibtex: Waagmeester2020
-  bioregistry_prefix: wikidata.property
-  contact:
-    email: vrandecic@gmail.com
-    github: vrandezo
-    name: Denny Vrandečić
-    orcid: 0000-0002-9593-2294
-  description: 'Wikidata is a free and open knowledge base that can be read and edited
-    by both humans and machines.
-
-    Wikidata acts as central storage for the structured data of its Wikimedia sister
-    projects including Wikipedia, Wikivoyage, Wiktionary, Wikisource, and others.'
-  example: P4355
-  governance:
-    accepts_external_contributions: true
-    curates: true
-    curation: open-review
-    imports: false
-    public_version_controlled_data: false
-    review_team: inferrable
-    scope: general
-    status: active
-  homepage: https://www.wikidata.org
-  license: CC0-1.0
-  logo: https://upload.wikimedia.org/wikipedia/commons/6/66/Wikidata-logo-en.svg
-  name: Wikidata Property
-  prefix: wikidata
-  qualities:
-    automatable_download: true
-    bulk_data: true
-    no_authentication: true
-    structured_data: true
-  short_name: Wikidata
-  uri_format: http://www.wikidata.org/entity/$1
 wikidata.entity:
   availability:
     alternate_providers: present
@@ -1544,7 +1463,6 @@ wikidata.entity:
     synonyms: missing
     version: present
   bibtex: Waagmeester2020
-  bioregistry_prefix: wikidata.entity
   contact:
     email: vrandecic@gmail.com
     github: vrandezo
@@ -1573,6 +1491,53 @@ wikidata.entity:
     structured_data: true
   short_name: Wikidata (E)
   uri_format: http://www.wikidata.org/entity/$1
+wikidata.property:
+  availability:
+    alternate_providers: present
+    contact: present
+    description: required
+    example: present
+    homepage: present
+    license: present
+    name: required
+    pattern: present
+    provider: present
+    search: true
+    synonyms: missing
+    version: present
+  bibtex: Waagmeester2020
+  contact:
+    email: vrandecic@gmail.com
+    github: vrandezo
+    name: Denny Vrandečić
+    orcid: 0000-0002-9593-2294
+  description: 'Wikidata is a free and open knowledge base that can be read and edited
+    by both humans and machines.
+
+    Wikidata acts as central storage for the structured data of its Wikimedia sister
+    projects including Wikipedia, Wikivoyage, Wiktionary, Wikisource, and others.'
+  example: P4355
+  governance:
+    accepts_external_contributions: true
+    curates: true
+    curation: open-review
+    imports: false
+    public_version_controlled_data: false
+    review_team: inferrable
+    scope: general
+    status: active
+  homepage: https://www.wikidata.org
+  license: CC0-1.0
+  logo: https://upload.wikimedia.org/wikipedia/commons/6/66/Wikidata-logo-en.svg
+  name: Wikidata Property
+  prefix: wikidata.property
+  qualities:
+    automatable_download: true
+    bulk_data: true
+    no_authentication: true
+    structured_data: true
+  short_name: Wikidata
+  uri_format: http://www.wikidata.org/entity/$1
 zazuko:
   availability:
     alternate_providers: missing
@@ -1587,7 +1552,6 @@ zazuko:
     search: true
     synonyms: missing
     version: missing
-  bioregistry_prefix: zazuko
   contact:
     email: ktk@netlabs.org
     github: ktk
