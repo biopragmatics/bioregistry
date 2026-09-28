@@ -12,7 +12,6 @@ from pathlib import Path
 from typing import Any, TypeAlias
 
 import sssom_pydantic
-from curies import NamableReference
 from pystow.utils import write_json
 from sssom_pydantic import SemanticMapping
 
@@ -180,27 +179,7 @@ def _read_mappings(predicate_curie: str) -> dict[str, dict[str, set[str]]]:
 def read_mappings() -> list[SemanticMapping]:
     """Read curated mappings as SSSOM objects."""
     mappings, _, _ = sssom_pydantic.read(CURATED_MAPPINGS_PATH)
-
-    # TODO remove when addressing
-    #  https://github.com/biopragmatics/bioregistry/issues/1531
-    fixes = {
-        registry.bioregistry_prefix: registry.prefix for registry in read_metaregistry().values()
-    }
-
-    rv = []
-    for mapping in mappings:
-        if fixed_object_prefix := fixes.get(mapping.object.prefix):
-            mapping = mapping.model_copy(
-                update={
-                    "object": NamableReference(
-                        prefix=fixed_object_prefix,
-                        identifier=mapping.object.identifier,
-                        name=mapping.object.name,
-                    )
-                }
-            )
-        rv.append(mapping)
-    return rv
+    return mappings
 
 
 def is_mismatch(bioregistry_prefix: str, external_metaprefix: str, external_prefix: str) -> bool:

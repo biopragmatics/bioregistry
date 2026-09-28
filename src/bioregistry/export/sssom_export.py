@@ -29,13 +29,6 @@ def export_sssom() -> None:
     manager = Manager()
     converter = manager._get_internal_converter()
 
-    # TODO remove when addressing
-    #  https://github.com/biopragmatics/bioregistry/issues/1531
-    metaprefix_to_bioregistry = {
-        metaresource.prefix: metaresource.bioregistry_prefix
-        for metaresource in manager.metaregistry.values()
-    }
-
     def _make_semantic_mapping(
         internal_prefix: str,
         predicate: Reference,
@@ -66,7 +59,7 @@ def export_sssom() -> None:
                 _make_semantic_mapping(
                     prefix,
                     exact_match,
-                    metaprefix_to_bioregistry[metaprefix],
+                    metaprefix,
                     metaidentifier,
                     resource._get_external_value(metaprefix, "name"),
                 )
