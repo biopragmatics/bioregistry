@@ -29,6 +29,8 @@ def export_sssom() -> None:
     manager = Manager()
     converter = manager._get_internal_converter()
 
+    # TODO remove when addressing
+    #  https://github.com/biopragmatics/bioregistry/issues/1531
     metaprefix_to_bioregistry = {
         metaresource.prefix: metaresource.bioregistry_prefix
         for metaresource in manager.metaregistry.values()
