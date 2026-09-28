@@ -210,7 +210,9 @@ def _collections_from_path(path: str | Path) -> dict[str, Collection]:
         data = json.load(file)
     return {
         collection.identifier: collection
-        for collection in (Collection.model_validate(record, extra="forbid") for record in data["collections"])
+        for collection in (
+            Collection.model_validate(record, extra="forbid") for record in data["collections"]
+        )
     }
 
 
