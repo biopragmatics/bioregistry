@@ -124,6 +124,13 @@ class TestMetaregistry(unittest.TestCase):
         g = rdflib.Graph()
         g.parse(data=s)
 
+    def test_matching_prefix(self) -> None:
+        """Test data corresponds between the registry and metaregistry."""
+        for metaprefix, registry in self.manager.metaregistry.items():
+            with self.subTest(metaprefix=metaprefix):
+                resource = self.manager.registry[registry.bioregistry_prefix]
+                self.assertEqual(metaprefix, resource.prefix)
+
     def test_corresponding(self) -> None:
         """Test data corresponds between the registry and metaregistry."""
         for metaprefix, registry in self.manager.metaregistry.items():

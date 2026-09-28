@@ -168,12 +168,12 @@ URI_FORMAT_PATHS = [
     "n2t",
     "go.resource",
     "biocontext",
-    "wikidata",
+    "wikidata.property",
     "uniprot.resource",
-    "cellosaurus",
+    "cellosaurus.resource",
     "prefixcommons",
-    "rrid",
-    "tib",
+    "rrid.resource",
+    "tib.ts",
     "bartoc",
     "zazuko",
 ]
@@ -449,9 +449,9 @@ DEFAULT_METAPREFIX_PRIORITY = [
     "obofoundry",
     "ols",
     "miriam",
-    "wikidata",
+    "wikidata.property",
     "go.resource",
-    "ncbi",
+    "ncbi.resource",
     "bioportal",
     "agroportal",
     "ecoportal",
@@ -459,18 +459,17 @@ DEFAULT_METAPREFIX_PRIORITY = [
     "cellosaurus",
     "cropoct",
     "cheminf",
-    "edam",
+    "edam.data",
     "prefixcommons",
-    "rrid",
+    "rrid.resource",
     "bartoc",
     "lov",
-    "tib",
+    "tib.ts",
     "integbio",
     "aberowl",
     "re3data",
     "uniprot.resource",
     "biodivportal",
-    "tib",
 ]
 
 
@@ -819,7 +818,14 @@ class Resource(BaseModel):
     #: External data from Prefix Commons
     prefixcommons: Record | None = None
     #: External data from Wikidata Properties
-    wikidata: Record | None = None
+    wikidata: Annotated[
+        Record | None,
+        Field(
+            title="Wikidata property",
+            alias="wikidata.property",
+            serialization_alias="wikidata.property",
+        ),
+    ] = None
     #: External data from Wikidata Entity
     wikidata_entity: Record | None = None
     #: External data from the Gene Ontology's custom registry
@@ -846,7 +852,14 @@ class Resource(BaseModel):
     #: External data from the AberOWL ontology repository
     aberowl: Record | None = None
     #: External data from the NCBI Genbank's custom registry
-    ncbi: Record | None = None
+    ncbi: Annotated[
+        Record | None,
+        Field(
+            title="NCBI resource",
+            alias="ncbi.resource",
+            serialization_alias="ncbi.resource",
+        ),
+    ] = None
     #: External data from UniProt's custom registry
     uniprot: Annotated[
         Record | None,
@@ -857,9 +870,23 @@ class Resource(BaseModel):
         ),
     ] = None
     #: External data from the BioLink Model's custom registry
-    biolink: Record | None = None
+    biolink: Annotated[
+        Record | None,
+        Field(
+            title="BioLink resource",
+            alias="biolink.resource",
+            serialization_alias="biolink.resource",
+        ),
+    ] = None
     #: External data from the Cellosaurus custom registry
-    cellosaurus: Record | None = None
+    cellosaurus: Annotated[
+        Record | None,
+        Field(
+            title="Cellosaurus resource",
+            alias="cellosaurus.resource",
+            serialization_alias="cellosaurus.resource",
+        ),
+    ] = None
     #: External data from the OntoBee
     ontobee: Record | None = None
     #: External data from ChemInf
@@ -869,7 +896,14 @@ class Resource(BaseModel):
     #: External data from BioContext
     biocontext: Record | None = None
     #: External data from EDAM ontology
-    edam: Record | None = None
+    edam: Annotated[
+        Record | None,
+        Field(
+            title="EDAM Data",
+            alias="edam.data",
+            serialization_alias="edam.data",
+        ),
+    ] = None
     #: External data from re3data
     re3data: Record | None = None
     #: External data from hl7
@@ -877,7 +911,14 @@ class Resource(BaseModel):
     #: External data from bartoc
     bartoc: Record | None = Field(default=None, title="BARTOC")
     #: External data from RRID
-    rrid: Record | None = Field(default=None, title="RRID")
+    rrid: Annotated[
+        Record | None,
+        Field(
+            title="RRID",
+            alias="rrid.resource",
+            serialization_alias="rrid.resource",
+        ),
+    ] = None
     #: External data from LOV
     lov: Record | None = Field(default=None, title="LOV")
     #: External data from Zazuko
@@ -889,7 +930,14 @@ class Resource(BaseModel):
     #: External data from PathGuide
     pathguide: Record | None = Field(default=None)
     #: External data from TIB Terminology Service
-    tib: Record | None = Field(default=None)
+    tib: Annotated[
+        Record | None,
+        Field(
+            title="TIB Terminology Service",
+            alias="tib.ts",
+            serialization_alias="tib.ts",
+        ),
+    ] = None
     #: External data from BiodivPortal
     biodivportal: Record | None = Field(default=None)
 
@@ -931,12 +979,12 @@ class Resource(BaseModel):
 
         :param metaprefix: The metaprefix for the external resource
         :param use_obo_preferred: Whether to use OBO preferred prefix
-        :param strict: If true, raises an exception when no mapping is avaliable
+        :param strict: If true, raises an exception when no mapping is available
 
         :returns: The prefix in the external registry, if it could be mapped
 
         >>> from bioregistry import get_resource
-        >>> get_resource("chebi").get_mapped_prefix("wikidata")
+        >>> get_resource("chebi").get_mapped_prefix("wikidata.property")
         'P683'
         >>> get_resource("chebi").get_mapped_prefix("obofoundry")
         'CHEBI'
@@ -1085,7 +1133,7 @@ class Resource(BaseModel):
             constructed
 
         >>> from bioregistry import get_resource
-        >>> get_resource("edam").get_rdf_uri("data_1153")
+        >>> get_resource("edam.data").get_rdf_uri("data_1153")
         'http://edamontology.org/data_1153'
         """
         fmt = self.get_rdf_uri_format()
@@ -1303,7 +1351,7 @@ class Resource(BaseModel):
             "n2t",
             "ols",
             "obofoundry",
-            "wikidata",
+            "wikidata.property",
             "fairsharing",
             "aberowl",
             "bioportal",
@@ -1311,14 +1359,14 @@ class Resource(BaseModel):
             "ecoportal",
             "cropoct",
             "cheminf",
-            "edam",
+            "edam.data",
             "prefixcommons",
             "bartoc",
             "lov",
             "re3data",
-            "tib",
+            "tib.ts",
             "integbio",
-            "cellosaurus",
+            "cellosaurus.resource",
             "biodivportal",
         )
         rv = self._get_prefix_key_str("description", metaprefixes, provenance=False)
@@ -1341,7 +1389,7 @@ class Resource(BaseModel):
         """
         if self.pattern is not None:
             return self.pattern
-        rv = self._get_prefix_key_str("pattern", ("miriam", "wikidata", "bartoc"))
+        rv = self._get_prefix_key_str("pattern", ("miriam", "wikidata.property", "bartoc"))
         if rv is None:
             return None
         return _clean_pattern(rv)
@@ -2099,7 +2147,7 @@ class Resource(BaseModel):
             return self.rdf_uri_format
         if self.obofoundry:
             return self.get_obofoundry_uri_format()
-        return self._get_prefix_key_str("uri_format_rdf", ["wikidata", "prefixcommons"])
+        return self._get_prefix_key_str("uri_format_rdf", ["wikidata.property", "prefixcommons"])
 
     def get_rdf_uri_prefix(self) -> str | None:
         """Get the URI prefix for the prefix for RDF usages."""

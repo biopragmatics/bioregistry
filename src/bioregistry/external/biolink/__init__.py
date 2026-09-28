@@ -48,7 +48,7 @@ get_biolink = build_getter(
 class BiolinkAligner(Aligner):
     """Aligner for Biolink."""
 
-    key = "biolink"
+    key = "biolink.resource"
     getter = get_biolink
     curation_header: ClassVar[Sequence[str]] = [URI_FORMAT_KEY]
 

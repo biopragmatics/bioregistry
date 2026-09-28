@@ -1726,7 +1726,7 @@ class Manager:
         >>> manager.get_rrid_iri("antibodyregistry", "493771")
         'https://scicrunch.org/resolver/RRID:AB_493771'
         """
-        return self.get_formatted_iri("rrid", prefix, identifier)
+        return self.get_formatted_iri("rrid.resource", prefix, identifier)
 
     def get_scholia_iri(self, prefix: str, identifier: str) -> str | None:
         """Get a Scholia IRI, if possible.
@@ -1762,7 +1762,7 @@ class Manager:
             "n2t": self.get_n2t_iri,
             "bioportal": self.get_bioportal_iri,
             "scholia": self.get_scholia_iri,
-            "rrid": self.get_rrid_iri,
+            "rrid.resource": self.get_rrid_iri,
         }
 
     def get_providers_list(
@@ -1828,12 +1828,12 @@ class Manager:
             entity denoted by the prefix/identifier pair.
 
         >>> from bioregistry import manager
-        >>> manager.get_registry_uri("rrid", "antibodyregistry", "493771")
+        >>> manager.get_registry_uri("rrid.resource", "antibodyregistry", "493771")
         'https://scicrunch.org/resolver/RRID:AB_493771'
 
         GO is not in RRID so this should return None
 
-        >>> manager.get_registry_uri("rrid", "GO", "493771")
+        >>> manager.get_registry_uri("rrid.resource", "GO", "493771")
         """
         providers = self.get_providers(prefix, identifier)
         if not providers:

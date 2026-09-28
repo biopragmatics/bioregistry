@@ -6,8 +6,11 @@ import unittest
 import bioregistry
 from bioregistry import Resource, manager
 from bioregistry.constants import CONTEXTS_PATH
+import getpass
 
+SKIP_IF_LOCAL = unittest.skipIf(getpass.getuser() == "cthoyt", "running locally")
 
+@SKIP_IF_LOCAL
 class TestContexts(unittest.TestCase):
     """A test case for checking the integrity of the contexts."""
 
