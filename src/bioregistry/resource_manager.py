@@ -1928,18 +1928,13 @@ class Manager:
                 prefix, self.get_rdf_uri_prefix(prefix) or self.get_uri_prefix(prefix, strict=True)
             )
 
-        for metaprefix, metaresource in self.metaregistry.items():
+        for metaresource in self.metaregistry.values():
             uri_prefix = (
                 self.get_rdf_uri_prefix(metaresource.bioregistry_prefix)
                 or self.get_uri_prefix(metaresource.bioregistry_prefix)
                 or metaresource.get_provider_uri_prefix(base_url=self.base_url)
             )
-            converter.add_prefix(
-                metaresource.bioregistry_prefix,
-                uri_prefix,
-                [metaprefix] if metaresource.bioregistry_prefix != metaprefix else [],
-                merge=True,
-            )
+            converter.add_prefix(metaresource.bioregistry_prefix, uri_prefix, merge=True)
         return converter
 
     def get_internal_prefix_map(self) -> Mapping[str, str]:
