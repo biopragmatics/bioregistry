@@ -23,14 +23,7 @@ from rdflib import (
 )
 from rdflib.term import _is_valid_uri
 
-from ..constants import (
-    RDF_JSONLD_PATH,
-    RDF_NT_PATH,
-    RDF_TURTLE_PATH,
-    SCHEMA_JSONLD_PATH,
-    SCHEMA_NT_PATH,
-    SCHEMA_TURTLE_PATH,
-)
+from ..constants import RDF_JSONLD_PATH, RDF_TURTLE_PATH, SCHEMA_JSONLD_PATH, SCHEMA_TURTLE_PATH
 from ..resource_manager import Manager
 from ..resource_manager import manager as default_manager
 from ..schema import Collection, Registry, Resource
@@ -56,7 +49,6 @@ def export_rdf() -> None:
     """Export RDF."""
     schema_rdf = get_schema_rdf()
     schema_rdf.serialize(SCHEMA_TURTLE_PATH.as_posix(), format="turtle")
-    schema_rdf.serialize(SCHEMA_NT_PATH.as_posix(), format="nt", encoding="utf-8")
     schema_rdf.serialize(
         SCHEMA_JSONLD_PATH.as_posix(),
         format="json-ld",
@@ -70,7 +62,6 @@ def export_rdf() -> None:
 
     graph = get_full_rdf(manager=default_manager) + schema_rdf
     graph.serialize(RDF_TURTLE_PATH.as_posix(), format="turtle")
-    graph.serialize(RDF_NT_PATH.as_posix(), format="nt", encoding="utf-8")
     # Currently getting an issue with not being able to shorten URIs
     # graph.serialize(os.path.join(DOCS_DATA, "bioregistry.xml"), format="xml")
 

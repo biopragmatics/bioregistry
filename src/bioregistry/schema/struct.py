@@ -3322,25 +3322,14 @@ class Registry(BaseModel):
         :returns: The RDF node representing this registry using a Bioregistry IRI.
         """
         from rdflib import Literal
-        from rdflib.namespace import DC, FOAF, RDF, RDFS
+        from rdflib.namespace import RDF
 
-        from .constants import (
-            bioregistry_class_to_id,
-            bioregistry_metaresource,
-            bioregistry_schema,
-        )
+        from .constants import bioregistry_class_to_id, bioregistry_resource, bioregistry_schema
 
-        node = bioregistry_metaresource.term(self.prefix)
+        node = bioregistry_resource.term(self.bioregistry_prefix)
         graph.add((node, RDF["type"], bioregistry_class_to_id[self.__class__.__name__]))
-        graph.add((node, RDFS["label"], Literal(self.name)))
-        graph.add((node, DC.description, Literal(self.description)))
-        graph.add((node, FOAF["homepage"], Literal(self.homepage)))
-        graph.add((node, bioregistry_schema["0000005"], Literal(self.example)))
-        if self.uri_format:
-            graph.add((node, bioregistry_schema["0000006"], Literal(self.uri_format)))
         if self.resolver_uri_format:
             graph.add((node, bioregistry_schema["0000007"], Literal(self.resolver_uri_format)))
-        graph.add((node, bioregistry_schema["0000019"], self.contact.add_triples(graph)))
         return node
 
     def get_code_link(self) -> str | None:
