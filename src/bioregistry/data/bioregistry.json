@@ -49230,7 +49230,7 @@
       "prefix": "edam",
       "tracker": "https://github.com/edamontology/edamontology/issues"
     },
-    "uri_format": "https://www.ebi.ac.uk/ols/ontologies/edam/terms?iri=http://edamontology.org/$1"
+    "uri_format": "http://edamontology.org/$1"
   },
   "edam.data": {
     "biolink": {
@@ -112626,7 +112626,13 @@
       "registry"
     ],
     "name": "Name-to-Thing",
-    "uri_format": "https://n2t.net/$1:"
+    "providers": [
+      {
+        "code": "legacy",
+        "uri_format": "https://n2t.net/$1:"
+      }
+    ],
+    "uri_format": "https://n2t.net/.info/$1"
   },
   "n4e": {
     "example": "API",
@@ -141776,6 +141782,12 @@
       "registry"
     ],
     "name": "Prefix Commons",
+    "providers": [
+      {
+        "code": "legacy",
+        "uri_format": "https://registry.bio2kg.org/resource/$1"
+      }
+    ],
     "uri_format": "https://bioregistry.io/metaregistry/prefixcommons/$1"
   },
   "premis": {
@@ -193424,7 +193436,7 @@
     ],
     "license": "MIT",
     "name": "Zazuko Prefix Server",
-    "uri_format": "https://prefix.zazuko.com/prefix/$1:"
+    "uri_format": "https://prefix.zazuko.com/prefix/$1"
   },
   "zbw": {
     "bartoc": {
