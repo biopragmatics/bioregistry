@@ -38037,7 +38037,14 @@
       "prefix": "dc",
       "uri_format": "http://purl.org/dc/elements/1.1/$1"
     },
+    "owners": [
+      {
+        "name": "Dublin Core Metadata Initiative",
+        "wikidata": "Q108771890"
+      }
+    ],
     "preferred_prefix": "dc",
+    "rdf_uri_format": "http://purl.org/dc/elements/1.1/$1",
     "synonyms": [
       "dc.elements",
       "dc11",
@@ -38136,6 +38143,12 @@
       "zazuko": "dcam"
     },
     "name": "Dublin Core Metadata Initiative Abstract Model",
+    "owners": [
+      {
+        "name": "Dublin Core Metadata Initiative",
+        "wikidata": "Q108771890"
+      }
+    ],
     "part_of_database": "dc",
     "rdf_uri_format": "http://purl.org/dc/dcam/$1",
     "uri_format": "http://purl.org/dc/dcam/$1",
@@ -38380,6 +38393,74 @@
     },
     "uri_format": "http://w3id.org/nfdi-de/dcat-ap-plus/latest/class/$1"
   },
+  "dcmitype": {
+    "aberowl": {
+      "artifacts": [
+        {
+          "type": "owl",
+          "url": "http://aber-owl.net/media/ontologies/DCMITYPE/1/dcmitype.owl"
+        }
+      ],
+      "description": "OWL 2 DL ontology for a few terms of the DCMI abstract model from the http://purl.org/dc/dcam/ namespace",
+      "name": "DCMI Abstract Model",
+      "prefix": "DCMITYPE"
+    },
+    "biocontext": {
+      "prefix": "dctypes",
+      "uri_format": "http://purl.org/dc/dcmitype/$1"
+    },
+    "bioportal": {
+      "contact": {
+        "email": "kdurante@stanford.edu",
+        "name": "Kim Durante"
+      },
+      "description": "The DCMI Type Vocabulary provides a general, cross-domain list of approved terms that may be used as values for the Resource Type element to identify the genre of a resource",
+      "homepage": "http://dublincore.org/documents/dcmi-type-vocabulary",
+      "name": "DCMI Type Vocabulary",
+      "prefix": "DCMITYPE"
+    },
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "This document is an up-to-date specification of all metadata terms maintained by the Dublin Core Metadata Initiative, including properties, vocabulary encoding schemes, syntax encoding schemes, and classes.",
+    "download_rdf": "https://www.dublincore.org/specifications/dublin-core/dcmi-terms/dublin_core_type.ttl",
+    "example": "Collection",
+    "homepage": "https://dublincore.org/specifications/dublin-core/dcmi-terms",
+    "mappings": {
+      "aberowl": "DCMITYPE",
+      "biocontext": "dctypes",
+      "bioportal": "DCMITYPE",
+      "zazuko": "dcmitype"
+    },
+    "name": "DCMI Type Vocabulary",
+    "owners": [
+      {
+        "name": "Dublin Core Metadata Initiative",
+        "wikidata": "Q108771890"
+      }
+    ],
+    "part_of_database": "dc",
+    "preferred_prefix": "dctypes",
+    "providers": [
+      {
+        "code": "web",
+        "uri_format": "https://www.dublincore.org/specifications/dublin-core/dcmi-terms/#$1"
+      }
+    ],
+    "rdf_uri_format": "http://purl.org/dc/dcmitype/$1",
+    "synonyms": [
+      "dcmitypes",
+      "dctypes"
+    ],
+    "uri_format": "http://purl.org/dc/dcmitype/$1",
+    "zazuko": {
+      "prefix": "dcmitype",
+      "uri_format": "http://purl.org/dc/dcmitype/$1"
+    }
+  },
   "dcterms": {
     "aberowl": {
       "artifacts": [
@@ -38483,7 +38564,14 @@
       "prefix": "dcterms",
       "uri_format": "http://purl.org/dc/terms/$1"
     },
+    "owners": [
+      {
+        "name": "Dublin Core Metadata Initiative",
+        "wikidata": "Q108771890"
+      }
+    ],
     "preferred_prefix": "dcterms",
+    "rdf_uri_format": "http://purl.org/dc/terms/$1",
     "synonyms": [
       "dc.terms",
       "dct",
@@ -38518,60 +38606,6 @@
     "zazuko": {
       "prefix": "dcterms",
       "uri_format": "http://purl.org/dc/terms/$1"
-    }
-  },
-  "dctypes": {
-    "aberowl": {
-      "artifacts": [
-        {
-          "type": "owl",
-          "url": "http://aber-owl.net/media/ontologies/DCMITYPE/1/dcmitype.owl"
-        }
-      ],
-      "description": "OWL 2 DL ontology for a few terms of the DCMI abstract model from the http://purl.org/dc/dcam/ namespace",
-      "name": "DCMI Abstract Model",
-      "prefix": "DCMITYPE"
-    },
-    "biocontext": {
-      "prefix": "dctypes",
-      "uri_format": "http://purl.org/dc/dcmitype/$1"
-    },
-    "bioportal": {
-      "contact": {
-        "email": "kdurante@stanford.edu",
-        "name": "Kim Durante"
-      },
-      "description": "The DCMI Type Vocabulary provides a general, cross-domain list of approved terms that may be used as values for the Resource Type element to identify the genre of a resource",
-      "homepage": "http://dublincore.org/documents/dcmi-type-vocabulary",
-      "name": "DCMI Type Vocabulary",
-      "prefix": "DCMITYPE"
-    },
-    "contributor": {
-      "email": "cthoyt@gmail.com",
-      "github": "cthoyt",
-      "name": "Charles Tapley Hoyt",
-      "orcid": "0000-0003-4423-4370"
-    },
-    "description": "This document is an up-to-date specification of all metadata terms maintained by the Dublin Core Metadata Initiative, including properties, vocabulary encoding schemes, syntax encoding schemes, and classes.",
-    "example": "Collection",
-    "homepage": "https://dublincore.org/specifications/dublin-core/dcmi-terms",
-    "mappings": {
-      "aberowl": "DCMITYPE",
-      "biocontext": "dctypes",
-      "bioportal": "DCMITYPE",
-      "zazuko": "dcmitype"
-    },
-    "name": "Dublin Core Types",
-    "part_of_database": "dc",
-    "preferred_prefix": "dctypes",
-    "synonyms": [
-      "dcmitype",
-      "dcmitypes"
-    ],
-    "uri_format": "http://purl.org/dc/dcmitype/$1",
-    "zazuko": {
-      "prefix": "dcmitype",
-      "uri_format": "http://purl.org/dc/dcmitype/$1"
     }
   },
   "ddanat": {
