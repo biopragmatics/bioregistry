@@ -88,7 +88,7 @@ class TestMetaregistry(unittest.TestCase):
         self.assertIsNone(bioregistry.get_registry_example("nope"))
         self.assertIsNone(bioregistry.get_registry_description("nope"))
 
-        metaprefix = "uniprot"
+        metaprefix = "uniprot.resource"
         registry = bioregistry.get_registry(metaprefix, strict=True)
         self.assertIsInstance(registry, Registry)
         self.assertEqual(metaprefix, registry.prefix)
@@ -122,7 +122,7 @@ class TestMetaregistry(unittest.TestCase):
 
     def test_get_rdf(self) -> None:
         """Test conversion to RDF."""
-        registry = self.manager.metaregistry["uniprot"]
+        registry = self.manager.metaregistry["uniprot.resource"]
         s = metaresource_to_rdf_str(registry, manager=self.manager)
         self.assertIsInstance(s, str)
         g = rdflib.Graph()
