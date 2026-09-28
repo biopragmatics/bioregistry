@@ -8,6 +8,8 @@ from bioregistry.constants import BIOREGISTRY_PATH, CURATED_MAPPINGS_PATH, METAR
 
 
 @click.command()
+@click.argument("old_metaprefix")
+@click.argument("new_metaprefix")
 def main(old_metaprefix: str, new_metaprefix: str) -> None:
     """Rename a metaprefix."""
     registry = json.loads(BIOREGISTRY_PATH.read_text())
