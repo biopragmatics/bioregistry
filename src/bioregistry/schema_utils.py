@@ -76,7 +76,6 @@ NOT_ALLOWED_IN_METAREGISTRY: dict[str, Callable[[Resource], Any]] = {
     "name": partial(Resource.get_name, strict=True),
     "uri_format": Resource.get_uri_format,
 }
-READY_TO_UPDATE = True
 
 
 def _read_metaregistry(
@@ -87,15 +86,15 @@ def _read_metaregistry(
 
     rv = {}
     for record in data["metaregistry"]:
-        if READY_TO_UPDATE:
-            resource = registry[record["bioregistry_prefix"]]
-            for key, func in NOT_ALLOWED_IN_METAREGISTRY.items():
-                if key in record:
-                    del record[key]
-                    # raise ValueError(
-                    #     f"{key} should not be in metaregistry, should import from registry instead"
-                    # )
-                record[key] = func(resource)
+        resource = registry[record["bioregistry_prefix"]]
+        for key, func in NOT_ALLOWED_IN_METAREGISTRY.items():
+            if key in record:
+                raise ValueError(
+                    f"{key} should not be in metaregistry source file. Since "
+                    f"https://github.com/biopragmatics/bioregistry/pull/2118, "
+                    f"it gets imported from the main registry."
+                )
+            record[key] = func(resource)
 
         rr = Registry.model_validate(record)
         rv[rr.prefix] = rr
@@ -278,15 +277,11 @@ def write_registry(registry: Mapping[str, Resource], *, path: Path | None = None
 
 def write_metaregistry(metaregistry: Mapping[str, Registry]) -> None:
     """Write to the metaregistry."""
-    values = [v for _, v in sorted(metaregistry.items())]
     write_json(
         {
             "metaregistry": [
-                m.model_dump(
-                    exclude_none=True,
-                    exclude=set(NOT_ALLOWED_IN_METAREGISTRY) if READY_TO_UPDATE else None,
-                )
-                for m in values
+                model.model_dump(exclude_none=True, exclude=set(NOT_ALLOWED_IN_METAREGISTRY))
+                for _, model in sorted(metaregistry.items())
             ]
         },
         METAREGISTRY_PATH,
