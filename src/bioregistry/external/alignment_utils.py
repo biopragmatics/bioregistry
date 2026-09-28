@@ -17,6 +17,7 @@ from ..alignment_model import load_processed as load_records
 from ..constants import METADATA_CURATION_DIRECTORY
 from ..resource_manager import Manager
 from ..schema import Resource
+from ..schema.struct import RESOURCE_ALIAS_TO_FIELD
 from ..schema_utils import is_mismatch
 from ..utils import norm
 
@@ -88,17 +89,8 @@ class Aligner:
         if self.key not in self.manager.metaregistry:
             raise TypeError(f"invalid metaprefix for aligner: {self.key}")
 
-        # the Resource model has keys that do not correspond to
-        # the bioregistry prefixes, so the bioregistry prefixes
-        # get encoded in the alias. map from alias back to field
-        # name so we can set attributes on a resource object
-        alias_to_field = {
-            field.alias: name
-            for name, field in Resource.model_fields.items()
-            if field.alias is not None
-        }
-        if self.key in alias_to_field:
-            self._model_field_name = alias_to_field[self.key]
+        if self.key in RESOURCE_ALIAS_TO_FIELD:
+            self._model_field_name = RESOURCE_ALIAS_TO_FIELD[self.key]
         else:
             self._model_field_name = self.key
 

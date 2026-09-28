@@ -1417,10 +1417,10 @@ class TestRegistry(unittest.TestCase):
 
     def test_registry_invmap(self) -> None:
         """Test that the registry inverse map contains one to many."""
-        # this test the "hasVersion" relation
-        self.assertIn("envo2023", manager.get_registry_invmap("tib"))
-        # this tests the "providerOf" relation
-        self.assertIn("DB-0262", manager.get_registry_invmap("uniprot"))
+        with self.subTest(msg="test hasVersion relation"):
+            self.assertIn("envo2023", manager.get_registry_invmap("tib"))
+        with self.subTest(msg="test the providerOf relation"):
+            self.assertIn("DB-0262", manager.get_registry_invmap("uniprot"))
 
     def test_short_name_map(self) -> None:
         """Test the short name map."""

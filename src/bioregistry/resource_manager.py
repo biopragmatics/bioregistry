@@ -820,6 +820,7 @@ class Manager:
     def _iter_registry_map(
         self, metaprefix: str, *, use_obo_preferred: bool = False
     ) -> Iterable[tuple[str, str]]:
+        self._raise_for_invalid_metaprefix(metaprefix)
         for prefix, resource in self.registry.items():
             mapped_prefix = resource.get_mapped_prefix(
                 metaprefix, use_obo_preferred=use_obo_preferred
@@ -827,20 +828,50 @@ class Manager:
             if mapped_prefix is not None:
                 yield prefix, mapped_prefix
 
+    # docstr-coverage:excused `overload`
+    @overload
     def get_mapped_prefix(
-        self, prefix: str, metaprefix: str, *, use_obo_preferred: bool = False
+        self,
+        prefix: str,
+        metaprefix: str,
+        *,
+        use_obo_preferred: bool = ...,
+        strict: Literal[True] = ...,
+    ) -> str: ...
+
+    # docstr-coverage:excused `overload`
+    @overload
+    def get_mapped_prefix(
+        self,
+        prefix: str,
+        metaprefix: str,
+        *,
+        use_obo_preferred: bool = ...,
+        strict: Literal[False] = ...,
+    ) -> str | None: ...
+
+    def get_mapped_prefix(
+        self, prefix: str, metaprefix: str, *, use_obo_preferred: bool = False, strict: bool = False
     ) -> str | None:
         """Get the prefix mapped into another registry."""
-        resource = self.get_resource(prefix)
+        resource = self.get_resource(prefix, strict=strict)  # type:ignore[call-overload]
         if resource is None:
             return None
-        return resource.get_mapped_prefix(metaprefix, use_obo_preferred=use_obo_preferred)
+        self._raise_for_invalid_metaprefix(metaprefix)
+        return resource.get_mapped_prefix(  # type:ignore[no-any-return]
+            metaprefix, use_obo_preferred=use_obo_preferred, strict=strict
+        )
+
+    def _raise_for_invalid_metaprefix(self, metaprefix: str) -> None:
+        if metaprefix not in self.registry:
+            raise KeyError(f"metaprefix is not in the metaregistry: {metaprefix}")
 
     def get_external(self, prefix: str, metaprefix: str) -> Record | None:
         """Get the external data for the entry."""
-        entry = self.get_resource(prefix)
+        entry = self.get_resource(prefix, strict=False)
         if entry is None:
             return None
+        self._raise_for_invalid_metaprefix(metaprefix)
         return entry.get_external(metaprefix)
 
     def get_versions(self) -> Mapping[str, str]:

@@ -891,7 +891,9 @@ class Resource(BaseModel):
 
     def get_external(self, metaprefix: str) -> Record | None:
         """Get an external registry."""
-        external = getattr(self, metaprefix, None)
+        # remap so both the alias and field name are accepted
+        slot = RESOURCE_ALIAS_TO_FIELD.get(metaprefix, metaprefix)
+        external = getattr(self, slot, None)
         if external is None:
             return None
         return cast(Record, external)
@@ -903,11 +905,24 @@ class Resource(BaseModel):
             return external.get(key, default)
         return default
 
-    def get_mapped_prefix(self, metaprefix: str, use_obo_preferred: bool = True) -> str | None:
+    @overload
+    def get_mapped_prefix(
+        self, metaprefix: str, *, use_obo_preferred: bool = ..., strict: Literal[True] = ...
+    ) -> str: ...
+
+    @overload
+    def get_mapped_prefix(
+        self, metaprefix: str, *, use_obo_preferred: bool = ..., strict: Literal[False] = ...
+    ) -> str | None: ...
+
+    def get_mapped_prefix(
+        self, metaprefix: str, *, use_obo_preferred: bool = True, strict: bool = False
+    ) -> str | None:
         """Get the prefix for the given external.
 
         :param metaprefix: The metaprefix for the external resource
         :param use_obo_preferred: Whether to use OBO preferred prefix
+        :param strict: If true, raises an exception when no mapping is avaliable
 
         :returns: The prefix in the external registry, if it could be mapped
 
@@ -917,6 +932,11 @@ class Resource(BaseModel):
         >>> get_resource("chebi").get_mapped_prefix("obofoundry")
         'CHEBI'
         """
+        mappings = self.get_mappings()
+        if metaprefix not in mappings:
+            if strict:
+                raise KeyError(f"{self.prefix} does not have a mapping to {metaprefix}")
+            return None
         if metaprefix == "obofoundry" and use_obo_preferred:
             obofoundry_dict = self.obofoundry or {}
             if "preferred_prefix" in obofoundry_dict:
@@ -924,7 +944,7 @@ class Resource(BaseModel):
             if "prefix" in obofoundry_dict:
                 return cast(str, obofoundry_dict["prefix"]).upper()
             return None
-        return self.get_mappings().get(metaprefix)
+        return mappings[metaprefix]
 
     # docstr-coverage:excused `overload`
     @overload
@@ -2853,6 +2873,15 @@ class Resource(BaseModel):
     def has_organization(self, reference: Reference) -> bool:
         """Check if this resource has an organization with the given ROR."""
         return any(owner.matches_reference(reference) for owner in self.get_owners())
+
+
+# the Resource model has keys that do not correspond to
+# the bioregistry prefixes, so the bioregistry prefixes
+# get encoded in the alias. map from alias back to field
+# name so we can set attributes on a resource object
+RESOURCE_ALIAS_TO_FIELD = {
+    field.alias: name for name, field in Resource.model_fields.items() if field.alias is not None
+}
 
 
 class OlsConfig(BaseModel):
