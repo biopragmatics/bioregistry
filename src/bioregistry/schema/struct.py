@@ -169,7 +169,7 @@ URI_FORMAT_PATHS = [
     "go",
     "biocontext",
     "wikidata",
-    "uniprot",
+    "uniprot.resource",
     "cellosaurus",
     "prefixcommons",
     "rrid",
@@ -468,7 +468,7 @@ DEFAULT_METAPREFIX_PRIORITY = [
     "integbio",
     "aberowl",
     "re3data",
-    "uniprot",
+    "uniprot.resource",
     "biodivportal",
     "tib",
 ]
