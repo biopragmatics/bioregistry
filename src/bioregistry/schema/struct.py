@@ -1133,7 +1133,9 @@ class Resource(BaseModel):
             constructed
 
         >>> from bioregistry import get_resource
-        >>> get_resource("edam.data").get_rdf_uri("data_1153")
+        >>> get_resource("edam").get_rdf_uri("data_1153")
+        'http://edamontology.org/data_1153'
+        >>> get_resource("edam.data").get_rdf_uri("1153")
         'http://edamontology.org/data_1153'
         """
         fmt = self.get_rdf_uri_format()
@@ -3378,9 +3380,9 @@ class Registry(BaseModel):
         >>> get_registry("n2t").get_resolver_uri_format("go")
         'https://n2t.net/go:$1'
         >>> base_url = "https://bioregistry.io"
-        >>> get_registry("cellosaurus").get_resolver_uri_format("go", base_url=base_url)
-        'https://bioregistry.io/metaregistry/cellosaurus/go:$1'
-        >>> get_registry("cellosaurus").get_resolver_uri_format("go")
+        >>> get_registry("cellosaurus.resource").get_resolver_uri_format("go", base_url=base_url)
+        'https://bioregistry.io/metaregistry/cellosaurus.resource/go:$1'
+        >>> get_registry("cellosaurus.resource").get_resolver_uri_format("go")
         """
         if self.resolver_uri_format is not None:
             return self.resolver_uri_format.replace("$1", prefix).replace("$2", "$1")
@@ -3400,10 +3402,10 @@ class Registry(BaseModel):
         >>> get_registry("miriam").resolve("go", "0032571")
         'https://identifiers.org/go:0032571'
         >>> base_url = "https://bioregistry.io"
-        >>> get_registry("cellosaurus").resolve("go", "0032571")
-        >>> get_registry("cellosaurus").resolve("go", "0032571", base_url=base_url)
-        'https://bioregistry.io/metaregistry/cellosaurus/go:0032571'
-        >>> get_registry("rrid").resolve("AB", "493771")
+        >>> get_registry("cellosaurus.resource").resolve("go", "0032571")
+        >>> get_registry("cellosaurus.resource").resolve("go", "0032571", base_url=base_url)
+        'https://bioregistry.io/metaregistry/cellosaurus.resource/go:0032571'
+        >>> get_registry("rrid.resource").resolve("AB", "493771")
         'https://scicrunch.org/resolver/RRID:AB_493771'
         """
         uri_format = self.get_resolver_uri_format(prefix, base_url=base_url)
