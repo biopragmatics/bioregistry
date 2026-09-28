@@ -96,13 +96,13 @@ def _read_metaregistry(
             record["contact"] = resource.get_contact(strict=True)
             record["description"] = resource.get_description(strict=True)
             record["example"] = resource.get_example(strict=True)
-            record["homepage"] = resource.get_homepage()  # TODO add strict
+            record["homepage"] = resource.get_homepage(strict=True)
             # don't use get_license() since it causes circular imports
             # when using pyobo in testing
             record["license"] = resource.license
             record["logo"] = resource.get_logo()
             record["name"] = resource.get_name(strict=True)
-            record["uri_format"] = resource.get_uri_format()  # TODO add strict
+            record["uri_format"] = resource.get_uri_format(strict=True)
 
         rr = Registry.model_validate(record)
         rv[rr.prefix] = rr
