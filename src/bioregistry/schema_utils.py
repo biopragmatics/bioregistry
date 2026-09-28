@@ -102,7 +102,7 @@ def _read_metaregistry(
             record["license"] = resource.license
             record["logo"] = resource.get_logo()
             record["name"] = resource.get_name(strict=True)
-            record["uri_format"] = resource.get_uri_format(strict=True)
+            record["uri_format"] = resource.get_uri_format()
 
         rr = Registry.model_validate(record)
         rv[rr.prefix] = rr
