@@ -145,7 +145,7 @@ class TestUI(unittest.TestCase):
                 )
                 self.assertEqual(1, len(results))
                 self.assertEqual(
-                    f"https://bioregistry.io/metaregistry/{metaprefix}",
+                    f"https://bioregistry.io/registry/{metaprefix}",
                     str(results[0][0]),  # type:ignore[index]
                 )
 
