@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import logging
 from collections.abc import Callable
+from functools import partial
 from typing import Any
 
 import click
@@ -149,11 +150,11 @@ def _get_resource_functions() -> list[tuple[str | URIRef, Callable[[Resource], A
     ]
 
 
-def _get_resource_function_2() -> list[tuple[str | URIRef, Callable[[Resource], Any]]]:
+def _get_resource_function_2() -> list[tuple[str | URIRef, Callable[[Resource], Any], Callable[[str], rdflib.Node]]]:
     return [
-        ("0000027", Resource.get_example_iri),
-        (FOAF.homepage, Resource.get_homepage),
-        (DOAP.GitRepository, Resource.get_repository),
+        ("0000027", Resource.get_example_iri, URIRef),
+        (FOAF.homepage, Resource.get_homepage, partial(Literal, datatype=XSD.anyURI)),
+        (DOAP.GitRepository, Resource.get_repository, partial(Literal, datatype=XSD.anyURI)),
     ]
 
 
@@ -185,13 +186,13 @@ def _add_resource(
             predicate = bioregistry_schema[predicate]
         graph.add((node, predicate, Literal(value, datatype=datatype)))
 
-    for predicate, func in _get_resource_function_2():
+    for predicate, func, builder in _get_resource_function_2():
         value = func(resource)
         if value is None or not _is_valid_uri(value):
             continue
         if not isinstance(predicate, URIRef):
             predicate = bioregistry_schema[predicate]
-        graph.add((node, predicate, URIRef(value)))
+        graph.add((node, predicate, builder(value)))
 
     download = (
         resource.get_download_owl()
