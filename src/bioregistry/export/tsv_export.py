@@ -66,7 +66,8 @@ def _get_metaprefixes(manager: Manager) -> list[str]:
     return [
         k
         for k in sorted(manager.metaregistry)
-        if k not in {"bioregistry", "biolink", "ncbi", "fairsharing", "go"}
+        if k
+        not in {"bioregistry", "biolink.resource", "ncbi.resource", "fairsharing", "go.resource"}
     ]
 
 
