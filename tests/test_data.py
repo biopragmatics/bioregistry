@@ -412,12 +412,12 @@ class TestRegistry(unittest.TestCase):
         )
         self.assertEqual("^(CHEBI:)?\\d+$", resource.get_pattern_with_banana(strict=False))
 
-        resource = self.registry["agrovoc"]
+        resource = self.registry["mint"]
         self.assertEqual(
-            "^c_[a-z0-9]+$",
+            "^MINT-\\d{1,7}$",
             resource.get_pattern_with_banana(),
         )
-        self.assertEqual("^(c_)?[a-z0-9]+$", resource.get_pattern_with_banana(strict=False))
+        self.assertEqual("^(MINT-)?\\d{1,7}$", resource.get_pattern_with_banana(strict=False))
 
     def test_examples(self) -> None:
         """Test examples for the required conditions.
@@ -1164,8 +1164,10 @@ class TestRegistry(unittest.TestCase):
     def test_standardize_identifier(self) -> None:
         """Standardize the identifier."""
         examples = [
-            ("agrovoc", "1234", "1234"),
-            ("agrovoc", "c_1234", "1234"),
+            ("go", "1234567", "1234567"),
+            ("go", "GO:1234567", "1234567"),
+            ("mint", "6978836", "6978836"),
+            ("mint", "MINT-6978836", "6978836"),
         ]
         for prefix, identifier, norm_identifier in examples:
             with self.subTest(prefix=prefix, identifier=identifier):
