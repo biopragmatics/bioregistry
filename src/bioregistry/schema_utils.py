@@ -5,11 +5,11 @@ from __future__ import annotations
 import json
 import logging
 from collections import defaultdict
-from collections.abc import Mapping
-from functools import lru_cache
+from collections.abc import Callable, Mapping
+from functools import lru_cache, partial
 from operator import attrgetter
 from pathlib import Path
-from typing import TypeAlias
+from typing import Any, TypeAlias
 
 import sssom_pydantic
 from pystow.utils import write_json
@@ -64,15 +64,17 @@ def read_metaregistry() -> Mapping[str, Registry]:
     return _read_metaregistry(METAREGISTRY_PATH, read_registry())
 
 
-NOT_ALLOWED_IN_METAREGISTRY = {
-    "contact",
-    "description",
-    "example",
-    "homepage",
-    "license",
-    "logo",
-    "name",
-    "uri_format",
+NOT_ALLOWED_IN_METAREGISTRY: dict[str, Callable[[Resource], Any]] = {
+    "contact": partial(Resource.get_contact, strict=True),
+    "description": partial(Resource.get_description, strict=True),
+    "example": partial(Resource.get_example, strict=True),
+    "homepage": partial(Resource.get_homepage, strict=True),
+    # don't use get_license() since it causes circular imports
+    # when using pyobo in testing
+    "license": lambda resource: resource.license,
+    "logo": Resource.get_logo,
+    "name": partial(Resource.get_name, strict=True),
+    "uri_format": Resource.get_uri_format,
 }
 READY_TO_UPDATE = False
 
@@ -93,16 +95,8 @@ def _read_metaregistry(
                     #     f"{key} should not be in metaregistry, should import from registry instead"
                     # )
             resource = registry[record["bioregistry_prefix"]]
-            record["contact"] = resource.get_contact(strict=True)
-            record["description"] = resource.get_description(strict=True)
-            record["example"] = resource.get_example(strict=True)
-            record["homepage"] = resource.get_homepage(strict=True)
-            # don't use get_license() since it causes circular imports
-            # when using pyobo in testing
-            record["license"] = resource.license
-            record["logo"] = resource.get_logo()
-            record["name"] = resource.get_name(strict=True)
-            record["uri_format"] = resource.get_uri_format()
+            for key, func in NOT_ALLOWED_IN_METAREGISTRY.items():
+                record[key] = func(resource)
 
         rr = Registry.model_validate(record)
         rv[rr.prefix] = rr
@@ -291,7 +285,7 @@ def write_metaregistry(metaregistry: Mapping[str, Registry]) -> None:
             "metaregistry": [
                 m.model_dump(
                     exclude_none=True,
-                    exclude=NOT_ALLOWED_IN_METAREGISTRY if READY_TO_UPDATE else None,
+                    exclude=set(NOT_ALLOWED_IN_METAREGISTRY) if READY_TO_UPDATE else None,
                 )
                 for m in values
             ]
