@@ -48,14 +48,11 @@ class TestMetaregistry(unittest.TestCase):
                     self.assertIsNotNone(registry.uri_format)
                     self.assertIn("$1", registry.uri_format)
 
-                self.assertIsNotNone(registry.bioregistry_prefix)
                 self.assertEqual(
-                    bioregistry.normalize_prefix(registry.bioregistry_prefix),
-                    registry.bioregistry_prefix,
+                    bioregistry.normalize_prefix(registry.prefix),
+                    registry.prefix,
                     msg="link from metaregistry to bioregistry must use canonical prefix",
                 )
-                resource = bioregistry.get_resource(registry.bioregistry_prefix)
-                self.assertIsNotNone(resource)
 
                 # When a registry is a resolver, it means it
                 # can resolve entries (prefixes) + identifiers
@@ -124,17 +121,10 @@ class TestMetaregistry(unittest.TestCase):
         g = rdflib.Graph()
         g.parse(data=s)
 
-    def test_matching_prefix(self) -> None:
-        """Test data corresponds between the registry and metaregistry."""
-        for metaprefix, registry in self.manager.metaregistry.items():
-            with self.subTest(metaprefix=metaprefix):
-                resource = self.manager.registry[registry.bioregistry_prefix]
-                self.assertEqual(metaprefix, resource.prefix)
-
     def test_corresponding(self) -> None:
         """Test data corresponds between the registry and metaregistry."""
         for metaprefix, registry in self.manager.metaregistry.items():
-            resource = self.manager.registry[registry.bioregistry_prefix]
+            resource = self.manager.registry[registry.prefix]
             pattern = resource.get_pattern()
             if pattern is None:
                 continue

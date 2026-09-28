@@ -1130,12 +1130,7 @@ class TestRegistry(unittest.TestCase):
         """Test mappings correspond to valid identifiers."""
         k = {}
         for metaprefix, registry in self.metaregistry.items():
-            if registry.bioregistry_prefix:
-                resource = self.registry[registry.bioregistry_prefix]
-            elif registry.prefix in self.registry:
-                resource = self.registry[registry.prefix]
-            else:
-                continue
+            resource = self.registry[registry.prefix]
             pattern = resource.get_pattern_re()
             if pattern is None:
                 continue
@@ -1450,7 +1445,7 @@ class TestRegistry(unittest.TestCase):
     def test_registry_keyword(self) -> None:
         """Test registries contain appropriate keywords."""
         for registry in self.metaregistry.values():
-            with self.subTest(prefix=registry.bioregistry_prefix):
-                resource = self.registry[registry.bioregistry_prefix]
+            with self.subTest(prefix=registry.prefix):
+                resource = self.registry[registry.prefix]
                 self.assertIn("registry", resource.get_keywords())
                 self.assertIsNotNone(resource.contributor)

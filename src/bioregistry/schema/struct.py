@@ -3276,9 +3276,6 @@ class Registry(BaseModel):
         description="An optional type annotation for what kind of resolver it is (i.e., redirect or lookup)",
     )
     contact: Attributable = Field(..., description="The contact for the registry.")
-    bioregistry_prefix: Annotated[
-        str, Field(description="The prefix for this registry in the Bioregistry")
-    ]
     logo: str | None = Field(
         default=None,
         description="The URL for the logo of the resource",
@@ -3425,14 +3422,14 @@ class Registry(BaseModel):
 
         from .constants import bioregistry_class_to_id, bioregistry_resource, bioregistry_schema
 
-        node = bioregistry_resource.term(self.bioregistry_prefix)
+        node = bioregistry_resource.term(self.prefix)
         graph.add((node, RDF["type"], bioregistry_class_to_id[self.__class__.__name__]))
         if self.resolver_uri_format:
             graph.add((node, bioregistry_schema["0000007"], Literal(self.resolver_uri_format)))
         return node
 
     def get_code_link(self) -> str | None:
-        """Get a link to the code on github that downloads this resource."""
+        """Get a link to the code on GitHub that downloads this resource."""
         path = brc.HERE.joinpath("external", self.prefix).with_suffix(".py")
         if not path.exists():
             return None

@@ -86,7 +86,7 @@ def _read_metaregistry(
 
     rv = {}
     for record in data["metaregistry"]:
-        resource = registry[record["bioregistry_prefix"]]
+        resource = registry[record["prefix"]]
         for key, func in NOT_ALLOWED_IN_METAREGISTRY.items():
             if key in record:
                 raise ValueError(

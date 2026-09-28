@@ -1968,11 +1968,11 @@ class Manager:
 
         for metaresource in self.metaregistry.values():
             uri_prefix = (
-                self.get_rdf_uri_prefix(metaresource.bioregistry_prefix)
-                or self.get_uri_prefix(metaresource.bioregistry_prefix)
+                self.get_rdf_uri_prefix(metaresource.prefix)
+                or self.get_uri_prefix(metaresource.prefix)
                 or metaresource.get_provider_uri_prefix(base_url=self.base_url)
             )
-            converter.add_prefix(metaresource.bioregistry_prefix, uri_prefix, merge=True)
+            converter.add_prefix(metaresource.prefix, uri_prefix, merge=True)
         return converter
 
     def get_internal_prefix_map(self) -> Mapping[str, str]:
