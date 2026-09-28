@@ -175,9 +175,9 @@ class Manager:
         self.synonyms = _synonym_to_canonical(self.registry)
 
         if metaregistry is None:
-            self.metaregistry = dict(_read_metaregistry(METAREGISTRY_PATH))
+            self.metaregistry = dict(_read_metaregistry(METAREGISTRY_PATH, registry=self.registry))
         elif isinstance(metaregistry, str | Path):
-            self.metaregistry = dict(_read_metaregistry(metaregistry))
+            self.metaregistry = dict(_read_metaregistry(metaregistry, registry=self.registry))
         else:
             self.metaregistry = dict(metaregistry)
 

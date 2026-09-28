@@ -2146,7 +2146,21 @@ class Resource(BaseModel):
                 continue
             yield uri_format
 
-    def get_uri_format(self, priority: Sequence[str] | None = None) -> str | None:
+    # docstr-coverage:excused `overload`
+    @overload
+    def get_uri_format(
+        self, priority: Sequence[str] | None = ..., *, strict: Literal[True] = ...
+    ) -> str: ...
+
+    # docstr-coverage:excused `overload`
+    @overload
+    def get_uri_format(
+        self, priority: Sequence[str] | None = ..., *, strict: Literal[False] = ...
+    ) -> str | None: ...
+
+    def get_uri_format(
+        self, priority: Sequence[str] | None = None, *, strict: bool = False
+    ) -> str | None:
         """Get the URI format string for the given prefix, if it's available.
 
         :param priority: The priority order of metaresources to use for format URI
@@ -2159,6 +2173,7 @@ class Resource(BaseModel):
                https://identifiers.org/<prefix>:<identifier>)
             5. N2T (i.e., make a URI like https://n2t.org/<prefix>:<identifier>)
             6. OLS
+        :param strict: if true and there is no format available, raises an error
 
         :returns: The best URI format string, where the ``$1`` should be replaced by a
             local unique identifier. ``$1`` could potentially appear multiple times.
@@ -2180,6 +2195,8 @@ class Resource(BaseModel):
         """
         for uri_format in self._iterate_uri_formats(priority):
             return uri_format
+        if strict:
+            raise ValueError
         return None
 
     # docstr-coverage:excused `overload`

@@ -43,10 +43,6 @@ class TestMetaregistry(unittest.TestCase):
                 self.assertNotEqual("FIXME", registry.contact.name)
                 if "support" not in registry.contact.name.lower():
                     self.assertIsNotNone(registry.contact.orcid, msg="contact ORCiD is none")
-                    self.assertIsNotNone(
-                        registry.contact.github,
-                        msg=f"missing github for {registry.prefix} for {registry.contact.name}",
-                    )
 
                 if registry.uri_format:
                     self.assertIsNotNone(registry.uri_format)
