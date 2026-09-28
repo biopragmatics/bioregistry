@@ -206,8 +206,16 @@ class TestUI(unittest.TestCase):
         """Test banana redirects."""
         with self.app.test_client() as client:
             for prefix, identifier, location in [
-                ("agrovoc", "c_2842", "http://aims.fao.org/aos/agrovoc/c_2842"),
-                ("agrovoc", "2842", "http://aims.fao.org/aos/agrovoc/c_2842"),
+                (
+                    "mint",
+                    "6978836",
+                    "https://mint.bio.uniroma2.it/index.php/detailed-curation/?id=MINT-6978836",
+                ),
+                (
+                    "mint",
+                    "MINT-6978836",
+                    "https://mint.bio.uniroma2.it/index.php/detailed-curation/?id=MINT-6978836",
+                ),
                 # Related to https://github.com/biopragmatics/bioregistry/issues/93,
                 # the app route is not greedy, so it parses on the rightmost colon.
                 ("go", "0032571", "http://purl.obolibrary.org/obo/GO_0032571"),
