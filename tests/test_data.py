@@ -116,18 +116,6 @@ class TestRegistry(unittest.TestCase):
                         msg="Only start a prefix with an underscore if the first _actual_ character is a number",
                     )
 
-    def test_keys(self) -> None:
-        """Check the required metadata is there."""
-        keys = set(Resource.model_fields)
-        with open(BIOREGISTRY_PATH, encoding="utf-8") as file:
-            data = json.load(file)
-        for prefix, entry in data.items():
-            extra = {k for k in set(entry) - keys if not k.startswith("_")}
-            if not extra:
-                continue
-            with self.subTest(prefix=prefix):
-                self.fail(f"{prefix} had extra keys: {extra}")
-
     @staticmethod
     def _construct_substrings(x: str) -> tuple[str, str, str, str]:
         return (

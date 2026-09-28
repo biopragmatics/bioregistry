@@ -94,7 +94,9 @@ def _registry_from_path(path: str | Path) -> Mapping[str, Resource]:
         data = json.load(file)
     for prefix, value in data.items():
         value.setdefault("prefix", prefix)
-    return {prefix: Resource.model_validate(value) for prefix, value in data.items()}
+    return {
+        prefix: Resource.model_validate(value, extra="forbid") for prefix, value in data.items()
+    }
 
 
 def add_resource(resource: Resource) -> None:
@@ -237,7 +239,12 @@ def write_registry(registry: Mapping[str, Resource], *, path: Path | None = None
         path = BIOREGISTRY_PATH
     write_json(
         {
-            key: resource.model_dump(exclude_none=True, exclude_defaults=True, exclude={"prefix"})
+            key: resource.model_dump(
+                exclude_none=True,
+                exclude_defaults=True,
+                exclude={"prefix"},
+                by_alias=True,
+            )
             for key, resource in registry.items()
         },
         path,

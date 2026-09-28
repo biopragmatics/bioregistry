@@ -485,6 +485,10 @@ Record = Mapping[str, Any]
 class Resource(BaseModel):
     """Metadata about an ontology, database, or other resource."""
 
+    model_config = {
+        "populate_by_name": True,
+    }
+
     prefix: str = Field(
         ...,
         description="The prefix for this resource",
@@ -837,7 +841,14 @@ class Resource(BaseModel):
     #: External data from the NCBI Genbank's custom registry
     ncbi: Record | None = None
     #: External data from UniProt's custom registry
-    uniprot: Record | None = None
+    uniprot: Annotated[
+        Record | None,
+        Field(
+            title="UniProt resource",
+            alias="uniprot.resource",
+            serialization_alias="uniprot.resource",
+        ),
+    ] = None
     #: External data from the BioLink Model's custom registry
     biolink: Record | None = None
     #: External data from the Cellosaurus custom registry

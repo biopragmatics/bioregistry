@@ -88,6 +88,20 @@ class Aligner:
         if self.key not in self.manager.metaregistry:
             raise TypeError(f"invalid metaprefix for aligner: {self.key}")
 
+        # the Resource model has keys that do not correspond to
+        # the bioregistry prefixes, so the bioregistry prefixes
+        # get encoded in the alias. map from alias back to field
+        # name so we can set attributes on a resource object
+        alias_to_field = {
+            field.alias: name
+            for name, field in Resource.model_fields.items()
+            if field.alias is not None
+        }
+        if self.key in alias_to_field:
+            self._model_field_name = alias_to_field[self.key]
+        else:
+            self._model_field_name = self.key
+
         kwargs = dict(self.getter_kwargs or {})
         kwargs.setdefault("force_download", True)
         if force_download is not None:
@@ -197,7 +211,7 @@ class Aligner:
             self.internal_registry[bioregistry_id].mappings = {}
         self.internal_registry[bioregistry_id].mappings[self.key] = external_id  # type:ignore
 
-        self.internal_registry[bioregistry_id][self.key] = {
+        self.internal_registry[bioregistry_id][self._model_field_name] = {
             self.subkey: external_id,
             **external_entry.model_dump(
                 exclude_none=True, exclude_defaults=True, exclude_unset=True
