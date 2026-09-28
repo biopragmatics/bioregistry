@@ -166,7 +166,7 @@ def _yield_protocol_variations(u: str) -> Iterable[str]:
 URI_FORMAT_PATHS = [
     "miriam",
     "n2t",
-    "go",
+    "go.resource",
     "biocontext",
     "wikidata",
     "uniprot.resource",
@@ -450,7 +450,7 @@ DEFAULT_METAPREFIX_PRIORITY = [
     "ols",
     "miriam",
     "wikidata",
-    "go",
+    "go.resource",
     "ncbi",
     "bioportal",
     "agroportal",
@@ -823,7 +823,14 @@ class Resource(BaseModel):
     #: External data from Wikidata Entity
     wikidata_entity: Record | None = None
     #: External data from the Gene Ontology's custom registry
-    go: Record | None = None
+    go: Annotated[
+        Record | None,
+        Field(
+            title="Gene Ontology resource",
+            alias="go.resource",
+            serialization_alias="go.resource",
+        ),
+    ] = None
     #: External data from the Open Biomedical Ontologies (OBO) Foundry catalog
     obofoundry: Record | None = None
     #: External data from the BioPortal ontology repository
