@@ -175,9 +175,9 @@ class Manager:
         self.synonyms = _synonym_to_canonical(self.registry)
 
         if metaregistry is None:
-            self.metaregistry = dict(_read_metaregistry(METAREGISTRY_PATH))
+            self.metaregistry = dict(_read_metaregistry(METAREGISTRY_PATH, registry=self.registry))
         elif isinstance(metaregistry, str | Path):
-            self.metaregistry = dict(_read_metaregistry(metaregistry))
+            self.metaregistry = dict(_read_metaregistry(metaregistry, registry=self.registry))
         else:
             self.metaregistry = dict(metaregistry)
 
@@ -912,6 +912,13 @@ class Manager:
         if strict:
             raise ValueError
         return None
+
+    def get_rdf_uri_prefix(self, prefix: str) -> str | None:
+        """Get a well-formed URI prefix appropriate for RDF, if available."""
+        entry = self.get_resource(prefix)
+        if entry is not None:
+            return None
+        return entry.get_rdf_uri_prefix()
 
     # docstr-coverage:excused `overload`
     @overload
@@ -1940,22 +1947,25 @@ class Manager:
     def _get_internal_converter(self) -> curies.Converter:
         converter = curies.Converter()
         converter.add_prefix(
-            "wikidata", "http://www.wikidata.org/entity/", ["wikidata.entity", "wikidata.property"]
+            "wikidata",
+            "http://www.wikidata.org/entity/",
+            ["wikidata.entity", "wikidata.property"],
+            ["https://www.wikidata.org/entity/"],
         )
-        converter.add_prefix("edam", "http://edamontology.org/data_", ["edam.data"])
 
         default_prefixes = {"bioregistry.schema", "bfo"}
         for prefix in default_prefixes:
-            converter.add_prefix(prefix, self.get_uri_prefix(prefix, strict=True))
-
-        for metaprefix, metaresource in self.metaregistry.items():
-            uri_prefix = metaresource.get_provider_uri_prefix(base_url=self.base_url)
             converter.add_prefix(
-                metaresource.bioregistry_prefix,
-                uri_prefix,
-                [metaprefix] if metaresource.bioregistry_prefix != metaprefix else [],
-                merge=True,
+                prefix, self.get_rdf_uri_prefix(prefix) or self.get_uri_prefix(prefix, strict=True)
             )
+
+        for metaresource in self.metaregistry.values():
+            uri_prefix = (
+                self.get_rdf_uri_prefix(metaresource.bioregistry_prefix)
+                or self.get_uri_prefix(metaresource.bioregistry_prefix)
+                or metaresource.get_provider_uri_prefix(base_url=self.base_url)
+            )
+            converter.add_prefix(metaresource.bioregistry_prefix, uri_prefix, merge=True)
         return converter
 
     def get_internal_prefix_map(self) -> Mapping[str, str]:

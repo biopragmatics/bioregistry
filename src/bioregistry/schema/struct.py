@@ -2177,7 +2177,21 @@ class Resource(BaseModel):
                 continue
             yield uri_format
 
-    def get_uri_format(self, priority: Sequence[str] | None = None) -> str | None:
+    # docstr-coverage:excused `overload`
+    @overload
+    def get_uri_format(
+        self, priority: Sequence[str] | None = ..., *, strict: Literal[True] = ...
+    ) -> str: ...
+
+    # docstr-coverage:excused `overload`
+    @overload
+    def get_uri_format(
+        self, priority: Sequence[str] | None = ..., *, strict: Literal[False] = ...
+    ) -> str | None: ...
+
+    def get_uri_format(
+        self, priority: Sequence[str] | None = None, *, strict: bool = False
+    ) -> str | None:
         """Get the URI format string for the given prefix, if it's available.
 
         :param priority: The priority order of metaresources to use for format URI
@@ -2190,6 +2204,7 @@ class Resource(BaseModel):
                https://identifiers.org/<prefix>:<identifier>)
             5. N2T (i.e., make a URI like https://n2t.org/<prefix>:<identifier>)
             6. OLS
+        :param strict: if true and there is no format available, raises an error
 
         :returns: The best URI format string, where the ``$1`` should be replaced by a
             local unique identifier. ``$1`` could potentially appear multiple times.
@@ -2211,6 +2226,8 @@ class Resource(BaseModel):
         """
         for uri_format in self._iterate_uri_formats(priority):
             return uri_format
+        if strict:
+            raise ValueError
         return None
 
     # docstr-coverage:excused `overload`
@@ -3274,7 +3291,7 @@ class Registry(BaseModel):
         >>> get_registry("miriam").get_provider_url("go")
         'https://registry.identifiers.org/registry/go'
         >>> get_registry("n2t").get_provider_url("go")
-        'https://n2t.net/go:'
+        'https://n2t.net/.info/go'
         """
         if self.uri_format is not None:
             return self.uri_format.replace("$1", external_prefix)
@@ -3345,25 +3362,14 @@ class Registry(BaseModel):
         :returns: The RDF node representing this registry using a Bioregistry IRI.
         """
         from rdflib import Literal
-        from rdflib.namespace import DC, FOAF, RDF, RDFS
+        from rdflib.namespace import RDF
 
-        from .constants import (
-            bioregistry_class_to_id,
-            bioregistry_metaresource,
-            bioregistry_schema,
-        )
+        from .constants import bioregistry_class_to_id, bioregistry_resource, bioregistry_schema
 
-        node = bioregistry_metaresource.term(self.prefix)
+        node = bioregistry_resource.term(self.bioregistry_prefix)
         graph.add((node, RDF["type"], bioregistry_class_to_id[self.__class__.__name__]))
-        graph.add((node, RDFS["label"], Literal(self.name)))
-        graph.add((node, DC.description, Literal(self.description)))
-        graph.add((node, FOAF["homepage"], Literal(self.homepage)))
-        graph.add((node, bioregistry_schema["0000005"], Literal(self.example)))
-        if self.uri_format:
-            graph.add((node, bioregistry_schema["0000006"], Literal(self.uri_format)))
         if self.resolver_uri_format:
             graph.add((node, bioregistry_schema["0000007"], Literal(self.resolver_uri_format)))
-        graph.add((node, bioregistry_schema["0000019"], self.contact.add_triples(graph)))
         return node
 
     def get_code_link(self) -> str | None:

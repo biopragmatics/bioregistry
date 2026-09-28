@@ -12,9 +12,10 @@ def lint() -> None:
     """Run the lint commands."""
     import sssom_pydantic
 
-    from .constants import CURATED_MAPPINGS_PATH, CURATED_PAPERS_PATH
+    from .constants import CURATED_MAPPINGS_PATH, CURATED_PAPERS_PATH, METAREGISTRY_PATH
     from .schema_utils import (
         _lint_collection_resources,
+        _read_metaregistry,
         read_collections,
         read_contexts,
         read_mappings,
@@ -78,7 +79,7 @@ def lint() -> None:
     for collection in collections.values():
         collection.resources = _lint_collection_resources(collection.resources)
     write_collections(collections)
-    write_metaregistry(read_metaregistry())
+    write_metaregistry(_read_metaregistry(METAREGISTRY_PATH, registry))
     write_contexts(read_contexts())
 
     sssom_pydantic.format(CURATED_MAPPINGS_PATH)

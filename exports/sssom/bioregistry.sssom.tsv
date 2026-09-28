@@ -8,31 +8,31 @@
 #  bioportal: https://bioportal.bioontology.org/ontologies/
 #  bioregistry: https://bioregistry.io/registry/
 #  bioregistry.schema: https://bioregistry.io/schema/#
-#  cellosaurus.resource: https://bioregistry.io/metaregistry/cellosaurus/resolve/
+#  cellosaurus.resource: https://bioregistry.io/metaregistry/cellosaurus/
 #  cheminf: http://semanticscience.org/resource/CHEMINF_
 #  cropoct: https://cropontology.org/ontology/
 #  ecoportal: http://ecoportal.lifewatch.eu/ontologies/
 #  edam: http://edamontology.org/data_
 #  fairsharing: https://fairsharing.org/
-#  go.resource: https://bioregistry.io/metaregistry/go/resolve/
-#  hl7: 'https://oid-base.com/get/2.16.840.1.113883:'
+#  go.resource: 'http://www.geneontology.org/doc/GO.xrf_abbs:'
+#  hl7: https://oid-base.com/get/2.16.840.1.113883.
 #  integbio: https://catalog.integbio.jp/dbcatalog/en/record/
 #  lov: https://lov.linkeddata.es/dataset/lov/vocabs/
 #  miriam: https://registry.identifiers.org/registry/
-#  n2t: https://bioregistry.io/metaregistry/n2t/resolve/
-#  ncbi.resource: https://bioregistry.io/metaregistry/ncbi/resolve/
-#  obo: https://www.obofoundry.org/ontology/
+#  n2t: https://n2t.net/.info/
+#  ncbi.resource: https://bioregistry.io/metaregistry/ncbi/
+#  obo: http://purl.obolibrary.org/obo/
 #  ols: https://www.ebi.ac.uk/ols4/ontologies/
 #  ontobee: http://www.ontobee.org/ontology/
 #  pathguide: http://www.pathguide.org/fullrecord.php?DBID=
-#  prefixcommons: https://registry.bio2kg.org/resource/
+#  prefixcommons: https://bioregistry.io/metaregistry/prefixcommons/
 #  re3data: https://www.re3data.org/repository/
 #  rrid.resource: https://bioregistry.io/metaregistry/rrid/resolve/
 #  tib.ts: https://terminology.tib.eu/ts/ontologies/
-#  togoid: https://togoid.dbcls.jp/#
+#  togoid: https://togoid.dbcls.jp/ontology#
 #  uniprot.resource: https://www.uniprot.org/database/
 #  wikidata: http://www.wikidata.org/entity/
-#  zazuko: https://bioregistry.io/metaregistry/zazuko/resolve/
+#  zazuko: https://prefix.zazuko.com/prefix/
 #mapping_set_id: https://github.com/biopragmatics/bioregistry/raw/main/exports/sssom/bioregistry.sssom.tsv
 #mapping_set_title: Bioregistry
 #license: https://creativecommons.org/publicdomain/zero/1.0/
@@ -1902,6 +1902,10 @@ bioregistry:dcat	Data Catalog	skos:exactMatch		lov:dcat	Data Catalog Vocabulary	
 bioregistry:dcat	Data Catalog	skos:exactMatch		ols:dcat		semapv:UnspecifiedMatching				
 bioregistry:dcat	Data Catalog	skos:exactMatch		tib.ts:dcat3		semapv:UnspecifiedMatching				
 bioregistry:dcat	Data Catalog	skos:exactMatch		zazuko:dcat		semapv:UnspecifiedMatching				
+bioregistry:dcmitype	DCMI Type Vocabulary	skos:exactMatch		aberowl:DCMITYPE	DCMI Abstract Model	semapv:UnspecifiedMatching				
+bioregistry:dcmitype	DCMI Type Vocabulary	skos:exactMatch		biocontext:dctypes		semapv:UnspecifiedMatching				
+bioregistry:dcmitype	DCMI Type Vocabulary	skos:exactMatch		bioportal:DCMITYPE	DCMI Type Vocabulary	semapv:UnspecifiedMatching				
+bioregistry:dcmitype	DCMI Type Vocabulary	skos:exactMatch		zazuko:dcmitype		semapv:UnspecifiedMatching				
 bioregistry:dcterms	Dublin Core Metadata Initiative Terms	skos:exactMatch		aberowl:DCTERMS		semapv:UnspecifiedMatching				
 bioregistry:dcterms		skos:exactMatch		aberowl:dcterms		semapv:ManualMappingCuration	orcid:0009-0008-8406-631X		bioregistry.issue:1496	
 bioregistry:dcterms	Dublin Core Metadata Initiative Terms	skos:exactMatch		bartoc:725	DCMI Metadata Terms	semapv:UnspecifiedMatching				
@@ -1913,10 +1917,6 @@ bioregistry:dcterms	Dublin Core Metadata Initiative Terms	skos:exactMatch		lov:d
 bioregistry:dcterms	Dublin Core Metadata Initiative Terms	skos:exactMatch		ols:dcterms		semapv:UnspecifiedMatching				
 bioregistry:dcterms	Dublin Core Metadata Initiative Terms	skos:exactMatch		tib.ts:dcterms		semapv:UnspecifiedMatching				
 bioregistry:dcterms	Dublin Core Metadata Initiative Terms	skos:exactMatch		zazuko:dcterms		semapv:UnspecifiedMatching				
-bioregistry:dctypes	Dublin Core Types	skos:exactMatch		aberowl:DCMITYPE	DCMI Abstract Model	semapv:UnspecifiedMatching				
-bioregistry:dctypes	Dublin Core Types	skos:exactMatch		biocontext:dctypes		semapv:UnspecifiedMatching				
-bioregistry:dctypes	Dublin Core Types	skos:exactMatch		bioportal:DCMITYPE	DCMI Type Vocabulary	semapv:UnspecifiedMatching				
-bioregistry:dctypes	Dublin Core Types	skos:exactMatch		zazuko:dcmitype		semapv:UnspecifiedMatching				
 bioregistry:ddanat	Dictyostelium discoideum anatomy	skos:exactMatch		aberowl:DDANAT	Dicty Anatomy Ontology	semapv:UnspecifiedMatching				
 bioregistry:ddanat	Dictyostelium discoideum anatomy	skos:exactMatch		biocontext:DDANAT		semapv:UnspecifiedMatching				
 bioregistry:ddanat	Dictyostelium discoideum anatomy	skos:exactMatch		bioportal:DDANAT	Dictyostelium Discoideum Anatomy Ontology	semapv:UnspecifiedMatching				
@@ -2662,6 +2662,7 @@ bioregistry:erv	Human Endogenous Retrovirus Database	skos:exactMatch		biocontext
 bioregistry:erv	Human Endogenous Retrovirus Database	skos:exactMatch		miriam:erv	Human Endogenous Retrovirus Database	semapv:UnspecifiedMatching				
 bioregistry:erv	Human Endogenous Retrovirus Database	skos:exactMatch		n2t:erv	Human Endogenous Retrovirus Database	semapv:UnspecifiedMatching				
 bioregistry:esldb	eukaryotic Subcellular Localization database	skos:exactMatch		prefixcommons:esldb	eukaryotic Subcellular Localization database	semapv:UnspecifiedMatching				
+bioregistry:esrfet	ESRF Experimental Techniques Ontology	skos:exactMatch		bartoc:21163	ESRF Experimental Techniques Ontology	semapv:UnspecifiedMatching				
 bioregistry:estdab	European Searchable Tumour Line Database	skos:exactMatch		cellosaurus.resource:ESTDAB		semapv:UnspecifiedMatching				
 bioregistry:eu.rcn	Record Control Number	skos:exactMatch		wikidata:P5755	EU RCN	semapv:UnspecifiedMatching				
 bioregistry:eu89h	JRC Data Catalogue	skos:exactMatch		biocontext:EU89H		semapv:UnspecifiedMatching				

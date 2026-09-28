@@ -5,11 +5,11 @@ from __future__ import annotations
 import json
 import logging
 from collections import defaultdict
-from collections.abc import Mapping
-from functools import lru_cache
+from collections.abc import Callable, Mapping
+from functools import lru_cache, partial
 from operator import attrgetter
 from pathlib import Path
-from typing import TypeAlias
+from typing import Any, TypeAlias
 
 import sssom_pydantic
 from pystow.utils import write_json
@@ -61,16 +61,44 @@ logger = logging.getLogger(__name__)
 @lru_cache(maxsize=1)
 def read_metaregistry() -> Mapping[str, Registry]:
     """Read the metaregistry."""
-    return _read_metaregistry(METAREGISTRY_PATH)
+    return _read_metaregistry(METAREGISTRY_PATH, read_registry())
 
 
-def _read_metaregistry(path: str | Path) -> Mapping[str, Registry]:
+NOT_ALLOWED_IN_METAREGISTRY: dict[str, Callable[[Resource], Any]] = {
+    "contact": partial(Resource.get_contact, strict=True),
+    "description": partial(Resource.get_description, strict=True),
+    "example": partial(Resource.get_example, strict=True),
+    "homepage": partial(Resource.get_homepage, strict=True),
+    # don't use get_license() since it causes circular imports
+    # when using pyobo in testing
+    "license": lambda resource: resource.license,
+    "logo": Resource.get_logo,
+    "name": partial(Resource.get_name, strict=True),
+    "uri_format": Resource.get_uri_format,
+}
+
+
+def _read_metaregistry(
+    path: str | Path, registry: Mapping[str, Resource]
+) -> Mapping[str, Registry]:
     with open(path, encoding="utf-8") as file:
         data = json.load(file)
-    return {
-        registry.prefix: registry
-        for registry in (Registry.model_validate(record) for record in data["metaregistry"])
-    }
+
+    rv = {}
+    for record in data["metaregistry"]:
+        resource = registry[record["bioregistry_prefix"]]
+        for key, func in NOT_ALLOWED_IN_METAREGISTRY.items():
+            if key in record:
+                raise ValueError(
+                    f"{key} should not be in metaregistry source file. Since "
+                    f"https://github.com/biopragmatics/bioregistry/pull/2118, "
+                    f"it gets imported from the main registry."
+                )
+            record[key] = func(resource)
+
+        rr = Registry.model_validate(record)
+        rv[rr.prefix] = rr
+    return rv
 
 
 def registries() -> list[Registry]:
@@ -256,9 +284,13 @@ def write_registry(registry: Mapping[str, Resource], *, path: Path | None = None
 
 def write_metaregistry(metaregistry: Mapping[str, Registry]) -> None:
     """Write to the metaregistry."""
-    values = [v for _, v in sorted(metaregistry.items())]
     write_json(
-        {"metaregistry": [m.model_dump(exclude_none=True) for m in values]},
+        {
+            "metaregistry": [
+                model.model_dump(exclude_none=True, exclude=set(NOT_ALLOWED_IN_METAREGISTRY))
+                for _, model in sorted(metaregistry.items())
+            ]
+        },
         METAREGISTRY_PATH,
         indent=2,
         sort_keys=True,

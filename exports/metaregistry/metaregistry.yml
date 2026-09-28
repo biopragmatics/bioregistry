@@ -37,7 +37,6 @@ aberowl:
     scope: bio-ontologies
     status: active
   homepage: http://aber-owl.net
-  license: See https://github.com/biopragmatics/bioregistry/issues/339
   logo: http://aber-owl.net/static/images/logo-owl-small.33629e604a66.png
   name: AberOWL
   prefix: aberowl
@@ -84,7 +83,6 @@ agroportal:
     scope: agro-ontologies
     status: active
   homepage: http://agroportal.lirmm.fr
-  license: See https://github.com/biopragmatics/bioregistry/issues/336
   logo: https://avatars.githubusercontent.com/u/16088111
   name: AgroPortal
   prefix: agroportal
@@ -116,8 +114,9 @@ bartoc:
     name: Jakob Voß
     orcid: 0000-0002-7613-4123
   description: 'The Basic Register of Thesauri, Ontologies & Classifications (BARTOC)
-    is a database of Knowledge Organization Systems and KOS related registries.\nThe
-    main goal of BARTOC is to list as many Knowledge Organization Systems as possible
+    is a database of Knowledge Organization Systems and KOS related registries.
+
+    The main goal of BARTOC is to list as many Knowledge Organization Systems as possible
     at one place in order to achieve greater visibility, highlight their features,
     make them searchable and comparable, and foster knowledge sharing. BARTOC includes
     any kind of KOS from any subject area, in any language, any publication format,
@@ -127,7 +126,7 @@ bartoc:
     all across Europe and BARTOC has been approved by the International Society for
     Knowledge Organization (ISKO).'
   download: https://bartoc.org/data/dumps/latest.ndjson
-  example: '181'
+  example: '241'
   governance:
     accepts_external_contributions: true
     code_repository: https://github.com/gbv/bartoc.org
@@ -188,7 +187,6 @@ biocontext:
     scope: internal
     status: active
   homepage: https://github.com/prefixcommons/biocontext
-  license: missing
   name: BioContext
   prefix: biocontext
   qualities:
@@ -207,7 +205,6 @@ biodivportal:
     ontologies
   example: CARO
   homepage: https://biodivportal.gfbio.org
-  license: See https://github.com/biopragmatics/bioregistry/issues/337
   logo: https://biodivportal.gfbio.org/assets/logo-white-d9b8799b92fd0419f657fa6eea2114bde3f56205d75bfb4dbf5415563f05e263.svg
   name: BiodivPortal
   prefix: biodivportal
@@ -256,9 +253,7 @@ biolink:
     scope: internal
     status: active
   homepage: https://biolink.github.io/biolink-model
-  license: CC0-1.0
-  logo: https://avatars.githubusercontent.com/u/25489141
-  name: Biolink Model Registry
+  name: BioLink Model Registry
   prefix: biolink
   qualities:
     automatable_download: true
@@ -287,9 +282,11 @@ bioportal:
     github: graybeal
     name: John Graybeal
     orcid: 0000-0001-6875-5360
-  description: The BioPortal is a less stringent registry of biomedical ontologies
-    than the OBO Foundry
-  example: CHEBI
+  description: BioPortal is an open repository of biomedical ontologies that provides
+    access via Web services and Web browsers to ontologies developed in OWL, RDF,
+    OBO format and Protégé frames. BioPortal functionality includes the ability to
+    browse, search and visualize ontologies.
+  example: GO
   governance:
     accepts_external_contributions: true
     curates: true
@@ -336,7 +333,7 @@ bioregistry:
   description: The Bioregistry is integrative meta-registry of biological databases,
     ontologies, and nomenclatures that is backed by an open database.
   download: https://bioregistry.io/api/registry/
-  example: chebi
+  example: bioregistry
   governance:
     accepts_external_contributions: true
     code_repository: https://github.com/biopragmatics/bioregistry
@@ -395,8 +392,6 @@ cellosaurus:
     scope: internal
     status: active
   homepage: https://web.expasy.org/cellosaurus
-  license: CC-BY-4.0
-  logo: https://www.cellosaurus.org/images/cellosaurus/cellosaurus.png
   name: Cellosaurus Registry
   prefix: cellosaurus
   qualities:
@@ -405,6 +400,7 @@ cellosaurus:
     no_authentication: true
     structured_data: true
   short_name: Cellosaurus
+  uri_format: https://bioregistry.io/metaregistry/cellosaurus/$1
 cheminf:
   availability:
     alternate_providers: missing
@@ -426,8 +422,10 @@ cheminf:
     github: egonw
     name: Egon Willighagen
     orcid: 0000-0001-7542-0286
-  description: Contains entries for various database identifiers
-  example: '000140'
+  description: The chemical information ontology (cheminf) describes information entities
+    about chemical entities. It provides qualitative and quantitative attributes to
+    richly describe chemicals.
+  example: 000409
   governance:
     accepts_external_contributions: true
     code_repository: https://github.com/semanticchemistry/semanticchemistry
@@ -537,7 +535,7 @@ ecoportal:
     scope: eco-ontologies
     status: active
   homepage: http://ecoportal.lifewatch.eu
-  license: See https://github.com/biopragmatics/bioregistry/issues/338
+  license: CC
   logo: https://metadatacatalogue.lifewatch.eu/srv/api/records/95a44a9c-6f70-454f-9d3e-5e9d5684bb51/attachments/EcoPortal%20Positivo2.png
   name: EcoPortal
   prefix: ecoportal
@@ -569,14 +567,11 @@ edam:
     github: matuskalas
     name: Matúš Kalaš
     orcid: 0000-0002-1509-4981
-  description: EDAM is a comprehensive ontology of well-established, familiar concepts
-    that are prevalent within computational biology, bioinformatics, and bioimage
-    informatics. EDAM includes types of data and data identifiers, data formats, operations,
-    and topics related to data analysis in life sciences. EDAM provides a set of concepts
-    with preferred terms and synonyms, related terms, definitions, and other information
-    - organised into a simple and intuitive hierarchy for convenient use.
+  description: Information, represented in an information artefact (data record) that
+    is 'understandable' by dedicated computational tools that can use the data as
+    input or produce it as output.
   download: http://edamontology.org/EDAM.owl
-  example: '1004'
+  example: '1161'
   governance:
     accepts_external_contributions: true
     code_repository: https://github.com/edamontology/edamontology
@@ -622,9 +617,11 @@ fairsharing:
     github: allysonlister
     name: Allyson Lister
     orcid: 0000-0002-7702-4495
-  description: A curated, informative and educational resource on data and metadata
-    standards, inter-related to databases and data policies.
-  example: FAIRsharing.62qk8w
+  description: The web-based FAIRSharing catalogues aim to centralize bioscience data
+    policies, reporting standards and links to other related portals. This collection
+    references bioinformatics data exchange standards, which includes 'Reporting Guidelines',
+    Format Specifications and Terminologies.
+  example: FAIRsharing.89e853
   governance:
     accepts_external_contributions: true
     curates: true
@@ -681,9 +678,7 @@ go:
     review_team: inferrable
     scope: internal
     status: inactive
-  homepage: http://geneontology.org
-  license: CC-BY-4.0
-  logo: http://geneontology.org/assets/go-logo.large.png
+  homepage: https://raw.githubusercontent.com/geneontology/go-site/master/metadata/db-xrefs.yaml
   name: Gene Ontology Registry
   prefix: go
   qualities:
@@ -692,6 +687,7 @@ go:
     no_authentication: true
     structured_data: true
   short_name: GO
+  uri_format: http://www.geneontology.org/doc/GO.xrf_abbs:$1
 hl7:
   availability:
     alternate_providers: missing
@@ -723,10 +719,8 @@ hl7:
     review_team: n/a
     scope: general
     status: active
-  homepage: http://www.oid-info.com/get/2.16.840.1.113883
-  license: See https://github.com/biopragmatics/bioregistry/issues/586
-  logo: https://comjoodoc.de/wp-content/uploads/2019/03/blog_comjoodoc_hl7fhir-1200x800.png
-  name: HL7 External Code Systems
+  homepage: https://oid-base.com/get/2.16.840.1.113883
+  name: HL7 External Code System
   prefix: hl7
   qualities:
     automatable_download: false
@@ -734,7 +728,7 @@ hl7:
     no_authentication: true
     structured_data: true
   short_name: HL7
-  uri_format: https://oid-base.com/get/2.16.840.1.113883:$1
+  uri_format: https://oid-base.com/get/2.16.840.1.113883.$1
 integbio:
   availability:
     alternate_providers: missing
@@ -862,11 +856,11 @@ miriam:
     github: hHermjakob
     name: Henning Hermjakob
     orcid: 0000-0001-8479-0262
-  description: The Identifiers.org Resolution Service provides consistent access to
-    life science data using Compact Identifiers. Compact Identifiers consist of an
-    assigned unique prefix and a local provider designated accession number (prefix:accession).
+  description: Identifiers.org is an established resolving system that enables the
+    referencing of data for the scientific community, with a current focus on the
+    Life Sciences domain.
   download: https://registry.api.identifiers.org/resolutionApi/getResolverDataset
-  example: chebi
+  example: pubmed
   governance:
     accepts_external_contributions: true
     code_repository: https://github.com/identifiers-org/cloud-satellite-web-spa
@@ -926,8 +920,6 @@ n2t:
     scope: life sciences
     status: active
   homepage: https://n2t.net
-  license: CC0-1.0
-  logo: https://n2t.net/e/images/n2t_net_logo.png
   name: Name-to-Thing
   prefix: n2t
   qualities:
@@ -938,7 +930,7 @@ n2t:
   resolver_type: resolver
   resolver_uri_format: https://n2t.net/$1:$2
   short_name: N2T
-  uri_format: 'https://n2t.net/$1:'
+  uri_format: https://n2t.net/.info/$1
 ncbi:
   availability:
     alternate_providers: missing
@@ -956,8 +948,9 @@ ncbi:
   bibtex: Clark2016
   bioregistry_prefix: ncbi.resource
   contact:
-    email: gb-admin@ncbi.nlm.nih.gov
-    name: GenBank Support
+    email: mizrachi@ncbi.nlm.nih.gov
+    name: Ilene Karsch-Mizrachi
+    orcid: 0000-0002-0289-7101
   description: A database-specific registry supporting curation in the NCBI GenBank
     and related NCBI resources
   example: ECOCYC
@@ -971,9 +964,7 @@ ncbi:
     scope: internal
     status: inactive
   homepage: https://www.ncbi.nlm.nih.gov/genbank/collab/db_xref
-  license: See https://github.com/biopragmatics/bioregistry/issues/342
-  logo: https://upload.wikimedia.org/wikipedia/commons/0/07/US-NLM-NCBI-Logo.svg
-  name: National Center for Biotechnology Information Registry
+  name: NCBI Registry
   prefix: ncbi
   qualities:
     automatable_download: true
@@ -981,6 +972,7 @@ ncbi:
     no_authentication: true
     structured_data: false
   short_name: NCBI
+  uri_format: https://bioregistry.io/metaregistry/ncbi/$1
 obofoundry:
   availability:
     alternate_providers: missing
@@ -998,14 +990,14 @@ obofoundry:
   bibtex: Jackson2021
   bioregistry_prefix: obo
   contact:
-    email: cjmungall@lbl.gov
-    github: cmungall
-    name: Chris Mungall
-    orcid: 0000-0002-6601-2165
-  description: The mission of the OBO Foundry is to develop a family of interoperable
-    ontologies that are both logically well-formed and scientifically accurate.
+    email: nicolas.matentzoglu@gmail.com
+    github: matentzn
+    name: Nicolas Matentzoglu
+    orcid: 0000-0002-7356-1779
+  description: The OBO namespace is the top-level namespace used by Open Biological
+    and Biomedical Ontology (OBO) Foundry ontologies.
   download: http://www.obofoundry.org/registry/ontologies.yml
-  example: chebi
+  example: uberon
   governance:
     accepts_external_contributions: true
     code_repository: https://github.com/OBOFoundry/OBOFoundry.github.io
@@ -1019,9 +1011,8 @@ obofoundry:
     scope: bio-ontologies
     status: active
   homepage: http://www.obofoundry.org
-  license: CC0-1.0
-  logo: https://obofoundry.org/images/foundrylogo.png
-  name: OBO Foundry
+  license: CC-BY-4.0
+  name: Open Biological and Biomedical Ontologies
   prefix: obofoundry
   qualities:
     automatable_download: true
@@ -1030,7 +1021,7 @@ obofoundry:
     structured_data: true
   resolver_type: resolver
   resolver_uri_format: http://purl.obolibrary.org/obo/$1_$2
-  uri_format: https://www.obofoundry.org/ontology/$1
+  uri_format: http://purl.obolibrary.org/obo/$1
 ols:
   availability:
     alternate_providers: missing
@@ -1052,8 +1043,8 @@ ols:
     github: henrietteharmse
     name: Henriette Harmse
     orcid: 0000-0001-7251-9504
-  description: 'The Ontology Lookup Service (OLS) is a repository for biomedical ontologies
-    that aims to provide a single point of access to the latest ontology versions. '
+  description: The Ontology Lookup Service (OLS) is a repository for biomedical ontologies
+    that aims to provide a single point of access to the latest ontology versions.
   example: chebi
   governance:
     accepts_external_contributions: true
@@ -1069,7 +1060,6 @@ ols:
     scope: bio-ontologies
     status: active
   homepage: https://www.ebi.ac.uk/ols4
-  license: See https://github.com/biopragmatics/bioregistry/issues/340
   logo: https://www.ebi.ac.uk/ols4/logo.png
   name: EBI Ontology Lookup Service
   prefix: ols
@@ -1148,12 +1138,9 @@ pathguide:
     github: gbader
     name: Gary Bader
     orcid: 0000-0003-0185-8861
-  description: Pathguide contains information about 702 biological pathway related
-    resources and molecular interaction related resources. Click on a link to go to
-    the resource home page or 'Details' for a description page. Databases that are
-    free and those supporting BioPAX, CellML, PSI-MI or SBML standards are respectively
-    indicated. (from homepage)
-  example: '235'
+  description: Pathguide contains information about 325 biological related resources
+    and molecular interaction related resources.
+  example: '496'
   governance:
     accepts_external_contributions: true
     curates: true
@@ -1238,12 +1225,9 @@ prefixcommons:
     github: micheldumontier
     name: Michel Dumontier
     orcid: 0000-0003-4727-9435
-  description: A registry of commonly used prefixes in the life sciences and linked
-    data. The source data for this registry is a spreadsheet on Google called the
-    Life Science Registry. This registry was previously known as Prefix Commons and
-    was available at https://prefixcommons.org.
+  description: A registry of life science prefxes
   download: http://tinyurl.com/lsregistry
-  example: doi
+  example: chebi
   governance:
     accepts_external_contributions: true
     curates: true
@@ -1253,9 +1237,7 @@ prefixcommons:
     review_team: public
     scope: life sciences
     status: active
-  homepage: https://registry.bio2kg.org
-  license: CC0-1.0
-  logo: https://avatars.githubusercontent.com/u/15466415
+  homepage: https://prefixcommons.org
   name: Prefix Commons
   prefix: prefixcommons
   qualities:
@@ -1263,7 +1245,7 @@ prefixcommons:
     bulk_data: true
     no_authentication: true
     structured_data: true
-  uri_format: https://registry.bio2kg.org/resource/$1
+  uri_format: https://bioregistry.io/metaregistry/prefixcommons/$1
 re3data:
   availability:
     alternate_providers: missing
@@ -1287,7 +1269,7 @@ re3data:
     orcid: 0000-0003-4221-7956
   description: Re3data is a global registry of research data repositories that covers
     research data repositories from different academic disciplines.
-  example: r3d100014165
+  example: r3d100013316
   governance:
     accepts_external_contributions: true
     curates: true
@@ -1346,7 +1328,7 @@ rrid:
   homepage: https://rrid.site
   license: CC-BY-4.0
   logo: https://scicrunch.org/upload/community-logo/rin-resources_69984.png
-  name: Research Resource Identifiers
+  name: Research Resource Identifiers Resource
   prefix: rrid
   qualities:
     automatable_download: true
@@ -1376,7 +1358,7 @@ tib:
     github: rombaum
     name: Roman Baum
     orcid: 0000-0001-5246-9351
-  description: The TIB Terminology Service is an instance of the EBI OLS.
+  description: An instance of the EBI Lookup Service deployed by TIB
   example: abcd
   governance:
     accepts_external_contributions: true
@@ -1392,8 +1374,6 @@ tib:
     scope: general
     status: active
   homepage: https://terminology.tib.eu
-  license: CCO
-  logo: https://terminology.tib.eu/TIB_Logo_W_W.SVG
   name: TIB Terminology Service
   prefix: tib
   qualities:
@@ -1445,16 +1425,15 @@ togoid:
     review_team: inferrable
     scope: bio-ontologies
     status: active
-  homepage: https://togoid.dbcls.jp
-  license: CC-BY-4.0
-  name: TogoID
+  homepage: https://togoid.dbcls.jp/ontology
+  name: TogoID Ontology
   prefix: togoid
   qualities:
     automatable_download: true
     bulk_data: true
     no_authentication: true
     structured_data: true
-  uri_format: https://togoid.dbcls.jp/#$1
+  uri_format: https://togoid.dbcls.jp/ontology#$1
 uniprot:
   availability:
     alternate_providers: missing
@@ -1523,9 +1502,12 @@ wikidata:
     github: vrandezo
     name: Denny Vrandečić
     orcid: 0000-0002-9593-2294
-  description: An open, community-curated knowledgebase that contains several properties
-    corresponding to resources listed in other biomedical registries.
-  example: P683
+  description: 'Wikidata is a free and open knowledge base that can be read and edited
+    by both humans and machines.
+
+    Wikidata acts as central storage for the structured data of its Wikimedia sister
+    projects including Wikipedia, Wikivoyage, Wiktionary, Wikisource, and others.'
+  example: P4355
   governance:
     accepts_external_contributions: true
     curates: true
@@ -1568,8 +1550,7 @@ wikidata.entity:
     github: vrandezo
     name: Denny Vrandečić
     orcid: 0000-0002-9593-2294
-  description: An open, community-curated knowledgebase that contains several properties
-    corresponding to resources listed in other biomedical registries.
+  description: Entity in Wikidata
   example: Q81661651
   governance:
     accepts_external_contributions: true
@@ -1633,7 +1614,6 @@ zazuko:
     status: active
   homepage: https://prefix.zazuko.com
   license: MIT
-  logo: https://prefix.zazuko.com/_nuxt/img/zazuko-logo.2dc686c.svg
   name: Zazuko Prefix Server
   prefix: zazuko
   qualities:
@@ -1644,4 +1624,4 @@ zazuko:
   resolver_type: lookup
   resolver_uri_format: https://prefix.zazuko.com/$1:$2
   short_name: Zazuko
-  uri_format: 'https://prefix.zazuko.com/prefix/$1:'
+  uri_format: https://prefix.zazuko.com/prefix/$1
