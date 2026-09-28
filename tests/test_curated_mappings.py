@@ -87,5 +87,5 @@ class TestSemanticMappings(unittest.TestCase):
         """Test getting mappings that are versions."""
         has_version_mappings = read_has_version_mappings()
         self.assertIn("envo", has_version_mappings)
-        self.assertIn("tib", has_version_mappings["envo"])
-        self.assertIn("envo2023", has_version_mappings["envo"]["tib"])
+        self.assertIn("tib.ts", has_version_mappings["envo"])
+        self.assertIn("envo2023", has_version_mappings["envo"]["tib.ts"])

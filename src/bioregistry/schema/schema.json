@@ -959,11 +959,6 @@
           "$ref": "#/$defs/Attributable",
           "description": "The contact for the registry."
         },
-        "bioregistry_prefix": {
-          "description": "The prefix for this registry in the Bioregistry",
-          "title": "Bioregistry Prefix",
-          "type": "string"
-        },
         "logo": {
           "anyOf": [
             {
@@ -1010,8 +1005,7 @@
         "description",
         "homepage",
         "example",
-        "contact",
-        "bioregistry_prefix"
+        "contact"
       ],
       "title": "Registry",
       "type": "object"
@@ -2190,7 +2184,7 @@
           "default": null,
           "title": "Prefixcommons"
         },
-        "wikidata": {
+        "wikidata.property": {
           "anyOf": [
             {
               "additionalProperties": true,
@@ -2201,7 +2195,7 @@
             }
           ],
           "default": null,
-          "title": "Wikidata"
+          "title": "Wikidata property"
         },
         "wikidata_entity": {
           "anyOf": [
@@ -2216,7 +2210,7 @@
           "default": null,
           "title": "Wikidata Entity"
         },
-        "go": {
+        "go.resource": {
           "anyOf": [
             {
               "additionalProperties": true,
@@ -2227,7 +2221,7 @@
             }
           ],
           "default": null,
-          "title": "Go"
+          "title": "Gene Ontology resource"
         },
         "obofoundry": {
           "anyOf": [
@@ -2320,7 +2314,7 @@
           "default": null,
           "title": "Aberowl"
         },
-        "ncbi": {
+        "ncbi.resource": {
           "anyOf": [
             {
               "additionalProperties": true,
@@ -2331,9 +2325,9 @@
             }
           ],
           "default": null,
-          "title": "Ncbi"
+          "title": "NCBI resource"
         },
-        "uniprot": {
+        "uniprot.resource": {
           "anyOf": [
             {
               "additionalProperties": true,
@@ -2344,9 +2338,9 @@
             }
           ],
           "default": null,
-          "title": "Uniprot"
+          "title": "UniProt resource"
         },
-        "biolink": {
+        "biolink.resource": {
           "anyOf": [
             {
               "additionalProperties": true,
@@ -2357,9 +2351,9 @@
             }
           ],
           "default": null,
-          "title": "Biolink"
+          "title": "BioLink resource"
         },
-        "cellosaurus": {
+        "cellosaurus.resource": {
           "anyOf": [
             {
               "additionalProperties": true,
@@ -2370,7 +2364,7 @@
             }
           ],
           "default": null,
-          "title": "Cellosaurus"
+          "title": "Cellosaurus resource"
         },
         "ontobee": {
           "anyOf": [
@@ -2424,7 +2418,7 @@
           "default": null,
           "title": "Biocontext"
         },
-        "edam": {
+        "edam.data": {
           "anyOf": [
             {
               "additionalProperties": true,
@@ -2435,7 +2429,7 @@
             }
           ],
           "default": null,
-          "title": "Edam"
+          "title": "EDAM Data"
         },
         "re3data": {
           "anyOf": [
@@ -2476,7 +2470,7 @@
           "default": null,
           "title": "BARTOC"
         },
-        "rrid": {
+        "rrid.resource": {
           "anyOf": [
             {
               "additionalProperties": true,
@@ -2554,7 +2548,7 @@
           "default": null,
           "title": "Pathguide"
         },
-        "tib": {
+        "tib.ts": {
           "anyOf": [
             {
               "additionalProperties": true,
@@ -2565,7 +2559,7 @@
             }
           ],
           "default": null,
-          "title": "Tib"
+          "title": "TIB Terminology Service"
         },
         "biodivportal": {
           "anyOf": [

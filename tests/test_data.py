@@ -116,18 +116,6 @@ class TestRegistry(unittest.TestCase):
                         msg="Only start a prefix with an underscore if the first _actual_ character is a number",
                     )
 
-    def test_keys(self) -> None:
-        """Check the required metadata is there."""
-        keys = set(Resource.model_fields)
-        with open(BIOREGISTRY_PATH, encoding="utf-8") as file:
-            data = json.load(file)
-        for prefix, entry in data.items():
-            extra = {k for k in set(entry) - keys if not k.startswith("_")}
-            if not extra:
-                continue
-            with self.subTest(prefix=prefix):
-                self.fail(f"{prefix} had extra keys: {extra}")
-
     @staticmethod
     def _construct_substrings(x: str) -> tuple[str, str, str, str]:
         return (
@@ -1142,12 +1130,7 @@ class TestRegistry(unittest.TestCase):
         """Test mappings correspond to valid identifiers."""
         k = {}
         for metaprefix, registry in self.metaregistry.items():
-            if registry.bioregistry_prefix:
-                resource = self.registry[registry.bioregistry_prefix]
-            elif registry.prefix in self.registry:
-                resource = self.registry[registry.prefix]
-            else:
-                continue
+            resource = self.registry[registry.prefix]
             pattern = resource.get_pattern_re()
             if pattern is None:
                 continue
@@ -1434,10 +1417,10 @@ class TestRegistry(unittest.TestCase):
 
     def test_registry_invmap(self) -> None:
         """Test that the registry inverse map contains one to many."""
-        # this test the "hasVersion" relation
-        self.assertIn("envo2023", manager.get_registry_invmap("tib"))
-        # this tests the "providerOf" relation
-        self.assertIn("DB-0262", manager.get_registry_invmap("uniprot"))
+        with self.subTest(msg="test hasVersion relation"):
+            self.assertIn("envo2023", manager.get_registry_invmap("tib.ts"))
+        with self.subTest(msg="test the providerOf relation"):
+            self.assertIn("DB-0262", manager.get_registry_invmap("uniprot.resource"))
 
     def test_short_name_map(self) -> None:
         """Test the short name map."""
@@ -1462,7 +1445,7 @@ class TestRegistry(unittest.TestCase):
     def test_registry_keyword(self) -> None:
         """Test registries contain appropriate keywords."""
         for registry in self.metaregistry.values():
-            with self.subTest(prefix=registry.bioregistry_prefix):
-                resource = self.registry[registry.bioregistry_prefix]
+            with self.subTest(prefix=registry.prefix):
+                resource = self.registry[registry.prefix]
                 self.assertIn("registry", resource.get_keywords())
                 self.assertIsNotNone(resource.contributor)

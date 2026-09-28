@@ -107,7 +107,7 @@ get_uniprot = build_getter(
 class UniProtAligner(Aligner):
     """Aligner for UniProt."""
 
-    key = "uniprot"
+    key = "uniprot.resource"
     alt_key_match = "abbreviation"
     getter = get_uniprot
     curation_header: ClassVar[Sequence[str]] = ("abbreviation", "name", URI_FORMAT_KEY, "keywords")

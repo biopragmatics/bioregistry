@@ -262,11 +262,11 @@ def _add_resource(
     mappings = resource.get_mappings()
     for metaprefix, metaidentifier in sorted((mappings or {}).items()):
         metaresource = manager.metaregistry[metaprefix]
-        external_namespace = namespaces_dict.get(metaresource.bioregistry_prefix)
+        external_namespace = namespaces_dict.get(metaresource.prefix)
         if external_namespace is None:
-            if metaresource.bioregistry_prefix not in NAMESPACE_WARNINGS:
+            if metaresource.prefix not in NAMESPACE_WARNINGS:
                 logger.warning(
-                    f"can not find prefix-uri pair for {metaprefix} (primary: {metaresource.bioregistry_prefix})"
+                    f"can not find prefix-uri pair for {metaprefix} (primary: {metaresource.prefix})"
                 )
                 NAMESPACE_WARNINGS.add(metaprefix)
             continue
@@ -275,12 +275,12 @@ def _add_resource(
             (
                 external_namespace[metaidentifier],
                 DCTERMS.isPartOf,
-                bioregistry_resource[metaresource.bioregistry_prefix],
+                bioregistry_resource[metaresource.prefix],
             )
         )
         graph.add(
             (
-                bioregistry_resource[metaresource.bioregistry_prefix],
+                bioregistry_resource[metaresource.prefix],
                 DCTERMS.hasPart,
                 external_namespace[metaidentifier],
             )

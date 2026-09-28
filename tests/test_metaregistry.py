@@ -48,14 +48,11 @@ class TestMetaregistry(unittest.TestCase):
                     self.assertIsNotNone(registry.uri_format)
                     self.assertIn("$1", registry.uri_format)
 
-                self.assertIsNotNone(registry.bioregistry_prefix)
                 self.assertEqual(
-                    bioregistry.normalize_prefix(registry.bioregistry_prefix),
-                    registry.bioregistry_prefix,
+                    bioregistry.normalize_prefix(registry.prefix),
+                    registry.prefix,
                     msg="link from metaregistry to bioregistry must use canonical prefix",
                 )
-                resource = bioregistry.get_resource(registry.bioregistry_prefix)
-                self.assertIsNotNone(resource)
 
                 # When a registry is a resolver, it means it
                 # can resolve entries (prefixes) + identifiers
@@ -84,7 +81,7 @@ class TestMetaregistry(unittest.TestCase):
         self.assertIsNone(bioregistry.get_registry_example("nope"))
         self.assertIsNone(bioregistry.get_registry_description("nope"))
 
-        metaprefix = "uniprot"
+        metaprefix = "uniprot.resource"
         registry = bioregistry.get_registry(metaprefix, strict=True)
         self.assertIsInstance(registry, Registry)
         self.assertEqual(metaprefix, registry.prefix)
@@ -118,7 +115,7 @@ class TestMetaregistry(unittest.TestCase):
 
     def test_get_rdf(self) -> None:
         """Test conversion to RDF."""
-        registry = self.manager.metaregistry["uniprot"]
+        registry = self.manager.metaregistry["uniprot.resource"]
         s = metaresource_to_rdf_str(registry, manager=self.manager)
         self.assertIsInstance(s, str)
         g = rdflib.Graph()
@@ -127,7 +124,7 @@ class TestMetaregistry(unittest.TestCase):
     def test_corresponding(self) -> None:
         """Test data corresponds between the registry and metaregistry."""
         for metaprefix, registry in self.manager.metaregistry.items():
-            resource = self.manager.registry[registry.bioregistry_prefix]
+            resource = self.manager.registry[registry.prefix]
             pattern = resource.get_pattern()
             if pattern is None:
                 continue

@@ -17,6 +17,7 @@ from ..alignment_model import load_processed as load_records
 from ..constants import METADATA_CURATION_DIRECTORY
 from ..resource_manager import Manager
 from ..schema import Resource
+from ..schema.struct import RESOURCE_ALIAS_TO_FIELD
 from ..schema_utils import is_mismatch
 from ..utils import norm
 
@@ -87,6 +88,11 @@ class Aligner:
 
         if self.key not in self.manager.metaregistry:
             raise TypeError(f"invalid metaprefix for aligner: {self.key}")
+
+        if self.key in RESOURCE_ALIAS_TO_FIELD:
+            self._model_field_name = RESOURCE_ALIAS_TO_FIELD[self.key]
+        else:
+            self._model_field_name = self.key
 
         kwargs = dict(self.getter_kwargs or {})
         kwargs.setdefault("force_download", True)
@@ -197,7 +203,7 @@ class Aligner:
             self.internal_registry[bioregistry_id].mappings = {}
         self.internal_registry[bioregistry_id].mappings[self.key] = external_id  # type:ignore
 
-        self.internal_registry[bioregistry_id][self.key] = {
+        self.internal_registry[bioregistry_id][self._model_field_name] = {
             self.subkey: external_id,
             **external_entry.model_dump(
                 exclude_none=True, exclude_defaults=True, exclude_unset=True

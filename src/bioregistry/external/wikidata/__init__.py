@@ -296,7 +296,7 @@ get_wikidata = build_no_raw_getter(
 class WikidataAligner(Aligner):
     """Aligner for Wikidata properties."""
 
-    key = "wikidata"
+    key = "wikidata.property"
     getter = get_wikidata
 
     def get_skip(self) -> Mapping[str, str]:

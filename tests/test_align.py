@@ -37,7 +37,6 @@ class TestAlign(unittest.TestCase):
         metaregistry = {
             "fairsharing": Registry(
                 prefix="fairsharing",
-                bioregistry_prefix="fairsharing",
                 name="",
                 homepage="",
                 description="",
@@ -79,7 +78,6 @@ class TestAlign(unittest.TestCase):
         metaregistry = {
             "obofoundry": Registry(
                 prefix="obofoundry",
-                bioregistry_prefix="obo",
                 name="",
                 homepage="",
                 description="",
@@ -87,7 +85,7 @@ class TestAlign(unittest.TestCase):
                 contact=Author.get_charlie(),
             )
         }
-        registry = {"geo": geo, "geogeo": geogeo, "obo": Resource(prefix="obo")}
+        registry = {"geo": geo, "geogeo": geogeo, "obofoundry": Resource(prefix="obofoundry")}
         manager = Manager(registry=registry, metaregistry=metaregistry)
         aligner = MockAligner(manager=manager, force_download=False, force_process=True)
         self.assertEqual({"geo": "geogeo"}, aligner.external_id_to_bioregistry_id)
