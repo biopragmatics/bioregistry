@@ -3231,7 +3231,7 @@
     }
   },
   "P13797": {
-    "description": "identifier for a person, place, or thing on Dimensions.com",
+    "description": "identifier for a person, place, or thing on Dimensions.com, a reference database of dimensioned drawings",
     "examples": [
       "beverage-vending-machine",
       "football-soccer-pitch-field",
@@ -3619,6 +3619,17 @@
     "pattern": "^[1-9]\\d*$",
     "uri_format": "https://ukrbin.com/index.php?id=$1"
   },
+  "P14914": {
+    "description": "identifier assigned by the Raras Knowledge Graph to a rare disease",
+    "examples": [
+      "D00586",
+      "D00803",
+      "D210566"
+    ],
+    "name": "Raras disease ID",
+    "pattern": "^D\\d+$",
+    "uri_format": "https://raras.org/id/$1"
+  },
   "P1550": {
     "description": "identifier in the Orpha.net database (without ORPHA prefix)",
     "examples": [
@@ -3910,7 +3921,7 @@
     "homepage": "http://www.sandre.eaufrance.fr/Rechercher-une-donnee-d-un-jeu",
     "name": "Sandre river ID",
     "pattern": "^[A-Z-]?[0-9-]{6,8}[AG]?$",
-    "uri_format": "https://www.sandre.eaufrance.fr/geo/CoursEau_Carthage2017/$1",
+    "uri_format": "https://id.eaufrance.fr/CoursEau_Carthage2017/$1",
     "xrefs": {
       "wikidata": "Q1520862"
     }
@@ -10063,8 +10074,8 @@
     ],
     "homepage": "http://nzpcn.org.nz/page.aspx?flora",
     "name": "NZPCN ID",
-    "pattern": "^[1-9]\\d*$",
-    "uri_format": "https://web.archive.org/web/*/http://nzpcn.org.nz/flora_details.aspx?ID=$1"
+    "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$",
+    "uri_format": "https://www.nzpcn.org.nz/flora/species/$1/"
   },
   "P7546": {
     "description": "identifier for plant taxons",
