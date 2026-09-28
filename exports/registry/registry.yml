@@ -1465,7 +1465,6 @@ agroportal:
     year: 2023
   uri_format: http://agroportal.lirmm.fr/ontologies/$1
 agrovoc:
-  banana: c_
   comment: The download page for the [rdf](https://data.apps.fao.org/catalog/dataset/agrovoc-2025-07/resource/b5571fb6-7098-4866-b053-87b550e4624a)
     resource states it's available under CC-BY-4.0, though this information is not
     widely accesible on the website.
@@ -1489,7 +1488,11 @@ agrovoc:
     Open Data set about agriculture available for public use and its greatest impact
     is through providing the access and visibility of data across domains and languages.
   download_rdf: https://agrovoc.fao.org/latestAgrovoc/agrovoc_core.rdf.zip
-  example: '2842'
+  example: c_25756
+  example_extras:
+  - xDef_5b0dcc34
+  - xl_lo_1299496125062
+  - xl_sv_6c7a1a27
   homepage: https://data.apps.fao.org/catalog/organization/agrovoc
   keywords:
   - agricultural products
@@ -1517,7 +1520,6 @@ agrovoc:
     wikidata: P8061
     wikidata.entity: Q292649
   name: AGROVOC
-  pattern: ^[a-z0-9]+$
   preferred_prefix: agrovoc
   publications:
   - doi: 10.4060/cb2838en
@@ -1535,7 +1537,7 @@ agrovoc:
   - http://agrovoc.uniroma2.it/latestAgrovoc/agrovoc_core.nt.zip
   - http://agrovoc.uniroma2.it/latestAgrovoc/agrovoc_lod.nt.zip
   - https://en.wikipedia.org/wiki/AGROVOC
-  uri_format: http://aims.fao.org/aos/agrovoc/c_$1
+  uri_format: http://aims.fao.org/aos/agrovoc/$1
   version: 2026-05
 agsc:
   contact:
@@ -4218,7 +4220,7 @@ bao:
     pubmed: '10'
     title: Digitoxin metabolism by rat liver microsomes
     year: 1975
-  rdf_uri_format: http://www.bioassayontology.org/bao#$1
+  rdf_uri_format: http://www.bioassayontology.org/bao#BAO_$1
   repository: https://github.com/BioAssayOntology/BAO
   synonyms:
   - BAO
@@ -24667,7 +24669,7 @@ emi:
   - name: Digital Botanical Gardens Initiative
     ror: 02d0g4295
   preferred_prefix: emi
-  rdf_uri_format: ' https://purl.org/emi#$1'
+  rdf_uri_format: https://purl.org/emi#$1
   repository: https://github.com/digital-botanical-gardens-initiative/earth_metabolome_ontology
   uri_format: https://www.dbgi.org/earth_metabolome_ontology/#$1
   version: '1.0'
@@ -27665,7 +27667,7 @@ factgrid:
   name: FactGrid
   pattern: ^Q\d+$
   preferred_prefix: factgrid
-  rdf_uri_format: https://database.factgrid.de/wiki/Item:Q24708
+  rdf_uri_format: https://database.factgrid.de/wiki/Item:$1
   references:
   - https://github.com/FactGrid
   uri_format: https://database.factgrid.de/viewer/item/$1
@@ -30927,7 +30929,7 @@ gemet.concept:
     homepage: https://www.eionet.europa.eu/gemet
     name: GEMET Multilingual
     uri_format: http://www.eionet.europa.eu/gemet/concept/$1
-  rdf_uri_format: ' http://www.eionet.europa.eu/gemet/concept/$1'
+  rdf_uri_format: http://www.eionet.europa.eu/gemet/concept/$1
   uri_format: https://www.eionet.europa.eu/gemet/en/concept/$1
   version: 4.2.3
 gemet.group:
@@ -39985,8 +39987,11 @@ idoo:
 idot:
   description: Identifiers.org Terms (idot) is an RDF vocabulary providing useful
     terms for describing datasets.
+  download_owl: https://github.com/identifiers-org/ontop/raw/refs/heads/main/idorg-ontology/idorg-ontology.ttl
   example: Namespace
-  homepage: http://biomodels.net/vocab/idot.rdf
+  homepage: https://github.com/identifiers-org/ontop
+  keywords:
+  - ontology
   mappings:
     biocontext: idot
     miriam: idot
@@ -39997,7 +40002,12 @@ idot:
     ror: 02catss52
   pattern: ^[A-Za-z]+$
   preferred_prefix: idot
-  uri_format: https://biomodels.net/vocab/idot.rdf#$1
+  providers:
+  - code: legacy
+    uri_format: https://biomodels.net/vocab/idot.rdf#$1
+  rdf_uri_format: http://identifiers.org/idot/$1
+  repository: https://github.com/identifiers-org/ontop
+  uri_format: http://identifiers.org/idot/$1
 idpo:
   contact:
     email: f.quaglia@ibiom.cnr.it
@@ -47935,7 +47945,7 @@ mamo:
   name: Mathematical modeling ontology
   pattern: ^\d{7}$
   preferred_prefix: MAMO
-  rdf_uri_format: http://purl.obolibrary.org/obo/MAMO_$1
+  rdf_uri_format: http://identifiers.org/mamo/MAMO_$1
   repository: https://github.com/cmungall/mamo
   uri_format: http://bioportal.bioontology.org/ontologies/MAMO/?p=classes&conceptid=http://identifiers.org/mamo/MAMO_$1
   version: '2023-02-03'
@@ -90656,6 +90666,7 @@ vann:
   name: A vocabulary for annotating vocabulary descriptions
   preferred_prefix: vann
   rdf_uri_format: http://purl.org/vocab/vann/$1
+  repository: https://github.com/iand/vocabdotorg
   uri_format: https://vocab.org/vann/#$1
 vario:
   banana: VariO
