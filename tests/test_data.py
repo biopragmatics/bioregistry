@@ -326,6 +326,7 @@ class TestRegistry(unittest.TestCase):
                         msg=f"{prefix} URI format dos not start with a valid protocol",
                     )
                     self.assertIn("$1", uri_format, msg=f"{prefix} URI format does not have a $1")
+
     def test_uri_format_uniqueness(self) -> None:
         """Test URI format uniqueness."""
         dd = defaultdict(set)
