@@ -1,20 +1,24 @@
-"""Analyze."""
+"""Calculate dependencies between resources."""
 
 import itertools as itt
+from typing import NamedTuple
 
-import bioregistry
 import click
+import curies
+import obographs
 import rdflib
-from bioregistry import Resource
-from bioregistry.schema import AnnotatedURL
+import rdflib.exceptions
 from curies import Converter
+from pyobo import Obo
+from pyobo.struct.skos import read_skos
+from pystow.utils import read_rdflib, safe_open_writer
 from rdflib import OWL, RDF, SKOS
 from tabulate import tabulate
 from tqdm import tqdm
 from tqdm.contrib.logging import logging_redirect_tqdm
 
-from pyobo import Obo
-from pyobo.struct.skos import read_skos
+from bioregistry import Manager, Resource
+from bioregistry.schema import AnnotatedURL
 
 SKIPS = {
     # TODO investigate both of these later
@@ -22,22 +26,74 @@ SKIPS = {
     "infosecsos",
 }
 
+# TRIVIAL = {"dc", "dcterms", "rdf", "rdfs", "skos"}
 
-def _get_dependencies() -> None:
-    converter = bioregistry.get_converter()
-    for resource in tqdm(bioregistry.manager.registry.values()):
-        if owl := resource.get_download_owl():
-            tqdm.write(f"{resource.prefix} skipping OWL for now - {owl}")
-        elif rdf := resource.get_download_rdf(get_format=True):
-            prefixes = _xx(resource, rdf, converter)
-            resource.depends_on = sorted(prefixes) if prefixes else None
-        elif skos := resource.get_download_skos(get_format=True):
-            prefixes = _xx(resource, skos, converter)
-            resource.depends_on = sorted(prefixes) if prefixes else None
-        bioregistry.manager.write_registry()
+class Error(NamedTuple):
+    url: str
+    format: str | None
+    exception: Exception
+
+def _update_resources(manager: Manager) -> None:
+    converter = manager.get_converter()
+    with safe_open_writer("results.tsv") as writer, safe_open_writer("errors.tsv") as error_writer:
+        error_writer.writerow(("prefix", *Error._fields))
+        for resource in tqdm(
+            manager.registry.values(), unit_scale=True, unit="prefix", desc="Processing resources"
+        ):
+            match _update_resource(resource, converter):
+                case None:
+                    continue
+                case Error(url, format, exception):
+                    error_writer.writerow((resource.prefix, url, format or "", str(exception)))
+                case set(prefixes):
+                    if resource.depends_on:
+                        prefixes = set(resource.depends_on).union(prefixes)
+                    prefixes.discard(resource.prefix)  # don't count self
+                    resource.depends_on = sorted(prefixes)
+                    for prefix in prefixes:
+                        writer.writerow((resource.prefix, prefix))
+                    # manager.write_registry()
 
 
-def _xx(resource: Resource, rdf: str | AnnotatedURL, converter: Converter) -> set[str] | None:
+WIDTH = 15
+
+
+def _update_resource(resource: Resource, converter: curies.Converter) -> set[str] | Error | None:
+    if owl := resource.get_download_owl():
+        # tqdm.write(f"[{resource.prefix:{WIDTH}}] skipping OWL for now - {owl}")
+        return
+    if obograph := resource.get_download_obograph():
+        return _get_prefixes_from_obograph(resource, obograph, converter)
+    elif rdf := resource.get_download_rdf(get_format=True):
+        return _get_prefixes_from_rdf(resource, rdf, converter)
+    elif skos := resource.get_download_skos(get_format=True):
+        return _get_prefixes_from_rdf(resource, skos, converter)
+    else:
+        return
+
+
+def _get_prefixes_from_obograph(
+    resource: Resource, url: str, converter: Converter
+) -> set[str] | Error:
+    try:
+        g = obographs.read(url, squeeze=True)
+    except Exception as e:
+        return Error(url, "obograph", e)
+
+    prefixes = {
+        reference.prefix
+        for node in g.nodes
+        if (reference := converter.parse_uri(node.id)) is not None
+    }
+    tqdm.write(
+        f"[{resource.prefix:{WIDTH}}] of {len(g.nodes):,} OBO graph nodes, got {len(prefixes)} prefixes"
+    )
+    return prefixes
+
+
+def _get_prefixes_from_rdf(
+    resource: Resource, rdf: str | AnnotatedURL, converter: Converter
+) -> set[str] | Error:
     prefixes = set()
     match rdf:
         case str():
@@ -46,38 +102,32 @@ def _xx(resource: Resource, rdf: str | AnnotatedURL, converter: Converter) -> se
         case AnnotatedURL() as model:
             url = model.url
             rdf_format = model.rdf_format
-    graph = _parse(url, rdf_format)
-    pr = f"[{resource.prefix}] "
-    if isinstance(graph, Exception):
-        tqdm.write(pr + click.style(f"failed to parse {url}", fg="red"))
-        tqdm.write(str(graph))
-        tqdm.write("\n")
-        return None
 
+    with logging_redirect_tqdm():
+        try:
+            graph = read_rdflib(url, format=rdf_format)
+        except Exception as e:
+            return Error(url, rdf_format, e)
+
+    count = 0
     for node in itt.chain(
         tqdm(graph.subjects(), desc=f"[{resource.prefix}] subjects", leave=False),
         tqdm(graph.predicates(), desc=f"[{resource.prefix}] predicates", leave=False),
         tqdm(graph.objects(), desc=f"[{resource.prefix}] objects", leave=False),
     ):
-        if isinstance(node, rdflib.URIRef):
-            if reference := converter.parse_uri(str(node)):
-                prefixes.add(reference.prefix)
+        if not isinstance(node, rdflib.URIRef):
+            continue
+        count += 1
+        if reference := converter.parse_uri(node):
+            prefixes.add(reference.prefix)
+
+    tqdm.write(f"[{resource.prefix:{WIDTH}}] of {count:,} references, got {len(prefixes)} prefixes")
     return prefixes
 
 
-def _parse(url: str, rdf_format: str | None) -> rdflib.Graph | Exception:
-    graph = rdflib.Graph()
-    with logging_redirect_tqdm():
-        try:
-            graph.parse(url, format=rdf_format)
-        except Exception as e:
-            return e
-    return graph
-
-
-def _annotate_data_models() -> None:
+def _annotate_data_models(manager: Manager) -> None:
     resources: list[tuple[Resource, str, str | None]] = []
-    for resource in bioregistry.manager.registry.values():
+    for resource in manager.registry.values():
         if resource.prefix in SKIPS:
             continue
         if resource.get_download_skos() or resource.get_download_owl():
@@ -91,8 +141,9 @@ def _annotate_data_models() -> None:
                 resources.append((resource, model.url, model.rdf_format))
 
     for resource, url, rdf_format in tqdm(resources, unit="resource"):
-        graph = _parse(url, rdf_format)
-        pr = f"[{resource.prefix}] "
+        with logging_redirect_tqdm():
+            graph = read_rdflib(url, format=rdf_format)
+        pr = f"[{resource.prefix:{WIDTH}}] "
         if isinstance(graph, Exception):
             tqdm.write(pr + click.style(f"failed to parse {url}", fg="red"))
             tqdm.write(str(graph))
@@ -127,12 +178,12 @@ def _annotate_data_models() -> None:
         else:
             raise RuntimeError
 
-    bioregistry.manager.write_registry()
+    manager.write_registry()
 
 
-def _convert_skos() -> None:
+def _convert_skos(manager: Manager) -> None:
     rows = []
-    for resource in tqdm(bioregistry.resources()):
+    for resource in tqdm(manager.registry.values()):
         match resource.get_download_skos(get_format=True):
             case None:
                 continue
@@ -140,7 +191,7 @@ def _convert_skos() -> None:
                 try:
                     ontology = read_skos(url, prefix=resource.prefix)
                 except SyntaxError:
-                    tqdm.write(f"need explicit RDF format for {resource.prefix}")
+                    tqdm.write(f"[{resource.prefix:{WIDTH}}]need explicit RDF format for ")
                     continue
                 rows.append((resource.prefix, url, "", *_summarize(ontology)))
             case AnnotatedURL() as model:
@@ -161,4 +212,4 @@ def _summarize(ontology: Obo) -> tuple[int, ...]:
 
 
 if __name__ == "__main__":
-    _get_dependencies()
+    _update_resources(Manager())
