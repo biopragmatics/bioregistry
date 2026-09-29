@@ -8,6 +8,7 @@ from typing import NamedTuple
 import click
 import curies
 import obographs
+import pyobo
 import rdflib
 import rdflib.exceptions
 from curies import Converter
@@ -22,13 +23,7 @@ from tqdm.contrib.logging import logging_redirect_tqdm
 from bioregistry import Manager, Resource
 from bioregistry.schema import AnnotatedURL
 
-SKIPS = {
-    # TODO investigate both of these later
-    "inspire.theme",
-    "infosecsos",
-}
-
-# TRIVIAL = {"dc", "dcterms", "rdf", "rdfs", "skos"}
+SKIPS = {}
 
 
 class Error(NamedTuple):
@@ -66,16 +61,37 @@ WIDTH = 15
 
 def _update_resource(resource: Resource, converter: curies.Converter) -> set[str] | Error | None:
     if owl := resource.get_download_owl():
-        # tqdm.write(f"[{resource.prefix:{WIDTH}}] skipping OWL for now - {owl}")
-        return None
-    if obograph := resource.get_download_obograph():
+        return _get_prefixes_from_owl(resource, owl, converter)
+    elif obograph := resource.get_download_obograph():
         return _get_prefixes_from_obograph(resource, obograph, converter)
     elif rdf := resource.get_download_rdf(get_format=True):
         return _get_prefixes_from_rdf(resource, rdf, converter)
     elif skos := resource.get_download_skos(get_format=True):
         return _get_prefixes_from_rdf(resource, skos, converter)
+    elif obo := resource.get_download_obo():
+        return _get_prefixes_from_obo(resource, obo, converter)
     else:
         return None
+
+
+def _get_prefixes_from_owl(resource: Resource, url: str, converter: Converter) -> set[str] | Error:
+    with logging_redirect_tqdm():
+        try:
+            obo = pyobo.get_ontology(resource.prefix)
+        except Exception as e:
+            return Error(url, "owl", e)
+        else:
+            return obo._get_prefixes()
+
+
+def _get_prefixes_from_obo(resource: Resource, url: str, converter: Converter) -> set[str] | Error:
+    with logging_redirect_tqdm():
+        try:
+            obo = pyobo.get_ontology(resource.prefix)
+        except Exception as e:
+            return Error(url, "obo", e)
+        else:
+            return obo._get_prefixes()
 
 
 def _get_prefixes_from_obograph(
