@@ -143,7 +143,7 @@ def _annotate_data_models(manager: Manager) -> None:
         match resource.get_download_rdf(get_format=True):
             case None:
                 continue
-            case str() as url:
+            case str(url):
                 resources.append((resource, url, None))
             case AnnotatedURL() as model:
                 resources.append((resource, model.url, model.rdf_format))
@@ -195,7 +195,7 @@ def _convert_skos(manager: Manager) -> None:
         match resource.get_download_skos(get_format=True):
             case None:
                 continue
-            case str() as url:
+            case str(url):
                 try:
                     ontology = read_skos(url, prefix=resource.prefix)
                 except SyntaxError:
