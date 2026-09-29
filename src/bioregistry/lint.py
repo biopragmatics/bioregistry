@@ -89,10 +89,13 @@ def lint() -> None:
     write_metaregistry(_read_metaregistry(METAREGISTRY_PATH, registry))
     write_contexts(read_contexts())
 
-    # TODO remove duplicates
     converter = get_preferred_converter(stubs=True)
     sssom_pydantic.format(
-        CURATED_MAPPINGS_PATH, standardize=True, error_action="raise", converter=converter
+        CURATED_MAPPINGS_PATH,
+        standardize=True,
+        error_action="raise",
+        converter=converter,
+        drop_duplicates=True,
     )
 
     df = pd.read_csv(CURATED_PAPERS_PATH, sep="\t")
