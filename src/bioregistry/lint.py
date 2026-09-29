@@ -12,8 +12,9 @@ def lint() -> None:
     """Run the lint commands."""
     import sssom_pydantic
 
-    from .schema.struct import RESOURCE_ALIAS_TO_FIELD
     from .constants import CURATED_MAPPINGS_PATH, CURATED_PAPERS_PATH, METAREGISTRY_PATH
+    from .parse_iri import get_preferred_converter
+    from .schema.struct import RESOURCE_ALIAS_TO_FIELD
     from .schema_utils import (
         _lint_collection_resources,
         _read_metaregistry,
@@ -88,8 +89,10 @@ def lint() -> None:
     write_metaregistry(_read_metaregistry(METAREGISTRY_PATH, registry))
     write_contexts(read_contexts())
 
-    # TODO add in bioregistry context
-    sssom_pydantic.format(CURATED_MAPPINGS_PATH, standardize=True, error_action="raise")
+    converter = get_preferred_converter(stubs=True)
+    sssom_pydantic.format(
+        CURATED_MAPPINGS_PATH, standardize=True, error_action="raise", converter=converter
+    )
 
     df = pd.read_csv(CURATED_PAPERS_PATH, sep="\t")
     df["pr_added"] = df["pr_added"].map(lambda x: str(int(x)) if pd.notna(x) else None)

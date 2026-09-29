@@ -36,11 +36,13 @@ import sssom_pydantic
 import tqdm
 from curies import NamableReference
 from curies.vocabulary import exact_match, lexical_matching_process
+from pystow.api import DEFAULT_SENTENCE_TRANSFORMER_NAME
 from sentence_transformers.util import cos_sim
 from sssom_pydantic import ExtensionDefinition, MappingSet, SemanticMapping, Slot
-from pystow.api import DEFAULT_SENTENCE_TRANSFORMER_NAME
+from sssom_pydantic.process import remove_redundant_external
+
 import bioregistry
-from bioregistry import Resource, manager, read_mismatches, read_registry
+from bioregistry import Resource, manager, read_mappings, read_mismatches, read_registry
 from bioregistry.constants import EXPORT_ANALYSES
 from bioregistry.external import GETTERS
 from bioregistry.schema.struct import Record
@@ -48,7 +50,9 @@ from bioregistry.schema.struct import Record
 if TYPE_CHECKING:
     from sentence_transformers import SentenceTransformer
 
-OUTPUT_PATH = EXPORT_ANALYSES.joinpath("mapping_checking", "mapping_embedding_similarities.sssom.tsv")
+OUTPUT_PATH = EXPORT_ANALYSES.joinpath(
+    "mapping_checking", "mapping_embedding_similarities.sssom.tsv"
+)
 
 #: Metadata fields to use for embedding
 METADATA_FIELDS = ["name", "description", "homepage"]
@@ -257,14 +261,28 @@ def get_scored_mappings(
 @click.command()
 @click.option("-o", "--output", type=Path, default=OUTPUT_PATH, help="Place to output SSSOM")
 @click.option("--benchmarking", is_flag=True)
-@click.option("--model", help="SentenceTransformer model name", default=DEFAULT_SENTENCE_TRANSFORMER_NAME, show_default=True)
+@click.option(
+    "--model",
+    help="SentenceTransformer model name",
+    default=DEFAULT_SENTENCE_TRANSFORMER_NAME,
+    show_default=True,
+)
 def main(output: Path, benchmarking: bool, model: str) -> None:
     """Run mapping checking analysis."""
-    mappings = get_scored_mappings(benchmarking=benchmarking, model=model)
-    mappings = sorted(mappings, key=lambda mapping: mapping.similarity_score or 0.0)
+    predicted_mappings = get_scored_mappings(benchmarking=benchmarking, model=model)
+
+    if not benchmarking:
+        manually_curated_mappings = read_mappings()
+        predicted_mappings = remove_redundant_external(
+            predicted_mappings, manually_curated_mappings
+        )
+
+    predicted_mappings = sorted(
+        predicted_mappings, key=lambda mapping: mapping.similarity_score or 0.0
+    )
     converter = bioregistry.get_preferred_converter(stubs=True)
     sssom_pydantic.write(
-        mappings,
+        predicted_mappings,
         output,
         metadata=METADATA,
         converter=converter,
