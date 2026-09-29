@@ -147,7 +147,10 @@ def _process(record: dict[str, Any]) -> Record:
 
     # as of https://github.com/OBOFoundry/OBOFoundry.github.io/pull/2951,
     # this information is stored upstream
-    uri_format = record.get("uri_format", f"http://purl.obolibrary.org/obo/{preferred_prefix}_$1")
+    if uri_prefix := record.get("uri_prefix"):
+        uri_format = f"{uri_prefix}$1"
+    else:
+        uri_format = f"http://purl.obolibrary.org/obo/{preferred_prefix}_$1"
 
     rv = {
         "prefix": prefix,
