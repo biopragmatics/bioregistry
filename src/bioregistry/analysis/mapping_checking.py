@@ -269,20 +269,15 @@ def get_scored_mappings(
 )
 def main(output: Path, benchmarking: bool, model: str) -> None:
     """Run mapping checking analysis."""
-    predicted_mappings = get_scored_mappings(benchmarking=benchmarking, model=model)
+    mappings = get_scored_mappings(benchmarking=benchmarking, model=model)
 
     if not benchmarking:
-        manually_curated_mappings = read_mappings()
-        predicted_mappings = remove_redundant_external(
-            predicted_mappings, manually_curated_mappings
-        )
+        mappings = remove_redundant_external(mappings, read_mappings())
 
-    predicted_mappings = sorted(
-        predicted_mappings, key=lambda mapping: mapping.similarity_score or 0.0
-    )
+    mappings = sorted(mappings, key=lambda mapping: mapping.similarity_score or 0.0)
     converter = bioregistry.get_preferred_converter(stubs=True)
     sssom_pydantic.write(
-        predicted_mappings,
+        mappings,
         output,
         metadata=METADATA,
         converter=converter,
