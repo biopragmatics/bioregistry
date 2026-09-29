@@ -12,6 +12,7 @@ def lint() -> None:
     """Run the lint commands."""
     import sssom_pydantic
 
+    from .schema.struct import RESOURCE_ALIAS_TO_FIELD
     from .constants import CURATED_MAPPINGS_PATH, CURATED_PAPERS_PATH, METAREGISTRY_PATH
     from .schema_utils import (
         _lint_collection_resources,
@@ -72,7 +73,12 @@ def lint() -> None:
                     and resource.mappings[external_registry] in external_prefixes
                 ):
                     del resource.mappings[external_registry]
-                    setattr(resource, external_registry, None)
+                    remapped_key = RESOURCE_ALIAS_TO_FIELD.get(external_registry, external_registry)
+                    setattr(resource, remapped_key, None)
+
+            # in case we managed to throw away all mappings
+            if resource.mappings is not None and not resource.mappings:
+                resource.mappings = None
 
     write_registry(registry)
     collections = read_collections()
@@ -82,6 +88,7 @@ def lint() -> None:
     write_metaregistry(_read_metaregistry(METAREGISTRY_PATH, registry))
     write_contexts(read_contexts())
 
+    # TODO add in bioregistry context
     sssom_pydantic.format(CURATED_MAPPINGS_PATH, standardize=True, error_action="raise")
 
     df = pd.read_csv(CURATED_PAPERS_PATH, sep="\t")
