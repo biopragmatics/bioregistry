@@ -1,6 +1,8 @@
 """Calculate dependencies between resources."""
 
 import itertools as itt
+import tempfile
+from pathlib import Path
 from typing import NamedTuple
 
 import click
@@ -11,7 +13,7 @@ import rdflib.exceptions
 from curies import Converter
 from pyobo import Obo
 from pyobo.struct.skos import read_skos
-from pystow.utils import read_rdflib, safe_open_writer
+from pystow.utils import download, name_from_url, read_rdflib, safe_open_writer
 from rdflib import OWL, RDF, SKOS
 from tabulate import tabulate
 from tqdm import tqdm
@@ -28,10 +30,14 @@ SKIPS = {
 
 # TRIVIAL = {"dc", "dcterms", "rdf", "rdfs", "skos"}
 
+
 class Error(NamedTuple):
+    """Contain information about an error."""
+
     url: str
     format: str | None
     exception: Exception
+
 
 def _update_resources(manager: Manager) -> None:
     converter = manager.get_converter()
@@ -61,7 +67,7 @@ WIDTH = 15
 def _update_resource(resource: Resource, converter: curies.Converter) -> set[str] | Error | None:
     if owl := resource.get_download_owl():
         # tqdm.write(f"[{resource.prefix:{WIDTH}}] skipping OWL for now - {owl}")
-        return
+        return None
     if obograph := resource.get_download_obograph():
         return _get_prefixes_from_obograph(resource, obograph, converter)
     elif rdf := resource.get_download_rdf(get_format=True):
@@ -69,7 +75,7 @@ def _update_resource(resource: Resource, converter: curies.Converter) -> set[str
     elif skos := resource.get_download_skos(get_format=True):
         return _get_prefixes_from_rdf(resource, skos, converter)
     else:
-        return
+        return None
 
 
 def _get_prefixes_from_obograph(
@@ -103,9 +109,11 @@ def _get_prefixes_from_rdf(
             url = model.url
             rdf_format = model.rdf_format
 
-    with logging_redirect_tqdm():
+    with logging_redirect_tqdm(), tempfile.TemporaryDirectory() as tmpdir:
+        path = Path(tmpdir).joinpath(name_from_url(url))
+        download(url=url, path=path, backend="requests")
         try:
-            graph = read_rdflib(url, format=rdf_format)
+            graph = read_rdflib(path, format=rdf_format)
         except Exception as e:
             return Error(url, rdf_format, e)
 
