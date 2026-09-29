@@ -3,7 +3,7 @@
 ![](mapping_checking_workflow.png)
 
 The output for this workflow on all prefixes is available in
-([`mapping_embedding_similarities.tsv`](mapping_embedding_similarities.tsv)).
+([`mapping_embedding_similarities.sssom.tsv`](mapping_embedding_similarities.sssom.tsv)).
 The columns of this file are as follows:
 
 - prefix: The Bioregistry prefix from which this is a mapping.
