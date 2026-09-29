@@ -23,8 +23,6 @@ from tqdm.contrib.logging import logging_redirect_tqdm
 from bioregistry import Manager, Resource
 from bioregistry.schema import AnnotatedURL
 
-SKIPS = {}
-
 
 class Error(NamedTuple):
     """Contain information about an error."""
@@ -152,8 +150,6 @@ def _get_prefixes_from_rdf(
 def _annotate_data_models(manager: Manager) -> None:
     resources: list[tuple[Resource, str, str | None]] = []
     for resource in manager.registry.values():
-        if resource.prefix in SKIPS:
-            continue
         if resource.get_download_skos() or resource.get_download_owl():
             continue
         match resource.get_download_rdf(get_format=True):
