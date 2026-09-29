@@ -39,9 +39,6 @@ OBOFOUNDRY_URL = "https://raw.githubusercontent.com/OBOFoundry/OBOFoundry.github
 SKIP = {
     "obo_rel": "replaced",
 }
-URI_FORMAT_OVERRIDES = {
-    "cheminf": "http://semanticscience.org/resource/CHEMINF_$1",
-}
 
 
 def process_obofoundry(path: Path) -> dict[str, Record]:
@@ -148,8 +145,10 @@ def _process(record: dict[str, Any]) -> Record:
     else:
         raise NotImplementedError(f"unhandled obo foundry status: {record['activity_status']}")
 
-    if prefix in URI_FORMAT_OVERRIDES:
-        uri_format = URI_FORMAT_OVERRIDES[prefix]
+    # as of https://github.com/OBOFoundry/OBOFoundry.github.io/pull/2951,
+    # this information is stored upstream
+    if uri_prefix := record.get("uri_prefix"):
+        uri_format = f"{uri_prefix}$1"
     else:
         uri_format = f"http://purl.obolibrary.org/obo/{preferred_prefix}_$1"
 
