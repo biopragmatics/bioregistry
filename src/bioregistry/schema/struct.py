@@ -435,7 +435,7 @@ class Provider(BaseModel):
 
 
 #: A list of valid RDF formats.
-RDFFormat: TypeAlias = Literal["ttl", "rdf", "xml", "n3", "trix", "nt"]
+RDFFormat: TypeAlias = Literal["ttl", "rdf", "xml", "n3", "trix", "nt", "shex", "jsonld"]
 
 
 class AnnotatedURL(BaseModel):
