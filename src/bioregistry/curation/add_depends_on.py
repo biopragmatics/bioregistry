@@ -11,6 +11,7 @@ import obographs
 import pyobo
 import rdflib
 import rdflib.exceptions
+import robot_obo_tool
 from curies import Converter
 from pyobo import Obo
 from pyobo.struct.skos import read_skos
@@ -32,9 +33,9 @@ class Error(NamedTuple):
     exception: Exception
 
 
-def _update_resources(manager: Manager) -> None:
+def _update_resources(manager: Manager, results_path: Path, errors_path: Path) -> None:
     converter = manager.get_converter()
-    with safe_open_writer("results.tsv") as writer, safe_open_writer("errors.tsv") as error_writer:
+    with safe_open_writer(results_path) as writer, safe_open_writer(errors_path) as error_writer:
         error_writer.writerow(("prefix", *Error._fields))
         for resource in tqdm(
             manager.registry.values(), unit_scale=True, unit="prefix", desc="Processing resources"
@@ -51,7 +52,6 @@ def _update_resources(manager: Manager) -> None:
                     resource.depends_on = sorted(prefixes)
                     for prefix in prefixes:
                         writer.writerow((resource.prefix, prefix))
-                    # manager.write_registry()
 
 
 WIDTH = 15
@@ -73,13 +73,15 @@ def _update_resource(resource: Resource, converter: curies.Converter) -> set[str
 
 
 def _get_prefixes_from_owl(resource: Resource, url: str, converter: Converter) -> set[str] | Error:
-    with logging_redirect_tqdm():
+    with logging_redirect_tqdm(), tempfile.TemporaryDirectory() as tmpdir:
+        ttl_path = tmpdir.join("tmp.ttl")
+        robot_obo_tool.convert(url, ttl_path, check=False)
+
         try:
-            obo = pyobo.get_ontology(resource.prefix)
+            graph = read_rdflib(ttl_path, format="ttl")
         except Exception as e:
             return Error(url, "owl", e)
-        else:
-            return obo._get_prefixes()
+    return _work_graph(resource, graph, converter)
 
 
 def _get_prefixes_from_obo(resource: Resource, url: str, converter: Converter) -> set[str] | Error:
@@ -114,7 +116,6 @@ def _get_prefixes_from_obograph(
 def _get_prefixes_from_rdf(
     resource: Resource, rdf: str | AnnotatedURL, converter: Converter
 ) -> set[str] | Error:
-    prefixes = set()
     match rdf:
         case str():
             url = rdf
@@ -131,6 +132,11 @@ def _get_prefixes_from_rdf(
         except Exception as e:
             return Error(url, rdf_format, e)
 
+    return _work_graph(resource, graph, converter)
+
+
+def _work_graph(resource: Resource, graph: rdflib.Graph, converter: Converter) -> set[str]:
+    prefixes = set()
     count = 0
     for node in itt.chain(
         tqdm(graph.subjects(), desc=f"[{resource.prefix}] subjects", leave=False),
@@ -232,4 +238,4 @@ def _summarize(ontology: Obo) -> tuple[int, ...]:
 
 
 if __name__ == "__main__":
-    _update_resources(Manager())
+    _update_resources(Manager(), Path("results.tsv"), Path("errors.tsv"))
