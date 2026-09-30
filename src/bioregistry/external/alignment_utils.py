@@ -9,6 +9,7 @@ from typing import Any, ClassVar, ParamSpec, TypeAlias
 import click
 from curies.w3c import NCNAME_RE
 from pystow.utils import download, safe_open_writer
+from pystow.utils.download import DownloadKwargs
 from tabulate import tabulate
 
 from ..alignment_model import Record, dump_records
@@ -16,6 +17,7 @@ from ..alignment_model import load_processed as load_records
 from ..constants import METADATA_CURATION_DIRECTORY
 from ..resource_manager import Manager
 from ..schema import Resource
+from ..schema.struct import RESOURCE_ALIAS_TO_FIELD
 from ..schema_utils import is_mismatch
 from ..utils import norm
 
@@ -28,9 +30,7 @@ __all__ = [
     "load_processed",
 ]
 
-GetterRt: TypeAlias = Mapping[str, Any]
-
-Getter: TypeAlias = Callable[..., GetterRt]
+Getter: TypeAlias = Callable[..., dict[str, Record]]
 
 
 class Aligner:
@@ -75,6 +75,7 @@ class Aligner:
         *,
         force_download: bool | None = None,
         force_process: bool | None = None,
+        progress: bool | None = None,
         manager: Manager | None = None,
     ) -> None:
         """Instantiate the aligner."""
@@ -88,12 +89,19 @@ class Aligner:
         if self.key not in self.manager.metaregistry:
             raise TypeError(f"invalid metaprefix for aligner: {self.key}")
 
+        if self.key in RESOURCE_ALIAS_TO_FIELD:
+            self._model_field_name = RESOURCE_ALIAS_TO_FIELD[self.key]
+        else:
+            self._model_field_name = self.key
+
         kwargs = dict(self.getter_kwargs or {})
         kwargs.setdefault("force_download", True)
         if force_download is not None:
             kwargs["force_download"] = force_download
         if force_process is not None:
             kwargs["force_process"] = force_process
+        if progress is not None:
+            kwargs["progress"] = progress
         self.external_registry = self.__class__.getter(**kwargs)
         self.skip_external = self.get_skip()
 
@@ -138,7 +146,7 @@ class Aligner:
             if not self.alt_key_match:
                 bioregistry_id = self.manager.normalize_prefix(external_id)
             else:
-                alt_match = external_entry.get(self.alt_key_match)
+                alt_match = getattr(external_entry, self.alt_key_match, None)
                 if alt_match is None:
                     pass
                 elif isinstance(alt_match, str):
@@ -155,7 +163,7 @@ class Aligner:
                     )
 
             if bioregistry_id is None and self.alt_keys_match:
-                for alt_match in external_entry.get(self.alt_keys_match, []):
+                for alt_match in getattr(external_entry, self.alt_keys_match, []):
                     bioregistry_id = self.manager.normalize_prefix(alt_match)
                     if bioregistry_id:
                         break
@@ -190,15 +198,17 @@ class Aligner:
                 self._align_action(bioregistry_id, external_id, external_entry)
                 continue
 
-    def _align_action(
-        self, bioregistry_id: str, external_id: str, external_entry: dict[str, Any]
-    ) -> None:
+    def _align_action(self, bioregistry_id: str, external_id: str, external_entry: Record) -> None:
         if self.internal_registry[bioregistry_id].mappings is None:
             self.internal_registry[bioregistry_id].mappings = {}
         self.internal_registry[bioregistry_id].mappings[self.key] = external_id  # type:ignore
 
-        external_entry[self.subkey] = external_id
-        self.internal_registry[bioregistry_id][self.key] = external_entry
+        self.internal_registry[bioregistry_id][self._model_field_name] = {
+            self.subkey: external_id,
+            **external_entry.model_dump(
+                exclude_none=True, exclude_defaults=True, exclude_unset=True
+            ),
+        }
         self.external_id_to_bioregistry_id[external_id] = bioregistry_id
 
     def write_registry(self) -> None:
@@ -212,14 +222,19 @@ class Aligner:
         show: bool = False,
         force_download: bool | None = None,
         force_process: bool | None = None,
+        progress: bool = True,
     ) -> None:
         """Align and output the curation sheet.
 
         :param dry: If true, don't write changes to the registry
         :param show: If true, print a curation table
         :param force_download: Force re-download of the data
+        :param force_process: Force re-processing, but not re-downloading of the data
+        :param progress: should a progress bar be shown (if available)?
         """
-        instance = cls(force_download=force_download, force_process=force_process)
+        instance = cls(
+            force_download=force_download, force_process=force_process, progress=progress
+        )
         if not dry:
             instance.write_registry()
         if show:
@@ -227,7 +242,7 @@ class Aligner:
         instance.write_curation_table()
 
     @classmethod
-    def cli(cls, *args: Any, **kwargs: Any) -> None:
+    def get_cli(cls) -> click.Command:
         """Construct a CLI for the aligner."""
 
         @click.command(help=f"Align {cls.key}")
@@ -239,9 +254,15 @@ class Aligner:
         def _main(dry: bool, show: bool, no_force: bool) -> None:
             cls.align(dry=dry, show=show, force_download=not no_force)
 
+        return _main
+
+    @classmethod
+    def cli(cls, *args: Any, **kwargs: Any) -> None:
+        """Run a CLI for the aligner."""
+        _main = cls.get_cli()
         _main(*args, **kwargs)
 
-    def get_curation_row(self, external_id: str, external_entry: dict[str, Any]) -> Sequence[str]:
+    def get_curation_row(self, external_id: str, external_entry: Record) -> Sequence[str]:
         """Get a sequence of items that will be ech row in the curation table.
 
         :param external_id: The external registry identifier
@@ -251,7 +272,7 @@ class Aligner:
 
         :raises TypeError: If an invalid value is encountered
 
-        The default implementation of this function iterates over all of the keys in the
+        The default implementation of this function iterates over all the keys in the
         class variable :data:`curation_header` and looks inside each record for those in
         order.
 
@@ -262,7 +283,7 @@ class Aligner:
         """
         rv = []
         for k in self.curation_header:
-            value = external_entry.get(k)
+            value = getattr(external_entry, k, None)
             if value is None:
                 rv.append("")
             elif isinstance(value, str):
@@ -351,18 +372,10 @@ def load_processed(path: Path) -> dict[str, dict[str, Any]]:
 P = ParamSpec("P")
 
 
-def adapter(f: Callable[P, dict[str, Record]]) -> Getter:
+# FIXME delete this, no longer needed
+def adapter(func: Callable[P, dict[str, Record]]) -> Callable[P, dict[str, Record]]:
     """Adapt a new-style getter."""
-
-    def _getter(*args: P.args, **kwargs: P.kwargs) -> GetterRt:
-        r = f(*args, **kwargs)
-        return {
-            prefix: model.model_dump(exclude_unset=True, exclude_none=True, exclude_defaults=True)
-            for prefix, model in r.items()
-        }
-
-    _getter.__new_style_bioregistry = True  # type:ignore[attr-defined]
-    return _getter
+    return func
 
 
 def cleanup_json(path: Path) -> None:
@@ -379,18 +392,25 @@ def build_getter(
     url: str | Callable[[], str],
     func: Callable[[Path], dict[str, Record]],
     cleanup: Callable[[Path], None] | None = None,
+    download_kwargs: DownloadKwargs | None = None,
 ) -> Getter:
     """Construct a getter function."""
+    if download_kwargs is None:
+        download_kwargs = {}
 
     @adapter
-    def getter(*, force_download: bool = False, force_process: bool = False) -> dict[str, Record]:
+    def getter(
+        *, force_download: bool = False, force_process: bool = False, progress: bool = True
+    ) -> dict[str, Record]:
         """Get the registry."""
         if processed_path.exists() and not force_download and not force_process:
             return load_records(processed_path)
+        inner_download_kwargs: DownloadKwargs = {**download_kwargs, "progress_bar": progress}
         download(
             url=url if isinstance(url, str) else url(),
             path=raw_path,
             force=force_download,
+            **inner_download_kwargs,
         )
         if cleanup is not None:
             cleanup(raw_path)
@@ -404,12 +424,14 @@ def build_getter(
 def build_no_raw_getter(
     *,
     processed_path: Path,
-    func: Callable[[], dict[str, Record]],
+    func: Callable[..., dict[str, Record]],
 ) -> Getter:
     """Construct a getter function."""
 
     @adapter
-    def getter(*, force_download: bool = False, force_process: bool = False) -> dict[str, Record]:
+    def getter(
+        *, force_download: bool = False, force_process: bool = False, progress: bool = True
+    ) -> dict[str, Record]:
         """Get the registry."""
         if processed_path.exists() and not force_download and not force_process:
             return load_records(processed_path)

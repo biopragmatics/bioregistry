@@ -19,6 +19,7 @@ from .metaresource_api import (
 from .parse_iri import (
     curie_from_iri,
     get_default_converter,
+    get_preferred_converter,
     normalize_curie,
     normalize_parsed_curie,
     normalize_prefix,
@@ -107,6 +108,7 @@ from .resolve import (
     is_novel,
     is_obo_foundry,
     is_proprietary,
+    lookup_external_prefix,
     read_contributors,
 )
 from .resolve_identifier import (
@@ -244,6 +246,7 @@ __all__ = [
     "get_parts_collections",
     "get_pattern",
     "get_pattern_map",
+    "get_preferred_converter",
     "get_preferred_prefix",
     "get_prefix_map",
     "get_prefixcommons_uri_format",
@@ -283,6 +286,7 @@ __all__ = [
     "is_standardizable_identifier",
     "is_valid_curie",
     "is_valid_identifier",
+    "lookup_external_prefix",
     "manager",
     "miriam_standardize_identifier",
     "normalize_curie",

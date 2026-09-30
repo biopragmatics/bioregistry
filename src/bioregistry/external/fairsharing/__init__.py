@@ -40,9 +40,9 @@ PROCESSED_PATH = DIRECTORY / "processed.json"
 ALLOWED_TYPES = {
     "terminology_artefact",
     "identifier_schema",
-    # "knowledgebase",
-    # "knowledgebase_and_repository",
-    # "repository",
+    "knowledgebase",
+    "knowledgebase_and_repository",
+    "repository",
 }
 
 ORCID_RE = re.compile(ORCID_PATTERN)
@@ -50,7 +50,7 @@ ORCID_RE = re.compile(ORCID_PATTERN)
 
 @adapter
 def get_fairsharing(
-    *, force_download: bool = False, force_process: bool = False, use_tqdm: bool = True
+    *, force_download: bool = False, force_process: bool = False, progress: bool = True
 ) -> dict[str, Record]:
     """Get the FAIRsharing registry."""
     if PROCESSED_PATH.exists() and not force_download and not force_process:
@@ -58,7 +58,7 @@ def get_fairsharing(
 
     from fairsharing_client import load_fairsharing
 
-    data = load_fairsharing(force_download=force_download, use_tqdm=use_tqdm)
+    data = load_fairsharing(force_download=force_download, use_tqdm=progress)
     rv = {
         prefix: record
         for prefix, raw_record in data.items()
@@ -121,7 +121,8 @@ def _process_record(record: MutableMapping[str, Any]) -> Record | None:
         if (orcid := contact.get("contact_orcid")) and ORCID_RE.match(orcid)
     ]
     for contact in contacts:
-        contact["name"] = removeprefix(removeprefix(contact["name"], "Dr. "), "Dr ")
+        if name := contact.get("name"):
+            contact["name"] = removeprefix(removeprefix(name, "Dr. "), "Dr ")
         if "orcid" in contact:
             contact["orcid"] = contact["orcid"].replace(" ", "")
     if contacts:

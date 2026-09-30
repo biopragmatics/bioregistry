@@ -10,21 +10,23 @@
           "type": "string"
         },
         "rdf_format": {
-          "default": "ttl",
           "enum": [
             "ttl",
             "rdf",
             "xml",
             "n3",
             "trix",
-            "nt"
+            "nt",
+            "shex",
+            "json-ld"
           ],
           "title": "RDF Format",
           "type": "string"
         }
       },
       "required": [
-        "url"
+        "url",
+        "rdf_format"
       ],
       "title": "AnnotatedURL",
       "type": "object"
@@ -314,6 +316,22 @@
           ],
           "default": null,
           "title": "Mappings"
+        },
+        "tags": {
+          "anyOf": [
+            {
+              "items": {
+                "$ref": "#/$defs/Tag"
+              },
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Tags are defined locally in each collection and can be used to give additional context to why the resource was included, how it's used, etc. Try to avoid using tags to describe information that's already available, such as whether a resource is an ontology or whether it's first-party to the collection maintainer(s). Tagging was added in https://github.com/biopragmatics/bioregistry/pull/1958.",
+          "title": "Tags"
         }
       },
       "required": [
@@ -344,6 +362,22 @@
           ],
           "default": null,
           "title": "Comment"
+        },
+        "tags": {
+          "anyOf": [
+            {
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "References to tag codes that are defined locally within a collection",
+          "title": "Tags"
         }
       },
       "required": [
@@ -585,6 +619,17 @@
           "default": null,
           "description": "Homepage of the provider",
           "title": "Homepage"
+        },
+        "contact": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Attributable"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
         },
         "uri_format": {
           "description": "The URI format string, which must have at least one ``$1`` in it. Note that this field is generic enough to accept IRIs. See the URI specification (https://www.rfc-editor.org/rfc/rfc3986) and IRI specification (https://www.ietf.org/rfc/rfc3987.txt) for more information.",
@@ -860,7 +905,7 @@
           "description": "A download link for the data contained in the registry",
           "title": "Download"
         },
-        "provider_uri_format": {
+        "uri_format": {
           "anyOf": [
             {
               "type": "string"
@@ -871,7 +916,7 @@
           ],
           "default": null,
           "description": "A URL with a $1 for a prefix to resolve in the registry",
-          "title": "Provider Uri Format"
+          "title": "URI format string"
         },
         "search_uri_format": {
           "anyOf": [
@@ -916,20 +961,7 @@
           "$ref": "#/$defs/Attributable",
           "description": "The contact for the registry."
         },
-        "bioregistry_prefix": {
-          "anyOf": [
-            {
-              "type": "string"
-            },
-            {
-              "type": "null"
-            }
-          ],
-          "default": null,
-          "description": "The prefix for this registry in the Bioregistry",
-          "title": "Bioregistry Prefix"
-        },
-        "logo_url": {
+        "logo": {
           "anyOf": [
             {
               "type": "string"
@@ -940,7 +972,7 @@
           ],
           "default": null,
           "description": "The URL for the logo of the resource",
-          "title": "Logo Url"
+          "title": "Logo"
         },
         "license": {
           "anyOf": [
@@ -1817,7 +1849,9 @@
                 "experiment",
                 "genetic code",
                 "mathematics",
-                "registry"
+                "registry",
+                "social science",
+                "equipment"
               ],
               "type": "string"
             },
@@ -1870,7 +1904,9 @@
             "experiment",
             "genetic code",
             "mathematics",
-            "registry"
+            "registry",
+            "social science",
+            "equipment"
           ],
           "title": "Domain"
         },
@@ -2150,7 +2186,7 @@
           "default": null,
           "title": "Prefixcommons"
         },
-        "wikidata": {
+        "wikidata.property": {
           "anyOf": [
             {
               "additionalProperties": true,
@@ -2161,7 +2197,7 @@
             }
           ],
           "default": null,
-          "title": "Wikidata"
+          "title": "Wikidata property"
         },
         "wikidata_entity": {
           "anyOf": [
@@ -2176,7 +2212,7 @@
           "default": null,
           "title": "Wikidata Entity"
         },
-        "go": {
+        "go.resource": {
           "anyOf": [
             {
               "additionalProperties": true,
@@ -2187,7 +2223,7 @@
             }
           ],
           "default": null,
-          "title": "Go"
+          "title": "Gene Ontology resource"
         },
         "obofoundry": {
           "anyOf": [
@@ -2280,7 +2316,7 @@
           "default": null,
           "title": "Aberowl"
         },
-        "ncbi": {
+        "ncbi.resource": {
           "anyOf": [
             {
               "additionalProperties": true,
@@ -2291,9 +2327,9 @@
             }
           ],
           "default": null,
-          "title": "Ncbi"
+          "title": "NCBI resource"
         },
-        "uniprot": {
+        "uniprot.resource": {
           "anyOf": [
             {
               "additionalProperties": true,
@@ -2304,9 +2340,9 @@
             }
           ],
           "default": null,
-          "title": "Uniprot"
+          "title": "UniProt resource"
         },
-        "biolink": {
+        "biolink.resource": {
           "anyOf": [
             {
               "additionalProperties": true,
@@ -2317,9 +2353,9 @@
             }
           ],
           "default": null,
-          "title": "Biolink"
+          "title": "BioLink resource"
         },
-        "cellosaurus": {
+        "cellosaurus.resource": {
           "anyOf": [
             {
               "additionalProperties": true,
@@ -2330,7 +2366,7 @@
             }
           ],
           "default": null,
-          "title": "Cellosaurus"
+          "title": "Cellosaurus resource"
         },
         "ontobee": {
           "anyOf": [
@@ -2384,7 +2420,7 @@
           "default": null,
           "title": "Biocontext"
         },
-        "edam": {
+        "edam.data": {
           "anyOf": [
             {
               "additionalProperties": true,
@@ -2395,7 +2431,7 @@
             }
           ],
           "default": null,
-          "title": "Edam"
+          "title": "EDAM Data"
         },
         "re3data": {
           "anyOf": [
@@ -2436,7 +2472,7 @@
           "default": null,
           "title": "BARTOC"
         },
-        "rrid": {
+        "rrid.resource": {
           "anyOf": [
             {
               "additionalProperties": true,
@@ -2514,7 +2550,7 @@
           "default": null,
           "title": "Pathguide"
         },
-        "tib": {
+        "tib.ts": {
           "anyOf": [
             {
               "additionalProperties": true,
@@ -2525,7 +2561,7 @@
             }
           ],
           "default": null,
-          "title": "Tib"
+          "title": "TIB Terminology Service"
         },
         "biodivportal": {
           "anyOf": [
@@ -2592,6 +2628,37 @@
         "contributor"
       ],
       "title": "StatusCheck",
+      "type": "object"
+    },
+    "Tag": {
+      "description": "A tag for a collection.",
+      "properties": {
+        "code": {
+          "title": "Code",
+          "type": "string"
+        },
+        "name": {
+          "title": "Name",
+          "type": "string"
+        },
+        "description": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Description"
+        }
+      },
+      "required": [
+        "code",
+        "name"
+      ],
+      "title": "Tag",
       "type": "object"
     }
   },

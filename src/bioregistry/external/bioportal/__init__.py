@@ -6,12 +6,14 @@ https://bioportal.bioontology.org/account.
 
 import json
 import math
+import re
 from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Any, cast
 
 import ontoportal_client
 import requests
+from email_validator import validate_email
 from tqdm import tqdm
 from tqdm.contrib.concurrent import thread_map
 
@@ -23,7 +25,7 @@ from bioregistry.alignment_model import (
     load_processed,
     make_record,
 )
-from bioregistry.constants import EMAIL_RE, RAW_DIRECTORY
+from bioregistry.constants import RAW_DIRECTORY
 from bioregistry.external.alignment_utils import adapter
 from bioregistry.license_standardizer import standardize_license
 from bioregistry.utils import removeprefix
@@ -36,6 +38,10 @@ __all__ = [
 ]
 
 DIRECTORY = Path(__file__).parent.resolve()
+
+# not a perfect email regex, but close enough
+EMAIL_RE_STR = r"^(\w|\.|\_|\-)+[@](\w|\_|\-|\.)+[.]\w{2,7}$"
+EMAIL_RE = re.compile(EMAIL_RE_STR)
 
 
 @dataclass
@@ -53,13 +59,16 @@ class OntoPortalClient:
         self.processed_path = DIRECTORY.joinpath(self.metaprefix).with_suffix(".json")
 
     def download(
-        self, force_download: bool = False, force_process: bool = False
+        self,
+        force_download: bool = False,
+        force_process: bool = False,
+        progress: bool = True,
     ) -> dict[str, Record]:
         """Get the full dump of the OntoPortal site's registry."""
         if self.processed_path.exists() and not force_download and not force_process:
             return load_processed(self.processed_path)
 
-        records = self._get_records(force=force_download)
+        records = self._get_records(force=force_download, progress=progress)
 
         rv = dict(
             thread_map(  # type:ignore
@@ -70,7 +79,7 @@ class OntoPortalClient:
         dump_records(rv, self.processed_path)
         return rv
 
-    def _get_records(self, force: bool = False) -> list[dict[str, Any]]:
+    def _get_records(self, *, force: bool = False, progress: bool = True) -> list[dict[str, Any]]:
         if self.raw_path.exists() and not force:
             return cast(list[dict[str, Any]], json.loads(self.raw_path.read_text()))
 
@@ -81,6 +90,8 @@ class OntoPortalClient:
             unit="ontology",
             max_workers=self.max_workers,
             desc=f"Preprocessing {self.metaprefix}",
+            leave=False,
+            disable=not progress,
         )
         with self.raw_path.open("w") as file:
             json.dump(records, file, indent=2, sort_keys=True, ensure_ascii=False)
@@ -133,11 +144,7 @@ class OntoPortalClient:
         if license_stub:
             record["license"] = standardize_license(license_stub)
 
-        contacts = [
-            {k: v.strip() for k, v in contact.items() if not k.startswith("@") and v}
-            for contact in res_json.get("contact", [])
-        ]
-        contacts = [contact for contact in contacts if EMAIL_RE.match(contact.get("email", ""))]
+        contacts = _handle_contacts(res_json.get("contact", []))
         if contacts:
             contact = contacts[0]
             # TODO consider sorting contacts in a canonical order?
@@ -162,85 +169,101 @@ class OntoPortalClient:
         }
         if license_name := entry.get("license"):
             rv["license"] = License(name=license_name)
-        if publications := entry.pop("publications", None):
-            rv["publications"] = _handle_publications(publications)
+        if publication_urls := entry.pop("publications", None):
+            rv["publications"] = [Publication.from_url(url) for url in publication_urls]
         if example_uri := entry.get("exampleIdentifier"):
             rv.setdefault("extras", {})["example_uri"] = example_uri
 
         return prefix, make_record(rv)
 
 
-def _handle_publications(ll: list[str]) -> list[Publication]:
-    # TODO this should get upstreamed somewhere, since it's such a common pattern
+def _handle_contacts(contacts: list[dict[str, Any]]) -> list[dict[str, Any]]:
     rv = []
-    for url in ll:
-        if url.startswith("https://doi.org/"):
-            rv.append(Publication(doi=url.removeprefix("https://doi.org/")))
-        elif url.startswith("http://doi.org/"):
-            rv.append(Publication(doi=url.removeprefix("http://doi.org/")))
-        elif url.startswith("https://dx.doi.org/"):
-            rv.append(Publication(doi=url.removeprefix("https://dx.doi.org/")))
-        elif url.startswith("http://www.ncbi.nlm.nih.gov/pubmed/"):
-            rv.append(Publication(pubmed=url.removeprefix("http://www.ncbi.nlm.nih.gov/pubmed/")))
-        elif url.startswith("https://www.ncbi.nlm.nih.gov/pubmed/"):
-            rv.append(Publication(pubmed=url.removeprefix("https://www.ncbi.nlm.nih.gov/pubmed/")))
-        elif url.startswith("https://zenodo.org/records/"):
-            rv.append(Publication(zenodo=url.removeprefix("https://zenodo.org/records/")))
-        elif url.startswith("https://arxiv.org/abs/"):
-            rv.append(Publication(arxiv=url.removeprefix("https://arxiv.org/abs/")))
-        else:
-            # TODO look back for PMC
-            # tqdm.write(f'publication URL: {url}')
-            rv.append(Publication(url=url))
+    for contact in contacts:
+        contact = {k: v.strip() for k, v in contact.items() if not k.startswith("@") and v}
+        email = contact.pop("email")
+        if not email:
+            continue
+        try:
+            validated_email = validate_email(email)
+        except ValueError:
+            continue
+        contact["email"] = validated_email.normalized
+
+        rv.append(contact)
     return rv
 
 
 @adapter
 def get_bioportal(
-    force_download: bool = False, force_process: bool = False, *, api_key: str | None = None
+    force_download: bool = False,
+    force_process: bool = False,
+    *,
+    api_key: str | None = None,
+    progress: bool = True,
 ) -> dict[str, Record]:
     """Get the BioPortal registry."""
     client = OntoPortalClient(
         metaprefix="bioportal",
         client=ontoportal_client.BioPortalClient(api_key=api_key),
     )
-    return client.download(force_download=force_download, force_process=force_process)
+    return client.download(
+        force_download=force_download, force_process=force_process, progress=progress
+    )
 
 
 @adapter
 def get_ecoportal(
-    force_download: bool = False, force_process: bool = False, *, api_key: str | None = None
+    force_download: bool = False,
+    force_process: bool = False,
+    *,
+    api_key: str | None = None,
+    progress: bool = True,
 ) -> dict[str, Record]:
     """Get the EcoPortal registry."""
     client = OntoPortalClient(
         metaprefix="ecoportal",
         client=ontoportal_client.EcoPortalClient(api_key=api_key),
     )
-    return client.download(force_download=force_download, force_process=force_process)
+    return client.download(
+        force_download=force_download, force_process=force_process, progress=progress
+    )
 
 
 @adapter
 def get_agroportal(
-    force_download: bool = False, force_process: bool = False, *, api_key: str | None = None
+    force_download: bool = False,
+    force_process: bool = False,
+    *,
+    api_key: str | None = None,
+    progress: bool = True,
 ) -> dict[str, Record]:
     """Get the AgroPortal registry."""
     client = OntoPortalClient(
         metaprefix="agroportal",
         client=ontoportal_client.AgroPortalClient(api_key=api_key),
     )
-    return client.download(force_download=force_download, force_process=force_process)
+    return client.download(
+        force_download=force_download, force_process=force_process, progress=progress
+    )
 
 
 @adapter
 def get_biodivportal(
-    force_download: bool = False, force_process: bool = False, *, api_key: str | None = None
+    force_download: bool = False,
+    force_process: bool = False,
+    *,
+    api_key: str | None = None,
+    progress: bool = True,
 ) -> dict[str, Record]:
     """Get the BiodivPortal registry."""
     client = OntoPortalClient(
         metaprefix="biodivportal",
         client=ontoportal_client.BioDivPortal(api_key=api_key),
     )
-    return client.download(force_download=force_download, force_process=force_process)
+    return client.download(
+        force_download=force_download, force_process=force_process, progress=progress
+    )
 
 
 if __name__ == "__main__":

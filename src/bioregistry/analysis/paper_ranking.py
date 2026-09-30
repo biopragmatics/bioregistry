@@ -5,7 +5,7 @@
 # ]
 #
 # [tool.uv.sources]
-# bioregistry = { path = "../../../" }
+# bioregistry = { path = "../../../", editable = true }
 # ///
 
 """Train a TF-IDF classifier and use it to score the relevance of new PubMed papers to the Bioregistry.
@@ -32,6 +32,7 @@ import numpy as np
 import pandas as pd
 from numpy.typing import NDArray
 from sklearn.base import ClassifierMixin
+from sklearn.calibration import CalibratedClassifierCV
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.linear_model import LogisticRegression
@@ -83,23 +84,13 @@ EXCLUDE_JOURNALS: dict[str, str] = {
 }
 
 
-def get_publications_from_bioregistry(
-    path: Path | None = None,
+def get_publications_from_manager(
+    manager: Manager,
     *,
     loud: bool = True,
     strict: bool = False,
 ) -> pd.DataFrame:
-    """Load bioregistry data from a JSON file, extracting publication details and fetching abstracts if missing.
-
-    :param path: Path to the bioregistry JSON file.
-
-    :returns: DataFrame containing publication details.
-    """
-    if path is not None:
-        manager = Manager(registry=path)
-    else:
-        manager = bioregistry.manager
-
+    """Load registry data, extract publication details, and fetch abstracts, if missing."""
     publications = {}
     for resource in manager.registry.values():
         for publication in resource.get_publications():
@@ -314,7 +305,7 @@ def train_classifiers(x_train: XTrain, y_train: YTrain) -> Classifiers:
         ("lr", LogisticRegression()),
         ("dt", DecisionTreeClassifier()),
         ("svc", LinearSVC()),
-        ("svm", SVC(kernel="rbf", probability=True)),
+        ("svm", CalibratedClassifierCV(SVC(kernel="rbf"), ensemble=False)),
     ]
     for _, clf in classifiers:
         clf.fit(x_train, y_train)
@@ -424,7 +415,7 @@ def _get_meta_results(
 ) -> tuple[LogisticRegression, MetaClassifierEvaluationResults]:
     meta_features = generate_meta_features(classifiers, x_train, y_train)
     meta_clf = LogisticRegression()
-    meta_clf.fit(meta_features, y_train)
+    meta_clf.fit(meta_features.to_numpy(), y_train)
 
     x_test_meta = pd.DataFrame()
     for name, clf in classifiers:
@@ -484,8 +475,13 @@ def main(bioregistry_file: Path | None, start_date: str, end_date: str, director
     :param start_date: The start date of the period for which papers are being ranked.
     :param end_date: The end date of the period for which papers are being ranked.
     """
+    if bioregistry_file is not None:
+        manager = Manager(registry=bioregistry_file)
+    else:
+        manager = bioregistry.manager
+
     curated_pubmed_ids, vectorizer, classifiers, meta_clf = train(
-        bioregistry_file=bioregistry_file,
+        manager=manager,
         curated_papers_path=CURATED_PAPERS_PATH,
         output_path=directory,
     )
@@ -508,7 +504,7 @@ class TrainingResult(NamedTuple):
 
 def train(
     *,
-    bioregistry_file: Path | None = None,
+    manager: Manager,
     curated_papers_path: Path | None = None,
     include_remote: bool = True,
     output_path: Path,
@@ -517,7 +513,7 @@ def train(
 ) -> TrainingResult:
     """Run training."""
     curated_dfs = [
-        get_publications_from_bioregistry(bioregistry_file, loud=loud, strict=strict),
+        get_publications_from_manager(manager, loud=loud, strict=strict),
         load_curated_papers(curated_papers_path, loud=loud, strict=strict),
     ]
     if include_remote:

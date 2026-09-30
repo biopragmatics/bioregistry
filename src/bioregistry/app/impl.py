@@ -249,12 +249,20 @@ BIOREGISTRY_DOMAIN_NAME_BLOCK = dedent("""\
 </p>
 """)
 
+BIOREGISTRY_LONGEVITY_BLOCK = dedent("""\
+The Bioregistry is currently funded by the Chan Zuckerberg Initiative (CZI) Open Science
+Grant 2023-329850, which presently supports the domain registration and hosting. The ongoing
+costs of maintaining the deployment are modest, with a conservative estimate of around
+$100-200/year. The maintainers are committed to sustaining the domain registration and hosting,
+in the medium- and long term, and will continue to cover these costs.
+""")
+
 
 # docstr-coverage:excused `overload`
 @overload
 def get_app(
     manager: Manager | None = ...,
-    config: None | str | Path | dict[str, Any] = ...,
+    config: str | Path | dict[str, Any] | None = ...,
     *,
     first_party: bool = ...,
     return_flask: Literal[True] = True,
@@ -268,7 +276,7 @@ def get_app(
 @overload
 def get_app(
     manager: Manager | None = ...,
-    config: None | str | Path | dict[str, Any] = ...,
+    config: str | Path | dict[str, Any] | None = ...,
     *,
     first_party: bool = ...,
     return_flask: Literal[False] = False,
@@ -280,7 +288,7 @@ def get_app(
 
 def get_app(
     manager: Manager | None = None,
-    config: None | str | Path | dict[str, Any] = None,
+    config: str | Path | dict[str, Any] | None = None,
     *,
     first_party: bool = True,
     return_flask: bool = False,
@@ -367,7 +375,7 @@ def get_app(
 
 
 def _prepare_config(
-    config: None | str | Path | dict[str, Any] = None, first_party: bool = True
+    config: str | Path | dict[str, Any] | None = None, first_party: bool = True
 ) -> dict[str, Any]:
     if isinstance(config, str | Path):
         with open(config) as file:
@@ -399,7 +407,7 @@ def _prepare_config(
     config.setdefault("METAREGISTRY_MATOMO", "")
 
     # yes, this isn't very secure. just for testing now.
-    key = "-".join([KEY_A, KEY_B, KEY_C, KEY_D, KEY_E])
+    key = f"{KEY_A}-{KEY_B}-{KEY_C}-{KEY_D}-{KEY_E}"
 
     # setdefault works by not overriding if the value is there,
     # so set ANALYTICS_API_KEY with an empty string as value to
@@ -423,6 +431,7 @@ def _prepare_config(
     # should not be there if not first-party
     config.setdefault("METAREGISTRY_DEPLOYMENT", BIOREGISTRY_DEPLOYMENT_BLOCK)
     config.setdefault("METAREGISTRY_DOMAIN_NAME_BLOCK", BIOREGISTRY_DOMAIN_NAME_BLOCK)
+    config.setdefault("METAREGISTRY_LONGEVITY_BLOCK", BIOREGISTRY_LONGEVITY_BLOCK)
 
     return config
 
@@ -445,7 +454,7 @@ def _get_sparql_router(app: Flask, manager: Manager) -> APIRouter:
         title=f"{app.config['METAREGISTRY_TITLE']} SPARQL Service",
         description="An identifier mapping service",
         version=version.get_version(),
-        example_query=example_query,
+        example_queries={"ChEBI sameAs with VALUES": {"query": example_query, "endpoint": None}},
         graph=sparql_graph,
         processor=sparql_processor,
         public_url=f"{manager.base_url}/sparql",

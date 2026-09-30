@@ -1,9 +1,9 @@
 """Test alignment."""
 
 import unittest
-from typing import Any
 
-from bioregistry import Manager, Resource
+from bioregistry import Author, Manager, Registry, Resource
+from bioregistry.alignment_model import Record
 from bioregistry.external.alignment_utils import Aligner
 
 
@@ -15,12 +15,14 @@ class TestAlign(unittest.TestCase):
 
         def mock_getter(
             force_download: bool = False, force_process: bool = False
-        ) -> dict[str, dict[str, Any]]:
+        ) -> dict[str, Record]:
             """Mock getter for FAIRsharing."""
             return {
-                "FAIRsharing.Z8OKi5": {
-                    "name": "ABCD database",
-                }
+                "FAIRsharing.Z8OKi5": Record.model_validate(
+                    {
+                        "name": "ABCD database",
+                    }
+                )
             }
 
         class MockAligner(Aligner):
@@ -31,8 +33,18 @@ class TestAlign(unittest.TestCase):
             curation_header = ()
 
         resource = Resource(prefix="abcd", mappings={"fairsharing": "FAIRsharing.Z8OKi5"})
-        registry = {"abcd": resource}
-        manager = Manager(registry=registry)
+        registry = {"abcd": resource, "fairsharing": Resource(prefix="fairsharing")}
+        metaregistry = {
+            "fairsharing": Registry(
+                prefix="fairsharing",
+                name="",
+                homepage="",
+                description="",
+                example="",
+                contact=Author.get_charlie(),
+            )
+        }
+        manager = Manager(registry=registry, metaregistry=metaregistry)
         aligner = MockAligner(manager=manager, force_download=False, force_process=True)
         self.assertEqual({"FAIRsharing.Z8OKi5": "abcd"}, aligner.external_id_to_bioregistry_id)
 
@@ -44,9 +56,13 @@ class TestAlign(unittest.TestCase):
 
         def mock_getter(
             force_download: bool = False, force_process: bool = False
-        ) -> dict[str, dict[str, Any]]:
+        ) -> dict[str, Record]:
             """Mock getter for OBO foundry."""
-            return {"geo": {"name": "geographical entity ontology", "preferred_prefix": "GEO"}}
+            return {
+                "geo": Record.model_validate(
+                    {"name": "geographical entity ontology", "preferred_prefix": "GEO"}
+                )
+            }
 
         class MockAligner(Aligner):
             """Mock aligner for OBO foundry."""
@@ -59,11 +75,21 @@ class TestAlign(unittest.TestCase):
         geogeo = Resource(
             prefix="geogeo", name="geographical entity ontology", mappings={"obofoundry": "geo"}
         )
-        registry = {"geo": geo, "geogeo": geogeo}
-        manager = Manager(registry=registry)
+        metaregistry = {
+            "obofoundry": Registry(
+                prefix="obofoundry",
+                name="",
+                homepage="",
+                description="",
+                example="",
+                contact=Author.get_charlie(),
+            )
+        }
+        registry = {"geo": geo, "geogeo": geogeo, "obofoundry": Resource(prefix="obofoundry")}
+        manager = Manager(registry=registry, metaregistry=metaregistry)
         aligner = MockAligner(manager=manager, force_download=False, force_process=True)
         self.assertEqual({"geo": "geogeo"}, aligner.external_id_to_bioregistry_id)
 
         self.assertIsNone(geo.obofoundry)
         self.assertIsNotNone(geogeo.obofoundry)
-        self.assertEqual("geo", (geogeo.obofoundry or {}).get("prefix"))
+        self.assertEqual("GEO", geogeo.get_mapped_prefix("obofoundry"))

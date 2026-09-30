@@ -39,7 +39,7 @@ class TestResolve(unittest.TestCase):
         self.assertIsNotNone(get_external("ncbitaxon", "miriam"))
         self.assertIsNotNone(get_external("ncbitaxon", "obofoundry"))
         self.assertIsNotNone(get_external("ncbitaxon", "ols"))
-        self.assertIsNotNone(get_external("ncbitaxon", "wikidata"))
+        self.assertIsNotNone(get_external("ncbitaxon", "wikidata.property"))
 
     def test_validate_true(self) -> None:
         """Test that validation returns true."""
@@ -130,8 +130,7 @@ class TestResolve(unittest.TestCase):
                 continue
             with self.subTest(prefix=prefix):
                 self.assertTrue(
-                    re_pattern.startswith(f"^{miriam_prefix.upper()}")
-                    or re_pattern.startswith(miriam_prefix.upper()),
+                    re_pattern.startswith((f"^{miriam_prefix.upper()}", miriam_prefix.upper())),
                     msg=f"{prefix} pattern: {re_pattern}",
                 )
 

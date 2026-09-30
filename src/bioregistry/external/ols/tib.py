@@ -40,7 +40,9 @@ SKIP = {
 
 
 @adapter
-def get_tib_ts(*, force_download: bool = False, force_process: bool = False) -> dict[str, Record]:
+def get_tib_ts(
+    *, force_download: bool = False, force_process: bool = False, progress: bool = True
+) -> dict[str, Record]:
     """Get the TIB Terminology Service."""
     return get_ols_base(
         force_download=force_download,
@@ -56,7 +58,7 @@ def get_tib_ts(*, force_download: bool = False, force_process: bool = False) -> 
 class TIBAligner(Aligner):
     """Aligner for the TIB Terminology Service."""
 
-    key = "tib"
+    key = "tib.ts"
     getter = get_tib_ts
     curation_header: ClassVar[Sequence[str]] = ("name",)
 

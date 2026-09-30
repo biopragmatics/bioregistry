@@ -20,9 +20,7 @@ def export_yaml() -> None:
 
 def export_yaml_helper(manager_: Manager | None = None, output: bool = True) -> None:
     """Help export the bioregistry to YAML."""
-    import json
-
-    import yaml
+    from pystow.utils import write_json, write_yaml
 
     from ..constants import (
         COLLECTIONS_YAML_PATH,
@@ -45,15 +43,10 @@ def export_yaml_helper(manager_: Manager | None = None, output: bool = True) -> 
     metaregistry = sanitize_mapping(manager_.metaregistry)
     collections = sanitize_mapping(manager_.collections)
 
-    with REGISTRY_YAML_PATH.open("w") as file:
-        yaml.safe_dump(stream=file, data=registry, allow_unicode=True)
-    with REGISTRY_JSON_PATH.open("w") as file:
-        json.dump(registry, file, indent=2, sort_keys=True, ensure_ascii=False)
-
-    with METAREGISTRY_YAML_PATH.open("w") as file:
-        yaml.safe_dump(stream=file, data=metaregistry, allow_unicode=True)
-    with COLLECTIONS_YAML_PATH.open("w") as file:
-        yaml.safe_dump(stream=file, data=collections, allow_unicode=True)
+    write_yaml(registry, REGISTRY_YAML_PATH)
+    write_json(registry, REGISTRY_JSON_PATH, indent=2, sort_keys=True)
+    write_yaml(metaregistry, METAREGISTRY_YAML_PATH)
+    write_yaml(collections, COLLECTIONS_YAML_PATH)
 
     if pre_digests != get_hexdigests() and output:
         click.echo("::set-output name=BR_UPDATED::true")

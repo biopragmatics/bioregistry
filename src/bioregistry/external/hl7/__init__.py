@@ -10,6 +10,8 @@ from collections.abc import Sequence
 from pathlib import Path
 from typing import Any, ClassVar
 
+from tqdm import tqdm
+
 from bioregistry.alignment_model import Record, Status, dump_records, load_processed, make_record
 from bioregistry.external.alignment_utils import Aligner, adapter
 
@@ -31,28 +33,32 @@ COLUMNS = {
     "Object_description": "description",
 }
 
+OID_PREFIX = "2.16.840.1.113883."
+
 
 @adapter
-def get_hl7(*, force_download: bool = False, force_process: bool = False) -> dict[str, Record]:
+def get_hl7(
+    *, force_download: bool = False, force_process: bool = False, progress: bool = True
+) -> dict[str, Record]:
     """Get HL7 OIDs."""
     if PROCESSED_PATH.exists() and not force_download and not force_process:
         return load_processed(PROCESSED_PATH)
-    rv = process_hl7(RAW_PATH)
+    rv = process_hl7(RAW_PATH, progress=progress)
     dump_records(rv, PROCESSED_PATH)
     return rv
 
 
-def process_hl7(path: Path) -> dict[str, Record]:
+def process_hl7(path: Path, *, progress: bool = True) -> dict[str, Record]:
     """Process HL7."""
     rv = {}
     with path.open() as file:
-        reader = csv.reader(file)
-        header = next(reader)
-        for row in reader:
-            row_dict = dict(zip(header, row, strict=False))
-            record: dict[str, Any] = {
-                COLUMNS[k]: v for k, v in row_dict.items() if k in COLUMNS and v
-            }
+        reader = csv.DictReader(file)
+        for row in tqdm(reader, desc="Progessing HL7", leave=False, disable=not progress):
+            record: dict[str, Any] = {COLUMNS[k]: v for k, v in row.items() if k in COLUMNS and v}
+            if (prefix := record["prefix"]).startswith(OID_PREFIX):
+                record["prefix"] = prefix.removeprefix(OID_PREFIX)
+            else:
+                continue
             match record.pop("status"):
                 case "Complete" | "Pending" | "Edited":
                     record["status"] = Status.active

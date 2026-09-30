@@ -19,6 +19,7 @@ from typing import (
     ClassVar,
     Generic,
     Literal,
+    Self,
     TypeAlias,
     TypeVar,
     cast,
@@ -30,12 +31,11 @@ from curies import Reference
 from curies.w3c import NCNAME_RE
 from pydantic import BaseModel, EmailStr, Field, PrivateAttr
 from pydantic.json_schema import models_json_schema
-from typing_extensions import Self
 
 from bioregistry import constants as brc
 from bioregistry.constants import (
-    BIOREGISTRY_REMOTE_URL,
     DOCS,
+    GND_FIELD,
     MIRIAM_NAMESPACE_IN_LUI,
     ORCID_FIELD,
     ROR_FIELD,
@@ -56,6 +56,7 @@ __all__ = [
     "Author",
     "Collection",
     "Context",
+    "OlsConfig",
     "Organization",
     "Provider",
     "Publication",
@@ -88,6 +89,8 @@ URI_IRI_INFO = (
     "See the URI specification (https://www.rfc-editor.org/rfc/rfc3986) "
     "and IRI specification (https://www.ietf.org/rfc/rfc3987.txt) for more information."
 )
+
+OlsVersion: TypeAlias = Literal["3", "4"]
 
 X = TypeVar("X")
 
@@ -136,6 +139,8 @@ Domain: TypeAlias = Literal[
     "genetic code",
     "mathematics",
     "registry",
+    "social science",
+    "equipment",
 ]
 
 
@@ -159,17 +164,18 @@ def _yield_protocol_variations(u: str) -> Iterable[str]:
 
 
 URI_FORMAT_PATHS = [
-    ("miriam", URI_FORMAT_KEY),
-    ("n2t", URI_FORMAT_KEY),
-    ("go", URI_FORMAT_KEY),
-    ("biocontext", URI_FORMAT_KEY),
-    ("wikidata", URI_FORMAT_KEY),
-    ("uniprot", URI_FORMAT_KEY),
-    ("cellosaurus", URI_FORMAT_KEY),
-    ("prefixcommons", URI_FORMAT_KEY),
-    ("rrid", URI_FORMAT_KEY),
-    ("tib", URI_FORMAT_KEY),
-    ("bartoc", URI_FORMAT_KEY),
+    "miriam",
+    "n2t",
+    "go.resource",
+    "biocontext",
+    "wikidata.property",
+    "uniprot.resource",
+    "cellosaurus.resource",
+    "prefixcommons",
+    "rrid.resource",
+    "tib.ts",
+    "bartoc",
+    "zazuko",
 ]
 
 
@@ -186,13 +192,12 @@ class Organization(BaseModel):
 
     ror: Annotated[str | None, ROR_FIELD] = None
     wikidata: Annotated[str | None, WIKIDATA_FIELD] = None
-    gnd: str | None = Field(
-        default=None, title="Gemeinsame Normdatei (Integrated Authority File) identifier"
-    )
-    name: str = Field(..., description="Name of the organization")
-    partnered: bool = Field(
-        False, description="Has this organization made a specific connection with Bioregistry?"
-    )
+    gnd: Annotated[str | None, GND_FIELD] = None
+    name: Annotated[str, Field(..., description="Name of the organization")]
+    partnered: Annotated[
+        bool,
+        Field(description="Has this organization made a specific connection with Bioregistry?"),
+    ] = False
 
     @property
     def reference(self) -> Reference:
@@ -386,6 +391,7 @@ class Provider(BaseModel):
     name: str | None = Field(None, description="Name of the provider")
     description: str | None = Field(None, description="Description of the provider")
     homepage: str | None = Field(None, description="Homepage of the provider")
+    contact: Attributable | None = None
     uri_format: str = Field(
         ...,
         title="URI Format",
@@ -429,23 +435,23 @@ class Provider(BaseModel):
 
 
 #: A list of valid RDF formats.
-RDFFormat: TypeAlias = Literal["ttl", "rdf", "xml", "n3", "trix", "nt"]
+RDFFormat: TypeAlias = Literal["ttl", "rdf", "xml", "n3", "trix", "nt", "shex", "json-ld"]
 
 
 class AnnotatedURL(BaseModel):
     """A URL annotated with its file type and data schema."""
 
     url: str
-    rdf_format: RDFFormat = Field(default="ttl", title="RDF Format")
+    rdf_format: Annotated[RDFFormat, Field(title="RDF Format")]
 
 
 DEFAULT_METAPREFIX_PRIORITY = [
     "obofoundry",
     "ols",
     "miriam",
-    "wikidata",
-    "go",
-    "ncbi",
+    "wikidata.property",
+    "go.resource",
+    "ncbi.resource",
     "bioportal",
     "agroportal",
     "ecoportal",
@@ -453,22 +459,34 @@ DEFAULT_METAPREFIX_PRIORITY = [
     "cellosaurus",
     "cropoct",
     "cheminf",
-    "edam",
+    "edam.data",
     "prefixcommons",
-    "rrid",
+    "rrid.resource",
     "bartoc",
     "lov",
-    "tib",
+    "tib.ts",
     "integbio",
     "aberowl",
     "re3data",
-    "uniprot",
+    "uniprot.resource",
     "biodivportal",
 ]
 
 
+def _get_prioritized_metaprefixes(pr: list[str]) -> list[str]:
+    return [*pr, *(x for x in DEFAULT_METAPREFIX_PRIORITY if x not in pr)]
+
+
+Record = Mapping[str, Any]
+# TODO update to RRR = Record
+
+
 class Resource(BaseModel):
     """Metadata about an ontology, database, or other resource."""
+
+    model_config = {
+        "populate_by_name": True,
+    }
 
     prefix: str = Field(
         ...,
@@ -794,93 +812,188 @@ class Resource(BaseModel):
     )
 
     #: External data from Identifiers.org's MIRIAM Database
-    miriam: Mapping[str, Any] | None = None
+    miriam: Record | None = None
     #: External data from the Name-to-Thing service
-    n2t: Mapping[str, Any] | None = None
+    n2t: Record | None = None
     #: External data from Prefix Commons
-    prefixcommons: Mapping[str, Any] | None = None
+    prefixcommons: Record | None = None
     #: External data from Wikidata Properties
-    wikidata: Mapping[str, Any] | None = None
+    wikidata: Annotated[
+        Record | None,
+        Field(
+            title="Wikidata property",
+            alias="wikidata.property",
+            serialization_alias="wikidata.property",
+        ),
+    ] = None
     #: External data from Wikidata Entity
-    wikidata_entity: Mapping[str, Any] | None = None
+    wikidata_entity: Record | None = None
     #: External data from the Gene Ontology's custom registry
-    go: Mapping[str, Any] | None = None
+    go: Annotated[
+        Record | None,
+        Field(
+            title="Gene Ontology resource",
+            alias="go.resource",
+            serialization_alias="go.resource",
+        ),
+    ] = None
     #: External data from the Open Biomedical Ontologies (OBO) Foundry catalog
-    obofoundry: Mapping[str, Any] | None = None
+    obofoundry: Record | None = None
     #: External data from the BioPortal ontology repository
-    bioportal: Mapping[str, Any] | None = None
+    bioportal: Record | None = None
     #: External data from the EcoPortal ontology repository
-    ecoportal: Mapping[str, Any] | None = None
+    ecoportal: Record | None = None
     #: External data from the AgroPortal ontology repository
-    agroportal: Mapping[str, Any] | None = None
+    agroportal: Record | None = None
     #: External data from the CropOCT ontology curation tool
-    cropoct: Mapping[str, Any] | None = None
+    cropoct: Record | None = None
     #: External data from the Ontology Lookup Service
-    ols: Mapping[str, Any] | None = None
+    ols: Record | None = None
     #: External data from the AberOWL ontology repository
-    aberowl: Mapping[str, Any] | None = None
+    aberowl: Record | None = None
     #: External data from the NCBI Genbank's custom registry
-    ncbi: Mapping[str, Any] | None = None
+    ncbi: Annotated[
+        Record | None,
+        Field(
+            title="NCBI resource",
+            alias="ncbi.resource",
+            serialization_alias="ncbi.resource",
+        ),
+    ] = None
     #: External data from UniProt's custom registry
-    uniprot: Mapping[str, Any] | None = None
+    uniprot: Annotated[
+        Record | None,
+        Field(
+            title="UniProt resource",
+            alias="uniprot.resource",
+            serialization_alias="uniprot.resource",
+        ),
+    ] = None
     #: External data from the BioLink Model's custom registry
-    biolink: Mapping[str, Any] | None = None
+    biolink: Annotated[
+        Record | None,
+        Field(
+            title="BioLink resource",
+            alias="biolink.resource",
+            serialization_alias="biolink.resource",
+        ),
+    ] = None
     #: External data from the Cellosaurus custom registry
-    cellosaurus: Mapping[str, Any] | None = None
+    cellosaurus: Annotated[
+        Record | None,
+        Field(
+            title="Cellosaurus resource",
+            alias="cellosaurus.resource",
+            serialization_alias="cellosaurus.resource",
+        ),
+    ] = None
     #: External data from the OntoBee
-    ontobee: Mapping[str, Any] | None = None
+    ontobee: Record | None = None
     #: External data from ChemInf
-    cheminf: Mapping[str, Any] | None = None
+    cheminf: Record | None = None
     #: External data from FAIRsharing
-    fairsharing: Mapping[str, Any] | None = None
+    fairsharing: Record | None = None
     #: External data from BioContext
-    biocontext: Mapping[str, Any] | None = None
+    biocontext: Record | None = None
     #: External data from EDAM ontology
-    edam: Mapping[str, Any] | None = None
+    edam: Annotated[
+        Record | None,
+        Field(
+            title="EDAM Data",
+            alias="edam.data",
+            serialization_alias="edam.data",
+        ),
+    ] = None
     #: External data from re3data
-    re3data: Mapping[str, Any] | None = None
+    re3data: Record | None = None
     #: External data from hl7
-    hl7: Mapping[str, Any] | None = None
+    hl7: Record | None = None
     #: External data from bartoc
-    bartoc: Mapping[str, Any] | None = Field(default=None, title="BARTOC")
+    bartoc: Record | None = Field(default=None, title="BARTOC")
     #: External data from RRID
-    rrid: Mapping[str, Any] | None = Field(default=None, title="RRID")
+    rrid: Annotated[
+        Record | None,
+        Field(
+            title="RRID",
+            alias="rrid.resource",
+            serialization_alias="rrid.resource",
+        ),
+    ] = None
     #: External data from LOV
-    lov: Mapping[str, Any] | None = Field(default=None, title="LOV")
+    lov: Record | None = Field(default=None, title="LOV")
     #: External data from Zazuko
-    zazuko: Mapping[str, Any] | None = Field(default=None)
+    zazuko: Record | None = Field(default=None)
     #: External data from TogoID
-    togoid: Mapping[str, Any] | None = Field(default=None)
+    togoid: Record | None = Field(default=None)
     #: External data from Integbio
-    integbio: Mapping[str, Any] | None = Field(default=None)
+    integbio: Record | None = Field(default=None)
     #: External data from PathGuide
-    pathguide: Mapping[str, Any] | None = Field(default=None)
+    pathguide: Record | None = Field(default=None)
     #: External data from TIB Terminology Service
-    tib: Mapping[str, Any] | None = Field(default=None)
+    tib: Annotated[
+        Record | None,
+        Field(
+            title="TIB Terminology Service",
+            alias="tib.ts",
+            serialization_alias="tib.ts",
+        ),
+    ] = None
     #: External data from BiodivPortal
-    biodivportal: Mapping[str, Any] | None = Field(default=None)
+    biodivportal: Record | None = Field(default=None)
 
     # Cached compiled pattern for identifiers
     _compiled_pattern: re.Pattern[str] | None = PrivateAttr(None)
 
-    def get_external(self, metaprefix: str) -> Mapping[str, Any]:
+    def get_external(self, metaprefix: str) -> Record | None:
         """Get an external registry."""
-        return self.model_dump().get(metaprefix) or {}
+        # remap so both the alias and field name are accepted
+        slot = RESOURCE_ALIAS_TO_FIELD.get(metaprefix, metaprefix)
+        external = getattr(self, slot, None)
+        if external is None:
+            return None
+        return cast(Record, external)
 
-    def get_mapped_prefix(self, metaprefix: str, use_obo_preferred: bool = True) -> str | None:
+    def _get_external_value(self, metaprefix: str, key: str, default: Any = None) -> Any:
+        """Get the value."""
+        external = self.get_external(metaprefix)
+        if external:
+            return external.get(key, default)
+        return default
+
+    # docstr-coverage:excused `overload`
+    @overload
+    def get_mapped_prefix(
+        self, metaprefix: str, *, use_obo_preferred: bool = ..., strict: Literal[True] = ...
+    ) -> str: ...
+
+    # docstr-coverage:excused `overload`
+    @overload
+    def get_mapped_prefix(
+        self, metaprefix: str, *, use_obo_preferred: bool = ..., strict: Literal[False] = ...
+    ) -> str | None: ...
+
+    def get_mapped_prefix(
+        self, metaprefix: str, *, use_obo_preferred: bool = True, strict: bool = False
+    ) -> str | None:
         """Get the prefix for the given external.
 
         :param metaprefix: The metaprefix for the external resource
         :param use_obo_preferred: Whether to use OBO preferred prefix
+        :param strict: If true, raises an exception when no mapping is available
 
         :returns: The prefix in the external registry, if it could be mapped
 
         >>> from bioregistry import get_resource
-        >>> get_resource("chebi").get_mapped_prefix("wikidata")
+        >>> get_resource("chebi").get_mapped_prefix("wikidata.property")
         'P683'
         >>> get_resource("chebi").get_mapped_prefix("obofoundry")
         'CHEBI'
         """
+        mappings = self.get_mappings()
+        if metaprefix not in mappings:
+            if strict:
+                raise KeyError(f"{self.prefix} does not have a mapping to {metaprefix}")
+            return None
         if metaprefix == "obofoundry" and use_obo_preferred:
             obofoundry_dict = self.obofoundry or {}
             if "preferred_prefix" in obofoundry_dict:
@@ -888,7 +1001,7 @@ class Resource(BaseModel):
             if "prefix" in obofoundry_dict:
                 return cast(str, obofoundry_dict["prefix"]).upper()
             return None
-        return self.get_mappings().get(metaprefix)
+        return mappings[metaprefix]
 
     # docstr-coverage:excused `overload`
     @overload
@@ -919,12 +1032,12 @@ class Resource(BaseModel):
         *,
         rv_type: type[X],
         provenance: bool = False,
-    ) -> None | X | MetaprefixAnnotatedValue[X]:
+    ) -> X | MetaprefixAnnotatedValue[X] | None:
         """Get a key enriched by the given external resources' data."""
-        rv = self.model_dump().get(key)
+        rv = getattr(self, key, None)
         if rv is not None:
             if isinstance(rv, str):
-                rv = rv.replace("\r\n", "\n")
+                rv = rv.replace("\r\n", "\n")  # FIXME there should be a test against this
             if provenance:
                 return cast(
                     MetaprefixAnnotatedValue[X], MetaprefixAnnotatedValue(rv, "bioregistry")
@@ -933,7 +1046,7 @@ class Resource(BaseModel):
         if isinstance(metaprefixes, str):
             metaprefixes = [metaprefixes]
         for metaprefix in metaprefixes:
-            rv = self.get_external(metaprefix).get(key)
+            rv = self._get_external_value(metaprefix, key)
             if rv is not None:
                 if isinstance(rv, str):
                     rv = rv.replace("\r\n", "\n")
@@ -952,17 +1065,17 @@ class Resource(BaseModel):
         metaprefixes: str | Sequence[str],
         *,
         provenance: Literal[False] = False,
-    ) -> None | str: ...
+    ) -> str | None: ...
 
     # docstr-coverage:excused `overload`
     @overload
     def _get_prefix_key_str(
         self, key: str, metaprefixes: str | Sequence[str], *, provenance: Literal[True] = True
-    ) -> None | MetaprefixAnnotatedValue[str]: ...
+    ) -> MetaprefixAnnotatedValue[str] | None: ...
 
     def _get_prefix_key_str(
         self, key: str, metaprefixes: str | Sequence[str], *, provenance: bool = False
-    ) -> None | str | MetaprefixAnnotatedValue[str]:
+    ) -> str | MetaprefixAnnotatedValue[str] | None:
         if provenance:
             return self.get_prefix_key(key, metaprefixes, rv_type=str, provenance=True)
         else:
@@ -976,17 +1089,17 @@ class Resource(BaseModel):
         metaprefixes: str | Sequence[str],
         *,
         provenance: Literal[False] = False,
-    ) -> None | bool: ...
+    ) -> bool | None: ...
 
     # docstr-coverage:excused `overload`
     @overload
     def _get_prefix_key_bool(
         self, key: str, metaprefixes: str | Sequence[str], *, provenance: Literal[True] = True
-    ) -> None | MetaprefixAnnotatedValue[bool]: ...
+    ) -> MetaprefixAnnotatedValue[bool] | None: ...
 
     def _get_prefix_key_bool(
         self, key: str, metaprefixes: str | Sequence[str], *, provenance: bool = False
-    ) -> None | bool | MetaprefixAnnotatedValue[bool]:
+    ) -> bool | MetaprefixAnnotatedValue[bool] | None:
         if provenance:
             return self.get_prefix_key(key, metaprefixes, rv_type=bool, provenance=True)
         else:
@@ -1021,6 +1134,8 @@ class Resource(BaseModel):
 
         >>> from bioregistry import get_resource
         >>> get_resource("edam").get_rdf_uri("data_1153")
+        'http://edamontology.org/data_1153'
+        >>> get_resource("edam.data").get_rdf_uri("1153")
         'http://edamontology.org/data_1153'
         """
         fmt = self.get_rdf_uri_format()
@@ -1098,9 +1213,9 @@ class Resource(BaseModel):
         """
         if self.uri_format is not None:
             return self.uri_format
-        for metaprefix, key in URI_FORMAT_PATHS:
-            rv = cast(str | None, self.get_external(metaprefix).get(key))
-            if rv is not None and _allowed_uri_format(rv):
+        for metaprefix in URI_FORMAT_PATHS:
+            rv = self._get_external_value(metaprefix, URI_FORMAT_KEY)
+            if isinstance(rv, str) and _allowed_uri_format(rv):
                 return rv
         return None
 
@@ -1173,7 +1288,7 @@ class Resource(BaseModel):
         *,
         provenance: Literal[False] = ...,
         strict: Literal[False] = ...,
-    ) -> None | str: ...
+    ) -> str | None: ...
 
     # docstr-coverage:excused `overload`
     @overload
@@ -1182,7 +1297,7 @@ class Resource(BaseModel):
         *,
         provenance: Literal[True] = ...,
         strict: Literal[False] = ...,
-    ) -> None | MetaprefixAnnotatedValue[str]: ...
+    ) -> MetaprefixAnnotatedValue[str] | None: ...
 
     # docstr-coverage:excused `overload`
     @overload
@@ -1204,7 +1319,7 @@ class Resource(BaseModel):
 
     def get_name(
         self, *, provenance: bool = False, strict: bool = False
-    ) -> None | str | MetaprefixAnnotatedValue[str]:
+    ) -> str | MetaprefixAnnotatedValue[str] | None:
         """Get the name for the given prefix, if it's available."""
         if provenance:
             rv = self._get_prefix_key_str("name", DEFAULT_METAPREFIX_PRIORITY, provenance=True)
@@ -1216,7 +1331,17 @@ class Resource(BaseModel):
             raise ValueError
         return None
 
-    def get_description(self, use_markdown: bool = False) -> str | None:
+    # docstr-coverage:excused `overload`
+    @overload
+    def get_description(self, *, use_markdown: bool = ..., strict: Literal[True] = ...) -> str: ...
+
+    # docstr-coverage:excused `overload`
+    @overload
+    def get_description(
+        self, *, use_markdown: bool = ..., strict: Literal[False] = ...
+    ) -> str | None: ...
+
+    def get_description(self, *, use_markdown: bool = False, strict: bool = False) -> str | None:
         """Get the description for the given prefix, if available."""
         if self.description and use_markdown:
             import markupsafe
@@ -1228,7 +1353,7 @@ class Resource(BaseModel):
             "n2t",
             "ols",
             "obofoundry",
-            "wikidata",
+            "wikidata.property",
             "fairsharing",
             "aberowl",
             "bioportal",
@@ -1236,19 +1361,21 @@ class Resource(BaseModel):
             "ecoportal",
             "cropoct",
             "cheminf",
-            "edam",
+            "edam.data",
             "prefixcommons",
             "bartoc",
             "lov",
             "re3data",
-            "tib",
+            "tib.ts",
             "integbio",
-            "cellosaurus",
+            "cellosaurus.resource",
             "biodivportal",
         )
         rv = self._get_prefix_key_str("description", metaprefixes, provenance=False)
         if rv is not None:
             return rv.strip()
+        if strict:
+            raise ValueError
         return None
 
     def get_pattern(self) -> str | None:
@@ -1264,7 +1391,7 @@ class Resource(BaseModel):
         """
         if self.pattern is not None:
             return self.pattern
-        rv = self._get_prefix_key_str("pattern", ("miriam", "wikidata", "bartoc"))
+        rv = self._get_prefix_key_str("pattern", ("miriam", "wikidata.property", "bartoc"))
         if rv is None:
             return None
         return _clean_pattern(rv)
@@ -1380,9 +1507,22 @@ class Resource(BaseModel):
             return cast(bool, rv)
         return False
 
-    def get_homepage(self) -> str | None:
+    # docstr-coverage:excused `overload`
+    @overload
+    def get_homepage(self, *, strict: Literal[True] = ...) -> str: ...
+
+    # docstr-coverage:excused `overload`
+    @overload
+    def get_homepage(self, *, strict: Literal[False] = ...) -> str | None: ...
+
+    def get_homepage(self, *, strict: bool = False) -> str | None:
         """Return the homepage, if available."""
-        return self._get_prefix_key_str("homepage", DEFAULT_METAPREFIX_PRIORITY)
+        rv = self._get_prefix_key_str("homepage", DEFAULT_METAPREFIX_PRIORITY)
+        if rv is not None:
+            return rv
+        if strict:
+            raise ValueError
+        return None
 
     def get_domain(self) -> str | None:
         """Get the domain."""
@@ -1397,13 +1537,24 @@ class Resource(BaseModel):
         if self.keywords:
             keywords.extend(self.keywords)
         for metaprefix in self.mappings or []:
-            if kk := self.get_external(metaprefix).get("keywords"):
+            if kk := self._get_external_value(metaprefix, "keywords"):
                 keywords.extend(kk)
-        if self.get_download_obo() or self.get_download_owl() or self.bioportal:
+        if (
+            self.get_download_obo()
+            or self.get_download_owl()
+            or self.get_download_obograph()
+            or self.bioportal
+            or self.agroportal
+            or self.biodivportal
+            or self.ecoportal
+        ):
             keywords.append("ontology")
+        if self.part_of_database:
+            keywords.append(self.part_of_database)
+        # TODO remove plurals?
         return sorted(
             {
-                keyword.lower().replace("’", "'")  # noqa:RUF001
+                keyword.lower().replace("’", "'").strip()  # noqa:RUF001
                 for keyword in keywords
                 if keyword
             }
@@ -1415,7 +1566,15 @@ class Resource(BaseModel):
             return self.repository
         return self._get_prefix_key_str("repository", DEFAULT_METAPREFIX_PRIORITY)
 
-    def get_contact(self) -> Attributable | None:
+    # docstr-coverage:excused `overload`
+    @overload
+    def get_contact(self, *, strict: Literal[True] = ...) -> Attributable: ...
+
+    # docstr-coverage:excused `overload`
+    @overload
+    def get_contact(self, *, strict: Literal[False] = ...) -> Attributable | None: ...
+
+    def get_contact(self, *, strict: bool = False) -> Attributable | None:
         """Get the contact, if available.
 
         :returns: A contact
@@ -1426,17 +1585,22 @@ class Resource(BaseModel):
         """
         if self.contact is not None:
             return self.contact
-
-        contacts = []
-        for metaprefix in self.mappings or []:
-            if contact := self.get_external(metaprefix).get("contact"):
-                if contact.get("name"):
-                    contacts.append(Attributable.model_validate(contact))
+        if not self.mappings:
+            if strict:
+                raise ValueError(f"no contact available for {self.prefix}")
+            return None
+        contacts = [
+            Attributable.model_validate(contact)
+            for metaprefix in self.mappings
+            if (contact := self._get_external_value(metaprefix, "contact")) and contact.get("name")
+        ]
         if contacts:
             return max(contacts, key=lambda c: c.get_score())
+        if strict:
+            raise ValueError(f"no contact available for {self.prefix}")
         return None
 
-    def get_contact_email(self) -> str | None:
+    def get_contact_email(self) -> EmailStr | None:
         """Return the contact email, if available.
 
         :returns: The resource's contact email address, if it is available.
@@ -1524,7 +1688,7 @@ class Resource(BaseModel):
         if self.example is not None:
             return self.example
         for metaprefix in DEFAULT_METAPREFIX_PRIORITY:
-            if examples := self.get_external(metaprefix).get("examples", []):
+            if examples := self._get_external_value(metaprefix, "examples", []):
                 return cast(str, examples[0])
         if strict:
             raise ValueError
@@ -1583,7 +1747,7 @@ class Resource(BaseModel):
         if self.deprecated is not None:
             return self.deprecated
         for key in DEFAULT_METAPREFIX_PRIORITY:
-            if self.get_external(key).get("status") in {"deprecated", "inactive"}:
+            if self._get_external_value(key, "status") in {"deprecated", "inactive"}:
                 return True
         return False
 
@@ -1591,7 +1755,7 @@ class Resource(BaseModel):
         """Get a list of publications."""
         publications = self.publications or []
         for metaprefix in self.mappings or []:
-            for publication in self.get_external(metaprefix).get("publications", []):
+            for publication in self._get_external_value(metaprefix, "publications", []):
                 publication = Publication.model_validate(publication)
                 if publication.pubmed or publication.doi or publication.pmc:
                     publications.append(publication)
@@ -1676,10 +1840,10 @@ class Resource(BaseModel):
         'http://purl.obolibrary.org/obo/NCBITaxon_'
         >>> assert get_resource("sty").get_obofoundry_uri_prefix() is None
         """
-        obo_prefix = self.get_obofoundry_prefix()
-        if obo_prefix is None:
+        rv = self._get_external_uri_format("obofoundry")
+        if rv is None:
             return None
-        return f"http://purl.obolibrary.org/obo/{obo_prefix}_"
+        return rv.removesuffix("$1")
 
     def get_bioregistry_uri_format(self) -> str | None:
         """Get the Bioregisry URI format string for this entry.
@@ -1706,13 +1870,10 @@ class Resource(BaseModel):
         'http://purl.obolibrary.org/obo/NCBITaxon_$1'
         >>> assert get_resource("sty").get_obofoundry_uri_format() is None
         """
-        rv = self.get_obofoundry_uri_prefix()
-        if rv is None:
-            return None
-        return f"{rv}$1"
+        return self._get_external_uri_format("obofoundry")
 
     def _get_external_uri_format(self, metaprefix: str) -> str | None:
-        return self.get_external(metaprefix).get(URI_FORMAT_KEY)
+        return cast(str | None, self._get_external_value(metaprefix, URI_FORMAT_KEY))
 
     def get_biocontext_uri_format(self) -> str | None:
         """Get the BioContext URI format string for this entry, if available.
@@ -1724,6 +1885,10 @@ class Resource(BaseModel):
         'http://www.hgmd.cf.ac.uk/ac/gene.php?gene=$1'
         """
         return self._get_external_uri_format("biocontext")
+
+    def get_zazuko_uri_format(self) -> str | None:
+        """Get the Zazuko URI format string for this entry, if available."""
+        return self._get_external_uri_format("zazuko")
 
     def get_bartoc_uri_format(self) -> str | None:
         """Get the BARTOC URI format string for this entry, if available.
@@ -1894,15 +2059,23 @@ class Resource(BaseModel):
         'https://www.ebi.ac.uk/ols/ontologies/go/terms?iri=http://purl.obolibrary.org/obo/GO_'
         >>> get_resource("ncbitaxon").get_ols_uri_prefix()  # mixed case
         'https://www.ebi.ac.uk/ols/ontologies/ncbitaxon/terms?iri=http://purl.obolibrary.org/obo/NCBITaxon_'
+
+        These are non-OBO ontologies indexed in OLS
+
+        >>> get_resource("cheminf").get_ols_uri_prefix()
+        'https://www.ebi.ac.uk/ols/ontologies/cheminf/terms?iri=http://semanticscience.org/resource/CHEMINF_'
+        >>> get_resource("efo").get_ols_uri_prefix()
+        'https://www.ebi.ac.uk/ols/ontologies/efo/terms?iri=http://www.ebi.ac.uk/efo/EFO_'
+
+        These are not infexed in OLS
+
         >>> assert get_resource("sty").get_ols_uri_prefix() is None
         """
         ols_prefix = self.get_ols_prefix()
         if ols_prefix is None:
             return None
-        obo_format = self.get_obofoundry_uri_prefix()
-        if obo_format:
-            return f"https://www.ebi.ac.uk/ols/ontologies/{ols_prefix}/terms?iri={obo_format}"
-        # TODO find examples, like for EFO on when it's not based on OBO Foundry PURLs
+        if rdf_uri_prefix := self.get_rdf_uri_prefix():
+            return f"https://www.ebi.ac.uk/ols/ontologies/{ols_prefix}/terms?iri={rdf_uri_prefix}"
         return None
 
     def get_ols_uri_format(self) -> str | None:
@@ -1927,6 +2100,34 @@ class Resource(BaseModel):
             return None
         return f"{ols_url_prefix}$1"
 
+    def get_ols_iri(self, identifier: str, *, version: OlsVersion = "3") -> str | None:
+        """Get the OLS URL for the given local unique identifier, if possible."""
+        ols_prefix = self.get_ols_prefix()
+        if ols_prefix is None:
+            return None
+        if rdf_uri := self.get_rdf_uri(identifier):
+            ols_version = "ols4" if version == "4" else "ols"
+            return (
+                f"https://www.ebi.ac.uk/{ols_version}/ontologies/{ols_prefix}/terms?iri={rdf_uri}"
+            )
+        return None
+
+    def get_bioportal_iri(self, identifier: str) -> str | None:
+        """Get the Bioportal URL for the given local unique identifier, if possible."""
+        bioportal_prefix = self.get_mapped_prefix("bioportal")
+        if bioportal_prefix is None:
+            return None
+        if rdf_uri := self.get_rdf_uri(identifier):
+            return f"https://bioportal.bioontology.org/ontologies/{bioportal_prefix}/?p=classes&conceptid={rdf_uri}"
+        return None
+
+    def get_obofoundry_iri(self, identifier: str) -> str | None:
+        """Get the OBO Foundry URL for the given local unique identifier, if possible."""
+        uri_format = self.get_obofoundry_uri_format()
+        if uri_format is None:
+            return None
+        return uri_format.replace("$1", identifier)
+
     def get_rrid_uri_format(self) -> str | None:
         """Get the RRID URI format.
 
@@ -1948,10 +2149,7 @@ class Resource(BaseModel):
             return self.rdf_uri_format
         if self.obofoundry:
             return self.get_obofoundry_uri_format()
-        if self.wikidata and "uri_format_rdf" in self.wikidata:
-            return cast(str, self.wikidata["uri_format_rdf"])
-        # TODO also pull from Prefix Commons
-        return None
+        return self._get_prefix_key_str("uri_format_rdf", ["wikidata.property", "prefixcommons"])
 
     def get_rdf_uri_prefix(self) -> str | None:
         """Get the URI prefix for the prefix for RDF usages."""
@@ -1965,6 +2163,7 @@ class Resource(BaseModel):
         "obofoundry": get_obofoundry_uri_format,
         "prefixcommons": get_prefixcommons_uri_format,
         "biocontext": get_biocontext_uri_format,
+        "zazuko": get_zazuko_uri_format,
         "miriam": get_miriam_uri_format,
         "miriam.legacy": get_legacy_miriam_uri_format,
         "miriam.legacy_banana": get_legacy_alt_miriam_uri_format,
@@ -1985,7 +2184,7 @@ class Resource(BaseModel):
         "bioregistry",
     )
 
-    def get_priority_prefix(self, priority: None | str | Sequence[str] = None) -> str:
+    def get_priority_prefix(self, priority: str | Sequence[str] | None = None) -> str:
         """Get a prioritized prefix.
 
         :param priority: A metaprefix or list of metaprefixes used to choose a
@@ -2025,7 +2224,9 @@ class Resource(BaseModel):
         return self.prefix
 
     def _iterate_uri_formats(self, priority: Sequence[str] | None = None) -> Iterable[str]:
-        for metaprefix in priority or self.DEFAULT_URI_FORMATTER_PRIORITY:
+        if priority is None:
+            priority = self.DEFAULT_URI_FORMATTER_PRIORITY
+        for metaprefix in priority:
             formatter = self.URI_FORMATTERS.get(metaprefix)
             if formatter is None:
                 logger.warning("could not get formatter for %s", metaprefix)
@@ -2035,7 +2236,21 @@ class Resource(BaseModel):
                 continue
             yield uri_format
 
-    def get_uri_format(self, priority: Sequence[str] | None = None) -> str | None:
+    # docstr-coverage:excused `overload`
+    @overload
+    def get_uri_format(
+        self, priority: Sequence[str] | None = ..., *, strict: Literal[True] = ...
+    ) -> str: ...
+
+    # docstr-coverage:excused `overload`
+    @overload
+    def get_uri_format(
+        self, priority: Sequence[str] | None = ..., *, strict: Literal[False] = ...
+    ) -> str | None: ...
+
+    def get_uri_format(
+        self, priority: Sequence[str] | None = None, *, strict: bool = False
+    ) -> str | None:
         """Get the URI format string for the given prefix, if it's available.
 
         :param priority: The priority order of metaresources to use for format URI
@@ -2048,6 +2263,7 @@ class Resource(BaseModel):
                https://identifiers.org/<prefix>:<identifier>)
             5. N2T (i.e., make a URI like https://n2t.org/<prefix>:<identifier>)
             6. OLS
+        :param strict: if true and there is no format available, raises an error
 
         :returns: The best URI format string, where the ``$1`` should be replaced by a
             local unique identifier. ``$1`` could potentially appear multiple times.
@@ -2069,6 +2285,8 @@ class Resource(BaseModel):
         """
         for uri_format in self._iterate_uri_formats(priority):
             return uri_format
+        if strict:
+            raise ValueError
         return None
 
     # docstr-coverage:excused `overload`
@@ -2080,15 +2298,45 @@ class Resource(BaseModel):
     # docstr-coverage:excused `overload`
     @overload
     def get_uri_prefix(
-        self, priority: Sequence[str] | None = None, *, strict: Literal[True] = ...
+        self,
+        priority: Sequence[str] | None = None,
+        *,
+        strict: Literal[False] = ...,
+        stubs: Literal[False] = ...,
+    ) -> str | None: ...
+
+    # docstr-coverage:excused `overload`
+    @overload
+    def get_uri_prefix(
+        self,
+        priority: Sequence[str] | None = None,
+        *,
+        strict: Literal[False] = ...,
+        stubs: Literal[True] = ...,
+    ) -> str: ...
+
+    # docstr-coverage:excused `overload`
+    @overload
+    def get_uri_prefix(
+        self,
+        priority: Sequence[str] | None = None,
+        *,
+        strict: Literal[True] = ...,
+        stubs: bool = ...,
     ) -> str: ...
 
     def get_uri_prefix(
-        self, priority: Sequence[str] | None = None, *, strict: bool = False
+        self,
+        priority: Sequence[str] | None = None,
+        *,
+        strict: bool = False,
+        stubs: bool = False,
     ) -> str | None:
         """Get a well-formed URI prefix, if available.
 
-        :param priority: The prioirty order for :func:`get_format`.
+        :param priority: The priority order for :func:`get_format`.
+        :param strict: if true, raise an exception on not found
+        :param stubs: Should stub URIs be assigned to resources with no URI format?
 
         :returns: The URI prefix. Similar to what's returned by :func:`get_uri_format`,
             but it MUST have only one ``$1`` and end with ``$1`` to use the function.
@@ -2101,6 +2349,9 @@ class Resource(BaseModel):
             uri_prefix = self._clip_uri_format(uri_format)
             if uri_prefix is not None:
                 return uri_prefix
+        if stubs:
+            prefix = self.get_preferred_prefix() or self.prefix
+            return f"https://bioregistry.io/{prefix}:"
         if strict:
             raise ValueError
         return None
@@ -2109,17 +2360,16 @@ class Resource(BaseModel):
         if uri_format is None or uri_format == "None":
             return None
         if uri_format != uri_format.rstrip():
-            logging.debug("[%s] formatter has whitespace on right: %s", self.prefix, uri_format)
             uri_format = uri_format.rstrip()
         count = uri_format.count("$1")
         if 0 == count:
-            logging.debug("[%s] formatter missing $1: %s", self.prefix, uri_format)
+            logger.log(1, "[%s] formatter missing $1: %s", self.prefix, uri_format)
             return None
         if uri_format.count("$1") != 1:
-            logging.debug("[%s] formatter has multiple $1: %s", self.prefix, uri_format)
+            logger.log(1, "[%s] formatter has multiple $1: %s", self.prefix, uri_format)
             return None
         if not uri_format.endswith("$1"):
-            logging.debug("[%s] formatter does not end with $1: %s", self.prefix, uri_format)
+            logger.log(1, "[%s] formatter does not end with $1: %s", self.prefix, uri_format)
             return None
         return uri_format[: -len("$1")]
 
@@ -2169,9 +2419,9 @@ class Resource(BaseModel):
             uri_format = formatter_getter(self)
             if uri_format:
                 yield uri_format
-        for metaprefix, key in URI_FORMAT_PATHS:
-            uri_format = self.get_external(metaprefix).get(key)
-            if uri_format:
+        for metaprefix in URI_FORMAT_PATHS:
+            uri_format = self._get_external_value(metaprefix, URI_FORMAT_KEY)
+            if isinstance(uri_format, str):
                 yield uri_format
         miriam_legacy_uri_prefix = self.get_miriam_uri_format(legacy_delimiter=True)
         if miriam_legacy_uri_prefix:
@@ -2189,7 +2439,7 @@ class Resource(BaseModel):
         rv.extend(providers)
 
         for metaprefix in DEFAULT_METAPREFIX_PRIORITY:
-            for provider_raw in self.get_external(metaprefix).get("providers") or []:
+            for provider_raw in self._get_external_value(metaprefix, "providers", []):
                 provider = Provider.model_validate(provider_raw)
                 if provider.code in provider_codes or provider.uri_format in provider_uris:
                     # this means we've done an explicit override in the Bioregistry curated data
@@ -2201,7 +2451,7 @@ class Resource(BaseModel):
             rv = [v for v in rv if not v.is_known_inactive()]
         return rv
 
-    def get_curie(self, identifier: str, use_preferred: bool = False) -> str:
+    def get_curie(self, identifier: str, *, use_preferred: bool = False) -> str:
         """Get a CURIE for a local unique identifier in this resource's semantic space.
 
         :param identifier: A local unique identifier in this resource's semantic space
@@ -2390,21 +2640,23 @@ class Resource(BaseModel):
         change over time so the exact value isn't used in the doctest):
 
         >>> url = get_resource("dermo").get_download_obo()
-        >>> assert url is not None and url.startswith("http://aber-owl.net/media/ontologies/DERMO")
+        >>> assert url is not None and not url.startswith("http://purl.obolibrary.org/obo/")
         """
         if self.download_obo:
             return self.download_obo
-        return (
-            self._get_download("obofoundry", "obo")
-            or self._get_download("ols", "obo")
-            or self._get_download("aberowl", "obo")
-        )
+        for metaprefix in _get_prioritized_metaprefixes(["obofoundry", "ols", "aberowl"]):
+            if download_obo_url := self._get_download(metaprefix, "obo"):
+                return download_obo_url
+        return None
 
     def get_download_obograph(self) -> str | None:
         """Get the download link for the latest OBOGraph JSON file."""
         if self.download_json:
             return self.download_json
-        return self._get_download("obofoundry", "obograph_json")
+        for metaprefix in _get_prioritized_metaprefixes(["obofoundry"]):
+            if download_obo_graph_json_url := self._get_download(metaprefix, "obograph_json"):
+                return download_obo_graph_json_url
+        return None
 
     # docstr-coverage:excused `overload`
     @overload
@@ -2421,7 +2673,10 @@ class Resource(BaseModel):
                 return self.download_rdf.url
             else:
                 return self.download_rdf
-        return self._get_download("ols", "rdf")
+        for metaprefix in _get_prioritized_metaprefixes(["ols", "tib"]):
+            if download_url := self._get_download(metaprefix, "rdf"):
+                return download_url
+        return None
 
     # docstr-coverage:excused `overload`
     @overload
@@ -2469,20 +2724,20 @@ class Resource(BaseModel):
         >>> assert url is not None and url.startswith(
         ...     "http://aber-owl.net/media/ontologies/BIRNLEX/"
         ... )
-
         """
         if self.download_owl:
             return self.download_owl
-        return (
-            self._get_download("obofoundry", "owl")
-            or self.get_external("ols").get("version.iri")
-            or self._get_download("ols", "owl")
-            or self._get_download("cropoct", "owl")
-            or self._get_download("aberowl", "owl")
-        )
+        for metaprefix in _get_prioritized_metaprefixes(
+            ["obofoundry", "ols", "cropoct", "aberowl", "tib"]
+        ):
+            if download_owl_url := self._get_download(metaprefix, "owl"):
+                return download_owl_url
+        if download_version_iri := self._get_external_value("ols", "version.iri"):
+            return cast(str, download_version_iri)
+        return None
 
     def _get_download(self, metaprefix: str, artifact_type: str) -> str | None:
-        for artifact in self.get_external(metaprefix).get("artifacts", []):
+        for artifact in self._get_external_value(metaprefix, "artifacts", []):
             if artifact["type"] == artifact_type:
                 return cast(str, artifact["url"])
         return None
@@ -2511,7 +2766,7 @@ class Resource(BaseModel):
         if self.license:
             return self.license
         for metaprefix in DEFAULT_METAPREFIX_PRIORITY:
-            match self.get_external(metaprefix).get("license"):
+            match self._get_external_value(metaprefix, "license"):
                 case str() as license_str:
                     if license_value := standardize_license(license_str):
                         return license_value
@@ -2529,7 +2784,7 @@ class Resource(BaseModel):
         license_value = self.get_license()
         if license_value is None:
             return None
-        if license_value.startswith("http://") or license_value.startswith("https://"):
+        if license_value.startswith(("http://", "https://")):
             return license_value
         if license_value in {"CC0", "CC0-1.0"}:
             return "https://creativecommons.org/publicdomain/zero/1.0/"
@@ -2537,13 +2792,13 @@ class Resource(BaseModel):
             return "https://creativecommons.org/licenses/by/4.0/"
         if license_value == "CC-BY-3.0":
             return "https://creativecommons.org/licenses/by/3.0/"
-        return f"{BIOREGISTRY_REMOTE_URL}/spdx:{license_value}"
+        return f"https://spdx.org/licenses/{license_value}"
 
     def get_version(self) -> str | None:
         """Get the version for the resource."""
         if self.version:
             return self.version
-        return self.get_external("ols").get("version")
+        return self._get_prefix_key_str("version", DEFAULT_METAPREFIX_PRIORITY, provenance=False)
 
     def get_short_description(self, use_markdown: bool = False) -> str | None:
         """Get a short description."""
@@ -2565,7 +2820,7 @@ class Resource(BaseModel):
         rv = removesuffix(removeprefix(markdown(rv), "<p>"), "</p>")
         return markupsafe.Markup(rv)
 
-    def get_bioschemas_jsonld(self) -> dict[str, Any]:
+    def get_bioschemas_jsonld(self, base_url: str) -> dict[str, Any]:
         """Get the BioSchemas JSON-LD."""
         identifiers = [
             f"bioregistry:{self.prefix}",
@@ -2582,7 +2837,7 @@ class Resource(BaseModel):
                 "@id": "https://bioschemas.org/profiles/Dataset/1.0-RELEASE",
                 "@type": "CreativeWork",
             },
-            "@id": f"{BIOREGISTRY_REMOTE_URL}/{self.prefix}",
+            "@id": f"{base_url}/{self.prefix}",
             "url": self.get_homepage(),
             "name": self.get_name(),
             "description": self.get_description(),
@@ -2606,8 +2861,10 @@ class Resource(BaseModel):
                 creators.extend(ce.name for ce in self.contact_extras if ce.name)
         else:
             creators = [
-                "Converted to OWL by Charles Tapley Hoyt (cthoyt@gmail.com), "
-                "no primary contact information is available."
+                (
+                    "Converted to OWL by Charles Tapley Hoyt (cthoyt@gmail.com), "
+                    "no primary contact information is available."
+                )
             ]
 
         description = ""
@@ -2616,7 +2873,8 @@ class Resource(BaseModel):
         if license_ := self.get_license():
             description += f" Licensed under {license_}."
 
-        ontology_purl = self.get_download()
+        if ontology_purl is None:
+            ontology_purl = self.get_download()
         if not ontology_purl:
             raise ValueError("no OWL nor OBO download available")
 
@@ -2679,8 +2937,8 @@ class Resource(BaseModel):
         if self.owners:
             return self.owners
         rv = []
-        for metaprefix in ["miriam"]:
-            for org in self.get_external(metaprefix).get("owners", []):
+        for metaprefix in _get_prioritized_metaprefixes(["miriam"]):
+            for org in self._get_external_value(metaprefix, "owners", []):
                 rv.append(Organization.model_validate(org))
         return rv
 
@@ -2691,6 +2949,15 @@ class Resource(BaseModel):
     def has_organization(self, reference: Reference) -> bool:
         """Check if this resource has an organization with the given ROR."""
         return any(owner.matches_reference(reference) for owner in self.get_owners())
+
+
+# the Resource model has keys that do not correspond to
+# the bioregistry prefixes, so the bioregistry prefixes
+# get encoded in the alias. map from alias back to field
+# name so we can set attributes on a resource object
+RESOURCE_ALIAS_TO_FIELD = {
+    field.alias: name for name, field in Resource.model_fields.items() if field.alias is not None
+}
 
 
 class OlsConfig(BaseModel):
@@ -2991,8 +3258,10 @@ class Registry(BaseModel):
     download: str | None = Field(
         default=None, description="A download link for the data contained in the registry"
     )
-    provider_uri_format: str | None = Field(
-        default=None, description="A URL with a $1 for a prefix to resolve in the registry"
+    uri_format: str | None = Field(
+        default=None,
+        title="URI format string",
+        description="A URL with a $1 for a prefix to resolve in the registry",
     )
     search_uri_format: str | None = Field(
         default=None,
@@ -3007,10 +3276,7 @@ class Registry(BaseModel):
         description="An optional type annotation for what kind of resolver it is (i.e., redirect or lookup)",
     )
     contact: Attributable = Field(..., description="The contact for the registry.")
-    bioregistry_prefix: str | None = Field(
-        default=None, description="The prefix for this registry in the Bioregistry"
-    )
-    logo_url: str | None = Field(
+    logo: str | None = Field(
         default=None,
         description="The URL for the logo of the resource",
     )
@@ -3022,13 +3288,18 @@ class Registry(BaseModel):
         default=None, description="A short name for the resource, e.g., for use in charts"
     )
 
+    @property
+    def logo_url(self) -> str | None:
+        """Get the logo."""
+        return self.logo
+
     def score(self) -> int | None:
         """Calculate a metadata score/goodness for this registry."""
         if self.availability is None or self.qualities is None:
             return None
         return (
             (
-                int(self.provider_uri_format is not None)
+                int(self.uri_format is not None)
                 + int(self.resolver_uri_format is not None)
                 + int(self.download is not None)
                 + int(self.contact is not None)
@@ -3037,7 +3308,15 @@ class Registry(BaseModel):
             + self.qualities.score()
         )
 
-    def get_provider_uri_prefix(self) -> str:
+    # docstr-coverage:excused `overload`
+    @overload
+    def get_provider_uri_prefix(self, *, base_url: str = ...) -> str: ...
+
+    # docstr-coverage:excused `overload`
+    @overload
+    def get_provider_uri_prefix(self, *, base_url: None = ...) -> str | None: ...
+
+    def get_provider_uri_prefix(self, *, base_url: str | None = None) -> str | None:
         """Get provider URI prefix.
 
         :returns: The URI prefix for the provider for prefixes in this registry.
@@ -3048,13 +3327,14 @@ class Registry(BaseModel):
         >>> get_registry("miriam").get_provider_uri_prefix()
         'https://registry.identifiers.org/registry/'
         >>> get_registry("n2t").get_provider_uri_prefix()
-        'https://bioregistry.io/metaregistry/n2t/resolve/'
         """
-        if self.provider_uri_format is None or not self.provider_uri_format.endswith("$1"):
-            return f"{BIOREGISTRY_REMOTE_URL}/metaregistry/{self.prefix}/resolve/"
-        return self.provider_uri_format.replace("$1", "")
+        if self.uri_format is not None and self.uri_format.endswith("$1"):
+            return self.uri_format.replace("$1", "")
+        elif base_url is not None:
+            return f"{base_url.rstrip('/')}/metaregistry/{self.prefix}/resolve/"
+        return None
 
-    def get_provider_uri_format(self, external_prefix: str) -> str | None:
+    def get_provider_url(self, external_prefix: str) -> str | None:
         """Get the provider string.
 
         :param external_prefix: The prefix used in the metaregistry
@@ -3062,19 +3342,31 @@ class Registry(BaseModel):
         :returns: The URL in the registry for the prefix, if it's able to provide one
 
         >>> from bioregistry import get_registry
-        >>> get_registry("fairsharing").get_provider_uri_format("FAIRsharing.62qk8w")
+        >>> get_registry("fairsharing").get_provider_url("FAIRsharing.62qk8w")
         'https://fairsharing.org/FAIRsharing.62qk8w'
-        >>> get_registry("miriam").get_provider_uri_format("go")
+        >>> get_registry("miriam").get_provider_url("go")
         'https://registry.identifiers.org/registry/go'
-        >>> get_registry("n2t").get_provider_uri_format("go")
-        'https://bioregistry.io/metaregistry/n2t/resolve/go'
+        >>> get_registry("n2t").get_provider_url("go")
+        'https://n2t.net/.info/go'
         """
-        return self.get_provider_uri_prefix() + external_prefix
+        if self.uri_format is not None:
+            return self.uri_format.replace("$1", external_prefix)
+        return None
 
-    def get_resolver_uri_format(self, prefix: str) -> str:
+    # docstr-coverage:excused `overload`
+    @overload
+    def get_resolver_uri_format(self, prefix: str, *, base_url: str = ...) -> str: ...
+
+    # docstr-coverage:excused `overload`
+    @overload
+    def get_resolver_uri_format(self, prefix: str, *, base_url: None = ...) -> str | None: ...
+
+    def get_resolver_uri_format(self, prefix: str, *, base_url: str | None = None) -> str | None:
         """Generate a provider URI string based on mapping through this registry's vocabulary.
 
         :param prefix: The prefix used in the metaregistry
+        :param base_url: The base URL for the running metaregistry service, such as
+            ``https://bioregistry.io``
 
         :returns: The URI format string to be used for identifiers in the semantic space
             based on this resolver or the Bioregistry's meta-resolver.
@@ -3082,16 +3374,20 @@ class Registry(BaseModel):
         >>> from bioregistry import get_registry
         >>> get_registry("miriam").get_resolver_uri_format("go")
         'https://identifiers.org/go:$1'
-        >>> get_registry("cellosaurus").get_resolver_uri_format("go")
-        'https://bioregistry.io/metaregistry/cellosaurus/go:$1'
         >>> get_registry("n2t").get_resolver_uri_format("go")
         'https://n2t.net/go:$1'
+        >>> base_url = "https://bioregistry.io"
+        >>> get_registry("cellosaurus.resource").get_resolver_uri_format("go", base_url=base_url)
+        'https://bioregistry.io/metaregistry/cellosaurus.resource/go:$1'
+        >>> get_registry("cellosaurus.resource").get_resolver_uri_format("go")
         """
-        if self.resolver_uri_format is None:
-            return f"{BIOREGISTRY_REMOTE_URL}/metaregistry/{self.prefix}/{prefix}:$1"
-        return self.resolver_uri_format.replace("$1", prefix).replace("$2", "$1")
+        if self.resolver_uri_format is not None:
+            return self.resolver_uri_format.replace("$1", prefix).replace("$2", "$1")
+        elif base_url is not None:
+            return f"{base_url.rstrip('/')}/metaregistry/{self.prefix}/{prefix}:$1"
+        return None
 
-    def resolve(self, prefix: str, identifier: str) -> str | None:
+    def resolve(self, prefix: str, identifier: str, base_url: str | None = None) -> str | None:
         """Resolve the registry-specific prefix and identifier.
 
         :param prefix: The prefix used in the metaregistry
@@ -3102,12 +3398,17 @@ class Registry(BaseModel):
         >>> from bioregistry import get_registry
         >>> get_registry("miriam").resolve("go", "0032571")
         'https://identifiers.org/go:0032571'
-        >>> get_registry("cellosaurus").resolve("go", "0032571")
-        'https://bioregistry.io/metaregistry/cellosaurus/go:0032571'
-        >>> get_registry("rrid").resolve("AB", "493771")
+        >>> base_url = "https://bioregistry.io"
+        >>> get_registry("cellosaurus.resource").resolve("go", "0032571")
+        >>> get_registry("cellosaurus.resource").resolve("go", "0032571", base_url=base_url)
+        'https://bioregistry.io/metaregistry/cellosaurus.resource/go:0032571'
+        >>> get_registry("rrid.resource").resolve("AB", "493771")
         'https://scicrunch.org/resolver/RRID:AB_493771'
         """
-        return self.get_resolver_uri_format(prefix).replace("$1", identifier)
+        uri_format = self.get_resolver_uri_format(prefix, base_url=base_url)
+        if uri_format is None:
+            return None
+        return uri_format.replace("$1", identifier)
 
     def add_triples(self, graph: rdflib.Graph) -> rdflib.term.Node:
         """Add triples to an RDF graph for this registry.
@@ -3117,29 +3418,18 @@ class Registry(BaseModel):
         :returns: The RDF node representing this registry using a Bioregistry IRI.
         """
         from rdflib import Literal
-        from rdflib.namespace import DC, FOAF, RDF, RDFS
+        from rdflib.namespace import RDF
 
-        from .constants import (
-            bioregistry_class_to_id,
-            bioregistry_metaresource,
-            bioregistry_schema,
-        )
+        from .constants import bioregistry_class_to_id, bioregistry_resource, bioregistry_schema
 
-        node = bioregistry_metaresource.term(self.prefix)
+        node = bioregistry_resource.term(self.prefix)
         graph.add((node, RDF["type"], bioregistry_class_to_id[self.__class__.__name__]))
-        graph.add((node, RDFS["label"], Literal(self.name)))
-        graph.add((node, DC.description, Literal(self.description)))
-        graph.add((node, FOAF["homepage"], Literal(self.homepage)))
-        graph.add((node, bioregistry_schema["0000005"], Literal(self.example)))
-        if self.provider_uri_format:
-            graph.add((node, bioregistry_schema["0000006"], Literal(self.provider_uri_format)))
         if self.resolver_uri_format:
             graph.add((node, bioregistry_schema["0000007"], Literal(self.resolver_uri_format)))
-        graph.add((node, bioregistry_schema["0000019"], self.contact.add_triples(graph)))
         return node
 
     def get_code_link(self) -> str | None:
-        """Get a link to the code on github that downloads this resource."""
+        """Get a link to the code on GitHub that downloads this resource."""
         path = brc.HERE.joinpath("external", self.prefix).with_suffix(".py")
         if not path.exists():
             return None
@@ -3167,7 +3457,7 @@ class Registry(BaseModel):
     @property
     def is_prefix_provider(self) -> bool:
         """Check if the registry is a prefix provider."""
-        return self.provider_uri_format is not None
+        return self.uri_format is not None
 
     def get_quality_score(self) -> int | None:
         """Get the quality score for this registry."""
@@ -3183,10 +3473,22 @@ class CollectionAnnotation(BaseModel):
 
     prefix: str
     comment: str | None = None
+    tags: Annotated[
+        list[str] | None,
+        Field(description="References to tag codes that are defined locally within a collection"),
+    ] = None
 
     def is_empty(self) -> bool:
         """Check if the collection annotation is empty."""
         return self.comment is None
+
+
+class Tag(BaseModel):
+    """A tag for a collection."""
+
+    code: str
+    name: str
+    description: str | None = None
 
 
 class Collection(BaseModel):
@@ -3227,6 +3529,12 @@ class Collection(BaseModel):
     references: list[str] | None = Field(default=None, description="URL references")
     keywords: list[str] | None = None
     mappings: list[Reference] | None = None
+    tags: Annotated[
+        list[Tag] | None,
+        Field(
+            description="Tags are defined locally in each collection and can be used to give additional context to why the resource was included, how it's used, etc. Try to avoid using tags to describe information that's already available, such as whether a resource is an ontology or whether it's first-party to the collection maintainer(s). Tagging was added in https://github.com/biopragmatics/bioregistry/pull/1958."
+        ),
+    ] = None
 
     def add_triples(self, graph: rdflib.Graph) -> None:
         """Add triples to an RDF graph for this collection.

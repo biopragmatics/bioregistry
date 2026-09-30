@@ -46,7 +46,9 @@ UNCURATABLE = {
 
 
 @adapter
-def get_rrid(*, force_download: bool = False, force_process: bool = False) -> dict[str, Record]:
+def get_rrid(
+    *, force_download: bool = False, force_process: bool = False, progress: bool = True
+) -> dict[str, Record]:
     """Get RRIDs."""
     rv = {}
     with RAW_PATH.open() as file:
@@ -105,7 +107,7 @@ def _split(s: str) -> list[str]:
 class RRIDAligner(Aligner):
     """Aligner for the RRID."""
 
-    key = "rrid"
+    key = "rrid.resource"
     getter = get_rrid
     alt_key_match = "abbreviation"
     curation_header: ClassVar[Sequence[str]] = ("name", "homepage")

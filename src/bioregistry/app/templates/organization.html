@@ -14,16 +14,16 @@
             <dt>Name</dt>
             <dd>{{ organization.name }}</dd>
             {%- if organization.ror %}
-            <dt>ROR</dt>
-            <dd>{{ organization.ror }}</dd>
+            <dt>Research Organization Registry (ROR)</dt>
+            <dd><a href="https://ror.org/{{ organization.ror }}">{{ organization.ror }}</a></dd>
             {%- endif %}
             {%- if organization.gnd %}
-            <dt>GND</dt>
-            <dd>{{ organization.gnd }}</dd>
+            <dt>Gemeinsame Normdatei (GND)</dt>
+            <dd><a href="https://d-nb.info/gnd/{{ organization.gnd }}">{{ organization.gnd }}</a></dd>
             {%- endif %}
             {%- if organization.wikidata %}
             <dt>Wikidata</dt>
-            <dd>{{ organization.wikidata }}</dd>
+            <dd><a href="http://www.wikidata.org/entity/{{ organization.wikidata }}">{{ organization.wikidata }}</a></dd>
             {%- endif %}
         </dl>
     </div>

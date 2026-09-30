@@ -32,21 +32,15 @@ class TestTSV(unittest.TestCase):
         # Validate relevant is 0 or 1
         self.assertIn(row["relevant"], ["0", "1"])
 
-        if full:
-            # Commenting out this check for now. This can be re-implemented if a need
-            # for it arises in the future
-
-            if row["relevant"] == "1":
-                prefix = row["prefix"]
-                self.assertIsNotNone(prefix, msg="prefix should be set for all relevant entries")
-                self.assertNotEqual(
-                    "", prefix, msg="prefix should not be empty for relevant entries"
-                )
-                self.assertEqual(
-                    bioregistry.normalize_prefix(prefix),
-                    prefix,
-                    msg="prefix should be standardized for relevant entries",
-                )
+        if full and row["relevant"] == "1":
+            prefix = row["prefix"]
+            self.assertIsNotNone(prefix, msg="prefix should be set for all relevant entries")
+            self.assertNotEqual("", prefix, msg="prefix should not be empty for relevant entries")
+            self.assertEqual(
+                bioregistry.normalize_prefix(prefix),
+                prefix,
+                msg="prefix should be standardized for relevant entries",
+            )
 
         # Validate relevancy_type is in relevancy_vocab
         self.assertIn(row["relevancy_type"], RELEVANCY_TYPES)

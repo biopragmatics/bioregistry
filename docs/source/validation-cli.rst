@@ -120,7 +120,6 @@ ns1      http://purls.helmholtz-metadaten.de/mwo/ unknown CURIE prefix      Cons
 ns2      http://purl.obolibrary.org/obo/chebi/    unknown CURIE prefix
 ======== ======================================== ========================= ==================================================================
 
-
 Validating Prefix Maps in LinkML
 --------------------------------
 

@@ -43,6 +43,7 @@ def import_from_linkml(url: str) -> None:
     """Get a resource from a LinkML configuration and write it to the registry.
 
     :param url: The URL to a LinkML YAML configuration file.
+
     :returns: A Bioregistry resource object
     """
     resource = get_resource_from_linkml(url)
@@ -70,7 +71,7 @@ def _fix_github(url: str) -> str:
 def _extract_repository(url: str) -> str | None:
     """Extract a GitHub repository URL from a file URL.
 
-     >>> _extract_repository(
+    >>> _extract_repository(
     ...     "https://github.com/ghga-de/ghga-metadata-schema/blob/main/src/schema/submission.yaml"
     ... )
     'https://github.com/ghga-de/ghga-metadata-schema'
@@ -85,6 +86,7 @@ def get_resource_from_linkml(url: str) -> bioregistry.Resource:
     """Get a resource from a LinkML configuration.
 
     :param url: The URL to a LinkML YAML configuration file.
+
     :returns: A Bioregistry resource object
     """
     res = requests.get(_fix_github(url), timeout=5)

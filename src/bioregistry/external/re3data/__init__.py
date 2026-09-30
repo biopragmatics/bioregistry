@@ -37,20 +37,28 @@ MANIFEST_URL = f"{BASE_URL}/api/v1/repositories"
 
 
 @adapter
-def get_re3data(force_download: bool = False, force_process: bool = False) -> dict[str, Record]:
+def get_re3data(
+    force_download: bool = False, force_process: bool = False, progress: bool = True
+) -> dict[str, Record]:
     """Get the re3data registry.
 
     This takes about 9 minutes since it has to look up each of the ~3K records with
     their own API call.
 
     :param force_download: If true, re-downloads the data
+    :param force_process: If true, re-process (but not re-download) the data
 
     :returns: The re3data pre-processed data
     """
     if PROCESSED_PATH.is_file() and not force_download and not force_process:
         return load_processed(PROCESSED_PATH)
 
-    tree = MODULE.ensure_xml(url=MANIFEST_URL, force=force_download, name="manifest.xml")
+    tree = MODULE.ensure_xml(
+        url=MANIFEST_URL,
+        force=force_download,
+        name="manifest.xml",
+        download_kwargs={"progress_bar": progress},
+    )
 
     identifier_to_doi = {}
     for repository in tree.findall("repository"):
@@ -68,12 +76,12 @@ def get_re3data(force_download: bool = False, force_process: bool = False) -> di
 
     records: dict[str, Record] = dict(
         thread_map(
-            partial(_get_record, force=force_download),
+            partial(_get_record, force=force_download, progress=progress),
             identifier_to_doi,
             unit_scale=True,
             unit="record",
             desc="Getting re3data",
-            disable=True,
+            disable=not progress,
         )
     )
 
@@ -89,9 +97,15 @@ def get_re3data(force_download: bool = False, force_process: bool = False) -> di
     return records
 
 
-def _get_record(identifier: str, force: bool) -> tuple[str, Record]:
+def _get_record(identifier: str, force: bool, progress: bool = True) -> tuple[str, Record]:
     url = f"{BASE_URL}/api/v1/repository/{identifier}"
-    tree = MODULE.ensure_xml("records", url=url, force=force, name=f"{identifier}.xml")
+    tree = MODULE.ensure_xml(
+        "records",
+        url=url,
+        force=force,
+        name=f"{identifier}.xml",
+        download_kwargs={"progress_bar": progress},
+    )
     root = tree.getroot()
     return identifier, _process_record(identifier, root[0])
 

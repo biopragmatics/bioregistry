@@ -6,7 +6,7 @@ import datetime
 import enum
 import json
 from pathlib import Path
-from typing import Annotated, Any
+from typing import Annotated, Any, Self
 
 from curies import NamableReference
 from pydantic import BaseModel, EmailStr, Field
@@ -38,7 +38,7 @@ class License(BaseModel):
     url: str | None = None
 
 
-class Status(str, enum.Enum):
+class Status(enum.StrEnum):
     """Represents the project status."""
 
     active = "active"
@@ -65,8 +65,30 @@ class Publication(BaseModel):
     biorxiv: str | None = None
     zenodo: str | None = None
 
+    @classmethod
+    def from_url(cls, url: str) -> Self:
+        """Construct from a URL."""
+        if url.startswith("https://doi.org/"):
+            return cls(doi=url.removeprefix("https://doi.org/"))
+        elif url.startswith("http://doi.org/"):
+            return cls(doi=url.removeprefix("http://doi.org/"))
+        elif url.startswith("https://dx.doi.org/"):
+            return cls(doi=url.removeprefix("https://dx.doi.org/"))
+        elif url.startswith("http://www.ncbi.nlm.nih.gov/pubmed/"):
+            return cls(pubmed=url.removeprefix("http://www.ncbi.nlm.nih.gov/pubmed/"))
+        elif url.startswith("https://www.ncbi.nlm.nih.gov/pubmed/"):
+            return cls(pubmed=url.removeprefix("https://www.ncbi.nlm.nih.gov/pubmed/"))
+        elif url.startswith("https://zenodo.org/records/"):
+            return cls(zenodo=url.removeprefix("https://zenodo.org/records/"))
+        elif url.startswith("https://arxiv.org/abs/"):
+            return cls(arxiv=url.removeprefix("https://arxiv.org/abs/"))
+        else:
+            # TODO look back for PMC
+            # tqdm.write(f'publication URL: {url}')
+            return cls(url=url)
 
-class ArtifactType(str, enum.Enum):
+
+class ArtifactType(enum.StrEnum):
     """A semantic space artifact type."""
 
     obo = "obo"

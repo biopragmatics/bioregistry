@@ -28,10 +28,10 @@ def import_bartoc() -> None:
                     (
                         resource_bartoc_id,
                         f"https://bartoc.org/node/{resource_bartoc_id}",
-                        bartoc_data[resource_bartoc_id].get("short_names"),
-                        bartoc_data[resource_bartoc_id].get("name"),
-                        bartoc_data[resource_bartoc_id].get("homepage"),
-                        bartoc_data[resource_bartoc_id].get("uri_format"),
+                        bartoc_data[resource_bartoc_id].short_names,
+                        bartoc_data[resource_bartoc_id].name,
+                        bartoc_data[resource_bartoc_id].homepage,
+                        bartoc_data[resource_bartoc_id].uri_format,
                     )
                 )
     bioregistry.manager.write_collections()

@@ -19,11 +19,11 @@ def add_provider_status_curations(url: str) -> None:
     """Add provider status curations."""
     cols = ["prefix", "example_luid", "url", "call", "date", "curator_orcid", "notes"]
     df = pd.read_csv(url, sep="\t", dtype=str)
-    for prefix, example, url, call, date, curator_orcid, notes in df[cols].values:
+    for prefix, example, row_url, call, date, curator_orcid, notes in df[cols].values:
         if pd.isna(example):
             tqdm.write(f"[{prefix}] missing example")
             continue
-        if pd.isna(url):
+        if pd.isna(row_url):
             tqdm.write(f"[{prefix}] missing url")
             continue
 
@@ -38,7 +38,7 @@ def add_provider_status_curations(url: str) -> None:
             )
             continue
 
-        uri_format = url.replace(resource_example, "$1")
+        uri_format = row_url.replace(resource_example, "$1")
 
         for provider in resource.providers:
             if provider.uri_format != uri_format:

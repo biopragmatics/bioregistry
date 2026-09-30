@@ -28,6 +28,7 @@ from bioregistry.alignment_model import (
 )
 from bioregistry.constants import RAW_DIRECTORY, URI_FORMAT_KEY
 from bioregistry.external.alignment_utils import Aligner, adapter
+from bioregistry.license_standardizer import standardize_license
 from bioregistry.parse_version_iri import parse_obo_version_iri
 from bioregistry.utils import OLSBrokenError
 
@@ -39,7 +40,6 @@ __all__ = [
 ]
 
 logger = logging.getLogger(__name__)
-
 
 DIRECTORY = Path(__file__).parent.resolve()
 RAW_PATH = RAW_DIRECTORY / "ols.json"
@@ -61,7 +61,9 @@ EBI_OLS_BASE_URL = "https://www.ebi.ac.uk/ols4/api"
 
 
 @adapter
-def get_ols(*, force_download: bool = False, force_process: bool = False) -> dict[str, Record]:
+def get_ols(
+    *, force_download: bool = False, force_process: bool = False, progress: bool = True
+) -> dict[str, Record]:
     """Get the EBI OLS registry."""
     return get_ols_base(
         force_download=force_download,
@@ -118,7 +120,8 @@ def get_ols_base(
     return processed
 
 
-def _download(base_url: str, raw_path: Path, force: bool = False) -> None:
+def _download(base_url: str, raw_path: Path, *, force: bool = False) -> None:
+    # FIXME replace with OLS Client call?
     if raw_path.is_file() and not force:
         return
     data = requests.get(f"{base_url}/ontologies", timeout=15, params={"size": 1000}).json()
@@ -135,7 +138,7 @@ def _download(base_url: str, raw_path: Path, force: bool = False) -> None:
     raw_path.write_text(json.dumps(data, indent=2, sort_keys=True, ensure_ascii=False))
 
 
-class VersionType(str, enum.Enum):
+class VersionType(enum.StrEnum):
     """Types for OLS ontology versions."""
 
     date = "date"
@@ -170,15 +173,33 @@ def _get_contact(ols_id: str, config: dict[str, Any]) -> Person | None:
     return Person(email=email, name=name or None)
 
 
+UNKNOWN_LICENSE_STRINGS = {
+    "unspecified",
+    "unkown",
+    "unknown",
+    "public on github",
+    "Public",
+    "freely available",
+}
+
+
 def _get_license(ols_id: str, config: dict[str, Any]) -> License | None:
-    license_value: str | None = (config.get("annotations") or {}).get("license", [None])[0]
-    if license_value == "Unspecified":
-        logger.info("[%s] unspecified license in OLS. Contact: %s", ols_id, config["mailingList"])
+    license_dict = config.get("license")
+    if not license_dict:
+        logger.debug(f"[{ols_id}] no license")
         return None
-    if not license_value:
-        logger.info("[%s] missing license in OLS. Contact: %s", ols_id, config["mailingList"])
+
+    url = license_dict["url"]
+    if url is None and license_dict["label"] in UNKNOWN_LICENSE_STRINGS:
         return None
-    return License(name=license_value)
+
+    if spdx_id := standardize_license(url, passthrough=False):
+        return License(spdx=spdx_id, url=url, name=license_dict["label"])
+
+    if spdx_id := standardize_license(license_dict["label"], passthrough=False):
+        return License(spdx=spdx_id, url=url)
+
+    return None
 
 
 def _get_version(
@@ -308,11 +329,11 @@ def _process(
     download = _clean_url(config["fileLocation"])
     if download is None:
         pass
-    elif download.endswith(".obo") or download.endswith(".obo.gz"):
+    elif download.endswith((".obo", ".obo.gz")):
         rv.setdefault("artifacts", []).append(Artifact(type=ArtifactType.obo, url=download))
-    elif download.endswith(".owl") or download.endswith(".owl.gz"):
+    elif download.endswith((".owl", ".owl.gz")):
         rv.setdefault("artifacts", []).append(Artifact(type=ArtifactType.owl, url=download))
-    elif download.endswith(".rdf") or download.endswith(".ttl") or download.endswith(".ttl.gz"):
+    elif download.endswith((".rdf", ".ttl", ".ttl.gz")):
         rv.setdefault("artifacts", []).append(Artifact(type=ArtifactType.rdf, url=download))
     elif download.endswith(".xml"):
         rv.setdefault("artifacts", []).append(Artifact(type=ArtifactType.xml, url=download))
