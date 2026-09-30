@@ -181806,7 +181806,10 @@
       "P08069#PRO_0000016681"
     ],
     "example_extras": [
-      "Q8WZ42"
+      "Q8WZ42",
+      "A2BC19",
+      "P12345",
+      "A0A023GPI8"
     ],
     "fairsharing": {
       "description": "The taxonomy database that is maintained by the UniProt group is based on the NCBI taxonomy database, which is supplemented with data specific to the UniProt Knowledgebase (UniProtKB). While the NCBI taxonomy is updated daily to be in sync with GenBank/EMBL-Bank/DDBJ, the UniProt taxonomy is updated only at UniProt releases to be in sync with UniProtKB. It may therefore happen that for the time period of a UniProt release, you can find new taxa at the NCBI that are not yet in UniProt (and vice versa for deleted taxa). Species with manually annotated and reviewed protein sequences in the Swiss-Prot section of UniProtKB are named according to UniProt nomenclature. In particular, we have adopted a systematic convention for naming viral and bacterial strains and isolates.",
@@ -181920,7 +181923,7 @@
         "ror": "017yq1n41"
       }
     ],
-    "pattern": "^([A-N,R-Z][0-9]([A-Z][A-Z, 0-9][A-Z, 0-9][0-9]){1,2})|([O,P,Q][0-9][A-Z, 0-9][A-Z, 0-9][A-Z, 0-9][0-9])$",
+    "pattern": "^([OPQ]\\d[A-Z0-9]{3}\\d|[A-NR-Z]\\d([A-Z][A-Z0-9]{2}\\d){1,2})$",
     "prefixcommons": {
       "description": "UniProtKB consists of the manually annotated and reviewed Swiss-Prot, the automatically annotated TrEMBL, and the PIR protein databases.",
       "examples": [
@@ -182122,6 +182125,9 @@
         "doi": "10.17616/R3NK9Z"
       }
     },
+    "references": [
+      "https://www.uniprot.org/help/accession_numbers"
+    ],
     "synonyms": [
       "SwissProt",
       "UP",
