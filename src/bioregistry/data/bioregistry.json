@@ -15635,7 +15635,10 @@
       "orcid": "0000-0003-4423-4370"
     },
     "description": "This ontology contains terms for defining a context-free grammar. The basic property is mustBeOneSequence which is equivalent to the expression of a production in the original simple BNF. Rules can be used to convert into and out of shorthand forms such as optional, repeating and token-separated list forms. Terminals are described either as a string, which is represented by itself, or are defined by a regular expression using cfg:matches.",
-    "download_rdf": "https://www.w3.org/2000/10/swap/grammar/bnf",
+    "download_rdf": {
+      "rdf_format": "xml",
+      "url": "https://www.w3.org/2000/10/swap/grammar/bnf"
+    },
     "example": "canStartWith",
     "github_request_issue": 2016,
     "homepage": "https://www.w3.org/Addressing/BNF.html",
@@ -19219,7 +19222,10 @@
       "orcid": "0000-0003-4423-4370"
     },
     "description": "The Creative Commons Rights Expression Language (ccREL) lets you describe copyright licenses in RDF. For more information on describing licenses in RDF and attaching those descriptions to digital works, see [ccREL](https://wiki.creativecommons.org/CC_REL) in the [Creative Commons wiki](https://wiki.creativecommons.org/).",
-    "download_rdf": "https://creativecommons.org/schema.rdf",
+    "download_rdf": {
+      "rdf_format": "xml",
+      "url": "https://creativecommons.org/schema.rdf"
+    },
     "example": "Work",
     "homepage": "https://creativecommons.org/ns",
     "license": "CC0-1.0",
@@ -19274,7 +19280,10 @@
     },
     "deprecated": true,
     "description": "A precursor that was later replaced with the Creative Commons Rights Expression Language (ccREL)",
-    "download_rdf": "https://web.resource.org/cc/schema.rdf",
+    "download_rdf": {
+      "rdf_format": "xml",
+      "url": "https://web.resource.org/cc/schema.rdf"
+    },
     "example": "License",
     "github_request_issue": 1639,
     "homepage": "https://web.resource.org/cc",
@@ -37895,6 +37904,10 @@
     },
     "deprecated": true,
     "description": "Metadata terms maintained by the Dublin Core Metadata Initiative, including properties, vocabulary encoding schemes, syntax encoding schemes, and classes.\n\n**Deprecation Notice**: While the `/elements/1.1/` namespace will be supported indefinitely, DCMI gently encourages use of the `/terms/` namespace (i.e., `dcterms`) ([source](https://www.dublincore.org/specifications/dublin-core/dcmi-terms/#section-3)).",
+    "download_rdf": {
+      "rdf_format": "xml",
+      "url": "https://www.dublincore.org/specifications/dublin-core/dcmi-terms/dublin_core_elements.rdf"
+    },
     "example": "contributor",
     "fairsharing": {
       "description": "The Dublin Metadata Element Set, which is often called Dublin Core (DC), is a standardized metadata scheme for description of any kind of resource such as documents in electronic and non-electronic form, digital materials (such as video, sound, images, etc) and composite media like web pages. Dublin Core Metadata may be used for multiple purposes, from simple resource description, to combining metadata vocabularies of different metadata standards, to providing interoperability for metadata vocabularies in the Linked Data cloud and Semantic Web implementations. Please note that this version of the specification for the Dublin Core Element Set 1.1 is somewhat out of date, although it is not officially deprecated. The DCMI Metadata Terms specification is linked to this record and is the current documentation that should be used for the Dublin Core Element Set 1.1. This document, an excerpt from the more comprehensive document \"DCMI Metadata Terms\" [DCTERMS] provides an abbreviated reference version of the fifteen element descriptions that have been formally endorsed in the following standards: ISO Standard 15836:2009 of February 2009 [ISO15836], ANSI/NISO Standard Z39.85-2012 of February 2013 [NISOZ3985], and IETF RFC 5013 of August 2007 [RFC5013].",
@@ -40444,7 +40457,10 @@
   },
   "destatis.subject": {
     "description": "A vocabulary of university course subjects",
-    "download_skos": "https://raw.githubusercontent.com/VIVO-DE/destatis_faecherklassifikation/master/faecherklassifikation.rdf",
+    "download_skos": {
+      "rdf_format": "xml",
+      "url": "https://raw.githubusercontent.com/VIVO-DE/destatis_faecherklassifikation/master/faecherklassifikation.rdf"
+    },
     "example": "01",
     "homepage": "https://github.com/VIVO-DE/destatis_faecherklassifikation",
     "keywords": [
@@ -44267,6 +44283,10 @@
       }
     ],
     "description": "The Data Privacy Vocabulary provides an ontology (classes and properties) and taxonomies of concepts to represent information regarding how personal data is processed in the form of an ontology or a knowledge graph.",
+    "download_rdf": {
+      "rdf_format": "xml",
+      "url": "https://w3c-cg.github.io/dpv/2.3/dpv/dpv.rdf"
+    },
     "example": "Duration",
     "github_request_issue": 1241,
     "homepage": "https://w3c.github.io/dpv/2.0/dpv",
@@ -54069,6 +54089,9 @@
       "version": "2026-06-05"
     },
     "pattern": "^\\d{7}$",
+    "synonyms": [
+      "ENSGLOSSARY"
+    ],
     "uri_format": "http://ensembl.org/glossary/ENSGLOSSARY_$1"
   },
   "envipath": {
@@ -62978,7 +63001,10 @@
       "orcid": "0000-0003-4423-4370"
     },
     "description": "This is the element set of native RDF classes and properties described in the current text (Feb 2009) of the Functional Requirements for Bibliographic Records (FRBR) entity-relationship model. (from https://www.iflastandards.info/fr/frbr/frbrer.html)",
-    "download_rdf": "http://iflastandards.info/ns/fr/frbr/frbrer.jsonld",
+    "download_rdf": {
+      "rdf_format": "json-ld",
+      "url": "http://iflastandards.info/ns/fr/frbr/frbrer.jsonld"
+    },
     "example": "1001",
     "homepage": "https://www.iflastandards.info/fr/frbr/frbrer",
     "lov": {
@@ -80987,7 +81013,10 @@
       "orcid": "0000-0003-4423-4370"
     },
     "description": "A vocabulary for calendar events and related objects",
-    "download_rdf": "https://www.w3.org/2002/12/cal/ical",
+    "download_rdf": {
+      "rdf_format": "shex",
+      "url": "https://www.w3.org/2002/12/cal/ical"
+    },
     "example": "Vevent",
     "github_request_issue": 2016,
     "homepage": "https://www.w3.org/2002/12/cal",
@@ -81506,6 +81535,12 @@
     },
     "name": "International Classification of Diseases, 10th Revision, Procedure Coding System",
     "part_of_database": "icd",
+    "providers": [
+      {
+        "code": "bioportal.purl",
+        "uri_format": "http://purl.bioontology.org/ontology/ICD10PCS/$1"
+      }
+    ],
     "uri_format": "https://www.findacode.com/code.php?set=ICD10PCS&c=$1",
     "wikidata.property": {
       "description": "identifier in the ICD-10-PCS (Procedure Coding System, International Classification of Diseases, 10th revision)",
@@ -81897,6 +81932,12 @@
     "name": "International Classification of Diseases, 9th Revision, Clinical Modification",
     "part_of_database": "icd",
     "pattern": "^([\\dA-Z]\\d{2}(\\.\\d{1,3}|))|(\\d{2}(\\.\\d{1,2}|))$",
+    "providers": [
+      {
+        "code": "bioportal.purl",
+        "uri_format": "http://purl.bioontology.org/ontology/ICD9CM/$1"
+      }
+    ],
     "references": [
       "https://www.who.int/about/policies/publishing/copyright"
     ],
@@ -84811,6 +84852,10 @@
   },
   "iirds.core": {
     "description": "An ontology encoding the core metadata based on the Intelligent Information Request and Delivery (iiRDS) standard",
+    "download_rdf": {
+      "rdf_format": "xml",
+      "url": "https://raw.githubusercontent.com/iirds-consortium/models/main/iirds-core.rdf"
+    },
     "example": "Action",
     "homepage": "https://github.com/iirds-consortium/models",
     "license": "CC-BY-ND-4.0",
@@ -84846,6 +84891,10 @@
   },
   "iirds.mch": {
     "description": "An ontology encoding machinery based on the Intelligent Information Request and Delivery (iiRDS) standard",
+    "download_rdf": {
+      "rdf_format": "xml",
+      "url": "https://raw.githubusercontent.com/iirds-consortium/models/main/iirds-machinery.rdf"
+    },
     "example": "ConsumableSupply",
     "homepage": "https://github.com/iirds-consortium/models",
     "license": "CC-BY-ND-4.0",
@@ -84881,6 +84930,10 @@
   },
   "iirds.sft": {
     "description": "An ontology encoding software based on the Intelligent Information Request and Delivery (iiRDS) standard",
+    "download_rdf": {
+      "rdf_format": "xml",
+      "url": "https://raw.githubusercontent.com/iirds-consortium/models/main/iirds-software.rdf"
+    },
     "example": "iirdsSoftwareDomainEntity",
     "homepage": "https://github.com/iirds-consortium/models",
     "license": "CC-BY-ND-4.0",
@@ -86634,6 +86687,10 @@
     "uri_format": "http://research.bmh.manchester.ac.uk/informall/allergenic-food/?FoodId=$1"
   },
   "infosecsos": {
+    "download_rdf": {
+      "rdf_format": "xml",
+      "url": "https://raw.githubusercontent.com/rmbelmont/InfoSecSoS_Ontology/main/InfoSecSoS.rdf"
+    },
     "example": "Accept",
     "license": "CC-BY-4.0",
     "mappings": {
@@ -87613,7 +87670,10 @@
       "orcid": "0000-0003-4423-4370"
     },
     "description": "The INSPIRE theme register contains all spatial data themes, as defined in the Annexes of the INSPIRE Directive ( Directive 2007/2/EC of the European Parliament and of the Council of 14 March 2007 establishing an Infrastructure for Spatial Information in the European Community (INSPIRE)). The descriptions of the themes are based on version 3.0 of the \"Definition of Annex Themes and Scope (D 2.3)\" by the data specifications drafting team and subsequent updates by the INSPIRE Thematic Working Groups (TWGs). (from homepage)",
-    "download_rdf": "http://inspire.ec.europa.eu/theme/theme.en.rdf",
+    "download_rdf": {
+      "rdf_format": "xml",
+      "url": "http://inspire.ec.europa.eu/theme/theme.en.rdf"
+    },
     "example": "mr",
     "homepage": "https://inspire.ec.europa.eu/theme",
     "name": "INSPIRE theme register",
@@ -96232,7 +96292,10 @@
       "name": "Charles Tapley Hoyt",
       "orcid": "0000-0003-4423-4370"
     },
-    "download_rdf": "http://id.loc.gov/vocabulary/carriers.rdf",
+    "download_rdf": {
+      "rdf_format": "xml",
+      "url": "http://id.loc.gov/vocabulary/carriers.rdf"
+    },
     "example": "sd",
     "github_request_issue": 1980,
     "mappings": {
@@ -96254,7 +96317,10 @@
       "name": "Charles Tapley Hoyt",
       "orcid": "0000-0003-4423-4370"
     },
-    "download_rdf": "http://id.loc.gov/vocabulary/classSchemes.rdf",
+    "download_rdf": {
+      "rdf_format": "xml",
+      "url": "http://id.loc.gov/vocabulary/classSchemes.rdf"
+    },
     "example": "acmccs",
     "github_request_issue": 1980,
     "mappings": {
@@ -96276,7 +96342,10 @@
       "name": "Charles Tapley Hoyt",
       "orcid": "0000-0003-4423-4370"
     },
-    "download_rdf": "http://id.loc.gov/vocabulary/contentTypes.rdf",
+    "download_rdf": {
+      "rdf_format": "xml",
+      "url": "http://id.loc.gov/vocabulary/contentTypes.rdf"
+    },
     "example": "crm",
     "github_request_issue": 1980,
     "mappings": {
@@ -96298,7 +96367,10 @@
       "name": "Charles Tapley Hoyt",
       "orcid": "0000-0003-4423-4370"
     },
-    "download_rdf": "http://id.loc.gov/vocabulary/countries.rdf",
+    "download_rdf": {
+      "rdf_format": "xml",
+      "url": "http://id.loc.gov/vocabulary/countries.rdf"
+    },
     "example": "aj",
     "github_request_issue": 1980,
     "mappings": {
@@ -96406,7 +96478,10 @@
       "name": "Charles Tapley Hoyt",
       "orcid": "0000-0003-4423-4370"
     },
-    "download_rdf": "http://id.loc.gov/vocabulary/descriptionConventions.rdf",
+    "download_rdf": {
+      "rdf_format": "xml",
+      "url": "http://id.loc.gov/vocabulary/descriptionConventions.rdf"
+    },
     "example": "amim",
     "github_request_issue": 1980,
     "homepage": "http://id.loc.gov/vocabulary/descriptionConventions",
@@ -96429,7 +96504,10 @@
       "name": "Charles Tapley Hoyt",
       "orcid": "0000-0003-4423-4370"
     },
-    "download_rdf": "http://id.loc.gov/vocabulary/ethnographicTerms.rdf",
+    "download_rdf": {
+      "rdf_format": "xml",
+      "url": "http://id.loc.gov/vocabulary/ethnographicTerms.rdf"
+    },
     "example": "afset006116",
     "github_request_issue": 1980,
     "homepage": "http://id.loc.gov/vocabulary/ethnographicTerms",
@@ -96485,7 +96563,10 @@
       "name": "Charles Tapley Hoyt",
       "orcid": "0000-0003-4423-4370"
     },
-    "download_rdf": "http://id.loc.gov/vocabulary/genreFormSchemes.rdf",
+    "download_rdf": {
+      "rdf_format": "xml",
+      "url": "http://id.loc.gov/vocabulary/genreFormSchemes.rdf"
+    },
     "example": "coarrt",
     "github_request_issue": 1980,
     "homepage": "http://id.loc.gov/vocabulary/genreFormSchemes",
@@ -96524,7 +96605,10 @@
       "orcid": "0000-0003-4423-4370"
     },
     "description": "The Thesaurus for Graphic Materials is a tool for indexing visual materials by subject and by genre/format. The thesaurus includes more than 7,000 subject terms and 650 genre/format terms to index types of photographs, prints, design drawings, ephemera, and other pictures. In 2007, the subject and genre/format vocabularies, previously maintained separately, were merged into a single list and migrated to new software, MultiTes. New terms are added regularly. TGM is searchable through the Prints and Photographs Online Catalog (PPOC). For questions about the thesaurus, contact TGM editors at: tgmed@loc.gov.  (from homepage)",
-    "download_rdf": "http://id.loc.gov/vocabulary/graphicMaterials.rdf",
+    "download_rdf": {
+      "rdf_format": "xml",
+      "url": "http://id.loc.gov/vocabulary/graphicMaterials.rdf"
+    },
     "example": "tgm000027",
     "github_request_issue": 1980,
     "homepage": "https://id.loc.gov/vocabulary/graphicMaterials",
@@ -96554,7 +96638,10 @@
       "name": "Charles Tapley Hoyt",
       "orcid": "0000-0003-4423-4370"
     },
-    "download_rdf": "http://id.loc.gov/vocabulary/marcgt.rdf",
+    "download_rdf": {
+      "rdf_format": "xml",
+      "url": "http://id.loc.gov/vocabulary/marcgt.rdf"
+    },
     "example": "boo",
     "github_request_issue": 1980,
     "mappings": {
@@ -96576,7 +96663,10 @@
       "name": "Charles Tapley Hoyt",
       "orcid": "0000-0003-4423-4370"
     },
-    "download_rdf": "http://id.loc.gov/vocabulary/mediaTypes.rdf",
+    "download_rdf": {
+      "rdf_format": "xml",
+      "url": "http://id.loc.gov/vocabulary/mediaTypes.rdf"
+    },
     "example": "z",
     "github_request_issue": 1980,
     "mappings": {
@@ -96598,7 +96688,10 @@
       "name": "Charles Tapley Hoyt",
       "orcid": "0000-0003-4423-4370"
     },
-    "download_rdf": "http://id.loc.gov/vocabulary/menclvl.rdf",
+    "download_rdf": {
+      "rdf_format": "xml",
+      "url": "http://id.loc.gov/vocabulary/menclvl.rdf"
+    },
     "example": "5",
     "github_request_issue": 1980,
     "mappings": {
@@ -96620,7 +96713,10 @@
       "name": "Charles Tapley Hoyt",
       "orcid": "0000-0003-4423-4370"
     },
-    "download_rdf": "http://id.loc.gov/vocabulary/mfiletype.rdf",
+    "download_rdf": {
+      "rdf_format": "xml",
+      "url": "http://id.loc.gov/vocabulary/mfiletype.rdf"
+    },
     "example": "program",
     "github_request_issue": 1980,
     "mappings": {
@@ -96642,7 +96738,10 @@
       "name": "Charles Tapley Hoyt",
       "orcid": "0000-0003-4423-4370"
     },
-    "download_rdf": "http://id.loc.gov/vocabulary/millus.rdf",
+    "download_rdf": {
+      "rdf_format": "xml",
+      "url": "http://id.loc.gov/vocabulary/millus.rdf"
+    },
     "example": "chr",
     "github_request_issue": 1980,
     "mappings": {
@@ -96664,7 +96763,10 @@
       "name": "Charles Tapley Hoyt",
       "orcid": "0000-0003-4423-4370"
     },
-    "download_rdf": "http://id.loc.gov/vocabulary/mprojection.rdf",
+    "download_rdf": {
+      "rdf_format": "xml",
+      "url": "http://id.loc.gov/vocabulary/mprojection.rdf"
+    },
     "example": "ad",
     "github_request_issue": 1980,
     "mappings": {
@@ -96686,7 +96788,10 @@
       "name": "Charles Tapley Hoyt",
       "orcid": "0000-0003-4423-4370"
     },
-    "download_rdf": "http://id.loc.gov/vocabulary/mvidformat.rdf",
+    "download_rdf": {
+      "rdf_format": "xml",
+      "url": "http://id.loc.gov/vocabulary/mvidformat.rdf"
+    },
     "example": "betasp",
     "github_request_issue": 1980,
     "mappings": {
@@ -96726,7 +96831,10 @@
       "name": "Charles Tapley Hoyt",
       "orcid": "0000-0003-4423-4370"
     },
-    "download_rdf": "http://id.loc.gov/vocabulary/organizations.rdf",
+    "download_rdf": {
+      "rdf_format": "xml",
+      "url": "http://id.loc.gov/vocabulary/organizations.rdf"
+    },
     "example": "20512",
     "github_request_issue": 1980,
     "mappings": {
@@ -96748,7 +96856,10 @@
       "name": "Charles Tapley Hoyt",
       "orcid": "0000-0003-4423-4370"
     },
-    "download_rdf": "http://id.loc.gov/vocabulary/preservation.rdf",
+    "download_rdf": {
+      "rdf_format": "xml",
+      "url": "http://id.loc.gov/vocabulary/preservation.rdf"
+    },
     "example": "contentLocationType",
     "github_request_issue": 1980,
     "mappings": {
@@ -96816,7 +96927,10 @@
       }
     ],
     "description": "A controlled vocabulary of media resources, such as audio, cartographic, manuscript, multimedia, etc.",
-    "download_rdf": "http://id.loc.gov/vocabulary/resourceTypes.rdf",
+    "download_rdf": {
+      "rdf_format": "xml",
+      "url": "http://id.loc.gov/vocabulary/resourceTypes.rdf"
+    },
     "download_skos": "http://id.loc.gov/vocabulary/resourceTypes.skos.rdf",
     "example": "dig",
     "homepage": "https://id.loc.gov/vocabulary/resourceTypes.html",
@@ -96840,7 +96954,10 @@
       "name": "Charles Tapley Hoyt",
       "orcid": "0000-0003-4423-4370"
     },
-    "download_rdf": "http://id.loc.gov/vocabulary/subjectSchemes.rdf",
+    "download_rdf": {
+      "rdf_format": "xml",
+      "url": "http://id.loc.gov/vocabulary/subjectSchemes.rdf"
+    },
     "example": "agrifors",
     "github_request_issue": 1980,
     "mappings": {
@@ -98945,7 +99062,10 @@
       "orcid": "0000-0003-4423-4370"
     },
     "description": "MARC List for Languages provides three-character lowercase alphabetic strings that serve as the identifiers of languages and language groups. The codes are usually based on the first three letters of the English form or, in some cases, vernacular form of the corresponding language name. The codes are varied where necessary to resolve conflicts and are not intended to be abbreviations of a language name. When the name of a language is changed in the list, the original code is generally retained. The codes in this list are equivalent to those of ISO 639-2 (Bibliographic) codes and some codes from ISO 639-5, although the language name labels may differ. They are linked to the equivalent codes in ISO 639-2 and ISO 639-5 and the corresponding two-character codes in ISO 639-1. The list contains over 480 discrete codes. It is also searchable at: MARC Code List for Languages.",
-    "download_skos": "https://id.loc.gov/vocabulary/languages.skos.rdf",
+    "download_skos": {
+      "rdf_format": "xml",
+      "url": "https://id.loc.gov/vocabulary/languages.skos.rdf"
+    },
     "example": "amh",
     "homepage": "https://id.loc.gov/vocabulary/languages.html",
     "name": "Machine-readable Cataloging (MARC) List for Languages",
@@ -144573,7 +144693,10 @@
       "orcid": "0000-0003-4423-4370"
     },
     "description": "This specification contains a framework for representing pointers - entities that permit identifying a portion or segment of a piece of content - making use of the Resource Description Framework (RDF). It also describes a number of specific types of pointers that permit portions of a document to be referred to in different ways. When referring to a specific part of, say, a piece of web content, it is useful to be able to have a consistent manner by which to refer to a particular segment of a web document, to have a variety of ways by which to refer to that same segment, and to make the reference robust in the face of changes to that document. This specification is part of the Evaluation And Report Language (EARL) but can be reused in other contexts too. [from homepage]",
-    "download_rdf": "https://www.w3.org/2009/pointers",
+    "download_rdf": {
+      "rdf_format": "xml",
+      "url": "https://www.w3.org/2009/pointers"
+    },
     "example": "Pointer",
     "homepage": "https://www.w3.org/TR/Pointers-in-RDF",
     "name": "Pointer Methods in RDF",
@@ -154534,6 +154657,7 @@
     }
   },
   "sargon": {
+    "comment": "Classes appear in https://sargon-n5geh.netlify.app/ontology/1.0/classes/$1",
     "example": "AC-DC",
     "license": "CC-BY-4.0",
     "mappings": {
@@ -159999,7 +160123,10 @@
       "orcid": "0000-0003-4423-4370"
     },
     "description": "An ontology of predicates for actions in SIOC",
-    "download_rdf": "http://rdfs.org/sioc/actions#",
+    "download_rdf": {
+      "rdf_format": "xml",
+      "url": "http://rdfs.org/sioc/actions"
+    },
     "example": "DigitalArtifact",
     "homepage": "http://rdfs.org/sioc/spec",
     "license": "CC-BY-1.0",
@@ -160105,7 +160232,10 @@
       "orcid": "0000-0003-4423-4370"
     },
     "description": "Extends the SIOC Core Ontology (Semantically-Interlinked Online Communities) by defining subclasses and subproperties of SIOC terms.",
-    "download_rdf": "http://rdfs.org/sioc/types#",
+    "download_rdf": {
+      "rdf_format": "xml",
+      "url": "http://rdfs.org/sioc/types"
+    },
     "example": "AddressBook",
     "homepage": "http://rdfs.org/sioc/spec",
     "license": "CC-BY-1.0",
@@ -179486,7 +179616,10 @@
         "wikidata": "Q24254757"
       }
     },
-    "download_skos": "https://raw.githubusercontent.com/astrothesaurus/UAT/master/UAT.rdf",
+    "download_skos": {
+      "rdf_format": "xml",
+      "url": "https://raw.githubusercontent.com/astrothesaurus/UAT/master/UAT.rdf"
+    },
     "example": "0",
     "fairsharing": {
       "contact": {
