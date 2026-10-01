@@ -305,11 +305,7 @@ def validate_identifiers(
         invalid_df = df[~idx]
     """
     column = _norm_column(df, column)
-    if (prefix_column is None and prefix is None) or (
-        prefix_column is not None and prefix is not None
-    ):
-        raise PrefixLocationError
-    elif prefix is not None:
+    if prefix is not None:
         return _help_validate_identifiers(df, column, prefix)
     elif prefix_column is not None:
         prefix_column = _norm_column(df, prefix_column)
@@ -346,7 +342,7 @@ def validate_identifiers(
             ),
         )
     else:
-        raise RuntimeError
+        raise PrefixLocationError
     if target_column:
         df[target_column] = results
     return results
