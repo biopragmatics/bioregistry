@@ -37,7 +37,7 @@ def _resource_from_row(row: dict[str, Any]) -> Resource:
     for key, value in row.items():
         if pd.isna(value):
             continue
-        key = key.split(" ")[0]  # get rid of all of the "(optional)" labels
+        key = key.split(" ")[0]  # get rid of all the "(optional)" labels
         subkeys = key.split("_")
         if subkeys[0] in NESTED:
             k1, k2 = subkeys
@@ -59,7 +59,7 @@ def _resource_from_row(row: dict[str, Any]) -> Resource:
 
 def _bulk_import_df(df: pd.DataFrame) -> None:
     for _, row in df.iterrows():
-        resource = _resource_from_row(row.to_dict())  # type:ignore[arg-type]
+        resource = _resource_from_row(row.to_dict())
         try:
             add_resource(resource)
         except KeyError as e:
@@ -72,7 +72,7 @@ def _bulk_import_df(df: pd.DataFrame) -> None:
 @click.option("--google-sheet-gid", type=int, default=0)
 @click.option("--path")
 def main(google_sheet: str | None, google_sheet_gid: int, path: str | None) -> None:
-    """Import prefixes from a google sheet in bulk."""
+    """Import prefixes from a Google Sheet in bulk."""
     # google_sheet = "10MPt-H6My33mOa1V_VkLh4YG8609N7B_Dey0CBnfTL4"
     if google_sheet:
         url = f"https://docs.google.com/spreadsheets/d/{google_sheet}/export?format=tsv&gid={google_sheet_gid}"

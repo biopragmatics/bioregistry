@@ -48,8 +48,6 @@ __all__ = [
 
 logger = logging.getLogger(__name__)
 
-X = TypeVar("X")
-
 
 class PrefixLocationError(ValueError):
     """Raised when not exactly one of prefix and prefix_column were given."""
@@ -480,13 +478,16 @@ def identifiers_to_iris(
         raise PrefixLocationError
 
 
+X = TypeVar("X", str, bool)
+
+
 def _multi_column_map(
     df: pd.DataFrame,
     columns: list[str],
     func: Callable[..., X],
     *,
     use_tqdm: bool = False,
-) -> pd.Series[X]:  # type:ignore[type-var]
+) -> pd.Series[X]:
     rows = df[columns].values
     return pd.Series(
         [
