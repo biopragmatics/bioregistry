@@ -418,7 +418,7 @@ def identifiers_to_curies(
             df, [prefix_column, column], bioregistry.curie_to_str, use_tqdm=use_tqdm
         )
     else:
-        raise
+        raise ValueError("need to pass either prefix or prefix_column")
 
 
 def identifiers_to_iris(
