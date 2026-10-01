@@ -1,13 +1,11 @@
 """Acquisition, processing, and alignment of external registries."""
 
-from collections.abc import Callable
-from typing import Any
-
 from .aberowl import get_aberowl
+from .alignment_utils import Getter
 from .bartoc import get_bartoc
 from .biocontext import get_biocontext
 from .biolink import get_biolink
-from .bioportal import get_agroportal, get_bioportal, get_ecoportal
+from .bioportal import get_agroportal, get_biodivportal, get_bioportal, get_ecoportal
 from .cellosaurus import get_cellosaurus
 from .cheminf import get_cheminf
 from .cropoct import get_cropoct
@@ -22,6 +20,7 @@ from .n2t import get_n2t
 from .ncbi import get_ncbi
 from .obofoundry import get_obofoundry
 from .ols import get_ols
+from .ols.tib import get_tib_ts
 from .ontobee import get_ontobee
 from .pathguide import get_pathguide
 from .prefixcommons import get_prefixcommons
@@ -37,6 +36,7 @@ __all__ = [
     "get_bartoc",
     # Getter functions
     "get_biocontext",
+    "get_biodivportal",
     "get_biolink",
     "get_bioportal",
     "get_cellosaurus",
@@ -57,13 +57,15 @@ __all__ = [
     "get_prefixcommons",
     "get_re3data",
     "get_rrid",
+    "get_tib_ts",
     "get_togoid",
     "get_uniprot",
     "get_wikidata",
     "get_zazuko",
 ]
 
-GETTERS: list[tuple[str, str, Callable[..., dict[str, dict[str, Any]]]]] = [
+# FIXME replace this with combination of Aligner lookup and metaregistry lookup
+GETTERS: list[tuple[str, str, Getter]] = [
     ("obofoundry", "OBO", get_obofoundry),
     ("ols", "OLS", get_ols),
     ("miriam", "MIRIAM", get_miriam),
@@ -94,4 +96,6 @@ GETTERS: list[tuple[str, str, Callable[..., dict[str, dict[str, Any]]]]] = [
     ("togoid", "TogoID", get_togoid),
     ("zazuko", "Zazuko", get_zazuko),
     ("rrid", "RRID", get_rrid),
+    ("tib", "TIB TS", get_tib_ts),
+    ("biodivportal", "Biodiv Portal", get_biodivportal),
 ]

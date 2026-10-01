@@ -102,3 +102,19 @@ def validate_virtuoso(
         url, strict=not relax, use_preferred=use_preferred, context=context
     )
     click_write_messages(messages, tablefmt=tablefmt)
+
+
+@validate.command(name="linkml")
+@click.argument("url")
+@RELAX_OPTION
+@CONTEXT_OPTION
+@PREFERRED_OPTION
+@FORMAT_OPTION
+def validate_linkml(
+    url: str, relax: bool, use_preferred: bool, context: str | None, tablefmt: str | None
+) -> None:
+    """Validate prefixes in a LinkMK YAML configuration."""
+    from .utils import click_write_messages, validate_linkml
+
+    messages = validate_linkml(url, strict=not relax, use_preferred=use_preferred, context=context)
+    click_write_messages(messages, tablefmt=tablefmt)

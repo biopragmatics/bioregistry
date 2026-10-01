@@ -10,7 +10,7 @@ from more_click import verbose_option
 
 import bioregistry
 import bioregistry.version
-from bioregistry import manager
+from bioregistry import Manager
 from bioregistry.constants import NDEX_UUID
 
 if TYPE_CHECKING:
@@ -18,7 +18,7 @@ if TYPE_CHECKING:
 
 
 @click.command()
-@verbose_option  # type:ignore
+@verbose_option
 def main() -> None:
     """Upload the Bioregistry KG to NDEx."""
     try:
@@ -29,7 +29,7 @@ def main() -> None:
         click.echo(f"Uploaded to NDEx. See: https://bioregistry.io/ndex:{NDEX_UUID}")
 
 
-def upload() -> None:
+def upload(manager: Manager | None = None) -> None:
     """Generate a CX graph and upload to NDEx."""
     from ndex2 import NiceCXBuilder
 
@@ -52,13 +52,15 @@ def upload() -> None:
         }
     )
 
-    metaregistry = bioregistry.read_metaregistry()
-    registry = bioregistry.read_registry()
+    if manager is None:
+        manager = Manager()
 
-    registry_nodes = {metaprefix: make_registry_node(cx, metaprefix) for metaprefix in metaregistry}
-    resource_nodes = {prefix: make_resource_node(cx, prefix) for prefix in registry}
+    registry_nodes = {
+        metaprefix: make_registry_node(cx, metaprefix) for metaprefix in manager.metaregistry
+    }
+    resource_nodes = {prefix: make_resource_node(cx, prefix) for prefix in manager.registry}
 
-    for prefix, entry in registry.items():
+    for prefix, entry in manager.registry.items():
         # Who does it provide for?
         if provides := bioregistry.get_provides_for(prefix):
             cx.add_edge(
@@ -86,7 +88,7 @@ def upload() -> None:
             )
 
         # Which registries does it map to?
-        for metaprefix in metaregistry:
+        for metaprefix in manager.metaregistry:
             if not getattr(entry, metaprefix, None):
                 continue
             cx.add_edge(
@@ -102,7 +104,7 @@ def upload() -> None:
         )
         if collection.description:
             cx.add_node_attribute(source, "description", collection.description, type="string")
-        for prefix in collection.resources:
+        for prefix in collection.get_prefixes():
             cx.add_edge(
                 source=source,
                 target=resource_nodes[prefix],

@@ -21,7 +21,7 @@ class TestNewPrefix(unittest.TestCase):
     """Tests for new prefix pipeline."""
 
     @patch("bioregistry.gh.new_prefix.bioregistry.get_resource")
-    def test_process_new_prefix_issue(self, mock_get_resource):
+    def test_process_new_prefix_issue(self, mock_get_resource: unittest.mock.Mock) -> None:
         """Tests if Resource object returned is as expected using data from an old issue."""
         mock_get_resource.return_value = None
 
@@ -90,7 +90,6 @@ class TestNewPrefix(unittest.TestCase):
             proprietary=None,
             has_canonical=None,
             preferred_prefix=None,
-            twitter=None,
             mastodon=None,
             github_request_issue=issue_id,
             logo=None,
@@ -135,7 +134,9 @@ class TestNewPrefix(unittest.TestCase):
 
     @patch("bioregistry.gh.new_prefix.github_client")
     @patch("bioregistry.gh.new_prefix.add_resource")
-    def test_specific_issue(self, mock_add_resource, mock_github_client):
+    def test_specific_issue(
+        self, mock_add_resource: unittest.mock.Mock, mock_github_client: unittest.mock.Mock
+    ) -> None:
         """Test the workflow in a dry run for a specific issue."""
         mock_github_client.get_form_data_for_issue.return_value = copy.deepcopy(NCBIORTHOLOG_TEST)
 
@@ -154,8 +155,10 @@ class TestNewPrefix(unittest.TestCase):
 
     @patch("bioregistry.gh.new_prefix.github_client")
     @patch("bioregistry.gh.new_prefix.add_resource")
-    def test_all_relevant_issues(self, mock_add_resource, mock_github_client):
-        """Test the workflow in a dry run for a all relevant issues."""
+    def test_all_relevant_issues(
+        self, mock_add_resource: unittest.mock.Mock, mock_github_client: unittest.mock.Mock
+    ) -> None:
+        """Test the workflow in a dry run for all relevant issues."""
         mock_github_client.get_bioregistry_form_data.return_value = {
             1181: copy.deepcopy(NCBIORTHOLOG_TEST),
             1278: copy.deepcopy(VIBSO_TEST),

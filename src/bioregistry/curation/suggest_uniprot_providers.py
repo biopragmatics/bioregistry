@@ -9,6 +9,8 @@ FALSE_POSITIVES = {
     "panther.pathway",
     "panther.pthcmp",
     "protclustdb",
+    "uniprot.isoform",
+    "factgrid",
 }
 
 

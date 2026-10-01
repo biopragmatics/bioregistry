@@ -19,7 +19,6 @@ from __future__ import annotations
 
 import sys
 from collections import defaultdict
-from collections.abc import Mapping
 from typing import Any
 
 import click
@@ -32,7 +31,7 @@ from bioregistry.utils import norm
 NESTED = {"contact", "contributor"}
 
 
-def _resource_from_row(row: Mapping[str, Any]) -> Resource:
+def _resource_from_row(row: dict[str, Any]) -> Resource:
     kwargs = {}
     nested: defaultdict[str, dict[str, str]] = defaultdict(dict)
     for key, value in row.items():
@@ -60,7 +59,7 @@ def _resource_from_row(row: Mapping[str, Any]) -> Resource:
 
 def _bulk_import_df(df: pd.DataFrame) -> None:
     for _, row in df.iterrows():
-        resource = _resource_from_row(row.to_dict())
+        resource = _resource_from_row(row.to_dict())  # type:ignore[arg-type]
         try:
             add_resource(resource)
         except KeyError as e:

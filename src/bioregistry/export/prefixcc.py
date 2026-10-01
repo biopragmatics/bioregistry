@@ -1,4 +1,4 @@
-"""Update Prefix.cc to reflect the content of the Bioregistry.
+"""Send novel prefixes to Prefix.cc .
 
 .. seealso::
 
@@ -11,7 +11,7 @@ from typing import cast
 import click
 import requests
 
-import bioregistry
+from ..schema_utils import resources
 
 
 def create(curie_prefix: str, uri_prefix: str) -> requests.Response:
@@ -27,7 +27,7 @@ def main() -> None:
     """Add an OBO Foundry prefix to Prefix.cc."""
     prefix_cc_map = requests.get("https://prefix.cc/context", timeout=15).json()["@context"]
     records = []
-    for record in bioregistry.resources():
+    for record in resources():
         if not record.get_obofoundry_prefix():
             continue
         uri_prefix = record.get_uri_prefix()

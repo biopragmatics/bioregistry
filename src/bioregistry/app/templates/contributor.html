@@ -19,7 +19,7 @@
                 <div class="col-8">
                     <h5 style="margin: 0">
                         <a href="{{ url_for('metaregistry_ui.contributors') }}">Contributors</a>
-                        <i class="fas fa-angle-right"></i> {{ contributor.name }}
+                        <i class="bi bi-chevron-right"></i> {{ contributor.name }}
                     </h5>
                 </div>
                 <div class="col-4 text-right">
@@ -33,7 +33,7 @@
                             {% for label, key in formats %}
                                 <a class="dropdown-item"
                                    href="{{ fastapi_url_for('get_contributor', orcid=contributor.orcid) }}?format={{ key }}">
-                                    {{ label }} <i class="fas fa-download"></i>
+                                    {{ label }} <i class="bi bi-download"></i>
                                 </a>
                             {% endfor %}
                         </div>
@@ -45,12 +45,22 @@
             <dl>
                 <dt>Name</dt>
                 <dd>{{ contributor.name }}</dd>
-                <dt>ORCID</dt>
+                <dt>ORCiD</dt>
                 <dd>
+                    {{ utils.orcid_img() }}
                     <a href="https://orcid.org/{{ contributor.orcid }}">
-                        {{ contributor.orcid }} <i class="fab fa-orcid"></i>
+                        {{ contributor.orcid }}
                     </a>
                 </dd>
+                {%- if contributor.github %}
+                <dt>GitHub</dt>
+                <dd>
+                    <i class="bi bi-github"></i>
+                    <a href="https://github/{{ contributor.github }}">
+                        @{{ contributor.github }}
+                    </a>
+                </dd>
+                {%- endif %}
                 {#
                 {% if contributor.email %}
                     <dt>Email</dt>
@@ -83,7 +93,7 @@
                         <ul>
                             {% for collection, resource in collections %}
                                 <li>
-                                    <a href="{{ url_for("metaregistry_ui.collection", identifier=collection) }}">
+                                    <a href="{{ url_for('metaregistry_ui.collection', identifier=collection) }}">
                                         {{ resource.name }}
                                     </a>
                                 </li>
@@ -97,7 +107,7 @@
                         <ul>
                             {% for context_key, context in contexts %}
                                 <li>
-                                    <a href="{{ url_for("metaregistry_ui.context", identifier=context_key) }}">
+                                    <a href="{{ url_for('metaregistry_ui.context', identifier=context_key) }}">
                                         {{ context.name }}
                                     </a>
                                 </li>
@@ -126,7 +136,7 @@
                         <ul>
                             {% for metaprefix, metaresource in registries %}
                                 <li>
-                                    <a href="{{ url_for("metaregistry_ui.metaresource", metaprefix=metaprefix) }}">
+                                    <a href="{{ url_for('metaregistry_ui.metaresource', metaprefix=metaprefix) }}">
                                         {{ manager.get_registry_name(metaprefix) }}
                                         (<code>{{ metaprefix }}</code>)
                                     </a>

@@ -1,4 +1,4 @@
-"""Web application for the Bioregistry."""
+"""A WSGI-compliant Python module for running the web application."""
 
 from bioregistry.app.impl import get_app
 

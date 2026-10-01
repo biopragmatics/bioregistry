@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import logging
 from collections.abc import Callable
+from functools import partial
 from typing import Any
 
 import click
@@ -15,6 +16,7 @@ from rdflib import (
     FOAF,
     RDF,
     RDFS,
+    SH,
     SKOS,
     XSD,
     Literal,
@@ -23,44 +25,31 @@ from rdflib import (
 )
 from rdflib.term import _is_valid_uri
 
-import bioregistry
-from bioregistry import Manager
-from bioregistry.constants import (
-    RDF_JSONLD_PATH,
-    RDF_NT_PATH,
-    RDF_TURTLE_PATH,
-    SCHEMA_JSONLD_PATH,
-    SCHEMA_NT_PATH,
-    SCHEMA_TURTLE_PATH,
-)
-from bioregistry.schema.constants import (
+from ..constants import RDF_JSONLD_PATH, RDF_TURTLE_PATH, SCHEMA_JSONLD_PATH, SCHEMA_TURTLE_PATH
+from ..resource_manager import Manager
+from ..resource_manager import manager as default_manager
+from ..schema import Collection, Registry, Resource
+from ..schema.constants import (
     ROR,
     WIKIDATA,
     _add_schema,
     _graph,
-    bioregistry_metaresource,
     bioregistry_resource,
     bioregistry_schema,
     get_schema_rdf,
 )
-from bioregistry.schema.struct import Collection, Registry, Resource
 
 logger = logging.getLogger(__name__)
 
-NAMESPACES = {
-    _ns: Namespace(_uri) for _ns, _uri in bioregistry.manager.get_internal_prefix_map().items()
-}
-NAMESPACE_WARNINGS = set()
+
+NAMESPACE_WARNINGS: set[str] = set()
 
 
 @click.command()
 def export_rdf() -> None:
     """Export RDF."""
-    from bioregistry import manager
-
     schema_rdf = get_schema_rdf()
     schema_rdf.serialize(SCHEMA_TURTLE_PATH.as_posix(), format="turtle")
-    schema_rdf.serialize(SCHEMA_NT_PATH.as_posix(), format="nt", encoding="utf-8")
     schema_rdf.serialize(
         SCHEMA_JSONLD_PATH.as_posix(),
         format="json-ld",
@@ -72,9 +61,8 @@ def export_rdf() -> None:
         ensure_ascii=False,
     )
 
-    graph = get_full_rdf(manager=manager) + schema_rdf
+    graph = get_full_rdf(manager=default_manager) + schema_rdf
     graph.serialize(RDF_TURTLE_PATH.as_posix(), format="turtle")
-    graph.serialize(RDF_NT_PATH.as_posix(), format="nt", encoding="utf-8")
     # Currently getting an issue with not being able to shorten URIs
     # graph.serialize(os.path.join(DOCS_DATA, "bioregistry.xml"), format="xml")
 
@@ -91,19 +79,31 @@ def export_rdf() -> None:
     )
 
 
+def _get_namespaces_dict(manager: Manager) -> dict[str, Namespace]:
+    return {
+        prefix: Namespace(uri_prefix)
+        for prefix, uri_prefix in manager.get_internal_prefix_map().items()
+    }
+
+
 def get_full_rdf(manager: Manager) -> rdflib.Graph:
     """Get a combine RDF graph representing the Bioregistry using :mod:`rdflib`."""
     graph = _graph(manager=manager)
     _add_schema(graph)
+
+    namespaces_dict = _get_namespaces_dict(manager)
+
     for registry in manager.metaregistry.values():
         registry.add_triples(graph)
     for collection in manager.collections.values():
         collection.add_triples(graph)
     for resource in manager.registry.values():
-        uri_prefix = resource.get_uri_prefix()
+        uri_prefix = resource.get_rdf_uri_prefix() or resource.get_uri_prefix()
         if uri_prefix:
-            graph.bind(resource.prefix, uri_prefix)
-        _add_resource(graph=graph, manager=manager, resource=resource)
+            graph.bind(resource.get_preferred_prefix() or resource.prefix, uri_prefix)
+        _add_resource(
+            graph=graph, manager=manager, resource=resource, namespaces_dict=namespaces_dict
+        )
     return graph
 
 
@@ -144,32 +144,45 @@ def _get_resource_functions() -> list[tuple[str | URIRef, Callable[[Resource], A
     return [
         ("0000008", Resource.get_pattern, XSD.string),
         ("0000006", Resource.get_uri_format, XSD.string),
-        ("0000024", Resource.get_uri_prefix, XSD.string),
         ("0000005", Resource.get_example, XSD.string),
         ("0000012", Resource.is_deprecated, XSD.boolean),
         (DCTERMS.description, Resource.get_description, XSD.string),
     ]
 
 
-def _get_resource_function_2() -> list[tuple[str | URIRef, Callable[[Resource], Any]]]:
+def _get_resource_function_2() -> list[
+    tuple[str | URIRef, Callable[[Resource], Any], Callable[[str], rdflib.Node]]
+]:
     return [
-        ("0000027", Resource.get_example_iri),
-        (FOAF.homepage, Resource.get_homepage),
-        (DOAP.GitRepository, Resource.get_repository),
+        ("0000027", Resource.get_example_iri, URIRef),
+        (FOAF.homepage, Resource.get_homepage, partial(Literal, datatype=XSD.anyURI)),
+        (DOAP.GitRepository, Resource.get_repository, partial(Literal, datatype=XSD.anyURI)),
     ]
 
 
-def _add_resource(resource: Resource, *, manager: Manager, graph: rdflib.Graph) -> None:
+def _add_resource(
+    resource: Resource,
+    *,
+    manager: Manager,
+    graph: rdflib.Graph,
+    namespaces_dict: dict[str, rdflib.Namespace] | None = None,
+) -> None:
+    if namespaces_dict is None:
+        namespaces_dict = _get_namespaces_dict(manager)
     node = bioregistry_resource[resource.prefix]
     graph.add((node, RDF.type, bioregistry_schema["0000001"]))
     graph.add((node, RDFS.label, Literal(resource.get_name())))
-    graph.add((node, bioregistry_schema["0000029"], Literal(resource.prefix)))
-    graph.add((node, DCTERMS.isPartOf, bioregistry_metaresource["bioregistry"]))
-    graph.add((bioregistry_metaresource["bioregistry"], DCTERMS.hasPart, node))
+    graph.add((node, SH.prefix, Literal(resource.get_preferred_prefix() or resource.prefix)))
+    graph.add((node, DCTERMS.isPartOf, bioregistry_resource["bioregistry"]))
+    graph.add((bioregistry_resource["bioregistry"], DCTERMS.hasPart, node))
     for synonym in resource.get_synonyms():
         graph.add((node, bioregistry_schema["0000023"], Literal(synonym)))
     for keyword in resource.get_keywords():
         graph.add((node, DCAT.keyword, Literal(keyword)))
+
+    if uri_prefix := resource.get_uri_prefix():
+        graph.add((node, RDF.type, SH.PrefixDeclaration))
+        graph.add((node, SH.namespace, Literal(uri_prefix, datatype=XSD.anyURI)))
 
     for predicate, func, datatype in _get_resource_functions():
         value = func(resource)
@@ -179,13 +192,13 @@ def _add_resource(resource: Resource, *, manager: Manager, graph: rdflib.Graph) 
             predicate = bioregistry_schema[predicate]
         graph.add((node, predicate, Literal(value, datatype=datatype)))
 
-    for predicate, func in _get_resource_function_2():
+    for predicate, func, builder in _get_resource_function_2():
         value = func(resource)
         if value is None or not _is_valid_uri(value):
             continue
         if not isinstance(predicate, URIRef):
             predicate = bioregistry_schema[predicate]
-        graph.add((node, predicate, URIRef(value)))
+        graph.add((node, predicate, builder(value)))
 
     download = (
         resource.get_download_owl()
@@ -193,7 +206,7 @@ def _add_resource(resource: Resource, *, manager: Manager, graph: rdflib.Graph) 
         or resource.get_download_obograph()
     )
     if download:
-        graph.add((node, bioregistry_schema["0000010"], URIRef(download)))
+        graph.add((node, bioregistry_schema["0000010"], Literal(download, datatype=XSD.anyURI)))
 
     # Ontological relationships
 
@@ -203,13 +216,15 @@ def _add_resource(resource: Resource, *, manager: Manager, graph: rdflib.Graph) 
     for appears_in in manager.get_appears_in(resource.prefix) or []:
         graph.add((node, bioregistry_schema["0000018"], bioregistry_resource[appears_in]))
 
-    for owner in resource.owners or []:
+    for owner in resource.get_owners():
         if owner.ror:
             obj = ROR[owner.ror]
         elif owner.wikidata:
             obj = WIKIDATA[owner.wikidata]
         else:
             continue
+        graph.add((obj, RDF.type, FOAF.Organization))
+        graph.add((obj, RDFS.label, Literal(owner.name)))
         graph.add((node, bioregistry_schema["0000026"], obj))
 
     part_of = manager.get_part_of(resource.prefix)
@@ -228,9 +243,9 @@ def _add_resource(resource: Resource, *, manager: Manager, graph: rdflib.Graph) 
 
     contact = resource.get_contact()
     if contact is not None:
-        graph.add((node, bioregistry_schema["0000019"], contact.add_triples(graph)))
+        graph.add((node, DOAP.maintainer, contact.add_triples(graph)))
     for contact in resource.contact_extras or []:
-        graph.add((node, bioregistry_schema["0000019"], contact.add_triples(graph)))
+        graph.add((node, DOAP.maintainer, contact.add_triples(graph)))
 
     if resource.reviewer is not None and resource.reviewer.orcid:
         graph.add((node, bioregistry_schema["0000021"], resource.reviewer.add_triples(graph)))
@@ -245,28 +260,29 @@ def _add_resource(resource: Resource, *, manager: Manager, graph: rdflib.Graph) 
             graph.add((node, DCTERMS.contributor, contributor.add_triples(graph)))
 
     mappings = resource.get_mappings()
-    for metaprefix, metaidentifier in (mappings or {}).items():
+    for metaprefix, metaidentifier in sorted((mappings or {}).items()):
         metaresource = manager.metaregistry[metaprefix]
-        if metaprefix not in NAMESPACES and metaresource.bioregistry_prefix in NAMESPACES:
-            metaprefix = metaresource.bioregistry_prefix
-        if metaprefix not in NAMESPACES:
-            if metaprefix not in NAMESPACE_WARNINGS:
-                logger.warning(f"can not find prefix-uri pair for {metaprefix}")
+        external_namespace = namespaces_dict.get(metaresource.prefix)
+        if external_namespace is None:
+            if metaresource.prefix not in NAMESPACE_WARNINGS:
+                logger.warning(
+                    f"can not find prefix-uri pair for {metaprefix} (primary: {metaresource.prefix})"
+                )
                 NAMESPACE_WARNINGS.add(metaprefix)
             continue
-        graph.add((node, SKOS.exactMatch, NAMESPACES[metaprefix][metaidentifier]))
+        graph.add((node, SKOS.exactMatch, external_namespace[metaidentifier]))
         graph.add(
             (
-                NAMESPACES[metaprefix][metaidentifier],
+                external_namespace[metaidentifier],
                 DCTERMS.isPartOf,
-                bioregistry_metaresource[metaresource.prefix],
+                bioregistry_resource[metaresource.prefix],
             )
         )
         graph.add(
             (
-                bioregistry_metaresource[metaresource.prefix],
+                bioregistry_resource[metaresource.prefix],
                 DCTERMS.hasPart,
-                NAMESPACES[metaprefix][metaidentifier],
+                external_namespace[metaidentifier],
             )
         )
 

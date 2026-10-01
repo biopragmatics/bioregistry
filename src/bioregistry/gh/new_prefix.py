@@ -167,7 +167,7 @@ def get_new_prefix_issues(token: str | None = None) -> dict[int, Resource]:
             # to avoid any misunderstandings later
             resource = process_new_prefix_issue(issue_id, copy.deepcopy(resource_data))
         except Exception as e:
-            logger.warning("Error processing issue %s: %s", (issue_id, e))
+            logger.warning("Error processing issue %s: %s", issue_id, e)
             continue
         if resource is not None:
             rv[issue_id] = resource
@@ -276,8 +276,8 @@ def make_title(prefixes: Sequence[str]) -> str:
 @click.option(
     "--issue", type=int, help="Specific issue to process rather than finding all relevant ones"
 )
-@force_option  # type:ignore
-@verbose_option  # type:ignore
+@force_option
+@verbose_option
 def main(dry: bool, github: bool, force: bool, issue: int | None = None) -> None:
     """Run the automatic curator."""
     click.echo(

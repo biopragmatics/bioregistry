@@ -1,6 +1,11 @@
 """Extract registry information."""
 
-from .collection_api import get_collection, get_context
+from .collection_api import (
+    get_collection,
+    get_collection_prefixes,
+    get_collection_resources,
+    get_context,
+)
 from .metaresource_api import (
     get_registry,
     get_registry_description,
@@ -14,6 +19,7 @@ from .metaresource_api import (
 from .parse_iri import (
     curie_from_iri,
     get_default_converter,
+    get_preferred_converter,
     normalize_curie,
     normalize_parsed_curie,
     normalize_prefix,
@@ -30,6 +36,7 @@ from .reference import (
 )
 from .resolve import (
     add_resource,
+    add_to_collection,
     count_mappings,
     get_appears_in,
     get_banana,
@@ -53,10 +60,11 @@ from .resolve import (
     get_has_parts,
     get_homepage,
     get_identifiers_org_prefix,
+    get_jskos_download,
     get_json_download,
     get_keywords,
     get_license,
-    get_license_conflicts,
+    get_license_url,
     get_logo,
     get_mailing_list,
     get_mappings,
@@ -74,6 +82,7 @@ from .resolve import (
     get_ols_prefix,
     get_ols_uri_format,
     get_ols_uri_prefix,
+    get_organizations,
     get_owl_download,
     get_part_of,
     get_parts_collections,
@@ -85,9 +94,11 @@ from .resolve import (
     get_rdf_download,
     get_registry_invmap,
     get_registry_map,
+    get_registry_short_name_to_prefix,
     get_repository,
     get_repository_to_prefix,
     get_resource,
+    get_skos_download,
     get_synonyms,
     get_version,
     get_versions,
@@ -97,6 +108,7 @@ from .resolve import (
     is_novel,
     is_obo_foundry,
     is_proprietary,
+    lookup_external_prefix,
     read_contributors,
 )
 from .resolve_identifier import (
@@ -119,10 +131,11 @@ from .resolve_identifier import (
     standardize_identifier,
 )
 from .resource_manager import Manager, manager
-from .schema.struct import (
+from .schema import (
     Author,
     Collection,
     Context,
+    Organization,
     Provider,
     Registry,
     Resource,
@@ -137,6 +150,7 @@ from .schema_utils import (
     read_registry,
     registries,
     resources,
+    write_collections,
     write_contexts,
     write_registry,
 )
@@ -156,6 +170,7 @@ __all__ = [
     "NormalizedNamableReference",
     "NormalizedNamedReference",
     "NormalizedReference",
+    "Organization",
     "Provider",
     "Registry",
     "Resource",
@@ -163,6 +178,7 @@ __all__ = [
     "StandardNamedReference",
     "StandardReference",
     "add_resource",
+    "add_to_collection",
     "count_mappings",
     "curie_from_iri",
     "curie_to_str",
@@ -174,6 +190,8 @@ __all__ = [
     "get_bioregistry_iri",
     "get_canonical_for",
     "get_collection",
+    "get_collection_prefixes",
+    "get_collection_resources",
     "get_contact",
     "get_contact_email",
     "get_contact_github",
@@ -197,10 +215,11 @@ __all__ = [
     "get_identifiers_org_iri",
     "get_identifiers_org_prefix",
     "get_iri",
+    "get_jskos_download",
     "get_json_download",
     "get_keywords",
     "get_license",
-    "get_license_conflicts",
+    "get_license_url",
     "get_logo",
     "get_mailing_list",
     "get_mappings",
@@ -221,11 +240,13 @@ __all__ = [
     "get_ols_prefix",
     "get_ols_uri_format",
     "get_ols_uri_prefix",
+    "get_organizations",
     "get_owl_download",
     "get_part_of",
     "get_parts_collections",
     "get_pattern",
     "get_pattern_map",
+    "get_preferred_converter",
     "get_preferred_prefix",
     "get_prefix_map",
     "get_prefixcommons_uri_format",
@@ -243,10 +264,12 @@ __all__ = [
     "get_registry_name",
     "get_registry_provider_uri_format",
     "get_registry_short_name",
+    "get_registry_short_name_to_prefix",
     "get_registry_uri",
     "get_repository",
     "get_repository_to_prefix",
     "get_resource",
+    "get_skos_download",
     "get_synonyms",
     "get_uri_format",
     "get_uri_prefix",
@@ -263,6 +286,7 @@ __all__ = [
     "is_standardizable_identifier",
     "is_valid_curie",
     "is_valid_identifier",
+    "lookup_external_prefix",
     "manager",
     "miriam_standardize_identifier",
     "normalize_curie",
@@ -280,6 +304,7 @@ __all__ = [
     "registries",
     "resources",
     "standardize_identifier",
+    "write_collections",
     "write_contexts",
     "write_registry",
 ]
