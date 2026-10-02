@@ -94277,6 +94277,36 @@
     "repository": "https://github.com/annotation-ontology/annotation-ontology",
     "uri_format": "http://purl.org/ao/$1"
   },
+  "legacy.capcldb": {
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "deprecated": true,
+    "description": "A legacy database of 114 cancer cell lines that can be downloaded [here](https://web.archive.org/web/20150601005658/http://capcelllines.ca/downloads/CaPCellLines_database.xls)",
+    "example": "133",
+    "homepage": "https://web.archive.org/web/20150602153556/http://capcelllines.ca:80",
+    "keywords": [
+      "cell line"
+    ],
+    "name": "Prostate Cancer Cell Line Database",
+    "owners": [
+      {
+        "name": "BC Cancer Agency",
+        "ror": "03sfybe47"
+      }
+    ],
+    "pattern": "^\\d+$",
+    "providers": [
+      {
+        "code": "legacy",
+        "uri_format": "http://capcelllines.ca:80/details.asp?id=$1"
+      }
+    ],
+    "uri_format": "https://web.archive.org/web/20150602153556/http://capcelllines.ca:80/details.asp?id=$1"
+  },
   "legilux": {
     "bartoc": {
       "description": "The controlled vocabularies of Luxembourg legislation provide semantic reference lists to describe, browse, and reuse legal texts (e.g. themes, act types, institutions, and file formats) in the Legilux and Casemates systems.",
@@ -165119,6 +165149,29 @@
     },
     "uri_format": "http://purl.obolibrary.org/obo/STATO_$1"
   },
+  "stemmcellbank": {
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "A cell line catalog from the Boston University Center for Regenerative Medicine (CReM)",
+    "example": "509",
+    "homepage": "https://stemcellbank.bu.edu",
+    "keywords": [
+      "cell line"
+    ],
+    "name": "CReM iPSC Catalog",
+    "owners": [
+      {
+        "name": "Boston University",
+        "ror": "05qwgg493"
+      }
+    ],
+    "pattern": "^\\d+$",
+    "uri_format": "https://stemcellbank.bu.edu/Catalog/Item/Details/$1"
+  },
   "stitch": {
     "biocontext": {
       "prefix": "STITCH",
@@ -166953,6 +167006,24 @@
       "prefix": "sustaingraph",
       "uri_format": "https://netmode.gitlab.io/sustaingraph/$1"
     }
+  },
+  "suzhou.cell": {
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "The Suzhou Research Institute Cell Bank (hereinafter referred to as the \"Cell Bank\") is dedicated to the acquisition, preservation, characterization, and distribution of cell and cell-derivative resources in support of cell science research. By establishing robust preservation protocols and formulating standardized legal agreements, the Cell Bank ensures the effective management and protection of its stored cell resources, thereby advancing the standardization and internationalization of China's cell resource infrastructure. (translated from homepage)",
+    "example": "3830",
+    "homepage": "http://www.brics.ac.cn/cell",
+    "keywords": [
+      "cell line"
+    ],
+    "logo": "http://www.brics.ac.cn/cell/img/logo1.png",
+    "name": "Suzhou Research Institute Cell Bank",
+    "pattern": "^\\d+$",
+    "uri_format": "http://www.brics.ac.cn/cell/template/cell/cell_detail.html?id=$1"
   },
   "swan": {
     "contributor": {
