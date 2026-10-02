@@ -27704,6 +27704,41 @@
     "pattern": "^\\d+$",
     "uri_format": "http://purl.obolibrary.org/obo/CLYH_$1"
   },
+  "cmc.umg": {
+    "contact": {
+      "email": "lukas.cyganek@med.uni-goettingen.de",
+      "name": "Lukas Cyganek",
+      "orcid": "0000-0001-9120-1382"
+    },
+    "contact_group_email": "support.menoci@medizin.uni-goettingen.de",
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "A catalog of patient-derived cell lines",
+    "example": "46",
+    "homepage": "https://cmc.umg.eu/cellmodel",
+    "keywords": [
+      "cell line"
+    ],
+    "name": "Cell Model Catalogue Göttingen",
+    "owners": [
+      {
+        "name": "Universitätsmedizin Göttingen",
+        "ror": "021ft0n22"
+      }
+    ],
+    "pattern": "^\\d+$",
+    "providers": [
+      {
+        "code": "legacy",
+        "uri_format": "https://sfb1002.med.uni-goettingen.de/production/cellmodel/cell-line/view?tab=internal&line=$1"
+      }
+    ],
+    "uri_format": "https://cmc.umg.eu/cellmodel/cell-line/view?tab=internal&line=$1"
+  },
   "cmecs": {
     "contact": {
       "email": "kater@ngi.msstate.edu",
@@ -90880,12 +90915,16 @@
       "orcid": "0000-0003-4423-4370"
     },
     "example": "JCRB1355",
+    "example_extras": [
+      "KURB1329",
+      "NIHS0308"
+    ],
     "homepage": "https://cellbank.nibiohn.go.jp",
     "mappings": {
       "cellosaurus.resource": "JCRB"
     },
     "name": "JRBC Cell Bank",
-    "pattern": "^JCRB\\d+$",
+    "pattern": "^(JCRB|KURB|NIHS)\\d+$",
     "uri_format": "https://cellbank.nibiohn.go.jp/~cellbank/en/search_res_det.cgi?RNO=$1"
   },
   "jcsd": {
@@ -147285,13 +147324,17 @@
     },
     "description": "Collection of many cell lines derived from human and other various animals, preserved by the RIKEN BioResource Research Center.",
     "example": "RCB0002",
+    "example_extras": [
+      "HSC0015",
+      "HPS0351"
+    ],
     "homepage": "https://cell.brc.riken.jp/en/rcb",
     "mappings": {
       "cellosaurus.resource": "RCB",
       "rrid.resource": "IMSR_RBRC"
     },
     "name": "RIKEN Bioresource Center Cell Bank",
-    "pattern": "^RCB\\d+$",
+    "pattern": "^(RCB|HSC|HPS)\\d+$",
     "rrid.resource": {
       "homepage": "http://www.brc.riken.jp/inf/en",
       "keywords": [
@@ -180096,6 +180139,21 @@
     "name": "UBERON Issue Tracker",
     "pattern": "^\\d+$",
     "uri_format": "https://github.com/obophenotype/uberon/issues/$1"
+  },
+  "ubigene": {
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "A laboratory materials provider, such as for cell lines. Like many suppliers, there is no direct way to go from a catalog identifier to the webpage, nor even a way to format a search query.",
+    "example": "YKO-XN48492",
+    "homepage": "https://www.ubigene.us",
+    "keywords": [
+      "cell line"
+    ],
+    "name": "UbiGene"
   },
   "ubio.namebank": {
     "biocontext": {

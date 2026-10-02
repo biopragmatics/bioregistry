@@ -37,9 +37,10 @@ def _update_resources(manager: Manager, results_path: Path, errors_path: Path) -
     converter = manager.get_converter()
     with safe_open_writer(results_path) as writer, safe_open_writer(errors_path) as error_writer:
         error_writer.writerow(("prefix", *Error._fields))
-        for resource in tqdm(
-            manager.registry.values(), unit_scale=True, unit="prefix", desc="Processing resources"
-        ):
+        resources = [resource for resource in manager.registry.values() if resource.has_download()]
+        it = tqdm(resources, unit="prefix")
+        for resource in it:
+            it.set_description(f"processing {resource.prefix}")
             match _update_resource(resource, converter):
                 case None:
                     continue
@@ -75,9 +76,8 @@ def _update_resource(resource: Resource, converter: curies.Converter) -> set[str
 def _get_prefixes_from_owl(resource: Resource, url: str, converter: Converter) -> set[str] | Error:
     with logging_redirect_tqdm(), tempfile.TemporaryDirectory() as tmpdir:
         ttl_path = tmpdir.join("tmp.ttl")
-        robot_obo_tool.convert(url, ttl_path, check=False)
-
         try:
+            robot_obo_tool.convert(url, ttl_path, check=False)
             graph = read_rdflib(ttl_path, format="ttl")
         except Exception as e:
             return Error(url, "owl", e)
