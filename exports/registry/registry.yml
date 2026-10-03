@@ -3558,7 +3558,7 @@ astd:
   mappings:
     edam.data: '2367'
     prefixcommons: astd
-  name: ASTD
+  name: Alternative Splicing and Transcript Diversity database
   owners:
   - name: European Bioinformatics Institute
     ror: 02catss52
@@ -4425,7 +4425,7 @@ bcio:
   - doi: 10.12688/wellcomeopenres.21252.2
   repository: https://github.com/HumanBehaviourChangeProject/ontologies
   uri_format: https://w3id.org/BCI-ontology#$1
-  version: '2026-09-11'
+  version: '2026-09-29'
 bco:
   appears_in:
   - fovt
@@ -5213,27 +5213,15 @@ bila:
   homepage: http://4dx.embl.de/4DXpress
   keywords:
   - anatomy
-  - gene expression
   - ontology
   mappings:
     biocontext: BILA
     fairsharing: FAIRsharing.eqgjeq
     obofoundry: bila
-    prefixcommons: 4dxpress
     wikidata.entity: Q114677880
   name: Bilateria anatomy
   pattern: ^\d{7}$
   preferred_prefix: BILA
-  providers:
-  - code: bio2rdf
-    description: Bio2RDF is an open-source project that uses Semantic Web technologies
-      to build and provide the largest network of Linked Data for the Life Sciences.
-      Bio2RDF defines a set of simple conventions to create RDF(S) compatible Linked
-      Data from a diverse set of heterogeneously formatted sources obtained from multiple
-      data providers.
-    homepage: https://bio2rdf.org
-    name: Bio2RDF
-    uri_format: http://bio2rdf.org/4dxpress:$1
   publications:
   - doi: 10.1093/nar/gkm797
     pmc: PMC2238840
@@ -8277,7 +8265,6 @@ cao:
   license: CC-BY-3.0
   mappings:
     bartoc: '20701'
-    bioportal: CAO
     fairsharing: FAIRsharing.b97150
     ols: cao
     tib.ts: cao
@@ -13049,39 +13036,25 @@ co:
   github_request_issue: 2073
   homepage: https://github.com/collections-ontology/collections-ontology
   keywords:
-  - agriculture
-  - anatomy
   - data type
-  - metadata standardization
   - methods
   - ontology
-  - phenotype
-  - plant breeding
-  - plant phenotypes and traits
   - semantic web
-  logo: https://api.fairsharing.org/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBCZz09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--776cb0c3be592f850fc0c898de73963446bb0785/Capture%20d%E2%80%99e%CC%81cran%202022-01-26%20a%CC%80%2013.41.07.png?disposition=inline
+  - subject agnostic
+  logo: https://api.fairsharing.org/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBbDBDIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--cbb6fb6ad3e03818ed01acaa2eab4e6e33f45b57/Screenshot%20from%202023-02-23%2009-02-20.png?disposition=inline
   mappings:
-    bioportal: CO
-    fairsharing: FAIRsharing.wgfrmg
+    fairsharing: FAIRsharing.thskvr
     lov: co
   name: Collection Ontology
   preferred_prefix: co
   publications:
-  - doi: 10.3389/fphys.2012.00326
-    pubmed: '22934074'
-    title: Bridging the phenotypic and genetic data useful for integrated breeding
-      through a data annotation using the Crop Ontology developed by the crop communities
-      of practice
-    year: 2012
-  - doi: 10.1093/aobpla/plq008
-    pubmed: '22476066'
-    title: 'Multifunctional crop trait ontology for breeders'' data: field book, annotation,
-      data discovery and semantic enrichment of the literature'
-    year: 2010
   - doi: 10.3233/sw-130121
     title: 'The Collections Ontology: Creating and handling collections in OWL 2 DL
       frameworks'
     year: 2013
+  - doi: 10.15626/mp.2018.892
+    title: Computational Reproducibility via Containers in Psychology
+    year: 2019
   repository: https://github.com/collections-ontology/collections-ontology
   uri_format: http://purl.org/co/$1
 co_320:
@@ -18259,10 +18232,6 @@ ddc:
   preferred_prefix: ddc
   uri_format: http://dewey.info/class/$1/e23/
 ddi:
-  contact:
-    email: soldatova.larisa@gmail.com
-    name: Larisa Soldatova
-    orcid: 0000-0001-6489-3029
   contributor:
     email: cthoyt@gmail.com
     github: cthoyt
@@ -18275,13 +18244,10 @@ ddi:
   github_request_issue: 1632
   homepage: https://rdf-vocabulary.ddialliance.org
   keywords:
-  - biomedical science
-  - drug discovery
   - ontology
   - registry
   mappings:
     aberowl: DDI
-    fairsharing: FAIRsharing.pf2qyq
   name: Data Documentation Initiative Vocabulary
   preferred_prefix: ddi
   uri_format: http://rdf-vocabulary.ddialliance.org/lifecycle#$1
@@ -25947,6 +25913,8 @@ ensemblglossary:
   name: Ensembl Glossary
   pattern: ^\d{7}$
   preferred_prefix: ensemblglossary
+  synonyms:
+  - ENSGLOSSARY
   uri_format: http://ensembl.org/glossary/ENSGLOSSARY_$1
   version: '2026-06-05'
 envipath:
@@ -26878,6 +26846,11 @@ esldb:
     orcid: 0000-0003-4423-4370
   uri_format: http://gpcr.biocomp.unibo.it/cgi-bin/predictors/esldb/dettagli.cgi?codice=$1
 esrfet:
+  contact:
+    email: koumoutsosgian@yahoo.gr
+    github: gkoum
+    name: Giannis Koumoutsos
+    orcid: 0009-0000-6215-8493
   contributor:
     email: cthoyt@gmail.com
     github: cthoyt
@@ -32549,6 +32522,7 @@ gfbio.biol:
   keywords:
   - ontology
   - taxon rank
+  license: http://creativecommons.org/licenses/by-sa/2.0/uk
   mappings:
     biodivportal: BIOL
   name: Biological Taxonomy Vocabulary 0.2 (Core)
@@ -34076,17 +34050,12 @@ gold:
   homepage: https://gold.jgi.doe.gov/
   keywords:
   - bibliography/documents
-  - classification
-  - computer science
   - genome
   - genome/gene
-  - linguistics
-  - natural language processing
   - ontology
   - portal
   - repository
   mappings:
-    fairsharing: FAIRsharing.4c40ed
     integbio: nbdc00483
     miriam: gold
     ols: gold
@@ -37599,7 +37568,7 @@ hp:
     aberowl: HPO
     bartoc: '1937'
     biocontext: HPO
-    bioportal: HPO
+    bioportal: HP
     fairsharing: FAIRsharing.kbtt7f
     hl7: '6.339'
     integbio: nbdc02559
@@ -37818,8 +37787,6 @@ hpc:
   keywords:
   - ontology
   license: CC-BY-4.0
-  mappings:
-    hl7: '6.14'
   name: High-Performance Computing Ontology
   preferred_prefix: hpc
   uri_format: https://hpc-fair.github.io/ontology#$1
@@ -38906,6 +38873,9 @@ icd10pcs:
   name: International Classification of Diseases, 10th Revision, Procedure Coding
     System
   preferred_prefix: icd10pcs
+  providers:
+  - code: bioportal.purl
+    uri_format: http://purl.bioontology.org/ontology/ICD10PCS/$1
   uri_format: https://www.findacode.com/code.php?set=ICD10PCS&c=$1
   version: '2026'
 icd11:
@@ -39132,6 +39102,9 @@ icd9cm:
   name: International Classification of Diseases, 9th Revision, Clinical Modification
   pattern: ^([\dA-Z]\d{2}(\.\d{1,3}|))|(\d{2}(\.\d{1,2}|))$
   preferred_prefix: icd9cm
+  providers:
+  - code: bioportal.purl
+    uri_format: http://purl.bioontology.org/ontology/ICD9CM/$1
   references:
   - https://www.who.int/about/policies/publishing/copyright
   synonyms:
@@ -47335,10 +47308,18 @@ lov:
   homepage: https://lov.linkeddata.es
   keywords:
   - registry
+  - subject agnostic
   license: CC-BY-4.0
   logo: https://lov.linkeddata.es/img/icon-LOV.png
+  mappings:
+    fairsharing: FAIRsharing.3fcc35
   name: Linked Open Vocabularies
   preferred_prefix: lov
+  publications:
+  - doi: 10.3233/sw-160213
+    title: 'Linked Open Vocabularies (LOV): A gateway to reusable semantic vocabularies
+      on the Web'
+    year: 2016
   uri_format: https://lov.linkeddata.es/dataset/lov/vocabs/$1
 lpt:
   contact:
@@ -47376,7 +47357,7 @@ lpt:
   preferred_prefix: lpt
   repository: https://github.com/AnimalGenome/livestock-product-trait-ontology
   uri_format: http://purl.obolibrary.org/obo/LPT_$1
-  version: '2026-09-24'
+  version: '2026-10-02'
 lrg:
   banana: LRG
   banana_peel: _
@@ -47693,7 +47674,6 @@ ma:
   license: CC-BY-4.0
   mappings:
     aberowl: MA
-    bartoc: '1143'
     biocontext: MA
     bioportal: MA
     fairsharing: FAIRsharing.pdwqcr
@@ -53118,7 +53098,7 @@ mp:
   rdf_uri_format: http://purl.obolibrary.org/obo/MP_$1
   repository: https://github.com/mgijax/mammalian-phenotype-ontology
   uri_format: http://purl.obolibrary.org/obo/MP_$1
-  version: '2026-08-25'
+  version: '2026-09-23'
 mpath:
   contact:
     email: pns12@hermes.cam.ac.uk
@@ -55147,7 +55127,7 @@ ncbitaxon:
     aberowl: NCBITAXON
     bartoc: '509'
     biocontext: TAXONOMY
-    biodivportal: TAXON
+    biodivportal: NCBITAXON
     bioportal: NCBITAXON
     cellosaurus.resource: NCBI_TaxID
     edam.data: '1179'
@@ -56077,29 +56057,33 @@ nextprot.family:
   - NXPFA
   uri_format: https://www.nextprot.org/term/FA-$1
 nexus:
-  description: NeXus is a common data format for neutron, x-ray, and muon science.
-    It is being developed as an international standard by scientists and programmers
-    representing major scientific facilities in order to facilitate greater cooperation
-    in the analysis and visualization of neutron, x-ray, and muon data. NeXusOntology
-    is an ontology representation of the NeXus definitions. [adapted from repository
-    README]
+  contact:
+    github: sanbrock
+    name: Sandor Brockhauser
+    orcid: 0000-0002-9700-4803
+  description: NeXus is a common data format for neutron, x-ray, and muon experimental
+    data. The NeXus Ontology is an ontology representation of the NeXus [definitions](https://github.com/nexusformat/definitions/).The
+    [NeXus International Advisory Committee](https://www.nexusformat.org/NIAC.html)
+    is responsible for NeXus.
   download_owl: https://github.com/nexusformat/NeXusOntology/raw/refs/heads/main/ontology/NeXusOntology.owl
   example: version
   homepage: https://github.com/nexusformat/NeXusOntology
   keywords:
   - fairmat
+  - muon
+  - neutron
   - nfdi-matwerk
   - ontology
   - physics
+  - x-ray
   license: GFDL-1.3
   mappings:
     bartoc: '21162'
     tib.ts: nexus
-  name: NeXusOntology
-  owners:
-  - name: European Synchrotron Radiation Facility
-    ror: 02550n020
+  name: NeXus Ontology
   preferred_prefix: nexus
+  rdf_uri_format: http://purl.org/nexusformat/definitions/NeXusOntology#$1
+  repository: https://github.com/nexusformat/NeXusOntology
   uri_format: http://purl.org/nexusformat/definitions/NeXusOntology#$1
 nfdi.core:
   contact:
@@ -58064,13 +58048,18 @@ nvs:
   example: P06
   homepage: https://vocab.nerc.ac.uk/collection
   keywords:
-  - ecosystem
-  - ecosystem science
-  - forest management
-  - grassland research
-  - plant ecology
+  - chemical oceanography
+  - climate
+  - data management
+  - device
+  - earth science
+  - environmental contaminant
+  - environmental science
+  - marine biology
+  - marine environment
+  - oceanography
   mappings:
-    fairsharing: FAIRsharing.LSUZRp
+    fairsharing: FAIRsharing.Ckg0bl
   name: NERC Vocabulary Server
   preferred_prefix: nvs
   uri_format: https://vocab.nerc.ac.uk/collection/$1
@@ -60372,7 +60361,7 @@ omo:
   rdf_uri_format: http://purl.obolibrary.org/obo/OMO_$1
   repository: https://github.com/information-artifact-ontology/ontology-metadata
   uri_format: http://purl.obolibrary.org/obo/OMO_$1
-  version: '2026-03-16'
+  version: '2026-09-25'
 omon:
   contributor:
     email: oga.t@northeastern.edu
@@ -62492,7 +62481,7 @@ pain:
   rdf_uri_format: http://purl.obolibrary.org/obo/PAIN_$1
   repository: https://github.com/uflcod/pain-ontology
   uri_format: http://purl.obolibrary.org/obo/PAIN_$1
-  version: '2026-09-25'
+  version: '2026-10-01'
 paleodb:
   description: The Paleobiology Database seeks to provide researchers and the public
     with information about the entire fossil record. It stores global, collection-based
@@ -62596,9 +62585,6 @@ panet:
     fairsharing: FAIRsharing.a08d34
     tib.ts: panet
   name: Photon and Neutron Experimental Techniques Ontology
-  owners:
-  - name: European Synchrotron Radiation Facility
-    ror: 02550n020
   pattern: ^\d+$
   preferred_prefix: panet
   publications:
@@ -67298,7 +67284,6 @@ pr:
   - protein-containing complex
   - proteomics
   - qtl
-  - rdf
   license: CC-BY-4.0
   logo: https://raw.githubusercontent.com/PROconsortium/logo/master/PROlogo_small.png
   mappings:
@@ -67309,7 +67294,6 @@ pr:
     fairsharing: FAIRsharing.4ndncv
     go.resource: PR
     integbio: nbdc01630
-    lov: pr
     miriam: pr
     n2t: pr
     obofoundry: pr
@@ -70225,7 +70209,6 @@ reaxys:
   example: '1257009'
   homepage: https://www.reaxys.com
   mappings:
-    edam.data: '1003'
     wikidata.property: P1579
   name: Reaxys
   pattern: ^\d+$
@@ -70511,7 +70494,7 @@ rehabo:
   preferred_prefix: rehabo
   repository: https://github.com/mcwdsi/rehabo
   uri_format: http://purl.obolibrary.org/obo/REHABO_$1
-  version: '2026-04-22'
+  version: '2026-09-29'
 reo:
   comment: 'From James O.: It was an ontology for "reagents" developed by @Matthew
     Brush. Since OBI was interested in reagents, Matt developed it in coordination
@@ -73356,6 +73339,7 @@ saref.wearable:
   - s4wear
   uri_format: https://saref.etsi.org/saref4wear/$1
 sargon:
+  comment: Classes appear in https://sargon-n5geh.netlify.app/ontology/1.0/classes/$1
   description: SARGON (SmArt eneRGy dOmain oNtology) is an open-source effort to define
     semantic descriptions of the smart assets in building automation and smart grid
     and the relationships between them. SARGON consists of an extensible dictionary
@@ -73686,16 +73670,11 @@ schema:
   example: Person
   homepage: https://schema.org
   keywords:
-  - astrophysics
-  - atomic, molecular, optical and plasma physics
-  - catalogs
   - ess
   - fair data spaces
-  - heliophysics
+  - general & upper
   - nfdixcs
   - ontology
-  - plasma physics
-  - space weather
   license: CC-BY-SA-3.0
   mappings:
     aberowl: SCHEMA
@@ -73703,17 +73682,12 @@ schema:
     biodivportal: SCHEMAORG
     biolink.resource: schema
     bioportal: SCHEMA
-    fairsharing: FAIRsharing.ef1b0f
-    lov: sdo
+    lov: schema
     ols: schemaorg_http
     tib.ts: schema
     zazuko: schema
   name: Schema.org
   preferred_prefix: schema
-  publications:
-  - doi: 10.1007/s11207-011-9841-3
-    title: The Solar Dynamics Observatory (SDO)
-    year: 2012
   synonyms:
   - schemaorg
   - sdo
@@ -75838,7 +75812,6 @@ sigmaaldrich:
   - vendor
   mappings:
     cellosaurus.resource: Sigma-Aldrich
-    pathguide: '236'
   name: Sigma Aldrich
   owners:
   - name: MilliporeSigma (United States)
@@ -76114,7 +76087,7 @@ sioc.actions:
     name: Charles Tapley Hoyt
     orcid: 0000-0003-4423-4370
   description: An ontology of predicates for actions in SIOC
-  download_rdf: http://rdfs.org/sioc/actions#
+  download_rdf: http://rdfs.org/sioc/actions
   example: DigitalArtifact
   homepage: http://rdfs.org/sioc/spec
   keywords:
@@ -76216,7 +76189,7 @@ sioc.types:
     orcid: 0000-0003-4423-4370
   description: Extends the SIOC Core Ontology (Semantically-Interlinked Online Communities)
     by defining subclasses and subproperties of SIOC terms.
-  download_rdf: http://rdfs.org/sioc/types#
+  download_rdf: http://rdfs.org/sioc/types
   example: AddressBook
   homepage: http://rdfs.org/sioc/spec
   keywords:
@@ -76243,10 +76216,6 @@ siren:
     the US FDA's Bureau of Foods
   example: F11903
   homepage: https://www.langual.org/langual_indexed_datasets.asp
-  keywords:
-  - ontology
-  mappings:
-    agroportal: SIREN
   name: Scientific Information Retrieval and Exchange Network
   pattern: ^F\d+$
   preferred_prefix: siren
@@ -77034,15 +77003,6 @@ snap:
     of the dynamic features of reality.
   example: Quality
   homepage: http://ontology.buffalo.edu/smith/articles/SNAP_SPAN.pdf
-  keywords:
-  - biomedical science
-  - computer science
-  - data mining
-  - graph
-  - machine learning
-  - social science
-  mappings:
-    fairsharing: FAIRsharing.06dc80
   name: Snapshot
   preferred_prefix: snap
   synonyms:
@@ -77906,13 +77866,9 @@ spin:
   example: imports
   homepage: http://spinrdf.org
   keywords:
-  - chemical entity
-  - ecotoxicity
   - ontology
   - rdf
-  - toxicology
   mappings:
-    fairsharing: FAIRsharing.5fee61
     lov: spin
   name: SPIN Modeling Vocabulary
   preferred_prefix: spin
@@ -79068,7 +79024,7 @@ sty:
     aberowl: STY
     agroportal: STY
     bartoc: '21017'
-    biolink.resource: STY
+    biolink.resource: UMLSSG
     bioportal: STY
     ecoportal: STY
     wikidata.property: P11955
@@ -85078,7 +85034,7 @@ swo:
     title: 'The Software Ontology (SWO): a resource for reproducibility in biomedical
       data analysis, curation and digital preservation'
     year: 2014
-  rdf_uri_format: http://purl.obolibrary.org/obo/SWO_$1
+  rdf_uri_format: http://www.ebi.ac.uk/swo/SWO_$1
   repository: https://github.com/allysonlister/swo
   uri_format: http://purl.obolibrary.org/obo/SWO_$1
   version: '2023-03-05'
@@ -86880,7 +86836,7 @@ tib.meth:
     methods in geo- or cosmochemistry.
   download_rdf: https://raw.githubusercontent.com/SArndt-TIB/Vocabulary/refs/heads/master/geochemistry/GeochemAnalyticalMethod.ttl
   example: acceleratormassspectrometry
-  homepage: https://amds-ldeo.github.io/Vocabulary/geochemistry/html/GeochemAnalyticalMethod.html
+  homepage: https://amds-ldeo.github.io/Vocabulary/geochemistry/GeochemAnalyticalMethod.html
   keywords:
   - earth sciences
   - ess
@@ -87630,9 +87586,15 @@ tol:
     \ genetic connections between all living things."
   example: '98034'
   homepage: http://tolweb.org/tree/
+  keywords:
+  - biodiversity
+  - evolutionary biology
+  - phylogenetics
+  - taxonomy
   mappings:
     bartoc: '400'
     biocontext: TOL
+    fairsharing: FAIRsharing.0c0664
     miriam: tol
     n2t: tol
     wikidata.entity: Q2300489
@@ -88301,11 +88263,14 @@ tto:
   description: An ontology covering the taxonomy of teleosts (bony fish)
   download_obo: http://purl.obolibrary.org/obo/tto.obo
   download_owl: http://purl.obolibrary.org/obo/tto.owl
+  download_rdf: https://raw.githubusercontent.com/HosseinBeygiNasrabadi/Tensile-Test-Ontology-TTO-/refs/heads/main/TTO2.0.9.ttl
   example: '1058367'
   homepage: https://github.com/phenoscape/teleost-taxonomy-ontology
   keywords:
+  - engineering
   - fish
   - life science
+  - nfdi-matwerk
   - obo
   - ontology
   - phenotype
@@ -88320,6 +88285,7 @@ tto:
     ols: tto
     ontobee: TTO
     prefixcommons: tto
+    tib.ts: tto
     wikidata.entity: Q81661821
   name: Teleost taxonomy ontology
   pattern: ^\d+$
@@ -89355,6 +89321,15 @@ uniprot:
   download_obo: https://w3id.org/biopragmatics/resources/uniprot/uniprot.obo.gz
   download_owl: https://w3id.org/biopragmatics/resources/uniprot/uniprot.owl.gz
   example: P0DP23
+  example_decoys:
+  - Q5BJF6-3
+  - Q5BJF6.1
+  - P08069#PRO_0000016681
+  example_extras:
+  - A0A023GPI8
+  - A2BC19
+  - P12345
+  - Q8WZ42
   homepage: http://www.uniprot.org
   keywords:
   - biology
@@ -89384,8 +89359,7 @@ uniprot:
   owners:
   - name: The Uniprot Consortium
     ror: 017yq1n41
-  pattern: ^([A-N,R-Z][0-9]([A-Z][A-Z, 0-9][A-Z, 0-9][0-9]){1,2})|([O,P,Q][0-9][A-Z,
-    0-9][A-Z, 0-9][A-Z, 0-9][0-9])(\.\d+)?(-\d+)?(#PRO_\d+)?$
+  pattern: ^([OPQ]\d[A-Z0-9]{3}\d|[A-NR-Z]\d([A-Z][A-Z0-9]{2}\d){1,2})$
   preferred_prefix: uniprot
   providers:
   - code: aipd
@@ -89536,6 +89510,8 @@ uniprot:
       information'
     year: 2006
   rdf_uri_format: http://purl.uniprot.org/uniprot/$1
+  references:
+  - https://www.uniprot.org/help/accession_numbers
   synonyms:
   - SwissProt
   - UP
@@ -92396,7 +92372,7 @@ vt:
   rdf_uri_format: http://purl.obolibrary.org/obo/VT_$1
   repository: https://github.com/AnimalGenome/vertebrate-trait-ontology
   uri_format: http://purl.obolibrary.org/obo/VT_$1
-  version: '2026-09-09'
+  version: '2026-09-23'
 vto:
   contact:
     email: balhoff@renci.org
@@ -92406,10 +92382,13 @@ vto:
   description: Comprehensive hierarchy of extinct and extant vertebrate taxa.
   download_obo: http://purl.obolibrary.org/obo/vto.obo
   download_owl: http://purl.obolibrary.org/obo/vto.owl
+  download_rdf: https://raw.githubusercontent.com/materialdigital/vickers-testing-ontology/main/vto.ttl
   example: '9008500'
   homepage: https://github.com/phenoscape/vertebrate-taxonomy-ontology
   keywords:
   - bone element
+  - engineering
+  - nfdi-matwerk
   - obo
   - ontology
   - taxonomy
@@ -92422,6 +92401,7 @@ vto:
     obofoundry: vto
     ols: vto
     ontobee: VTO
+    tib.ts: vto
     wikidata.entity: Q81661832
   name: Vertebrate Taxonomy Ontology
   pattern: ^\d{7}$
@@ -92655,11 +92635,6 @@ wdr:
   description: Underlying schema for POWDER
   example: tag
   homepage: https://www.w3.org/TR/powder-formal
-  keywords:
-  - institutional repository
-  - subject agnostic
-  mappings:
-    fairsharing: FAIRsharing.b58ea1
   name: Protocol for Web Description Resources (POWDER) Schema
   preferred_prefix: wdr
   uri_format: http://www.w3.org/2007/05/powder#$1

@@ -82,33 +82,6 @@
     },
     "name": "variant controlled vocabulary"
   },
-  "aeon": {
-    "artifacts": [
-      {
-        "type": "owl",
-        "url": "https://raw.githubusercontent.com/tibonto/aeon/main/aeon.owl"
-      }
-    ],
-    "description": "NOT READY FOR PRODUCTION (PURLs not registered)- The Academic Event Ontology (AEON) is used to represent information regarding academic events.",
-    "extras": {
-      "version.iri": "http://purl.obolibrary.org/obo/aeon/releases/2023-02-22/aeon.owl"
-    },
-    "homepage": "https://github.com/tibonto/aeon",
-    "keywords": [
-      "Miscellaneous",
-      "history",
-      "social sciences",
-      "educational science"
-    ],
-    "license": {
-      "name": "CC-BY 4.0",
-      "spdx": "CC-BY-4.0",
-      "url": "https://creativecommons.org/licenses/by/4.0/"
-    },
-    "name": "Academic Event Ontology",
-    "tracker": "https://github.com/tibonto/aeon/issues",
-    "uri_format": "https://github.com/tibonto/aeon$1"
-  },
   "afo": {
     "artifacts": [
       {
@@ -539,6 +512,28 @@
     "name": "The BRENDA Tissue Ontology (BTO)",
     "tracker": "https://github.com/BRENDA-Enzymes/BTO/issues"
   },
+  "bto-mw": {
+    "artifacts": [
+      {
+        "type": "rdf",
+        "url": "https://raw.githubusercontent.com/HosseinBeygiNasrabadi/Brinell-Test-Ontology-BTO-/main/BTO5.0.4.ttl"
+      }
+    ],
+    "description": "Brinell Test Ontology (BTO) has been developed for representing the Brinell testing process, testing equipment requirements, test pieces characteristics, and related testing parameters and their measurement procedure according to DIN EN ISO 6506-1 standard.",
+    "homepage": "https://github.com/HosseinBeygiNasrabadi/Brinell-Test-Ontology-BTO-",
+    "keywords": [
+      "NFDI-MatWerk",
+      "engineering"
+    ],
+    "license": {
+      "name": "CC-BY-4.0",
+      "spdx": "CC-BY-4.0",
+      "url": "https://creativecommons.org/licenses/by/4.0/"
+    },
+    "name": "Brinell Test Ontology (BTO)",
+    "tracker": "https://github.com/HosseinBeygiNasrabadi/Brinell-Test-Ontology-BTO-/issues",
+    "uri_format": "https://gitlab.com/kupferdigital/process-graphs/brinell-hardness-test/$1"
+  },
   "building": {
     "artifacts": [
       {
@@ -714,7 +709,7 @@
     ],
     "description": "ChEBI (Chemical Entities of Biological Interest) is a free dictionary of small molecular entities, including distinct atoms, molecules, ions, radicals, and complexes. These entities can be natural or synthetic, used in or affecting biological processes. The term \"small\" excludes genome-encoded entities like nucleic acids and proteins. ChEBI also includes classes of molecular entities and their parts, such as substituent groups or atoms.",
     "extras": {
-      "version.iri": "http://purl.obolibrary.org/obo/chebi/254/chebi.owl"
+      "version.iri": "http://purl.obolibrary.org/obo/chebi/255/chebi.owl"
     },
     "homepage": "http://www.ebi.ac.uk/chebi",
     "keywords": [
@@ -891,7 +886,7 @@
     ],
     "description": "The Citation Typing Ontology (CiTO) is an ontology that enables characterization of the nature or type of citations, both factually and rhetorically.",
     "extras": {
-      "version.iri": "http://purl.org/spar/cito/2026-06-22"
+      "version.iri": "http://purl.org/spar/cito/2026-09-03"
     },
     "homepage": "http://www.sparontologies.net/ontologies/cito",
     "keywords": [
@@ -902,7 +897,7 @@
       "spdx": "CC-BY-4.0",
       "url": "https://creativecommons.org/licenses/by/4.0/legalcode"
     },
-    "name": "CiTO, the Citation Typing Ontology",
+    "name": "The Citation Typing Ontology (CiTO)",
     "tracker": "https://github.com/SPAROntologies/cito/issues",
     "uri_format": "http://purl.org/spar/cito/$1"
   },
@@ -988,28 +983,6 @@
     "name": "QUDT VOCAB Physical Constants Release 3.2.1",
     "tracker": "https://github.com/qudt/qudt-public-repo/issues",
     "uri_format": "http://qudt.org/vocab/constant/$1"
-  },
-  "cora": {
-    "artifacts": [
-      {
-        "type": "owl",
-        "url": "https://raw.githubusercontent.com/srfiorini/IEEE1872-owl/master/cora.owl"
-      }
-    ],
-    "description": "This is the OWL implementation of CORA in IEEE 1872-2015. It only includes  the taxonomy of concepts and relations, with some few axioms reggarding disjointness, property characteristics and property ranges/domains. The OWL implementation is an underspecified version of the SUO-KIF implementation in IEEE 1872-2015. That is, the set of allowed models of the SUO-KIF implementation is a proper subset of the allowed models by the OWL implementation. Concept definitions in natural language and othe clarifications can be found in the  IEEE 1872-2015 standard.",
-    "homepage": "https://github.com/srfiorini/IEEE1872-owl",
-    "keywords": [
-      "NFDI4ING",
-      "engineering"
-    ],
-    "license": {
-      "name": "Attribution 4.0 International (CC BY 4.0)",
-      "spdx": "CC-BY-4.0",
-      "url": "https://creativecommons.org/licenses/by/4.0/"
-    },
-    "name": "Core Ontology for Robotics and Automation (CORA)",
-    "tracker": "https://github.com/srfiorini/IEEE1872-owl/issues",
-    "uri_format": "http://purl.org/ieee1872-owl/cora$1"
   },
   "coy": {
     "artifacts": [
@@ -1130,22 +1103,30 @@
     "tracker": "https://github.com/ISE-FIZKarlsruhe/nfdi4culture/issues",
     "uri_format": "https://nfdi4culture.de/ontology/CTO_$1"
   },
-  "datacite": {
-    "description": "\n## Description\n\nThe _DataCite Ontology_ (or simply DataCite) is an ontology written in OWL 2 DL to enable the metadata properties of the [DataCite Metadata Schema (version 4.7)](https://datacite-metadata-schema.readthedocs.io/en/4.7/) to be described in RDF. \n\n![A diagram of the DataCite Ontology.](datacite.png)\n\nThe main intent of the DataCite Ontology is to provide a flexible mechanism to define identifiers for bibliographic resources (e.g., papers and datasets) and related entities (e.g., authors). To this end, DataCite uses the object property `datacite:hasIdentifier`, which has as its object a member of the class `datacite:Identifier` or of one of its sub-classes (`datacite:ResourceIdentifier`, `datacite:AgentIdentifier` or `datacite:RightsIdentifier`). \nIn turn, `datacite:AgentIdentifier` is further sub-classed by three additional classes, i.e., `datacite:PersonalIdentifier`, `datacite:OrganizationIdentifier`, and `datacite:FunderIdentifier`. \nThe exact nature of the identifier is then defined using the second DataCite object property `datacite:usesIdentifierScheme`, which has as its object the class `datacite:IdentifierScheme` or one of its sub-classes: `datacite:ResourceIdentifierScheme`, `datacite:AgentIdentifierScheme` or `datacite:RightsIdentifierScheme`. `datacite:AgentIdentifierScheme` is further sub-classed by three additional classes, i.e., `datacite:PersonalIdentifierScheme`, `datacite:OrganizationIdentifierScheme`, and `datacite:FunderIdentifierScheme`.\nThis provides a robust method for defining identifiers, since each specific identifier is defined as an individual member of its appropriate identifier scheme class. Of course, existing identifier schemes have been already defined within the ontology. For instance:\n\n* `datacite:doi` is an individual member of the class `datacite:ResourceIdentifierScheme` specifying a DataCite Digital Object Identifier (DOI);\n* `datacite:orcid` is an individual member of the class `datacite:PersonalIdentifierScheme` specifying an Open Researcher and Contributor Identifier (ORCID);\n* `datacite:fundref` is an individual member of the class `datacite:FunderIdentifierScheme` specifying a FundRef Funder Identifier.\n\nAs need arises, new identifiers can be added later as new members of each class, without having to modify the structure of the DataCite Ontology. In addition, some members, i.e., `datacite:local-resource-identifier-scheme`, `datacite:local-personal-identifier-scheme`, `datacite:local-organization-identifier-scheme` and `datacite:local-funder-identifier-scheme`, have been already added to permit the use of local identifiers.\n\nThe class `datacite:DescriptionType`, and the object properties `datacite:hasDescription` and `datacite:hasDescriptionType`, have also been defined in order to link an entity to another item representing an entity description of a particular type. \nThis is defined using the property `datacite:hasDescriptionType`, which must have as its object one of the members of the class `datacite:DescriptionType`, i.e., `datacite:abstract`, `datacite:methods`, `datacite:other`, `datacite:series-information` and `datacite:table-of-content`. \nIn this way, it is possible to associate written documents (e.g. journal articles or data articles) as descriptions of datasets.\n\nIt is also possible to provide a link between a resource, such as a dataset, and the document describing its metadata by means of the _Citation Typing Ontology_ (CiTO), using the property `cito:citesAsMetadataDocument`, and the _FRBR-aligned Bibliographic Ontology_ (FaBiO), by means of the class `fabio:MetadataDocument`. \nIn addition to these entities, the DataCite Ontology provides appropriate classes (i.e., `datacite:MetadataScheme`) and properties (i.e., `datacite:hasMetadataScheme`) to specify the particular scheme followed for creating the resource metadata exemplified in the metadata document.\n\nFinally, with the DataCite Ontology, it is possible to represent situations where a given relation between two entities needs to be qualified in some way, e.g. with a description that specifies the nature of said relation.\nThis is provided by the class `datacite:QualifiedRelation`, which represents a certain relationship existing between two entities. \nThe qualified relation is linked with one entity (more specifically, the subject of the relation) via the object property `datacite:hasRelationSubject`, and with the other (the object of the relation) via the object property `datacite:hasRelationObject`.\nThe type of relation itself is defined via the property `datacite:hasRelationCharacterization`, which links a qualified relation to its characterization made by using an object property such as `dcterms:relation`, `cito:cites`, or `frbr:isPartOf`. \nThis usage involves [OWL2 punning](http://www.w3.org/TR/2009/WD-owl2-new-features-20090611/#F12:_Punning), a mechanism according to which an object property can be used as the object of an OWL assertion by being considered simultaneously both as a normal property and also as a named individual of the class `owl:Thing`.\n\n## Examples of use\n\nIn the following subsections, we introduce some examples to showcase how to use the DataCite Ontology. \n\nThe prefixes that are used in all the examples provided below are defined as follows:\n\n    @prefix : <http://www.sparontologies.net/example/> .\n    @prefix co: <http://purl.org/co/> .\n    @prefix datacite: <http://purl.org/spar/datacite/> .\n    @prefix dcterms: <http://purl.org/dc/terms/> .\n    @prefix fabio: <http://purl.org/spar/fabio/> .\n    @prefix foaf: <http://xmlns.com/foaf/0.1/> .\n    @prefix literal: <http://www.essepuntato.it/2010/06/literalreification/> .\n    @prefix orcid: <http://orcid.org/> .\n    @prefix owl: <http://www.w3.org/2002/07/owl#> .\n    @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .\n    @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .\n    @prefix skos: <http://www.w3.org/2004/02/skos/core#> .\n    @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .\n\n### Datasets' DOIs and authors' ORCIDs \n\nDataCite allows one to associate identifiers to a bibliographic entity (e.g., a dataset, a person, an article) specifying their exact nature by means of the object property `datacite:usesIdentifierScheme`. \nIn addition, it is also possible, through the object property `datacite:hasDescription`, to link an entity to another item representing an entity description of a particular type. \nThis is defined using the property `datacite:hasDescriptionType`, which must have as its object one of the members of the class `datacite:DescriptionType`, i.e., `datacite:abstract`, `datacite:other`, `datacite:series-information`, `datacite:methods`, and `datacite:table-of-content`. \nIn this way, it is possible to associate written documents (e.g., journal articles) as descriptions of datasets.\n\n\n    <http://dx.doi.org/10.5061/dryad.15v26> a fabio:Dataset ;\n        datacite:hasIdentifier :dataset-doi ;\n        dcterms:creator\n            orcid:0000-0002-5159-9717 ,\n            orcid:0000-0002-7811-3617 ;\n        datacite:hasDescription\n            <http://dx.doi.org/10.1098/rsbl.2015.0486> .\n\n    <http://dx.doi.org/10.1098/rsbl.2015.0486>\n        a fabio:JournalArticle ;\n        datacite:hasIdentifier :paper-doi ;\n        dcterms:creator\n            orcid:0000-0002-5159-9717 ,\n            orcid:0000-0002-7811-3617 ;\n        datacite:hasDescriptionType datacite:other .\n\n    :paper-doi a datacite:PrimaryResourceIdentifier ;\n        literal:hasLiteralValue \"10.1098/rsbl.2015.0486\" ;\n        datacite:usesIdentifierScheme datacite:doi .\n\n    :dataset-doi a datacite:PrimaryResourceIdentifier ;\n        literal:hasLiteralValue \"10.5061/dryad.mq8r2\" ;\n        datacite:usesIdentifierScheme datacite:doi .\n\n    orcid:0000-0002-5159-9717 a foaf:Person ;\n        foaf:name \"Nidhi Seethapathi\" ;\n        datacite:hasIdentifier :seethapathi-orcid .\n\n    :seethapathi-orcid a datacite:PersonalIdentifier ;\n        literal:hasLiteralValue \"0000-0002-5159-9717\" ;\n        datacite:usesIdentifierScheme datacite:orcid .\n\n    orcid:0000-0002-7811-3617 a foaf:Person ;\n        foaf:name \"Manoj Srinivasan\" ;\n        datacite:hasIdentifier :srinivasan-orcid .\n\n    :srinivasan-orcid a datacite:PersonalIdentifier ;\n        literal:hasLiteralValue \"0000-0002-7811-3617\" ;\n        datacite:usesIdentifierScheme datacite:orcid .\n\n\n### Competency Questions\n\nThe DataCite Ontology can be used for answering several questions related to related to the identification, attribution, and discoverability of research products within a scholarly knowledge graph. \nIn the following subsections, some of them are introduced together with their respective SPARQL queries. \n\nThe prefixes that are used in all the SPARQL queries provided below are defined as follows:\n\n    PREFIX datacite: <http://purl.org/spar/datacite/>\n    PREFIX dcterms: <http://purl.org/dc/terms/>\n    PREFIX fabio: <http://purl.org/spar/fabio/>\n    PREFIX foaf: <http://xmlns.com/foaf/0.1/>\n    PREFIX literal: <http://www.essepuntato.it/2010/06/literalreification/>\n\n#### CQ1\n\nWhich article provides the description for a specific dataset identified by the DOI \"10.5061/dryad.mq8r2\"?\n\n    SELECT ?article ?article_doi\n    WHERE {\n        ?dataset_id literal:hasLiteralValue \"10.5061/dryad.mq8r2\" .\n        ?dataset datacite:hasIdentifier ?dataset_id ;\n            a fabio:Dataset ;\n            datacite:hasDescription ?article .\n        \n        ?article datacite:hasIdentifier ?paper_id .\n        ?paper_id literal:hasLiteralValue ?article_doi .\n    }\n\n#### CQ2\n\nWho are the creators associated with both the dataset and the article?\n\n    SELECT DISTINCT ?name ?orcid_uri\n    WHERE {\n        ?dataset a fabio:Dataset ;\n                dcterms:creator ?orcid_uri .\n        \n        ?article a fabio:JournalArticle ;\n                dcterms:creator ?orcid_uri .\n                \n        ?orcid_uri foaf:name ?name .\n    }\n\n#### CQ3\n\nWhat are the names and ORCID iDs of all researchers mentioned in the graph?\n\n    SELECT ?name ?orcid_value\n    WHERE {\n        ?person a foaf:Person ;\n                foaf:name ?name ;\n                datacite:hasIdentifier ?id_node .\n        \n        ?id_node datacite:usesIdentifierScheme datacite:orcid ;\n                literal:hasLiteralValue ?orcid_value .\n    }\n\n#### CQ4\n\nList all resources that have a description type categorized as \"other\".\n\n    SELECT ?resource\n    WHERE {\n        ?resource datacite:hasDescriptionType datacite:other .\n    }\n\n#### CQ5\n\nHow many identifiers are registered for each identifier scheme?\n\n    SELECT ?scheme (COUNT(?id_node) AS ?count)\n    WHERE {\n        ?id_node datacite:usesIdentifierScheme ?scheme .\n    }\n    GROUP BY ?scheme\n\n        ",
+  "cto-mw": {
+    "artifacts": [
+      {
+        "type": "rdf",
+        "url": "https://raw.githubusercontent.com/HosseinBeygiNasrabadi/creep-testing-ontology/main/cto.ttl"
+      }
+    ],
+    "description": "Creep Testing Ontology (CTO) has been developed for representing the creep testing process, testing equipment and setup requirements, test specimen characteristics, loading and environmental conditions, time-dependent deformation behavior, and related testing parameters and measurement procedures according to DIN EN ISO 204 standard.",
     "extras": {
-      "version.iri": "http://purl.org/spar/datacite/2026-05-05"
+      "version.iri": "https://w3id.org/pmd/cto/1.0.0"
     },
-    "homepage": "https://sparontologies.github.io/datacite/current/datacite.html",
+    "homepage": "https://github.com/HosseinBeygiNasrabadi/creep-testing-ontology",
     "keywords": [
-      "NFDIxCS"
+      "NFDI-MatWerk",
+      "engineering"
     ],
     "license": {
-      "name": "CC BY 4.0",
-      "spdx": "CC-BY-4.0",
-      "url": "http://creativecommons.org/licenses/by/4.0/"
+      "name": "CC0-1.0",
+      "spdx": "CC0-1.0",
+      "url": "https://creativecommons.org/publicdomain/zero/1.0/"
     },
-    "name": "The DataCite Ontology",
-    "uri_format": "http://purl.org/spar/datacite/$1"
+    "name": "Creep Testing Ontology",
+    "tracker": "https://github.com/HosseinBeygiNasrabadi/creep-testing-ontology/issues",
+    "uri_format": "https://w3id.org/pmd/cto/$1"
   },
   "datatype": {
     "extras": {
@@ -1169,7 +1150,7 @@
   "dblp": {
     "description": "The dblp RDF schema is an ontology that models the semantic contents of the dblp computer science bibliography.",
     "extras": {
-      "version.iri": "https://dblp.org/rdf/schema-2024-06-14"
+      "version.iri": "https://dblp.org/rdf/schema-2026-09-07"
     },
     "homepage": "https://dblp.org/rdf/docu/",
     "keywords": [
@@ -1790,7 +1771,7 @@
     },
     "description": "The Experimental Factor Ontology (EFO) provides a systematic description of many experimental variables available in EBI databases, and for projects such as the NHGRI-EBI GWAS catalog. It combines parts of several biological ontologies, such as UBERON anatomy, ChEBI chemical compounds, Cell Ontology and the Monarch Disease Ontology (MONDO). The scope of EFO is to support the annotation, analysis and visualization of data handled by many groups at the EBI and as the core ontology for Open Targets.",
     "extras": {
-      "version.iri": "http://www.ebi.ac.uk/efo/releases/v3.93.0/efo.owl"
+      "version.iri": "http://www.ebi.ac.uk/efo/releases/v3.94.0/efo.owl"
     },
     "homepage": "https://www.ebi.ac.uk/efo/",
     "keywords": [
@@ -2069,7 +2050,7 @@
   "fabio": {
     "description": "FaBiO, the FRBR-aligned Bibliographic Ontology, is an ontology for recording and publishing on the Semantic Web descriptions of entities that are published or potentially publishable, and that contain or are referred to by bibliographic references, or entities used to define such bibliographic references. FaBiO entities are primarily textual publications such as books, magazines, newspapers and journals, and items of their content such as poems, conference papers and editorials.  However, they also include blogs, web pages, datasets, computer algorithms, experimental protocols, formal specifications and vocabularies, legal records, governmental papers, technical and commercial reports and similar publications, and also anthologies, catalogues and similar collections.",
     "extras": {
-      "version.iri": "http://purl.org/spar/fabio/2026-05-18"
+      "version.iri": "http://purl.org/spar/fabio/2026-09-03"
     },
     "homepage": "https://sparontologies.github.io/fabio/current/fabio.html",
     "keywords": [
@@ -2082,7 +2063,7 @@
       "spdx": "CC-BY-4.0",
       "url": "https://creativecommons.org/licenses/by/4.0"
     },
-    "name": "FaBiO, the FRBR-aligned Bibliographic Ontology",
+    "name": "The FRBR-aligned Bibliographic Ontology (FaBiO)",
     "tracker": "https://github.com/SPAROntologies/fabio/issues",
     "uri_format": "http://purl.org/spar/fabio/$1"
   },
@@ -2275,6 +2256,28 @@
     "tracker": "https://github.com/Data-Semantics-Laboratory/Modular-Ontology-Modeling-for-Food-Supply-Chains/issues",
     "uri_format": "http://dase.cs.ksu.edu/ontology/food-traceability#$1"
   },
+  "fto-mw": {
+    "artifacts": [
+      {
+        "type": "rdf",
+        "url": "https://raw.githubusercontent.com/HosseinBeygiNasrabadi/Fatigue-Test-Ontology-FTO-/main/FTO3.0.4.ttl"
+      }
+    ],
+    "description": "Fatigue Test Ontology (FTO) has been developed for representing the fatigue testing process, testing equipment requirements, test pieces characteristics, and related testing parameters and their measurement procedure according to DIN EN ISO 12106 standard.",
+    "homepage": "https://github.com/HosseinBeygiNasrabadi/Fatigue-Test-Ontology-FTO-",
+    "keywords": [
+      "NFDI-MatWerk",
+      "engineering"
+    ],
+    "license": {
+      "name": "CC-BY-4.0",
+      "spdx": "CC-BY-4.0",
+      "url": "https://creativecommons.org/licenses/by/4.0/"
+    },
+    "name": "Fatigue Test Ontology (FTO)",
+    "tracker": "https://github.com/HosseinBeygiNasrabadi/Fatigue-Test-Ontology-FTO-/issues",
+    "uri_format": "https://gitlab.com/kupferdigital/process-graphs/lcf-test/-/raw/main/FTO3.0.2.ttl/$1"
+  },
   "ftonto": {
     "artifacts": [
       {
@@ -2420,6 +2423,31 @@
     "name": "gist",
     "tracker": "https://github.com/semanticarts/gist/issues",
     "uri_format": "https://w3id.org/semanticarts/ns/ontology/gist/$1"
+  },
+  "glass": {
+    "artifacts": [
+      {
+        "type": "rdf",
+        "url": "https://raw.githubusercontent.com/materialdigital/glasdigital-ontology/main/pmd_go.ttl"
+      }
+    ],
+    "description": "The GlasDigital Ontology describes the robotic melting process at Bundesanstalt fuer Materialforschung und -pruefung (BAM), Berlin and also contains terminology from the SciGlass database.",
+    "extras": {
+      "version.iri": "https://w3id.org/pmd/glass-ontology/"
+    },
+    "homepage": "https://github.com/materialdigital/glasdigital-ontology",
+    "keywords": [
+      "NFDI-MatWerk",
+      "engineering"
+    ],
+    "license": {
+      "name": "CC-BY-4.0",
+      "spdx": "CC-BY-4.0",
+      "url": "https://creativecommons.org/licenses/by/4.0/"
+    },
+    "name": "GlasDigital Ontology",
+    "tracker": "https://github.com/materialdigital/glasdigital-ontology/issues",
+    "uri_format": "https://glasdigi.cms.uni-jena.de/glass/$1"
   },
   "gndo": {
     "artifacts": [
@@ -2599,7 +2627,7 @@
     ],
     "description": "The Human Phenotype Ontology (HPO) provides a standardized vocabulary of phenotypic abnormalities and clinical features encountered in human disease.",
     "extras": {
-      "version.iri": "http://purl.obolibrary.org/obo/hp/releases/2026-06-23/hp.owl"
+      "version.iri": "http://purl.obolibrary.org/obo/hp/releases/2026-09-01/hp.owl"
     },
     "homepage": "https://hpo.jax.org/app/",
     "keywords": [
@@ -2960,6 +2988,31 @@
     "name": "Key Performance Indicator ontology",
     "uri_format": "http://bimerr.iot.linkeddata.es/def/key-performance-indicator#$1"
   },
+  "ldo": {
+    "artifacts": [
+      {
+        "type": "owl",
+        "url": "https://raw.githubusercontent.com/OCDO/ldo/refs/heads/main/ldo.owl"
+      }
+    ],
+    "description": "Line Defect Ontology (LDO)",
+    "extras": {
+      "version.iri": "http://purls.helmholtz-metadaten.de/cdos/ldo/0.0.1"
+    },
+    "homepage": "https://github.com/OCDO/ldo",
+    "keywords": [
+      "NFDI-MatWerk",
+      "engineering"
+    ],
+    "license": {
+      "name": "CC-BY-4.0",
+      "spdx": "CC-BY-4.0",
+      "url": "https://creativecommons.org/licenses/by/4.0/"
+    },
+    "name": "Line Defect Ontology",
+    "tracker": "https://github.com/OCDO/ldo/issues",
+    "uri_format": "https://purls.helmholtz-metadaten.de/ldo#$1"
+  },
   "linsearch": {
     "artifacts": [
       {
@@ -3167,7 +3220,7 @@
       }
     ],
     "description": "This concept scheme contains skos concepts for analysis methods used to produce observation results with information about the physical properties, chemical or isotopic composition, crystallography, or molecular structure of material samples. Based on spreadsheet compilation of method vocabularies from Geo.X, GEOROC, PetDB and OSIRIS-REx. Definitions added and updated based on web research, and SKOS serialization by S.M. Richard. Note that although there are high-level method categories for 'Physical property measurements' and the 'Bioanalytical method', these are placeholders and only include a few examples that are relevant to analytical methods in geo- or cosmochemistry.",
-    "homepage": "https://amds-ldeo.github.io/Vocabulary/geochemistry/html/GeochemAnalyticalMethod.html",
+    "homepage": "https://amds-ldeo.github.io/Vocabulary/geochemistry/GeochemAnalyticalMethod.html",
     "keywords": [
       "ESS",
       "earth sciences"
@@ -3211,7 +3264,7 @@
     ],
     "description": "A representation of the variety of methods used to make clinical and phenotype measurements.",
     "extras": {
-      "version.iri": "http://purl.obolibrary.org/obo/mmo/releases/2026-07-29/mmo.owl"
+      "version.iri": "http://purl.obolibrary.org/obo/mmo/releases/2026-09-12/mmo.owl"
     },
     "homepage": "https://github.com/rat-genome-database/MMO-Measurement-Method-Ontology/",
     "keywords": [
@@ -3234,7 +3287,7 @@
     ],
     "description": "PSI-MOD is an ontology consisting of terms that describe protein chemical modifications, logically linked by an is_a relationship in such a way as to form a direct acyclic graph (DAG). The PSI-MOD ontology has more than 45 top-level nodes, and provides alternative hierarchical paths for classifying protein modifications either by the molecular structure of the modification, or by the amino acid residue that is modified.",
     "extras": {
-      "version.iri": "http://purl.obolibrary.org/obo/mod/1.038.0/mod.owl"
+      "version.iri": "http://purl.obolibrary.org/obo/mod/1.039.0/mod.owl"
     },
     "homepage": "http://www.psidev.info/MOD",
     "keywords": [
@@ -3336,7 +3389,7 @@
     ],
     "description": "A structured controlled vocabulary for the annotation of experiments concerned with proteomics mass spectrometry.",
     "extras": {
-      "version.iri": "http://purl.obolibrary.org/obo/ms/4.1.258/ms.owl"
+      "version.iri": "http://purl.obolibrary.org/obo/ms/4.2.2/ms.owl"
     },
     "homepage": "http://www.psidev.info/groups/controlled-vocabularies",
     "keywords": [
@@ -3395,6 +3448,28 @@
     "tracker": "https://github.com/mobilityDCAT-AP/controlled-vocabularies/issues",
     "uri_format": "https://w3id.org/mobilitydcat-ap/mobility-theme/$1"
   },
+  "mto": {
+    "artifacts": [
+      {
+        "type": "rdf",
+        "url": "https://raw.githubusercontent.com/HosseinBeygiNasrabadi/Mechanical-Testing-Ontology/main/MTO4.0.2.ttl"
+      }
+    ],
+    "description": "The materials mechanical testing ontology (MTO) was developed by collecting mechanical testing vocabulary from ISO 23718 and standardized testing processes for materials including tensile testing, Brinell hardness testing, Vickers hardness testing, stress relaxation testing, and fatigue testing.",
+    "homepage": "https://github.com/HosseinBeygiNasrabadi/Mechanical-Testing-Ontology",
+    "keywords": [
+      "NFDI-MatWerk",
+      "engineering"
+    ],
+    "license": {
+      "name": "CC-BY-4.0",
+      "spdx": "CC-BY-4.0",
+      "url": "https://creativecommons.org/licenses/by/4.0/"
+    },
+    "name": "Mechanical Testing Ontology (MTO)",
+    "tracker": "https://github.com/HosseinBeygiNasrabadi/Mechanical-Testing-Ontology/issues",
+    "uri_format": "https://gitlab.com/kupferdigital/ontologies/mechanical-testing-ontology/$1"
+  },
   "mv": {
     "artifacts": [
       {
@@ -3447,7 +3522,7 @@
   "n4e": {
     "description": "The ontology and metadata schema for the NFDI4Earth Knowledge Hub. See serializations of this schema as an OWL ontology here:\n  - [RDF/XML](https://nfdi4earth.pages.rwth-aachen.de/knowledgehub/nfdi4earth-kh-schema/ontology.owl.xml)\n  - [RDF/Turtle](https://nfdi4earth.pages.rwth-aachen.de/knowledgehub/nfdi4earth-kh-schema/ontology.owl.ttl)\n  - [RDF/JSON-LD](https://nfdi4earth.pages.rwth-aachen.de/knowledgehub/nfdi4earth-kh-schema/ontology.owl.jsonld)\n  - [RDF/N-Triples](https://nfdi4earth.pages.rwth-aachen.de/knowledgehub/nfdi4earth-kh-schema/ontology.owl.nt)\n",
     "extras": {
-      "version.iri": "https://nfdi4earth.pages.rwth-aachen.de/knowledgehub/nfdi4earth-kh-schema/ontology-v0.40.13.owl.xml"
+      "version.iri": "https://nfdi4earth.pages.rwth-aachen.de/knowledgehub/nfdi4earth-kh-schema/ontology-v0.41.2.owl.xml"
     },
     "homepage": "https://nfdi4earth.de/ontology/",
     "keywords": [
@@ -4301,7 +4376,7 @@
     ],
     "description": "The PMD Core Ontology (PMDco) is a comprehensive framework for representing knowledge that encompasses fundamental concepts from the domains of materials science and engineering (MSE). The PMDco has been designed as a mid-level ontology to establish a connection between specific MSE application ontologies and the domain neutral concepts found in established top-level ontologies. The primary goal of the PMDco is to promote interoperability between diverse domains. PMDco's class structure is both understandable and extensible, making it an efficient tool for organizing MSE knowledge. It serves as a semantic intermediate layer that unifies MSE knowledge representations, enabling data and metadata to be systematically integrated on key terms within the MSE domain. With PMDco, it is possible to seamlessly trace data generation. By building on this foundation, PMDco facilitates the integration of data from various sources and the creation of complex workflows. In summary, PMDco is a valuable tool for researchers and practitioners in the MSE domains. It provides a common language for representing and sharing knowledge, allowing for efficient collaboration and promoting interoperability between diverse domains. Its design allows for the systematic integration of data and metadata, enabling seamless traceability of data generation. Overall, PMDco is a crucial step towards a unified and comprehensive understanding of the MSE domain. PMDco at GitHub: https://github.com/materialdigital/core-ontology Documentation: https://materialdigital.github.io/core-ontology/docs/",
     "extras": {
-      "version.iri": "https://w3id.org/pmd/co/3.1.0"
+      "version.iri": "https://w3id.org/pmd/co/3.1.1"
     },
     "homepage": "https://materialdigital.github.io/core-ontology/",
     "keywords": [
@@ -4701,7 +4776,7 @@
     ],
     "description": "Relationship types shared across multiple ontologies.",
     "extras": {
-      "version.iri": "http://purl.obolibrary.org/obo/ro/releases/2025-12-17/ro.owl"
+      "version.iri": "http://purl.obolibrary.org/obo/ro/releases/2026-09-04/ro.owl"
     },
     "homepage": "https://oborel.github.io/",
     "keywords": [
@@ -5271,6 +5346,28 @@
     "tracker": "https://github.com/w3c/data-shapes/issues",
     "uri_format": "http://www.w3.org/ns/shacl#$1"
   },
+  "sim": {
+    "artifacts": [
+      {
+        "type": "owl",
+        "url": "https://raw.githubusercontent.com/OCDO/DSIM/refs/heads/main/dislocation-sim-model-ontology.owl"
+      }
+    ],
+    "description": "Dislocation Simulation and Model Ontology.",
+    "homepage": "https://github.com/OCDO/DSIM",
+    "keywords": [
+      "NFDI-MatWerk",
+      "engineering"
+    ],
+    "license": {
+      "name": "CC-BY-3.0",
+      "spdx": "CC-BY-3.0",
+      "url": "http://creativecommons.org/licenses/by/3.0/"
+    },
+    "name": "Dislocation Simulation and Model Ontology",
+    "tracker": "https://github.com/OCDO/DSIM/issues",
+    "uri_format": "https://purls.helmholtz-metadaten.de/disos/sim#$1"
+  },
   "sio": {
     "artifacts": [
       {
@@ -5802,6 +5899,50 @@
     "name": "TUBES system ontology",
     "uri_format": "https://w3id.org/tso#$1"
   },
+  "tsrto": {
+    "artifacts": [
+      {
+        "type": "rdf",
+        "url": "https://raw.githubusercontent.com/HosseinBeygiNasrabadi/Tensile-Stress-Relaxation-Test-Ontology-TSRTO-/main/TSRTO3.0.1.ttl"
+      }
+    ],
+    "description": "Tensile Stress Relaxation Test Ontology (TSRTO) has been developed for representing the tensile stress relaxation testing process, testing equipment requirements, test pieces characteristics, and related testing parameters and their measurement procedure according to DIN EN ISO 10319-1 standard.",
+    "homepage": "https://github.com/HosseinBeygiNasrabadi/Tensile-Stress-Relaxation-Test-Ontology-TSRTO-",
+    "keywords": [
+      "NFDI-MatWerk",
+      "engineering"
+    ],
+    "license": {
+      "name": "CC-BY-4.0",
+      "spdx": "CC-BY-4.0",
+      "url": "https://creativecommons.org/licenses/by/4.0/"
+    },
+    "name": "Tensile Stress Relaxation Test Ontology (TSRTO)",
+    "tracker": "https://github.com/HosseinBeygiNasrabadi/Tensile-Stress-Relaxation-Test-Ontology-TSRTO-/issues",
+    "uri_format": "https://gitlab.com/kupferdigital/process-graphs/relaxation-test/$1"
+  },
+  "tto": {
+    "artifacts": [
+      {
+        "type": "rdf",
+        "url": "https://raw.githubusercontent.com/HosseinBeygiNasrabadi/Tensile-Test-Ontology-TTO-/refs/heads/main/TTO2.0.9.ttl"
+      }
+    ],
+    "description": "Tensile Test Ontology (TTO) has been developed for representing the tensile testing process, testing equipment requirements, test pieces characteristics, and related testing parameters and their measurement procedure according to DIN EN ISO 6892-1 standard.",
+    "homepage": "https://github.com/HosseinBeygiNasrabadi/Tensile-Test-Ontology-TTO-",
+    "keywords": [
+      "NFDI-MatWerk",
+      "engineering"
+    ],
+    "license": {
+      "name": "CC-BY-4.0",
+      "spdx": "CC-BY-4.0",
+      "url": "https://creativecommons.org/licenses/by/4.0/"
+    },
+    "name": "Tensile Test Ontology (TTO)",
+    "tracker": "https://github.com/HosseinBeygiNasrabadi/Tensile-Test-Ontology-TTO-/issues",
+    "uri_format": "https://gitlab.com/kupferdigital/process-graphs/tensile-test/$1"
+  },
   "uat": {
     "artifacts": [
       {
@@ -6023,6 +6164,31 @@
     "name": "VSSo Core: Vehicle Signal Specification Core Ontology. W3C First Public Working Draft 03 March 2022",
     "tracker": "https://github.com/w3c/vsso/issues",
     "uri_format": "https://github.com/w3c/vsso-core#$1"
+  },
+  "vto": {
+    "artifacts": [
+      {
+        "type": "rdf",
+        "url": "https://raw.githubusercontent.com/materialdigital/vickers-testing-ontology/main/vto.ttl"
+      }
+    ],
+    "description": "Vickers Test Ontology (VTO) has been developed for representing the Vickers testing process, testing equipment requirements, test pieces characteristics, and related testing parameters and their measurement procedure according to DIN EN ISO 6507-1 standard.",
+    "extras": {
+      "version.iri": "https://w3id.org/pmd/vto/3.0.0"
+    },
+    "homepage": "https://github.com/materialdigital/vickers-testing-ontology",
+    "keywords": [
+      "NFDI-MatWerk",
+      "engineering"
+    ],
+    "license": {
+      "name": "CC0-1.0",
+      "spdx": "CC0-1.0",
+      "url": "https://creativecommons.org/publicdomain/zero/1.0/"
+    },
+    "name": "Vickers Test Ontology",
+    "tracker": "https://github.com/materialdigital/vickers-testing-ontology/issues",
+    "uri_format": "https://w3id.org/pmd/vto/$1"
   },
   "wlmo": {
     "artifacts": [
