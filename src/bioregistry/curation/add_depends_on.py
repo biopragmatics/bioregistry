@@ -87,7 +87,7 @@ def _get_prefixes_from_owl(resource: Resource, url: str, converter: Converter) -
     with logging_redirect_tqdm(), tempfile.TemporaryDirectory() as tmpdir:
         ttl_path = tmpdir.join("tmp.ttl")
         try:
-            robot_obo_tool.convert(url, ttl_path, input_flag="I", check=False, fmt="ttl")
+            robot_obo_tool.convert(url, ttl_path, input_flag="-I", check=False, fmt="ttl")
             graph = read_rdflib(ttl_path, format="ttl")
         except Exception as e:
             return Error(url, "owl", e)
