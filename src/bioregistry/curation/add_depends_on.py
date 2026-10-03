@@ -126,8 +126,8 @@ def _get_prefixes_from_rdf(
 
     with logging_redirect_tqdm(), tempfile.TemporaryDirectory() as tmpdir:
         path = Path(tmpdir).joinpath(name_from_url(url))
-        download(url=url, path=path, backend="requests")
         try:
+            download(url=url, path=path, backend="requests")
             graph = read_rdflib(path, format=rdf_format)
         except Exception as e:
             return Error(url, rdf_format, e)
