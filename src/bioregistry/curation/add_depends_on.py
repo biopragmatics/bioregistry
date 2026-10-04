@@ -5,7 +5,6 @@ from functools import partial
 from pathlib import Path
 from typing import NamedTuple
 
-import click
 import curies
 import obographs
 import pyobo
@@ -14,11 +13,7 @@ import rdflib.exceptions
 import robot_obo_tool
 from curies import Converter
 from curies import vocabulary as v
-from pyobo import Obo
-from pyobo.struct.skos import read_skos
 from pystow.utils import download, name_from_url, read_rdflib, safe_open_writer
-from rdflib import OWL, RDF, SKOS
-from tabulate import tabulate
 from tqdm import tqdm
 from tqdm.contrib import tmap
 from tqdm.contrib.concurrent import process_map
@@ -85,9 +80,12 @@ def _process(
 
 def _get_prefixes_from_owl(resource: Resource, url: str, converter: Converter) -> set[str] | Error:
     with logging_redirect_tqdm(), tempfile.TemporaryDirectory() as tmpdir:
-        ttl_path = tmpdir.join("tmp.ttl")
+        d = Path(tmpdir)
+        path = d.joinpath(name_from_url(url))
+        ttl_path = d.joinpath("tmp.ttl")
         try:
-            robot_obo_tool.convert(url, ttl_path, input_flag="-I", check=False, fmt="ttl")
+            download(url=url, path=path, backend="requests")
+            robot_obo_tool.convert(path, ttl_path, check=False, fmt="ttl")
             graph = read_rdflib(ttl_path, format="ttl")
         except Exception as e:
             return Error(url, "owl", e)
@@ -184,90 +182,6 @@ def _work_graph(resource: Resource, graph: rdflib.Graph, converter: Converter) -
         f"[{resource.prefix:{WIDTH}}] of {len(references):,} references, got {len(prefixes)} prefixes"
     )
     return prefixes
-
-
-def _annotate_data_models(manager: Manager) -> None:
-    resources: list[tuple[Resource, str, str | None]] = []
-    for resource in manager.registry.values():
-        if resource.get_download_skos() or resource.get_download_owl():
-            continue
-        match resource.get_download_rdf(get_format=True):
-            case None:
-                continue
-            case str(url):
-                resources.append((resource, url, None))
-            case AnnotatedURL() as model:
-                resources.append((resource, model.url, model.rdf_format))
-
-    for resource, url, rdf_format in tqdm(resources, unit="resource"):
-        with logging_redirect_tqdm():
-            graph = read_rdflib(url, format=rdf_format)
-        pr = f"[{resource.prefix:{WIDTH}}] "
-        if isinstance(graph, Exception):
-            tqdm.write(pr + click.style(f"failed to parse {url}", fg="red"))
-            tqdm.write(str(graph))
-            tqdm.write("\n")
-            continue
-
-        owl_top = list(graph.subjects(RDF.type, OWL.Ontology))
-        skos_top = list(graph.subjects(RDF.type, SKOS.ConceptScheme))
-        if owl_top and skos_top:
-            tqdm.write(pr + click.style(f"both SKOS and OWL in {url}", fg="yellow"))
-        elif not owl_top and not skos_top:
-            tqdm.write(pr + click.style(f"unknown in {url}", fg="yellow"))
-        elif len(owl_top) == 1:
-            tqdm.write(pr + click.style(f"OWL - {owl_top[0]}", fg="green"))
-
-            # Clear URLs
-            resource.download_skos = None
-            resource.download_rdf = None
-            resource.download_owl = url
-
-        elif len(owl_top) > 1:
-            tqdm.write(pr + click.style(f"multiple OWL in {url}", fg="yellow"))
-        elif len(skos_top) == 1:
-            tqdm.write(pr + click.style(f"SKOS - {skos_top[0]}", fg="green"))
-
-            # Clear URLs
-            resource.download_skos = url
-            resource.download_rdf = None
-
-        elif len(skos_top) > 1:
-            tqdm.write(pr + click.style(f"multiple SKOS in {url}", fg="yellow"))
-        else:
-            raise RuntimeError
-
-    manager.write_registry()
-
-
-def _convert_skos(manager: Manager) -> None:
-    rows = []
-    for resource in tqdm(manager.registry.values()):
-        match resource.get_download_skos(get_format=True):
-            case None:
-                continue
-            case str(url):
-                try:
-                    ontology = read_skos(url, prefix=resource.prefix)
-                except SyntaxError:
-                    tqdm.write(f"[{resource.prefix:{WIDTH}}]need explicit RDF format for ")
-                    continue
-                rows.append((resource.prefix, url, "", *_summarize(ontology)))
-            case AnnotatedURL() as model:
-                ontology = read_skos(model.url, prefix=resource.prefix, rdf_format=model.rdf_format)
-                rows.append((resource.prefix, model.url, model.rdf_format, *_summarize(ontology)))
-        ontology.write_obo(f"/Users/cthoyt/Desktop/{resource.prefix}.obo")
-
-    tqdm.write(tabulate(rows, headers=["prefix", "url", "format", "terms", "parents"]))
-
-
-def _summarize(ontology: Obo) -> tuple[int, ...]:
-    n_parents = 0
-    n_terms = 0
-    for term in ontology:
-        n_terms += 1
-        n_parents += len(term.parents)
-    return n_terms, n_parents
 
 
 if __name__ == "__main__":
