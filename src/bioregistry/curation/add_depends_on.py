@@ -1,16 +1,20 @@
 """Calculate dependencies between resources."""
 
 import tempfile
+from collections import Counter
 from functools import partial
 from pathlib import Path
 from typing import NamedTuple
 
+import click
 import curies
 import obographs
+import pandas as pd
 import pyobo
 import rdflib
 import rdflib.exceptions
 import robot_obo_tool
+import seaborn as sns
 from curies import Converter
 from curies import vocabulary as v
 from pystow.utils import download, name_from_url, read_rdflib, safe_open_writer
@@ -20,7 +24,10 @@ from tqdm.contrib.concurrent import process_map
 from tqdm.contrib.logging import logging_redirect_tqdm
 
 from bioregistry import Manager, Resource
+from bioregistry.constants import EXPORT_ANALYSES
 from bioregistry.schema import AnnotatedURL
+
+USAGE_DIRECTORY = EXPORT_ANALYSES.joinpath("usage")
 
 HERE = Path(__file__).parent.resolve()
 
@@ -40,6 +47,7 @@ def _update_resources(
     resources = [resource for resource in manager.registry.values() if resource.has_download()]
     _map = partial(process_map, chunksize=30) if multiprocessing else tmap
     with safe_open_writer(results_path) as writer, safe_open_writer(errors_path) as error_writer:
+        writer.writerow(("prefix", "uses_prefix"))
         error_writer.writerow(("prefix", *Error._fields))
         for resource, result in _map(
             partial(_process, converter=converter), resources, unit="prefix"
@@ -184,5 +192,20 @@ def _work_graph(resource: Resource, graph: rdflib.Graph, converter: Converter) -
     return prefixes
 
 
+@click.command()
+@click.option("--refresh", is_flag=True)
+def main(refresh: bool) -> None:
+    results_path = USAGE_DIRECTORY / "results-raw.tsv"
+    errors_path = USAGE_DIRECTORY / "errors.tsv"
+    if refresh:
+        _update_resources(Manager(), results_path, errors_path)
+
+    df = pd.read_csv(results_path, sep="\t", header=None, names=["source", "target"])
+    g = sns.countplot(data=df, x="source")
+    g.figure.savefig(USAGE_DIRECTORY / "countplot.png")
+
+    # TODO do network-based analysis for transitive closure
+
+
 if __name__ == "__main__":
-    _update_resources(Manager(), HERE / "results.tsv", HERE / "errors.tsv")
+    main()
