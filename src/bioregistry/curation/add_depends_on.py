@@ -1,20 +1,19 @@
 """Calculate dependencies between resources."""
 
 import tempfile
-from collections import Counter
 from functools import partial
 from pathlib import Path
 from typing import NamedTuple
 
 import click
 import curies
+import networkx as nx
 import obographs
 import pandas as pd
 import pyobo
 import rdflib
 import rdflib.exceptions
 import robot_obo_tool
-import seaborn as sns
 from curies import Converter
 from curies import vocabulary as v
 from pystow.utils import download, name_from_url, read_rdflib, safe_open_writer
@@ -62,7 +61,7 @@ def _update_resources(
                         prefixes.update(resource.depends_on)
                     prefixes.discard(resource.prefix)  # don't count self
                     resource.depends_on = sorted(prefixes)
-                    for prefix in prefixes:
+                    for prefix in sorted(prefixes):
                         writer.writerow((resource.prefix, prefix))
 
 
@@ -195,14 +194,24 @@ def _work_graph(resource: Resource, graph: rdflib.Graph, converter: Converter) -
 @click.command()
 @click.option("--refresh", is_flag=True)
 def main(refresh: bool) -> None:
+    """Analyze dependencies between resources."""
     results_path = USAGE_DIRECTORY / "results-raw.tsv"
+    results_closure_path = USAGE_DIRECTORY / "results-closure.tsv"
     errors_path = USAGE_DIRECTORY / "errors.tsv"
     if refresh:
         _update_resources(Manager(), results_path, errors_path)
 
-    df = pd.read_csv(results_path, sep="\t", header=None, names=["source", "target"])
-    g = sns.countplot(data=df, x="source")
-    g.figure.savefig(USAGE_DIRECTORY / "countplot.png")
+    df = pd.read_csv(results_path, sep="\t", dtype=str)
+    #g = sns.countplot(data=df, x="source")
+    #g.figure.savefig(USAGE_DIRECTORY / "countplot.png")
+
+    # construct results-inferred
+    graph = nx.DiGraph()
+    graph.add_edges_from([(u,v) for u,v in df.values])
+    inferred = nx.transitive_closure(graph)
+    df_inferred = pd.DataFrame([(u,v) for u,v in inferred.edges() if u != v], columns=df.columns)
+    df_inferred.sort_values(list(df_inferred.columns), inplace=True)
+    df_inferred.to_csv(results_closure_path, sep="\t", index=False)
 
     # TODO do network-based analysis for transitive closure
 
