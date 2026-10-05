@@ -52,8 +52,9 @@ that's required to go with a given prefix.
 
 1. New prefixes are allowed to contain letters [a-z], numbers [0-9], and a
    single dot `.` if a subspace is requested. More discussion on subspacing
-   policy can be found https://github.com/biopragmatics/bioregistry/issues/133
-   and https://github.com/biopragmatics/bioregistry/issues/65.
+   policy can be found at
+   <https://github.com/biopragmatics/bioregistry/issues/133> and
+   <https://github.com/biopragmatics/bioregistry/issues/65>.
 2. New prefixes must start with a letter.
 3. New prefixes must be at least two characters. Ideally, prefixes should be
    three or more characters for legibility.
@@ -82,7 +83,7 @@ might be, add an underscore to the start of the prefix and maintain the other
 prefix as a synonym.
 
 Original discussion about minimum prefix requirements can be found at
-https://github.com/biopragmatics/bioregistry/issues/158.
+<https://github.com/biopragmatics/bioregistry/issues/158>.
 
 #### Miscellaneous Requirements
 
@@ -113,7 +114,7 @@ https://github.com/biopragmatics/bioregistry/issues/158.
    would be bad while `hgnc.gene` would be better.
 
 These policies were developed in parallel with the OBO Foundry policy on
-choosing a prefix (i.e., IDSPACE) at http://obofoundry.org/id-policy.html.
+choosing a prefix (i.e., IDSPACE) at <http://obofoundry.org/id-policy.html>.
 
 #### Writing a Good Description
 
@@ -171,7 +172,7 @@ collisions:
 
 - New prefixes must not collide with any canonical prefixes, preferred prefixes,
   synonyms, or normalized variants thereof. See
-  https://github.com/biopragmatics/bioregistry/issues/359 for an example of a
+  <https://github.com/biopragmatics/bioregistry/issues/359> for an example of a
   prefix request that duplicated the synonyms of an existing prefix and how it
   was able to be resolved.
 - New prefixes should not collide with any prefixes in external registries, even
@@ -187,15 +188,15 @@ It has not happened often that prefixes have even collided. One example is two
 maintained resources, Gene Expression Omnibus vs. Geographical Entity Ontology,
 collided on using `geo` when Geographical Entity Ontology was added to the OBO
 Foundry. This was resolved in
-https://github.com/biopragmatics/bioregistry/issues/67 after deciding to change
-the prefix used in Geographical Entity Ontology due to the fact that the Gene
-Expression Omnibus was both much older and more well-known. This particular case
-motivated the OBO Foundry to update its ontology registration guidelines to
+<https://github.com/biopragmatics/bioregistry/issues/67> after deciding to
+change the prefix used in Geographical Entity Ontology due to the fact that the
+Gene Expression Omnibus was both much older and more well-known. This particular
+case motivated the OBO Foundry to update its ontology registration guidelines to
 require conflicts with existing Bioregistry records in
-https://github.com/OBOFoundry/OBOFoundry.github.io/issues/1519. Another example
-is the disease class annotation (legacy classification from the hard fork of the
-Disease Ontology that later became MONDO) and Dublin Core, where one is
-subjectively more important than the other.
+<https://github.com/OBOFoundry/OBOFoundry.github.io/issues/1519>. Another
+example is the disease class annotation (legacy classification from the hard
+fork of the Disease Ontology that later became MONDO) and Dublin Core, where one
+is subjectively more important than the other.
 
 #### Bulk Contribution
 
@@ -248,7 +249,7 @@ currently under development (and by definition, is not yet substantiated). The
 Bioregistry does not explicitly discourage prefix parking, but new prefix
 requests qualifying as prefix parking require additional guidelines, partially
 motivated by the difficulty of the discussion on
-https://github.com/biopragmatics/bioregistry/issues/359.
+<https://github.com/biopragmatics/bioregistry/issues/359>.
 
 1. While it's not typically under the purview of the Bioregistry Review Team to
    judge the utility of a prefix nor comment on its corresponding design
@@ -277,7 +278,7 @@ https://github.com/biopragmatics/bioregistry/issues/359.
    resources - these can be rejected without further discussion.
 
 Original discussion about prefix parking can be found at
-https://github.com/biopragmatics/bioregistry/issues/365.
+<https://github.com/biopragmatics/bioregistry/issues/365>.
 
 #### Contact and Attribution
 
@@ -490,7 +491,7 @@ If other code is updated before your contribution gets merged, you might need to
 resolve conflicts against the main branch. After cloning, you should add the
 upstream repository with
 
-```shell
+```console
 $ git remote add biopragmatics https://github.com/biopragmatics/bioregistry.git
 ```
 
@@ -506,7 +507,7 @@ qualifiers in the
 [`setup.cfg`](https://github.com/biopragmatics/bioregistry/blob/main/setup.cfg)
 and from the GitHub Actions testing configuration.
 
-See https://endoflife.date/python for a timeline of Python release and
+See <https://endoflife.date/python> for a timeline of Python release and
 end-of-life dates.
 
 #### Review of Pull Requests
