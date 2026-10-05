@@ -10,7 +10,7 @@ and manual overrides. The logic for accessing the data is inside the associated
 Python code. However, the logic is applied to create the following derived
 consensus files.
 
-### [`registry.json`](registry.json)
+## [`registry.json`](registry.json)
 
 This is a consensus view over the registry in the JSON format. It combines all
 the novel curation in the registry, prioritized information from external
@@ -21,17 +21,17 @@ This file _should_ contain all relevant fields. If you find something missing,
 please make an issue.
 
 This file can be accessed with the PURL:
-https://w3id.org/biopragmatics/bioregistry/registry.json
+<https://w3id.org/biopragmatics/bioregistry/registry.json>
 
-### [`registry.yml`](registry.yml)
+## [`registry.yml`](registry.yml)
 
 This is exactly the same as the consensus `registry.json` but dumped as a YAML
 file.
 
 This file can be accessed with the PURL:
-https://w3id.org/biopragmatics/bioregistry/registry.yml
+<https://w3id.org/biopragmatics/bioregistry/registry.yml>
 
-### [`registry.tsv`](registry.tsv)
+## [`registry.tsv`](registry.tsv)
 
 This is a derived view over the registry in a tab-separated values document. It
 is _not_ a full view over the registry, but only contains fields which are the
@@ -41,9 +41,9 @@ If there's something additional you'd like included in this export, please open
 an issue.
 
 This file can be accessed with the PURL:
-https://w3id.org/biopragmatics/bioregistry/registry.tsv
+<https://w3id.org/biopragmatics/bioregistry/registry.tsv>
 
-### [`publications.tsv`](publications.tsv)
+## [`publications.tsv`](publications.tsv)
 
 This is a derived view of all the publications referenced by various records in
 the Bioregistry.

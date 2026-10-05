@@ -93,7 +93,6 @@ unnecessarily.
    Bioregistry update:
 
    ![](https://raw.githubusercontent.com/biopragmatics/bioregistry/refs/heads/main/docs/img/bibliography_years.svg)
-
 4. They support the training of a machine learning for semi-automated curation
    of additional literature. See this
    [talk](https://docs.google.com/presentation/d/1h2IajyGkUxUPHubEi8_WE6xW6TOuOihn5zsmi4kYrrc/edit?usp=sharing)

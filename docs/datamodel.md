@@ -106,7 +106,7 @@ enumerated, which allows for a general solution that can apply to FBbt, VariO,
 and other mixed-case embedded prefixes. The Bioregistry Python package includes
 functions for reformatting CURIEs based on the desired context (e.g., for
 general use, for compatibility with Identifiers.org). Further discussion on this
-topic can be found at https://github.com/biopragmatics/bioregistry/issues/191.
+topic can be found at <https://github.com/biopragmatics/bioregistry/issues/191>.
 
 ### URI Format String
 
@@ -124,9 +124,9 @@ provide more "health" checks over each registry and the Bioregistry as a whole.
 ### Availability
 
 Each entry includes three optional fields for when the resource is available as
-an ontology in the OWL (https://www.w3.org/TR/owl2-syntax), OBO
-(https://owlcollab.github.io/oboformat/doc/obo-syntax.html), or OBO Graph JSON
-(https://github.com/geneontology/obographs) formats. These entries are typically
+an ontology in the [OWL](https://www.w3.org/TR/owl2-syntax),
+[OBO](https://owlcollab.github.io/oboformat/doc/obo-syntax.html), or
+[OBO Graph JSON](https://github.com/geneontology/obographs) formats. These entries are typically
 imported from the OBO Foundry and OLS and are manually annotated to support
 large-scale ontology acquisition and processing such as with ROBOT, Pronto, or
 PyOBO.
@@ -242,4 +242,4 @@ rgd, rgd.qtl, and rgd.strain. The rgd prefix is more of a bucket than a parent -
 it includes all of the entity types (e.g., genes, articles) in the RGD that are
 neither quantitative trait loci (QTLs) nor strains. Because of cases like this,
 we have begun discussions on imposing a prefix subspacing policy at
-https://github.com/biopragmatics/bioregistry/issues/133.
+<https://github.com/biopragmatics/bioregistry/issues/133>.
