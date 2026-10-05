@@ -229,21 +229,20 @@ def main(refresh: bool) -> None:
         prefix_to_used_prefixes[prefix].append(used_prefix)
 
     # summarize for each NFDI section
-    collections = read_collections()
-    collections = [c for c in collections.values() if c.has_organization_with_ror(NFDI_ROR)]
+    collections = [c for c in read_collections().values() if c.has_organization_with_ror(NFDI_ROR)]
     for collection in collections:
         prefixes = [
-            p
-            for p in collection.get_prefixes()
-            if bioregistry.get_resource(p, strict=True).has_download()
+            prefix
+            for prefix in collection.get_prefixes()
+            if bioregistry.get_resource(prefix, strict=True).has_download()
         ]
         if len(prefixes) < 5:
             continue
         counter = Counter()
         for prefix in prefixes:
             counter[prefix] += 1
-            for xx in prefix_to_used_prefixes[prefix]:
-                counter[xx] += 1
+            for used_prefix in prefix_to_used_prefixes[prefix]:
+                counter[used_prefix] += 1
 
         click.echo(collection.name)
         click.echo(
