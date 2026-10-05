@@ -3135,7 +3135,10 @@
       }
     ],
     "description": "AGROVOC is a multilingual and controlled vocabulary designed to cover concepts and terminology under FAO's areas of interest. It is the largest Linked Open Data set about agriculture available for public use and its greatest impact is through providing the access and visibility of data across domains and languages.",
-    "download_rdf": "https://agrovoc.fao.org/latestAgrovoc/agrovoc_core.rdf.zip",
+    "download_rdf": {
+      "rdf_format": "xml",
+      "url": "https://agrovoc.fao.org/latestAgrovoc/agrovoc_core.rdf.zip"
+    },
     "ecoportal": {
       "contact": {
         "email": "agrovoc@fao.org",
@@ -23640,6 +23643,7 @@
       "chemical",
       "ontology"
     ],
+    "license": "CC-BY-NC-4.0",
     "name": "ChemFOnt Chemical",
     "part_of_database": "chemfont",
     "pattern": "^CFc\\d{9}$",
@@ -23683,6 +23687,7 @@
       "chemical",
       "ontology"
     ],
+    "license": "CC-BY-NC-4.0",
     "name": "ChemFOnt Ontology",
     "part_of_database": "chemfont",
     "pattern": "^CFo\\d{9}$",
@@ -27703,6 +27708,41 @@
     },
     "pattern": "^\\d+$",
     "uri_format": "http://purl.obolibrary.org/obo/CLYH_$1"
+  },
+  "cmc.umg": {
+    "contact": {
+      "email": "lukas.cyganek@med.uni-goettingen.de",
+      "name": "Lukas Cyganek",
+      "orcid": "0000-0001-9120-1382"
+    },
+    "contact_group_email": "support.menoci@medizin.uni-goettingen.de",
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "A catalog of patient-derived cell lines",
+    "example": "46",
+    "homepage": "https://cmc.umg.eu/cellmodel",
+    "keywords": [
+      "cell line"
+    ],
+    "name": "Cell Model Catalogue Göttingen",
+    "owners": [
+      {
+        "name": "Universitätsmedizin Göttingen",
+        "ror": "021ft0n22"
+      }
+    ],
+    "pattern": "^\\d+$",
+    "providers": [
+      {
+        "code": "legacy",
+        "uri_format": "https://sfb1002.med.uni-goettingen.de/production/cellmodel/cell-line/view?tab=internal&line=$1"
+      }
+    ],
+    "uri_format": "https://cmc.umg.eu/cellmodel/cell-line/view?tab=internal&line=$1"
   },
   "cmecs": {
     "contact": {
@@ -63040,8 +63080,8 @@
     },
     "description": "This is the element set of native RDF classes and properties described in the current text (Feb 2009) of the Functional Requirements for Bibliographic Records (FRBR) entity-relationship model. (from https://www.iflastandards.info/fr/frbr/frbrer.html)",
     "download_rdf": {
-      "rdf_format": "json-ld",
-      "url": "http://iflastandards.info/ns/fr/frbr/frbrer.jsonld"
+      "rdf_format": "xml",
+      "url": "http://iflastandards.info/ns/fr/frbr/frbrer.xml"
     },
     "example": "1001",
     "homepage": "https://www.iflastandards.info/fr/frbr/frbrer",
@@ -73379,6 +73419,18 @@
     }
   },
   "grddl": {
+    "contact": {
+      "email": "hhalpin@ibiblio.org",
+      "github": "hhalpin",
+      "name": "Harry Halpin"
+    },
+    "contact_extras": [
+      {
+        "email": "nospam@iandavis.com",
+        "github": "iand",
+        "name": "Ian Davis"
+      }
+    ],
     "contributor": {
       "email": "cthoyt@gmail.com",
       "github": "cthoyt",
@@ -89831,7 +89883,10 @@
       }
     ],
     "description": "An identifier for a country in numeric format per ISO 3166-1",
-    "download_rdf": "http://www.lexvo.org/resources/lexvo_2013-02-09.rdf.gz",
+    "download_rdf": {
+      "rdf_format": "xml",
+      "url": "http://www.lexvo.org/resources/lexvo_2013-02-09.rdf.gz"
+    },
     "example": "554",
     "homepage": "https://www.iso.org/iso-3166-country-codes.html",
     "mappings": {
@@ -90933,12 +90988,16 @@
       "orcid": "0000-0003-4423-4370"
     },
     "example": "JCRB1355",
+    "example_extras": [
+      "KURB1329",
+      "NIHS0308"
+    ],
     "homepage": "https://cellbank.nibiohn.go.jp",
     "mappings": {
       "cellosaurus.resource": "JCRB"
     },
     "name": "JRBC Cell Bank",
-    "pattern": "^JCRB\\d+$",
+    "pattern": "^(JCRB|KURB|NIHS)\\d+$",
     "uri_format": "https://cellbank.nibiohn.go.jp/~cellbank/en/search_res_det.cgi?RNO=$1"
   },
   "jcsd": {
@@ -94291,6 +94350,36 @@
     "repository": "https://github.com/annotation-ontology/annotation-ontology",
     "uri_format": "http://purl.org/ao/$1"
   },
+  "legacy.capcldb": {
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "deprecated": true,
+    "description": "A legacy database of 114 cancer cell lines that can be downloaded [here](https://web.archive.org/web/20150601005658/http://capcelllines.ca/downloads/CaPCellLines_database.xls)",
+    "example": "133",
+    "homepage": "https://web.archive.org/web/20150602153556/http://capcelllines.ca:80",
+    "keywords": [
+      "cell line"
+    ],
+    "name": "Prostate Cancer Cell Line Database",
+    "owners": [
+      {
+        "name": "BC Cancer Agency",
+        "ror": "03sfybe47"
+      }
+    ],
+    "pattern": "^\\d+$",
+    "providers": [
+      {
+        "code": "legacy",
+        "uri_format": "http://capcelllines.ca:80/details.asp?id=$1"
+      }
+    ],
+    "uri_format": "https://web.archive.org/web/20150602153556/http://capcelllines.ca:80/details.asp?id=$1"
+  },
   "legilux": {
     "bartoc": {
       "description": "The controlled vocabularies of Luxembourg legislation provide semantic reference lists to describe, browse, and reuse legal texts (e.g. themes, act types, institutions, and file formats) in the Legilux and Casemates systems.",
@@ -96948,7 +97037,10 @@
       "orcid": "0000-0003-4423-4370"
     },
     "description": "Relator terms and their associated codes designate the relationship between an agent and a bibliographic resource.",
-    "download_rdf": "https://id.loc.gov/download/vocabulary/relators.skosrdf.ttl.gz",
+    "download_rdf": {
+      "rdf_format": "xml",
+      "url": "https://id.loc.gov/download/vocabulary/relators.skosrdf.ttl.gz"
+    },
     "example": "arc",
     "github_request_issue": 1980,
     "homepage": "http://id.loc.gov/vocabulary/relators",
@@ -126809,6 +126901,7 @@
     },
     "deprecated": true,
     "description": "OntoCAPE is a large-scale ontology for the domain of Computer Aided Process Engineering (CAPE). Represented in a formal, machine-interpretable ontology language, OntoCAPE captures consensual knowledge of the process engineering domain in a generic way such that it can be reused and shared by groups of people and across software systems. On the basis of OntoCAPE, novel software support for various engineering activities can be developed; possible applications include the systematic management and retrieval of simulation models and design documents, electronic procurement of plant equipment, mathematical modeling, as well as the integration of design data from distributed sources.",
+    "download_owl": "https://www.avt.rwth-aachen.de/global/show_document.asp?id=aaaaaaaaaatptsn",
     "homepage": "https://www.avt.rwth-aachen.de/cms/AVT/Forschung/Software/~ipts/OntoCape",
     "license": "GPL-2.0",
     "name": "Ontology for computer aided process engineering",
@@ -147420,13 +147513,17 @@
     },
     "description": "Collection of many cell lines derived from human and other various animals, preserved by the RIKEN BioResource Research Center.",
     "example": "RCB0002",
+    "example_extras": [
+      "HSC0015",
+      "HPS0351"
+    ],
     "homepage": "https://cell.brc.riken.jp/en/rcb",
     "mappings": {
       "cellosaurus.resource": "RCB",
       "rrid.resource": "IMSR_RBRC"
     },
     "name": "RIKEN Bioresource Center Cell Bank",
-    "pattern": "^RCB\\d+$",
+    "pattern": "^(RCB|HSC|HPS)\\d+$",
     "rrid.resource": {
       "homepage": "http://www.brc.riken.jp/inf/en",
       "keywords": [
@@ -165222,6 +165319,29 @@
     },
     "uri_format": "http://purl.obolibrary.org/obo/STATO_$1"
   },
+  "stemmcellbank": {
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "A cell line catalog from the Boston University Center for Regenerative Medicine (CReM)",
+    "example": "509",
+    "homepage": "https://stemcellbank.bu.edu",
+    "keywords": [
+      "cell line"
+    ],
+    "name": "CReM iPSC Catalog",
+    "owners": [
+      {
+        "name": "Boston University",
+        "ror": "05qwgg493"
+      }
+    ],
+    "pattern": "^\\d+$",
+    "uri_format": "https://stemcellbank.bu.edu/Catalog/Item/Details/$1"
+  },
   "stitch": {
     "biocontext": {
       "prefix": "STITCH",
@@ -167056,6 +167176,24 @@
       "prefix": "sustaingraph",
       "uri_format": "https://netmode.gitlab.io/sustaingraph/$1"
     }
+  },
+  "suzhou.cell": {
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "The Suzhou Research Institute Cell Bank (hereinafter referred to as the \"Cell Bank\") is dedicated to the acquisition, preservation, characterization, and distribution of cell and cell-derivative resources in support of cell science research. By establishing robust preservation protocols and formulating standardized legal agreements, the Cell Bank ensures the effective management and protection of its stored cell resources, thereby advancing the standardization and internationalization of China's cell resource infrastructure. (translated from homepage)",
+    "example": "3830",
+    "homepage": "http://www.brics.ac.cn/cell",
+    "keywords": [
+      "cell line"
+    ],
+    "logo": "http://www.brics.ac.cn/cell/img/logo1.png",
+    "name": "Suzhou Research Institute Cell Bank",
+    "pattern": "^\\d+$",
+    "uri_format": "http://www.brics.ac.cn/cell/template/cell/cell_detail.html?id=$1"
   },
   "swan": {
     "contributor": {
@@ -179838,7 +179976,7 @@
         "wikidata": "Q24254757"
       }
     },
-    "download_skos": {
+    "download_rdf": {
       "rdf_format": "xml",
       "url": "https://raw.githubusercontent.com/astrothesaurus/UAT/master/UAT.rdf"
     },
@@ -180286,6 +180424,21 @@
     "name": "UBERON Issue Tracker",
     "pattern": "^\\d+$",
     "uri_format": "https://github.com/obophenotype/uberon/issues/$1"
+  },
+  "ubigene": {
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "A laboratory materials provider, such as for cell lines. Like many suppliers, there is no direct way to go from a catalog identifier to the webpage, nor even a way to format a search query.",
+    "example": "YKO-XN48492",
+    "homepage": "https://www.ubigene.us",
+    "keywords": [
+      "cell line"
+    ],
+    "name": "UbiGene"
   },
   "ubio.namebank": {
     "biocontext": {
@@ -187869,6 +188022,7 @@
       "orcid": "0000-0002-5898-1820"
     },
     "description": "Voc4Cat is a [SKOS](https://www.w3.org/TR/2009/REC-skos-reference-20090818/) vocabulary for the catalysis disciplines. The vocabulary was created in the [NFDI4Cat](http://www.nfdi4cat.org/) initiative. The first collection of terms was published in June 2023 with a focus on photo catalysis. Our goal is to continuously extend the vocabulary to other areas of catalysis and related disciplines like chemical engineering or materials science.",
+    "download_skos": "https://nfdi4cat.github.io/voc4cat/latest/voc4cat.ttl",
     "example": "0000123",
     "github_request_issue": 957,
     "homepage": "https://nfdi4cat.github.io/voc4cat",
