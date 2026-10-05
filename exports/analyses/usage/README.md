@@ -14,5 +14,5 @@ Files:
 Regenerate by running:
 
 ```console
-$ uv run -m bioregistry.curation.add_depends_on
+$ uv run -m bioregistry.curation.add_depends_on --refresh
 ```
