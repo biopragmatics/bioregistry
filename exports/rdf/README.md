@@ -2,7 +2,7 @@
 
 The RDF dump of the Bioregistry combines information about the registry,
 metaregistry, and collections using the schema described at
-https://bioregistry.io/schema/. Elements of the Bioregistry schema have the
+<https://bioregistry.io/schema/>. Elements of the Bioregistry schema have the
 prefix
 [`bioregistry.schema`](https://bioregistry.io/registry/bioregistry.schema).
 
