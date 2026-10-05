@@ -10,3 +10,9 @@ Files:
 - [`results-closure.tsv`](results-closure.tsv): A processed version of the raw
   results where the transitive closure has been applied to explicitly enumerate
   all indirect dependencies in addition to the direct ones.
+
+Regenerate by running:
+
+```console
+$ uv run -m bioregistry.curation.add_depends_on
+```
