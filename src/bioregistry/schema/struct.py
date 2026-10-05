@@ -442,7 +442,9 @@ class AnnotatedURL(BaseModel):
     """A URL annotated with its file type and data schema."""
 
     url: str
-    rdf_format: Annotated[RDFFormat, Field(title="RDF Format")]
+    rdf_format: Annotated[RDFFormat, Field(title="RDF Format")] | None= None
+    compression: Literal["zip", "tar"] | None = None
+    inner_path: str | None = None
 
 
 DEFAULT_METAPREFIX_PRIORITY = [
@@ -590,7 +592,7 @@ class Resource(BaseModel):
             "actually just reuses identifies from ``ncbigene``, so ``ctd.gene`` provides ``ncbigene``."
         ),
     )
-    download_owl: str | None = Field(
+    download_owl: str | AnnotatedURL | None = Field(
         default=None,
         title="OWL Download URL",
         description=_dedent(
@@ -2701,7 +2703,15 @@ class Resource(BaseModel):
         """Get the download link for the latest JSKOS JSON file."""
         return self.download_jskos
 
-    def get_download_owl(self) -> str | None:
+    # docstr-coverage:excused `overload`
+    @overload
+    def get_download_owl(self, *, get_format: Literal[True] = ...) -> str | AnnotatedURL | None:...
+
+    # docstr-coverage:excused `overload`
+    @overload
+    def get_download_owl(self, *, get_format: Literal[False] = ...) -> str | None:...
+
+    def get_download_owl(self, *, get_format: bool = False) -> str | AnnotatedURL | None:
         """Get the download link for the latest OWL file.
 
         :returns: A URL for an OWL file download, if exists.
@@ -2726,6 +2736,8 @@ class Resource(BaseModel):
         ... )
         """
         if self.download_owl:
+            if isinstance(self.download_owl, AnnotatedURL) and not get_format:
+                return self.download_owl.url
             return self.download_owl
         for metaprefix in _get_prioritized_metaprefixes(
             ["obofoundry", "ols", "cropoct", "aberowl", "tib"]

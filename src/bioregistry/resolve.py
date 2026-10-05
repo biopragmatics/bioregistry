@@ -851,12 +851,12 @@ def get_json_download(prefix: str) -> str | None:
     return entry.get_download_obograph()
 
 
-def get_owl_download(prefix: str) -> str | None:
+def get_owl_download(prefix: str, *, get_format: bool = False) -> str | AnnotatedURL | None:
     """Get the download link for the latest OWL file."""
     entry = get_resource(prefix)
     if entry is None:
         return None
-    return entry.get_download_owl()
+    return entry.get_download_owl(get_format=get_format)
 
 
 # docstr-coverage:excused `overload`
