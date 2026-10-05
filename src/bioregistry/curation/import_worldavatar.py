@@ -1,3 +1,13 @@
+# /// script
+# requires-python = ">=3.14"
+# dependencies = [
+#     "bioregistry",
+#     "ratelimit>=2.2.1",
+# ]
+#
+# [tool.uv.sources]
+# bioregistry = { path = "../../../", editable = true }
+# ///
 """Add WorldAvatar ontologies."""
 
 from collections.abc import Iterable
@@ -28,6 +38,9 @@ def main(force_process: bool) -> None:
         uri_format, example, description = _parse_worldavatar_owl(
             owl_path, prefix, worldavatar_name=worldavatar_name
         )
+        # remove this check in second round for more manual curation
+        if example is None or description is None:
+            continue
         resource = Resource(
             prefix=prefix,
             name=name,
@@ -72,16 +85,19 @@ def _iter_from_home() -> Iterable[tuple[str, str, str, str, Path]]:
                 continue
             short = worldavatar_name.removeprefix("onto")
             prefix = "worldavatar." + short
-            name = (
-                "WorldAvatar "
-                + owl_path.name.removesuffix(".owl")
-                .removeprefix("Onto")
-                .removeprefix("onto")
-                .replace("_", " ")
-                .capitalize()
-            )
+            name = "WorldAvatar " + _name_from_path(owl_path.name)
             download_owl = ROOT + owl_path.relative_to(LOCAL_DIR).as_posix()
             yield prefix, worldavatar_name, name, download_owl, owl_path
+
+
+def _name_from_path(owl_path: str) -> str:
+    return (
+        owl_path.removesuffix(".owl")
+        .removeprefix("Onto")
+        .removeprefix("onto")
+        .replace("_", " ")
+        .capitalize()
+    )
 
 
 def _iter_from_github(
@@ -129,7 +145,7 @@ def _iter_from_github(
             )
             continue
 
-        name = "WorldAvatar " + inner_record["name"].removesuffix(".owl")
+        name = "WorldAvatar " + _name_from_path(inner_record["name"])
         download_owl = inner_record["download_url"]
         owl_path = module.ensure(url=download_owl)
         yield prefix, worldavatar_name, name, download_owl, owl_path
@@ -196,7 +212,7 @@ def _parse_worldavatar_owl(
     if description is None:
         tqdm.write(click.style(f"[{prefix}] no description", fg="yellow"))
 
-    return uri_format, example, description
+    return uri_format, example, description.strip() if description else None
 
 
 if __name__ == "__main__":
