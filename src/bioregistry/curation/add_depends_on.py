@@ -106,9 +106,7 @@ def _process(
         return resource, None
 
 
-def _get_prefixes_from_owl(
-    resource: Resource, url: str | AnnotatedURL, converter: Converter
-) -> set[str] | Error:
+def _get_prefixes_from_owl(resource: Resource, url: str, converter: Converter) -> set[str] | Error:
     with logging_redirect_tqdm(), tempfile.TemporaryDirectory() as tmpdir:
         d = Path(tmpdir)
         path = d.joinpath(name_from_url(url))
