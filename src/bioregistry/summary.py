@@ -95,7 +95,7 @@ class BioregistrySummary:
 
     def get_table_latex(self) -> str:
         """Get the latex for table 1 in the manuscript."""
-        return self._table_df().to_latex(
+        return self._table_df().to_latex(  # type:ignore[no-any-return]
             index=False,
             caption=f"Overview statistics of the Bioregistry on {self.datetime_str}.",
             label="tab:bioregistry-summary",
