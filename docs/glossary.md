@@ -69,8 +69,8 @@ characters following the special token as in
 `http://eawag-bbd.ethz.ch/$1/$1_map.html` for the
 [UM-BBD Pathway database](https://bioregistry.io/umbbd.pathway). Providers can
 return information HTML as in the previous example, images (e.g.,
-<https://www.ebi.ac.uk/chebi/displayImage.do?defaultImage=true&chebiId=132964> for
-the ChEBI entry on fluazifop-P-butyl), XML (e.g.,
+<https://www.ebi.ac.uk/chebi/displayImage.do?defaultImage=true&chebiId=132964>
+for the ChEBI entry on fluazifop-P-butyl), XML (e.g.,
 <https://www.uniprot.org/uniprot/P10636.xml> for UniProt entry on human
 Microtubule-associated protein tau), or any other information that can be
 transferred via HTTP, FTP, or related data transfer protocols. Alternatively,
@@ -90,9 +90,9 @@ A registry is a special kind of resource that assigns unique identifiers to a
 collection of resources. For historical reasons, these identifiers are
 colloquially called prefixes. A registry collects additional metadata about each
 resource, though there is a wide variety of metadata standards across existing
-registries (see <https://bioregistry.io/related>). These metadata may include the
-name, homepage, a regular expression pattern for validating identifiers, one or
-more example identifiers, a default provider, and potentially additional
+registries (see <https://bioregistry.io/related>). These metadata may include
+the name, homepage, a regular expression pattern for validating identifiers, one
+or more example identifiers, a default provider, and potentially additional
 providers. Like with resources, a high-quality registry should have an
 associated first-party provider that comprises a web site for exploring its
 entries and their associated metadata. Some registries are directly imported and

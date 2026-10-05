@@ -52,8 +52,9 @@ that's required to go with a given prefix.
 
 1. New prefixes are allowed to contain letters [a-z], numbers [0-9], and a
    single dot `.` if a subspace is requested. More discussion on subspacing
-   policy can be found at <https://github.com/biopragmatics/bioregistry/issues/133>
-   and <https://github.com/biopragmatics/bioregistry/issues/65>.
+   policy can be found at
+   <https://github.com/biopragmatics/bioregistry/issues/133> and
+   <https://github.com/biopragmatics/bioregistry/issues/65>.
 2. New prefixes must start with a letter.
 3. New prefixes must be at least two characters. Ideally, prefixes should be
    three or more characters for legibility.
@@ -187,15 +188,15 @@ It has not happened often that prefixes have even collided. One example is two
 maintained resources, Gene Expression Omnibus vs. Geographical Entity Ontology,
 collided on using `geo` when Geographical Entity Ontology was added to the OBO
 Foundry. This was resolved in
-<https://github.com/biopragmatics/bioregistry/issues/67> after deciding to change
-the prefix used in Geographical Entity Ontology due to the fact that the Gene
-Expression Omnibus was both much older and more well-known. This particular case
-motivated the OBO Foundry to update its ontology registration guidelines to
+<https://github.com/biopragmatics/bioregistry/issues/67> after deciding to
+change the prefix used in Geographical Entity Ontology due to the fact that the
+Gene Expression Omnibus was both much older and more well-known. This particular
+case motivated the OBO Foundry to update its ontology registration guidelines to
 require conflicts with existing Bioregistry records in
-<https://github.com/OBOFoundry/OBOFoundry.github.io/issues/1519>. Another example
-is the disease class annotation (legacy classification from the hard fork of the
-Disease Ontology that later became MONDO) and Dublin Core, where one is
-subjectively more important than the other.
+<https://github.com/OBOFoundry/OBOFoundry.github.io/issues/1519>. Another
+example is the disease class annotation (legacy classification from the hard
+fork of the Disease Ontology that later became MONDO) and Dublin Core, where one
+is subjectively more important than the other.
 
 #### Bulk Contribution
 

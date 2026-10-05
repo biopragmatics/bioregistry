@@ -91,7 +91,6 @@ unnecessarily.
 3. They enable global landscape analysis of when and where identifier resources
    are being made. The following image is automatically regenerated with each
    Bioregistry update:
-
    ![](https://raw.githubusercontent.com/biopragmatics/bioregistry/refs/heads/main/docs/img/bibliography_years.svg)
 4. They support the training of a machine learning for semi-automated curation
    of additional literature. See this

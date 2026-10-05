@@ -35,10 +35,10 @@ prefixes, merging prefixes, splitting prefixes, and updating metadata associated
 with prefixes. It is implemented as a GitHub team that has "triage" permissions
 (e.g., able to maintain issues and pull requests).
 
-Until all potential update interactions have been codified with GitHub
-Actions workflows, the review team is also responsible for either helping the
-requester create an appropriate pull request or creating an appropriate pull
-request directly if none has been given by the requester.
+Until all potential update interactions have been codified with GitHub Actions
+workflows, the review team is also responsible for either helping the requester
+create an appropriate pull request or creating an appropriate pull request
+directly if none has been given by the requester.
 
 ### Membership
 
@@ -80,9 +80,10 @@ request directly if none has been given by the requester.
 
 #### Members
 
-- Meghan Balk (@megbalk; <https://orcid.org/0000-0003-2699-3066>; joined 2022-01)
-- Tiffany Callahan (@callahantiff; <https://orcid.org/0000-0002-8169-9049>; joined
+- Meghan Balk (@megbalk; <https://orcid.org/0000-0003-2699-3066>; joined
   2022-01)
+- Tiffany Callahan (@callahantiff; <https://orcid.org/0000-0002-8169-9049>;
+  joined 2022-01)
 - Benjamin M. Gyori (@bgyori; <https://orcid.org/0000-0001-9439-5346>)
 - Charles Tapley Hoyt (@cthoyt; <https://orcid.org/0000-0003-4423-4370>)
 - Tiago Lubiana (@lubianat; <https://orcid.org/0000-0003-2473-2313>; joined

@@ -16,8 +16,8 @@ following columns:
 
 Example data:
 
-| prefix        | identifier   | metaprefix  | uri                                                           |
-| ------------- | ------------ | ----------- | ------------------------------------------------------------- |
+| prefix        | identifier   | metaprefix  | uri                                                             |
+| ------------- | ------------ | ----------- | --------------------------------------------------------------- |
 | 3dmet         | B00162       | bioregistry | <https://bioregistry.io/3dmet:B00162>                           |
 | 3dmet         | B00162       | default     | <http://www.3dmet.dna.affrc.go.jp/cgi/show_data.php?acc=B00162> |
 | 3dmet         | B00162       | miriam      | <https://identifiers.org/3dmet:B00162>                          |

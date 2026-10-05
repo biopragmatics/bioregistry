@@ -126,10 +126,10 @@ provide more "health" checks over each registry and the Bioregistry as a whole.
 Each entry includes three optional fields for when the resource is available as
 an ontology in the [OWL](https://www.w3.org/TR/owl2-syntax),
 [OBO](https://owlcollab.github.io/oboformat/doc/obo-syntax.html), or
-[OBO Graph JSON](https://github.com/geneontology/obographs) formats. These entries are typically
-imported from the OBO Foundry and OLS and are manually annotated to support
-large-scale ontology acquisition and processing such as with ROBOT, Pronto, or
-PyOBO.
+[OBO Graph JSON](https://github.com/geneontology/obographs) formats. These
+entries are typically imported from the OBO Foundry and OLS and are manually
+annotated to support large-scale ontology acquisition and processing such as
+with ROBOT, Pronto, or PyOBO.
 
 ### Attribution
 
