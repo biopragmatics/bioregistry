@@ -1,6 +1,7 @@
 """Calculate dependencies between resources."""
 
 import tempfile
+from collections import defaultdict, Counter
 from functools import partial
 from pathlib import Path
 from typing import NamedTuple
@@ -10,6 +11,9 @@ import curies
 import networkx as nx
 import obographs
 import pandas as pd
+from tabulate import tabulate
+
+import bioregistry
 import pyobo
 import rdflib
 import rdflib.exceptions
@@ -22,8 +26,8 @@ from tqdm.contrib import tmap
 from tqdm.contrib.concurrent import process_map
 from tqdm.contrib.logging import logging_redirect_tqdm
 
-from bioregistry import Manager, Resource
-from bioregistry.constants import EXPORT_ANALYSES
+from bioregistry import Manager, Resource, read_collections
+from bioregistry.constants import EXPORT_ANALYSES, NFDI_ROR
 from bioregistry.schema import AnnotatedURL
 
 USAGE_DIRECTORY = EXPORT_ANALYSES.joinpath("usage")
@@ -40,7 +44,8 @@ class Error(NamedTuple):
 
 
 def _update_resources(
-    manager: Manager, results_path: Path, errors_path: Path, *, multiprocessing: bool = False
+        manager: Manager, results_path: Path, errors_path: Path, results_closure_path: Path, *,
+        multiprocessing: bool = False
 ) -> None:
     converter = manager.get_converter()
     resources = [resource for resource in manager.registry.values() if resource.has_download()]
@@ -49,7 +54,7 @@ def _update_resources(
         writer.writerow(("prefix", "uses_prefix"))
         error_writer.writerow(("prefix", *Error._fields))
         for resource, result in _map(
-            partial(_process, converter=converter), resources, unit="prefix"
+                partial(_process, converter=converter), resources, unit="prefix"
         ):
             match result:
                 case None:
@@ -64,12 +69,22 @@ def _update_resources(
                     for prefix in sorted(prefixes):
                         writer.writerow((resource.prefix, prefix))
 
+    # calculate indirect dependencies
+    df = pd.read_csv(results_path, sep="\t", dtype=str)
+    # construct results-inferred
+    graph = nx.DiGraph()
+    graph.add_edges_from([(u, v) for u, v in df.values])
+    inferred = nx.transitive_closure(graph)
+    df_inferred = pd.DataFrame([(u, v) for u, v in inferred.edges() if u != v], columns=df.columns)
+    df_inferred.sort_values(list(df_inferred.columns), inplace=True)
+    df_inferred.to_csv(results_closure_path, sep="\t", index=False)
+
 
 WIDTH = 15
 
 
 def _process(
-    resource: Resource, *, converter: curies.Converter
+        resource: Resource, *, converter: curies.Converter
 ) -> tuple[Resource, set[str] | Error | None]:
     if owl := resource.get_download_owl():
         return resource, _get_prefixes_from_owl(resource, owl, converter)
@@ -85,7 +100,7 @@ def _process(
         return resource, None
 
 
-def _get_prefixes_from_owl(resource: Resource, url: str, converter: Converter) -> set[str] | Error:
+def _get_prefixes_from_owl(resource: Resource, url: str | AnnotatedURL, converter: Converter) -> set[str] | Error:
     with logging_redirect_tqdm(), tempfile.TemporaryDirectory() as tmpdir:
         d = Path(tmpdir)
         path = d.joinpath(name_from_url(url))
@@ -110,7 +125,7 @@ def _get_prefixes_from_obo(resource: Resource, url: str, converter: Converter) -
 
 
 def _get_prefixes_from_obograph(
-    resource: Resource, url: str, converter: Converter
+        resource: Resource, url: str, converter: Converter
 ) -> set[str] | Error:
     try:
         g = obographs.read(url, squeeze=True)
@@ -129,7 +144,7 @@ def _get_prefixes_from_obograph(
 
 
 def _get_prefixes_from_rdf(
-    resource: Resource, rdf: str | AnnotatedURL, converter: Converter
+        resource: Resource, rdf: str | AnnotatedURL, converter: Converter
 ) -> set[str] | Error:
     match rdf:
         case str():
@@ -164,7 +179,7 @@ def _work_graph(resource: Resource, graph: rdflib.Graph, converter: Converter) -
     prefixes = set()
     references = set()
     for s, p, o in tqdm(
-        graph.triples((None, None, None)), desc=f"[{resource.prefix}] triples", leave=False
+            graph.triples((None, None, None)), desc=f"[{resource.prefix}] triples", leave=False
     ):
         if not isinstance(p, rdflib.URIRef):
             keep_object = True
@@ -178,9 +193,9 @@ def _work_graph(resource: Resource, graph: rdflib.Graph, converter: Converter) -
             references.add(subject_reference)
             prefixes.add(subject_reference.prefix)
         if (
-            keep_object
-            and isinstance(o, rdflib.URIRef)
-            and (object_reference := converter.parse_uri(o))
+                keep_object
+                and isinstance(o, rdflib.URIRef)
+                and (object_reference := converter.parse_uri(o))
         ):
             references.add(object_reference)
             prefixes.add(object_reference.prefix)
@@ -195,25 +210,38 @@ def _work_graph(resource: Resource, graph: rdflib.Graph, converter: Converter) -
 @click.option("--refresh", is_flag=True)
 def main(refresh: bool) -> None:
     """Analyze dependencies between resources."""
-    results_path = USAGE_DIRECTORY / "results-raw.tsv"
+    results_raw_path = USAGE_DIRECTORY / "results-raw.tsv"
     results_closure_path = USAGE_DIRECTORY / "results-closure.tsv"
     errors_path = USAGE_DIRECTORY / "errors.tsv"
     if refresh:
-        _update_resources(Manager(), results_path, errors_path)
+        _update_resources(Manager(), results_raw_path, errors_path, results_closure_path)
 
-    df = pd.read_csv(results_path, sep="\t", dtype=str)
-    #g = sns.countplot(data=df, x="source")
-    #g.figure.savefig(USAGE_DIRECTORY / "countplot.png")
+    dd = defaultdict(list)
+    df = pd.read_csv(results_raw_path, sep="\t")
+    for k, v in df.values:
+        dd[k].append(v)
 
-    # construct results-inferred
-    graph = nx.DiGraph()
-    graph.add_edges_from([(u,v) for u,v in df.values])
-    inferred = nx.transitive_closure(graph)
-    df_inferred = pd.DataFrame([(u,v) for u,v in inferred.edges() if u != v], columns=df.columns)
-    df_inferred.sort_values(list(df_inferred.columns), inplace=True)
-    df_inferred.to_csv(results_closure_path, sep="\t", index=False)
+    # summarize for each NFDI section
+    collections = read_collections()
+    collections = [c for c in collections.values() if c.has_organization_with_ror(NFDI_ROR)]
+    for collection in collections:
+        prefixes = [
+            p
+            for p in collection.get_prefixes()
+            if bioregistry.get_resource(p, strict=True).has_download()
+        ]
+        if len(prefixes) < 5:
+            continue
+        counter = Counter()
+        for prefix in prefixes:
+            counter[prefix] += 1
+            for xx in dd[prefix]:
+                counter[xx] += 1
 
-    # TODO do network-based analysis for transitive closure
+        print(collection.name)
+        print(tabulate([(k,count,f"{count/len(collection.resources):.1%}") for k, count in counter.most_common()]))
+        print()
+
 
 
 if __name__ == "__main__":
