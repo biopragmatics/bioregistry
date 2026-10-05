@@ -236,7 +236,7 @@ def main(refresh: bool) -> None:
         ]
         if len(prefixes) < 5:
             continue
-        counter = Counter()
+        counter: Counter[str] = Counter()
         for prefix in prefixes:
             counter[prefix] += 1
             for used_prefix in prefix_to_used_prefixes[prefix]:
