@@ -39,7 +39,7 @@ def main(force_process: bool) -> None:
             owl_path, prefix, worldavatar_name=worldavatar_name
         )
         # remove this check in second round for more manual curation
-        if example is None or description is None:
+        if example is None:
             continue
         resource = Resource(
             prefix=prefix,
