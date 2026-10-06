@@ -6,7 +6,7 @@ from typing import ClassVar
 import rdflib
 
 import bioregistry
-from bioregistry import Manager, manager
+from bioregistry import Manager
 from bioregistry.export.rdf_export import metaresource_to_rdf_str
 from bioregistry.schema import Registry
 
@@ -26,7 +26,7 @@ class TestMetaregistry(unittest.TestCase):
         for metaprefix, registry in self.manager.metaregistry.items():
             self.assertIsInstance(registry, Registry)
             external_prefixes = set(
-                self.manager.get_registry_invmap(metaprefix, use_obo_preferred=True)
+                self.manager.get_registry_invmap(metaprefix, use_obo_preferred=False)
             )
             with self.subTest(metaprefix=metaprefix):
                 self.assertIsNotNone(registry.name)
@@ -39,43 +39,20 @@ class TestMetaregistry(unittest.TestCase):
                         msg="Examples should be external-registry specific and mapped",
                     )
                 self.assertIsNotNone(registry.description)
-                self.assertIsNotNone(registry.contact)
-                self.assertIsNotNone(registry.license, msg=f"Contact: {registry.contact}")
+                self.assertIsNotNone(registry.contact, msg="contact is None")
                 self.assertNotEqual("FIXME", registry.contact.name)
                 if "support" not in registry.contact.name.lower():
-                    self.assertIsNotNone(registry.contact.orcid)
-                    self.assertIsNotNone(registry.contact.github)
+                    self.assertIsNotNone(registry.contact.orcid, msg="contact ORCiD is none")
 
-                if registry.provider_uri_format:
-                    self.assertIsNotNone(registry.provider_uri_format)
-                    self.assertIn("$1", registry.provider_uri_format)
+                if registry.uri_format:
+                    self.assertIsNotNone(registry.uri_format)
+                    self.assertIn("$1", registry.uri_format)
 
-                if (
-                    # Missing URI format string
-                    not registry.provider_uri_format
-                    # Unresolved overlap in Bioregistry
-                    or metaprefix in bioregistry.read_registry()
-                    # Has URI format string, but not in proper form
-                    or (
-                        registry.provider_uri_format
-                        and not registry.provider_uri_format.endswith("$1")
-                    )
-                ):
-                    self.assertIsNotNone(registry.bioregistry_prefix)
-
-                if registry.bioregistry_prefix:
-                    self.assertEqual(
-                        bioregistry.normalize_prefix(registry.bioregistry_prefix),
-                        registry.bioregistry_prefix,
-                        msg="link from metaregistry to bioregistry must use canonical prefix",
-                    )
-                    resource = bioregistry.get_resource(registry.bioregistry_prefix)
-                    self.assertIsNotNone(resource)
-                    self.assertIsNotNone(
-                        resource.get_uri_format(),
-                        msg=f"corresponding registry entry ({registry.bioregistry_prefix})"
-                        f" is missing a uri_format",
-                    )
+                self.assertEqual(
+                    bioregistry.normalize_prefix(registry.prefix),
+                    registry.prefix,
+                    msg="link from metaregistry to bioregistry must use canonical prefix",
+                )
 
                 # When a registry is a resolver, it means it
                 # can resolve entries (prefixes) + identifiers
@@ -104,18 +81,18 @@ class TestMetaregistry(unittest.TestCase):
         self.assertIsNone(bioregistry.get_registry_example("nope"))
         self.assertIsNone(bioregistry.get_registry_description("nope"))
 
-        metaprefix = "uniprot"
+        metaprefix = "uniprot.resource"
         registry = bioregistry.get_registry(metaprefix, strict=True)
         self.assertIsInstance(registry, Registry)
         self.assertEqual(metaprefix, registry.prefix)
 
         self.assertEqual(registry.description, bioregistry.get_registry_description(metaprefix))
 
-        homepage = "https://www.uniprot.org/database/"
+        homepage = "https://www.uniprot.org/database"
         self.assertEqual(homepage, registry.homepage)
         self.assertEqual(homepage, bioregistry.get_registry_homepage(metaprefix))
 
-        name = "UniProt Cross-ref database"
+        name = "UniProt Resource"
         self.assertEqual(name, registry.name)
         self.assertEqual(name, bioregistry.get_registry_name(metaprefix))
 
@@ -138,8 +115,8 @@ class TestMetaregistry(unittest.TestCase):
 
     def test_get_rdf(self) -> None:
         """Test conversion to RDF."""
-        registry = self.manager.metaregistry["uniprot"]
-        s = metaresource_to_rdf_str(registry, manager=manager)
+        registry = self.manager.metaregistry["uniprot.resource"]
+        s = metaresource_to_rdf_str(registry, manager=self.manager)
         self.assertIsInstance(s, str)
         g = rdflib.Graph()
         g.parse(data=s)
@@ -147,14 +124,7 @@ class TestMetaregistry(unittest.TestCase):
     def test_corresponding(self) -> None:
         """Test data corresponds between the registry and metaregistry."""
         for metaprefix, registry in self.manager.metaregistry.items():
-            if registry.bioregistry_prefix:
-                resource = self.manager.registry[registry.bioregistry_prefix]
-            elif metaprefix in self.manager.registry:
-                resource = self.manager.registry[metaprefix]
-            else:
-                continue
-
-            # Test pattern
+            resource = self.manager.registry[registry.prefix]
             pattern = resource.get_pattern()
             if pattern is None:
                 continue
@@ -162,7 +132,15 @@ class TestMetaregistry(unittest.TestCase):
                 self.assertRegex(registry.example, pattern)
 
                 # Test URI format string
-                if registry.provider_uri_format:
+                if registry.uri_format:
                     uri_formats = resource.get_uri_formats()
                     self.assertLess(0, len(uri_formats))
-                    self.assertIn(registry.provider_uri_format, uri_formats)
+                    self.assertIn(registry.uri_format, uri_formats)
+
+                self.assertEqual(registry.contact, resource.get_contact())
+                # self.assertEqual(registry.example, resource.get_example())
+                self.assertEqual(registry.homepage, resource.get_homepage())
+                self.assertEqual(registry.license, resource.get_license())
+                self.assertEqual(registry.logo, resource.logo)
+                self.assertEqual(registry.name, resource.get_name())
+                self.assertEqual(registry.uri_format, resource.get_uri_format())

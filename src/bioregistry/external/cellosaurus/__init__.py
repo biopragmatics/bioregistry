@@ -102,7 +102,7 @@ def _process_db_url(key: str, value: str) -> str | None:
 class CellosaurusAligner(Aligner):
     """Aligner for the Cellosaurus."""
 
-    key = "cellosaurus"
+    key = "cellosaurus.resource"
     getter = get_cellosaurus
     curation_header: ClassVar[Sequence[str]] = ["name", "homepage", "category", URI_FORMAT_KEY]
 

@@ -39,7 +39,7 @@ class TestResolve(unittest.TestCase):
         self.assertIsNotNone(get_external("ncbitaxon", "miriam"))
         self.assertIsNotNone(get_external("ncbitaxon", "obofoundry"))
         self.assertIsNotNone(get_external("ncbitaxon", "ols"))
-        self.assertIsNotNone(get_external("ncbitaxon", "wikidata"))
+        self.assertIsNotNone(get_external("ncbitaxon", "wikidata.property"))
 
     def test_validate_true(self) -> None:
         """Test that validation returns true."""

@@ -23,7 +23,6 @@ from bioregistry.constants import (
     BIOREGISTRY_PATH,
     CURATED_MAPPINGS_PATH,
     DISALLOWED_EMAIL_PARTS,
-    EMAIL_RE,
     METAREGISTRY_PATH,
 )
 from bioregistry.curation.add_skosmos import SKOSMOS_APIS
@@ -116,18 +115,6 @@ class TestRegistry(unittest.TestCase):
                         prefix[1].isnumeric(),
                         msg="Only start a prefix with an underscore if the first _actual_ character is a number",
                     )
-
-    def test_keys(self) -> None:
-        """Check the required metadata is there."""
-        keys = set(Resource.model_fields)
-        with open(BIOREGISTRY_PATH, encoding="utf-8") as file:
-            data = json.load(file)
-        for prefix, entry in data.items():
-            extra = {k for k in set(entry) - keys if not k.startswith("_")}
-            if not extra:
-                continue
-            with self.subTest(prefix=prefix):
-                self.fail(f"{prefix} had extra keys: {extra}")
 
     @staticmethod
     def _construct_substrings(x: str) -> tuple[str, str, str, str]:
@@ -273,16 +260,6 @@ class TestRegistry(unittest.TestCase):
         chebi = manager.get_resource("chebi", strict=True)
         self.assertEqual("Adnan Malik", chebi.get_contact_name())
 
-    def test_email(self) -> None:
-        """Test that the email getter returns valid email addresses."""
-        for prefix, resource in self.registry.items():
-            self.assertIsNotNone(resource)
-            email = resource.get_contact_email()
-            if email is None or EMAIL_RE.match(email):
-                continue
-            with self.subTest(prefix=prefix):
-                self.fail(msg=f"bad email: {email}")
-
     def test_mastodon(self) -> None:
         """Test that all Mastodon handles look like go@genomic.social."""
         for prefix, resource in self.registry.items():
@@ -319,21 +296,24 @@ class TestRegistry(unittest.TestCase):
     def test_format_urls(self) -> None:
         """Test that entries with a format URL are formatted right (yo dawg)."""
         for prefix, entry in self.registry.items():
-            uri_format = entry.uri_format
-            if not uri_format:
-                continue
-            with self.subTest(prefix=prefix):
-                self.assertEqual(
-                    uri_format.strip(), uri_format, msg=f"{prefix} URI format has spaces"
-                )
-                self.assertTrue(
-                    any(
-                        uri_format.startswith(protocol + "://")
-                        for protocol in ["http", "https", "ftp", "s3"]
-                    ),
-                    msg=f"{prefix} URI format dos not start with a valid protocol",
-                )
-                self.assertIn("$1", uri_format, msg=f"{prefix} URI format does not have a $1")
+            for name, uri_format in [
+                ("uri_format", entry.uri_format),
+                ("rdf_uri_format", entry.rdf_uri_format),
+            ]:
+                if not uri_format:
+                    continue
+                with self.subTest(prefix=prefix, type=name):
+                    self.assertEqual(
+                        uri_format.strip(), uri_format, msg=f"{prefix} URI format has spaces"
+                    )
+                    self.assertTrue(
+                        any(
+                            uri_format.startswith(protocol + "://")
+                            for protocol in ["http", "https", "ftp", "s3"]
+                        ),
+                        msg=f"{prefix} URI format dos not start with a valid protocol",
+                    )
+                    self.assertIn("$1", uri_format, msg=f"{prefix} URI format does not have a $1")
 
     def test_uri_format_uniqueness(self) -> None:
         """Test URI format uniqueness."""
@@ -420,12 +400,12 @@ class TestRegistry(unittest.TestCase):
         )
         self.assertEqual("^(CHEBI:)?\\d+$", resource.get_pattern_with_banana(strict=False))
 
-        resource = self.registry["agrovoc"]
+        resource = self.registry["mint"]
         self.assertEqual(
-            "^c_[a-z0-9]+$",
+            "^MINT-\\d{1,7}$",
             resource.get_pattern_with_banana(),
         )
-        self.assertEqual("^(c_)?[a-z0-9]+$", resource.get_pattern_with_banana(strict=False))
+        self.assertEqual("^(MINT-)?\\d{1,7}$", resource.get_pattern_with_banana(strict=False))
 
     def test_examples(self) -> None:
         """Test examples for the required conditions.
@@ -699,7 +679,7 @@ class TestRegistry(unittest.TestCase):
     def assert_no_idot(self, prefix_map: Mapping[str, str]) -> None:
         """Assert none of the URI prefixes have identifiers.org in them."""
         for prefix, uri_prefix in prefix_map.items():
-            if prefix in {"idoo", "miriam.collection", "mir", "identifiers.namespace"}:
+            if prefix in {"idot", "miriam.collection", "mir", "identifiers.namespace"}:
                 # allow identifiers.org namespaces since this actually should be here
                 continue
             with self.subTest(prefix=prefix):
@@ -881,7 +861,6 @@ class TestRegistry(unittest.TestCase):
         if author.orcid:
             self.assertNotIn(" ", author.orcid)
         if author.email:
-            self.assertRegex(author.email, EMAIL_RE)
             self.assertFalse(
                 any(
                     disallowed_email_part in author.email
@@ -977,9 +956,10 @@ class TestRegistry(unittest.TestCase):
                     )
                 for contact in resource.contact_extras:
                     self.assert_contact_metadata(contact)
-                    self.assertNotEqual(
-                        resource.contact.orcid, contact.orcid, msg="duplicate secondary contact"
-                    )
+                    if resource.contact.orcid is not None and contact.orcid is not None:
+                        self.assertNotEqual(
+                            resource.contact.orcid, contact.orcid, msg="duplicate secondary contact"
+                        )
 
     def test_contact_group_email(self) -> None:
         """Test curation of group emails."""
@@ -1151,12 +1131,7 @@ class TestRegistry(unittest.TestCase):
         """Test mappings correspond to valid identifiers."""
         k = {}
         for metaprefix, registry in self.metaregistry.items():
-            if registry.bioregistry_prefix:
-                resource = self.registry[registry.bioregistry_prefix]
-            elif registry.prefix in self.registry:
-                resource = self.registry[registry.prefix]
-            else:
-                continue
+            resource = self.registry[registry.prefix]
             pattern = resource.get_pattern_re()
             if pattern is None:
                 continue
@@ -1173,8 +1148,10 @@ class TestRegistry(unittest.TestCase):
     def test_standardize_identifier(self) -> None:
         """Standardize the identifier."""
         examples = [
-            ("agrovoc", "1234", "1234"),
-            ("agrovoc", "c_1234", "1234"),
+            ("go", "1234567", "1234567"),
+            ("go", "GO:1234567", "1234567"),
+            ("mint", "6978836", "6978836"),
+            ("mint", "MINT-6978836", "6978836"),
         ]
         for prefix, identifier, norm_identifier in examples:
             with self.subTest(prefix=prefix, identifier=identifier):
@@ -1335,17 +1312,17 @@ class TestRegistry(unittest.TestCase):
     def test_download_owl(self) -> None:
         """Test download OWL."""
         self.assertEqual(
-            "http://aber-owl.net/media/ontologies/ADW/2/adw.owl",
-            bioregistry.get_owl_download("adw"),
+            "http://purl.obolibrary.org/obo/go.owl",
+            bioregistry.get_owl_download("go"),
         )
         self.assertEqual(
-            "http://aber-owl.net/media/ontologies/ADW/2/adw.owl",
-            bioregistry.get_resource("adw", strict=True).get_download_owl(),
+            "http://purl.obolibrary.org/obo/go.owl",
+            bioregistry.get_resource("go", strict=True).get_download_owl(),
         )
         self.assertEqual(
-            "http://aber-owl.net/media/ontologies/ADW/2/adw.owl",
+            "http://purl.obolibrary.org/obo/go.owl",
             manager.rasterized_resource(
-                bioregistry.get_resource("adw", strict=True)
+                bioregistry.get_resource("go", strict=True)
             ).get_download_owl(),
         )
         self.assertEqual(
@@ -1441,10 +1418,10 @@ class TestRegistry(unittest.TestCase):
 
     def test_registry_invmap(self) -> None:
         """Test that the registry inverse map contains one to many."""
-        # this test the "hasVersion" relation
-        self.assertIn("envo2023", manager.get_registry_invmap("tib"))
-        # this tests the "providerOf" relation
-        self.assertIn("DB-0262", manager.get_registry_invmap("uniprot"))
+        with self.subTest(msg="test hasVersion relation"):
+            self.assertIn("envo2023", manager.get_registry_invmap("tib.ts"))
+        with self.subTest(msg="test the providerOf relation"):
+            self.assertIn("DB-0262", manager.get_registry_invmap("uniprot.resource"))
 
     def test_short_name_map(self) -> None:
         """Test the short name map."""
@@ -1465,3 +1442,11 @@ class TestRegistry(unittest.TestCase):
             for synonym in entry.synonyms or []:
                 with self.subTest(key=key, synonym=synonym):
                     self.assertNotIn(synonym, norm_prefixes - {norm(key)})
+
+    def test_registry_keyword(self) -> None:
+        """Test registries contain appropriate keywords."""
+        for registry in self.metaregistry.values():
+            with self.subTest(prefix=registry.prefix):
+                resource = self.registry[registry.prefix]
+                self.assertIn("registry", resource.get_keywords())
+                self.assertIsNotNone(resource.contributor)

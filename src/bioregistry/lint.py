@@ -12,9 +12,12 @@ def lint() -> None:
     """Run the lint commands."""
     import sssom_pydantic
 
-    from .constants import CURATED_MAPPINGS_PATH, CURATED_PAPERS_PATH
+    from .constants import CURATED_MAPPINGS_PATH, CURATED_PAPERS_PATH, METAREGISTRY_PATH
+    from .parse_iri import get_preferred_converter
+    from .schema.struct import RESOURCE_ALIAS_TO_FIELD
     from .schema_utils import (
         _lint_collection_resources,
+        _read_metaregistry,
         read_collections,
         read_contexts,
         read_mappings,
@@ -71,17 +74,29 @@ def lint() -> None:
                     and resource.mappings[external_registry] in external_prefixes
                 ):
                     del resource.mappings[external_registry]
-                    setattr(resource, external_registry, None)
+                    remapped_key = RESOURCE_ALIAS_TO_FIELD.get(external_registry, external_registry)
+                    setattr(resource, remapped_key, None)
+
+            # in case we managed to throw away all mappings
+            if resource.mappings is not None and not resource.mappings:
+                resource.mappings = None
 
     write_registry(registry)
     collections = read_collections()
     for collection in collections.values():
         collection.resources = _lint_collection_resources(collection.resources)
     write_collections(collections)
-    write_metaregistry(read_metaregistry())
+    write_metaregistry(_read_metaregistry(METAREGISTRY_PATH, registry))
     write_contexts(read_contexts())
 
-    sssom_pydantic.format(CURATED_MAPPINGS_PATH)
+    converter = get_preferred_converter(stubs=True)
+    sssom_pydantic.format(
+        CURATED_MAPPINGS_PATH,
+        standardize=True,
+        error_action="raise",
+        converter=converter,
+        drop_duplicates=True,
+    )
 
     df = pd.read_csv(CURATED_PAPERS_PATH, sep="\t")
     df["pr_added"] = df["pr_added"].map(lambda x: str(int(x)) if pd.notna(x) else None)

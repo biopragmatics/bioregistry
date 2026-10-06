@@ -20,6 +20,7 @@ def manager_mutator(*, name: str | None = None) -> Callable[[ManagerConsumer], c
     """Decorate a manager-mutating function.
 
     :param name: The name for the CLI
+
     :returns: A function decorator
     """
 
@@ -39,6 +40,7 @@ def resource_mutator(*, name: str | None = None) -> Callable[[ResourceConsumer],
     """Decorate a resource-mutating function.
 
     :param name: The name for the CLI
+
     :returns: A function decorator
     """
 

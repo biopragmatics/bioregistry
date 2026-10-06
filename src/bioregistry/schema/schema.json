@@ -16,7 +16,9 @@
             "xml",
             "n3",
             "trix",
-            "nt"
+            "nt",
+            "shex",
+            "json-ld"
           ],
           "title": "RDF Format",
           "type": "string"
@@ -903,7 +905,7 @@
           "description": "A download link for the data contained in the registry",
           "title": "Download"
         },
-        "provider_uri_format": {
+        "uri_format": {
           "anyOf": [
             {
               "type": "string"
@@ -914,7 +916,7 @@
           ],
           "default": null,
           "description": "A URL with a $1 for a prefix to resolve in the registry",
-          "title": "Provider Uri Format"
+          "title": "URI format string"
         },
         "search_uri_format": {
           "anyOf": [
@@ -959,20 +961,7 @@
           "$ref": "#/$defs/Attributable",
           "description": "The contact for the registry."
         },
-        "bioregistry_prefix": {
-          "anyOf": [
-            {
-              "type": "string"
-            },
-            {
-              "type": "null"
-            }
-          ],
-          "default": null,
-          "description": "The prefix for this registry in the Bioregistry",
-          "title": "Bioregistry Prefix"
-        },
-        "logo_url": {
+        "logo": {
           "anyOf": [
             {
               "type": "string"
@@ -983,7 +972,7 @@
           ],
           "default": null,
           "description": "The URL for the logo of the resource",
-          "title": "Logo Url"
+          "title": "Logo"
         },
         "license": {
           "anyOf": [
@@ -2197,7 +2186,7 @@
           "default": null,
           "title": "Prefixcommons"
         },
-        "wikidata": {
+        "wikidata.property": {
           "anyOf": [
             {
               "additionalProperties": true,
@@ -2208,7 +2197,7 @@
             }
           ],
           "default": null,
-          "title": "Wikidata"
+          "title": "Wikidata property"
         },
         "wikidata_entity": {
           "anyOf": [
@@ -2223,7 +2212,7 @@
           "default": null,
           "title": "Wikidata Entity"
         },
-        "go": {
+        "go.resource": {
           "anyOf": [
             {
               "additionalProperties": true,
@@ -2234,7 +2223,7 @@
             }
           ],
           "default": null,
-          "title": "Go"
+          "title": "Gene Ontology resource"
         },
         "obofoundry": {
           "anyOf": [
@@ -2327,7 +2316,7 @@
           "default": null,
           "title": "Aberowl"
         },
-        "ncbi": {
+        "ncbi.resource": {
           "anyOf": [
             {
               "additionalProperties": true,
@@ -2338,9 +2327,9 @@
             }
           ],
           "default": null,
-          "title": "Ncbi"
+          "title": "NCBI resource"
         },
-        "uniprot": {
+        "uniprot.resource": {
           "anyOf": [
             {
               "additionalProperties": true,
@@ -2351,9 +2340,9 @@
             }
           ],
           "default": null,
-          "title": "Uniprot"
+          "title": "UniProt resource"
         },
-        "biolink": {
+        "biolink.resource": {
           "anyOf": [
             {
               "additionalProperties": true,
@@ -2364,9 +2353,9 @@
             }
           ],
           "default": null,
-          "title": "Biolink"
+          "title": "BioLink resource"
         },
-        "cellosaurus": {
+        "cellosaurus.resource": {
           "anyOf": [
             {
               "additionalProperties": true,
@@ -2377,7 +2366,7 @@
             }
           ],
           "default": null,
-          "title": "Cellosaurus"
+          "title": "Cellosaurus resource"
         },
         "ontobee": {
           "anyOf": [
@@ -2431,7 +2420,7 @@
           "default": null,
           "title": "Biocontext"
         },
-        "edam": {
+        "edam.data": {
           "anyOf": [
             {
               "additionalProperties": true,
@@ -2442,7 +2431,7 @@
             }
           ],
           "default": null,
-          "title": "Edam"
+          "title": "EDAM Data"
         },
         "re3data": {
           "anyOf": [
@@ -2483,7 +2472,7 @@
           "default": null,
           "title": "BARTOC"
         },
-        "rrid": {
+        "rrid.resource": {
           "anyOf": [
             {
               "additionalProperties": true,
@@ -2561,7 +2550,7 @@
           "default": null,
           "title": "Pathguide"
         },
-        "tib": {
+        "tib.ts": {
           "anyOf": [
             {
               "additionalProperties": true,
@@ -2572,7 +2561,7 @@
             }
           ],
           "default": null,
-          "title": "Tib"
+          "title": "TIB Terminology Service"
         },
         "biodivportal": {
           "anyOf": [
