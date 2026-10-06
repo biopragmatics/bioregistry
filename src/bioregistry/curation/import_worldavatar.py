@@ -115,8 +115,8 @@ def _iter_from_github(
         short = worldavatar_name.removeprefix("onto")
         if short in {
             "cape",  # agglomerative
-            "provenance", # no own terms
-            "timeseries", # no own terms
+            "provenance",  # no own terms
+            "timeseries",  # no own terms
         }:
             continue
 
