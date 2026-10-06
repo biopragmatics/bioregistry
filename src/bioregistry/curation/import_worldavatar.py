@@ -38,9 +38,6 @@ def main(force_process: bool) -> None:
         uri_format, example, description = _parse_worldavatar_owl(
             owl_path, prefix, worldavatar_name=worldavatar_name
         )
-        # remove this check in second round for more manual curation
-        if example is None:
-            continue
         resource = Resource(
             prefix=prefix,
             name=name,
@@ -116,6 +113,13 @@ def _iter_from_github(
         if not worldavatar_name.startswith("onto"):
             continue
         short = worldavatar_name.removeprefix("onto")
+        if short in {
+            "cape",  # agglomerative
+            "provenance", # no own terms
+            "timeseries", # no own terms
+        }:
+            continue
+
         prefix = "worldavatar." + short
         if prefix in manager.registry and not force_process:
             tqdm.write(f"[{prefix}] already registered")
