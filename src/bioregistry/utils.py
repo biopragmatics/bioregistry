@@ -277,7 +277,7 @@ def registry_yaml_dumper() -> None:
     import curies
     import yaml
 
-    from bioregistry import NormalizedReference, StandardPrefix
+    from bioregistry import NormalizedPrefix, StandardPrefix
 
     def _safe(dumper: yaml.SafeDumper, data: curies.Prefix) -> yaml.Node:
         return dumper.represent_str(str(data))
@@ -287,8 +287,8 @@ def registry_yaml_dumper() -> None:
 
     yaml.add_representer(curies.Prefix, _unsafe, Dumper=yaml.Dumper)
     yaml.add_representer(StandardPrefix, _unsafe, Dumper=yaml.Dumper)
-    yaml.add_representer(NormalizedReference, _unsafe, Dumper=yaml.Dumper)
+    yaml.add_representer(NormalizedPrefix, _unsafe, Dumper=yaml.Dumper)
 
     yaml.add_representer(curies.Prefix, _safe, Dumper=yaml.SafeDumper)
     yaml.add_representer(StandardPrefix, _safe, Dumper=yaml.SafeDumper)
-    yaml.add_representer(NormalizedReference, _safe, Dumper=yaml.SafeDumper)
+    yaml.add_representer(NormalizedPrefix, _safe, Dumper=yaml.SafeDumper)
