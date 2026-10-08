@@ -6,13 +6,13 @@ import curies
 from curies.api import IdentifierStandardizationError
 from pydantic import model_validator
 from pydantic_core import core_schema
-from typing_extensions import Self
 
 import bioregistry
 
 __all__ = [
     "NormalizedNamableReference",
     "NormalizedNamedReference",
+    "NormalizedPrefix",
     "NormalizedReference",
     "StandardNamableReference",
     "StandardNamedReference",
@@ -74,7 +74,17 @@ def _standardize_values(values: dict[str, str] | str | curies.Reference) -> dict
     return values
 
 
-class NormalizedReference(curies.Reference):
+class NormalizedPrefix(curies.Prefix):
+    """An extension to :class:`curies.Prefix` that automatically normalizes the prefix."""
+
+    @classmethod
+    def validate(cls, value: str, info: core_schema.ValidationInfo) -> str:
+        """Normalize the prefix against the Bioregistry."""
+        resource = bioregistry.get_resource(value, strict=True)
+        return resource.prefix
+
+
+class NormalizedReference(curies.Reference[NormalizedPrefix]):
     """Extends :class:`curies.Reference` to normalize the prefix against the Bioregistry.
 
     >>> NormalizedReference(prefix="go", identifier="0032571")
@@ -159,9 +169,10 @@ class StandardPrefix(curies.Prefix):
     """An extension to :class:`curies.Prefix` that automatically standardizes the prefix."""
 
     @classmethod
-    def _validate(cls, __input_value: str, info: core_schema.ValidationInfo) -> Self:
-        resource = bioregistry.get_resource(__input_value, strict=True)
-        return cls(resource.get_preferred_prefix() or resource.prefix)
+    def validate(cls, value: str, info: core_schema.ValidationInfo) -> str:
+        """Normalize the prefix against the Bioregistry."""
+        resource = bioregistry.get_resource(value, strict=True)
+        return resource.get_preferred_prefix() or resource.prefix
 
 
 class StandardReference(curies.Reference[StandardPrefix]):

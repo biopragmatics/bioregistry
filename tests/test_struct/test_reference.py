@@ -10,8 +10,8 @@ from bioregistry.reference import (
     NormalizedNamedReference,
     NormalizedReference,
     StandardNamableReference,
-    StandardPrefix,
     StandardNamedReference,
+    StandardPrefix,
     StandardReference,
 )
 
