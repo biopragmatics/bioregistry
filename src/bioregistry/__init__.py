@@ -29,6 +29,7 @@ from .parse_iri import (
 from .reference import (
     NormalizedNamableReference,
     NormalizedNamedReference,
+    NormalizedPrefix,
     NormalizedReference,
     StandardNamableReference,
     StandardNamedReference,
@@ -170,6 +171,7 @@ __all__ = [
     "Manager",
     "NormalizedNamableReference",
     "NormalizedNamedReference",
+    "NormalizedPrefix",
     "NormalizedReference",
     "Organization",
     "Provider",
