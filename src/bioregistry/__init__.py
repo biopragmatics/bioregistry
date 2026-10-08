@@ -29,9 +29,11 @@ from .parse_iri import (
 from .reference import (
     NormalizedNamableReference,
     NormalizedNamedReference,
+    NormalizedPrefix,
     NormalizedReference,
     StandardNamableReference,
     StandardNamedReference,
+    StandardPrefix,
     StandardReference,
 )
 from .resolve import (
@@ -169,6 +171,7 @@ __all__ = [
     "Manager",
     "NormalizedNamableReference",
     "NormalizedNamedReference",
+    "NormalizedPrefix",
     "NormalizedReference",
     "Organization",
     "Provider",
@@ -176,6 +179,7 @@ __all__ = [
     "Resource",
     "StandardNamableReference",
     "StandardNamedReference",
+    "StandardPrefix",
     "StandardReference",
     "add_resource",
     "add_to_collection",
