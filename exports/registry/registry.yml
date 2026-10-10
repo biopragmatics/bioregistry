@@ -792,7 +792,7 @@ addicto:
   preferred_prefix: addicto
   repository: https://github.com/addicto-org/addiction-ontology
   uri_format: http://addictovocab.org/ADDICTO_$1
-  version: '2026-06-16'
+  version: '2026-10-08'
 adms:
   contact:
     email: bert.van.nuffelen@tenforce.com
@@ -1108,7 +1108,7 @@ afo:
   name: Allotrope Merged Ontology Suite
   preferred_prefix: afo
   uri_format: http://purl.allotrope.org/ontologies/$1
-  version: '2026-06-01'
+  version: '2026-09-01'
 afpo:
   contact:
     email: mcmelek@msn.com
@@ -2717,7 +2717,7 @@ apo:
   - https://github.com/biopragmatics/bioregistry/pull/1098
   repository: https://github.com/obophenotype/ascomycete-phenotype-ontology
   uri_format: http://purl.obolibrary.org/obo/APO_$1
-  version: '2026-06-16'
+  version: '2026-09-30'
 apollosv:
   appears_in:
   - scdo
@@ -10417,7 +10417,7 @@ chebi:
   - CHEBIID
   - ChEBI
   uri_format: http://purl.obolibrary.org/obo/CHEBI_$1
-  version: '255'
+  version: '256'
 chembank:
   comment: This resource doesn't exist on the web anymore
   deprecated: true
@@ -10954,6 +10954,7 @@ chemfont.chemical:
   - chemfont
   - chemical
   - ontology
+  license: CC-BY-NC-4.0
   name: ChemFOnt Chemical
   pattern: ^CFc\d{9}$
   preferred_prefix: chemfont.chemical
@@ -10996,6 +10997,7 @@ chemfont.ontology:
   - chemfont
   - chemical
   - ontology
+  license: CC-BY-NC-4.0
   name: ChemFOnt Ontology
   pattern: ^CFo\d{9}$
   preferred_prefix: chemfont.ontology
@@ -12788,6 +12790,31 @@ clyh:
   repository: https://github.com/EBISPOT/clyh_ontology
   uri_format: http://purl.obolibrary.org/obo/CLYH_$1
   version: '2020-05-29'
+cmc.umg:
+  contact:
+    email: lukas.cyganek@med.uni-goettingen.de
+    name: Lukas Cyganek
+    orcid: 0000-0001-9120-1382
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: A catalog of patient-derived cell lines
+  example: '46'
+  homepage: https://cmc.umg.eu/cellmodel
+  keywords:
+  - cell line
+  name: Cell Model Catalogue Göttingen
+  owners:
+  - name: Universitätsmedizin Göttingen
+    ror: 021ft0n22
+  pattern: ^\d+$
+  preferred_prefix: cmc.umg
+  providers:
+  - code: legacy
+    uri_format: https://sfb1002.med.uni-goettingen.de/production/cellmodel/cell-line/view?tab=internal&line=$1
+  uri_format: https://cmc.umg.eu/cellmodel/cell-line/view?tab=internal&line=$1
 cmecs:
   contact:
     email: kater@ngi.msstate.edu
@@ -12893,7 +12920,7 @@ cmo:
   rdf_uri_format: http://purl.obolibrary.org/obo/CMO_$1
   repository: https://github.com/rat-genome-database/CMO-Clinical-Measurement-Ontology
   uri_format: http://purl.obolibrary.org/obo/CMO_$1
-  version: '2026-09-19'
+  version: '2026-10-03'
 cmpo:
   contact:
     email: jupp@ebi.ac.uk
@@ -20836,7 +20863,7 @@ doid:
   synonyms:
   - do
   uri_format: http://purl.obolibrary.org/obo/DOID_$1
-  version: '2026-08-31'
+  version: '2026-09-30'
 dolce:
   comment: This resource doesn't exist anymore
   contributor:
@@ -21150,7 +21177,7 @@ dpo:
   rdf_uri_format: http://purl.obolibrary.org/obo/FBcv_$1
   repository: https://github.com/FlyBase/drosophila-phenotype-ontology
   uri_format: http://purl.obolibrary.org/obo/FBcv_$1
-  version: '2026-07-10'
+  version: '2026-10-01'
 dpv:
   contact:
     email: mike.adams@bbsrc.ac.uk
@@ -23060,7 +23087,7 @@ ecocore:
   rdf_uri_format: http://purl.obolibrary.org/obo/ECOCORE_$1
   repository: https://github.com/EcologicalSemantics/ecocore
   uri_format: http://purl.obolibrary.org/obo/ECOCORE_$1
-  version: '2026-08-31'
+  version: '2026-10-08'
 ecocyc:
   contact:
     email: pkarp@ai.sri.com
@@ -24443,7 +24470,7 @@ emapa:
   synonyms:
   - EMAPA_RETIRED
   uri_format: http://purl.obolibrary.org/obo/EMAPA_$1
-  version: '2026-09-04'
+  version: '2026-10-02'
 emaps:
   contact:
     email: Terry.Hayamizu@jax.org
@@ -27536,7 +27563,7 @@ fabio:
     articles, conference papers, books), and that contain or are referred to by bibliographic
     references.
   example: d4e2515
-  homepage: https://github.com/sparontologies/fabio
+  homepage: http://purl.org/spar/fabio
   keywords:
   - nfdi4ing
   - nfdixcs
@@ -28064,7 +28091,7 @@ fbbt:
   - FBbt
   - FBbt_root
   uri_format: http://purl.obolibrary.org/obo/FBbt_$1
-  version: '2026-07-09'
+  version: '2026-10-01'
 fbcv:
   appears_in:
   - ontoavida
@@ -28124,7 +28151,7 @@ fbcv:
   synonyms:
   - FBcv
   uri_format: http://purl.obolibrary.org/obo/FBcv_$1
-  version: '2026-07-10'
+  version: '2026-10-01'
 fbdv:
   contact:
     email: cp390@cam.ac.uk
@@ -28177,7 +28204,7 @@ fbdv:
   synonyms:
   - FBdv
   uri_format: http://purl.obolibrary.org/obo/FBdv_$1
-  version: '2026-07-09'
+  version: '2026-09-30'
 fbol:
   comment: Website down, checked on 2021-10-07
   deprecated: true
@@ -28930,7 +28957,7 @@ flopo:
   rdf_uri_format: http://purl.obolibrary.org/obo/FLOPO_$1
   repository: https://github.com/flora-phenotype-ontology/flopoontology
   uri_format: http://purl.obolibrary.org/obo/FLOPO_$1
-  version: '2026-07-31'
+  version: '2026-10-05'
 florabase:
   description: identifier for a plant taxon, in the Government of Western Australia's
     FloraBase database
@@ -29894,7 +29921,7 @@ frbrer:
   description: This is the element set of native RDF classes and properties described
     in the current text (Feb 2009) of the Functional Requirements for Bibliographic
     Records (FRBR) entity-relationship model. (from https://www.iflastandards.info/fr/frbr/frbrer.html)
-  download_rdf: http://iflastandards.info/ns/fr/frbr/frbrer.jsonld
+  download_rdf: http://iflastandards.info/ns/fr/frbr/frbrer.xml
   example: '1001'
   homepage: https://www.iflastandards.info/fr/frbr/frbrer
   keywords:
@@ -34846,6 +34873,10 @@ grassbase:
   preferred_prefix: grassbase
   uri_format: https://www.kew.org/data/grasses-db/www/$1
 grddl:
+  contact:
+    email: hhalpin@ibiblio.org
+    github: hhalpin
+    name: Harry Halpin
   contributor:
     email: cthoyt@gmail.com
     github: cthoyt
@@ -43573,11 +43604,14 @@ jcrb:
     orcid: 0000-0003-4423-4370
   description: Cell line collections (Providers)
   example: JCRB1355
+  example_extras:
+  - KURB1329
+  - NIHS0308
   homepage: https://cellbank.nibiohn.go.jp
   mappings:
     cellosaurus.resource: JCRB
   name: JRBC Cell Bank
-  pattern: ^JCRB\d+$
+  pattern: ^(JCRB|KURB|NIHS)\d+$
   preferred_prefix: jcrb
   uri_format: https://cellbank.nibiohn.go.jp/~cellbank/en/search_res_det.cgi?RNO=$1
 jcsd:
@@ -45345,6 +45379,28 @@ legacy.ao:
   preferred_prefix: legacy.ao
   repository: https://github.com/annotation-ontology/annotation-ontology
   uri_format: http://purl.org/ao/$1
+legacy.capcldb:
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  deprecated: true
+  description: A legacy database of 114 cancer cell lines that can be downloaded [here](https://web.archive.org/web/20150601005658/http://capcelllines.ca/downloads/CaPCellLines_database.xls)
+  example: '133'
+  homepage: https://web.archive.org/web/20150602153556/http://capcelllines.ca:80
+  keywords:
+  - cell line
+  name: Prostate Cancer Cell Line Database
+  owners:
+  - name: BC Cancer Agency
+    ror: 03sfybe47
+  pattern: ^\d+$
+  preferred_prefix: legacy.capcldb
+  providers:
+  - code: legacy
+    uri_format: http://capcelllines.ca:80/details.asp?id=$1
+  uri_format: https://web.archive.org/web/20150602153556/http://capcelllines.ca:80/details.asp?id=$1
 legilux:
   description: Luxembourgish project to make legislative text available
   example: legal-institution-historique
@@ -49377,6 +49433,16 @@ mesh.vocab:
   - https://id.nlm.nih.gov/mesh/query
   repository: https://github.com/HHS/meshrdf
   uri_format: http://id.nlm.nih.gov/mesh/vocab#$1
+metabobank:
+  description: MetaboBank is a public repository of metabolomics data.
+  example: MTBKS1
+  homepage: https://mb2.ddbj.nig.ac.jp/
+  mappings:
+    miriam: metabobank
+  name: MetaboBank
+  pattern: ^MTB[KL]S\d+$
+  preferred_prefix: metabobank
+  uri_format: https://mb2.ddbj.nig.ac.jp/study/$1.html
 metabolights:
   description: MetaboLights is a database for Metabolomics experiments and derived
     information. The database is cross-species, cross-technique and covers metabolite
@@ -51888,7 +51954,7 @@ mmo:
   rdf_uri_format: http://purl.obolibrary.org/obo/MMO_$1
   repository: https://github.com/rat-genome-database/MMO-Measurement-Method-Ontology
   uri_format: http://purl.obolibrary.org/obo/MMO_$1
-  version: '2026-09-12'
+  version: '2026-10-03'
 mmp.cat:
   description: MarCat is a gene (protein) catalogue of uncultivable and cultivable
     marine genes and proteins derived from metagenomics samples.
@@ -52835,7 +52901,7 @@ mondo:
   rdf_uri_format: http://purl.obolibrary.org/obo/MONDO_$1
   repository: https://github.com/monarch-initiative/mondo
   uri_format: http://purl.obolibrary.org/obo/MONDO_$1
-  version: '2026-09-01'
+  version: '2026-10-06'
 mondo.issue:
   contributor:
     email: cthoyt@gmail.com
@@ -52943,7 +53009,7 @@ mop:
   pattern: ^\d{7}$
   preferred_prefix: MOP
   rdf_uri_format: http://purl.obolibrary.org/obo/MOP_$1
-  repository: https://github.com/rsc-ontologies/rxno
+  repository: https://github.com/rsc-ontology/mop
   uri_format: http://purl.obolibrary.org/obo/MOP_$1
   version: '2022-05-11'
 morpheus:
@@ -56698,6 +56764,8 @@ nlm:
   download_obo: https://w3id.org/biopragmatics/resources/nlm/nlm.obo
   download_owl: https://w3id.org/biopragmatics/resources/nlm/nlm.owl
   example: '101775319'
+  example_extras:
+  - 7800634A
   homepage: https://www.ncbi.nlm.nih.gov/nlmcatalog
   keywords:
   - journal
@@ -56709,7 +56777,7 @@ nlm:
     biolink.resource: NLMID
     wikidata.entity: Q986957
   name: National Library of Medicine Catalog
-  pattern: ^\d+$
+  pattern: ^\d+[AR]?$
   preferred_prefix: nlm
   uri_format: https://www.ncbi.nlm.nih.gov/nlmcatalog/$1
 nlm.publisher:
@@ -59519,7 +59587,7 @@ ohd:
   rdf_uri_format: http://purl.obolibrary.org/obo/OHD_$1
   repository: https://github.com/oral-health-and-disease-ontologies/ohd-ontology
   uri_format: http://purl.obolibrary.org/obo/OHD_$1
-  version: '2026-03-16'
+  version: '2026-10-01'
 ohdab:
   description: Based on the classification of occupations (KldB) by the Federal Employment
     Agency and the Federal Statistical Office from 2010. This in turn is based on
@@ -60846,7 +60914,10 @@ ontocape:
     the systematic management and retrieval of simulation models and design documents,
     electronic procurement of plant equipment, mathematical modeling, as well as the
     integration of design data from distributed sources.
+  download_owl: https://www.avt.rwth-aachen.de/global/show_document.asp?id=aaaaaaaaaatptsn
   homepage: https://www.avt.rwth-aachen.de/cms/AVT/Forschung/Software/~ipts/OntoCape
+  keywords:
+  - ontology
   license: GPL-2.0
   name: Ontology for computer aided process engineering
   preferred_prefix: ontocape
@@ -63139,7 +63210,7 @@ pato:
   rdf_uri_format: http://purl.obolibrary.org/obo/PATO_$1
   repository: https://github.com/pato-ontology/pato
   uri_format: http://purl.obolibrary.org/obo/PATO_$1
-  version: '2025-05-14'
+  version: '2026-10-01'
 pav:
   contact:
     email: stian@soiland-reyes.com
@@ -69913,6 +69984,9 @@ rcb:
   description: Collection of many cell lines derived from human and other various
     animals, preserved by the RIKEN BioResource Research Center.
   example: RCB0002
+  example_extras:
+  - HPS0351
+  - HSC0015
   homepage: https://cell.brc.riken.jp/en/rcb
   keywords:
   - animal
@@ -69939,7 +70013,7 @@ rcb:
     cellosaurus.resource: RCB
     rrid.resource: IMSR_RBRC
   name: RIKEN Bioresource Center Cell Bank
-  pattern: ^RCB\d+$
+  pattern: ^(RCB|HSC|HPS)\d+$
   preferred_prefix: rcb
   publications:
   - pubmed: '34532769'
@@ -78614,6 +78688,25 @@ stato:
   repository: https://github.com/ISA-tools/stato
   uri_format: http://purl.obolibrary.org/obo/STATO_$1
   version: '2026-04-20'
+stemmcellbank:
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: A cell line catalog from the Boston University Center for Regenerative
+    Medicine (CReM)
+  example: '509'
+  homepage: https://stemcellbank.bu.edu
+  keywords:
+  - cell line
+  name: CReM iPSC Catalog
+  owners:
+  - name: Boston University
+    ror: 05qwgg493
+  pattern: ^\d+$
+  preferred_prefix: stemmcellbank
+  uri_format: https://stemcellbank.bu.edu/Catalog/Item/Details/$1
 stitch:
   contact:
     email: bork@embl.de
@@ -79484,6 +79577,28 @@ sustaingraph:
   name: SustainGraph Ontology
   preferred_prefix: sustaingraph
   uri_format: https://netmode.gitlab.io/sustaingraph/$1
+suzhou.cell:
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: The Suzhou Research Institute Cell Bank (hereinafter referred to as
+    the "Cell Bank") is dedicated to the acquisition, preservation, characterization,
+    and distribution of cell and cell-derivative resources in support of cell science
+    research. By establishing robust preservation protocols and formulating standardized
+    legal agreements, the Cell Bank ensures the effective management and protection
+    of its stored cell resources, thereby advancing the standardization and internationalization
+    of China's cell resource infrastructure. (translated from homepage)
+  example: '3830'
+  homepage: http://www.brics.ac.cn/cell
+  keywords:
+  - cell line
+  logo: http://www.brics.ac.cn/cell/img/logo1.png
+  name: Suzhou Research Institute Cell Bank
+  pattern: ^\d+$
+  preferred_prefix: suzhou.cell
+  uri_format: http://www.brics.ac.cn/cell/template/cell/cell_detail.html?id=$1
 swan:
   contributor:
     email: cthoyt@gmail.com
@@ -88378,7 +88493,6 @@ uat:
   - nfdi4ing
   - physics
   license: CC-BY-SA-3.0
-  logo: https://api.fairsharing.org/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBbXNGIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--c891d240862cdbcf96ccc7422197c97d663d82c9/Screenshot%20From%202024-11-20%2013-15-32.png?disposition=inline
   mappings:
     bartoc: '820'
     fairsharing: FAIRsharing.998c4c
@@ -88505,7 +88619,7 @@ uberon:
   - Uber-anatomy ontology
   - Uberon
   uri_format: http://purl.obolibrary.org/obo/UBERON_$1
-  version: '2026-06-19'
+  version: '2026-10-01'
 uberon.issue:
   contributor:
     email: cthoyt@gmail.com
@@ -88520,6 +88634,24 @@ uberon.issue:
   pattern: ^\d+$
   preferred_prefix: uberon.issue
   uri_format: https://github.com/obophenotype/uberon/issues/$1
+ubigene:
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: A laboratory materials provider, such as for cell lines. Like many
+    suppliers, there is no direct way to go from a catalog identifier to the webpage,
+    nor even a way to format a search query.
+  example: YKO-XN48492
+  homepage: https://www.ubigene.us
+  keywords:
+  - cell line
+  mappings:
+    cellosaurus.resource: Ubigene
+  name: UbiGene
+  preferred_prefix: ubigene
+  uri_format: https://www.ubigene.us/product/?cate=0&mykeyword=$1
 ubio.namebank:
   deprecated: true
   description: NameBank is a "biological name server" focused on storing names and
@@ -93304,6 +93436,448 @@ world2dpage:
     name: Charles Tapley Hoyt
     orcid: 0000-0003-4423-4370
   uri_format: http://world-2dpage.expasy.org/repository/database=$1
+worldavatar.adms:
+  contact:
+    github: qhouyee
+    name: Hou Yee Quek
+    orcid: 0000-0002-3168-237X
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: A WorldAvatar model describing angular distribution models
+  download_owl: https://raw.githubusercontent.com/TheWorldAvatar/ontology/main/ontology/ontoadms/OntoADMS.owl
+  example: hasMassFlux
+  homepage: https://theworldavatar.io
+  keywords:
+  - ontology
+  - worldavatar
+  license: MIT
+  name: WorldAvatar angular distribution model ontology
+  preferred_prefix: worldavatar.adms
+  repository: https://github.com/TheWorldAvatar/ontology
+  uri_format: http://www.theworldavatar.com/OntoADMS.owl#$1
+worldavatar.agent:
+  contact:
+    github: qhouyee
+    name: Hou Yee Quek
+    orcid: 0000-0002-3168-237X
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: This is a simple ontology that provides the core vocabulary for capturing
+    service properties
+  download_owl: https://raw.githubusercontent.com/TheWorldAvatar/ontology/main/ontology/ontoagent/MSM.owl
+  example: Gigabyte
+  homepage: https://theworldavatar.io
+  keywords:
+  - ontology
+  - worldavatar
+  license: MIT
+  name: WorldAvatar agent ontology
+  preferred_prefix: worldavatar.agent
+  repository: https://github.com/TheWorldAvatar/ontology
+  uri_format: http://www.theworldavatar.com/ontology/ontoagent/MSM.owl#$1
+worldavatar.application:
+  contact:
+    github: qhouyee
+    name: Hou Yee Quek
+    orcid: 0000-0002-3168-237X
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: OntoApplication is an ontology for representing software applications
+    and their services.
+  download_owl: https://raw.githubusercontent.com/TheWorldAvatar/ontology/main/ontology/ontoapplication/OntoApplication.owl
+  example: Application
+  homepage: https://theworldavatar.io
+  keywords:
+  - ontology
+  - worldavatar
+  license: MIT
+  name: WorldAvatar application ontology
+  preferred_prefix: worldavatar.application
+  repository: https://github.com/TheWorldAvatar/ontology
+  uri_format: https://www.theworldavatar.com/kg/ontoapplication/$1
+worldavatar.arbitrage:
+  contact:
+    github: qhouyee
+    name: Hou Yee Quek
+    orcid: 0000-0002-3168-237X
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: A World Avatar ontology for describing economics and arbitrage
+  download_owl: https://raw.githubusercontent.com/TheWorldAvatar/ontology/main/ontology/ontoarbitrage/OntoArbitragePlantInfo.owl
+  example: ExchangeRate
+  homepage: https://theworldavatar.io
+  keywords:
+  - economics
+  - ontology
+  - worldavatar
+  license: MIT
+  name: WorldAvatar arbitrage ontology
+  preferred_prefix: worldavatar.arbitrage
+  repository: https://github.com/TheWorldAvatar/ontology
+  uri_format: http://www.theworldavatar.com/ontology/ontoarbitrage/OntoArbitragePlantInfo.owl#$1
+worldavatar.assetmanagement:
+  contact:
+    github: qhouyee
+    name: Hou Yee Quek
+    orcid: 0000-0002-3168-237X
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: OntoAssetManagement is an ontology that is designed to represent asset
+    and its related information (e.g. purchase documents).
+  download_owl: https://raw.githubusercontent.com/TheWorldAvatar/ontology/main/ontology/ontoassetmanagement/OntoAssetManagement.owl
+  example: ApprovingParty
+  homepage: https://theworldavatar.io
+  keywords:
+  - ontology
+  - worldavatar
+  license: MIT
+  name: WorldAvatar asset management ontology
+  preferred_prefix: worldavatar.assetmanagement
+  repository: https://github.com/TheWorldAvatar/ontology
+  uri_format: https://www.theworldavatar.com/kg/ontoassetmanagement/$1
+worldavatar.batchexperiment:
+  contact:
+    github: qhouyee
+    name: Hou Yee Quek
+    orcid: 0000-0002-3168-237X
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: OntoBatchExperiment is an ontology to represent batch experiments and
+    relevant information.
+  download_owl: https://raw.githubusercontent.com/TheWorldAvatar/ontology/main/ontology/ontobatchexperiment/OntoBatchExperiment.owl
+  example: BatchExperiment
+  homepage: https://theworldavatar.io
+  keywords:
+  - ontology
+  - worldavatar
+  license: MIT
+  name: WorldAvatar batch experiment ontology
+  preferred_prefix: worldavatar.batchexperiment
+  repository: https://github.com/TheWorldAvatar/ontology
+  uri_format: https://www.theworldavatar.com/kg/ontobatchexperiment/$1
+worldavatar.bim:
+  contact:
+    github: qhouyee
+    name: Hou Yee Quek
+    orcid: 0000-0002-3168-237X
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: The Building Information Modelling ontology (OntoBIM) is an ontology
+    developed to represent the detailed information and spatial relationships of buildings
+    and their components (walls, doors, roofs, furniture, equipment) that is available
+    in the Industry Foundation Classes (IFC) data schema. Information about their
+    individual characteristics such as material, readings, and dimensions is combined
+    from IFC or other data sources.
+  download_owl: https://raw.githubusercontent.com/TheWorldAvatar/ontology/main/ontology/ontobim/OntoBIM.owl
+  example: BooleanClippingResult
+  homepage: https://theworldavatar.io
+  keywords:
+  - ontology
+  - worldavatar
+  license: MIT
+  name: WorldAvatar building information modelling ontology
+  preferred_prefix: worldavatar.bim
+  repository: https://github.com/TheWorldAvatar/ontology
+  uri_format: https://www.theworldavatar.com/kg/ontobim/$1
+worldavatar.bms:
+  contact:
+    github: qhouyee
+    name: Hou Yee Quek
+    orcid: 0000-0002-3168-237X
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: A WorldAvatar ontology describing building management systems
+  download_owl: https://raw.githubusercontent.com/TheWorldAvatar/ontology/main/ontology/ontobms/OntoBMS.owl
+  example: conveys
+  homepage: https://theworldavatar.io
+  keywords:
+  - ontology
+  - worldavatar
+  license: MIT
+  name: WorldAvatar building management system ontology
+  preferred_prefix: worldavatar.bms
+  repository: https://github.com/TheWorldAvatar/ontology
+  uri_format: https://www.theworldavatar.com/kg/ontobms/$1
+worldavatar.bpr:
+  contact:
+    github: qhouyee
+    name: Hou Yee Quek
+    orcid: 0000-0002-3168-237X
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: OntoBPR is an ontology developed for expressing a back pressure regulator.
+  download_owl: https://raw.githubusercontent.com/TheWorldAvatar/ontology/main/ontology/ontobpr/OntoBPR.owl
+  example: BackPressureRegulator
+  homepage: https://theworldavatar.io
+  keywords:
+  - ontology
+  - worldavatar
+  license: MIT
+  name: WorldAvatar back pressure regulator ontology
+  preferred_prefix: worldavatar.bpr
+  repository: https://github.com/TheWorldAvatar/ontology
+  uri_format: https://www.theworldavatar.com/kg/ontobpr/$1
+worldavatar.building:
+  contact:
+    github: qhouyee
+    name: Hou Yee Quek
+    orcid: 0000-0002-3168-237X
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: A World Avatar ontology describing building duct behavior
+  download_owl: https://raw.githubusercontent.com/TheWorldAvatar/ontology/main/ontology/ontobuilding/BuildingDuctbehavior.owl
+  example: RelativeHumidity
+  homepage: https://theworldavatar.io
+  keywords:
+  - ontology
+  - worldavatar
+  license: MIT
+  name: WorldAvatar building duct behavior ontology
+  preferred_prefix: worldavatar.building
+  repository: https://github.com/TheWorldAvatar/ontology
+  uri_format: http://www.theworldavatar.com/ontology/ontobuilding/BuildingDuctbehavior.owl#$1
+worldavatar.buildingstructure:
+  contact:
+    github: qhouyee
+    name: Hou Yee Quek
+    orcid: 0000-0002-3168-237X
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: The Building Structure ontology (OntoBuildingStructure) is an ontology
+    developed to represent the building structural components (walls, doors, slabs,
+    roofs, stairs) and their individual characteristics such as dimensions and qualities.
+  download_owl: https://raw.githubusercontent.com/TheWorldAvatar/ontology/main/ontology/ontobuildingstructure/OntoBuildingStructure.owl
+  example: Assembly
+  homepage: https://theworldavatar.io
+  keywords:
+  - ontology
+  - worldavatar
+  license: MIT
+  name: WorldAvatar building structure ontology
+  preferred_prefix: worldavatar.buildingstructure
+  repository: https://github.com/TheWorldAvatar/ontology
+  uri_format: https://www.theworldavatar.com/kg/ontobuildingstructure/$1
+worldavatar.builtenv:
+  contact:
+    github: qhouyee
+    name: Hou Yee Quek
+    orcid: 0000-0002-3168-237X
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: The Ontology for the Built Environment (OntoBuiltEnv) is an ontology
+    developed for representing key information about properties (i.e. buildings as
+    well as flats/apartments). It combines information about building usage, key construction
+    characteristics, location and address, and estimated property value. More detailed
+    geometric information can be retrieved from the associated OntoCityGml representation.
+  download_owl: https://raw.githubusercontent.com/TheWorldAvatar/ontology/main/ontology/ontobuiltenv/OntoBuiltEnv.owl
+  example: AdministrativeDistrict
+  homepage: https://theworldavatar.io
+  keywords:
+  - ontology
+  - worldavatar
+  license: MIT
+  name: WorldAvatar built environment ontology
+  preferred_prefix: worldavatar.builtenv
+  repository: https://github.com/TheWorldAvatar/ontology
+  uri_format: https://www.theworldavatar.com/kg/ontobuiltenv/$1
+worldavatar.carpark:
+  contact:
+    github: qhouyee
+    name: Hou Yee Quek
+    orcid: 0000-0002-3168-237X
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: OntoCarpark is an ontology for representing a carpark's information.
+  download_owl: https://raw.githubusercontent.com/TheWorldAvatar/ontology/main/ontology/ontocarpark/OntoCarpark.owl
+  example: AvailableLots
+  homepage: https://theworldavatar.io
+  keywords:
+  - ontology
+  - worldavatar
+  license: MIT
+  name: WorldAvatar carpark ontology
+  preferred_prefix: worldavatar.carpark
+  repository: https://github.com/TheWorldAvatar/ontology
+  uri_format: https://www.theworldavatar.com/kg/ontocarpark/$1
+worldavatar.changelog:
+  contact:
+    github: qhouyee
+    name: Hou Yee Quek
+    orcid: 0000-0002-3168-237X
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: The OntoChangelog ontology provides a clear history of every change,
+    acting as a digital paper trail that records who made a change, when it occurred,
+    and a description of the action.
+  download_owl: https://raw.githubusercontent.com/TheWorldAvatar/ontology/main/ontology/ontochangelog/ontochangelog.owl
+  example: wasPerformedBy
+  homepage: https://theworldavatar.io
+  keywords:
+  - ontology
+  - worldavatar
+  license: MIT
+  name: WorldAvatar changelog ontology
+  preferred_prefix: worldavatar.changelog
+  repository: https://github.com/TheWorldAvatar/ontology
+  uri_format: https://theworldavatar.io/kg/ontochangelog/$1
+worldavatar.chemexp:
+  contact:
+    github: qhouyee
+    name: Hou Yee Quek
+    orcid: 0000-0002-3168-237X
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: OntoChemExp is an ontology developed for representing chemical experiments.
+  download_owl: https://raw.githubusercontent.com/TheWorldAvatar/ontology/main/ontology/ontochemexp/OntoChemExp.owl
+  example: Acceptor
+  homepage: https://theworldavatar.io
+  keywords:
+  - chemistry
+  - ontology
+  - worldavatar
+  license: MIT
+  name: WorldAvatar chemical experiment ontology
+  preferred_prefix: worldavatar.chemexp
+  repository: https://github.com/TheWorldAvatar/ontology
+  uri_format: http://www.theworldavatar.com/ontology/ontochemexp/OntoChemExp.owl#$1
+worldavatar.chemplant:
+  contact:
+    github: qhouyee
+    name: Hou Yee Quek
+    orcid: 0000-0002-3168-237X
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: An ontology defined for representing the processes, business and geospatial
+    information of a chemical plant
+  download_owl: https://raw.githubusercontent.com/TheWorldAvatar/ontology/main/ontology/ontochemplant/OntoChemPlant.owl
+  example: CarbonEmissionIndex
+  homepage: https://theworldavatar.io
+  keywords:
+  - ontology
+  - worldavatar
+  license: MIT
+  name: WorldAvatar chemical plant ontology
+  preferred_prefix: worldavatar.chemplant
+  repository: https://github.com/TheWorldAvatar/ontology
+  uri_format: http://www.theworldavatar.com/kg/ontochemplant#$1
+worldavatar.citygml:
+  contact:
+    github: qhouyee
+    name: Hou Yee Quek
+    orcid: 0000-0002-3168-237X
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: "http://cui.unige.ch/isi/ontologies/citygml#\n for the real ontology\
+    \ iri name"
+  download_owl: https://raw.githubusercontent.com/TheWorldAvatar/ontology/main/ontology/ontocitygml/OntoCityGML.owl
+  example: AbstractAppearanceType
+  homepage: https://theworldavatar.io
+  keywords:
+  - ontology
+  - worldavatar
+  license: MIT
+  name: WorldAvatar city GML ontology
+  preferred_prefix: worldavatar.citygml
+  repository: https://github.com/TheWorldAvatar/ontology
+  uri_format: http://www.theworldavatar.com/ontology/ontocitygml/OntoCityGML.owl#$1
+worldavatar.classschedule:
+  contact:
+    github: qhouyee
+    name: Hou Yee Quek
+    orcid: 0000-0002-3168-237X
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: OntoClassSchedule is designed to represent and manage class schedules
+    in an educational setting. It captures the relationships between sessions, courses,
+    and various types of course offerings.
+  download_owl: https://raw.githubusercontent.com/TheWorldAvatar/ontology/main/ontology/ontoclassschedule/OntoClassSchedule.owl
+  example: hasCourseCode
+  homepage: https://theworldavatar.io
+  keywords:
+  - ontology
+  - worldavatar
+  license: MIT
+  name: WorldAvatar class schedule ontology
+  preferred_prefix: worldavatar.classschedule
+  repository: https://github.com/TheWorldAvatar/ontology
+  uri_format: https://www.theworldavatar.com/kg/ontoclassschedule/$1
+worldavatar.company:
+  contact:
+    github: qhouyee
+    name: Hou Yee Quek
+    orcid: 0000-0002-3168-237X
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: An ontology for representing geospatial information and design characteristics
+    of manufacturing facilities and data centres operated by a company.
+  download_owl: https://raw.githubusercontent.com/TheWorldAvatar/ontology/main/ontology/ontocompany/OntoCompany.owl
+  example: BeverageIndustry
+  homepage: https://theworldavatar.io
+  keywords:
+  - ontology
+  - worldavatar
+  license: MIT
+  name: WorldAvatar company ontology
+  preferred_prefix: worldavatar.company
+  repository: https://github.com/TheWorldAvatar/ontology
+  uri_format: http://www.theworldavatar.com/kg/ontocompany/$1
 worldavatar.compchem:
   contributor:
     email: cthoyt@gmail.com
@@ -93330,10 +93904,457 @@ worldavatar.compchem:
   license: MIT
   mappings:
     tib.ts: ontocompchem
-  name: Computational Chemistry Ontology
+  name: WorldAvatar computational chemistry ontology
   preferred_prefix: worldavatar.compchem
   repository: https://github.com/TheWorldAvatar/ontology
   uri_format: http://theworldavatar.com/ontology/ontocompchem/ontocompchem.owl#$1
+worldavatar.cropenergy:
+  contact:
+    github: qhouyee
+    name: Hou Yee Quek
+    orcid: 0000-0002-3168-237X
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: An ontology developed for representing crop energy data.
+  download_owl: https://raw.githubusercontent.com/TheWorldAvatar/ontology/main/ontology/ontocropenergy/OntoCropEnergy.owl
+  example: Barley
+  homepage: https://theworldavatar.io
+  keywords:
+  - ontology
+  - worldavatar
+  license: MIT
+  name: WorldAvatar crop energy ontology
+  preferred_prefix: worldavatar.cropenergy
+  repository: https://github.com/TheWorldAvatar/ontology
+  uri_format: http://www.theworldavatar.com/ontology/ontocropenergy/OntoCropEnergy.owl#$1
+worldavatar.cropmapgml:
+  contact:
+    github: qhouyee
+    name: Hou Yee Quek
+    orcid: 0000-0002-3168-237X
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: An ontology developed for representing crop maps.
+  download_owl: https://raw.githubusercontent.com/TheWorldAvatar/ontology/main/ontology/ontocropmapgml/OntoCropMapGML.owl
+  example: CropMap
+  homepage: https://theworldavatar.io
+  keywords:
+  - ontology
+  - worldavatar
+  license: MIT
+  name: WorldAvatar crop map GML ontology
+  preferred_prefix: worldavatar.cropmapgml
+  repository: https://github.com/TheWorldAvatar/ontology
+  uri_format: http://www.theworldavatar.com/ontology/ontocropmapgml/OntoCropMapGML.owl#$1
+worldavatar.derivation:
+  contact:
+    github: qhouyee
+    name: Hou Yee Quek
+    orcid: 0000-0002-3168-237X
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: OntoDerivation is an ontology used to connect entities in the world
+    avatar.
+  download_owl: https://raw.githubusercontent.com/TheWorldAvatar/ontology/main/ontology/ontoderivation/OntoDerivation.owl
+  example: Derivation
+  homepage: https://theworldavatar.io
+  keywords:
+  - ontology
+  - worldavatar
+  license: MIT
+  name: WorldAvatar derivation ontology
+  preferred_prefix: worldavatar.derivation
+  repository: https://github.com/TheWorldAvatar/ontology
+  uri_format: https://www.theworldavatar.com/kg/ontoderivation/$1
+worldavatar.device:
+  contact:
+    github: qhouyee
+    name: Hou Yee Quek
+    orcid: 0000-0002-3168-237X
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: OntoDevice is an ontology for describing devices, their capabilities
+    and properties.
+  download_owl: https://raw.githubusercontent.com/TheWorldAvatar/ontology/main/ontology/ontodevice/OntoDevice.owl
+  example: hasControlParameter
+  homepage: https://theworldavatar.io
+  keywords:
+  - ontology
+  - worldavatar
+  license: MIT
+  name: WorldAvatar device ontology
+  preferred_prefix: worldavatar.device
+  repository: https://github.com/TheWorldAvatar/ontology
+  uri_format: https://www.theworldavatar.com/kg/ontodevice/$1
+worldavatar.dispersion:
+  contact:
+    github: qhouyee
+    name: Hou Yee Quek
+    orcid: 0000-0002-3168-237X
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: A WorldAvatar ontology for dispersion of water
+  download_owl: https://raw.githubusercontent.com/TheWorldAvatar/ontology/main/ontology/ontodispersion/OntoDispersion.owl
+  example: AermapOutput
+  homepage: https://theworldavatar.io
+  keywords:
+  - ontology
+  - worldavatar
+  license: MIT
+  name: WorldAvatar dispersion ontology
+  preferred_prefix: worldavatar.dispersion
+  repository: https://github.com/TheWorldAvatar/ontology
+  uri_format: https://www.theworldavatar.com/kg/ontodispersion/$1
+worldavatar.doe:
+  contact:
+    github: qhouyee
+    name: Hou Yee Quek
+    orcid: 0000-0002-3168-237X
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: An ontology developed for design of experiment.
+  download_owl: https://raw.githubusercontent.com/TheWorldAvatar/ontology/main/ontology/ontodoe/OntoDoE.owl
+  example: CategoricalVariable
+  homepage: https://theworldavatar.io
+  keywords:
+  - ontology
+  - worldavatar
+  license: MIT
+  name: WorldAvatar design of experiment ontology
+  preferred_prefix: worldavatar.doe
+  repository: https://github.com/TheWorldAvatar/ontology
+  uri_format: https://www.theworldavatar.com/kg/ontodoe/$1
+worldavatar.dsv:
+  contact:
+    github: qhouyee
+    name: Hou Yee Quek
+    orcid: 0000-0002-3168-237X
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: OntoDSV is an ontology used to describe the contents of a DSV file.
+    It should provide sufficient information on how to read the file.
+  download_owl: https://raw.githubusercontent.com/TheWorldAvatar/ontology/main/ontology/ontodsv/OntoDSV.owl
+  example: column
+  homepage: https://theworldavatar.io
+  keywords:
+  - ontology
+  - worldavatar
+  license: MIT
+  name: WorldAvatar delimiter-separated values ontology
+  preferred_prefix: worldavatar.dsv
+  repository: https://github.com/TheWorldAvatar/ontology
+  uri_format: http://www.theworldavatar.com/kb/ontodsv/OntoDSV.owl#$1
+worldavatar.earthquake:
+  contact:
+    github: qhouyee
+    name: Hou Yee Quek
+    orcid: 0000-0002-3168-237X
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: OntoEarthquake is an ontology developed to represent earthquake hazard
+  download_owl: https://raw.githubusercontent.com/TheWorldAvatar/ontology/main/ontology/ontoearthquake/ontoearthquake.owl
+  example: Accelerometer
+  homepage: https://theworldavatar.io
+  keywords:
+  - ontology
+  - worldavatar
+  license: MIT
+  name: WorldAvatar earthquake ontology
+  preferred_prefix: worldavatar.earthquake
+  repository: https://github.com/TheWorldAvatar/ontology
+  uri_format: http://www.theworldavatar.com/kg/ontoearthquake#$1
+worldavatar.ems:
+  contact:
+    github: qhouyee
+    name: Hou Yee Quek
+    orcid: 0000-0002-3168-237X
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: A WorldAvatar ontology for classifying time-series measurements into
+    states/ranges such as Low, Normal, High, Rising, and Falling
+  download_owl: https://raw.githubusercontent.com/TheWorldAvatar/ontology/main/ontology/ontoems/OntoEMS%20ABox.owl
+  example: HighRange
+  homepage: https://theworldavatar.io
+  keywords:
+  - ontology
+  - worldavatar
+  license: MIT
+  name: WorldAvatar energy management system ontology
+  preferred_prefix: worldavatar.ems
+  repository: https://github.com/TheWorldAvatar/ontology
+  uri_format: https://www.theworldavatar.com/kg/ontoems/$1
+worldavatar.energysystem:
+  contact:
+    github: qhouyee
+    name: Hou Yee Quek
+    orcid: 0000-0002-3168-237X
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: OntoEnergySystem is an ontology developed for representing energy systems.
+  download_owl: https://raw.githubusercontent.com/TheWorldAvatar/ontology/main/ontology/ontoenergysystem/ontoenergysystem.owl
+  example: enablesElectricityConsumptionOf
+  homepage: https://theworldavatar.io
+  keywords:
+  - ontology
+  - worldavatar
+  license: MIT
+  name: WorldAvatar energy system ontology
+  preferred_prefix: worldavatar.energysystem
+  repository: https://github.com/TheWorldAvatar/ontology
+  uri_format: http://www.theworldavatar.com/ontology/ontoenergysystem/OntoEnergySystem.owl#$1
+worldavatar.engine:
+  contact:
+    github: qhouyee
+    name: Hou Yee Quek
+    orcid: 0000-0002-3168-237X
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: A WorldAvatar ontology with predicates describing combustion engines
+  download_owl: https://raw.githubusercontent.com/TheWorldAvatar/ontology/main/ontology/ontoengine/OntoEngine.owl
+  example: AFR
+  homepage: https://theworldavatar.io
+  keywords:
+  - ontology
+  - worldavatar
+  license: MIT
+  name: WorldAvatar engine ontology
+  preferred_prefix: worldavatar.engine
+  repository: https://github.com/TheWorldAvatar/ontology
+  uri_format: http://www.theworldavatar.com/ontology/ontoengine/OntoEngine.owl#$1
+worldavatar.exposure:
+  contact:
+    github: qhouyee
+    name: Hou Yee Quek
+    orcid: 0000-0002-3168-237X
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: Ontology used to calculate exposures to the environment
+  download_owl: https://raw.githubusercontent.com/TheWorldAvatar/ontology/main/ontology/ontoexposure/OntoExposure.owl
+  example: Area
+  homepage: https://theworldavatar.io
+  keywords:
+  - ontology
+  - worldavatar
+  license: MIT
+  name: WorldAvatar exposure ontology
+  preferred_prefix: worldavatar.exposure
+  repository: https://github.com/TheWorldAvatar/ontology
+  uri_format: https://www.theworldavatar.com/kg/ontoexposure/$1
+worldavatar.fhrs:
+  contact:
+    github: qhouyee
+    name: Hou Yee Quek
+    orcid: 0000-0002-3168-237X
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: OntoFHRS is an ontology developed for representing food hygiene ratings
+    of business establishments.
+  download_owl: https://raw.githubusercontent.com/TheWorldAvatar/ontology/main/ontology/ontofhrs/ontofhrs.owl
+  example: hasAddress
+  homepage: https://theworldavatar.io
+  keywords:
+  - ontology
+  - worldavatar
+  license: MIT
+  name: WorldAvatar food hygiene ratings ontology
+  preferred_prefix: worldavatar.fhrs
+  repository: https://github.com/TheWorldAvatar/ontology
+  uri_format: http://www.theworldavatar.com/ontology/OntoFHRS/$1
+worldavatar.flood:
+  contact:
+    github: qhouyee
+    name: Hou Yee Quek
+    orcid: 0000-0002-3168-237X
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: A WorldAvatar ontology about floods and their severity
+  download_owl: https://raw.githubusercontent.com/TheWorldAvatar/ontology/main/ontology/ontoflood/OntoFlood%20ABox.owl
+  example: hasSeverityLevel
+  homepage: https://theworldavatar.io
+  keywords:
+  - ontology
+  - worldavatar
+  license: MIT
+  name: WorldAvatar flood ontology
+  preferred_prefix: worldavatar.flood
+  repository: https://github.com/TheWorldAvatar/ontology
+  uri_format: https://www.theworldavatar.com/kg/ontoflood/$1
+worldavatar.goal:
+  contact:
+    github: qhouyee
+    name: Hou Yee Quek
+    orcid: 0000-0002-3168-237X
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: An ontology developed for goal-based agent operation.
+  download_owl: https://raw.githubusercontent.com/TheWorldAvatar/ontology/main/ontology/ontogoal/OntoGoal.owl
+  example: DesignOfExperiment
+  homepage: https://theworldavatar.io
+  keywords:
+  - ontology
+  - worldavatar
+  license: MIT
+  name: WorldAvatar goal ontology
+  preferred_prefix: worldavatar.goal
+  repository: https://github.com/TheWorldAvatar/ontology
+  uri_format: https://www.theworldavatar.com/kg/ontogoal/$1
+worldavatar.greenspace:
+  contact:
+    github: qhouyee
+    name: Hou Yee Quek
+    orcid: 0000-0002-3168-237X
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: OntoGreenspace is an ontology developed for representing greenspaces.
+  download_owl: https://raw.githubusercontent.com/TheWorldAvatar/ontology/main/ontology/ontogreenspace/ontogreenspace.owl
+  example: AccessPoint
+  homepage: https://theworldavatar.io
+  keywords:
+  - ontology
+  - worldavatar
+  license: MIT
+  name: WorldAvatar greenspace ontology
+  preferred_prefix: worldavatar.greenspace
+  repository: https://github.com/TheWorldAvatar/ontology
+  uri_format: https://www.theworldavatar.com/kg/ontogreenspace/$1
+worldavatar.heatnetwork:
+  contact:
+    github: qhouyee
+    name: Hou Yee Quek
+    orcid: 0000-0002-3168-237X
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: An ontology defined for representing the district heating network
+  download_owl: https://raw.githubusercontent.com/TheWorldAvatar/ontology/main/ontology/ontoheatnetwork/ontoheatnetwork.owl
+  example: Availability
+  homepage: https://theworldavatar.io
+  keywords:
+  - ontology
+  - worldavatar
+  license: MIT
+  name: WorldAvatar heat network ontology
+  preferred_prefix: worldavatar.heatnetwork
+  repository: https://github.com/TheWorldAvatar/ontology
+  uri_format: https://www.theworldavatar.com/kg/ontoheatnetwork/$1
+worldavatar.hplc:
+  contact:
+    github: qhouyee
+    name: Hou Yee Quek
+    orcid: 0000-0002-3168-237X
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: OntoHPLC is an ontology developed for expressing a high performance
+    liquid chromatography.
+  download_owl: https://raw.githubusercontent.com/TheWorldAvatar/ontology/main/ontology/ontohplc/OntoHPLC.owl
+  example: ChromatogramMeasurement
+  homepage: https://theworldavatar.io
+  keywords:
+  - chemistry
+  - ontology
+  - worldavatar
+  license: MIT
+  name: WorldAvatar high performance liquid chromatography ontology
+  preferred_prefix: worldavatar.hplc
+  repository: https://github.com/TheWorldAvatar/ontology
+  uri_format: https://www.theworldavatar.com/kg/ontohplc/$1
+worldavatar.isochrone:
+  contact:
+    github: qhouyee
+    name: Hou Yee Quek
+    orcid: 0000-0002-3168-237X
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: OntoIsochrone is an ontology for describing isochrones.
+  download_owl: https://raw.githubusercontent.com/TheWorldAvatar/ontology/main/ontology/ontoisochrone/OntoIsochrone.owl
+  example: Cycle
+  homepage: https://theworldavatar.io
+  keywords:
+  - ontology
+  - worldavatar
+  license: MIT
+  name: WorldAvatar isochrone ontology
+  preferred_prefix: worldavatar.isochrone
+  repository: https://github.com/TheWorldAvatar/ontology
+  uri_format: https://www.theworldavatar.com/kg/ontoisochrone/$1
+worldavatar.kgrouter:
+  contact:
+    github: qhouyee
+    name: Hou Yee Quek
+    orcid: 0000-0002-3168-237X
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: An ontology developed for representing Knowledge Graph routing maps.
+  download_owl: https://raw.githubusercontent.com/TheWorldAvatar/ontology/main/ontology/ontokgrouter/OntoKGRouter.owl
+  example: TargetResource
+  homepage: https://theworldavatar.io
+  keywords:
+  - ontology
+  - worldavatar
+  license: MIT
+  name: WorldAvatar knowledge graph routing map ontology
+  preferred_prefix: worldavatar.kgrouter
+  repository: https://github.com/TheWorldAvatar/ontology
+  uri_format: http://www.theworldavatar.com/ontology/ontokgrouter/OntoKGRouter.owl#$1
 worldavatar.kin:
   contributor:
     email: cthoyt@gmail.com
@@ -93354,10 +94375,556 @@ worldavatar.kin:
   license: MIT
   mappings:
     tib.ts: ontokin
-  name: Ontology for Chemical Kinetic Reaction Mechanisms
+  name: WorldAvatar ontology for chemical kinetic reaction mechanisms
   preferred_prefix: worldavatar.kin
   repository: https://github.com/TheWorldAvatar/ontology
   uri_format: http://www.theworldavatar.com/ontology/ontokin/OntoKin.owl#$1
+worldavatar.lab:
+  contact:
+    github: qhouyee
+    name: Hou Yee Quek
+    orcid: 0000-0002-3168-237X
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: OntoLab is an ontology developed for expressing facilities in a research
+    lab.
+  download_owl: https://raw.githubusercontent.com/TheWorldAvatar/ontology/main/ontology/ontolab/OntoLab.owl
+  example: AccessoryModule
+  homepage: https://theworldavatar.io
+  keywords:
+  - ontology
+  - worldavatar
+  license: MIT
+  name: WorldAvatar research laboratory ontology
+  preferred_prefix: worldavatar.lab
+  repository: https://github.com/TheWorldAvatar/ontology
+  uri_format: https://www.theworldavatar.com/kg/ontolab/$1
+worldavatar.land:
+  contact:
+    github: qhouyee
+    name: Hou Yee Quek
+    orcid: 0000-0002-3168-237X
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: A WorldAvatar ontology describing land division and relationship to
+    water sources
+  download_owl: https://raw.githubusercontent.com/TheWorldAvatar/ontology/main/ontology/ontoland/OntoLand.owl
+  example: Landlot
+  homepage: https://theworldavatar.io
+  keywords:
+  - ontology
+  - worldavatar
+  license: MIT
+  name: WorldAvatar land ontology
+  preferred_prefix: worldavatar.land
+  repository: https://github.com/TheWorldAvatar/ontology
+  uri_format: http://www.theworldavatar.com/ontology/ontoland/OntoLand.owl#$1
+worldavatar.landslide:
+  contact:
+    github: qhouyee
+    name: Hou Yee Quek
+    orcid: 0000-0002-3168-237X
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: OntoLandslide is an ontology developed to represent landslide hazard
+  download_owl: https://raw.githubusercontent.com/TheWorldAvatar/ontology/main/ontology/ontolandslide/ontolandslide.owl
+  example: AirPressure
+  homepage: https://theworldavatar.io
+  keywords:
+  - ontology
+  - worldavatar
+  license: MIT
+  name: WorldAvatar landslide ontology
+  preferred_prefix: worldavatar.landslide
+  repository: https://github.com/TheWorldAvatar/ontology
+  uri_format: http://www.theworldavatar.com/kg/ontolandslide/$1
+worldavatar.landuse:
+  contact:
+    github: qhouyee
+    name: Hou Yee Quek
+    orcid: 0000-0002-3168-237X
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: OntoLandUse is an ontology developed for representing different types
+    of land use code used for rural payment services.
+  download_owl: https://raw.githubusercontent.com/TheWorldAvatar/ontology/main/ontology/ontolanduse/OntoLandUse.owl
+  example: AdministrativeDivision
+  homepage: https://theworldavatar.io
+  keywords:
+  - ontology
+  - worldavatar
+  license: MIT
+  name: WorldAvatar land use ontology
+  preferred_prefix: worldavatar.landuse
+  repository: https://github.com/TheWorldAvatar/ontology
+  uri_format: http://www.theworldavatar.com/ontology/ontolanduse/OntoLandUse.owl#$1
+worldavatar.message:
+  contact:
+    github: qhouyee
+    name: Hou Yee Quek
+    orcid: 0000-0002-3168-237X
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: An ontology developed for recording messages exchanged between agents.
+  download_owl: https://raw.githubusercontent.com/TheWorldAvatar/ontology/main/ontology/ontomessage/OntoMessage.owl
+  example: Agree
+  homepage: https://theworldavatar.io
+  keywords:
+  - ontology
+  - worldavatar
+  license: MIT
+  name: WorldAvatar recording message ontology
+  preferred_prefix: worldavatar.message
+  repository: https://github.com/TheWorldAvatar/ontology
+  uri_format: http://www.theworldavatar.com/ontology/ontomessage/OntoMessage.owl#$1
+worldavatar.model:
+  contact:
+    github: qhouyee
+    name: Hou Yee Quek
+    orcid: 0000-0002-3168-237X
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: A WorldAvatar ontology describing the relationships between models,
+    their input paramaters and files, and their output parameters and files.
+  download_owl: https://raw.githubusercontent.com/TheWorldAvatar/ontology/main/ontology/ontomodel/OntoModel.owl
+  example: DSVFile
+  homepage: https://theworldavatar.io
+  keywords:
+  - ontology
+  - worldavatar
+  license: MIT
+  name: WorldAvatar model ontology
+  preferred_prefix: worldavatar.model
+  repository: https://github.com/TheWorldAvatar/ontology
+  uri_format: http://www.theworldavatar.com/ontology/ontomodel/OntoModel.owl#$1
+worldavatar.mops:
+  contact:
+    github: qhouyee
+    name: Hou Yee Quek
+    orcid: 0000-0002-3168-237X
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: An ontology developed for representing Metal-Organic Polyhedra (MOPs).
+    This is object graph mapper (OGM) version.
+  download_owl: https://raw.githubusercontent.com/TheWorldAvatar/ontology/main/ontology/ontomops/ontomops-ogm.ttl
+  example: AssemblyModel
+  homepage: https://theworldavatar.io
+  keywords:
+  - chemistry
+  - ontology
+  - worldavatar
+  license: MIT
+  name: WorldAvatar metal-organic polyhedra ontology
+  preferred_prefix: worldavatar.mops
+  repository: https://github.com/TheWorldAvatar/ontology
+  uri_format: https://www.theworldavatar.com/kg/ontomops/$1
+worldavatar.ontocrystal:
+  contact:
+    github: qhouyee
+    name: Hou Yee Quek
+    orcid: 0000-0002-3168-237X
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: OntoCrystal is an ontology developed for representing crystal structure
+    information
+  download_owl: https://raw.githubusercontent.com/TheWorldAvatar/ontology/main/ontology/ontozeolite/ontocrystal.owl
+  example: hasAbscissaData
+  homepage: https://theworldavatar.io
+  keywords:
+  - ontology
+  - worldavatar
+  license: MIT
+  name: WorldAvatar crystal ontology
+  preferred_prefix: worldavatar.ontocrystal
+  repository: https://github.com/TheWorldAvatar/ontology
+  uri_format: http://www.theworldavatar.com/kg/ontocrystal/$1
+worldavatar.pesscan:
+  contact:
+    github: qhouyee
+    name: Hou Yee Quek
+    orcid: 0000-0002-3168-237X
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: An ontology developed for representing potential energy surface scans.
+  download_owl: https://raw.githubusercontent.com/TheWorldAvatar/ontology/main/ontology/ontopesscan/OntoPESScan.owl
+  example: AngleCoordinate
+  homepage: https://theworldavatar.io
+  keywords:
+  - ontology
+  - worldavatar
+  license: MIT
+  name: WorldAvatar potential energy surface scan ontology
+  preferred_prefix: worldavatar.pesscan
+  repository: https://github.com/TheWorldAvatar/ontology
+  uri_format: http://www.theworldavatar.com/ontology/ontopesscan/OntoPESScan.owl#$1
+worldavatar.planningregulation:
+  contact:
+    github: qhouyee
+    name: Hou Yee Quek
+    orcid: 0000-0002-3168-237X
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: OntoPlanningRegulation is an ontology developed to describe the regulations
+    imposed for urban planning purposes.
+  download_owl: https://raw.githubusercontent.com/TheWorldAvatar/ontology/main/ontology/ontoplanningregulation/OntoPlanningRegulation.owl
+  example: AbsoluteHeight
+  homepage: https://theworldavatar.io
+  keywords:
+  - ontology
+  - worldavatar
+  license: MIT
+  name: WorldAvatar planning regulation ontology
+  preferred_prefix: worldavatar.planningregulation
+  repository: https://github.com/TheWorldAvatar/ontology
+  uri_format: https://www.theworldavatar.com/kg/ontoplanningregulation/$1
+worldavatar.plot:
+  contact:
+    github: qhouyee
+    name: Hou Yee Quek
+    orcid: 0000-0002-3168-237X
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: OntoPlot is an ontology developed to describe the attributes of land
+    plots.
+  download_owl: https://raw.githubusercontent.com/TheWorldAvatar/ontology/main/ontology/ontoplot/OntoPlot.owl
+  example: Plot
+  homepage: https://theworldavatar.io
+  keywords:
+  - ontology
+  - worldavatar
+  license: MIT
+  name: WorldAvatar land plot ontology
+  preferred_prefix: worldavatar.plot
+  repository: https://github.com/TheWorldAvatar/ontology
+  uri_format: https://www.theworldavatar.com/kg/ontoplot/$1
+worldavatar.poi:
+  contact:
+    github: qhouyee
+    name: Hou Yee Quek
+    orcid: 0000-0002-3168-237X
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: OntoPOI is an ontology developed for representing points of interest.
+  download_owl: https://raw.githubusercontent.com/TheWorldAvatar/ontology/main/ontology/ontopoi/ontopoi-with-properties.owl
+  example: AbrasiveProductsAndGrindingEquipment
+  homepage: https://theworldavatar.io
+  keywords:
+  - ontology
+  - worldavatar
+  license: MIT
+  name: WorldAvatar point of interest ontology
+  preferred_prefix: worldavatar.poi
+  repository: https://github.com/TheWorldAvatar/ontology
+  uri_format: https://www.theworldavatar.com/kg/ontopoi/$1
+worldavatar.powsys:
+  contact:
+    github: qhouyee
+    name: Hou Yee Quek
+    orcid: 0000-0002-3168-237X
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: A WorldAvatar ontology describing electrical power systems, their inputs,
+    and their outputs
+  download_owl: https://raw.githubusercontent.com/TheWorldAvatar/ontology/main/ontology/ontopowsys/OntoPowSys.owl
+  example: hasBusNode
+  homepage: https://theworldavatar.io
+  keywords:
+  - ontology
+  - worldavatar
+  license: MIT
+  name: WorldAvatar power system ontology
+  preferred_prefix: worldavatar.powsys
+  repository: https://github.com/TheWorldAvatar/ontology
+  uri_format: http://www.theworldavatar.com/ontology/ontopowsys/OntoPowSys.owl#$1
+worldavatar.profile:
+  contact:
+    github: qhouyee
+    name: Hou Yee Quek
+    orcid: 0000-0002-3168-237X
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: OntoProfile is designed to represent the profiles of organizations
+    and people, inclusive of their names, roles, and responsibilities.
+  download_owl: https://raw.githubusercontent.com/TheWorldAvatar/ontology/main/ontology/ontoprofile/OntoProfile.owl
+  example: EmployedDriver
+  homepage: https://theworldavatar.io
+  keywords:
+  - ontology
+  - worldavatar
+  license: MIT
+  name: WorldAvatar profile ontology
+  preferred_prefix: worldavatar.profile
+  repository: https://github.com/TheWorldAvatar/ontology
+  uri_format: https://www.theworldavatar.com/kg/ontoprofile/$1
+worldavatar.raster:
+  contact:
+    github: qhouyee
+    name: Hou Yee Quek
+    orcid: 0000-0002-3168-237X
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: OntoRaster is an ontology developed for creating a comprehensive description
+    for the Raster data
+  download_owl: https://raw.githubusercontent.com/TheWorldAvatar/ontology/main/ontology/ontoraster/ontoraster.owl
+  example: Band
+  homepage: https://theworldavatar.io
+  keywords:
+  - ontology
+  - worldavatar
+  license: MIT
+  name: WorldAvatar raster data ontology
+  preferred_prefix: worldavatar.raster
+  repository: https://github.com/TheWorldAvatar/ontology
+  uri_format: http://www.theworldavatar.com/ontology/OntoRaster.owl#$1
+worldavatar.rdbrouter:
+  contact:
+    github: qhouyee
+    name: Hou Yee Quek
+    orcid: 0000-0002-3168-237X
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: An ontology developed for representing Relational Database routing
+    maps.
+  download_owl: https://raw.githubusercontent.com/TheWorldAvatar/ontology/main/ontology/ontordbrouter/OntoRDBRouter.owl
+  example: TargetRDBResource
+  homepage: https://theworldavatar.io
+  keywords:
+  - ontology
+  - worldavatar
+  license: MIT
+  name: WorldAvatar relational database routing map ontology
+  preferred_prefix: worldavatar.rdbrouter
+  repository: https://github.com/TheWorldAvatar/ontology
+  uri_format: http://www.theworldavatar.com/kg/ontordbrouter/$1
+worldavatar.reaction:
+  contact:
+    github: qhouyee
+    name: Hou Yee Quek
+    orcid: 0000-0002-3168-237X
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: An ontology developed for describing reaction experiment.
+  download_owl: https://raw.githubusercontent.com/TheWorldAvatar/ontology/main/ontology/ontoreaction/OntoReaction.owl
+  example: Base
+  homepage: https://theworldavatar.io
+  keywords:
+  - chemistry
+  - ontology
+  - worldavatar
+  license: MIT
+  name: WorldAvatar reaction ontology
+  preferred_prefix: worldavatar.reaction
+  repository: https://github.com/TheWorldAvatar/ontology
+  uri_format: https://www.theworldavatar.com/kg/ontoreaction/$1
+worldavatar.school:
+  contact:
+    github: qhouyee
+    name: Hou Yee Quek
+    orcid: 0000-0002-3168-237X
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: A WorldAvatar ontology describing schools and classrooms
+  download_owl: https://raw.githubusercontent.com/TheWorldAvatar/ontology/main/ontology/ontoschool/OntoSchool.owl
+  example: hasGenderComposition
+  homepage: https://theworldavatar.io
+  keywords:
+  - ontology
+  - worldavatar
+  license: MIT
+  name: WorldAvatar school ontology
+  preferred_prefix: worldavatar.school
+  repository: https://github.com/TheWorldAvatar/ontology
+  uri_format: https://www.theworldavatar.com/kg/ontoschool/$1
+worldavatar.sdg:
+  contact:
+    github: qhouyee
+    name: Hou Yee Quek
+    orcid: 0000-0002-3168-237X
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: An ontology developed for representing the United Stations (UN) Sustainable
+    Development Goals (SDGs).
+  download_owl: https://raw.githubusercontent.com/TheWorldAvatar/ontology/main/ontology/ontosdg/OntoSDG.owl
+  example: AdministrativeDivision
+  homepage: https://theworldavatar.io
+  keywords:
+  - ontology
+  - worldavatar
+  license: MIT
+  name: WorldAvatar Sustainable Development Goal ontology
+  preferred_prefix: worldavatar.sdg
+  repository: https://github.com/TheWorldAvatar/ontology
+  uri_format: http://www.theworldavatar.com/ontology/ontosdg/OntoSDG.owl#$1
+worldavatar.sealevel:
+  contact:
+    github: qhouyee
+    name: Hou Yee Quek
+    orcid: 0000-0002-3168-237X
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: The Ontology for Sea Level is developed to represent information about
+    sea level.
+  download_owl: https://raw.githubusercontent.com/TheWorldAvatar/ontology/main/ontology/ontosealevel/OntoSeaLevel.owl
+  example: AffectedArea
+  homepage: https://theworldavatar.io
+  keywords:
+  - ontology
+  - worldavatar
+  license: MIT
+  name: WorldAvatar sea level ontology
+  preferred_prefix: worldavatar.sealevel
+  repository: https://github.com/TheWorldAvatar/ontology
+  uri_format: https://www.theworldavatar.com/kg/ontosealevel/$1
+worldavatar.sensor:
+  contact:
+    github: qhouyee
+    name: Hou Yee Quek
+    orcid: 0000-0002-3168-237X
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: based on http://purl.oclc.org/NET/ssnx/ssn
+  download_owl: https://raw.githubusercontent.com/TheWorldAvatar/ontology/main/ontology/ontosensor/OntoSensor.owl
+  example: Accuracy
+  homepage: https://theworldavatar.io
+  keywords:
+  - ontology
+  - worldavatar
+  license: MIT
+  name: WorldAvatar sensor ontology
+  preferred_prefix: worldavatar.sensor
+  repository: https://github.com/TheWorldAvatar/ontology
+  uri_format: http://www.theworldavatar.com/ontology/ontosensor/OntoSensor.owl#$1
+worldavatar.service:
+  contact:
+    github: qhouyee
+    name: Hou Yee Quek
+    orcid: 0000-0002-3168-237X
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: OntoService is designed to represent the terms, conditions, and obligations
+    associated with service delivery as well as the execution details.
+  download_owl: https://raw.githubusercontent.com/TheWorldAvatar/ontology/main/ontology/ontoservice/ontoservice.owl
+  example: BillingContactService
+  homepage: https://theworldavatar.io
+  keywords:
+  - ontology
+  - worldavatar
+  license: MIT
+  name: WorldAvatar terms of service ontology
+  preferred_prefix: worldavatar.service
+  repository: https://github.com/TheWorldAvatar/ontology
+  uri_format: https://www.theworldavatar.com/kg/ontoservice/$1
+worldavatar.sewage:
+  contact:
+    github: qhouyee
+    name: Hou Yee Quek
+    orcid: 0000-0002-3168-237X
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: OntoSewage is an ontology developed for representing sewerage system.
+  download_owl: https://raw.githubusercontent.com/TheWorldAvatar/ontology/main/ontology/ontosewage/ontosewage.owl
+  example: Angular
+  homepage: https://theworldavatar.io
+  keywords:
+  - ontology
+  - worldavatar
+  license: MIT
+  name: WorldAvatar sewage ontology
+  preferred_prefix: worldavatar.sewage
+  repository: https://github.com/TheWorldAvatar/ontology
+  uri_format: https://www.theworldavatar.com/kg/ontosewage/$1
+worldavatar.ship:
+  contact:
+    github: qhouyee
+    name: Hou Yee Quek
+    orcid: 0000-0002-3168-237X
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: A WorldAvatar ontology describing ships (i.e., nautical vessels) and
+    their spaciotemporal properties
+  download_owl: https://raw.githubusercontent.com/TheWorldAvatar/ontology/main/ontology/ontoship/OntoShip.owl
+  example: CourseOverGround
+  homepage: https://theworldavatar.io
+  keywords:
+  - ontology
+  - worldavatar
+  license: MIT
+  name: WorldAvatar ship ontology
+  preferred_prefix: worldavatar.ship
+  repository: https://github.com/TheWorldAvatar/ontology
+  uri_format: http://www.theworldavatar.com/ontology/ontoship/OntoShip.owl#$1
 worldavatar.species:
   description: OntoSpecies is an ontology developed for representing chemical species.
   download_owl: https://raw.githubusercontent.com/TheWorldAvatar/ontology/refs/heads/main/ontology/ontospecies/OntoSpecies.owl
@@ -93378,6 +94945,258 @@ worldavatar.species:
   synonyms:
   - worldavatar.os
   uri_format: http://www.theworldavatar.com/ontology/ontospecies/OntoSpecies.owl#$1
+worldavatar.station:
+  contact:
+    github: qhouyee
+    name: Hou Yee Quek
+    orcid: 0000-0002-3168-237X
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: Ontology to describe air quality and weather stations
+  download_owl: https://raw.githubusercontent.com/TheWorldAvatar/ontology/main/ontology/ontostation/OntoStation.owl
+  example: AirQualityStation
+  homepage: https://theworldavatar.io
+  keywords:
+  - ontology
+  - worldavatar
+  license: MIT
+  name: WorldAvatar station ontology
+  preferred_prefix: worldavatar.station
+  repository: https://github.com/TheWorldAvatar/ontology
+  uri_format: https://github.com/cambridge-cares/TheWorldAvatar/blob/develop/JPS_Ontology/ontology/ontostation/OntoStation.owl#$1
+worldavatar.syn:
+  contact:
+    github: qhouyee
+    name: Hou Yee Quek
+    orcid: 0000-0002-3168-237X
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: An ontology developed for representing chemical synthesis procedures,
+    specifically for Metal-Organic Polyhedra (MOPs). This is object graph mapper (OGM)
+    version.
+  download_owl: https://raw.githubusercontent.com/TheWorldAvatar/ontology/main/ontology/ontosyn/ontosyn-ogm.ttl
+  example: hasAddedChemicalInput
+  homepage: https://theworldavatar.io
+  keywords:
+  - chemistry
+  - ontology
+  - worldavatar
+  license: MIT
+  name: WorldAvatar chemical synthesis ontology
+  preferred_prefix: worldavatar.syn
+  repository: https://github.com/TheWorldAvatar/ontology
+  uri_format: https://www.theworldavatar.com/kg/OntoSyn/$1
+worldavatar.technicalsystem:
+  contact:
+    github: qhouyee
+    name: Hou Yee Quek
+    orcid: 0000-0002-3168-237X
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: An ontology for technical systems.
+  download_owl: https://raw.githubusercontent.com/TheWorldAvatar/ontology/main/ontology/ontotechnicalsystem/OntoTechnicalSystem.owl
+  example: AerosolDilutionSystem
+  homepage: https://theworldavatar.io
+  keywords:
+  - ontology
+  - worldavatar
+  license: MIT
+  name: WorldAvatar technical system ontology
+  preferred_prefix: worldavatar.technicalsystem
+  repository: https://github.com/TheWorldAvatar/ontology
+  uri_format: https://www.theworldavatar.com/kg/ontotechnicalsystem/$1
+worldavatar.trafficincident:
+  contact:
+    github: qhouyee
+    name: Hou Yee Quek
+    orcid: 0000-0002-3168-237X
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: The WorldAvatar ontology for traffic incidents and descriptive statistics
+  download_owl: https://raw.githubusercontent.com/TheWorldAvatar/ontology/main/ontology/ontotrafficincident/OntoTrafficIncident.owl
+  example: TrafficIncident
+  homepage: https://theworldavatar.io
+  keywords:
+  - ontology
+  - worldavatar
+  license: MIT
+  name: WorldAvatar traffic incident ontology
+  preferred_prefix: worldavatar.trafficincident
+  repository: https://github.com/TheWorldAvatar/ontology
+  uri_format: https://www.theworldavatar.com/kg/ontotrafficincident/$1
+worldavatar.transport:
+  contact:
+    github: qhouyee
+    name: Hou Yee Quek
+    orcid: 0000-0002-3168-237X
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: A WorldAvatar ontology describing the transport of physical and information
+    material, e.g., via ship.
+  download_owl: https://raw.githubusercontent.com/TheWorldAvatar/ontology/main/ontology/ontotransport/OntoTransport.owl
+  example: Emission
+  homepage: https://theworldavatar.io
+  keywords:
+  - ontology
+  - worldavatar
+  license: MIT
+  name: WorldAvatar transport ontology
+  preferred_prefix: worldavatar.transport
+  repository: https://github.com/TheWorldAvatar/ontology
+  uri_format: http://www.theworldavatar.com/ontology/ontotransport/OntoTransport.owl#$1
+worldavatar.ubemmp:
+  contact:
+    github: qhouyee
+    name: Hou Yee Quek
+    orcid: 0000-0002-3168-237X
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: Ontology for urban building energy modelling (UBEM) and master planning
+    (MP) data
+  download_owl: https://raw.githubusercontent.com/TheWorldAvatar/ontology/main/ontology/ontoubemmp/OntoUBEMMP.owl
+  example: AnnualCO2Savings
+  homepage: https://theworldavatar.io
+  keywords:
+  - ontology
+  - worldavatar
+  license: MIT
+  name: WorldAvatar urban building energy modeling ontology
+  preferred_prefix: worldavatar.ubemmp
+  repository: https://github.com/TheWorldAvatar/ontology
+  uri_format: https://www.theworldavatar.com/kg/ontoubemmp/$1
+worldavatar.vapourtec:
+  contact:
+    github: qhouyee
+    name: Hou Yee Quek
+    orcid: 0000-0002-3168-237X
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: OntoVapourtec is an ontology developed for expressing a Vapourtec experiment
+    module.
+  download_owl: https://raw.githubusercontent.com/TheWorldAvatar/ontology/main/ontology/ontovapourtec/OntoVapourtec.owl
+  example: AutoSampler
+  homepage: https://theworldavatar.io
+  keywords:
+  - ontology
+  - worldavatar
+  license: MIT
+  name: WorldAvatar Vapourtec ontology
+  preferred_prefix: worldavatar.vapourtec
+  repository: https://github.com/TheWorldAvatar/ontology
+  uri_format: https://www.theworldavatar.com/kg/ontovapourtec/$1
+worldavatar.waste:
+  contact:
+    github: qhouyee
+    name: Hou Yee Quek
+    orcid: 0000-0002-3168-237X
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: A WorldAvatar ontology describing the quantification, transport, recycling,
+    and/or disposal of waste
+  download_owl: https://raw.githubusercontent.com/TheWorldAvatar/ontology/main/ontology/ontowaste/OntoWaste.owl
+  example: Benchmark
+  homepage: https://theworldavatar.io
+  keywords:
+  - ontology
+  - worldavatar
+  license: MIT
+  name: WorldAvatar waste ontology
+  preferred_prefix: worldavatar.waste
+  repository: https://github.com/TheWorldAvatar/ontology
+  uri_format: http://www.theworldavatar.com/ontology/ontowaste/OntoWaste.owl#$1
+worldavatar.wastemanagement:
+  contact:
+    github: qhouyee
+    name: Hou Yee Quek
+    orcid: 0000-0002-3168-237X
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: OntoWasteManagement is designed to represent and support the day-to-day
+    waste management operations, ranging from handling collection requests and billing
+    reports, meeting reporting requirements, to fleet and bin management.
+  download_owl: https://raw.githubusercontent.com/TheWorldAvatar/ontology/main/ontology/ontowastemanagement/ontowastemanagement.owl
+  example: AluminiumWaste
+  homepage: https://theworldavatar.io
+  keywords:
+  - ontology
+  - worldavatar
+  license: MIT
+  name: WorldAvatar waste management ontology
+  preferred_prefix: worldavatar.wastemanagement
+  repository: https://github.com/TheWorldAvatar/ontology
+  uri_format: https://www.theworldavatar.com/kg/ontowastemanagement/$1
+worldavatar.wildfire:
+  contact:
+    github: qhouyee
+    name: Hou Yee Quek
+    orcid: 0000-0002-3168-237X
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: OntoWildfire is an ontology developed to represent wildfires.
+  download_owl: https://raw.githubusercontent.com/TheWorldAvatar/ontology/main/ontology/ontowildfire/ontowildfire.owl
+  example: AirQualitySensor
+  homepage: https://theworldavatar.io
+  keywords:
+  - ontology
+  - worldavatar
+  license: MIT
+  name: WorldAvatar wildfire ontology
+  preferred_prefix: worldavatar.wildfire
+  repository: https://github.com/TheWorldAvatar/ontology
+  uri_format: http://www.theworldavatar.com/kg/ontowildfire/$1
+worldavatar.zoning:
+  contact:
+    github: qhouyee
+    name: Hou Yee Quek
+    orcid: 0000-0002-3168-237X
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: OntoZoning is an ontology developed to represent relationships between
+    zones, their land use types and land uses.
+  download_owl: https://raw.githubusercontent.com/TheWorldAvatar/ontology/main/ontology/ontozoning/OntoZoning.owl
+  example: Agriculture
+  homepage: https://theworldavatar.io
+  keywords:
+  - ontology
+  - worldavatar
+  license: MIT
+  name: WorldAvatar zoning ontology
+  preferred_prefix: worldavatar.zoning
+  repository: https://github.com/TheWorldAvatar/ontology
+  uri_format: https://www.theworldavatar.com/kg/ontozoning/$1
 wormbase:
   contact:
     email: todd@wormbase.org
@@ -95194,7 +97013,7 @@ zp:
   rdf_uri_format: http://purl.obolibrary.org/obo/ZP_$1
   repository: https://github.com/obophenotype/zebrafish-phenotype-ontology
   uri_format: http://purl.obolibrary.org/obo/ZP_$1
-  version: '2024-04-18'
+  version: '2026-10-08'
 zpid:
   contributor:
     email: cthoyt@gmail.com

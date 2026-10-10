@@ -3095,7 +3095,7 @@
   "P13643": {
     "description": "identifier for a taxon, in the online Flora of Mexico (eFloraMEX)",
     "examples": [
-      "4905fed7-1f28-411f-b9fa-9f44bedcdc82",
+      "9ae5c1f5-f91b-40f2-bbc6-97aa0b017007",
       "a5a68e75-d757-4731-a1d7-895828b22f72"
     ],
     "homepage": "https://efloramex.ib.unam.mx/",
@@ -3526,6 +3526,21 @@
     ],
     "name": "NZPCN legacy ID",
     "pattern": "^[1-9]\\d*$"
+  },
+  "P14953": {
+    "description": "identifier for a taxon in the Inventory of Natural Heritage of the Brussels-Capital Region",
+    "examples": [
+      "197",
+      "351",
+      "53"
+    ],
+    "homepage": "https://sites.heritage.brussels/index.php?section_search=trees&section=taxon",
+    "name": "Brussels Inventory of Natural Heritage taxon ID",
+    "pattern": "^[1-9]\\d*$",
+    "uri_format": "https://sites.heritage.brussels/index.php?section_search=trees&taxon=$1",
+    "xrefs": {
+      "wikidata": "Q131536797"
+    }
   },
   "P1550": {
     "description": "identifier in the Orpha.net database (without ORPHA prefix)",
@@ -4238,7 +4253,7 @@
     "homepage": "https://africanplantdatabase.ch/",
     "name": "African Plant Database ID",
     "pattern": "^\\d{1,6}$",
-    "uri_format": "https://africanplantdatabase.ch/en/nomen/$1"
+    "uri_format": "https://africanplantdatabase.ch/en/nomen/_/$1/_"
   },
   "P2040": {
     "description": "identifier for a taxon in the Species+ database (CITES)",
@@ -4536,7 +4551,7 @@
       "InChI=1S/C6H6/c1-2-4-6-5-3-1/h1-6H"
     ],
     "name": "InChI",
-    "pattern": "^InChI=1S?/([0-9]*[A-Z][ub]?[a-z]?[0-9]*\\.?)+(/[0-9A-Za-z+\\-(),.*;?]+)*$",
+    "pattern": "^InChI=1S?\\/(?:[0-9]*[A-Z][ub]?[a-z]?[0-9]*\\.?)+(?:\\/[0-9A-Za-z+\\-(),.*;?]+)*$",
     "uri_format": "https://chemapps.stolaf.edu/jmol/jmol.php?&model=$1",
     "xrefs": {
       "miriam": "inchi",
@@ -6283,7 +6298,10 @@
       "Q3382408",
       "Q9629"
     ],
-    "name": "has boundary"
+    "name": "has boundary",
+    "xrefs": {
+      "wikidata": "Q875399"
+    }
   },
   "P4798": {
     "description": "identifier for a bird species or sub-species in the BTO Birds of Britain/ BirdFacts database",
@@ -6428,7 +6446,7 @@
       "V15.01"
     ],
     "name": "ICD-9 ID",
-    "pattern": "^(\\d\\d\\d|V\\d\\d|E[8-9]\\d\\d)(\\.\\d{1,2})?$",
+    "pattern": "^(?:\\d\\d\\d|V\\d\\d|E[8-9]\\d\\d)(?:\\.\\d{1,2})?$",
     "uri_format": "http://www.icd9data.com/getICD9Code.ashx?icd9=$1",
     "xrefs": {
       "wikidata": "Q50018"
@@ -6442,7 +6460,7 @@
       "R19.6"
     ],
     "name": "ICD-10 ID",
-    "pattern": "^[A-Z]\\d{2}(\\.\\d{1,2})?$",
+    "pattern": "^[A-Z]\\d{2}(?:\\.\\d{1,2})?$",
     "uri_format": "https://icd.who.int/browse10/2019/en#/$1",
     "xrefs": {
       "wikidata": "Q45127"
@@ -8928,7 +8946,7 @@
       "ENST00000623907"
     ],
     "name": "Ensembl transcript ID",
-    "pattern": "^ENS([GT]|MUST|RNOT|DART)\\d{11}|Y[A-Z]{2}\\d{3}[A-Z](-[A-Z])?|FBtr\\d{7}|Q\\d{4}|((([0-9]?[A-Z]{1,4}\\d{1,3})[A-Z0-9]?)|(cTel\\d{2}X)|([0-9]RSSE)|(Y[0-9]{1,3}[A-Z]\\d{1,2}((LA|UA)|[A-C][A-Z]?)))*(\\.\\d{1,4}[a-z]?)+$",
+    "pattern": "^ENS(?:[GT]|MUST|RNOT|DART)\\d{11}|Y[A-Z]{2}\\d{3}[A-Z](?:-[A-Z])?|FBtr\\d{7}|Q\\d{4}|(?:(?:(?:[0-9]?[A-Z]{1,4}\\d{1,3})[A-Z0-9]?)|(?:cTel\\d{2}X)|(?:[0-9]RSSE)|(?:Y[0-9]{1,3}[A-Z]\\d{1,2}(?:(?:LA|UA)|[A-C][A-Z]?)))*(?:\\.\\d{1,4}[a-z]?)+$",
     "uri_format": "http://identifiers.org/ensembl/$1",
     "uri_format_rdf": "http://rdf.ebi.ac.uk/resource/ensembl/$1",
     "xrefs": {
