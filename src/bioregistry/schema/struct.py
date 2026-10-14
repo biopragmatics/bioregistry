@@ -2710,7 +2710,7 @@ class Resource(BaseModel):
 
         >>> from bioregistry import get_resource
         >>> get_resource("orphanet.ordo").get_download_owl()
-        'http://www.orphadata.org/data/ORDO/ordo_orphanet.owl'
+        'https://www.orphadata.com/data/ontologies/ordo/last_version/ordo_orphanet.owl'
 
         Get an ontology download link from the OBO Foundry:
 
