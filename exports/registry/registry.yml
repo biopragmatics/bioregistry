@@ -12926,6 +12926,7 @@ cmpo:
     email: jupp@ebi.ac.uk
     name: Simon Jupp
     orcid: 0000-0002-0643-3144
+  deprecated: true
   description: CMPO is a species neutral ontology for describing general phenotypic
     observations relating to the whole cell, cellular components, cellular processes
     and cell populations.
@@ -19744,22 +19745,22 @@ dialnet.journal:
 dicom:
   contact:
     email: dclunie@dclunie.com
+    github: dclunie
     name: David Clunie
     orcid: 0000-0002-2406-1145
-  description: 'Ontology for healthcare metadata - especially metadata found in DICOM
-    files (Digital Imaging and Communications in Medicine, see http://dicom.nema.org/).
-    Author: Michael Brunnbauer, Bonubase GmbH (www.bonubase.com). The author''s email
-    address is brunni@netestate.de. See http://purl.org/healthcarevocab/v1help for
-    explanations.'
-  download_owl: http://aber-owl.net/media/ontologies/DICOM/1/dicom.owl
+  description: DICOM® — Digital Imaging and Communications in Medicine — is the international
+    standard for medical images and related information. It defines the formats for
+    medical images that can be exchanged with the data and quality necessary for clinical
+    use. (from https://www.dicomstandard.org/about-home)
+  download_owl: https://dicom.nema.org/MEDICAL/Dicom/Resources/Ontology/dcm.owl.zip
   example: '109082'
-  homepage: http://medical.nema.org
+  homepage: https://www.dicomstandard.org
   keywords:
   - ontology
   mappings:
     aberowl: DICOM
     bioportal: DICOM
-  name: Healthcare metadata - DICOM ontology
+  name: Digital Imaging and Communications in Medicine ontology
   pattern: ^\d+$
   preferred_prefix: dicom
   publications:
@@ -19774,6 +19775,7 @@ dicom:
     title: 'DICOM demystified: a review of digital file formats and their use in radiological
       practice'
     year: 2005
+  rdf_uri_format: http://dicom.nema.org/resources/ontology/DCM/$1
   uri_format: http://dicom.nema.org/resources/ontology/DCM/$1
   version: v2015-01-11
 dictybase:
@@ -22093,6 +22095,7 @@ dsw:
   license: CC0-1.0
   mappings:
     agroportal: DSW
+    biodivportal: DSW
     ecoportal: DSW
     tib.ts: dsw
   name: Darwin-SW
@@ -61791,7 +61794,7 @@ orphanet.ordo:
     relations, epiemological data) and connections with other terminologies (MeSH,
     UMLS, MedDRA), databases (OMIM, UniProtKB, HGNC, ensembl, Reactome, IUPHAR, Geantlas)
     and classifications (ICD10).'
-  download_owl: http://www.orphadata.org/data/ORDO/ordo_orphanet.owl
+  download_owl: https://www.orphadata.com/data/ontologies/ordo/last_version/ordo_orphanet.owl
   example: C023
   example_extras:
   - '478'
@@ -91996,7 +91999,7 @@ vmh.gene:
     ror: 03bea9k73
   pattern: ^[0-9]+\.[0-9]+$
   preferred_prefix: vmh.gene
-  uri_format: https://www.vmh.life/#gene/$1
+  uri_format: https://www.vmh.life/gene/$1
 vmh.metabolite:
   description: The Virtual Metabolic Human (VMH) is a resource that combines human
     and gut microbiota metabolism with nutrition and disease.
@@ -92012,7 +92015,7 @@ vmh.metabolite:
     ror: 03bea9k73
   pattern: ^[a-zA-Z0-9_\(\_\)\[\]]+$
   preferred_prefix: vmh.metabolite
-  uri_format: https://www.vmh.life/#metabolite/$1
+  uri_format: https://www.vmh.life/metabolite/$1
 vmh.reaction:
   description: The Virtual Metabolic Human (VMH) is a resource that combines human
     and gut microbiota metabolism with nutrition and disease.
@@ -92028,7 +92031,7 @@ vmh.reaction:
     ror: 03bea9k73
   pattern: ^[a-zA-Z0-9_\(\_\)\[\]]+$
   preferred_prefix: vmh.reaction
-  uri_format: https://www.vmh.life/#reaction/$1
+  uri_format: https://www.vmh.life/reaction/$1
 vo:
   appears_in:
   - scdo

@@ -949,10 +949,10 @@
 @prefix genetree: <http://www.ensembl.org/Multi/GeneTree/Image?db=core;gt=> .
 @prefix genewiki: <http://plugins.biogps.org/cgi-bin/wp.cgi?id=> .
 @prefix genprop: <https://www.ebi.ac.uk/interpro/genomeproperties/#> .
+@prefix geo: <http://www.opengis.net/ont/geosparql#> .
 @prefix geo1: <https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=> .
 @prefix geonames: <https://www.geonames.org/> .
 @prefix geonames.ontology: <http://www.geonames.org/ontology#> .
-@prefix geosparql: <http://www.opengis.net/ont/geosparql#> .
 @prefix geosparql.function: <http://www.opengis.net/def/function/geosparql/> .
 @prefix geosparql.rule: <http://www.opengis.net/def/rule/geosparql/> .
 @prefix gepris: <https://gepris.dfg.de/gepris/projekt/> .
@@ -2279,6 +2279,7 @@
 @prefix ttd.target: <https://db.idrblab.net/ttd/data/target/details/> .
 @prefix uat: <http://astrothesaurus.org/uat/> .
 @prefix uberon.issue: <https://github.com/obophenotype/uberon/issues/> .
+@prefix ubigene: <https://www.ubigene.us/product/?cate=0&mykeyword=> .
 @prefix ubio.namebank: <http://www.ubio.org/browser/details.php?namebankID=> .
 @prefix ucsc: <ftp://hgdownload.cse.ucsc.edu/goldenPath/> .
 @prefix ucum: <https://units-of-measurement.org/> .
@@ -23896,6 +23897,21 @@ bioregistry:mesh.vocab a sh:PrefixDeclaration,
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000027 mesh.vocab:term .
 
+bioregistry:metabobank a sh:PrefixDeclaration,
+        bioregistry.schema:0000001 ;
+    rdfs:label "MetaboBank" ;
+    dcterms:description "MetaboBank is a public repository of metabolomics data."^^xsd:string ;
+    dcterms:isPartOf bioregistry:bioregistry ;
+    skos:exactMatch miriam:metabobank ;
+    sh:namespace "https://bioregistry.io/metabobank:"^^xsd:anyURI ;
+    sh:prefix "metabobank" ;
+    foaf:homepage "https://mb2.ddbj.nig.ac.jp/"^^xsd:anyURI ;
+    bioregistry.schema:0000005 "MTBKS1"^^xsd:string ;
+    bioregistry.schema:0000006 "https://mb2.ddbj.nig.ac.jp/study/$1.html"^^xsd:string ;
+    bioregistry.schema:0000008 "^MTB[KL]S\\d+$"^^xsd:string ;
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000027 <https://mb2.ddbj.nig.ac.jp/study/MTBKS1.html> .
+
 bioregistry:metacyc.pathway a sh:PrefixDeclaration,
         bioregistry.schema:0000001 ;
     rdfs:label "Metabolic Encyclopedia for Pathway/Genome Databases" ;
@@ -37569,16 +37585,21 @@ bioregistry:uberon.issue a sh:PrefixDeclaration,
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000027 uberon.issue:530 .
 
-bioregistry:ubigene a bioregistry.schema:0000001 ;
+bioregistry:ubigene a sh:PrefixDeclaration,
+        bioregistry.schema:0000001 ;
     rdfs:label "UbiGene" ;
     dcterms:contributor orcid:0000-0003-4423-4370 ;
     dcterms:description "A laboratory materials provider, such as for cell lines. Like many suppliers, there is no direct way to go from a catalog identifier to the webpage, nor even a way to format a search query."^^xsd:string ;
     dcterms:isPartOf bioregistry:bioregistry ;
+    skos:exactMatch cellosaurus.resource:Ubigene ;
     dcat:keyword "cell line" ;
+    sh:namespace "https://www.ubigene.us/product/?cate=0&mykeyword="^^xsd:anyURI ;
     sh:prefix "ubigene" ;
     foaf:homepage "https://www.ubigene.us"^^xsd:anyURI ;
     bioregistry.schema:0000005 "YKO-XN48492"^^xsd:string ;
-    bioregistry.schema:0000012 false .
+    bioregistry.schema:0000006 "https://www.ubigene.us/product/?cate=0&mykeyword=$1"^^xsd:string ;
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000027 ubigene:YKO-XN48492 .
 
 bioregistry:ubio.namebank a sh:PrefixDeclaration,
         bioregistry.schema:0000001 ;
@@ -50172,6 +50193,8 @@ cellosaurus.resource:TNGB dcterms:isPartOf bioregistry:cellosaurus.resource .
 cellosaurus.resource:TOKU-E dcterms:isPartOf bioregistry:cellosaurus.resource .
 
 cellosaurus.resource:UBERON dcterms:isPartOf bioregistry:cellosaurus.resource .
+
+cellosaurus.resource:Ubigene dcterms:isPartOf bioregistry:cellosaurus.resource .
 
 cellosaurus.resource:UniProtKB dcterms:isPartOf bioregistry:cellosaurus.resource .
 
@@ -66532,7 +66555,7 @@ bioregistry:woc.ontology a sh:PrefixDeclaration,
 
 bioregistry:worldavatar.species a sh:PrefixDeclaration,
         bioregistry.schema:0000001 ;
-    rdfs:label "WorldAvatar chemical species ontology" ;
+    rdfs:label "OntoSpecies - Chemical Species Ontology for Data Integration and Knowledge Discovery" ;
     dcterms:description "OntoSpecies is an ontology developed for representing chemical species."^^xsd:string ;
     dcterms:isPartOf bioregistry:bioregistry ;
     doap:GitRepository "https://github.com/TheWorldAvatar/ontology"^^xsd:anyURI ;
@@ -71723,6 +71746,8 @@ miriam:mesh.2012 dcterms:isPartOf bioregistry:miriam .
 
 miriam:mesh.2013 dcterms:isPartOf bioregistry:miriam .
 
+miriam:metabobank dcterms:isPartOf bioregistry:miriam .
+
 miriam:metabolights dcterms:isPartOf bioregistry:miriam .
 
 miriam:metacyc.compound dcterms:isPartOf bioregistry:miriam .
@@ -75805,7 +75830,7 @@ bioregistry:cmpo a sh:PrefixDeclaration,
     bioregistry.schema:0000006 "http://www.ebi.ac.uk/cmpo/CMPO_$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
     bioregistry.schema:0000010 "http://aber-owl.net/media/ontologies/CMPO/1/cmpo.owl"^^xsd:anyURI ;
-    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000012 true ;
     bioregistry.schema:0000026 ror:02catss52 ;
     bioregistry.schema:0000027 cmpo:0000435 .
 
@@ -76013,20 +76038,22 @@ bioregistry:dhba a sh:PrefixDeclaration,
 
 bioregistry:dicom a sh:PrefixDeclaration,
         bioregistry.schema:0000001 ;
-    rdfs:label "Healthcare metadata - DICOM ontology" ;
-    dcterms:description "Ontology for healthcare metadata - especially metadata found in DICOM files (Digital Imaging and Communications in Medicine, see http://dicom.nema.org/). Author: Michael Brunnbauer, Bonubase GmbH (www.bonubase.com). The author's email address is brunni@netestate.de. See http://purl.org/healthcarevocab/v1help for explanations."^^xsd:string ;
+    rdfs:label "Digital Imaging and Communications in Medicine ontology" ;
+    dcterms:description "DICOM® — Digital Imaging and Communications in Medicine — is the international standard for medical images and related information. It defines the formats for medical images that can be exchanged with the data and quality necessary for clinical use. (from https://www.dicomstandard.org/about-home)"^^xsd:string ;
     dcterms:isPartOf bioregistry:bioregistry ;
-    doap:maintainer orcid:0000-0002-2406-1145 ;
+    doap:maintainer [ rdfs:label "Michael Brunnbauer" ;
+            foaf:mbox "brunni@netestate.de" ],
+        orcid:0000-0002-2406-1145 ;
     skos:exactMatch aberowl:DICOM,
         bioportal:DICOM ;
     dcat:keyword "ontology" ;
     sh:namespace "http://dicom.nema.org/resources/ontology/DCM/"^^xsd:anyURI ;
     sh:prefix "dicom" ;
-    foaf:homepage "http://medical.nema.org"^^xsd:anyURI ;
+    foaf:homepage "https://www.dicomstandard.org"^^xsd:anyURI ;
     bioregistry.schema:0000005 "109082"^^xsd:string ;
     bioregistry.schema:0000006 "http://dicom.nema.org/resources/ontology/DCM/$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
-    bioregistry.schema:0000010 "http://aber-owl.net/media/ontologies/DICOM/1/dicom.owl"^^xsd:anyURI ;
+    bioregistry.schema:0000010 "https://dicom.nema.org/MEDICAL/Dicom/Resources/Ontology/dcm.owl.zip"^^xsd:anyURI ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000027 dicom:109082 .
 
@@ -78415,7 +78442,7 @@ It integrates a nosology (classification of rare diseases), relationships (gene-
     bioregistry.schema:0000005 "C023"^^xsd:string ;
     bioregistry.schema:0000006 "http://www.orpha.net/ORDO/Orphanet_$1"^^xsd:string ;
     bioregistry.schema:0000008 "^C?\\d+$"^^xsd:string ;
-    bioregistry.schema:0000010 "http://www.orphadata.org/data/ORDO/ordo_orphanet.owl"^^xsd:anyURI ;
+    bioregistry.schema:0000010 "https://www.orphadata.com/data/ontologies/ordo/last_version/ordo_orphanet.owl"^^xsd:anyURI ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000016 bioregistry:orpha ;
     bioregistry.schema:0000023 "ordo" ;
@@ -82140,7 +82167,7 @@ bioregistry:geosparql a sh:PrefixDeclaration,
     bioregistry.schema:0000006 "http://www.opengis.net/ont/geosparql#$1"^^xsd:string ;
     bioregistry.schema:0000010 "https://opengeospatial.github.io/ogc-geosparql/geosparql11/geo.ttl"^^xsd:anyURI ;
     bioregistry.schema:0000012 false ;
-    bioregistry.schema:0000027 geosparql:hasDefaultGeometry .
+    bioregistry.schema:0000027 geo:hasDefaultGeometry .
 
 bioregistry:getty.att a sh:PrefixDeclaration,
         bioregistry.schema:0000001 ;
@@ -87887,6 +87914,7 @@ bioregistry:cellosaurus.resource a sh:PrefixDeclaration,
         cellosaurus.resource:TNGB,
         cellosaurus.resource:TOKU-E,
         cellosaurus.resource:UBERON,
+        cellosaurus.resource:Ubigene,
         cellosaurus.resource:UniProtKB,
         cellosaurus.resource:VBO,
         cellosaurus.resource:VGNC,
@@ -94305,6 +94333,7 @@ bioregistry:miriam a sh:PrefixDeclaration,
         miriam:mesh,
         miriam:mesh.2012,
         miriam:mesh.2013,
+        miriam:metabobank,
         miriam:metabolights,
         miriam:metacyc.compound,
         miriam:metacyc.reaction,
@@ -97060,6 +97089,7 @@ bioregistry:bioregistry a sh:PrefixDeclaration,
         bioregistry:mesh.2012,
         bioregistry:mesh.2013,
         bioregistry:mesh.vocab,
+        bioregistry:metabobank,
         bioregistry:metabolights,
         bioregistry:metacyc.compound,
         bioregistry:metacyc.pathway,

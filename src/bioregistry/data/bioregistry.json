@@ -45977,6 +45977,16 @@
       "repository": "https://github.com/darwin-sw/dsw",
       "version": "1.0.1"
     },
+    "biodivportal": {
+      "contact": {
+        "email": "steve.baskauf@vanderbilt.edu",
+        "name": "Steve Baskauf"
+      },
+      "description": "An ontology using Darwin Core terms to make it possible to describe biodiversity resources in .the Semantic Web, Darwin Semantic Web, version 0.4. Please see http://code.google.com/p/darwin-sw/ for full details, Changes from version 0.2.1 to version 0.3: removal of all functional and inverse function properties of object property terms, use of dwctype classes, deprecation of terms replaced by dwciri: terms, removal of references to TDWG Ontology., Version 0.4 to 1.0 fixed reversed dsw:locates and dsw:locatedAt. Added labels. Changed comments and descriptions to conform to DC and DwC precedent. Added subClassOf relations to RO hasEvidence and isEvidenceFor. Specified preferred direction for inverse object property pairs., Changes from version 0.3 to 0.4 change DwC class namespace from dwctype: to dwc: to follow class proposal, removed references to TDWG TaxonConcept ontology; deprecated terms that now have equivalent terms in Darwin Core.",
+      "name": "Darwin SW",
+      "prefix": "DSW",
+      "version": "1.0"
+    },
     "contact": {
       "email": "steve.baskauf@vanderbilt.edu",
       "github": "baskaufs",
@@ -46011,6 +46021,7 @@
     "license": "CC0-1.0",
     "mappings": {
       "agroportal": "DSW",
+      "biodivportal": "DSW",
       "ecoportal": "DSW",
       "tib.ts": "dsw"
     },
@@ -120949,7 +120960,7 @@
       },
       "name": "Ontology of Biological Attributes",
       "prefix": "OBA",
-      "version": "2026-07-14"
+      "version": "2026-10-10"
     },
     "bioportal": {
       "contact": {
@@ -135407,7 +135418,7 @@
       "name": "Pfam ID",
       "pattern": "^(PF\\d{5}|CL\\d{4})$",
       "prefix": "P3519",
-      "uri_format": "https://pfam.xfam.org/family?acc=$1",
+      "uri_format": "https://www.ebi.ac.uk/interpro/entry/pfam/?search=$1",
       "xrefs": {
         "miriam": "pfam"
       }
@@ -187658,7 +187669,7 @@
       "pattern": "^[0-9]+\\.[0-9]+$",
       "prefix": "vmhgene",
       "status": "active",
-      "uri_format": "https://www.vmh.life/#gene/$1"
+      "uri_format": "https://www.vmh.life/gene/$1"
     }
   },
   "vmh.metabolite": {
@@ -187692,7 +187703,7 @@
       "pattern": "^[a-zA-Z0-9_\\(\\_\\)\\[\\]]+$",
       "prefix": "vmhmetabolite",
       "status": "active",
-      "uri_format": "https://www.vmh.life/#metabolite/$1"
+      "uri_format": "https://www.vmh.life/metabolite/$1"
     },
     "n2t": {
       "description": "The Virtual Metabolic Human (VMH) is a resource that combines human and gut microbiota metabolism with nutrition and disease.",
@@ -187740,7 +187751,7 @@
       "pattern": "^[a-zA-Z0-9_\\(\\_\\)\\[\\]]+$",
       "prefix": "vmhreaction",
       "status": "active",
-      "uri_format": "https://www.vmh.life/#reaction/$1"
+      "uri_format": "https://www.vmh.life/reaction/$1"
     },
     "n2t": {
       "description": "The Virtual Metabolic Human (VMH) is a resource that combines human and gut microbiota metabolism with nutrition and disease.",
@@ -188587,7 +188598,7 @@
       },
       "name": "Vertebrate Trait Ontology",
       "prefix": "VT",
-      "version": "2026-09-23"
+      "version": "2026-10-02"
     },
     "bioportal": {
       "contact": {
@@ -192689,40 +192700,40 @@
       "keywords": [
         "Life Science",
         "Anatomy",
-        "Mass spectrum",
         "Cytogenetic map",
-        "Genome map",
-        "Protein domain",
-        "Gene name",
-        "Expression data",
-        "GO-term enrichment data",
-        "Protein interactions",
-        "Model organisms",
-        "Clone library",
-        "reagent",
-        "regulation of gene expression",
-        "regulatory ncRNA-mediated post-transcriptional gene silencing",
-        "immunoglobulin complex, circulating",
-        "molecular interaction",
-        "genetic interaction (sensu unexpected)",
-        "small molecule",
-        "Genetic Polymorphism",
-        "Protein Expression",
+        "strain",
         "cross linking",
-        "phenotype",
+        "molecular interaction",
+        "Gene name",
+        "small molecule",
+        "Model organisms",
         "disease",
-        "sequence feature",
-        "promoter",
-        "UTR",
-        "pseudogene",
-        "binding site",
+        "Genome map",
+        "Protein interactions",
         "SNP",
         "gene",
+        "Clone library",
+        "UTR",
+        "Protein domain",
+        "pseudogene",
+        "binding site",
+        "regulation of gene expression",
         "orthologous",
         "trans spliced",
-        "genome",
+        "Expression data",
+        "Protein Expression",
+        "sequence feature",
+        "Mass spectrum",
+        "regulatory ncRNA-mediated post-transcriptional gene silencing",
         "life cycle",
-        "strain"
+        "genetic interaction (sensu unexpected)",
+        "immunoglobulin complex, circulating",
+        "reagent",
+        "genome",
+        "phenotype",
+        "GO-term enrichment data",
+        "Genetic Polymorphism",
+        "promoter"
       ],
       "license": {
         "url": "https://wormbase.org/about/policies"
