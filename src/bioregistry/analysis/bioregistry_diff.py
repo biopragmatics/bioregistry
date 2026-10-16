@@ -289,10 +289,7 @@ def visualize_changes(
 @click.command()
 @click.option("--start-date", help="the starting date")
 @click.option("--days-ago", help="number of days ago", type=int)
-@click.option(
-    "--end-date",
-    help="The optional ending date for comparison, defaults to today",
-)
+@click.option("--end-date", help="The optional ending date for comparison, defaults to today")
 def compare_dates(days_ago: int | None, start_date: str | None, end_date: str | None) -> None:
     """Process and visualize changes in Bioregistry data between two dates."""
     if end_date is None:
