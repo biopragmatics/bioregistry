@@ -212,8 +212,8 @@ def summarize_changes(comparison: CompareBioregistryResult) -> None:
 
 def visualize_changes(
     update_details: list[tuple[str, ComparsionHint]],
-    start_date: str,
-    end_date: str,
+    start_date: datetime.date,
+    end_date: datetime.date,
     all_mapping_keys: set[str],
 ) -> None:
     """Display plots of changes in the bioregistry data.
@@ -256,7 +256,9 @@ def visualize_changes(
 
             plt.figure(figsize=(15, 8))
             plt.bar(main_fields_df["Field"], main_fields_df["Count"], color="green")
-            plt.title(f"Main Fields Updated from {start_date} to {end_date}")
+            plt.title(
+                f"Main Fields Updated from {start_date.isoformat()} to {end_date.isoformat()}"
+            )
             plt.ylabel("Count")
             plt.xlabel("Field")
             plt.xticks(rotation=45, ha="right")
@@ -273,7 +275,9 @@ def visualize_changes(
 
             plt.figure(figsize=(15, 8))
             plt.bar(mapping_fields_df["Field"], mapping_fields_df["Count"], color="blue")
-            plt.title(f"Mapping Fields Updated from {start_date} to {end_date}")
+            plt.title(
+                f"Mapping Fields Updated from {start_date.isoformat()} to {end_date.isoformat()}"
+            )
             plt.ylabel("Count")
             plt.xlabel("Field")
             plt.xticks(rotation=45, ha="right")
@@ -284,18 +288,30 @@ def visualize_changes(
 
 @click.command()
 @click.option("--start-date", help="the starting date")
-@click.option("--end-date", help="The optional ending date for comparison, defaults to today")
-def compare_dates(start_date: str, end_date: str | datetime.date | None) -> None:
+@click.option("--days-ago", help="number of days ago", type=int)
+@click.option(
+    "--end-date",
+    help="The optional ending date for comparison, defaults to today",
+)
+def compare_dates(days_ago: int | None, start_date: str | None, end_date: str | None) -> None:
     """Process and visualize changes in Bioregistry data between two dates."""
     if end_date is None:
-        end_date = datetime.date.today()
-    if start_date.isnumeric():
-        start_date = end_date + datetime.timedelta(days=int(start_date))
-    data = get_data(start_date, end_date)
+        end_date_ = datetime.date.today()
+    else:
+        end_date_ = datetime.date.fromisoformat(end_date)
+
+    if days_ago is not None:
+        start_date_ = end_date_ + datetime.timedelta(days=days_ago)
+    elif start_date is not None:
+        start_date_ = datetime.date.fromisoformat(start_date)
+    else:
+        raise click.ClickException("Must specify either --start-date or --days-ago")
+
+    data = get_data(start_date_, end_date_)
     if data is None:
         raise click.ClickException("No data")
     summarize_changes(data.comparison)
-    visualize_changes(data.comparison.update_details, start_date, end_date, data.all_mapping_keys)
+    visualize_changes(data.comparison.update_details, start_date_, end_date_, data.all_mapping_keys)
 
 
 if __name__ == "__main__":
