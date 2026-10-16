@@ -3,15 +3,19 @@
 from __future__ import annotations
 
 import datetime
+import json
 import logging
-from typing import Any, NamedTuple, TypeAlias, cast
+import typing
+from pathlib import PurePath
+from typing import Any, Literal, NamedTuple, TypeAlias, cast
 
 import click
 import matplotlib.pyplot as plt
 import pandas as pd
 import requests
-from dateutil import tz
-from dateutil.parser import isoparse
+from pystow.git import get_commit_hash_before, get_current_commit_hash, show
+
+from bioregistry.constants import HERE
 
 logger = logging.getLogger(__name__)
 
@@ -22,13 +26,15 @@ REPO_NAME = "bioregistry"
 BRANCH = "main"
 FILE_PATH = "src/bioregistry/data/bioregistry.json"
 
+Method = Literal["github", "local"]
+
 
 def get_commit_before_date(
     date: datetime.date,
-    owner: str = REPO_OWNER,
-    name: str = REPO_NAME,
-    branch: str = BRANCH,
-) -> str | None:
+    owner: str | None = None,
+    name: str | None = None,
+    branch: str | None = None,
+) -> str:
     """Return the last commit before a given date.
 
     :param date: The date to get the commit before.
@@ -39,18 +45,22 @@ def get_commit_before_date(
     :returns: The SHA of the commit before the given date, or None if no commit is
         found.
     """
+    if owner is None:
+        owner = REPO_OWNER
+    if name is None:
+        name = REPO_NAME
+    if branch is None:
+        branch = BRANCH
     url = f"{GITHUB_API_URL}/repos/{owner}/{name}/commits"
     params = {"sha": branch, "until": date.isoformat()}
     response = requests.get(url, params=params, timeout=15)
     response.raise_for_status()
     commits = response.json()
     if not commits:
-        logger.warning(f"No commits found before {date}")
-        return None
+        raise ValueError(f"No commits found before {date}")
     first_commit = commits[0]
     if "sha" not in first_commit:
-        logger.warning("No 'sha' field found in the first commit.")
-        return None
+        raise ValueError("No 'sha' field found in the first commit.")
     return cast(str, first_commit["sha"])
 
 
@@ -58,29 +68,45 @@ BioregistryDataHint: TypeAlias = dict[str, Any]
 
 
 def get_file_at_commit(
-    file_path: str, commit_sha: str, owner: str = REPO_OWNER, name: str = REPO_NAME
+    path: str | PurePath,
+    commit_hash: str,
+    *,
+    owner: str | None = None,
+    name: str | None = None,
+    method: Method = "local",
 ) -> BioregistryDataHint:
     """Return the content of a given file at a specific commit.
 
-    :param file_path: The file path in the repository.
-    :param commit_sha: The commit SHA.
+    :param path: The file path in the repository.
+    :param commit_hash: The commit hash.
     :param owner: The repository owner.
     :param name: The repository name.
+    :param method: The method to use, either local lookup or GitHub
 
     :returns: The file content as a dictionary.
     """
-    url = f"{GITHUB_API_URL}/repos/{owner}/{name}/contents/{file_path}"
-    params = {"ref": commit_sha}
-    response = requests.get(url, params=params, timeout=15)
-    response.raise_for_status()
-    file_info = response.json()
-    download_url = file_info["download_url"]
-    res = requests.get(download_url, timeout=15)
-    res.raise_for_status()
-    return cast(BioregistryDataHint, res.json())
+    if method == "github":
+        if owner is None:
+            owner = REPO_OWNER
+        if name is None:
+            name = REPO_NAME
+        url = f"{GITHUB_API_URL}/repos/{owner}/{name}/contents/{path}"
+        params = {"ref": commit_hash}
+        contents_res = requests.get(url, params=params, timeout=15)
+        contents_res.raise_for_status()
+        file_info = contents_res.json()
+        download_url = file_info["download_url"]
+        registry_res = requests.get(download_url, timeout=15)
+        registry_res.raise_for_status()
+        rv = registry_res.json()
+    elif method == "local":
+        rv = json.loads(show(HERE, commit_hash, path))
+    else:
+        raise ValueError
+    return cast(BioregistryDataHint, rv)
 
 
-ComparsionHint: TypeAlias = dict[str, tuple[Any, Any]]
+ComparisonHint: TypeAlias = dict[str, tuple[Any, Any]]
 
 
 class CompareBioregistryResult(NamedTuple):
@@ -89,7 +115,7 @@ class CompareBioregistryResult(NamedTuple):
     added_prefixes: set[str]
     deleted_prefixes: set[str]
     updated_prefixes: int
-    update_details: list[tuple[str, ComparsionHint]]
+    update_details: list[tuple[str, ComparisonHint]]
 
 
 def compare_bioregistry(
@@ -122,7 +148,7 @@ def compare_bioregistry(
     )
 
 
-def compare_entries(old_entry: dict[str, Any], new_entry: dict[str, Any]) -> ComparsionHint:
+def compare_entries(old_entry: dict[str, Any], new_entry: dict[str, Any]) -> ComparisonHint:
     """Return detailed changes within individual entries.
 
     :param old_entry: The old entry data.
@@ -161,38 +187,12 @@ class DataResult(NamedTuple):
     all_mapping_keys: set[str]
 
 
-def get_data(
-    start_date: str | datetime.date, end_date: str | datetime.date | None = None
-) -> DataResult | None:
-    """Retrieve and compare bioregistry data between two dates.
-
-    :param start_date: The starting date
-    :param end_date: The ending date
-
-    :returns: Data on added, deleted, and updated prefixes, update details, and old and
-        new bioregistry data.
-    """
-    if isinstance(start_date, str):
-        start_date = isoparse(start_date).astimezone(tz.tzutc())
-
-    if end_date is None:
-        end_date = datetime.datetime.now().astimezone(tz.tzutc())
-    if isinstance(end_date, str):
-        end_date = isoparse(end_date).astimezone(tz.tzutc())
-
-    start_commit = get_commit_before_date(start_date, REPO_OWNER, REPO_NAME, BRANCH)
-    end_commit = get_commit_before_date(end_date, REPO_OWNER, REPO_NAME, BRANCH)
-
-    if not start_commit:
-        logger.error(f"Couldn't find commit before {start_date}")
-        return None
-
-    if not end_commit:
-        logger.error(f"Couldn't find commit before {end_date}")
-        return None
-
-    old_bioregistry = get_file_at_commit(FILE_PATH, start_commit, REPO_OWNER, REPO_NAME)
-    new_bioregistry = get_file_at_commit(FILE_PATH, end_commit, REPO_OWNER, REPO_NAME)
+def compare_commits(
+    start_commit: str, end_commit: str, *, owner: str | None = None, name: str | None = None
+) -> DataResult:
+    """Compare two commits."""
+    old_bioregistry = get_file_at_commit(FILE_PATH, start_commit, owner=owner, name=name)
+    new_bioregistry = get_file_at_commit(FILE_PATH, end_commit, owner=owner, name=name)
 
     compare_bioregistry_rv = compare_bioregistry(old_bioregistry, new_bioregistry)
 
@@ -211,7 +211,7 @@ def summarize_changes(comparison: CompareBioregistryResult) -> None:
 
 
 def visualize_changes(
-    update_details: list[tuple[str, ComparsionHint]],
+    update_details: list[tuple[str, ComparisonHint]],
     start_date: datetime.date,
     end_date: datetime.date,
     all_mapping_keys: set[str],
@@ -290,21 +290,32 @@ def visualize_changes(
 @click.option("--start-date", help="the starting date")
 @click.option("--days-ago", help="number of days ago", type=int)
 @click.option("--end-date", help="The optional ending date for comparison, defaults to today")
-def compare_dates(days_ago: int | None, start_date: str | None, end_date: str | None) -> None:
+@click.option("--method", type=click.Choice(typing.get_args(Method)), default="local")
+def compare_dates(
+    days_ago: int | None, start_date: str | None, end_date: str | None, method: Method
+) -> None:
     """Process and visualize changes in Bioregistry data between two dates."""
     if end_date is None:
         end_date_ = datetime.date.today()
+        end_hash = get_current_commit_hash(HERE)
     else:
         end_date_ = datetime.date.fromisoformat(end_date)
+        end_hash = get_commit_before_date(end_date_)
 
     if days_ago is not None:
         start_date_ = end_date_ + datetime.timedelta(days=days_ago)
+        if method == "github":
+            start_hash = get_commit_before_date(start_date_)
+        else:
+            start_hash = get_commit_hash_before(HERE, f"{days_ago} days ago")
     elif start_date is not None:
         start_date_ = datetime.date.fromisoformat(start_date)
+        start_hash = get_commit_before_date(start_date_)
     else:
         raise click.ClickException("Must specify either --start-date or --days-ago")
 
-    data = get_data(start_date_, end_date_)
+    click.echo(f"comparing from {start_date_} to {end_date_}")
+    data = compare_commits(start_hash, end_hash)
     if data is None:
         raise click.ClickException("No data")
     summarize_changes(data.comparison)
