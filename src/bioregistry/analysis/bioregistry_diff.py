@@ -161,31 +161,38 @@ class DataResult(NamedTuple):
     all_mapping_keys: set[str]
 
 
-def get_data(old_date_str: str, new_date_str: str) -> DataResult | None:
+def get_data(
+    start_date: str | datetime.date, end_date: str | datetime.date | None = None
+) -> DataResult | None:
     """Retrieve and compare bioregistry data between two dates.
 
-    :param old_date_str: The starting date in ISO format.
-    :param new_date_str: The ending date in ISO format.
+    :param start_date: The starting date
+    :param end_date: The ending date
 
     :returns: Data on added, deleted, and updated prefixes, update details, and old and
         new bioregistry data.
     """
-    old_date = isoparse(old_date_str).astimezone(tz.tzutc())
-    date2 = isoparse(new_date_str).astimezone(tz.tzutc())
+    if isinstance(start_date, str):
+        start_date = isoparse(start_date).astimezone(tz.tzutc())
 
-    old_commit = get_commit_before_date(old_date, REPO_OWNER, REPO_NAME, BRANCH)
-    new_commit = get_commit_before_date(date2, REPO_OWNER, REPO_NAME, BRANCH)
+    if end_date is None:
+        end_date = datetime.datetime.now().astimezone(tz.tzutc())
+    if isinstance(end_date, str):
+        end_date = isoparse(end_date).astimezone(tz.tzutc())
 
-    if not old_commit:
-        logger.error(f"Couldn't find commit before {old_date}")
+    start_commit = get_commit_before_date(start_date, REPO_OWNER, REPO_NAME, BRANCH)
+    end_commit = get_commit_before_date(end_date, REPO_OWNER, REPO_NAME, BRANCH)
+
+    if not start_commit:
+        logger.error(f"Couldn't find commit before {start_date}")
         return None
 
-    if not new_commit:
-        logger.error(f"Couldn't find commit before {date2}")
+    if not end_commit:
+        logger.error(f"Couldn't find commit before {end_date}")
         return None
 
-    old_bioregistry = get_file_at_commit(FILE_PATH, old_commit, REPO_OWNER, REPO_NAME)
-    new_bioregistry = get_file_at_commit(FILE_PATH, new_commit, REPO_OWNER, REPO_NAME)
+    old_bioregistry = get_file_at_commit(FILE_PATH, start_commit, REPO_OWNER, REPO_NAME)
+    new_bioregistry = get_file_at_commit(FILE_PATH, end_commit, REPO_OWNER, REPO_NAME)
 
     compare_bioregistry_rv = compare_bioregistry(old_bioregistry, new_bioregistry)
 
@@ -276,18 +283,19 @@ def visualize_changes(
 
 
 @click.command()
-@click.argument("date1")
-@click.argument("date2")
-def compare_dates(date1: str, date2: str) -> None:
-    """Process and visualize changes in Bioregistry data between two dates.
-
-    :param date1: The starting date in the format YYYY-MM-DD.
-    :param date2: The ending date in the format YYYY-MM-DD.
-    """
-    data = get_data(date1, date2)
-    if data is not None:
-        summarize_changes(data.comparison)
-        visualize_changes(data.comparison.update_details, date1, date2, data.all_mapping_keys)
+@click.option("--start-date", help="the starting date")
+@click.option("--end-date", help="The optional ending date for comparison, defaults to today")
+def compare_dates(start_date: str, end_date: str | datetime.date | None) -> None:
+    """Process and visualize changes in Bioregistry data between two dates."""
+    if end_date is None:
+        end_date = datetime.date.today()
+    if start_date.isnumeric():
+        start_date = end_date + datetime.timedelta(days=int(start_date))
+    data = get_data(start_date, end_date)
+    if data is None:
+        raise click.ClickException("No data")
+    summarize_changes(data.comparison)
+    visualize_changes(data.comparison.update_details, start_date, end_date, data.all_mapping_keys)
 
 
 if __name__ == "__main__":
