@@ -307,40 +307,33 @@ def compare_dates(
 
     if data.comparison.added_prefixes:
         click.secho(f"Added {len(data.comparison.added_prefixes):,} Prefixes\n", fg="green")
-        click.echo(
-            tabulate(
-                [
-                    (
-                        bioregistry.get_preferred_prefix(prefix, passthrough=True),
-                        bioregistry.get_name(prefix, strict=True),
-                    )
-                    for prefix in sorted(data.comparison.added_prefixes)
-                ],
-                headers=["Added Prefix", "Name"],
-                tablefmt="github",
-            )
-        )
+        click.echo(_tabulate(data.comparison.added_prefixes, "Added Prefix"))
 
     if data.comparison.deleted_prefixes:
         click.echo(f"\n\ndeleted records: {data.comparison.deleted_prefixes}")
 
     if data.comparison.added_prefixes:
         click.secho(f"\n\nUpdated {len(data.comparison.updated_prefixes):,} Prefixes\n", fg="green")
-        click.echo(
-            tabulate(
-                [
-                    (
-                        bioregistry.get_preferred_prefix(prefix, passthrough=True),
-                        bioregistry.get_name(prefix, strict=True),
-                    )
-                    for prefix in sorted(data.comparison.updated_prefixes)
-                ],
-                headers=["Updated Prefix", "Name"],
-                tablefmt="github",
-            )
-        )
+        click.echo(_tabulate(data.comparison.updated_prefixes, "Updated Prefix"))
 
     # visualize_changes(data.comparison.update_details, start_date_, end_date_, data.all_mapping_keys)
+
+
+def _tabulate(prefixes: typing.Collection[str], title: str) -> str:
+    return tabulate(
+        [
+            (
+                (resource := bioregistry.get_resource(prefix, strict=True)).get_preferred_prefix(
+                    passthrough=True
+                ),
+                resource.get_name(),
+                resource.get_domain(),
+            )
+            for prefix in sorted(prefixes)
+        ],
+        headers=[title, "Name", "Domain"],
+        tablefmt="github",
+    )
 
 
 if __name__ == "__main__":
