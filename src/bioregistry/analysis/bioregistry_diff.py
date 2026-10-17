@@ -14,7 +14,9 @@ import matplotlib.pyplot as plt
 import pandas as pd
 import requests
 from pystow.git import get_commit_hash_before, get_current_commit_hash, show
+from tabulate import tabulate
 
+import bioregistry
 from bioregistry.constants import HERE
 
 logger = logging.getLogger(__name__)
@@ -303,10 +305,41 @@ def compare_dates(
     if data is None:
         raise click.ClickException("No data")
 
-    click.echo(f"added prefixes: {sorted(data.comparison.added_prefixes)}")
+    if data.comparison.added_prefixes:
+        click.secho(f"Added {len(data.comparison.added_prefixes):,} Prefixes\n", fg="green")
+        click.echo(
+            tabulate(
+                [
+                    (
+                        bioregistry.get_preferred_prefix(prefix, passthrough=True),
+                        bioregistry.get_name(prefix, strict=True),
+                    )
+                    for prefix in sorted(data.comparison.added_prefixes)
+                ],
+                headers=["Added Prefix", "Name"],
+                tablefmt="github",
+            )
+        )
+
     if data.comparison.deleted_prefixes:
-        click.echo(f"deleted records: {data.comparison.deleted_prefixes}")
-    click.echo(f"Total Updated Prefixes: {data.comparison.updated_prefixes}")
+        click.echo(f"\n\ndeleted records: {data.comparison.deleted_prefixes}")
+
+    if data.comparison.added_prefixes:
+        click.secho(f"\n\nUpdated {len(data.comparison.updated_prefixes):,} Prefixes\n", fg="green")
+        click.echo(
+            tabulate(
+                [
+                    (
+                        bioregistry.get_preferred_prefix(prefix, passthrough=True),
+                        bioregistry.get_name(prefix, strict=True),
+                    )
+                    for prefix in sorted(data.comparison.updated_prefixes)
+                ],
+                headers=["Updated Prefix", "Name"],
+                tablefmt="github",
+            )
+        )
+
     # visualize_changes(data.comparison.update_details, start_date_, end_date_, data.all_mapping_keys)
 
 

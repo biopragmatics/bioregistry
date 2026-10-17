@@ -158,7 +158,17 @@ def get_description(prefix: str, *, use_markdown: bool = False) -> str | None:
     return manager.get_description(prefix, use_markdown=use_markdown)
 
 
-def get_preferred_prefix(prefix: str) -> str | None:
+# docstr-coverage:excused `overload`
+@overload
+def get_preferred_prefix(prefix: str, *, passthrough: Literal[True] = ...) -> str: ...
+
+
+# docstr-coverage:excused `overload`
+@overload
+def get_preferred_prefix(prefix: str, *, passthrough: Literal[False] = ...) -> str | None: ...
+
+
+def get_preferred_prefix(prefix: str, *, passthrough: bool = False) -> str | None:
     """Get the preferred prefix (e.g., with stylization) if it exists.
 
     :param prefix: The prefix to lookup.
@@ -186,7 +196,7 @@ def get_preferred_prefix(prefix: str) -> str | None:
     >>> get_preferred_prefix("dpo")
     'DPO'
     """
-    return manager.get_preferred_prefix(prefix)
+    return manager.get_preferred_prefix(prefix, passthrough=passthrough)
 
 
 def get_mappings(prefix: str) -> Mapping[str, str] | None:
