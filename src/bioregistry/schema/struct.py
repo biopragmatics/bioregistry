@@ -1223,7 +1223,15 @@ class Resource(BaseModel):
         """Get synonyms."""
         return set(self.synonyms or {})
 
-    def get_preferred_prefix(self) -> str | None:
+    # docstr-coverage:excused `overload`
+    @overload
+    def get_preferred_prefix(self, *, passthrough: Literal[False] = ...) -> str | None: ...
+
+    # docstr-coverage:excused `overload`
+    @overload
+    def get_preferred_prefix(self, *, passthrough: Literal[True] = ...) -> str: ...
+
+    def get_preferred_prefix(self, *, passthrough: bool = False) -> str | None:
         """Get the preferred prefix (e.g., with stylization) if it exists.
 
         :returns: The preferred prefix, if annotated in the Bioregistry or OBO Foundry.
@@ -1255,6 +1263,8 @@ class Resource(BaseModel):
         obo_preferred_prefix = self.get_obo_preferred_prefix()
         if obo_preferred_prefix is not None:
             return obo_preferred_prefix
+        if passthrough:
+            return self.prefix
         return None
 
     def get_obo_preferred_prefix(self) -> str | None:
