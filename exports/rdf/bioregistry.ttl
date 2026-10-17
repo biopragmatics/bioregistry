@@ -949,10 +949,10 @@
 @prefix genetree: <http://www.ensembl.org/Multi/GeneTree/Image?db=core;gt=> .
 @prefix genewiki: <http://plugins.biogps.org/cgi-bin/wp.cgi?id=> .
 @prefix genprop: <https://www.ebi.ac.uk/interpro/genomeproperties/#> .
-@prefix geo: <http://www.opengis.net/ont/geosparql#> .
 @prefix geo1: <https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=> .
 @prefix geonames: <https://www.geonames.org/> .
 @prefix geonames.ontology: <http://www.geonames.org/ontology#> .
+@prefix geosparql: <http://www.opengis.net/ont/geosparql#> .
 @prefix geosparql.function: <http://www.opengis.net/def/function/geosparql/> .
 @prefix geosparql.rule: <http://www.opengis.net/def/rule/geosparql/> .
 @prefix gepris: <https://gepris.dfg.de/gepris/projekt/> .
@@ -2356,9 +2356,9 @@
 @prefix vita: <http://vita.mbc.nctu.edu.tw/search.php?acc=> .
 @prefix vitro: <http://vitro.mannlib.cornell.edu/ns/vitro/0.7#> .
 @prefix vivo: <http://vivoweb.org/ontology/core#> .
-@prefix vmh.gene: <https://www.vmh.life/#gene/> .
-@prefix vmh.metabolite: <https://www.vmh.life/#metabolite/> .
-@prefix vmh.reaction: <https://www.vmh.life/#reaction/> .
+@prefix vmh.gene: <https://www.vmh.life/gene/> .
+@prefix vmh.metabolite: <https://www.vmh.life/metabolite/> .
+@prefix vmh.reaction: <https://www.vmh.life/reaction/> .
 @prefix voaf: <http://purl.org/vocommons/voaf#> .
 @prefix voc4cat: <https://w3id.org/nfdi4cat/voc4cat_> .
 @prefix void: <http://rdfs.org/ns/void#> .
@@ -18098,10 +18098,10 @@ bioregistry:grddl a sh:PrefixDeclaration,
     dcterms:contributor orcid:0000-0003-4423-4370 ;
     dcterms:description "GRDDL is a mechanism for Gleaning Resource Descriptions from Dialects of Languages. It is a technique for obtaining RDF data from XML documents and in particular XHTML pages. Authors may explicitly associate documents with transformation algorithms, typically represented in XSLT, using a link element in the head of the document. Alternatively, the information needed to obtain the transformation may be held in an associated metadata profile document or namespace document. Clients reading the document can follow links across the Web using techniques described in the GRDDL specification to discover the appropriate transformations. This document uses a number of examples from the GRDDL Use Cases document to illustrate, in detail, the techniques GRDDL provides for associating documents with appropriate instructions for extracting any embedded data. (from homepage)"^^xsd:string ;
     dcterms:isPartOf bioregistry:bioregistry ;
-    doap:maintainer [ rdfs:label "Ian Davis" ;
-            foaf:mbox "nospam@iandavis.com" ],
-        [ rdfs:label "Harry Halpin" ;
-            foaf:mbox "hhalpin@ibiblio.org" ] ;
+    doap:maintainer [ rdfs:label "Harry Halpin" ;
+            foaf:mbox "hhalpin@ibiblio.org" ],
+        [ rdfs:label "Ian Davis" ;
+            foaf:mbox "nospam@iandavis.com" ] ;
     skos:exactMatch lov:grddl,
         zazuko:grddl ;
     dcat:keyword "vocabularies" ;
@@ -39130,11 +39130,11 @@ bioregistry:vmh.gene a sh:PrefixDeclaration,
     dcterms:description "The Virtual Metabolic Human (VMH) is a resource that combines human and gut microbiota metabolism with nutrition and disease."^^xsd:string ;
     dcterms:isPartOf bioregistry:bioregistry ;
     skos:exactMatch miriam:vmhgene ;
-    sh:namespace "https://www.vmh.life/#gene/"^^xsd:anyURI ;
+    sh:namespace "https://www.vmh.life/gene/"^^xsd:anyURI ;
     sh:prefix "vmh.gene" ;
     foaf:homepage "https://www.vmh.life/"^^xsd:anyURI ;
     bioregistry.schema:0000005 "8639.1"^^xsd:string ;
-    bioregistry.schema:0000006 "https://www.vmh.life/#gene/$1"^^xsd:string ;
+    bioregistry.schema:0000006 "https://www.vmh.life/gene/$1"^^xsd:string ;
     bioregistry.schema:0000008 "^[0-9]+\\.[0-9]+$"^^xsd:string ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000026 ror:03bea9k73 ;
@@ -39148,11 +39148,11 @@ bioregistry:vmh.metabolite a sh:PrefixDeclaration,
     skos:exactMatch biocontext:VMHMETABOLITE,
         n2t:vmhmetabolite,
         miriam:vmhmetabolite ;
-    sh:namespace "https://www.vmh.life/#metabolite/"^^xsd:anyURI ;
+    sh:namespace "https://www.vmh.life/metabolite/"^^xsd:anyURI ;
     sh:prefix "vmh.metabolite" ;
     foaf:homepage "https://www.vmh.life/"^^xsd:anyURI ;
     bioregistry.schema:0000005 "h2o"^^xsd:string ;
-    bioregistry.schema:0000006 "https://www.vmh.life/#metabolite/$1"^^xsd:string ;
+    bioregistry.schema:0000006 "https://www.vmh.life/metabolite/$1"^^xsd:string ;
     bioregistry.schema:0000008 "^[a-zA-Z0-9_\\(\\_\\)\\[\\]]+$"^^xsd:string ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000026 ror:03bea9k73 ;
@@ -39166,11 +39166,11 @@ bioregistry:vmh.reaction a sh:PrefixDeclaration,
     skos:exactMatch biocontext:VMHREACTION,
         n2t:vmhreaction,
         miriam:vmhreaction ;
-    sh:namespace "https://www.vmh.life/#reaction/"^^xsd:anyURI ;
+    sh:namespace "https://www.vmh.life/reaction/"^^xsd:anyURI ;
     sh:prefix "vmh.reaction" ;
     foaf:homepage "https://www.vmh.life/"^^xsd:anyURI ;
     bioregistry.schema:0000005 "HEX1"^^xsd:string ;
-    bioregistry.schema:0000006 "https://www.vmh.life/#reaction/$1"^^xsd:string ;
+    bioregistry.schema:0000006 "https://www.vmh.life/reaction/$1"^^xsd:string ;
     bioregistry.schema:0000008 "^[a-zA-Z0-9_\\(\\_\\)\\[\\]]+$"^^xsd:string ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000026 ror:03bea9k73 ;
@@ -47260,6 +47260,8 @@ biodivportal:DCAT dcterms:isPartOf bioregistry:biodivportal .
 
 biodivportal:DFGFO dcterms:isPartOf bioregistry:biodivportal .
 
+biodivportal:DSW dcterms:isPartOf bioregistry:biodivportal .
+
 biodivportal:ECO dcterms:isPartOf bioregistry:biodivportal .
 
 biodivportal:EDAM dcterms:isPartOf bioregistry:biodivportal .
@@ -54448,6 +54450,7 @@ bioregistry:dsw a sh:PrefixDeclaration,
     doap:maintainer orcid:0000-0003-4365-3135 ;
     skos:exactMatch agroportal:DSW,
         ecoportal:DSW,
+        biodivportal:DSW,
         tib.ts:dsw ;
     dcat:keyword "earth sciences",
         "ess",
@@ -82167,7 +82170,7 @@ bioregistry:geosparql a sh:PrefixDeclaration,
     bioregistry.schema:0000006 "http://www.opengis.net/ont/geosparql#$1"^^xsd:string ;
     bioregistry.schema:0000010 "https://opengeospatial.github.io/ogc-geosparql/geosparql11/geo.ttl"^^xsd:anyURI ;
     bioregistry.schema:0000012 false ;
-    bioregistry.schema:0000027 geo:hasDefaultGeometry .
+    bioregistry.schema:0000027 geosparql:hasDefaultGeometry .
 
 bioregistry:getty.att a sh:PrefixDeclaration,
         bioregistry.schema:0000001 ;
@@ -87226,6 +87229,7 @@ bioregistry:biodivportal a sh:PrefixDeclaration,
         biodivportal:COLAO,
         biodivportal:DCAT,
         biodivportal:DFGFO,
+        biodivportal:DSW,
         biodivportal:ECO,
         biodivportal:EDAM,
         biodivportal:ENVO,
