@@ -64,7 +64,8 @@ def get_commit_before_date(
     return cast(str, first_commit["sha"])
 
 
-BioregistryDataHint: TypeAlias = dict[str, Any]
+Record: TypeAlias = dict[str, Any]
+Records: TypeAlias = dict[str, Record]
 
 
 def get_file_at_commit(
@@ -74,7 +75,7 @@ def get_file_at_commit(
     owner: str | None = None,
     name: str | None = None,
     method: Method = "local",
-) -> BioregistryDataHint:
+) -> Records:
     """Return the content of a given file at a specific commit.
 
     :param path: The file path in the repository.
@@ -103,7 +104,7 @@ def get_file_at_commit(
         rv = json.loads(show(HERE, commit_hash, path))
     else:
         raise ValueError
-    return cast(BioregistryDataHint, rv)
+    return cast(Records, rv)
 
 
 ComparisonHint: TypeAlias = dict[str, tuple[Any, Any]]
@@ -114,33 +115,32 @@ class CompareBioregistryResult(NamedTuple):
 
     added_prefixes: set[str]
     deleted_prefixes: set[str]
-    updated_prefixes: int
+    updated_prefixes: set[str]
     update_details: list[tuple[str, ComparisonHint]]
 
 
-def compare_bioregistry(
-    old_data: dict[str, dict[str, Any]], new_data: dict[str, dict[str, Any]]
-) -> CompareBioregistryResult:
+def compare_bioregistry(start_records: Records, end_records: Records) -> CompareBioregistryResult:
     """Return comparison of two versions of the bioregistry data.
 
-    :param old_data: The old bioregistry data.
-    :param new_data: The new bioregistry data.
+    :param start_records: The old bioregistry data.
+    :param end_records: The new bioregistry data.
 
     :returns: Sets of added prefixes, deleted prefixes, and a count of updated prefixes,
         along with update details.
     """
-    old_prefixes = set(old_data.keys())
-    new_prefixes = set(new_data.keys())
+    old_prefixes = set(start_records.keys())
+    new_prefixes = set(end_records.keys())
 
     added_prefixes = new_prefixes - old_prefixes
     deleted_prefixes = old_prefixes - new_prefixes
-    updated_prefixes = 0
+    updated_prefixes = set()
     update_details = []
 
     for prefix in old_prefixes & new_prefixes:
-        if old_data[prefix] != new_data[prefix]:
-            updated_prefixes += 1
-            changes = compare_entries(old_data[prefix], new_data[prefix])
+        # TODO subset to manually curated data?
+        if start_records[prefix] != end_records[prefix]:
+            updated_prefixes.add(prefix)
+            changes = compare_entries(start_records[prefix], end_records[prefix])
             update_details.append((prefix, changes))
 
     return CompareBioregistryResult(
@@ -148,66 +148,50 @@ def compare_bioregistry(
     )
 
 
-def compare_entries(old_entry: dict[str, Any], new_entry: dict[str, Any]) -> ComparisonHint:
-    """Return detailed changes within individual entries.
-
-    :param old_entry: The old entry data.
-    :param new_entry: The new entry data.
-
-    :returns: A dictionary of changes.
-    """
+def compare_entries(start_record: Record, end_record: Record) -> ComparisonHint:
+    """Return detailed changes within individual entries."""
     changes = {}
-    for key in old_entry.keys() | new_entry.keys():
-        if old_entry.get(key) != new_entry.get(key):
-            changes[key] = (old_entry.get(key), new_entry.get(key))
+    for key in start_record.keys() | end_record.keys():
+        if start_record.get(key) != end_record.get(key):
+            changes[key] = (start_record.get(key), end_record.get(key))
     return changes
 
 
-def get_all_mapping_keys(data: dict[str, dict[str, Any]]) -> set[str]:
-    """Return all unique mapping keys from the bioregistry data.
-
-    :param data: The bioregistry data.
-
-    :returns: A set of all unique mapping keys.
-    """
-    return {
-        key
-        for subdata in data.values()
-        if (mappings := subdata.get("mappings"))
-        for key in mappings
-    }
+def get_all_mapping_keys(records: Records) -> set[str]:
+    """Return all unique mapping keys from the bioregistry data."""
+    return {key for record in records.values() for key in record.get("mappings") or []}
 
 
 class DataResult(NamedTuple):
     """Results from comparison between two dates."""
 
     comparison: CompareBioregistryResult
-    old_bioregistry: BioregistryDataHint
-    new_bioregistry: BioregistryDataHint
+    start_records: Records
+    end_records: Records
     all_mapping_keys: set[str]
 
 
 def compare_commits(
-    start_commit: str, end_commit: str, *, owner: str | None = None, name: str | None = None
+    start_commit: str,
+    end_commit: str,
+    *,
+    owner: str | None = None,
+    name: str | None = None,
+    method: Method,
 ) -> DataResult:
     """Compare two commits."""
-    old_bioregistry = get_file_at_commit(FILE_PATH, start_commit, owner=owner, name=name)
-    new_bioregistry = get_file_at_commit(FILE_PATH, end_commit, owner=owner, name=name)
+    start_records = get_file_at_commit(
+        FILE_PATH, start_commit, owner=owner, name=name, method=method
+    )
+    end_records = get_file_at_commit(FILE_PATH, end_commit, owner=owner, name=name, method=method)
 
-    compare_bioregistry_rv = compare_bioregistry(old_bioregistry, new_bioregistry)
+    compare_bioregistry_rv = compare_bioregistry(start_records, end_records)
 
-    old_mapping_keys = get_all_mapping_keys(old_bioregistry)
-    new_mapping_keys = get_all_mapping_keys(new_bioregistry)
+    old_mapping_keys = get_all_mapping_keys(start_records)
+    new_mapping_keys = get_all_mapping_keys(end_records)
     all_mapping_keys = old_mapping_keys.union(new_mapping_keys)
 
-    return DataResult(compare_bioregistry_rv, old_bioregistry, new_bioregistry, all_mapping_keys)
-
-
-def summarize_changes(comparison: CompareBioregistryResult) -> None:
-    """Log a summary of changes in the bioregistry data."""
-    logger.info(f"Total Added Prefixes: {len(comparison.added_prefixes)}")
-    logger.info(f"Total Deleted Prefixes: {len(comparison.deleted_prefixes)}")
-    logger.info(f"Total Updated Prefixes: {comparison.updated_prefixes}")
+    return DataResult(compare_bioregistry_rv, start_records, end_records, all_mapping_keys)
 
 
 def visualize_changes(
@@ -314,12 +298,16 @@ def compare_dates(
     else:
         raise click.ClickException("Must specify either --start-date or --days-ago")
 
-    click.echo(f"comparing from {start_date_} to {end_date_}")
-    data = compare_commits(start_hash, end_hash)
+    click.echo(f"comparing from {start_date_} ({start_hash[:6]}) to {end_date_} ({end_hash[:6]})")
+    data = compare_commits(start_hash, end_hash, method=method)
     if data is None:
         raise click.ClickException("No data")
-    summarize_changes(data.comparison)
-    visualize_changes(data.comparison.update_details, start_date_, end_date_, data.all_mapping_keys)
+
+    click.echo(f"added prefixes: {sorted(data.comparison.added_prefixes)}")
+    if data.comparison.deleted_prefixes:
+        click.echo(f"deleted records: {data.comparison.deleted_prefixes}")
+    click.echo(f"Total Updated Prefixes: {data.comparison.updated_prefixes}")
+    # visualize_changes(data.comparison.update_details, start_date_, end_date_, data.all_mapping_keys)
 
 
 if __name__ == "__main__":
