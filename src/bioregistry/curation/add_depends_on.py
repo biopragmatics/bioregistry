@@ -127,7 +127,7 @@ def _get_prefixes_from_obo(resource: Resource, url: str, converter: Converter) -
         except Exception as e:
             return Error(url, "obo", e)
         else:
-            return obo._get_prefixes()
+            return set(obo._get_prefixes())
 
 
 def _get_prefixes_from_obograph(
