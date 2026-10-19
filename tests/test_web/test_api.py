@@ -252,6 +252,11 @@ class TestWeb(unittest.TestCase):
         # This is a non-ontology so it won't get in OBO Foundry
         self.assertIn("DCTERMS", res_parsed.meta.target_only)
 
+        # Bad source metaprefix
+        url = "/api/metaregistry/cellosaurus/mapping/bioportal"
+        res = self.client.get(url)
+        self.assertEqual(400, res.status_code)
+
     def test_iri_mapping(self) -> None:
         """Test IRI mappings.
 
