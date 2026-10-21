@@ -280,12 +280,12 @@ def get_metaresource_external_mappings(
     manager: DependsManager,
     metaprefix: Metaprefix,
     target: Annotated[str, Path(title="target metaprefix")],
-) -> MappingResponse | tuple[dict[str, str], int]:
+) -> MappingResponse:
     """Get mappings between two external prefixes."""
     try:
         diff = manager.get_external_mappings(metaprefix, target)
     except KeyError as e:
-        return {"message": str(e)}, 400
+        raise HTTPException(status_code=400, detail=str(e)) from None
     return MappingResponse(
         meta=MappingResponseMeta(
             len_overlap=len(diff.mappings),
