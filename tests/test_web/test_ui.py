@@ -164,6 +164,18 @@ class TestUI(unittest.TestCase):
             self.assertEqual(404, res.status_code)
             self.assertIn("Unknown Prefix", res.text)
 
+    def test_missing_prefix_suggestions(self) -> None:
+        """Test that similar prefixes are suggested for a missing prefix."""
+        with self.app.test_client() as client:
+            res = client.get("/chebbi:1234")
+            self.assertEqual(404, res.status_code)
+            self.assertIn("Did you mean", res.text)
+            self.assertIn("/registry/chebi", res.text)
+
+            res = client.get("/xxxx:yyyy")
+            self.assertEqual(404, res.status_code)
+            self.assertNotIn("Did you mean", res.text)
+
     def test_resolve_invalid_identifier(self) -> None:
         """Test resolving an invalid LUID."""
         with self.app.test_client() as client:
