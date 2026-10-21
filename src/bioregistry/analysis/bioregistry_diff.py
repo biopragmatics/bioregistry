@@ -6,6 +6,7 @@ import datetime
 import json
 import logging
 import typing
+from collections.abc import Sequence
 from pathlib import PurePath
 from typing import Any, Literal, NamedTuple, TypeAlias, cast
 
@@ -277,8 +278,9 @@ def visualize_changes(
 @click.option("--days-ago", help="number of days ago", type=int)
 @click.option("--end-date", help="The optional ending date for comparison, defaults to today")
 @click.option("--method", type=click.Choice(typing.get_args(Method)), default="local")
+@click.option("--domain", is_flag=True, help="Include a column in the summaries for the domain")
 def compare_dates(
-    days_ago: int | None, start_date: str | None, end_date: str | None, method: Method
+    days_ago: int | None, start_date: str | None, end_date: str | None, method: Method, domain: bool
 ) -> None:
     """Process and visualize changes in Bioregistry data between two dates."""
     if end_date is None:
@@ -307,33 +309,36 @@ def compare_dates(
 
     if data.comparison.added_prefixes:
         click.secho(f"Added {len(data.comparison.added_prefixes):,} Prefixes\n", fg="green")
-        click.echo(_tabulate(data.comparison.added_prefixes, "Added Prefix"))
+        click.echo(_tabulate(data.comparison.added_prefixes, "Added Prefix", domain=domain))
 
     if data.comparison.deleted_prefixes:
         click.echo(f"\n\ndeleted records: {data.comparison.deleted_prefixes}")
 
     if data.comparison.added_prefixes:
         click.secho(f"\n\nUpdated {len(data.comparison.updated_prefixes):,} Prefixes\n", fg="green")
-        click.echo(_tabulate(data.comparison.updated_prefixes, "Updated Prefix"))
+        click.echo(_tabulate(data.comparison.updated_prefixes, "Updated Prefix", domain=domain))
 
     # visualize_changes(data.comparison.update_details, start_date_, end_date_, data.all_mapping_keys)
 
 
-def _tabulate(prefixes: typing.Collection[str], title: str) -> str:
+def _tabulate(prefixes: typing.Collection[str], title: str, *, domain: bool) -> str:
     return tabulate(
-        [
-            (
-                (resource := bioregistry.get_resource(prefix, strict=True)).get_preferred_prefix(
-                    passthrough=True
-                ),
-                resource.get_name(),
-                resource.get_domain(),
-            )
-            for prefix in sorted(prefixes)
-        ],
+        [_get_row(prefix, domain=domain) for prefix in sorted(prefixes)],
         headers=[title, "Name", "Domain"],
         tablefmt="github",
     )
+
+
+def _get_row(prefix: str, domain: bool) -> Sequence[str]:
+    resource = bioregistry.get_resource(prefix, strict=True)
+    display_prefix = resource.get_preferred_prefix(passthrough=True)
+    row = [
+        f"[{display_prefix}](https://semantic.farm/{resource.prefix})",
+        resource.get_name(strict=True),
+    ]
+    if domain:
+        row.append(resource.get_domain() or "")
+    return row
 
 
 if __name__ == "__main__":
