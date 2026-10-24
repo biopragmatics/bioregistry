@@ -3542,6 +3542,29 @@
       "wikidata": "Q131536797"
     }
   },
+  "P14981": {
+    "description": "GBIF-assigned numeric key for an occurrence record (the evidence of the occurrence of a species at a particular place on a specified date) in the Global Biodiversity Information Facility (Q1531570)",
+    "examples": [
+      "1315627641",
+      "1315635475",
+      "3323009351"
+    ],
+    "homepage": "https://www.gbif.org/",
+    "name": "GBIF occurrence key",
+    "uri_format": "https://www.gbif.org/occurrence/$1"
+  },
+  "P14990": {
+    "description": "instances of the subject item are juveniles of one of these class(es) of organisms",
+    "examples": [
+      "Q25336",
+      "Q25349",
+      "Q7367"
+    ],
+    "name": "juvenile form of",
+    "xrefs": {
+      "wikidata": "Q1516282"
+    }
+  },
   "P1550": {
     "description": "identifier in the Orpha.net database (without ORPHA prefix)",
     "examples": [
@@ -8892,7 +8915,7 @@
     ],
     "homepage": "http://interlex.org",
     "name": "Interlex ID",
-    "pattern": "^[0-9A-Za-z_]+$",
+    "pattern": "^[A-Za-z_]+[0-9]\\d*(_\\d+)?$",
     "uri_format": "https://scicrunch.org/scicrunch/interlex/view/ilx_$1"
   },
   "P698": {
@@ -9693,7 +9716,7 @@
     ],
     "name": "ADS bibcode",
     "pattern": "^\\d{4}[A-Za-z\\.\\&]{5}[\\w\\.]{4}[ELPQ-Z\\.][\\d\\.]{4}[A-Z]$",
-    "uri_format": "https://ui.adsabs.harvard.edu/abs/$1"
+    "uri_format": "https://scixplorer.org/abs/$1/abstract"
   },
   "P8204": {
     "description": "tabular data on Wikimedia Commons of confirmed cases, recoveries, deaths, etc. due to a medical event; corresponds to P8011, P1603, P8049, P8010, P1120. Try to avoid deleting such statements",
