@@ -86,8 +86,10 @@ class Aligner:
 
         self.manager = Manager() if manager is None else manager
 
+        if self.key not in self.manager.registry:
+            raise ValueError(f"invalid prefix for aligner: {self.key}")
         if self.key not in self.manager.metaregistry:
-            raise TypeError(f"invalid metaprefix for aligner: {self.key}")
+            raise ValueError(f"prefix has not been added to the metaregistry: {self.key}")
 
         if self.key in RESOURCE_ALIAS_TO_FIELD:
             self._model_field_name = RESOURCE_ALIAS_TO_FIELD[self.key]
