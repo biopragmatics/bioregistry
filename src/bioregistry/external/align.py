@@ -21,6 +21,7 @@ from .fairsharing import FairsharingAligner
 from .go import GoAligner
 from .hl7 import HL7Aligner
 from .integbio import IntegbioAligner
+from .loc import LOCAligner
 from .lov import LOVAligner
 from .miriam import MiriamAligner
 from .n2t import N2TAligner
@@ -57,6 +58,7 @@ __all__ = [
     "GoAligner",
     "HL7Aligner",
     "IntegbioAligner",
+    "LOCAligner",
     "LOVAligner",
     "MiriamAligner",
     "N2TAligner",

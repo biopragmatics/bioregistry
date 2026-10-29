@@ -904,6 +904,15 @@ class Resource(BaseModel):
             serialization_alias="edam.data",
         ),
     ] = None
+    #: External data from LOC Class Schemes
+    loc: Annotated[
+        Record | None,
+        Field(
+            title="LOC Class Schemes",
+            alias="loc.classschemes",
+            serialization_alias="loc.classschemes",
+        ),
+    ] = None
     #: External data from re3data
     re3data: Record | None = None
     #: External data from hl7
