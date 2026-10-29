@@ -909,7 +909,7 @@ class Resource(BaseModel):
     #: External data from hl7
     hl7: Record | None = None
     #: External data from bartoc
-    bartoc: Record | None = Field(default=None, title="BARTOC")
+    bartoc: Annotated[Record | None, Field(title="BARTOC")] = None
     #: External data from RRID
     rrid: Annotated[
         Record | None,
@@ -920,15 +920,15 @@ class Resource(BaseModel):
         ),
     ] = None
     #: External data from LOV
-    lov: Record | None = Field(default=None, title="LOV")
+    lov: Annotated[Record | None, Field(title="LOV")] = None
     #: External data from Zazuko
-    zazuko: Record | None = Field(default=None)
+    zazuko: Record | None = None
     #: External data from TogoID
-    togoid: Record | None = Field(default=None)
+    togoid: Annotated[Record | None, Field(title="TogoID")] = None
     #: External data from Integbio
-    integbio: Record | None = Field(default=None)
+    integbio: Annotated[Record | None, Field(title="IntegBio")] = None
     #: External data from PathGuide
-    pathguide: Record | None = Field(default=None)
+    pathguide: Annotated[Record | None, Field(title="PathGuide")] = None
     #: External data from TIB Terminology Service
     tib: Annotated[
         Record | None,
@@ -939,7 +939,7 @@ class Resource(BaseModel):
         ),
     ] = None
     #: External data from BiodivPortal
-    biodivportal: Record | None = Field(default=None)
+    biodivportal: Record | None = None
 
     # Cached compiled pattern for identifiers
     _compiled_pattern: re.Pattern[str] | None = PrivateAttr(None)
