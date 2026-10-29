@@ -193,7 +193,7 @@ class Organization(BaseModel):
     ror: Annotated[str | None, ROR_FIELD] = None
     wikidata: Annotated[str | None, WIKIDATA_FIELD] = None
     gnd: Annotated[str | None, GND_FIELD] = None
-    name: Annotated[str, Field(..., description="Name of the organization")]
+    name: Annotated[str, Field(description="Name of the organization")]
     partnered: Annotated[
         bool,
         Field(description="Has this organization made a specific connection with Bioregistry?"),
@@ -238,7 +238,7 @@ class Organization(BaseModel):
 class Attributable(BaseModel):
     """An upper-level metadata for a researcher."""
 
-    name: str = Field(..., description="The full name of the researcher")
+    name: Annotated[str, Field(description="The full name of the researcher")]
 
     orcid: Annotated[str | None, ORCID_FIELD] = None
     email: EmailStr | None = Field(
@@ -332,8 +332,8 @@ class Publication(BaseModel):
     arxiv: str | None = Field(
         default=None, title="arXiv", description="The arXiv identifier for the article"
     )
-    title: str | None = Field(default=None, description="The title of the article")
-    year: int | None = Field(default=None, description="The year the article was published")
+    title: Annotated[str | None, Field(description="The title of the article")] = None
+    year: Annotated[int | None, Field(description="The year the article was published")] = None
 
     def key(self) -> tuple[str, ...]:
         """Create a key based on identifiers in this data structure."""
@@ -387,7 +387,9 @@ class StatusCheck(BaseModel):
 class Provider(BaseModel):
     """A provider."""
 
-    code: str = Field(..., description="A locally unique code within the prefix for the provider")
+    code: Annotated[
+        str, Field(description="A locally unique code within the prefix for the provider")
+    ]
     name: str | None = Field(None, description="Name of the provider")
     description: str | None = Field(None, description="Description of the provider")
     homepage: str | None = Field(None, description="Homepage of the provider")
@@ -488,26 +490,29 @@ class Resource(BaseModel):
         "populate_by_name": True,
     }
 
-    prefix: str = Field(
-        ...,
-        description="The prefix for this resource",
-    )
-    name: str | None = Field(default=None, description="The name of the resource")
-    description: str | None = Field(default=None, description="A description of the resource")
-    pattern: str | None = Field(
-        default=None,
-        description="The regular expression pattern for local unique identifiers in the resource",
-    )
-    uri_format: str | None = Field(
-        default=None,
-        title="URI format string",
-        description=f"The URI format string, which must have at least one ``$1`` in it. {URI_IRI_INFO}",
-    )
-    uri_format_resolvable: bool | None = Field(
-        default=None,
-        title="URI format string resolvable",
-        description="If false, denotes if the URI format string is known to be not resolvable",
-    )
+    prefix: Annotated[str, Field(description="The prefix for this resource")]
+    name: Annotated[str | None, Field(description="The name of the resource")] = None
+    description: Annotated[str | None, Field(description="A description of the resource")] = None
+    pattern: Annotated[
+        str | None,
+        Field(
+            description="The regular expression pattern for local unique identifiers in the resource",
+        ),
+    ] = None
+    uri_format: Annotated[
+        str | None,
+        Field(
+            title="URI format string",
+            description=f"The URI format string, which must have at least one ``$1`` in it. {URI_IRI_INFO}",
+        ),
+    ] = None
+    uri_format_resolvable: Annotated[
+        bool | None,
+        Field(
+            title="URI format string resolvable",
+            description="If false, denotes if the URI format string is known to be not resolvable",
+        ),
+    ] = None
     rdf_uri_format: str | None = Field(
         default=None,
         title="RDF URI format string",
@@ -520,10 +525,9 @@ class Resource(BaseModel):
     homepage: str | None = Field(
         default=None, description="The URL for the homepage of the resource, preferably using HTTPS"
     )
-    repository: str | None = Field(
-        default=None,
-        description="The URL for the repository of the resource",
-    )
+    repository: Annotated[
+        str | None, Field(description="The URL for the repository of the resource")
+    ] = None
     contact: Attributable | None = Field(
         default=None,
         description=(
@@ -566,14 +570,11 @@ class Resource(BaseModel):
         default=None,
         description="Extra example identifiers that explicitly fail regex tests",
     )
-    license: str | None = Field(
-        default=None,
-        description="The license for the resource",
-    )
-    version: str | None = Field(
-        default=None,
-        description="The version for the resource",
-    )
+    license: Annotated[
+        str | None,
+        Field(description="The license for the resource, ideally given as a SPDX identifier"),
+    ] = None
+    version: Annotated[str | None, Field(description="The version for the resource")] = None
     part_of: str | None = Field(
         default=None,
         description=(
@@ -581,7 +582,7 @@ class Resource(BaseModel):
             "``chembl.compound`` is a part of ``chembl``."
         ),
     )
-    part_of_database: str | None = Field(default=None)
+    part_of_database: str | None = None
     provides: str | None = Field(
         default=None,
         description=(
@@ -657,7 +658,7 @@ class Resource(BaseModel):
     """
         ),
     )
-    banana_peel: str | None = Field(default=None, description="Delimiter used in banana")
+    banana_peel: Annotated[str | None, Field(description="Delimiter used in banana")] = None
     deprecated: bool | None = Field(
         default=None,
         description=_dedent(
@@ -803,7 +804,7 @@ class Resource(BaseModel):
     """
         ),
     )
-    mastodon: str | None = Field(default=None, description="The mastodon handle for the project")
+    mastodon: Annotated[str | None, Field(description="The mastodon handle for the project")] = None
     github_request_issue: int | None = Field(
         default=None, description="The GitHub issue for the new prefix request"
     )
@@ -918,7 +919,7 @@ class Resource(BaseModel):
     #: External data from hl7
     hl7: Record | None = None
     #: External data from bartoc
-    bartoc: Record | None = Field(default=None, title="BARTOC")
+    bartoc: Annotated[Record | None, Field(title="BARTOC")] = None
     #: External data from RRID
     rrid: Annotated[
         Record | None,
@@ -929,15 +930,15 @@ class Resource(BaseModel):
         ),
     ] = None
     #: External data from LOV
-    lov: Record | None = Field(default=None, title="LOV")
+    lov: Annotated[Record | None, Field(title="LOV")] = None
     #: External data from Zazuko
-    zazuko: Record | None = Field(default=None)
+    zazuko: Record | None = None
     #: External data from TogoID
-    togoid: Record | None = Field(default=None)
+    togoid: Annotated[Record | None, Field(title="TogoID")] = None
     #: External data from Integbio
-    integbio: Record | None = Field(default=None)
+    integbio: Annotated[Record | None, Field(title="IntegBio")] = None
     #: External data from PathGuide
-    pathguide: Record | None = Field(default=None)
+    pathguide: Annotated[Record | None, Field(title="PathGuide")] = None
     #: External data from TIB Terminology Service
     tib: Annotated[
         Record | None,
@@ -948,7 +949,7 @@ class Resource(BaseModel):
         ),
     ] = None
     #: External data from BiodivPortal
-    biodivportal: Record | None = Field(default=None)
+    biodivportal: Record | None = None
 
     # Cached compiled pattern for identifiers
     _compiled_pattern: re.Pattern[str] | None = PrivateAttr(None)
@@ -3251,17 +3252,16 @@ class RegistrySchema(BaseModel):
 class Registry(BaseModel):
     """Metadata about a registry."""
 
-    prefix: str = Field(
-        ...,
-        description=(
-            "The metaprefix for the registry itself. For example, the "
-            "metaprefix for Identifiers.org is `miriam`."
+    prefix: Annotated[
+        str,
+        Field(
+            description="The metaprefix for the registry itself. For example, the metaprefix for Identifiers.org is `miriam`."
         ),
-    )
-    name: str = Field(..., description="The human-readable label for the registry")
-    description: str = Field(..., description="A full description of the registry.")
-    homepage: str = Field(..., description="The URL for the homepage of the registry.")
-    example: str = Field(..., description="An example prefix inside the registry.")
+    ]
+    name: Annotated[str, Field(description="The human-readable label for the registry")]
+    description: Annotated[str, Field(description="A full description of the registry.")]
+    homepage: Annotated[str, Field(description="The URL for the homepage of the registry.")]
+    example: Annotated[str, Field(description="An example prefix inside the registry.")]
     bibtex: str | None = Field(
         default=None, description="Citation key used in BibTex for this registry."
     )
@@ -3294,7 +3294,7 @@ class Registry(BaseModel):
         default=None,
         description="An optional type annotation for what kind of resolver it is (i.e., redirect or lookup)",
     )
-    contact: Attributable = Field(..., description="The contact for the registry.")
+    contact: Annotated[Attributable, Field(description="The contact for the registry.")]
     logo: str | None = Field(
         default=None,
         description="The URL for the logo of the resource",
@@ -3513,16 +3513,9 @@ class Tag(BaseModel):
 class Collection(BaseModel):
     """A collection of resources."""
 
-    identifier: str = Field(..., description="The collection's identifier")
-    name: str = Field(
-        ...,
-        description="The name of the collection",
-    )
-    description: str = Field(
-        ...,
-        description="A description of the collection",
-        min_length=30,
-    )
+    identifier: Annotated[str, Field(description="The collection's identifier")]
+    name: Annotated[str, Field(description="The name of the collection")]
+    description: Annotated[str, Field(description="A description of the collection", min_length=30)]
     resources: list[str | CollectionAnnotation] = Field(
         ...,
         description="A list of prefixes of resources appearing in the collection",
@@ -3544,8 +3537,8 @@ class Collection(BaseModel):
         description="A list of organizations that contribute to this collection",
         min_length=1,
     )
-    context: str | None = Field(default=None, description="The JSON-LD context's name")
-    references: list[str] | None = Field(default=None, description="URL references")
+    context: Annotated[str | None, Field(description="The JSON-LD context's name")] = None
+    references: Annotated[list[str] | None, Field(description="URL references")] = None
     keywords: list[str] | None = None
     mappings: list[Reference] | None = None
     tags: Annotated[
