@@ -193,7 +193,7 @@ class Organization(BaseModel):
     ror: Annotated[str | None, ROR_FIELD] = None
     wikidata: Annotated[str | None, WIKIDATA_FIELD] = None
     gnd: Annotated[str | None, GND_FIELD] = None
-    name: Annotated[str, Field(..., description="Name of the organization")]
+    name: Annotated[str, Field(description="Name of the organization")]
     partnered: Annotated[
         bool,
         Field(description="Has this organization made a specific connection with Bioregistry?"),
@@ -238,7 +238,7 @@ class Organization(BaseModel):
 class Attributable(BaseModel):
     """An upper-level metadata for a researcher."""
 
-    name: str = Field(..., description="The full name of the researcher")
+    name: Annotated[str, Field(description="The full name of the researcher")]
 
     orcid: Annotated[str | None, ORCID_FIELD] = None
     email: EmailStr | None = Field(
@@ -387,7 +387,9 @@ class StatusCheck(BaseModel):
 class Provider(BaseModel):
     """A provider."""
 
-    code: str = Field(..., description="A locally unique code within the prefix for the provider")
+    code: Annotated[
+        str, Field(description="A locally unique code within the prefix for the provider")
+    ]
     name: str | None = Field(None, description="Name of the provider")
     description: str | None = Field(None, description="Description of the provider")
     homepage: str | None = Field(None, description="Homepage of the provider")
@@ -3241,17 +3243,16 @@ class RegistrySchema(BaseModel):
 class Registry(BaseModel):
     """Metadata about a registry."""
 
-    prefix: str = Field(
-        ...,
-        description=(
-            "The metaprefix for the registry itself. For example, the "
-            "metaprefix for Identifiers.org is `miriam`."
+    prefix: Annotated[
+        str,
+        Field(
+            description="The metaprefix for the registry itself. For example, the metaprefix for Identifiers.org is `miriam`."
         ),
-    )
-    name: str = Field(..., description="The human-readable label for the registry")
-    description: str = Field(..., description="A full description of the registry.")
-    homepage: str = Field(..., description="The URL for the homepage of the registry.")
-    example: str = Field(..., description="An example prefix inside the registry.")
+    ]
+    name: Annotated[str, Field(description="The human-readable label for the registry")]
+    description: Annotated[str, Field(description="A full description of the registry.")]
+    homepage: Annotated[str, Field(description="The URL for the homepage of the registry.")]
+    example: Annotated[str, Field(description="An example prefix inside the registry.")]
     bibtex: str | None = Field(
         default=None, description="Citation key used in BibTex for this registry."
     )
@@ -3284,7 +3285,7 @@ class Registry(BaseModel):
         default=None,
         description="An optional type annotation for what kind of resolver it is (i.e., redirect or lookup)",
     )
-    contact: Attributable = Field(..., description="The contact for the registry.")
+    contact: Annotated[Attributable, Field(description="The contact for the registry.")]
     logo: str | None = Field(
         default=None,
         description="The URL for the logo of the resource",
@@ -3503,16 +3504,9 @@ class Tag(BaseModel):
 class Collection(BaseModel):
     """A collection of resources."""
 
-    identifier: str = Field(..., description="The collection's identifier")
-    name: str = Field(
-        ...,
-        description="The name of the collection",
-    )
-    description: str = Field(
-        ...,
-        description="A description of the collection",
-        min_length=30,
-    )
+    identifier: Annotated[str, Field(description="The collection's identifier")]
+    name: Annotated[str, Field(description="The name of the collection")]
+    description: Annotated[str, Field(description="A description of the collection", min_length=30)]
     resources: list[str | CollectionAnnotation] = Field(
         ...,
         description="A list of prefixes of resources appearing in the collection",
