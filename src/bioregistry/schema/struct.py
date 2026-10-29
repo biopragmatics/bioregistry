@@ -332,8 +332,8 @@ class Publication(BaseModel):
     arxiv: str | None = Field(
         default=None, title="arXiv", description="The arXiv identifier for the article"
     )
-    title: str | None = Field(default=None, description="The title of the article")
-    year: int | None = Field(default=None, description="The year the article was published")
+    title: Annotated[str | None, Field(description="The title of the article")] = None
+    year: Annotated[int | None, Field(description="The year the article was published")] = None
 
     def key(self) -> tuple[str, ...]:
         """Create a key based on identifiers in this data structure."""
@@ -488,26 +488,29 @@ class Resource(BaseModel):
         "populate_by_name": True,
     }
 
-    prefix: str = Field(
-        ...,
-        description="The prefix for this resource",
-    )
-    name: str | None = Field(default=None, description="The name of the resource")
-    description: str | None = Field(default=None, description="A description of the resource")
-    pattern: str | None = Field(
-        default=None,
-        description="The regular expression pattern for local unique identifiers in the resource",
-    )
-    uri_format: str | None = Field(
-        default=None,
-        title="URI format string",
-        description=f"The URI format string, which must have at least one ``$1`` in it. {URI_IRI_INFO}",
-    )
-    uri_format_resolvable: bool | None = Field(
-        default=None,
-        title="URI format string resolvable",
-        description="If false, denotes if the URI format string is known to be not resolvable",
-    )
+    prefix: Annotated[str, Field(description="The prefix for this resource")]
+    name: Annotated[str | None, Field(description="The name of the resource")] = None
+    description: Annotated[str | None, Field(description="A description of the resource")] = None
+    pattern: Annotated[
+        str | None,
+        Field(
+            description="The regular expression pattern for local unique identifiers in the resource",
+        ),
+    ] = None
+    uri_format: Annotated[
+        str | None,
+        Field(
+            title="URI format string",
+            description=f"The URI format string, which must have at least one ``$1`` in it. {URI_IRI_INFO}",
+        ),
+    ] = None
+    uri_format_resolvable: Annotated[
+        bool | None,
+        Field(
+            title="URI format string resolvable",
+            description="If false, denotes if the URI format string is known to be not resolvable",
+        ),
+    ] = None
     rdf_uri_format: str | None = Field(
         default=None,
         title="RDF URI format string",
@@ -520,10 +523,9 @@ class Resource(BaseModel):
     homepage: str | None = Field(
         default=None, description="The URL for the homepage of the resource, preferably using HTTPS"
     )
-    repository: str | None = Field(
-        default=None,
-        description="The URL for the repository of the resource",
-    )
+    repository: Annotated[
+        str | None, Field(description="The URL for the repository of the resource")
+    ] = None
     contact: Attributable | None = Field(
         default=None,
         description=(
@@ -566,14 +568,11 @@ class Resource(BaseModel):
         default=None,
         description="Extra example identifiers that explicitly fail regex tests",
     )
-    license: str | None = Field(
-        default=None,
-        description="The license for the resource",
-    )
-    version: str | None = Field(
-        default=None,
-        description="The version for the resource",
-    )
+    license: Annotated[
+        str | None,
+        Field(description="The license for the resource, ideally given as a SPDX identifier"),
+    ] = None
+    version: Annotated[str | None, Field(description="The version for the resource")] = None
     part_of: str | None = Field(
         default=None,
         description=(
@@ -581,7 +580,7 @@ class Resource(BaseModel):
             "``chembl.compound`` is a part of ``chembl``."
         ),
     )
-    part_of_database: str | None = Field(default=None)
+    part_of_database: str | None = None
     provides: str | None = Field(
         default=None,
         description=(
@@ -657,7 +656,7 @@ class Resource(BaseModel):
     """
         ),
     )
-    banana_peel: str | None = Field(default=None, description="Delimiter used in banana")
+    banana_peel: Annotated[str | None, Field(description="Delimiter used in banana")] = None
     deprecated: bool | None = Field(
         default=None,
         description=_dedent(
@@ -803,7 +802,7 @@ class Resource(BaseModel):
     """
         ),
     )
-    mastodon: str | None = Field(default=None, description="The mastodon handle for the project")
+    mastodon: Annotated[str | None, Field(description="The mastodon handle for the project")] = None
     github_request_issue: int | None = Field(
         default=None, description="The GitHub issue for the new prefix request"
     )
@@ -3535,8 +3534,8 @@ class Collection(BaseModel):
         description="A list of organizations that contribute to this collection",
         min_length=1,
     )
-    context: str | None = Field(default=None, description="The JSON-LD context's name")
-    references: list[str] | None = Field(default=None, description="URL references")
+    context: Annotated[str | None, Field(description="The JSON-LD context's name")] = None
+    references: Annotated[list[str] | None, Field(description="URL references")] = None
     keywords: list[str] | None = None
     mappings: list[Reference] | None = None
     tags: Annotated[
