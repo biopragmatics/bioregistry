@@ -145,7 +145,7 @@ Domain: TypeAlias = Literal[
 ]
 
 #: Describes how a resource is constructed and maintained
-CurationType: TypeAlias = Literal["manual", "ai"]
+CurationType: TypeAlias = Literal["manual", "generative-ai"]
 
 
 def _uri_sort(uri: str) -> tuple[str, str]:
