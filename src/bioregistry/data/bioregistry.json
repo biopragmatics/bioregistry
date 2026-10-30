@@ -973,6 +973,15 @@
     ],
     "uri_format": "http://www.w3.org/ns/activitystreams#$1",
     "zazuko": {
+      "artifacts": [
+        {
+          "type": "rdf",
+          "url": "https://github.com/zazuko/rdf-vocabularies/blob/master/ontologies/as/as.nq"
+        }
+      ],
+      "description": "Extended Activity Streams 2.0 Vocabulary",
+      "homepage": "https://raw.githubusercontent.com/zazuko/activitystreams/owl-fix/vocabulary/activitystreams2.owl",
+      "name": "Activity Streams 2.0",
       "prefix": "as",
       "uri_format": "https://www.w3.org/ns/activitystreams#$1"
     }
@@ -1242,6 +1251,13 @@
       "zazuko": "acl"
     },
     "zazuko": {
+      "artifacts": [
+        {
+          "type": "rdf",
+          "url": "https://github.com/zazuko/rdf-vocabularies/blob/master/ontologies/acl/acl.nq"
+        }
+      ],
+      "homepage": "http://www.w3.org/ns/auth/acl#",
       "prefix": "acl",
       "uri_format": "http://www.w3.org/ns/auth/acl#$1"
     }
@@ -11090,6 +11106,15 @@
     "repository": "https://github.com/dcmi/bibo",
     "uri_format": "http://purl.org/ontology/bibo/$1",
     "zazuko": {
+      "artifacts": [
+        {
+          "type": "rdf",
+          "url": "https://github.com/zazuko/rdf-vocabularies/blob/master/ontologies/bibo/bibo.nq"
+        }
+      ],
+      "description": "The Bibliographic Ontology describes\nbibliographic things on the semantic Web in RDF.  This ontology can be\nused as a citation ontology, as a document classification ontology, or\nsimply as a way to describe any kind of document in RDF. It has been\ninspired by many existing document description metadata formats, and\ncan be used as a common ground for converting other bibliographic data\nsources.",
+      "homepage": "http://purl.org/ontology/bibo/",
+      "name": "The Bibliographic Ontology",
       "prefix": "bibo",
       "uri_format": "http://purl.org/ontology/bibo/$1"
     }
@@ -19290,6 +19315,13 @@
     },
     "uri_format": "https://creativecommons.org/ns#$1",
     "zazuko": {
+      "artifacts": [
+        {
+          "type": "rdf",
+          "url": "https://github.com/zazuko/rdf-vocabularies/blob/master/ontologies/cc/cc.nq"
+        }
+      ],
+      "homepage": "https://creativecommons.org/schema.rdf",
       "prefix": "cc",
       "uri_format": "http://creativecommons.org/ns#$1"
     }
@@ -21478,6 +21510,15 @@
     "rdf_uri_format": "http://www.w3.org/ns/auth/cert#$1",
     "uri_format": "http://www.w3.org/ns/auth/cert#$1",
     "zazuko": {
+      "artifacts": [
+        {
+          "type": "rdf",
+          "url": "https://github.com/zazuko/rdf-vocabularies/blob/master/ontologies/cert/cert.nq"
+        }
+      ],
+      "description": "Ontology for Certificates and crypto stuff.\n   This is in development. \n   Some other ontologies to look at:\n     * http://www.w3.org/2000/10/swap/crypto\n        + has cwm builtins: http://www.w3.org/2000/10/swap/doc/Trust\n        - a bit old perhaps. It imports daml+oil\n        - would help to be more completely specified\n        - uses literals as subjects a little liberally, which makes this a \n        bit difficult to work with frameworks that don't permit this\n     * http://xmlns.com/wot/0.1/\n        - limited very much to PGP (though on can map PGP to X509)\n        - a little coarse grained, mixes up the PGP certificate with the PGP\n          public key\n     *\n   Todo: \n     - add some classes and relations for DSA\n     - should this all be in one file? Or should this be cut up a little? Say one file for the general CERT ontology, and then files for RSA, DSA, PGP, etc... Or perhaps it does not really matter?\n     - expand more on the certification side of things\n     - verify this by security experts\n     - owl2 has some constructs for combined inverse functional properties. \n       This may be useful to use in defining an RSA key which is identified\n       by two numbers.\n     - also create html version of the spec by using this as a template.\n     - should comments such as this be in html?",
+      "homepage": "http://www.w3.org/ns/auth/cert#",
+      "name": "Ontology for Certificates and crypto stuff.",
       "prefix": "cert",
       "uri_format": "http://www.w3.org/ns/auth/cert#$1"
     }
@@ -25307,6 +25348,14 @@
     },
     "uri_format": "http://www.cidoc-crm.org/cidoc-crm/$1",
     "zazuko": {
+      "artifacts": [
+        {
+          "type": "rdf",
+          "url": "https://github.com/zazuko/rdf-vocabularies/blob/master/ontologies/crm/crm.nq"
+        }
+      ],
+      "description": "CIDOC CRM v7.1.3 implemented in RDFS\n\nThis is the implementation approved by the 58th CRM-SIG meeting (March 2024)\nas the current RDFS version for the CIDOC CRM namespace.\nNote that this is NOT a definition of the CIDOC CRM, but a CIDOC CRM compatible implementation\nof an RDF Schema derived from the authoritative release of the CIDOC CRM v7.1.3 on February 2024\nhttps://cidoc-crm.org/Version/version-7.1.3 by an automated algorithm. It is intended for an\nassumed majority of uses. Depending on the application, users may create adequate extensions \ncompatible with the logical definitions of the CIDOC CRM.\n\nCreated by FORTH-ICS February 13, 2024\nCC BY 4.0 https://creativecommons.org/licenses/by/4.0/legalcode\n\n\n\nEncoding Rules:\n1. The RDF spelling rules do not allow blanks. Hence we have replaced them by underscores.\n   For instance \"E63_Beginning_of_Existence\" or \"P2i_is_type_of\".\n\n2. RDF does not allow to instantiate properties beginning from a range value.\n   Therefore, each CRM property is represented as two RDFS properties.\n   For instance \"P2 has type (is type of)\" is represented as:\n   \"P2_has_type\" for the domain to range direction and \"P2i_is_type_of\" for the range to domain direction.\n\n3. The primitive values \"E60 Number\", \"E61 Time Primitive\", \"E62 String\", \"E94 Space Primitive\" and \n   \"E95 Spacetime Primitive\" referred in the Model for formal completeness are interpreted as rdfs:literal.\n\n4. RDF does not support properties of properties, therefore, users may create their own\n   subProperties for CRM properties that have a type property such as \"P3 has note\":\n   Instead of P3 has note (P3-1 has type : parts description) declare\n   <rdf:Property rdf:about=\"P3_parts_description\">\n      <rdfs:domain rdf:resource=\"E1_CRM_Entity\"/>\n      <rdfs:range rdf:resource=\"http://www.w3.org/2000/01/rdf-schema#Literal\"/>\n      <rdfs:subPropertyOf rdf:resource=\"P3_has_note\"/>\n   </rdf:Property>\n\n5. Scope notes are represented as <rdfs:comment> elements.\n\n6. In addition this encoding contains labels in languages different from English, \n   which are taken from translations of previous versions of the CIDOC CRM.    \n\n7. Any other differences in labels, scope notes  and semantic relationships of this encoding \n   to the authoritative definition of the CIDOC CRM v7.1.3 (February 2024) are not intended transfer errors. \n   FORTH appreciates your feed-back on such errors.\n\n8. CRM time extension 1.0 Encoded in RDFS (http://old.cidoc-crm.org/docs/How_to%20implement%20CRM_Time_in%20RDF.pdf)\n   Since the Time Primitive of the CRM can not directly be implemented in RDF Triple Stores, we define in this extension\n   of 4 properties replacing P81 and P82 adequately using xsd:dateTime. \n   Property P81 is dedicated for modeling the Time-Span's maximum known temporal extent i.e. ongoing_throughout. \n   Property P82 is for modeling the minimum outer bounds of events i.e. at_some_time_within. \n   P81 has its time interval redefined by P81a and P81b. Similarly, we redefine P82 by P82a and P82b.\n## RDFS Generation Policies\n\n### Sources\n\nPolicies followed for the RDFS implementation of CIDOC v.7.1.3 were created w.r.t.:\n\n- Implementing the CIDOC Conceptual Reference Model in RDF (http://www.cidoc-crm.org/Resources/implementing-the-cidoc-conceptual-reference-model-in-rdf)\n- How to implement CRM Time in RDF (http://old.cidoc-crm.org/docs/How_to%20implement%20CRM_Time_in%20RDF.pdf)\n- CIDOC-CRM SIG feedback and the general guidelines:\n  - Each property is declared twice, forward and backwards, unless no inverse name is defined in parentheses, or domain or range is interpreted as literal\n  - All Primitive Values become rdfs:Literal\n  - All IsA declarations from/to and between Primitive values are ignored\n\n### Policies\n\n#### **A. CIDOC Classes implementation in RDFS**\n\nThe CIDOC-CRM model defines classes, that in Triple Stores are typically implemented as primitive values. These classes are all subclasses of `E59 Primitive Value` and in RDFS they are interpreted as Literal. There are some classes in the CIDOC-CRM model that are both subclasses of `E59 Primitive Value` and E41 Appellation. So far we have followed the decision by CRM-SIG in \"Issue 394: Solution for Dualism of E41 Appellation and rdfs:label\" in 28-11-2018 wrt the question whether these classes should be implemented as rdfs:Class or still be interpreted as rdfs:Literal.\n\nIn this version we have followed the following policy regarding CIDOC Classes implementation in RDFS:\n\n> A1. CIDOC Classes that are subClasses of `E59 Primitive Value` are interpreted as rdfs:Literal regardless of whether they are also subClasses of another Class.\n\nAs a result, the following CIDOC classes were not defined in RDFS:\n\n- `E59 Primitive Value`\n- `E60 Number`\n- `E61 Time Primitive`\n- `E62 String`\n- `E94 Space Primitive`\n- `E95 Spacetime Primitive`\n\nAdditionally, the following isA relationships were not defined in RDFS:\n\n- `E59 Primitive Value` `subClassOf` `E1 CRM Entity`\n- `E60 Number` `subClassOf` `E59 Primitive Value`\n- `E61 Time Primitive` `subClassOf` `E41 Appellation`\n- `E61 Time Primitive` `subClassOf` `E59 Primitive Value`\n- `E62 String` `subClassOf` `E59 Primitive Value`\n- `E94 Space Primitive` `subClassOf` `E41 Appellation`\n- `E94 Space Primitive` `subClassOf` `E59 Primitive Value`\n- `E95 Spacetime Primitive` `subClassOf` `E41 Appellation`\n- `E95 Spacetime Primitive` `subClassOf` `E59 Primitive Value`\n\n#### **B. CIDOC Properties implementation in RDFS**\n\nThe decisions in policy A affect the implementation of CIDOC Properties in RDFS. A property cannot define an rdfs:Literal as rdfs:domain, and the backwards direction of a property with an rdfs:Literal as rdfs:range cannot be created for the exact same reason.\n\nFurther, the property ranges defined as rdfs:Literal in this implementation do not inherit the properties of the superclasses defined in the CIDOC Model. A separate guideline will describe how to instantiate such properties if at all needed.\n\nAnother aspect considered for the implementation of properties in RDFS is whether a distinct inverse property definition should be provided.\n\nIn this version we followed the following policies regarding CIDOC Properties implementation in RDFS:\n\n> B1. CIDOC Property backwards/inverse direction is **not** defined, whenever no inverse name for the property has been specified in parentheses in the official CIDOC documentation and property domain is not equal with property range.\n\nAs a result, the following properties do not define an inverse direction.\n\n- `E1 CRM Entity. P3 has note: E62 String`\n- `E19 Physical Object. P57 has number of parts: E60 Number`\n- `E52 Time-Span. P79 beginning is qualified by: E62 String`\n- `E52 Time-Span. P80 end is qualified by: E62 String`\n- `E52 Time-Span. P81 ongoing throughout: E61 Time Primitive`\n- `E52 Time-Span. P82 at some time within: E61 Time Primitive`\n- `E54 Dimension. P90 has value: E60 Number`\n- `E53 Place. P171 at some place within: E94 Space Primitive`\n- `E53 Place. P172 contains: E94 Space Primitive`\n- `E90 Symbolic Object. P190 has symbolic content: E62 String`\n\n> B2. CIDOC Property forward direction is **not** defined whenever property domain is interpreted as rdfs:Literal (A.1). Similarly, CIDOC Property backwards/inverse direction is **not** defined, whenever property range is interpreted as rdfs:Literal (A.1). Further, the instances of classes interpreted as rdfs:Literal, cannot express in RDFs their **inherited** properties that could be expressed according to CIDOC Model.\n\nAs a result,\n\na) The following **direct forward direction** CIDOC Properties **cannot** be expressed and are **not defined** in RDFS:\n\n- `E95 Spacetime Primitive. P169 defines spacetime volume (spacetime volume is defined by): E92 Spacetime Volume`\n- `E61 Time Primitive. P170 defines time (time is defined by): E52 Time-Span`\n\nb) The following **direct backwards direction** CIDOC Properties **cannot** be expressed and are **not defined** in RDFS:\n\n- `E94 Space Primitive. P168i defines place (place is defined by): E53 Place`\n\n> B3. Whenever no backwards/inverse property name is specified and property domain matches with property range, then the forward/direct property direction should be used for **both** directions and **no backwards/inverse property** needs to be defined.\n\nAs a result, we did not implement a separate backwards/inverse direction for the following CIDOC Properties:\n\n- `E53 Place. P121 overlaps with: E53 Place`\n- `E53 Place. P122 borders with: E53 Place`\n- `E92 Spacetime Volume. P132 spatiotemporally overlaps with: E92 Spacetime Volume`\n- `E92 Spacetime Volume. P133 is spatiotemporally separated from: E92 Spacetime Volume`\n\nAdditionally, all aforementioned redundant backwards/inverse CIDOC Property direction references, are replaced by the respective direct/forward CIDOC Property direction.\n\n- The hierarchical link of  `P10i` subPropertyOf `P132i` was replaced with `P10i` subPropertyOf `P132`.\n\n#### **C. Labels and appellations**\n\nCIDOC-CRM version 7.1.3 defines the below subpropertyOf relations:\n\n- `P168 place is defined by` `subPropertyOf` `P1 is identified by`\n- `P169i spacetime volume is defined by` `subPropertyOf` `P1 is identified by`\n- `P170i time is defined by` `subPropertyOf` `P1 is identified by`\n\nThe range of P168, P169i and P170i is `E94 Space Primitive`, `E95 Spacetime Primitive` and `E61 Time Primitive` respectively, which are all subclasses of `E41 Appellation` and interpreted as `rdfs:Literal` in RDFS, i.e. these three properties are datatype properties. However, the P1 property has range E41 Appellation, i.e. this property is an object property. Since OWL 2 distinguishes between object subproperties (https://www.w3.org/TR/2012/REC-owl2-syntax-20121211/#Object_Subproperties), data subproperties (https://www.w3.org/TR/2012/REC-owl2-syntax-20121211/#Data_Subproperties) and annotation subproperties (https://www.w3.org/TR/2012/REC-owl2-syntax-20121211/#Annotation_Subproperties), and also in OWL-DL the subject and object of a subproperty statement must be either both datatype properties or both object properties (see here (https://www.w3.org/TR/owl-ref/#subPropertyOf-def)), we do not include these three subPropertyOf relations in the provided RDFS implementation to avoid inconsistencies when reasoning with OWL 2 and OWL DL. Instead, we provide them in a separate ‘supplementary’ RDFS file which one can use if such inconsistencies are not expected.\n\nIn addition, since in the current practice, the property `rdfs:label` is widely used to denote appellations (see CRM-SIG Issue 394 (http://cidoc-crm.org/Issue/ID-394-solution-for-dualism-of-e41-appellation-and-rdfslabel)), the following `subPropertyOf` relation was also included in the supplementary RDFS file:\n\n- `rdfs:label` subPropertyOf `P1 is identified by`\n\nNote that according to the RDF Schema 1.1 specification, the domain (or range) of a property does not necessarily need to be 'subClassOf' or 'equal' to the domain (or range) of its superproperties. By including this subproperty relation, one can either directly use `rdfs:label` for providing a non-URI identifier/appellation for an instance of `E1 CRM Entity`, or use `P1 is identified by` for associating an additional URI-identifier with an instance of `E1 CRM Entity`, or use `P1 is identified by` and create an intermediate node (i.e. a URI-identifier for instance of `E41_Appellation`) for providing more detailed information about this appellation.\n\n#### **D. Implementing Value Intervals**\n\nThe following are property pairs needed to simulate the interval-valued primitive values foreseen by the CRM:\n\n> D1. addition of two new properties, defined as subproperties of `E52 Time-Span. P81 ongoing throughout: E61 Time Primitive`, for the 'maximum known temporal extent' boundaries specification of `E61 Time Primitive`.\n\nAs a result, we have created the following property definitions:\n\n- `E52 Time-Span. P81a end of the begin: rdfs:Literal` (subPropertyOf `E52 Time-Span. P81 ongoing throughout: E61 Time Primitive`)\n- `E52 Time-Span. P81b begin of the end: rdfs:Literal` (subPropertyOf `E52 Time-Span. P81 ongoing throughout: E61 Time Primitive`)\n\n> D2. addition of two new properties, defined as subproperties of `E52 Time-Span. P82 at some time within: E61 Time Primitive`, for the 'minimum outer bounds' specification of `E61 Time Primitive`.\n\nConsequently, we have created the following property definitions:\n\n- `E52 Time-Span. P82a begin of the begin: rdfs:Literal` (subPropertyOf `E52 Time-Span. P82 at some time within: E61 Time Primitive`)\n- `E52 Time-Span. P82b end of the end: rdfs:Literal` (subPropertyOf `E52 Time-Span. P82 at some time within: E61 Time Primitive`)\n\n> D3. addition of two new properties, defined as subproperties of `E54 Dimension. P90 has value: E60 Number`, for the upper and lower boundaries specification of `E60 Number`.\n\nConsequently, we have created the following property definitions:\n\n- `E54 Dimension. P90a has lower value limit: rdfs:Literal` (subPropertyOf `E54 Dimension. P90 has value: E60 Number`)\n- `E54 Dimension. P90b has upper value limit: rdfs:Literal` (subPropertyOf `E54 Dimension. P90 has value: E60 Number`)\n\n#### **E. Multiple ISA custom declaration Classes**\n\nThe following are declarations of frequently used multiple instantiations as classes with respective multiple IsA (so far only one):\n\n> E1. addition of a new class, defined as subClassOf `E41 Appellation` and `E33 Linguistic Object`, for all Appellations being regarded\nspecific to or characteristic for a language group and being described indirectly via a URI.\n\nAs a result, we have created the following class definition:\n\n- `E33_E41_Linguistic_Appellation` subClass of `E33_Linguistic_Object` and `E41_Appellation`\n\n#### **F. Translations and Scope notes**\n\n> F1. **Translations** Each RDFS Class or Property definition is accompanied by a set of translations expressed as rdfs:labels separated by xml:lang tags. The translation label used for each language is **the most recent** still **valid** translation. Still valid translation may be interpreted in the following ways:\n\n- The English label of the `CurrentVersion` that the current RDFS file is referring to is *almost equal* (accepting only differences regarding multiple spaces) to the English label of the `TranslationVersion` that the translated label was created for. For example, in order to accept a translation for `E22 Human-Made Object` in the CurrentVersion (7.1.3) we should have a translation for E22 that was created based on a CIDOC version that used the same name for E22. The class name of E22 was changed from `E22 Man-Made Object` to `E22 Human-Made Object` in version 6.2.7. So the only **valid** translations would be these that were created based on version 6.2.7 or later. Currently no such translation has been created, so `E22 Human-Made Object` in CurrentVersion (7.1.3) does not define any translation in the RDFS file.\n\n- Another option is to qualify translations as **valid** based on the scope note comparison of `CurrentVersion` and `TranslationVersion`. Since scope notes include formatting information, the comparison should ignore formatting changes.\n\nCurrently in this version we follow the option to qualify translations as valid based on the comparison of the respective labels in the corresponding CIDOC versions.\n\n> F2. **Scope notes** are defined as rdfs:comment and include only the text of the official CIDOC-CRM version in English language. Since scope notes are not just simple texts but include formatting data, a simple removal of the formatting data does not always produce a readable format. Therefore we followed the below simple conventions for the transformation of CIDOC-CRM scope note text into a readable rdfs:comment:\n\n- Each Paragraph defines a new line\n- Each element in an unordered list defines a new line\n- Each element in an ordered list defines a new line prefixed with `'{order}. '`\n- Each superscript text is separated from its base with `'-'`\n- Each subscript text is separated from its base with `'_'` (none found)\n\n> F3. **Scope notes of Inverse Properties**. Scope notes for the inverse/backwards direction of properties are not defined as they are covered by the definition of the direct/forward direction definition. Whenever the direct/forward property direction of a property `Pxxx` is not defined due to policy **B1**, then its scope note is used as scope note for the inverse/backwards property `Pxxxi`, and labeled as `Scope note for 'Pxxx':`.\n\nAs a result, the direct/forward property definition was used for the rdfs:comment definition of\n\n- `E92 Spacetime Volume. P169i spacetime volume is defined by: rdfs:Literal`\n- `E52 Time-Span. P170i time is defined by: rdfs:Literal`",
+      "homepage": "http://www.cidoc-crm.org/cidoc-crm/",
       "prefix": "crm",
       "uri_format": "http://www.cidoc-crm.org/cidoc-crm/$1"
     }
@@ -28251,6 +28300,15 @@
     "uri_format": "http://www.w3.org/2011/content#$1",
     "version": "2011",
     "zazuko": {
+      "artifacts": [
+        {
+          "type": "rdf",
+          "url": "https://github.com/zazuko/rdf-vocabularies/blob/master/ontologies/cnt/cnt.nq"
+        }
+      ],
+      "description": "Representing Content in RDF as defined by http://www.w3.org/TR/Content-in-RDF/",
+      "homepage": "http://www.w3.org/2011/content#",
+      "name": "Representing Content in RDF",
       "prefix": "cnt",
       "uri_format": "http://www.w3.org/2011/content#$1"
     }
@@ -34911,6 +34969,15 @@
       "zazuko": "csvw"
     },
     "zazuko": {
+      "artifacts": [
+        {
+          "type": "rdf",
+          "url": "https://github.com/zazuko/rdf-vocabularies/blob/master/ontologies/csvw/csvw.nq"
+        }
+      ],
+      "description": "This document describes the RDFS vocabulary description used in the Metadata Vocabulary for Tabular Data [[tabular-metadata]] along with the default JSON-LD Context.",
+      "homepage": "http://www.w3.org/ns/csvw#",
+      "name": "CSVW Namespace Vocabulary Terms",
       "prefix": "csvw",
       "uri_format": "http://www.w3.org/ns/csvw#$1"
     }
@@ -37497,6 +37564,15 @@
     "name": "DBPedia Ontology",
     "uri_format": "https://dbpedia.org/ontology/$1",
     "zazuko": {
+      "artifacts": [
+        {
+          "type": "rdf",
+          "url": "https://github.com/zazuko/rdf-vocabularies/blob/master/ontologies/dbo/dbo.nq"
+        }
+      ],
+      "description": "The DBpedia ontology provides the classes and properties used in the DBpedia data set.",
+      "homepage": "http://dbpedia.org/ontology/",
+      "name": "The DBpedia Ontology",
       "prefix": "dbo",
       "uri_format": "http://dbpedia.org/ontology/$1"
     }
@@ -38075,6 +38151,14 @@
     ],
     "uri_format": "http://purl.org/dc/elements/1.1/$1",
     "zazuko": {
+      "artifacts": [
+        {
+          "type": "rdf",
+          "url": "https://github.com/zazuko/rdf-vocabularies/blob/master/ontologies/dc11/dc11.nq"
+        }
+      ],
+      "homepage": "http://purl.org/dc/elements/1.1/",
+      "name": "Dublin Core Metadata Element Set, Version 1.1",
       "prefix": "dc11",
       "uri_format": "http://purl.org/dc/elements/1.1/$1"
     }
@@ -38174,6 +38258,14 @@
     "rdf_uri_format": "http://purl.org/dc/dcam/$1",
     "uri_format": "http://purl.org/dc/dcam/$1",
     "zazuko": {
+      "artifacts": [
+        {
+          "type": "rdf",
+          "url": "https://github.com/zazuko/rdf-vocabularies/blob/master/ontologies/dcam/dcam.nq"
+        }
+      ],
+      "homepage": "http://purl.org/dc/dcam/",
+      "name": "Metadata terms for vocabulary description",
       "prefix": "dcam",
       "uri_format": "http://purl.org/dc/dcam/$1"
     }
@@ -38299,6 +38391,15 @@
     },
     "uri_format": "http://www.w3.org/ns/dcat#$1",
     "zazuko": {
+      "artifacts": [
+        {
+          "type": "rdf",
+          "url": "https://github.com/zazuko/rdf-vocabularies/blob/master/ontologies/dcat/dcat.nq"
+        }
+      ],
+      "description": "DCAT is an RDF vocabulary designed to facilitate interoperability between data catalogs published on the Web. By using DCAT to describe datasets in data catalogs, publishers increase discoverability and enable applications easily to consume metadata from multiple catalogs. It further enables decentralized publishing of catalogs and facilitates federated dataset search across sites. Aggregated DCAT metadata can serve as a manifest file to facilitate digital preservation. DCAT is defined at http://www.w3.org/TR/vocab-dcat/. Any variance between that normative document and this schema is an error in this schema.",
+      "homepage": "http://www.w3.org/ns/dcat#",
+      "name": "The data catalog vocabulary",
       "prefix": "dcat",
       "uri_format": "http://www.w3.org/ns/dcat#$1"
     }
@@ -38480,6 +38581,14 @@
     ],
     "uri_format": "http://purl.org/dc/dcmitype/$1",
     "zazuko": {
+      "artifacts": [
+        {
+          "type": "rdf",
+          "url": "https://github.com/zazuko/rdf-vocabularies/blob/master/ontologies/dcmitype/dcmitype.nq"
+        }
+      ],
+      "homepage": "http://purl.org/dc/dcmitype/",
+      "name": "DCMI Type Vocabulary",
       "prefix": "dcmitype",
       "uri_format": "http://purl.org/dc/dcmitype/$1"
     }
@@ -38629,6 +38738,14 @@
     },
     "uri_format": "http://purl.org/dc/terms/$1",
     "zazuko": {
+      "artifacts": [
+        {
+          "type": "rdf",
+          "url": "https://github.com/zazuko/rdf-vocabularies/blob/master/ontologies/dcterms/dcterms.nq"
+        }
+      ],
+      "homepage": "http://purl.org/dc/terms/",
+      "name": "DCMI Metadata Terms - other",
       "prefix": "dcterms",
       "uri_format": "http://purl.org/dc/terms/$1"
     }
@@ -42600,6 +42717,15 @@
     },
     "uri_format": "http://usefulinc.com/ns/doap#$1",
     "zazuko": {
+      "artifacts": [
+        {
+          "type": "rdf",
+          "url": "https://github.com/zazuko/rdf-vocabularies/blob/master/ontologies/doap/doap.nq"
+        }
+      ],
+      "description": "The Description of a Project (DOAP) vocabulary, described using W3C RDF Schema and the Web Ontology Language.",
+      "homepage": "http://usefulinc.com/ns/doap#",
+      "name": "Description of a Project (DOAP) vocabulary",
       "prefix": "doap",
       "uri_format": "http://usefulinc.com/ns/doap#$1"
     }
@@ -44497,6 +44623,15 @@
       "zazuko": "dqv"
     },
     "zazuko": {
+      "artifacts": [
+        {
+          "type": "rdf",
+          "url": "https://github.com/zazuko/rdf-vocabularies/blob/master/ontologies/dqv/dqv.nq"
+        }
+      ],
+      "description": "The Data Quality Vocabulary (DQV) is seen as an extension to DCAT to cover the quality of the data, how frequently is it updated, whether it accepts user corrections, persistence commitments etc. When used by publishers, this vocabulary will foster trust in the data amongst developers.",
+      "homepage": "http://www.w3.org/ns/dqv#",
+      "name": "Data Quality Vocabulary",
       "prefix": "dqv",
       "uri_format": "http://www.w3.org/ns/dqv#$1"
     }
@@ -46627,6 +46762,15 @@
     "rdf_uri_format": "http://www.w3.org/ns/earl#$1",
     "uri_format": "http://www.w3.org/ns/earl#$1",
     "zazuko": {
+      "artifacts": [
+        {
+          "type": "rdf",
+          "url": "https://github.com/zazuko/rdf-vocabularies/blob/master/ontologies/earl/earl.nq"
+        }
+      ],
+      "description": "Formal schema of the Evaluation and Report Language (EARL) 1.0",
+      "homepage": "http://www.w3.org/ns/earl#",
+      "name": "Evaluation and Report Language (EARL) 1.0 Schema",
       "prefix": "earl",
       "uri_format": "http://www.w3.org/ns/earl#$1"
     }
@@ -57440,6 +57584,15 @@
       "zazuko": "exif"
     },
     "zazuko": {
+      "artifacts": [
+        {
+          "type": "rdf",
+          "url": "https://github.com/zazuko/rdf-vocabularies/blob/master/ontologies/exif/exif.nq"
+        }
+      ],
+      "description": "Vocabulary to describe an Exif format picture data. All Exif 2.2 tags are defined as RDF properties, as well as several terms to help this schema.",
+      "homepage": "http://www.w3.org/2003/12/exif/ns#",
+      "name": "Exif data description vocabulary",
       "prefix": "exif",
       "uri_format": "http://www.w3.org/2003/12/exif/ns#$1"
     }
@@ -62216,6 +62369,15 @@
     },
     "uri_format": "http://xmlns.com/foaf/0.1/$1",
     "zazuko": {
+      "artifacts": [
+        {
+          "type": "rdf",
+          "url": "https://github.com/zazuko/rdf-vocabularies/blob/master/ontologies/foaf/foaf.nq"
+        }
+      ],
+      "description": "The Friend of a Friend (FOAF) RDF vocabulary, described using W3C RDF Schema and the Web Ontology Language.",
+      "homepage": "http://xmlns.com/foaf/0.1/",
+      "name": "Friend of a Friend (FOAF) vocabulary",
       "prefix": "foaf",
       "uri_format": "http://xmlns.com/foaf/0.1/$1"
     }
@@ -63207,6 +63369,13 @@
     "repository": "https://github.com/sparontologies/frbr",
     "uri_format": "http://purl.org/vocab/frbr/core#$1",
     "zazuko": {
+      "artifacts": [
+        {
+          "type": "rdf",
+          "url": "https://github.com/zazuko/rdf-vocabularies/blob/master/ontologies/frbr/frbr.nq"
+        }
+      ],
+      "homepage": "http://purl.org/spar/frbr.nt",
       "prefix": "frbr",
       "uri_format": "http://purl.org/vocab/frbr/core#$1"
     }
@@ -67830,6 +67999,15 @@
     "name": "GeoNames Ontology",
     "part_of_database": "geonames",
     "zazuko": {
+      "artifacts": [
+        {
+          "type": "rdf",
+          "url": "https://github.com/zazuko/rdf-vocabularies/blob/master/ontologies/gn/gn.nq"
+        }
+      ],
+      "description": "The Geonames ontologies provides elements of description for geographical features, in particular those defined in the geonames.org data base",
+      "homepage": "http://www.geonames.org/ontology#",
+      "name": "The Geonames ontology",
       "prefix": "gn",
       "uri_format": "http://www.geonames.org/ontology#$1"
     }
@@ -67898,6 +68076,15 @@
       "uri_format": "http://www.opengis.net/ont/geosparql#$1"
     },
     "zazuko": {
+      "artifacts": [
+        {
+          "type": "rdf",
+          "url": "https://github.com/zazuko/rdf-vocabularies/blob/master/ontologies/geo/geo.nq"
+        }
+      ],
+      "description": "An RDF/OWL vocabulary for representing spatial information",
+      "homepage": "http://www.opengis.net/ont/geosparql#",
+      "name": "GeoSPARQL Ontology",
       "prefix": "geo",
       "uri_format": "http://www.opengis.net/ont/geosparql#$1"
     }
@@ -67911,6 +68098,13 @@
     },
     "name": "GeoSPARQL Function",
     "zazuko": {
+      "artifacts": [
+        {
+          "type": "rdf",
+          "url": "https://github.com/zazuko/rdf-vocabularies/blob/master/ontologies/geof/geof.nq"
+        }
+      ],
+      "homepage": "http://www.opengis.net/def/function/geosparql/",
       "prefix": "geof",
       "uri_format": "http://www.opengis.net/def/function/geosparql/$1"
     }
@@ -67924,6 +68118,13 @@
     },
     "name": "GeoSPARQL Rule",
     "zazuko": {
+      "artifacts": [
+        {
+          "type": "rdf",
+          "url": "https://github.com/zazuko/rdf-vocabularies/blob/master/ontologies/geor/geor.nq"
+        }
+      ],
+      "homepage": "http://www.opengis.net/def/rule/geosparql/",
       "prefix": "geor",
       "uri_format": "http://www.opengis.net/def/rule/geosparql/$1"
     }
@@ -69135,7 +69336,8 @@
     },
     "mappings": {
       "lov": "gist",
-      "tib.ts": "gist"
+      "tib.ts": "gist",
+      "zazuko": "gist"
     },
     "tib.ts": {
       "description": "gist is a minimalist upper ontology created by Semantic Arts.",
@@ -69156,6 +69358,17 @@
       "name": "gist",
       "prefix": "gist",
       "tracker": "https://github.com/semanticarts/gist/issues",
+      "uri_format": "https://w3id.org/semanticarts/ns/ontology/gist/$1"
+    },
+    "zazuko": {
+      "artifacts": [
+        {
+          "type": "rdf",
+          "url": "https://github.com/zazuko/rdf-vocabularies/blob/master/ontologies/gist/gist.nq"
+        }
+      ],
+      "homepage": "https://w3id.org/semanticarts/ontology/gistCore.ttl",
+      "prefix": "gist",
       "uri_format": "https://w3id.org/semanticarts/ns/ontology/gist/$1"
     }
   },
@@ -73132,6 +73345,15 @@
     "name": "GoodRelations",
     "uri_format": "http://purl.org/goodrelations/v1#$1",
     "zazuko": {
+      "artifacts": [
+        {
+          "type": "rdf",
+          "url": "https://github.com/zazuko/rdf-vocabularies/blob/master/ontologies/gr/gr.nq"
+        }
+      ],
+      "description": "The GoodRelations ontology provides the vocabulary for annotating e-commerce offerings (1) to sell, lease, repair, dispose, or maintain commodity products and (2) to provide commodity services.\n\nGoodRelations allows describing the relationship between (1) Web resources, (2) offerings made by those Web resources, (3) legal entities, (4) prices, (5) terms and conditions, and the aforementioned ontologies for products and services (6).\n \nFor more information, see http://purl.org/goodrelations/\n\nNote: The base URI of GoodRelations is http://purl.org/goodrelations/v1. Please make sure you are only using element identifiers in this namespace, e.g. http://purl.org/goodrelations/v1#BusinessEntity. There may be copies of the ontology file on the Web which can be retrieved from other locations, BUT THOSE LOCATIONS MUST NOT BE USED AS THE BASIS OF IDENTIFIERS.\n\nIf you use GoodRelations for scientific purposes, please cite our paper:\n\nHepp, Martin: GoodRelations: An Ontology for Describing Products and Services Offers on the Web, Proceedings of the 16th International Conference on Knowledge Engineering and Knowledge Management (EKAW2008), September 29 - October 3, 2008, Acitrezza, Italy, Springer LNCS, Vol. 5268, pp. 332-347.\n\nPDF at http://www.heppnetz.de/publications/",
+      "homepage": "http://www.heppnetz.de/ontologies/goodrelations/v1.owl",
+      "name": "The GoodRelations Vocabulary for Semantic Web-based E-Commerce",
       "prefix": "gr",
       "uri_format": "http://purl.org/goodrelations/v1#$1"
     }
@@ -73625,6 +73847,13 @@
     "rdf_uri_format": "http://www.w3.org/2003/g/data-view#$1",
     "uri_format": "http://www.w3.org/2003/g/data-view#$1",
     "zazuko": {
+      "artifacts": [
+        {
+          "type": "rdf",
+          "url": "https://github.com/zazuko/rdf-vocabularies/blob/master/ontologies/grddl/grddl.nq"
+        }
+      ],
+      "homepage": "http://www.w3.org/2003/g/data-view#",
       "prefix": "grddl",
       "uri_format": "http://www.w3.org/2003/g/data-view#$1"
     }
@@ -74084,6 +74313,13 @@
     "name": "GS1 Web Vocabulary",
     "repository": "https://github.com/gs1/WebVoc",
     "zazuko": {
+      "artifacts": [
+        {
+          "type": "rdf",
+          "url": "https://github.com/zazuko/rdf-vocabularies/blob/master/ontologies/gs1/gs1.nq"
+        }
+      ],
+      "homepage": "https://ref.gs1.org/voc/data/gs1Voc.ttl",
       "prefix": "gs1",
       "uri_format": "https://gs1.org/voc/$1"
     }
@@ -80836,6 +81072,15 @@
       "zazuko": "hydra"
     },
     "zazuko": {
+      "artifacts": [
+        {
+          "type": "rdf",
+          "url": "https://github.com/zazuko/rdf-vocabularies/blob/master/ontologies/hydra/hydra.nq"
+        }
+      ],
+      "description": "The Hydra Core Vocabulary is a lightweight vocabulary to create hypermedia-driven Web APIs. By specifying a number of concepts commonly used in Web APIs it enables the creation of generic API clients.",
+      "homepage": "http://www.w3.org/ns/hydra/core#",
+      "name": "The Hydra Core Vocabulary",
       "prefix": "hydra",
       "uri_format": "http://www.w3.org/ns/hydra/core#$1"
     }
@@ -81333,6 +81578,13 @@
     },
     "name": "iCalendar with Time Zone",
     "zazuko": {
+      "artifacts": [
+        {
+          "type": "rdf",
+          "url": "https://github.com/zazuko/rdf-vocabularies/blob/master/ontologies/ical/ical.nq"
+        }
+      ],
+      "homepage": "http://www.w3.org/2002/12/cal/icaltzd.rdf",
       "prefix": "ical",
       "uri_format": "http://www.w3.org/2002/12/cal/icaltzd#$1"
     }
@@ -94481,6 +94733,15 @@
     },
     "name": "Linked Data Platform Vocabulary",
     "zazuko": {
+      "artifacts": [
+        {
+          "type": "rdf",
+          "url": "https://github.com/zazuko/rdf-vocabularies/blob/master/ontologies/ldp/ldp.nq"
+        }
+      ],
+      "description": "Vocabulary URIs defined in the Linked Data Platform (LDP) namespace.",
+      "homepage": "http://www.w3.org/ns/ldp#",
+      "name": "The W3C Linked Data Platform (LDP) Vocabulary",
       "prefix": "ldp",
       "uri_format": "http://www.w3.org/ns/ldp#$1"
     }
@@ -94790,6 +95051,15 @@
     ],
     "uri_format": "http://lexvo.org/ontology#$1",
     "zazuko": {
+      "artifacts": [
+        {
+          "type": "rdf",
+          "url": "https://github.com/zazuko/rdf-vocabularies/blob/master/ontologies/lvont/lvont.nq"
+        }
+      ],
+      "description": "Lexvo.org Ontology",
+      "homepage": "http://lexvo.org/ontology#",
+      "name": "Lexvo.org Ontology",
       "prefix": "lvont",
       "uri_format": "http://lexvo.org/ontology#$1"
     }
@@ -97369,6 +97639,15 @@
       "zazuko": "locn"
     },
     "zazuko": {
+      "artifacts": [
+        {
+          "type": "rdf",
+          "url": "https://github.com/zazuko/rdf-vocabularies/blob/master/ontologies/locn/locn.nq"
+        }
+      ],
+      "description": "This is a new version of the final draft published by the European Commission in May 2012, revised according to the results of the ISA Core Location Pilot (see Section Change History for the list of changes). It is currently under the control of the Locations and Addresses Community Group, but is not under active development or review. Comments and queries should be sent to that group via public-locadd@w3.org. Terms defined here may be deprecated by that or future groups but will not disappear or their definition change.",
+      "homepage": "https://semiceu.github.io/Core-Location-Vocabulary/releases/w3c/locn.ttl",
+      "name": "ISA Programme Location Core Vocabulary",
       "prefix": "locn",
       "uri_format": "http://www.w3.org/ns/locn#$1"
     }
@@ -97391,6 +97670,14 @@
     },
     "repository": "https://github.com/linkeddata/swap",
     "zazuko": {
+      "artifacts": [
+        {
+          "type": "rdf",
+          "url": "https://github.com/zazuko/rdf-vocabularies/blob/master/ontologies/log/log.nq"
+        }
+      ],
+      "description": "http://www.w3.org/2000/10/swap/log#",
+      "homepage": "http://www.w3.org/2000/10/swap/log#",
       "prefix": "log",
       "uri_format": "http://www.w3.org/2000/10/swap/log#$1"
     }
@@ -98516,6 +98803,15 @@
     },
     "uri_format": "http://w3id.org/nfdi4ing/metadata4ing#$1",
     "zazuko": {
+      "artifacts": [
+        {
+          "type": "rdf",
+          "url": "https://github.com/zazuko/rdf-vocabularies/blob/master/ontologies/m4i/m4i.nq"
+        }
+      ],
+      "description": "Metadata4Ing defines classes and properties or reuses such classes and properties from other ontologies to describe research processes and research data management in NFDI4Ing.\nNew concepts and properties are located in the namespace of Metadata4Ing.\nMetadata4Ing does not import complete ontologies for the sake of relevance, readability, understandability and usability by and for engineers.\nInstead, it tries to make re-use of existing identifiers for classes and properties by re-using all or a relevant subset of the axioms from the original ontology.\nThese statements have been extracted in different ways, e.g. by using Protégé tools importing an ontology and copying axioms of relevant items to Metadata4Ing or by download from data services or raw files of ontologies and manual copypasting.\nIn some cases there was a need to extend or modify the original set of statements about an entity, e.g. because labels and definitions were expressed with a different owl:AnnotationProperty than the rest of Metadata4Ing, or because a rdfs:label or a rdfs:comment in any of the languages we would like to support was missing.\nAny editorial changes on elements from external ontologies are declared in Metadata4Ing by an annotation with skos:editorialNote at item-level.\nTo get the original set of statements we encourage to visit the original namespace of the respective item.\nMetadata4Ing reuses elements from the following ontologies:\n- BIRO = Bibliographic Reference Ontology\n- CR = Croissant\n- DCAT = Data Catalog\n- DCC = Digital Calibration Certificate\n- DCTERMS = Dublin Core Terms\n- EMMO = European Materials and Modelling Ontology\n- FOAF = Friend of a Friend\n- OBO = Open Biological and Biomedical Ontologies:\n  - BFO = Basic Formal Ontology\n  - RO = Relation Ontology\n- OWL = Web Ontology Language\n- PIMS-II = PIMS Interoperability Infrastructure\n- PROV = Provenance Namespace\n- QUDT = Quantities, Units, Dimensions and Types\n- RDF = Resource Description Framework\n- RDFS = RDF Schema\n- SCHEMA = schema.org\n- SIO = Semanticscience Integrated Ontology\n- SIRP = SI Reference Point\n- SIS = Digital System of Units Ontology\n- SIX = Digital System of Units Schema\n- SKOS = Simple Knowledge Organization System\n- SSN = Semantic Sensor Network Ontology\n- XSD = XML Schema Definition",
+      "homepage": "http://w3id.org/nfdi4ing/metadata4ing#",
+      "name": "Metadata4Ing: An ontology for describing the generation of research data within a scientific activity.",
       "prefix": "m4i",
       "uri_format": "http://w3id.org/nfdi4ing/metadata4ing#$1"
     }
@@ -120797,6 +121093,15 @@
     "preferred_prefix": "oa",
     "uri_format": "http://www.w3.org/ns/oa#$1",
     "zazuko": {
+      "artifacts": [
+        {
+          "type": "rdf",
+          "url": "https://github.com/zazuko/rdf-vocabularies/blob/master/ontologies/oa/oa.nq"
+        }
+      ],
+      "description": "The Web Annotation ontology defines the terms of the Web Annotation vocabulary. Any changes to this document MUST be from a Working Group in the W3C that has established expertise in the area.",
+      "homepage": "http://www.w3.org/ns/oa#",
+      "name": "Web Annotation Ontology",
       "prefix": "oa",
       "uri_format": "http://www.w3.org/ns/oa#$1"
     }
@@ -123439,6 +123744,13 @@
     "rdf_uri_format": "https://ogp.me/ns#$1",
     "uri_format": "https://ogp.me/ns#$1",
     "zazuko": {
+      "artifacts": [
+        {
+          "type": "rdf",
+          "url": "https://github.com/zazuko/rdf-vocabularies/blob/master/ontologies/og/og.nq"
+        }
+      ],
+      "homepage": "https://ogp.me/ns/ogp.me.ttl",
       "prefix": "og",
       "uri_format": "http://ogp.me/ns#$1"
     }
@@ -123454,6 +123766,13 @@
     "name": "Open Geospatial Consortium Simple Features Vocabulary",
     "uri_format": "http://www.opengis.net/ont/sf#$1",
     "zazuko": {
+      "artifacts": [
+        {
+          "type": "rdf",
+          "url": "https://github.com/zazuko/rdf-vocabularies/blob/master/ontologies/sf/sf.nq"
+        }
+      ],
+      "homepage": "http://schemas.opengis.net/sf/1.0/simple_features_geometries.rdf",
       "prefix": "sf",
       "uri_format": "http://www.opengis.net/ont/sf#$1"
     }
@@ -124513,6 +124832,15 @@
     },
     "name": "Solid OpenID Connect vocabulary",
     "zazuko": {
+      "artifacts": [
+        {
+          "type": "rdf",
+          "url": "https://github.com/zazuko/rdf-vocabularies/blob/master/ontologies/oidc/oidc.nq"
+        }
+      ],
+      "description": "The OpenID Connect vocabulary used by the Solid-OIDC authentication specification.",
+      "homepage": "http://www.w3.org/ns/solid/oidc#",
+      "name": "Solid OIDC",
       "prefix": "oidc",
       "uri_format": "http://www.w3.org/ns/solid/oidc#$1"
     }
@@ -128714,6 +129042,15 @@
       "uri_format": "http://www.w3.org/ns/org#$1"
     },
     "zazuko": {
+      "artifacts": [
+        {
+          "type": "rdf",
+          "url": "https://github.com/zazuko/rdf-vocabularies/blob/master/ontologies/org/org.nq"
+        }
+      ],
+      "description": "Vocabulary for describing organizational structures, specializable to a broad variety of types of organization.",
+      "homepage": "http://www.w3.org/ns/org#",
+      "name": "Core organization ontology",
       "prefix": "org",
       "uri_format": "http://www.w3.org/ns/org#$1"
     }
@@ -130353,6 +130690,15 @@
     "rdf_uri_format": "http://www.w3.org/2002/07/owl#$1",
     "uri_format": "http://www.w3.org/2002/07/owl#$1",
     "zazuko": {
+      "artifacts": [
+        {
+          "type": "rdf",
+          "url": "https://github.com/zazuko/rdf-vocabularies/blob/master/ontologies/owl/owl.nq"
+        }
+      ],
+      "description": "This ontology partially describes the built-in classes and\r\n  properties that together form the basis of the RDF/XML syntax of OWL 2.\r\n  The content of this ontology is based on Tables 6.1 and 6.2\r\n  in Section 6.4 of the OWL 2 RDF-Based Semantics specification,\r\n  available at http://www.w3.org/TR/owl2-rdf-based-semantics/.\r\n  Please note that those tables do not include the different annotations\r\n  (labels, comments and rdfs:isDefinedBy links) used in this file.\r\n  Also note that the descriptions provided in this ontology do not\r\n  provide a complete and correct formal description of either the syntax\r\n  or the semantics of the introduced terms (please see the OWL 2\r\n  recommendations for the complete and normative specifications).\r\n  Furthermore, the information provided by this ontology may be\r\n  misleading if not used with care. This ontology SHOULD NOT be imported\r\n  into OWL ontologies. Importing this file into an OWL 2 DL ontology\r\n  will cause it to become an OWL 2 Full ontology and may have other,\r\n  unexpected, consequences.",
+      "homepage": "http://www.w3.org/2002/07/owl#",
+      "name": "The OWL 2 Schema vocabulary (OWL 2)",
       "prefix": "owl",
       "uri_format": "http://www.w3.org/2002/07/owl#$1"
     }
@@ -144574,6 +144920,15 @@
     },
     "uri_format": "http://www.w3.org/ns/prov#$1",
     "zazuko": {
+      "artifacts": [
+        {
+          "type": "rdf",
+          "url": "https://github.com/zazuko/rdf-vocabularies/blob/master/ontologies/prov/prov.nq"
+        }
+      ],
+      "description": "This document is published by the Provenance Working Group (http://www.w3.org/2011/prov/wiki/Main_Page).\n\nIf you wish to make comments regarding this document, please send them to public-prov-comments@w3.org (subscribe public-prov-comments-request@w3.org, archives http://lists.w3.org/\nArchives/Public/public-prov-comments/). All feedback is welcome.",
+      "homepage": "http://www.w3.org/ns/prov#",
+      "name": "W3C PROVenance Interchange",
       "prefix": "prov",
       "uri_format": "http://www.w3.org/ns/prov#$1"
     }
@@ -146833,6 +147188,15 @@
     "repository": "https://github.com/UKGovLD/publishing-statistical-data",
     "uri_format": "http://purl.org/linked-data/cube#$1",
     "zazuko": {
+      "artifacts": [
+        {
+          "type": "rdf",
+          "url": "https://github.com/zazuko/rdf-vocabularies/blob/master/ontologies/qb/qb.nq"
+        }
+      ],
+      "description": "This vocabulary allows multi-dimensional data, such as statistics, to be published in RDF. It is based on the core information model from SDMX (and thus also DDI).",
+      "homepage": "http://purl.org/linked-data/cube#",
+      "name": "Vocabulary for multi-dimensional (e.g. statistical) data publishing",
       "prefix": "qb",
       "uri_format": "http://purl.org/linked-data/cube#$1"
     }
@@ -147066,6 +147430,13 @@
     },
     "uri_format": "http://qudt.org/schema/qudt#$1",
     "zazuko": {
+      "artifacts": [
+        {
+          "type": "rdf",
+          "url": "https://github.com/zazuko/rdf-vocabularies/blob/master/ontologies/qudt/qudt.nq"
+        }
+      ],
+      "homepage": "http://qudt.org/3.1.0/schema/datatype",
       "prefix": "qudt",
       "uri_format": "http://qudt.org/schema/qudt/$1"
     }
@@ -147914,6 +148285,15 @@
     "preferred_prefix": "rdf",
     "uri_format": "http://www.w3.org/1999/02/22-rdf-syntax-ns#$1",
     "zazuko": {
+      "artifacts": [
+        {
+          "type": "rdf",
+          "url": "https://github.com/zazuko/rdf-vocabularies/blob/master/ontologies/rdf/rdf.nq"
+        }
+      ],
+      "description": "This is the RDF Schema for the RDF vocabulary terms in the RDF Namespace, defined in RDF 1.1 Concepts.",
+      "homepage": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+      "name": "The RDF Concepts Vocabulary (RDF)",
       "prefix": "rdf",
       "uri_format": "http://www.w3.org/1999/02/22-rdf-syntax-ns#$1"
     }
@@ -147952,6 +148332,15 @@
     "name": "RDFa Vocabulary for Term and Prefix Assignment, and for Processor Graph Reporting",
     "uri_format": "http://www.w3.org/ns/rdfa#$1",
     "zazuko": {
+      "artifacts": [
+        {
+          "type": "rdf",
+          "url": "https://github.com/zazuko/rdf-vocabularies/blob/master/ontologies/rdfa/rdfa.nq"
+        }
+      ],
+      "description": "This document describes the RDFa Vocabulary for Term and Prefix Assignment. The Vocabulary is used to modify RDFa 1.1 processing behavior.",
+      "homepage": "http://www.w3.org/ns/rdfa#",
+      "name": "RDFa Vocabulary for Term and Prefix Assignment, and for Processor Graph Reporting",
       "prefix": "rdfa",
       "uri_format": "http://www.w3.org/ns/rdfa#$1"
     }
@@ -148013,6 +148402,14 @@
     "preferred_prefix": "rdfs",
     "uri_format": "http://www.w3.org/2000/01/rdf-schema#$1",
     "zazuko": {
+      "artifacts": [
+        {
+          "type": "rdf",
+          "url": "https://github.com/zazuko/rdf-vocabularies/blob/master/ontologies/rdfs/rdfs.nq"
+        }
+      ],
+      "homepage": "http://www.w3.org/2000/01/rdf-schema#",
+      "name": "The RDF Schema vocabulary (RDFS)",
       "prefix": "rdfs",
       "uri_format": "http://www.w3.org/2000/01/rdf-schema#$1"
     }
@@ -156090,6 +156487,13 @@
     },
     "uri_format": "https://schema.org/$1",
     "zazuko": {
+      "artifacts": [
+        {
+          "type": "rdf",
+          "url": "https://github.com/zazuko/rdf-vocabularies/blob/master/ontologies/schema/schema.nq"
+        }
+      ],
+      "homepage": "https://schema.org/version/latest/schemaorg-current-http.nt",
       "prefix": "schema",
       "uri_format": "http://schema.org/$1"
     }
@@ -156945,6 +157349,13 @@
       "zazuko": "sd"
     },
     "zazuko": {
+      "artifacts": [
+        {
+          "type": "rdf",
+          "url": "https://github.com/zazuko/rdf-vocabularies/blob/master/ontologies/sd/sd.nq"
+        }
+      ],
+      "homepage": "http://www.w3.org/ns/sparql-service-description#",
       "prefix": "sd",
       "uri_format": "http://www.w3.org/ns/sparql-service-description#$1"
     }
@@ -157207,6 +157618,15 @@
       "zazuko": "sdmx"
     },
     "zazuko": {
+      "artifacts": [
+        {
+          "type": "rdf",
+          "url": "https://github.com/zazuko/rdf-vocabularies/blob/master/ontologies/sdmx/sdmx.nq"
+        }
+      ],
+      "description": "This vocabulary extends the data cube vocabulary to support publication of statistical data in RDF, using an information model based on SDMX",
+      "homepage": "http://purl.org/linked-data/sdmx#",
+      "name": "Vocabulary for publishing SDMX statistical data in RDF",
       "prefix": "sdmx",
       "uri_format": "http://purl.org/linked-data/sdmx#$1"
     }
@@ -159266,6 +159686,15 @@
     },
     "uri_format": "http://www.w3.org/ns/shacl#$1",
     "zazuko": {
+      "artifacts": [
+        {
+          "type": "rdf",
+          "url": "https://github.com/zazuko/rdf-vocabularies/blob/master/ontologies/sh/sh.nq"
+        }
+      ],
+      "description": "This vocabulary defines terms used in SHACL, the W3C Shapes Constraint Language.",
+      "homepage": "file:src/shacl-af.ttl",
+      "name": "W3C Shapes Constraint Language (SHACL) Vocabulary",
       "prefix": "sh",
       "uri_format": "http://www.w3.org/ns/shacl#$1"
     }
@@ -159510,6 +159939,15 @@
     "repository": "https://github.com/shexspec/shexspec.github.io",
     "uri_format": "http://www.w3.org/ns/shex#$1",
     "zazuko": {
+      "artifacts": [
+        {
+          "type": "rdf",
+          "url": "https://github.com/zazuko/rdf-vocabularies/blob/master/ontologies/shex/shex.nq"
+        }
+      ],
+      "description": "This document describes the RDFS vocabulary description used in the Shape Expression Language (ShEx) [[shex-semantics]] along with the default JSON-LD Context and shape expression to validate RDF versions of shapes.",
+      "homepage": "http://www.w3.org/ns/shex#",
+      "name": "Shape Expression Vocabulary",
       "prefix": "shex",
       "uri_format": "http://www.w3.org/ns/shex#$1"
     }
@@ -159576,6 +160014,15 @@
     },
     "name": "SHACL in SHACL",
     "zazuko": {
+      "artifacts": [
+        {
+          "type": "rdf",
+          "url": "https://github.com/zazuko/rdf-vocabularies/blob/master/ontologies/shsh/shsh.nq"
+        }
+      ],
+      "description": "This shapes graph can be used to validate SHACL shapes graphs against a subset of the syntax rules.",
+      "homepage": "http://www.w3.org/ns/shacl-shacl#",
+      "name": "W3C SHACL for SHACL Validator",
       "prefix": "shsh",
       "uri_format": "http://www.w3.org/ns/shacl-shacl#$1"
     }
@@ -160754,6 +161201,15 @@
     ],
     "uri_format": "http://rdfs.org/sioc/ns#$1",
     "zazuko": {
+      "artifacts": [
+        {
+          "type": "rdf",
+          "url": "https://github.com/zazuko/rdf-vocabularies/blob/master/ontologies/sioc/sioc.nq"
+        }
+      ],
+      "description": "SIOC (Semantically-Interlinked Online Communities) is an ontology for describing the information in online communities. \nThis information can be used to export information from online communities and to link them together. The scope of the application areas that SIOC can be used for includes (and is not limited to) weblogs, message boards, mailing lists and chat channels.",
+      "homepage": "http://rdfs.org/sioc/ns#",
+      "name": "SIOC Core Ontology Namespace",
       "prefix": "sioc",
       "uri_format": "http://rdfs.org/sioc/ns#$1"
     }
@@ -161215,6 +161671,15 @@
     },
     "uri_format": "http://www.w3.org/2004/02/skos/core#$1",
     "zazuko": {
+      "artifacts": [
+        {
+          "type": "rdf",
+          "url": "https://github.com/zazuko/rdf-vocabularies/blob/master/ontologies/skos/skos.nq"
+        }
+      ],
+      "description": "An RDF vocabulary for describing the basic structure and content of concept schemes such as thesauri, classification schemes, subject heading lists, taxonomies, 'folksonomies', other types of controlled vocabulary, and also concept schemes embedded in glossaries and terminologies.",
+      "homepage": "http://www.w3.org/2004/02/skos/core#",
+      "name": "SKOS Vocabulary",
       "prefix": "skos",
       "uri_format": "http://www.w3.org/2004/02/skos/core#$1"
     }
@@ -161296,6 +161761,15 @@
     },
     "uri_format": "http://www.w3.org/2008/05/skos-xl#$1",
     "zazuko": {
+      "artifacts": [
+        {
+          "type": "rdf",
+          "url": "https://github.com/zazuko/rdf-vocabularies/blob/master/ontologies/skosxl/skosxl.nq"
+        }
+      ],
+      "description": "An RDF vocabulary extending SKOS and allowing the description and linking of lexical entities.",
+      "homepage": "http://www.w3.org/2008/05/skos-xl#",
+      "name": "SKOS XL Vocabulary",
       "prefix": "skosxl",
       "uri_format": "http://www.w3.org/2008/05/skos-xl#$1"
     }
@@ -163319,6 +163793,15 @@
     "rdf_uri_format": "http://www.w3.org/ns/solid/terms#$1",
     "uri_format": "http://www.w3.org/ns/solid/terms#$1",
     "zazuko": {
+      "artifacts": [
+        {
+          "type": "rdf",
+          "url": "https://github.com/zazuko/rdf-vocabularies/blob/master/ontologies/solid/solid.nq"
+        }
+      ],
+      "description": "The Solid Terms vocabulary defines terms referenced in Solid specifications.",
+      "homepage": "http://www.w3.org/ns/solid/terms#",
+      "name": "Solid Terms",
       "prefix": "solid",
       "uri_format": "http://www.w3.org/ns/solid/terms#$1"
     }
@@ -163523,6 +164006,15 @@
     },
     "uri_format": "http://www.w3.org/ns/sosa/$1",
     "zazuko": {
+      "artifacts": [
+        {
+          "type": "rdf",
+          "url": "https://github.com/zazuko/rdf-vocabularies/blob/master/ontologies/sosa/sosa.nq"
+        }
+      ],
+      "description": "This ontology is based on the SSN Ontology by the W3C Semantic Sensor Networks Incubator Group (SSN-XG), together with considerations from the W3C/OGC Spatial Data on the Web Working Group.",
+      "homepage": "http://www.w3.org/ns/sosa/",
+      "name": "Sensor, Observation, Sample, and Actuator (SOSA) Ontology",
       "prefix": "sosa",
       "uri_format": "http://www.w3.org/ns/sosa/$1"
     }
@@ -164854,6 +165346,15 @@
     },
     "uri_format": "http://www.w3.org/ns/ssn/$1",
     "zazuko": {
+      "artifacts": [
+        {
+          "type": "rdf",
+          "url": "https://github.com/zazuko/rdf-vocabularies/blob/master/ontologies/ssn/ssn.nq"
+        }
+      ],
+      "description": "This ontology describes sensors, actuators and observations, and related concepts. It does not describe domain concepts, time, locations, etc. these are intended to be included from other ontologies via OWL imports.",
+      "homepage": "http://www.w3.org/ns/ssn/",
+      "name": "Semantic Sensor Network Ontology",
       "prefix": "ssn",
       "uri_format": "http://www.w3.org/ns/ssn/$1"
     }
@@ -177701,6 +178202,14 @@
     },
     "uri_format": "http://www.w3.org/2006/time#$1",
     "zazuko": {
+      "artifacts": [
+        {
+          "type": "rdf",
+          "url": "https://github.com/zazuko/rdf-vocabularies/blob/master/ontologies/time/time.nq"
+        }
+      ],
+      "homepage": "http://www.w3.org/2006/time#",
+      "name": "OWL-Time",
       "prefix": "time",
       "uri_format": "http://www.w3.org/2006/time#$1"
     }
@@ -185208,6 +185717,15 @@
     },
     "uri_format": "https://vocab.org/vann/#$1",
     "zazuko": {
+      "artifacts": [
+        {
+          "type": "rdf",
+          "url": "https://github.com/zazuko/rdf-vocabularies/blob/master/ontologies/vann/vann.nq"
+        }
+      ],
+      "description": "This document describes a vocabulary for annotating descriptions of vocabularies with examples and usage notes.",
+      "homepage": "http://vocab.org/vann/vann-vocab-20100607.rdf",
+      "name": "VANN: A vocabulary for annotating vocabulary descriptions",
       "prefix": "vann",
       "uri_format": "http://purl.org/vocab/vann/$1"
     }
@@ -185903,6 +186421,15 @@
     "name": "Virtual Contact File",
     "uri_format": "http://www.w3.org/2006/vcard/ns#$1",
     "zazuko": {
+      "artifacts": [
+        {
+          "type": "rdf",
+          "url": "https://github.com/zazuko/rdf-vocabularies/blob/master/ontologies/vcard/vcard.nq"
+        }
+      ],
+      "description": "Ontology for vCard based on RFC6350",
+      "homepage": "http://www.w3.org/2006/vcard/ns#",
+      "name": "Ontology for vCard",
       "prefix": "vcard",
       "uri_format": "http://www.w3.org/2006/vcard/ns#$1"
     }
@@ -188462,6 +188989,13 @@
     "preferred_prefix": "void",
     "uri_format": "http://rdfs.org/ns/void#$1",
     "zazuko": {
+      "artifacts": [
+        {
+          "type": "rdf",
+          "url": "https://github.com/zazuko/rdf-vocabularies/blob/master/ontologies/void/void.nq"
+        }
+      ],
+      "homepage": "http://vocab.deri.ie/void.ttl",
       "prefix": "void",
       "uri_format": "http://rdfs.org/ns/void#$1"
     }
@@ -188499,6 +189033,15 @@
     "rdf_uri_format": "http://www.w3.org/2003/06/sw-vocab-status/ns#$1",
     "uri_format": "http://www.w3.org/2003/06/sw-vocab-status/ns#$1",
     "zazuko": {
+      "artifacts": [
+        {
+          "type": "rdf",
+          "url": "https://github.com/zazuko/rdf-vocabularies/blob/master/ontologies/vs/vs.nq"
+        }
+      ],
+      "description": "An RDF vocabulary for relating SW vocabulary terms to their status.",
+      "homepage": "http://www.w3.org/2003/06/sw-vocab-status/ns#",
+      "name": "SemWeb Vocab Status ontology",
       "prefix": "vs",
       "uri_format": "http://www.w3.org/2003/06/sw-vocab-status/ns#$1"
     }
@@ -188816,6 +189359,15 @@
     },
     "uri_format": "https://bioportal.bioontology.org/ontologies/VSO/?p=classes&conceptid=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FVSO_$1",
     "zazuko": {
+      "artifacts": [
+        {
+          "type": "rdf",
+          "url": "https://github.com/zazuko/rdf-vocabularies/blob/master/ontologies/vso/vso.nq"
+        }
+      ],
+      "description": "VSO: The Vehicle Sales Ontology\n    \nA Web vocabulary for describings cars, boats, bikes, and other vehicles for e-commerce.\n\nVocabulary:    http://purl.org/vso/ns\nNamespace:     http://purl.org/vso/ns#\n\nThe Vehicle Sales Ontology is designed to be used in combination with GoodRelations, a standard vocabulary for the commercial aspects of offers for sale or rental. \n\nSee http://purl.org/goodrelations/ for more information.",
+      "homepage": "https://www.heppnetz.de/ontologies/vso/ns.owl",
+      "name": "VSO: The Vehicle Sales Ontology for Semantic Web-based E-Commerce",
       "prefix": "vso",
       "uri_format": "http://purl.org/vso/ns#$1"
     }
@@ -189907,6 +190459,15 @@
     "name": "Protocol for Web Description Resources (POWDER): POWDER-S Vocabulary",
     "uri_format": "http://www.w3.org/2007/05/powder-s#$1",
     "zazuko": {
+      "artifacts": [
+        {
+          "type": "rdf",
+          "url": "https://github.com/zazuko/rdf-vocabularies/blob/master/ontologies/wdrs/wdrs.nq"
+        }
+      ],
+      "description": "This file specifies the set of classes and properties used in the RDF/OWL version of POWDER documents.",
+      "homepage": "http://www.w3.org/2007/05/powder-s#",
+      "name": "POWDER-S Vocabulary",
       "prefix": "wdrs",
       "uri_format": "http://www.w3.org/2007/05/powder-s#$1"
     }
@@ -189985,6 +190546,15 @@
     "name": "WGS84 Geo Positioning",
     "uri_format": "http://www.w3.org/2003/01/geo/wgs84_pos#$1",
     "zazuko": {
+      "artifacts": [
+        {
+          "type": "rdf",
+          "url": "https://github.com/zazuko/rdf-vocabularies/blob/master/ontologies/wgs/wgs.nq"
+        }
+      ],
+      "description": "A vocabulary for representing latitude, longitude and \n altitude information in the WGS84 geodetic reference datum. \n Version $Id: wgs84_pos.rdf,v 1.22 2009/04/20 15:00:30 timbl Exp $. See http://www.w3.org/2003/01/geo/ for more details.",
+      "homepage": "http://www.w3.org/2003/01/geo/wgs84_pos#",
+      "name": "WGS84 Geo Positioning: an RDF vocabulary",
       "prefix": "wgs",
       "uri_format": "http://www.w3.org/2003/01/geo/wgs84_pos#$1"
     }
@@ -194810,6 +195380,13 @@
     "name": "XHTML Vocabulary",
     "uri_format": "http://www.w3.org/1999/xhtml/vocab#$1",
     "zazuko": {
+      "artifacts": [
+        {
+          "type": "rdf",
+          "url": "https://github.com/zazuko/rdf-vocabularies/blob/master/ontologies/xhv/xhv.nq"
+        }
+      ],
+      "homepage": "file:src/xhv.ttl",
       "prefix": "xhv",
       "uri_format": "http://www.w3.org/1999/xhtml/vocab#$1"
     }
@@ -194871,6 +195448,15 @@
     },
     "name": "An SKOS extension for representing statistical classifications",
     "zazuko": {
+      "artifacts": [
+        {
+          "type": "rdf",
+          "url": "https://github.com/zazuko/rdf-vocabularies/blob/master/ontologies/xkos/xkos.nq"
+        }
+      ],
+      "description": "This ontology is based on work initiated at Dagstuhl Schloss in September 2011",
+      "homepage": "https://raw.githubusercontent.com/linked-statistics/xkos/master/xkos.ttl",
+      "name": "XKOS: an SKOS extension for representing statistical classifications",
       "prefix": "xkos",
       "uri_format": "http://rdf-vocabulary.ddialliance.org/xkos#$1"
     }
@@ -195231,6 +195817,13 @@
     "preferred_prefix": "xsd",
     "uri_format": "http://www.w3.org/2001/XMLSchema#$1",
     "zazuko": {
+      "artifacts": [
+        {
+          "type": "rdf",
+          "url": "https://github.com/zazuko/rdf-vocabularies/blob/master/ontologies/xsd/xsd.nq"
+        }
+      ],
+      "homepage": "https://raw.githubusercontent.com/ruby-rdf/rdf/master/etc/xsd.ttl",
       "prefix": "xsd",
       "uri_format": "http://www.w3.org/2001/XMLSchema#$1"
     }
