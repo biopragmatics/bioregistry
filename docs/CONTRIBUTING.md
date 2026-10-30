@@ -126,10 +126,11 @@ The Bioregistry Review Team will make case-by-case judgments on fitness of
 resources produced with significant use of generative AI, and may reject
 corresponding new prefix requests without further discussion. New prefix
 requests for resources produced with significant use of generative AI must be
-labeled as such using the `generative-ai` tag in the `curation_type` field. The
-corresponding page on the Bioregistry website will make this information
-transparent to users and warn them the associated risks of using such a
-resource.
+labeled as such using the `generative-ai` tag in the `curation_type` field.
+Prefixes may also be subspaced in a way to make sure that such resources don't
+squat on desirable prefixes. The corresponding page on the Bioregistry website
+will make this information transparent to users and warn them the associated
+risks of using such a resource.
 
 This policy was introduced in
 <https://github.com/biopragmatics/bioregistry/pull/2158>. Given the changing
@@ -318,7 +319,7 @@ motivated by the difficulty of the discussion on
    decisions (e.g., choice of local unique identifier scheme, regular expression
    pattern, URI format string), submitters seeking to park a prefix must both
    actively publicly seek out and seriously consider suggestions and advice from
-   the Bioregistry Review Team with regards to these matters (e.g., in the issue
+   the Bioregistry Review Team in regard to these matters (e.g., in the issue
    corresponding to a new prefix request). Submissions unable/unwilling to
    follow these guidelines may be dismissed and asked to re-submit after their
    prefix has been substantiated.
