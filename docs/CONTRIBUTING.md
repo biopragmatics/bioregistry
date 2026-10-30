@@ -84,6 +84,29 @@ prefix as a synonym.
 Original discussion about minimum prefix requirements can be found at
 https://github.com/biopragmatics/bioregistry/issues/158.
 
+#### Generative Artificial Intelligence Policy for New Prefix Requests
+
+As the Bioregistry strives to be a descriptive resource, its records describe
+resources with highly variable quality. Despite some resource being incomplete,
+abandoned, or otherwise messy, there have been few questions about the
+authenticity, intent, and spirit of curation until the widespread adoption in
+the mid-2020's of generative artificial intelligence (AI) and large language
+models (LLMs).
+
+We politely ask submitters to refrain from making new prefix requests for new
+resources that have been significantly produced by generative AI that have not
+yet been reused by external parties. Reuse is an important implicit metric for
+the general importance of adding a resource to the Bioregistry and promoting it
+to the community. Now that generative AI can be used to produce new resources
+and also demonstrate their use
+
+New prefix requests corresponding to resources that appear to be significantly
+produced with generative artificial intelligence (AI) such as may be rejected
+without further discussion.
+
+Resources produced with AI that are accepted should be labeled with a
+`curation_type` as such and will display a prominent warning to users.
+
 #### Miscellaneous Requirements
 
 - Do not include titles (e.g., Dr.) in contact information for the requester,
@@ -133,7 +156,7 @@ Bioregistry record is to say what a semantic space is about.
 For example, if you were submitting a new prefix request `chembl.compound` for
 the chemicals inside ChEMBL, you might be tempted to describe ChEMBL, its
 history, and all the things inside it. However, this is a Bioregistry
-anti-pattern. Do not do this (at least, initially). Describe what the entities
+antipattern. Do not do this (at least, initially). Describe what the entities
 are in the specific semantic space (e.g., this is a semantic space of small
 molecules for which there is published biochemical activity data). After you've
 addressed the two important points above, then it might be useful to give more
@@ -204,7 +227,7 @@ If you would like to submit more than 5 prefixes at once, you can fill out the
 submit it in an
 [issue](https://github.com/biopragmatics/bioregistry/issues/new). The template
 contains several examples - please review them then delete them before
-submission. Please number all of the rows in sequential order the first column
+submission. Please number all the rows in sequential order the first column
 (`request_id`). The first columns of the template are all required, even if some
 of the examples don't have an entry there for historic reasons. All optional
 fields are marked as such.
