@@ -31,6 +31,9 @@ discussion. The users on whose behalf they were created may also be blocked from
 further interactions with the project at the discretion of the Bioregistry
 Review Team.
 
+This policy was introduced in
+<https://github.com/biopragmatics/bioregistry/pull/2158>.
+
 ## Content Contribution
 
 There are several ways to request a new prefix in the Bioregistry:
@@ -128,8 +131,9 @@ corresponding page on the Bioregistry website will make this information
 transparent to users and warn them the associated risks of using such a
 resource.
 
-Given the changing nature of AI, this policy may change over time to become
-stricter.
+This policy was introduced in
+<https://github.com/biopragmatics/bioregistry/pull/2158>. Given the changing
+nature of AI, this policy may change over time to become stricter.
 
 #### Automation of New Prefix Requests
 
