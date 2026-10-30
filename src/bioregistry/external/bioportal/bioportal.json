@@ -908,8 +908,9 @@
       "email": "karenvivi07@unicauca.edu.co",
       "name": "Karen Muñoz"
     },
-    "description": "Domain ontology for the formalization of knowledge about the fermentation bioprocess in bioreactor. Developed as part of the CDT+KG project at Universidad del Cauca, Colombia - Ontología de dominio que formaliza el conocimiento del bioproceso de fermentación en biorreactor. Desarrollada como parte del proyecto CDT+KG en la Universidad del Cauca. Caso de uso: fermentación de café de especialidad.",
-    "name": "Bioreactor Fermentation Process Ontology"
+    "description": "Domain ontology for the formalization of knowledge about the fermentation bioprocess in bioreactor. Developed as part of the CDT+KG project at Universidad del Cauca, Colombia - Ontología de dominio que formaliza el conocimiento del bioproceso de fermentación en biorreactor. Desarrollada como parte del proyecto CDT+KG en la Universidad del Cauca.",
+    "name": "Bioreactor Fermentation Process Ontology",
+    "version": "versión 1.2"
   },
   "BHN": {
     "contact": {
@@ -3694,7 +3695,7 @@
         "url": "http://environmentontology.org/"
       }
     ],
-    "version": "2026-06-26"
+    "version": "2026-10-23"
   },
   "ENVS_VARIABLES": {
     "contact": {
@@ -5244,6 +5245,24 @@
     "description": "The humanitarian data space vocabulary describes entities and relationships relevant for humanitarian applications, specifically focusing on events related to sexual violence, human trafficking and refugee protection. The aim of this vocabulary is to report on situations and incidents that are taking place on the ground into the humanitarian data space.",
     "name": "Humanitarian Data Space"
   },
+  "HEAO": {
+    "contact": {
+      "email": "darrin.baines@intelligentparameters.com",
+      "name": "Darrin Baines"
+    },
+    "description": "HEAO describes how health economics assigns value. It covers every step that turns a unit into a value, such as health states into utility weights, time into QALYs, resources into costs, future amounts into present values, and evidence into the value of further research. It links to the Real Health Economics Ontology (RHEO) for what happens in the world and the Outcomes ontology (OHEO) for what is measured., HEAO, the Health Economics Axiology Ontology, describes how health economics turns quantities into values. Its scope, set by Darrin Baines, is anything turned from a unit into a value and anything that creates value. Health becomes QALYs or DALYs, resources become costs, a future amount becomes a present value, a QALY becomes a sum of money, and a QALY in one group can be counted as more than a QALY in another. HEAO keeps the quantity apart from its valuation. The quantity is a fact recorded in RHEO or OHEO. The valuation is a planned process (an OBI planned process) that applies a valuation weight or a weight function to that quantity under a valuation specification (an IAO directive information entity), from a stated valuation perspective, in a stated valuation context, by a stated valuation method, with a recorded provenance, producing a valuation result on a value scale. The canonical form is V(x;c,m) = q(x) x w(x;c,m), the quantity multiplied by a weight that depends on context and method. It is not universal, so each valuation records its functional form, and nonlinear forms such as inequality-averse aggregation and the expected value of perfect information are named. Discounting is the valuation of time, and value of information is the valuation of reducing decision uncertainty. HEAO imports OHEO 0.2.0 and RHEO 0.3.0 and keeps their classes where they are. The bridge module heao-bridge.owl classifies the existing OHEO and RHEO terms under HEAO parents and creates nothing that already exists. HEO concepts are linked only through heao-mappings.sssom.tsv, and no row states identity. Every relationship HEAO makes across ontologies is typed with one of five kinds, definitional, representational, computational, causal or valuational, for the linking layer planned across HEO, RHEO, HEMO, HETO, OHEO and HEAO.",
+    "homepage": "https://healtheconomics.wiki/ontology/heao",
+    "license": {
+      "name": "CC-BY-4.0"
+    },
+    "name": "Health Economics Axiology Ontology",
+    "publications": [
+      {
+        "doi": "10.5281/zenodo.23534365"
+      }
+    ],
+    "version": "0.1.0 (alpha)"
+  },
   "HECON": {
     "contact": {
       "email": "alba.morales-tirado@open.ac.uk",
@@ -5273,6 +5292,24 @@
     "name": "Regional Healthcare System Interoperability and Information Exchange Measurement Ontology",
     "version": "Version 1.15"
   },
+  "HEIRO": {
+    "contact": {
+      "email": "darrin.baines@intelligentparameters.com",
+      "name": "Darrin Baines"
+    },
+    "description": "HEIRO describes the institutions of health economics and their rules: HTA bodies such as NICE, IQWiG, HAS, PBAC and ICER, their guidance documents and every dated version, and the decision rules each version sets, such as thresholds and discount rates, with the section they come from and whether they are binding or advisory. It records which wiki concepts and formulas cite which guidance version, so out-of-date citations can be found when guidance changes. HEIRO links to the reality (RHEO), outcomes (OHEO), value (HEAO) and mathematics (HEMO) ontologies., HEIRO, the Health Economics Institutions and Rules Ontology, holds the institutions of health economics and health technology assessment in Darrin Baines's sense, the rules that set the options actors have, and keeps them apart from the organizations that issue and apply them. A body is an organization that bears an institutional role, such as a health technology assessment role. Its rules are stated in guidance documents, each a lineage of dated guidance versions, and every rule HEIRO records names the provision, the version and the body it comes from and the period in which it is in force. A guidance version check record says when, and from which copy, a version was found to be current, so that any page, formula or rule that cites a guidance version can be found and flagged when a newer version exists. HEIRO reuses RHEO for organizations, geographic areas, decision threshold, discounting and perspective specifications, HEAO for decision modifier rules and value types, OHEO for reference case requirements and profiles, and PROV-O for revision and derivation. Every relationship it makes to another ontology of the family is typed with one of the five linking kinds of HEAO 0.1.0.",
+    "homepage": "https://healtheconomics.wiki/ontology/heiro",
+    "license": {
+      "name": "CC-BY-4.0"
+    },
+    "name": "Health Economics Institutions and Rules Ontology",
+    "publications": [
+      {
+        "doi": "10.5281/zenodo.23534874"
+      }
+    ],
+    "version": "0.1.0 (alpha)"
+  },
   "HELIFIT": {
     "contact": {
       "email": "carloallocca@gmail.com",
@@ -5281,6 +5318,42 @@
     "description": "This an ontology for healthcare.",
     "name": "HeLiFit-Ontology",
     "version": "1.6.4"
+  },
+  "HELO": {
+    "contact": {
+      "email": "darrin.baines@intelligentparameters.com",
+      "name": "Darrin Baines"
+    },
+    "description": "HELO describes the learning pathways of HealthEconomics.wiki. Each pathway is an ordered set of steps through health economics concepts, from the core ideas to more advanced ones, with suggested prerequisites and the learners each pathway suits. Pathways build understanding, not hands-on skills. HELO links each step to its concepts in the Health Economics Ontology (HEO) and to related tasks in the Health Economics Task Ontology (HETO). This HELO is not the HypothEsis and Law Ontology (Soldatova et al. 2013), which shares the acronym., HELO 0.1.0 core terms and the records of the eight learning pathways of HealthEconomics.wiki and the draft semantic layer course, merged with BFO 2020, the IAO terms HELO uses and the HEAO linking kinds. The HEO concepts and HETO tasks the records name are given by IRI only, without HEO's or HETO's labels, so that BioPortal lists only HELO's own terms. The prerequisite relationships proposed from HEO are left out until a curator reviews them, and are in helo-pathways.owl. Learning pathways build understanding, not hands-on skills. HELO here is the Health Economics Learning Ontology of HealthEconomics.wiki. It is not the HypothEsis and Law Ontology, also called HELO (Soldatova et al. 2013), and is unrelated to it.",
+    "homepage": "https://healtheconomics.wiki/ontology/helo",
+    "license": {
+      "name": "CC-BY-4.0"
+    },
+    "name": "Health Economics Learning Ontology",
+    "publications": [
+      {
+        "doi": "10.5281/zenodo.23534766"
+      }
+    ],
+    "version": "0.1.0"
+  },
+  "HEMO": {
+    "contact": {
+      "email": "darrin.baines@intelligentparameters.com",
+      "name": "Darrin Baines"
+    },
+    "description": "HEMO describes the mathematics of health economics: formulas, functions, variables, units and model structures. It holds the formulas behind HealthEconomics.wiki, such as discounting, QALYs, Markov models, value of information, net benefit and dominance, each with its assumptions and the range where it applies. HEMO links each formula to the concepts it calculates in the Health Economics Ontology (HEO), the real-world quantities in RHEO, and the valuations in HEAO., HEMO, the Health Economics Mathematics Ontology, holds the mathematics the other ontologies of the healtheconomics.wiki family lean on. It answers one question, how a thing is formally represented. A formula states one or more ordered equations, and its identity is that expression with its assumptions and its domain of validity. Its tests are the evidence that it is stated and implemented correctly. A mathematical function is the signature that formulas realise. A computational function, in Darrin Baines's sense, is a reusable numerical procedure that uses formulas, and an implementation is its executable form in Excel, R, Python, JavaScript or SPARQL. Every variable has a role, a quantity kind and a unit of measure with its UCUM code, and money is a currency code and a price year as in RHEO. Expressions are written as the calculator text of the website, parsed into strict Content MathML with OpenMath symbols for their meaning, with LaTeX for display only. Model structures, model components and model types defined by their mathematical features are HEMO's. HEMO holds no values from evidence and makes no causal claim. A variable takes a real value from a RHEO model parameter through a parameter binding on the model version, takes a weight from HEAO for a value judgement, and marks the RHEO record that holds any causal claim its term carries. The formula catalogue, hemo-formulae.owl, is generated from the Functions and Formulae module of the website by a script on every release, with stable identifiers. Every relationship HEMO makes to another ontology is typed with one of the five linking kinds of HEAO 0.1.0, definitional, representational, computational, causal or valuational. Policy figures, such as NICE's severity cut-offs, are inputs of HEMO's formulas and never constants inside them.",
+    "homepage": "https://healtheconomics.wiki/ontology/hemo",
+    "license": {
+      "name": "CC-BY-4.0"
+    },
+    "name": "Health Economics Mathematics Ontology",
+    "publications": [
+      {
+        "doi": "10.5281/zenodo.23534566"
+      }
+    ],
+    "version": "0.1.0 (alpha)"
   },
   "HENECON": {
     "contact": {
@@ -5305,12 +5378,18 @@
       "email": "darrin.baines@intelligentparameters.com",
       "name": "Darrin Baines"
     },
-    "description": "HEO, the Health Economics Ontology, is a vocabulary of health economics concepts, with definitions and typed links between them, taken from HealthEconomics.wiki. Version 1.2.0 holds 3,939 concepts and 10,509 reviewed links, arranged under a single root, Health Economics, and nine subdomains: Costs, Outcomes, Economic Evaluation, Health Technology Assessment, Economic Modelling, Evidence Synthesis, Health Systems, Health Policy and Economic Foundations. Each concept has a stable URI as its permanent identifier, and each link has its own permanent identifier and review status. Concepts are SKOS concepts arranged by broader terms, kept apart as strict “is type of” links and placement under a subdomain. Six relationships (part of, measures, used to calculate, treats, risk factor for, precedes) are OWL object properties with named inverses, and the others are descriptive annotation properties. HEO identifies concepts. Its companions RHEO (Real Health Economics Ontology), OHEO (Outcomes Health Economics Ontology) and HETO (Health Economics Task Ontology) define types classified within BFO 2020, and a concept and a type never share an identifier. Authors are Darrin Baines and Michelle Ashley. Published by Intelligent Parameters Ltd under CC BY 4.0.",
+    "description": "HEO, the Health Economics Ontology, is a vocabulary of health economics concepts, with definitions and typed links between them, taken from HealthEconomics.wiki. Version 1.3.0 holds 4,009 concepts and 10,836 reviewed links, arranged under a single root, Health Economics, and nine subdomains: Costs, Outcomes, Economic Evaluation, Health Technology Assessment, Economic Modelling, Evidence Synthesis, Health Systems, Health Policy and Economic Foundations. Each concept has a stable URI as its permanent identifier, and each link has its own permanent identifier and review status. Concepts are SKOS concepts arranged by broader terms, kept apart as strict “is type of” links and placement under a subdomain. Six relationships (part of, measures, used to calculate, treats, risk factor for, precedes) are OWL object properties with named inverses, and the others are descriptive annotation properties. HEO identifies concepts. Its companions RHEO (Real Health Economics Ontology), OHEO (Outcomes Health Economics Ontology) and HETO (Health Economics Task Ontology) define types classified within BFO 2020, and a concept and a type never share an identifier. Authors are Darrin Baines and Michelle Ashley. Published by Intelligent Parameters Ltd under CC BY 4.0., A vocabulary of health economics concepts, taken from HealthEconomics.wiki. Each concept is identified by a stable URI that serves as its permanent identifier. Concepts are SKOS concepts arranged by skos:broader under one top concept, and the wiki's subdomains; a concept with no is-type-of parent is placed in that subject structure with heo:classifiedUnder. Six relationships (part of, and the others are descriptive annotation properties. HEO identifies concepts; its companion RHEO defines types classified within the Basic Formal Ontology. A concept and a type never share an identifier.",
     "homepage": "https://healtheconomics.wiki/ontology/heo",
     "license": {
       "name": "CC-BY-4.0"
     },
-    "name": "Health Economics Ontology"
+    "name": "Health Economics Ontology",
+    "publications": [
+      {
+        "doi": "10.5281/zenodo.23516370"
+      }
+    ],
+    "version": "1.3.1"
   },
   "HERO": {
     "contact": {
@@ -5320,6 +5399,24 @@
     "description": "This ontology is designed to support a healthcare monitoring system that leverages wearable devices and Semantic Web technologies to continuously monitor patient vital signs, assess their medical conditions, and provide timely alerts and interventions in case of abnormalities or emergencies. It aims to enhance patient care, safety, and decision-making by integrating ontology-based reasoning, SWRL rules, and real-time data from various sources. Main Features: - Integration of Diverse Data Sources: The ontology integrates different data models like FHIR (for electronic health records and medical data), SOSA (for sensor data and vital signs), and FOAF (for patient profile management). This integration allows for a comprehensive representation of both static and dynamic patient data, supporting more accurate monitoring and decision-making. - Vital Sign Monitoring: It includes classes and properties for representing vital signs such as Temperature, Blood Pressure, Heart Rate, Respiratory Rate, and Oxygen Saturation. Each vital sign is associated with corresponding observations and results, following the SOSA ontology pattern. - Health Condition Assessment: The ontology defines multiple classes to represent different health conditions: 1- Normal Situation: Represents a state where all monitored vital signs fall within their normal ranges. 2- Abnormal Situation: Represents a state where one or more vital signs fall outside their normal range, but there is no indication of device  malfunction. 3- Wrong Situation: Represents a condition where at least one vital sign is classified as \"wrong,\" indicating a possible malfunction of the wearable device. This triggers alerts to the patient to check or repair the device. - Emergency and Critical Emergency Handling: In abnormal situations, SWRL rules are used to infer whether the situation is an emergency or a critical emergency: Emergency Situation: Requires additional evaluation by healthcare providers. If the situation matches a previously stored case, the system retrieves and recommends the previous prescription. Otherwise, a \"risky alarm\" is generated, and the patient's current and historical data are reviewed to make clinical decisions. Critical Emergency Situation: In such cases, the system immediately alerts the emergency center, dispatches the nearest ambulance, and informs the hospital of the patient's condition and estimated arrival time. SWRL Rules for Decision Making: The ontology utilizes SWRL rules to automate reasoning processes for determining the patient's condition based on real-time data. These rules help classify patient situations into normal, abnormal, or critical states, enhancing the responsiveness of the healthcare system. Emergency Response Workflow: The ontology supports a detailed emergency response workflow, which involves identifying the nearest hospital, dispatching an ambulance, informing the ambulance crew, alerting the receiving hospital, and continuously updating the patient with the ambulance's status. Range and Classification Definitions: The ontology defines ranges for normal, and wrong values for each vital sign across various age groups, ensuring that the system provides age-appropriate assessments. Data Provenance and History Tracking: The ontology captures data provenance, tracking the source and history of observations, which is crucial for clinical decision-making and system transparency., The Friend of a Friend (FOAF) RDF vocabulary, described using W3C RDF Schema and the Web Ontology Language.",
     "name": "Healthcare Monitoring and Emergency Response Ontology",
     "version": "FHIR W5 categorization (Preliminary)"
+  },
+  "HETO": {
+    "contact": {
+      "email": "darrin.baines@intelligentparameters.com",
+      "name": "Darrin Baines"
+    },
+    "description": "The Health Economics Task Ontology (HETO) describes recognisable units of health economics work, such as adding discounting to an economic model or running a probabilistic sensitivity analysis. Each task states its intended result, its main actions, the role of the person who does it and the real things it uses and produces, as the Real Health Economics Ontology (RHEO) and the Outcomes Health Economics Ontology (OHEO) define them. Larger tasks are broken into smaller ones, and the usual order of work is recorded apart from that breakdown. Task specifications follow the Information Artifact Ontology (IAO). This pilot release is an alpha version for review before the task list grows., HETO, the Health Economics Task Ontology, describes recognisable units of health economics work, such as adding discounting to an economic model or running a probabilistic sensitivity analysis, and connects each one to the real things it works on, as RHEO and OHEO define them. A HETO task is a reusable specification of a defined unit of work. It states an intended result and the main actions directed towards it, independently of any particular practitioner, project or software. Following the Information Artifact Ontology, a task specification is a plan specification (IAO_0000104) with an objective specification and action specifications as parts. Each named task in the pilot catalogue is an individual with its own URI; subclasses of task specification classify kinds of task. A particular performance of the work is a separate planned process (health economics task performance), linked to the specification it follows by 'specified by information' (RO_0017010), as Duncan et al. 2024 recommend. Three relations are kept apart. Classification (rdf:type) says what kind of task something is; decomposition (has subtask specification) says which smaller tasks make up a larger one; ordering (normally precedes) says which work is usually done first. Policy (decided by Darrin Baines, 17 October 2026). HEO is a thesaurus of concepts, which are not real things; RHEO and OHEO define the real things of health economics within BFO 2020; HETO describes work on those real things, so its logical links go to RHEO and OHEO only. Each task names the RHEO or OHEO types of its inputs, outputs and processes, and the HETO role of the person who does it. HEO concepts are not linked from heto.ttl. They appear only in heto-mappings.sssom.tsv, as secondary skos:relatedMatch rows for learning and navigation, which state no requirement and no identity. No HETO class uses a HEO concept URI. Requirements on the catalogue and on records of task performances are SHACL shapes in heto-shapes.ttl.",
+    "homepage": "https://healtheconomics.wiki/ontology/heto",
+    "license": {
+      "name": "CC-BY-4.0"
+    },
+    "name": "Health Economics Task Ontology",
+    "publications": [
+      {
+        "doi": "10.5281/zenodo.23521940"
+      }
+    ],
+    "version": "0.2.0 (alpha)"
   },
   "HFO": {
     "contact": {
@@ -5700,7 +5797,8 @@
       "name": "Josef Hardi"
     },
     "description": "A collection of curated and standardized values used by the HuBMAP (Human BioMolecular Atlas Program) and SenNet (Cellular Senescence Network) metadata records to ensure uniformity in the description of samples and single-cell data produced by the consortium.",
-    "name": "HuBMAP Research Attributes Value Set"
+    "name": "HuBMAP Research Attributes Value Set",
+    "version": "2.19.2"
   },
   "HRDO": {
     "contact": {
@@ -6721,10 +6819,10 @@
       "email": "yongqunh@med.umich.edu",
       "name": "Oliver He"
     },
-    "description": "The Kidney Tissue Atlas Ontology (KTAO) is an ontology that integrates kidney-related cell types, cell states, locations, gene markers, disease, etc., and their relations. KTAO is developed to support the NIH-NIDDK-funed Kidney Precision Medicine Project (KPMP).",
+    "description": "The Kidney Tissue Atlas Ontology (KTAO) is an ontology that integrates kidney-related cell types, cell states, locations, gene markers, disease, etc., and their relations. KTAO is developed to support the NIH-NIDDK-funed Kidney Precision Medicine Project (KPMP). , KTAO (Kidney Tissue Atlas Ontology) is a community-based biomedical ontology. Its development is supported by the NIH-NIDDK supported Kidney Precision Medicine Project (KPMP).",
     "homepage": "https://github.com/KPMP/KTAO",
     "name": "Kidney Tissue Atlas Ontology",
-    "version": "Vision Release: 1.0.121"
+    "version": "Vision Release: 1.0.136"
   },
   "KUSIIMA": {
     "name": "naava"
@@ -6902,7 +7000,8 @@
       {
         "zenodo": "14049611"
       }
-    ]
+    ],
+    "version": "V1.5"
   },
   "LIB": {
     "name": "MWS-WSM"
@@ -7152,6 +7251,18 @@
     "homepage": "http://www.loc.gov/standards/mads/rdf/",
     "name": "Metadata Authority Description Schema in RDF",
     "version": "1.0"
+  },
+  "MAK": {
+    "contact": {
+      "email": "fabien.maury@inserm.fr",
+      "name": "Fabien Maury"
+    },
+    "description": "MAKAAO Onto is an ontology of human autoantibodies. It is developed at part of project MAKAAO which stands for MApping Knowledge about Autoimmune diseases, Autoantibodies, and Other clinical signs., An ontology of autoantibodies, their targets, antibody positivity, and autoimmunity-related diseases.",
+    "license": {
+      "name": "CC-BY-NC-4.0"
+    },
+    "name": "MAKAAO Onto",
+    "version": "1.0.7"
   },
   "MAMO": {
     "contact": {
@@ -7653,7 +7764,7 @@
       "name": "CC-BY-3.0"
     },
     "name": "MHC Restriction Ontology",
-    "version": "2026-09-15"
+    "version": "2026-10-20"
   },
   "MHIO": {
     "contact": {
@@ -8745,10 +8856,10 @@
     },
     "description": "NUCLEON models chemical elements, nuclides, and decay pathways. Elements and nuclides are modeled as classes and punned as individuals. Elements, nuclides and decay branches are named by chemical symbol: an element's IRI and rdfs:label are its symbol (:H, 'H'), a nuclide's are its symbol and mass number (:H-1, :Al-26m for an isomer), and a decay branch appends _b1, _b2, _b3 to its parent nuclide (:Co-60_b1). Element names in Englist, German, Spanish, French, Italian, Russian and Chinese (simplified and traditional) are carried as language-tagged skos:altLabel values. Mapped to Ontology of Chemical Elements (OCE/ ChEBI), SNOMED CT, and DICOM.",
     "license": {
-      "name": "CC-BY-4.0"
+      "name": "https://creativecommons.org/licenses/by-nc-nd/4.0"
     },
     "name": "Nuclide and Element Ontology",
-    "version": "0.9"
+    "version": "1.5"
   },
   "O-REXTECH": {
     "contact": {
@@ -9305,6 +9416,11 @@
       "name": "CC-BY-4.0"
     },
     "name": "Outcomes Health Economics Ontology",
+    "publications": [
+      {
+        "doi": "10.5281/zenodo.23517615"
+      }
+    ],
     "version": "0.2.0 (alpha)"
   },
   "OHMI": {
@@ -10135,7 +10251,8 @@
       "name": "ArashKHosravi"
     },
     "description": "PANORA is a foundational (upper) ontology designed to address the limitations of existing frameworks (such as DOLCE, SUMO, BFO, and Cyc) in representing subjective, spiritual, and metaphysical concepts. While conventional upper ontologies predominantly rely on a binary Physical/Abstract distinction, PANORA introduces a novel four-domain architecture to provide a unified semantic framework for knowledge representation, semantic interoperability, and Neuro-Symbolic AI.",
-    "name": "PANORA: A Four-Domain Upper Ontology for Rule-Based AI and Semantic Knowledge Representation"
+    "name": "PANORA: A Four-Domain Upper Ontology for Rule-Based AI and Semantic Knowledge Representation",
+    "version": "OWL 2 DL - Full-depth article-aligned release"
   },
   "PARKERS5CMS": {
     "contact": {
@@ -11511,10 +11628,16 @@
       "name": "Darrin Baines"
     },
     "description": "The Real Health Economics Ontology (RHEO) describes what actually happens in health care and how health economists record it. It covers people, organisations, care settings, treatments, resource use, payments and decisions, and keeps these real events apart from the records, estimates and models built from them. It is built on the Basic Formal Ontology and links to HEO concepts. Version 0.3.0 follows a full review by its creators. Real change is now separated from changes in classification, costing goes beyond unit costs, the record rules are published as SHACL, uncertainty can be correlated, and a complete worked evaluation traces every result back to its evidence and catches all 18 deliberately planted errors. It passes the OWL 2 DL profile and the ELK and HermiT reasoners. Authors are Darrin Baines and Michelle Ashley. Published by Intelligent Parameters Ltd under CC BY 4.0.",
+    "homepage": "https://healtheconomics.wiki/ontology/rheo",
     "license": {
       "name": "CC-BY-4.0"
     },
     "name": "Real Health Economics Ontology",
+    "publications": [
+      {
+        "doi": "10.5281/zenodo.23517028"
+      }
+    ],
     "version": "0.3.0 (alpha)"
   },
   "RNAO": {
@@ -12341,7 +12464,7 @@
       }
     ],
     "repository": "https://github.com/w3c-cg/sstim",
-    "version": "0.19.0"
+    "version": "0.20.0"
   },
   "STATO": {
     "contact": {
@@ -13053,7 +13176,7 @@
       "name": "CC0-1.0"
     },
     "name": "Combined Phenotype Ontology",
-    "version": "2025-10-12"
+    "version": "2026-10-19"
   },
   "URL": {
     "contact": {
@@ -13163,7 +13286,7 @@
       "name": "CC-BY-4.0"
     },
     "name": "vfb_drivers",
-    "version": "2026-10-12"
+    "version": "2026-10-19"
   },
   "VHOG": {
     "contact": {
@@ -13622,7 +13745,7 @@
         "url": "http://www.ncbi.nlm.nih.gov/pmc/articles/PMC3361058/"
       }
     ],
-    "version": "2026-10-10"
+    "version": "2026-10-17"
   },
   "XEO": {
     "contact": {

@@ -878,6 +878,7 @@
 @prefix exif: <http://www.w3.org/2003/12/exif/ns#> .
 @prefix facebase: <https://www.facebase.org/data/record/#1/isa:dataset/accession=> .
 @prefix fair: <https://w3id.org/fair/principles/terms/> .
+@prefix fairmap: <https://w3id.org/fair-map/> .
 @prefix fairsharing: <https://fairsharing.org/> .
 @prefix fairsharing.organization: <https://fairsharing.org/organisations/> .
 @prefix fairsharing.user: <https://fairsharing.org/users/> .
@@ -8582,7 +8583,7 @@ bioregistry:chemdb a sh:PrefixDeclaration,
 
 bioregistry:chemfont.chemical a sh:PrefixDeclaration,
         bioregistry.schema:0000001 ;
-    rdfs:label "ChemFOnt Chemical" ;
+    rdfs:label "ChemFOnt chemical" ;
     dcterms:contributor orcid:0000-0001-9439-5346 ;
     dcterms:description "The Chemical Functional Ontology (ChemFOnt) is a hierarchical, OWL-compatible ontology describing the functions and actions of biologically important chemicals including primary metabolites, secondary metabolites, natural products, food chemicals, synthetic food additives, drugs, herbicides, pesticides and environmental chemicals. The identifiers in this semantic space correspond to individual chemicals."^^xsd:string ;
     dcterms:isPartOf bioregistry:bioregistry ;
@@ -15334,6 +15335,28 @@ bioregistry:facebase a sh:PrefixDeclaration,
     bioregistry.schema:0000026 ror:03taz7m60 ;
     bioregistry.schema:0000027 facebase:FB00000917 .
 
+bioregistry:fairmap a sh:PrefixDeclaration,
+        bioregistry.schema:0000001 ;
+    rdfs:label "FAIR Mappings Schema" ;
+    dcterms:contributor orcid:0000-0002-7356-1779 ;
+    dcterms:description "A basic metadata schema for FAIR mapping specifications. It provides a simple abstraction over other schemes like SSSOM, encompassing a wide range of mappings including entity mappings and schema mappings."^^xsd:string ;
+    dcterms:isPartOf bioregistry:bioregistry ;
+    doap:GitRepository "https://github.com/mapping-commons/fair-mappings-schema"^^xsd:anyURI ;
+    doap:maintainer orcid:0000-0002-7356-1779 ;
+    dcat:keyword "entity mappings",
+        "schema mappings",
+        "semantic mappings",
+        "sssom" ;
+    sh:namespace "https://w3id.org/fair-map/"^^xsd:anyURI ;
+    sh:prefix "fairmap" ;
+    foaf:homepage "https://mapping-commons.github.io/rda-fair-mappings"^^xsd:anyURI ;
+    bioregistry.schema:0000005 "MappingSpecification"^^xsd:string ;
+    bioregistry.schema:0000006 "https://w3id.org/fair-map/$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^[a-zA-Z][a-zA-Z0-9_]+$"^^xsd:string ;
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000021 orcid:0000-0003-4423-4370 ;
+    bioregistry.schema:0000027 fairmap:MappingSpecification .
+
 bioregistry:fairmdlipids a sh:PrefixDeclaration,
         bioregistry.schema:0000001 ;
     rdfs:label "FAIRMD Lipids" ;
@@ -18098,10 +18121,10 @@ bioregistry:grddl a sh:PrefixDeclaration,
     dcterms:contributor orcid:0000-0003-4423-4370 ;
     dcterms:description "GRDDL is a mechanism for Gleaning Resource Descriptions from Dialects of Languages. It is a technique for obtaining RDF data from XML documents and in particular XHTML pages. Authors may explicitly associate documents with transformation algorithms, typically represented in XSLT, using a link element in the head of the document. Alternatively, the information needed to obtain the transformation may be held in an associated metadata profile document or namespace document. Clients reading the document can follow links across the Web using techniques described in the GRDDL specification to discover the appropriate transformations. This document uses a number of examples from the GRDDL Use Cases document to illustrate, in detail, the techniques GRDDL provides for associating documents with appropriate instructions for extracting any embedded data. (from homepage)"^^xsd:string ;
     dcterms:isPartOf bioregistry:bioregistry ;
-    doap:maintainer [ rdfs:label "Harry Halpin" ;
-            foaf:mbox "hhalpin@ibiblio.org" ],
-        [ rdfs:label "Ian Davis" ;
-            foaf:mbox "nospam@iandavis.com" ] ;
+    doap:maintainer [ rdfs:label "Ian Davis" ;
+            foaf:mbox "nospam@iandavis.com" ],
+        [ rdfs:label "Harry Halpin" ;
+            foaf:mbox "hhalpin@ibiblio.org" ] ;
     skos:exactMatch lov:grddl,
         zazuko:grddl ;
     dcat:keyword "vocabularies" ;
@@ -21573,14 +21596,14 @@ bioregistry:jcm a sh:PrefixDeclaration,
 
 bioregistry:jcrb a sh:PrefixDeclaration,
         bioregistry.schema:0000001 ;
-    rdfs:label "JRBC Cell Bank" ;
+    rdfs:label "Japanese Collection of Research Bioresources Cell Bank" ;
     dcterms:contributor orcid:0000-0003-4423-4370 ;
     dcterms:description "Cell line collections (Providers)"^^xsd:string ;
     dcterms:isPartOf bioregistry:bioregistry ;
     skos:exactMatch cellosaurus.resource:JCRB ;
     sh:namespace "https://cellbank.nibiohn.go.jp/~cellbank/en/search_res_det.cgi?RNO="^^xsd:anyURI ;
     sh:prefix "jcrb" ;
-    foaf:homepage "https://cellbank.nibiohn.go.jp"^^xsd:anyURI ;
+    foaf:homepage "https://cellbank.nibn.go.jp/english"^^xsd:anyURI ;
     bioregistry.schema:0000005 "JCRB1355"^^xsd:string ;
     bioregistry.schema:0000006 "https://cellbank.nibiohn.go.jp/~cellbank/en/search_res_det.cgi?RNO=$1"^^xsd:string ;
     bioregistry.schema:0000008 "^(JCRB|KURB|NIHS)\\d+$"^^xsd:string ;
@@ -39126,10 +39149,12 @@ bioregistry:vmc a bioregistry.schema:0000001 ;
 
 bioregistry:vmh.gene a sh:PrefixDeclaration,
         bioregistry.schema:0000001 ;
-    rdfs:label "VMH Gene" ;
+    rdfs:label "Virtual Metabolic Human gene" ;
     dcterms:description "The Virtual Metabolic Human (VMH) is a resource that combines human and gut microbiota metabolism with nutrition and disease."^^xsd:string ;
     dcterms:isPartOf bioregistry:bioregistry ;
     skos:exactMatch miriam:vmhgene ;
+    dcat:keyword "gene",
+        "vmh" ;
     sh:namespace "https://www.vmh.life/gene/"^^xsd:anyURI ;
     sh:prefix "vmh.gene" ;
     foaf:homepage "https://www.vmh.life/"^^xsd:anyURI ;
@@ -39142,12 +39167,13 @@ bioregistry:vmh.gene a sh:PrefixDeclaration,
 
 bioregistry:vmh.metabolite a sh:PrefixDeclaration,
         bioregistry.schema:0000001 ;
-    rdfs:label "VMH metabolite" ;
+    rdfs:label "Virtual Metabolic Human metabolite" ;
     dcterms:description "The Virtual Metabolic Human (VMH) is a resource that combines human and gut microbiota metabolism with nutrition and disease."^^xsd:string ;
     dcterms:isPartOf bioregistry:bioregistry ;
     skos:exactMatch biocontext:VMHMETABOLITE,
         n2t:vmhmetabolite,
         miriam:vmhmetabolite ;
+    dcat:keyword "vmh" ;
     sh:namespace "https://www.vmh.life/metabolite/"^^xsd:anyURI ;
     sh:prefix "vmh.metabolite" ;
     foaf:homepage "https://www.vmh.life/"^^xsd:anyURI ;
@@ -39160,12 +39186,13 @@ bioregistry:vmh.metabolite a sh:PrefixDeclaration,
 
 bioregistry:vmh.reaction a sh:PrefixDeclaration,
         bioregistry.schema:0000001 ;
-    rdfs:label "VMH reaction" ;
+    rdfs:label "Virtual Metabolic Human reaction" ;
     dcterms:description "The Virtual Metabolic Human (VMH) is a resource that combines human and gut microbiota metabolism with nutrition and disease."^^xsd:string ;
     dcterms:isPartOf bioregistry:bioregistry ;
     skos:exactMatch biocontext:VMHREACTION,
         n2t:vmhreaction,
         miriam:vmhreaction ;
+    dcat:keyword "vmh" ;
     sh:namespace "https://www.vmh.life/reaction/"^^xsd:anyURI ;
     sh:prefix "vmh.reaction" ;
     foaf:homepage "https://www.vmh.life/"^^xsd:anyURI ;
@@ -54443,7 +54470,7 @@ bioregistry:dso a sh:PrefixDeclaration,
 
 bioregistry:dsw a sh:PrefixDeclaration,
         bioregistry.schema:0000001 ;
-    rdfs:label "Darwin-SW" ;
+    rdfs:label "Darwin Semantic Web Ontology" ;
     dcterms:description "Version 0.4 to 1.0 fixed reversed dsw:locates and dsw:locatedAt. Added labels. Changed comments and descriptions to conform to DC and DwC precedent. Added subClassOf relations to RO hasEvidence and isEvidenceFor. Specified preferred direction for inverse object property pairs., Changes from version 0.2.1 to version 0.3: removal of all functional and inverse function properties of object property terms, use of dwctype classes, deprecation of terms replaced by dwciri: terms, removal of references to TDWG Ontology., Changes from version 0.3 to 0.4 change DwC class namespace from dwctype: to dwc: to follow class proposal, removed references to TDWG TaxonConcept ontology; deprecated terms that now have equivalent terms in Darwin Core., Change from version 1.0 to 1.0.1 Add CC0 license."^^xsd:string ;
     dcterms:isPartOf bioregistry:bioregistry ;
     doap:GitRepository "https://github.com/darwin-sw/dsw"^^xsd:anyURI ;
@@ -56595,7 +56622,7 @@ bioregistry:inbio a sh:PrefixDeclaration,
 
 bioregistry:inchi a sh:PrefixDeclaration,
         bioregistry.schema:0000001 ;
-    rdfs:label "InChI" ;
+    rdfs:label "International Chemical Identifier" ;
     dcterms:description "The IUPAC International Chemical Identifier (InChI) is a non-proprietary identifier for chemical substances that can be used in printed and electronic data sources. It is derived solely from a structural representation of that substance, such that a single compound always yields the same identifier."^^xsd:string ;
     dcterms:isPartOf bioregistry:bioregistry ;
     doap:GitRepository "https://github.com/IUPAC-InChI/InChI"^^xsd:anyURI ;
@@ -84851,7 +84878,7 @@ bioregistry:duo a sh:PrefixDeclaration,
 
 bioregistry:fabio a sh:PrefixDeclaration,
         bioregistry.schema:0000001 ;
-    rdfs:label "FaBiO, the FRBR-aligned Bibliographic Ontology" ;
+    rdfs:label "The FRBR-aligned Bibliographic Ontology" ;
     dcterms:contributor orcid:0000-0003-4423-4370 ;
     dcterms:description "The FRBR-aligned Bibliographic Ontology (FaBiO) is an ontology for describing entities that are published or potentially publishable (e.g., journal articles, conference papers, books), and that contain or are referred to by bibliographic references."^^xsd:string ;
     dcterms:isPartOf bioregistry:bioregistry ;
@@ -85815,9 +85842,6 @@ orcid:0000-0002-3207-2434 rdfs:label "David S. Wishart",
     foaf:mbox "david.wishart@ualberta.ca",
         "dwishart@ualberta.ca" .
 
-orcid:0000-0002-7356-1779 rdfs:label "Nicolas Matentzoglu" ;
-    foaf:mbox "nicolas.matentzoglu@gmail.com" .
-
 ror:0168r3w48 a foaf:Organization ;
     rdfs:label "University of California, San Diego" .
 
@@ -86023,6 +86047,9 @@ bioregistry:kegg a sh:PrefixDeclaration,
     bioregistry.schema:0000012 true ;
     bioregistry.schema:0000023 "KEGG" ;
     bioregistry.schema:0000027 kegg.orthology:hsa00190 .
+
+orcid:0000-0002-7356-1779 rdfs:label "Nicolas Matentzoglu" ;
+    foaf:mbox "nicolas.matentzoglu@gmail.com" .
 
 orcid:0000-0002-1595-3213 rdfs:label " Philip Strömert",
         "Philip Strömert" ;
@@ -96435,6 +96462,7 @@ bioregistry:bioregistry a sh:PrefixDeclaration,
         bioregistry:facebase,
         bioregistry:factgrid,
         bioregistry:fair,
+        bioregistry:fairmap,
         bioregistry:fairmdlipids,
         bioregistry:fairsharing,
         bioregistry:fairsharing.organization,

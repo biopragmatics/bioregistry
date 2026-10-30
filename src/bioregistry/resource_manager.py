@@ -1037,12 +1037,26 @@ class Manager:
             return None
         return entry.get_homepage()
 
-    def get_preferred_prefix(self, prefix: str) -> str | None:
+    # docstr-coverage:excused `overload`
+    @overload
+    def get_preferred_prefix(
+        self, prefix: str, *, strict: Literal[True] = ..., passthrough: Literal[True] = ...
+    ) -> str: ...
+
+    # docstr-coverage:excused `overload`
+    @overload
+    def get_preferred_prefix(
+        self, prefix: str, *, strict: Literal[False] = ..., passthrough: bool = ...
+    ) -> str | None: ...
+
+    def get_preferred_prefix(
+        self, prefix: str, *, strict: bool = False, passthrough: bool = False
+    ) -> str | None:
         """Get the preferred prefix (e.g., with stylization) if it exists."""
-        entry = self.get_resource(prefix)
+        entry = self.get_resource(prefix, strict=strict)  # type:ignore[call-overload]
         if entry is None:
             return None
-        return entry.get_preferred_prefix()
+        return entry.get_preferred_prefix(passthrough=passthrough)  # type:ignore[no-any-return]
 
     def get_logo(self, prefix: str) -> str | None:
         """Get the logo for the resource, if it's available."""
