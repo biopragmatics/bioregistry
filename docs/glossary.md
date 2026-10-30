@@ -66,12 +66,12 @@ occurs at the end. Poorly-behaved URI format strings may have additional
 characters following the special token as in
 `http://rebase.neb.com/rebase/enz/$1.html` for
 [REBASE](https://bioregistry.io/rebase) or as in
-http://eawag-bbd.ethz.ch/$1/$1_map.html for the
+`http://eawag-bbd.ethz.ch/$1/$1_map.html` for the
 [UM-BBD Pathway database](https://bioregistry.io/umbbd.pathway). Providers can
 return information HTML as in the previous example, images (e.g.,
-https://www.ebi.ac.uk/chebi/displayImage.do?defaultImage=true&chebiId=132964 for
-the ChEBI entry on fluazifop-P-butyl), XML (e.g.,
-https://www.uniprot.org/uniprot/P10636.xml for UniProt entry on human
+<https://www.ebi.ac.uk/chebi/displayImage.do?defaultImage=true&chebiId=132964>
+for the ChEBI entry on fluazifop-P-butyl), XML (e.g.,
+<https://www.uniprot.org/uniprot/P10636.xml> for UniProt entry on human
 Microtubule-associated protein tau), or any other information that can be
 transferred via HTTP, FTP, or related data transfer protocols. Alternatively,
 content negotiation could be used to return multiple kinds of data from the same
@@ -90,22 +90,22 @@ A registry is a special kind of resource that assigns unique identifiers to a
 collection of resources. For historical reasons, these identifiers are
 colloquially called prefixes. A registry collects additional metadata about each
 resource, though there is a wide variety of metadata standards across existing
-registries (see https://bioregistry.io/related). These metadata may include the
-name, homepage, a regular expression pattern for validating identifiers, one or
-more example identifiers, a default provider, and potentially additional
+registries (see <https://bioregistry.io/related>). These metadata may include
+the name, homepage, a regular expression pattern for validating identifiers, one
+or more example identifiers, a default provider, and potentially additional
 providers. Like with resources, a high-quality registry should have an
 associated first-party provider that comprises a web site for exploring its
 entries and their associated metadata. Some registries are directly imported and
 reused in other places (e.g., GO Registry reused in psi-mi-CV
 [https://github.com/HUPO-PSI/psi-ms-CV/blob/master/db-xrefs.yaml], NCBI GenBank
-Registry reused in https://www.ddbj.nig.ac.jp/ddbj/db_xref-e.html).
+Registry reused in <https://www.ddbj.nig.ac.jp/ddbj/db_xref-e.html>).
 
 ## Metaregistry
 
 A metaregistry is a special kind of registry that assigns unique identifiers to
 a collection of registries; it could even contain an entry about itself. It
 collects additional metadata about each registry, such as a description of its
-metadata standards and capabilities (see https://bioregistry.io/related). Most
+metadata standards and capabilities (see <https://bioregistry.io/related>). Most
 importantly, a metaregistry contains mappings between equivalent entries in its
 constituent registries. Before the publication of this article, to the best of
 our knowledge, there were no dedicated metaregistries. Some registries such as

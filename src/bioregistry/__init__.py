@@ -29,9 +29,11 @@ from .parse_iri import (
 from .reference import (
     NormalizedNamableReference,
     NormalizedNamedReference,
+    NormalizedPrefix,
     NormalizedReference,
     StandardNamableReference,
     StandardNamedReference,
+    StandardPrefix,
     StandardReference,
 )
 from .resolve import (
@@ -108,6 +110,7 @@ from .resolve import (
     is_novel,
     is_obo_foundry,
     is_proprietary,
+    lookup_external_prefix,
     read_contributors,
 )
 from .resolve_identifier import (
@@ -168,6 +171,7 @@ __all__ = [
     "Manager",
     "NormalizedNamableReference",
     "NormalizedNamedReference",
+    "NormalizedPrefix",
     "NormalizedReference",
     "Organization",
     "Provider",
@@ -175,6 +179,7 @@ __all__ = [
     "Resource",
     "StandardNamableReference",
     "StandardNamedReference",
+    "StandardPrefix",
     "StandardReference",
     "add_resource",
     "add_to_collection",
@@ -285,6 +290,7 @@ __all__ = [
     "is_standardizable_identifier",
     "is_valid_curie",
     "is_valid_identifier",
+    "lookup_external_prefix",
     "manager",
     "miriam_standardize_identifier",
     "normalize_curie",

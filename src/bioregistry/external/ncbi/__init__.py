@@ -152,7 +152,7 @@ get_ncbi = build_getter(
 class NcbiAligner(Aligner):
     """Aligner for NCBI xref registry."""
 
-    key = "ncbi"
+    key = "ncbi.resource"
     getter = get_ncbi
     getter_kwargs: ClassVar[dict[str, Any]] = {"force_download": False}
     curation_header: ClassVar[Sequence[str]] = ("name", "example", "homepage")

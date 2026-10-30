@@ -43,6 +43,7 @@ def import_from_linkml(url: str) -> None:
     """Get a resource from a LinkML configuration and write it to the registry.
 
     :param url: The URL to a LinkML YAML configuration file.
+
     :returns: A Bioregistry resource object
     """
     resource = get_resource_from_linkml(url)
@@ -85,6 +86,7 @@ def get_resource_from_linkml(url: str) -> bioregistry.Resource:
     """Get a resource from a LinkML configuration.
 
     :param url: The URL to a LinkML YAML configuration file.
+
     :returns: A Bioregistry resource object
     """
     res = requests.get(_fix_github(url), timeout=5)

@@ -17,6 +17,7 @@ from ..alignment_model import load_processed as load_records
 from ..constants import METADATA_CURATION_DIRECTORY
 from ..resource_manager import Manager
 from ..schema import Resource
+from ..schema.struct import RESOURCE_ALIAS_TO_FIELD
 from ..schema_utils import is_mismatch
 from ..utils import norm
 
@@ -85,8 +86,15 @@ class Aligner:
 
         self.manager = Manager() if manager is None else manager
 
+        if self.key not in self.manager.registry:
+            raise ValueError(f"invalid prefix for aligner: {self.key}")
         if self.key not in self.manager.metaregistry:
-            raise TypeError(f"invalid metaprefix for aligner: {self.key}")
+            raise ValueError(f"prefix has not been added to the metaregistry: {self.key}")
+
+        if self.key in RESOURCE_ALIAS_TO_FIELD:
+            self._model_field_name = RESOURCE_ALIAS_TO_FIELD[self.key]
+        else:
+            self._model_field_name = self.key
 
         kwargs = dict(self.getter_kwargs or {})
         kwargs.setdefault("force_download", True)
@@ -197,7 +205,7 @@ class Aligner:
             self.internal_registry[bioregistry_id].mappings = {}
         self.internal_registry[bioregistry_id].mappings[self.key] = external_id  # type:ignore
 
-        self.internal_registry[bioregistry_id][self.key] = {
+        self.internal_registry[bioregistry_id][self._model_field_name] = {
             self.subkey: external_id,
             **external_entry.model_dump(
                 exclude_none=True, exclude_defaults=True, exclude_unset=True
@@ -236,7 +244,7 @@ class Aligner:
         instance.write_curation_table()
 
     @classmethod
-    def cli(cls, *args: Any, **kwargs: Any) -> None:
+    def get_cli(cls) -> click.Command:
         """Construct a CLI for the aligner."""
 
         @click.command(help=f"Align {cls.key}")
@@ -248,6 +256,12 @@ class Aligner:
         def _main(dry: bool, show: bool, no_force: bool) -> None:
             cls.align(dry=dry, show=show, force_download=not no_force)
 
+        return _main
+
+    @classmethod
+    def cli(cls, *args: Any, **kwargs: Any) -> None:
+        """Run a CLI for the aligner."""
+        _main = cls.get_cli()
         _main(*args, **kwargs)
 
     def get_curation_row(self, external_id: str, external_entry: Record) -> Sequence[str]:
@@ -260,7 +274,7 @@ class Aligner:
 
         :raises TypeError: If an invalid value is encountered
 
-        The default implementation of this function iterates over all of the keys in the
+        The default implementation of this function iterates over all the keys in the
         class variable :data:`curation_header` and looks inside each record for those in
         order.
 

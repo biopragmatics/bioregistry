@@ -9,9 +9,9 @@ from pathlib import Path
 
 import pandas as pd
 
+from bioregistry import Manager
 from bioregistry.analysis.paper_ranking import load_curated_papers, train
 from bioregistry.schema import Publication, Resource
-from bioregistry.schema_utils import write_registry
 
 
 @unittest.skipUnless(
@@ -113,11 +113,10 @@ class TestPaperRanking(unittest.TestCase):
                 set(df.pubmed),
             )
 
-            registry_path = directory.joinpath("registry.json")
-            write_registry(registry, path=registry_path)
+            manager = Manager(registry, metaregistry={})
 
             train(
-                bioregistry_file=registry_path,
+                manager=manager,
                 curated_papers_path=curated_papers_path,
                 include_remote=False,
                 output_path=directory,

@@ -14,6 +14,7 @@ from .fairsharing import get_fairsharing
 from .go import get_go
 from .hl7 import get_hl7
 from .integbio import get_integbio
+from .loc import get_loc
 from .lov import get_lov
 from .miriam import get_miriam
 from .n2t import get_n2t
@@ -46,6 +47,7 @@ __all__ = [
     "get_go",
     "get_hl7",
     "get_integbio",
+    "get_loc",
     "get_lov",
     "get_miriam",
     "get_n2t",
@@ -98,4 +100,5 @@ GETTERS: list[tuple[str, str, Getter]] = [
     ("rrid", "RRID", get_rrid),
     ("tib", "TIB TS", get_tib_ts),
     ("biodivportal", "Biodiv Portal", get_biodivportal),
+    ("loc", "LOC", get_loc),
 ]

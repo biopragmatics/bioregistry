@@ -58,7 +58,7 @@ def get_tib_ts(
 class TIBAligner(Aligner):
     """Aligner for the TIB Terminology Service."""
 
-    key = "tib"
+    key = "tib.ts"
     getter = get_tib_ts
     curation_header: ClassVar[Sequence[str]] = ("name",)
 

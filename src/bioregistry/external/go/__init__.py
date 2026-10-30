@@ -126,7 +126,7 @@ def _process_record(data: Mapping[str, Any]) -> Record:
 class GoAligner(Aligner):
     """An aligner for the Gene Ontology (GO) registry."""
 
-    key = "go"
+    key = "go.resource"
     getter = get_go
     curation_header: ClassVar[Sequence[str]] = "name", "description"
 

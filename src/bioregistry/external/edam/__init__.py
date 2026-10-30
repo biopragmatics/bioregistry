@@ -35,7 +35,7 @@ def _get_identifier(term: dict[str, str], ontology: str) -> str:
 class EDAMAligner(Aligner):
     """Aligner for the EDAM ontology."""
 
-    key = "edam"
+    key = "edam.data"
     getter = get_edam
     alt_key_match = "name"
     curation_header: ClassVar[Sequence[str]] = ["name", "description"]

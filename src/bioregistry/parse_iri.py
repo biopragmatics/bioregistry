@@ -37,6 +37,7 @@ def get_preferred_converter(*, stubs: bool = False, wrap: bool = False) -> curie
 
     :param stubs: Should stub URIs be assigned to resources with no URI format?
     :param wrap: Wrap with auto-normalization rules?
+
     :returns: A converter ready for semantic web applications.
     """
     rv = manager.get_converter(

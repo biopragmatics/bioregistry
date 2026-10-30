@@ -8,7 +8,7 @@ When curating unaligned external prefixes, many are either out of scope or not
 possible to find minimum metadata and therefore should be explicitly excluded
 from the Bioregistry.
 
-> **Warning ** This is a first draft of a tutorial on explicitly curating
+> **Warning** This is a first draft of a tutorial on explicitly curating
 > non-alignments. It's subject to change and additional polishing.
 
 1. Identify a prefix of interest from BioPortal (or another) curation sheet

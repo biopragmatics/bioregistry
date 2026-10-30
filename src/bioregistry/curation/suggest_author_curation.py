@@ -47,6 +47,13 @@ EMAIL_BLACKLIST = {
     "custserv@nlm.nih.gov",
     "OP-EU-VOCABULARIES@publications.europa.eu",
     "public-schemaorg@w3.org",
+    "radlex-feedback@lists.rsna.org",
+    "subjectareas@plos.org",
+    "hq@hl7.org",
+    "evorao@evora-project.eu",
+    "coli-conc@gbv.de",
+    "coi@bot.uc.pt",
+    "more.info@allotrope.org",
 }
 
 BAD_NAMES = {
@@ -88,7 +95,8 @@ def _main() -> None:
         if contact.email in EMAIL_BLACKLIST:
             contact.email = None
         contact.name = contact.name.removeprefix("Dr. ").strip()
-        contact.name = contact.name.removeprefix("Dr ").strip()
+        contact.name = contact.name.removeprefix("Dr. ").strip()
+        contact.name = contact.name.removeprefix("Professor ").strip()
         contact.name = contact.name.removesuffix("MD").strip()
         if contact.orcid and contact.email and contact.github:
             continue

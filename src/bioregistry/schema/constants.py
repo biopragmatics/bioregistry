@@ -30,9 +30,7 @@ if TYPE_CHECKING:
 
 __all__ = [
     "SCHEMA_TERMS",
-    # Namespaces
     "bioregistry_collection",
-    "bioregistry_metaresource",
     "bioregistry_resource",
     "bioregistry_schema",
     "orcid",
@@ -225,6 +223,7 @@ SCHEMA_TERMS = [
         "The responsible person for a resource",
         domain="0000001",
         range="0000020",
+        xrefs=[DOAP.maintainer],
     ),
     ClassTerm(
         "0000020",
@@ -339,7 +338,6 @@ bioregistry_schema_extras = [
 ]
 bioregistry_collection = rdflib.namespace.Namespace("https://bioregistry.io/collection/")
 bioregistry_resource = rdflib.namespace.Namespace("https://bioregistry.io/registry/")
-bioregistry_metaresource = rdflib.namespace.Namespace("https://bioregistry.io/metaregistry/")
 bioregistry_schema = rdflib.namespace.ClosedNamespace(
     uri=URIRef("https://bioregistry.io/schema/#"),
     terms=[term.identifier for term in SCHEMA_TERMS],
@@ -353,7 +351,6 @@ orcid = rdflib.namespace.Namespace("https://orcid.org/")
 def _graph(manager: Optional["bioregistry.resource_manager.Manager"] = None) -> rdflib.Graph:
     graph = rdflib.Graph()
     graph.namespace_manager.bind("bioregistry", bioregistry_resource)
-    graph.namespace_manager.bind("bioregistry.metaresource", bioregistry_metaresource)
     graph.namespace_manager.bind("bioregistry.collection", bioregistry_collection)
     graph.namespace_manager.bind("bioregistry.schema", bioregistry_schema)
     graph.namespace_manager.bind("orcid", orcid)
@@ -366,7 +363,7 @@ def _graph(manager: Optional["bioregistry.resource_manager.Manager"] = None) -> 
     graph.namespace_manager.bind("wikidata", WIKIDATA)
     graph.namespace_manager.bind("vann", VANN)
     graph.namespace_manager.bind("ror", ROR)
-    graph.namespace_manager.bind("oboinowl", OBOINOWL)
+    graph.namespace_manager.bind("oboInOwl", OBOINOWL)
     graph.namespace_manager.bind("void", VOID)
     graph.namespace_manager.bind("doap", DOAP)
     graph.namespace_manager.bind("sh", SH)

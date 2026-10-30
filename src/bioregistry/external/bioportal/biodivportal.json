@@ -123,7 +123,18 @@
       "name": "LOV_migration"
     },
     "description": "An RDF vocabulary for the taxonomy of all forms of life",
+    "license": {
+      "name": "http://creativecommons.org/licenses/by-sa/2.0/uk"
+    },
     "name": "Biological Taxonomy Vocabulary 0.2 (Core)",
+    "publications": [
+      {
+        "url": "http://microformats.org/wiki/species"
+      },
+      {
+        "url": "http://en.wikipedia.org/wiki/Taxonomic_rank"
+      }
+    ],
     "version": "v0.2"
   },
   "BK": {
@@ -287,6 +298,24 @@
     "name": "DFG Classification of Subject Areas Ontology",
     "repository": "https://github.com/tibonto/DFG-Fachsystematik-Ontology"
   },
+  "DSW": {
+    "contact": {
+      "email": "steve.baskauf@vanderbilt.edu",
+      "name": "Steve Baskauf"
+    },
+    "description": "An ontology using Darwin Core terms to make it possible to describe biodiversity resources in .the Semantic Web, Darwin Semantic Web, version 0.4. Please see http://code.google.com/p/darwin-sw/ for full details, Changes from version 0.2.1 to version 0.3: removal of all functional and inverse function properties of object property terms, use of dwctype classes, deprecation of terms replaced by dwciri: terms, removal of references to TDWG Ontology., Version 0.4 to 1.0 fixed reversed dsw:locates and dsw:locatedAt. Added labels. Changed comments and descriptions to conform to DC and DwC precedent. Added subClassOf relations to RO hasEvidence and isEvidenceFor. Specified preferred direction for inverse object property pairs., Changes from version 0.3 to 0.4 change DwC class namespace from dwctype: to dwc: to follow class proposal, removed references to TDWG TaxonConcept ontology; deprecated terms that now have equivalent terms in Darwin Core., Change from version 1.0 to 1.0.1 Add CC0 license.",
+    "license": {
+      "name": "CC0-1.0"
+    },
+    "name": "Darwin SW",
+    "publications": [
+      {
+        "url": "https://www.semantic-web-journal.net/content/darwin-sw-darwin-core-based-terms-expressing-biodiversity-data-rdf-1"
+      }
+    ],
+    "repository": "https://github.com/darwin-sw/dsw",
+    "version": "1.0.1"
+  },
   "ECO": {
     "contact": {
       "email": "mgiglio@som.umaryland.edu",
@@ -329,6 +358,10 @@
     "version": "2026-06-26"
   },
   "ENVTHES": {
+    "contact": {
+      "email": "barbara@gofair.foundation",
+      "name": "Barbara Magagna"
+    },
     "description": "EnvThes compiles a set of terms in order to describe in a harmonised way data resulting from observations and measurements of ecosystem processes across different domain specific sciences. It is used by DEIMS-SDR for common keywords for annotation and quering metadata purposes. , EnvThes compiles a set of terms in order to describe in a harmonised way data resulting from observations and measurements of ecosystem processes across different domain specific sciences. It is used by DEIMS-SDR for common keywords for annotation and quering metadata purposes.",
     "license": {
       "name": "CC-BY-4.0"
@@ -408,6 +441,10 @@
     "version": "Version 3.3 - 2022-01-30"
   },
   "I-ADOPT": {
+    "contact": {
+      "email": "barbara@gofair.foundation",
+      "name": "Barbara Magagna"
+    },
     "description": "The I-ADOPT Framework is an ontology designed to facilitate interoperability between existing variable description models (including ontologies, taxonomy, and structured controlled vocabularies). One of the challenges in representing semantic descriptions of variables is getting people to agree about what they mean when describing the components that define the variables. The I-ADOPT ontology addresses this by providing core components and their relations that can be applied to define machine-interpretable variable descriptions that re-use FAIR vocabulary terms. This first version of the ontology has been developed by a core group of terminology experts and users from the Research Data Alliance (RDA) InteroperAble Descriptions of Observable Property Terminology (I-ADOPT) Working Group.",
     "extras": {
       "example_uri": "https://w3id.org/iadopt/ont/Property"
@@ -544,7 +581,7 @@
       "name": "CC-BY-4.0"
     },
     "name": "Livestock Product Trait Ontology",
-    "version": "2026-04-01"
+    "version": "2026-10-02"
   },
   "LSLIFE": {
     "contact": {
@@ -589,7 +626,7 @@
       }
     ],
     "repository": "https://github.com/obophenotype/ncbitaxon",
-    "version": "2026-05-13"
+    "version": "2026-07-12"
   },
   "NFDICORE": {
     "description": "The [National Research Data Infrastructure (NFDI) initiative](https://www.nfdi.de/) has seen the establishment of various consortia, each dedicated to developing a research data infrastructure tailored to its respective domain. To facilitate interoperability across these consortia, the NFDIcore ontology (prefix nfdicore) has been developed and serves as a mid level ontology for representing metadata about NFDI resources such as individuals, organizations, projects, data portals, etc. Recognizing the diverse needs of consortia, NFDIcore establishes mappings to a wide array of standards across domains, including the [Basic Formal Ontology (BFO)](https://basic-formal-ontology.org/) and [schema.org](https://schema.org/), which is crucial for advancing knowledge representation, data exchange, and collaboration across diverse domains. To answer domain-specific research questions, NFDIcore is extended following a modular approach, as e.g. with the culture ontology module [CTO](https://gitlab.rlp.net/adwmainz/nfdi4culture/knowledge-graph/culture-ontology), matwerk ontology module [MWO](https://git.rwth-aachen.de/nfdi-matwerk/ta-oms/mwo), etc. Aligning with [IAO](https://github.com/information-artifact-ontology/IAO) and [SCHEMA](https://schema.org/), NFDIcore focuses on describing 3 main concepts: 1. Digital Information Artifacts (nfdicore:Resource), e.g. data sets, publications, services, software, etc. 2. Independent Continuants that act autonomously (nfdicore:Agent), e.g. organizations and persons 3. Planned processes and events, e.g. nfdicore:Project, nfdicore:Contributing, nfdicore:Event. Current development is managed via [GitHub](https://github.com/ISE-FIZKarlsruhe/nfdicore). Feel free to give feedback, contribute, or raise issues., NFDIcore ontology, The National Research Data Infrastructure (NFDI) initiative has led to the formation of various consortia, each focused on developing a research data infrastructure tailored to its specific domain. To ensure interoperability across these consortia, the NFDIcore ontology has been developed as a mid-level ontology for representing metadata related to NFDI resources, including individuals, and more.\nFurther infomration can be found at GitHub: https://github.com/ISE-FIZKarlsruhe/nfdicore/",
@@ -614,7 +651,7 @@
       "name": "CC0-1.0"
     },
     "name": "Ontology of Biological Attributes",
-    "version": "2026-07-14"
+    "version": "2026-10-10"
   },
   "OBOE": {
     "contact": {
@@ -682,7 +719,7 @@
       "email": "g.gkoutos@gmail.com",
       "name": "George Gkoutos"
     },
-    "description": "Phenotypic qualities (properties). This ontology can be used in conjunction with other ontologies such as GO or anatomical ontologies to refer to phenotypes. Examples of qualities are red, ectopic, high temperature, fused, small, edematous and arrested., An ontology of phenotypic qualities (properties, attributes or characteristics).",
+    "description": "Phenotypic qualities (properties). This ontology can be used in conjunction with other ontologies such as GO or anatomical ontologies to refer to phenotypes. Examples of qualities are red, ectopic, high temperature, fused, small, edematous and arrested., An ontology of phenotypic qualities (properties, attributes or characteristics)., An ontology of characteristics (properties, attributes, or modifiers). These are intended to be used in combination with terms from other ontologies to construct characteristic-entity combinations that describe traits or phenotypes of organisms, chemicals, environments, and other entities.",
     "extras": {
       "example_uri": "http://purl.obolibrary.org/obo/PR_000001889"
     },
@@ -691,7 +728,7 @@
       "name": "CC-BY-3.0"
     },
     "name": "Phenotypic Quality Ontology",
-    "version": "2025-05-14"
+    "version": "2026-10-01"
   },
   "PCO": {
     "contact": {
@@ -805,7 +842,7 @@
       }
     ],
     "repository": "https://github.com/oborel/obo-relations",
-    "version": "2025-12-17"
+    "version": "2026-09-04"
   },
   "SCHEMAORG": {
     "contact": {
@@ -1037,6 +1074,6 @@
       "name": "CC-BY-4.0"
     },
     "name": "Vertebrate Trait Ontology",
-    "version": "2026-07-23"
+    "version": "2026-10-02"
   }
 }

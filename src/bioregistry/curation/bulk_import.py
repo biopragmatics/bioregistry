@@ -59,7 +59,7 @@ def _resource_from_row(row: dict[str, Any]) -> Resource:
 
 def _bulk_import_df(df: pd.DataFrame) -> None:
     for _, row in df.iterrows():
-        resource = _resource_from_row(row.to_dict())  # type:ignore[arg-type]
+        resource = _resource_from_row(row.to_dict())
         try:
             add_resource(resource)
         except KeyError as e:

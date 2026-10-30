@@ -4,14 +4,12 @@ title: Project Governance
 permalink: /governance/
 ---
 
-# Governance
-
 The goal of the Bioregistry is to enable community-driven curation and
 maintenance of a registry of prefixes and their associated metadata. This is a
 first suggestion for some minimal governance (heavily inspired by
-https://github.com/mapping-commons/SSSOM/issues/82, since that is a similar
+<https://github.com/mapping-commons/SSSOM/issues/82>, since that is a similar
 community-driven effort). Discussion for this governance is taking place on
-https://github.com/biopragmatics/bioregistry/issues/156.
+<https://github.com/biopragmatics/bioregistry/issues/156>.
 
 ## Manually Updating the Bioregistry
 
@@ -24,8 +22,8 @@ https://github.com/biopragmatics/bioregistry/issues/156.
   member of the Bioregistry Review Team approves. It's best practice that a
   member of the Review Team does not approve their own updates.
 - New prefixes must conform to
-  https://github.com/biopragmatics/bioregistry/issues/158 and
-  https://github.com/biopragmatics/bioregistry/issues/133 and the
+  <https://github.com/biopragmatics/bioregistry/issues/158> and
+  <https://github.com/biopragmatics/bioregistry/issues/133> and the
   [contribution guidelines](CONTRIBUTING.md).
 - Attribution information for the requester and reviewer of manual updates must
   be collected in the form of an [ORCiD identifier](https://orcid.org).
@@ -37,10 +35,10 @@ prefixes, merging prefixes, splitting prefixes, and updating metadata associated
 with prefixes. It is implemented as a GitHub team that has "triage" permissions
 (e.g., able to maintain issues and pull requests).
 
-Until all of the potential update interactions have been codified with GitHub
-actions workflows, the review team is also responsible for either helping the
-requester create an appropriate pull request or creating an appropriate pull
-request directly if none has been given by the requester.
+Until all potential update interactions have been codified with GitHub Actions
+workflows, the review team is also responsible for either helping the requester
+create an appropriate pull request or creating an appropriate pull request
+directly if none has been given by the requester.
 
 ### Membership
 
@@ -73,7 +71,7 @@ request directly if none has been given by the requester.
 #### Member Offboarding
 
 - Remove from the private channel on OBO Foundry Slack
-- Remove from the the GitHub
+- Remove from the GitHub
   [review team](https://github.com/orgs/biopragmatics/teams/bioregistry-reviewers)
   (note that GitHub hasn't yet enabled teams to be publicly viewed, and this
   link currently results in a 404 error)
@@ -82,12 +80,13 @@ request directly if none has been given by the requester.
 
 #### Members
 
-- Meghan Balk (@megbalk; https://orcid.org/0000-0003-2699-3066; joined 2022-01)
-- Tiffany Callahan (@callahantiff; https://orcid.org/0000-0002-8169-9049; joined
+- Meghan Balk (@megbalk; <https://orcid.org/0000-0003-2699-3066>; joined
   2022-01)
-- Benjamin M. Gyori (@bgyori; https://orcid.org/0000-0001-9439-5346)
-- Charles Tapley Hoyt (@cthoyt; https://orcid.org/0000-0003-4423-4370)
-- Tiago Lubiana (@lubianat; https://orcid.org/0000-0003-2473-2313; joined
+- Tiffany Callahan (@callahantiff; <https://orcid.org/0000-0002-8169-9049>;
+  joined 2022-01)
+- Benjamin M. Gyori (@bgyori; <https://orcid.org/0000-0001-9439-5346>)
+- Charles Tapley Hoyt (@cthoyt; <https://orcid.org/0000-0003-4423-4370>)
+- Tiago Lubiana (@lubianat; <https://orcid.org/0000-0003-2473-2313>; joined
   2022-01)
 
 #### Previous Members
@@ -103,7 +102,7 @@ repositories. It is implemented as a GitHub team that has "maintain" permissions
 (e.g., able to write to the repo as well as maintain issues and pull requests).
 
 Contributions to the Bioregistry code must be submitted as pull requests to
-https://github.com/biopragmatics/bioregistry. They must conform to the
+<https://github.com/biopragmatics/bioregistry>. They must conform to the
 [contribution guidelines](CONTRIBUTING.md). Code contributions must be approved
 by a member of the Core Development Team as well as pass continuous integration
 tests before merging.
@@ -122,8 +121,8 @@ tests before merging.
 
 #### Members
 
-- Benjamin M. Gyori (@bgyori; https://orcid.org/0000-0001-9439-5346)
-- Charles Tapley Hoyt (@cthoyt; https://orcid.org/0000-0003-4423-4370)
+- Benjamin M. Gyori (@bgyori; <https://orcid.org/0000-0001-9439-5346>)
+- Charles Tapley Hoyt (@cthoyt; <https://orcid.org/0000-0003-4423-4370>)
 
 ## Publications / Attribution
 
@@ -133,7 +132,7 @@ on Bioregistry papers and can propose other co-authors.
 All contributors to the data underlying the Bioregistry, regardless of curation
 size, should be considered for authorship on Bioregistry papers. These
 contributions are automatically summarized at
-https://bioregistry.io/contributors.
+<https://bioregistry.io/contributors>.
 
 Larger external institutional contributors should be acknowledged in the
 following places, where appropriate:
@@ -142,7 +141,7 @@ following places, where appropriate:
   [funding](https://github.com/biopragmatics/bioregistry#-funding) sections of
   the repository's main README.md
 - On the [acknowledgements](https://bioregistry.io/acknowledgments) page of
-  https://bioregistry.io
+  <https://bioregistry.io>
 
 ## Bootstrapping governance
 
@@ -152,7 +151,7 @@ it is officially in effect.
 
 ## Updating governance
 
-This governance must updated through the following steps:
+This governance must be updated through the following steps:
 
 1. Create an issue on the Bioregistry's
    [issue tracker](https://github.com/biopragmatics/bioregistry/issues)
@@ -167,6 +166,6 @@ later make explicit criteria for accepting changes to this governance.
 
 ## Partners
 
-Please see https://github.com/biopragmatics/bioregistry/issues/755 for
+Please see <https://github.com/biopragmatics/bioregistry/issues/755> for
 discussions about a governance model for partnerships between the Bioregistry
 and identifier space owners.

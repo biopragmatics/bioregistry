@@ -124,7 +124,7 @@ def metaresource(metaprefix: str) -> str | flask.Response:
         homepage=entry.homepage,
         download=entry.download,
         example_prefix=external_prefix,
-        example_prefix_url=entry.get_provider_uri_format(external_prefix),
+        example_prefix_url=entry.get_provider_url(external_prefix),
         example_identifier=example_identifier,
         example_curie=(
             curie_to_str(external_prefix, example_identifier) if example_identifier else None
@@ -249,7 +249,7 @@ def metaresolve(
     """
     if metaprefix not in manager.metaregistry:
         return abort(404, f"invalid metaprefix: {metaprefix}")
-    prefix = manager.lookup_from(metaprefix, metaidentifier)
+    prefix = manager.lookup_external_prefix(metaprefix, metaidentifier)
     if prefix is None:
         return abort(
             404,

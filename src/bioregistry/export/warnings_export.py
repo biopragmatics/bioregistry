@@ -9,7 +9,6 @@ from __future__ import annotations
 from collections.abc import Callable
 
 import click
-import yaml
 from tqdm import tqdm
 
 from ..constants import DOCS_DATA, EXTERNAL
@@ -24,7 +23,8 @@ from ..resolve import (
     has_no_terms,
 )
 from ..resolve_identifier import get_iri
-from ..schema_utils import read_metaregistry, read_registry
+from ..resource_manager import Manager
+from ..schema_utils import read_registry
 from ..uri_format import get_uri_format
 
 __all__ = [
@@ -66,10 +66,14 @@ def get_unparsable_uris() -> list[tuple[str, str, str]]:
 @click.command()
 def export_warnings() -> None:
     """Make warnings list."""
+    from pystow.utils import write_yaml
+
+    manager = Manager()
+
     # unparsable = get_unparsable_uris()
     missing_wikidata_database = _g(
         lambda prefix: (
-            (get_external(prefix, "wikidata") or {}).get("database") is None
+            (get_external(prefix, "wikidata.property") or {}).get("database") is None
             and not has_no_terms(prefix)
         )
     )
@@ -90,22 +94,21 @@ def export_warnings() -> None:
             "metaprefix": metaprefix,
             "name": registry.get_short_name(),
         }
-        for metaprefix, registry in sorted(read_metaregistry().items())
+        for metaprefix, registry in sorted(manager.metaregistry.items())
         if EXTERNAL.joinpath(metaprefix, "curation.tsv").is_file()
     ]
 
-    with CURATIONS_PATH.open("w") as file:
-        yaml.safe_dump(
-            {
-                "wikidata": missing_wikidata_database,
-                "pattern": missing_pattern,
-                "formatter": missing_format_url,
-                "example": missing_example,
-                "prefix_xrefs": prefix_xrefs,
-                # "unparsable": unparsable,
-            },
-            file,
-        )
+    write_yaml(
+        {
+            "wikidata": missing_wikidata_database,
+            "pattern": missing_pattern,
+            "formatter": missing_format_url,
+            "example": missing_example,
+            "prefix_xrefs": prefix_xrefs,
+            # "unparsable": unparsable,
+        },
+        CURATIONS_PATH,
+    )
 
     miriam_pattern_wrong = [
         {
@@ -122,13 +125,7 @@ def export_warnings() -> None:
         and entry.pattern != miriam_pattern
     ]
 
-    with WARNINGS_PATH.open("w") as file:
-        yaml.safe_dump(
-            {
-                "wrong_patterns": miriam_pattern_wrong,
-            },
-            file,
-        )
+    write_yaml({"wrong_patterns": miriam_pattern_wrong}, WARNINGS_PATH)
 
 
 if __name__ == "__main__":

@@ -2,7 +2,7 @@
 
 import click
 import sssom_pydantic
-from curies import NamableReference, Reference, ReferenceTuple
+from curies import NamableReference, Reference
 from curies.vocabulary import exact_match, part_of, unspecified_matching_process
 from sssom_pydantic import MappingSetRecord, SemanticMapping
 
@@ -29,18 +29,39 @@ def export_sssom() -> None:
     manager = Manager()
     converter = manager._get_internal_converter()
 
+    def _make_semantic_mapping(
+        internal_prefix: str,
+        predicate: Reference,
+        external_metaprefix: str,
+        external_prefix: str,
+        external_name: str,
+    ) -> SemanticMapping:
+        return SemanticMapping(
+            subject=NamableReference(
+                prefix=INTERNAL_METAPREFIX,
+                identifier=internal_prefix,
+                name=manager.get_name(internal_prefix),
+            ),
+            predicate=predicate,
+            object=NamableReference(
+                prefix=external_metaprefix, identifier=external_prefix, name=external_name
+            ),
+            justification=unspecified_matching_process,
+        )
+
     semantic_mappings = read_mappings()
+    # TODO add in subject and object labels for curated mappings
+
     for prefix, resource in manager.registry.items():
         mappings = resource.get_mappings()
         for metaprefix, metaidentifier in mappings.items():
-            metaprefix = converter.standardize_prefix(metaprefix, strict=True)
             semantic_mappings.append(
                 _make_semantic_mapping(
                     prefix,
                     exact_match,
                     metaprefix,
                     metaidentifier,
-                    manager=manager,
+                    resource._get_external_value(metaprefix, "name"),
                 )
             )
 
@@ -51,7 +72,7 @@ def export_sssom() -> None:
                     APPEARS_IN_PRED,
                     INTERNAL_METAPREFIX,
                     appears_in_internal_prefix,
-                    manager=manager,
+                    manager.get_name(appears_in_internal_prefix),
                 )
             )
         for depends_on_internal_prefix in manager.get_depends_on(prefix) or []:
@@ -61,7 +82,7 @@ def export_sssom() -> None:
                     DEPENDS_ON_PRED,
                     INTERNAL_METAPREFIX,
                     depends_on_internal_prefix,
-                    manager=manager,
+                    manager.get_name(depends_on_internal_prefix),
                 )
             )
 
@@ -72,7 +93,7 @@ def export_sssom() -> None:
                     part_of,
                     INTERNAL_METAPREFIX,
                     resource.part_of,
-                    manager=manager,
+                    manager.get_name(resource.part_of),
                 )
             )
         if resource.provides:
@@ -82,7 +103,7 @@ def export_sssom() -> None:
                     PROVIDES_PRED,
                     INTERNAL_METAPREFIX,
                     resource.provides,
-                    manager=manager,
+                    manager.get_name(resource.provides),
                 )
             )
         if resource.has_canonical:
@@ -92,36 +113,17 @@ def export_sssom() -> None:
                     HAS_CANONICAL_PRED,
                     INTERNAL_METAPREFIX,
                     resource.has_canonical,
-                    manager=manager,
+                    manager.get_name(resource.has_canonical),
                 )
             )
 
     metadata = MappingSetRecord.model_validate(SSSOM_METADATA)
     sssom_pydantic.write(
-        semantic_mappings, SSSOM_PATH, metadata=metadata, converter=converter, sort=True
-    )
-
-
-def _make_semantic_mapping(
-    internal_prefix: str,
-    predicate: ReferenceTuple | Reference,
-    external_metaprefix: str,
-    external_prefix: str,
-    manager: Manager,
-) -> SemanticMapping:
-    resource = manager.get_resource(internal_prefix, strict=True)
-    external_name = resource._get_external_value(external_metaprefix, "name")
-    return SemanticMapping(
-        subject=NamableReference(
-            prefix=INTERNAL_METAPREFIX,
-            identifier=internal_prefix,
-            name=manager.get_name(internal_prefix),
-        ),
-        predicate=Reference.from_curie(predicate.curie),
-        object=NamableReference(
-            prefix=external_metaprefix, identifier=external_prefix, name=external_name
-        ),
-        justification=unspecified_matching_process,
+        semantic_mappings,
+        SSSOM_PATH,
+        metadata=metadata,
+        converter=converter,
+        sort=True,
     )
 
 

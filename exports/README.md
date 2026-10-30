@@ -27,7 +27,7 @@ basis using GitHub Actions as a continuous integration server.
 
 ## PURLs
 
-The Bioregistry uses https://w3id.org to create persistent uniform resource
+The Bioregistry uses <https://w3id.org> to create persistent uniform resource
 locators (PURLs) for various resources. These are configured on GitHub in the
 `.htaccess` file in
-https://github.com/perma-id/w3id.org/tree/master/biopragmatics.
+<https://github.com/perma-id/w3id.org/tree/master/biopragmatics>.

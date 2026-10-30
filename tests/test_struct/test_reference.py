@@ -8,9 +8,11 @@ from pydantic import BaseModel, ValidationError
 from bioregistry.reference import (
     NormalizedNamableReference,
     NormalizedNamedReference,
+    NormalizedPrefix,
     NormalizedReference,
     StandardNamableReference,
     StandardNamedReference,
+    StandardPrefix,
     StandardReference,
 )
 
@@ -28,6 +30,20 @@ BAD_CURIES = [
 
 class TestNormalizedReference(unittest.TestCase):
     """Test normalized references, which use Bioregistry lowercasing."""
+
+    def test_prefix_in_model(self) -> None:
+        """Test the standard prefix."""
+
+        class Model(BaseModel):
+            """A test model with a standardized prefix."""
+
+            prefix: NormalizedPrefix
+
+        m1 = Model(prefix="GO")
+        self.assertEqual("go", m1.prefix)
+
+        m2 = Model(prefix="go")
+        self.assertEqual("go", m2.prefix)
 
     def test_failed_validation(self) -> None:
         """Test throwing a runtime error when missing prefix/identifier."""
@@ -155,6 +171,20 @@ class TestNormalizedReference(unittest.TestCase):
 
 class TestStandardizeReference(unittest.TestCase):
     """Test standardized references, which use preferred prefixes."""
+
+    def test_standard_prefix_in_model(self) -> None:
+        """Test the standard prefix."""
+
+        class Model(BaseModel):
+            """A test model with a standardized prefix."""
+
+            prefix: StandardPrefix
+
+        m1 = Model(prefix="GO")
+        self.assertEqual("GO", m1.prefix)
+
+        m2 = Model(prefix="go")
+        self.assertEqual("GO", m2.prefix)
 
     def test_standard_reference(self) -> None:
         """Test parsing a regular reference."""

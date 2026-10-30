@@ -1,7 +1,7 @@
 # URI Parsing Benchmark
 
 This benchmark checks the `bioregistry.parse_iri` function. See also
-https://github.com/biopragmatics/bioregistry/pull/481.
+<https://github.com/biopragmatics/bioregistry/pull/481>.
 
 ## Dataset
 
@@ -16,13 +16,13 @@ following columns:
 
 Example data:
 
-| prefix        | identifier   | metaprefix  | uri                                                           |
-| ------------- | ------------ | ----------- | ------------------------------------------------------------- |
-| 3dmet         | B00162       | bioregistry | https://bioregistry.io/3dmet:B00162                           |
-| 3dmet         | B00162       | default     | http://www.3dmet.dna.affrc.go.jp/cgi/show_data.php?acc=B00162 |
-| 3dmet         | B00162       | miriam      | https://identifiers.org/3dmet:B00162                          |
-| 3dmet         | B00162       | n2t         | https://n2t.net/3dmet:B00162                                  |
-| 4dn.biosource | 4DNSR73BT2A2 | bioregistry | https://bioregistry.io/4dn.biosource:4DNSR73BT2A2             |
+| prefix        | identifier   | metaprefix  | uri                                                             |
+| ------------- | ------------ | ----------- | --------------------------------------------------------------- |
+| 3dmet         | B00162       | bioregistry | <https://bioregistry.io/3dmet:B00162>                           |
+| 3dmet         | B00162       | default     | <http://www.3dmet.dna.affrc.go.jp/cgi/show_data.php?acc=B00162> |
+| 3dmet         | B00162       | miriam      | <https://identifiers.org/3dmet:B00162>                          |
+| 3dmet         | B00162       | n2t         | <https://n2t.net/3dmet:B00162>                                  |
+| 4dn.biosource | 4DNSR73BT2A2 | bioregistry | <https://bioregistry.io/4dn.biosource:4DNSR73BT2A2>             |
 
 ## Results
 

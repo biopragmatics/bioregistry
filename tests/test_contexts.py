@@ -25,11 +25,14 @@ class TestContexts(unittest.TestCase):
     def test_linted(self) -> None:
         """Test the context file is linted."""
         text = CONTEXTS_PATH.read_text(encoding="utf-8")
-        linted_text = json.dumps(
-            json.loads(text),
-            indent=2,
-            sort_keys=True,
-            ensure_ascii=False,
+        linted_text = (
+            json.dumps(
+                json.loads(text),
+                indent=2,
+                sort_keys=True,
+                ensure_ascii=False,
+            )
+            + "\n"
         )
         self.assertEqual(linted_text, text)
 

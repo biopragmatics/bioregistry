@@ -16,7 +16,9 @@
             "xml",
             "n3",
             "trix",
-            "nt"
+            "nt",
+            "shex",
+            "json-ld"
           ],
           "title": "RDF Format",
           "type": "string"
@@ -793,7 +795,7 @@
       "type": "object"
     },
     "Reference": {
-      "description": "A reference to an entity in a given identifier space.\n\nThis class uses Pydantic to make it easier to build other more complex data types\nwith Pydantic that also uses a first- class notion of parsed reference (instead of\nmerely stringified CURIEs). Instances of this class can also be hashed because of\nthe \"frozen\" configuration from Pydantic (see\nhttps://docs.pydantic.dev/latest/usage/model_config/ for more details).\n\nA reference can be constructed several ways:\n\n>>> Reference(prefix=\"chebi\", identifier=\"1234\")\nReference(prefix='chebi', identifier='1234')\n\n>>> Reference.from_curie(\"chebi:1234\")\nReference(prefix='chebi', identifier='1234')\n\nA reference can also be constructued using Pydantic's parsing utilities, but keep in\nmind if you're using Pydantic v1 or Pydantic v2.\n\nA reference can be formatted as a CURIE string with the ``curie`` attribute\n\n>>> Reference.from_curie(\"chebi:1234\").curie\n'chebi:1234'\n\nReferences can't be sliced like reference tuples, but they can still be accessed\nthrough attributes\n\n>>> t = Reference.from_curie(\"chebi:1234\")\n>>> t.prefix\n'chebi'\n>>> t.identifier\n'1234'\n\nIf you need a performance gain, you can get a :class:`ReferenceTuple` using the\n``pair`` attribute:\n\n>>> reference = Reference.from_curie(\"chebi:1234\")\n>>> reference.pair\nReferenceTuple(prefix='chebi', identifier='1234')",
+      "description": "A reference to an entity in a given identifier space.\n\nThis class uses Pydantic to make it easier to build other more complex data types\nwith Pydantic that also uses a first- class notion of parsed reference (instead of\nmerely stringified CURIEs). Instances of this class can also be hashed because of\nthe \"frozen\" configuration from Pydantic (see\nhttps://docs.pydantic.dev/latest/usage/model_config/ for more details).\n\nA reference can be constructed several ways:\n\n>>> Reference(prefix=\"chebi\", identifier=\"1234\")\nReference(prefix='chebi', identifier='1234')\n\n>>> Reference.from_curie(\"chebi:1234\")\nReference(prefix='chebi', identifier='1234')\n\nA reference can also be constructued using Pydantic's parsing utilities, but keep in\nmind if you're using Pydantic v1 or Pydantic v2.\n\nA reference can be formatted as a CURIE string with the ``curie`` attribute\n\n>>> Reference.from_curie(\"chebi:1234\").curie\n'chebi:1234'\n\nReferences can't be sliced like reference tuples, but they can still be accessed\nthrough attributes\n\n>>> t = Reference.from_curie(\"chebi:1234\")\n>>> t.prefix\n'chebi'\n>>> t.identifier\n'1234'\n\nIf you need a performance gain, you can get a :class:`ReferenceTuple` using the\n``pair`` attribute:\n\n>>> reference = Reference.from_curie(\"chebi:1234\")\n>>> reference.pair\nReferenceTuple(prefix='chebi', identifier='1234')\n\nIf you want to extend the reference class with your own custom prefix, then it can\nbe done with generics\n\n.. code-block:: python\n\n    from curies import Reference, Prefix\n    from pydantic import BaseModel\n    from pydantic_core.core_schema import ValidationInfo\n\n\n    class DerivedPrefix(Prefix):\n        @classmethod\n        def validate(cls, value: str, info: ValidationInfo) -> str:\n            if value != value.lower():\n                raise ValueError\n            return value\n\n\n    class DerivedReference(Reference[DerivedPrefix]):\n        pass",
       "properties": {
         "prefix": {
           "description": "The prefix used in a compact URI (CURIE).",
@@ -903,7 +905,7 @@
           "description": "A download link for the data contained in the registry",
           "title": "Download"
         },
-        "provider_uri_format": {
+        "uri_format": {
           "anyOf": [
             {
               "type": "string"
@@ -914,7 +916,7 @@
           ],
           "default": null,
           "description": "A URL with a $1 for a prefix to resolve in the registry",
-          "title": "Provider Uri Format"
+          "title": "URI format string"
         },
         "search_uri_format": {
           "anyOf": [
@@ -959,20 +961,7 @@
           "$ref": "#/$defs/Attributable",
           "description": "The contact for the registry."
         },
-        "bioregistry_prefix": {
-          "anyOf": [
-            {
-              "type": "string"
-            },
-            {
-              "type": "null"
-            }
-          ],
-          "default": null,
-          "description": "The prefix for this registry in the Bioregistry",
-          "title": "Bioregistry Prefix"
-        },
-        "logo_url": {
+        "logo": {
           "anyOf": [
             {
               "type": "string"
@@ -983,7 +972,7 @@
           ],
           "default": null,
           "description": "The URL for the logo of the resource",
-          "title": "Logo Url"
+          "title": "Logo"
         },
         "license": {
           "anyOf": [
@@ -1589,7 +1578,7 @@
             }
           ],
           "default": null,
-          "description": "The license for the resource",
+          "description": "The license for the resource, ideally given as a SPDX identifier",
           "title": "License"
         },
         "version": {
@@ -2213,7 +2202,7 @@
           "default": null,
           "title": "Prefixcommons"
         },
-        "wikidata": {
+        "wikidata.property": {
           "anyOf": [
             {
               "additionalProperties": true,
@@ -2224,7 +2213,7 @@
             }
           ],
           "default": null,
-          "title": "Wikidata"
+          "title": "Wikidata property"
         },
         "wikidata_entity": {
           "anyOf": [
@@ -2239,7 +2228,7 @@
           "default": null,
           "title": "Wikidata Entity"
         },
-        "go": {
+        "go.resource": {
           "anyOf": [
             {
               "additionalProperties": true,
@@ -2250,7 +2239,7 @@
             }
           ],
           "default": null,
-          "title": "Go"
+          "title": "Gene Ontology resource"
         },
         "obofoundry": {
           "anyOf": [
@@ -2343,7 +2332,7 @@
           "default": null,
           "title": "Aberowl"
         },
-        "ncbi": {
+        "ncbi.resource": {
           "anyOf": [
             {
               "additionalProperties": true,
@@ -2354,9 +2343,9 @@
             }
           ],
           "default": null,
-          "title": "Ncbi"
+          "title": "NCBI resource"
         },
-        "uniprot": {
+        "uniprot.resource": {
           "anyOf": [
             {
               "additionalProperties": true,
@@ -2367,9 +2356,9 @@
             }
           ],
           "default": null,
-          "title": "Uniprot"
+          "title": "UniProt resource"
         },
-        "biolink": {
+        "biolink.resource": {
           "anyOf": [
             {
               "additionalProperties": true,
@@ -2380,9 +2369,9 @@
             }
           ],
           "default": null,
-          "title": "Biolink"
+          "title": "BioLink resource"
         },
-        "cellosaurus": {
+        "cellosaurus.resource": {
           "anyOf": [
             {
               "additionalProperties": true,
@@ -2393,7 +2382,7 @@
             }
           ],
           "default": null,
-          "title": "Cellosaurus"
+          "title": "Cellosaurus resource"
         },
         "ontobee": {
           "anyOf": [
@@ -2447,7 +2436,7 @@
           "default": null,
           "title": "Biocontext"
         },
-        "edam": {
+        "edam.data": {
           "anyOf": [
             {
               "additionalProperties": true,
@@ -2458,7 +2447,20 @@
             }
           ],
           "default": null,
-          "title": "Edam"
+          "title": "EDAM Data"
+        },
+        "loc.classschemes": {
+          "anyOf": [
+            {
+              "additionalProperties": true,
+              "type": "object"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "LOC Class Schemes"
         },
         "re3data": {
           "anyOf": [
@@ -2499,7 +2501,7 @@
           "default": null,
           "title": "BARTOC"
         },
-        "rrid": {
+        "rrid.resource": {
           "anyOf": [
             {
               "additionalProperties": true,
@@ -2549,7 +2551,7 @@
             }
           ],
           "default": null,
-          "title": "Togoid"
+          "title": "TogoID"
         },
         "integbio": {
           "anyOf": [
@@ -2562,7 +2564,7 @@
             }
           ],
           "default": null,
-          "title": "Integbio"
+          "title": "IntegBio"
         },
         "pathguide": {
           "anyOf": [
@@ -2575,9 +2577,9 @@
             }
           ],
           "default": null,
-          "title": "Pathguide"
+          "title": "PathGuide"
         },
-        "tib": {
+        "tib.ts": {
           "anyOf": [
             {
               "additionalProperties": true,
@@ -2588,7 +2590,7 @@
             }
           ],
           "default": null,
-          "title": "Tib"
+          "title": "TIB Terminology Service"
         },
         "biodivportal": {
           "anyOf": [

@@ -66,8 +66,8 @@ makes it clear what the limitations are.
 ## What Can I Do with Providers?
 
 The Bioregistry resolver has the ability to redirect based on providers. For
-example, https://bioregistry.io/chebi:138488 will redirect based on the default
-URI format string associated with the `chebi` prefix, but the `provider`
+example, <https://bioregistry.io/chebi:138488> will redirect based on the
+default URI format string associated with the `chebi` prefix, but the `provider`
 parameter can be provided to redirect using a different provider based on its
-code. This means that https://bioregistry.io/chebi:138488?provider=chebi-img
+code. This means that <https://bioregistry.io/chebi:138488?provider=chebi-img>
 will redirect to a 2D depiction of the chemical structure of alsterpaullone.

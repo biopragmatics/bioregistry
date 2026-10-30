@@ -480,7 +480,7 @@ def _multi_column_map(
     func: Callable[..., X],
     *,
     use_tqdm: bool = False,
-) -> pd.Series[X]:  # type:ignore[type-var]
+) -> pd.Series[X]:
     rows = df[columns].values
     return pd.Series(
         [

@@ -36,17 +36,8 @@
             {% endif %}
             <p>{{ description }}</p>
             <dl>
-                <dt>Metaprefix</dt>
-                <dd><code>{{ metaprefix }}</code></dd>
-                {% if entry.bioregistry_prefix and metaprefix != entry.bioregistry_prefix %}
-                <dt>{{ config.METAREGISTRY_TITLE }} Prefix</dt>
-                <dd>
-                    For this registry, the metaprefix (i.e., the key for the registry)
-                    is not the same as the {{ config.METAREGISTRY_TITLE }} prefix. Follow this link for additional
-                    information.
-                </dd>
-                <dd>{{ utils.render_prefix(entry.bioregistry_prefix) }}</dd>
-                {% endif %}
+                <dt>Prefix</dt>
+                <dd>{{ utils.render_prefix(metaprefix) }}</dd>
                 <dt>Links</dt>
                 <dd>
                     {% if homepage %}
@@ -103,7 +94,7 @@
                     <span class="badge badge-pill badge-success">
                         Registry
                     </span>
-                    <span class="badge badge-pill badge-{% if entry.provider_uri_format %}success{% else %}light text-muted{% endif %}">
+                    <span class="badge badge-pill badge-{% if entry.uri_format %}success{% else %}light text-muted{% endif %}">
                         Provider
                     </span>
                     <span class="badge badge-pill badge-{% if entry.resolver_uri_format and entry.resolver_type == "resolver" %}success{% else %}light text-muted{% endif %}">
@@ -131,7 +122,7 @@
                 <dd>
                     <code>{{ entry.example }}</code>
                 </dd>
-                {% if entry.provider_uri_format %}
+                {% if entry.uri_format %}
                     <dt>Example Prefix Page</dt>
                     <dd>
                         <a href="{{ example_prefix_url }}"><code>{{ example_prefix_url }}</code></a>

@@ -107,7 +107,7 @@ def _split(s: str) -> list[str]:
 class RRIDAligner(Aligner):
     """Aligner for the RRID."""
 
-    key = "rrid"
+    key = "rrid.resource"
     getter = get_rrid
     alt_key_match = "abbreviation"
     curation_header: ClassVar[Sequence[str]] = ("name", "homepage")
