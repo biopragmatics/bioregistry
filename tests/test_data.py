@@ -226,7 +226,7 @@ class TestRegistry(unittest.TestCase):
             with self.subTest(prefix=prefix, name=bioregistry.get_name(prefix)):
                 desc = bioregistry.get_description(prefix)
                 if desc is None:
-                    raise self.fail("description must be set explicitly or inherited")
+                    raise self.fail(f"missing description for {prefix}")
                 self.assertNotEqual("", desc.strip())
                 self.assertNotIn("\r", desc)
                 if resource.description:

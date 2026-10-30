@@ -472,6 +472,7 @@ DEFAULT_METAPREFIX_PRIORITY = [
     "re3data",
     "uniprot.resource",
     "biodivportal",
+    "zazuko",
 ]
 
 
@@ -1390,6 +1391,7 @@ class Resource(BaseModel):
             "integbio",
             "cellosaurus.resource",
             "biodivportal",
+            "zazuko",
         )
         rv = self._get_prefix_key_str("description", metaprefixes, provenance=False)
         if rv is not None:
