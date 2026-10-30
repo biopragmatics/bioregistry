@@ -175205,7 +175205,6 @@
     "uri_format": "http://synbip.idrblab.net/data/sbp/details/$1"
   },
   "syndra": {
-    "comment": "The redistributable dataset (3,113,733 compounds, CC BY-SA 4.0) is archived on Zenodo under concept DOI 10.5281/zenodo.20823251. A manuscript describing SynDRA is in preparation for submission to the NAR Database Issue. The source code repository (github.com/hidelab/SynDRA) is currently private pending that submission and will be made public at acceptance; the web portal and REST/GraphQL API at https://syndrabio.org/ are already live and openly accessible with no registration required.",
     "contact": {
       "email": "tolga_08fb@hotmail.com",
       "github": "TolgaCorbaci",
@@ -175219,13 +175218,32 @@
       "orcid": "0000-0002-5511-9485"
     },
     "description": "SynDRA (Synchronized Drug Repurposing Atlas) is a structure-anchored drug synonym hub that harmonizes compound identifiers across nine biomedical databases (LINCS/CMap, TTD, PRISM, DrugCentral, DrugBank, PubChem, ChEMBL, UniChem, RxNorm), plus Wikidata and FDA Orange Book extensions, into canonical compound nodes keyed by InChIKey-based structural deduplication (collapsing salt forms, solvates, and stereo variants onto a single parent). It's built for drug repurposing research that needs to resolve arbitrary drug name strings to a stable identifier and bridge them to LINCS/CMap L1000 transcriptomic perturbation data.",
+    "domain": "chemical",
     "example": "SYN0000003",
     "github_request_issue": 2018,
-    "homepage": "https://syndrabio.org/",
+    "homepage": "https://syndrabio.org",
+    "keywords": [
+      "drug",
+      "drug repositioning",
+      "drug repurposing"
+    ],
     "license": "CC-BY-SA-4.0",
     "name": "SynDRA",
     "pattern": "^SYN\\d{7}$",
-    "publications": [],
+    "publications": [
+      {
+        "doi": "10.5281/zenodo.20823251",
+        "title": "SynDRA: Structure-Anchored Synonym and Cross-Reference Hub for Drug Repurposing Alignment",
+        "year": 2026
+      }
+    ],
+    "repository": "https://github.com/hidelab/SynDRA",
+    "reviewer": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
     "uri_format": "https://syndrabio.org/resource/$1"
   },
   "syoid": {
