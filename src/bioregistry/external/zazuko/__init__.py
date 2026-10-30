@@ -55,7 +55,7 @@ def parse_zazuko_raw(path: Path, *, refresh: bool = False) -> dict[str, Record]:
             homepage=_get_one(graph, node, RDFS.isDefinedBy) or res_json.get("homepage"),
             artifacts=[
                 Artifact(
-                    url=f"https://github.com/zazuko/rdf-vocabularies/blob/master/ontologies/{prefix}/{prefix}.nq",
+                    url=f"https://github.com/zazuko/rdf-vocabularies/raw/refs/heads/master/ontologies/{prefix}/{prefix}.nq",
                     type=ArtifactType.rdf,
                 ),
             ],
