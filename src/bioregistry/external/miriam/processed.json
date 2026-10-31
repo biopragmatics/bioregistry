@@ -3731,6 +3731,21 @@
     "status": "deprecated",
     "uri_format": "https://doulix.com/constructs/$1/"
   },
+  "docid": {
+    "description": "DOCiD™ is a persistent identifier framework developed by the Africa PID Alliance under TCC Africa. It functions as a digital container that aggregates and connects multiple research-related identifiers and metadata, with a specific focus on research originating in Africa, including cultural heritage, indigenous knowledge systems, and multidisciplinary research outputs. ",
+    "examples": [
+      "20.500.14351/6d03b3a8b3ff12360f21"
+    ],
+    "extras": {
+      "miriam_id": "00001147",
+      "namespaceEmbeddedInLui": false
+    },
+    "homepage": "https://www.tcc-africa.org/",
+    "name": "Digital Object Container Identifier (DOCiD)",
+    "pattern": "^20\\.500\\.14351\\/[a-zA-Z0-9]+$",
+    "status": "active",
+    "uri_format": "https://docid.africapidalliance.org/docid/$1"
+  },
   "doi": {
     "description": "The Digital Object Identifier System is for identifying content objects in the digital environment.",
     "examples": [
@@ -15667,7 +15682,7 @@
   "vmhgene": {
     "description": "The Virtual Metabolic Human (VMH) is a resource that combines human and gut microbiota metabolism with nutrition and disease.",
     "examples": [
-      "8639.1"
+      "AOC3"
     ],
     "extras": {
       "miriam_id": "00000774",
@@ -15681,7 +15696,7 @@
         "ror": "03bea9k73"
       }
     ],
-    "pattern": "^[0-9]+\\.[0-9]+$",
+    "pattern": "^[a-zA-Z0-9_\\(\\_\\)\\[\\]]+$",
     "status": "active",
     "uri_format": "https://www.vmh.life/gene/$1"
   },

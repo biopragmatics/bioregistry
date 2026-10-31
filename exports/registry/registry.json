@@ -568,6 +568,7 @@
       }
     ],
     "description": "Activity Streams is an open format specification for activity stream protocols, which are used to syndicate activities taken in social web applications and services, similar to those in Facebook's, Instagram's, and Twitter's. The standard provides a general way to represent activities.",
+    "download_rdf": "https://github.com/zazuko/rdf-vocabularies/raw/refs/heads/master/ontologies/as/as.nq",
     "example": "Add",
     "homepage": "http://www.w3.org/ns/activitystreams",
     "keywords": [
@@ -714,6 +715,7 @@
   },
   "acl": {
     "description": "The Basic Access Control ontology describes how access rights (access control) are defined on the web.",
+    "download_rdf": "https://github.com/zazuko/rdf-vocabularies/raw/refs/heads/master/ontologies/acl/acl.nq",
     "example": "Access",
     "homepage": "http://www.w3.org/wiki/WebAccessControl",
     "keywords": [
@@ -750,6 +752,9 @@
       "ontology"
     ],
     "license": "CC0-1.0",
+    "mappings": {
+      "bioportal": "ACTAN"
+    },
     "name": "Active Animals Ontology",
     "pattern": "^\\d{7}$",
     "preferred_prefix": "ACTAN",
@@ -761,7 +766,8 @@
       "name": "Charles Tapley Hoyt",
       "orcid": "0000-0003-4423-4370"
     },
-    "uri_format": "http://purl.obolibrary.org/obo/ACTAN_$1"
+    "uri_format": "http://purl.obolibrary.org/obo/ACTAN_$1",
+    "version": "2026-10-13"
   },
   "adcad": {
     "contact": {
@@ -1227,7 +1233,7 @@
       "https://github.com/biopragmatics/bioregistry/pull/1098"
     ],
     "uri_format": "http://purl.obolibrary.org/obo/AERO_$1",
-    "version": "unknown"
+    "version": "2022-11-07"
   },
   "affy.probeset": {
     "description": "An Affymetrix ProbeSet is a collection of up to 11 short (~22 nucleotide) microarray probes designed to measure a single gene or a family of genes as a unit. Multiple probe sets may be available for each gene under consideration.",
@@ -1264,7 +1270,7 @@
       "nfdi4ing",
       "ontology"
     ],
-    "license": "http://purl.allotrope.org/voc/copyright",
+    "license": "http://purl.allotrope.org/voc/attribution",
     "mappings": {
       "aberowl": "AFO",
       "bioportal": "AFO",
@@ -1421,6 +1427,7 @@
     "mappings": {
       "biocontext": "AGRICOLA",
       "go.resource": "AGRICOLA_ID",
+      "loc.classschemes": "agricola",
       "miriam": "agricola",
       "n2t": "agricola",
       "prefixcommons": "agricola",
@@ -4450,6 +4457,24 @@
     "preferred_prefix": "authorea.author",
     "uri_format": "https://www.authorea.com/users/$1"
   },
+  "b59": {
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "barnard59 is the project name for our Linked Data pipelining system. barnard59 is a toolkit to automate extract, transform and load (ETL) like tasks. Its main focus is on creating RDF & Linked Data, a standardized graph data format by the W3C. barnard59 has a clear focus on creating RDF out of non-RDF data sources. (from homepage)",
+    "download_rdf": "https://github.com/zazuko/rdf-vocabularies/raw/refs/heads/master/ontologies/b59/b59.nq",
+    "example": "pipeline",
+    "homepage": "https://barnard59.zazuko.com/vocab",
+    "mappings": {
+      "zazuko": "b59"
+    },
+    "name": "barnard59",
+    "preferred_prefix": "b59",
+    "uri_format": "https://barnard59.zazuko.com/vocab#$1"
+  },
   "babelon": {
     "contact": {
       "email": "nicolas.matentzoglu@gmail.com",
@@ -5604,6 +5629,7 @@
     },
     "description": "The Bibliographic Ontology Specification provides main concepts and properties for describing citations and bibliographic references (i.e. quotes, books, articles, etc) on the Semantic Web.",
     "download_owl": "https://www.dublincore.org/specifications/bibo/bibo/bibo.rdf.xml",
+    "download_rdf": "https://github.com/zazuko/rdf-vocabularies/raw/refs/heads/master/ontologies/bibo/bibo.nq",
     "example": "authorList",
     "homepage": "http://purl.org/ontology/bibo",
     "keywords": [
@@ -10017,7 +10043,7 @@
       "orcid": "0000-0003-4423-4370"
     },
     "uri_format": "https://bioportal.bioontology.org/ontologies/CCF/?p=classes&conceptid=http%3A%2F%2Fpurl.org%2Fccf%2F$1",
-    "version": "3.0.0"
+    "version": "v3.0.0"
   },
   "ccle": {
     "contact": {
@@ -11006,6 +11032,7 @@
   },
   "cert": {
     "description": "Ontology for Certificates and crypto stuff.",
+    "download_rdf": "https://github.com/zazuko/rdf-vocabularies/raw/refs/heads/master/ontologies/cert/cert.nq",
     "example": "Certificate",
     "homepage": "http://www.w3.org/ns/auth/cert#",
     "keywords": [
@@ -12869,7 +12896,7 @@
     "rdf_uri_format": "http://purl.obolibrary.org/obo/CHMO_$1",
     "repository": "https://github.com/rsc-ontologies/rsc-cmo",
     "uri_format": "http://purl.obolibrary.org/obo/CHMO_$1",
-    "version": "2026-05-28"
+    "version": "2026-05-27"
   },
   "chr": {
     "contact": {
@@ -14523,6 +14550,7 @@
       "orcid": "0000-0003-4423-4370"
     },
     "description": "This vocabulary is intended to provide a flexible framework within different usage scenarios to semantically represent any type of content, be it on the Web or in local storage media. For example, it can be used by web quality assurance tools such as web accessibility evaluation tools to record a representation of the assessed web content, including text, images, or other types of formats. In many cases, it can be used together with HTTP Vocabulary in RDF 1.0, which allows quality assurance tools to record the HTTP headers that have been exchanged between a client and a server. This is particularly useful for quality assurance testing, conformance claims, and reporting languages like the W3C Evaluation And Report Language (EARL). [from homepage]",
+    "download_rdf": "https://github.com/zazuko/rdf-vocabularies/raw/refs/heads/master/ontologies/cnt/cnt.nq",
     "example": "Content",
     "homepage": "https://www.w3.org/TR/Pointers-in-RDF/#ref-content",
     "keywords": [
@@ -17389,7 +17417,7 @@
       "ama-cpt"
     ],
     "uri_format": "https://www.aapc.com/codes/cpt-codes/$1",
-    "version": "2020AB"
+    "version": "2020aa"
   },
   "cran": {
     "contributor": {
@@ -17712,6 +17740,7 @@
       "ontology",
       "structural biology"
     ],
+    "license": "CC-BY-3.0",
     "mappings": {
       "aberowl": "CRYOEM",
       "bioportal": "CRYOEM",
@@ -17966,7 +17995,7 @@
       "CSP2005"
     ],
     "uri_format": "http://purl.bioontology.org/ontology/CSP/$1",
-    "version": "CSP2006"
+    "version": "2024aa"
   },
   "cst.antibody": {
     "description": "Cell Signaling Technology is a commercial organisation which provides a pathway portal to showcase their phospho-antibody products. This collection references antibody products.",
@@ -18066,6 +18095,7 @@
   },
   "csvw": {
     "description": "This document describes the RDFS vocabulary description used in the Metadata Vocabulary for Tabular Data along with the default JSON-LD Context.",
+    "download_rdf": "https://github.com/zazuko/rdf-vocabularies/raw/refs/heads/master/ontologies/csvw/csvw.nq",
     "example": "uriTemplate",
     "homepage": "http://www.w3.org/ns/csvw#",
     "keywords": [
@@ -18375,6 +18405,70 @@
       "https://www.ctri.nic.in/Clinicaltrials/pmaindet2.php?trialid=82487"
     ],
     "uri_format": "https://trialsearch.who.int/Trial2.aspx?TrialID=$1"
+  },
+  "cube.meta": {
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "This vocubulary is intended as a companion vocabulary to the Cube Schema vocabulary. (from homepage)",
+    "download_rdf": "https://github.com/zazuko/rdf-vocabularies/raw/refs/heads/master/ontologies/meta/meta.nq",
+    "example": "dimensionRelation",
+    "homepage": "https://cube.link/meta",
+    "keywords": [
+      "cube"
+    ],
+    "mappings": {
+      "zazuko": "meta"
+    },
+    "name": "Cube Schema meta data extension",
+    "preferred_prefix": "cube.meta",
+    "uri_format": "https://cube.link/meta/$1"
+  },
+  "cube.relation": {
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "This vocubulary is intended as a companion vocabulary to the Cube Schema vocabulary. (from homepage)",
+    "download_rdf": "https://github.com/zazuko/rdf-vocabularies/raw/refs/heads/master/ontologies/relation/relation.nq",
+    "example": "ConfidenceLowerBound",
+    "homepage": "https://cube.link/relation",
+    "keywords": [
+      "cube"
+    ],
+    "mappings": {
+      "zazuko": "relation"
+    },
+    "name": "Cube Schema relation vocabulary",
+    "preferred_prefix": "cube.relation",
+    "uri_format": "https://cube.link/relation/$1"
+  },
+  "cube.schema": {
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "The Cube Schema defines a minimal set of classes and properties necessary to represent multi-dimensional arrays of data in RDF 1.1 Concepts and Abstract Syntax. (from https://cube.link)",
+    "download_rdf": "https://github.com/zazuko/rdf-vocabularies/raw/refs/heads/master/ontologies/cube/cube.nq",
+    "example": "Constraint",
+    "homepage": "https://cube.link/",
+    "keywords": [
+      "cube"
+    ],
+    "mappings": {
+      "zazuko": "cube"
+    },
+    "name": "Cube schema",
+    "preferred_prefix": "cube.schema",
+    "repository": "https://github.com/zazuko/cube-link",
+    "uri_format": "https://cube.link/$1"
   },
   "cubedb": {
     "comment": "website down as of 2021-10-04",
@@ -19473,6 +19567,7 @@
       "orcid": "0000-0003-4423-4370"
     },
     "description": "This ontology is generated from the manually created specifications in the dbpedia mappings wiki. each release of this ontology corresponds to a new release of the dbpedia data set which contains instance data extracted from the different language versions of wikipedia. for information regarding changes in this ontology, please refer to the dbpedia mappings wiki.",
+    "download_rdf": "https://github.com/zazuko/rdf-vocabularies/raw/refs/heads/master/ontologies/dbo/dbo.nq",
     "example": "careerPrizeMoney",
     "github_request_issue": 515,
     "homepage": "https://dbpedia.org/ontology",
@@ -19783,6 +19878,7 @@
       "orcid": "0000-0003-4423-4370"
     },
     "description": "A metadata model for Dublin Core metadata",
+    "download_rdf": "https://github.com/zazuko/rdf-vocabularies/raw/refs/heads/master/ontologies/dcam/dcam.nq",
     "example": "domainIncludes",
     "github_request_issue": 1677,
     "homepage": "https://www.dublincore.org/specifications/dublin-core/abstract-model/2007-06-04",
@@ -20128,6 +20224,7 @@
     "license": "http://rightsstatements.org/vocab/InC/1.0",
     "mappings": {
       "bartoc": "241",
+      "loc.classschemes": "ddc",
       "wikidata.entity": "Q48460"
     },
     "name": "Dewey Decimal Classification",
@@ -22744,6 +22841,9 @@
       "digital humanities",
       "publishing"
     ],
+    "mappings": {
+      "miriam": "docid"
+    },
     "name": "Digical Object Container Identifier",
     "owners": [
       {
@@ -22751,6 +22851,7 @@
         "ror": "02y9nww90"
       }
     ],
+    "pattern": "^20\\.500\\.14351\\/[a-zA-Z0-9]+$",
     "preferred_prefix": "docid",
     "synonyms": [
       "DOCiD"
@@ -23195,7 +23296,7 @@
       "do"
     ],
     "uri_format": "http://purl.obolibrary.org/obo/DOID_$1",
-    "version": "2026-09-30"
+    "version": "2026-10-29"
   },
   "dolce": {
     "comment": "This resource doesn't exist anymore",
@@ -23677,6 +23778,7 @@
   },
   "dqv": {
     "description": "The Data Quality Vocabulary (DQV) is seen as an extension to DCAT to cover the quality of the data, how frequently is it updated, whether it accepts user corrections, persistence commitments etc. When used by publishers, this vocabulary will foster trust in the data amongst developers.",
+    "download_rdf": "https://github.com/zazuko/rdf-vocabularies/raw/refs/heads/master/ontologies/dqv/dqv.nq",
     "example": "QualityAnnotation",
     "homepage": "https://www.w3.org/TR/vocab-dqv/",
     "keywords": [
@@ -24626,7 +24728,7 @@
     ],
     "repository": "https://github.com/DrugTargetOntology/DTO",
     "uri_format": "http://www.drugtargetontology.org/dto/DTO_$1",
-    "version": "1.1.1"
+    "version": "1.0"
   },
   "duo": {
     "appears_in": [
@@ -24686,6 +24788,29 @@
     "repository": "https://github.com/EBISPOT/DUO",
     "uri_format": "http://purl.obolibrary.org/obo/DUO_$1",
     "version": "2021-02-23"
+  },
+  "duv": {
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "The Dataset Usage Vocabulary (DUV) is used to describe consumer experiences, citations, and feedback about datasets from the human perspective.",
+    "download_rdf": "https://github.com/zazuko/rdf-vocabularies/raw/refs/heads/master/ontologies/duv/duv.nq",
+    "example": "RatingFeedback",
+    "homepage": "http://www.w3.org/ns/duv",
+    "keywords": [
+      "people",
+      "society"
+    ],
+    "mappings": {
+      "lov": "duv",
+      "zazuko": "duv"
+    },
+    "name": "Dataset Usage Vocabulary",
+    "preferred_prefix": "duv",
+    "uri_format": "http://www.w3.org/ns/duv#$1"
   },
   "dwc": {
     "contact": {
@@ -24852,6 +24977,7 @@
       "orcid": "0000-0003-4423-4370"
     },
     "description": "EARL is a vocabulary, the terms of which are defined across a set of specifications and technical notes, and that is used to describe test results. The primary motivation for developing this vocabulary is to facilitate the exchange of test results between Web accessibility evaluation tools in a vendor-neutral and platform-independent format. It also provides reusable terms for generic quality assurance and validation purposes. [from homepage]",
+    "download_rdf": "https://github.com/zazuko/rdf-vocabularies/raw/refs/heads/master/ontologies/earl/earl.nq",
     "example": "Assertion",
     "homepage": "https://www.w3.org/TR/EARL10",
     "keywords": [
@@ -25327,6 +25453,7 @@
       "heart",
       "ontology"
     ],
+    "license": "CC-BY-3.0",
     "mappings": {
       "aberowl": "ECG",
       "bioportal": "ECG",
@@ -25347,7 +25474,7 @@
       "ECGOntology"
     ],
     "uri_format": "http://www.cvrgrid.org/files/ECGOntologyv1.owl#ECG_$1",
-    "version": "1"
+    "version": "1.1.1"
   },
   "echinobase": {
     "contributor": {
@@ -29078,7 +29205,7 @@
     "rdf_uri_format": "http://purl.obolibrary.org/obo/ENVO_$1",
     "repository": "https://github.com/EnvironmentOntology/envo",
     "uri_format": "http://purl.obolibrary.org/obo/ENVO_$1",
-    "version": "2026-06-26"
+    "version": "2026-10-23"
   },
   "envthes": {
     "contact": {
@@ -29632,7 +29759,7 @@
       }
     ],
     "uri_format": "http://www.case.edu/EpilepsyOntology.owl#$1",
-    "version": "3.1"
+    "version": "3"
   },
   "erm": {
     "contact": {
@@ -30506,6 +30633,7 @@
   },
   "exif": {
     "description": "Vocabulary to describe an Exif format picture data. All Exif 2.2 tags are defined as RDF properties, as well as several terms to help this schema.",
+    "download_rdf": "https://github.com/zazuko/rdf-vocabularies/raw/refs/heads/master/ontologies/exif/exif.nq",
     "example": "orientation",
     "homepage": "http://www.w3.org/2003/12/exif/",
     "keywords": [
@@ -32018,7 +32146,7 @@
     "rdf_uri_format": "http://purl.obolibrary.org/obo/FLOPO_$1",
     "repository": "https://github.com/flora-phenotype-ontology/flopoontology",
     "uri_format": "http://purl.obolibrary.org/obo/FLOPO_$1",
-    "version": "2026-10-14"
+    "version": "2026-10-25"
   },
   "florabase": {
     "description": "identifier for a plant taxon, in the Government of Western Australia's FloraBase database",
@@ -32094,6 +32222,7 @@
       "ontology",
       "virology"
     ],
+    "license": "CC-BY-3.0",
     "mappings": {
       "biocontext": "FLU",
       "bioportal": "FLU",
@@ -33106,6 +33235,7 @@
       "orcid": "0000-0003-4423-4370"
     },
     "description": "The Essential FRBR in OWL2 DL Ontology (FRBR) is an expression in OWL 2 DL of the basic concepts and relations described in the IFLA report on the Functional Requirements for Bibliographic Records (FRBR), also described in Ian Davis's RDF vocabulary. It is imported by FaBiO and BiRO.",
+    "download_rdf": "https://github.com/zazuko/rdf-vocabularies/raw/refs/heads/master/ontologies/frbr/frbr.nq",
     "example": "Expression",
     "homepage": "http://www.sparontologies.net/ontologies/frbr",
     "keywords": [
@@ -33765,6 +33895,12 @@
     "uri_format": "https://w3id.org/gaidet/$1"
   },
   "gainesville.core": {
+    "contact": {
+      "email": "mirek.sopek@p.lodz.pl",
+      "github": "LEIdotINFO",
+      "name": "Mirek Sopek",
+      "orcid": "0000-0003-0378-5125"
+    },
     "contributor": {
       "email": "cthoyt@gmail.com",
       "github": "cthoyt",
@@ -33772,7 +33908,7 @@
       "orcid": "0000-0003-4423-4370"
     },
     "description": "Describes typical Computational Chemistry experiments, including Molecular Publications, Molecular Systems, Molecular Calculations",
-    "download_owl": "http://ontologies.makolab.com/gc06/gc.owl",
+    "download_owl": "https://web.archive.org/web/20221005233201fw_/http://ontologies.makolab.com/gc/gc07.owl",
     "example": "Aromatic",
     "homepage": "http://ontologies.makolab.com/gc06/gc.html",
     "keywords": [
@@ -33786,10 +33922,20 @@
     },
     "name": "Gainesville Core Ontology",
     "preferred_prefix": "gainesville.core",
-    "references": [
-      "http://ontologies.makolab.com/gc/"
+    "publications": [
+      {
+        "doi": "10.1021/acs.jpca.6b10489",
+        "title": "Computational Chemistry Data Management Platform Based on the Semantic Web",
+        "year": 2016
+      }
     ],
-    "uri_format": "http://purl.org/gc/$1"
+    "references": [
+      "http://ontologies.makolab.com/gc/",
+      "https://ceur-ws.org/Vol-1114/Poster_Ostlund.pdf"
+    ],
+    "repository": "https://github.com/NFDI4Chem/GC-Ontology-Mirror",
+    "uri_format": "http://purl.org/gc/$1",
+    "version": "0.7.0"
   },
   "galen": {
     "comment": "I really tried, but could not figure out what GALEN stands for",
@@ -35422,6 +35568,7 @@
   "geonames.ontology": {
     "description": "An ontology used to enable annotating geospatial semantic information to entities in GeoNames",
     "download_owl": "https://www.geonames.org/ontology/ontology_v3.3.rdf",
+    "download_rdf": "https://github.com/zazuko/rdf-vocabularies/raw/refs/heads/master/ontologies/gn/gn.nq",
     "example": "parentFeature",
     "homepage": "https://www.geonames.org/ontology/documentation.html",
     "keywords": [
@@ -35467,6 +35614,7 @@
   },
   "geosparql.function": {
     "description": "Functions for GeoSPARQL",
+    "download_rdf": "https://github.com/zazuko/rdf-vocabularies/raw/refs/heads/master/ontologies/geof/geof.nq",
     "example": "sfEquals",
     "homepage": "https://opengeospatial.github.io/ogc-geosparql/geosparql10/servicedescription_all_functions.html",
     "mappings": {
@@ -35478,6 +35626,7 @@
   },
   "geosparql.rule": {
     "description": "Rules for GeoSPARQL",
+    "download_rdf": "https://github.com/zazuko/rdf-vocabularies/raw/refs/heads/master/ontologies/geor/geor.nq",
     "example": "rcc",
     "homepage": "https://opengeospatial.github.io/ogc-geosparql/geosparql11/rules.html",
     "mappings": {
@@ -36303,6 +36452,7 @@
   },
   "gist": {
     "description": "gist is a minimalist upper ontology created by Semantic Arts.",
+    "download_rdf": "https://github.com/zazuko/rdf-vocabularies/raw/refs/heads/master/ontologies/gist/gist.nq",
     "example": "Account",
     "homepage": "https://w3id.org/semanticarts/ontology/gistCore",
     "keywords": [
@@ -36315,7 +36465,8 @@
     "license": "CC-BY-4.0",
     "mappings": {
       "lov": "gist",
-      "tib.ts": "gist"
+      "tib.ts": "gist",
+      "zazuko": "gist"
     },
     "name": "gist ontology",
     "preferred_prefix": "gist",
@@ -38384,6 +38535,7 @@
       "orcid": "0000-0003-4423-4370"
     },
     "description": "A vocabulary for e-commerce",
+    "download_rdf": "https://github.com/zazuko/rdf-vocabularies/raw/refs/heads/master/ontologies/gr/gr.nq",
     "example": "category",
     "homepage": "http://purl.org/goodrelations",
     "keywords": [
@@ -38628,6 +38780,7 @@
       "orcid": "0000-0003-4423-4370"
     },
     "description": "GRDDL is a mechanism for Gleaning Resource Descriptions from Dialects of Languages. It is a technique for obtaining RDF data from XML documents and in particular XHTML pages. Authors may explicitly associate documents with transformation algorithms, typically represented in XSLT, using a link element in the head of the document. Alternatively, the information needed to obtain the transformation may be held in an associated metadata profile document or namespace document. Clients reading the document can follow links across the Web using techniques described in the GRDDL specification to discover the appropriate transformations. This document uses a number of examples from the GRDDL Use Cases document to illustrate, in detail, the techniques GRDDL provides for associating documents with appropriate instructions for extracting any embedded data. (from homepage)",
+    "download_rdf": "https://github.com/zazuko/rdf-vocabularies/raw/refs/heads/master/ontologies/grddl/grddl.nq",
     "example": "transformation",
     "homepage": "https://www.w3.org/TR/grddl-primer",
     "keywords": [
@@ -38776,7 +38929,7 @@
       "name": "Vivian Lee"
     },
     "deprecated": true,
-    "description": "The Gene Regulation Ontology (GRO) is a conceptual model for the domain of gene regulation. It covers processes that are linked to the regulation of gene expression as well as physical entities that are involved in these processes (such as genes and transcription factors) in terms of ontology classes and semantic relations between classes.",
+    "description": "The Gene Regulation Ontology (GRO) is a conceptual model for the domain of gene regulation. It covers processes that are linked to the regulation of gene expression as well as physical entities that are involved in these processes (such as genes and transcription factors) in terms of ontology classes and semantic relations between classes., The Gene Regulation Ontology (GRO) covers gene regulatory processes occurring on the intracellular level and molecular entities participating in these processes.",
     "example": "Lipid",
     "homepage": "http://www.ebi.ac.uk/Rebholz-srv/GRO/GRO.html",
     "keywords": [
@@ -38840,6 +38993,7 @@
   "gs1": {
     "description": "The initial focus of the GS1 Web Vocabulary is consumer-facing properties for clothing, shoes, food beverage/tobacco and properties common to all products. [from homepage]",
     "download_owl": "https://ref.gs1.org/voc/data/gs1Voc.ttl",
+    "download_rdf": "https://github.com/zazuko/rdf-vocabularies/raw/refs/heads/master/ontologies/gs1/gs1.nq",
     "example": "AllergenTypeCode-3-AMINOPHENOL",
     "homepage": "https://ref.gs1.org/voc",
     "keywords": [
@@ -39965,7 +40119,7 @@
     "name": "Healthcare Common Procedure Coding System",
     "preferred_prefix": "hcpcs",
     "uri_format": "http://purl.bioontology.org/ontology/HCPCS/$1",
-    "version": "2025_04"
+    "version": "2025aa"
   },
   "hcvdb": {
     "description": "the European Hepatitis C Virus Database (euHCVdb, euhcvdb.lyon.inserm.fr), a collection of computer-annotated sequences based on reference genomes.mainly dedicated to HCV protein sequences, 3D structures and functional analyses.",
@@ -42465,6 +42619,7 @@
       "orcid": "0000-0002-0964-254X"
     },
     "description": "The Hydra repository was a digital archive for the University of Hull. It was developed to hold, manage, preserve and provide access to the growing body of digital material generated through the research, teaching and administrative activities of the University.",
+    "download_rdf": "https://github.com/zazuko/rdf-vocabularies/raw/refs/heads/master/ontologies/hydra/hydra.nq",
     "example": "TemplatedLink",
     "homepage": "http://www.w3.org/ns/hydra/spec/latest/core/",
     "keywords": [
@@ -42734,6 +42889,7 @@
   },
   "icaltzd": {
     "description": "A timezone-aware extension of the iCal RDF vocabulary",
+    "download_rdf": "https://github.com/zazuko/rdf-vocabularies/raw/refs/heads/master/ontologies/ical/ical.nq",
     "example": "standard",
     "github_request_issue": 2016,
     "homepage": "http://www.ietf.org/rfc/rfc2445.txt",
@@ -42892,7 +43048,7 @@
       "ICD10WHO"
     ],
     "uri_format": "https://icd.who.int/browse10/2019/en#/$1",
-    "version": "ICD10_1998"
+    "version": "2024aa"
   },
   "icd10cm": {
     "contact": {
@@ -43305,7 +43461,7 @@
       "ICDCM_2005"
     ],
     "uri_format": "http://icd9cm.chrisendres.com/index.php?action=search&srchtext=$1",
-    "version": "ICD9CM_2014"
+    "version": "2024aa"
   },
   "icdc": {
     "description": "The Integrated Canine Data Commons is one of several repositories within the NCI Cancer Research Data Commons (CRDC), a cloud-based data science infrastructure that provides secure access to a large, comprehensive, and expanding collection of cancer research data. The ICDC was established to further research on human cancers by enabling comparative analysis with canine cancer.",
@@ -43783,6 +43939,7 @@
     "license": "ODbL-1.0",
     "mappings": {
       "bartoc": "459",
+      "loc.classschemes": "iconclass",
       "wikidata.entity": "Q1502787"
     },
     "name": "Iconclass Classification",
@@ -50211,6 +50368,7 @@
   },
   "ldp": {
     "description": "A set of best practices and simple approach for a read-write Linked Data architecture, based on HTTP access to web resources that describe their state using the RDF data model.",
+    "download_rdf": "https://github.com/zazuko/rdf-vocabularies/raw/refs/heads/master/ontologies/ldp/ldp.nq",
     "example": "Resource",
     "homepage": "http://www.w3.org/TR/ldp/",
     "keywords": [
@@ -50386,6 +50544,7 @@
     },
     "description": "The data model underlying lexvo",
     "download_owl": "http://lexvo.org/ontology",
+    "download_rdf": "https://github.com/zazuko/rdf-vocabularies/raw/refs/heads/master/ontologies/lvont/lvont.nq",
     "example": "Language",
     "homepage": "http://lexvo.org",
     "keywords": [
@@ -51360,6 +51519,11 @@
     "uri_format": "http://id.loc.gov/vocabulary/carriers/$1"
   },
   "loc.classschemes": {
+    "contact": {
+      "email": "smcc@loc.gov",
+      "name": "Sally McCallum",
+      "orcid": "0000-0002-6137-2129"
+    },
     "contributor": {
       "email": "cthoyt@gmail.com",
       "github": "cthoyt",
@@ -51368,11 +51532,12 @@
     },
     "description": "Controlled list of Classification Schemes",
     "download_rdf": "http://id.loc.gov/vocabulary/classSchemes.rdf",
-    "example": "acmccs",
+    "example": "iconclass",
     "github_request_issue": 1980,
     "homepage": "http://id.loc.gov/vocabulary/classSchemes",
     "keywords": [
-      "loc"
+      "loc",
+      "registry"
     ],
     "mappings": {
       "bartoc": "18900"
@@ -51965,6 +52130,7 @@
   },
   "locn": {
     "description": "The ISA Programme Location Core Vocabulary provides a minimum set of classes and properties for describing any place in terms of its name, address or geometry. The vocabulary is specifically designed to aid the publication of data that is interoperable with EU INSPIRE Directive.",
+    "download_rdf": "https://github.com/zazuko/rdf-vocabularies/raw/refs/heads/master/ontologies/locn/locn.nq",
     "example": "Address",
     "homepage": "http://www.w3.org/ns/locn",
     "keywords": [
@@ -51981,6 +52147,7 @@
   },
   "log": {
     "description": "Une ontologie \"historique\" utilisée par l'outil en ligne de commande cwm, au temps des balbutiements du web sémantique (~ 2000 - 2003 ?)",
+    "download_rdf": "https://github.com/zazuko/rdf-vocabularies/raw/refs/heads/master/ontologies/log/log.nq",
     "example": "dtlit",
     "homepage": "http://www.w3.org/2000/10/swap/doc/CwmBuiltins",
     "keywords": [
@@ -52669,6 +52836,7 @@
     },
     "description": "The ontology Metadata4Ing is developed within the NFDI Consortium NFDI4Ing with the aim of providing a thorough framework for the semantic description of research data, with a particular focus on engineering sciences and neighbouring disciplines. This ontology allows a description of the whole data generation process (experiment, observation, simulation), embracing the object of investigation, all sample and data manipulation procedures, a summary of the data files and the information contained, and all personal and institutional roles. The subordinate classes and relations can be built according to the two principles of inheritance and modularity. \"Inheritance\" means that a subclass inherits all properties of its superordinate class, possibly adding some new ones. Modularity means that all expansions are independent of each other; this makes possible for instance to generate expanded ontologies for any possible combinations of method × object of research.",
     "download_owl": "https://nfdi4ing.pages.rwth-aachen.de/metadata4ing/metadata4ing/ontology.ttl",
+    "download_rdf": "https://github.com/zazuko/rdf-vocabularies/raw/refs/heads/master/ontologies/m4i/m4i.nq",
     "example": "Method",
     "github_request_issue": 970,
     "homepage": "https://w3id.org/nfdi4ing/metadata4ing",
@@ -56001,7 +56169,8 @@
     ],
     "rdf_uri_format": "http://purl.obolibrary.org/obo/MIAPA_$1",
     "repository": "https://github.com/evoinfo/miapa",
-    "uri_format": "http://purl.obolibrary.org/obo/MIAPA_$1"
+    "uri_format": "http://purl.obolibrary.org/obo/MIAPA_$1",
+    "version": "Recommendation version 2013-04-30"
   },
   "mibig": {
     "contact": {
@@ -59066,7 +59235,7 @@
     "rdf_uri_format": "http://purl.obolibrary.org/obo/MS_$1",
     "repository": "https://github.com/HUPO-PSI/psi-ms-CV",
     "uri_format": "http://purl.obolibrary.org/obo/MS_$1",
-    "version": "4.2.6"
+    "version": "4.2.12"
   },
   "msc": {
     "contributor": {
@@ -59080,7 +59249,8 @@
     "homepage": "https://mathscinet.ams.org/mathscinet/msc/msc2020.html",
     "license": "CC-BY-NC-SA-3.0",
     "mappings": {
-      "bartoc": "474"
+      "bartoc": "474",
+      "loc.classschemes": "msc"
     },
     "name": "Mathematics Subject Classification",
     "pattern": "^[0-9]{2}(-XX|-[0-9]{2}|[A-Z](xx|[0-9]{2}))$",
@@ -61572,7 +61742,7 @@
       "ndf-rt"
     ],
     "uri_format": "https://ncit.nci.nih.gov/ncitbrowser/ConceptReport.jsp?dictionary=NDFRT&code=$1",
-    "version": "NDFRT_2018_02_05_18_03_05"
+    "version": "2018aa"
   },
   "nembase": {
     "comment": "This resource doesn't exist on the web anymore",
@@ -61677,6 +61847,7 @@
       "neuron",
       "ontology"
     ],
+    "license": "CC-BY-3.0",
     "mappings": {
       "aberowl": "NEMO",
       "bioportal": "NEMO",
@@ -61700,7 +61871,7 @@
       }
     ],
     "uri_format": "http://purl.bioontology.org/NEMO/ontology/NEMO.owl#NEMO_$1",
-    "version": "v3.10"
+    "version": "1.1.1"
   },
   "nepomuk.nao": {
     "contributor": {
@@ -62622,7 +62793,7 @@
       "NIFSTD"
     ],
     "uri_format": "http://uri.neuinfo.org/nif/nifstd/$1",
-    "version": "3.1 - January 15, 2018"
+    "version": "1.6 (July 16, 2013)"
   },
   "nihhesc": {
     "contributor": {
@@ -62792,6 +62963,7 @@
     "mappings": {
       "bartoc": "528",
       "biolink.resource": "NLMID",
+      "loc.classschemes": "nlm",
       "wikidata.entity": "Q986957"
     },
     "name": "National Library of Medicine Catalog",
@@ -64362,6 +64534,7 @@
     },
     "description": "The W3C Web Annotation Working Group is chartered to develop a set of specifications for an interoperable, sharable, distributed Web Annotation architecture.",
     "download_owl": "http://aber-owl.net/media/ontologies/OA/1/oa.owl",
+    "download_rdf": "https://github.com/zazuko/rdf-vocabularies/raw/refs/heads/master/ontologies/oa/oa.nq",
     "example": "sourceDateStart",
     "homepage": "http://www.w3.org/ns/oa",
     "keywords": [
@@ -65614,6 +65787,7 @@
       "orcid": "0000-0003-4423-4370"
     },
     "description": "A vocabulary for embedding provenance metadata into webpages via RDFa",
+    "download_rdf": "https://github.com/zazuko/rdf-vocabularies/raw/refs/heads/master/ontologies/og/og.nq",
     "example": "title",
     "github_request_issue": 1632,
     "homepage": "https://ogp.me",
@@ -65635,6 +65809,7 @@
   "ogc.sf": {
     "description": "An RDF/OWL vocabulary for defining SimpleFeature geometry types",
     "download_owl": "https://opengeospatial.github.io/ogc-geosparql/geosparql11/sf_geometries.ttl",
+    "download_rdf": "https://github.com/zazuko/rdf-vocabularies/raw/refs/heads/master/ontologies/sf/sf.nq",
     "example": "Triangle",
     "homepage": "https://opengeospatial.github.io/ogc-geosparql/geosparql11/sf_geometries.html",
     "keywords": [
@@ -65700,6 +65875,7 @@
       "obo",
       "ontology"
     ],
+    "license": "CC-BY-4.0",
     "mappings": {
       "biocontext": "OGI",
       "bioportal": "OGI",
@@ -66090,6 +66266,7 @@
   "oidc": {
     "description": "The OpenID Connect vocabulary used by the Solid-OIDC authentication specification",
     "download_owl": "http://www.w3.org/ns/solid/oidc",
+    "download_rdf": "https://github.com/zazuko/rdf-vocabularies/raw/refs/heads/master/ontologies/oidc/oidc.nq",
     "example": "client_name",
     "homepage": "https://solidproject.org/TR/oidc",
     "keywords": [
@@ -67156,7 +67333,7 @@
     "rdf_uri_format": "http://purl.obolibrary.org/obo/ONE_$1",
     "repository": "https://github.com/cyang0128/Nutritional-epidemiologic-ontologies",
     "uri_format": "http://purl.obolibrary.org/obo/ONE_$1",
-    "version": "V2.2"
+    "version": "2020-12-09"
   },
   "onem2m.bo": {
     "contact": {
@@ -67418,6 +67595,7 @@
     "keywords": [
       "ontology"
     ],
+    "license": "CC-BY-4.0",
     "mappings": {
       "bioportal": "ONTODM-CORE"
     },
@@ -68436,6 +68614,7 @@
       "protein",
       "region"
     ],
+    "license": "CC0-1.0",
     "mappings": {
       "aberowl": "ORTH",
       "bioportal": "ORTH",
@@ -68920,6 +69099,7 @@
     },
     "description": "Overview of the Web Ontology Language (OWL) which provides an introduction to OWL by informally describing the features of each of the sublanguages.",
     "download_owl": "https://www.w3.org/2002/07/owl",
+    "download_rdf": "https://github.com/zazuko/rdf-vocabularies/raw/refs/heads/master/ontologies/owl/owl.nq",
     "example": "Ontology",
     "homepage": "https://www.w3.org/TR/owl-features",
     "keywords": [
@@ -69921,6 +70101,7 @@
       "resource metadata",
       "subject agnostic"
     ],
+    "license": "Apache-2.0",
     "mappings": {
       "aberowl": "PAV",
       "biocontext": "pav",
@@ -74874,7 +75055,7 @@
     ],
     "repository": "https://github.com/PRIDE-Utilities/pride-ontology",
     "uri_format": "http://purl.obolibrary.org/obo/PRIDE_$1",
-    "version": "2026-09-22"
+    "version": "2026-10-26"
   },
   "pride.project": {
     "description": "The PRIDE PRoteomics IDEntifications database is a centralized, standards compliant, public data repository that provides protein and peptide identifications together with supporting evidence. This collection references projects.",
@@ -75849,6 +76030,7 @@
     },
     "description": "The namespace name http://www.w3.org/ns/prov# is intended for use with the PROV family of documents that support the interchange of provenance on the web.",
     "download_owl": "https://www.w3.org/ns/prov-o.owl",
+    "download_rdf": "https://github.com/zazuko/rdf-vocabularies/raw/refs/heads/master/ontologies/prov/prov.nq",
     "example": "Activity",
     "homepage": "https://www.w3.org/ns/prov",
     "keywords": [
@@ -76899,6 +77081,7 @@
     },
     "description": "This vocabulary allows multi-dimensional data, such as statistics, to be published in RDF. It is based on the core information model from SDMX (and thus also DDI).",
     "download_owl": "http://purl.org/linked-data/cube#",
+    "download_rdf": "https://github.com/zazuko/rdf-vocabularies/raw/refs/heads/master/ontologies/qb/qb.nq",
     "example": "Observation",
     "homepage": "https://www.w3.org/TR/vocab-data-cube",
     "keywords": [
@@ -77003,6 +77186,7 @@
     },
     "description": "Ontologies that aim to provide semantic specifications for units of measure, quantity kind, dimensions and data types.",
     "download_owl": "http://qudt.org/schema/qudt/",
+    "download_rdf": "https://github.com/zazuko/rdf-vocabularies/raw/refs/heads/master/ontologies/qudt/qudt.nq",
     "example": "baseDimensionEnumeration",
     "homepage": "https://qudt.org",
     "keywords": [
@@ -77043,6 +77227,164 @@
     "repository": "https://github.com/qudt/qudt-public-repo",
     "uri_format": "http://qudt.org/schema/qudt#$1",
     "version": "v2.1.47"
+  },
+  "qudt.constant": {
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "Physical and mathematical constants",
+    "download_rdf": "https://github.com/zazuko/rdf-vocabularies/raw/refs/heads/master/ontologies/constant/constant.nq",
+    "example": "AlphaParticleElectronMassRatio",
+    "homepage": "http://qudt.org/vocab/constant/",
+    "mappings": {
+      "zazuko": "constant"
+    },
+    "name": "QUDT VOCAB Physical Constants Release 3.1.10",
+    "part_of": "qudt",
+    "preferred_prefix": "qudt.constant",
+    "uri_format": "http://qudt.org/vocab/constant/$1"
+  },
+  "qudt.currency": {
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "A vocabulary about monetary currencies",
+    "download_rdf": "https://github.com/zazuko/rdf-vocabularies/raw/refs/heads/master/ontologies/cur/cur.nq",
+    "example": "AED",
+    "homepage": "http://qudt.org/vocab/currency/",
+    "mappings": {
+      "zazuko": "cur"
+    },
+    "name": "QUDT VOCAB Currency Units Release 3.0.0",
+    "part_of": "qudt",
+    "preferred_prefix": "qudt.currency",
+    "uri_format": "http://qudt.org/vocab/currency/$1"
+  },
+  "qudt.dimensionvector": {
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "A vocabulary for representing complex units constructed by the multiplication and exponentiation of simpler units.",
+    "download_rdf": "https://github.com/zazuko/rdf-vocabularies/raw/refs/heads/master/ontologies/qkdv/qkdv.nq",
+    "example": "A-1E0L-3I0M0H0T0D0",
+    "homepage": "http://qudt.org/vocab/dimensionvector/",
+    "mappings": {
+      "zazuko": "qkdv"
+    },
+    "name": "QUDT VOCAB Dimension Vectors Release 3.1.10",
+    "part_of": "qudt",
+    "preferred_prefix": "qudt.dimensionvector",
+    "uri_format": "http://qudt.org/vocab/dimensionvector/$1"
+  },
+  "qudt.discipline": {
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "A vocabulary of academic disciplines and topics",
+    "download_rdf": "https://github.com/zazuko/rdf-vocabularies/raw/refs/heads/master/ontologies/discipline/discipline.nq",
+    "example": "Acoustics",
+    "homepage": "http://qudt.org/vocab/discipline/",
+    "keywords": [
+      "discipline"
+    ],
+    "mappings": {
+      "zazuko": "discipline"
+    },
+    "name": "QUDT Disciplines Ontology",
+    "part_of": "qudt",
+    "preferred_prefix": "qudt.discipline",
+    "uri_format": "http://qudt.org/vocab/discipline/$1"
+  },
+  "qudt.prefix": {
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "A vocabulary of prefixes used in units",
+    "download_rdf": "https://github.com/zazuko/rdf-vocabularies/raw/refs/heads/master/ontologies/prefix/prefix.nq",
+    "example": "Atto",
+    "homepage": "http://qudt.org/2.1/vocab/prefix",
+    "mappings": {
+      "zazuko": "prefix"
+    },
+    "name": "QUDT VOCAB Decimal Prefixes",
+    "part_of": "qudt",
+    "preferred_prefix": "qudt.prefix",
+    "uri_format": "http://qudt.org/vocab/prefix/$1"
+  },
+  "qudt.quantitykind": {
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "A vocabulary of measurement targets",
+    "download_rdf": "https://github.com/zazuko/rdf-vocabularies/raw/refs/heads/master/ontologies/quantitykind/quantitykind.nq",
+    "example": "AbsoluteHumidity",
+    "homepage": "http://qudt.org/3.1.0/vocab/quantitykind",
+    "mappings": {
+      "zazuko": "quantitykind"
+    },
+    "name": "QUDT Quantity Kind Vocabulary",
+    "part_of": "qudt",
+    "preferred_prefix": "qudt.quantitykind",
+    "uri_format": "http://qudt.org/vocab/quantitykind/$1"
+  },
+  "qudt.sou": {
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "A vocabulary of systems of units, such as the astronomical system of units (ASU)",
+    "download_rdf": "https://github.com/zazuko/rdf-vocabularies/raw/refs/heads/master/ontologies/sou/sou.nq",
+    "example": "CGS-EMU",
+    "example_extras": [
+      "ASU"
+    ],
+    "homepage": "http://qudt.org/vocab/sou/",
+    "mappings": {
+      "zazuko": "sou"
+    },
+    "name": "QUDT VOCAB Systems of Units Release 3.1.10",
+    "part_of": "qudt",
+    "preferred_prefix": "qudt.sou",
+    "uri_format": "http://qudt.org/vocab/sou/$1"
+  },
+  "qudt.unit": {
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "A vocabulary of units",
+    "download_rdf": "https://github.com/zazuko/rdf-vocabularies/raw/refs/heads/master/ontologies/unit/unit.nq",
+    "example": "A-MIN",
+    "homepage": "https://qudt.org/3.1.0/vocab/unit",
+    "mappings": {
+      "zazuko": "unit"
+    },
+    "name": "QUDT VOCAB Units of Measure",
+    "part_of": "qudt",
+    "preferred_prefix": "qudt.unit",
+    "uri_format": "http://qudt.org/vocab/unit/$1"
   },
   "radiomics": {
     "contact": {
@@ -77578,6 +77920,7 @@
       "orcid": "0000-0003-4423-4370"
     },
     "description": "This is the RDF Schema for the RDF vocabulary terms in the RDF Namespace, defined in RDF 1.1 Concepts",
+    "download_rdf": "https://github.com/zazuko/rdf-vocabularies/raw/refs/heads/master/ontologies/rdf/rdf.nq",
     "example": "type",
     "homepage": "http://www.w3.org/1999/02/22-rdf-syntax-ns",
     "keywords": [
@@ -77607,6 +77950,7 @@
     },
     "description": "RDFa Core is a specification for attributes to express structured data in any markup language. The embedded data already available in the markup language (e.g., HTML) can often be reused by the RDFa markup, so that publishers don't need to repeat significant data in the document content. (from https://www.w3.org/TR/rdfa-core/)",
     "download_owl": "http://www.w3.org/ns/rdfa.ttl",
+    "download_rdf": "https://github.com/zazuko/rdf-vocabularies/raw/refs/heads/master/ontologies/rdfa/rdfa.nq",
     "example": "PrefixOrTermMapping",
     "homepage": "http://www.w3.org/ns/rdfa",
     "keywords": [
@@ -77635,6 +77979,7 @@
     },
     "description": "RDF Schema provides a data-modelling vocabulary for RDF data. RDF Schema is an extension of the basic RDF vocabulary.",
     "download_owl": "https://triplydb.com/w3c/rdfs/download.trig.gz",
+    "download_rdf": "https://github.com/zazuko/rdf-vocabularies/raw/refs/heads/master/ontologies/rdfs/rdfs.nq",
     "example": "label",
     "homepage": "https://www.w3.org/TR/rdf-schema",
     "keywords": [
@@ -79986,6 +80331,28 @@
     "preferred_prefix": "rpcec",
     "uri_format": "https://rpcec.sld.cu/en/trials/$1"
   },
+  "rr": {
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "A vocabulary which can be used to specify a mapping of relational data to RDF.",
+    "download_rdf": "https://github.com/zazuko/rdf-vocabularies/raw/refs/heads/master/ontologies/rr/rr.nq",
+    "example": "GraphMap",
+    "homepage": "http://www.w3.org/TR/r2rml/",
+    "keywords": [
+      "rdf"
+    ],
+    "mappings": {
+      "lov": "rr",
+      "zazuko": "rr"
+    },
+    "name": "RDB to RDF Mapping Language Schema",
+    "preferred_prefix": "rr",
+    "uri_format": "http://www.w3.org/ns/r2rml#$1"
+  },
   "rrid": {
     "banana": "RRID",
     "contact": {
@@ -80735,6 +81102,7 @@
     "keywords": [
       "ontology"
     ],
+    "license": "CC0-1.0",
     "mappings": {
       "aberowl": "SALMON",
       "bioportal": "SALMON"
@@ -80743,7 +81111,7 @@
     "pattern": "^\\d+$",
     "preferred_prefix": "salmon",
     "uri_format": "https://purl.dataone.org/odo/SALMON_$1",
-    "version": "0.4.0"
+    "version": "Version 1.2"
   },
   "sao": {
     "contact": {
@@ -80765,6 +81133,7 @@
       "ontology",
       "owl"
     ],
+    "license": "CC-BY-3.0",
     "mappings": {
       "biocontext": "SAO",
       "bioportal": "SAO",
@@ -80790,7 +81159,7 @@
       "http://www.ontobee.org/ontology/SAO"
     ],
     "uri_format": "http://uri.neuinfo.org/nif/nifstd/sao$1",
-    "version": "Version 1.2"
+    "version": "1.0"
   },
   "saref": {
     "contact": {
@@ -81218,6 +81587,7 @@
     "keywords": [
       "ontology"
     ],
+    "license": "CC0-1.0",
     "mappings": {
       "aberowl": "SASAP",
       "bioportal": "SASAP"
@@ -82124,6 +82494,7 @@
   },
   "sd": {
     "description": "Un vocabulaire pour décrire des services SPARQL publiés via le protocole SPARQL 1.1 pour RDF. Ces descriptions fournissent un mécanisme par lequel un client ou un utilisateur final peuvent obtenir des informations sur le service SPARQL, telles que les extensions de fonctions supportées ou les détails à propos des jeux de données disponibles.",
+    "download_rdf": "https://github.com/zazuko/rdf-vocabularies/raw/refs/heads/master/ontologies/sd/sd.nq",
     "example": "endpoint",
     "homepage": "http://www.w3.org/TR/sparql11-service-description/",
     "keywords": [
@@ -82291,6 +82662,7 @@
   "sdmx": {
     "description": "This vocabulary extends the data cube vocabulary to support publication of statistical data in RDF, using an information model based on SDMX",
     "download_owl": "http://purl.org/linked-data/sdmx",
+    "download_rdf": "https://github.com/zazuko/rdf-vocabularies/raw/refs/heads/master/ontologies/sdmx/sdmx.nq",
     "example": "EntityRole",
     "homepage": "https://raw.githubusercontent.com/UKGovLD/publishing-statistical-data/master/specs/src/main/vocab/sdmx.ttl",
     "keywords": [
@@ -82485,6 +82857,52 @@
     },
     "uri_format": "https://swbiodiversity.org/seinet/taxa/index.php?taxon=$1"
   },
+  "seipid": {
+    "comment": "Namespace IDs (e.g. 001:xijir) and SEIPIDs (e.g. 001:xijir:2023n4) share one resolver: https://seipid.com/{ID}.",
+    "contact": {
+      "email": "rajanasir.razzaq@seipid.com",
+      "github": "xpertno",
+      "name": "Nasir Razzaq",
+      "orcid": "0000-0001-6939-2856"
+    },
+    "contributor": {
+      "email": "rajanasir.razzaq@seipid.com",
+      "github": "xpertno",
+      "name": "Nasir Razzaq",
+      "orcid": "0000-0001-6939-2856"
+    },
+    "description": "Scholarly Entity International Persistent Identifier Infrastructure (SEIPID) issues identifiers to scholarly outputs (articles, theses, books, chapters, datasets, conference papers, and other works) and Namespace Identifiers (NiDs) to the platforms that publish them, such as journals, repositories and publishers. Each identifier resolves to the work's current location and has a public metadata record released under CC0.",
+    "example": "001:xijir:2023n4",
+    "example_extras": [
+      "001:xijir"
+    ],
+    "github_request_issue": 2148,
+    "homepage": "https://seipid.com",
+    "keywords": [
+      "bibliometrics",
+      "journals"
+    ],
+    "license": "CC0-1.0",
+    "mappings": {
+      "wikidata.entity": "Q141804144"
+    },
+    "name": "Scholarly Entity International Persistent Identifier Infrastructure",
+    "owners": [
+      {
+        "name": "Xpertno Research Center",
+        "wikidata": "Q136664820"
+      }
+    ],
+    "pattern": "^\\d+:[A-Za-z0-9._~-]+(:[A-Za-z0-9._~-]+)?$",
+    "preferred_prefix": "seipid",
+    "reviewer": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "uri_format": "https://seipid.com/$1"
+  },
   "semapv": {
     "contact": {
       "email": "nicolas.matentzoglu@gmail.com",
@@ -82558,13 +82976,14 @@
       "name": "Bryce Mecum",
       "orcid": "0000-0002-0381-3766"
     },
-    "description": "The SENSO ontology is designed to provide classification terms for labeling sensitive data for data archival and sharing.",
+    "description": "The SENSO ontology is designed to provide classification terms for labeling sensitive data for data archival and sharing., Ontology to support sensitive data annotation of datasets housed at the Arctic Data Center (https://arcticdata.io)",
     "download_owl": "https://ontologies.dataone.org/SENSO.ttl",
     "example": "00000003",
     "homepage": "https://github.com/DataONEorg/sem-prov-ontologies/tree/main/senso",
     "keywords": [
       "ontology"
     ],
+    "license": "CC-BY-4.0",
     "mappings": {
       "bioportal": "SENSO"
     },
@@ -83545,6 +83964,7 @@
     },
     "description": "The Shape Expressions (ShEx) language describes RDF nodes and graph structures. A node constraint describes an RDF node (IRI, blank node or literal) and a shape describes the triples involving nodes in an RDF graph. These descriptions identify predicates and their associated cardinalities and datatypes. ShEx shapes can be used to communicate data structures associated with some process or interface, generate or validate data, or drive user interfaces.",
     "download_owl": "https://www.w3.org/ns/shex.ttl",
+    "download_rdf": "https://github.com/zazuko/rdf-vocabularies/raw/refs/heads/master/ontologies/shex/shex.nq",
     "example": "TripleExpression",
     "homepage": "http://www.w3.org/ns/shex#",
     "keywords": [
@@ -84357,6 +84777,7 @@
     },
     "description": "Semantically-Interlinked Online Communities, or SIOC, is an attempt to link online community sites, to use Semantic Web technologies to describe the information that communities have about their structure and contents, and to find related information and new connections between content items and other community objects. SIOC is based around the use of machine-readable information provided by these sites.",
     "download_owl": "http://rdfs.org/sioc/ns#",
+    "download_rdf": "https://github.com/zazuko/rdf-vocabularies/raw/refs/heads/master/ontologies/sioc/sioc.nq",
     "example": "Item",
     "homepage": "http://rdfs.org/sioc/spec",
     "keywords": [
@@ -85733,6 +86154,7 @@
     },
     "description": "The Solid Terms vocabulary defines terms referenced in Solid specifications.",
     "download_owl": "https://solid.github.io/vocab/solid-terms.ttl",
+    "download_rdf": "https://github.com/zazuko/rdf-vocabularies/raw/refs/heads/master/ontologies/solid/solid.nq",
     "example": "Account",
     "github_request_issue": 2016,
     "homepage": "https://solid.github.io/vocab",
@@ -85807,6 +86229,7 @@
     },
     "description": "This ontology is based on the SSN Ontology by the W3C Semantic Sensor Networks Incubator Group (SSN-XG), together with considerations from the W3C/OGC Spatial Data on the Web Working Group.",
     "download_owl": "https://www.w3.org/ns/sosa/",
+    "download_rdf": "https://github.com/zazuko/rdf-vocabularies/raw/refs/heads/master/ontologies/sosa/sosa.nq",
     "example": "FeatureOfInterest",
     "github_request_issue": 1274,
     "homepage": "https://www.w3.org/TR/vocab-ssn",
@@ -87774,6 +88197,7 @@
       "ontology",
       "pathogen"
     ],
+    "license": "CC0-1.0",
     "mappings": {
       "biocontext": "SUGARBIND",
       "bioportal": "SUGARBIND",
@@ -87800,7 +88224,7 @@
       }
     ],
     "uri_format": "http://sugarbind.expasy.org/$1",
-    "version": "2023-06-20"
+    "version": "1.0.0"
   },
   "sulo": {
     "contact": {
@@ -95954,6 +96378,7 @@
     "mappings": {
       "bartoc": "18785",
       "biodivportal": "BK",
+      "loc.classschemes": "bkl",
       "tib.ts": "bk"
     },
     "name": "Basic Classification",
@@ -98232,6 +98657,32 @@
     ],
     "repository": "https://github.com/ucum-org/ucum",
     "uri_format": "https://units-of-measurement.org/$1"
+  },
+  "udc": {
+    "contact": {
+      "email": "Aida.Slavic@udcc.org",
+      "name": "Aida Slavic",
+      "orcid": "0000-0002-1934-6824"
+    },
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "The Universal Decimal Classification (UDC) is a document indexing language in the form of a classification scheme covering the whole universe of knowledge. The UDC is designed for subject description and indexing of content of information resources irrespective of the carrier, form, format or language (source: https://udcc.org/index.php/site/page?view=factsheet)",
+    "example": "599.74",
+    "example_extras": [
+      "599.744.2",
+      "599.744.21",
+      "599.744.211"
+    ],
+    "homepage": "http://udcc.org",
+    "mappings": {
+      "loc.classschemes": "udc"
+    },
+    "name": "Universal Decimal Classification",
+    "preferred_prefix": "udc"
   },
   "udsaes.fmi": {
     "description": "An ontology transcription of definitions in the Functional Mock-up Interface (FMI) standard document from https://fmi-standard.org/ that enables representing Functional Mock-up Units (FMUs) in RDF",
@@ -100773,6 +101224,7 @@
     },
     "description": "vCard is a specification developed by the Internet Engineering Task Force (IETF) for the description of people and organisations",
     "download_owl": "https://www.w3.org/2006/vcard/ns",
+    "download_rdf": "https://github.com/zazuko/rdf-vocabularies/raw/refs/heads/master/ontologies/vcard/vcard.nq",
     "example": "Agent",
     "github_request_issue": 1317,
     "homepage": "https://www.w3.org/TR/vcard-rdf",
@@ -101849,7 +102301,7 @@
   },
   "vmh.gene": {
     "description": "The Virtual Metabolic Human (VMH) is a resource that combines human and gut microbiota metabolism with nutrition and disease.",
-    "example": "8639.1",
+    "example": "AOC3",
     "homepage": "https://www.vmh.life/",
     "keywords": [
       "gene",
@@ -101865,7 +102317,7 @@
         "ror": "03bea9k73"
       }
     ],
-    "pattern": "^[0-9]+\\.[0-9]+$",
+    "pattern": "^[a-zA-Z0-9_\\(\\_\\)\\[\\]]+$",
     "preferred_prefix": "vmh.gene",
     "uri_format": "https://www.vmh.life/gene/$1"
   },
@@ -102100,6 +102552,7 @@
       "orcid": "0000-0003-4423-4370"
     },
     "description": "The Vocabulary of Interlinked Datasets (VoID) is an RDF Schema vocabulary for expressing metadata about RDF datasets. It is intended as a bridge between the publishers and users of RDF data, with applications ranging from data discovery to cataloging and archiving of datasets. This document provides a formal definition of the new RDF classes and properties introduced for VoID. It is a companion to the main specification document for VoID, Describing Linked Datasets with the VoID Vocabulary.",
+    "download_rdf": "https://github.com/zazuko/rdf-vocabularies/raw/refs/heads/master/ontologies/void/void.nq",
     "example": "feature",
     "homepage": "http://vocab.deri.ie/void",
     "keywords": [
@@ -102123,6 +102576,7 @@
     },
     "description": "This vocabulary was created in the FOAF project, based on experience with FOAF, Dublin Core and other early RDF vocabularies. Deployment experience shows that changing namespace URIs is expensive and unrewarding, so this vocabulary provides terms to support in-place evolution of structured data vocabularies. By indicating status at the level of terms rather than vocabularies, dictionary-style, fine grained improvements become easier. Different organizations and parties can agree or disagree on the status of a vocabulary term; however the status published alongside the term may deserve special attention. Future work could include patterns for citing announcements and decisions, or using SKOS to decentralise the extension of the basic status levels. (from artifact)",
     "download_owl": "https://www.w3.org/2003/06/sw-vocab-status/ns",
+    "download_rdf": "https://github.com/zazuko/rdf-vocabularies/raw/refs/heads/master/ontologies/vs/vs.nq",
     "example": "term_status",
     "github_request_issue": 1677,
     "homepage": "https://www.w3.org/2003/06/sw-vocab-status/ns",
@@ -102290,6 +102744,7 @@
     },
     "description": "The Vital Sign Ontology (VSO) is an extension of the Ontology for General Medical Science (OGMS). VSO covers the four consensus human vital signs: blood pressure, body temperature, respiration rate, pulse rate. VSO provides also a controlled structured vocabulary for describing vital signs measurement data, the various processes of measuring vital signs, and the various devices and anatomical entities participating in such measurements.",
     "download_owl": "http://aber-owl.net/media/ontologies/VSO/1/vso.owl",
+    "download_rdf": "https://github.com/zazuko/rdf-vocabularies/raw/refs/heads/master/ontologies/vso/vso.nq",
     "example": "0000041",
     "homepage": "https://bioportal.bioontology.org/ontologies/VSO",
     "keywords": [
@@ -102713,6 +103168,7 @@
       "orcid": "0000-0003-4423-4370"
     },
     "description": "The Protocol for Web Description Resources (POWDER) allows metadata to be associated with groups of resources such as those found on a Web site. Its main 'unit of information' is the Description Resource (DR), one or more of which are contained in a POWDER document. Processing such a document yields RDF triples describing the resources that are within the scope of the DRs. POWDER documents are written in XML and have relatively loose semantics, however, a GRDDL transform, associated with the root namespace, renders the data in RDF/OWL with more formal semantics. [from homepage]",
+    "download_rdf": "https://github.com/zazuko/rdf-vocabularies/raw/refs/heads/master/ontologies/wdrs/wdrs.nq",
     "example": "structure",
     "homepage": "https://www.w3.org/2007/05/powder-s",
     "keywords": [
@@ -102765,6 +103221,7 @@
       "orcid": "0000-0003-4423-4370"
     },
     "description": "A vocabulary for representing latitude, longitude and altitude information in the WGS84 geodetic reference datum",
+    "download_rdf": "https://github.com/zazuko/rdf-vocabularies/raw/refs/heads/master/ontologies/wgs/wgs.nq",
     "example": "latitude",
     "homepage": "https://www.w3.org/2003/01/geo/wgs84_pos",
     "keywords": [
@@ -106360,6 +106817,31 @@
     "preferred_prefix": "xfid",
     "uri_format": "https://xframework.id/$1"
   },
+  "xh11d": {
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "In order to facilitate the use of CURIEs in markup languages, this specification defines some additional datatypes in the XHTML datatype space (http://www.w3.org/1999/xhtml/datatypes/). Markup languages that want to import these definitions can find them in the \"datatypes\" file for their schema grammar",
+    "example": "CURIE",
+    "example_extras": [
+      "CURIEorIRI",
+      "SafeCURIE"
+    ],
+    "homepage": "https://www.w3.org/TR/rdfa-core/#h-s_datatypes",
+    "name": "XHTML Datatypes",
+    "preferred_prefix": "xh11d",
+    "references": [
+      "https://www.w3.org/MarkUp/DTD/xhtml-datatypes-1.mod",
+      "https://www.w3.org/MarkUp/SCHEMA/xhtml-datatypes-1.xsd"
+    ],
+    "synonyms": [
+      "xhtml.datatypes"
+    ],
+    "uri_format": "http://www.w3.org/1999/xhtml/datatypes/$1"
+  },
   "xhv": {
     "contributor": {
       "email": "cthoyt@gmail.com",
@@ -106368,6 +106850,7 @@
       "orcid": "0000-0003-4423-4370"
     },
     "description": "This is a vocabulary collection utilized by XHTML Family modules and document types using XHTML Modularization, including XHTML Role and XHTML + RDFa as defined in rdfa-syntax. The XHTML specifications are developed by the W3C XHTML 2 Working Group as part of the W3C HTML Activity. [from homepage]",
+    "download_rdf": "https://github.com/zazuko/rdf-vocabularies/raw/refs/heads/master/ontologies/xhv/xhv.nq",
     "example": "alternate",
     "homepage": "https://www.w3.org/1999/xhtml/vocab",
     "keywords": [
@@ -106417,6 +106900,7 @@
   },
   "xkos": {
     "description": "An extension of SKOS for representaion of nomenclatures",
+    "download_rdf": "https://github.com/zazuko/rdf-vocabularies/raw/refs/heads/master/ontologies/xkos/xkos.nq",
     "example": "belongsTo",
     "homepage": "http://rdf-vocabulary.ddialliance.org/xkos",
     "keywords": [
@@ -106581,6 +107065,7 @@
       "orcid": "0000-0003-4423-4370"
     },
     "description": "This document describes the XML Schema namespace. It also contains a directory of links to these related resources, using Resource Directory Description Language.",
+    "download_rdf": "https://github.com/zazuko/rdf-vocabularies/raw/refs/heads/master/ontologies/xsd/xsd.nq",
     "example": "decimal",
     "homepage": "http://www.w3.org/2001/XMLSchema",
     "keywords": [
