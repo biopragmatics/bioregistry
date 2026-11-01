@@ -1032,7 +1032,7 @@ class Manager:
         entry = self.get_resource(prefix)
         if entry is None:
             return None
-        return entry.get_description(use_markdown=use_markdown, strict=strict)  # type:ignore[no-any-return]
+        return entry.get_description(use_markdown=use_markdown, strict=strict)  # type:ignore[no-any-return,call-overload]
 
     # docstr-coverage:excused `overload`
     @overload

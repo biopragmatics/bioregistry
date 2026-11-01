@@ -170,7 +170,7 @@ def get_description(prefix: str, *, use_markdown: bool = False, strict: bool = F
 
     :returns: The description, if available.
     """
-    return manager.get_description(prefix, use_markdown=use_markdown, strict=strict)
+    return manager.get_description(prefix, use_markdown=use_markdown, strict=strict)  # type:ignore[no-any-return,call-overload]
 
 
 # docstr-coverage:excused `overload`
