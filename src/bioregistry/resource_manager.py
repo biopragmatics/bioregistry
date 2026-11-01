@@ -1013,12 +1013,26 @@ class Manager:
             return self._repack(entry.get_namespace_in_lui(provenance=True))
         return entry.get_namespace_in_lui(provenance=False)
 
-    def get_description(self, prefix: str, *, use_markdown: bool = False) -> str | None:
+    # docstr-coverage:excused `overload`
+    @overload
+    def get_description(
+        self, prefix: str, *, use_markdown: bool = ..., strict: Literal[True] = ...
+    ) -> str: ...
+
+    # docstr-coverage:excused `overload`
+    @overload
+    def get_description(
+        self, prefix: str, *, use_markdown: bool = ..., strict: Literal[False] = ...
+    ) -> str | None: ...
+
+    def get_description(
+        self, prefix: str, *, use_markdown: bool = False, strict: bool = False
+    ) -> str | None:
         """Get the description for the given prefix, if it's available."""
         entry = self.get_resource(prefix)
         if entry is None:
             return None
-        return entry.get_description(use_markdown=use_markdown)
+        return entry.get_description(use_markdown=use_markdown, strict=strict)  # type:ignore[no-any-return]
 
     # docstr-coverage:excused `overload`
     @overload

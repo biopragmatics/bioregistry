@@ -1245,6 +1245,9 @@ class Resource(BaseModel):
     def get_preferred_prefix(self, *, passthrough: bool = False) -> str | None:
         """Get the preferred prefix (e.g., with stylization) if it exists.
 
+        :param passthrough: If true, passes through the normalized prefix as the
+            preferred one, in case no preferred one is explicitly specified
+
         :returns: The preferred prefix, if annotated in the Bioregistry or OBO Foundry.
 
         No preferred prefix annotation, defaults to normalized prefix
