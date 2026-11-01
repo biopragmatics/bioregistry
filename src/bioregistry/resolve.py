@@ -146,16 +146,31 @@ def get_name(
     return manager.get_name(prefix, provenance=False, strict=False)
 
 
-def get_description(prefix: str, *, use_markdown: bool = False) -> str | None:
+# docstr-coverage:excused `overload`
+@overload
+def get_description(
+    prefix: str, *, use_markdown: bool = ..., strict: Literal[True] = ...
+) -> str: ...
+
+
+# docstr-coverage:excused `overload`
+@overload
+def get_description(
+    prefix: str, *, use_markdown: bool = ..., strict: Literal[False] = ...
+) -> str | None: ...
+
+
+def get_description(prefix: str, *, use_markdown: bool = False, strict: bool = False) -> str | None:
     """Get the description for the given prefix, if available.
 
     :param prefix: The prefix to lookup.
     :param use_markdown: Should :mod:`markupsafe` and :mod:`markdown` wrap the
         description string
+    :param strict: If true, require a return value
 
     :returns: The description, if available.
     """
-    return manager.get_description(prefix, use_markdown=use_markdown)
+    return manager.get_description(prefix, use_markdown=use_markdown, strict=strict)  # type:ignore[no-any-return,call-overload]
 
 
 # docstr-coverage:excused `overload`
@@ -172,6 +187,8 @@ def get_preferred_prefix(prefix: str, *, passthrough: bool = False) -> str | Non
     """Get the preferred prefix (e.g., with stylization) if it exists.
 
     :param prefix: The prefix to lookup.
+    :param passthrough: If true, passes through the normalized prefix as the
+        preferred one, in case no preferred one is explicitly specified
 
     :returns: The preferred prefix, if annotated in the Bioregistry or OBO Foundry.
 
