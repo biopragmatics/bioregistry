@@ -14,6 +14,7 @@ from ..proxies import manager
 from ..utils import (
     IdentifierResponse,
     ResponseWrapperError,
+    _get_similar_prefixes,
     flask_jsonify_pydantic,
     flask_response_rdf,
     flask_yamlify_pydantic,
@@ -115,7 +116,10 @@ def _clean_reference(
     if resource is None:
         raise ResponseWrapperError(
             render_template(
-                "resolve_errors/missing_prefix.html", prefix=prefix, identifier=identifier
+                "resolve_errors/missing_prefix.html",
+                prefix=prefix,
+                identifier=identifier,
+                similar_prefixes=_get_similar_prefixes(manager, prefix),
             ),
             404,
         )
