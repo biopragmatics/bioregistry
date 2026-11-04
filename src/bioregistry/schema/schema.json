@@ -2147,6 +2147,22 @@
           "description": "The URL of the logo for the project/resource",
           "title": "Logo"
         },
+        "curation_type": {
+          "anyOf": [
+            {
+              "enum": [
+                "manual",
+                "generative-ai"
+              ],
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Curation Type"
+        },
         "miriam": {
           "anyOf": [
             {
