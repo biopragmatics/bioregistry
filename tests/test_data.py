@@ -875,7 +875,9 @@ class TestRegistry(unittest.TestCase):
         for prefix, resource in self.registry.items():
             with self.subTest(prefix=prefix):
                 if not resource.contributor and not resource.contributor_extras:
-                    self.assertNotEqual(0, len(resource.get_mappings()))
+                    self.assertNotEqual(
+                        0, len(resource.get_mappings()), msg=f"{prefix} is missing contributor"
+                    )
                     continue
                 if resource.contributor is not None:
                     self.assertIsNotNone(resource.contributor.name)
