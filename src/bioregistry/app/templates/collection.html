@@ -139,10 +139,10 @@
                         {{ resource.get_name() }} {{ utils.render_resource_warnings(resource) }}
                     </a>
                     {%- if annotated_prefix.comment %}
-                    <br><small>{{ annotated_prefix.comment}}</small>
+                    <br><small class="annotated-prefix-comment mb-0">{{ markdown(annotated_prefix.comment) | safe }}</small>
                     {%- endif %}
                     {% if first_party[resource.prefix] or annotated_prefix.tags %}
-                    <br>
+                    {%- if not annotated_prefix.comment %}<br>{% endif %}
                     {%- if first_party[resource.prefix] %}
                     <span class="badge badge-primary">First Party <i class="bi bi-check-circle-fill"></i></span>
                     {%- endif %}
