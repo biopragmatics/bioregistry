@@ -3083,7 +3083,7 @@
     ],
     "repository": "https://github.com/obophenotype/ascomycete-phenotype-ontology",
     "uri_format": "http://purl.obolibrary.org/obo/APO_$1",
-    "version": "2026-09-30"
+    "version": "2026-10-30"
   },
   "apollosv": {
     "appears_in": [
@@ -3309,6 +3309,10 @@
     "pattern": "^AT.G[0-9]{5}$",
     "preferred_prefix": "araport",
     "publications": [
+      {
+        "doi": "10.1105/tpc.20.00358",
+        "pubmed": "32699173"
+      },
       {
         "doi": "10.1093/pcp/pcw200",
         "pubmed": "28013278"
@@ -3917,6 +3921,33 @@
       "https://github.com/biopragmatics/bioregistry/pull/1141"
     ],
     "uri_format": "https://amzn.com/$1"
+  },
+  "asmo": {
+    "contact": {
+      "email": "a.azocar.guzman@fz-juelich.de",
+      "github": "aazocar",
+      "name": "Abril Azócar Guzmán",
+      "orcid": "0000-0001-7564-7990"
+    },
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "ASMO is an ontology that aims to define the concepts needed to describe commonly used atomic scale simulation methods, i.e. density functional theory, molecular dynamics, Monte Carlo methods, etc. ASMO uses the Provenance Ontology (PROV-O) to describe the simulation process. (from repository)",
+    "download_owl": "https://github.com/OCDO/asmo/raw/refs/heads/main/asmo.owl",
+    "example": "hasCalculatedProperty",
+    "homepage": "https://purls.helmholtz-metadaten.de/asmo",
+    "keywords": [
+      "ontology"
+    ],
+    "license": "CC-BY-4.0",
+    "name": "Atomistic Simulation Methods Ontology",
+    "preferred_prefix": "asmo",
+    "rdf_uri_format": "https://purls.helmholtz-metadaten.de/asmo/$1",
+    "repository": "https://github.com/OCDO/asmo",
+    "uri_format": "https://purls.helmholtz-metadaten.de/asmo/$1"
   },
   "aspgd.locus": {
     "deprecated": true,
@@ -11644,7 +11675,7 @@
       "ChEBI"
     ],
     "uri_format": "http://purl.obolibrary.org/obo/CHEBI_$1",
-    "version": "256"
+    "version": "257"
   },
   "chembank": {
     "comment": "This resource doesn't exist on the web anymore",
@@ -12438,6 +12469,7 @@
     "keywords": [
       "biochemistry",
       "chemistry",
+      "computational chemistry",
       "life science",
       "molecular entity",
       "nfdi4cat",
@@ -13853,6 +13885,109 @@
     ],
     "uri_format": "http://bioinformatics.hsanmartino.it/hypercldb/$1.html"
   },
+  "climoo.picco": {
+    "contact": {
+      "github": "gioUbbiali",
+      "name": "Giorgio Ubbiali",
+      "orcid": "0000-0001-7872-1770"
+    },
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "The Plastics Interconnecting with Climate Change Ontology (PICCO) module extends PlasticO and ClimOO-SDC2 modules to represent impacts of and interrelations between (micro-)plastic pollution and climate change. A particular emphasis is dedicated such to phenomena with respect to soils.",
+    "download_owl": "https://github.com/ClimOO/ClimOO-Ontology/raw/refs/heads/main/climoo-picco.ttl",
+    "homepage": "https://github.com/ClimOO/ClimOO-Ontology",
+    "keywords": [
+      "ontology"
+    ],
+    "name": "ClimOO - Plastics Interconnecting with Climate Change Ontology",
+    "no_own_terms": true,
+    "preferred_prefix": "climoo.picco",
+    "rdf_uri_format": "https://www.w3id.org/climoo/climoo-picco#$1",
+    "repository": "https://github.com/ClimOO/ClimOO-Ontology",
+    "uri_format": "https://www.w3id.org/climoo/climoo-picco#$1"
+  },
+  "climoo.piccomela": {
+    "contact": {
+      "github": "gioUbbiali",
+      "name": "Giorgio Ubbiali",
+      "orcid": "0000-0001-7872-1770"
+    },
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "The PICCOmela module applies the Plastics Interconnecting with Climate Change Ontology (PICCO) module to agriculture systems, especially to apple production. The main use case of reference is the local agricultural production of apple in South Tyrol (Italy).",
+    "download_owl": "https://github.com/ClimOO/ClimOO-Ontology/raw/refs/heads/main/climoo-piccomela.ttl",
+    "example": "0000076",
+    "homepage": "https://github.com/ClimOO/ClimOO-Ontology",
+    "keywords": [
+      "ontology"
+    ],
+    "name": "ClimOO - Plastics Interconnecting with Climate Change Ontology - mela module",
+    "pattern": "^\\d+$",
+    "preferred_prefix": "climoo.piccomela",
+    "rdf_uri_format": "https://www.w3id.org/climoo/climoo-piccomela#ClimOO_$1",
+    "repository": "https://github.com/ClimOO/ClimOO-Ontology",
+    "uri_format": "https://www.w3id.org/climoo/climoo-piccomela#ClimOO_$1"
+  },
+  "climoo.plastico": {
+    "comment": "Uses sustainable core ontology (SCO) SCO and BFO as upper level, used by Plastics Interconnecting with Climate Change Ontology (PICCO)",
+    "contact": {
+      "github": "gioUbbiali",
+      "name": "Giorgio Ubbiali",
+      "orcid": "0000-0001-7872-1770"
+    },
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "The Plastics Ontology (PlasticO) module centers on representing polymer molecules, plastic materials, pieces of plastic, and plastic objects, along with corresponding life cycles and pollution processes. Emphasis is also dedicated to relevant assessment devices and related data, especially with regard to sustainability.",
+    "download_owl": "https://raw.githubusercontent.com/ClimOO/ClimOO-Ontology/refs/heads/main/climoo-plastico.ttl",
+    "example": "0000113",
+    "homepage": "https://www.w3id.org/climoo/climoo-plastico",
+    "keywords": [
+      "ontology"
+    ],
+    "license": "CC-BY-4.0",
+    "name": "ClimOO Ontology - PlasticO",
+    "pattern": "^\\d+$",
+    "preferred_prefix": "climoo.plastico",
+    "repository": "https://github.com/ClimOO/ClimOO-Ontology",
+    "uri_format": "https://www.w3id.org/climoo/climoo-plastico#ClimOO_$1"
+  },
+  "climoo.sdc2": {
+    "contact": {
+      "github": "gioUbbiali",
+      "name": "Giorgio Ubbiali",
+      "orcid": "0000-0001-7872-1770"
+    },
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "The ClimOO SDC2 module forks the Sustainable Development and Climate (SDC) Ontology, updating the proposed models. The SDC2 module centers on climate and climate change, especially with regard to environmental features and related interconnections. Emphasis is also dedicated to relevant policies.",
+    "download_owl": "https://raw.githubusercontent.com/ClimOO/ClimOO-Ontology/refs/heads/main/climoo-sdc2.ttl",
+    "example": "Adaptive_Capacity",
+    "homepage": "https://github.com/ClimOO/ClimOO-Ontology",
+    "keywords": [
+      "ontology"
+    ],
+    "name": "ClimOO - SDC2",
+    "preferred_prefix": "climoo.sdc2",
+    "rdf_uri_format": "https://www.w3id.org/climoo/climoo-sdc2#$1",
+    "repository": "https://github.com/ClimOO/ClimOO-Ontology",
+    "uri_format": "https://www.w3id.org/climoo/climoo-sdc2#$1"
+  },
   "clingen.affiliation": {
     "contributor": {
       "email": "cthoyt@gmail.com",
@@ -14433,7 +14568,7 @@
     "rdf_uri_format": "http://purl.obolibrary.org/obo/CMO_$1",
     "repository": "https://github.com/rat-genome-database/CMO-Clinical-Measurement-Ontology",
     "uri_format": "http://purl.obolibrary.org/obo/CMO_$1",
-    "version": "2026-10-10"
+    "version": "2026-10-31"
   },
   "cmpo": {
     "contact": {
@@ -23636,7 +23771,7 @@
     "rdf_uri_format": "http://purl.obolibrary.org/obo/FBcv_$1",
     "repository": "https://github.com/FlyBase/drosophila-phenotype-ontology",
     "uri_format": "http://purl.obolibrary.org/obo/FBcv_$1",
-    "version": "2026-10-01"
+    "version": "2026-11-02"
   },
   "dpv": {
     "contact": {
@@ -30785,7 +30920,7 @@
     "rdf_uri_format": "http://purl.org/spar/fabio/$1",
     "repository": "https://github.com/sparontologies/fabio",
     "uri_format": "https://sparontologies.github.io/fabio/current/fabio.html#$1",
-    "version": "2.3.1"
+    "version": "2.3.2"
   },
   "facebase": {
     "contact": {
@@ -30863,6 +30998,7 @@
     "description": "A wikibase for linguistic knowledge",
     "example": "Q24708",
     "homepage": "https://database.factgrid.de",
+    "license": "CC0-1.0",
     "mappings": {
       "re3data": "r3d100013283"
     },
@@ -31370,7 +31506,7 @@
       "FBbt_root"
     ],
     "uri_format": "http://purl.obolibrary.org/obo/FBbt_$1",
-    "version": "2026-10-01"
+    "version": "2026-11-02"
   },
   "fbcv": {
     "appears_in": [
@@ -31437,7 +31573,7 @@
       "FBcv"
     ],
     "uri_format": "http://purl.obolibrary.org/obo/FBcv_$1",
-    "version": "2026-10-01"
+    "version": "2026-11-02"
   },
   "fbdv": {
     "contact": {
@@ -31493,7 +31629,7 @@
       "FBdv"
     ],
     "uri_format": "http://purl.obolibrary.org/obo/FBdv_$1",
-    "version": "2026-09-30"
+    "version": "2026-11-02"
   },
   "fbol": {
     "comment": "Website down, checked on 2021-10-07",
@@ -33913,6 +34049,7 @@
     "homepage": "http://ontologies.makolab.com/gc06/gc.html",
     "keywords": [
       "chemistry",
+      "computational chemistry",
       "nfdi4chem",
       "ontology"
     ],
@@ -39076,7 +39213,7 @@
     "rdf_uri_format": "http://purl.obolibrary.org/obo/GSSO_$1",
     "repository": "https://github.com/Superraptor/GSSO",
     "uri_format": "http://purl.obolibrary.org/obo/GSSO_$1",
-    "version": "2.0.5"
+    "version": "2.0.11"
   },
   "gtdb": {
     "contact": {
@@ -42774,7 +42911,6 @@
       "orcid": "0000-0003-1834-3856"
     },
     "description": "An ontology of information entities, originally driven by work by the Ontology of Biomedical Investigation (OBI) digital entity and realizable information entity branch.",
-    "download_obo": "http://purl.obolibrary.org/obo/iao.obo",
     "download_owl": "http://purl.obolibrary.org/obo/iao.owl",
     "example": "0000030",
     "homepage": "https://github.com/information-artifact-ontology/IAO/",
@@ -53385,6 +53521,14 @@
       "name": "Mingxun Wang",
       "orcid": "0000-0001-7647-6097"
     },
+    "contributor_extras": [
+      {
+        "email": "cjmungall@lbl.gov",
+        "github": "cmungall",
+        "name": "Chris Mungall",
+        "orcid": "0000-0002-6601-2165"
+      }
+    ],
     "description": "MassIVE is a community resource developed by the NIH-funded Center for Computational Mass Spectrometry to promote the global, free exchange of mass spectrometry data.",
     "example": "MSV000082131",
     "homepage": "https://www.omicsdi.org/",
@@ -53465,7 +53609,10 @@
         "year": 2016
       }
     ],
-    "uri_format": "https://www.omicsdi.org/dataset/massive/$1"
+    "references": [
+      "https://github.com/biopragmatics/bioregistry/issues/2166"
+    ],
+    "uri_format": "https://massive.ucsd.edu/ProteoSAFe/dataset.jsp?accession=$1"
   },
   "mastodon": {
     "contributor": {
@@ -53693,7 +53840,7 @@
   "matrixdb.association": {
     "description": "MatrixDB stores experimentally determined interactions involving at least one extracellular biomolecule. It includes mostly protein-protein and protein-glycosaminoglycan interactions, as well as interactions with lipids and cations.",
     "example": "P00747__P07355",
-    "homepage": "https://matrixdb.univ-lyon1.fr/",
+    "homepage": "https://matrixdb.expasy.org",
     "keywords": [
       "matrixdb"
     ],
@@ -53711,7 +53858,7 @@
     ],
     "pattern": "^([A-N,R-Z][0-9][A-Z][A-Z, 0-9][A-Z, 0-9][0-9])_.*|([O,P,Q][0-9][A-Z, 0-9][A-Z, 0-9][A-Z, 0-9][0-9]_.*)|(GAG_.*)|(MULT_.*)|(PFRAG_.*)|(LIP_.*)|(CAT_.*)$",
     "preferred_prefix": "matrixdb.association",
-    "uri_format": "https://matrixdb.univ-lyon1.fr/association/$1"
+    "uri_format": "https://matrixdb.expasy.org/association/$1"
   },
   "mavedb": {
     "comment": "This is an interesting one as the full IDs as they appear on the page are of the form `urn:mavedb:00000011-a` suggesting this is the preferred URI expansion for identification purposes. However, mavedb hasn't been registered with IANA https://www.iana.org/assignments/urn-namespaces/urn-namespaces.xhtml",
@@ -57489,6 +57636,31 @@
     "preferred_prefix": "mlc",
     "uri_format": "https://www.mlcommons.org/mlc-id/$1"
   },
+  "mlips": {
+    "contact": {
+      "github": "danielhz",
+      "name": "Daniel Hernández",
+      "orcid": "0000-0002-7896-0875"
+    },
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "An OWL ontology capturing the concepts needed to describe machine learning interatomic potentials: algorithm families, hyperparameters, training datasets with DFT provenance, and published benchmarks.",
+    "download_owl": "https://github.com/danielhz/mlips-ontology/raw/refs/heads/main/artifacts/ontology/mlips.owl",
+    "example": "Hyperparameter",
+    "homepage": "https://kg.informatik.uni-stuttgart.de/mlips/_ds/mlips",
+    "keywords": [
+      "ontology"
+    ],
+    "license": "CC-BY-4.0",
+    "name": "An Ontology for Machine Learning Interatomic Potentials",
+    "preferred_prefix": "mlips",
+    "repository": "https://github.com/danielhz/mlips-ontology",
+    "uri_format": "https://w3id.org/mlips#$1"
+  },
   "mmdb": {
     "contact": {
       "email": "siqian.he@nih.gov",
@@ -58564,7 +58736,9 @@
   "molsim": {
     "contact": {
       "email": "f.musyaffa@fz-juelich.de",
-      "name": "Fathoni A. Musyaffa"
+      "github": "fathoni",
+      "name": "Fathoni A. Musyaffa",
+      "orcid": "0000-0003-4846-8051"
     },
     "contributor": {
       "email": "cthoyt@gmail.com",
@@ -58681,7 +58855,7 @@
     "rdf_uri_format": "http://purl.obolibrary.org/obo/MONDO_$1",
     "repository": "https://github.com/monarch-initiative/mondo",
     "uri_format": "http://purl.obolibrary.org/obo/MONDO_$1",
-    "version": "2026-10-06"
+    "version": "2026-11-03"
   },
   "mondo.issue": {
     "contributor": {
@@ -58978,7 +59152,7 @@
     "rdf_uri_format": "http://purl.obolibrary.org/obo/MP_$1",
     "repository": "https://github.com/mgijax/mammalian-phenotype-ontology",
     "uri_format": "http://purl.obolibrary.org/obo/MP_$1",
-    "version": "2026-09-23"
+    "version": "2026-10-29"
   },
   "mpath": {
     "contact": {
@@ -59235,7 +59409,7 @@
     "rdf_uri_format": "http://purl.obolibrary.org/obo/MS_$1",
     "repository": "https://github.com/HUPO-PSI/psi-ms-CV",
     "uri_format": "http://purl.obolibrary.org/obo/MS_$1",
-    "version": "4.2.12"
+    "version": "4.2.14"
   },
   "msc": {
     "contributor": {
@@ -62793,7 +62967,7 @@
       "NIFSTD"
     ],
     "uri_format": "http://uri.neuinfo.org/nif/nifstd/$1",
-    "version": "1.6 (July 16, 2013)"
+    "version": "3.1 - January 15, 2018"
   },
   "nihhesc": {
     "contributor": {
@@ -66076,7 +66250,7 @@
     "rdf_uri_format": "http://purl.obolibrary.org/obo/OHD_$1",
     "repository": "https://github.com/oral-health-and-disease-ontologies/ohd-ontology",
     "uri_format": "http://purl.obolibrary.org/obo/OHD_$1",
-    "version": "2026-10-01"
+    "version": "2026-11-04"
   },
   "ohdab": {
     "description": "Based on the classification of occupations (KldB) by the Federal Employment Agency and the Federal Statistical Office from 2010. This in turn is based on the International Standard Classification of Occupations (ISCO) by the International Labor Office (ILO 2008). The KldB was revised and expanded in parts at the Historical Data Center in Halle, making it usable for the classification of historical occupations. More than 44,000 historical occupations are taxonomically classified in the OhdAB and can be sorted into occupational areas, main occupational groups, or variously differentiated occupational groups.",
@@ -67468,6 +67642,26 @@
     "preferred_prefix": "ontie",
     "repository": "https://github.com/IEDB/ONTIE",
     "uri_format": "https://ontology.iedb.org/ontology/ONTIE_$1"
+  },
+  "ontmm": {
+    "contact": {
+      "email": "darren.rhodes@gmail.com",
+      "github": "Darren01",
+      "name": "Darren Rhodes"
+    },
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "A domain ontology for representing and structuring molecular modelling workflows, with a focus on traceability, reproducibility, and data integration.",
+    "homepage": "https://github.com/Darren01/ont_mm",
+    "license": "MIT",
+    "name": "Molecular Modelling Project Ontology",
+    "no_own_terms": true,
+    "preferred_prefix": "ontmm",
+    "repository": "https://github.com/Darren01/ont_mm"
   },
   "ontoavida": {
     "contact": {
@@ -69334,7 +69528,7 @@
     "rdf_uri_format": "http://purl.obolibrary.org/obo/PAIN_$1",
     "repository": "https://github.com/uflcod/pain-ontology",
     "uri_format": "http://purl.obolibrary.org/obo/PAIN_$1",
-    "version": "2026-10-15"
+    "version": "2026-11-04"
   },
   "paleodb": {
     "description": "The Paleobiology Database seeks to provide researchers and the public with information about the entire fossil record. It stores global, collection-based occurrence and taxonomic data for marine and terrestrial animals and plants of any geological age, as well as web-based software for statistical analysis of the data.",
@@ -76112,6 +76306,106 @@
     ],
     "uri_format": "http://idp1.force.cs.is.nagoya-u.ac.jp/pscdb/$1.html"
   },
+  "psdi.dcatext": {
+    "contact": {
+      "github": "a-e-day",
+      "name": "Aileen Day",
+      "orcid": "0000-0003-2397-1996"
+    },
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "Extension of DCAT to describe PSDI catalog",
+    "download_owl": "https://github.com/PSDI-UK/metadata/raw/refs/heads/main/psdi-dcat-ext.ttl",
+    "example": "displayPriority",
+    "homepage": "https://github.com/PSDI-UK/metadata",
+    "keywords": [
+      "dcat",
+      "ontology",
+      "psdi"
+    ],
+    "license": "CC0-1.0",
+    "name": "PSDI DCAT extension",
+    "owners": [
+      {
+        "name": "Physical Sciences Data Infrastructure",
+        "wikidata": "Q142068862"
+      }
+    ],
+    "preferred_prefix": "psdiDcatExt",
+    "rdf_uri_format": "http://metadata.psdi.ac.uk/psdi-dcat-ext#$1",
+    "repository": "https://github.com/PSDI-UK/metadata",
+    "uri_format": "http://metadata.psdi.ac.uk/psdi-dcat-ext#$1"
+  },
+  "psdi.voc": {
+    "contact": {
+      "github": "a-e-day",
+      "name": "Aileen Day",
+      "orcid": "0000-0003-2397-1996"
+    },
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "SKOS vocabulary defining nomenclature used within the PSDI project and the resulting PSDI infrastructure and its platform.",
+    "download_rdf": "https://github.com/PSDI-UK/metadata/raw/refs/heads/main/psdi-voc.ttl",
+    "example": "pathfinder",
+    "homepage": "https://guidance.psdi.ac.uk/docusaurus-pages/docs/guidance/metadata/psdi-metadata/psdi-terminology",
+    "keywords": [
+      "psdi"
+    ],
+    "name": "PSDI vocabulary",
+    "owners": [
+      {
+        "name": "Physical Sciences Data Infrastructure",
+        "wikidata": "Q142068862"
+      }
+    ],
+    "preferred_prefix": "psdiVoc",
+    "rdf_uri_format": "http://metadata.psdi.ac.uk/psdi-voc#$1",
+    "references": [
+      "https://metadata.psdi.ac.uk/psdi-voc.jsonld"
+    ],
+    "repository": "https://github.com/PSDI-UK/metadata",
+    "uri_format": "http://metadata.psdi.ac.uk/psdi-voc#$1"
+  },
+  "psdi.vocsubject": {
+    "contact": {
+      "github": "a-e-day",
+      "name": "Aileen Day",
+      "orcid": "0000-0003-2397-1996"
+    },
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "SKOS vocabulary defining nomenclature for subject classification used withing the PSDI project.",
+    "download_rdf": "https://github.com/PSDI-UK/metadata/raw/refs/heads/main/psdi-voc-subject.ttl",
+    "example": "psdiCatalysis",
+    "homepage": "https://github.com/PSDI-UK/metadata",
+    "keywords": [
+      "psdi"
+    ],
+    "license": "CC0-1.0",
+    "name": "PSDI subject vocabulary",
+    "owners": [
+      {
+        "name": "Physical Sciences Data Infrastructure",
+        "wikidata": "Q142068862"
+      }
+    ],
+    "preferred_prefix": "psdiVocSubject",
+    "rdf_uri_format": "http://metadata.psdi.ac.uk/psdi-voc-subject#$1",
+    "repository": "https://github.com/PSDI-UK/metadata",
+    "uri_format": "http://metadata.psdi.ac.uk/psdi-voc-subject#$1"
+  },
   "psdo": {
     "contact": {
       "email": "zachll@umich.edu",
@@ -76444,6 +76738,12 @@
     "uri_format": "https://pubchem.ncbi.nlm.nih.gov/bioassay/$1"
   },
   "pubchem.cell": {
+    "contact": {
+      "email": "bolton@ncbi.nlm.nih.gov",
+      "github": "boltonee",
+      "name": "Evan E Bolton",
+      "orcid": "0000-0002-5959-6190"
+    },
     "contributor": {
       "email": "cthoyt@gmail.com",
       "github": "cthoyt",
@@ -76466,6 +76766,12 @@
     "uri_format": "https://pubchem.ncbi.nlm.nih.gov/cell/$1"
   },
   "pubchem.classification": {
+    "contact": {
+      "email": "bolton@ncbi.nlm.nih.gov",
+      "github": "boltonee",
+      "name": "Evan E Bolton",
+      "orcid": "0000-0002-5959-6190"
+    },
     "contributor": {
       "email": "cthoyt@gmail.com",
       "github": "cthoyt",
@@ -76488,6 +76794,7 @@
   "pubchem.compound": {
     "contact": {
       "email": "bolton@ncbi.nlm.nih.gov",
+      "github": "boltonee",
       "name": "Evan E Bolton",
       "orcid": "0000-0002-5959-6190"
     },
@@ -76629,6 +76936,12 @@
     "uri_format": "https://pubchem.ncbi.nlm.nih.gov/compound/$1"
   },
   "pubchem.element": {
+    "contact": {
+      "email": "bolton@ncbi.nlm.nih.gov",
+      "github": "boltonee",
+      "name": "Evan E Bolton",
+      "orcid": "0000-0002-5959-6190"
+    },
     "contributor": {
       "email": "cthoyt@gmail.com",
       "github": "cthoyt",
@@ -76649,6 +76962,12 @@
     "uri_format": "https://pubchem.ncbi.nlm.nih.gov/element/$1"
   },
   "pubchem.substance": {
+    "contact": {
+      "email": "bolton@ncbi.nlm.nih.gov",
+      "github": "boltonee",
+      "name": "Evan E Bolton",
+      "orcid": "0000-0002-5959-6190"
+    },
     "description": "PubChem provides information on the biological activities of small molecules. It is a component of NIH's Molecular Libraries Roadmap Initiative. PubChem Substance archives chemical substance records.",
     "example": "100101",
     "homepage": "https://pubchem.ncbi.nlm.nih.gov/",
@@ -76712,6 +77031,31 @@
       "DSSTox_Generic_SID"
     ],
     "uri_format": "https://pubchem.ncbi.nlm.nih.gov/substance/$1"
+  },
+  "pubchem.vocabulary": {
+    "contact": {
+      "email": "bolton@ncbi.nlm.nih.gov",
+      "github": "boltonee",
+      "name": "Evan E Bolton",
+      "orcid": "0000-0002-5959-6190"
+    },
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "The schema used by PubChem RDF",
+    "download_owl": "https://rdf.ncbi.nlm.nih.gov/pubchem/vocabulary.owl",
+    "example": "3D_structural_similarity",
+    "homepage": "https://pubchem.ncbi.nlm.nih.gov/docs/rdf-uri",
+    "keywords": [
+      "ontology",
+      "pubchem"
+    ],
+    "name": "PubChem Vocabulary",
+    "preferred_prefix": "pubchem.vocabulary",
+    "uri_format": "https://rdf.ncbi.nlm.nih.gov/pubchem/vocabulary.owl#$1"
   },
   "publons.publication": {
     "description": "identifier for the defunct/merged Publons website; URL redirects to Web of Science's P8372 (WOSID)",
@@ -80619,7 +80963,7 @@
     "rdf_uri_format": "http://purl.obolibrary.org/obo/RS_$1",
     "repository": "https://github.com/rat-genome-database/RS-Rat-Strain-Ontology",
     "uri_format": "http://purl.obolibrary.org/obo/RS_$1",
-    "version": "2026-10-10"
+    "version": "2026-10-31"
   },
   "rtecs": {
     "contact": {
@@ -81159,7 +81503,7 @@
       "http://www.ontobee.org/ontology/SAO"
     ],
     "uri_format": "http://uri.neuinfo.org/nif/nifstd/sao$1",
-    "version": "1.0"
+    "version": "Version 1.2"
   },
   "saref": {
     "contact": {
@@ -81997,6 +82341,46 @@
       "https://github.com/biopragmatics/bioregistry/pull/1171"
     ],
     "uri_format": "https://sciprofiles.com/profile/$1"
+  },
+  "sco": {
+    "contact": {
+      "github": "gioUbbiali",
+      "name": " Giorgio Ubbiali",
+      "orcid": "0000-0001-7872-1770"
+    },
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "The Sustainability Core Ontology (SCO) is a middle-level ontology, covering the terminology related to the three major theoretical challenges of sustainability:\n\n- The polysemy of the term sustainability.\n- The relationship between sustainability and sustainable development.\n-The complexity underlying sustainability.",
+    "download_owl": "https://www.w3id.org/sco",
+    "example": "0000010",
+    "homepage": "https://gioubbiali.github.io/Sustainability-Core-Ontology/docs-sco-b/index.html",
+    "keywords": [
+      "ontology"
+    ],
+    "license": "CC-BY-4.0",
+    "mappings": {
+      "aberowl": "SCO",
+      "bioportal": "SCO",
+      "ontobee": "SCO"
+    },
+    "name": "Sustainability Core Ontology",
+    "pattern": "^\\d+$",
+    "preferred_prefix": "sco",
+    "publications": [
+      {
+        "doi": "10.1002/sd.70562",
+        "title": "Ontologies for Sustainability: Theoretical Challenges",
+        "year": 2026
+      }
+    ],
+    "rdf_uri_format": "https://www.w3id.org/sco#SCO_$1",
+    "repository": "https://github.com/GioUbbiali/Sustainability-Core-Ontology",
+    "uri_format": "https://www.w3id.org/sco#SCO_$1",
+    "version": "2023-05-25"
   },
   "scomp": {
     "contact": {
@@ -86881,6 +87265,70 @@
     "uri_format": "http://www.fairsharing.org/ontology/subject/SRAO_$1",
     "version": "2025-06-01"
   },
+  "sre.cpo": {
+    "contact": {
+      "github": "laurafadler",
+      "name": "Laura Fadler",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "contributor": {
+      "github": "laurafadler",
+      "name": "Laura Fadler",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "An ontology of devices, materials, phases, reactions, and tasks related to chemical processes.",
+    "download_owl": "https://github.com/laurafadler/high-level-context-ontology-ontologies4chem2026/raw/refs/heads/main/ontologies/ChemicalProcessOntology.rdf",
+    "example": "aimsAt",
+    "github_request_issue": 2172,
+    "homepage": "https://github.com/laurafadler/high-level-context-ontology-ontologies4chem2026",
+    "keywords": [
+      "chemical process",
+      "evidence",
+      "ontology"
+    ],
+    "name": "Chemical Process Ontology",
+    "preferred_prefix": "sre.cpo",
+    "repository": "https://github.com/laurafadler/high-level-context-ontology-ontologies4chem2026",
+    "reviewer": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "uri_format": "http://www.semanticweb.org/lf576/ontologies/2026/7/ChemicalProcessOntology#$1"
+  },
+  "sre.hlo": {
+    "contact": {
+      "github": "laurafadler",
+      "name": "Laura Fadler",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "contributor": {
+      "github": "laurafadler",
+      "name": "Laura Fadler",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "An ontology for assisted in the provenance modeling for chemical process context, evidence, and references.",
+    "download_owl": "https://github.com/laurafadler/high-level-context-ontology-ontologies4chem2026/raw/refs/heads/main/ontologies/HigherLevelOntology.rdf",
+    "example": "contextDescribedBy",
+    "github_request_issue": 2172,
+    "homepage": "https://github.com/laurafadler/high-level-context-ontology-ontologies4chem2026",
+    "keywords": [
+      "chemical process",
+      "evidence",
+      "ontology"
+    ],
+    "name": "Higher Level Ontology",
+    "preferred_prefix": "sre.hlo",
+    "repository": "https://github.com/laurafadler/high-level-context-ontology-ontologies4chem2026",
+    "reviewer": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "uri_format": "http://www.semanticweb.org/lf576/ontologies/2026/7/HigherLevelOntology#$1"
+  },
   "ssbd.dataset": {
     "contact": {
       "email": "sonami@riken.jp",
@@ -87221,7 +87669,7 @@
       "orcid": "0000-0003-4423-4370"
     },
     "uri_format": "https://w3id.org/sstim#$1",
-    "version": "0.20.0"
+    "version": "0.21.0"
   },
   "sstim.ecosystem": {
     "contact": {
@@ -96637,7 +97085,7 @@
     "mappings": {
       "tib.ts": "mdo"
     },
-    "name": "Materials Design Ontology - Full",
+    "name": "Materials Design Ontology",
     "no_own_terms": true,
     "preferred_prefix": "tib.mdo",
     "repository": "https://github.com/LiUSemWeb/Materials-Design-Ontology",
@@ -98451,7 +98899,7 @@
       "Uberon"
     ],
     "uri_format": "http://purl.obolibrary.org/obo/UBERON_$1",
-    "version": "2026-10-01"
+    "version": "2026-11-05"
   },
   "uberon.issue": {
     "contributor": {
@@ -102472,7 +102920,7 @@
     "rdf_uri_format": "http://purl.obolibrary.org/obo/VO_$1",
     "repository": "https://github.com/vaccineontology/VO",
     "uri_format": "http://purl.obolibrary.org/obo/VO_$1",
-    "version": "2026-06-12"
+    "version": "2026-11-02"
   },
   "voaf": {
     "contributor": {
@@ -104436,6 +104884,7 @@
     "keywords": [
       "chemical and environmental engineering",
       "chemistry",
+      "computational chemistry",
       "nfdi4cat",
       "nfdi4chem",
       "ontology",
@@ -106645,7 +107094,7 @@
     "rdf_uri_format": "http://purl.obolibrary.org/obo/XCO_$1",
     "repository": "https://github.com/rat-genome-database/XCO-experimental-condition-ontology",
     "uri_format": "http://purl.obolibrary.org/obo/XCO_$1",
-    "version": "2026-10-17"
+    "version": "2026-10-31"
   },
   "xenbase": {
     "contact": {
