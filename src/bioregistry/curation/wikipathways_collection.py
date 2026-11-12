@@ -11,8 +11,8 @@ from bioregistry.validate.utils import get_sparql_shacl_prefix_map, get_virtuoso
 
 CONFIGURATIONS = [
     ("0000048", "https://sparql.wikipathways.org/sparql", True),
-    ("0000049", "https://sparql.rhea-db.org/sparql", False),
-    ("0000050", "https://aopwiki.rdf.bigcat-bioinformatics.org//sparql", True),
+    # ("0000049", "https://sparql.rhea-db.org/sparql", False),
+    # ("0000050", "https://aopwiki.rdf.bigcat-bioinformatics.org//sparql", True),
 ]
 
 
