@@ -19,6 +19,7 @@ __all__ = [
     "click_write_messages",
     "format_messages",
     "get_sparql_shacl_prefix_map",
+    "get_virtuoso_prefix_map",
     "tabulate_messages",
     "validate_jsonld",
     "validate_linkml",

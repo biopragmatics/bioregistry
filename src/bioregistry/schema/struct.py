@@ -55,6 +55,7 @@ __all__ = [
     "Attributable",
     "Author",
     "Collection",
+    "CollectionAnnotation",
     "Context",
     "OlsConfig",
     "Organization",
