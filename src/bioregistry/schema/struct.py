@@ -143,6 +143,9 @@ Domain: TypeAlias = Literal[
     "equipment",
 ]
 
+#: Describes how a resource is constructed and maintained
+CurationType: TypeAlias = Literal["manual", "generative-ai"]
+
 
 def _uri_sort(uri: str) -> tuple[str, str]:
     try:
@@ -812,6 +815,7 @@ class Resource(BaseModel):
     logo: str | None = Field(
         default=None, description="The URL of the logo for the project/resource"
     )
+    curation_type: Annotated[CurationType | None, Field()] = None
 
     #: External data from Identifiers.org's MIRIAM Database
     miriam: Record | None = None
