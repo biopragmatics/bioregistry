@@ -1,7 +1,8 @@
 """Update the WikiPathways collection."""
 
-from bioregistry import Collection, Manager
 import click
+
+from bioregistry import Collection, Manager
 from bioregistry.validate.utils import get_shacl_defined
 
 WIKIPATHWAYS_COLLECTION_ID = "0000048"

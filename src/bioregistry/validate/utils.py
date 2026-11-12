@@ -18,13 +18,13 @@ __all__ = [
     "Message",
     "click_write_messages",
     "format_messages",
+    "get_shacl_defined",
     "tabulate_messages",
     "validate_jsonld",
     "validate_linkml",
     "validate_prefix_map",
     "validate_ttl",
     "validate_virtuoso",
-    "get_shacl_defined",
 ]
 
 
@@ -371,7 +371,7 @@ SELECT DISTINCT ?prefix ?namespace
 WHERE {
     ?shapesGraph sh:declare [
      	sh:prefix ?prefix ;
-		sh:namespace ?namespace 
+		sh:namespace ?namespace
     ] .
 }
 ORDER BY ?prefix
@@ -381,10 +381,14 @@ ORDER BY ?prefix
 def get_shacl_defined(endpoint: str) -> dict[str, str]:
     """Get all prefixes defined by SHACL."""
     import requests
-    res = requests.get(endpoint, params={
-        "query": SHACL_SPARQL_QUERY
-    }, headers={"Accept": "application/sparql-results+json"})
+
+    res = requests.get(
+        endpoint,
+        params={"query": SHACL_SPARQL_QUERY},
+        headers={"Accept": "application/sparql-results+json"},
+        timeout=5,
+    )
     rv = {}
-    for record in res.json()['results']['bindings']:
-        rv[record['prefix']['value']] = record['namespace']['value']
+    for record in res.json()["results"]["bindings"]:
+        rv[record["prefix"]["value"]] = record["namespace"]["value"]
     return rv
