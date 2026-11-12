@@ -18,7 +18,7 @@ __all__ = [
     "Message",
     "click_write_messages",
     "format_messages",
-    "get_shacl_defined",
+    "get_sparql_shacl_prefix_map",
     "tabulate_messages",
     "validate_jsonld",
     "validate_linkml",
@@ -378,7 +378,7 @@ ORDER BY ?prefix
 """
 
 
-def get_shacl_defined(endpoint: str) -> dict[str, str]:
+def get_sparql_shacl_prefix_map(endpoint: str) -> dict[str, str]:
     """Get all prefixes defined by SHACL."""
     import requests
 
