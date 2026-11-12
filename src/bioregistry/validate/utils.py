@@ -370,8 +370,8 @@ PREFIX sh: <http://www.w3.org/ns/shacl#>
 SELECT DISTINCT ?prefix ?namespace
 WHERE {
     ?shapesGraph sh:declare [
-     	sh:prefix ?prefix ;
-		sh:namespace ?namespace
+        sh:prefix ?prefix ;
+        sh:namespace ?namespace
     ] .
 }
 ORDER BY ?prefix
