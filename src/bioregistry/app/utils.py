@@ -92,12 +92,12 @@ def _autocomplete(manager_: Manager, q: str, url_prefix: str | None = None) -> M
 
     >>> from bioregistry import manager
     >>> _autocomplete(manager, "cheb")
-    {'query': 'cheb', 'results': [('chebi', ''), ('chebi', 'chebiid'), ('goche', 'gochebi')], 'success': True, 'reason': 'searched prefix', 'url': None}
+    {'query': 'cheb', 'results': [('chebi', ''), ('chebi', 'chebiid'), ('chebi', 'chebio'), ('goche', 'gochebi')], 'success': True, 'reason': 'searched prefix', 'url': None}
 
     If only prefix is complete:
 
     >>> _autocomplete(manager, "chebi")
-    {'query': 'chebi', 'results': [('chebi', ''), ('chebi', 'chebiid'), ('goche', 'gochebi')], 'success': True, 'reason': 'matched prefix', 'url': '/chebi'}
+    {'query': 'chebi', 'results': [('chebi', ''), ('chebi', 'chebiid'), ('chebi', 'chebio'), ('goche', 'gochebi')], 'success': True, 'reason': 'matched prefix', 'url': '/chebi'}
 
     Not matching the pattern:
 

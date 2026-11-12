@@ -18,6 +18,8 @@ __all__ = [
     "Message",
     "click_write_messages",
     "format_messages",
+    "get_sparql_shacl_prefix_map",
+    "get_virtuoso_prefix_map",
     "tabulate_messages",
     "validate_jsonld",
     "validate_linkml",
@@ -360,3 +362,34 @@ def get_linkml_prefix_map(path_or_url: str | Path | TextIO) -> dict[str, str]:
 
     data = safe_open_yaml(path_or_url)
     return cast(dict[str, str], data["prefixes"])
+
+
+#: The SPARQL query to run to get namespace declarations
+SHACL_SPARQL_QUERY = """\
+PREFIX sh: <http://www.w3.org/ns/shacl#>
+
+SELECT DISTINCT ?prefix ?namespace
+WHERE {
+    ?shapesGraph sh:declare [
+        sh:prefix ?prefix ;
+        sh:namespace ?namespace
+    ] .
+}
+ORDER BY ?prefix
+"""
+
+
+def get_sparql_shacl_prefix_map(endpoint: str) -> dict[str, str]:
+    """Get all prefixes defined by SHACL."""
+    import requests
+
+    res = requests.get(
+        endpoint,
+        params={"query": SHACL_SPARQL_QUERY},
+        headers={"Accept": "application/sparql-results+json"},
+        timeout=5,
+    )
+    rv = {}
+    for record in res.json()["results"]["bindings"]:
+        rv[record["prefix"]["value"]] = record["namespace"]["value"]
+    return rv
