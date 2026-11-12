@@ -10,14 +10,14 @@ from bioregistry.schema.struct import CollectionAnnotation
 from bioregistry.validate.utils import get_sparql_shacl_prefix_map, get_virtuoso_prefix_map
 
 CONFIGURATIONS = [
-    ("0000048", "WikiPathways", "https://sparql.wikipathways.org/sparql", True),
-    ("0000049", "Rhea", "https://sparql.rhea-db.org/sparql", False),
-    ("0000050", "AOP Wiki", "https://aopwiki.rdf.bigcat-bioinformatics.org//sparql", True),
+    ("0000048", "https://sparql.wikipathways.org/sparql", True),
+    ("0000049", "https://sparql.rhea-db.org/sparql", False),
+    ("0000050", "https://aopwiki.rdf.bigcat-bioinformatics.org//sparql", True),
 ]
 
 
 def _update_collection(
-    manager: Manager, name: str, collection_id: str, endpoint: str, *, virtuoso: bool = False
+    manager: Manager, collection_id: str, endpoint: str, *, virtuoso: bool = False
 ) -> None:
     collection = manager.collections[collection_id]
     resources: set[str] = set(collection.get_prefixes())
@@ -29,7 +29,9 @@ def _update_collection(
         try:
             virtuoso_prefix_map = get_virtuoso_prefix_map(endpoint)
         except ValueError:
-            click.echo(f"[{name}] failed to get NSDECL prefix map - maybe it's not virtuoso?")
+            click.echo(
+                f"[{collection.name}] failed to get NSDECL prefix map - maybe it's not virtuoso?"
+            )
         else:
             prefix_maps.append(virtuoso_prefix_map)
     for prefix_map in prefix_maps:
@@ -41,7 +43,7 @@ def _update_collection(
                 missing.append((prefix, uri_prefix))
     collection.resources = cast(list[str | CollectionAnnotation], sorted(resources))
     if missing:
-        click.echo(f"Missing resources in {name}:\n")
+        click.echo(f"Missing resources in {collection.name}:\n")
         click.echo(tabulate(missing, headers=["prefix", "uri_prefix"], tablefmt="github") + "\n")
 
 
@@ -49,8 +51,8 @@ def _update_collection(
 def main() -> None:
     """Update the WikiPathways collection."""
     manager = Manager()
-    for collection_id, name, endpoint, virtuoso in CONFIGURATIONS:
-        _update_collection(manager, name, collection_id, endpoint, virtuoso=virtuoso)
+    for collection_id, endpoint, virtuoso in CONFIGURATIONS:
+        _update_collection(manager, collection_id, endpoint, virtuoso=virtuoso)
     manager.write_collections()
 
 
