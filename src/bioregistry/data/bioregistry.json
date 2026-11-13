@@ -115551,6 +115551,12 @@
     "homepage": "https://www.ncbi.nlm.nih.gov/books",
     "name": "NCBI Bookshelf",
     "pattern": "^NBK\\d+$",
+    "providers": [
+      {
+        "code": "pubchem",
+        "uri_format": "http://rdf.ncbi.nlm.nih.gov/pubchem/book/$1"
+      }
+    ],
     "uri_format": "https://www.ncbi.nlm.nih.gov/books/$1"
   },
   "ncbidrs": {
@@ -116331,6 +116337,10 @@
           "homepage": "https://www.uniprot.org/taxonomy/",
           "name": "Taxonomy through UniProt PURL",
           "uri_format": "https://purl.uniprot.org/taxonomy/$1"
+        },
+        {
+          "code": "pubchem",
+          "uri_format": "http://rdf.ncbi.nlm.nih.gov/pubchem/taxonomy/TAXID$1"
         }
       ],
       "status": "active",
@@ -146735,19 +146745,6 @@
       "pubchem.assay"
     ]
   },
-  "pubchem.book": {
-    "contact": {
-      "email": "bolton@ncbi.nlm.nih.gov",
-      "github": "boltonee",
-      "name": "Evan E Bolton",
-      "orcid": "0000-0002-5959-6190"
-    },
-    "description": "",
-    "homepage": "https://pubchem.ncbi.nlm.nih.gov",
-    "name": "",
-    "part_of_database": "pubchem",
-    "rdf_uri_format": "http://rdf.ncbi.nlm.nih.gov/pubchem/book/$1"
-  },
   "pubchem.cell": {
     "contact": {
       "email": "bolton@ncbi.nlm.nih.gov",
@@ -146774,6 +146771,7 @@
     "name": "PubChem Cell Line",
     "part_of_database": "pubchem",
     "pattern": "^\\d+$",
+    "rdf_uri_format": "http://rdf.ncbi.nlm.nih.gov/pubchem/cell/CELLID$1",
     "uri_format": "https://pubchem.ncbi.nlm.nih.gov/cell/$1"
   },
   "pubchem.classification": {
@@ -147277,9 +147275,11 @@
       "orcid": "0000-0002-5959-6190"
     },
     "description": "",
+    "example": "1",
     "homepage": "https://pubchem.ncbi.nlm.nih.gov",
     "name": "",
     "part_of_database": "pubchem",
+    "pattern": "^\\d+$",
     "rdf_uri_format": "http://rdf.ncbi.nlm.nih.gov/pubchem/journal/$1"
   },
   "pubchem.measuregroup": {
@@ -147330,11 +147330,12 @@
       "orcid": "0000-0002-5959-6190"
     },
     "description": "",
-    "example": "PWID10790",
+    "example": "10790",
     "homepage": "https://pubchem.ncbi.nlm.nih.gov",
     "name": "",
     "part_of_database": "pubchem",
-    "rdf_uri_format": "http://rdf.ncbi.nlm.nih.gov/pubchem/pathway/$1"
+    "pattern": "^\\d+$",
+    "rdf_uri_format": "http://rdf.ncbi.nlm.nih.gov/pubchem/pathway/PWID$1"
   },
   "pubchem.protein": {
     "comment": "This motivates doing some routing based on prefixes in the LUID, ACC might just be a prefix",
@@ -147578,19 +147579,6 @@
     "name": "",
     "part_of_database": "pubchem",
     "rdf_uri_format": "http://rdf.ncbi.nlm.nih.gov/pubchem/synonym/$1"
-  },
-  "pubchem.taxonomy": {
-    "contact": {
-      "email": "bolton@ncbi.nlm.nih.gov",
-      "github": "boltonee",
-      "name": "Evan E Bolton",
-      "orcid": "0000-0002-5959-6190"
-    },
-    "description": "",
-    "homepage": "https://pubchem.ncbi.nlm.nih.gov",
-    "name": "",
-    "part_of_database": "pubchem",
-    "rdf_uri_format": "http://rdf.ncbi.nlm.nih.gov/pubchem/taxonomy/$1"
   },
   "pubchem.vocabulary": {
     "contact": {
