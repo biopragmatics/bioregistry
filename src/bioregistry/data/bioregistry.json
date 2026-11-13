@@ -27014,13 +27014,28 @@
       "orcid": "0000-0002-1044-9499"
     },
     "description": "The Cleavage Atlas collects proteolytic cleavage sites observed in public mass-spectrometry proteomics data (PRIDE/ProteomeXchange). Each identifier names a single peptide bond in a UniProtKB protein, independent of which protease cleaves it: the UniProtKB accession, an optional isoform number, and the P1 residue position (Schechter-Berger numbering on the full precursor sequence, Met1 = 1). The bond named is the one between residue P1 and residue P1+1.",
+    "domain": "protein",
     "example": "P01009_382",
+    "example_extras": [
+      "P15692-4_26",
+      "Q8N2S1-2_20",
+      "P15692-9_141"
+    ],
     "github_request_issue": 2179,
     "homepage": "https://cleavageatlas.com",
+    "keywords": [
+      "mass spectrometry",
+      "proteomics"
+    ],
     "license": "CC0-1.0",
     "name": "Cleavage Atlas",
     "pattern": "^([OPQ][0-9][A-Z0-9]{3}[0-9]|[A-NR-Z][0-9]([A-Z][A-Z0-9]{2}[0-9]){1,2})(-[0-9]+)?_[1-9][0-9]*$",
-    "publications": [],
+    "reviewer": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
     "uri_format": "https://cleavageatlas.com/site/$1"
   },
   "climoo.picco": {
