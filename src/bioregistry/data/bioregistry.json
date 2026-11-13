@@ -1,4 +1,22 @@
 {
+  "pubchem.descriptor": {"rdf_uri_format": "http://rdf.ncbi.nlm.nih.gov/pubchem/descriptor/$1", "example": "CID60823_Molecular_Weight"},
+  "pubchem.synonym": {"rdf_uri_format": "http://rdf.ncbi.nlm.nih.gov/pubchem/synonym/$1", "example": "MD5_9a05646d461669f86de312d88ab5748a",},
+  "pubchem.measuregroup": {"rdf_uri_format": "http://rdf.ncbi.nlm.nih.gov/pubchem/measuregroup/$1", "example": "AID447528_PMID19500994"},
+  "pubchem.endpoint": {"rdf_uri_format": "http://rdf.ncbi.nlm.nih.gov/pubchem/endpoint/$1", "example": "SID540758_AID1_VALUE854"},
+  "pubchem.protein": {"rdf_uri_format": "http://rdf.ncbi.nlm.nih.gov/pubchem/protein/$1", "example": "ACCAAI32976", "example_extras": ["ACCNP_056953ACCNP_858045"], "comment": "This motivates doing some routing based on prefixes in the LUID, ACC might just be a prefix"},
+  "pubchem.conserveddomain": {"rdf_uri_format": "http://rdf.ncbi.nlm.nih.gov/pubchem/conserveddomain/$1", "example": "PSSMID132758"},
+  "pubchem.pathway": {"rdf_uri_format": "http://rdf.ncbi.nlm.nih.gov/pubchem/pathway/$1", "example": "PWID10790"},
+  "pubchem.taxonomy": {"rdf_uri_format": "http://rdf.ncbi.nlm.nih.gov/pubchem/taxonomy/$1"},
+  "pubchem.nbr": {"rdf_uri_format": "http://rdf.ncbi.nlm.nih.gov/pubchem/neighbor/$1"},
+  "pubchem.source": {"rdf_uri_format": "http://rdf.ncbi.nlm.nih.gov/pubchem/source/$1", "example": "ChEMBL"},
+  "pubchem.reference": {"rdf_uri_format": "http://rdf.ncbi.nlm.nih.gov/pubchem/reference/$1", "example": "9107826"},
+  "pubchem.disease": {"rdf_uri_format": "http://rdf.ncbi.nlm.nih.gov/pubchem/disease/$1"},
+  "pubchem.author": {"rdf_uri_format": "http://rdf.ncbi.nlm.nih.gov/pubchem/author/$1"},
+  "pubchem.book": {"rdf_uri_format": "http://rdf.ncbi.nlm.nih.gov/pubchem/book/$1"},
+  "pubchem.journal": {"rdf_uri_format": "http://rdf.ncbi.nlm.nih.gov/pubchem/journal/$1"},
+  "pubchem.grant": {"rdf_uri_format": "http://rdf.ncbi.nlm.nih.gov/pubchem/grant/$1"},
+  "pubchem.organization": {"rdf_uri_format": "http://rdf.ncbi.nlm.nih.gov/pubchem/organization/$1"},
+  "pubchem.cooccurrence": {"rdf_uri_format": "http://rdf.ncbi.nlm.nih.gov/pubchem/cooccurrence/$1"},
   "_3dmet": {
     "biocontext": {
       "prefix": "3DMET",
@@ -73248,6 +73266,12 @@
       "prefix": "google.patent",
       "uri_format": "https://www.google.com/patents/$1"
     },
+    "providers": [
+      {
+      "code": "pubchem",
+      "uri_format": "http://rdf.ncbi.nlm.nih.gov/pubchem/patent/$1"
+      }
+    ],
     "pattern": "^[A-Z]{2,4}\\d+([A-Z])?([0-9])?$",
     "synonyms": [
       "Patent",
@@ -87696,6 +87720,12 @@
       "prefix": "INCHIKEY",
       "uri_format": "http://identifiers.org/inchikey/$1"
     },
+    "providers": [
+      {
+      "code": "pubchem",
+      "uri_format": "http://rdf.ncbi.nlm.nih.gov/pubchem/inchikey/$1"
+      }
+    ],
     "mappings": {
       "biocontext": "INCHIKEY",
       "miriam": "inchikey",
@@ -115804,6 +115834,10 @@
         "homepage": "https://scholia.toolforge.org/",
         "name": "Scholia",
         "uri_format": "https://scholia.toolforge.org/ncbi-gene/$1"
+      },
+      {
+      "code": "pubchem"
+      "uri_format": "http://rdf.ncbi.nlm.nih.gov/pubchem/gene/GID$1"
       }
     ],
     "publications": [
