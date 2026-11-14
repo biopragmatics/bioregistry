@@ -56,9 +56,11 @@
             {%- if resource.get_rdf_uri_format() %}
             <dt>Format String for RDF URIs</dt>
             <dd><kbd>{{ resource.get_rdf_uri_format() }}</kbd></dd>
+            {%- if example %}
             <dt>Example RDF URI</dt>
             {%- set rdf_uri_example = resource.get_rdf_uri_format().replace("$1", example) %}
             <dd><a href="{{ rdf_uri_example }}">{{ rdf_uri_example }}</a></dd>
+            {%- endif %}
             {%- endif %}
             {%- if namespace_in_lui %}
             <dt><i class="bi bi-info-circle"></i> MIRIAM Namespace Embedded in LUI</dt>

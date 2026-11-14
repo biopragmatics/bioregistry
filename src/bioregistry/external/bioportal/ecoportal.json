@@ -63,6 +63,7 @@
         "url": "https://vocabulary.actris.nilu.no/skosmos/actris_vocab/en/"
       }
     ],
+    "repository": "https://github.com/ACTRIS-Data-Centre/actris-vocabulary",
     "version": "1.2.2"
   },
   "ACVARIANT": {
@@ -301,6 +302,7 @@
       "name": "CC-BY-4.0"
     },
     "name": "The DMP Common Standard Ontology",
+    "repository": "https://github.com/RDA-DMP-Common/dcso",
     "version": "4.0.0"
   },
   "DSW": {
@@ -602,7 +604,7 @@
         "url": "http://speroni.web.cs.unibo.it/publications/peroni-2012-fabio-cito-ontologies.pdf"
       }
     ],
-    "version": "2.3.2"
+    "version": "2.3.3"
   },
   "FAIR_VOCABULARY": {
     "contact": {
@@ -744,6 +746,18 @@
       }
     ],
     "version": "1.1.0"
+  },
+  "ICOS_INST": {
+    "contact": {
+      "email": "darpap@unitus.it",
+      "name": "Dario Papale"
+    },
+    "description": "1. For Networks and researchers not using BADM system This section is dedicated to Research Infrastructures or monitoring networks that do not use the BADM metadata system. These networks can still reference this thesaurus to uniquely identify their sensors. You are free to name your instruments according to your own conventions, but you can link them to this vocabulary by referencing the unique, persistent ID (URI) of the corresponding concept. How to find the ID of your instrument: Browse the concept hierarchy: in the Concepts panel, the thesaurus is organized hierarchically by instrument type (e.g. Barometer, Data logger, Dendrometer, etc.). Expand the relevant category and continue narrowing down (broader → narrower concepts, e.g. Barometer → Bosch barometer) until you reach the specific instrument model (e.g. Bosch BME280). Or search directly using \"Jump to\": in the \"Jump to\" search box (top left of the Concepts panel), type the brand and/or model of your instrument (e.g. \"Bosch BME280\") and select the matching concept from the results list. Click on the instrument model to open its Details panel on the right-hand side of the screen. The ID field contains the unique URI identifying that instrument in the thesaurus, this is the reference to use to link your own sensor metadata to the corresponding concept. 2. For ICOS PIs using the BADM system This section is dedicated to users working with the ICOS BADM system, to help identify the correct shortname to use in BADM metadata files starting from an instrument model, and vice versa. A. How to find the shortname of your instrument starting from the model - Browse the concept hierarchy: in the Concepts panel, the vocabulary is organized hierarchically by instrument type (e.g. Barometer, Data logger, Dendrometer, etc.). Expand the relevant category and continue narrowing down (broader → narrower concepts, e.g. Barometer → Bosch barometer) until you reach the specific instrument model (e.g. Bosch BME280). - Or search directly using \"Jump to\": in the \"Jump to\" search box (top left of the Concepts panel), type the brand and/or model of your instrument (e.g. \"Bosch BME280\") and select the matching concept from the results list. A Details panel will open on the right-hand side of the screen. Here you will find: - Preferred name: the full instrument name (brand + model); - Definitions: a short description of the instrument (what it measures, manufacturer, model); - Member of: the ICOS BADM shortname(s) associated with the instrument; - In schemes: the vocabulary scheme the concept belongs to. B. How to find the instrument model starting from a shortname The search starting from a shortname works differently and requires the Collections tab instead of Concepts. - Click on the Collections tab. - ICOS BADM shortnames are listed under \"List of terms for ICOS BADM\". You can browse this list the same way as the Concepts hierarchy, or search directly for your shortname using the \"Search a collection in ICOS_INST\" box. - Click on the shortname you are looking for (e.g. ICOS BADM: DBH-Ecomatik DCX). Its Details panel will open on the right, showing the Preferred name (the shortname itself) and a Members count field, indicating how many instrument models belong to that shortname. - Click on the Members count number (or on the collection name) to open the list of member concepts: this shows all the instrument models (e.g. Ecomatik DC1, Ecomatik DC2, Ecomatik DC3) associated with that shortname. - Click on any of the listed instrument models to open its own Details panel, showing its Preferred name, Definitions, and Member of (with the corresponding ICOS BADM shortname), as described above.",
+    "license": {
+      "name": "CC-BY-4.0"
+    },
+    "name": "ICOS Instruments Thesaurus",
+    "version": "1.0.0"
   },
   "INBIO": {
     "contact": {

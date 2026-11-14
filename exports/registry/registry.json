@@ -3940,9 +3940,15 @@
     "example": "hasCalculatedProperty",
     "homepage": "https://purls.helmholtz-metadaten.de/asmo",
     "keywords": [
+      "chemistry",
+      "material science",
+      "nfdi-matwerk",
       "ontology"
     ],
     "license": "CC-BY-4.0",
+    "mappings": {
+      "tib.ts": "asmo"
+    },
     "name": "Atomistic Simulation Methods Ontology",
     "preferred_prefix": "asmo",
     "rdf_uri_format": "https://purls.helmholtz-metadaten.de/asmo/$1",
@@ -4158,6 +4164,14 @@
       "email": "whocc@fhi.no",
       "name": "WHO Collaborating Centre for Drug Statistics Methodology"
     },
+    "contributor_extras": [
+      {
+        "email": "javier.millanacosta@maastrichtuniversity.nl",
+        "github": "jmillanacosta",
+        "name": "Javier Millán Acosta",
+        "orcid": "0000-0001-5608-781X"
+      }
+    ],
     "description": "The Anatomical Therapeutic Chemical (ATC) classification system, divides active substances into different groups according to the organ or system on which they act and their therapeutic, pharmacological and chemical properties. Drugs are classified in groups at five different levels;  Drugs are divided into fourteen main groups (1st level), with pharmacological/therapeutic subgroups (2nd level).  The 3rd and 4th levels are chemical/pharmacological/therapeutic subgroups and the 5th level is the chemical substance. The Anatomical Therapeutic Chemical (ATC) classification system and the Defined Daily Dose (DDD) is a tool for exchanging and comparing data on drug use at international, national or local levels.",
     "download_owl": "http://aber-owl.net/media/ontologies/ATC/1/atc.owl",
     "example": "A10BA02",
@@ -4990,7 +5004,7 @@
     ],
     "repository": "https://github.com/HumanBehaviourChangeProject/ontologies",
     "uri_format": "https://w3id.org/BCI-ontology#$1",
-    "version": "2026-09-29"
+    "version": "2026-11-10"
   },
   "bco": {
     "appears_in": [
@@ -8967,6 +8981,7 @@
   },
   "building": {
     "description": "The Building ontology has been developed to perform as the core module of the BIMERR Ontology Network, containing information related to building topology, and components. The model is constructed as an extention of the BOT ontology that provides the vocabulary to describe the topology of a building as well as the relationships between their main components such as zones, spaces, and building elements. The taxonomy of building components is based on the proposed by the IFC 4.1 standard.",
+    "download_rdf": "https://raw.githubusercontent.com/oeg-upm/bimerr-building/refs/heads/master/ontology/building.ttl",
     "example": "AirConditioningUnit",
     "homepage": "https://bimerr.iot.linkeddata.es/def/building/",
     "keywords": [
@@ -10345,10 +10360,16 @@
     "github_request_issue": 1742,
     "homepage": "https://github.com/OCDO/cdco",
     "keywords": [
+      "engineering",
+      "material science",
+      "nfdi-matwerk",
       "ontology"
     ],
     "license": "CC-BY-4.0",
     "logo": "https://raw.githubusercontent.com/OCDO/.github/refs/heads/main/profile/ocdo_logo.png",
+    "mappings": {
+      "tib.ts": "cdco"
+    },
     "name": "Crystallographic Defect Core Ontology",
     "preferred_prefix": "cdco",
     "repository": "https://github.com/OCDO/cdco",
@@ -11672,7 +11693,8 @@
     "synonyms": [
       "CHEBI",
       "CHEBIID",
-      "ChEBI"
+      "ChEBI",
+      "chebio"
     ],
     "uri_format": "http://purl.obolibrary.org/obo/CHEBI_$1",
     "version": "257"
@@ -12048,6 +12070,14 @@
       "name": "Charles Tapley Hoyt",
       "orcid": "0000-0003-4423-4370"
     },
+    "contributor_extras": [
+      {
+        "email": "javier.millanacosta@maastrichtuniversity.nl",
+        "github": "jmillanacosta",
+        "name": "Javier Millán Acosta",
+        "orcid": "0000-0001-5608-781X"
+      }
+    ],
     "description": "Chemistry resources",
     "example": "CHEMBL3307800",
     "homepage": "https://www.ebi.ac.uk/chembldb",
@@ -12069,6 +12099,7 @@
     ],
     "pattern": "^CHEMBL\\d+$",
     "preferred_prefix": "chembl.cell",
+    "rdf_uri_format": "http://rdf.ebi.ac.uk/resource/chembl/cell_line/$1",
     "synonyms": [
       "ChEMBL-Cells"
     ],
@@ -12682,6 +12713,13 @@
       "name": "Harry E. Pence",
       "orcid": "0000-0002-0412-9018"
     },
+    "contributor_extras": [
+      {
+        "github": "jmillanacosta",
+        "name": "Javier Millán Acosta",
+        "orcid": "0000-0002-4166-7093"
+      }
+    ],
     "description": "ChemSpider is a collection of compound data from across the web, which aggregates chemical structures and their associated information into a single searchable repository entry. These entries are supplemented with additional properties, related information and links back to original data sources.",
     "example": "56586",
     "homepage": "http://www.chemspider.com/",
@@ -12725,6 +12763,10 @@
         "homepage": "https://bio2rdf.org",
         "name": "Bio2RDF",
         "uri_format": "http://bio2rdf.org/chemspider:$1"
+      },
+      {
+        "code": "web",
+        "uri_format": "https://www.chemspider.com/Chemical-Structure.$1.html"
       }
     ],
     "publications": [
@@ -12735,11 +12777,14 @@
       }
     ],
     "rdf_uri_format": "http://rdf.chemspider.com/$1",
+    "references": [
+      "https://github.com/biopragmatics/bioregistry/issues/2185"
+    ],
     "synonyms": [
       "ChemSpiderID",
       "Chemspider"
     ],
-    "uri_format": "http://www.chemspider.com/Chemical-Structure.$1.html"
+    "uri_format": "https://www.chemspider.com/$1"
   },
   "chemsynthesis": {
     "description": "identifier of a chemical compound in ChemSynthesis",
@@ -12957,7 +13002,8 @@
     "mappings": {
       "aberowl": "CHR",
       "biocontext": "CHR",
-      "bioportal": "CHR"
+      "bioportal": "CHR",
+      "ols": "chr"
     },
     "name": "Chromosome Ontology",
     "preferred_prefix": "CHR",
@@ -13885,6 +13931,45 @@
     ],
     "uri_format": "http://bioinformatics.hsanmartino.it/hypercldb/$1.html"
   },
+  "cleavageatlas": {
+    "comment": "The accession + P1 key formalises what MEROPS, TopFIND and TermineR already use internally to join cleavage records, so a MEROPS cleavage, a TopFIND cleavage, a UniProt \"Site\" cleavage feature and an atlas observation map to the same identifier. Unlike those keys it does not include the protease. P1 = 0 and P1 = sequence length are protein termini, not bonds, and are not valid. No isoform suffix means the UniProt canonical isoform.",
+    "contact": {
+      "email": "R.deGroot@ucl.ac.uk",
+      "github": "rensdg-code",
+      "name": "Rens de Groot",
+      "orcid": "0000-0002-1044-9499"
+    },
+    "contributor": {
+      "email": "R.deGroot@ucl.ac.uk",
+      "github": "rensdg-code",
+      "name": "Rens de Groot",
+      "orcid": "0000-0002-1044-9499"
+    },
+    "description": "The Cleavage Atlas collects proteolytic cleavage sites observed in public mass-spectrometry proteomics data (PRIDE/ProteomeXchange). Each identifier names a single peptide bond in a UniProtKB protein, independent of which protease cleaves it: the UniProtKB accession, an optional isoform number, and the P1 residue position (Schechter-Berger numbering on the full precursor sequence, Met1 = 1). The bond named is the one between residue P1 and residue P1+1.",
+    "example": "P01009_382",
+    "example_extras": [
+      "P15692-4_26",
+      "P15692-9_141",
+      "Q8N2S1-2_20"
+    ],
+    "github_request_issue": 2179,
+    "homepage": "https://cleavageatlas.com",
+    "keywords": [
+      "mass spectrometry",
+      "proteomics"
+    ],
+    "license": "CC0-1.0",
+    "name": "Cleavage Atlas",
+    "pattern": "^([OPQ][0-9][A-Z0-9]{3}[0-9]|[A-NR-Z][0-9]([A-Z][A-Z0-9]{2}[0-9]){1,2})(-[0-9]+)?_[1-9][0-9]*$",
+    "preferred_prefix": "cleavageatlas",
+    "reviewer": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "uri_format": "https://cleavageatlas.com/site/$1"
+  },
   "climoo.picco": {
     "contact": {
       "github": "gioUbbiali",
@@ -13957,7 +14042,7 @@
       "ontology"
     ],
     "license": "CC-BY-4.0",
-    "name": "ClimOO Ontology - PlasticO",
+    "name": "ClimOO - Plastic Ontology",
     "pattern": "^\\d+$",
     "preferred_prefix": "climoo.plastico",
     "repository": "https://github.com/ClimOO/ClimOO-Ontology",
@@ -13982,7 +14067,7 @@
     "keywords": [
       "ontology"
     ],
-    "name": "ClimOO - SDC2",
+    "name": "ClimOO - Sustainable Development and Climate Ontology",
     "preferred_prefix": "climoo.sdc2",
     "rdf_uri_format": "https://www.w3id.org/climoo/climoo-sdc2#$1",
     "repository": "https://github.com/ClimOO/ClimOO-Ontology",
@@ -14483,6 +14568,37 @@
     "repository": "https://github.com/NOAA-OCM/cmecs",
     "uri_format": "https://cmecscatalog.org/cmecs/classification/unit/$1.html",
     "version": "1.1.2"
+  },
+  "cmeo": {
+    "contact": {
+      "email": "komalsyeda29@gmail.com",
+      "github": "komi786",
+      "name": "Komal Gilani",
+      "orcid": "0000-0001-7292-1026"
+    },
+    "description": "CMEO (Clinical Metadata Exploration Ontology) is an ontology for representing and querying study- and variable-level metadata from clinical cohort studies in a consistent, machine-interpretable way. CMEO models the semantics of data elements (variables) and their key metadata needed for cross-cohort discovery and harmonization - such as human-readable labels/definitions, domain/type information (e.g., condition, measurement, medication), permissible categorical values, units, visit/timepoint context, derivation/provenance (e.g., computed variables), and basic descriptive statistics. It is designed to support metadata-driven tasks including cohort cataloguing, feasibility assessment, study retrieval, and identification of compatible variables across studies - without requiring access to patient-level data.\n\nCMEO is intended to interoperate with controlled vocabularies and common clinical terminologies by linking data elements and value sets to external concept identifiers (e.g., OMOP concept IDs, SNOMED CT, LOINC, RxNorm/ATC, UCUM) while remaining model-agnostic (i.e., not tied to a single CDM).",
+    "download_owl": "http://purl.obolibrary.org/obo/cmeo.owl",
+    "example": "0000009",
+    "homepage": "https://komi786.github.io/cmeo/",
+    "keywords": [
+      "ontology"
+    ],
+    "license": "CC-BY-4.0",
+    "mappings": {
+      "obofoundry": "cmeo",
+      "ols": "cmeo"
+    },
+    "name": "Clinical Metadata Exploration Ontology",
+    "preferred_prefix": "CMEO",
+    "publications": [
+      {
+        "doi": "10.1186/s12911-025-03272-5",
+        "title": "CMEO: a metadata-centric ontology for clinical studies exploration and harmonization assessment"
+      }
+    ],
+    "rdf_uri_format": "http://purl.obolibrary.org/obo/CMEO_$1",
+    "repository": "https://github.com/komi786/cmeo",
+    "uri_format": "http://purl.obolibrary.org/obo/CMEO_$1"
   },
   "cmf": {
     "contact": {
@@ -19736,6 +19852,9 @@
     ],
     "name": "DBPedia Property",
     "preferred_prefix": "dbpedia.property",
+    "synonyms": [
+      "dbpprop"
+    ],
     "uri_format": "http://dbpedia.org/property/$1"
   },
   "dbpedia.resource": {
@@ -22507,6 +22626,41 @@
     "repository": "https://github.com/labda/DINTO",
     "uri_format": "http://purl.obolibrary.org/obo/DINTO_$1",
     "version": "1.3"
+  },
+  "dio-odi": {
+    "contact": {
+      "email": "dan@danielberanek.cz",
+      "github": "dan-beranek",
+      "name": "Daniel Beránek",
+      "orcid": "0009-0004-0050-0264"
+    },
+    "contributor": {
+      "email": "dan@danielberanek.cz",
+      "github": "dan-beranek",
+      "name": "Daniel Beránek",
+      "orcid": "0009-0004-0050-0264"
+    },
+    "description": "The Digital Identity Optimization (DIO) and Ontology of Digital Identity (ODI) Reference Vocabulary is a domain-independent SKOS concept scheme that provides stable identifiers for concepts used to describe and analyze the representation, interpretation, trust, relationships, and reconstruction of digital identities across distributed information environments. It provides a shared, machine-readable terminology for researchers and practitioners working on digital identity, knowledge organization, semantic technologies, and AI-related systems.",
+    "example": "DIO",
+    "github_request_issue": 2182,
+    "homepage": "https://vocab.danielberanek.cz/dio-odi",
+    "keywords": [
+      "digital identity",
+      "knowledge organization",
+      "semantic technologies"
+    ],
+    "license": "CC-BY-4.0",
+    "name": "Digital Identity Optimization and Ontology of Digital Identity Reference Vocabulary",
+    "pattern": "^[A-Z][A-Za-z0-9]*$",
+    "preferred_prefix": "dio-odi",
+    "repository": "https://github.com/dan-beranek/dio-odi-reference-model",
+    "reviewer": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "uri_format": "https://vocab.danielberanek.cz/dio-odi/#$1"
   },
   "dip": {
     "contact": {
@@ -25360,6 +25514,14 @@
       "name": "Kristian Axelsen",
       "orcid": "0000-0003-3889-2879"
     },
+    "contributor_extras": [
+      {
+        "email": "javier.millanacosta@maastrichtuniversity.nl",
+        "github": "jmillanacosta",
+        "name": "Javier Millán Acosta",
+        "orcid": "0000-0001-5608-781X"
+      }
+    ],
     "description": "The Enzyme Nomenclature (also known as the Enzyme Commission Code) is a species-agnostic controlled vocabulary for specific enzymes and an associated hierarchical classification into 7 main categories.\n\nThe Enzyme Nomenclature is maintained by the [Nomenclature Committee](https://iubmb.org/about/committees/nomenclature-committee/) of the International Union of Biochemistry and Molecular Biology (IUBMB). A detailed history of the nomenclature since the 1950s can be found [here](https://iubmb.qmul.ac.uk/enzyme/history.html).\n\nThere are few notable resources providing access to the Enzyme Nomenclature:\n\n<table class=\"table table-striped\"><thead><tr><th>Website</th><th>Homepage</td><th>Notes</td></tr></thead><tbody><tr><td>ExplorEnz</td><td><a href=\"https://www.enzyme-database.org\">https://www.enzyme-database.org</a></td><td>This is the resource officially recommended by IUBMB</td></tr><tr><td>IUBMB (via by Queen Mary)</td><td><a href=\"https://iubmb.qmul.ac.uk/enzyme\">https://iubmb.qmul.ac.uk/enzyme</a></td><td>This is a web-based version of the <a href=\"https://archive.org/details/enzymenomenclatu0000inte_d6c2\">1992 publication</a>.</td></tr><tr><td>IntEnz</td><td><a href=\"https://www.ebi.ac.uk/intenz\">https://www.ebi.ac.uk/intenz</a></td><td>Shutdown in 2024</td></tr><tr><td>ExPaSy</td><td><a href=\"https://enzyme.expasy.org\">https://enzyme.expasy.org</a></td></tr><tr><td>EnzymePortal</td><td><a href=\"https://www.ebi.ac.uk/enzymeportal\">https://www.ebi.ac.uk/enzymeportal</a></td><td></td></tr></tbody></table>",
     "download_json": "https://w3id.org/biopragmatics/resources/ec/ec.json",
     "download_obo": "https://w3id.org/biopragmatics/resources/ec/ec.obo",
@@ -25472,6 +25634,13 @@
         "homepage": "https://enzyme.expasy.org/",
         "name": "Enzyme nomenclature database, ExPASy (Expert Protein Analysis System)",
         "uri_format": "https://enzyme.expasy.org/EC/$1"
+      },
+      {
+        "code": "uniprot",
+        "description": "UniProt PURL for EC codes",
+        "homepage": "https://uniprot.org",
+        "name": "UniProt",
+        "uri_format": "http://purl.uniprot.org/enzyme/$1"
       }
     ],
     "publications": [
@@ -25496,7 +25665,8 @@
     "rdf_uri_format": "https://purl.expasy.org/enzyme/EC/$1",
     "references": [
       "https://github.com/biopragmatics/bioregistry/issues/681",
-      "https://github.com/biopragmatics/bioregistry/pull/1611"
+      "https://github.com/biopragmatics/bioregistry/pull/1611",
+      "https://github.com/biopragmatics/bioregistry/issues/2199"
     ],
     "synonyms": [
       "EC",
@@ -26755,7 +26925,7 @@
     "rdf_uri_format": "http://www.ebi.ac.uk/efo/EFO_$1",
     "repository": "https://github.com/EBISPOT/efo",
     "uri_format": "http://www.ebi.ac.uk/efo/EFO_$1",
-    "version": "3.95.0"
+    "version": "3.96.0"
   },
   "ega": {
     "description": "The European Genome-phenome Archive (EGA) is a global network for permanent archiving and sharing of personally identifiable genetic, phenotypic, and clinical data generated for the purposes of biomedical research projects or in the context of research-focused healthcare systems. Jointly managed by the European Bioinformatics Institute (EMBL-EBI) in Cambridge (UK) and the Centre for Genomic Regulation (CRG) in Barcelona.",
@@ -27825,7 +27995,7 @@
     "rdf_uri_format": "http://purl.obolibrary.org/obo/EMRO_$1",
     "repository": "https://github.com/uflcod/emotion-response-ontology",
     "uri_format": "http://purl.obolibrary.org/obo/EMRO_$1",
-    "version": "2026-10-15"
+    "version": "2026-11-09"
   },
   "emsl.project": {
     "contact": {
@@ -30920,7 +31090,7 @@
     "rdf_uri_format": "http://purl.org/spar/fabio/$1",
     "repository": "https://github.com/sparontologies/fabio",
     "uri_format": "https://sparontologies.github.io/fabio/current/fabio.html#$1",
-    "version": "2.3.2"
+    "version": "2.3.3"
   },
   "facebase": {
     "contact": {
@@ -33155,6 +33325,26 @@
     "repository": "https://github.com/FoodOntology/foodon",
     "uri_format": "http://purl.obolibrary.org/obo/FOODON_$1",
     "version": "2026-09-20"
+  },
+  "formats": {
+    "contact": {
+      "email": "ivan@w3.org",
+      "github": "iherman",
+      "name": "Ivan Herman",
+      "orcid": "0000-0003-0782-2704"
+    },
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "'http://www.w3.org/ns/formats/Format' is a unique, top-level Class URI for specific file formats. Media types do not uniquely identify file formats (eg, serialization formats for various abstract concepts), because not all specific cases do have distinct media types, instances in this class can be used instead for proper identification.\n\nAlthough the URI-s themselves refer to non-informational resources (ie, they are abstract identifiers), they can be dereferenced. Dereferencing leads to informational resources in XHTML, RDF/XML, or Turtle equivalents, depending on content negotiation.",
+    "example": "JSON-LD",
+    "homepage": "http://www.w3.org/ns/formats",
+    "name": "File Formats",
+    "preferred_prefix": "formats",
+    "uri_format": "http://www.w3.org/ns/formats/$1"
   },
   "fossilworks.journal": {
     "contributor": {
@@ -35746,6 +35936,9 @@
     },
     "name": "GeoSPARQL",
     "preferred_prefix": "geosparql",
+    "synonyms": [
+      "ogcgs"
+    ],
     "uri_format": "http://www.opengis.net/ont/geosparql#$1",
     "version": "OGC GeoSPARQL 1.0"
   },
@@ -35759,6 +35952,9 @@
     },
     "name": "GeoSPARQL Function",
     "preferred_prefix": "geosparql.function",
+    "synonyms": [
+      "ogcgsf"
+    ],
     "uri_format": "http://www.opengis.net/def/function/geosparql/$1"
   },
   "geosparql.rule": {
@@ -35771,6 +35967,9 @@
     },
     "name": "GeoSPARQL Rule",
     "preferred_prefix": "geosparql.rule",
+    "synonyms": [
+      "ogcgsr"
+    ],
     "uri_format": "http://www.opengis.net/def/rule/geosparql/$1"
   },
   "gepris": {
@@ -47344,6 +47543,25 @@
     "uri_format": "http://purl.jp/bio/4/id/$1",
     "version": "version 1.6.0"
   },
+  "iochem": {
+    "contact": {
+      "github": "gabisdias",
+      "name": "Gabriela Dias-da-Silva",
+      "orcid": "0000-0003-3763-1917"
+    },
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "Schema elements for the [ioChem-BD](https://www.iochem-bd.org)",
+    "example": "hasComponentX",
+    "homepage": "http://purl.org/iochem",
+    "name": "ioChem-BD Schema",
+    "preferred_prefix": "iochem",
+    "uri_format": "http://purl.org/iochem/$1"
+  },
   "iofcore": {
     "description": "The IOF Core Ontology contains notions found to be common across multiple manufacturing domains. This file is an RDF implementation of these notions. The ontology utilizes the Basic Formal Ontology or BFO as a top-level ontology but also borrows terms from various domain-independent or mid-level ontologies. The purpose of the ontology is to serve as a foundation for ensuring consistency and interoperability across various domain-specific reference ontologies the IOF publishes.",
     "download_owl": "https://github.com/iofoundry/ontology/raw/refs/heads/master/core/Core.rdf",
@@ -50211,7 +50429,7 @@
   "kpio": {
     "description": "The Key Performance Indicator module aims to model the metrics defined at the beginning of building renovation activities to monitor the conformance with typical requirements related to energy efficient buildings.",
     "download_owl": "https://bimerr.iot.linkeddata.es/def/key-performance-indicator/ontology.ttl",
-    "download_rdf": "https://bimerr.iot.linkeddata.es/def/key-performance-indicator/ontology.ttl",
+    "download_rdf": "https://raw.githubusercontent.com/oeg-upm/bimerr-kpi/refs/heads/master/ontology/kpi.ttl",
     "example": "Goal",
     "homepage": "http://bimerr.iot.linkeddata.es/def/key-performance-indicator",
     "keywords": [
@@ -51310,6 +51528,13 @@
       "name": "Edward A Dennis",
       "orcid": "0000-0003-3738-3140"
     },
+    "contributor_extras": [
+      {
+        "github": "jmillanacosta",
+        "name": "Javier Millán Acosta",
+        "orcid": "0000-0002-4166-7093"
+      }
+    ],
     "description": "The LIPID MAPS Lipid Classification System is comprised of eight lipid categories, each with its own subclassification hierarchy. All lipids in the LIPID MAPS Structure Database (LMSD) have been classified using this system and have been assigned LIPID MAPS ID's which reflects their position in the classification hierarchy.",
     "example": "LMPR0102010012",
     "homepage": "https://lipidmaps.org",
@@ -51426,6 +51651,10 @@
         "doi": " 10.1101/2020.04.09.033894",
         "pubmed": ""
       }
+    ],
+    "rdf_uri_format": "https://www.lipidmaps.org/rdf/$1",
+    "references": [
+      "https://github.com/biopragmatics/bioregistry/issues/2187"
     ],
     "synonyms": [
       "LIPID MAPS",
@@ -53658,6 +53887,24 @@
     "rdf_uri_format": "http://purl.obolibrary.org/obo/MAT_$1",
     "uri_format": "http://purl.obolibrary.org/obo/MAT_$1",
     "version": "1.1"
+  },
+  "math": {
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "A RDF description of math",
+    "download_rdf": "https://www.w3.org/2000/10/swap/math",
+    "example": "Function",
+    "homepage": "https://www.w3.org/2000/10/swap/math",
+    "mappings": {
+      "zazuko": "math"
+    },
+    "name": "Math Vocabulary",
+    "preferred_prefix": "math",
+    "uri_format": "http://www.w3.org/2000/10/swap/math#$1"
   },
   "mathalgodb": {
     "contact": {
@@ -56929,6 +57176,14 @@
       "name": "Sam Griffiths-Jones",
       "orcid": "0000-0001-6043-807X"
     },
+    "contributor_extras": [
+      {
+        "email": "javier.millanacosta@maastrichtuniversity.nl",
+        "github": "jmillanacosta",
+        "name": "Javier Millán Acosta",
+        "orcid": "0000-0002-4166-7093"
+      }
+    ],
     "description": "The miRBase Sequence Database is a searchable database of published miRNA sequences and annotation. This collection refers specifically to the mature miRNA sequence.",
     "download_json": "https://w3id.org/biopragmatics/resources/mirbase.mature/mirbase.mature.json",
     "download_obo": "https://w3id.org/biopragmatics/resources/mirbase.mature/mirbase.mature.obo",
@@ -56962,12 +57217,19 @@
         "homepage": "https://bio2rdf.org",
         "name": "Bio2RDF",
         "uri_format": "http://bio2rdf.org/mirbase.mature:$1"
+      },
+      {
+        "code": "legacy",
+        "uri_format": "http://mirbase.org/cgi-bin/mature.pl?mature_acc=$1"
       }
+    ],
+    "references": [
+      "https://github.com/biopragmatics/bioregistry/issues/2189"
     ],
     "synonyms": [
       "MIRBASEM"
     ],
-    "uri_format": "http://mirbase.org/cgi-bin/mature.pl?mature_acc=$1"
+    "uri_format": "https://mirbase.org/mature/$1"
   },
   "mirex": {
     "contact": {
@@ -58251,7 +58513,7 @@
       "PSI-MOD"
     ],
     "uri_format": "http://purl.obolibrary.org/obo/MOD_$1",
-    "version": "1.039.0"
+    "version": "1.41.0"
   },
   "modalia": {
     "contact": {
@@ -58764,7 +59026,7 @@
     "preferred_prefix": "MOLSIM",
     "repository": "https://github.com/CPCLab/molsim-ontology",
     "uri_format": "http://purl.obolibrary.org/obo/MOLSIM_$1",
-    "version": "2026-10-16"
+    "version": "2026-11-12"
   },
   "mona": {
     "description": "identifier for spectra in the MassBank of North America database",
@@ -59409,7 +59671,7 @@
     "rdf_uri_format": "http://purl.obolibrary.org/obo/MS_$1",
     "repository": "https://github.com/HUPO-PSI/psi-ms-CV",
     "uri_format": "http://purl.obolibrary.org/obo/MS_$1",
-    "version": "4.2.14"
+    "version": "4.2.17"
   },
   "msc": {
     "contributor": {
@@ -61523,7 +61785,7 @@
       "uniprot.taxonomy"
     ],
     "uri_format": "http://purl.obolibrary.org/obo/NCBITaxon_$1",
-    "version": "2026-07-12"
+    "version": "2026-11-09"
   },
   "nci.drug": {
     "description": "identifier of an entry in the NCI Drug Dictionary",
@@ -65298,7 +65560,7 @@
       "ecoportal": "OBOE",
       "fairsharing": "FAIRsharing.5970hq",
       "prefixcommons": "oboe",
-      "tib.ts": "oboe-core"
+      "tib.ts": "oboe"
     },
     "name": "The Extensible Observation Ontology",
     "preferred_prefix": "oboe",
@@ -65952,6 +66214,33 @@
     "preferred_prefix": "oerschema",
     "repository": "https://github.com/open-curriculum/oerschema",
     "uri_format": "https://oerschema.org/$1"
+  },
+  "ofbo": {
+    "contact": {
+      "github": "dwillimetz",
+      "name": "Daniel Willimetz",
+      "orcid": "0000-0001-9923-9676"
+    },
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "Represents molecular, electrochemical, computational, degradation, and provenance information relevant to organic redox flow battery research.",
+    "download_owl": "https://github.com/rfb-predictor/OFBO/raw/refs/heads/main/ontology/OFBO.ttl",
+    "example": "0001012",
+    "homepage": "https://w3id.org/ofbo",
+    "keywords": [
+      "battery",
+      "ontology"
+    ],
+    "license": "CC-BY-4.0",
+    "name": "Organic Flow Battery Ontology",
+    "preferred_prefix": "ofbo",
+    "rdf_uri_format": "https://w3id.org/ofbo#OFBO_$1",
+    "repository": "https://github.com/rfb-predictor/OFBO",
+    "uri_format": "https://w3id.org/ofbo#OFBO_$1"
   },
   "og": {
     "contributor": {
@@ -67822,6 +68111,35 @@
     "repository": "https://github.com/panovp/ontodm-core",
     "uri_format": "http://www.ontodm.com/OntoDM-core/OntoDM_$1",
     "version": "2.0"
+  },
+  "ontoiochem": {
+    "contact": {
+      "github": "gabisdias",
+      "name": "Gabriela Dias-da-Silva",
+      "orcid": "0000-0003-3763-1917"
+    },
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "depends_on": [
+      "gainesville.core",
+      "iochem"
+    ],
+    "description": "OntoIochem is an ontology designed to provide a semantic layer for the ioChem-BD platform and to support the consistent representation, discovery, and interoperability of computational chemistry data. Its development builds upon existing semantic resources, including the Gainesville ontology, which provided an important foundation for the representation of computational chemistry concepts and terminology. OntoIochem describes four main conceptual areas: the Molecular Concept, representing molecular structures and the properties that characterize them; the Calculation Concept, representing computational methodologies, software tools, calculation metadata, and derived results; the Publication Concept, representing information associated with scientific publications and research outputs, including data collections and manuscripts; and auxiliary concepts, such as units of measurement and values, which support the precise and machine-readable representation of scientific information. OntoIochem is designed to align with established computational chemistry ontologies and commonly used scientific terminologies, promoting semantic interoperability, reuse, and integration with existing resources and scientific data ecosystems. (from ontology)",
+    "download_owl": "https://github.com/gabisdias/ontoioChem/raw/refs/heads/main/ontology/ontoiochem.owl",
+    "example": "ADF",
+    "homepage": "http://purl.org/iochem/ontoiochem",
+    "keywords": [
+      "computational chemistry",
+      "ontology"
+    ],
+    "name": "OntoIochem Core Ontology",
+    "preferred_prefix": "ontoiochem",
+    "repository": "https://github.com/gabisdias/ontoioChem",
+    "uri_format": "http://purl.org/iochem/ontoiochem#$1"
   },
   "ontolex": {
     "contributor": {
@@ -75249,7 +75567,7 @@
     ],
     "repository": "https://github.com/PRIDE-Utilities/pride-ontology",
     "uri_format": "http://purl.obolibrary.org/obo/PRIDE_$1",
-    "version": "2026-10-26"
+    "version": "2026-11-11"
   },
   "pride.project": {
     "description": "The PRIDE PRoteomics IDEntifications database is a centralized, standards compliant, public data repository that provides protein and peptide identifications together with supporting evidence. This collection references projects.",
@@ -75298,12 +75616,19 @@
       "orcid": "0000-0003-4423-4370"
     },
     "description": "This is the Provenance Information for Materials Science (PRIMA) Ontology, version 3.0, aligned with PMDco v3 and based on BFO (Basic Formal Ontology). This complete module imports all PRIMA modules (core, data-analysis-lifecycle, dataset, experiment, and computational) in their v3.0 versions. [from  https://purls.helmholtz-metadaten.de/prima/complete]",
+    "download_rdf": "https://raw.githubusercontent.com/Materials-Data-Science-and-Informatics/MDMC-NEP-top-level-ontology/refs/heads/master/PRIMA/core/ver_3_0/prima-core.ttl",
     "example": "dataset#RawData",
     "homepage": "https://materials-data-science-and-informatics.github.io/MDMC-NEP-top-level-ontology",
     "keywords": [
-      "materials science"
+      "engineering",
+      "material science",
+      "materials science",
+      "nfdi-matwerk"
     ],
     "license": "CC-BY-3.0",
+    "mappings": {
+      "tib.ts": "prima"
+    },
     "name": "Provenance Information for Materials Science Ontology",
     "preferred_prefix": "prima",
     "repository": "https://github.com/materials-data-science-and-informatics/MDMC-NEP-top-level-ontology",
@@ -77094,6 +77419,14 @@
       "name": "Jeff Beck",
       "orcid": "0000-0002-1798-9797"
     },
+    "contributor_extras": [
+      {
+        "email": "javier.millanacosta@maastrichtuniversity.nl",
+        "github": "jmillanacosta",
+        "name": "Javier Millán Acosta",
+        "orcid": "0000-0001-5608-781X"
+      }
+    ],
     "description": "PubMed is a service of the U.S. National Library of Medicine that includes citations from MEDLINE and other life science journals for biomedical articles back to the 1950s.",
     "example": "16333295",
     "homepage": "https://www.ncbi.nlm.nih.gov/PubMed/",
@@ -77153,6 +77486,13 @@
         "uri_format": "https://www.hubmed.org/?term=$1"
       },
       {
+        "code": "pubchem",
+        "description": "URIs used in PubChem's RDF",
+        "homepage": "https://pubchem.ncbi.nlm.nih.gov",
+        "name": "PubChem RDF",
+        "uri_format": "http://rdf.ncbi.nlm.nih.gov/pubchem/reference/$1"
+      },
+      {
         "code": "pubmed.new",
         "description": "New-style link for pubmed",
         "homepage": "https://pubmed.ncbi.nlm.nih.gov",
@@ -77190,7 +77530,10 @@
         "year": 2006
       }
     ],
-    "rdf_uri_format": "http://rdf.ncbi.nlm.nih.gov/pubchem/reference/$1",
+    "rdf_uri_format": "http://rdf.ncbi.nlm.nih.gov/pubmed/$1",
+    "references": [
+      "https://github.com/biopragmatics/bioregistry/issues/2188"
+    ],
     "synonyms": [
       "MEDLINE",
       "PMID",
@@ -79193,6 +79536,14 @@
       "name": "Anton I Petrov",
       "orcid": "0000-0001-7279-2682"
     },
+    "contributor_extras": [
+      {
+        "email": "javier.millanacosta@maastrichtuniversity.nl",
+        "github": "jmillanacosta",
+        "name": "Javier Millán Acosta",
+        "orcid": "0000-0001-5608-781X"
+      }
+    ],
     "description": "The Rfam database is a collection of RNA families, each represented by multiple sequence alignments, consensus secondary structures and covariance models (CMs). The families in Rfam break down into three broad functional classes: non-coding RNA genes, structured cis-regulatory elements and self-splicing RNAs. Typically these functional RNAs often have a conserved secondary structure which may be better preserved than the RNA sequence. The CMs used to describe each family are a slightly more complicated relative of the profile hidden Markov models (HMMs) used by Pfam. CMs can simultaneously model RNA sequence and the structure in an elegant and accurate fashion.",
     "example": "RF00230",
     "homepage": "https://rfam.org/",
@@ -79233,6 +79584,15 @@
     ],
     "pattern": "^RF\\d{5}$",
     "preferred_prefix": "rfam",
+    "providers": [
+      {
+        "code": "sanger",
+        "description": "Legacy URIs from before RFAM was brought into EBI",
+        "homepage": "http://rfam.sanger.ac.uk/family",
+        "name": "Sanger",
+        "uri_format": "http://rfam.sanger.ac.uk/family/$1"
+      }
+    ],
     "publications": [
       {
         "doi": "10.1093/nar/gkae1023",
@@ -79269,6 +79629,9 @@
       {
         "pubmed": "12520045"
       }
+    ],
+    "references": [
+      "https://github.com/biopragmatics/bioregistry/issues/2190"
     ],
     "uri_format": "https://rfam.org/family/$1"
   },
@@ -79621,10 +79984,19 @@
   },
   "rhea": {
     "contact": {
-      "email": "anne.morgat@sib.swiss",
+      "email": "Anne.Morgat@sib.swiss",
+      "github": "amorgat",
       "name": "Anne Morgat",
       "orcid": "0000-0002-1216-2969"
     },
+    "contributor_extras": [
+      {
+        "email": "javier.millanacosta@maastrichtuniversity.nl",
+        "github": "jmillanacosta",
+        "name": "Javier Millán Acosta",
+        "orcid": "0000-0001-5608-781X"
+      }
+    ],
     "description": "Rhea is an expert-curated knowledgebase of chemical and transport reactions of biological interest. Enzyme-catalyzed and spontaneously occurring reactions are curated from peer-reviewed literature and represented in a computationally tractable manner by using the ChEBI (Chemical Entities of Biological Interest) ontology to describe reaction participants.\n\nRhea covers the reactions described by the IUBMB Enzyme Nomenclature as well as many additional reactions and can be used for enzyme annotation, genome-scale metabolic modeling and omics-related analyses. Rhea is the standard for enzyme and transporter annotation in UniProtKB.",
     "download_json": "https://w3id.org/biopragmatics/resources/rhea/rhea.json.gz",
     "download_obo": "https://w3id.org/biopragmatics/resources/rhea/rhea.obo",
@@ -79682,6 +80054,12 @@
         "homepage": "https://bio2rdf.org",
         "name": "Bio2RDF",
         "uri_format": "http://bio2rdf.org/rhea:$1"
+      },
+      {
+        "code": "rhea-alt",
+        "description": "Same URI format as default, without WWW",
+        "name": "Rhea",
+        "uri_format": "http://rhea-db.org/rhea/$1"
       }
     ],
     "publications": [
@@ -79729,6 +80107,9 @@
       }
     ],
     "rdf_uri_format": "http://rdf.rhea-db.org/$1",
+    "references": [
+      "https://github.com/biopragmatics/bioregistry/issues/2195"
+    ],
     "synonyms": [
       "RHEA"
     ],
@@ -81181,6 +81562,57 @@
       "orcid": "0000-0003-4423-4370"
     },
     "uri_format": "http://smartdb.bioinf.med.uni-goettingen.de/cgi-bin/SMARtDB/getSMAR.cgi?$1"
+  },
+  "sabdab": {
+    "contact": {
+      "email": "deane@stats.ox.ac.uk",
+      "name": "Professor Charlotte Deane",
+      "orcid": "0000-0003-1388-2252"
+    },
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "The Structural Antibody Database (SAbDab2) aims to collect and annotate all publicly available, experimentally determined antibody structures. It is updated weekly, as new structures are added to the PDB, and includes single- and paired-chain antibodies, as well as their complexes. (from about page)",
+    "example": "H002ML002N",
+    "homepage": "https://sabdab.opig.stats.ox.ac.uk/sabdab",
+    "keywords": [
+      "antibody",
+      "biotherapeutics",
+      "immunoglobulin complex, circulating",
+      "structural biology"
+    ],
+    "mappings": {
+      "fairsharing": "FAIRsharing.UiP2kL"
+    },
+    "name": "Structural Antibody Database",
+    "preferred_prefix": "sabdab",
+    "publications": [
+      {
+        "doi": "10.1093/nar/gkz827",
+        "pubmed": "31555805",
+        "title": "Thera-SAbDab: the Therapeutic Structural Antibody Database",
+        "year": 2020
+      },
+      {
+        "doi": "10.1093/nar/gkt1043",
+        "title": "SAbDab: the structural antibody database",
+        "year": 2014
+      },
+      {
+        "doi": "10.1093/nar/gkag1091",
+        "title": "SAbDab2: the structural antibody database in the age of machine learning.",
+        "year": 2026
+      },
+      {
+        "doi": "10.1093/nar/gkab1050",
+        "title": "SAbDab in the age of biotherapeutics: updates including SAbDab-nano, the nanobody structure tracker",
+        "year": 2022
+      }
+    ],
+    "uri_format": "https://sabdab.opig.stats.ox.ac.uk/sabdab/sabdab2_$1"
   },
   "sabiork.compound": {
     "description": "SABIO-RK is a relational database system that contains information about biochemical reactions, their kinetic equations with their parameters, and the experimental conditions under which these parameters were measured. The compound data set provides information regarding the reactions in which a compound participates as substrate, product or modifier (e.g. inhibitor, cofactor), and links to further information.",
@@ -85576,6 +86008,14 @@
       "name": "Alan Bridge",
       "orcid": "0000-0003-2148-9135"
     },
+    "contributor_extras": [
+      {
+        "email": "javier.millanacosta@maastrichtuniversity.nl",
+        "github": "jmillanacosta",
+        "name": "Javier Millán Acosta",
+        "orcid": "0000-0001-5608-781X"
+      }
+    ],
     "description": "SwissLipids is a curated resource that provides information about known lipids, including lipid structure, metabolism, interactions, and subcellular and tissue localization. Information is curated from peer-reviewed literature and referenced using established ontologies, and provided with full provenance and evidence codes for curated assertions.",
     "download_json": "https://w3id.org/biopragmatics/resources/slm/slm.json.gz",
     "download_obo": "https://w3id.org/biopragmatics/resources/slm/slm.obo.gz",
@@ -85633,6 +86073,10 @@
         "title": "The SwissLipids knowledgebase for lipid biology",
         "year": 2015
       }
+    ],
+    "rdf_uri_format": "https://swisslipids.org/rdf/SLM_$1",
+    "references": [
+      "https://github.com/biopragmatics/bioregistry/issues/2197"
     ],
     "synonyms": [
       "swisslipid",
@@ -87269,12 +87713,12 @@
     "contact": {
       "github": "laurafadler",
       "name": "Laura Fadler",
-      "orcid": "0000-0003-4423-4370"
+      "orcid": "0009-0003-3065-7812"
     },
     "contributor": {
       "github": "laurafadler",
       "name": "Laura Fadler",
-      "orcid": "0000-0003-4423-4370"
+      "orcid": "0009-0003-3065-7812"
     },
     "description": "An ontology of devices, materials, phases, reactions, and tasks related to chemical processes.",
     "download_owl": "https://github.com/laurafadler/high-level-context-ontology-ontologies4chem2026/raw/refs/heads/main/ontologies/ChemicalProcessOntology.rdf",
@@ -87301,12 +87745,12 @@
     "contact": {
       "github": "laurafadler",
       "name": "Laura Fadler",
-      "orcid": "0000-0003-4423-4370"
+      "orcid": "0009-0003-3065-7812"
     },
     "contributor": {
       "github": "laurafadler",
       "name": "Laura Fadler",
-      "orcid": "0000-0003-4423-4370"
+      "orcid": "0009-0003-3065-7812"
     },
     "description": "An ontology for assisted in the provenance modeling for chemical process context, evidence, and references.",
     "download_owl": "https://github.com/laurafadler/high-level-context-ontology-ontologies4chem2026/raw/refs/heads/main/ontologies/HigherLevelOntology.rdf",
@@ -87897,6 +88341,24 @@
       }
     ],
     "uri_format": "http://psb.kobic.re.kr/STAP/refinement1/result.php?search=$1"
+  },
+  "stat": {
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "A RDF vocabulary of POSIX operations",
+    "download_rdf": "https://www.w3.org/ns/posix/stat",
+    "example": "blocks",
+    "homepage": "https://www.w3.org/ns/posix/stat",
+    "mappings": {
+      "zazuko": "stat"
+    },
+    "name": "POSIX Statistics Operations",
+    "preferred_prefix": "stat",
+    "uri_format": "https://www.w3.org/ns/posix/stat#$1"
   },
   "stato": {
     "appears_in": [
@@ -96978,6 +97440,7 @@
   },
   "tib.io": {
     "description": "An ontology for the description of information objects.",
+    "download_rdf": "https://raw.githubusercontent.com/oeg-upm/bimerr-information-objects/refs/heads/main/ontology/io.ttl",
     "example": "InformationObject",
     "homepage": "https://bimerr.iot.linkeddata.es/def/information-objects/",
     "keywords": [
@@ -97035,6 +97498,7 @@
   },
   "tib.lis": {
     "description": "The Industrial Data Ontology is an upper ontology for industrial data, inspired by the ISO 15926-2 data model and Basic Formal Ontology.",
+    "download_rdf": "https://rds.posccaesar.org/ontology/lis14/ont/core/4.0/LIS-14.ttl",
     "example": "Activity",
     "homepage": "https://rds.posccaesar.org/ontology/lis14/ont/core/",
     "keywords": [
@@ -97047,12 +97511,12 @@
     },
     "name": "Industrial Data Ontology",
     "preferred_prefix": "tib.lis",
-    "uri_format": "http://rds.posccaesar.org/ontology/lis14/rdl/$1"
+    "uri_format": "http://rds.posccaesar.org/ontology/lis14/ont/core$1"
   },
   "tib.mat": {
     "description": "The material properties ontology provides the vocabulary to describe the composition of building elements.",
     "download_owl": "https://bimerr.iot.linkeddata.es/def/material-properties/ontology.ttl",
-    "download_rdf": "https://bimerr.iot.linkeddata.es/def/material-properties/ontology.ttl",
+    "download_rdf": "https://raw.githubusercontent.com/oeg-upm/bimerr-material-properties/refs/heads/master/ontology/mat.ttl",
     "example": "Accesories",
     "homepage": "https://bimerr.iot.linkeddata.es/def/material-properties/",
     "keywords": [
@@ -97072,6 +97536,11 @@
     "uri_format": "http://bimerr.iot.linkeddata.es/def/material-properties#$1"
   },
   "tib.mdo": {
+    "contact": {
+      "github": "huanyu-li",
+      "name": "Huanyu Li",
+      "orcid": "0000-0003-1881-3969"
+    },
     "description": "The Materials Design Ontology is designed to enable semantic query and integrated query over multiple databases. By generating mappings between MDO and the schemas of materials databases, we can create MDO-enabled query interfaces. The querying can occur, for instance, via MDO-based query expansion, MDO-based mediation or through MDO-enabled data warehouses.",
     "download_owl": "https://liusemweb.github.io/mdo/full/1.0/mdo-full.owl",
     "homepage": "https://liusemweb.github.io/mdo/full/1.0/index.html#namespaces",
@@ -97087,7 +97556,21 @@
     },
     "name": "Materials Design Ontology",
     "no_own_terms": true,
+    "owners": [
+      {
+        "name": "Linköping University",
+        "ror": "05ynxx418",
+        "wikidata": "Q782600"
+      }
+    ],
     "preferred_prefix": "tib.mdo",
+    "publications": [
+      {
+        "doi": "10.1007/978-3-030-62466-8_14",
+        "title": "An Ontology for the Materials Design Domain",
+        "year": 2020
+      }
+    ],
     "repository": "https://github.com/LiUSemWeb/Materials-Design-Ontology",
     "uri_format": "https://w3id.org/mdo/$1"
   },
@@ -98651,7 +99134,7 @@
     "description": "An ontology covering the taxonomy of teleosts (bony fish)",
     "download_obo": "http://purl.obolibrary.org/obo/tto.obo",
     "download_owl": "http://purl.obolibrary.org/obo/tto.owl",
-    "download_rdf": "https://raw.githubusercontent.com/HosseinBeygiNasrabadi/Tensile-Test-Ontology-TTO-/refs/heads/main/TTO2.0.9.ttl",
+    "download_rdf": "https://github.com/materialdigital/tensile-test-ontology/raw/refs/heads/main/tto.ttl",
     "example": "1058367",
     "homepage": "https://github.com/phenoscape/teleost-taxonomy-ontology",
     "keywords": [
@@ -100710,6 +101193,13 @@
       "name": "Alex Bateman",
       "orcid": "0000-0002-6982-4660"
     },
+    "contributor_extras": [
+      {
+        "github": "jmillanacosta",
+        "name": "Javier Millán Acosta",
+        "orcid": "0000-0002-4166-7093"
+      }
+    ],
     "description": "The UniProt Reference Clusters (UniRef) provide clustered sets of sequences from the UniProt Knowledgebase (including isoforms) and selected UniParc records in order to obtain complete coverage of the sequence space at several resolutions while hiding redundant sequences (but not their descriptions) from view.",
     "example": "UniRef90_P00750",
     "homepage": "https://www.uniprot.org/",
@@ -100742,6 +101232,10 @@
         "name": "Bio2RDF",
         "uri_format": "http://bio2rdf.org/uniref:$1"
       }
+    ],
+    "rdf_uri_format": "http://purl.uniprot.org/uniref/$1",
+    "references": [
+      "https://github.com/biopragmatics/bioregistry/issues/2186"
     ],
     "uri_format": "https://www.uniprot.org/uniref/$1"
   },
@@ -101686,6 +102180,9 @@
     },
     "name": "Virtual Contact File",
     "preferred_prefix": "vcard",
+    "synonyms": [
+      "vcard2006"
+    ],
     "uri_format": "http://www.w3.org/2006/vcard/ns#$1"
   },
   "vcell": {
@@ -103312,7 +103809,7 @@
     "rdf_uri_format": "http://purl.obolibrary.org/obo/VT_$1",
     "repository": "https://github.com/AnimalGenome/vertebrate-trait-ontology",
     "uri_format": "http://purl.obolibrary.org/obo/VT_$1",
-    "version": "2026-10-02"
+    "version": "2026-11-06"
   },
   "vto": {
     "contact": {
@@ -106992,6 +107489,7 @@
       "biocontext": "XAO",
       "bioportal": "XAO",
       "fairsharing": "FAIRsharing.17zapb",
+      "go.resource": "XAO",
       "obofoundry": "xao",
       "ols": "xao",
       "ontobee": "XAO",
@@ -108456,7 +108954,7 @@
     "rdf_uri_format": "http://purl.obolibrary.org/obo/ZP_$1",
     "repository": "https://github.com/obophenotype/zebrafish-phenotype-ontology",
     "uri_format": "http://purl.obolibrary.org/obo/ZP_$1",
-    "version": "2026-10-08"
+    "version": "2026-11-10"
   },
   "zpid": {
     "contributor": {
