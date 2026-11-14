@@ -2388,10 +2388,6 @@
   - panet
 '0000047':
   contributors:
-  - email: cthoyt@gmail.com
-    github: cthoyt
-    name: Charles Tapley Hoyt
-    orcid: 0000-0003-4423-4370
   - github: harivyasi
     name: Shashank S. Harivyasi
     orcid: 0000-0002-2174-5226
@@ -2407,7 +2403,10 @@
     orcid: 0000-0003-2397-1996
   - github: laurafadler
     name: Laura Fadler
-    orcid: 0000-0003-4423-4370
+    orcid: 0009-0003-3065-7812
+  - github: webhart
+    name: Philipp von Hartrott
+    orcid: 0000-0003-4971-3645
   - github: gioUbbiali
     name: ' Giorgio Ubbiali'
     orcid: 0000-0001-7872-1770
@@ -2429,9 +2428,21 @@
   - github: NRayya
     name: Noura Rayya
     orcid: 0009-0001-5998-5030
+  - email: egon.willighagen@maastrichtuniversity.nl
+    github: egonw
+    name: Egon Willighagen
+    orcid: 0000-0001-7542-0286
   - github: baoilleach
     name: Noel M. O'Boyle
     orcid: 0000-0003-4879-2003
+  - email: jerven.bolleman@isb-sib.ch
+    github: JervenBolleman
+    name: Jerven Bolleman
+    orcid: 0000-0002-7449-1266
+  - email: alan.bridge@sib.swiss
+    github: alanbridge
+    name: Alan Bridge
+    orcid: 0000-0003-2148-9135
   - email: alexander.behr@tu-dortmund.de
     github: AleSteB
     name: Alexander Behr
@@ -2461,22 +2472,67 @@
   - github: gabisdias
     name: Gabriela Dias-da-Silva
     orcid: 0000-0003-3763-1917
-  description: Ontologies mentioned in the 5th Ontologies4Chem Workship in Limburg
-    an der Lahn
+  description: 'The [5<sup>th</sup> Ontologies4Chem Workshop](https://nfdi4chem.de/event/5th-ontologies4chem-workshop/)
+    took place between November 2-4<sup>th</sup>, 2026 in Limburg an der Lahn at the
+    Dom Limburg Hotel. This collection covers records for ontologies, controlled vocabularies,
+    and other relevant semantic spaces that were presented directly, used by work
+    that was presented, or otherwise discussed at the workshop.
+
+
+    The contributors list reflects the union of the presenters of the talks, maintainers
+    of the ontologies/resources listed who were in attendance, and other contributions
+    to the construction of the conference/list. Note: this collection isn''t meant
+    to be a complete summary of the Ontologies4Chem Workshop, but rather it''s meant
+    to contextualize the discussion topics from different parts of the workshop based
+    on the resources they were about.'
   identifier: '0000047'
+  maintainers:
+  - email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
   name: Ontologies4Chem 2026
+  organizations:
+  - name: Beilstein Institute
+    ror: 05jdrrw50
+    wikidata: Q4881267
+  - name: PSDI
+    wikidata: Q142068862
+  - name: NFDI4Chem
+    ror: 05wwzbv21
+    wikidata: Q96678459
+  - name: NFDI4Cat
+    ror: 01k9z4a50
+    wikidata: Q98380342
   resources:
-  - prefix: asmo
+  - comment: Mentioned during the computational chemistry hackathon as a potential
+      ontology for reuse or extension
+    prefix: asmo
     tags:
     - computational-chemistry
-    - shashank-suggestions
-  - prefix: chebi
+  - comment: The Semantic Farm/Bioregistry was a recurring topic of conversation on
+      the indexing of ontologies such that they are easier to find and reuse.
+    prefix: bioregistry
+  - comment: ChEBI was the primary topic of the morning session of Day 3 entitled
+      *Chemical Entities – Classification and Design Patterns*. Noel O'Boyle presented
+      general updates, Simon Flügel presented [Rule-based ChEBI extension](https://drive.google.com/file/d/1JUms-SGC8qUJhCNy9eosOPSIq3jubrhU/view?usp=drive_link),
+      Charlotte Tumescheit presented [Explainability of chemical language models](https://drive.google.com/file/d/1_-lO7eK3znepyWPvqYfI75yMTB1vblZM/view?usp=sharing),
+      and Miranda Carlsson presented [ChEBI-N – An Updated Ontology-Based Chemical
+      Enrichment Analysis Tool](https://drive.google.com/open?id=1K-XuLOGsuAoxdD6tiOWDXCESuVSa1_bB).
+    prefix: chebi
     tags:
     - presented
-  - prefix: cheminf
+  - comment: CHEMINF was mentioned in several contexs, including in the computational
+      chemistry modeling hackathon and in Philip Strömert's presentation [Design Patterns
+      for Chemical Composition of Substances and Materials](https://docs.google.com/presentation/d/1ER8eNIuptmyi_QM4S6fZak0TjA-vw3q6imIJCfQguks/edit?slide=id.p#slide=id.p)
+      in the context of ChemDCAT-AP.
+    prefix: cheminf
     tags:
     - computational-chemistry
-  - prefix: chmo
+  - comment: 'Noura Rayya presented [NFDI4Chem’s Ontology Curation Status Updates:
+      CHMO, RXNO & MOP](https://docs.google.com/presentation/d/1zyXHNBURO1mjZqVhUGzTqClNIttspihEEnSKVZ6vG50/edit?slide=id.h6509b6cc4dfea78a_0_284)
+      on Day 1 of the workshop which outlined the maturing ODK-ization of CHMO.'
+    prefix: chmo
     tags:
     - presented
   - prefix: climoo.picco
@@ -2494,24 +2550,50 @@
   - prefix: climoo.sdc2
     tags:
     - presented
-  - prefix: emmo
+  - comment: Mentioned during the computational chemistry hackathon as a potential
+      ontology for reuse or extension. EMMO is an upper-level ontology framework often
+      used in the natural sciences and engineering (but not so much in the life sciences,
+      which typically use BFO)
+    prefix: emmo
     tags:
     - computational-chemistry
-    - shashank-suggestions
-  - prefix: goldbook
+  - comment: Leah McEwen and Stuart Chalk hosted a hackathon for the serialization
+      of the IUPAC Goldbook to SKOS
+    prefix: goldbook
     tags:
     - presented
-  - prefix: mlips
+  - comment: Mentioned during the computational chemistry hackathon as a potential
+      ontology for reuse or extension
+    prefix: mlips
     tags:
     - computational-chemistry
-    - shashank-suggestions
-  - prefix: molsim
+  - comment: 'Fathoni Musyaffa presented [MOLSIM: an OBO-aligned ontology for describing
+      molecular simulation data](https://docs.google.com/presentation/d/1GxCXMAeNbpo3LsTUyuWIACm1LpBj9ckx2vdKkJh4NO8/edit?slide=id.p1#slide=id.p1)
+      on Day 1'
+    prefix: molsim
     tags:
     - computational-chemistry
-  - prefix: ontmm
+  - comment: 'Noura Rayya presented [NFDI4Chem’s Ontology Curation Status Updates:
+      CHMO, RXNO & MOP](https://docs.google.com/presentation/d/1zyXHNBURO1mjZqVhUGzTqClNIttspihEEnSKVZ6vG50/edit?slide=id.h6509b6cc4dfea78a_0_284)
+      on Day 1 of the workshop which outlined the plan for the ODK-ization of MOP.'
+    prefix: mop
+    tags:
+    - presented
+  - comment: Darren Rhodes has been constructing the Molecular Modelling Project Ontology
+      from a chemist's perspective and joined the workshop to share the competency
+      questions that were encoded in this application ontology.
+    prefix: ontmm
     tags:
     - computational-chemistry
-  - prefix: pmdco
+  - comment: Presented by Gabi Dias during Day 1 of the computational chemistry ontology
+      hackathon.
+    prefix: ontoiochem
+    tags:
+    - computational-chemistry
+    - presented
+  - comment: Philipp von Hartrott presented *Description of compositions of metallic
+      materials using PMDco* on Day 3.
+    prefix: pmdco
     tags:
     - presented
   - comment: Samantha Pearman-Kanza and Aileen Day presented the Physical Science
@@ -2521,40 +2603,167 @@
     prefix: psdi.voc
     tags:
     - presented
-  - prefix: pubchem.vocabulary
+  - comment: Evan Bolton presented _PubChem & ChemRef_ on Day 3
+    prefix: pubchem.vocabulary
     tags:
     - presented
   - prefix: qudt
     tags:
     - computational-chemistry
-  - prefix: rhea
+  - comment: Jerven Bolleman and Alex Sommer-Behr lead the discussion following Day
+      2's long talk on Alexei Lapkin and Laura Fadler's high level *context* ontology
+      proposal, in which we discussed the needs for modeling reactions, experiments,
+      instruments, and related concepts. Rhea was a natural suggestion from Jerven's
+      work at SIB as an existing resource to take inspiration from.
+    prefix: rhea
     tags:
     - presented
-  - prefix: sre.cpo
+  - comment: 'Noura Rayya presented [NFDI4Chem’s Ontology Curation Status Updates:
+      CHMO, RXNO & MOP](https://docs.google.com/presentation/d/1zyXHNBURO1mjZqVhUGzTqClNIttspihEEnSKVZ6vG50/edit?slide=id.h6509b6cc4dfea78a_0_284)
+      on Day 1 of the workshop which outlined the plan for the ODK-ization of RXNO.'
+    prefix: rxno
     tags:
     - presented
-  - prefix: sre.hlo
+  - comment: Laura Fadler and Alexei Lapkin presented [A high-level ‘Context’ ontology
+      - providing more context for reactions](https://drive.google.com/file/d/1ntDJi81oMZb7uMErb5sweXuI22Wl13Hb/view?usp=sharing)
+      which showcased two ontologies - the Chemical Process Ontology (CPO) was the
+      domain-specific application of their high-level ontology (HLO).
+    prefix: sre.cpo
     tags:
     - presented
-  - prefix: tib.mdo
+  - comment: Laura Fadler and Alexei Lapkin presented [A high-level ‘Context’ ontology
+      - providing more context for reactions](https://drive.google.com/file/d/1ntDJi81oMZb7uMErb5sweXuI22Wl13Hb/view?usp=sharing)
+      which showcased two ontologies - the Chemical Process Ontology (CPO) was the
+      domain-specific application of their high-level ontology (HLO).
+    prefix: sre.hlo
+    tags:
+    - presented
+  - comment: SSSOM was presented by Charles Tapley Hoyt on Day 1 ([slides](https://zenodo.org/records/23892214)).
+    prefix: sssom
+    tags:
+    - presented
+  - comment: Mentioned during the computational chemistry hackathon as a potential
+      ontology for reuse or extension
+    prefix: tib.mdo
     tags:
     - computational-chemistry
-    - shashank-suggestions
-  - prefix: voc4cat
+  - comment: 'David Linke presented *Terms are the easy part: Editorial rules, tooling
+      and review in Voc4Cat* on Day 1.'
+    prefix: voc4cat
     tags:
     - presented
-  - prefix: worldavatar.compchem
+  - comment: Mentioned during the computational chemistry hackathon as a potential
+      ontology for reuse or extension
+    prefix: worldavatar.compchem
     tags:
     - computational-chemistry
   tags:
   - code: presented
     description: An ontology that was presented at the conference
-    name: Presented
-  - code: shashank-suggestions
-    description: Materials ontologies brought up by Shashank during the computational
-      chemistry hackathon
-    name: Material Science Ontologies for Computational Chemistry
+    name: presented
   - code: computational-chemistry
     description: An ontology that was examined during the computational chemistry
       ontology hackathon
-    name: Computational Chemistry
+    name: computational chemistry
+0000048:
+  contributors:
+  - email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: A collection containing the WikiPathways prefixes
+  identifier: 0000048
+  maintainers:
+  - email: egon.willighagen@maastrichtuniversity.nl
+    github: egonw
+    name: Egon Willighagen
+    orcid: 0000-0001-7542-0286
+  - github: marvinm2
+    name: Marvin Martens
+    orcid: 0000-0003-2230-0840
+  - email: javier.millanacosta@maastrichtuniversity.nl
+    github: jmillanacosta
+    name: Javier Millán Acosta
+    orcid: 0000-0001-5608-781X
+  name: WikiPathways Resources
+  references:
+  - https://github.com/biopragmatics/bioregistry/issues/2204
+  resources:
+  - ac
+  - aop
+  - aop.events
+  - aop.relationships
+  - aop.stressor
+  - aopo
+  - bioregistry
+  - cas
+  - chebi
+  - chembl.compound
+  - cheminf
+  - chemspider
+  - cl
+  - comptox
+  - dbpedia.property
+  - dbpedia.resource
+  - dc
+  - dcterms
+  - drugbank
+  - edam
+  - efo
+  - ensembl
+  - fma
+  - foaf
+  - formats
+  - geo
+  - geosparql
+  - geosparql.function
+  - geosparql.rule
+  - go
+  - gpml
+  - gr
+  - hgnc
+  - hmdb
+  - hp
+  - ido
+  - inchikey
+  - kegg.compound
+  - ldp
+  - lipidmaps
+  - math
+  - mesh
+  - mf
+  - mi
+  - mmo
+  - mp
+  - nbo
+  - ncbigene
+  - ncbitaxon
+  - ncit
+  - oa
+  - obo
+  - ogc.sf
+  - owl
+  - pato
+  - pav
+  - pco
+  - pr
+  - prov
+  - pubchem.compound
+  - pubmed
+  - rbo
+  - rdf
+  - rdfa
+  - rdfs
+  - sd
+  - sh
+  - sioc.core
+  - skos
+  - stat
+  - uberon
+  - uniprot
+  - vcard
+  - void
+  - vt
+  - wikidata
+  - xml
+  - xsd

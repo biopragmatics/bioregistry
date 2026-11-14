@@ -151,6 +151,31 @@
     "tracker": "https://github.com/biswanathdutta/amv/issues",
     "uri_format": "https://w3id.org/amv#$1"
   },
+  "asmo": {
+    "artifacts": [
+      {
+        "type": "owl",
+        "url": "https://raw.githubusercontent.com/OCDO/asmo/refs/heads/main/asmo.owl"
+      }
+    ],
+    "description": "ASMO is an ontology that aims to define the concepts needed to describe commonly used atomic scale simulation methods, i.e. density functional theory, molecular dynamics, Monte Carlo methods, etc. ASMO uses the Provenance Ontology (PROV-O) to describe the simulation process.",
+    "extras": {
+      "version.iri": "https://purls.helmholtz-metadaten.de/asmo/v0.3.0"
+    },
+    "homepage": "https://github.com/OCDO/asmo",
+    "keywords": [
+      "NFDI-MatWerk",
+      "material science",
+      "chemistry"
+    ],
+    "license": {
+      "name": "CC-BY",
+      "spdx": "CC-BY-4.0",
+      "url": "https://creativecommons.org/licenses/by/4.0/"
+    },
+    "name": "Atomistic Simulation Methods Ontology (ASMO)",
+    "tracker": "https://github.com/OCDO/asmo/issues"
+  },
   "atomistic": {
     "description": "An EMMO-based domain ontology for atomistic and electronic modelling.Atomistic is released under the Creative Commons Attribution 4.0 International license (CC BY 4.0).",
     "extras": {
@@ -512,7 +537,7 @@
     "name": "The BRENDA Tissue Ontology (BTO)",
     "tracker": "https://github.com/BRENDA-Enzymes/BTO/issues"
   },
-  "bto-mw": {
+  "btomw": {
     "artifacts": [
       {
         "type": "rdf",
@@ -537,8 +562,8 @@
   "building": {
     "artifacts": [
       {
-        "type": "xml",
-        "url": "https://bimerr.iot.linkeddata.es/def/building/ontology.xml"
+        "type": "rdf",
+        "url": "https://raw.githubusercontent.com/oeg-upm/bimerr-building/refs/heads/master/ontology/building.ttl"
       }
     ],
     "description": "The Building ontology has been developed to perform as the core module of the BIMERR Ontology Network, containing information related to building topology, and components. The model is constructed as an extention of the BOT ontology that provides the vocabulary to describe the topology of a building as well as the relationships between their main components such as zones, spaces, and building elements. The taxonomy of building components is based on the proposed by the IFC 4.1 standard.",
@@ -616,6 +641,31 @@
     },
     "name": "Describing Copyright in RDF - Creative Commons Rights Expression Language",
     "uri_format": "http://creativecommons.org/ns#$1"
+  },
+  "cdco": {
+    "artifacts": [
+      {
+        "type": "owl",
+        "url": "https://raw.githubusercontent.com/OCDO/cdco/refs/heads/main/cdco.owl"
+      }
+    ],
+    "description": "Crystallographic Defect Core Ontology (CDCO) defines the common terminology shared across all types of crystallographic defects, providing a unified framework for data integration in materials science.",
+    "extras": {
+      "version.iri": "https://purls.helmholtz-metadaten.de/cdos/cdco/0.2.0"
+    },
+    "homepage": "https://github.com/OCDO/cdco",
+    "keywords": [
+      "NFDI-MatWerk",
+      "engineering",
+      "material science"
+    ],
+    "license": {
+      "name": "CC-BY",
+      "spdx": "CC-BY-4.0",
+      "url": "https://creativecommons.org/licenses/by/4.0/"
+    },
+    "name": "Crystallographic Defect Core Ontology (CDCO)",
+    "tracker": "https://github.com/OCDO/cdco/issues"
   },
   "cepo": {
     "artifacts": [
@@ -709,7 +759,7 @@
     ],
     "description": "ChEBI (Chemical Entities of Biological Interest) is a free dictionary of small molecular entities, including distinct atoms, molecules, ions, radicals, and complexes. These entities can be natural or synthetic, used in or affecting biological processes. The term \"small\" excludes genome-encoded entities like nucleic acids and proteins. ChEBI also includes classes of molecular entities and their parts, such as substituent groups or atoms.",
     "extras": {
-      "version.iri": "http://purl.obolibrary.org/obo/chebi/255/chebi.owl"
+      "version.iri": "http://purl.obolibrary.org/obo/chebi/256/chebi.owl"
     },
     "homepage": "http://www.ebi.ac.uk/chebi",
     "keywords": [
@@ -810,7 +860,7 @@
     },
     "description": "CHMO, the chemical methods ontology, describes methods used to collect data in chemical experiments, such as mass spectrometry and electron microscopy prepare and separate material for further analysis, such as sample ionisation, chromatography, and electrophoresis synthesise materials, such as epitaxy and continuous vapour deposition It also describes the instruments used in these experiments, such as mass spectrometers and chromatography columns. It is intended to be complementary to the Ontology for Biomedical Investigations (OBI).",
     "extras": {
-      "version.iri": "http://purl.obolibrary.org/obo/chmo/releases/2026-05-28/chmo.owl"
+      "version.iri": "http://purl.obolibrary.org/obo/chmo/releases/2026-05-27/chmo.owl"
     },
     "homepage": "https://github.com/rsc-ontology/rsc-cmo",
     "keywords": [
@@ -854,29 +904,6 @@
     "tracker": "https://gitlab.isl.ics.forth.gr/cidoc-crm/cidoc_crm_rdf/issues",
     "uri_format": "http://www.cidoc-crm.org/cidoc-crm/$1"
   },
-  "cif": {
-    "artifacts": [
-      {
-        "type": "rdf",
-        "url": "https://raw.githubusercontent.com/emmo-repo/domain-crystallography/master/crystallography.ttl"
-      }
-    ],
-    "description": "A toplevel crystallography ontology based on EMMO and the CIF core dictionary. It is implemented as a formal language.",
-    "extras": {
-      "version.iri": "http://emmo.info/domain-crystallography/0.0.1/crystallography"
-    },
-    "keywords": [
-      "NFDI4CAT",
-      "NFDI-MatWerk",
-      "material science",
-      "physics"
-    ],
-    "license": {
-      "spdx": "CC-BY-4.0"
-    },
-    "name": "Crystallography domain ontology",
-    "uri_format": "http://emmo.info/domain-crystallography/crystallography#$1"
-  },
   "cito": {
     "artifacts": [
       {
@@ -886,7 +913,7 @@
     ],
     "description": "The Citation Typing Ontology (CiTO) is an ontology that enables characterization of the nature or type of citations, both factually and rhetorically.",
     "extras": {
-      "version.iri": "http://purl.org/spar/cito/2026-09-03"
+      "version.iri": "http://purl.org/spar/cito/2026-10-05"
     },
     "homepage": "http://www.sparontologies.net/ontologies/cito",
     "keywords": [
@@ -900,6 +927,28 @@
     "name": "The Citation Typing Ontology (CiTO)",
     "tracker": "https://github.com/SPAROntologies/cito/issues",
     "uri_format": "http://purl.org/spar/cito/$1"
+  },
+  "cmso": {
+    "artifacts": [
+      {
+        "type": "owl",
+        "url": "https://raw.githubusercontent.com/OCDO/cmso/refs/heads/main/cmso.owl"
+      }
+    ],
+    "description": "CMSO is an ontology that aims to describe computational materials science samples (or structures), including crystalline defects.",
+    "homepage": "https://github.com/OCDO/cmso/tree/main",
+    "keywords": [
+      "NFDI-MatWerk",
+      "engineering",
+      "material science"
+    ],
+    "license": {
+      "name": "CC-BY",
+      "spdx": "CC-BY-4.0",
+      "url": "https://creativecommons.org/licenses/by/4.0/"
+    },
+    "name": "Computational Material Sample Ontology (CMSO) ",
+    "tracker": "https://github.com/OCDO/cmso/issues"
   },
   "co": {
     "artifacts": [
@@ -983,30 +1032,6 @@
     "name": "QUDT VOCAB Physical Constants Release 3.2.1",
     "tracker": "https://github.com/qudt/qudt-public-repo/issues",
     "uri_format": "http://qudt.org/vocab/constant/$1"
-  },
-  "coy": {
-    "artifacts": [
-      {
-        "type": "rdf",
-        "url": "https://gitlab.com/coypu-project/coy-ontology/-/raw/main/ontology/global/coy.ttl"
-      }
-    ],
-    "description": "Ontology to describe companies and their supply network, employees, products, production materials, industries, events and relations.",
-    "extras": {
-      "version.iri": "https://schema.coypu.org/global/2.3"
-    },
-    "homepage": "https://gitlab.com/coypu-project/coy-ontology",
-    "keywords": [
-      "CoyPu",
-      "economics"
-    ],
-    "license": {
-      "name": "Attribution 4.0 International (CC BY 4.0)",
-      "spdx": "CC-BY-4.0",
-      "url": "https://creativecommons.org/licenses/by/4.0/"
-    },
-    "name": "CoyPu Ontology",
-    "uri_format": "https://schema.coypu.org/global#$1"
   },
   "credit": {
     "artifacts": [
@@ -1103,7 +1128,7 @@
     "tracker": "https://github.com/ISE-FIZKarlsruhe/nfdi4culture/issues",
     "uri_format": "https://nfdi4culture.de/ontology/CTO_$1"
   },
-  "cto-mw": {
+  "ctomw": {
     "artifacts": [
       {
         "type": "rdf",
@@ -1395,6 +1420,28 @@
     },
     "name": "Digital Construction Occupancy",
     "uri_format": "https://w3id.org/digitalconstruction/0.5/Occupancy#$1"
+  },
+  "diso": {
+    "artifacts": [
+      {
+        "type": "rdf",
+        "url": "https://raw.githubusercontent.com/Materials-Data-Science-and-Informatics/dislocation-ontology/master/dislocation-ontology.ttl"
+      }
+    ],
+    "description": "DISO is an ontology that defines the linear defect, in particular dislocation concepts and relations between them in crystalline materials. Moreover, Crystal Structure Ontology (CSO) and Crystallographic Defect Ontology (CDO), which ontologies define the concepts of crystal structureand crystalline defect, respectively, are also introduced in this repository. The ontology development processes are described following the well-known practices, e.g., using ontology metadata and reusing existing ontologies, e.g., MDO, EMMO, and QUDT. To evaluate DISO, we have gathered competency questions (CQs) that will be answered via SPARQL query. ",
+    "homepage": "https://ontolearner.readthedocs.io/benchmarking/materials_science_and_engineering/diso.html",
+    "keywords": [
+      "NFDI-MatWerk",
+      "engineering",
+      "material science"
+    ],
+    "license": {
+      "name": "CC-BY",
+      "spdx": "CC-BY-3.0",
+      "url": "http://creativecommons.org/licenses/by/3.0/"
+    },
+    "name": "Dislocation Ontology",
+    "tracker": "https://github.com/Materials-Data-Science-and-Informatics/dislocation-ontology/issues"
   },
   "doap": {
     "artifacts": [
@@ -1771,7 +1818,7 @@
     },
     "description": "The Experimental Factor Ontology (EFO) provides a systematic description of many experimental variables available in EBI databases, and for projects such as the NHGRI-EBI GWAS catalog. It combines parts of several biological ontologies, such as UBERON anatomy, ChEBI chemical compounds, Cell Ontology and the Monarch Disease Ontology (MONDO). The scope of EFO is to support the annotation, analysis and visualization of data handled by many groups at the EBI and as the core ontology for Open Targets.",
     "extras": {
-      "version.iri": "http://www.ebi.ac.uk/efo/releases/v3.94.0/efo.owl"
+      "version.iri": "http://www.ebi.ac.uk/efo/releases/v3.95.0/efo.owl"
     },
     "homepage": "https://www.ebi.ac.uk/efo/",
     "keywords": [
@@ -1870,6 +1917,31 @@
     "tracker": "https://github.com/emmo-repo/EMMO/issues",
     "uri_format": "http://emmo.info/emmo#EMMO_$1"
   },
+  "emmocrystallography": {
+    "artifacts": [
+      {
+        "type": "rdf",
+        "url": "https://raw.githubusercontent.com/emmo-repo/domain-crystallography/master/crystallography.ttl"
+      }
+    ],
+    "description": "A top-level crystallography ontology based on EMMO and the CIF core dictionary.",
+    "extras": {
+      "version.iri": "http://emmo.info/domain-crystallography/0.0.1/crystallography"
+    },
+    "homepage": "https://github.com/emmo-repo/domain-crystallography",
+    "keywords": [
+      "NFDI-MatWerk",
+      "engineering"
+    ],
+    "license": {
+      "name": "CC-BY-4.0",
+      "spdx": "CC-BY-4.0",
+      "url": "https://creativecommons.org/licenses/by/4.0/"
+    },
+    "name": "Crystallography Ontology (EMMOCrystallography)",
+    "tracker": "https://github.com/emmo-repo/domain-crystallography/issues",
+    "uri_format": "http://emmo.info/domain-crystallography/crystallography#$1"
+  },
   "energymarketroles": {
     "artifacts": [
       {
@@ -1923,7 +1995,7 @@
     ],
     "description": "ENVO is an ontology which represents knowledge about environments,environmental processes, ecosystems, habitats, and related entities",
     "extras": {
-      "version.iri": "http://purl.obolibrary.org/obo/envo/releases/2026-06-26/envo.owl"
+      "version.iri": "http://purl.obolibrary.org/obo/envo/releases/2026-10-23/envo.owl"
     },
     "homepage": "http://environmentontology.org/",
     "keywords": [
@@ -2050,7 +2122,7 @@
   "fabio": {
     "description": "FaBiO, the FRBR-aligned Bibliographic Ontology, is an ontology for recording and publishing on the Semantic Web descriptions of entities that are published or potentially publishable, and that contain or are referred to by bibliographic references, or entities used to define such bibliographic references. FaBiO entities are primarily textual publications such as books, magazines, newspapers and journals, and items of their content such as poems, conference papers and editorials.  However, they also include blogs, web pages, datasets, computer algorithms, experimental protocols, formal specifications and vocabularies, legal records, governmental papers, technical and commercial reports and similar publications, and also anthologies, catalogues and similar collections.",
     "extras": {
-      "version.iri": "http://purl.org/spar/fabio/2026-09-03"
+      "version.iri": "http://purl.org/spar/fabio/2026-10-05"
     },
     "homepage": "https://sparontologies.github.io/fabio/current/fabio.html",
     "keywords": [
@@ -2102,7 +2174,7 @@
     ],
     "description": "FIBO defines the sets of things that are of interest in financial business applications and the ways that those things can relate to one another. In this way, FIBO can give meaning to any data (e.g., spreadsheets, relational databases, XML documents) that describe the business of finance",
     "extras": {
-      "version.iri": "https://spec.edmcouncil.org/fibo/ontology/20260701/AboutFIBOProd/"
+      "version.iri": "https://spec.edmcouncil.org/fibo/ontology/20261001/AboutFIBOProd/"
     },
     "homepage": "https://github.com/edmcouncil/fibo",
     "keywords": [
@@ -2162,7 +2234,7 @@
     },
     "description": "The Flora Phenotype Ontology (FLOPO) is an ontology of phenotypes reported in Floras. The original version was developed at the pro-iBiosphere Hackathon in Leiden. This is the pre-classified version of the ontology. The Flora Phenotype Ontology is generated from the Flora Malesiana, Flora Gabon, Flora of Central Africa, and a collection of Kew's African Floras. Every class in the ontology has at least one taxon annotation. The (draft) taxon annotation are available at http://jagannath.pdn.cam.ac.uk/plant/flora/clean-rerun/ .",
     "extras": {
-      "version.iri": "http://purl.obolibrary.org/obo/flopo/releases/2026-07-31/flopo.owl"
+      "version.iri": "http://purl.obolibrary.org/obo/flopo/releases/2026-10-25/flopo.owl"
     },
     "keywords": [
       "DataPLANT",
@@ -2256,7 +2328,7 @@
     "tracker": "https://github.com/Data-Semantics-Laboratory/Modular-Ontology-Modeling-for-Food-Supply-Chains/issues",
     "uri_format": "http://dase.cs.ksu.edu/ontology/food-traceability#$1"
   },
-  "fto-mw": {
+  "ftomw": {
     "artifacts": [
       {
         "type": "rdf",
@@ -2564,6 +2636,34 @@
     "tracker": "https://github.com/nemo-ufes/gufo/issues",
     "uri_format": "http://purl.org/nemo/gufo#$1"
   },
+  "h2kg": {
+    "artifacts": [
+      {
+        "type": "rdf",
+        "url": "https://vimilabs.github.io/AIMWORKS/ontology/h2kg-v2-taxonomy.ttl"
+      }
+    ],
+    "description": "Domain-specific ontology for hydrogen electrochemical systems, including PEMFC and PEMWE materials, manufacturing, processes, measurements, instruments, parameter records, datasets, properties, and FAIR provenance.",
+    "extras": {
+      "version.iri": "https://w3id.org/h2kg/hydrogen-ontology/releases/2.3.1"
+    },
+    "homepage": "https://vimilabs.github.io/AIMWORKS/hydrogen-ontology.html",
+    "keywords": [
+      "NFDI4CAT",
+      "NFDI4Energy",
+      "NFDI4ING",
+      "mechanical engineering, energy technology",
+      "chemical and environmental engineering"
+    ],
+    "license": {
+      "name": "CC BY 4.0",
+      "spdx": "CC-BY-4.0",
+      "url": "https://creativecommons.org/licenses/by/4.0/"
+    },
+    "name": "H₂KG Domain Ontology for Hydrogen Electrochemical Systems",
+    "tracker": "https://github.com/ViMiLabs/AIMWORKS/issues/",
+    "uri_format": "https://w3id.org/h2kg/hydrogen-ontology#$1"
+  },
   "hcrt": {
     "artifacts": [
       {
@@ -2823,8 +2923,8 @@
   "io": {
     "artifacts": [
       {
-        "type": "xml",
-        "url": "https://bimerr.iot.linkeddata.es/def/information-objects/ontology.xml"
+        "type": "rdf",
+        "url": "https://raw.githubusercontent.com/oeg-upm/bimerr-information-objects/refs/heads/main/ontology/io.ttl"
       }
     ],
     "description": "An ontology for the description of information objects.",
@@ -2869,7 +2969,7 @@
   "iofcore": {
     "description": "The IOF Core Ontology contains notions found to be common across multiple manufacturing domains. This file is an RDF implementation of these notions. The ontology utilizes the Basic Formal Ontology or BFO as a top-level ontology but also borrows terms from various domain-independent or mid-level ontologies. The purpose of the ontology is to serve as a foundation for ensuring consistency and interoperability across various domain-specific reference ontologies the IOF publishes.",
     "extras": {
-      "version.iri": "https://spec.industrialontologies.org/ontology/202602/core/Core/"
+      "version.iri": "https://spec.industrialontologies.org/ontology/202603/core/Core/"
     },
     "homepage": "https://oagi.org/pages/Released-Ontologies",
     "keywords": [
@@ -2968,7 +3068,7 @@
     "artifacts": [
       {
         "type": "rdf",
-        "url": "https://bimerr.iot.linkeddata.es/def/key-performance-indicator/ontology.ttl"
+        "url": "https://raw.githubusercontent.com/oeg-upm/bimerr-kpi/refs/heads/master/ontology/kpi.ttl"
       }
     ],
     "description": "The Key Performance Indicator module aims to model the metrics defined at the beginning of building renovation activities to monitor the conformance with typical requirements related to energy efficient buildings.",
@@ -3038,6 +3138,12 @@
     "uri_format": "https://purl.org/linsearch/$1"
   },
   "lis": {
+    "artifacts": [
+      {
+        "type": "rdf",
+        "url": "https://rds.posccaesar.org/ontology/lis14/ont/core/4.0/LIS-14.ttl"
+      }
+    ],
     "description": "The Industrial Data Ontology is an upper ontology for industrial data, inspired by the ISO 15926-2 data model and Basic Formal Ontology.",
     "extras": {
       "version.iri": "http://rds.posccaesar.org/ontology/lis14/ont/core/4.0"
@@ -3053,7 +3159,7 @@
       "url": "https://creativecommons.org/licenses/by-sa/4.0/"
     },
     "name": "Industrial Data Ontology",
-    "uri_format": "http://rds.posccaesar.org/ontology/lis14/rdl/$1"
+    "uri_format": "http://rds.posccaesar.org/ontology/lis14/ont/core$1"
   },
   "listdb": {
     "description": "\n        This is an ontology draft for the description of metadata of traffic observations, in particular video recordings of road traffic. The traffic observations are e.g. used to design test scenarios for the effectiveness assessment of automated driving systems. \n\nThe ontology draft resulted from an exchange of the Chair of Automobile Engineering at TU Dresden (https://tu-dresden.de/bu/verkehr/iad/kft?set_language=en) with representatives of NFDI4Ing (Community Cluster 4.4, Archetype Golo, Base Services S3) and FID move in NFDI4Ing's Special Interest Group \"Metadata and Ontologies\". An essential part of that meeting was the presentation of the reseaerch data management approach at the Chair of Automobile Engineering, in particular its tooling, its metadata approach and its workflow.\n\nTraffic observations are managed with ListDB, a solution combined of a SharePoint instance and a virtual machine for data servicing . An accompanying Codebook defines relevant metadata that should be provided for each road traffic observation. ListDB is currently used internally within TU Dresden, but is intentended to be hosted publicly until spring 2023. \n\nThe ontology draft is, in fact, based on the Codebook (v. 1.0.0.) and an attempt to make a machine-readable document out of it, applying standards from the Semantic Web Stack (RDF(S) and OWL). The draft is constantly being developed further in this context.\n        ",
@@ -3081,7 +3187,7 @@
     },
     "description": "The ontology Metadata4Ing is developed within the NFDI Consortium NFDI4Ing with the aim of providing a thorough framework for the semantic description of research data, with a particular focus on engineering sciences and neighbouring disciplines. This ontology allows a thorough description of the whole data generation process (experiment, observation, simulation), embracing the object of investigation, all sample and data manipulation procedures, a summary of the data files and the information contained, and all personal and institutional roles. The subordinate classes and relations can be built according to the two principles of _inheritance_ and _modularity_. _Inheritance_ means that a subclass inherits all properties of its superordinate class, possibly adding some new ones. _Modularity_ means that all expansions are independent of each other; this makes possible for instance to generate expanded ontologies for any possible combinations of method × object of research.",
     "extras": {
-      "version.iri": "http://w3id.org/nfdi4ing/metadata4ing/1.4.0"
+      "version.iri": "http://w3id.org/nfdi4ing/metadata4ing/1.5.0"
     },
     "keywords": [
       "NFDI4ING",
@@ -3103,7 +3209,7 @@
     "artifacts": [
       {
         "type": "rdf",
-        "url": "https://bimerr.iot.linkeddata.es/def/material-properties/ontology.ttl"
+        "url": "https://raw.githubusercontent.com/oeg-upm/bimerr-material-properties/refs/heads/master/ontology/mat.ttl"
       }
     ],
     "description": "The material properties ontology provides the vocabulary to describe the composition of building elements.",
@@ -3157,7 +3263,7 @@
     ],
     "description": "MathModDB is a database of mathematical models developed by the Mathematical Research Data Initiative (MaRDI). It defines a data model with classes (Mathematical Model, Mathematical Formulation, Academic Discipline, Research Problem, Quantity [Kind], Computational Task, Publication), object properties/relations, data properties and annotation properties as an ontology. This ontology is populated with individuals/data from various fields of applied mathematics, making it a knowledge graph. This is a snapshot of MathModDB. The current version is maintained on the MaRDI Portal.",
     "extras": {
-      "version.iri": "https://portal.mardi4nfdi.de/wiki//2.0.0"
+      "version.iri": "https://portal.mardi4nfdi.de/wiki/MathModDB/2.0.0"
     },
     "homepage": "https://portal.mardi4nfdi.de/wiki/MathModDB",
     "keywords": [
@@ -3176,6 +3282,26 @@
     "name": "MathModDB Knowledge Graph of Mathematical Models",
     "tracker": "https://github.com/MaRDI4NFDI/MathModDB/issues",
     "uri_format": "https://portal.mardi4nfdi.de/entity/$1"
+  },
+  "matvoc": {
+    "artifacts": [
+      {
+        "type": "rdf",
+        "url": "https://raw.githubusercontent.com/stream-project/stream-project.github.io/refs/heads/master/ontology.ttl"
+      }
+    ],
+    "description": "The Materials RDF vocabulary, described using W3C RDF Schema and the Web Ontology Language to satisfy the requirements of the STREAM project.",
+    "homepage": "https://stream-project.github.io/#overv",
+    "keywords": [
+      "NFDI-MatWerk",
+      "engineering"
+    ],
+    "license": {
+      "spdx": "MIT",
+      "url": "https://opensource.org/licenses/MIT"
+    },
+    "name": "Materials Vocabulary: MatVoc-Core",
+    "uri_format": "http://stream-ontology.com/matvoc-core/$1"
   },
   "mdo": {
     "artifacts": [
@@ -3264,7 +3390,7 @@
     ],
     "description": "A representation of the variety of methods used to make clinical and phenotype measurements.",
     "extras": {
-      "version.iri": "http://purl.obolibrary.org/obo/mmo/releases/2026-09-12/mmo.owl"
+      "version.iri": "http://purl.obolibrary.org/obo/mmo/releases/2026-10-10/mmo.owl"
     },
     "homepage": "https://github.com/rat-genome-database/MMO-Measurement-Method-Ontology/",
     "keywords": [
@@ -3389,7 +3515,7 @@
     ],
     "description": "A structured controlled vocabulary for the annotation of experiments concerned with proteomics mass spectrometry.",
     "extras": {
-      "version.iri": "http://purl.obolibrary.org/obo/ms/4.2.2/ms.owl"
+      "version.iri": "http://purl.obolibrary.org/obo/ms/4.2.14/ms.owl"
     },
     "homepage": "http://www.psidev.info/groups/controlled-vocabularies",
     "keywords": [
@@ -3405,6 +3531,27 @@
     },
     "name": "Mass Spectrometry",
     "tracker": "https://github.com/HUPO-PSI/psi-ms-CV/issues"
+  },
+  "mseo": {
+    "artifacts": [
+      {
+        "type": "rdf",
+        "url": "https://raw.githubusercontent.com/Mat-O-Lab/MSEO/refs/heads/main/MSEO_mid.ttl"
+      }
+    ],
+    "description": "This is the mid-level module of the Material Science and Engineering Ontology MSEO.",
+    "homepage": "https://github.com/Mat-O-Lab/MSEO",
+    "keywords": [
+      "NFDI-MatWerk",
+      "engineering"
+    ],
+    "license": {
+      "spdx": "MIT",
+      "url": "http://opensource.org/licenses/MIT"
+    },
+    "name": "Materials Science and Engineering Ontology (MSEO)",
+    "tracker": "https://github.com/Mat-O-Lab/MSEO/issues",
+    "uri_format": "https://purl.matolab.org/mseo/mid/$1"
   },
   "msio": {
     "artifacts": [
@@ -3431,7 +3578,7 @@
   "mt": {
     "description": "Controlled vocabulary for the classification of the theme for a mobility dataset.",
     "extras": {
-      "version.iri": "https://w3id.org/mobilitydcat-ap/mobility-theme/1.1.1"
+      "version.iri": "https://w3id.org/mobilitydcat-ap/mobility-theme/2.0.0"
     },
     "homepage": "https://w3id.org/mobilitydcat-ap/mobility-theme",
     "keywords": [
@@ -3708,7 +3855,7 @@
     },
     "name": "The Extensible Observation Ontology"
   },
-  "oboe-characteristics": {
+  "oboecharacteristics": {
     "artifacts": [
       {
         "type": "owl",
@@ -3730,7 +3877,7 @@
     "name": "OBOE Characteristics",
     "uri_format": "http://ecoinformatics.org/oboe/oboe.1.2/oboe-characteristics.owl#$1"
   },
-  "oboe-core": {
+  "oboecore": {
     "artifacts": [
       {
         "type": "owl",
@@ -3752,7 +3899,7 @@
     "name": "oboe-core",
     "uri_format": "http://ecoinformatics.org/oboe/oboe.1.2/oboe-core.owl#$1"
   },
-  "oboe-standards": {
+  "oboestandards": {
     "artifacts": [
       {
         "type": "owl",
@@ -3771,7 +3918,7 @@
       "spdx": "CC-BY-3.0",
       "url": "https://creativecommons.org/licenses/by/3.0/"
     },
-    "name": "oboe-standards",
+    "name": "oboestandards",
     "uri_format": "http://ecoinformatics.org/oboe/oboe.1.2/oboe-standards.owl#$1"
   },
   "oefos": {
@@ -3804,7 +3951,7 @@
     ],
     "description": "The Open Energy Ontology is an ontology for all aspects of the energy modelling domain.\nIt is developed in four main modules: 'oeo-model', a module for all entities related to models and modelling; 'oeo-physical', a module for all entities related to the world of energy and energy generation; 'oeo-social', a module for all relevant social and economic aspects of the energy domain; 'oeo-shared', a module to cover entities and relations needed in all of the modules above to prevent them getting implemented multiple times.\nA supplementary module is the oeo-physical-axioms module, which contains general class axioms.",
     "extras": {
-      "version.iri": "https://openenergyplatform.org/ontology/oeo/releases/2.13.0/oeo.owl"
+      "version.iri": "https://openenergyplatform.org/ontology/oeo/releases/2.14.0/oeo.owl"
     },
     "homepage": "https://openenergyplatform.org/ontology/",
     "keywords": [
@@ -4228,9 +4375,9 @@
         "url": "http://purl.obolibrary.org/obo/pato.owl"
       }
     ],
-    "description": "An ontology of phenotypic qualities (properties, attributes or characteristics).",
+    "description": "An ontology of characteristics (properties, attributes, or modifiers). These are intended to be used in combination with terms from other ontologies to construct characteristic-entity combinations that describe traits or phenotypes of organisms, chemicals, environments, and other entities.",
     "extras": {
-      "version.iri": "http://purl.obolibrary.org/obo/pato/releases/2025-05-14/pato.owl"
+      "version.iri": "http://purl.obolibrary.org/obo/pato/releases/2026-10-01/pato.owl"
     },
     "homepage": "https://github.com/pato-ontology/pato/",
     "keywords": [
@@ -4323,6 +4470,31 @@
     "tracker": "https://github.com/physh-org/PhySH/issues",
     "uri_format": "https://doi.org/10.29172/$1"
   },
+  "pldo": {
+    "artifacts": [
+      {
+        "type": "owl",
+        "url": "https://raw.githubusercontent.com/OCDO/pldo/refs/heads/main/pldo.owl"
+      }
+    ],
+    "description": "PLDO focuses on the description of planar defects in crystalline materials.",
+    "extras": {
+      "version.iri": "https://purls.helmholtz-metadaten.de/cdos/pldo/v0.4.0"
+    },
+    "homepage": "https://ocdo.github.io/pldo/",
+    "keywords": [
+      "NFDI-MatWerk",
+      "engineering",
+      "material science"
+    ],
+    "license": {
+      "name": "CC-BY",
+      "spdx": "CC-BY-4.0",
+      "url": "https://creativecommons.org/licenses/by/4.0/"
+    },
+    "name": "Planar Defect Ontology (PLDO)",
+    "tracker": "https://github.com/OCDO/pldo/issues"
+  },
   "plsmo": {
     "artifacts": [
       {
@@ -4376,7 +4548,7 @@
     ],
     "description": "The PMD Core Ontology (PMDco) is a comprehensive framework for representing knowledge that encompasses fundamental concepts from the domains of materials science and engineering (MSE). The PMDco has been designed as a mid-level ontology to establish a connection between specific MSE application ontologies and the domain neutral concepts found in established top-level ontologies. The primary goal of the PMDco is to promote interoperability between diverse domains. PMDco's class structure is both understandable and extensible, making it an efficient tool for organizing MSE knowledge. It serves as a semantic intermediate layer that unifies MSE knowledge representations, enabling data and metadata to be systematically integrated on key terms within the MSE domain. With PMDco, it is possible to seamlessly trace data generation. By building on this foundation, PMDco facilitates the integration of data from various sources and the creation of complex workflows. In summary, PMDco is a valuable tool for researchers and practitioners in the MSE domains. It provides a common language for representing and sharing knowledge, allowing for efficient collaboration and promoting interoperability between diverse domains. Its design allows for the systematic integration of data and metadata, enabling seamless traceability of data generation. Overall, PMDco is a crucial step towards a unified and comprehensive understanding of the MSE domain. PMDco at GitHub: https://github.com/materialdigital/core-ontology Documentation: https://materialdigital.github.io/core-ontology/docs/",
     "extras": {
-      "version.iri": "https://w3id.org/pmd/co/3.1.1"
+      "version.iri": "https://w3id.org/pmd/co/3.1.2"
     },
     "homepage": "https://materialdigital.github.io/core-ontology/",
     "keywords": [
@@ -4419,6 +4591,31 @@
     },
     "name": "Plant Ontology",
     "tracker": "https://github.com/Planteome/plant-ontology/issues"
+  },
+  "podo": {
+    "artifacts": [
+      {
+        "type": "owl",
+        "url": "https://raw.githubusercontent.com/OCDO/podo/refs/heads/main/podo.owl"
+      }
+    ],
+    "description": "PODO focuses on the description of point defects in crystalline materials.",
+    "extras": {
+      "version.iri": "https://purls.helmholtz-metadaten.de/cdos/podo/0.0.1"
+    },
+    "homepage": "https://ocdo.github.io/podo/",
+    "keywords": [
+      "NFDI-MatWerk",
+      "engineering",
+      "material science"
+    ],
+    "license": {
+      "name": "CC-BY",
+      "spdx": "CC-BY-4.0",
+      "url": "https://creativecommons.org/licenses/by/4.0/"
+    },
+    "name": "Point Defects Ontology (PODO)",
+    "tracker": "https://github.com/OCDO/podo/issues"
   },
   "ppeo": {
     "artifacts": [
@@ -4510,6 +4707,28 @@
     },
     "name": "PREMIS",
     "uri_format": "http://www.loc.gov/premis/rdf/v3/$1"
+  },
+  "prima": {
+    "artifacts": [
+      {
+        "type": "rdf",
+        "url": "https://raw.githubusercontent.com/Materials-Data-Science-and-Informatics/MDMC-NEP-top-level-ontology/refs/heads/master/PRIMA/core/ver_3_0/prima-core.ttl"
+      }
+    ],
+    "description": "This is the core module of the Provenance Information for Materials Science (PRIMA) Ontology, version 3.0, aligned with PMDco v3 and based on BFO (Basic Formal Ontology).",
+    "homepage": "https://materials-data-science-and-informatics.github.io/MDMC-NEP-top-level-ontology/PRIMA/complete/ver_2_0/index.html",
+    "keywords": [
+      "NFDI-MatWerk",
+      "engineering",
+      "material science"
+    ],
+    "license": {
+      "name": "CC-BY",
+      "spdx": "CC-BY-3.0",
+      "url": "http://creativecommons.org/licenses/by/3.0/"
+    },
+    "name": "PRIMA Ontology - Core Module",
+    "tracker": "https://github.com/Materials-Data-Science-and-Informatics/MDMC-NEP-top-level-ontology/issues"
   },
   "proco": {
     "artifacts": [
@@ -5372,12 +5591,12 @@
     "artifacts": [
       {
         "type": "owl",
-        "url": "https://raw.githubusercontent.com/micheldumontier/semanticscience/master/ontology/sio/release/sio-release.owl"
+        "url": "https://raw.githubusercontent.com/MaastrichtU-IDS/semanticscience/refs/heads/master/ontology/sio/release/sio-release.owl"
       }
     ],
     "description": "The Semanticscience Integrated Ontology (SIO) provides a simple, integrated ontology of types and relations for rich description of objects, processes and their attributes.",
     "extras": {
-      "version.iri": "http://semanticscience.org/ontology/sio/v1.61/sio-release.owl"
+      "version.iri": "http://semanticscience.org/ontology/sio/v1.62/sio-release.owl"
     },
     "homepage": "https://github.com/MaastrichtU-IDS/semanticscience",
     "keywords": [
@@ -5810,7 +6029,7 @@
     ],
     "description": "Description of date and time structured with separate values for the various elements of a calendar-clock system. The temporal reference system is fixed to Gregorian Calendar, and the range of year, month, day properties restricted to corresponding XML Schema types xsd:gYear, xsd:gMonth and xsd:gDay, respectively.",
     "extras": {
-      "version.iri": "http://www.w3.org/2006/time#2016"
+      "version.iri": "http://www.w3.org/2006/time#2026"
     },
     "homepage": "https://www.w3.org/TR/owl-time/",
     "keywords": [
@@ -5925,10 +6144,13 @@
     "artifacts": [
       {
         "type": "rdf",
-        "url": "https://raw.githubusercontent.com/HosseinBeygiNasrabadi/Tensile-Test-Ontology-TTO-/refs/heads/main/TTO2.0.9.ttl"
+        "url": "https://github.com/materialdigital/tensile-test-ontology/raw/refs/heads/main/tto.ttl"
       }
     ],
-    "description": "Tensile Test Ontology (TTO) has been developed for representing the tensile testing process, testing equipment requirements, test pieces characteristics, and related testing parameters and their measurement procedure according to DIN EN ISO 6892-1 standard.",
+    "description": "This is thePMD ontology of the tensile test (Tensile Test Ontology - TTO) as developed on the basis of the test standard ISO 6892-1: Metallic materials - Tensile Testing - Part 1: Method of test at room temperature. The TTO was developed in the frame of the PMD project. The TTO provides conceptualizations valid for the description of tensile tests and corresponding data in accordance with the respective test standard. By using TTO for storing tensile test data, all data will be well structured and based on a common vocabulary agreed on by an expert group (generation of FAIR data) which will lead to enhanced data interoperability. Due to the import of the PMD core ontology (PMDco), the interoperability of tensile test data is enhanced and querying in combination with other aspects and data within the broad field of material science and engineering (MSE) is facilitated",
+    "extras": {
+      "version.iri": "https://w3id.org/pmd/tto/3.0.0"
+    },
     "homepage": "https://github.com/HosseinBeygiNasrabadi/Tensile-Test-Ontology-TTO-",
     "keywords": [
       "NFDI-MatWerk",
@@ -5940,7 +6162,7 @@
       "url": "https://creativecommons.org/licenses/by/4.0/"
     },
     "name": "Tensile Test Ontology (TTO)",
-    "tracker": "https://github.com/HosseinBeygiNasrabadi/Tensile-Test-Ontology-TTO-/issues",
+    "tracker": "https://github.com/materialdigital/tensile-test-ontology/issues",
     "uri_format": "https://gitlab.com/kupferdigital/process-graphs/tensile-test/$1"
   },
   "uat": {
@@ -5977,7 +6199,7 @@
     ],
     "description": "Uberon is an integrated cross-species anatomy ontology representing a variety of entities classified according to traditional anatomical criteria such as structure, function and developmental lineage. The ontology includes comprehensive relationships to taxon-specific anatomical ontologies, allowing integration of functional, phenotype and expression data.",
     "extras": {
-      "version.iri": "http://purl.obolibrary.org/obo/uberon/releases/2026-06-19/uberon.owl"
+      "version.iri": "http://purl.obolibrary.org/obo/uberon/releases/2026-10-01/uberon.owl"
     },
     "homepage": "http://obophenotype.github.io/uberon/",
     "keywords": [
@@ -6020,7 +6242,7 @@
     ],
     "description": "The Ontology of Units of Measure models concepts and relations for defining and using measures and units in scientific research. It includes common units like SI units (meter, kilogram) and others like the mile. OM supports the following application areas- Geometry; Mechanics; Thermodynamics; Electromagnetism; Fluid mechanics; Chemical physics; Photometry; Radiometry and Radiobiology; Nuclear physics; Astronomy and Astrophysics; Cosmology; Earth science; Meteorology; Material science; Microbiology; Economics; Information technology and Typography.",
     "extras": {
-      "version.iri": "http://purl.obolibrary.org/obo/uo/releases/2026-07-31/uo.owl"
+      "version.iri": "http://purl.obolibrary.org/obo/uo/releases/2026-10-12/uo.owl"
     },
     "homepage": "https://github.com/bio-ontology-research-group/unit-ontology",
     "keywords": [
