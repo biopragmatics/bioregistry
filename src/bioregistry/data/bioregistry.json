@@ -23383,6 +23383,59 @@
       "uri_format": "https://www.ebi.ac.uk/chembl/target_report_card/$1"
     }
   },
+  "chembl.assay": {
+    "comment": "Not sure what your choices might be regarding ChEMBL and its possible sub-prefixes. The ChEMBL RDF publication at [PMC3700754](https://pmc.ncbi.nlm.nih.gov/articles/PMC3700754/) describes the prefix as `assay`, not `chembl.assay`, and declares `http://linkedchemistry.info/chembl/assay/` which is nowhere in current ChEMBL or PubChem releases (I think it might be from Bio2RDF). ChEMBL 36 only the form `http://rdf.ebi.ac.uk/resource/chembl/assay/$1` is used (also in pubchem.bioassay via seeAlso). The example at http://bioregistry.io/registry/chembl is an assay (https://www.ebi.ac.uk/chembl/id_lookup/CHEMBL4303805). At the same time there is a https://bioregistry.io/registry/chembl.compound page, specific for compounds. What are the choices regarding ChEMBL and its parts?",
+    "contact": {
+      "github": "nclopezo",
+      "name": "David Mendez Lopez",
+      "orcid": "0000-0002-0294-5484"
+    },
+    "contributor": {
+      "github": "jmillanacosta",
+      "name": "Javier Millán Acosta",
+      "orcid": "0000-0002-4166-7093"
+    },
+    "description": "ChEMBL assays describe the experimental set-up when testing the activity of drug-like compounds against biological targets; they provide useful context for researchers interested in drug-target relationships (https://chembl.blogspot.com/2023/12/in-search-of-perfect-assay-description.html).",
+    "domain": "assay",
+    "example": "CHEMBL4303805",
+    "github_request_issue": 2209,
+    "homepage": "https://www.ebi.ac.uk/chembl/explore/assay",
+    "keywords": [
+      "chemical information systems"
+    ],
+    "license": "CC-BY-SA-3.0",
+    "name": "ChEMBL assay",
+    "part_of": "chembl",
+    "pattern": "^CHEMBL\\d+$",
+    "publications": [
+      {
+        "doi": "10.1093/nar/gkad1004",
+        "pubmed": "37933841",
+        "title": "The ChEMBL Database in 2023: a drug discovery platform spanning multiple bioactivity data types and time periods",
+        "year": 2023
+      },
+      {
+        "doi": "10.1093/nar/gky1075",
+        "pubmed": "30398643",
+        "title": "ChEMBL: towards direct deposition of bioassay data",
+        "year": 2018
+      },
+      {
+        "doi": "10.1186/1758-2946-5-23 ",
+        "pmc": "PMC3700754",
+        "pubmed": "23657106",
+        "title": "The ChEMBL database as linked open data",
+        "year": 2013
+      }
+    ],
+    "rdf_uri_format": "http://rdf.ebi.ac.uk/resource/chembl/assay/$1",
+    "reviewer": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    }
+  },
   "chembl.cell": {
     "cellosaurus.resource": {
       "description": "Chemistry resources",
