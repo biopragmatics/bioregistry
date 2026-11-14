@@ -227,7 +227,7 @@ class TestRegistry(unittest.TestCase):
                 desc = bioregistry.get_description(prefix)
                 if desc is None:
                     raise self.fail(f"missing description for {prefix}")
-                self.assertNotEqual("", desc.strip())
+                self.assertNotEqual("", desc.strip(), msg=f"empty description for {prefix}")
                 self.assertNotIn("\r", desc)
                 if resource.description:
                     self.assertEqual(

@@ -73399,6 +73399,12 @@
       "uri_format": "https://www.google.com/patents/$1"
     },
     "pattern": "^[A-Z]{2,4}\\d+([A-Z])?([0-9])?$",
+    "providers": [
+      {
+        "code": "pubchem",
+        "uri_format": "http://rdf.ncbi.nlm.nih.gov/pubchem/patent/$1"
+      }
+    ],
     "synonyms": [
       "Patent",
       "patent"
@@ -87899,6 +87905,12 @@
       "prefix": "inchikey",
       "uri_format": "http://cactus.nci.nih.gov/chemical/structure/$1/names"
     },
+    "providers": [
+      {
+        "code": "pubchem",
+        "uri_format": "http://rdf.ncbi.nlm.nih.gov/pubchem/inchikey/$1"
+      }
+    ],
     "togoid": {
       "examples": [
         "RYYVLZVUVIJVGH-UHFFFAOYSA-N",
@@ -115705,6 +115717,12 @@
     "homepage": "https://www.ncbi.nlm.nih.gov/books",
     "name": "NCBI Bookshelf",
     "pattern": "^NBK\\d+$",
+    "providers": [
+      {
+        "code": "pubchem",
+        "uri_format": "http://rdf.ncbi.nlm.nih.gov/pubchem/book/$1"
+      }
+    ],
     "uri_format": "https://www.ncbi.nlm.nih.gov/books/$1"
   },
   "ncbidrs": {
@@ -115970,6 +115988,10 @@
         "homepage": "https://scholia.toolforge.org/",
         "name": "Scholia",
         "uri_format": "https://scholia.toolforge.org/ncbi-gene/$1"
+      },
+      {
+        "code": "pubchem",
+        "uri_format": "http://rdf.ncbi.nlm.nih.gov/pubchem/gene/GID$1"
       }
     ],
     "publications": [
@@ -116481,6 +116503,10 @@
           "homepage": "https://www.uniprot.org/taxonomy/",
           "name": "Taxonomy through UniProt PURL",
           "uri_format": "https://purl.uniprot.org/taxonomy/$1"
+        },
+        {
+          "code": "pubchem",
+          "uri_format": "http://rdf.ncbi.nlm.nih.gov/pubchem/taxonomy/TAXID$1"
         }
       ],
       "status": "active",
@@ -146762,6 +146788,51 @@
     "uri_format": "https://www.w3.org/2009/pointers#$1",
     "version": "2009"
   },
+  "pubchem.anatomy": {
+    "contact": {
+      "email": "bolton@ncbi.nlm.nih.gov",
+      "github": "boltonee",
+      "name": "Evan E Bolton",
+      "orcid": "0000-0002-5959-6190"
+    },
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "An anatomical element in PubChem",
+    "example": "178",
+    "github_request_issue": 2170,
+    "homepage": "https://pubchem.ncbi.nlm.nih.gov",
+    "logo": "https://pubchem.ncbi.nlm.nih.gov/pcfe/logo/PubChem_logo_splash.png",
+    "name": "PubChem anatomy",
+    "part_of_database": "pubchem",
+    "pattern": "^\\d+$",
+    "rdf_uri_format": "http://rdf.ncbi.nlm.nih.gov/pubchem/anatomy/ANATOMYID$1"
+  },
+  "pubchem.author": {
+    "contact": {
+      "email": "bolton@ncbi.nlm.nih.gov",
+      "github": "boltonee",
+      "name": "Evan E Bolton",
+      "orcid": "0000-0002-5959-6190"
+    },
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "The MD5 of an author in PubChem",
+    "example": "000000e289f00d5f606563188b0efc21",
+    "github_request_issue": 2170,
+    "homepage": "https://pubchem.ncbi.nlm.nih.gov",
+    "logo": "https://pubchem.ncbi.nlm.nih.gov/pcfe/logo/PubChem_logo_splash.png",
+    "name": "PubChem author",
+    "part_of_database": "pubchem",
+    "rdf_uri_format": "http://rdf.ncbi.nlm.nih.gov/pubchem/author/MD5_$1"
+  },
   "pubchem.bioassay": {
     "biocontext": {
       "prefix": "PUBCHEM.BIOASSAY",
@@ -146850,6 +146921,7 @@
       "prefix": "pubchem.bioassay",
       "uri_format": "https://pubchem.ncbi.nlm.nih.gov/assay/assay.cgi?aid=$1"
     },
+    "name": "PubChem bioassay",
     "part_of_database": "pubchem",
     "prefixcommons": {
       "description": "PubChem provides information on the biological activities of small molecules. It is a component of NIH's Molecular Libraries Roadmap Initiative. PubChem bioassay archives active compounds and bioassay results.",
@@ -146920,9 +146992,10 @@
       "chemistry"
     ],
     "logo": "https://pubchem.ncbi.nlm.nih.gov/pcfe/logo/PubChem_logo_splash.png",
-    "name": "PubChem Cell Line",
+    "name": "PubChem cell line",
     "part_of_database": "pubchem",
     "pattern": "^\\d+$",
+    "rdf_uri_format": "http://rdf.ncbi.nlm.nih.gov/pubchem/cell/CELLID$1",
     "uri_format": "https://pubchem.ncbi.nlm.nih.gov/cell/$1"
   },
   "pubchem.classification": {
@@ -146945,7 +147018,7 @@
       "chemistry"
     ],
     "logo": "https://pubchem.ncbi.nlm.nih.gov/pcfe/logo/PubChem_logo_splash.png",
-    "name": "PubChem Classification",
+    "name": "PubChem classification",
     "part_of_database": "pubchem",
     "pattern": "^\\d+$",
     "uri_format": "https://pubchem.ncbi.nlm.nih.gov/classification/#hid=$1"
@@ -147311,6 +147384,96 @@
       }
     }
   },
+  "pubchem.conserveddomain": {
+    "contact": {
+      "email": "bolton@ncbi.nlm.nih.gov",
+      "github": "boltonee",
+      "name": "Evan E Bolton",
+      "orcid": "0000-0002-5959-6190"
+    },
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "A conserved domain in PubChem",
+    "example": "PSSMID132758",
+    "github_request_issue": 2170,
+    "homepage": "https://pubchem.ncbi.nlm.nih.gov",
+    "logo": "https://pubchem.ncbi.nlm.nih.gov/pcfe/logo/PubChem_logo_splash.png",
+    "name": "PubChem conserved domain",
+    "part_of_database": "pubchem",
+    "rdf_uri_format": "http://rdf.ncbi.nlm.nih.gov/pubchem/conserveddomain/$1"
+  },
+  "pubchem.cooccurrence": {
+    "contact": {
+      "email": "bolton@ncbi.nlm.nih.gov",
+      "github": "boltonee",
+      "name": "Evan E Bolton",
+      "orcid": "0000-0002-5959-6190"
+    },
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "A co-occurrence in PubChem",
+    "example": "-w-2_CID11556711",
+    "github_request_issue": 2170,
+    "homepage": "https://pubchem.ncbi.nlm.nih.gov",
+    "logo": "https://pubchem.ncbi.nlm.nih.gov/pcfe/logo/PubChem_logo_splash.png",
+    "name": "PubChem co-occurrence",
+    "part_of_database": "pubchem",
+    "rdf_uri_format": "http://rdf.ncbi.nlm.nih.gov/pubchem/cooccurrence/$1"
+  },
+  "pubchem.descriptor": {
+    "contact": {
+      "email": "bolton@ncbi.nlm.nih.gov",
+      "github": "boltonee",
+      "name": "Evan E Bolton",
+      "orcid": "0000-0002-5959-6190"
+    },
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "A combination of a PubChem compound identifier and a molecular descriptor, such as molecular weight",
+    "example": "CID60823_Molecular_Weight",
+    "github_request_issue": 2170,
+    "homepage": "https://pubchem.ncbi.nlm.nih.gov",
+    "logo": "https://pubchem.ncbi.nlm.nih.gov/pcfe/logo/PubChem_logo_splash.png",
+    "name": "PubChem descriptor",
+    "part_of_database": "pubchem",
+    "rdf_uri_format": "http://rdf.ncbi.nlm.nih.gov/pubchem/descriptor/$1"
+  },
+  "pubchem.disease": {
+    "contact": {
+      "email": "bolton@ncbi.nlm.nih.gov",
+      "github": "boltonee",
+      "name": "Evan E Bolton",
+      "orcid": "0000-0002-5959-6190"
+    },
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "A disease in PubChem",
+    "domain": "disease",
+    "example": "1",
+    "github_request_issue": 2170,
+    "homepage": "https://pubchem.ncbi.nlm.nih.gov",
+    "logo": "https://pubchem.ncbi.nlm.nih.gov/pcfe/logo/PubChem_logo_splash.png",
+    "name": "PubChem disease",
+    "part_of_database": "pubchem",
+    "pattern": "^\\d+$",
+    "rdf_uri_format": "http://rdf.ncbi.nlm.nih.gov/pubchem/disease/DZID$1"
+  },
   "pubchem.element": {
     "contact": {
       "email": "bolton@ncbi.nlm.nih.gov",
@@ -147327,15 +147490,248 @@
     "description": "PubChem Element gives information on chemical elements like Hydrogen, with the local identifier corresponding to the atomic number.",
     "domain": "chemical",
     "example": "1",
+    "github_request_issue": 2170,
     "homepage": "https://pubchem.ncbi.nlm.nih.gov/periodic-table",
     "keywords": [
       "chemistry"
     ],
     "logo": "https://pubchem.ncbi.nlm.nih.gov/pcfe/logo/PubChem_logo_splash.png",
-    "name": "PubChem Element",
+    "name": "PubChem element",
     "part_of_database": "pubchem",
     "pattern": "^\\d+$",
     "uri_format": "https://pubchem.ncbi.nlm.nih.gov/element/$1"
+  },
+  "pubchem.endpoint": {
+    "contact": {
+      "email": "bolton@ncbi.nlm.nih.gov",
+      "github": "boltonee",
+      "name": "Evan E Bolton",
+      "orcid": "0000-0002-5959-6190"
+    },
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "An assay endpoint in PubChem",
+    "example": "SID540758_AID1_VALUE854",
+    "github_request_issue": 2170,
+    "homepage": "https://pubchem.ncbi.nlm.nih.gov",
+    "logo": "https://pubchem.ncbi.nlm.nih.gov/pcfe/logo/PubChem_logo_splash.png",
+    "name": "PubChem endpoint",
+    "part_of_database": "pubchem",
+    "rdf_uri_format": "http://rdf.ncbi.nlm.nih.gov/pubchem/endpoint/$1"
+  },
+  "pubchem.grant": {
+    "contact": {
+      "email": "bolton@ncbi.nlm.nih.gov",
+      "github": "boltonee",
+      "name": "Evan E Bolton",
+      "orcid": "0000-0002-5959-6190"
+    },
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "The MD5 hash of a grant in PubChem",
+    "example": "000004aca6116c522f3437f2469a6093",
+    "github_request_issue": 2170,
+    "homepage": "https://pubchem.ncbi.nlm.nih.gov",
+    "logo": "https://pubchem.ncbi.nlm.nih.gov/pcfe/logo/PubChem_logo_splash.png",
+    "name": "PubChem grant",
+    "part_of_database": "pubchem",
+    "rdf_uri_format": "http://rdf.ncbi.nlm.nih.gov/pubchem/grant/MD5_$1"
+  },
+  "pubchem.journal": {
+    "contact": {
+      "email": "bolton@ncbi.nlm.nih.gov",
+      "github": "boltonee",
+      "name": "Evan E Bolton",
+      "orcid": "0000-0002-5959-6190"
+    },
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "A journal in PubChem",
+    "example": "1",
+    "github_request_issue": 2170,
+    "homepage": "https://pubchem.ncbi.nlm.nih.gov",
+    "logo": "https://pubchem.ncbi.nlm.nih.gov/pcfe/logo/PubChem_logo_splash.png",
+    "name": "PubChem journal",
+    "part_of_database": "pubchem",
+    "pattern": "^\\d+$",
+    "rdf_uri_format": "http://rdf.ncbi.nlm.nih.gov/pubchem/journal/$1"
+  },
+  "pubchem.measuregroup": {
+    "contact": {
+      "email": "bolton@ncbi.nlm.nih.gov",
+      "github": "boltonee",
+      "name": "Evan E Bolton",
+      "orcid": "0000-0002-5959-6190"
+    },
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "A group of measurements in PubChem",
+    "example": "AID447528_PMID19500994",
+    "github_request_issue": 2170,
+    "homepage": "https://pubchem.ncbi.nlm.nih.gov",
+    "logo": "https://pubchem.ncbi.nlm.nih.gov/pcfe/logo/PubChem_logo_splash.png",
+    "name": "PubChem measure group",
+    "part_of_database": "pubchem",
+    "rdf_uri_format": "http://rdf.ncbi.nlm.nih.gov/pubchem/measuregroup/$1"
+  },
+  "pubchem.nbr": {
+    "contact": {
+      "email": "bolton@ncbi.nlm.nih.gov",
+      "github": "boltonee",
+      "name": "Evan E Bolton",
+      "orcid": "0000-0002-5959-6190"
+    },
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "deprecated": true,
+    "github_request_issue": 2170,
+    "homepage": "https://pubchem.ncbi.nlm.nih.gov",
+    "logo": "https://pubchem.ncbi.nlm.nih.gov/pcfe/logo/PubChem_logo_splash.png",
+    "name": "PubChem neighbor",
+    "part_of_database": "pubchem",
+    "rdf_uri_format": "http://rdf.ncbi.nlm.nih.gov/pubchem/neighbor/$1"
+  },
+  "pubchem.organization": {
+    "contact": {
+      "email": "bolton@ncbi.nlm.nih.gov",
+      "github": "boltonee",
+      "name": "Evan E Bolton",
+      "orcid": "0000-0002-5959-6190"
+    },
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "The MD5 hash of an organization name",
+    "example": "000000f542299288a821ac1fea7dd414",
+    "github_request_issue": 2170,
+    "homepage": "https://pubchem.ncbi.nlm.nih.gov",
+    "keywords": [
+      "organization"
+    ],
+    "logo": "https://pubchem.ncbi.nlm.nih.gov/pcfe/logo/PubChem_logo_splash.png",
+    "name": "PubChem organization",
+    "part_of_database": "pubchem",
+    "rdf_uri_format": "http://rdf.ncbi.nlm.nih.gov/pubchem/organization/MD5_$1"
+  },
+  "pubchem.pathway": {
+    "contact": {
+      "email": "bolton@ncbi.nlm.nih.gov",
+      "github": "boltonee",
+      "name": "Evan E Bolton",
+      "orcid": "0000-0002-5959-6190"
+    },
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "A biochemical pathway in PubChem",
+    "example": "10790",
+    "github_request_issue": 2170,
+    "homepage": "https://pubchem.ncbi.nlm.nih.gov",
+    "keywords": [
+      "pathway"
+    ],
+    "logo": "https://pubchem.ncbi.nlm.nih.gov/pcfe/logo/PubChem_logo_splash.png",
+    "name": "PubChem pathway",
+    "part_of_database": "pubchem",
+    "pattern": "^\\d+$",
+    "rdf_uri_format": "http://rdf.ncbi.nlm.nih.gov/pubchem/pathway/PWID$1"
+  },
+  "pubchem.protein": {
+    "comment": "This motivates doing some routing based on prefixes in the LUID, ACC might just be a prefix",
+    "contact": {
+      "email": "bolton@ncbi.nlm.nih.gov",
+      "github": "boltonee",
+      "name": "Evan E Bolton",
+      "orcid": "0000-0002-5959-6190"
+    },
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "A reference to a protein or group of proteins, does not directly map onto any other namespace but does construct identifiers from combinations of NCBI Protein",
+    "domain": "protein",
+    "example": "ACCAAI32976",
+    "example_extras": [
+      "ACCNP_056953ACCNP_858045"
+    ],
+    "github_request_issue": 2170,
+    "homepage": "https://pubchem.ncbi.nlm.nih.gov",
+    "logo": "https://pubchem.ncbi.nlm.nih.gov/pcfe/logo/PubChem_logo_splash.png",
+    "name": "PubChem protein",
+    "part_of_database": "pubchem",
+    "rdf_uri_format": "http://rdf.ncbi.nlm.nih.gov/pubchem/protein/$1"
+  },
+  "pubchem.reference": {
+    "contact": {
+      "email": "bolton@ncbi.nlm.nih.gov",
+      "github": "boltonee",
+      "name": "Evan E Bolton",
+      "orcid": "0000-0002-5959-6190"
+    },
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "A reference to an article or other document in PubChem",
+    "example": "9107826",
+    "github_request_issue": 2170,
+    "homepage": "https://pubchem.ncbi.nlm.nih.gov",
+    "logo": "https://pubchem.ncbi.nlm.nih.gov/pcfe/logo/PubChem_logo_splash.png",
+    "name": "PubChem reference",
+    "part_of_database": "pubchem",
+    "rdf_uri_format": "http://rdf.ncbi.nlm.nih.gov/pubchem/reference/$1"
+  },
+  "pubchem.source": {
+    "contact": {
+      "email": "bolton@ncbi.nlm.nih.gov",
+      "github": "boltonee",
+      "name": "Evan E Bolton",
+      "orcid": "0000-0002-5959-6190"
+    },
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "An external data source name in PubChem",
+    "example": "ChEMBL",
+    "github_request_issue": 2170,
+    "homepage": "https://pubchem.ncbi.nlm.nih.gov",
+    "logo": "https://pubchem.ncbi.nlm.nih.gov/pcfe/logo/PubChem_logo_splash.png",
+    "name": "PubChem source",
+    "part_of_database": "pubchem",
+    "rdf_uri_format": "http://rdf.ncbi.nlm.nih.gov/pubchem/source/$1"
   },
   "pubchem.substance": {
     "biocontext": {
@@ -147427,6 +147823,7 @@
       "prefix": "pubchem.substance",
       "uri_format": "https://pubchem.ncbi.nlm.nih.gov/summary/summary.cgi?sid=$1"
     },
+    "name": "PubChem substance",
     "part_of_database": "pubchem",
     "prefixcommons": {
       "description": "PubChem provides information on the biological activities of small molecules. It is a component of NIH's Molecular Libraries Roadmap Initiative. PubChem Substance archives chemical substance records.",
@@ -147520,6 +147917,28 @@
       }
     }
   },
+  "pubchem.synonym": {
+    "contact": {
+      "email": "bolton@ncbi.nlm.nih.gov",
+      "github": "boltonee",
+      "name": "Evan E Bolton",
+      "orcid": "0000-0002-5959-6190"
+    },
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "A MD5 hash of a synonym in PubChem",
+    "example": "9a05646d461669f86de312d88ab5748a",
+    "github_request_issue": 2170,
+    "homepage": "https://pubchem.ncbi.nlm.nih.gov",
+    "logo": "https://pubchem.ncbi.nlm.nih.gov/pcfe/logo/PubChem_logo_splash.png",
+    "name": "PubChem synonym",
+    "part_of_database": "pubchem",
+    "rdf_uri_format": "http://rdf.ncbi.nlm.nih.gov/pubchem/synonym/MD5_$1"
+  },
   "pubchem.vocabulary": {
     "contact": {
       "email": "bolton@ncbi.nlm.nih.gov",
@@ -147538,6 +147957,7 @@
     "download_owl": "https://rdf.ncbi.nlm.nih.gov/pubchem/vocabulary.owl",
     "example": "3D_structural_similarity",
     "homepage": "https://pubchem.ncbi.nlm.nih.gov/docs/rdf-uri",
+    "logo": "https://pubchem.ncbi.nlm.nih.gov/pcfe/logo/PubChem_logo_splash.png",
     "name": "PubChem Vocabulary",
     "part_of_database": "pubchem",
     "uri_format": "https://rdf.ncbi.nlm.nih.gov/pubchem/vocabulary.owl#$1"
@@ -147798,13 +148218,6 @@
         "homepage": "https://uniprot.org/",
         "name": "UniProt",
         "uri_format": "http://purl.uniprot.org/citations/$1"
-      },
-      {
-        "code": "pubchem",
-        "description": "URIs used in PubChem's RDF",
-        "homepage": "https://pubchem.ncbi.nlm.nih.gov",
-        "name": "PubChem RDF",
-        "uri_format": "http://rdf.ncbi.nlm.nih.gov/pubchem/reference/$1"
       },
       {
         "code": "uniprot.pubmed",
