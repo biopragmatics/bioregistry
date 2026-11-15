@@ -4,6 +4,7 @@ import sys
 
 import click
 
+from .analysis.bioregistry_diff import diff
 from .app.cli import web
 from .compare import compare
 from .export.cli import export
@@ -105,6 +106,7 @@ main.add_command(export)
 main.add_command(validate)
 main.add_command(web)
 main.add_command(generate_schema)
+main.add_command(diff)
 
 
 @main.command()

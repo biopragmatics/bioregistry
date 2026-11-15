@@ -11,14 +11,6 @@ from pathlib import PurePath
 from typing import Any, Literal, NamedTuple, TypeAlias, cast
 
 import click
-import matplotlib.pyplot as plt
-import pandas as pd
-import requests
-from pystow.git import get_commit_hash_before, get_current_commit_hash, show
-from tabulate import tabulate
-
-import bioregistry
-from bioregistry.constants import HERE
 
 logger = logging.getLogger(__name__)
 
@@ -48,6 +40,8 @@ def get_commit_before_date(
     :returns: The SHA of the commit before the given date, or None if no commit is
         found.
     """
+    import requests
+
     if owner is None:
         owner = REPO_OWNER
     if name is None:
@@ -89,6 +83,11 @@ def get_file_at_commit(
 
     :returns: The file content as a dictionary.
     """
+    import requests
+    from pystow.git import show
+
+    from bioregistry.constants import HERE
+
     if method == "github":
         if owner is None:
             owner = REPO_OWNER
@@ -210,6 +209,9 @@ def visualize_changes(
     :param end_date: The ending date.
     :param all_mapping_keys: Set of all mapping keys.
     """
+    import matplotlib.pyplot as plt
+    import pandas as pd
+
     main_fields: dict[str, int] = {}
     mapping_fields = dict.fromkeys(all_mapping_keys, 0)
 
@@ -279,10 +281,15 @@ def visualize_changes(
 @click.option("--end-date", help="The optional ending date for comparison, defaults to today")
 @click.option("--method", type=click.Choice(typing.get_args(Method)), default="local")
 @click.option("--domain", is_flag=True, help="Include a column in the summaries for the domain")
-def compare_dates(
+def diff(
     days_ago: int | None, start_date: str | None, end_date: str | None, method: Method, domain: bool
 ) -> None:
     """Process and visualize changes in Bioregistry data between two dates."""
+    import click
+    from pystow.git import get_commit_hash_before, get_current_commit_hash
+
+    from bioregistry.constants import HERE
+
     if end_date is None:
         end_date_ = datetime.date.today()
         end_hash = get_current_commit_hash(HERE)
@@ -308,20 +315,22 @@ def compare_dates(
         raise click.ClickException("No data")
 
     if data.comparison.added_prefixes:
-        click.secho(f"Added {len(data.comparison.added_prefixes):,} Prefixes\n", fg="green")
-        click.echo(_tabulate(data.comparison.added_prefixes, "Added Prefix", domain=domain))
+        click.secho(f"## New Records ({len(data.comparison.added_prefixes):,})\n", fg="green")
+        click.echo(_tabulate(data.comparison.added_prefixes, "Prefix", domain=domain))
 
     if data.comparison.deleted_prefixes:
-        click.echo(f"\n\ndeleted records: {data.comparison.deleted_prefixes}")
+        click.echo(f"\n\nDeleted Records: {data.comparison.deleted_prefixes}")
 
     if data.comparison.added_prefixes:
-        click.secho(f"\n\nUpdated {len(data.comparison.updated_prefixes):,} Prefixes\n", fg="green")
-        click.echo(_tabulate(data.comparison.updated_prefixes, "Updated Prefix", domain=domain))
-
-    # visualize_changes(data.comparison.update_details, start_date_, end_date_, data.all_mapping_keys)
+        click.secho(
+            f"\n## Updated Records ({len(data.comparison.updated_prefixes):,})\n", fg="green"
+        )
+        click.echo(_tabulate(data.comparison.updated_prefixes, "Prefix", domain=domain))
 
 
 def _tabulate(prefixes: typing.Collection[str], title: str, *, domain: bool) -> str:
+    from tabulate import tabulate
+
     return tabulate(
         [_get_row(prefix, domain=domain) for prefix in sorted(prefixes)],
         headers=[title, "Name", "Domain"],
@@ -330,6 +339,8 @@ def _tabulate(prefixes: typing.Collection[str], title: str, *, domain: bool) -> 
 
 
 def _get_row(prefix: str, domain: bool) -> Sequence[str]:
+    import bioregistry
+
     resource = bioregistry.get_resource(prefix, strict=True)
     display_prefix = resource.get_preferred_prefix(passthrough=True)
     row = [
@@ -342,4 +353,4 @@ def _get_row(prefix: str, domain: bool) -> Sequence[str]:
 
 
 if __name__ == "__main__":
-    compare_dates()
+    diff()
