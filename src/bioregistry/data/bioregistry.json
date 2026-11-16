@@ -136157,7 +136157,12 @@
   },
   "pepbank": {
     "comment": "This resource doesn't exist on the web anymore",
+    "contact": {
+      "github": "dguettler",
+      "name": "Daniel Guettler"
+    },
     "deprecated": true,
+    "domain": "peptide",
     "mappings": {
       "pathguide": "235",
       "prefixcommons": "pepbank"
@@ -136170,6 +136175,7 @@
         "PepBank"
       ]
     },
+    "pattern": "^\\d+$",
     "prefixcommons": {
       "description": "PepBank is a database of peptides based on sequence text mining and public peptide data sources. Only peptides that are 20 amino acids or shorter are stored. Only peptides with available sequences are stored.",
       "examples": [
@@ -136194,6 +136200,22 @@
       ],
       "uri_format": "http://pepbank.mgh.harvard.edu/interactions/details/$1"
     },
+    "publications": [
+      {
+        "doi": "10.1186/1471-2105-10-317",
+        "pmc": "PMC2768718",
+        "pubmed": "19799796",
+        "title": "Enhancing navigation in biomedical databases by community voting and database-driven text classification",
+        "year": 2009
+      },
+      {
+        "doi": "10.1186/1471-2105-8-280",
+        "pmc": "PMC1976427",
+        "pubmed": "17678535",
+        "title": "PepBank--a database of peptides based on sequence text mining and public peptide data sources",
+        "year": 2007
+      }
+    ],
     "reviewer": {
       "email": "cthoyt@gmail.com",
       "github": "cthoyt",
