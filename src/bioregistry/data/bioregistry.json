@@ -22199,6 +22199,29 @@
     "uri_format": "http://birdgenenames.org/cgnc/GeneReport?id=$1"
   },
   "cgo": {
+    "agroportal": {
+      "contact": {
+        "email": "jack.verhoosel@tno.nl",
+        "name": "Jack Verhoosel"
+      },
+      "description": "This ontology defines common concepts in the greenhouse domain and covers three main aspects of the greenhouse, namely (1) greenhouse construction concepts, (2) real-time measurements and action concepts and (3) dynamic objects and situation concepts. The construction concepts are defined together with main greenhouse construction companies. The real-time measurements and action concepts are based on the SSN Ontology by the W3C Semantic Sensor Networks Incubator Group (SSN-XG), together with considerations from the W3C/OGC Spatial Data on the Web Working Group. The dynamic objects and situation concepts are defined based on the DOLCE+DnS Ultralite (DUL) ontology. The definition and usage of units are based on the Ontology of Measurements (OM). This ontology does not describe generic concepts, time, locations, etc. these are intended to be included from other ontologies via OWL imports.",
+      "extras": {
+        "example_uri": "https://www.tno.nl/agrifood/ontology/common-greenhouse-ontology#Part"
+      },
+      "homepage": "https://gitlab.com/ddings/common-greenhouse-ontology",
+      "license": {
+        "name": "CC-BY-4.0"
+      },
+      "name": "Common Greenhouse Ontology",
+      "prefix": "CGO",
+      "publications": [
+        {
+          "url": "https://gitlab.com/ddings/common-greenhouse-ontology"
+        }
+      ],
+      "repository": "https://gitlab.com/ddings/common-greenhouse-ontology/-/blob/main/Ontologies/Older%20versions/CGO-v2.2.ttl?ref_type=heads",
+      "version": "2.4"
+    },
     "contributor": {
       "email": "cthoyt@gmail.com",
       "github": "cthoyt",
@@ -22210,6 +22233,7 @@
     "homepage": "https://gitlab.com/ddings/common-greenhouse-ontology",
     "license": "Apache",
     "mappings": {
+      "agroportal": "CGO",
       "tib.ts": "cgo"
     },
     "name": "Common Greenhouse Ontology",
@@ -28342,7 +28366,8 @@
     "example": "0000009",
     "mappings": {
       "obofoundry": "cmeo",
-      "ols": "cmeo"
+      "ols": "cmeo",
+      "ontobee": "CMEO"
     },
     "obofoundry": {
       "artifacts": [
@@ -28393,6 +28418,14 @@
       "name": "Clinical Metadata Exploration Ontology",
       "prefix": "cmeo",
       "tracker": "https://github.com/komi786/cmeo/issues"
+    },
+    "ontobee": {
+      "keywords": [
+        "obo",
+        "ontology"
+      ],
+      "name": "Clinical Metadata Exploration Ontology",
+      "prefix": "CMEO"
     }
   },
   "cmf": {
@@ -116409,6 +116442,21 @@
       "prefix": "NCBITAXON",
       "version": "2026-07-12"
     },
+    "agroportal": {
+      "contact": {
+        "email": "info@ncbi.nlm.nih.gov",
+        "name": "NCBI information"
+      },
+      "description": "The NCBI Taxonomy Database is a curated classification and nomenclature for all of the organisms in the public sequence databases. This currently represents about 10% of the described species of life on the planet.",
+      "extras": {
+        "example_uri": "http://purl.bioontology.org/ontology/NCBITAXON/201174"
+      },
+      "homepage": "https://www.ncbi.nlm.nih.gov/",
+      "name": "National Center for Biotechnology Information (NCBI) Organismal Classification",
+      "prefix": "NCBITAXON",
+      "repository": "https://github.com/obophenotype/ncbitaxon",
+      "version": "2024aa"
+    },
     "bartoc": {
       "description": "The NCBI Taxonomy database is a curated set of names and classifications for all of the organisms that are represented in GenBank. When new sequences are submitted to GenBank, the submission is checked for new organism names, which are then classified and added to the Taxonomy database. As of April 2003, there were 176,890 total taxa represented.\n\nThere are two main tools for viewing the information in the Taxonomy database: the Taxonomy Browser, and Taxonomy Entrez. Both systems allow searching of the Taxonomy database for names, and both link to the relevant sequence data. However, the Taxonomy Browser provides a hierarchical view of the classification (the best display for most casual users interested in exploring our classification), whereas Entrez Taxonomy provides a uniform indexing, search, and retrieval engine with a common mechanism for linking between the Taxonomy and other relevant Entrez databases.\n\nOrganismal taxonomy is a powerful organizing principle in the study of biological systems. Inheritance, homology by common descent, and the conservation of sequence and structure in the determination of function are all central ideas in biology that are directly related to the evolutionary history of any group of organisms. Because of this, taxonomy plays an important cross-linking role in many of the NCBI tools and databases.\n\nThe NCBITaxon ontology is an automatic translation of the NCBI taxonomy (a taxonomic classification of living organisms and associated artifacts) database into obo/owl.",
       "homepage": "http://www.ncbi.nlm.nih.gov/taxonomy",
@@ -116535,6 +116583,7 @@
     "license": "CC0-1.0",
     "mappings": {
       "aberowl": "NCBITAXON",
+      "agroportal": "NCBITAXON",
       "bartoc": "509",
       "biocontext": "TAXONOMY",
       "biodivportal": "NCBITAXON",
@@ -116596,10 +116645,6 @@
           "homepage": "https://www.uniprot.org/taxonomy/",
           "name": "Taxonomy through UniProt PURL",
           "uri_format": "https://purl.uniprot.org/taxonomy/$1"
-        },
-        {
-          "code": "pubchem",
-          "uri_format": "http://rdf.ncbi.nlm.nih.gov/pubchem/taxonomy/TAXID$1"
         }
       ],
       "status": "active",
@@ -147772,10 +147817,37 @@
       "pathway"
     ],
     "logo": "https://pubchem.ncbi.nlm.nih.gov/pcfe/logo/PubChem_logo_splash.png",
+    "mappings": {
+      "togoid": "PubchemPathway"
+    },
     "name": "PubChem pathway",
     "part_of_database": "pubchem",
     "pattern": "^\\d+$",
-    "rdf_uri_format": "http://rdf.ncbi.nlm.nih.gov/pubchem/pathway/PWID$1"
+    "rdf_uri_format": "http://rdf.ncbi.nlm.nih.gov/pubchem/pathway/PWID$1",
+    "togoid": {
+      "examples": [
+        "10572",
+        "1",
+        "10576",
+        "10577",
+        "10579",
+        "10573",
+        "10582",
+        "10574",
+        "10575",
+        "10581"
+      ],
+      "keywords": [
+        "Pathway"
+      ],
+      "name": "PubChem pathway",
+      "pattern": "^(?:PWID)?(?\\d+)$",
+      "prefix": "PubchemPathway",
+      "uri_format": "http://rdf.ncbi.nlm.nih.gov/pubchem/pathway/PWID$1",
+      "xrefs": {
+        "integbio": "nbdc02626"
+      }
+    }
   },
   "pubchem.protein": {
     "comment": "This motivates doing some routing based on prefixes in the LUID, ACC might just be a prefix",
@@ -157149,6 +157221,22 @@
     }
   },
   "saref.agri": {
+    "agroportal": {
+      "contact": {
+        "email": "mpoveda@fi.upm.es",
+        "name": "Maria Poveda-Villalon"
+      },
+      "description": "SAREF4AGRI is an extension of SAREF for the agriculture and food domain. SAREF4AGRI is specified and published by ETSI in the TS 103 410-6 associated to this ontology file. The list of use cases, standards and requirements that guided the creation of SAREF4AGRI are described in the associated ETSI TR 103 511., This ontology extends the SAREF ontology for the Agricultural domain. This work has been developed in the context of the STF 534 (https://portal.etsi.org/STF/STFs/STFHomePages/STF534.aspx), which was established with the goal to create three SAREF extensions, one of them for the Agricultural domain.",
+      "extras": {
+        "example_uri": "https://saref.etsi.org/core/State"
+      },
+      "license": {
+        "name": "https://forge.etsi.org/etsi-software-license"
+      },
+      "name": "SAREF4AGRI: an extension of SAREF for the agriculture and food domain",
+      "prefix": "SAREF4AGRI",
+      "version": "v1.1.2"
+    },
     "contact": {
       "email": "laura.daniele@tno.nl",
       "github": "danielelm",
@@ -157169,6 +157257,7 @@
       "uri_format": "https://saref.etsi.org/saref4agri/$1"
     },
     "mappings": {
+      "agroportal": "SAREF4AGRI",
       "lov": "s4agri",
       "tib.ts": "s4agri"
     },
@@ -157453,6 +157542,23 @@
     }
   },
   "saref.environment": {
+    "agroportal": {
+      "contact": {
+        "email": "maxime.lefrancois@emse.fr",
+        "name": "Maxime Lefrançois"
+      },
+      "description": "The present document is the technical specification of SAREF4ENVI, an extension of SAREF [1] for the environment domain. The extension was created in collaboration with domain experts in the field of light pollution currently working in the STARS4ALL European H2020 project (http://www.stars4all.eu/index.php/lpi/). The STARS4ALL project is composed by partners such as Universidad Politécnica de Madrid, Universidad Complutense de Madrid, ESCP Europe, Leibniz Institute of Freshwater Ecology and Inland Fisheries, Instituto de Astrofísica de Canarias, University of Southampton, Europan Crowdfunding Network, and CEFRIEL (Società Consortile a Responsabilita Limitata). SAREF4ENVI has two main aims: on the one hand, to be the basis for enabling the use of SAREF in the environment domain and, on the other hand, to exemplify how to enable interoperability between environmental devices in cooperation. SAREF4ENVI is an OWL-DL ontology that extends SAREF with 32 classes (24 defined in SAREF4ENVI and 7 reused from the time, SAREF and geo ontologies), 24 object properties (22 defined in SAREF4ENVI and 2 reused from the SAREF and geo ontologies), 13 data type properties (9 defined in SAREF4ENVI and 4 reused from the SAREF ontology), and 24 individuals (9 defined in SAREF4ENVI and 12 reused from the OM ontology). SAREF4ENVI focuses on extending SAREF for photometers to solve the lack of interoperability between sensors that can measure and share information about light pollution. Such extension involves the following use cases (more details can be found in ETSI TR 103 411 [i.1]): Use case 1: Monitor light pollution in a city, through the data collected by photometers about the magnitude of the light emitted in a given area. Use case 2: Adjust lampposts light intensity due to high pollution, after identifying the most contaminating lampposts and therefore the areas where more energy is being thrown away. Use case 3: Register a photometer, in which a new collection of photometers is incorporated into an existing sensor network., This ontology extends the SAREF ontology for the environment domain, specifically for the light pollution domain, including concepts like photometers, light, etc.",
+      "extras": {
+        "example_uri": "https://saref.etsi.org/saref4envi/DigitalRepresentation"
+      },
+      "homepage": "https://saref.etsi.org/saref4envi/",
+      "license": {
+        "name": "https://forge.etsi.org/etsi-software-license"
+      },
+      "name": "SAREF4ENVI: an extension of SAREF for the environment domain",
+      "prefix": "SAREF4ENVI",
+      "version": "v1.1.2"
+    },
     "example": "AirEmissionKind",
     "license": "BSD-3-Clause",
     "lov": {
@@ -157467,6 +157573,7 @@
       "uri_format": "https://saref.etsi.org/saref4envi/$1"
     },
     "mappings": {
+      "agroportal": "SAREF4ENVI",
       "lov": "s4envi",
       "tib.ts": "s4envi"
     },
@@ -158750,6 +158857,29 @@
       "name": "Semantic Modeling of Cohort Descriptions in Research Studies",
       "prefix": "SCO"
     },
+    "agroportal": {
+      "contact": {
+        "email": "ga.ubbiali@gmail.com",
+        "name": "Giorgio A. Ubbiali"
+      },
+      "description": "Sustainability Core Ontology - Segment B",
+      "extras": {
+        "example_uri": "https://www.w3id.org/sco#SCO_0000006"
+      },
+      "homepage": "https://www.w3id.org/sco/repo",
+      "license": {
+        "name": "CC-BY-4.0"
+      },
+      "name": "Sustainability Core Ontology",
+      "prefix": "SCO",
+      "publications": [
+        {
+          "doi": "10.31219/osf.io/z8uqr"
+        }
+      ],
+      "repository": "https://w3id.org/sco/repo",
+      "version": "2025-03-19"
+    },
     "bioportal": {
       "contact": {
         "email": "charis@rpi.edu",
@@ -158790,6 +158920,7 @@
     "license": "CC-BY-4.0",
     "mappings": {
       "aberowl": "SCO",
+      "agroportal": "SCO",
       "bioportal": "SCO",
       "ontobee": "SCO"
     },
@@ -196992,11 +197123,24 @@
       "uri_format": "http://www.w3.org/ns/pim/space#$1"
     },
     "mappings": {
-      "lov": "ws"
+      "lov": "ws",
+      "zazuko": "pim"
     },
     "name": "Workspace Ontology",
     "rdf_uri_format": "https://www.w3.org/ns/pim/space#$1",
-    "uri_format": "https://www.w3.org/ns/pim/space#$1"
+    "uri_format": "https://www.w3.org/ns/pim/space#$1",
+    "zazuko": {
+      "artifacts": [
+        {
+          "type": "rdf",
+          "url": "https://github.com/zazuko/rdf-vocabularies/raw/refs/heads/master/ontologies/pim/pim.nq"
+        }
+      ],
+      "description": "Workspace Ontology",
+      "homepage": "http://www.w3.org/ns/pim/space#",
+      "prefix": "pim",
+      "uri_format": "http://www.w3.org/ns/pim/space#$1"
+    }
   },
   "wsdl": {
     "contributor": {
