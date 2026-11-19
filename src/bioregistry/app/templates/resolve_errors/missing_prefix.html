@@ -6,6 +6,14 @@
 {% block container %}
     <div class="card card-body">
         <h5 class="card-title">HTTP 404 - Unknown Prefix</h5>
+        {% if similar_prefixes %}
+            <p>
+                Did you mean
+                {% for similar_prefix in similar_prefixes %}
+                    <a href="{{ url_for('metaregistry_ui.resource', prefix=similar_prefix) }}"><code>{{ similar_prefix }}</code></a>{% if not loop.last %}, {% endif %}
+                {%- endfor %}?
+            </p>
+        {% endif %}
         <p>
             The prefix <code>{{ prefix }}</code> is not registered in the {{ config.METAREGISTRY_TITLE }}{% if identifier %}
             so {{ utils.code_curie(prefix, identifier) }} could not be resolved{% endif %}. If you
