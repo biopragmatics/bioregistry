@@ -72,6 +72,11 @@
             Proprietary <i class="bi bi-exclamation-triangle"></i>
         </span>
     {% endif %}
+    {%- if resource.curation_type == "generative-ai" %}
+        <span class="badge badge-warning" style="display: inline-block;">
+            AI-generated <i class="bi bi-exclamation-triangle"></i>
+        </span>
+    {%- endif %}
 {% endmacro %}
 
 {% macro render_provider_table(prefix, identifier, providers) -%}
