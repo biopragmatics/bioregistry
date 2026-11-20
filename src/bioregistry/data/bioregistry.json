@@ -1,63 +1,141 @@
 {
-
   "eudpp.battery": {
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
     "homepage": "https://cirpass-2.github.io/documentation-battery/Battery/battery-ontology-complete/index-en.html",
     "license": "CC-BY-4.0",
-    "keywords": ["battery"],
+    "keywords": ["battery", "batteries"],
     "download_owl": "https://cirpass-2.github.io/documentation-battery/Battery/battery-ontology-complete/ontology.ttl",
-    "uri_format": "https://w3id.org/eudpp/battery#",
-    "rdf_uri_format": "https://w3id.org/eudpp/battery#",
+    "uri_format": "https://w3id.org/eudpp/battery#$1",
+    "rdf_uri_format": "https://w3id.org/eudpp/battery#$1",
     "example": "Battery",
     "name": "EU DPP Battery Ontology",
     "description": "Am upper level for the EU DPP",
     "contact": {
       "name": "Nader Jelassi",
       "github": "naderjelassi"
-    }
-    "repository": "https://github.com/CIRPASS-2/ontologies-battery",
+    },
+    "repository": "https://github.com/CIRPASS-2/ontologies-battery"
   },
-  "eudpp.battery-performance": {},
-  "eudpp.battery-materials": {},
-  "eudpp.battery-locations": {},
-  "eudpp.battery-chemistries": {},
-  "eudpp.battery-metals": {},
-  "eudpp.battery-labeling": {},
-  "eudpp.battery-extinguisher": {},
-  "eudpp.battery-categories": {},
-  "eudpp.battery-statuses": {},
-  "eudpp.battery-shapes": {},
   "chameo": {
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
     "name": "Characterisation Methodology Domain Ontology",
     "depends_on": ["emmo"],
+    "description": "An ontology for materials characterization which represents the evolution of the [CHADA](https://www.sciencedirect.com/science/article/pii/S235249281930087X?via%3Dihub) template in an ontological form, allowing to generate FAIR documentation of Characterisation Experiments and that has been used as a basis for the development of a number of technique-specific or application-specific ontologies in the materials characterisation domain.\n\nCHAMEO has been used as a foundation for the definition of the new CHADA template during the [CWA](https://www.cencenelec.eu/media/CEN-CENELEC/CWAs/RI/2025/cwa17815_2025.pdf).",
     "license": "CC-BY-4.0",
     "repository": "https://github.com/emmo-repo/domain-characterisation-methodology",
+    "download_owl": "https://github.com/emmo-repo/domain-characterisation-methodology/raw/refs/heads/main/chameo.ttl",
+    "uri_format": "https://w3id.org/emmo/domain/characterisation-methodology/chameo#$1",
+    "example": "hasCharacterisationComponent"
   },
   "emmo.battery": {
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+   "contact": {
+      "github": "jsimonclark",
+      "name": "Simon Clark",
+      "orcid": "0000-0002-2547-155X"
+    },
+    "keywords": ["battery", "batteries"],
+    "name": "EMMO Battery Domain Ontology",
+    "logo": "https://raw.githubusercontent.com/emmo-repo/domain-battery/master/docs/assets/img/fig/png/domain-battery-logo.png",
+    "uri_format": "https://w3id.org/emmo/domain/battery#battery_$1",
+    "example": "e855801e_bdda_461b_913b_1c680027409e",
+    "description": "The Battery Domain Ontology, a specialized domain within the Elementary Multiperspective Materials Ontology (EMMO), encompasses essential terms and relationships for battery components, cells, interfaces, methods, models, and data. Its primary objective is to enable the creation of linked and FAIR (Findable, Accessible, Interoperable, and Reusable) data, thereby fostering advancements in research and innovation within the realm of batteries. This ontology serves as a foundational resource for harmonizing battery knowledge representation, enhancing data interoperability, and accelerating progress in battery research and development. (from ontology abstract)",
     "repository": "https://github.com/emmo-repo/domain-battery",
+    "download_owl": "https://github.com/emmo-repo/domain-battery/raw/refs/heads/master/battery.ttl"
   },
   "emmo.battery-testing": {
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "contact": {
+      "github": "Leienad",
+      "name": "Daniele Toti"
+    },
+    "download_owl": "https://github.com/emmo-repo/application-battery-testing-ontology/raw/refs/heads/main/battery-testing-ontology.ttl",
+    "license": "CC-BY-4.0",
+    "name": "Battery Testing Ontology",
+    "uri_format": "http://w3id.org/emmo-bto/bto#$1",
+    "example": "Accuracy",
+    "keywords": ["battery", "batteries"],
+    "description": "The Battery Testing Ontology (BTO) is an application-level ontology belonging to EMMO's ecosystem, meant to model battery testing methodologies and techniques, like the partial discharge test. BTO is connected and aligned with a number of EMMO-based ontologies, including CHAMEO, Battery Domain Ontology and Electrochemistry.",
+    "homepage": "https://github.com/emmo-repo/application-battery-testing-ontology",
     "repository": "https://github.com/emmo-repo/application-battery-testing-ontology",
-    "references": [
+    "publications": [
       {
-      "doi": "https://doi.org/10.1016/j.compind.2024.104203",
+      "doi": "10.1016/j.compind.2024.104203",
       "year": 2025,
       "title": "Battery testing ontology: An EMMO-based semantic framework for representing knowledge in battery testing and battery quality control"
       }
-
     ]
-  }
+  },
   "emmo.electrochemistry": {
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
     "repository": "https://github.com/emmo-repo/domain-electrochemistry",
+    "download_owl": "https://github.com/emmo-repo/domain-electrochemistry/raw/refs/heads/master/electrochemistry.ttl",
+    "uri_format": "https://w3id.org/emmo/domain/electrochemistry#electrochemistry_$1",
+    "example": "5096e449_4d92_420e_ae6d_0e156f6e4ebd",
+    "homepage": "https://emmo-repo.github.io/domain-electrochemistry/",
+    "license": "CC-BY-4.0",
+    "name": "EMMO Electrochemistry Domain Ontology",
+    "description": "The Electrochemistry Domain Ontology is a domain of the Elementary Multiperspective Materials Ontology (EMMO), for describing electrochemical systems, materials, methods, and data. Its primary objective is to support the creation of FAIR, Linked Data within the field of electrochemistry. This ontology serves as a foundational resource for harmonizing electrochemical knowledge representation, enhancing data interoperability, and accelerating progress in electrochemical research and development. (from repository README)",
+    "logo": "https://raw.githubusercontent.com/emmo-repo/domain-electrochemistry/gh-pages/assets/img/fig/png/domain-electrochemistry-logo.png"
   },
   "emmo.magnetic-materials": {
-    "repository": "https://github.com/emmo-repo/domain-magnetic-materials",
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "homepage": "https://emmo-repo.github.io/domain-magnetic-materials/",
+    "download_owl": "https://github.com/emmo-repo/domain-magnetic-materials/raw/refs/heads/main/magnetic-materials.ttl",
+    "name": "Magnetic Materials Ontology",
+    "synonyms": ["magmo"],
+    "license": "CC-BY-4.0",
+    "uri_format": "https://w3id.org/emmo/domain/magnetic-materials#MagMO_$1",
+    "example": "8f4dc04f-d753-55b3-b405-996199149372",
+    "description": "An EMMO-based domain-ontology for magnetic materials. Created within the EU project MaMMoS. Grant number 101135546 (HORIZON-CL4-2023-DIGITAL-EMERGING-01)",
+    "repository": "https://github.com/emmo-repo/domain-magnetic-materials"
   },
   "bvco": {
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "This ontology aims to model processes along the Battery value chain. Processes are holistic perspective elements that transform inputs/educts (matter, energy, information) into output/products (matter, energy, information) with the help of tools (devices, algorithms). They can be decomposed into sub-processes and have predecessor and successor processes. (from repository README)",
+    "homepage": "https://battery-value-chain-ontology.github.io/ontology/",
+    "license": "CC-BY-4.0",
+    "download_owl": "https://github.com/Battery-Value-Chain-Ontology/ontology/raw/refs/heads/master/BVCO.ttl",
+    "uri_format": "https://bvco.ontology.link/BVCO_$1",
+    "example": "115edbed_3858_426d_86c5_df8a6528b53b",
     "name": "Battery Value Chain Ontology",
     "repository":"https://github.com/Battery-Value-Chain-Ontology/ontology"
-
-  }
-
+  },
   "_3dmet": {
     "biocontext": {
       "prefix": "3DMET",
@@ -9541,6 +9619,7 @@
     "mappings": {
       "tib.ts": "battinfo"
     },
+    "uri_format": "https://big-map.github.io/BattINFO/ontology/BattINFO#$1",
     "name": "Battery Interface Ontology",
     "repository": "https://github.com/BIG-MAP/BattINFO",
     "tib.ts": {
