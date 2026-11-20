@@ -21,7 +21,7 @@ def import_tib() -> None:
     tqdm.write("\n\nImporting Collections from TIB OLS\n\n")
     counter: Counter[str] = Counter()
 
-    tib_to_internal = bioregistry.get_registry_invmap("tib")
+    tib_to_internal = bioregistry.get_registry_invmap("tib.ts")
 
     misses = defaultdict(list)
     for tib_prefix, tib_data in get_tib_ts().items():
