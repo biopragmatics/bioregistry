@@ -94774,6 +94774,19 @@
       "KEGG_REACTION"
     ]
   },
+  "kenom.actor": {
+    "contact": {
+      "email": "duehrkohp@gbv.de",
+      "name": "Frank Dührkohp",
+      "orcid": "0000-0001-9895-8986"
+    },
+    "description": "Classification materials in Kooperative Erschließung und Nutzung der Objektdaten von Münzsammlungen (KEMON; Collaborative Cataloging and Use of Object Data from Coin Collections) the [portal](https://www.kenom.de/index/)",
+    "example": "e33797c8-c7d7-4e10-a893-f8b8740b46b8",
+    "homepage": "https://uri.gbv.de/terminology/kenom_actor",
+    "name": "Kooperative Erschließung und Nutzung der Objektdaten von Münzsammlungen actor",
+    "part_of_database": "kenom",
+    "uri_format": "https://uri.gbv.de/terminology/kenom_actor/$1"
+  },
   "kenom.material": {
     "bartoc": {
       "description": "Classification of materials used in KENOM portal.",
@@ -94784,11 +94797,19 @@
       ],
       "uri_format": "http://uri.gbv.de/terminology/kenom_material/$1"
     },
+    "contact": {
+      "email": "duehrkohp@gbv.de",
+      "name": "Frank Dührkohp",
+      "orcid": "0000-0001-9895-8986"
+    },
+    "description": "Classification materials in Kooperative Erschließung und Nutzung der Objektdaten von Münzsammlungen (KEMON; Collaborative Cataloging and Use of Object Data from Coin Collections) the [portal](https://www.kenom.de/index/)",
     "example": "4e8b1c94-97f5-44bd-bd5b-0dc3f84e5417",
     "homepage": "http://uri.gbv.de/terminology/kenom_material",
     "mappings": {
       "bartoc": "20533"
-    }
+    },
+    "name": "Kooperative Erschließung und Nutzung der Objektdaten von Münzsammlungen material",
+    "part_of_database": "kenom"
   },
   "kerafast": {
     "cellosaurus.resource": {
@@ -98016,6 +98037,56 @@
       }
     ]
   },
+  "lobid.vocab": {
+    "bartoc": {
+      "homepage": "http://purl.org/lobid/lv",
+      "name": "lobid vocab",
+      "prefix": "18070",
+      "short_names": [
+        "lv"
+      ],
+      "uri_format": "http://purl.org/lobid/lv#$1"
+    },
+    "contact": {
+      "github": "acka47",
+      "name": "Adrian Pohl",
+      "orcid": "0000-0001-9083-7442"
+    },
+    "contributor_extras": [
+      {
+        "email": "cthoyt@gmail.com",
+        "github": "cthoyt",
+        "name": "Charles Tapley Hoyt",
+        "orcid": "0000-0003-4423-4370"
+      }
+    ],
+    "description": "Under this name space new properties and classes needed for the service lobid ('linking open bibliographic data') are defined . Already existing properties and classes which are (re)used in lobid aren't documented here [from TTL]",
+    "download_owl": "https://raw.githubusercontent.com/hbz/lobid-vocabs/master/lobid-vocab.ttl",
+    "example": "ArchivedWebPage",
+    "license": "CC0-1.0",
+    "lov": {
+      "description": "Under this name space new properties and classes needed for the lobid.org service are defined . Already existing properties and classes which are (re)used in lobid.org aren't documented here.",
+      "homepage": "http://purl.org/lobid/lv",
+      "keywords": [
+        "Catalogs"
+      ],
+      "name": "lobid vocab",
+      "prefix": "lv",
+      "uri_format": "http://purl.org/lobid/lv#$1"
+    },
+    "mappings": {
+      "bartoc": "18070",
+      "lov": "lv"
+    },
+    "name": "Linking Open Bibliographic Data vocabulary",
+    "owners": [
+      {
+        "name": "Hochschulbibliothekszentrum des Landes Nordrhein-Westfalen",
+        "ror": "00n3mcd10"
+      }
+    ],
+    "repository": "https://github.com/hbz/lobid-vocabs"
+  },
   "loc.authority": {
     "contributor": {
       "email": "cthoyt@gmail.com",
@@ -99761,35 +99832,6 @@
     "name": "Long Term Ecological Research Controlled Vocabulary",
     "pattern": "^\\d+$",
     "uri_format": "https://vocab.lternet.edu/vocab/vocab/index.php?tema=$1"
-  },
-  "lv": {
-    "bartoc": {
-      "homepage": "http://purl.org/lobid/lv",
-      "name": "lobid vocab",
-      "prefix": "18070",
-      "short_names": [
-        "lv"
-      ],
-      "uri_format": "http://purl.org/lobid/lv#$1"
-    },
-    "description": "Under this name space new properties and classes needed for the service lobid ('linking open bibliographic data') are defined . Already existing properties and classes which are (re)used in lobid aren't documented here [from TTL]",
-    "download_owl": "https://raw.githubusercontent.com/hbz/lobid-vocabs/master/lobid-vocab.ttl",
-    "example": "ArchivedWebPage",
-    "license": "CC0-1.0",
-    "lov": {
-      "description": "Under this name space new properties and classes needed for the lobid.org service are defined . Already existing properties and classes which are (re)used in lobid.org aren't documented here.",
-      "homepage": "http://purl.org/lobid/lv",
-      "keywords": [
-        "Catalogs"
-      ],
-      "name": "lobid vocab",
-      "prefix": "lv",
-      "uri_format": "http://purl.org/lobid/lv#$1"
-    },
-    "mappings": {
-      "bartoc": "18070",
-      "lov": "lv"
-    }
   },
   "lw": {
     "mappings": {
@@ -129670,6 +129712,30 @@
     "name": "Educational Context",
     "rdf_uri_format": "http://w3id.org/openeduhub/vocabs/educationalContext/$1",
     "uri_format": "http://w3id.org/openeduhub/vocabs/educationalContext/$1"
+  },
+  "openorg": {
+    "appears_in": [
+      "lobid.vocab"
+    ],
+    "contact": {
+      "email": "cjg@ecs.soton.ac.uk",
+      "github": "cgutteridge",
+      "name": "Christopher Gutteridge",
+      "orcid": "0000-0001-9201-5987"
+    },
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": " This vocabulary provides supplementary terms for organisations wishing to publish open data about themselves. (from homepage)",
+    "download_rdf": "https://web-archive.southampton.ac.uk//neologism.ecs.soton.ac.uk/oo.ttl",
+    "example": "contact",
+    "homepage": "https://web-archive.southampton.ac.uk//neologism.ecs.soton.ac.uk/oo.html#contact",
+    "license": "CC-BY-3.0",
+    "name": "Open Organisations",
+    "rdf_uri_format": "https://web-archive.southampton.ac.uk/neologism.ecs.soton.ac.uk/oo#$1"
   },
   "opentrials": {
     "mappings": {
