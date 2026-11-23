@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import difflib
 import json
 from collections.abc import Callable, Mapping, Sequence
 from functools import partial
@@ -62,10 +63,34 @@ def _normalize_prefix_or_404(
     except ValueError:
         norm_prefix = None
     if norm_prefix is None:
-        return render_template("resolve_errors/missing_prefix.html", prefix=prefix), 404
+        return (
+            render_template(
+                "resolve_errors/missing_prefix.html",
+                prefix=prefix,
+                similar_prefixes=_get_similar_prefixes(manager, prefix),
+            ),
+            404,
+        )
     elif endpoint is not None and norm_prefix != prefix:
         return redirect(url_for(endpoint, prefix=norm_prefix))
     return norm_prefix
+
+
+def _get_similar_prefixes(manager_: Manager, prefix: str, n: int = 5) -> list[str]:
+    """Get registered prefixes that are lexically similar to an unknown prefix.
+
+    :param manager_: A manager
+    :param prefix: The unknown prefix, e.g., from a typo
+    :param n: The maximum number of prefixes to return
+    :return: Canonical prefixes, ordered from most to least similar
+    """
+    rv: list[str] = []
+    # look up extra matches since several synonyms can map to the same prefix
+    for match in difflib.get_close_matches(_norm(prefix), manager_.synonyms, n=3 * n, cutoff=0.75):
+        similar_prefix = manager_.synonyms[match]
+        if similar_prefix not in rv:
+            rv.append(similar_prefix)
+    return rv[:n]
 
 
 def _search(manager_: Manager, q: str) -> list[tuple[str, str]]:
