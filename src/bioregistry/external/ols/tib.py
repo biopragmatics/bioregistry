@@ -52,6 +52,7 @@ def get_tib_ts(
         raw_path=RAW_PATH,
         version_processing_config_path=VERSION_PROCESSING_CONFIG_PATH,
         skip_uri_format={"edam", "battinfo"},
+        skip_keywords={"Miscellaneous"},
     )
 
 
