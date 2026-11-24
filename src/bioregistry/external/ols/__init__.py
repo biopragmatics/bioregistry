@@ -84,6 +84,7 @@ def get_ols_base(
     raw_path: Path,
     version_processing_config_path: Path | None = None,
     skip_uri_format: set[str] | None = None,
+    skip_keywords: set[str] | None = None,
 ) -> dict[str, Record]:
     """Get an OLS registry."""
     if processed_path.exists() and not force_download and not force_process:
@@ -111,6 +112,7 @@ def get_ols_base(
                 ontology,
                 version_processing_config=version_processing_config,
                 skip_uri_format=skip_uri_format,
+                skip_keywords=skip_keywords,
             )
             if not record:
                 continue
@@ -289,6 +291,7 @@ def _process(
     *,
     version_processing_config: OLSConfig | None = None,
     skip_uri_format: set[str] | None = None,
+    skip_keywords: set[str] | None = None,
 ) -> Record:
     ols_id = ols_entry["ontologyId"]
     config = ols_entry["config"]
@@ -300,6 +303,9 @@ def _process(
     for x in config.get("classifications", []):
         keywords.extend(x.get("collection", []))
         keywords.extend(y for s in x.get("subject", []) if (y := s.lower()) != "general")
+
+    if skip_keywords:
+        keywords = [k for k in keywords if k not in skip_keywords]
 
     rv = {
         "prefix": ols_id,
