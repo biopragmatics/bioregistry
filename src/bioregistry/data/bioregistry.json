@@ -64237,6 +64237,45 @@
     "pattern": "^\\d{7}$",
     "uri_format": "http://purl.obolibrary.org/obo/FOVT_$1"
   },
+  "fpbase": {
+    "comment": "Often slugs are used instead of the protein ids e.g. https://www.fpbase.org/protein/ZERB6/ is via FPBase ID https://www.fpbase.org/protein/mcherry/ is via slug For the slugs, the _de facto_ regex would be something like `^[a-zA-Z0-9._-]{1,64}$`  but there is no strict regex.",
+    "contact": {
+      "github": "tlambert03",
+      "name": "Talley Lambert",
+      "orcid": "0000-0002-2409-0181"
+    },
+    "contributor": {
+      "github": "lubianat",
+      "name": "Tiago Lubiana",
+      "orcid": "0000-0003-2473-2313"
+    },
+    "description": "The Fluorescent Protein Database (FPbase) is a free and open-source, community-editable database for fluorescent proteins (FPs) and their properties. It agregates FP data that is of interest to the imaging community and FP developers, assigning each protein a dedicated page.",
+    "example": "ZERB6",
+    "github_request_issue": 2245,
+    "homepage": "https://www.fpbase.org",
+    "keywords": [
+      "database",
+      "fluorescent proteins"
+    ],
+    "license": "CC-BY-SA-4.0",
+    "name": "Fluorescent Protein Database",
+    "pattern": "^[A-HJ-Z1-9]{5}$",
+    "publications": [
+      {
+        "doi": "10.1038/s41592-019-0352-8",
+        "title": "FPbase: a community-editable fluorescent protein database",
+        "year": 2019
+      }
+    ],
+    "repository": "https://github.com/tlambert03/FPbase",
+    "reviewer": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "uri_format": "https://www.fpbase.org/protein/$1"
+  },
   "fplx": {
     "aberowl": {
       "artifacts": [
