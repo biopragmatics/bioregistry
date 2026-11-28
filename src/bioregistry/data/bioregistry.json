@@ -15572,34 +15572,6 @@
     ],
     "uri_format": "https://www.ncbi.nlm.nih.gov/genome/annotation_prok/evidence/$1"
   },
-  "bluebutton": {
-    "contributor": {
-      "email": "b.gyori@northeastern.edu",
-      "github": "bgyori",
-      "name": "Benjamin M. Gyori",
-      "orcid": "0000-0001-9439-5346"
-    },
-    "description": "Variables of Medicare fee-for-service claims, Part D prescription drug events and beneficiary enrollment records, such as payment amounts, diagnosis codes and enrollment status, as defined in the codebooks of the CMS Chronic Conditions Data Warehouse. The CMS Blue Button API, which provides the Medicare claims of beneficiaries as FHIR resources, uses the URIs of these variables as code system URIs and extension URLs.",
-    "example": "line_prvdr_pmt_amt",
-    "github_request_issue": 2256,
-    "homepage": "https://bluebutton.cms.gov",
-    "keywords": [
-      "claims",
-      "fhir",
-      "health insurance",
-      "medicare"
-    ],
-    "name": "CMS Blue Button Variable",
-    "owners": [
-      {
-        "name": "Centers for Medicare and Medicaid Services",
-        "ror": "02g02rq35",
-        "wikidata": "Q5060058"
-      }
-    ],
-    "pattern": "^[a-z][a-z0-9_]*$",
-    "uri_format": "https://bluebutton.cms.gov/resources/variables/$1"
-  },
   "bmbf.glossary": {
     "contributor": {
       "email": "cthoyt@gmail.com",
@@ -28913,6 +28885,34 @@
     ],
     "repository": "https://github.com/EBISPOT/CMPO",
     "uri_format": "http://www.ebi.ac.uk/cmpo/CMPO_$1"
+  },
+  "cms.ccw": {
+    "contributor": {
+      "email": "b.gyori@northeastern.edu",
+      "github": "bgyori",
+      "name": "Benjamin M. Gyori",
+      "orcid": "0000-0001-9439-5346"
+    },
+    "description": "Variables related to claims and enrollment defined in the Centers for Medicare and Medicaid Services (CMS) Chronic Conditions Data Warehouse (CCW). These variables are used in the FHIR resources returned by CMS APIs, and can be resolved on the CMS Blue Button API's website.",
+    "example": "line_prvdr_pmt_amt",
+    "github_request_issue": 2256,
+    "homepage": "https://www2.ccwdata.org",
+    "keywords": [
+      "claims",
+      "fhir",
+      "health insurance",
+      "medicare"
+    ],
+    "name": "CMS Chronic Conditions Data Warehouse Variable",
+    "owners": [
+      {
+        "name": "Centers for Medicare and Medicaid Services",
+        "ror": "02g02rq35",
+        "wikidata": "Q5060058"
+      }
+    ],
+    "pattern": "^[a-z][a-z0-9_]*$",
+    "uri_format": "https://bluebutton.cms.gov/resources/variables/$1"
   },
   "cncb.gwh": {
     "contact": {
