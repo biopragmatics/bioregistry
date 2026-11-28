@@ -2796,12 +2796,12 @@
       "email": "support@cathexis.health",
       "name": "Justin DeGarbo"
     },
-    "description": "A formal vocabulary for representing body-based therapeutic experience in computational systems. The Cathexis Somatic Ontology (CSO) defines 29 anatomical zones, 20 sensation qualities, 7 primary affect systems, 19 brain regions, 11 functional networks, 5 ecological context layers, 16 territories of human experience, 3 therapeutic change mechanisms and 7 intervention types, organized within a Markov blanket framework. It is the machine-readable form of the same architecture as The Human Experience System (the theory) and The Human Experience Framework (the clinical classification). Designed for digital mental health platforms, AI agent integration via Model Context Protocol (MCP), and clinical research. Grounded in constructed emotion theory (Barrett), predictive processing (Friston), primary affect systems (Panksepp), somatic markers (Damasio), neuropsychoanalysis (Solms), the entangled brain (Pessoa), and memory systems and reconsolidation (Kandel)., A formal vocabulary and relational schema for encoding body-based therapeutic experience computationally. Defines entity classes for anatomical zones, sensation qualities, neurobiological organization patterns (territories), therapeutic change mechanisms, brain regions, ecological layers, and intervention architectures, organized within a Markov blanket framework.",
+    "description": "The Cathexis Somatic Ontology (CSO) is an open, machine-readable vocabulary for first-person somatic experience: where a sensation is felt, what it is like, how intense it is, and what it means within a clinical framework. Release 2.0.0 is the infrastructure release. Every class, property and term has a permanent code (CXSO:0000001 to CXSO:0000217) under https://w3id.org/cxso/, and every v1.1 identifier is kept as a retired alias that points to its new code. The release has a core observation module and a clinical module, links to the UBERON anatomy ontology, data rules in SHACL, and an HL7 FHIR R4 package with a CodeSystem, value sets and profiles. Mappings to SNOMED CT and ICD-11 are outlined in the white paper and are not part of this release. The vocabulary has not yet been validated empirically. Published by Cathexis Health LLC under CC BY 4.0., machine-readable vocabulary for first-person somatic experience. Release 2.0.0 splits the vocabulary into a core anyone can use without the theory (zones, sensation qualities, intensity, time, evidence kind, and the snapshot and data-point structure) and a clinical extension that imports the core (territories, blanket configurations, affect systems, change and risk mechanisms, practice types, learning levels, territory status, and HES layers). Every term has a permanent opaque code (CXSO_0000001 onward) in the https://w3id.org/cxso/ namespace. Identifiers from CSO v1.1 are kept as deprecated aliases.",
     "license": {
       "name": "CC-BY-4.0"
     },
     "name": "Cathexis Somatic Ontology",
-    "version": "1.1.1"
+    "version": "2.0.0"
   },
   "CYTO": {
     "contact": {
@@ -2933,9 +2933,9 @@
       "email": "dclunie@dclunie.com",
       "name": "David Clunie"
     },
-    "description": "DICOM Controlled Terminology (PS3.16 2026d Annex D)",
+    "description": "DICOM Controlled Terminology (PS3.16 2026e Annex D)",
     "name": "DICOM Controlled Terminology",
-    "version": "2026d_20260919"
+    "version": "2026e_20261121"
   },
   "DCMITYPE": {
     "contact": {
@@ -3337,7 +3337,7 @@
       "name": "CC-BY-4.0"
     },
     "name": "Drosophila Phenotype Ontology",
-    "version": "2026-11-02"
+    "version": "2026-11-27"
   },
   "DRANPTO": {
     "contact": {
@@ -4379,7 +4379,7 @@
       "name": "CC-BY-4.0"
     },
     "name": "FlyBase Controlled Vocabulary",
-    "version": "2026-11-02"
+    "version": "2026-11-27"
   },
   "FB-DV": {
     "contact": {
@@ -4389,7 +4389,7 @@
     "description": "A structured controlled vocabulary of the development of <i>Drosophila melanogaster</i>.",
     "homepage": "http://sourceforge.net/p/fbbtdv/wiki/Home/",
     "name": "Drosophila Development Ontology",
-    "version": "2026-11-02"
+    "version": "2026-11-26"
   },
   "FB-SP": {
     "contact": {
@@ -4589,7 +4589,7 @@
       "name": "CC0-1.0"
     },
     "name": "Flora Phenotype Ontology",
-    "version": "2026-11-15"
+    "version": "2026-11-24"
   },
   "FLU": {
     "contact": {
@@ -5363,7 +5363,7 @@
     },
     "description": "The GS1 Web Vocabulary collects terms defined in various GS1 standards and data systems and made available for general use., The GS1 RDF vocabulary, described using W3C RDF Schema and the Web Ontology Language. The vocabulary builds on and refers to schema.org where appropriate.",
     "name": "GS1 Web Vocabulary",
-    "version": "1.18"
+    "version": "1.19"
   },
   "GSSO": {
     "contact": {
@@ -5430,7 +5430,7 @@
         "url": "https://genomebiology.biomedcentral.com/articles/10.1186/s13059-018-1396-2"
       }
     ],
-    "version": "2025-10-14"
+    "version": "2026-11-23"
   },
   "HAO": {
     "contact": {
@@ -5681,7 +5681,7 @@
         "doi": "10.5281/zenodo.23516370"
       }
     ],
-    "version": "2.0.0"
+    "version": "2.0.1"
   },
   "HERO": {
     "contact": {
@@ -6296,13 +6296,16 @@
   "ICD10CM": {
     "description": "International Classification of Diseases, 10th Edition, Clinical Modification",
     "homepage": "https://www.cdc.gov/nchs/icd/icd-10-cm.htm",
+    "license": {
+      "name": "https://uts.nlm.nih.gov/help/license/licensecategoryhelp.html#category4"
+    },
     "name": "International Classification of Diseases, Version 10 - Clinical Modification",
     "publications": [
       {
         "url": "http://www.cms.hhs.gov/"
       }
     ],
-    "version": "2026"
+    "version": "2027"
   },
   "ICD10PCS": {
     "contact": {
@@ -6311,13 +6314,16 @@
     },
     "description": "ICD-10-PCS is a medical classification coding system for procedural codes.",
     "homepage": "https://www.cms.gov/Medicare/Coding/ICD10/index.html",
+    "license": {
+      "name": "https://uts.nlm.nih.gov/help/license/licensecategoryhelp.html"
+    },
     "name": "International Classification of Diseases, Version 10 - Procedure Coding System",
     "publications": [
       {
         "url": "http://www.cms.hhs.gov"
       }
     ],
-    "version": "2026"
+    "version": "2027"
   },
   "ICD9CM": {
     "description": "The ICD is the international standard diagnostic classification for all general epidemiological, many health management purposes and clinical use.",
@@ -6545,6 +6551,18 @@
       }
     ],
     "version": "1.3.9"
+  },
+  "IDPO": {
+    "contact": {
+      "email": "ximena.castro@unipd.it",
+      "name": "Ximena Aixa Castro"
+    },
+    "description": "The Intrinsically Disordered Proteins Ontology (IDPO) defines concepts and relationships that describe the structural states, dynamic transitions, and functional roles of intrinsically disordered proteins (IDPs) and intrinsically disordered regions (IDRs). Its terms and definitions are grounded in the terminology used by the IDP research community and derived from scientific literature in the field., It describes structural aspects of an IDP/IDR, self-functions and functions directly associated with their disordered state.",
+    "license": {
+      "name": "CC-BY-4.0"
+    },
+    "name": "Intrinsically Disordered Proteins Ontology",
+    "version": "2026-11-03"
   },
   "IDQA": {
     "contact": {
@@ -7037,7 +7055,7 @@
     "license": {
       "name": "Apache-2.0"
     },
-    "name": "SIA Intelligence Artifact Governance Ontology, Ms. Isabel Schoeps Thiel (Prof. Dr. Ph.D.)",
+    "name": "SIA Security Intelligence Artefact, Governance Ontology, Author; Ms. Isabel Schoeps Thiel (Prof. Dr. Ph.D.), Arnstädter Straße 39, D-99096, Thueringa, Germany. Apartment 1.Floor",
     "publications": [
       {
         "doi": "10.5281/zenodo.22814540"
@@ -7436,7 +7454,7 @@
         "url": "http://loinc.org/downloads"
       }
     ],
-    "version": "282"
+    "version": "283"
   },
   "LONGCOVID": {
     "contact": {
@@ -8003,7 +8021,7 @@
         "url": "http://www.nlm.nih.gov/mesh"
       }
     ],
-    "version": "2026_2026_01_09"
+    "version": "2027_2026_09_18"
   },
   "METABUS": {
     "contact": {
@@ -8455,7 +8473,7 @@
       "name": "CC-BY-4.0"
     },
     "name": "Molecular Simulation Ontology",
-    "version": "2026-11-20"
+    "version": "2026-11-27"
   },
   "MOMCARE": {
     "contact": {
@@ -8607,7 +8625,7 @@
         "url": "http://database.oxfordjournals.org/content/2013/bat009.long"
       }
     ],
-    "version": "4.2.17"
+    "version": "4.2.18"
   },
   "MSCDO": {
     "contact": {
@@ -8763,7 +8781,7 @@
       "name": "https://uts.nlm.nih.gov/help/license/licensecategoryhelp.html"
     },
     "name": "National Center for Biotechnology Information (NCBI) Organismal Classification",
-    "version": "2025_09_17"
+    "version": "2026_04_20"
   },
   "NCCNEHR": {
     "contact": {
@@ -8830,7 +8848,7 @@
       "name": "https://uts.nlm.nih.gov/help/license/licensecategoryhelp.html#category3"
     },
     "name": "National Drug Data File",
-    "version": "2026_02_04"
+    "version": "2026_08_05"
   },
   "NDDO": {
     "contact": {
@@ -8865,6 +8883,18 @@
       }
     ],
     "version": "2018aa"
+  },
+  "NEDRT": {
+    "contact": {
+      "email": "support@bioontology.org",
+      "name": "Bioportal"
+    },
+    "description": "MEDRT includes native pharmacologic classification concepts (e.g. mechanisms of action (MoA), physiologic effects (PE), Established Pharmacologic Class (EPC)) and all relationships asserted between concepts in any namespace.",
+    "license": {
+      "name": "https://uts.nlm.nih.gov/help/license/licensecategoryhelp.html"
+    },
+    "name": "Medication Reference Terminology",
+    "version": "2026_09_09"
   },
   "NEET_": {
     "contact": {
@@ -9753,9 +9783,10 @@
     },
     "description": "Introduction: The diversity of flap types in plastic surgery has led to multiple classification systems based on factors such as blood supply, tissue composition and distance between donor and recipient site. However, no comprehensive framework exists that systematically integrates all relevant aspects. Capturing the full range of surgical flaps in a structured manner could facilitate future research, improve interoperability, and even optimize billing processes. Ontologies could address this gap. They offer a structured approach to organizing and formalizing knowledge by defining a hierarchical tree of classes and individuals linked logically to other entities. Materials and Methods: We applied principles of ontology engineering, integrating knowledge from surgical literature and clinical expertise to model a wide variety of flaps. These are linked to the Foundational Model of Anatomy (FMA) ontology to describe their tissue components. The reasoner Hermit was employed to ensure logical consistency. Results: Structured hierarchically, the ontology links flaps to relevant anatomical structures and applies logical constraints to define necessary and sufficient conditions for each flap type. This enables precise representation of flap variations, each uniquely identified by an Ontology of Flaps in Reconstructive Surgery Identifier (OFLID). The developed ontology encompasses a wide range of local, pedicled, and free flaps. Simple local random-pattern V-Y flaps to complex chimeric and supercharged free flaps can be modelled and automatically classified. Conclusions: This ontology of surgical flaps could facilitate interoperability, multicentric research and artificial intelligence applications. Future work will focus on validation with larger datasets and expanding the ontology’s functionality.",
     "license": {
-      "name": "https://opensource.org/licenses/MIT"
+      "name": "CC-BY-4.0"
     },
-    "name": "A comprehensive ontology of flaps in reconstructive surgery"
+    "name": "A comprehensive ontology of flaps in reconstructive surgery",
+    "version": "2.2.1"
   },
   "OFSMR": {
     "contact": {
@@ -10026,7 +10057,7 @@
         "url": "http://www.ncbi.nlm.nih.gov/omim/"
       }
     ],
-    "version": "2026_02_05"
+    "version": "2026_08_07"
   },
   "OMIT": {
     "contact": {
@@ -11739,11 +11770,12 @@
       "email": "juliette.potier@institutimagine.org",
       "name": "Juliette POTIER"
     },
-    "description": "The PROMOT ontology was built in the context of the \"Performing a Rare Disease-Oriented Master Observational Trial\" initiative (PROMOT initiative). PROMOT ontology represents three groups of neuromuscular diseases related to the 13 genes the PROMOT Master Observational Trial focuses on: - Oculopharyngeal Muscular Dystrophy (PABPN1) - Congenital Myasthenic Syndromes (CHRNE, DOK7, COLQ, RAPSN, GFPT1, GMPPB) - Congenital Myopathies (RYR1, TTN, NEB, MTM1, ACTA1, SELENON). This ontology aims to be the conceptual schema for the common data model the PROMOT initiative will use to collect patient data scattered between the different sites involved in PROMOT initiative. PROMOT initiative has received funding from the Canadian Institutes of Health Research (CIHR), and in partnership with L’Agence Nationale de la Recherche (France), Health Research Board (Dublin, Ireland), Instituto de Salud Carloss III (Spain), IRSC–IG, Swedish Research Council (Sweden), and Swiss National Science Foundation (Switzerland), partners of the European Joint Programme on Rare Diseases (EJP RD). More about PROMOT initiative can be found at https://www.promotinitiative.com/project This ontology is published under the following licence: https://creativecommons.org/licenses/by-nc-sa/4.0/ Ontology Github and documentation will be available soon., The PROMOT ontology was built in the context of the \"Performing a Rare Disease-Oriented Master Observational Trial\" initiative (PROMOT initiative). PROMOT ontology represents three groups of neuromuscular diseases related to the 13 genes the PROMOT Master Observational Trial focuses on: - Oculopharyngeal Muscular Dystrophy (PABPN1) - Congenital Myasthenic Syndromes (CHRNE, SELENON) This ontology aims to be the conceptual schema for the common data model the PROMOT initiative will use to collect patient data scattered between the different sites involved in the project. PROMOT initiative has received funding from the Canadian Institutes of Health Research (CIHR), partners of the European Joint Programme on Rare Diseases (EJP RD)., The PROMOT ontology was built in the context of the \"Performing a Rare Disease-Oriented Master Observational Trial\" initiative (PROMOT initiative).\n\nPROMOT ontology represents three groups of neuromuscular diseases related to the 13 genes the PROMOT Master Observational Trial focuses on:\n \n- Oculopharyngeal Muscular Dystrophy (PABPN1)\n- Congenital Myasthenic Syndromes (CHRNE, GMPPB)\n- Congenital Myopathies (RYR1, SELENON)\n\nThis ontology aims to be the conceptual schema for the common data model the PROMOT initiative will use to collect patient data scattered between the different sites involved in the project.\n \nPROMOT initiative has received funding from the Canadian Institutes of Health Research (CIHR)",
+    "description": "The PROMOT ontology was built in the context of the \"Performing a Rare Disease-Oriented Master Observational Trial\" initiative (PROMOT initiative). It represents three groups of neuromuscular diseases related to the 13 genes the PROMOT Master Observational Trial focuses on: Oculopharyngeal Muscular Dystrophy (PABPN1), Congenital Myasthenic Syndromes (CHRNE, DOK7, COLQ, RAPSN, GFPT1, GMPPB), and Congenital Myopathies (RYR1, TTN, NEB, MTM1, ACTA1, SELENON). This ontology aims to be the conceptual schema for the common data model the PROMOT initiative will use to collect patient data scattered between the different sites involved in PROMOT initiative. PROMOT initiative has received funding from the Canadian Institutes of Health Research (CIHR), and in partnership with L’Agence Nationale de la Recherche (France), Health Research Board (Dublin, Ireland), Instituto de Salud Carloss III (Spain), IRSC–IG, Swedish Research Council (Sweden), and Swiss National Science Foundation (Switzerland), partners of the European Joint Programme on Rare Diseases (EJP RD). More about PROMOT initiative can be found at https://www.promotinitiative.com/project. This ontology is published under the following licence: https://creativecommons.org/licenses/by-nc-sa/4.0/. Ontology documentation will be available soon.",
     "license": {
       "name": "CC-BY-4.0"
     },
     "name": "PROMOT Ontology",
+    "repository": "https://github.com/JuPoIm/promot/",
     "version": "2026-09-09"
   },
   "PROPREO": {
@@ -12430,7 +12462,7 @@
       "name": "https://uts.nlm.nih.gov/help/license/licensecategoryhelp.html"
     },
     "name": "RxNORM",
-    "version": "20AA_260302F"
+    "version": "20AA_260908F"
   },
   "S4EHAW": {
     "contact": {
@@ -12885,7 +12917,7 @@
         "url": "http://www.snomed.org"
       }
     ],
-    "version": "2026_03_01"
+    "version": "2026_09_01"
   },
   "SNPO": {
     "contact": {
@@ -13182,7 +13214,7 @@
     "description": "UMLS Semantic Network The Semantic Network consists of (1) a set of broad subject categories, or Semantic Types, that provide a consistent categorization of all concepts represented in the UMLS Metathesaurus, and (2) a set of useful and important relationships, or Semantic Relations, that exist between Semantic Types. This section of the documentation provides an overview of the Semantic Network, and describes the files of the Semantic Network. Sample records illustrate structure and content of these files. The Semantic Network is distributed as one of the UMLS Knowledge Sources and as an open source resource available on the Semantic Network Web site, subject to these terms and conditions.",
     "homepage": "https://semanticnetwork.nlm.nih.gov/",
     "name": "Semantic Types Ontology",
-    "version": "2026AA"
+    "version": "2026AB"
   },
   "STY1": {
     "contact": {
@@ -13898,7 +13930,7 @@
       "name": "https://uts.nlm.nih.gov/help/license/licensecategoryhelp.html"
     },
     "name": "Veterans Health Administration National Drug File",
-    "version": "2026_01_30"
+    "version": "2026_07_31"
   },
   "VARIO": {
     "contact": {
@@ -13972,6 +14004,19 @@
     ],
     "version": "2022-07-19"
   },
+  "VERATECATABLE": {
+    "contact": {
+      "email": "info@verateca.com",
+      "name": "Verateca"
+    },
+    "description": "The Verateca Table is a periodic table of supplements. This English SKOS vocabulary covers the 312 ingredients in General Edition 1.0. Each entry contains the published ingredient name, its stable identifier and its table number. Nine collections reproduce the Table’s editorial groups. The vocabulary supports matching ingredient names in label data to the published reference.",
+    "homepage": "https://verateca.com/ingredients/table",
+    "license": {
+      "name": "CC-BY-4.0"
+    },
+    "name": "The Verateca Table - Periodic Table of Supplements",
+    "version": "1.0"
+  },
   "VFB_DRIVERS": {
     "contact": {
       "email": "cp390@cam.ac.uk",
@@ -13982,7 +14027,7 @@
       "name": "CC-BY-4.0"
     },
     "name": "vfb_drivers",
-    "version": "2026-11-16"
+    "version": "2026-11-23"
   },
   "VHOG": {
     "contact": {
@@ -14078,7 +14123,7 @@
       "name": "CC-BY-4.0"
     },
     "name": "Vaccine Ontology",
-    "version": "2026-06-12"
+    "version": "2026-11-23"
   },
   "VODANA-GENERAL": {
     "contact": {

@@ -10773,6 +10773,7 @@
         "foodon",
         "fovt",
         "hso",
+        "idpo",
         "lepao",
         "mco",
         "ons",
@@ -25132,7 +25133,8 @@
       "description": "CHEBI provides a distinct role hierarchy. Chemicals in the structural hierarchy are connected via a 'has role' relation. CHIRO provides links from these roles to useful other classes in other ontologies. This will allow direct connection between chemical structures (small molecules, drugs) and what they do. This could be formalized using 'capable of', in the same way Uberon and the Cell Ontology link structures to processes.",
       "homepage": "https://github.com/obophenotype/chiro",
       "name": "CHEBI Integrated Role Ontology",
-      "prefix": "CHIRO"
+      "prefix": "CHIRO",
+      "version": "2026-08-24"
     },
     "bioportal": {
       "contact": {
@@ -31416,6 +31418,9 @@
       "wikidata.entity": "Q113006456"
     },
     "obofoundry": {
+      "appears_in": [
+        "idpo"
+      ],
       "artifacts": [
         {
           "type": "owl",
@@ -45209,7 +45214,7 @@
       },
       "name": "Drosophila Phenotype Ontology",
       "prefix": "DPO",
-      "version": "2026-11-02"
+      "version": "2026-11-27"
     },
     "comment": "DPO is a subset of terms from FBcv",
     "license": "CC-BY-4.0",
@@ -55658,11 +55663,16 @@
     "bartoc": {
       "description": "The Environment Ontology (EnvO) provides a controlled, structured vocabulary that is designed to support the annotation of any organism or biological sample with environment descriptors. EnvO contains terms for biomes, environmental features, and environmental material.\" EnvO enables \"a concise, standardised, and comprehensive description of environment that is key to the integration, archiving and federated searching of environmental data. As a tool for the life sciences, we see EnvO bringing benefits similar to those of the Gene Ontology (GO). Through promoting consistent annotation grounded in an ontological framework, we hope to facilitate the semantic retrieval of any biological record anchored to EnvO. Records contained in sequence databases, 'omic data repositories, tissue banks and museum collections are prime candidates for EnvO annotation. However, EnvO is also suitable for the annotation of any record that has an environmental component. For example, you can use EnvO terms to provide information on the environment of remote sensing devices or simply to tag a picture that you took at the weekend. Further, the EnvO project is closely tied with GAZ, a first step towards an open source gazetteer constructed on ontological principles. GAZ describes places and place names as well as the relations between them and, when linked with EnvO descriptors, provides a basis to infer environment from place names.",
       "homepage": "http://www.environmentontology.org/",
+      "license": {
+        "spdx": "CC0-1.0",
+        "url": "http://creativecommons.org/publicdomain/zero/1.0/"
+      },
       "name": "Environment Ontology",
       "prefix": "562",
       "short_names": [
         "ENVO"
-      ]
+      ],
+      "uri_format": "http://purl.obolibrary.org/obo/ENVO_$1"
     },
     "biocontext": {
       "prefix": "ENVO",
@@ -60323,7 +60333,7 @@
       },
       "name": "FlyBase Controlled Vocabulary",
       "prefix": "FB-CV",
-      "version": "2026-11-02"
+      "version": "2026-11-27"
     },
     "download_obo": "https://raw.githubusercontent.com/FlyBase/flybase-controlled-vocabulary/master/fbcv.obo",
     "example": "0000586",
@@ -60506,7 +60516,7 @@
       "homepage": "http://sourceforge.net/p/fbbtdv/wiki/Home/",
       "name": "Drosophila Development Ontology",
       "prefix": "FB-DV",
-      "version": "2026-11-02"
+      "version": "2026-11-26"
     },
     "example": "00000000",
     "fairsharing": {
@@ -61282,7 +61292,7 @@
   "fish.aoe": {
     "bartoc": {
       "description": "Physical evidence, usually portable, resulting from past human activity or environmental remains that can be recovered from archaeological fieldwork. English Heritage takes a leading role in setting standards for recording the built and buried heritage. By setting standards that can be adopted by everyone, we can make sure that all records are consistent. In other words, if everyone uses the same words to describe the same monument, archaeological object, building material, etc, then anyone using this common language can easily index, retrieve and understand these records. With this aim in mind, English Heritage is continually developing new thesauri to provide structure and guidelines for the standardisation of terms to be used when creating new records of the past. Now, in our drive to disseminate these standards and promote their wider use, we are making available seven separate online thesauri. A tailor-made suite of programs has been developed, which uses a database to create a series of web pages for any chosen thesaurus. These can be easily accessed using a frames-capable browser and regularly updated as new terms are submitted and approved by our Data Standards Unit.\n\nNational cultural heritage thesauri and vocabularies have acted as standards for use by both national organizations and local authority Historic Environment Records but until now have lacked the persistent Linked Open Data (LOD) URIs that would allow them to act as vocabulary hubs for the Web of Data. The AHRC funded SENESCHAL project aims to make such vocabularies available online as Semantic Web resources. SENESCHAL will start with major vocabularies as exemplars and project partners will continue to make other vocabularies available. Other organizations are welcome to make use of the data and services which will be open licensed.\n\nRESTful web services will be developed for the project to make the vocabulary resources programmatically accessible and searchable. These will include the provision to ‘feed back’ new terms (concepts) suggested by users.",
-      "homepage": "https://heritagedata.org/live/schemes/mda_obj.html",
+      "homepage": "https://collectionstrust.org.uk/resource/archaeological-objects-thesaurus-fish/",
       "license": {
         "spdx": "CC-BY-3.0",
         "url": "http://creativecommons.org/licenses/by/3.0/"
@@ -61736,7 +61746,7 @@
       },
       "name": "Flora Phenotype Ontology",
       "prefix": "FLOPO",
-      "version": "2026-11-15"
+      "version": "2026-11-24"
     },
     "example": "0005250",
     "fairsharing": {
@@ -64262,6 +64272,13 @@
     "uri_format": "http://purl.obolibrary.org/obo/FOVT_$1"
   },
   "fpbase": {
+    "cellosaurus.resource": {
+      "description": "Sequence databases",
+      "homepage": "https://www.fpbase.org/",
+      "name": "Fluorescent Protein database",
+      "prefix": "FPbase",
+      "uri_format": "https://www.fpbase.org/protein/$1"
+    },
     "comment": "Often slugs are used instead of the protein ids e.g. https://www.fpbase.org/protein/ZERB6/ is via FPBase ID https://www.fpbase.org/protein/mcherry/ is via slug For the slugs, the _de facto_ regex would be something like `^[a-zA-Z0-9._-]{1,64}$`  but there is no strict regex.",
     "contact": {
       "github": "tlambert03",
@@ -64282,6 +64299,9 @@
       "fluorescent proteins"
     ],
     "license": "CC-BY-SA-4.0",
+    "mappings": {
+      "cellosaurus.resource": "FPbase"
+    },
     "name": "Fluorescent Protein Database",
     "pattern": "^[A-HJ-Z1-9]{5}$",
     "publications": [
@@ -66439,6 +66459,25 @@
     "github_request_issue": 728,
     "homepage": "https://umgear.org",
     "license": "AGPL-3.0-only",
+    "mappings": {
+      "miriam": "gear"
+    },
+    "miriam": {
+      "description": "The gEAR is a published data repository and analysis tool focusing on gene expression and -omics data. Its primary research focus is the inner ear and how these data relate to hearing loss and restoration.",
+      "examples": [
+        "d.a59037e8"
+      ],
+      "extras": {
+        "miriam_id": "00001153",
+        "namespaceEmbeddedInLui": false
+      },
+      "homepage": "https://umgear.org",
+      "name": "gene Expression Analysis Resource",
+      "pattern": "[dp]\\.[a-z0-9]{8}",
+      "prefix": "gear",
+      "status": "active",
+      "uri_format": "https://umgear.org/p?id=$1"
+    },
     "name": "Gene Expression Analysis Resource",
     "pattern": "^[dp]\\.[a-z0-9]{8}$",
     "repository": "https://github.com/IGS/gEAR",
@@ -72670,6 +72709,7 @@
         "ecocore",
         "ecto",
         "envo",
+        "idpo",
         "maxo",
         "pcl",
         "pco",
@@ -76953,7 +76993,7 @@
           "url": "https://genomebiology.biomedcentral.com/articles/10.1186/s13059-018-1396-2"
         }
       ],
-      "version": "2025-10-14"
+      "version": "2026-11-23"
     },
     "example": "0290",
     "fairsharing": {
@@ -82659,6 +82699,7 @@
         "ecto",
         "fbbi",
         "fovt",
+        "idpo",
         "labo",
         "maxo",
         "mcro",
@@ -83142,6 +83183,9 @@
     "bioportal": {
       "description": "International Classification of Diseases, 10th Edition, Clinical Modification",
       "homepage": "https://www.cdc.gov/nchs/icd/icd-10-cm.htm",
+      "license": {
+        "name": "https://uts.nlm.nih.gov/help/license/licensecategoryhelp.html#category4"
+      },
       "name": "International Classification of Diseases, Version 10 - Clinical Modification",
       "prefix": "ICD10CM",
       "publications": [
@@ -83149,7 +83193,7 @@
           "url": "http://www.cms.hhs.gov/"
         }
       ],
-      "version": "2026"
+      "version": "2027"
     },
     "contact": {
       "email": "jakobr@who.int",
@@ -83286,6 +83330,9 @@
       },
       "description": "ICD-10-PCS is a medical classification coding system for procedural codes.",
       "homepage": "https://www.cms.gov/Medicare/Coding/ICD10/index.html",
+      "license": {
+        "name": "https://uts.nlm.nih.gov/help/license/licensecategoryhelp.html"
+      },
       "name": "International Classification of Diseases, Version 10 - Procedure Coding System",
       "prefix": "ICD10PCS",
       "publications": [
@@ -83293,7 +83340,7 @@
           "url": "http://www.cms.hhs.gov"
         }
       ],
-      "version": "2026"
+      "version": "2027"
     },
     "contact": {
       "email": "jakobr@who.int",
@@ -85590,6 +85637,19 @@
     "uri_format": "http://identifiers.org/idot/$1"
   },
   "idpo": {
+    "bioportal": {
+      "contact": {
+        "email": "ximena.castro@unipd.it",
+        "name": "Ximena Aixa Castro"
+      },
+      "description": "The Intrinsically Disordered Proteins Ontology (IDPO) defines concepts and relationships that describe the structural states, dynamic transitions, and functional roles of intrinsically disordered proteins (IDPs) and intrinsically disordered regions (IDRs). Its terms and definitions are grounded in the terminology used by the IDP research community and derived from scientific literature in the field., It describes structural aspects of an IDP/IDR, self-functions and functions directly associated with their disordered state.",
+      "license": {
+        "name": "CC-BY-4.0"
+      },
+      "name": "Intrinsically Disordered Proteins Ontology",
+      "prefix": "IDPO",
+      "version": "2026-11-03"
+    },
     "contact": {
       "email": "ximena.castro@unipd.it",
       "github": "XimeAixa",
@@ -85659,9 +85719,64 @@
       "structural bioinformatics"
     ],
     "mappings": {
-      "fairsharing": "FAIRsharing.bc973b"
+      "bioportal": "IDPO",
+      "fairsharing": "FAIRsharing.bc973b",
+      "obofoundry": "idpo",
+      "ontobee": "IDPO"
     },
     "name": "Intrinsically Disordered Proteins Ontology",
+    "obofoundry": {
+      "artifacts": [
+        {
+          "type": "owl",
+          "url": "http://purl.obolibrary.org/obo/idpo.owl"
+        },
+        {
+          "type": "obo",
+          "url": "http://purl.obolibrary.org/obo/idpo.obo"
+        },
+        {
+          "type": "obograph_json",
+          "url": "http://purl.obolibrary.org/obo/idpo.json"
+        }
+      ],
+      "contact": {
+        "email": "ximena.castro@unipd.it",
+        "github": "XimeAixa",
+        "name": "Ximena Aixa Castro",
+        "orcid": "0000-0002-9211-1255"
+      },
+      "depends_on": [
+        "bfo",
+        "cob",
+        "go",
+        "iao",
+        "omo",
+        "ro"
+      ],
+      "description": "An ontology of the structural states, transitions, functions and roles of intrinsically disordered proteins and regions, including biomolecular condensates.",
+      "domain": "chemistry and biochemistry",
+      "homepage": "https://github.com/BioComputingUP/idpo",
+      "license": {
+        "name": "CC BY 4.0",
+        "url": "https://creativecommons.org/licenses/by/4.0/"
+      },
+      "name": "Intrinsically Disordered Proteins Ontology",
+      "preferred_prefix": "IDPO",
+      "prefix": "idpo",
+      "repository": "https://github.com/BioComputingUP/idpo",
+      "status": "active",
+      "uri_format": "http://purl.obolibrary.org/obo/IDPO_$1",
+      "uri_format_rdf": "http://purl.obolibrary.org/obo/IDPO_$1"
+    },
+    "ontobee": {
+      "keywords": [
+        "obo",
+        "ontology"
+      ],
+      "name": "Intrinsically Disordered Proteins Ontology",
+      "prefix": "IDPO"
+    },
     "pattern": "^\\d{7}$",
     "publications": [
       {
@@ -99181,7 +99296,7 @@
           "url": "http://loinc.org/downloads"
         }
       ],
-      "version": "282"
+      "version": "283"
     },
     "contact": {
       "email": "mrallins@regenstrief.org",
@@ -103620,7 +103735,7 @@
           "url": "http://www.nlm.nih.gov/mesh"
         }
       ],
-      "version": "2026_2026_01_09"
+      "version": "2027_2026_09_18"
     },
     "cellosaurus.resource": {
       "description": "Medical resources",
@@ -111772,7 +111887,7 @@
       },
       "name": "Molecular Simulation Ontology",
       "prefix": "MOLSIM",
-      "version": "2026-11-20"
+      "version": "2026-11-27"
     },
     "contact": {
       "email": "f.musyaffa@fz-juelich.de",
@@ -113380,7 +113495,7 @@
           "url": "http://database.oxfordjournals.org/content/2013/bat009.long"
         }
       ],
-      "version": "4.2.17"
+      "version": "4.2.18"
     },
     "example": "1000560",
     "license": "CC-BY-3.0",
@@ -116973,7 +117088,7 @@
       },
       "name": "National Center for Biotechnology Information (NCBI) Organismal Classification",
       "prefix": "NCBITAXON",
-      "version": "2025_09_17"
+      "version": "2026_04_20"
     },
     "cellosaurus.resource": {
       "description": "Taxonomy",
@@ -117121,7 +117236,7 @@
         }
       ],
       "status": "active",
-      "uri_format": "https://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?mode=Info&id=$1"
+      "uri_format": "https://www.ncbi.nlm.nih.gov/datasets/taxonomy/$1"
     },
     "n2t": {
       "description": "The taxonomy contains the relationships between all living forms for which nucleic acid or protein sequence have been determined.",
@@ -118054,7 +118169,7 @@
       },
       "name": "National Drug Data File",
       "prefix": "NDDF",
-      "version": "2026_02_04"
+      "version": "2026_08_05"
     },
     "contact": {
       "email": "jsuko@fdbhealth.com",
@@ -127389,7 +127504,7 @@
           "url": "http://www.ncbi.nlm.nih.gov/omim/"
         }
       ],
-      "version": "2026_02_05"
+      "version": "2026_08_07"
     },
     "contact": {
       "email": "ahamosh@jhmi.edu",
@@ -127997,6 +128112,7 @@
       "appears_in": [
         "cl",
         "fbbi",
+        "idpo",
         "pcl",
         "uberon"
       ],
@@ -155524,6 +155640,7 @@
         "genepio",
         "go",
         "hso",
+        "idpo",
         "lepao",
         "maxo",
         "ons",
@@ -156996,7 +157113,7 @@
       },
       "name": "RxNORM",
       "prefix": "RXNORM",
-      "version": "20AA_260302F"
+      "version": "20AA_260908F"
     },
     "contributor": {
       "email": "cthoyt@gmail.com",
@@ -166304,7 +166421,7 @@
           "url": "http://www.snomed.org"
         }
       ],
-      "version": "2026_03_01"
+      "version": "2026_09_01"
     },
     "contributor_extras": [
       {
@@ -170293,7 +170410,7 @@
       "homepage": "https://semanticnetwork.nlm.nih.gov/",
       "name": "Semantic Types Ontology",
       "prefix": "STY",
-      "version": "2026AA"
+      "version": "2026AB"
     },
     "contact": {
       "email": "olivier@nlm.nih.gov",
@@ -188930,7 +189047,7 @@
       },
       "name": "Veterans Health Administration National Drug File",
       "prefix": "VANDF",
-      "version": "2026_01_30"
+      "version": "2026_07_31"
     },
     "contributor": {
       "email": "cthoyt@gmail.com",
@@ -191959,7 +192076,7 @@
       },
       "name": "Vaccine Ontology",
       "prefix": "VO",
-      "version": "2026-06-12"
+      "version": "2026-11-23"
     },
     "example": "0000093",
     "fairsharing": {

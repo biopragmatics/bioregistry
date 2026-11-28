@@ -5442,6 +5442,7 @@
       "foodon",
       "fovt",
       "hso",
+      "idpo",
       "lepao",
       "mco",
       "ons",
@@ -5678,7 +5679,6 @@
     "homepage": "https://id.loc.gov/ontologies/bibframe.html",
     "keywords": [
       "computer science",
-      "miscellaneous",
       "ontology",
       "subject agnostic"
     ],
@@ -14647,15 +14647,35 @@
     "version": "2026-06-19"
   },
   "cls": {
-    "description": "Cell line collections (Providers)",
-    "example": "300108/p3934_A-172",
-    "homepage": "https://www.cytion.com/",
+    "contact": {
+      "email": "a.fricke@cytion.com",
+      "github": "ArnoCytion",
+      "name": "Arno Fricke",
+      "orcid": "0009-0008-0951-635X"
+    },
+    "contributor_extras": [
+      {
+        "email": "a.fricke@cytion.com",
+        "github": "ArnoCytion",
+        "name": "Arno Fricke",
+        "orcid": "0009-0008-0951-635X"
+      }
+    ],
+    "description": "Authenticated human and animal cell lines, primary cells, stem cells and cell culture media distributed by Cytion GmbH (Heidelberg, Germany, formerly CLS Cell Lines Service GmbH), identified by six-digit catalog numbers.",
+    "example": "300108",
+    "homepage": "https://www.cytion.com",
+    "keywords": [
+      "cell culture",
+      "cell line",
+      "life science"
+    ],
     "mappings": {
       "cellosaurus.resource": "CLS"
     },
-    "name": "Cell Lines Service",
+    "name": "Cytion catalog",
+    "pattern": "^\\d{6}$",
     "preferred_prefix": "cls",
-    "uri_format": "https://www.cytion.com/$1"
+    "uri_format": "https://cytion.com/search?q=$1"
   },
   "clyh": {
     "contact": {
@@ -16127,6 +16147,9 @@
     "version": "1.1"
   },
   "cob": {
+    "appears_in": [
+      "idpo"
+    ],
     "contact": {
       "email": "bpeters@lji.org",
       "github": "bpeters42",
@@ -22158,7 +22181,6 @@
     "homepage": "https://github.com/VIVO-DE/destatis_faecherklassifikation",
     "keywords": [
       "educational science",
-      "miscellaneous",
       "subject"
     ],
     "mappings": {
@@ -27942,7 +27964,6 @@
     "homepage": "https://purls.helmholtz-metadaten.de/emg",
     "keywords": [
       "material science",
-      "miscellaneous",
       "ontology",
       "physics"
     ],
@@ -32542,7 +32563,7 @@
   "fish.aoe": {
     "description": "Physical evidence, usually portable, resulting from past human activity or environmental remains that can be recovered from archaeological fieldwork. English Heritage takes a leading role in setting standards for recording the built and buried heritage. By setting standards that can be adopted by everyone, we can make sure that all records are consistent. In other words, if everyone uses the same words to describe the same monument, archaeological object, building material, etc, then anyone using this common language can easily index, retrieve and understand these records. With this aim in mind, English Heritage is continually developing new thesauri to provide structure and guidelines for the standardisation of terms to be used when creating new records of the past. Now, in our drive to disseminate these standards and promote their wider use, we are making available seven separate online thesauri. A tailor-made suite of programs has been developed, which uses a database to create a series of web pages for any chosen thesaurus. These can be easily accessed using a frames-capable browser and regularly updated as new terms are submitted and approved by our Data Standards Unit.\n\nNational cultural heritage thesauri and vocabularies have acted as standards for use by both national organizations and local authority Historic Environment Records but until now have lacked the persistent Linked Open Data (LOD) URIs that would allow them to act as vocabulary hubs for the Web of Data. The AHRC funded SENESCHAL project aims to make such vocabularies available online as Semantic Web resources. SENESCHAL will start with major vocabularies as exemplars and project partners will continue to make other vocabularies available. Other organizations are welcome to make use of the data and services which will be open licensed.\n\nRESTful web services will be developed for the project to make the vocabulary resources programmatically accessible and searchable. These will include the provision to ‘feed back’ new terms (concepts) suggested by users.",
     "example": "95054",
-    "homepage": "https://heritagedata.org/live/schemes/mda_obj.html",
+    "homepage": "https://collectionstrust.org.uk/resource/archaeological-objects-thesaurus-fish/",
     "license": "CC-BY-3.0",
     "mappings": {
       "bartoc": "49"
@@ -33795,6 +33816,49 @@
     "uri_format": "http://purl.obolibrary.org/obo/FOVT_$1",
     "version": "2026-03-19"
   },
+  "fpbase": {
+    "comment": "Often slugs are used instead of the protein ids e.g. https://www.fpbase.org/protein/ZERB6/ is via FPBase ID https://www.fpbase.org/protein/mcherry/ is via slug For the slugs, the _de facto_ regex would be something like `^[a-zA-Z0-9._-]{1,64}$`  but there is no strict regex.",
+    "contact": {
+      "github": "tlambert03",
+      "name": "Talley Lambert",
+      "orcid": "0000-0002-2409-0181"
+    },
+    "contributor": {
+      "github": "lubianat",
+      "name": "Tiago Lubiana",
+      "orcid": "0000-0003-2473-2313"
+    },
+    "description": "The Fluorescent Protein Database (FPbase) is a free and open-source, community-editable database for fluorescent proteins (FPs) and their properties. It agregates FP data that is of interest to the imaging community and FP developers, assigning each protein a dedicated page.",
+    "example": "ZERB6",
+    "github_request_issue": 2245,
+    "homepage": "https://www.fpbase.org",
+    "keywords": [
+      "database",
+      "fluorescent proteins"
+    ],
+    "license": "CC-BY-SA-4.0",
+    "mappings": {
+      "cellosaurus.resource": "FPbase"
+    },
+    "name": "Fluorescent Protein Database",
+    "pattern": "^[A-HJ-Z1-9]{5}$",
+    "preferred_prefix": "fpbase",
+    "publications": [
+      {
+        "doi": "10.1038/s41592-019-0352-8",
+        "title": "FPbase: a community-editable fluorescent protein database",
+        "year": 2019
+      }
+    ],
+    "repository": "https://github.com/tlambert03/FPbase",
+    "reviewer": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "uri_format": "https://www.fpbase.org/protein/$1"
+  },
   "fplx": {
     "contact": {
       "email": "b.gyori@northeastern.edu",
@@ -34956,6 +35020,9 @@
     "github_request_issue": 728,
     "homepage": "https://umgear.org",
     "license": "AGPL-3.0-only",
+    "mappings": {
+      "miriam": "gear"
+    },
     "name": "Gene Expression Analysis Resource",
     "pattern": "^[dp]\\.[a-z0-9]{8}$",
     "preferred_prefix": "gear",
@@ -35503,6 +35570,7 @@
         "uri_format": "https://www.genecards.org/cgi-bin/carddisp.pl?gene=$1"
       }
     ],
+    "provides": "hgnc.symbol",
     "publications": [
       {
         "pubmed": "9789091"
@@ -38053,6 +38121,7 @@
       "ecocore",
       "ecto",
       "envo",
+      "idpo",
       "maxo",
       "pcl",
       "pco",
@@ -42086,8 +42155,13 @@
     "version": "2015-01-07"
   },
   "homba": {
+    "contact": {
+      "github": "ubyndr",
+      "name": "Ugur Bayindir"
+    },
     "description": "An ontology of mammalian brain anatomy harmonized across atlas and reference sources.",
     "download_owl": "https://github.com/brain-bican/harmonized_ontology_of_mammalian_brain_anatomy_ontology/releases/latest/download/homba.owl",
+    "example": "10155",
     "homepage": "https://github.com/brain-bican/harmonized_ontology_of_mammalian_brain_anatomy_ontology",
     "keywords": [
       "ontology"
@@ -42096,7 +42170,8 @@
       "ols": "homba"
     },
     "name": "Harmonized Ontology of Mammalian Brain Anatomy",
-    "preferred_prefix": "homba"
+    "preferred_prefix": "homba",
+    "repository": "https://github.com/brain-bican/harmonized_ontology_of_mammalian_brain_anatomy_ontology"
   },
   "homd.seq": {
     "contact": {
@@ -43473,6 +43548,7 @@
       "ecto",
       "fbbi",
       "fovt",
+      "idpo",
       "labo",
       "maxo",
       "mcro",
@@ -43845,7 +43921,7 @@
       "ICD10CM"
     ],
     "uri_format": "https://www.icd10data.com/search?s=$1",
-    "version": "2026"
+    "version": "2027"
   },
   "icd10pcs": {
     "contact": {
@@ -43876,6 +43952,7 @@
       "morbidity",
       "ontology"
     ],
+    "license": "https://uts.nlm.nih.gov/help/license/licensecategoryhelp.html",
     "mappings": {
       "aberowl": "ICD10PCS",
       "bioportal": "ICD10PCS",
@@ -43892,7 +43969,7 @@
       }
     ],
     "uri_format": "https://www.findacode.com/code.php?set=ICD10PCS&c=$1",
-    "version": "2026"
+    "version": "2027"
   },
   "icd11": {
     "comment": "Clinical codes from an ICD-11 linearization (a structured subset of the ICD-11 Foundation tailored for specific use cases, such as morbidity or mortality coding), such as RA00.0, have their own namespace (icd11.code).",
@@ -45132,10 +45209,10 @@
   },
   "idpo": {
     "contact": {
-      "email": "f.quaglia@ibiom.cnr.it",
-      "github": "federicaquaglia",
-      "name": "Federica Quaglia",
-      "orcid": "0000-0002-0341-4888"
+      "email": "ximena.castro@unipd.it",
+      "github": "XimeAixa",
+      "name": "Ximena Aixa Castro",
+      "orcid": "0000-0002-9211-1255"
     },
     "contributor": {
       "email": "cthoyt@gmail.com",
@@ -45143,10 +45220,31 @@
       "name": "Charles Tapley Hoyt",
       "orcid": "0000-0003-4423-4370"
     },
-    "description": "IDPO is used to describe structural aspects of an IDP/IDR, self-functions and functions directly associated with their disordered state. GO is used to describe functional aspects of an IDP/IDR.",
-    "example": "00056",
+    "contributor_extras": [
+      {
+        "email": "ximena.castro@unipd.it",
+        "github": "XimeAixa",
+        "name": "Ximena Aixa Castro",
+        "orcid": "0000-0002-9211-1255"
+      }
+    ],
+    "depends_on": [
+      "bfo",
+      "cob",
+      "go",
+      "iao",
+      "omo",
+      "ro"
+    ],
+    "description": "IDPO defines concepts and relationships that describe the structural states, dynamic transitions, and functional roles of intrinsically disordered proteins (IDPs) and regions (IDRs). Its terms and definitions are grounded in the terminology used by the IDP research community and derived from scientific literature in the field.",
+    "download_json": "http://purl.obolibrary.org/obo/idpo.json",
+    "download_obo": "http://purl.obolibrary.org/obo/idpo.obo",
+    "download_owl": "http://purl.obolibrary.org/obo/idpo.owl",
+    "example": "0000002",
     "homepage": "https://www.disprot.org/ontology",
     "keywords": [
+      "obo",
+      "ontology",
       "protein analysis",
       "protein structure",
       "proteins",
@@ -45155,27 +45253,46 @@
       "structural bioinformatics",
       "structural biology"
     ],
+    "license": "CC-BY-4.0",
     "mappings": {
-      "fairsharing": "FAIRsharing.bc973b"
+      "bioportal": "IDPO",
+      "fairsharing": "FAIRsharing.bc973b",
+      "obofoundry": "idpo",
+      "ontobee": "IDPO"
     },
     "name": "Intrinsically Disordered Proteins Ontology",
-    "pattern": "^\\d{5}$",
-    "preferred_prefix": "idpo",
+    "pattern": "^\\d{7}$",
+    "preferred_prefix": "IDPO",
     "publications": [
       {
-        "doi": "10.1093/nar/gkad928",
-        "pubmed": "37904585",
-        "title": "DisProt in 2024: improving function annotation of intrinsically disordered proteins",
-        "year": 2024
+        "doi": "10.1093/nar/gkaf1175",
+        "pmc": "PMC12807702",
+        "pubmed": "41249866",
+        "title": "DisProt in 2026: enhancing intrinsically disordered proteins accessibility, deposition, and annotation",
+        "year": 2026
       },
       {
         "doi": "10.1093/database/baae009",
+        "pmc": "PMC10953794",
+        "pubmed": "38507044",
         "title": "Best practices for the manual curation of intrinsically disordered proteins in DisProt",
+        "year": 2024
+      },
+      {
+        "doi": "10.1093/nar/gkad928",
+        "pmc": "PMC10767923",
+        "pubmed": "37904585",
+        "title": "DisProt in 2024: improving function annotation of intrinsically disordered proteins",
         "year": 2024
       }
     ],
+    "rdf_uri_format": "http://purl.obolibrary.org/obo/IDPO_$1",
+    "references": [
+      "https://github.com/biopragmatics/bioregistry/pull/2253"
+    ],
     "repository": "https://github.com/BioComputingUP/idpo",
-    "uri_format": "https://www.disprot.org/idpo/IDPO:$1"
+    "uri_format": "https://www.disprot.org/idpo/IDPO:$1",
+    "version": "2026-11-03"
   },
   "idr": {
     "contact": {
@@ -53085,7 +53202,7 @@
       "LNC"
     ],
     "uri_format": "https://loinc.org/$1",
-    "version": "282"
+    "version": "283"
   },
   "lonza": {
     "contributor": {
@@ -55516,7 +55633,7 @@
       "meshUID"
     ],
     "uri_format": "https://meshb.nlm.nih.gov/record/ui?ui=$1",
-    "version": "2026_2026_01_09"
+    "version": "2027_2026_09_18"
   },
   "mesh.2012": {
     "description": "MeSH (Medical Subject Headings) is the National Library of Medicine's controlled vocabulary thesaurus. It consists of sets of terms naming descriptors in a hierarchical structure that permits searching at various levels of specificity. This thesaurus is used by NLM for indexing articles from biomedical journals, cataloging of books, documents, etc. This collection references MeSH terms published in 2012.",
@@ -56840,7 +56957,6 @@
       "interaction",
       "life science",
       "life sciences, biology",
-      "miscellaneous",
       "molecular interaction",
       "molecule",
       "obo",
@@ -59410,7 +59526,7 @@
     "preferred_prefix": "MOLSIM",
     "repository": "https://github.com/CPCLab/molsim-ontology",
     "uri_format": "http://purl.obolibrary.org/obo/MOLSIM_$1",
-    "version": "2026-11-20"
+    "version": "2026-11-27"
   },
   "mona": {
     "description": "identifier for spectra in the MassBank of North America database",
@@ -62450,7 +62566,7 @@
     "pattern": "^\\d{6}$",
     "preferred_prefix": "nddf",
     "uri_format": "http://purl.bioontology.org/ontology/NDDF/$1",
-    "version": "2026_02_04"
+    "version": "2026_08_05"
   },
   "ndex": {
     "contact": {
@@ -64571,6 +64687,36 @@
     "name": "nmrXiv compound",
     "preferred_prefix": "nmrxiv.compound",
     "uri_format": "https://nmrxiv.org/spectra?compound=$1"
+  },
+  "nmrxiv.dataset": {
+    "contact": {
+      "github": "vcnainala",
+      "name": "Chandu Nainala",
+      "orcid": "0000-0002-2564-3243"
+    },
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "datasets appearing in nmrXiv",
+    "example": "D10217",
+    "github_request_issue": 2252,
+    "homepage": "https://nmrxiv.org/dataset",
+    "keywords": [
+      "nmrxiv"
+    ],
+    "name": "nmrXiv dataset",
+    "owners": [
+      {
+        "name": "NFDI4Chem",
+        "ror": "05wwzbv21",
+        "wikidata": "Q96678459"
+      }
+    ],
+    "preferred_prefix": "nmrxiv.dataset",
+    "uri_format": "https://nmrxiv.org/dataset/$1"
   },
   "nmrxiv.project": {
     "contact": {
@@ -67721,7 +67867,7 @@
       "mim"
     ],
     "uri_format": "https://omim.org/MIM:$1",
-    "version": "2026_02_05"
+    "version": "2026_08_07"
   },
   "omim.ps": {
     "banana": "PS",
@@ -67863,6 +68009,7 @@
     "appears_in": [
       "cl",
       "fbbi",
+      "idpo",
       "pcl",
       "uberon"
     ],
@@ -74474,6 +74621,41 @@
     ],
     "uri_format": "http://localhost/plosthes.2017-1#$1",
     "version": "plosthes.2017-1"
+  },
+  "plsmo": {
+    "contact": {
+      "email": "markus.becker@inp-greifswald.de",
+      "github": "markus-m-becker",
+      "name": "Markus M. Becker",
+      "orcid": "0000-0001-9324-3236"
+    },
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "The plasma ontology (Plasma-O) supports the standardized documentation of research data in the field of plasma physics. In accordance with typical plasma processes and applications, the ontology contains terminologicial knowledge about plasma source, plasma medium, and plasma target. Furthermore, metadata for the respectively applied diagnostic and modelling/simulation methods are represented. (from ontology)",
+    "download_owl": "https://github.com/plasma-mds/plasma-ontology/raw/refs/heads/master/plasma-ontology.ttl",
+    "download_rdf": "https://raw.githubusercontent.com/plasma-mds/plasma-ontology/refs/heads/master/plasma-ontology.ttl",
+    "example": "R0024",
+    "example_extras": [
+      "C0012",
+      "I0010"
+    ],
+    "homepage": "https://github.com/plasma-mds/plasma-ontology",
+    "keywords": [
+      "ontology",
+      "physics"
+    ],
+    "license": "CC-BY-4.0",
+    "mappings": {
+      "tib.ts": "plsmo"
+    },
+    "name": "Plasma Ontology",
+    "preferred_prefix": "plsmo",
+    "repository": "https://github.com/plasma-mds/plasma-ontology",
+    "uri_format": "https://plasma-mds.org/ontology/plasma-o/PLSMO_$1"
   },
   "pmads": {
     "contact": {
@@ -81628,6 +81810,7 @@
       "genepio",
       "go",
       "hso",
+      "idpo",
       "lepao",
       "maxo",
       "ons",
@@ -82432,7 +82615,7 @@
       "RXCUI"
     ],
     "uri_format": "https://mor.nlm.nih.gov/RxNav/search?searchBy=RXCUI&searchTerm=$1",
-    "version": "20AA_260302F"
+    "version": "20AA_260908F"
   },
   "s_mart_db": {
     "deprecated": true,
@@ -82890,7 +83073,6 @@
       "agriculture",
       "food",
       "iot",
-      "miscellaneous",
       "ontology",
       "saref"
     ],
@@ -86842,7 +87024,6 @@
     "homepage": "https://www.w3.org/TR/skos-reference",
     "keywords": [
       "computer science",
-      "miscellaneous",
       "ontology",
       "w3c rec"
     ],
@@ -86898,7 +87079,6 @@
       "computer science",
       "data model",
       "metadata",
-      "miscellaneous",
       "ontology",
       "semantic web",
       "skos",
@@ -89906,7 +90086,7 @@
       "umls.sty"
     ],
     "uri_format": "https://uts.nlm.nih.gov/uts/umls/semantic-network/$1",
-    "version": "2026AA"
+    "version": "2026AB"
   },
   "subtilist": {
     "contact": {
@@ -90366,7 +90546,6 @@
     "example": "6T",
     "homepage": "https://netmode.gitlab.io/sustaingraph-ontology/",
     "keywords": [
-      "miscellaneous",
       "ontology"
     ],
     "license": "CC-BY-NC-SA-4.0",
@@ -98432,8 +98611,7 @@
     "example": "arc",
     "homepage": "https://github.com/TIBHannover/annif_automated_indexing_at_tib",
     "keywords": [
-      "computer science",
-      "miscellaneous"
+      "computer science"
     ],
     "license": "CC0-1.0",
     "mappings": {
@@ -102829,7 +103007,7 @@
       }
     ],
     "uri_format": "http://purl.bioontology.org/ontology/VANDF/$1",
-    "version": "2026_01_30"
+    "version": "2026_07_31"
   },
   "vann": {
     "contact": {
@@ -102851,7 +103029,6 @@
     "keywords": [
       "computer science",
       "metadata",
-      "miscellaneous",
       "ontology"
     ],
     "license": "CC-BY-1.0",
@@ -104160,7 +104337,6 @@
     "homepage": "https://vivoweb.org",
     "keywords": [
       "academy",
-      "miscellaneous",
       "natural science",
       "ontology",
       "resource metadata",

@@ -12749,15 +12749,18 @@
         ]
     },
     {
+        "pattern": "^\\d{6}$",
         "prefix": "cls",
         "prefix_synonyms": [
             "CLS"
         ],
-        "uri_prefix": "https://www.cytion.com/",
+        "uri_prefix": "https://cytion.com/search?q=",
         "uri_prefix_synonyms": [
             "http://bioregistry.io/cls:",
+            "http://cytion.com/search?q=",
             "http://www.cytion.com/",
-            "https://bioregistry.io/cls:"
+            "https://bioregistry.io/cls:",
+            "https://www.cytion.com/"
         ]
     },
     {
@@ -18668,6 +18671,19 @@
         ]
     },
     {
+        "pattern": "^[A-HJ-Z1-9]{5}$",
+        "prefix": "fpbase",
+        "prefix_synonyms": [
+            "FPBASE"
+        ],
+        "uri_prefix": "https://www.fpbase.org/protein/",
+        "uri_prefix_synonyms": [
+            "http://bioregistry.io/fpbase:",
+            "http://www.fpbase.org/protein/",
+            "https://bioregistry.io/fpbase:"
+        ]
+    },
+    {
         "pattern": "^[a-zA-Z0-9][A-Za-z0-9_]+$",
         "prefix": "fplx",
         "prefix_synonyms": [
@@ -19255,33 +19271,6 @@
             "https://bio2rdf.org/gendis:",
             "https://bioregistry.io/gendis:",
             "https://caps.ncbs.res.in/cgi-bin/mini/databases/gendis/sf.cgi?code="
-        ]
-    },
-    {
-        "pattern": "^[A-Za-z-0-9_]+(\\@)?$",
-        "prefix": "genecards.gene",
-        "prefix_synonyms": [
-            "GENECARDS",
-            "GENECARDS.GENE",
-            "genecards"
-        ],
-        "uri_prefix": "https://www.genecards.org/card/",
-        "uri_prefix_synonyms": [
-            "http://bio2rdf.org/genecards:",
-            "http://bioregistry.io/genecards.gene:",
-            "http://bioregistry.io/genecards:",
-            "http://identifiers.org/genecards/",
-            "http://identifiers.org/genecards:",
-            "http://n2t.net/genecards:",
-            "http://www.genecards.org/card/",
-            "http://www.genecards.org/cgi-bin/carddisp.pl?gene=",
-            "https://bio2rdf.org/genecards:",
-            "https://bioregistry.io/genecards.gene:",
-            "https://bioregistry.io/genecards:",
-            "https://identifiers.org/genecards/",
-            "https://identifiers.org/genecards:",
-            "https://n2t.net/genecards:",
-            "https://www.genecards.org/cgi-bin/carddisp.pl?gene="
         ]
     },
     {
@@ -21487,6 +21476,8 @@
             "COSMIC",
             "COSMIC.GENE",
             "DEPOD",
+            "GENECARDS",
+            "GENECARDS.GENE",
             "HGNC.SYMBOL",
             "PHARMVAR",
             "SCRETF",
@@ -21495,6 +21486,8 @@
             "cosmic",
             "cosmic.gene",
             "depod",
+            "genecards",
+            "genecards.gene",
             "pharmvar",
             "scretf",
             "ygob"
@@ -21504,12 +21497,15 @@
             "http://apps.pathwaycommons.org/interactions?source=",
             "http://bio2rdf.org/cmd:",
             "http://bio2rdf.org/cosmic:",
+            "http://bio2rdf.org/genecards:",
             "http://bio2rdf.org/pharmvar:",
             "http://bio2rdf.org/ygob:",
             "http://bioregistry.io/collagenmutdb:",
             "http://bioregistry.io/cosmic.gene:",
             "http://bioregistry.io/cosmic:",
             "http://bioregistry.io/depod:",
+            "http://bioregistry.io/genecards.gene:",
+            "http://bioregistry.io/genecards:",
             "http://bioregistry.io/hgnc.symbol:",
             "http://bioregistry.io/pharmvar:",
             "http://bioregistry.io/scretf:",
@@ -21525,12 +21521,15 @@
             "http://identifiers.org/cosmic:",
             "http://identifiers.org/depod/",
             "http://identifiers.org/depod:",
+            "http://identifiers.org/genecards/",
+            "http://identifiers.org/genecards:",
             "http://identifiers.org/hgnc.symbol/",
             "http://identifiers.org/hgnc.symbol:",
             "http://identifiers.org/scretf/",
             "http://identifiers.org/scretf:",
             "http://n2t.net/cosmic:",
             "http://n2t.net/depod:",
+            "http://n2t.net/genecards:",
             "http://n2t.net/hgnc.symbol:",
             "http://n2t.net/scretf:",
             "http://oncomx.org/searchview/?gene=",
@@ -21539,6 +21538,8 @@
             "http://stormo.wustl.edu/ScerTF/details/",
             "http://wolfe.gen.tcd.ie/cgi/browser/ygob.pl?gene=",
             "http://www.depod.bioss.uni-freiburg.de/showp.php?gene=",
+            "http://www.genecards.org/card/",
+            "http://www.genecards.org/cgi-bin/carddisp.pl?gene=",
             "http://www.genenames.org/cgi-bin/gene_symbol_report?match=",
             "http://www.genenames.org/data/gene-symbol-report/#!/symbol/",
             "http://www.genenames.org/tools/search/#!/all?query=",
@@ -21547,12 +21548,15 @@
             "https://apps.pathwaycommons.org/interactions?source=",
             "https://bio2rdf.org/cmd:",
             "https://bio2rdf.org/cosmic:",
+            "https://bio2rdf.org/genecards:",
             "https://bio2rdf.org/pharmvar:",
             "https://bio2rdf.org/ygob:",
             "https://bioregistry.io/collagenmutdb:",
             "https://bioregistry.io/cosmic.gene:",
             "https://bioregistry.io/cosmic:",
             "https://bioregistry.io/depod:",
+            "https://bioregistry.io/genecards.gene:",
+            "https://bioregistry.io/genecards:",
             "https://bioregistry.io/hgnc.symbol:",
             "https://bioregistry.io/pharmvar:",
             "https://bioregistry.io/scretf:",
@@ -21568,12 +21572,15 @@
             "https://identifiers.org/cosmic:",
             "https://identifiers.org/depod/",
             "https://identifiers.org/depod:",
+            "https://identifiers.org/genecards/",
+            "https://identifiers.org/genecards:",
             "https://identifiers.org/hgnc.symbol/",
             "https://identifiers.org/hgnc.symbol:",
             "https://identifiers.org/scretf/",
             "https://identifiers.org/scretf:",
             "https://n2t.net/cosmic:",
             "https://n2t.net/depod:",
+            "https://n2t.net/genecards:",
             "https://n2t.net/hgnc.symbol:",
             "https://n2t.net/scretf:",
             "https://oncomx.org/searchview/?gene=",
@@ -21582,6 +21589,8 @@
             "https://stormo.wustl.edu/ScerTF/details/",
             "https://wolfe.gen.tcd.ie/cgi/browser/ygob.pl?gene=",
             "https://www.depod.bioss.uni-freiburg.de/showp.php?gene=",
+            "https://www.genecards.org/card/",
+            "https://www.genecards.org/cgi-bin/carddisp.pl?gene=",
             "https://www.genenames.org/cgi-bin/gene_symbol_report?match=",
             "https://www.genenames.org/tools/search/#!/all?query=",
             "https://www.pharmvar.org/gene/",
@@ -22773,7 +22782,7 @@
         ]
     },
     {
-        "pattern": "^\\d{5}$",
+        "pattern": "^\\d{7}$",
         "prefix": "idpo",
         "prefix_synonyms": [
             "IDPO"
@@ -29874,6 +29883,18 @@
         ]
     },
     {
+        "prefix": "nmrxiv.dataset",
+        "prefix_synonyms": [
+            "NMRXIV.DATASET"
+        ],
+        "uri_prefix": "https://nmrxiv.org/dataset/",
+        "uri_prefix_synonyms": [
+            "http://bioregistry.io/nmrxiv.dataset:",
+            "http://nmrxiv.org/dataset/",
+            "https://bioregistry.io/nmrxiv.dataset:"
+        ]
+    },
+    {
         "pattern": "^P\\d+$",
         "prefix": "nmrxiv.project",
         "prefix_synonyms": [
@@ -32129,6 +32150,21 @@
         ]
     },
     {
+        "pattern": "^PEP-\\d{6}$",
+        "prefix": "pepbankio",
+        "prefix_synonyms": [
+            "PEPBANKIO"
+        ],
+        "uri_prefix": "https://identifiers.org/pepbankio:",
+        "uri_prefix_synonyms": [
+            "http://bioregistry.io/pepbankio:",
+            "http://identifiers.org/pepbankio/",
+            "http://identifiers.org/pepbankio:",
+            "https://bioregistry.io/pepbankio:",
+            "https://identifiers.org/pepbankio/"
+        ]
+    },
+    {
         "pattern": "^[A-Za-z0-9_\\-]+(/[A-Za-z0-9_\\-]+)?$",
         "prefix": "pephub",
         "prefix_synonyms": [
@@ -32912,6 +32948,18 @@
             "https://bioregistry.io/PLOSTHES:",
             "https://bioregistry.io/plos:",
             "https://localhost/plosthes.2017-1#"
+        ]
+    },
+    {
+        "prefix": "plsmo",
+        "prefix_synonyms": [
+            "PLSMO"
+        ],
+        "uri_prefix": "https://plasma-mds.org/ontology/plasma-o/PLSMO_",
+        "uri_prefix_synonyms": [
+            "http://bioregistry.io/plsmo:",
+            "http://plasma-mds.org/ontology/plasma-o/PLSMO_",
+            "https://bioregistry.io/plsmo:"
         ]
     },
     {
